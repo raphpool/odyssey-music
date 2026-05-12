@@ -133,10 +133,10 @@ Two algorithms power the product: a **display algorithm** that decides what to r
 ### Vocabulary
 
 - **Node schema** — for each type, the fixed list of *typed edges* that can attach to it (e.g., a Track has `artists`, `project`, `genres`, `samples`, `remix_of`, …).
-- **Candidate set** — for a focused node `N`, the union of all nodes reachable via `N`'s schema edges, drawn from the cache.
+- **Candidate set** — for a focused node `N`, the union of all nodes reachable via `N`'s schema edges, drawn from the cache (materialized nodes only).
 - **Display set** — the subset of the candidate set actually rendered as preview cards. At most the size of the candidate set, and typically smaller (capped by the display cap `K`).
 - **Cache** — persistent store of every node we've materialized.
-- **Frontier** — queue of node references waiting to be materialized. When the agent materializes a node, every reference it emits (e.g., a Track's `artists`) that doesn't yet exist in the cache gets pushed onto the frontier as a *stub* — a `{type, name}` pair, no payload. Background crawl drains the frontier; on-demand crawl pulls a single stub forward when the user navigates to it.
+- **Frontier** — internal queue of references waiting to be materialized by the background crawl. Populated when an agent run emits a reference to a node that isn't in the cache yet. Never user-visible: the display algorithm only renders materialized nodes.
 
 The schema says what edges *can* exist, the candidate set says what we *know about*, the display set says what we *show*. These are three different things; the algorithm chooses between them.
 
@@ -149,7 +149,6 @@ Given a focused node `N` and a display cap `K`:
 3. **Within each slot bucket, sample semi-randomly**, with these biases:
    - **Strong negative bias on already-displayed nodes** — if a node is currently on the canvas (focused, first-degree, or second-degree), its weight drops sharply or to zero. This is the serendipity lever.
    - **Negative bias on recently-focused nodes** — discourages loops back to nodes the user just left; biases the walk forward.
-   - *(Future)* Mild positive bias toward cache-warm neighbors so the next click doesn't hit a loading state.
 4. **Second-degree expansion.** Run the same algorithm with a smaller cap on each first-degree preview, to fill the outer ring. The already-displayed bias is **global across both rings**, not per-ring — otherwise rings duplicate.
 
 ### Per-type edge schemas
@@ -164,18 +163,13 @@ These are the candidate-edge lists the algorithm reads. They mirror the metadata
 
 ### Materialization algorithm
 
-There is no pre-scraped corpus. Nodes are materialized lazily by an agent with web access.
+There is no pre-scraped corpus, and there is no on-demand fetch at navigation time — the canvas needs to feel smooth and synchronous, and a web-scraping agent can't meet that latency budget. Instead, the graph is built **entirely by a background crawl** that runs before users touch the product and keeps running afterwards to expand and refresh it.
 
 **The agent.** Given `(type, name, disambiguators?)`, it returns the full structured node payload: text fields, the long-form editorial article, and the edge references. Tools: web search + URL fetch. Output is schema-validated; references are emitted as canonical IDs (e.g., `artist:aphex-twin`), not free text. Model is a cheap, high-throughput one (DeepSeek / Qwen class) — graph volume dominates per-call cost.
 
 > Tension worth naming: editorial articles are core to the product and want a stronger model than pure structured extraction does. A possible split is cheap model for structure + references, better model for the article.
 
-**Two crawl modes, one agent:**
-
-- **Background crawl ("warm the cache").** Seed → frontier. Loop: pop node → agent call → write payload to cache → push referenced nodes onto frontier (dedup against visited). Runs autonomously against a budget (time / node count / dollars). BFS by default. Can run arbitrarily long from any seed.
-- **On-demand crawl.** When the user navigates to a node that exists only as a *reference stub* — named somewhere but not yet materialized — trigger the agent inline. Show a loading state on the focused card. Newly discovered references join the frontier for later background expansion.
-
-Same agent, same cache, same frontier. Only the trigger differs.
+**The crawl loop.** Seed → frontier. Loop: pop reference → agent call → write payload to cache → push the new references onto the frontier (dedup against what's already cached or queued). Runs autonomously against a budget (time / node count / dollars). BFS by default. Can run arbitrarily long from any seed, and can be re-started at any time to expand the graph further or refresh stale nodes.
 
 ### Identity & dedup
 
@@ -190,11 +184,11 @@ Half the schema edges are directional: `samples`/`sampled_by`, `influences`/`inf
 
 ### Cache shape
 
-Keyed by canonical slug. Stores: payload, references (as slugs), materialization timestamp, source citations (for trust + debugging), and a freshness TTL. Read by the display algorithm; written by both crawl modes.
+Keyed by canonical slug. Stores: payload, references (as slugs), materialization timestamp, source citations (for trust + debugging), and a freshness TTL. Read by the display algorithm; written by the background crawl.
 
 ### Cold start
 
-The first node has nothing behind it. The very first navigation must run the agent synchronously before anything renders. Worth designing the loading state for this case explicitly — it's the user's first impression.
+Because navigation never blocks on materialization, the product can't launch until enough of the graph is pre-crawled to make any reachable node feel rich on first click. Practically: pick the initial seeds, run the background crawl long enough to materialize several hops out from each, then ship. After launch, the crawler keeps running to grow and refresh the graph.
 
 ### Knobs to lock down
 
@@ -203,7 +197,7 @@ The first node has nothing behind it. The very first navigation must run the age
 - Whether second-degree previews are directly clickable (skip-to-focus) or first promote to first-degree.
 - Cache TTL / refresh policy.
 - Agent guardrails: citations required? Refuse-on-uncertain? Acceptable hallucination floor in editorial articles?
-- Per-session cost ceiling on on-demand crawls.
+- Total crawl budget (time / node count / dollars) to reach "launch-ready" coverage from the chosen seeds.
 - One agent or two (cheap for structure, stronger for articles).
 
 ## Open questions
