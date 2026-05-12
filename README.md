@@ -178,10 +178,12 @@ There is no pre-scraped corpus, and there is no on-demand fetch at navigation ti
 
 ### Identity & dedup
 
-Without canonicalization the cache fragments into islands. Two pieces:
+Without canonicalization the cache fragments into islands. Two related but **distinct** mechanisms keep that from happening:
 
-- **Slug normalization at write time.** Every reference becomes `{type}:{normalized-name}` before it touches the cache.
-- **Alias resolution.** "Richard D. James" / "AFX" / "Polygon Window" should all resolve to `artist:aphex-twin`. Best done by the agent itself with a "is this the same entity as any of: …" disambiguation step before insertion.
+- **Slug normalization at write time.** Variant spellings of the *same* entity collapse to one canonical slug — "Aphex Twin" / "aphex twin" / "Aphex Twin (musician)" all resolve to `artist:aphex-twin`. Best done by the agent itself with a "is this the same entity as any of: …?" disambiguation step before insertion. This is the only mechanism that *removes* would-be nodes.
+- **Personas, side projects, and aliases stay as distinct nodes.** AFX, Polygon Window, and Richard D. James are *not* normalized into `artist:aphex-twin`. Each has its own discography, its own editorial article, and its own slug. They connect to Aphex Twin via the Artist node's `aliases` and `members` edges. This is part of the cultural fabric the product wants to surface — collapsing personas would erase exactly the kind of connection a digger wants to follow.
+
+Rule of thumb: normalize *spellings* of one entity; keep *personas* of one person as separate nodes.
 
 ### Reverse-edge materialization
 
