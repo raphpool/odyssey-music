@@ -134,9 +134,9 @@ Two algorithms power the product: a **display algorithm** that decides what to r
 
 - **Node schema** — for each type, the fixed list of *typed edges* that can attach to it (e.g., a Track has `artists`, `project`, `genres`, `samples`, `remix_of`, …).
 - **Candidate set** — for a focused node `N`, the union of all nodes reachable via `N`'s schema edges, drawn from the cache.
-- **Display set** — the subset of the candidate set actually rendered as preview cards. Always smaller than the candidate set.
+- **Display set** — the subset of the candidate set actually rendered as preview cards. At most the size of the candidate set, and typically smaller (capped by the display cap `K`).
 - **Cache** — persistent store of every node we've materialized.
-- **Frontier** — queue of node references we've seen but haven't materialized yet.
+- **Frontier** — queue of node references waiting to be materialized. When the agent materializes a node, every reference it emits (e.g., a Track's `artists`) that doesn't yet exist in the cache gets pushed onto the frontier as a *stub* — a `{type, name}` pair, no payload. Background crawl drains the frontier; on-demand crawl pulls a single stub forward when the user navigates to it.
 
 The schema says what edges *can* exist, the candidate set says what we *know about*, the display set says what we *show*. These are three different things; the algorithm chooses between them.
 
