@@ -86,7 +86,8 @@ These are first-draft proposals to be refined.
 - **Influences** → Artist nodes (artists who shaped them)
 - **Influenced** → Artist nodes (artists they shaped)
 - **Collaborators** → Artist nodes
-- **Members / aliases / side projects** → Artist nodes
+- **Aliases** → Artist nodes (the same person recording under another name — e.g., side projects, pseudonyms)
+- **Members** → Artist nodes (members of a group, or groups an individual is part of)
 
 ### Project (album / EP)
 - **Title** (text)
@@ -112,6 +113,8 @@ These are first-draft proposals to be refined.
 - **Producers** → Artist nodes
 - **Samples** → Track nodes
 - **Sampled by** → Track nodes
+- **Remix of** → Track node (when this track is a remix of another)
+- **Remixed by** → Track nodes (remixes of this track)
 - **Editorial teaser** (text, 1 sentence — preview teaser)
 - **Editorial article** (long-form text, mandatory — full article shown when focused)
 
@@ -153,13 +156,15 @@ Given a focused node `N` and a display cap `K`:
 
 ### Per-type edge schemas
 
-These are the candidate-edge lists the algorithm reads. They mirror the metadata sections above — the schema and the metadata are the same shape.
+These are the candidate-edge lists the algorithm reads. They are exactly the node-reference fields in the [Node metadata](#node-metadata) section above — same names, same meaning. Any drift between this list and the metadata is a bug.
 
 - **Track** → `artists`, `project`, `genres`, `producers`, `samples`, `sampled_by`, `remix_of`, `remixed_by`
-- **Project** → `artists`, `label`, `tracks`, `producers`, `genres`, `related_projects`
-- **Artist** → `projects`, `tracks`, `labels`, `genres`, `influences`, `influenced`, `collaborators`, `aliases`, `members`
-- **Label** → `roster`, `releases`, `genres`, `founders`
+- **Project** → `artists`, `label`, `tracklist`, `producers`, `genres`, `related_projects`
+- **Artist** → `discography`, `notable_tracks`, `labels`, `genres`, `influences`, `influenced`, `collaborators`, `aliases`, `members`
+- **Label** → `roster`, `notable_releases`, `genres`
 - **Genre** → `parent_genres`, `subgenres`, `related_genres`, `key_artists`, `key_labels`, `landmark_projects`, `landmark_tracks`
+
+Note: `Label.founders` is plain text in the metadata, not a graph edge — it's commonly a non-artist (label-owner, businessperson), so it doesn't reliably resolve to a node. When a founder *is* in the graph as an Artist, they're usually also on the label's `roster`, so the navigation is preserved.
 
 ### Materialization algorithm
 
