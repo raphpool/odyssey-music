@@ -92,6 +92,11 @@
       "slug": "artist:bfc",
       "type": "artist",
       "name": "BFC"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook"
     }
   ],
   "aliases": [

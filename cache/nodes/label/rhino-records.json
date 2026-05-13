@@ -1,0 +1,60 @@
+{
+  "slug": "label:rhino-records",
+  "name": "Rhino Records",
+  "editorial_article": "Rhino Entertainment, originally founded as Rhino Records in 1978 in Los Angeles by Richard Foos and Harold Bronson, stands as one of the most significant and respected institutions in the history of catalog reissues and archival music. Emerging from a record shop on Westwood Boulevard that Foos opened in 1973, the label initially distinguished itself through quirky novelty releases and offbeat compilations, featuring early work by artists like Wild Man Fischer. The label's iconic mascot, a leather-jacketed rhinoceros designed by William Stout, became a symbol of its independent, fan-focused ethos during the late 1970s and 1980s. \\n\\nAs the company matured, it carved out a reputation for excellence in the field of archival music by prioritizing audio fidelity and comprehensive, well-researched packaging. Under the direction of specialists like audio engineer Bill Inglot, Rhino set a new standard for how legacy catalogs should be treated, ensuring that remastered releases honored the integrity of the original analog masters. This meticulous approach allowed them to successfully acquire and manage prestigious catalogs, including rights to the White Whale Records archives, which brought the music of The Turtles to a new generation of listeners. By the time they entered the compact disc market in 1984, they were already a trusted brand for music collectors and historians.\\n\\nIn the late 1980s and 1990s, Rhino expanded into home video and dabbled in producing new music, though they ultimately remained best known for their curation of deep-catalog gems and major legacy projects. In 1998, Time Warner (now Warner Music Group) completed its acquisition of the label, integrating Rhino as the official catalog division for its massive library of recordings. Today, Rhino continues to play a vital role in music preservation, ensuring that significant classic rock, pop, and rhythm & blues recordings remain accessible and expertly presented for future generations, while maintaining the same spirit of obsessive curation that defined its humble beginnings in Westwood.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rhino_Entertainment",
+      "title": "Rhino Entertainment - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/labels/16868",
+      "title": "Rhino Records · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:12.701Z",
+  "_metrics": {
+    "input_tokens": 11805,
+    "output_tokens": 731,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004048,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9265,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Rhino Records is an American record label and production company, founded in 1978, that became the industry gold standard for archival reissues and catalog management before becoming the official catalog division of Warner Music Group.",
+  "founded": "1978",
+  "location": "Los Angeles, California, U.S.",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:the-turtles",
+      "type": "artist",
+      "name": "The Turtles"
+    },
+    {
+      "slug": "artist:wild-man-fischer",
+      "type": "artist",
+      "name": "Wild Man Fischer"
+    },
+    {
+      "slug": "artist:nrbq",
+      "type": "artist",
+      "name": "NRBQ"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:billboard-top-hits-series",
+      "type": "project",
+      "name": "Billboard Top Hits series"
+    }
+  ]
+}

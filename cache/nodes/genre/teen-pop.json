@@ -1,0 +1,97 @@
+{
+  "slug": "genre:teen-pop",
+  "name": "Teen pop",
+  "editorial_article": "Teen pop is a dynamic and enduring subgenre of popular music, defined not by a single sonic signature, but by its primary objective: to capture the attention, aspirations, and consumer power of preteens and teenagers. While the genre’s aesthetic has evolved drastically since its mid-20th-century roots—shifting from the swing-influenced melodies of the 1940s and 50s to the dance-pop, R&B, and hip-hop infusions of the late 20th and early 21st centuries—the core tenets remain consistent. The music is often marked by simple, repetitive, and infectious choruses, lyrics that navigate the archetypal emotional landscapes of youth, and high-gloss production designed to dominate mainstream radio and television.\n\nHistorically, teen pop has functioned as a massive commercial engine, bridging music with broader media ecosystems. From the 1960s 'bubblegum' era defined by bands like The Monkees and The Partridge Family to the 1980s and 90s explosion of boy bands and girl groups like New Kids on the Block and the Spice Girls, the genre has thrived by leveraging teen-centric marketing. This frequently involves synergy with magazines, teen-oriented films, television series, and eventually, the massive influence of Disney's music apparatus in the 2000s, which helped launch the careers of figures like Miley Cyrus and Justin Bieber. Far from just a musical style, teen pop serves as a crucial rites-of-passage medium, often acting as a mirror for the social trends and cultural anxieties of the generations it targets. Whether through solo stars or carefully curated group dynamics, the genre remains the ultimate expression of the symbiotic relationship between pop music, stardom, and the construction of adolescent identity.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/teen-pop/",
+      "title": "Teen Pop - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:15.155Z",
+  "_metrics": {
+    "input_tokens": 20681,
+    "output_tokens": 1433,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00732,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18350,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of pop music specifically crafted for and marketed toward preteen and teenage audiences, characterized by accessible, hook-heavy songwriting and strong associations with youth-focused cultural platforms.",
+  "era": "1940s-present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    },
+    {
+      "slug": "genre:bubblegum-pop",
+      "type": "genre",
+      "name": "Bubblegum pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears"
+    },
+    {
+      "slug": "artist:justin-bieber",
+      "type": "artist",
+      "name": "Justin Bieber"
+    },
+    {
+      "slug": "artist:miley-cyrus",
+      "type": "artist",
+      "name": "Miley Cyrus"
+    },
+    {
+      "slug": "artist:spice-girls",
+      "type": "artist",
+      "name": "Spice Girls"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:jive-records",
+      "type": "label",
+      "name": "Jive Records"
+    },
+    {
+      "slug": "label:disney-music-group",
+      "type": "label",
+      "name": "Disney Music Group"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:spice",
+      "type": "project",
+      "name": "Spice"
+    },
+    {
+      "slug": "project:baby-one-more-time",
+      "type": "project",
+      "name": "...Baby One More Time"
+    }
+  ],
+  "landmark_tracks": []
+}

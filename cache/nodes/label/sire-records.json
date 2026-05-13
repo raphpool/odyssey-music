@@ -1,0 +1,119 @@
+{
+  "slug": "label:sire-records",
+  "name": "Sire Records",
+  "editorial_article": "Sire Records is a seminal American record label that played an instrumental role in shaping the trajectory of popular music from the late 1960s through the turn of the millennium. Founded in 1966 by Seymour Stein and Richard Gottehrer, the label initially served as a conduit for progressive British rock to reach American listeners. However, its historical significance is most deeply rooted in its pivotal involvement in the rise of the New York punk rock and new wave scenes in the mid-to-late 1970s. By signing foundational acts like the Ramones and Talking Heads, Sire acted as a bridge between the raw, abrasive energy of the underground and commercial viability.\n\nFollowing its acquisition by Warner Bros. Records in the late 1970s, Sire became a powerhouse for sophisticated pop and alternative music. Under the acute A&R vision of Seymour Stein, the label became synonymous with a specific era of pop dominance, most notably by signing and cultivating the career of Madonna, who became the label's biggest commercial success. Throughout the 1980s and 1990s, the label's roster demonstrated a remarkably eclectic range, balancing the dark, introspective textures of post-punk acts like The Cure, The Smiths, and Depeche Mode with the polished, chart-topping sounds of artists like Seal and k.d. lang. Despite various changes in distribution, corporate structure, and the eventual departure of Seymour Stein in 2018, the label remains a legendary institution. It is defined by its legacy of identifying and nurturing artists who dared to push the boundaries of their respective genres, forever changing the musical landscape of the late twentieth century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sire_Records",
+      "title": "Sire Records - Wikipedia"
+    },
+    {
+      "url": "https://catalog.rockhall.com/rrhof-ais/Details/archive/110000006",
+      "title": "ROCK & ROLL | Details"
+    },
+    {
+      "url": "https://lessthanjake.fandom.com/wiki/Sire_Records",
+      "title": "Sire Records - Less Than Jake Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:01.372Z",
+  "_metrics": {
+    "input_tokens": 19254,
+    "output_tokens": 1510,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007079,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12710,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Sire Records is a seminal American record label founded in 1966 by Seymour Stein and Richard Gottehrer, famously known for its pivotal role in the rise of punk, new wave, and global pop stars like Madonna.",
+  "founded": "1966",
+  "location": "New York City, USA",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:ramones",
+      "type": "artist",
+      "name": "Ramones"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna"
+    },
+    {
+      "slug": "artist:the-smiths",
+      "type": "artist",
+      "name": "The Smiths"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure"
+    },
+    {
+      "slug": "artist:echo-and-the-bunnymen",
+      "type": "artist",
+      "name": "Echo & the Bunnymen"
+    },
+    {
+      "slug": "artist:seal",
+      "type": "artist",
+      "name": "Seal"
+    },
+    {
+      "slug": "artist:k-d-lang",
+      "type": "artist",
+      "name": "k.d. lang"
+    },
+    {
+      "slug": "artist:ministry",
+      "type": "artist",
+      "name": "Ministry"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:ramones",
+      "type": "project",
+      "name": "Ramones"
+    },
+    {
+      "slug": "project:talking-heads-77",
+      "type": "project",
+      "name": "Talking Heads: 77"
+    },
+    {
+      "slug": "project:madonna",
+      "type": "project",
+      "name": "Madonna"
+    },
+    {
+      "slug": "project:the-queen-is-dead",
+      "type": "project",
+      "name": "The Queen Is Dead"
+    },
+    {
+      "slug": "project:violator",
+      "type": "project",
+      "name": "Violator"
+    }
+  ]
+}

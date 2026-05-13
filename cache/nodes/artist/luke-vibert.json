@@ -121,5 +121,11 @@
       "name": "Spac Hand Luke"
     }
   ],
-  "members": []
+  "members": [
+    {
+      "slug": "artist:plug",
+      "type": "artist",
+      "name": "Plug"
+    }
+  ]
 }

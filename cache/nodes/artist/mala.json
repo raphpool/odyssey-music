@@ -1,0 +1,124 @@
+{
+  "slug": "artist:mala",
+  "name": "Mala",
+  "editorial_article": "Mala, born Mark Lawrence in Croydon, London, is a seminal figure in the development of the dubstep genre and a cornerstone of the UK bass scene. He first gained widespread recognition as one half of the influential production duo Digital Mystikz alongside Coki, a partnership that helped define the dark, spacious, and bass-heavy sound of the early South London dubstep movement. Beyond his collaborative work, Mala established himself as a preeminent solo producer and a key tastemaker through his record label, Deep Medi Musik, which became a vital platform for the evolution of the genre beyond its initial inception.\\n\\nHis production style is characterized by deep, meditative basslines, intricate percussion, and often incorporates spiritual and reggae-influenced textures. A pivotal moment in his artistic trajectory was the 2012 album 'Mala in Cuba,' which saw him travel to Havana to record and collaborate with local Cuban musicians. This project demonstrated his ability to synthesize electronic music with organic, global influences, moving away from the rigid confines of club dubstep toward a more expansive, atmospheric sound. Throughout his career, Mala has consistently balanced a commitment to the foundational ethos of bass music with an adventurous spirit that continues to influence a wide spectrum of contemporary electronic music producers. His influence remains a fundamental pillar of the sound system culture, bridging the gap between historical roots and experimental electronic music.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/mala",
+      "title": "Mala Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.last.fm/music/Mala/+wiki",
+      "title": "Mala biography - Last.fm"
+    },
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Mala",
+      "title": "Mala | Bass Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:58.364Z",
+  "_metrics": {
+    "input_tokens": 30723,
+    "output_tokens": 2069,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010784,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 22773,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mala, born Mark Lawrence in Croydon, London, is a seminal figure in the development of the dubstep genre and a cornerstone of the UK bass scene.",
+  "origin": "Croydon, United Kingdom",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK Bass"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-Dubstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dmz",
+      "type": "label",
+      "name": "DMZ"
+    },
+    {
+      "slug": "label:deep-medi-musik",
+      "type": "label",
+      "name": "Deep Medi Musik"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mala-in-cuba",
+      "type": "project",
+      "name": "Mala in Cuba"
+    },
+    {
+      "slug": "project:mirrors",
+      "type": "project",
+      "name": "Mirrors"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:changes",
+      "type": "track",
+      "name": "Changes"
+    },
+    {
+      "slug": "track:alicia",
+      "type": "track",
+      "name": "Alicia"
+    },
+    {
+      "slug": "track:anti-war-dub",
+      "type": "track",
+      "name": "Anti War Dub"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah"
+    },
+    {
+      "slug": "artist:joe-armon-jones",
+      "type": "artist",
+      "name": "Joe Armon-Jones"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "artist:aim",
+  "name": "Aim",
+  "editorial_article": "Aim, the professional alias of British producer Andy Turner, stands as a pivotal figure in the late 1990s trip-hop and downtempo scenes. Hailing from Barrow-in-Furness, Cumbria, Turner began his musical journey as a rap DJ in the late 1980s. His early career was defined by a deep engagement with hip-hop culture, which he later melded with cinematic textures and a jazz-inflected sensibility inherited from his father, a jazz drummer. \\n\\nTurner found his creative home at the iconic Manchester-based independent label Grand Central Records, founded by Mark Rae. His debut full-length album, *Cold Water Music* (1999), cemented his reputation as a master of atmosphere, blending intricate breakbeats, soul samples, and organic instrumentation. Aim's sound became a hallmark of the Grand Central aesthetic—a sophisticated, melodic approach to electronic music that transcended the often claustrophobic or dark nature of contemporary trip-hop. Throughout his career, Turner has maintained a prolific output as both a producer and a sought-after remixer, working with artists such as Ian Brown, St. Etienne, and The Charlatans. His influence persists as a standard-bearer for the melodic, sample-heavy production style that thrived at the turn of the millennium. By focusing on cohesive moods and fluid arrangements, Turner successfully bridged the gap between club-ready hip-hop and reflective, headphone-friendly downtempo, leaving an indelible mark on the British electronic music landscape. His dedication to craft and his ability to conjure vivid landscapes through sound remain his defining qualities as an artist.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/aim-mn0000604090",
+      "title": "Aim Songs, Albums, Reviews, Bio & More | AllMusic | AllMusic"
+    },
+    {
+      "url": "https://www.theransomnote.com/music/interviews/aim-talks-vhs-dreams-drum-machines/",
+      "title": "Aim Talks Vhs Dreams & Drum Machines - Ransom Note"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:10.180Z",
+  "_metrics": {
+    "input_tokens": 21923,
+    "output_tokens": 1967,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008431,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 14701,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Aim, the professional alias of British producer Andy Turner, is a seminal figure in the trip-hop and downtempo scenes, best known for his atmospheric, sample-heavy production and ties to the influential Grand Central Records label.",
+  "origin": "Barrow-in-Furness, England",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip-hop"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grand-central-records",
+      "type": "label",
+      "name": "Grand Central Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

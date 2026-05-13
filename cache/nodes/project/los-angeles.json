@@ -1,0 +1,35 @@
+{
+  "slug": "project:los-angeles",
+  "name": "Los Angeles",
+  "editorial_article": "*Los Angeles* is the 1980 debut studio album by the influential American punk rock band X, released through the seminal independent label Slash Records. Produced by Ray Manzarek of The Doors, the album is widely regarded as a cornerstone of the West Coast punk movement, capturing the gritty, desperate energy of the late 1970s Los Angeles club scene. The record features the core lineup of Exene Cervenka and John Doe on dual vocals, Billy Zoom on guitar, and D.J. Bonebrake on drums, a configuration that helped them transcend typical punk limitations with sophisticated songwriting and rockabilly-inflected guitar work.\\n\\nThematically, *Los Angeles* channels the alienation and volatility of urban life, cemented by the city-defining title track and the frantic \"Johnny Hit and Run Paulene.\" Manzarek’s production helped bridge the gap between aggressive punk sensibilities and a more durable rock sound, creating a timeless quality that allowed the band to avoid the stylistic pitfalls of many of their contemporaries. With songs exploring urban decay, romantic dysfunction, and personal unraveling, the album became a blueprint for underground American rock. Decades after its release, it remains a critical favorite, frequently appearing on lists of the greatest albums of all time, and serving as the definitive document of a band that redefined the possibilities of punk rock. Its success established X as the leader of the pack in the burgeoning California underground, setting the stage for their later, more roots-oriented experimentation on *Under the Big Black Sun* and beyond. Through the stark vocal interplay of Cervenka and Doe, and the relentless, driving rhythm section, *Los Angeles* stands as a monumental, visceral achievement that continues to influence generations of alternative rock artists.",
+  "citations": [
+    {
+      "url": "https://www.xtheband.com/discography",
+      "title": "THE SOUND — X the band"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:56.426Z",
+  "_metrics": {
+    "input_tokens": 30032,
+    "output_tokens": 2034,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010559,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16290,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A landmark of American punk, the debut studio album from X stands as the definitive, raw document of the late-1970s Los Angeles underground scene, produced by the legendary Ray Manzarek.",
+  "year": "1980",
+  "artists": [],
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

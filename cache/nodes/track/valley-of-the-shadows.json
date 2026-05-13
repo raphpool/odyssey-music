@@ -1,0 +1,66 @@
+{
+  "slug": "track:valley-of-the-shadows",
+  "name": "Valley of the Shadows",
+  "editorial_article": "\"Valley of the Shadows\" stands as a seminal achievement in the history of jungle and drum and bass, cementing the legacy of the duo Origin Unknown—comprised of Andy C and Ant Miles. Originally released in 1993 on RAM Records, the track initially appeared as the B-side to \"The Touch,\" but its profound impact on dancefloors quickly saw it eclipse the intended lead track. The song is characterized by its atmospheric tension, driven by its iconic, haunting vocal samples: \"Felt that I was in this long dark tunnel,\" pulled from a 1988 BBC Q.E.D. documentary about out-of-body experiences. \\n\\nMusically, \"Valley of the Shadows\" was ahead of its time, deviating from the rigid breakbeat hardcore structures prevalent in 1993. Its lean, ominous arrangement and sophisticated use of space helped carve out a new path for what would evolve into modern drum and bass. Produced in just four hours using drum sounds sourced from a Future Music magazine cover-mount CD, the track remains a testament to the raw ingenuity of the early 90s UK rave scene. Its endurance is such that it saw a standalone re-release in 1996, eventually charting on the UK Singles Chart and securing its place as an anthem that continues to be played and remixed in clubs worldwide. For enthusiasts of the genre, the track serves as a vital bridge between the chaotic, sample-heavy experimentation of early jungle and the more refined, propulsive aesthetics of later drum and bass.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Valley_of_the_Shadows",
+      "title": "Valley of the Shadows - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/46970-Origin-Unknown-Valley-Of-The-Shadows?srsltid=AfmBOoo-7jD8QBDDnb4onraRYW9UI8QZ6YXhlbsSV-lVP59h0YenwIYd",
+      "title": "Origin Unknown – Valley Of The Shadows | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:48.371Z",
+  "_metrics": {
+    "input_tokens": 25419,
+    "output_tokens": 1924,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009241,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 12518,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Valley of the Shadows\" stands as a seminal achievement in the history of jungle and drum and bass, cementing the legacy of the duo Origin Unknown—comprised of Andy C and Ant Miles.",
+  "artists": [],
+  "project": {
+    "slug": "project:the-touch-valley-of-the-shadows",
+    "type": "project",
+    "name": "The Touch / Valley of the Shadows"
+  },
+  "genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:andy-c",
+      "type": "artist",
+      "name": "Andy C"
+    },
+    {
+      "slug": "artist:ant-miles",
+      "type": "artist",
+      "name": "Ant Miles"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

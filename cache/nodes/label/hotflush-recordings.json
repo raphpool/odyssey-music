@@ -1,0 +1,110 @@
+{
+  "slug": "label:hotflush-recordings",
+  "name": "Hotflush Recordings",
+  "editorial_article": "Hotflush Recordings is a cornerstone of the British underground electronic scene, established in 2003 by the visionary producer and DJ Paul Rose, widely known as Scuba. Emerging from the vibrant UK garage and early dubstep circuits—with initial roots in Bristol—the label quickly transcended its origins, evolving into a prolific platform for diverse, forward-thinking electronic music. Over the course of more than two decades and over 250 releases, Hotflush has maintained a reputation for defying easy categorization, serving as a vital nexus for both established legends and emerging talent. Its sonic identity has shifted fluidly over the years, mirroring the rapid evolution of dance music, from the heavy, spacious textures of early dubstep to the intricate, rhythm-focused structures of post-dubstep, techno, and beyond. \\n\\nWhat makes Hotflush particularly significant is its role as a developmental incubator. The label has been instrumental in the careers of artists like Mount Kimbie, Sepalcure, and Joy Orbison, providing them with a space to push the boundaries of their respective sounds. Beyond its flagship releases, the label's commitment to curation and its willingness to embrace stylistic experimentation have solidified its status as an influential tastemaker. Through its consistent output and its focus on high-quality, genre-blurring production, Hotflush Recordings remains a central pillar in the global electronic landscape, constantly bridging the gap between underground experimentation and broader dance-floor appeal. The label's longevity is a testament to Scuba’s enduring influence and the label's ability to remain essential in a fast-moving, digital-first musical environment.",
+  "citations": [
+    {
+      "url": "https://hotflushrecordings.com/",
+      "title": "Hotflush Recordings - UK Record Label Founded by Scuba in 2003"
+    },
+    {
+      "url": "https://www.tailored-communication.com/record-labels/hotflush-recordings",
+      "title": "Hotflush Recordings - Tailored Communication"
+    },
+    {
+      "url": "https://inverted-audio.com/label/hotflush-recordings/",
+      "title": "Hotflush Recordings - Inverted Audio"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:46.410Z",
+  "_metrics": {
+    "input_tokens": 11926,
+    "output_tokens": 783,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004156,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9434,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A cornerstone of the UK underground electronic scene founded by Paul Rose (Scuba), known for its diverse, genre-blurring curation spanning dubstep, techno, and beyond.",
+  "founded": "2003",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-Dubstep"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:scuba",
+      "type": "artist",
+      "name": "Scuba"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie"
+    },
+    {
+      "slug": "artist:sepalcure",
+      "type": "artist",
+      "name": "Sepalcure"
+    },
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison"
+    },
+    {
+      "slug": "artist:paul-woolford",
+      "type": "artist",
+      "name": "Paul Woolford"
+    },
+    {
+      "slug": "artist:jimmy-edgar",
+      "type": "artist",
+      "name": "Jimmy Edgar"
+    },
+    {
+      "slug": "artist:or-la",
+      "type": "artist",
+      "name": "Or:la"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:loss-the-re-up",
+      "type": "project",
+      "name": "Loss... the Re-Up"
+    },
+    {
+      "slug": "project:three-phase",
+      "type": "project",
+      "name": "Three Phase"
+    }
+  ]
+}

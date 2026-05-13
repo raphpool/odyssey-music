@@ -1,0 +1,110 @@
+{
+  "slug": "artist:yukihiro-takahashi",
+  "name": "Yukihiro Takahashi",
+  "editorial_article": "Yukihiro Takahashi (1952–2023) was a foundational figure in Japanese electronic and pop music, best known internationally as the drummer, lead vocalist, and co-composer for the legendary electronic group Yellow Magic Orchestra (YMO). Born in Tokyo, Takahashi's career spanned over five decades, marking him as a multi-talented force who moved fluidly between roles as a musician, singer, producer, and fashion designer. He first gained prominence in the early 1970s as the drummer for the Sadistic Mika Band, an ensemble that provided him with early international exposure through tours in the United Kingdom. Following the band's dissolution, his path intersected with Haruomi Hosono and Ryuichi Sakamoto, leading to the formation of YMO in 1978. With YMO, he helped pioneer the sound of techno-pop, blending synth-heavy arrangements with his distinct, precise drumming style and cool, understated vocal delivery. Beyond his seminal work with YMO, Takahashi maintained a prolific solo career, releasing numerous albums—such as the influential 1980 release 'Murdered by the Music' and the 1981 masterpiece 'Neuromantic'—that explored the frontiers of new wave and synth-pop. His collaborative spirit was a hallmark of his career, working extensively with artists ranging from Keiichi Suzuki in The Beatniks to British musician Steve Jansen. Later in his career, he continued to innovate as a member of projects like Sketch Show and Metafive. Takahashi remained a vital presence in the Japanese music scene until his passing in 2023, leaving behind an enduring legacy as an architect of global electronic music. His work not only shaped the sound of Japanese pop in the 1980s but also left an indelible influence on the global development of electronic music and techno. Takahashi is widely remembered for his sophisticated aesthetic and his ability to bridge the gap between avant-garde electronic experimentation and mainstream pop success.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Yukihiro_Takahashi",
+      "title": "Yukihiro Takahashi - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/%E9%AB%98%E6%A9%8B%E5%B9%B8%E5%AE%8F",
+      "title": "Yukihiro Takahashi - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:13.399Z",
+  "_metrics": {
+    "input_tokens": 24553,
+    "output_tokens": 1934,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009141,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 31079,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A legendary Japanese multi-instrumentalist, singer, and songwriter known for his foundational role in Yellow Magic Orchestra and his prolific, synth-driven solo career.",
+  "origin": "Tokyo, Japan",
+  "active_years": "1972-2023",
+  "genres": [
+    {
+      "slug": "genre:synthpop",
+      "type": "genre",
+      "name": "Synthpop"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:alfa-records",
+      "type": "label",
+      "name": "Alfa Records"
+    },
+    {
+      "slug": "label:king-records",
+      "type": "label",
+      "name": "King Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:saravah",
+      "type": "project",
+      "name": "Saravah!"
+    },
+    {
+      "slug": "project:murdered-by-the-music",
+      "type": "project",
+      "name": "Murdered by the Music"
+    },
+    {
+      "slug": "project:neuromantic",
+      "type": "project",
+      "name": "Neuromantic"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:murdered-by-the-music",
+      "type": "track",
+      "name": "Murdered by the Music"
+    },
+    {
+      "slug": "track:saravah",
+      "type": "track",
+      "name": "Saravah!"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
+    }
+  ]
+}

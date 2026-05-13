@@ -1,0 +1,131 @@
+{
+  "slug": "artist:bernard-edwards",
+  "name": "Bernard Edwards",
+  "editorial_article": "Bernard Edwards (1952–1996) was a pioneering American musician, songwriter, and producer, best known as the co-founder and bassist of the legendary disco-funk group Chic. Born in Greenville, North Carolina, and raised in Brooklyn, Edwards formed a transformative creative partnership with guitarist Nile Rodgers in the 1970s. Their collaboration defined the sound of late-70s dance music, characterized by Edwards's precision-engineered, syncopated bass lines and the duo's sophisticated songwriting. Together, they produced iconic hits for Chic, including \"Le Freak\" and \"Good Times,\" as well as monumental tracks for Sister Sledge (\"We Are Family,\" \"He's the Greatest Dancer\") and Diana Ross (\"I'm Coming Out\").\\n\\nBeyond his work with Chic, Edwards was a prolific producer and multi-instrumentalist who transitioned seamlessly into the 1980s. He was a founding member of the supergroup Power Station, which featured Robert Palmer and members of Duran Duran, and he played a crucial role in shaping the sound of several chart-topping albums, including Palmer's Riptide. His influence on modern music is immeasurable; the iconic \"Good Times\" bass riff serves as a cornerstone of popular music history, having been famously sampled for The Sugarhill Gang's \"Rapper's Delight\" and heavily influencing Queen's \"Another One Bites the Dust.\" Edwards passed away in 1996 in Tokyo, leaving behind a legacy as one of the most essential bass players and architects of the funk, disco, and post-disco eras.",
+  "citations": [
+    {
+      "url": "https://www.songhall.org/profiles/bernard-edwards",
+      "title": "Bernard Edwards | Songwriters Hall of Fame"
+    },
+    {
+      "url": "https://www.imdb.com/name/nm0249821/bio/",
+      "title": "Bernard Edwards - Biography - IMDb"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:18.645Z",
+  "_metrics": {
+    "input_tokens": 10765,
+    "output_tokens": 2151,
+    "cache_read_tokens": 4034,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006019,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16965,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Bernard Edwards (1952–1996) was a pioneering American musician, songwriter, and producer, best known as the co-founder and bassist of the legendary disco-funk group Chic.",
+  "photo_url": "https://d4ln1n73rozgf.cloudfront.net/prod/transforms/general/_307x307_crop_center-center_none/Bernard-Edwards_SHOF_2016-Inductee.jpg",
+  "origin": "Greenville, North Carolina, USA",
+  "active_years": "1970-1996",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chic",
+      "type": "project",
+      "name": "Chic"
+    },
+    {
+      "slug": "project:c-est-chic",
+      "type": "project",
+      "name": "C'est Chic"
+    },
+    {
+      "slug": "project:risque",
+      "type": "project",
+      "name": "Risqué"
+    },
+    {
+      "slug": "project:glad-to-be-here",
+      "type": "project",
+      "name": "Glad to Be Here"
+    },
+    {
+      "slug": "project:the-power-station",
+      "type": "project",
+      "name": "The Power Station"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:good-times",
+      "type": "track",
+      "name": "Good Times"
+    },
+    {
+      "slug": "track:le-freak",
+      "type": "track",
+      "name": "Le Freak"
+    },
+    {
+      "slug": "track:i-want-your-love",
+      "type": "track",
+      "name": "I Want Your Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers"
+    },
+    {
+      "slug": "artist:robert-palmer",
+      "type": "artist",
+      "name": "Robert Palmer"
+    },
+    {
+      "slug": "artist:tony-thompson",
+      "type": "artist",
+      "name": "Tony Thompson"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic"
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "slug": "artist:jane-s-addiction",
+  "name": "Jane's Addiction",
+  "editorial_article": "Jane's Addiction emerged from the underground rock scene of 1980s Los Angeles as one of the most vital and influential forces in the pre-mainstream alternative era. Founded by frontman Perry Farrell and bassist Eric Avery following the dissolution of Farrell's previous outfit, Psi Com, the band carved a distinct path that fused gothic rock atmospheres, heavy funk-metal grooves, and psychedelic intensity. With the later addition of virtuoso guitarist Dave Navarro and powerhouse drummer Stephen Perkins, the quartet developed a volatile chemistry that propelled them to critical acclaim and cult stardom. Their landmark studio albums, Nothing's Shocking (1988) and Ritual de lo Habitual (1990), are widely regarded as cornerstones of the alternative rock explosion of the 1990s, defining a generation's transition away from glam metal excess. Beyond the studio, Jane's Addiction is perhaps equally renowned for Farrell's creation of the Lollapalooza festival, which formalized the touring alternative music circuit and helped break underground acts into the cultural mainstream. Over several decades, the band’s trajectory has been defined by multiple reunions, internal volatility, and a legacy that continues to resonate as a bridge between the art-house ethos of the 80s and the commercial dominance of 90s alternative rock. The band's classic lineup, often cited for its creative friction, remains a symbol of the creative freedom and DIY spirit that characterized the early alternative movement. Despite frequent breakups and personnel shifts, their influence persists in the work of countless modern rock bands.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jane%27s_Addiction",
+      "title": "Jane's Addiction - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Jane%27s_Addiction_discography",
+      "title": "Jane's Addiction discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:40.453Z",
+  "_metrics": {
+    "input_tokens": 15970,
+    "output_tokens": 1273,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006003,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 19171,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Jane's Addiction was an iconic American alternative rock band formed in Los Angeles in 1985, known for its fusion of gothic, funk, and psychedelic sounds and for launching the Lollapalooza festival.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jane%27s_Addiction_Classic_and_Final_Lineup_Collage.jpg/250px-Jane%27s_Addiction_Classic_and_Final_Lineup_Collage.jpg",
+  "origin": "Los Angeles, California, U.S.",
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:alternative-metal",
+      "type": "genre",
+      "name": "Alternative metal"
+    },
+    {
+      "slug": "genre:funk-metal",
+      "type": "genre",
+      "name": "Funk metal"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:capitol-records",
+      "type": "label",
+      "name": "Capitol Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:jane-says",
+      "type": "track",
+      "name": "Jane Says"
+    },
+    {
+      "slug": "track:been-caught-stealing",
+      "type": "track",
+      "name": "Been Caught Stealing"
+    },
+    {
+      "slug": "track:mountain-song",
+      "type": "track",
+      "name": "Mountain Song"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:perry-farrell",
+      "type": "artist",
+      "name": "Perry Farrell"
+    },
+    {
+      "slug": "artist:dave-navarro",
+      "type": "artist",
+      "name": "Dave Navarro"
+    },
+    {
+      "slug": "artist:stephen-perkins",
+      "type": "artist",
+      "name": "Stephen Perkins"
+    },
+    {
+      "slug": "artist:eric-avery",
+      "type": "artist",
+      "name": "Eric Avery"
+    }
+  ]
+}

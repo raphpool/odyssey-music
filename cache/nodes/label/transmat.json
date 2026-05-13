@@ -1,0 +1,75 @@
+{
+  "slug": "label:transmat",
+  "name": "Transmat",
+  "editorial_article": "Transmat is an iconic Detroit record label founded in 1986 by Derrick May, a pivotal figure in the development of techno music. Operating at the heart of the Detroit scene, Transmat served as a vital vehicle for the experimental and soul-infused sounds that would define the genre. Alongside Juan Atkins’ Metroplex and Kevin Saunderson’s KMS, Transmat helped codify the aesthetic and structural DNA of early techno, moving beyond simple dance-floor functionality toward a more cerebral and atmospheric sound. The label became a cornerstone for the second wave of Detroit producers and remains a foundational institution in the history of electronic music.\\n\\nThroughout its history, Transmat was synonymous with a specific, high-fidelity approach to rhythm and synth design. The label’s output, ranging from the classic releases of May’s project Rhythim Is Rhythim to seminal records by Carl Craig, Kenny Larkin, and Stacey Pullen, showcased a distinct fusion of European electronic experimentalism, industrial grit, and African American musical traditions. Its physical headquarters in Detroit—located in a stretch dubbed 'Techno Boulevard'—became a site of intense creative cross-pollination. Although the label's output has fluctuated over the decades, its catalog remains a primary source of study for anyone looking to understand the evolution of techno from a local movement into a global phenomenon. Even as the landscape of electronic music transformed, Transmat maintained an enduring reputation for nurturing technically proficient and forward-thinking producers, securing its place in the electronic music pantheon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Transmat",
+      "title": "Transmat - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/388-Transmat",
+      "title": "Transmat | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:07.052Z",
+  "_metrics": {
+    "input_tokens": 20093,
+    "output_tokens": 1170,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006778,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15708,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Founded by Derrick May in 1986, Transmat is one of the most influential Detroit techno record labels, instrumental in shaping the genre's sound and global impact.",
+  "founded": "1986",
+  "location": "Detroit, Michigan, USA",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin"
+    },
+    {
+      "slug": "artist:stacey-pullen",
+      "type": "artist",
+      "name": "Stacey Pullen"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram"
+    },
+    {
+      "slug": "artist:gerald-donald",
+      "type": "artist",
+      "name": "Gerald Donald"
+    }
+  ],
+  "notable_releases": []
+}

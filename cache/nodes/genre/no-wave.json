@@ -1,0 +1,131 @@
+{
+  "slug": "genre:no-wave",
+  "name": "No Wave",
+  "editorial_article": "No Wave was an abrasive, avant-garde music and visual art movement that exploded in the late 1970s within the decaying, gritty urban landscape of Downtown New York City. Emerging as a direct, nihilistic rejection of the burgeoning, commercially-minded \"New Wave\" craze, the movement deliberately eschewed the traditional blues-rock and punk structures of the era. Instead, No Wave artists sought to dismantle rock music from the inside out, utilizing atonality, dissonance, aggressive reductionism, and experimental noise to create a sound that was intentionally confrontational and deeply challenging to listeners. The movement was never a monolithic genre with consistent sonic markers; rather, it functioned as an anti-art scene where musicians synthesized elements of free jazz, funk, disco, and minimalism into a harsh, texture-focused aesthetic.\\n\\nCentral to the scene's legacy is the 1978 compilation album *No New York*, produced by Brian Eno, which captured the claustrophobic intensity of the movement's key participants. Groups like Teenage Jesus and the Jerks, Mars, DNA, and James Chance and the Contortions transformed the rock lexicon, replacing standard guitar riffs with discordant textures and repetitive, driving rhythms inspired by the avant-garde downtown music of figures like La Monte Young. While the movement was short-lived, it exerted a massive, enduring influence on independent music, cinema, and fashion, paving the way for the development of post-punk, industrial, noise rock, and mutant disco in the 1980s. It stands as New York's last stylistically cohesive avant-rock movement, reflecting the desolation and tension of its era while challenging the very definition of what rock music could be.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/No_wave",
+      "title": "No wave - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/no-wave/",
+      "title": "No Wave - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://americansongwriter.com/no-wave-3-essential-albums-from-the-most-mysterious-1970s-music-genre/",
+      "title": "No Wave: 3 Essential Albums From the Most Mysterious 1970s Music Genre - American Songwriter"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:00.620Z",
+  "_metrics": {
+    "input_tokens": 19936,
+    "output_tokens": 1717,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00756,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17762,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "An abrasive, avant-garde music and art scene from late 1970s New York City that rejected the conventions of rock and commercial 'New Wave' in favor of dissonance, atonality, and experimental noise.",
+  "era": "Late 1970s - early 1980s",
+  "origin": "New York City, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise rock"
+    },
+    {
+      "slug": "genre:mutant-disco",
+      "type": "genre",
+      "name": "Mutant disco"
+    },
+    {
+      "slug": "genre:no-wave-cinema",
+      "type": "genre",
+      "name": "No Wave cinema"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:james-chance-and-the-contortions",
+      "type": "artist",
+      "name": "James Chance and the Contortions"
+    },
+    {
+      "slug": "artist:teenage-jesus-and-the-jerks",
+      "type": "artist",
+      "name": "Teenage Jesus and the Jerks"
+    },
+    {
+      "slug": "artist:dna",
+      "type": "artist",
+      "name": "DNA"
+    },
+    {
+      "slug": "artist:mars",
+      "type": "artist",
+      "name": "Mars"
+    },
+    {
+      "slug": "artist:glenn-branca",
+      "type": "artist",
+      "name": "Glenn Branca"
+    },
+    {
+      "slug": "artist:lydia-lunch",
+      "type": "artist",
+      "name": "Lydia Lunch"
+    },
+    {
+      "slug": "artist:rhys-chatham",
+      "type": "artist",
+      "name": "Rhys Chatham"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ze-records",
+      "type": "label",
+      "name": "ZE Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:no-new-york",
+      "type": "project",
+      "name": "No New York"
+    }
+  ],
+  "landmark_tracks": []
+}

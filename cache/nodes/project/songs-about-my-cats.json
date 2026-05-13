@@ -1,0 +1,69 @@
+{
+  "slug": "project:songs-about-my-cats",
+  "name": "Songs About My Cats",
+  "editorial_article": "Released on April 30, 2001, via Mike Paradinas’ influential Planet Mu label, 'Songs About My Cats' stands as a cornerstone in the development of breakcore and the broader IDM (Intelligent Dance Music) landscape of the early 2000s. The artist behind the project, Aaron Funk—known by the moniker Venetian Snares—crafted this record in a manner as idiosyncratic as its title suggests, utilizing various sound samples generated from pictures and sounds of his own cats. \\n\\nMusically, the album is a relentless, high-intensity exercise in digital sound design. It operates within a genre space defined by machine-gun staccato rhythms, distorted breaks, and dizzying, twitchy electronic textures. Yet, beneath the chaotic and often punishing sonic surface, there is a surprising degree of tenderness and melodic composition. Critics at the time, such as Tim diGravina, noted how Funk avoids the purely mathematical exercises often associated with his contemporaries, opting instead for a form of improvisational 'jazz' that feels alien yet deeply engaging. The album shifts between abrasive, stuttering freak-outs and warped, noir-inspired melodies, creating an experience that is both a technical assault and an oddly soothing, immersive world. It remains a hallmark of its era, demonstrating Funk's unique ability to blend severe, experimental noise with a distinctive, deeply personal creative voice. For many, it remains the crowning achievement of the breakcore genre, a work that pushed the boundaries of how digital samples could be manipulated to evoke complex emotional states.",
+  "citations": [
+    {
+      "url": "https://venetiansnares.bandcamp.com/album/songs-about-my-cats",
+      "title": "Songs About My Cats | Venetian Snares"
+    },
+    {
+      "url": "https://planet.mu/releases/songs-about-my-cats/",
+      "title": "Songs About My Cats - Venetian Snares - Planet Mu"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/venetian-snares/songs-about-my-cats/",
+      "title": "Songs About My Cats by Venetian Snares (Album, Breakcore)"
+    },
+    {
+      "url": "https://www.discogs.com/release/16998-Venetian-Snares-Songs-About-My-Cats?srsltid=AfmBOooZJbeCKtMHDOXROAzXciBACkU11g_ANu1yNYakL7-qta-PDcoB",
+      "title": "Venetian Snares – Songs About My Cats - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:21.338Z",
+  "_metrics": {
+    "input_tokens": 13089,
+    "output_tokens": 865,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00457,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8822,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A definitive milestone in breakcore, Venetian Snares' 2001 album is a frantic, emotionally resonant, and technically astounding exploration of IDM and extreme rhythms, famously constructed using sound samples derived from the artist's own cats.",
+  "year": "2001",
+  "artists": [
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares"
+    }
+  ],
+  "label": {
+    "slug": "label:planet-mu",
+    "type": "label",
+    "name": "Planet Mu"
+  },
+  "genres": [
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

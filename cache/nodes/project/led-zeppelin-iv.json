@@ -1,0 +1,118 @@
+{
+  "slug": "project:led-zeppelin-iv",
+  "name": "Led Zeppelin IV",
+  "editorial_article": "Released on November 8, 1971, through Atlantic Records, the untitled fourth studio album by English rock titans Led Zeppelin—universally known as Led Zeppelin IV—stands as one of the most influential and commercially successful records in the history of rock music. Produced by guitarist Jimmy Page, the project was recorded in a unique, informal setting at Headley Grange, a country house in Hampshire, England. Utilizing the Rolling Stones Mobile Studio, the band was able to break away from the conventional, high-pressure studio atmosphere to experiment with a blend of hard rock, folk, and blues rock. The resulting sessions captured a rare, spontaneous energy that defined the band's creative peak.\\n\\nThe album is arguably best known for its magnum opus, \"Stairway to Heaven,\" an eight-minute epic that became a staple of rock radio and a cornerstone of the album's enduring mythology. Beyond this, the record showcases the band's versatility: from the complex, interlocking riffs of \"Black Dog\" and the blistering energy of \"Rock and Roll,\" to the atmospheric, rustic textures of \"The Battle of Evermore\"—which famously featured guest vocals by Sandy Denny—and the heavy, thunderous reimagining of Memphis Minnie's \"When the Levee Breaks.\"\\n\\nFollowing the tepid critical reception of Led Zeppelin III, the band sought to subvert industry expectations by releasing the fourth album with no name and no band identifier on the cover, opting instead to represent themselves through four distinct symbols. This mysterious presentation, combined with the sheer caliber of the musicianship, solidified Led Zeppelin's status as giants of the 1970s stadium rock era. With over 37 million copies sold worldwide, it remains a definitive cultural artifact that bridged the gap between raw, blues-infused origins and the more expansive, progressive ambitions of the decade's hard rock evolution.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Led_Zeppelin_IV",
+      "title": "Led Zeppelin IV - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/led-zeppelin-iv-mw0000190736",
+      "title": "Led Zeppelin IV - Album - AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/release/1015465-Led-Zeppelin-Led-Zeppelin-IV?srsltid=AfmBOoprroQCdOTy7IpFH89A2M0uMhsL9iMXChe0VNqFYhjPaLKQ4wpf",
+      "title": "Led Zeppelin IV - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:21.720Z",
+  "_metrics": {
+    "input_tokens": 12491,
+    "output_tokens": 964,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004569,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 12504,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "Often considered the quintessential heavy rock album, Led Zeppelin IV is a masterpiece of dynamic shifts and production experimentation, featuring the immortal \"Stairway to Heaven\" and the legendary blues-rock epic \"When the Levee Breaks.\"",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Zeppelin_IV.jpg/500px-Zeppelin_IV.jpg",
+  "year": "1971",
+  "artists": [
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    }
+  ],
+  "label": {
+    "slug": "label:atlantic-records",
+    "type": "label",
+    "name": "Atlantic Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues Rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:black-dog",
+      "type": "track",
+      "name": "Black Dog"
+    },
+    {
+      "slug": "track:rock-and-roll",
+      "type": "track",
+      "name": "Rock and Roll"
+    },
+    {
+      "slug": "track:the-battle-of-evermore",
+      "type": "track",
+      "name": "The Battle of Evermore"
+    },
+    {
+      "slug": "track:stairway-to-heaven",
+      "type": "track",
+      "name": "Stairway to Heaven"
+    },
+    {
+      "slug": "track:misty-mountain-hop",
+      "type": "track",
+      "name": "Misty Mountain Hop"
+    },
+    {
+      "slug": "track:four-sticks",
+      "type": "track",
+      "name": "Four Sticks"
+    },
+    {
+      "slug": "track:going-to-california",
+      "type": "track",
+      "name": "Going to California"
+    },
+    {
+      "slug": "track:when-the-levee-breaks",
+      "type": "track",
+      "name": "When the Levee Breaks"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jimmy-page",
+      "type": "artist",
+      "name": "Jimmy Page"
+    }
+  ],
+  "related_projects": []
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "project:tri-repetae",
+  "name": "Tri Repetae",
+  "editorial_article": "Tri Repetae (often stylized as 'tri repetae.') is the third studio album by the English electronic music duo Autechre, released on November 6, 1995, through the influential Warp label. Marking a distinct pivot from the melodic accessibility of their previous works, Incunabula (1993) and Amber (1994), this record solidified Sean Booth and Rob Brown's reputation as pioneers of a more complex, abstract, and texturally focused strain of electronic music. The album emerged from the fertile Sheffield electronic scene, drawing significant inspiration from the emerging 'glitch' aesthetics shared within their circle, which included collaborations and exchanges with producers like Mark Fell and Jez Potter. \\n\\nMusically, Tri Repetae is characterized by a departure toward minimal, repetitive rhythmic structures combined with intricate, spacious sound design. The album is a study in texture, with the duo pushing the boundaries of what could be achieved with contemporary hardware. The aesthetic intent was so precise that the band famously preferred it to be heard on vinyl, noting that the listening experience was 'complete with surface noise.' Its visual identity, crafted by The Designers Republic, reinforced this cold, mechanical, yet organic ethos through specific color palettes. Decades later, Tri Repetae is widely considered a seminal work, bridging the gap between intelligent dance music (IDM) and experimental ambient, and influencing generations of electronic musicians through its uncompromising sonic engineering. It remains a cornerstone of the Warp Records catalog and a definitive statement on the possibilities of electronic production in the mid-90s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tri_Repetae",
+      "title": "Tri Repetae - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/autechre/tri-repetae/",
+      "title": "Tri repetae by Autechre (Album, IDM) - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:52.016Z",
+  "_metrics": {
+    "input_tokens": 20337,
+    "output_tokens": 1319,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007063,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15301,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A landmark of 1990s experimental electronic music, Tri Repetae signaled Autechre’s transition from melodic IDM toward the abstract, glitch-heavy, and textural sound design that would define their enduring legacy.",
+  "year": "1995",
+  "artists": [],
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:dael",
+      "type": "track",
+      "name": "Dael"
+    },
+    {
+      "slug": "track:clipper",
+      "type": "track",
+      "name": "Clipper"
+    },
+    {
+      "slug": "track:leterel",
+      "type": "track",
+      "name": "Leterel"
+    },
+    {
+      "slug": "track:rotar",
+      "type": "track",
+      "name": "Rotar"
+    },
+    {
+      "slug": "track:stud",
+      "type": "track",
+      "name": "Stud"
+    },
+    {
+      "slug": "track:eutow",
+      "type": "track",
+      "name": "Eutow"
+    },
+    {
+      "slug": "track:c-pach",
+      "type": "track",
+      "name": "C/Pach"
+    },
+    {
+      "slug": "track:gnit",
+      "type": "track",
+      "name": "Gnit"
+    },
+    {
+      "slug": "track:overand",
+      "type": "track",
+      "name": "Overand"
+    },
+    {
+      "slug": "track:rsdio",
+      "type": "track",
+      "name": "Rsdio"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

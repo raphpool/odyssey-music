@@ -1,0 +1,124 @@
+{
+  "slug": "artist:plaid",
+  "name": "Plaid",
+  "editorial_article": "Plaid is a foundational British electronic music duo composed of Ed Handley and Andy Turner, who have been central figures in the development of IDM (Intelligent Dance Music) since the early 1990s. Initially emerging from the influential electronic collective The Black Dog, Handley and Turner struck out as Plaid, eventually finding a long-term home on the iconic Warp Records label. Over the course of three decades, the pair has refined a signature sound characterized by intricate, melodic programming, complex rhythmic structures, and a persistent sense of warmth and playfulness that often contrasts with the clinical or aggressive edges found elsewhere in the genre. Their work bridges the gap between dancefloor-oriented experimentation and ambient introspection, allowing them to traverse diverse soundscapes ranging from hyper-detailed synthesis to ethereal sound design. Beyond their own prolific discography, Plaid are highly regarded for their collaborations—most notably with Icelandic artist Björk—and their contributions to film scores, demonstrating a versatility that has solidified their status as architects of the modern electronic canon. As cornerstones of the Warp roster, they have consistently pushed the boundaries of digital composition while maintaining a distinct humanistic sensibility that has inspired generations of electronic producers. The duo's output remains defined by a perpetual curiosity for new textures, ensuring they stay relevant as they move into their fourth decade of production. Their ability to synthesize emotional resonance within highly structured algorithmic frameworks remains their most enduring contribution to the history of electronic sound.",
+  "citations": [
+    {
+      "url": "https://warp.net/artists/plaid",
+      "title": "Plaid - Artists - WARP"
+    },
+    {
+      "url": "https://ra.co/dj/plaid/biography",
+      "title": "Plaid · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://www.curatedplace.com/artists/plaid",
+      "title": "Plaid — Curated Place"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:15.272Z",
+  "_metrics": {
+    "input_tokens": 24791,
+    "output_tokens": 2304,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009755,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 29073,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Plaid is a foundational British electronic music duo composed of Ed Handley and Andy Turner, who have been central figures in the development of IDM (Intelligent Dance Music) since the early 1990s. Initially emerging from the influential electronic collective The Black Dog, Handley and Turner struck out as Plaid, eventually finding a long-term home on the iconic Warp Records label. Over the course of three decades, the pair has refined a signature sound characterized by intricate, melodic programming, complex rhythmic structures, and a persistent sense of warmth and playfulness that often contrasts with the clinical or aggressive edges found elsewhere in the genre. Their work bridges the gap between dancefloor-oriented experimentation and ambient introspection, allowing them to traverse diverse soundscapes ranging from hyper-detailed synthesis to ethereal sound design. Beyond their own prolific discography, Plaid are highly regarded for their collaborations—most notably with Icelandic artist Björk—and their contributions to film scores, demonstrating a versatility that has solidified their status as architects of the modern electronic canon. As cornerstones of the Warp roster, they have consistently pushed the boundaries of digital composition while maintaining a distinct humanistic sensibility that has inspired generations of electronic producers.",
+  "photo_url": "https://d1rgjmn2wmqeif.cloudfront.net/a/2000/27-2.jpg",
+  "origin": "London, UK",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:feorm-falorx",
+      "type": "project",
+      "name": "Feorm Falorx"
+    },
+    {
+      "slug": "project:polymer",
+      "type": "project",
+      "name": "Polymer"
+    },
+    {
+      "slug": "project:reachy-prints",
+      "type": "project",
+      "name": "Reachy Prints"
+    },
+    {
+      "slug": "project:double-figure",
+      "type": "project",
+      "name": "Double Figure"
+    },
+    {
+      "slug": "project:not-for-threes",
+      "type": "project",
+      "name": "Not For Threes"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:maru",
+      "type": "track",
+      "name": "Maru (Skee Mask Remix)"
+    },
+    {
+      "slug": "track:wondergan",
+      "type": "track",
+      "name": "Wondergan"
+    },
+    {
+      "slug": "track:do-matter",
+      "type": "track",
+      "name": "Do Matter"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:ed-handley",
+      "type": "artist",
+      "name": "Ed Handley"
+    },
+    {
+      "slug": "artist:andy-turner",
+      "type": "artist",
+      "name": "Andy Turner"
+    }
+  ]
+}

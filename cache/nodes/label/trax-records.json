@@ -1,0 +1,91 @@
+{
+  "slug": "label:trax-records",
+  "name": "Trax Records",
+  "editorial_article": "Trax Records is one of the most foundational and controversial labels in the history of electronic music, acting as a primary catalyst for the explosion of Chicago house in the mid-1980s. Founded in 1984 by Larry Sherman, an entrepreneur who owned a local vinyl pressing plant, the label became the primary outlet for the raw, innovative sounds emerging from Chicago's underground scene. By fronting the costs for pressing, Sherman captured a massive portion of the city's early house output, including seminal works that would define the genre for decades to come. The label's catalog reads like a history book of house and acid house, featuring iconic releases from artists such as Marshall Jefferson, Frankie Knuckles, Adonis, Phuture, and Larry Heard (Mr. Fingers).\\n\\nDespite its immense cultural legacy, Trax Records is perpetually shadowed by the contentious business practices of Larry Sherman. Many early house pioneers have described the label's operations as exploitative, characterized by missing royalty payments, questionable contracts, and unauthorized re-pressing of records. These grievances have led to decades of legal battles, with artists like Larry Heard and Robert Owens eventually seeking to reclaim their copyrights. While critics often point to these actions as detrimental to the long-term prospects of Chicago's original artists, others acknowledge the label's pivotal role in disseminating house music globally. The tension between the label's visionary status as the \"Motown of house\" and the allegations of exploitation remains a defining chapter in the history of dance music, illustrating the precarious intersection of grassroots innovation and commercial music industry practice. Following Sherman's death in 2020, the label continued to operate, still maintaining its place as a central, if fraught, pillar of dance music history.",
+  "citations": [
+    {
+      "url": "https://djmag.com/features/history-trax-records-and-fight-chicagos-house-pioneers-royalties",
+      "title": "A history of Trax Records and the fight for Chicago's house pioneers' royalties | DJ Mag"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Trax_Records",
+      "title": "Trax Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:46.024Z",
+  "_metrics": {
+    "input_tokens": 18593,
+    "output_tokens": 1460,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006838,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10438,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal Chicago house music label founded in 1984, responsible for releasing many of the genre's foundational tracks while remaining a lightning rod for controversies regarding artist royalties and copyright ownership.",
+  "founded": "1984",
+  "location": "Chicago, Illinois",
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:marshall-jefferson",
+      "type": "artist",
+      "name": "Marshall Jefferson"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard"
+    },
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:acid-tracks",
+      "type": "project",
+      "name": "Acid Tracks"
+    },
+    {
+      "slug": "project:move-your-body",
+      "type": "project",
+      "name": "Move Your Body (The House Music Anthem)"
+    },
+    {
+      "slug": "project:can-you-feel-it",
+      "type": "project",
+      "name": "Can You Feel It"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "track:lightsabre-cocksucking-blues",
+  "name": "Lightsabre Cocksucking Blues",
+  "editorial_article": "\"Lightsabre Cocksucking Blues\" is the frenetic, abrasive opening track from the 2002 album \"Mclusky Do Dallas\" by Welsh noise-rock trio Mclusky. Recorded at Steve Albini’s Electrical Audio in Chicago, the track perfectly encapsulates the band's signature sound: angular, jagged guitar riffs, propulsive drumming, and vocalist Andrew Falkous’s distinctive, snarling delivery. Clocking in at just under two minutes, the song is a masterclass in economy and tension, delivering a high-octane blast of post-hardcore energy that established the band as a potent force in the UK indie scene during the early 2000s. The track’s provocative title and relentless pace are emblematic of Mclusky’s nihilistic yet humorous aesthetic, which combined serious musical craft with a disdain for the self-seriousness of the era’s rock music. Produced by Albini, the recording captures the trio—Falkous, drummer Matthew Harding, and bassist Jon Chapple—with visceral clarity, allowing the dynamic interplay between the dissonant guitar work and driving rhythm section to cut through with raw, unpolished power. \"Lightsabre Cocksucking Blues\" remains a defining anthem of the band's cult-favorite status, frequently cited for its biting wit and ferocious instrumental execution. It serves as an immediate, uncompromising introduction to a record that would go on to be considered a landmark of the early 2000s noise-rock landscape, influential for its seamless blend of indie-pop sensibilities with a distinctly aggressive, art-punk edge. Its brevity and immediacy ensure it functions not merely as a song, but as a statement of intent for the chaos that follows.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/mclusky-lightsabre-cocksucking-blues",
+      "title": "mclusky – Lightsabre Cocksucking Blues (2002) | Track profile | Dork"
+    },
+    {
+      "url": "https://grokipedia.com/page/Mclusky_Do_Dallas",
+      "title": "Mclusky Do Dallas - Grokipedia"
+    },
+    {
+      "url": "https://christianfitness.bandcamp.com/album/mclusky-do-dallas-2",
+      "title": "mclusky do dallas | mclusky | christian fitness"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:13.913Z",
+  "_metrics": {
+    "input_tokens": 17912,
+    "output_tokens": 1380,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006548,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 23210,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Lightsabre Cocksucking Blues\" is the frenetic, abrasive opening track from the 2002 album \"Mclusky Do Dallas\" by Welsh noise-rock trio Mclusky.",
+  "year": "2002",
+  "duration": "1:50",
+  "artists": [
+    {
+      "slug": "artist:mclusky",
+      "type": "artist",
+      "name": "Mclusky"
+    }
+  ],
+  "project": {
+    "slug": "project:mclusky-do-dallas",
+    "type": "project",
+    "name": "Mclusky Do Dallas"
+  },
+  "genres": [
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    },
+    {
+      "slug": "genre:post-hardcore",
+      "type": "genre",
+      "name": "Post-Hardcore"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:steve-albini",
+      "type": "artist",
+      "name": "Steve Albini"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

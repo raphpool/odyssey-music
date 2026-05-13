@@ -1,0 +1,138 @@
+{
+  "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
+  "name": "Sgt. Pepper's Lonely Hearts Club Band",
+  "editorial_article": "Sgt. Pepper's Lonely Hearts Club Band, released in 1967, is widely considered one of the most influential albums in the history of popular music. Serving as the eighth studio album by The Beatles, it captured the zeitgeist of the \"Summer of Love,\" marking a definitive departure from the band's earlier pop sensibilities toward a more experimental and studio-focused approach. Produced by George Martin, the project was recorded over approximately 400 hours and featured groundbreaking production techniques, including extensive use of orchestras, avant-garde tape manipulations, and cross-genre influences ranging from traditional Indian music and Western classical to psychedelic rock and music hall.\\n\\nOriginally conceptualized as a thematic \"show\" album where the band would perform as a fictional persona—Sgt. Pepper and his Lonely Hearts Club Band—this conceit was eventually abandoned after the first two tracks, yet the spirit of the project remained unified. The album’s cultural footprint is massive, notable for being one of the first albums to print lyrics on the back cover and for its iconic, star-studded cover art designed by Peter Blake and Jann Haworth. Through tracks like the epic \"A Day in the Life,\" the kaleidoscopic \"Lucy in the Sky With Diamonds,\" and the sitar-driven \"Within You Without You,\" the album transformed the perception of the rock record from a collection of singles into a cohesive, artistic statement, fundamentally altering the trajectory of the album format for generations to come. It stands as a testament to the band’s creative peak, where technical ambition in the recording studio met an unparalleled creative freedom.",
+  "citations": [
+    {
+      "url": "https://www.beatlesbible.com/albums/sgt-peppers-lonely-hearts-club-band/",
+      "title": "Sgt Pepper's Lonely Hearts Club Band (album) – song facts, recording info and more! | The Beatles Bible"
+    },
+    {
+      "url": "https://www.thebeatles.com/sgt-peppers-lonely-hearts-club-band-0",
+      "title": "Sgt Pepper's Lonely Hearts Club Band | The Beatles"
+    },
+    {
+      "url": "https://www.discogs.com/release/376287-The-Beatles-Sgt-Peppers-Lonely-Hearts-Club-Band?srsltid=AfmBOoq4fYtZDIjwXkBra65bce5OML59CeEkUF2GjX-dizNF8G2jyXYk",
+      "title": "The Beatles – Sgt. Pepper's Lonely Hearts Club Band - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:39.249Z",
+  "_metrics": {
+    "input_tokens": 21555,
+    "output_tokens": 1779,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008057,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17277,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A revolutionary masterpiece that defined the 1967 Summer of Love, transforming the rock album into a high-art, immersive studio experiment.",
+  "cover_url": "https://www.beatlesbible.com/albums/sgt-peppers-lonely-hearts-club-band/",
+  "year": "1967",
+  "artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ],
+  "label": {
+    "slug": "label:parlophone",
+    "type": "label",
+    "name": "Parlophone"
+  },
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:sgt-pepper-s-lonely-hearts-club-band",
+      "type": "track",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band"
+    },
+    {
+      "slug": "track:with-a-little-help-from-my-friends",
+      "type": "track",
+      "name": "With A Little Help From My Friends"
+    },
+    {
+      "slug": "track:lucy-in-the-sky-with-diamonds",
+      "type": "track",
+      "name": "Lucy In The Sky With Diamonds"
+    },
+    {
+      "slug": "track:getting-better",
+      "type": "track",
+      "name": "Getting Better"
+    },
+    {
+      "slug": "track:fixing-a-hole",
+      "type": "track",
+      "name": "Fixing A Hole"
+    },
+    {
+      "slug": "track:she-s-leaving-home",
+      "type": "track",
+      "name": "She's Leaving Home"
+    },
+    {
+      "slug": "track:being-for-the-benefit-of-mr-kite",
+      "type": "track",
+      "name": "Being For The Benefit Of Mr Kite!"
+    },
+    {
+      "slug": "track:within-you-without-you",
+      "type": "track",
+      "name": "Within You Without You"
+    },
+    {
+      "slug": "track:when-i-m-sixty-four",
+      "type": "track",
+      "name": "When I'm Sixty-Four"
+    },
+    {
+      "slug": "track:lovely-rita",
+      "type": "track",
+      "name": "Lovely Rita"
+    },
+    {
+      "slug": "track:good-morning-good-morning",
+      "type": "track",
+      "name": "Good Morning Good Morning"
+    },
+    {
+      "slug": "track:sgt-pepper-s-lonely-hearts-club-band",
+      "type": "track",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band (Reprise)"
+    },
+    {
+      "slug": "track:a-day-in-the-life",
+      "type": "track",
+      "name": "A Day In The Life"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:george-martin",
+      "type": "artist",
+      "name": "George Martin"
+    }
+  ],
+  "related_projects": []
+}

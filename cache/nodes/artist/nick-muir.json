@@ -1,0 +1,87 @@
+{
+  "slug": "artist:nick-muir",
+  "name": "Nick Muir",
+  "editorial_article": "Nick Muir is a highly influential British musician, songwriter, and electronic music producer whose career spans several decades, transitioning from a session musician in the 1980s to a cornerstone of the progressive house movement. During the 1980s, Muir honed his skills as a keyboardist and session player, working with diverse acts like Take That and punk-folk outfit The Men They Couldn't Hang. His trajectory shifted toward electronic music after finding a space in producer Pat Collier's Greenhouse studio, where he immersed himself in the emerging UK rave scene.\\n\\nHe is perhaps best known for his partnership with DJ John Digweed under the moniker Bedrock. Their seminal 1993 production, \"For What You Dream Of,\" became a defining anthem of the early progressive house sound, eventually finding global recognition through its inclusion on the \"Renaissance: The Mix Collection\" compilation and the iconic \"Trainspotting\" soundtrack. Throughout the 1990s and 2000s, Muir continued to shape the electronic landscape, delivering multiple chart-reaching singles, prolific remix work, and original film scores. His work with Bedrock, including tracks like \"Heaven Scent\" and \"Voices,\" cemented his legacy as a pioneer of progressive house, while his enduring commitment to production continues to inform the genre today. Beyond the duo, Muir has maintained a consistent solo output, exploring textures within deep and progressive house. His work remains a vital touchstone for electronic producers, illustrating the transition from traditional musicianship to digital synthesis and sound design within club culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nick_Muir",
+      "title": "Nick Muir - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/nick-muir",
+      "title": "Nick Muir discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:48.041Z",
+  "_metrics": {
+    "input_tokens": 15828,
+    "output_tokens": 945,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005375,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11766,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A British electronic music producer best known as one-half of the duo Bedrock with John Digweed.",
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bedrock-records",
+      "type": "label",
+      "name": "Bedrock Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dark-blue",
+      "type": "project",
+      "name": "Dark Blue"
+    },
+    {
+      "slug": "project:renaissance-the-masters-series-volume-2",
+      "type": "project",
+      "name": "Renaissance: The Masters Series Volume 2"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:for-what-you-dream-of",
+      "type": "track",
+      "name": "For What You Dream Of"
+    },
+    {
+      "slug": "track:heaven-scent",
+      "type": "track",
+      "name": "Heaven Scent"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-digweed",
+      "type": "artist",
+      "name": "John Digweed"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

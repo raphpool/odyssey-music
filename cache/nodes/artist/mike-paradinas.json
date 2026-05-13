@@ -102,6 +102,11 @@
       "slug": "artist:speedy-j",
       "type": "artist",
       "name": "Speedy J"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
     }
   ],
   "aliases": [
@@ -146,5 +151,11 @@
       "name": "Heterotic"
     }
   ],
-  "members": []
+  "members": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ]
 }

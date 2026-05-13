@@ -1,0 +1,101 @@
+{
+  "slug": "label:motown",
+  "name": "Motown",
+  "editorial_article": "Motown Records is arguably the most influential record label in the history of American popular music. Founded by Berry Gordy Jr. in Detroit, Michigan, on January 12, 1959, the label was originally established as Tamla Records before incorporating as the Motown Record Corporation in 1960. The name, a portmanteau of \"motor\" and \"town,\" paid homage to Detroit’s status as the epicenter of the American automotive industry. Under Gordy’s meticulous guidance, the label cultivated the \"Motown Sound\"—a sophisticated, pop-oriented brand of soul music characterized by driving basslines, tambourine backbeats, call-and-response vocals, and elaborate orchestral arrangements.\\n\\nMore than just a business, Motown was a revolutionary cultural force. It played a pivotal role in the racial integration of the American music landscape by achieving unprecedented crossover success with white audiences during the height of the Civil Rights Movement. Operating out of the iconic \"Hitsville U.S.A.\" studio on West Grand Boulevard, the label functioned like an assembly line, professionalizing every aspect of an artist's career—from songwriting and production to choreography and stage presence. This \"Hit Factory\" approach birthed legendary careers for artists such as The Supremes, Marvin Gaye, Stevie Wonder, The Temptations, and The Jackson 5. After the 1967 Detroit riots and internal royalty disputes, the company relocated to Los Angeles in 1972. Though the label was eventually acquired by MCA and later Universal Music Group, its legacy as \"The Sound of Young America\" remains unmatched, cementing its status as an enduring institution that reshaped the global musical consciousness.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Motown",
+      "title": "Motown - Wikipedia"
+    },
+    {
+      "url": "https://www.detroithistorical.org/learn/online-research/encyclopedia-of-detroit/motown-records",
+      "title": "Motown Records | Detroit Historical Society"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:30.102Z",
+  "_metrics": {
+    "input_tokens": 12402,
+    "output_tokens": 777,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004266,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8082,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary American record label founded by Berry Gordy in Detroit, responsible for defining the 'Motown Sound' and bringing African American soul music to a global mainstream audience.",
+  "founded": "1959",
+  "location": "Detroit, Michigan (originally) / Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye"
+    },
+    {
+      "slug": "artist:the-supremes",
+      "type": "artist",
+      "name": "The Supremes"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder"
+    },
+    {
+      "slug": "artist:the-temptations",
+      "type": "artist",
+      "name": "The Temptations"
+    },
+    {
+      "slug": "artist:the-miracles",
+      "type": "artist",
+      "name": "The Miracles"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:where-did-our-love-go",
+      "type": "project",
+      "name": "Where Did Our Love Go"
+    },
+    {
+      "slug": "project:what-s-going-on",
+      "type": "project",
+      "name": "What's Going On"
+    },
+    {
+      "slug": "project:songs-in-the-key-of-life",
+      "type": "project",
+      "name": "Songs in the Key of Life"
+    },
+    {
+      "slug": "project:the-temptations-sing-smokey",
+      "type": "project",
+      "name": "The Temptations Sing Smokey"
+    }
+  ]
+}

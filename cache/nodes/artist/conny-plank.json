@@ -1,0 +1,104 @@
+{
+  "slug": "artist:conny-plank",
+  "name": "Conny Plank",
+  "editorial_article": "Konrad \"Conny\" Plank (1940–1987) was a seminal German recording engineer and producer who profoundly shaped the sound of late 20th-century electronic and experimental music. Often cited as the architect of the \"Krautrock\" sound, his influence extended far beyond the German borders, impacting the development of new wave, post-punk, and ambient music. Plank operated his own legendary studio near Cologne, which served as a creative incubator for some of the most influential groups of the era. His production approach was characterized by a deep respect for sonic experimentation and the potential of noise, often positioning himself as an unofficial collaborator rather than a detached engineer. \\n\\nStarting his career working with Marlene Dietrich, Plank gained early recognition for his work on Kraftwerk’s foundational records. However, it was his enduring partnership with Neu! and various members of Cluster—most notably Dieter Moebius—that established his reputation as an essential creative force. Throughout the 1970s and 1980s, his studio became a destination for both German innovators and international acts, including Ultravox, Devo, Killing Joke, and Eurythmics. His work is remembered for its clarity, spatial awareness, and a willingness to embrace unconventional studio techniques that anticipated the experimental electronica of later decades. Plank passed away in 1987, but his legacy persists through his extensive catalog of production credits and his own collaborative releases. His influence continues to be felt in how producers treat the recording studio as a primary instrument of composition.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/conny-plank-mn0000099863",
+      "title": "Conny Plank Songs, Albums, Reviews, Bio & More... | AllMusic"
+    },
+    {
+      "url": "https://www.thevinylfactory.com/features/10-essential-conny-plank-records",
+      "title": "An introduction to Conny Plank in 10 records - The Vinyl Factory"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:43.696Z",
+  "_metrics": {
+    "input_tokens": 12552,
+    "output_tokens": 1610,
+    "cache_read_tokens": 4042,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005654,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12587,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Konrad \"Conny\" Plank was the visionary producer and sound engineer whose work redefined the sonic landscape of German experimental music during the 1970s and 80s. Working from his own rural studio near Cologne, he helped synthesize the raw energy of Krautrock into the disciplined textures of electronic and new wave music. As a collaborator, he was instrumental in the success of pioneering artists like Neu!, Kraftwerk, and Cluster, and his studio became a global beacon for forward-thinking artists ranging from Devo and Ultravox to Eurythmics. His approach treated the studio as an instrument, prioritizing experimentation and spatial depth over traditional pop production, cementing his status as a legendary figure in modern music history.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Conny_Plank.jpg",
+  "origin": "Hütschenhausen, Germany",
+  "active_years": "1960s-1980s",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sky-records",
+      "type": "label",
+      "name": "Sky Records"
+    },
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:rastakraut-pasta",
+      "type": "project",
+      "name": "Rastakraut Pasta"
+    },
+    {
+      "slug": "project:en-route",
+      "type": "project",
+      "name": "En Route"
+    },
+    {
+      "slug": "project:material",
+      "type": "project",
+      "name": "Material"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:rastakraut-pasta",
+      "type": "track",
+      "name": "Rastakraut Pasta"
+    },
+    {
+      "slug": "track:conditionierer",
+      "type": "track",
+      "name": "Conditionierer"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

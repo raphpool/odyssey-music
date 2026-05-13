@@ -1,0 +1,90 @@
+{
+  "slug": "genre:industrial-music",
+  "name": "Industrial music",
+  "editorial_article": "Industrial music, as a distinct cultural and sonic movement, emerged in the mid-to-late 1970s as a radical departure from the conventions of popular music. Primarily centered in the United Kingdom, the United States, and Germany, the genre was deeply informed by the anxieties and aesthetics of post-industrial society. Pioneered by groups such as Throbbing Gristle, who famously founded Industrial Records to distribute their abrasive, anti-commercial output, the movement aimed to strip away the blues and rock-and-roll foundations that had long dominated Western music. Instead, artists sought to mirror the harsh, mechanical realities of the modern world using unconventional tools: tape loops, synthesizers, found sounds, distortion, and noise generators.\\n\\nThe philosophy behind industrial music was as important as the sound itself. Drawing from avant-garde traditions, Dadaism, and Futurism, early practitioners like Cabaret Voltaire, SPK, and Einstürzende Neubauten utilized music as a medium for performance art and socio-political critique. Their works were characterized by extreme sonic aggression and a rejection of traditional structures, often favoring dissonance, feedback, and raw, factory-like percussion. By the 1980s, the initial industrial wave splintered, giving rise to a diverse array of 'post-industrial' subgenres, including EBM, power electronics, and noise, while later iterations—such as industrial rock and industrial metal—brought the genre’s bleak, mechanical aesthetic into the mainstream, influencing acts like Nine Inch Nails and Ministry. Industrial remains a foundational pillar of experimental music, defining a legacy of non-conformity and technological subversion.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Industrial_music",
+      "title": "Industrial music - Wikipedia"
+    },
+    {
+      "url": "https://imusician.pro/en/resources/blog/industrial-music-a-journey-through-its-iconic-artists-and-records",
+      "title": "Industrial Music: A Journey Through Its Iconic Artists and Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:41.806Z",
+  "_metrics": {
+    "input_tokens": 19289,
+    "output_tokens": 1383,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006897,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9104,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Industrial music is a subgenre of experimental music that emerged in the 1970s, characterized by its use of noise, distortion, tape manipulation, and themes reflecting the alienation and mechanical intensity of post-industrial society.",
+  "era": "1970s–present",
+  "origin": "United Kingdom, United States, Germany",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle"
+    },
+    {
+      "slug": "artist:cabaret-voltaire",
+      "type": "artist",
+      "name": "Cabaret Voltaire"
+    },
+    {
+      "slug": "artist:einsturzende-neubauten",
+      "type": "artist",
+      "name": "Einstürzende Neubauten"
+    },
+    {
+      "slug": "artist:spk",
+      "type": "artist",
+      "name": "SPK"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails"
+    },
+    {
+      "slug": "artist:ministry",
+      "type": "artist",
+      "name": "Ministry"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:industrial-records",
+      "type": "label",
+      "name": "Industrial Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:20-jazz-funk-greats",
+      "type": "project",
+      "name": "20 Jazz Funk Greats"
+    },
+    {
+      "slug": "project:kollaps",
+      "type": "project",
+      "name": "Kollaps"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "genre:alternative-r-and-b",
+  "name": "Alternative R&B",
+  "editorial_article": "Alternative R&B emerged in the mid-2000s to early 2010s as a sophisticated, experimental reaction to the polished soundscapes of contemporary R&B. Rather than relying on traditional verse-chorus structures or radio-friendly pop production, this movement—often dubbed with labels like \"PBR&B\" or \"indie R&B\"—sought to integrate the raw emotional weight of soul with the abstract sonic palettes of electronic music, indie rock, and avant-garde hip-hop. The genre is characterized by a \"more progressive and diverse\" sound, favoring atmospheric synths, unconventional percussion, and introspective, often vulnerable lyrical themes that explore the complexities of modern relationships and personal turmoil.\n\nThe roots of the sound are often traced back to late 1990s and early 2000s experimentalism. Albums like Janet Jackson’s 'The Velvet Rope' and the contributions of the Soulquarians collective are frequently cited as early stylistic touchstones. However, the movement reached its full critical and commercial fruition with the work of visionaries like Frank Ocean, whose 'Nostalgia, Ultra' and 'Channel Orange' shattered expectations for what R&B could sound like. Similarly, The Weeknd’s early 2011 trilogy of mixtapes introduced a dark, gritty, and nocturnal aesthetic that helped define the \"noir&B\" sub-stream. Throughout its evolution, the genre has served as a bridge between the commercial mainstream and the underground, with artists like SZA, Miguel, and Drake incorporating these \"left-field\" sensibilities into global success. Despite its various, often debated labels, Alternative R&B remains a vital space for artistic individuality, emphasizing the performer’s creative autonomy over industry-mandated sonic trends. It continues to influence contemporary pop music, proving that the lines between \"alternative\" and \"mainstream\" are fluid and constantly shifting in the digital age.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternative_R%26B",
+      "title": "Alternative R&B - Wikipedia"
+    },
+    {
+      "url": "https://thebluesproject.co/2023/05/essential-guide-contemporary-rnb-soul-music/",
+      "title": "R&B, the Essential Guide: evolution, icons, Contemporary R&B / Soul"
+    },
+    {
+      "url": "https://www.yamstheplaylist.com/p/the-rise-of-alt-and-b",
+      "title": "The Rise of ALT&B - by Dante Nicholas - YAMS Magazine"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:38.349Z",
+  "_metrics": {
+    "input_tokens": 20613,
+    "output_tokens": 1724,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007739,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12911,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Alternative R&B is a stylistic divergence from contemporary R&B that emerged in the late 2000s and early 2010s, defined by its experimental, genre-bending approach that incorporates elements of indie rock, electronic, hip-hop, and progressive soul. Often associated with a more intimate, emotionally vulnerable, and sometimes moody atmosphere, the term is frequently used by music journalists to describe artists who operate outside the polished, mainstream production structures of traditional R&B. While initially given derisive monikers by critics—such as \"PBR&B\"—the movement fundamentally reshaped the landscape of popular music by merging high-art sensibilities with the commercial avant-garde.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:neo-soul",
+      "type": "genre",
+      "name": "Neo soul"
+    },
+    {
+      "slug": "genre:progressive-soul",
+      "type": "genre",
+      "name": "Progressive soul"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd"
+    },
+    {
+      "slug": "artist:sza",
+      "type": "artist",
+      "name": "SZA"
+    },
+    {
+      "slug": "artist:miguel",
+      "type": "artist",
+      "name": "Miguel"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:channel-orange",
+      "type": "project",
+      "name": "Channel Orange"
+    },
+    {
+      "slug": "project:trilogy",
+      "type": "project",
+      "name": "Trilogy"
+    },
+    {
+      "slug": "project:808s-and-heartbreak",
+      "type": "project",
+      "name": "808s & Heartbreak"
+    },
+    {
+      "slug": "project:nostalgia-ultra",
+      "type": "project",
+      "name": "Nostalgia, Ultra"
+    }
+  ],
+  "landmark_tracks": []
+}

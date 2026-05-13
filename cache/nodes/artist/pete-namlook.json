@@ -1,0 +1,129 @@
+{
+  "slug": "artist:pete-namlook",
+  "name": "Pete Namlook",
+  "editorial_article": "Pete Namlook (born Peter Kuhlmann, 1960–2012) was a highly influential German producer and composer who became a central figure in the 1990s ambient and electronic music scene. Known for his prodigious output and deep sonic explorations, he is best remembered as the founder of the seminal Frankfurt-based record label FAX +49-69/450464, which served as a primary outlet for his expansive work. His production style often synthesized elements of ambient, techno, and space-music, frequently pushing the boundaries of traditional electronic compositions through long-form, immersive soundscapes. Namlook's artistic vision was heavily influenced by pioneers like Klaus Schulze, Tangerine Dream, and Miles Davis, and he actively sought to connect electronic music to global ambient traditions.\n\nThroughout his career, Namlook was characterized by his intense collaborative spirit, engaging in prolific partnerships with a wide array of experimental and electronic artists including Bill Laswell, Geir Jenssen (Biosphere), Richie Hawtin, Tetsu Inoue, and David Moufang (Move D). His most noted project, 'The Dark Side of the Moog' series with Klaus Schulze, remains a touchstone of the genre. By fostering a constant stream of new material and providing a home for avant-garde sounds, Namlook played a crucial role in shaping the modern ambient aesthetic. He died suddenly of a heart attack in 2012, leaving behind an immense body of work that continues to influence ambient producers today. The sheer volume of his output—often estimated at over 100 albums under various pseudonyms and collaborative aliases—underscores his status as one of the most prolific creators of the twentieth-century electronic underground. His work remains a definitive blueprint for the development of late-century ambient music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pete_Namlook",
+      "title": "Pete Namlook - Wikipedia"
+    },
+    {
+      "url": "https://www.orbmag.com/features/remembering-the-pioneering-artist-pete-namlook-and-his-fax-label/",
+      "title": "Remembering the pioneering artist Pete Namlook and his FAX label"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:45.561Z",
+  "_metrics": {
+    "input_tokens": 20476,
+    "output_tokens": 2289,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008553,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15454,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Pete Namlook (born Peter Kuhlmann, 1960–2012) was a prolific German electronic music producer, composer, and founder of the legendary FAX +49-69/450464 record label. He was a cornerstone of the 1990s ambient revival, known for his vast catalog of solo works and deep, experimental collaborations that blended ambient with techno, house, and space music. His work often explored cosmic textures and immersive sonic landscapes, heavily inspired by the German electronic tradition and jazz pioneers. A true hub of the global ambient scene, Namlook’s label and collaborations helped define the experimental edge of electronic music for decades.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/e/eb/Pete_Namlook.jpg/250px-Pete_Namlook.jpg",
+  "origin": "Frankfurt, Germany",
+  "active_years": "1992–2012",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "FAX +49-69/450464"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-dark-side-of-the-moog",
+      "type": "project",
+      "name": "The Dark Side of the Moog"
+    },
+    {
+      "slug": "project:dreamfish",
+      "type": "project",
+      "name": "Dreamfish"
+    },
+    {
+      "slug": "project:psychonavigation",
+      "type": "project",
+      "name": "Psychonavigation"
+    },
+    {
+      "slug": "project:from-within",
+      "type": "project",
+      "name": "From Within"
+    },
+    {
+      "slug": "project:2350-broadway",
+      "type": "project",
+      "name": "2350 Broadway"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:bill-laswell",
+      "type": "artist",
+      "name": "Bill Laswell"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere"
+    },
+    {
+      "slug": "artist:move-d",
+      "type": "artist",
+      "name": "Move D"
+    },
+    {
+      "slug": "artist:tetsu-inoue",
+      "type": "artist",
+      "name": "Tetsu Inoue"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,121 @@
+{
+  "slug": "genre:trap",
+  "name": "Trap (EDM)",
+  "editorial_article": "Trap (EDM) emerged in the early 2010s as a high-energy synthesis of Southern US hip-hop production and the aggressive aesthetic of modern electronic dance music. While traditional trap music is defined by its lyrical focus and atmospheric, minimalist beats, the EDM-inflected variant—often referred to simply as \"Festival Trap\"—reimagines these sonic markers for massive sound systems. It retains the signature 808 sub-bass, rapid-fire hi-hat rolls, and crisp snare hits of the original genre but integrates the grand structural tropes of EDM, such as meticulous tension-building sequences and explosive, bass-heavy drops. \\n\\nThis hybridization gained significant cultural traction around 2012, fueled by producers like Baauer, Flosstradamus, and RL Grime in the United States, alongside the influential output from French producers such as UZ and DJ Snake. The genre's commercial breakthrough was cemented by global phenomena like Baauer's \"Harlem Shake,\" which demonstrated the potential for trap-derived beats to dominate pop culture and festival stages alike. Throughout the decade, the style fractured into numerous sub-genres including Hybrid Trap, which emphasizes complex sound design akin to modern dubstep, and Hard Trap, which incorporates the aesthetics of hardcore and hardstyle. The genre's influence eventually reached far beyond its initial club roots, becoming a staple in contemporary pop production, including notable integration into K-pop. As a cultural force, Trap (EDM) represents one of the most successful examples of a regional hip-hop sound being re-engineered into a global, festival-focused electronic language.",
+  "citations": [
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Trap_EDM",
+      "title": "Trap EDM | Electronic Music Wiki | Fandom"
+    },
+    {
+      "url": "https://www.reddit.com/r/EDM/comments/8hx6ij/understanding_edm_genres_1_trap_and_its_many_forms/",
+      "title": "Understanding EDM Genres #1: Trap and its many forms. - Reddit"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:08.715Z",
+  "_metrics": {
+    "input_tokens": 17825,
+    "output_tokens": 1582,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006829,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 23004,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A high-energy electronic dance music subgenre that fuses the rhythmic and percussive vocabulary of Southern hip-hop with the structural tropes and maximalist production techniques of EDM.",
+  "era": "2011–present",
+  "origin": "USA and France",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap Hip Hop"
+    },
+    {
+      "slug": "genre:hardcore",
+      "type": "genre",
+      "name": "Hardcore"
+    },
+    {
+      "slug": "genre:bass-house",
+      "type": "genre",
+      "name": "Bass House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:baauer",
+      "type": "artist",
+      "name": "Baauer"
+    },
+    {
+      "slug": "artist:flosstradamus",
+      "type": "artist",
+      "name": "Flosstradamus"
+    },
+    {
+      "slug": "artist:rl-grime",
+      "type": "artist",
+      "name": "RL Grime"
+    },
+    {
+      "slug": "artist:dj-snake",
+      "type": "artist",
+      "name": "DJ Snake"
+    },
+    {
+      "slug": "artist:uz",
+      "type": "artist",
+      "name": "UZ"
+    },
+    {
+      "slug": "artist:dillon-francis",
+      "type": "artist",
+      "name": "Dillon Francis"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:trap-nation",
+      "type": "label",
+      "name": "Trap Nation"
+    },
+    {
+      "slug": "label:trap-city",
+      "type": "label",
+      "name": "Trap City"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:harlem-shake",
+      "type": "track",
+      "name": "Harlem Shake"
+    },
+    {
+      "slug": "track:turn-down-for-what",
+      "type": "track",
+      "name": "Turn Down For What"
+    },
+    {
+      "slug": "track:get-low",
+      "type": "track",
+      "name": "Get Low"
+    }
+  ]
+}

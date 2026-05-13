@@ -1,0 +1,143 @@
+{
+  "slug": "genre:eurodance",
+  "name": "Eurodance",
+  "editorial_article": "Eurodance, frequently referred to as Euro-NRG, stands as one of the most defining and commercially successful electronic dance music phenomena of the 1990s. Originating in Western Europe during the late 1980s—with strong ties to the post-Berlin Wall rave scenes in Germany and the established house and techno circuits of Belgium and the Netherlands—the genre synthesized a distinct pop-centric formula that dominated international airwaves for nearly a decade. Musically, Eurodance is defined by a high-energy four-to-the-floor beat, typically ranging between 120 and 150 BPM, underpinned by syncopated bass lines, cutting-edge synthesizer hooks, and a hallmark verse-chorus structure. It characteristically paired the aggressive, rhythmic delivery of a male rapper with soaring, melodic female vocals, a combination designed specifically for chart-topping appeal and club dominance. \\n\\nBeyond its sonic markers, the genre was often a product of production-house ingenuity; producers—most famously Michael Münzing and Luca Anzilotti of Snap!—often acted as the primary architects, recruiting session singers and performers to serve as the public face of the project. While often criticized in its heyday as \"superficial\" or hedonistic due to its focus on simplistic lyrics about romance, partying, and club escapism, Eurodance was a major cultural force in unifying European youth culture following the Cold War. The genre's commercial peak occurred between 1992 and 1995, fueled by massive hits like \"The Power\" by Snap! and \"Rhythm Is a Dancer\" by Culture Beat. Although its mainstream prominence began to wane after 1995 as electronic music fractured into more diverse sub-genres like trance and progressive house, Eurodance remains a deeply nostalgic and influential pillar of 90s pop culture, credited with bringing rave sensibilities to the global mainstream.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eurodance",
+      "title": "Eurodance - Wikipedia"
+    },
+    {
+      "url": "https://www.stampthewax.com/2019/05/10/a-brief-history-of-eurodance/",
+      "title": "A Brief History of Eurodance - Stamp The Wax"
+    },
+    {
+      "url": "https://rxmusic.com/editorial/dance-if-you-cannot-the-history-of-eurodance/",
+      "title": "Dance If You Cannot: The History of Eurodance - RX Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:53.534Z",
+  "_metrics": {
+    "input_tokens": 19668,
+    "output_tokens": 1884,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007743,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 39836,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A high-energy genre of electronic dance music originating in late-1980s Europe, defined by its blend of house, techno, and hip-hop elements, characterized by rapid tempos, melodic synth hooks, and a signature vocal structure featuring both male rappers and female vocalists.",
+  "era": "1980s-1990s",
+  "origin": "Western Europe",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:euro-nrg",
+      "type": "genre",
+      "name": "Euro-NRG"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco"
+    },
+    {
+      "slug": "genre:hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG"
+    },
+    {
+      "slug": "genre:eurobeat",
+      "type": "genre",
+      "name": "Eurobeat"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:snap",
+      "type": "artist",
+      "name": "Snap!"
+    },
+    {
+      "slug": "artist:culture-beat",
+      "type": "artist",
+      "name": "Culture Beat"
+    },
+    {
+      "slug": "artist:jam-and-spoon",
+      "type": "artist",
+      "name": "Jam & Spoon"
+    },
+    {
+      "slug": "artist:la-bouche",
+      "type": "artist",
+      "name": "La Bouche"
+    },
+    {
+      "slug": "artist:2-unlimited",
+      "type": "artist",
+      "name": "2 Unlimited"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:arista-records",
+      "type": "label",
+      "name": "Arista Records"
+    },
+    {
+      "slug": "label:interhit-records",
+      "type": "label",
+      "name": "Interhit Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:world-power",
+      "type": "project",
+      "name": "World Power"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:the-power",
+      "type": "track",
+      "name": "The Power"
+    },
+    {
+      "slug": "track:rhythm-is-a-dancer",
+      "type": "track",
+      "name": "Rhythm Is a Dancer"
+    }
+  ]
+}

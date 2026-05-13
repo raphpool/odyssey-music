@@ -21,6 +21,10 @@ export interface CrawlOptions {
 	/** Called approximately every `heartbeatMs` ms with a live progress snapshot. */
 	onHeartbeat?: (snapshot: CrawlProgress) => void | Promise<void>;
 	heartbeatMs?: number;
+	/** Frontier selection strategy. Default "hybrid" (BFS head then popularity). */
+	strategy?: FrontierStrategy;
+	/** When strategy="hybrid", how many BFS pops before switching to popularity. */
+	bfsHead?: number;
 }
 
 export interface CrawlProgress {
@@ -46,37 +50,92 @@ export interface CrawlResult {
 interface FrontierEntry {
 	input: AgentInput;
 	depth: number;
+	/** How many already-materialized nodes have referenced this target. */
+	refCount: number;
+	/** Insertion order, used as a tiebreaker after refCount. */
+	seq: number;
 }
 
-class FrontierQueue {
-	private readonly items: { slug: Slug; entry: FrontierEntry }[] = [];
-	private readonly seen = new Set<Slug>();
+export type FrontierStrategy = "bfs" | "popularity" | "hybrid";
 
-	push(slug: Slug, entry: FrontierEntry): boolean {
-		if (this.seen.has(slug)) return false;
+/**
+ * Frontier queue with two pop strategies:
+ *
+ *   - "bfs":        FIFO. Classic breadth-first walk from the seed.
+ *   - "popularity": pop the entry with the highest refCount. After the first BFS-ish
+ *                   pass naturally settles, every subsequent pick is the most-cited
+ *                   dangling target, which directly maximizes click-through coverage.
+ *   - "hybrid":     BFS for the first `bfsHead` pops (to seed the graph), then popularity.
+ *
+ * Re-pushing an already-known slug bumps its refCount instead of duplicating.
+ */
+class FrontierQueue {
+	private readonly items = new Map<Slug, FrontierEntry>();
+	private readonly seen = new Set<Slug>();
+	private seq = 0;
+	private popped = 0;
+	constructor(
+		private readonly strategy: FrontierStrategy = "bfs",
+		private readonly bfsHead = 40,
+	) {}
+
+	push(slug: Slug, base: Omit<FrontierEntry, "refCount" | "seq">): boolean {
+		const existing = this.items.get(slug);
+		if (existing) {
+			existing.refCount++;
+			return false;
+		}
+		if (this.seen.has(slug)) {
+			// Already cached or in-flight downstream — nothing to do.
+			return false;
+		}
 		this.seen.add(slug);
-		this.items.push({ slug, entry });
+		this.items.set(slug, { ...base, refCount: 1, seq: this.seq++ });
 		return true;
 	}
 
 	pop(): { slug: Slug; entry: FrontierEntry } | undefined {
-		return this.items.shift();
-	}
-
-	/** Put an item back at the front of the queue (used when budget reservation fails). */
-	unshift(item: { slug: Slug; entry: FrontierEntry }): void {
-		this.items.unshift(item);
+		if (!this.items.size) return undefined;
+		const useBfs = this.strategy === "bfs" || (this.strategy === "hybrid" && this.popped < this.bfsHead);
+		let pickSlug: Slug | undefined;
+		let pickEntry: FrontierEntry | undefined;
+		if (useBfs) {
+			let bestSeq = Number.POSITIVE_INFINITY;
+			for (const [slug, e] of this.items) {
+				if (e.seq < bestSeq) {
+					bestSeq = e.seq;
+					pickSlug = slug;
+					pickEntry = e;
+				}
+			}
+		} else {
+			let bestRef = -1;
+			let bestSeq = Number.POSITIVE_INFINITY;
+			for (const [slug, e] of this.items) {
+				if (e.refCount > bestRef || (e.refCount === bestRef && e.seq < bestSeq)) {
+					bestRef = e.refCount;
+					bestSeq = e.seq;
+					pickSlug = slug;
+					pickEntry = e;
+				}
+			}
+		}
+		if (!pickSlug || !pickEntry) return undefined;
+		this.items.delete(pickSlug);
+		this.popped++;
+		return { slug: pickSlug, entry: pickEntry };
 	}
 
 	size(): number {
-		return this.items.length;
+		return this.items.size;
 	}
 }
 
 export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	const log = opts.logger ?? (() => undefined);
 	const cache = new NodeCache(opts.out);
-	const frontier = new FrontierQueue();
+	const strategy: FrontierStrategy = opts.strategy ?? "hybrid";
+	const frontier = new FrontierQueue(strategy, opts.bfsHead ?? 40);
 
 	const seedInput: AgentInput = { text: opts.seed };
 	// We don't know the seed's slug yet — the agent decides type. So the seed is enqueued
@@ -84,6 +143,9 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	// is keyed by the canonical slug the agent produces.
 	const seedKey: Slug = `track:__seed__${Date.now()}` as Slug;
 	frontier.push(seedKey, { input: seedInput, depth: 0 });
+	log(
+		`[crawl] strategy=${strategy} maxDepth=${opts.maxDepth} maxNodes=${opts.maxNodes} concurrency=${opts.concurrency}`,
+	);
 
 	let inFlight = 0;
 	let claimed = 0; // atomic budget reservation: incremented before each agent run

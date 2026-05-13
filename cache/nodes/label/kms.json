@@ -1,0 +1,92 @@
+{
+  "slug": "label:kms",
+  "name": "KMS",
+  "editorial_article": "KMS Records is a cornerstone of the Detroit techno movement, founded in 1987 by the visionary producer and DJ Kevin Saunderson. Named after his initials—Kevin Maurice Saunderson—the label served as a vital vehicle for the burgeoning electronic sound emerging from the Motor City during the late 1980s. Alongside labels like Juan Atkins' Metroplex and Derrick May's Transmat, KMS was instrumental in establishing the global identity of Detroit techno, bridging the gap between raw, industrial-inflected club tracks and the soulful, synth-driven pop crossover success of projects like Inner City. Saunderson, a foundational member of the \"Belleville Three,\" used the imprint to showcase not only his own experimental aliases—such as E-Dancer, Tronikhouse, and Reese—but also to provide a platform for other pioneering artists who helped define the city's unique musical landscape. Throughout its decades of operation, KMS has remained synonymous with a forward-thinking, genre-bending approach that blends hard-hitting drum machine rhythms with melodic depth. By navigating the balance between underground credibility and mainstream chart success, particularly through the global reach of Inner City's anthems, KMS solidified its legacy as one of the most influential entities in the history of electronic dance music. The label continues to act as a curator of the Detroit spirit, upholding the legacy of the city's revolutionary sound while consistently introducing new iterations of the style to contemporary club audiences worldwide.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/271520-KMS-Records?srsltid=AfmBOooFLXk7QusTIjlXA8TFi4qssjnEIB0LJg90-EGWFN38aZOxxBpJ",
+      "title": "KMS Records - Discogs"
+    },
+    {
+      "url": "https://musicorigins.org/item/kms-records-was-once-on-techno-boulevard/",
+      "title": "KMS Records Was Once on Techno Boulevard | The Music Origins Project"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:10.954Z",
+  "_metrics": {
+    "input_tokens": 24033,
+    "output_tokens": 1316,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007982,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16128,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A foundational Detroit techno label established by Kevin Saunderson in 1987, serving as a primary outlet for the evolution of the city's electronic sound and the career of his various projects like Inner City.",
+  "founded": "1987",
+  "location": "Detroit, Michigan",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City"
+    },
+    {
+      "slug": "artist:the-reese-project",
+      "type": "artist",
+      "name": "The Reese Project"
+    },
+    {
+      "slug": "artist:darlene-lewis",
+      "type": "artist",
+      "name": "Darlene Lewis"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:good-life",
+      "type": "project",
+      "name": "Good Life"
+    },
+    {
+      "slug": "project:the-colour-of-love",
+      "type": "project",
+      "name": "The Colour Of Love"
+    },
+    {
+      "slug": "project:let-the-music",
+      "type": "project",
+      "name": "Let The Music (Lift You Up)"
+    }
+  ]
+}

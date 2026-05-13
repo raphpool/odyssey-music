@@ -1,0 +1,144 @@
+{
+  "slug": "artist:sasha",
+  "name": "Sasha",
+  "editorial_article": "Sasha, the professional moniker of Welsh DJ and producer Alexander Paul Coe, is a pioneering force in the global electronic dance music scene. Emerging in the late 1980s, he rose to prominence through residencies at legendary clubs like Shelly's, The Haçienda, and Renaissance, where his nuanced approach to mixing helped bridge the gap between burgeoning house, techno, and trance sounds. Often credited as one of the architects of the progressive house movement, Sasha's influence expanded globally through his high-profile partnership with John Digweed. Their collaborative 'Northern Exposure' series of mix albums became a touchstone for the genre in the late 1990s, defining a sophisticated, atmospheric sound that captivated dance floors from the UK to the United States and Australia.\n\nBeyond his status as a superstar DJ, Sasha has maintained a prolific career as a producer and remixer. His seminal 1999 EP 'Xpander' remains a definitive dancefloor classic, while his 2002 debut studio album 'Airdrawndagger' showcased his capacity for more intricate, melodic compositions. He continued to evolve his sound throughout the 2000s and 2010s with projects like the 'Involver' series—which expertly blended original production with adventurous remix work—and the 2016 ambient-leaning album 'Scene Delete'. Through his labels and constant technical innovation in DJing, Sasha remains a vital figure who has continuously shaped the evolution of contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/sasha-mn0002141576",
+      "title": "Sasha Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://open.spotify.com/artist/6u4jLGLPuarS3i2XWHVxoS",
+      "title": "Sasha | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:25.170Z",
+  "_metrics": {
+    "input_tokens": 22328,
+    "output_tokens": 2696,
+    "cache_read_tokens": 4050,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009727,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 18407,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Sasha, the professional moniker of Welsh DJ and producer Alexander Paul Coe, is a pioneering force in the global electronic dance music scene. Emerging in the late 1980s, he rose to prominence through residencies at legendary clubs like Shelly's, The Haçienda, and Renaissance, where his nuanced approach to mixing helped bridge the gap between burgeoning house, techno, and trance sounds. Often credited as one of the architects of the progressive house movement, Sasha's influence expanded globally through his high-profile partnership with John Digweed. Their collaborative 'Northern Exposure' series of mix albums became a touchstone for the genre in the late 1990s, defining a sophisticated, atmospheric sound that captivated dance floors from the UK to the United States and Australia.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0002141576/400/LbTj_fosl4WbJINGfEhDqQ4Q1ghY8VaPylnm7PwcKNY=.jpg",
+  "origin": "Bangor, Wales",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:deconstruction",
+      "type": "label",
+      "name": "Deconstruction"
+    },
+    {
+      "slug": "label:latenighttales",
+      "type": "label",
+      "name": "LateNightTales"
+    },
+    {
+      "slug": "label:kinetic",
+      "type": "label",
+      "name": "Kinetic"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:northern-exposure-vol-1",
+      "type": "project",
+      "name": "Northern Exposure, Vol. 1"
+    },
+    {
+      "slug": "project:xpander",
+      "type": "project",
+      "name": "Xpander"
+    },
+    {
+      "slug": "project:airdrawndagger",
+      "type": "project",
+      "name": "Airdrawndagger"
+    },
+    {
+      "slug": "project:involver",
+      "type": "project",
+      "name": "Involver"
+    },
+    {
+      "slug": "project:scene-delete",
+      "type": "project",
+      "name": "Scene Delete"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:xpander",
+      "type": "track",
+      "name": "Xpander"
+    },
+    {
+      "slug": "track:be-as-one",
+      "type": "track",
+      "name": "Be as One"
+    },
+    {
+      "slug": "track:wavy-gravy",
+      "type": "track",
+      "name": "Wavy Gravy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-digweed",
+      "type": "artist",
+      "name": "John Digweed"
+    },
+    {
+      "slug": "artist:maria-naylor",
+      "type": "artist",
+      "name": "Maria Naylor"
+    },
+    {
+      "slug": "artist:alan-fitzpatrick",
+      "type": "artist",
+      "name": "Alan Fitzpatrick"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,128 @@
+{
+  "slug": "artist:van-der-graaf-generator",
+  "name": "Van der Graaf Generator",
+  "editorial_article": "Van der Graaf Generator, formed in 1967 at the University of Manchester, stands as one of the most uncompromising and intellectually dense pillars of the British progressive rock movement. Founded by singer-songwriters Peter Hammill and Chris Judge Smith, the group was named after the electrostatic generator, a fitting moniker for a band whose output consistently crackled with a high-tension, experimental energy. Unlike their contemporaries who leaned heavily into guitar-driven blues or folk-rock textures, Van der Graaf Generator developed a signature sound centered on Hugh Banton’s classically influenced organ, David Jackson’s idiosyncratic use of multiple saxophones, and Guy Evans’ complex, dynamic percussion. At the heart of this volatile chemistry was Peter Hammill, whose distinctive, visceral vocal delivery and dense, often dystopian lyricism—frequently drawing inspiration from science fiction authors like Philip K. Dick—defined the group's darker, cerebral identity.\n\nWhile the band never attained the same level of mass commercial success as peers like Genesis or Yes, they were the first act signed to the influential Charisma Records and carved out a dedicated, almost cult-like following, particularly in Italy throughout the 1970s. Their landmark 1971 album, *Pawn Hearts*, remains a definitive document of the era's adventurous spirit, blending chaotic improvisation with structured compositions that pushed the boundaries of what could be considered \"rock.\" After a series of splits and reformations, including a brief period in the late 70s billed simply as \"Van der Graaf,\" the group returned in 2005. They remain active as a core trio of Hammill, Banton, and Evans, continuing to explore the sonic fringes they helped define over five decades ago. Their legacy endures not just through their own catalog, but as a profound influence on subsequent generations of art rock, post-punk, and experimental musicians who saw in Hammill and company a blueprint for artistic uncompromising and emotional vulnerability.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Van_der_Graaf_Generator",
+      "title": "Van der Graaf Generator - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/van-der-graaf-generator-mn0000257544",
+      "title": "Van der Graaf Generator - AllMusic"
+    },
+    {
+      "url": "https://www.scaruffi.com/vol2/vdg.html",
+      "title": "The History of Rock Music - Van Der Graaf Generator"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:50.691Z",
+  "_metrics": {
+    "input_tokens": 19836,
+    "output_tokens": 1584,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007335,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16000,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Van der Graaf Generator, formed in 1967 at the University of Manchester, stands as one of the most uncompromising and intellectually dense pillars of the British progressive rock movement.",
+  "origin": "Manchester, England",
+  "active_years": "1967–1972, 1975–1978, 2005–present",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:charisma-records",
+      "type": "label",
+      "name": "Charisma Records"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:vertigo-records",
+      "type": "label",
+      "name": "Vertigo Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-least-we-can-do-is-wave-to-each-other",
+      "type": "project",
+      "name": "The Least We Can Do Is Wave to Each Other"
+    },
+    {
+      "slug": "project:h-to-he-who-am-the-only-one",
+      "type": "project",
+      "name": "H to He, Who Am the Only One"
+    },
+    {
+      "slug": "project:pawn-hearts",
+      "type": "project",
+      "name": "Pawn Hearts"
+    },
+    {
+      "slug": "project:godbluff",
+      "type": "project",
+      "name": "Godbluff"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:peter-hammill",
+      "type": "artist",
+      "name": "Peter Hammill"
+    },
+    {
+      "slug": "artist:hugh-banton",
+      "type": "artist",
+      "name": "Hugh Banton"
+    },
+    {
+      "slug": "artist:guy-evans",
+      "type": "artist",
+      "name": "Guy Evans"
+    },
+    {
+      "slug": "artist:david-jackson",
+      "type": "artist",
+      "name": "David Jackson"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "slug": "label:motown-records-usa",
+  "name": "Motown Records, USA",
+  "editorial_article": "Motown Records, founded in Detroit in 1959 by Berry Gordy Jr., stands as one of the most influential independent record labels in the history of American music. Emerging during a transformative era for Black-owned businesses, the label—often referred to as \"Hitsville U.S.A.\"—leveraged the industrious spirit of the post-war Great Migration to create a distinct, globally resonant sound. Gordy, utilizing an $800 family loan, established a production system that balanced sophisticated songwriting, disciplined artist development, and a polished aesthetic designed to cross over into mainstream, racially integrated markets.\\n\\nThe \"Motown Sound\" was characterized by a potent blend of rhythm and blues, gospel-inspired vocals, and a sophisticated pop arrangement style that prioritized danceability and hooks. Central to this success was a remarkable assembly of talent, including an in-house rhythm section—the Funk Brothers—who provided the foundational groove for countless hits. The label's roster became a foundational pillar of 20th-century music, launching the careers of iconic acts such as The Supremes, The Temptations, Marvin Gaye, Stevie Wonder, and The Jackson 5. By meticulously managing the image and musical output of these artists, Motown not only achieved unprecedented commercial dominance on the Billboard charts throughout the 1960s but also played a significant role in the cultural landscape of the American Civil Rights movement, providing a platform for African American excellence to reach listeners of all backgrounds worldwide. Motown shifted its headquarters from Detroit to Los Angeles in the 1970s, marking a transition in its business operations, but its legacy as the ultimate hit-making factory remains unparalleled.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/money/Motown",
+      "title": "Motown | History, Style, Artists, Songs, & Facts | Britannica Money"
+    },
+    {
+      "url": "https://www.detroithistorical.org/learn/online-research/encyclopedia-of-detroit/motown-records",
+      "title": "Motown Records | Detroit Historical Society"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Motown",
+      "title": "Motown - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:43.053Z",
+  "_metrics": {
+    "input_tokens": 15708,
+    "output_tokens": 1444,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006194,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11705,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Founded in 1959 by Berry Gordy Jr., Motown Records is an iconic American label that defined the sound of 1960s soul music and became a powerhouse of black-owned enterprise and global pop culture.",
+  "founded": "1959",
+  "location": "Detroit, Michigan",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and Blues"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-supremes",
+      "type": "artist",
+      "name": "The Supremes"
+    },
+    {
+      "slug": "artist:the-temptations",
+      "type": "artist",
+      "name": "The Temptations"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder"
+    },
+    {
+      "slug": "artist:the-jackson-5",
+      "type": "artist",
+      "name": "The Jackson 5"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:where-did-our-love-go",
+      "type": "project",
+      "name": "Where Did Our Love Go"
+    },
+    {
+      "slug": "project:what-s-going-on",
+      "type": "project",
+      "name": "What's Going On"
+    },
+    {
+      "slug": "project:innervisions",
+      "type": "project",
+      "name": "Innervisions"
+    }
+  ]
+}

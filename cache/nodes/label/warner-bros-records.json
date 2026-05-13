@@ -1,0 +1,91 @@
+{
+  "slug": "label:warner-bros-records",
+  "name": "Warner Bros. Records",
+  "editorial_article": "Warner Bros. Records, now operating as Warner Records, stands as one of the cornerstones of the American music industry. Established on March 19, 1958, the label was born out of the film giant Warner Bros. Pictures' desire to capitalize on the burgeoning music market and leverage its own extensive film music catalog. After a tentative and ultimately unsuccessful foray into record manufacturing in the early 1930s—which saw the short-lived acquisition and subsequent divestment of Brunswick Records—Warner Bros. returned to the field with a more robust strategy that would eventually evolve into the massive conglomerate known today as Warner Music Group (WMG). \\n\\nThroughout its history, Warner Bros. Records became synonymous with an eclectic and powerful roster, spanning rock, pop, and soul. In the 1960s and 70s, the label expanded its footprint significantly by acquiring key imprints such as Reprise Records, Atlantic Records, Elektra Records, and Asylum Records, solidifying a dominant position in the global market. Its corridors have hosted legends ranging from Frank Sinatra and Prince to Madonna and Elton John. By the 1990s, the label was a critical engine within the Time Warner media empire, though it later navigated the turbulence of the AOL Time Warner merger and a subsequent transition to private ownership under Access Industries in 2011.\\n\\nIn 2019, the label underwent a significant transition, rebranding simply as Warner Records following the expiration of the music group's license to use the iconic Warner Bros. shield logo. Despite these corporate evolutions, the label has remained an influential cultural force, consistently adapting to the shifts from physical media to the digital streaming era. It remains headquartered in Los Angeles, maintaining its historical prestige while continuing to shape the contemporary musical landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Warner_Records",
+      "title": "Warner Records - Wikipedia"
+    },
+    {
+      "url": "https://www.warnerrecords.com/history",
+      "title": "History | Warner Records"
+    },
+    {
+      "url": "https://www.wmg.com/news/warner-bros-records-evolves-warner-records-34326",
+      "title": "Warner Bros. Records Evolves Into Warner Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:09.651Z",
+  "_metrics": {
+    "input_tokens": 12484,
+    "output_tokens": 793,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004311,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8274,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A storied American record label founded in 1958, evolving from a film studio's music division into a primary pillar of the global Warner Music Group, home to generations of legendary artists.",
+  "founded": "1958",
+  "location": "Los Angeles, California",
+  "active_years": "1958-present",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:prince",
+      "type": "artist",
+      "name": "Prince"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:out-of-time",
+      "type": "project",
+      "name": "Out of Time"
+    },
+    {
+      "slug": "project:purple-rain",
+      "type": "project",
+      "name": "Purple Rain"
+    }
+  ]
+}

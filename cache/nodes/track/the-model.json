@@ -1,0 +1,78 @@
+{
+  "slug": "track:the-model",
+  "name": "The Model",
+  "editorial_article": "\"The Model\" (originally released as \"Das Model\" in German) stands as one of the most defining tracks in the history of electronic pop, released by the legendary Düsseldorf group Kraftwerk. Originally appearing on their 1978 studio album, 'The Man-Machine' (Die Mensch-Maschine), the track captures the band’s signature blend of minimalist, mechanized precision and infectious, catchy melody. Written by Kraftwerk members Ralf Hütter and Karl Bartos, along with longtime collaborator and artist Emil Schult, the song offers a cynical, detached observation of the fashion world, reflecting a fascination with the intersection of human identity and the artificial perfection of the \"model.\"\\n\\nMusically, the song represents the pinnacle of Kraftwerk’s synth-pop sound, utilizing clean, rhythmic synthesizer lines and a dry, percussive drive that was years ahead of its contemporary chart-toppers. The production, helmed by Hütter and Florian Schneider, is legendary for its meticulous attention to detail—down to the inclusion of a local Düsseldorf waiter’s voice in the German version, an in-joke that remains a charming detail in the band's carefully curated mythos. While it was not an immediate international success upon its 1978 release, \"The Model\" gained massive popularity during a 1981 re-release, eventually hitting the number one spot on the UK singles chart, marking a watershed moment for electronic music's entry into the mainstream consciousness. Its influence has rippled through decades, with countless acts, including Rammstein, Snakefinger, and Big Black, citing it as an inspiration or covering the song, ensuring its status as a timeless piece of art pop history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Das_Model",
+      "title": "Das Model - Wikipedia"
+    },
+    {
+      "url": "https://www.songfacts.com/facts/kraftwerk/the-model",
+      "title": "The Model by Kraftwerk - Songfacts"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:57.179Z",
+  "_metrics": {
+    "input_tokens": 25293,
+    "output_tokens": 1726,
+    "cache_read_tokens": 4055,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009014,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16906,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"The Model\" (originally released as \"Das Model\" in German) stands as one of the most defining tracks in the history of electronic pop, released by the legendary Düsseldorf group Kraftwerk.",
+  "year": "1978",
+  "artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "project": {
+    "slug": "project:the-man-machine",
+    "type": "project",
+    "name": "The Man-Machine"
+  },
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

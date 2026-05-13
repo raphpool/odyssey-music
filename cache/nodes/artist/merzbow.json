@@ -1,0 +1,66 @@
+{
+  "slug": "artist:merzbow",
+  "name": "Merzbow",
+  "editorial_article": "Merzbow is the moniker of Japanese noise musician Masami Akita, widely regarded as the most prolific and influential figure in the global harsh noise scene. Emerging from Tokyo in 1979, Akita developed a singular, abrasive sonic language that challenged conventional notions of musical composition, melody, and structure. Throughout his decades-long career, he has produced a staggering discography numbering in the hundreds of releases, consistently pushing the boundaries of tape manipulation, circuit bending, and electronic feedback. Merzbow’s work is characterized by intense, high-frequency distortion, dense layered textures, and a relentless kinetic energy that demands total listener immersion.\n\nAkita’s approach often draws from surrealism, dadaism, and an interest in animal rights, reflecting an intellectual depth that counterbalances the extreme physicality of his sound. His influence extends far beyond the noise underground, leaving an indelible mark on industrial, power electronics, drone, and experimental rock communities. Throughout the 1990s and 2000s, Merzbow’s international collaborations—ranging from albums with Boris and Full of Hell to projects with Keiji Haino and Mats Gustafsson—solidified his reputation as a vital connector in experimental music. By transforming the \"noise\" of modern electronics into a deeply textured form of avant-garde art, he remains a cornerstone of 20th and 21st-century music culture.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/merzbow",
+      "title": "Merzbow Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:55.466Z",
+  "_metrics": {
+    "input_tokens": 23126,
+    "output_tokens": 1357,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007817,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 19875,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Merzbow is the moniker of Japanese noise musician Masami Akita, widely regarded as the most prolific and influential figure in the global harsh noise scene.",
+  "origin": "Tokyo, Japan",
+  "genres": [
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    },
+    {
+      "slug": "genre:harsh-noise",
+      "type": "genre",
+      "name": "Harsh Noise"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

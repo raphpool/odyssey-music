@@ -1,0 +1,99 @@
+{
+  "slug": "genre:dance-pop",
+  "name": "Dance-pop",
+  "editorial_article": "Dance-pop is a vibrant, producer-driven genre of electronic music that emerged at the intersection of disco, synth-pop, and mainstream pop in the late 1970s and early 1980s. Designed for the dual environments of crowded nightclubs and contemporary hit radio, dance-pop bridges the gap between the repetitive, hypnotic grooves of underground dance floor culture and the structured, chorus-heavy appeal of radio-friendly pop. At its sonic core lies a driving, uptempo four-on-the-floor beat, often supported by synthesizers, sequencers, and crisp production techniques that emphasize rhythmic accessibility and vocal clarity.\\n\\nHistorically, the genre coalesced as the popularity of disco waned, morphing into more electronic-oriented and synth-heavy sounds. Artists like Madonna became defining figures, popularizing the genre by integrating her distinct artistic vision into the high-gloss, production-focused environment of 1980s dance-pop. As the decades progressed, the genre’s malleability allowed it to absorb influences from new jack swing, house, contemporary R&B, and, more recently, electropop and trance. By the 1990s and 2000s, dance-pop became the dominant force in global mainstream music, providing the framework for the rise of major vocalists and global superstars. It remains characterized by its high production value, relentless energy, and its ability to constantly reinvent its sound by incorporating emerging trends from both the underground electronic scene and the broader landscape of modern popular music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dance-pop",
+      "title": "Dance-pop - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/dance-pop/",
+      "title": "Dance-Pop - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/style/dance-pop-ma0000004548",
+      "title": "Dance-Pop Music Style Overview - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:55.685Z",
+  "_metrics": {
+    "input_tokens": 19320,
+    "output_tokens": 1393,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006919,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11421,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Dance-pop is an uptempo, electronic-influenced genre that combines the club-ready, beat-driven structures of dance music with the catchy, melody-focused songwriting of mainstream pop.",
+  "era": "Late 1970s to present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:post-disco",
+      "type": "genre",
+      "name": "Post-disco"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears"
+    },
+    {
+      "slug": "artist:kylie-minogue",
+      "type": "artist",
+      "name": "Kylie Minogue"
+    },
+    {
+      "slug": "artist:lady-gaga",
+      "type": "artist",
+      "name": "Lady Gaga"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

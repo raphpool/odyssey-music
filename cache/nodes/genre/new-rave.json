@@ -1,0 +1,87 @@
+{
+  "slug": "genre:new-rave",
+  "name": "New Rave",
+  "editorial_article": "New Rave, a short-lived but highly visible microgenre and cultural movement, emerged in the United Kingdom during the mid-2000s as a vibrant fusion of indie rock, electronica, and dance-punk. Characterized by a high-energy, DIY ethos, the scene served as an aggressive, neon-drenched reaction to the more introspective and sensitive indie rock trends that dominated the early 2000s. While the musical output—often featuring synths, driving basslines, and dance-oriented rhythms—was central to its identity, the genre was perhaps equally defined by its aesthetic: a chaotic, psychedelic amalgamation of glowsticks, fluorescent clothing, and intense visual flair reminiscent of the original 1990s rave culture.\n\nThe term itself originated somewhat ironically; Jamie Reynolds of the band Klaxons reportedly coined \"new rave\" as a tongue-in-cheek descriptor intended to mock media tendencies to label and compartmentalize emerging scenes. Despite the artists' frequent attempts to reject or frame the label as a joke, the British music press—notably the NME—seized upon the term, effectively institutionalizing it to capture a specific moment in 2006 and 2007 where indie clubs began embracing the kinetic energy of dance music. This movement overlapped heavily with the burgeoning \"bloghouse\" and \"blog rock\" scenes of the era, bridging the gap between traditional band structures and contemporary electronic soundscapes. By late 2008, the media consensus declared the trend \"over,\" leaving behind a legacy as a flamboyant, high-octane footnote in British musical history that briefly united the sensibilities of the rock club and the warehouse rave. Despite its short lifespan, its influence permeated the aesthetic landscape of late-2000s pop culture, paving the way for further mainstream experimentation with electronic pop.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New_rave",
+      "title": "New rave - Wikipedia"
+    },
+    {
+      "url": "https://www.billboard.com/music/features/new-rave-rihanna-klaxons-2006-week-1236213134/",
+      "title": "New Rave: How the Mythic Genre Tore Up British Dancefloors in 2006"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:55.342Z",
+  "_metrics": {
+    "input_tokens": 20741,
+    "output_tokens": 1348,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007207,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12839,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A mid-2000s British microgenre and aesthetic movement that fused indie rock with electronica and dance-punk, known for its neon visuals and high-energy club-friendly sound.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative dance"
+    },
+    {
+      "slug": "genre:post-punk-revival",
+      "type": "genre",
+      "name": "Post-punk revival"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:klaxons",
+      "type": "artist",
+      "name": "Klaxons"
+    },
+    {
+      "slug": "artist:hadouken",
+      "type": "artist",
+      "name": "Hadouken!"
+    },
+    {
+      "slug": "artist:late-of-the-pier",
+      "type": "artist",
+      "name": "Late of the Pier"
+    },
+    {
+      "slug": "artist:shitdisco",
+      "type": "artist",
+      "name": "Shitdisco"
+    },
+    {
+      "slug": "artist:new-young-pony-club",
+      "type": "artist",
+      "name": "New Young Pony Club"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

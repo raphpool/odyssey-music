@@ -1,0 +1,91 @@
+{
+  "slug": "label:industrial-records",
+  "name": "Industrial Records",
+  "editorial_article": "Industrial Records, founded in London in 1976 by the avant-garde performance collective Throbbing Gristle, stands as one of the most influential independent labels in music history. Established by Genesis P-Orridge, Peter “Sleazy” Christopherson, Cosey Fanni Tutti, and Chris Carter, the label served as both a vessel for the band’s own groundbreaking sonic experiments and a platform for like-minded outsiders. By promoting the slogan “Industrial Music for Industrial People”—a phrase coined by associate Monte Cazazza—the label effectively birthed the industrial genre, characterized by its rejection of traditional rock instrumentation in favor of tape loops, shortwave radio interference, distorted synthesis, and confrontational performance art. \\n\\nFar more than a simple record company, Industrial Records acted as an investigative laboratory. P-Orridge famously viewed the label as a means to \"re-invest Rock music with content, motivation and risk,\" prioritizing raw, authentic documents of attitude over the commercial trends of the late 1970s. The roster included seminal acts such as Cabaret Voltaire, Clock DVA, SPK, and William S. Burroughs, all of whom challenged the boundaries of sound and social convention. Even after the label ceased initial operations in 1981 following the dissolution of Throbbing Gristle, its legacy continued through the pioneering work of its founders’ subsequent projects, including Psychic TV, Coil, and Chris & Cosey. Industrial Records remains the bedrock of industrial culture, proving that non-commercial, abrasive sonic output could influence global underground music for decades to come.",
+  "citations": [
+    {
+      "url": "https://disciplinemag.com/features/the-history-of-industrial-records/",
+      "title": "The History of Industrial Records - Discipline Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:21.277Z",
+  "_metrics": {
+    "input_tokens": 12236,
+    "output_tokens": 745,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004177,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 12556,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary London-based label founded in 1976 by Throbbing Gristle that pioneered the industrial genre and championed uncompromising experimental music.",
+  "founded": "1976",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle"
+    },
+    {
+      "slug": "artist:cabaret-voltaire",
+      "type": "artist",
+      "name": "Cabaret Voltaire"
+    },
+    {
+      "slug": "artist:clock-dva",
+      "type": "artist",
+      "name": "Clock DVA"
+    },
+    {
+      "slug": "artist:spk",
+      "type": "artist",
+      "name": "SPK"
+    },
+    {
+      "slug": "artist:william-s-burroughs",
+      "type": "artist",
+      "name": "William S. Burroughs"
+    },
+    {
+      "slug": "artist:monte-cazazza",
+      "type": "artist",
+      "name": "Monte Cazazza"
+    },
+    {
+      "slug": "artist:chris-and-cosey",
+      "type": "artist",
+      "name": "Chris & Cosey"
+    },
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil"
+    },
+    {
+      "slug": "artist:psychic-tv",
+      "type": "artist",
+      "name": "Psychic TV"
+    }
+  ],
+  "notable_releases": []
+}

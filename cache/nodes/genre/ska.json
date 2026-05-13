@@ -1,0 +1,112 @@
+{
+  "slug": "genre:ska",
+  "name": "Ska",
+  "editorial_article": "Ska is a vibrant, rhythmically driven genre of popular music that originated in Jamaica in the late 1950s, serving as the nation's first indigenous urban pop style. Characterized by its fast, energetic tempos and a distinct rhythmic structure—notably a guitar chop on the offbeat—ska blended local Caribbean folk influences like mento and calypso with the burgeoning sounds of American jazz and rhythm and blues (R&B). The genre was pioneered by operators of Jamaican mobile sound systems who sought to emulate the R&B records coming out of cities like New Orleans. \\n\\nCentral to the early development of ska were studio musicians and arrangers, most notably the Skatalites, whose members included legendary figures like trombonist Don Drummond. The Skatalites provided the instrumental backbone for the era, backing emerging vocalists such as Prince Buster, Derrick Morgan, and the early Bob Marley and the Wailers. Ska evolved significantly after Jamaica's independence in 1962, acting as a celebratory sonic backdrop to the young nation’s autonomy before eventually slowing down into rocksteady and later, the foundational grooves of reggae.\\n\\nSka's influence traveled far beyond the Caribbean through several distinct international waves. In the early 1960s, Jamaican artists like Millie Small brought the sound to London. By the late 1970s and early 1980s, the 2 Tone movement in the United Kingdom—spearheaded by bands like The Specials and Madness—revitalized the genre by infusing it with punk energy and social consciousness. This transatlantic connection eventually brought ska to the United States, where it saw another surge in popularity during the 1990s through groups like No Doubt and the Mighty Mighty Bosstones, proving the genre’s remarkable adaptability and enduring infectious energy.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/ska",
+      "title": "Ska | Music, Bands, Genre, Dance, & Artists | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:46.840Z",
+  "_metrics": {
+    "input_tokens": 12205,
+    "output_tokens": 826,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00429,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10125,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Ska is an upbeat, syncopated Jamaican music style from the late 1950s characterized by an offbeat 'chop,' heavy horn arrangements, and a fusion of jazz, R&B, and Caribbean folk rhythms.",
+  "era": "1950s-present",
+  "origin": "Jamaica",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    },
+    {
+      "slug": "genre:2-tone",
+      "type": "genre",
+      "name": "2 Tone"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-skatalites",
+      "type": "artist",
+      "name": "The Skatalites"
+    },
+    {
+      "slug": "artist:prince-buster",
+      "type": "artist",
+      "name": "Prince Buster"
+    },
+    {
+      "slug": "artist:the-specials",
+      "type": "artist",
+      "name": "The Specials"
+    },
+    {
+      "slug": "artist:madness",
+      "type": "artist",
+      "name": "Madness"
+    },
+    {
+      "slug": "artist:no-doubt",
+      "type": "artist",
+      "name": "No Doubt"
+    },
+    {
+      "slug": "artist:toots-and-the-maytals",
+      "type": "artist",
+      "name": "Toots and the Maytals"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-specials",
+      "type": "project",
+      "name": "The Specials"
+    },
+    {
+      "slug": "project:one-step-beyond",
+      "type": "project",
+      "name": "One Step Beyond..."
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:my-boy-lollipop",
+      "type": "track",
+      "name": "My Boy Lollipop"
+    },
+    {
+      "slug": "track:guns-of-navarone",
+      "type": "track",
+      "name": "Guns of Navarone"
+    }
+  ]
+}

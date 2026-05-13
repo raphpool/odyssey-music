@@ -1,0 +1,106 @@
+{
+  "slug": "genre:minimal-techno",
+  "name": "Minimal techno",
+  "editorial_article": "Minimal techno is a refined, stripped-back subgenre of techno that emerged in the early 1990s as a reaction against the increasingly maximalist and high-tempo sounds of contemporary electronic music. Pioneered primarily by Detroit-based artists like Robert Hood and Daniel Bell, the genre stripped electronic dance music down to its most essential components: a steady kick drum, a precise bassline, and a few sparse, carefully selected percussive or sonic textures. By eschewing the conventional breakdowns, risers, and heavy melodic structures of mainstream dance music, minimal techno relies on hypnotic repetition, subtle micro-shifts in timbre, and intricate rhythmic grooves to create a trance-inducing experience for the listener.\\n\\nThe genre found a significant second home and continued evolution in Europe, particularly within the Berlin club scene, where labels such as M-nus, Kompakt, and Bpitch Records helped refine and popularize the aesthetic. Artists like Richie Hawtin (under his Plastikman alias) and Ricardo Villalobos expanded the sonic palette of the genre, incorporating deeper, more experimental, and occasionally microhouse-influenced elements. While the definition of \"minimal\" has shifted over the decades—often sparking debates among purists regarding its modern iterations—the genre’s legacy is defined by its commitment to sonic economy. It remains a sophisticated form of dance music that values space and deliberate restraint, where the absence of sound is as crucial as the sound itself. Its focus on the \"groove\" over the spectacle ensures it remains an essential pillar in the history of underground electronic music.",
+  "citations": [
+    {
+      "url": "https://6amgroup.com/articles/guides-all/minimal-techno-music-guide-history-artists-tracks",
+      "title": "Minimal Techno Music Guide: History, Artists, & Tracks | SIX AM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:45.728Z",
+  "_metrics": {
+    "input_tokens": 12992,
+    "output_tokens": 769,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004402,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10241,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of techno characterized by a stripped-back aesthetic, sparse arrangement, and a heavy reliance on repetitive, hypnotic grooves over traditional melodic progression.",
+  "era": "1990s–present",
+  "origin": "Detroit, USA",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood"
+    },
+    {
+      "slug": "artist:daniel-bell",
+      "type": "artist",
+      "name": "Daniel Bell"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:plus-8-records",
+      "type": "label",
+      "name": "Plus 8 Records"
+    },
+    {
+      "slug": "label:m-nus",
+      "type": "label",
+      "name": "M-nus"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    },
+    {
+      "slug": "label:bpitch-control",
+      "type": "label",
+      "name": "Bpitch Control"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:minus",
+      "type": "track",
+      "name": "Minus"
+    },
+    {
+      "slug": "track:spastik",
+      "type": "track",
+      "name": "Spastik"
+    },
+    {
+      "slug": "track:bleep",
+      "type": "track",
+      "name": "Bleep"
+    }
+  ]
+}

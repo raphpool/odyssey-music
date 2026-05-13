@@ -1,0 +1,81 @@
+{
+  "slug": "genre:soundtrack",
+  "name": "Soundtrack",
+  "editorial_article": "A soundtrack is an audio recording that accompanies and is synchronized to the images of a motion picture, television program, video game, or other visual media. While \"soundtrack\" technically refers to the audio component of a film—often a composite track containing dialogue, music, and sound effects—the term has evolved significantly in the commercial sense. In the music industry, a \"soundtrack\" commonly refers to a commercially released album containing music featured in a production, serving both as a functional tool for storytelling and as a unique form of conceptual curation.\\n\\nThe history of the commercial soundtrack album began in 1938 with the release of the music from Walt Disney's 'Snow White and the Seven Dwarfs'. Following this, major film studios began marketing music from their productions to capitalize on film popularity, establishing the \"original motion picture soundtrack\" (OMPS) as a staple of record stores by the mid-20th century. These albums generally fall into several categories: dedicated orchestral film scores, collections of licensed pop songs (often dubbed \"compilation soundtracks\"), and hybrid albums that combine both. In the context of the digital and modern era, the soundtrack has transcended simple promotion, becoming a key medium for introducing audiences to experimental textures, ambient landscapes, and genre-defying collaborations that might otherwise remain confined to niche markets. Whether capturing the sweeping, thematic orchestrations of a sci-fi epic or the carefully curated aesthetic of an indie drama, the soundtrack remains a vital intersection of musical composition and narrative, functioning as a bridge between the visual and auditory worlds. While purists may debate whether \"soundtrack\" constitutes a distinct musical style or merely a functional container, its cultural importance as an expansive, highly eclectic framework for music consumption is undisputed.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Soundtrack",
+      "title": "Soundtrack - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:45.556Z",
+  "_metrics": {
+    "input_tokens": 18377,
+    "output_tokens": 1245,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006462,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11509,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "An audio recording of music featured in and synchronized to a visual medium, such as a film, television program, or video game, often compiled into a commercially available album.",
+  "era": "1930s-present",
+  "origin": "Global (Film Industry)",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:film-score",
+      "type": "genre",
+      "name": "Film Score"
+    },
+    {
+      "slug": "genre:video-game-music",
+      "type": "genre",
+      "name": "Video Game Music"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:john-williams",
+      "type": "artist",
+      "name": "John Williams"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer"
+    },
+    {
+      "slug": "artist:ennio-morricone",
+      "type": "artist",
+      "name": "Ennio Morricone"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

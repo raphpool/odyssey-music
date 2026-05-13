@@ -1,0 +1,69 @@
+{
+  "slug": "genre:synthpop",
+  "name": "Synthpop",
+  "editorial_article": "Synth-pop is a pivotal genre of electronic and popular music that emerged in the late 1970s, defined by the central role of the synthesizer as the primary instrumentation. While prefigured by the experimental textures of 1960s art rock, progressive rock, and the foundational Krautrock of German pioneers like Kraftwerk, synth-pop solidified as a distinct movement around 1977-1980, primarily originating in the United Kingdom, Japan, and Germany. It arose amidst the post-punk era, often sharing the DIY ethos of new wave while consciously rejecting traditional rock musicianship in favor of synthetic textures and rhythmic precision. \n\nThe genre's evolution was inextricably linked to technological advances in music production, particularly the commercialization of polyphonic synthesizers and the introduction of programmable drum machines like the Roland TR-808, championed by acts like the Yellow Magic Orchestra. Early iterations of the genre were often noted for a minimalist, sometimes \"robotic\" or detached aesthetic, which contrasted sharply with the emotive excess of stadium rock. However, as the 1980s progressed, synth-pop became the engine of a global cultural shift. Aided by the rise of music video culture and the \"Second British Invasion\" in the United States, artists were able to marry avant-garde sensibilities with accessible pop song structures, leading to widespread chart success for duos and bands like Pet Shop Boys, Erasure, and A-ha. \n\nDespite initial criticism from traditionalist detractors who questioned the \"authenticity\" of electronic music, synth-pop’s influence has been pervasive. It laid the groundwork for the structural innovations of Detroit techno and house music, proving that synthetic instruments could convey a vast emotional spectrum, from cold, industrial alienation to vibrant, dance-floor-oriented euphoria. The genre underwent multiple revivals in the late 1990s and 2000s, cementing its status as a foundational pillar of modern music production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Synth-pop",
+      "title": "Synth-pop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:52.613Z",
+  "_metrics": {
+    "input_tokens": 12276,
+    "output_tokens": 750,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004194,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8380,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A genre of popular music that emerged in the late 1970s, characterized by the dominance of synthesizers, sequencers, and drum machines as the primary means of melodic and rhythmic expression.",
+  "era": "Late 1970s to present (peak: early to mid-1980s)",
+  "origin": "United Kingdom, Japan, Germany",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:gary-numan",
+      "type": "artist",
+      "name": "Gary Numan"
+    },
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
+    },
+    {
+      "slug": "artist:pet-shop-boys",
+      "type": "artist",
+      "name": "Pet Shop Boys"
+    },
+    {
+      "slug": "artist:erasure",
+      "type": "artist",
+      "name": "Erasure"
+    },
+    {
+      "slug": "artist:a-ha",
+      "type": "artist",
+      "name": "A-ha"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -70,7 +70,13 @@
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    }
+  ],
   "aliases": [],
   "members": [
     {

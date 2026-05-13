@@ -145,6 +145,11 @@
       "slug": "artist:polygon-window",
       "type": "artist",
       "name": "Polygon Window"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
     }
   ],
   "members": []

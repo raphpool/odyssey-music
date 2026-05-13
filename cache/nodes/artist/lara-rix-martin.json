@@ -1,0 +1,102 @@
+{
+  "slug": "artist:lara-rix-martin",
+  "name": "Lara Rix-Martin",
+  "editorial_article": "Lara Rix-Martin is a Brighton-based electronic musician and producer known for their multifaceted approach to sound, spanning ambient, experimental, and dance music. They have gained significant acclaim for their work under the alias Meemo Comma, an outlet where they explore complex intersections of trans culture, religious mysticism (such as Kabbalah), and nostalgic futurism, frequently incorporating '90s cyberpunk anime aesthetics and digital textures. Rix-Martin first gained industry attention as part of the duo Heterotic, a collaboration with Mike Paradinas on the Planet Mu label. Throughout their career, they have demonstrated an uncanny ability to balance harsh, metallic sound design with deeply emotive, melodic landscapes. Their solo discography reflects a rigorous intellectual curiosity, with projects often anchored in thematic explorations of memory, nature, and identity. Whether producing the evocative, autumnal landscapes of 'Sleepmoss' or the frenetic, neon-drenched inquiries of 'Neon Genesis: Soul Into Matter²', Rix-Martin remains a central, singular figure within the contemporary experimental electronic underground, continuously bridging the gap between clinical production precision and profound, idiosyncratic human expression. Their work is characterized by a high degree of technical mastery, often finding new ways to express the tension between biological existence and digital infrastructure, a theme that has become increasingly prominent in their output over the last decade. Rix-Martin continues to influence modern experimental music through their uncompromising dedication to sonic world-building and their role as a visionary voice within the Planet Mu family.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/2249873-Lara-Rix-Martin?srsltid=AfmBOophUzE3U-pkz1hnqgvPCt4oSq-l07NvhACs9MB-qerpCnV_pPcD",
+      "title": "Lara Rix-Martin - Discogs"
+    },
+    {
+      "url": "https://xtramagazine.com/culture/meemo-comma-lara-rix-martin-neon-genesis-212179",
+      "title": "Meemo Comma has created an eclectic electric soundtrack for an ..."
+    },
+    {
+      "url": "https://ra.co/dj/lararix-martin",
+      "title": "Lara Rix-Martin · Artist Profile - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:23.621Z",
+  "_metrics": {
+    "input_tokens": 55196,
+    "output_tokens": 2548,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.017621,
+    "llm_calls": 7,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 30365,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Brighton-based producer and experimentalist known for the Meemo Comma project and the duo Heterotic, exploring themes of trans identity, mysticism, and digital nostalgia.",
+  "origin": "Brighton, UK",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sleepmoss",
+      "type": "project",
+      "name": "Sleepmoss"
+    },
+    {
+      "slug": "project:neon-genesis-soul-into-matter2",
+      "type": "project",
+      "name": "Neon Genesis: Soul Into Matter²"
+    },
+    {
+      "slug": "project:loverboy",
+      "type": "project",
+      "name": "Loverboy"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:michael-paradinas",
+      "type": "artist",
+      "name": "Michael Paradinas"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:meemo-comma",
+      "type": "artist",
+      "name": "Meemo Comma"
+    }
+  ],
+  "members": []
+}

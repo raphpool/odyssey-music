@@ -1,0 +1,138 @@
+{
+  "slug": "genre:pop-punk",
+  "name": "Pop Punk",
+  "editorial_article": "Pop punk, frequently referred to as punk pop, is a dynamic rock music genre that emerged in the late 1970s by fusing the raw energy and DIY ethos of punk rock with the accessible melodies, structures, and hook-heavy craft of 1960s pop and power pop. While many genres rely on a specific regional origin, pop punk developed simultaneously across the United States and the United Kingdom, drawing significant inspiration from the harmonic sensibilities of The Beatles, The Kinks, and The Beach Boys. This blend results in a sonic signature defined by fast-paced tempos, distorted power chords, and infectious, radio-friendly choruses that often contrast sharply with lyrics focusing on adolescent angst, rebellion against suburban banality, and the complexities of young adulthood.\\n\\nThroughout its history, the genre has undergone several distinct phases. Its roots in the late 1970s and 1980s were solidified by foundational acts such as the Ramones, the Buzzcocks, and later, the Descendents and Bad Religion, who bridged the gap between harder-edged punk and melodic songcraft. The early 1990s saw a massive proliferation of the sound, fueled by independent labels like Lookout! Records, which incubated acts such as Green Day and The Mr. T Experience. The genre reached its zenith of mainstream cultural ubiquity in the mid-1990s and early 2000s, driven by the massive commercial success of bands like Blink-182 and the Offspring, and further pushed by the influential Warped Tour. In the mid-2000s, the lines between pop punk and emo became increasingly porous, resulting in the emo-pop phenomenon led by Fall Out Boy and Paramore. Though its mainstream dominance fluctuated in the 2010s, the genre maintained a robust underground scene before witnessing a widespread, nostalgic resurgence in the early 2020s, highlighting its enduring place in the alternative rock canon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pop-punk",
+      "title": "Pop-punk - Wikipedia"
+    },
+    {
+      "url": "https://www.jampack.com/music-genres/pop-punk",
+      "title": "pop punk Guide: Explore the History and Artists"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:42.019Z",
+  "_metrics": {
+    "input_tokens": 12301,
+    "output_tokens": 957,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004511,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 14167,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A fusion genre combining the high-energy, fast-paced instrumentation and anti-establishment themes of punk rock with the accessible, melodic songwriting structures of 1960s pop and power pop.",
+  "era": "Late 1970s – Present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop Music"
+    },
+    {
+      "slug": "genre:power-pop",
+      "type": "genre",
+      "name": "Power Pop"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:emo-pop",
+      "type": "genre",
+      "name": "Emo Pop"
+    },
+    {
+      "slug": "genre:neon-pop-punk",
+      "type": "genre",
+      "name": "Neon Pop Punk"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo"
+    },
+    {
+      "slug": "genre:skate-punk",
+      "type": "genre",
+      "name": "Skate Punk"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:green-day",
+      "type": "artist",
+      "name": "Green Day"
+    },
+    {
+      "slug": "artist:blink-182",
+      "type": "artist",
+      "name": "Blink-182"
+    },
+    {
+      "slug": "artist:the-ramones",
+      "type": "artist",
+      "name": "The Ramones"
+    },
+    {
+      "slug": "artist:descendents",
+      "type": "artist",
+      "name": "Descendents"
+    },
+    {
+      "slug": "artist:fall-out-boy",
+      "type": "artist",
+      "name": "Fall Out Boy"
+    },
+    {
+      "slug": "artist:paramore",
+      "type": "artist",
+      "name": "Paramore"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:lookout-records",
+      "type": "label",
+      "name": "Lookout! Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:dookie",
+      "type": "project",
+      "name": "Dookie"
+    },
+    {
+      "slug": "project:enema-of-the-state",
+      "type": "project",
+      "name": "Enema of the State"
+    },
+    {
+      "slug": "project:all-killer-no-filler",
+      "type": "project",
+      "name": "All Killer No Filler"
+    }
+  ],
+  "landmark_tracks": []
+}

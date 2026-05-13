@@ -1,0 +1,135 @@
+{
+  "slug": "label:epic",
+  "name": "Epic",
+  "editorial_article": "Epic Records is one of the most prominent American record labels in music history, serving as a pillar of the global music industry since its inception in 1953. Originally established by Columbia Records as an outlet for jazz and classical music that didn't align with their mainstream catalogue, Epic eventually blossomed into a powerhouse that defined the sound of pop, R&B, rock, and hip-hop across the late 20th and early 21st centuries. Throughout its seventy-plus years, the label has been the home for an unparalleled array of iconic artists, ranging from rock legends like The Yardbirds and Jeff Beck to pop titans like Michael Jackson, Sade, and Beyoncé. \n\nThe label’s evolution reflects the changing tides of the music business. Under its various corporate structures—from its roots as a CBS subsidiary to its current position as a marquee division of Sony Music Entertainment—Epic has managed to stay relevant by consistently identifying and developing genre-defining talent. Beyond its commercial impact, the label has left an indelible mark on music culture through legendary album releases and groundbreaking promotional strategies. Today, Epic continues to shape contemporary music, maintaining a roster that bridges the gap between established superstars and emerging artists across diverse genres. Its longevity remains a testament to the label's ability to adapt to shifting technological and stylistic landscapes while preserving its status as a premier destination for world-class musicians.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Epic_Records",
+      "title": "Epic Records - Wikipedia"
+    },
+    {
+      "url": "https://www.sonymusic.co.uk/label/epic-records/",
+      "title": "Epic Records - Sony Music UK"
+    },
+    {
+      "url": "https://www.scribd.com/document/695969481/Epic-Records",
+      "title": "Epic Records: History and Artists | PDF | Music Organizations - Scribd"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:06.079Z",
+  "_metrics": {
+    "input_tokens": 23763,
+    "output_tokens": 2077,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009158,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 15014,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A foundational major label under Sony Music Entertainment with a rich legacy spanning jazz, classical, rock, pop, and hip-hop.",
+  "founded": "1953",
+  "location": "New York City, USA",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:classical-music",
+      "type": "genre",
+      "name": "Classical music"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:sade",
+      "type": "artist",
+      "name": "Sade"
+    },
+    {
+      "slug": "artist:pearl-jam",
+      "type": "artist",
+      "name": "Pearl Jam"
+    },
+    {
+      "slug": "artist:beyonce",
+      "type": "artist",
+      "name": "Beyoncé"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott"
+    },
+    {
+      "slug": "artist:future",
+      "type": "artist",
+      "name": "Future"
+    },
+    {
+      "slug": "artist:jeff-beck",
+      "type": "artist",
+      "name": "Jeff Beck"
+    },
+    {
+      "slug": "artist:fiona-apple",
+      "type": "artist",
+      "name": "Fiona Apple"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:thriller",
+      "type": "project",
+      "name": "Thriller"
+    },
+    {
+      "slug": "project:diamond-life",
+      "type": "project",
+      "name": "Diamond Life"
+    },
+    {
+      "slug": "project:ten",
+      "type": "project",
+      "name": "Ten"
+    },
+    {
+      "slug": "project:the-miseducation-of-lauryn-hill",
+      "type": "project",
+      "name": "The Miseducation of Lauryn Hill"
+    }
+  ]
+}

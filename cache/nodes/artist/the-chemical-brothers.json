@@ -1,0 +1,151 @@
+{
+  "slug": "artist:the-chemical-brothers",
+  "name": "The Chemical Brothers",
+  "editorial_article": "The Chemical Brothers are an influential English electronic music duo formed in Manchester in 1992, comprising Ed Simons and Tom Rowlands. Originally operating under the moniker \"The Dust Brothers\" (a name changed due to conflicts with the established American production duo of the same name), they became pivotal figures in the emergence and popularization of the big beat genre during the 1990s. Their sonic identity is defined by a high-energy fusion of acid house, techno, hip-hop-inspired breakbeats, and psychedelic soundscapes. By seamlessly blending dance-floor kinetics with the raw, rebellious spirit of rock music, the duo helped bridge the gap between underground rave culture and mainstream pop success.\\n\\nFollowing their breakthrough success with the debut album *Exit Planet Dust* (1995), the duo solidified their reputation with the critically acclaimed records *Dig Your Own Hole* (1997) and *Surrender* (1999), both of which topped the UK Albums Chart. Their production style—often utilizing heavy sampling, aggressive synth-work, and collaborations with prominent vocalists like Noel Gallagher, Beth Orton, and Q-Tip—made them staples of the global electronic music scene. Throughout their prolific career, which has spanned over three decades, The Chemical Brothers have remained at the forefront of the genre, continuing to innovate with albums like *No Geography* (2018), while also earning numerous accolades, including multiple Grammy Awards for their contribution to dance and electronic music. Their work remains a cornerstone of British electronic culture, celebrated for its relentless energy and innovative approach to sample-based electronic composition.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Chemical_Brothers",
+      "title": "The Chemical Brothers - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/the-chemical-brothers",
+      "title": "The Chemical Brothers Albums - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/the-chemical-brothers-mn0000067631",
+      "title": "The Chemical Brothers Songs, Albums, Reviews ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:25.234Z",
+  "_metrics": {
+    "input_tokens": 19552,
+    "output_tokens": 1739,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007497,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 14605,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "The Chemical Brothers are an influential English electronic music duo who pioneered the big beat genre, bridging the gap between underground rave culture and global pop success through their signature fusion of breakbeats, acid house, and neo-psychedelia.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/The_Chemical_Brothers_performing_in_Barcelona%2C_Spain_%282007%29.jpg/960px-The_Chemical_Brothers_performing_in_Barcelona%2C_Spain_%282007%29.jpg",
+  "origin": "Manchester, England",
+  "active_years": "1992–present",
+  "genres": [
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big beat"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:astralwerks",
+      "type": "label",
+      "name": "Astralwerks"
+    },
+    {
+      "slug": "label:junior-boy-s-own",
+      "type": "label",
+      "name": "Junior Boy's Own"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:exit-planet-dust",
+      "type": "project",
+      "name": "Exit Planet Dust"
+    },
+    {
+      "slug": "project:dig-your-own-hole",
+      "type": "project",
+      "name": "Dig Your Own Hole"
+    },
+    {
+      "slug": "project:surrender",
+      "type": "project",
+      "name": "Surrender"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:block-rockin-beats",
+      "type": "track",
+      "name": "Block Rockin' Beats"
+    },
+    {
+      "slug": "track:setting-sun",
+      "type": "track",
+      "name": "Setting Sun"
+    },
+    {
+      "slug": "track:hey-boy-hey-girl",
+      "type": "track",
+      "name": "Hey Boy Hey Girl"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:noel-gallagher",
+      "type": "artist",
+      "name": "Noel Gallagher"
+    },
+    {
+      "slug": "artist:beth-orton",
+      "type": "artist",
+      "name": "Beth Orton"
+    },
+    {
+      "slug": "artist:q-tip",
+      "type": "artist",
+      "name": "Q-Tip"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:the-dust-brothers",
+      "type": "artist",
+      "name": "The Dust Brothers"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:ed-simons",
+      "type": "artist",
+      "name": "Ed Simons"
+    },
+    {
+      "slug": "artist:tom-rowlands",
+      "type": "artist",
+      "name": "Tom Rowlands"
+    }
+  ]
+}

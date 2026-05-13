@@ -1,0 +1,100 @@
+{
+  "slug": "genre:dance-music",
+  "name": "Dance music",
+  "editorial_article": "Dance music is one of the oldest and most fundamental forms of musical expression, defined not by a singular sonic signature, but by its primary function: to facilitate and synchronize the movement of the human body. Throughout history, societies worldwide have relied on rhythmic music—often anchored by percussion, strings, or eventually electronic synthesizers—to foster social cohesion, celebrate cultural rituals, and provide a framework for physical expression. From the intricate courtly dances of the Baroque era, such as the minuet and sarabande, to the waltzes of the Romantic period, Western music has a long history of codifying rhythm into specific choreographic structures.\\n\\nIn the modern era, the evolution of dance music accelerated alongside technological and social shifts. The 20th century saw a transition from live orchestral or ensemble dance music toward the recorded popular music formats that dominated ballrooms, dance halls, and, eventually, the global club scene. Genres like swing, rock and roll, soul, and R&B all functioned as the preeminent dance music of their respective eras, influencing the rhythmic sensibilities of millions. However, the most profound paradigm shift occurred with the rise of disco in the 1970s and the subsequent birth of electronic dance music (EDM). By utilizing synthesizers, drum machines, and eventually computer-based production, this movement transformed dance music into a deeply immersive, repetitive, and sound-system-focused experience. Today, dance music encompasses a vast ecosystem ranging from traditional folk and global ethnic styles to the highly produced, bass-heavy, and globally consumed electronic genres that define contemporary nightlife. Its enduring power lies in its ability to transcend language, creating shared, visceral experiences on the dance floor.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dance_music",
+      "title": "Dance music - Wikipedia"
+    },
+    {
+      "url": "https://www.armadamusic.com/news/the-history-of-dance-music",
+      "title": "The History of Dance Music | Armada Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:20.524Z",
+  "_metrics": {
+    "input_tokens": 19119,
+    "output_tokens": 1408,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006892,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10787,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Dance music is a broad musical category encompassing any composition specifically designed to facilitate or accompany physical movement and social dancing. It spans from ancient folk traditions and Baroque court suites to modern electronic club culture and popular chart-topping anthems.",
+  "era": "Ancient to contemporary",
+  "origin": "Worldwide/Ancient civilizations",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    }
+  ],
+  "key_artists": [],
+  "key_labels": [
+    {
+      "slug": "label:defected-records",
+      "type": "label",
+      "name": "Defected Records"
+    },
+    {
+      "slug": "label:ministry-of-sound",
+      "type": "label",
+      "name": "Ministry of Sound"
+    },
+    {
+      "slug": "label:strictly-rhythm",
+      "type": "label",
+      "name": "Strictly Rhythm"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,98 @@
+{
+  "slug": "genre:electro-funk",
+  "name": "Electro-funk",
+  "editorial_article": "Electro-funk emerged in the late 1970s and flourished throughout the 1980s as a transformative sub-genre that synthesized the syncopated, bass-heavy grooves of traditional funk with the burgeoning sonic potential of electronic music technology. As funk bands sought to modernize their sound against the backdrop of a rapidly changing technological landscape, they increasingly replaced traditional horn sections and live bass lines with the cold, precise power of synthesizers, drum machines, and sequencers. Notably, the Roland TR-808 became a cornerstone instrument, providing a deep, synthetic foundation that would eventually influence the trajectories of both hip-hop and techno. \\n\\nCulturally, electro-funk was a manifestation of the post-soul era, with its futuristic aesthetics and robotic textures offering a high-tech escapism from the economic uncertainties of the time. The genre was defined by several key stylistic markers: the aggressive use of talkboxes and vocoders to manipulate vocal timbres, angular synth-bass lines, and polyrhythmic structures designed to move crowds on the dance floor. Geographic hubs like Dayton, Ohio—home to pioneers such as Zapp & Roger—and Minneapolis, where innovators like Prince and producers Jimmy Jam and Terry Lewis redefined the R&B-funk intersection, were critical to the genre's evolution. Unlike the organic, ensemble-driven nature of 1970s funk, electro-funk embraced the artificial, creating a sleek, futuristic soundscape that prioritized repetitive, machine-driven rhythm while retaining the melodic soul of its progenitors. Its impact remains profound, serving as a vital bridge between the groove-centric traditions of the black music canon and the electronic dance music revolutions that followed.",
+  "citations": [
+    {
+      "url": "https://timeline.carnegiehall.org/genres/electro-funk",
+      "title": "History of Electro-Funk — Timeline of African American Music"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/electro-funk",
+      "title": "Electro-Funk - Melodigging"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/electro-funk-guide",
+      "title": "Electro-Funk Music Guide: 5 Famous Electro-Funk Artists - 2026"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:07.546Z",
+  "_metrics": {
+    "input_tokens": 11238,
+    "output_tokens": 841,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004071,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10097,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Electro-funk is a fusion genre that updates traditional funk with electronic sound production, characterized by the use of drum machines (especially the TR-808), synthesizers, vocoders, and a distinctively futuristic, robotic aesthetic.",
+  "era": "Late 1970s–1980s",
+  "origin": "United States (notably Dayton, Ohio and Minneapolis, Minnesota)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:zapp-and-roger",
+      "type": "artist",
+      "name": "Zapp & Roger"
+    },
+    {
+      "slug": "artist:midnight-star",
+      "type": "artist",
+      "name": "Midnight Star"
+    },
+    {
+      "slug": "artist:prince",
+      "type": "artist",
+      "name": "Prince"
+    },
+    {
+      "slug": "artist:afrika-bambaataa",
+      "type": "artist",
+      "name": "Afrika Bambaataa"
+    },
+    {
+      "slug": "artist:the-s-o-s-band",
+      "type": "artist",
+      "name": "The S.O.S. Band"
+    },
+    {
+      "slug": "artist:the-time",
+      "type": "artist",
+      "name": "The Time"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

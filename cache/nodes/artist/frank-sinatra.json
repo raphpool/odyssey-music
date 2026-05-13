@@ -1,0 +1,108 @@
+{
+  "slug": "artist:frank-sinatra",
+  "name": "Frank Sinatra",
+  "editorial_article": "Francis Albert Sinatra (1915–1998) was an American singer and actor, widely regarded as one of the most influential and iconic entertainers of the 20th century. Born to Italian immigrants in Hoboken, New Jersey, Sinatra’s career spanned over six decades, beginning in the swing era as a vocalist for the Harry James band before launching a wildly successful solo career. Known for his exceptional phrasing, unique baritone timbre, and ability to convey profound emotion, he bridged the gap between big band swing and the sophisticated, moody, saloon-style concept albums that defined the mid-1950s.\n\nSinatra’s tenure at Capitol Records in the 1950s, featuring legendary arrangements by Nelson Riddle, produced landmark records like 'In the Wee Small Hours' and 'Songs for Swingin' Lovers!', which cemented his status as the definitive interpreter of the Great American Songbook. In 1960, he demonstrated his business acumen by founding Reprise Records, ensuring greater creative control over his output. Beyond his music, Sinatra was a highly successful actor, winning an Academy Award for his performance in 'From Here to Eternity' (1953) and starring in acclaimed films such as 'The Manchurian Candidate' (1962). Nicknamed \"Ol' Blue Eyes\" and the \"Chairman of the Board,\" Sinatra remains a towering figure in popular culture, having sold over 150 million records and leaving an indelible mark on jazz, traditional pop, and easy listening music. His legacy persists not only through his vast discography but also through his pivotal role in the cultural landscape of post-war America.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Frank_Sinatra",
+      "title": "Frank Sinatra - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/frank-sinatra-mn0000792507",
+      "title": "Frank Sinatra Songs, Albums, Reviews, Bio & More | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:19.869Z",
+  "_metrics": {
+    "input_tokens": 24955,
+    "output_tokens": 2283,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009765,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 20636,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Francis Albert Sinatra (1915–1998) was an American singer and actor, widely regarded as one of the most influential and iconic entertainers of the 20th century.",
+  "origin": "Hoboken, New Jersey, U.S.",
+  "active_years": "1935–1995",
+  "genres": [
+    {
+      "slug": "genre:traditional-pop",
+      "type": "genre",
+      "name": "Traditional pop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:swing",
+      "type": "genre",
+      "name": "Swing"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:capitol-records",
+      "type": "label",
+      "name": "Capitol Records"
+    },
+    {
+      "slug": "label:reprise-records",
+      "type": "label",
+      "name": "Reprise Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:in-the-wee-small-hours",
+      "type": "project",
+      "name": "In the Wee Small Hours"
+    },
+    {
+      "slug": "project:songs-for-swingin-lovers",
+      "type": "project",
+      "name": "Songs for Swingin' Lovers!"
+    },
+    {
+      "slug": "project:september-of-my-years",
+      "type": "project",
+      "name": "September of My Years"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-way",
+      "type": "track",
+      "name": "My Way"
+    },
+    {
+      "slug": "track:theme-from-new-york-new-york",
+      "type": "track",
+      "name": "Theme from New York, New York"
+    },
+    {
+      "slug": "track:fly-me-to-the-moon",
+      "type": "track",
+      "name": "Fly Me to the Moon"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

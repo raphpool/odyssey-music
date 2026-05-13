@@ -1,0 +1,91 @@
+{
+  "slug": "artist:the-prodigy",
+  "name": "The Prodigy",
+  "editorial_article": "The Prodigy is an iconic English electronic dance music group formed in Braintree, Essex, in 1990. Founded by producer, keyboardist, and songwriter Liam Howlett, the group originally included dancers and vocalists Keith Flint and Leeroy Thornhill, and MC Maxim. Emerging from the underground rave scene, they became pivotal figures in the evolution of electronic music, bridging the gap between rave culture and the alternative rock mainstream. Their sound, which Howlett has often described as 'electronic punk,' is characterized by aggressive breakbeats, high-energy synthesizers, and confrontational vocals, cementing their reputation as the 'Godfathers of Rave.'\\n\\nEarly success in 1991 with hits like 'Charly' and 'Everybody in the Place' established them as a force in the breakbeat hardcore scene. However, it was their subsequent albums, 'Music for the Jilted Generation' (1994) and the global phenomenon 'The Fat of the Land' (1997), that saw them evolve into a commercial powerhouse. The latter, featuring chart-topping anthems like 'Firestarter' and 'Breathe,' turned the group into one of the most successful electronic acts in history, with global sales estimated at 25 million records. Despite significant changes in lineup—including the departure of Leeroy Thornhill in 2000 and the tragic passing of Keith Flint in 2019—The Prodigy has remained a formidable live act and a cultural benchmark for the fusion of dance and alternative music. Their ability to blend technical production prowess with a rebellious, high-octane stage presence continues to define their legacy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Prodigy",
+      "title": "The Prodigy - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Prodigy_discography",
+      "title": "The Prodigy discography - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/the-prodigy-mn0000492162",
+      "title": "The Prodigy Songs, Albums, Reviews, Bio & More... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:19.562Z",
+  "_metrics": {
+    "input_tokens": 12572,
+    "output_tokens": 865,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004441,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9774,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "The Prodigy are legendary pioneers of the 1990s rave and big beat scenes, celebrated for their explosive fusion of electronic production and punk intensity. From their breakout rave hits in 1991 to their status as global arena-filling legends, they remain one of the most influential electronic groups in history.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/The_Prodigy_IMG_2972_%285353883317%29_%28cropped%29.jpg/330px-The_Prodigy_IMG_2972_%285353883317%29_%28cropped%29.jpg",
+  "origin": "Braintree, England",
+  "active_years": "1990–present",
+  "genres": [
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big beat"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore"
+    },
+    {
+      "slug": "genre:electronic-rock",
+      "type": "genre",
+      "name": "Electronic rock"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative dance"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:firestarter",
+      "type": "track",
+      "name": "Firestarter"
+    },
+    {
+      "slug": "track:breathe",
+      "type": "track",
+      "name": "Breathe"
+    },
+    {
+      "slug": "track:smack-my-bitch-up",
+      "type": "track",
+      "name": "Smack My Bitch Up"
+    },
+    {
+      "slug": "track:charly",
+      "type": "track",
+      "name": "Charly"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

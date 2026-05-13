@@ -47,7 +47,9 @@ async function main(): Promise<void> {
 		}
 	}
 	if (!rows.length) {
-		console.log(`${totalNodes} nodes loaded, 0 carry _metrics. Re-crawl after this commit to capture analytics.`);
+		console.log(
+			`${totalNodes} nodes loaded, 0 carry _metrics. Re-crawl after this commit to capture analytics.`,
+		);
 		return;
 	}
 	const sum = rows.reduce(
@@ -88,18 +90,24 @@ async function main(): Promise<void> {
 	const tokens = rows.map((r) => r.m.input_tokens + r.m.output_tokens);
 
 	console.log(`=== Per-node analytics over ${n} nodes (of ${totalNodes} in cache) ===`);
+	console.log(`Total cost:     $${sum.cost_usd.toFixed(4)} (avg $${(sum.cost_usd / n).toFixed(5)}/node)`);
 	console.log(
-		`Total cost:     $${sum.cost_usd.toFixed(4)} (avg $${(sum.cost_usd / n).toFixed(5)}/node)`,
+		`Total tokens:   in=${sum.input_tokens.toLocaleString()} out=${sum.output_tokens.toLocaleString()} cacheRead=${sum.cache_read_tokens.toLocaleString()} cacheWrite=${sum.cache_write_tokens.toLocaleString()}`,
 	);
-	console.log(`Total tokens:   in=${sum.input_tokens.toLocaleString()} out=${sum.output_tokens.toLocaleString()} cacheRead=${sum.cache_read_tokens.toLocaleString()} cacheWrite=${sum.cache_write_tokens.toLocaleString()}`);
 	console.log(`Total LLM calls: ${sum.llm_calls} (avg ${(sum.llm_calls / n).toFixed(1)}/node)`);
 	console.log(`Total tool calls: web_search=${sum.search_calls} fetch_page=${sum.fetch_calls}`);
-	console.log(`Total agent time: ${(sum.agent_ms / 1000).toFixed(0)}s (avg ${(sum.agent_ms / n / 1000).toFixed(1)}s/node)`);
+	console.log(
+		`Total agent time: ${(sum.agent_ms / 1000).toFixed(0)}s (avg ${(sum.agent_ms / n / 1000).toFixed(1)}s/node)`,
+	);
 	console.log("");
 	console.log("Cost per node:");
-	console.log(`  p50=$${pct(costs, 0.5).toFixed(5)}  p90=$${pct(costs, 0.9).toFixed(5)}  p99=$${pct(costs, 0.99).toFixed(5)}  max=$${Math.max(...costs).toFixed(5)}`);
+	console.log(
+		`  p50=$${pct(costs, 0.5).toFixed(5)}  p90=$${pct(costs, 0.9).toFixed(5)}  p99=$${pct(costs, 0.99).toFixed(5)}  max=$${Math.max(...costs).toFixed(5)}`,
+	);
 	console.log("Tokens per node (input+output):");
-	console.log(`  p50=${pct(tokens, 0.5)}  p90=${pct(tokens, 0.9)}  p99=${pct(tokens, 0.99)}  max=${Math.max(...tokens)}`);
+	console.log(
+		`  p50=${pct(tokens, 0.5)}  p90=${pct(tokens, 0.9)}  p99=${pct(tokens, 0.99)}  max=${Math.max(...tokens)}`,
+	);
 	console.log("Wall time per node (ms):");
 	console.log(`  p50=${pct(mss, 0.5)}  p90=${pct(mss, 0.9)}  p99=${pct(mss, 0.99)}  max=${Math.max(...mss)}`);
 	console.log("");

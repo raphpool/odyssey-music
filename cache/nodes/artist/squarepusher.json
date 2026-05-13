@@ -1,0 +1,86 @@
+{
+  "slug": "artist:squarepusher",
+  "name": "Squarepusher",
+  "editorial_article": "Squarepusher is the primary recording alias of Thomas Russell Jenkinson, an English multi-instrumentalist, record producer, and bass virtuoso who emerged as a defining force in the mid-1990s electronic scene. Born in Chelmsford, Essex, Jenkinson bridged the gap between the frantic, cut-and-paste aesthetics of drill and bass and the intricate, harmonic complexities of jazz fusion. His sound is instantly recognizable, characterized by lightning-fast, hyper-processed breakbeats layered against his own sophisticated, jazz-inflected bass guitar work, often processed through complex digital signal paths. \\n\\nHe first gained prominence in the fertile underground electronic circuit of the mid-90s, with early support from Richard D. James (Aphex Twin), who helped facilitate his debut long-player, 'Feed Me Weird Things' (1996), on the Rephlex label. Jenkinson quickly moved to Warp Records, cementing his status as a key figure in the \"Intelligent Dance Music\" (IDM) movement. Across a career spanning over three decades, Squarepusher has consistently experimented with the boundaries of electronic music, moving from his early frenetic jungle-inspired roots to the more electro-acoustic, abstract, and highly programmed soundscapes of later albums like 'Go Plastic' and the visual-audio synthesis of 'Ufabulum'. His brother, Andy Jenkinson, is also a notable electronic musician known as Ceephax Acid Crew. Throughout his career, Squarepusher has remained a restless innovator, constantly balancing the raw, physical virtuosity of his live playing with the cold, precise possibilities of digital synthesis. By blending these disparate elements, he created a signature style that continues to influence the landscape of electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Squarepusher",
+      "title": "Squarepusher - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/dj/squarepusher/biography",
+      "title": "Squarepusher · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:48.658Z",
+  "_metrics": {
+    "input_tokens": 19454,
+    "output_tokens": 1193,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006653,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13072,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Squarepusher is the alias of electronic virtuoso Tom Jenkinson, celebrated for his complex fusion of high-speed drill and bass with intricate jazz-inflected bass guitar performance. A key fixture of the Warp Records roster, he remains a central figure in the evolution of IDM and breakbeat-focused electronic music.",
+  "origin": "Chelmsford, England",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz fusion"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:feed-me-weird-things",
+      "type": "project",
+      "name": "Feed Me Weird Things"
+    },
+    {
+      "slug": "project:go-plastic",
+      "type": "project",
+      "name": "Go Plastic"
+    },
+    {
+      "slug": "project:ufabulum",
+      "type": "project",
+      "name": "Ufabulum"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

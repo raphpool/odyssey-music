@@ -1,0 +1,75 @@
+{
+  "slug": "genre:acid-techno",
+  "name": "Acid Techno",
+  "editorial_article": "Acid techno emerged in the late 1980s and early 1990s as an intense, machine-driven evolution of the acid house movement. While acid house, born in Chicago, laid the groundwork by popularizing the Roland TB-303, acid techno took that sound into harder, more frantic, and often darker territories. It represents a trans-Atlantic convergence: the \"acidic\" squelch of the 303—achieved by pushing its filter resonance and manipulating its cutoff frequency—was combined with the driving, repetitive kick drums and metallic percussion of European techno, rave, and hardcore. This fusion created a sound defined by its hypnotic, trance-inducing qualities, often characterized by rapid, gurgling melodic patterns that functioned as both basslines and leads. \\n\\nCulturally, the genre became deeply intertwined with the DIY rave scenes of the 1990s, particularly in London and across Europe. Unlike more polished commercial electronic styles, acid techno was often the soundtrack to underground, illegal parties and free-rave culture. The 303’s sonic instability allowed for a raw, improvised feel that resonated with the gritty aesthetics of the era. Key figures like Richie Hawtin, through his Plastikman alias, played a vital role in evolving the sound, as did seminal European acts like Hardfloor and London-based pioneers such as D.A.V.E. The Drummer and The Geezer. The 1997 compilation \"It's Not Intelligent…And It's Not From Detroit…But It's F**king 'Avin It\" served as a critical cultural signpost, cementing the identity of London's specific underground acid techno scene and solidifying the genre’s reputation as a relentless, visceral force in electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Acid_techno",
+      "title": "Acid techno - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:47.673Z",
+  "_metrics": {
+    "input_tokens": 20303,
+    "output_tokens": 1381,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007147,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12093,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of techno characterized by the prominent, modulated use of the Roland TB-303 bass synthesizer, resulting in a distinctively resonant and squelching sound paired with intense, repetitive rhythms.",
+  "era": "Late 1980s – Present",
+  "origin": "United Kingdom, United States, Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:d-a-v-e-the-drummer",
+      "type": "artist",
+      "name": "D.A.V.E. The Drummer"
+    },
+    {
+      "slug": "artist:the-geezer",
+      "type": "artist",
+      "name": "The Geezer"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

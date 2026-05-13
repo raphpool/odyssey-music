@@ -1,0 +1,110 @@
+{
+  "slug": "artist:guns-n-roses",
+  "name": "Guns N' Roses",
+  "editorial_article": "Guns N' Roses is an iconic American hard rock band that emerged from the Los Angeles club scene in the mid-1980s. Formed by lead vocalist Axl Rose, lead guitarist Slash, rhythm guitarist Izzy Stradlin, bassist Duff McKagan, and drummer Steven Adler, the band became a cultural juggernaut with the 1987 release of their debut studio album, *Appetite for Destruction*. Renowned for their raw, blues-infused hard rock sound and their chaotic, often dangerous public image, they successfully bridged the gap between the excesses of 80s glam metal and the grit of street-level rock and roll. \\n\\nThe band's meteoric rise was punctuated by massive commercial hits like \"Sweet Child o' Mine,\" \"Welcome to the Jungle,\" and \"Paradise City,\" cementing them as one of the most significant musical acts of the era. Their follow-up, the sprawling double-album release *Use Your Illusion I* and *II* in 1991, showcased an increased musical ambition, incorporating piano-driven ballads like \"November Rain\" alongside their hallmark high-energy rockers. Despite severe internal friction leading to significant lineup changes throughout the 90s, including the departure of founding members Slash and Duff McKagan, the band's influence on the landscape of popular music remained immense. In 2016, the partial reunion of the classic lineup sparked renewed global interest, proving their enduring legacy as a definitive force in the hard rock canon. The band continues to be a massive commercial entity, filling stadiums globally and maintaining their status as one of the most polarizing and revered names in the history of rock music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Guns_N%27_Roses_discography",
+      "title": "Guns N' Roses discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:23.962Z",
+  "_metrics": {
+    "input_tokens": 21304,
+    "output_tokens": 1914,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008197,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16411,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Guns N' Roses is an iconic American hard rock band that emerged from the Los Angeles club scene in the mid-1980s.",
+  "origin": "Los Angeles, California, USA",
+  "active_years": "1985-present",
+  "genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:geffen-records",
+      "type": "label",
+      "name": "Geffen Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:appetite-for-destruction",
+      "type": "project",
+      "name": "Appetite for Destruction"
+    },
+    {
+      "slug": "project:g-n-r-lies",
+      "type": "project",
+      "name": "G N' R Lies"
+    },
+    {
+      "slug": "project:use-your-illusion-i",
+      "type": "project",
+      "name": "Use Your Illusion I"
+    },
+    {
+      "slug": "project:use-your-illusion-ii",
+      "type": "project",
+      "name": "Use Your Illusion II"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sweet-child-o-mine",
+      "type": "track",
+      "name": "Sweet Child o' Mine"
+    },
+    {
+      "slug": "track:welcome-to-the-jungle",
+      "type": "track",
+      "name": "Welcome to the Jungle"
+    },
+    {
+      "slug": "track:november-rain",
+      "type": "track",
+      "name": "November Rain"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:axl-rose",
+      "type": "artist",
+      "name": "Axl Rose"
+    },
+    {
+      "slug": "artist:slash",
+      "type": "artist",
+      "name": "Slash"
+    },
+    {
+      "slug": "artist:duff-mckagan",
+      "type": "artist",
+      "name": "Duff McKagan"
+    }
+  ]
+}

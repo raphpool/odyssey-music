@@ -1,0 +1,118 @@
+{
+  "slug": "artist:lcd-soundsystem",
+  "name": "LCD Soundsystem",
+  "editorial_article": "LCD Soundsystem is an influential American dance-punk and electronic rock band formed in Brooklyn, New York, in 2002. Spearheaded by producer, multi-instrumentalist, and DFA Records co-founder James Murphy, the project emerged as a central pillar of the early 2000s New York City music scene. The band is renowned for its signature blend of post-punk, disco, art rock, and electronic textures—a sonic palette that balanced cynicism and earnestness, often characterized by Murphy’s witty, self-aware lyrics, driving analog synthesizers, and tight, motorik-inspired percussion. Their debut single, \"Losing My Edge\" (2002), served as a cultural manifesto, humorously dissecting the anxiety of obsolescence in the face of changing music trends. Following a string of acclaimed releases, including their eponymous 2005 debut, the band achieved massive critical success with subsequent albums such as 2007's Sound of Silver and 2010's This Is Happening. Though they briefly disbanded in 2011 with a legendary final show at Madison Square Garden, they reunited in 2015, eventually releasing American Dream (2017), which became their first number-one album in the United States. Throughout their career, LCD Soundsystem has been instrumental in bridging the gap between underground dance music and indie rock audiences, consistently earning Grammy nominations and cementing their status as one of the most vital alternative acts of the 21st century. The group’s live performances, featuring a rotating cast of talented musicians like Nancy Whang and Pat Mahoney, are lauded for their high energy and precision, further solidifying their legacy in the canon of contemporary electronic-infused rock. LCD Soundsystem remains a benchmark for the fusion of club culture sensibilities with indie-rock aesthetics.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/LCD_Soundsystem",
+      "title": "LCD Soundsystem - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/dj/lcdsoundsystem/biography",
+      "title": "LCD Soundsystem · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:03.499Z",
+  "_metrics": {
+    "input_tokens": 27823,
+    "output_tokens": 2352,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010484,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19675,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "LCD Soundsystem is an influential American dance-punk and electronic rock band formed in Brooklyn, New York, in 2002. Spearheaded by producer, multi-instrumentalist, and DFA Records co-founder James Murphy, the project emerged as a central pillar of the early 2000s New York City music scene. The band is renowned for its signature blend of post-punk, disco, art rock, and electronic textures, balancing cynicism with earnestness.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/LCD_Soundsystem_%28220535%29.jpg/330px-LCD_Soundsystem_%28220535%29.jpg",
+  "origin": "Brooklyn, New York, U.S.",
+  "genres": [
+    {
+      "slug": "genre:dance-punk-revival",
+      "type": "genre",
+      "name": "Dance-punk revival"
+    },
+    {
+      "slug": "genre:dance-rock",
+      "type": "genre",
+      "name": "Dance-rock"
+    },
+    {
+      "slug": "genre:electronic-rock",
+      "type": "genre",
+      "name": "Electronic rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dfa-records",
+      "type": "label",
+      "name": "DFA Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:lcd-soundsystem",
+      "type": "project",
+      "name": "LCD Soundsystem"
+    },
+    {
+      "slug": "project:sound-of-silver",
+      "type": "project",
+      "name": "Sound of Silver"
+    },
+    {
+      "slug": "project:this-is-happening",
+      "type": "project",
+      "name": "This Is Happening"
+    },
+    {
+      "slug": "project:american-dream",
+      "type": "project",
+      "name": "American Dream"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:losing-my-edge",
+      "type": "track",
+      "name": "Losing My Edge"
+    },
+    {
+      "slug": "track:daft-punk-is-playing-at-my-house",
+      "type": "track",
+      "name": "Daft Punk Is Playing at My House"
+    },
+    {
+      "slug": "track:all-my-friends",
+      "type": "track",
+      "name": "All My Friends"
+    },
+    {
+      "slug": "track:dance-yrself-clean",
+      "type": "track",
+      "name": "Dance Yrself Clean"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

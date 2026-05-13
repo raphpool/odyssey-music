@@ -1,0 +1,110 @@
+{
+  "slug": "artist:cluster",
+  "name": "Cluster",
+  "editorial_article": "Cluster was a seminal German musical duo formed in 1971 by Hans-Joachim Roedelius and Dieter Moebius, emerging from the influential Berlin-based experimental group Kluster. After relocating to the rural village of Forst in Lower Saxony, the duo established a studio that became a vital nexus for the development of Krautrock, Kosmische, and early ambient music. Over a career marked by shifts between radical sonic experimentation and highly melodic, structured electronic pop, Cluster played an instrumental role in shaping the language of electronic music. Their early, often discordant work—documented on albums like 'Cluster '71'—evolved into the more accessible, rhythmic, and influential sounds found on 'Zuckerzeit' (1974) and 'Sowiesoso' (1976). Beyond their core work, the duo’s collaborative spirit was central to the formation of the project Harmonia alongside guitarist Michael Rother, and their productive, experimental sessions with Brian Eno in the late 1970s further solidified their reputation as architects of the 'head' music movement. Their ability to balance avant-garde abstraction with harmonic warmth made them one of the most consistently innovative acts of the era. Roedelius and Moebius remained active for decades, influencing generations of electronic producers with their pioneering approach to synthesis and organic soundscapes. Their legacy remains deeply rooted in the DIY ethos of the early German electronic scene, where they transformed the studio itself into an instrument. In this environment, the duo explored the possibilities of synthesizers and tape manipulation, moving away from conventional rock instrumentation to create expansive, otherworldly textures that prefigured ambient music. Their influence continues to reverberate through modern electronic, drone, and experimental sound art, cementing their status as essential figures in the evolution of European music.",
+  "citations": [
+    {
+      "url": "https://www.bureau-b.com/artists/cluster",
+      "title": "Cluster | Bureau B"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:47.952Z",
+  "_metrics": {
+    "input_tokens": 62365,
+    "output_tokens": 4842,
+    "cache_read_tokens": 8104,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.023057,
+    "llm_calls": 9,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 9,
+    "emit_attempts": 5,
+    "agent_ms": 25062,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Cluster was a seminal German musical duo formed in 1971 by Hans-Joachim Roedelius and Dieter Moebius, emerging from the influential Berlin-based experimental group Kluster. After relocating to the rural village of Forst in Lower Saxony, the duo established a studio that became a vital nexus for the development of Krautrock, Kosmische, and early ambient music. Over a career marked by shifts between radical sonic experimentation and highly melodic, structured electronic pop, Cluster played an instrumental role in shaping the language of electronic music. Their early, often discordant work—documented on albums like 'Cluster '71'—evolved into the more accessible, rhythmic, and influential sounds found on 'Zuckerzeit' (1974) and 'Sowiesoso' (1976). Beyond their core work, the duo’s collaborative spirit was central to the formation of the project Harmonia alongside guitarist Michael Rother, and their productive, experimental sessions with Brian Eno in the late 1970s further solidified their reputation as architects of the 'head' music movement. Their ability to balance avant-garde abstraction with harmonic warmth made them one of the most consistently innovative acts of the era. Roedelius and Moebius remained active for decades, influencing generations of electronic producers with their pioneering approach to synthesis and organic soundscapes. Their legacy remains deeply rooted in the DIY ethos of the early German electronic scene, where they transformed the studio itself into an instrument. In this environment, the duo explored the possibilities of synthesizers and tape manipulation, moving away from conventional rock instrumentation to create expansive, otherworldly textures that prefigured ambient music. Their influence continues to reverberate through modern electronic, drone, and experimental sound art, cementing their status as essential figures in the evolution of European music.",
+  "origin": "Berlin, Germany",
+  "active_years": "1971–1981, 1989–1997, 2007–2010",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:brain-records",
+      "type": "label",
+      "name": "Brain Records"
+    },
+    {
+      "slug": "label:sky-records",
+      "type": "label",
+      "name": "Sky Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cluster-71",
+      "type": "project",
+      "name": "Cluster '71"
+    },
+    {
+      "slug": "project:cluster-ii",
+      "type": "project",
+      "name": "Cluster II"
+    },
+    {
+      "slug": "project:zuckerzeit",
+      "type": "project",
+      "name": "Zuckerzeit"
+    },
+    {
+      "slug": "project:sowiesoso",
+      "type": "project",
+      "name": "Sowiesoso"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sowiesoso",
+      "type": "track",
+      "name": "Sowiesoso"
+    },
+    {
+      "slug": "track:caramel",
+      "type": "track",
+      "name": "Caramel"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:hans-joachim-roedelius",
+      "type": "artist",
+      "name": "Hans-Joachim Roedelius"
+    },
+    {
+      "slug": "artist:dieter-moebius",
+      "type": "artist",
+      "name": "Dieter Moebius"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "slug": "artist:beat-happening",
+  "name": "Beat Happening",
+  "editorial_article": "Beat Happening was a seminal American indie pop band formed in Olympia, Washington, in 1982, comprising members Calvin Johnson, Heather Lewis, and Bret Lunsford. Emerging from the Evergreen State College scene, they became quintessential architects of the DIY aesthetic, championing lo-fi production, simplistic song structures, and a playful, non-aggressive approach to rock music that starkly contrasted with the hyper-masculine hardcore scene of the 1980s. With Johnson as a founder of the influential K Records, the band’s work—spanning their self-titled 1985 debut through the more experimental 1992 masterpiece *You Turn Me On*—served as a primary blueprint for the development of indie pop, twee pop, and slacker rock. Their legacy is profoundly linked to the Pacific Northwest's fertile creative ecosystem, influencing generations of musicians, from the riot grrrl movement to iconic figures like Kurt Cobain, who famously tattooed the K Records logo on his arm. By stripping rock music down to its most fundamental, amateur-spirited essentials, Beat Happening redefined the punk ethos, proving that vulnerability and simplicity could be as radical and enduring as the louder, harder sounds of their contemporaries. Their career, defined by a deliberate rejection of virtuosity, remains a cornerstone of independent music history. Throughout their existence, they never officially announced a breakup, instead letting the project naturally evolve alongside the solo and collaborative works of its members. Their influence is indelibly marked upon the history of independent music, having helped establish the very vocabulary used by countless underground bands in the decades that followed.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Beat_Happening",
+      "title": "Beat Happening - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/243267-Beat-Happening?srsltid=AfmBOoqdjYfo1BmaCtce1s5BlqP2FcTv6AdyHScv2fqfIOj76CMpJuVk",
+      "title": "Beat Happening Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/beat-happening-mn0000154530",
+      "title": "Beat Happening Songs, Albums, Reviews, Bio & M... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:35.820Z",
+  "_metrics": {
+    "input_tokens": 24828,
+    "output_tokens": 2687,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010339,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 20648,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Beat Happening was a seminal American indie pop band formed in Olympia, Washington, in 1982, comprising members Calvin Johnson, Heather Lewis, and Bret Lunsford.",
+  "origin": "Olympia, Washington, U.S.",
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:k-records",
+      "type": "label",
+      "name": "K Records"
+    },
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:bad-seeds",
+      "type": "track",
+      "name": "Bad Seeds"
+    },
+    {
+      "slug": "track:indian-summer",
+      "type": "track",
+      "name": "Indian Summer"
+    },
+    {
+      "slug": "track:our-secret",
+      "type": "track",
+      "name": "Our Secret"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

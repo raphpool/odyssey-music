@@ -1,0 +1,105 @@
+{
+  "slug": "artist:plug",
+  "name": "Plug",
+  "editorial_article": "Plug is one of the most significant and influential aliases of the British electronic musician Luke Vibert. Emerging in the mid-1990s, the moniker became the primary vehicle for Vibert's pioneering experiments in \"drill 'n' bass,\" a subgenre that deconstructed the rapid-fire breakbeats of drum and bass and jungle through the lens of IDM’s technical abstraction and experimentalism. Unlike the straight-ahead, dancefloor-focused rhythms prevalent in the UK scene at the time, Plug’s output was characterized by frantic, stuttering edit-work, dense sampling, and a jagged, unpredictable musicality that helped define a new boundary for electronic rhythm. \\n\\nThe project is best known for the landmark 1996 album *Drum 'n' Bass for Papa*. Released during a period of intense innovation within electronic music, the album remains a cult classic, celebrated for its ability to balance intricate, hyper-edited percussion with atmospheric, often jazz-inflected textures. The work showcased Vibert’s technical prowess and his unique ability to inject a sense of humor and eclecticism into the often stark world of technical dance music. Although Plug remained dormant for long periods as Vibert pursued other projects like Wagon Christ, Kerrier District, and his solo work, the influence of the Plug material on the evolution of breakcore and experimental electronic music remains immense. By stretching the limits of how a drum loop could be reassembled, the project cemented Vibert's reputation as one of the most versatile and inventive producers in the UK scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Luke_Vibert",
+      "title": "Luke Vibert - Wikipedia"
+    },
+    {
+      "url": "https://ninjatune.net/artist/plug",
+      "title": "Plug / Artist / Ninja Tune"
+    },
+    {
+      "url": "https://xlr8r.com/news/luke-vibert-unearths-unreleased-tracks-on-new-album-as-plug/",
+      "title": "Luke Vibert Unearths Unreleased Tracks on New Album as Plug"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:56.118Z",
+  "_metrics": {
+    "input_tokens": 20414,
+    "output_tokens": 1497,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007349,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11566,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Plug is one of the most significant and influential aliases of the British electronic musician Luke Vibert.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Luke_Vibert_2.JPG/250px-Luke_Vibert_2.JPG",
+  "origin": "Redruth, Cornwall, England",
+  "active_years": "1995-present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex",
+      "type": "label",
+      "name": "Rephlex"
+    },
+    {
+      "slug": "label:ninja-tune",
+      "type": "label",
+      "name": "Ninja Tune"
+    },
+    {
+      "slug": "label:blue-planet",
+      "type": "label",
+      "name": "Blue Planet"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:drum-n-bass-for-papa",
+      "type": "project",
+      "name": "Drum 'n' Bass for Papa"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:military-jazz",
+      "type": "track",
+      "name": "Military Jazz"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    }
+  ]
+}

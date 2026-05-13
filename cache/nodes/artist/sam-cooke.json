@@ -1,0 +1,129 @@
+{
+  "slug": "artist:sam-cooke",
+  "name": "Sam Cooke",
+  "editorial_article": "Sam Cooke, born Samuel Cook in 1931 in Clarksdale, Mississippi, was a seminal American singer, songwriter, and entrepreneur, widely regarded as the principal architect of soul music. Cooke first rose to prominence as the lead singer of the gospel group the Soul Stirrers, where his distinctive, light, and lilting vocal delivery brought a new degree of sophistication to the gospel circuit. In 1957, he made the pioneering and controversial decision to transition into secular pop music, effectively bridging the gap between gospel's spiritual fervor and the polished arrangements of mainstream pop. His debut pop hit, \"You Send Me\" (1957), soared to number one on both pop and R&B charts, cementing his status as a national superstar.\\n\\nBeyond his vocal prowess, Cooke was a visionary businessman who took control of his career by founding his own publishing, recording, and management firms—a rare feat for an African American artist at the time. His discography contains some of the most enduring songs in the American canon, including \"Wonderful World,\" \"Chain Gang,\" \"Twistin' the Night Away,\" and the profound civil rights anthem \"A Change Is Gonna Come.\" Cooke's influence was vast, shaping the careers of subsequent icons like Aretha Franklin, Smokey Robinson, and Michael Jackson. Though his life ended tragically in 1964, his legacy as a \"sweet soul\" pioneer remains fundamental to the evolution of American popular music. He was posthumously inducted into the Rock and Roll Hall of Fame in 1986 and received a Grammy Lifetime Achievement Award in 1999.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Sam-Cooke",
+      "title": "Sam Cooke | Biography, Music, & Facts | Britannica"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/sam-cooke-mn0000238115",
+      "title": "Sam Cooke Songs, Albums, Reviews, Bio & More |... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:35.813Z",
+  "_metrics": {
+    "input_tokens": 21154,
+    "output_tokens": 2294,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00873,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12684,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Sam Cooke, born Samuel Cook in 1931 in Clarksdale, Mississippi, was a seminal American singer, songwriter, and entrepreneur, widely regarded as the principal architect of soul music.",
+  "photo_url": "https://cdn.britannica.com/55/147555-050-CFFB39EB/Sam-Cooke.jpg",
+  "origin": "Clarksdale, Mississippi",
+  "active_years": "1951-1964",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:gospel",
+      "type": "genre",
+      "name": "Gospel"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and Blues"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:you-send-me",
+      "type": "project",
+      "name": "You Send Me"
+    },
+    {
+      "slug": "project:cooke-s-tour",
+      "type": "project",
+      "name": "Cooke's Tour"
+    },
+    {
+      "slug": "project:twistin-the-night-away",
+      "type": "project",
+      "name": "Twistin' the Night Away"
+    },
+    {
+      "slug": "project:night-beat",
+      "type": "project",
+      "name": "Night Beat"
+    },
+    {
+      "slug": "project:ain-t-that-good-news",
+      "type": "project",
+      "name": "Ain't That Good News"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:you-send-me",
+      "type": "track",
+      "name": "You Send Me"
+    },
+    {
+      "slug": "track:wonderful-world",
+      "type": "track",
+      "name": "Wonderful World"
+    },
+    {
+      "slug": "track:chain-gang",
+      "type": "track",
+      "name": "Chain Gang"
+    },
+    {
+      "slug": "track:twistin-the-night-away",
+      "type": "track",
+      "name": "Twistin' the Night Away"
+    },
+    {
+      "slug": "track:a-change-is-gonna-come",
+      "type": "track",
+      "name": "A Change Is Gonna Come"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:nat-king-cole",
+      "type": "artist",
+      "name": "Nat King Cole"
+    },
+    {
+      "slug": "artist:the-soul-stirrers",
+      "type": "artist",
+      "name": "The Soul Stirrers"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,94 @@
+{
+  "slug": "artist:r-e-m",
+  "name": "R.E.M.",
+  "editorial_article": "R.E.M. was an influential American rock band formed in Athens, Georgia, in 1980, comprising drummer Bill Berry, guitarist Peter Buck, bassist Mike Mills, and lead vocalist Michael Stipe. Playing their first show at an abandoned church in April 1980, the quartet emerged from the burgeoning college rock scene, eventually becoming one of the most significant and critically acclaimed bands of their generation. R.E.M. is celebrated for Peter Buck’s signature arpeggiated 'jangle' guitar style, Mike Mills’s melodic, harmonically rich bass playing, and Michael Stipe’s evocative, often cryptic lyricism and singular stage presence. Their sound evolved from the raw, indie-folk sensibilities of their early EP 'Chronic Town' and debut album 'Murmur' toward a more expansive, political, and eventually massive, stadium-filling sound that helped pave the way for the alternative rock explosion of the 1990s. Beyond their sonic innovation, the band was known for their fierce independence, strong ethical stance, and their long-term endurance, releasing fifteen studio albums before amicably disbanding in 2011. They remain a touchstone for independent musicians and are widely regarded for successfully navigating the divide between underground integrity and mainstream global success. Their induction into the Rock and Roll Hall of Fame serves as a testament to their enduring cultural impact. Through the 1980s, the band cultivated a loyal following as they toured relentlessly, refining a sound that contrasted sharply with the synth-heavy pop of the era. Their shift to major labels in the late 80s expanded their audience without diluting their artistic intent, allowing them to produce monumental albums like 'Out of Time' and 'Automatic for the People', which explored themes of mortality, legacy, and spirituality with profound, chart-topping accessibility. By the time they ended their career in 2011, they had sold over 85 million records, cementing their legacy as the primary architects of American alternative rock.",
+  "citations": [
+    {
+      "url": "https://remhq.com/history/",
+      "title": "History | R.E.M.HQ"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/R.E.M.",
+      "title": "R.E.M. Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:32.687Z",
+  "_metrics": {
+    "input_tokens": 14266,
+    "output_tokens": 1917,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006442,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17815,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "R.E.M.",
+  "photo_url": "https://remhq.com/wp-content/themes/remhq/assets/img/remhq-logo-large.png",
+  "origin": "Athens, Georgia, USA",
+  "active_years": "1980-2011",
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College Rock"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:i-r-s-records",
+      "type": "label",
+      "name": "I.R.S. Records"
+    },
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:murmur",
+      "type": "project",
+      "name": "Murmur"
+    },
+    {
+      "slug": "project:automatic-for-the-people",
+      "type": "project",
+      "name": "Automatic for the People"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:radio-free-europe",
+      "type": "track",
+      "name": "Radio Free Europe"
+    },
+    {
+      "slug": "track:losing-my-religion",
+      "type": "track",
+      "name": "Losing My Religion"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

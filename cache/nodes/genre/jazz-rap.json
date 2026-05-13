@@ -1,0 +1,159 @@
+{
+  "slug": "genre:jazz-rap",
+  "name": "Jazz Rap",
+  "editorial_article": "Jazz rap is a foundational subgenre of hip-hop that emerged in the late 1980s and flourished throughout the early 1990s, characterized by the fusion of traditional African-American jazz instrumentation with the rhythmic foundation of hip-hop production. Primarily rooted in the East Coast boom-bap scene, the genre represented a deliberate departure from the more aggressive, gangsta-oriented rap dominating the era. Instead, jazz rap artists sought to reclaim and elevate hip-hop by aligning it with the cultural capital and historical gravitas of jazz. By sampling the works of legendary figures such as Herbie Hancock, Grant Green, and Art Blakey, producers wove complex, soulful textures into their beats, providing a rich sonic backdrop for conscious, poetic lyricism. This marriage of styles—where the swing and improvisational spirit of bebop, soul-jazz, and cool jazz met the gritty, urban reality of rap—provided a platform for social and political commentary, cementing jazz rap's legacy as a vital, \"intellectual\" offshoot of hip-hop culture. Key collectives like the Native Tongues played a pivotal role in popularizing this aesthetic, influencing subsequent generations of alternative and lo-fi hip-hop producers. The genre's ability to pay homage to the past while pushing the boundaries of contemporary music remains a defining feature of its enduring artistic significance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jazz_rap",
+      "title": "Jazz rap - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/style/jazz-rap-ma0000012180",
+      "title": "Jazz-Rap Music Style Overview | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:31.601Z",
+  "_metrics": {
+    "input_tokens": 12380,
+    "output_tokens": 939,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004504,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10840,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop that emerged in the late 1980s, fusing the rhythmic foundations of hip-hop with samples and musical sensibilities drawn from jazz, often serving as a vehicle for conscious and poetic lyricism.",
+  "era": "Late 1980s - 1990s",
+  "origin": "New York metropolitan area, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom Bap"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative Hip-Hop"
+    },
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip Hop"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:a-tribe-called-quest",
+      "type": "artist",
+      "name": "A Tribe Called Quest"
+    },
+    {
+      "slug": "artist:gang-starr",
+      "type": "artist",
+      "name": "Gang Starr"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets"
+    },
+    {
+      "slug": "artist:jungle-brothers",
+      "type": "artist",
+      "name": "Jungle Brothers"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:jive-records",
+      "type": "label",
+      "name": "Jive Records"
+    },
+    {
+      "slug": "label:wild-pitch-records",
+      "type": "label",
+      "name": "Wild Pitch Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-low-end-theory",
+      "type": "project",
+      "name": "The Low End Theory"
+    },
+    {
+      "slug": "project:3-feet-high-and-rising",
+      "type": "project",
+      "name": "3 Feet High and Rising"
+    },
+    {
+      "slug": "project:reachin",
+      "type": "project",
+      "name": "Reachin' (A New Refutation of Time and Space)"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:jazz-thing",
+      "type": "track",
+      "name": "Jazz Thing"
+    },
+    {
+      "slug": "track:rebirth-of-slick",
+      "type": "track",
+      "name": "Rebirth of Slick (Cool Like Dat)"
+    },
+    {
+      "slug": "track:cantaloop",
+      "type": "track",
+      "name": "Cantaloop (Flip Fantasia)"
+    }
+  ]
+}

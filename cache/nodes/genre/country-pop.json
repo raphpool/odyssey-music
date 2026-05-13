@@ -1,0 +1,113 @@
+{
+  "slug": "genre:country-pop",
+  "name": "Country Pop",
+  "editorial_article": "Country pop is a transformative subgenre of country music that emerged in the 1960s, driven by a deliberate push from Nashville studio executives and producers to broaden the commercial appeal of country records to a mainstream, mass-market audience. By softening the traditional edges of country music—specifically by reducing or omitting the heavy reliance on fiddles and banjos—and incorporating lush production techniques, string sections, and contemporary pop sensibilities, the genre effectively bridged the gap between traditional rural music and the dominant pop radio of the era. This stylistic shift was anchored by pioneers like Chet Atkins and Owen Bradley in what became known as the 'Nashville Sound' or 'Countrypolitan.' \n\nAs the genre evolved through the 1970s and beyond, it became defined by its high degree of crossover viability, allowing artists to chart simultaneously on Billboard's Hot Country and Top 40 pop charts. Icons such as Patsy Cline, Glen Campbell, and John Denver brought a polished, accessible aesthetic that invited listeners who might otherwise overlook country music. While periodically drawing criticism from traditionalist purists who decried the loss of 'authentic' country roots, country pop continued to reinvent itself, shifting from the orchestral textures of the 70s to the slick pop-rock and adult contemporary leanings of the 90s, and eventually incorporating hip-hop and electronic production in the 2010s. Its enduring significance lies in its role as a flexible, adaptive framework that has kept country music commercially vital in the shifting landscapes of global popular culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Country_pop",
+      "title": "Country pop - Wikipedia"
+    },
+    {
+      "url": "https://sites.dwrl.utexas.edu/countrymusic/the-history/country-pop/",
+      "title": "Country Pop | Country Music Project"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/country-pop-music-guide",
+      "title": "Country Pop Music Guide: 5 Notable Country Pop Artists - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:51.062Z",
+  "_metrics": {
+    "input_tokens": 19445,
+    "output_tokens": 1326,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00685,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13317,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A fusion genre that integrates elements of country music with mainstream pop production to achieve broad crossover appeal, often characterized by polished, high-fidelity sound and contemporary songwriting.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:countrypolitan",
+      "type": "genre",
+      "name": "Countrypolitan"
+    },
+    {
+      "slug": "genre:country-rock",
+      "type": "genre",
+      "name": "Country Rock"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:patsy-cline",
+      "type": "artist",
+      "name": "Patsy Cline"
+    },
+    {
+      "slug": "artist:john-denver",
+      "type": "artist",
+      "name": "John Denver"
+    },
+    {
+      "slug": "artist:glen-campbell",
+      "type": "artist",
+      "name": "Glen Campbell"
+    },
+    {
+      "slug": "artist:shania-twain",
+      "type": "artist",
+      "name": "Shania Twain"
+    },
+    {
+      "slug": "artist:taylor-swift",
+      "type": "artist",
+      "name": "Taylor Swift"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:come-on-over",
+      "type": "project",
+      "name": "Come On Over"
+    },
+    {
+      "slug": "project:fearless",
+      "type": "project",
+      "name": "Fearless"
+    },
+    {
+      "slug": "project:back-home-again",
+      "type": "project",
+      "name": "Back Home Again"
+    }
+  ],
+  "landmark_tracks": []
+}

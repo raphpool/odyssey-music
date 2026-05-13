@@ -1,0 +1,114 @@
+{
+  "slug": "artist:bonobo",
+  "name": "Bonobo",
+  "editorial_article": "Bonobo, the moniker of British producer, composer, and DJ Simon Green, represents one of the most influential forces in downtempo and organic electronic music. Emerging from the Brighton electronic scene in the late 1990s, Green’s early work established a blueprint for the blend of dusty, sample-heavy beats with live instrumentation. Over a career spanning more than two decades, Bonobo has evolved from a studio-bound producer into a global touring act, orchestrating complex, live ensembles that translate his layered, textured studio productions into dynamic stage performances. His output is characterized by a sophisticated fusion of global influences—incorporating elements of jazz, folk, soul, and world music—often married to the driving rhythmic pulse of club-oriented sounds like house, U.K. garage, and ambient breakbeat. \\n\\nCentral to his discography is a long-standing association with the influential label Ninja Tune, which has provided a platform for his most ambitious projects, including breakthrough LPs like 'Black Sands' (2010) and 'The North Borders' (2013). Throughout his career, Green has become known for his collaborative approach, working with a diverse array of vocalists and musicians, including Andreya Triana, Bajka, and Erykah Badu. His work continues to bridge the gap between intimate, introspective listening and the expansive scale of festival-sized dance music. His artistic journey reflects the evolution of modern electronic production, maintaining an organic warmth even as he explores more polished, club-oriented sonic architectures in his recent work. His influence on the downtempo and ambient-electronica scenes remains profound, serving as a gateway for many listeners into wider jazz and soul-inflected electronic spheres.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/bonobo-mn0000095176",
+      "title": "Bonobo Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/bonobo",
+      "title": "Bonobo Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:13.743Z",
+  "_metrics": {
+    "input_tokens": 16806,
+    "output_tokens": 1939,
+    "cache_read_tokens": 4056,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007211,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 20499,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Bonobo, the moniker of British producer, composer, and DJ Simon Green, represents one of the most influential forces in downtempo and organic electronic music.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000095176/400/muUWBEwj93qB_OBpb-da_VWnbEN5fCjifro6xhIBuB4=.jpg",
+  "origin": "Brighton, Sussex, England",
+  "active_years": "1990s - 2020s",
+  "genres": [
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip-Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ninja-tune",
+      "type": "label",
+      "name": "Ninja Tune"
+    },
+    {
+      "slug": "label:tru-thoughts-recordings",
+      "type": "label",
+      "name": "Tru Thoughts Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:animal-magic",
+      "type": "project",
+      "name": "Animal Magic"
+    },
+    {
+      "slug": "project:black-sands",
+      "type": "project",
+      "name": "Black Sands"
+    },
+    {
+      "slug": "project:the-north-borders",
+      "type": "project",
+      "name": "The North Borders"
+    },
+    {
+      "slug": "project:migration",
+      "type": "project",
+      "name": "Migration"
+    },
+    {
+      "slug": "project:fragments",
+      "type": "project",
+      "name": "Fragments"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pick-up",
+      "type": "track",
+      "name": "Pick Up"
+    },
+    {
+      "slug": "track:the-keeper",
+      "type": "track",
+      "name": "The Keeper"
+    },
+    {
+      "slug": "track:eyesdown",
+      "type": "track",
+      "name": "Eyesdown"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

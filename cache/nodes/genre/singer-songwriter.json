@@ -1,0 +1,85 @@
+{
+  "slug": "genre:singer-songwriter",
+  "name": "Singer-songwriter",
+  "editorial_article": "The singer-songwriter is a versatile musical persona who acts as both the primary composer and the performer of their own material. While the term came into popular usage in the 1960s to describe a movement of acoustic-driven artists, the concept itself is deeply rooted in the ancient tradition of the wandering bard. In the modern context, the genre represents a fundamental shift away from the assembly-line model of Tin Pan Alley, where songwriters and performers were typically separate entities. Instead, the singer-songwriter asserts creative autonomy, often providing the sole accompaniment—usually on acoustic guitar or piano—for songs that prioritize intimate lyricism, personal introspection, and a distinct, \"authentic\" performing identity.\\n\\nCulturally, the role underwent a significant transformation during the American folk music revival of the 1940s through the 1960s, as figures like Woody Guthrie and Pete Seeger used their platforms for social and political commentary. By the 1970s, the \"singer-songwriter\" became a commercial force in pop and rock, with artists such as Paul Simon and Joni Mitchell bringing a level of poetic sophistication and confessional emotionality to the mainstream charts. The aesthetic often favors a stripped-back sound that places emphasis on the song structure and narrative content. Even as production technology has evolved, the core ethos—the artist as the primary architect of their artistic message—remains a defining pillar of popular music. The role has continued to thicken over time, encompassing not just writing and performing, but often extending to producing, arranging, and managing the artist's own musical trajectory, effectively bridging the gap between historical troubadour traditions and the modern multi-hyphenate artist.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Singer-songwriter",
+      "title": "Singer-songwriter - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:09.733Z",
+  "_metrics": {
+    "input_tokens": 16294,
+    "output_tokens": 745,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005191,
+    "llm_calls": 4,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 1,
+    "agent_ms": 10437,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A musical category for artists who compose, write lyrics for, and perform their own musical material, typically maintaining creative control over the artistic process and frequently performing solo with acoustic accompaniment.",
+  "era": "1960s–present (popularized); historical roots in folk/bardic tradition",
+  "origin": "United States (modern popularized usage); global folk/bardic traditions",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk music"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    },
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:joni-mitchell",
+      "type": "artist",
+      "name": "Joni Mitchell"
+    },
+    {
+      "slug": "artist:paul-simon",
+      "type": "artist",
+      "name": "Paul Simon"
+    },
+    {
+      "slug": "artist:woody-guthrie",
+      "type": "artist",
+      "name": "Woody Guthrie"
+    },
+    {
+      "slug": "artist:hank-williams",
+      "type": "artist",
+      "name": "Hank Williams"
+    },
+    {
+      "slug": "artist:pete-seeger",
+      "type": "artist",
+      "name": "Pete Seeger"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

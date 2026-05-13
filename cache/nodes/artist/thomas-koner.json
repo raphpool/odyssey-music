@@ -82,5 +82,11 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks"
+    }
+  ]
 }

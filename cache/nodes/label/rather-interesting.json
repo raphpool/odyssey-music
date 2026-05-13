@@ -1,0 +1,86 @@
+{
+  "slug": "label:rather-interesting",
+  "name": "Rather Interesting",
+  "editorial_article": "Rather Interesting is a highly influential boutique electronic music label founded in 1994 by the prolific German producer Uwe Schmidt, better known by his primary alias Atom™ (also Atom Heart). Based in Germany, the label served as a vital creative playground for Schmidt and a close circle of collaborators to explore the outer reaches of experimental techno, glitch, ambient, and what was often termed \"Latin-electronic\" fusion. Rather Interesting was never a label aimed at mainstream success or rigid genre adherence; instead, it acted as a curated platform for the erratic, playful, and often abstract artistic impulses of its founder. Its catalog is famously eclectic, defined by its resistance to categorization and its commitment to \"the expansion of the boundaries of technological sound.\"\\n\\nThe roster frequently featured Schmidt's many personas, including Los Samplers and Señor Coconut, alongside works from associates who shared his idiosyncratic vision for the future of electronic rhythm and texture. The label's aesthetic often pivoted from the cold, clinical soundscapes of early 90s digital minimalism toward warmer, surrealist reworkings of global music forms, most notably captured in the \"Replicant Rumba Rockers\" compilations. These releases demonstrated the label's ability to blend high-concept electronic programming with an organic, almost humorous sensibility. By operating with a deliberate, low-key approach, Rather Interesting maintained an enduring cult status, influencing a generation of producers who sought to bridge the gap between rigorous technical innovation and the playfulness of experimental pop music. It remains a definitive case study in the \"vanity label\" model, where the curator's unique creative voice dictates the entire sonic output.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/8-Rather-Interesting?srsltid=AfmBOorqUIv8980uHxps4PWA3UbQHGOzzMa4l6GZQYY3qsfsWeSnirE9",
+      "title": "Rather Interesting - Discogs"
+    },
+    {
+      "url": "http://music.hyperreal.org/labels/rather_interesting/",
+      "title": "Rather Interesting Discography - Hyperreal Music Archive"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:09.553Z",
+  "_metrics": {
+    "input_tokens": 33234,
+    "output_tokens": 2084,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.011435,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 23370,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A boutique, artist-led experimental electronic label founded by Uwe Schmidt (Atom™) in 1994, dedicated to pushing the boundaries of technology and sound through eclectic, often surrealist, electronic releases.",
+  "founded": "1994",
+  "location": "Germany",
+  "genres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:atomtm",
+      "type": "artist",
+      "name": "Atom™"
+    },
+    {
+      "slug": "artist:los-sampler-s",
+      "type": "artist",
+      "name": "Los Sampler's"
+    },
+    {
+      "slug": "artist:senor-coconut",
+      "type": "artist",
+      "name": "Señor Coconut"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:flextone",
+      "type": "project",
+      "name": "Flextone"
+    },
+    {
+      "slug": "project:descargas",
+      "type": "project",
+      "name": "Descargas"
+    },
+    {
+      "slug": "project:gran-baile-con",
+      "type": "project",
+      "name": "Gran Baile Con..."
+    }
+  ]
+}

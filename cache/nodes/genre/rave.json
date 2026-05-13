@@ -1,0 +1,140 @@
+{
+  "slug": "genre:rave",
+  "name": "Rave",
+  "editorial_article": "Rave is a transformative electronic dance music movement that emerged in the late 1980s and exploded in the early 1990s, fundamentally reshaping global club culture. Originating from the underground scenes in the United Kingdom and drawing deeply from American foundations like Chicago acid house and Detroit techno, rave music represents a convergence of fast-tempo repetitive beats, synthesized soundscapes, and a fervent subcultural ethos of unity, freedom, and communal hedonism. It served as a catalyst for a new era of youth culture, characterized by massive warehouse gatherings, illegal outdoor parties, and a rapid evolution of sound design made possible by accessible digital technology. \\n\\nMusically, rave is an expansive umbrella category rather than a singular style. It encompasses high-energy electronic subgenres including breakbeat, trance, jungle, and the harder edges of techno. The sound is defined by tempos ranging from 120 to 160 BPM, heavy, pulsating basslines, and hypnotic melodic textures designed to induce trance-like states among dancers. Culturally, the movement left an indelible mark on the music industry, mainstreaming electronic dance music (EDM) and paving the way for the mega-festival phenomenon that dominates modern entertainment. While it faced significant societal and legal scrutiny regarding its association with underground events and drug culture, its legacy endures in the continued popularity of high-energy electronic music and the enduring human desire for collective musical experience. Landmark tracks like The Prodigy's 'Out of Space' and Underworld's 'Born Slippy' stand as monuments to a movement that turned the dance floor into a site of radical expression.",
+  "citations": [
+    {
+      "url": "https://www.musicgateway.com/blog/spotify/a-history-of-rave-music",
+      "title": "A History of Rave Music | Music Gateway"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:56.799Z",
+  "_metrics": {
+    "input_tokens": 18330,
+    "output_tokens": 1665,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00708,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9880,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Rave is an umbrella term for a diverse and high-energy style of electronic dance music that emerged in the late 1980s, defined by its origins in underground warehouse parties and its influence on global EDM culture.",
+  "era": "1988–1999",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    },
+    {
+      "slug": "artist:carl-cox",
+      "type": "artist",
+      "name": "Carl Cox"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:xl-recordings",
+      "type": "label",
+      "name": "XL Recordings"
+    },
+    {
+      "slug": "label:deconstruction-records",
+      "type": "label",
+      "name": "Deconstruction Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:experience",
+      "type": "project",
+      "name": "Experience"
+    },
+    {
+      "slug": "project:dubnobasswithmyheadman",
+      "type": "project",
+      "name": "Dubnobasswithmyheadman"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:out-of-space",
+      "type": "track",
+      "name": "Out of Space"
+    },
+    {
+      "slug": "track:born-slippy",
+      "type": "track",
+      "name": "Born Slippy"
+    }
+  ]
+}

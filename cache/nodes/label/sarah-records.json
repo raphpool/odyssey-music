@@ -1,0 +1,86 @@
+{
+  "slug": "label:sarah-records",
+  "name": "Sarah Records",
+  "editorial_article": "Sarah Records was a seminal British independent record label based in Bristol, active from 1987 to 1995. Founded by Matt Haynes and Clare Wadd, the label became the lightning rod for the mid-to-late 1980s and early 1990s 'twee pop' or 'indie pop' aesthetic—a sound characterized by jangly guitars, sensitive lyrics, and a DIY ethos that stood in defiant, often prickly contrast to the prevailing music industry trends of the time. Unlike many of its contemporaries, Sarah Records operated with a strict, self-imposed limit: it would release exactly 100 numbered records, after which it would cease operations entirely. This ideological commitment to a finite lifespan added a legendary quality to the label's output, framing its history as a complete, curated narrative rather than a commercial enterprise.\\n\\nThe label's sonic identity was defined by artists like The Field Mice, The Orchids, Heavenly, and Blueboy, who crafted intricate, emotive pop songs that often flew in the face of the bombastic, macho rock or glossy synth-pop that dominated the mainstream. Sarah Records cultivated a close-knit community of fans, often distributing their own fanzines (such as 'Lemonade' and 'Sunstroke') and organizing shows that prioritized accessibility and intimacy. The label's aesthetic—minimalist, starkly designed sleeves and a focus on 7-inch singles—remains a cornerstone of DIY indie pop history. When the label reached its 100th release, the compilation 'There And Back Again Lane', they held a final party in Bristol and dissolved, cemented forever in the culture as a symbol of integrity and artistic focus. Their influence persists through the enduring popularity of their back catalog, which has been reissued and celebrated by subsequent generations of indie musicians.",
+  "citations": [
+    {
+      "url": "http://sarahrecords.org.uk/music/discography/",
+      "title": "Discography - Sarah Records"
+    },
+    {
+      "url": "https://www.twee.net/labels/sarah.html",
+      "title": "Sarah Records - TweeNet"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:56.469Z",
+  "_metrics": {
+    "input_tokens": 18473,
+    "output_tokens": 1360,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006658,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 14678,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A highly influential Bristol-based indie pop label (1987–1995) known for its committed DIY ethos, 100-release limit, and foundational role in defining the 'twee' aesthetic.",
+  "founded": "1987",
+  "location": "Bristol, UK",
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee Pop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-field-mice",
+      "type": "artist",
+      "name": "The Field Mice"
+    },
+    {
+      "slug": "artist:the-orchids",
+      "type": "artist",
+      "name": "The Orchids"
+    },
+    {
+      "slug": "artist:heavenly",
+      "type": "artist",
+      "name": "Heavenly"
+    },
+    {
+      "slug": "artist:blueboy",
+      "type": "artist",
+      "name": "Blueboy"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:skywriting",
+      "type": "project",
+      "name": "Skywriting"
+    },
+    {
+      "slug": "project:heavenly-vs-satan",
+      "type": "project",
+      "name": "Heavenly vs. Satan"
+    },
+    {
+      "slug": "project:unisex",
+      "type": "project",
+      "name": "Unisex"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "slug": "genre:jazz-funk",
+  "name": "Jazz-Funk",
+  "editorial_article": "Jazz-funk is a distinct subgenre of jazz that flourished in the 1970s, defined by the marriage of jazz improvisation with the danceable, rhythmic drive of funk. Unlike the often abstract or highly cerebral nature of earlier free jazz, jazz-funk centered on the \"groove\"—a strong, syncopated backbeat supported by electric basslines and the expanding palette of contemporary electronic instrumentation. This movement represented a pivotal shift in the jazz ecosystem, as musicians embraced the commercial viability and visceral appeal of soul, rhythm and blues, and funk, while maintaining the virtuosity and spontaneity at the core of jazz tradition.\\n\\nThe sonic signature of jazz-funk is characterized by its heavy reliance on electric keyboards, particularly Fender Rhodes and early analog synthesizers, which provided a textured, warm sonic foundation. The rhythmic section was equally transformed; drummers leaned into steady, driving beats rather than traditional swing patterns, often incorporating influences from Latin and Afro-Cuban percussion. Key architects like Herbie Hancock, with his landmark 1973 album *Head Hunters*, popularized the genre by blending complex harmonies with hypnotic, bass-heavy arrangements. Other essential figures such as Donald Byrd, Lonnie Liston Smith, and Miles Davis—whose experimental albums like *On the Corner* helped lay the groundwork—further pushed the genre's boundaries. Beyond the U.S., the style resonated globally, with artists like Cortex in France and Banda Black Rio in Brazil creating unique regional iterations that blended jazz-funk with local musical traditions. Today, the genre remains highly influential, particularly as a foundational pillar for hip-hop sampling culture and modern groove-based jazz.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/charts/top/album/1970s/g:jazz-funk/",
+      "title": "Best Jazz-Funk albums of the 1970s - Rate Your Music"
+    },
+    {
+      "url": "https://louisarmstrongandallthatjazz.wordpress.com/2014/11/08/jazz-funk/",
+      "title": "Jazz-funk | Louis Armstrong's Jazzamatazz"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:39.902Z",
+  "_metrics": {
+    "input_tokens": 27976,
+    "output_tokens": 1664,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00949,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 19082,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of jazz emerging in the 1970s that integrates jazz improvisation with the syncopated, groove-oriented rhythms of funk, typically utilizing electric instrumentation and a strong danceable backbeat.",
+  "era": "1970s - early 1980s",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    },
+    {
+      "slug": "genre:soul-jazz",
+      "type": "genre",
+      "name": "Soul Jazz"
+    },
+    {
+      "slug": "genre:spiritual-jazz",
+      "type": "genre",
+      "name": "Spiritual Jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:herbie-hancock",
+      "type": "artist",
+      "name": "Herbie Hancock"
+    },
+    {
+      "slug": "artist:donald-byrd",
+      "type": "artist",
+      "name": "Donald Byrd"
+    },
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:lonnie-liston-smith",
+      "type": "artist",
+      "name": "Lonnie Liston Smith"
+    },
+    {
+      "slug": "artist:cortex",
+      "type": "artist",
+      "name": "Cortex"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:blue-note",
+      "type": "label",
+      "name": "Blue Note"
+    },
+    {
+      "slug": "label:cti-records",
+      "type": "label",
+      "name": "CTI Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:head-hunters",
+      "type": "project",
+      "name": "Head Hunters"
+    },
+    {
+      "slug": "project:on-the-corner",
+      "type": "project",
+      "name": "On the Corner"
+    },
+    {
+      "slug": "project:places-and-spaces",
+      "type": "project",
+      "name": "Places and Spaces"
+    },
+    {
+      "slug": "project:troupeau-bleu",
+      "type": "project",
+      "name": "Troupeau bleu"
+    }
+  ],
+  "landmark_tracks": []
+}

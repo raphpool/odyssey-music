@@ -1,0 +1,79 @@
+{
+  "slug": "project:pawn-hearts",
+  "name": "Pawn Hearts",
+  "editorial_article": "Released in November 1971, *Pawn Hearts* stands as the fourth studio album by the English progressive rock pioneers Van der Graaf Generator and is widely considered the peak of the band's creative intensity during their initial run. Produced by John Anthony and recorded at London's Trident Studios, the album captures the group—vocalist/songwriter Peter Hammill, saxophonist David Jackson, organist/bassist Hugh Banton, and drummer Guy Evans—at the height of their technical and conceptual prowess. It is a work defined by its dark, brooding atmosphere, complex arrangements, and Hammill’s existential, highly personal lyricism.\\n\\nOriginally conceived as a double album, the final release was distilled by Charisma Records into a single LP comprising just three extended tracks: \"Lemmings (Including Cog),\" \"Man-Erg,\" and the side-long, ambitious suite \"A Plague of Lighthouse Keepers.\" This composition, which explores themes of isolation, guilt, and death, remains one of the most significant achievements of the progressive era. The album's creation was marked by a collaborative and obsessive writing process, including months spent in seclusion in Crowborough, Sussex, where the band honed their unique, organ-heavy, and sax-led sound. Despite lukewarm commercial success in the UK at the time, the album found significant popularity in Italy, leading to intensive touring that ultimately strained the band to the point of a temporary breakup in 1972. The title itself is a spoonerism of \"horn parts,\" reflecting the sardonic humor that existed alongside the band's serious, often harrowing music. *Pawn Hearts* has since been recognized as a landmark of the progressive rock canon, influencing generations of musicians with its avant-garde approach to song structure and raw emotional intensity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pawn_Hearts",
+      "title": "Pawn Hearts - Wikipedia"
+    },
+    {
+      "url": "https://www.progarchives.com/album.asp?id=1417",
+      "title": "VAN DER GRAAF GENERATOR Pawn Hearts reviews - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:43.121Z",
+  "_metrics": {
+    "input_tokens": 19620,
+    "output_tokens": 1312,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006873,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10801,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A monumental, dark, and intricately arranged progressive rock classic that redefined the boundaries of the genre through its daring, side-long suites and intense emotional delivery.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/6/61/Pawn_Hearts_%28Van_der_Graaf_Generator_album_-_cover_art%29.jpg",
+  "year": "1971",
+  "artists": [
+    {
+      "slug": "artist:van-der-graaf-generator",
+      "type": "artist",
+      "name": "Van der Graaf Generator"
+    }
+  ],
+  "label": {
+    "slug": "label:charisma-records",
+    "type": "label",
+    "name": "Charisma Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:lemmings",
+      "type": "track",
+      "name": "Lemmings (Including Cog)"
+    },
+    {
+      "slug": "track:man-erg",
+      "type": "track",
+      "name": "Man-Erg"
+    },
+    {
+      "slug": "track:a-plague-of-lighthouse-keepers",
+      "type": "track",
+      "name": "A Plague of Lighthouse Keepers"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
+    }
+  ],
+  "related_projects": []
+}

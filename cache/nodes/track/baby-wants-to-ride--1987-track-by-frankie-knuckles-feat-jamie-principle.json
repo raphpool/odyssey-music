@@ -1,0 +1,68 @@
+{
+  "slug": "track:baby-wants-to-ride--1987-track-by-frankie-knuckles-feat-jamie-principle",
+  "name": "Baby Wants to Ride",
+  "editorial_article": "\"Baby Wants to Ride\" is a quintessential Chicago house anthem, released in 1987 by the legendary Frankie Knuckles featuring the evocative vocals of Jamie Principle. The track stands as a cornerstone of the house music canon, showcasing the raw, innovative energy that defined the city's late 1980s club scene. Characterized by its driving, hypnotic drum programming, stark synthesizer lines, and Principle’s sultry, narrative-driven vocal performance, the track embodies the intersection of soulful R&B influence and the mechanical, avant-garde spirit of early dance music production. \\n\\nMusically, the production is a masterclass in minimalism and atmosphere, utilizing repetitive patterns to create a trance-like state on the dance floor. The track’s cultural significance stems from the profound creative partnership between Knuckles and Principle, whose collaborative works—including \"Your Love\" and \"Baby Wants to Ride\"—helped codify the Chicago house sound, transforming it from local club experimentation into a global electronic phenomenon. The track has been widely recognized for its enduring legacy, having been sampled, remixed, and covered by numerous artists across the decades, cementing its status as an essential piece of electronic music history. The collaboration captures a specific moment in time where house music was still finding its identity, blending the influence of disco with the grit of industrial-leaning electronic experimentation.",
+  "citations": [
+    {
+      "url": "https://www.whosampled.com/Frankie-Knuckles/Baby-Wants-to-Ride/",
+      "title": "Baby Wants to Ride by Frankie Knuckles - Samples, Covers and Remixes | WhoSampled"
+    },
+    {
+      "url": "https://sosuremusic.bandcamp.com/album/baby-wants-to-ride",
+      "title": "Baby Wants To Ride | Frankie Knuckles pres. Director's Cut feat ..."
+    },
+    {
+      "url": "https://www.discogs.com/release/2563805-Frankie-Knuckles-Baby-Wants-To-Ride-?srsltid=AfmBOorlkDY6Vf_7N2FPzgg-H4wOlqTZpBXa9RP9Umq_nGKCW4ezzBri",
+      "title": "Frankie Knuckles – Baby Wants To Ride - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:28.584Z",
+  "_metrics": {
+    "input_tokens": 11215,
+    "output_tokens": 711,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00387,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9410,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "1987 track by Frankie Knuckles feat. Jamie Principle",
+  "type": "track",
+  "editorial_teaser": "A seminal 1987 Chicago house masterpiece produced by Frankie Knuckles and featuring the soulful, provocative vocals of Jamie Principle.",
+  "year": "1987",
+  "artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

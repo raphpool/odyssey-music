@@ -1,0 +1,92 @@
+{
+  "slug": "label:tectonic",
+  "name": "Tectonic",
+  "editorial_article": "Tectonic Recordings is a seminal British independent label based in Bristol, established in 2005 by the influential producer and DJ Pinch (Rob Ellis). As one of the foundational pillars of the early dubstep movement, Tectonic carved out a distinct identity by fostering an experimental, bass-heavy aesthetic that distinguished the Bristol sound from the burgeoning London scenes. While the label was integral to the maturation of dubstep, it was perhaps most significant for its early refusal to be defined by a single subgenre, actively bridging the gap between dubstep and the burgeoning sounds of techno, grime, and UK garage. Throughout its two-decade history, Tectonic became a vital laboratory for electronic innovation, releasing landmark records from foundational artists like 2562, Skream, Benga, Loefah, and Distance, while consistently showcasing a penchant for sub-bass frequency exploration. The label's output, ranging from crucial 12-inch singles to ambitious studio albums like 2562’s 'Unbalance' and Pinch's 'Underwater Dancehall', helped solidify the Bristol electronic music legacy. Tectonic remains a beacon of forward-thinking club music, characterized by a willingness to push the boundaries of rhythmic structure and sound system culture, ensuring its enduring influence on modern electronic music production worldwide. The label has continued to evolve, consistently nurturing new talent and maintaining its status as a cornerstone of the UK's underground music scene.",
+  "citations": [
+    {
+      "url": "https://ra.co/features/4435",
+      "title": "A History of Tectonic in Ten Tracks · Feature RA - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:11.864Z",
+  "_metrics": {
+    "input_tokens": 69479,
+    "output_tokens": 3700,
+    "cache_read_tokens": 24278,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.023527,
+    "llm_calls": 11,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 11,
+    "emit_attempts": 6,
+    "agent_ms": 31801,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal Bristol-based label founded by Pinch that was foundational to the early dubstep movement, known for blending bass music with techno and house.",
+  "founded": "2005",
+  "location": "Bristol, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pinch",
+      "type": "artist",
+      "name": "Pinch"
+    },
+    {
+      "slug": "artist:2562",
+      "type": "artist",
+      "name": "2562"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah"
+    },
+    {
+      "slug": "artist:distance",
+      "type": "artist",
+      "name": "Distance"
+    },
+    {
+      "slug": "artist:joker",
+      "type": "artist",
+      "name": "Joker"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:unbalance",
+      "type": "project",
+      "name": "Unbalance"
+    },
+    {
+      "slug": "project:underwater-dancehall",
+      "type": "project",
+      "name": "Underwater Dancehall"
+    }
+  ]
+}

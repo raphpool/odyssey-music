@@ -106,7 +106,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook"
+    }
+  ],
   "aliases": [],
   "members": []
 }

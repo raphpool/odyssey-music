@@ -1,0 +1,76 @@
+{
+  "slug": "project:delete-yourself",
+  "name": "Delete Yourself!",
+  "editorial_article": "Released in 1995, 'Delete Yourself!' stands as the foundational manifesto of digital hardcore, the ferocious subgenre pioneered by the German collective Atari Teenage Riot. Initially released under the title '1995', the album serves as a volatile collision between the DIY, anti-authoritarian spirit of punk rock and the sonic extremities of 1990s rave culture, specifically techno, breakbeat, and gabber. Led by Alec Empire, Hanin Elias, and the late Carl Crack, the group used the studio as a weapon, layering screaming, distorted vocals over aggressively programmed breakbeats and chaotic electronic squalls. The album is deeply rooted in the sociopolitical climate of post-reunification Germany, with its lyrics explicitly confronting the rise of neo-Nazism and state surveillance. Tracks like 'Hetzjagd Auf Nazis!' ('Hunt for Nazis!') underscore the band's militant stance, while the frantic pace of songs like 'Speed' highlights their commitment to sonic overload. Beyond its immediate political impact, 'Delete Yourself!' was instrumental in blurring the boundaries between disparate underground scenes, proving that electronic music could carry the same level of raw, anarchic energy as the most brutal crust-punk or industrial records. The album's production, helmed by Empire and David Harrow, maintains a lo-fi, visceral aesthetic that prioritizes impact over polish, solidifying its place as a classic of rebellious electronic music. It remains a essential document of the era's counter-culture, bridging the gap between underground rave culture and the punk underground with unrelenting intensity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Delete_Yourself!",
+      "title": "Delete Yourself! - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/atari-teenage-riot/delete-yourself-1/",
+      "title": "Delete Yourself! by Atari Teenage Riot (Album - Rate Your Music"
+    },
+    {
+      "url": "https://www.discogs.com/release/13706756-Atari-Teenage-Riot-Delete-Yourself?srsltid=AfmBOooWyjPj03FSGhiiI_AvL6M2G9ttgc39ExrgV_qoAnq59scpIgiZ",
+      "title": "Atari Teenage Riot – Delete Yourself! - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:04.057Z",
+  "_metrics": {
+    "input_tokens": 30424,
+    "output_tokens": 2496,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.01135,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 13779,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "Delete Yourself! is the visceral, chaotic, and politically charged debut album that effectively birthed the \"digital hardcore\" genre, blending abrasive punk ethos with breakbeat chaos and radical leftist ideology. Produced by Alec Empire and David Harrow, it remains a defining artifact of 1990s counter-culture, weaponizing distortion and high-speed BPMs to deliver a relentless assault against neo-Nazism and systemic conformity.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Delete_Yourself%21.jpg/250px-Delete_Yourself%21.jpg",
+  "year": "1995",
+  "artists": [],
+  "label": {
+    "slug": "label:digital-hardcore-recordings",
+    "type": "label",
+    "name": "Digital Hardcore Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital hardcore"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    },
+    {
+      "slug": "artist:david-harrow",
+      "type": "artist",
+      "name": "David Harrow"
+    }
+  ],
+  "related_projects": []
+}

@@ -1,0 +1,123 @@
+{
+  "slug": "artist:kool-and-the-gang",
+  "name": "Kool and the Gang",
+  "editorial_article": "Kool & the Gang is an enduring American musical institution, originating in Jersey City, New Jersey, in 1964. Founded by brothers Robert \"Kool\" Bell and Ronald \"Khalis Bayyan\" Bell along with friends including George \"Funky\" Brown and Dennis \"Dee Tee\" Thomas, the group began their journey as a jazz-oriented ensemble called the Jazziacs. Throughout the late 1960s and 1970s, they evolved their sound, masterfully incorporating the gritty, horn-driven funk of artists like James Brown into their own sophisticated arrangements. Their 1973 album *Wild and Peaceful* marked a pivotal commercial breakthrough, solidifying their status as masters of funk with timeless hits like \"Jungle Boogie\" and \"Hollywood Swinging.\"\\n\\nFollowing a period of transition in the late 1970s, the band experienced a massive resurgence in popularity. By partnering with producer Eumir Deodato and welcoming vocalist James \"J.T.\" Taylor into their lineup, the group pivoted toward a smoother, more polished R&B and pop sound that dominated the airwaves during the early 1980s. This era produced global anthems such as \"Celebration,\" \"Get Down on It,\" and \"Cherish,\" which cemented their legacy as icons of danceable, uplifting music. Their influence has been immense, with their catalog frequently sampled by hip-hop producers and their music remaining a staple of pop culture worldwide. Inducted into the Rock and Roll Hall of Fame in 2024, Kool & the Gang remains active today, celebrating six decades of artistry that has successfully bridged the worlds of jazz, funk, disco, and contemporary R&B.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kool_%26_the_Gang",
+      "title": "Kool & the Gang - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/48865-Kool-The-Gang?srsltid=AfmBOorwdpEdObLqmmTmB3G5989b-qutjU66VHnrM8g7ZRcHoyZEBhEV",
+      "title": "Kool & The Gang Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:21.302Z",
+  "_metrics": {
+    "input_tokens": 20914,
+    "output_tokens": 1530,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007524,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18623,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Kool & the Gang is an enduring American musical institution, originating in Jersey City, New Jersey, in 1964.",
+  "origin": "Jersey City, New Jersey, U.S.",
+  "active_years": "1964–present",
+  "genres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:de-lite-records",
+      "type": "label",
+      "name": "De-Lite Records"
+    },
+    {
+      "slug": "label:mercury-records",
+      "type": "label",
+      "name": "Mercury Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:kool-and-the-gang",
+      "type": "project",
+      "name": "Kool and the Gang (1969)"
+    },
+    {
+      "slug": "project:wild-and-peaceful",
+      "type": "project",
+      "name": "Wild and Peaceful (1973)"
+    },
+    {
+      "slug": "project:ladies-night",
+      "type": "project",
+      "name": "Ladies' Night (1979)"
+    },
+    {
+      "slug": "project:celebrate",
+      "type": "project",
+      "name": "Celebrate! (1980)"
+    },
+    {
+      "slug": "project:emergency",
+      "type": "project",
+      "name": "Emergency (1984)"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:jungle-boogie",
+      "type": "track",
+      "name": "Jungle Boogie"
+    },
+    {
+      "slug": "track:hollywood-swinging",
+      "type": "track",
+      "name": "Hollywood Swinging"
+    },
+    {
+      "slug": "track:celebration",
+      "type": "track",
+      "name": "Celebration"
+    },
+    {
+      "slug": "track:get-down-on-it",
+      "type": "track",
+      "name": "Get Down on It"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

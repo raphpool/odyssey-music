@@ -92,6 +92,11 @@
       "slug": "artist:coki",
       "type": "artist",
       "name": "Coki"
+    },
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
     }
   ],
   "aliases": [],

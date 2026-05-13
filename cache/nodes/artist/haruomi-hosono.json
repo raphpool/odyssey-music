@@ -1,0 +1,126 @@
+{
+  "slug": "artist:haruomi-hosono",
+  "name": "Haruomi Hosono",
+  "editorial_article": "Haruomi Hosono (born July 9, 1947) is one of the most significant and influential figures in Japanese music history. A prolific musician, songwriter, producer, and multi-instrumentalist, his career spans over five decades and encompasses an extraordinary range of genres, from psychedelic rock and folk to exotica, ambient, and pioneering electronic pop. Born in Minato, Tokyo, Hosono first gained national prominence in the late 1960s as the bassist for the psychedelic rock band Apryl Fool. He subsequently co-founded the legendary folk-rock group Happy End, whose innovative blend of Western folk-rock sensibilities with Japanese lyrics helped establish a new template for Japanese popular music.\\n\\nHosono's most globally recognized impact came through his founding of the Yellow Magic Orchestra (YMO) in 1978, alongside Ryuichi Sakamoto and Yukihiro Takahashi. YMO became a vanguard of electronic pop, experimenting with synthesis and early computer technology to create a sound that was at once futuristic, playful, and deeply informed by global influences. Before and during his YMO years, Hosono pushed boundaries through solo projects like 'Cochin Moon' (1978) and his 'Hosono House' era, often blending 'exotica' motifs with electronic textures. His work as a producer, arranger, and mentor has been foundational to the development of City Pop and Shibuya-kei, and his influence continues to resonate through generations of electronic and experimental musicians globally. A constant innovator, Hosono remains an active, revered, and enigmatic pillar of the international music scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Haruomi_Hosono",
+      "title": "Haruomi Hosono - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/19132-Haruomi-Hosono?srsltid=AfmBOop06NhHA9pTYf6jdZDi1KNpF7ftVWmYg-uZwQIDwiTmIlz4Hqhr",
+      "title": "Haruomi Hosono Discography: Vinyl, CDs, & More"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:02.562Z",
+  "_metrics": {
+    "input_tokens": 12695,
+    "output_tokens": 998,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004671,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 22670,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Haruomi Hosono is a legendary Japanese musician, producer, and polymath, celebrated as a founding member of Happy End and Yellow Magic Orchestra, and for his pioneering role in electronic, ambient, and pop music. His diverse career has shaped the trajectory of Japanese popular music for over fifty years, bridging the gap between traditional sensibilities and futuristic sonic landscapes.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Hosono_Haruomi_from_%22No_Smoking%22_at_Opening_Ceremony_of_the_Tokyo_International_Film_Festival_2019_%2849013189233%29.jpg/250px-Hosono_Haruomi_from_%22No_Smoking%22_at_Opening_Ceremony_of_the_Tokyo_International_Film_Festival_2019_%2849013189233%29.jpg",
+  "origin": "Minato, Tokyo, Japan",
+  "active_years": "1969-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:exotica",
+      "type": "genre",
+      "name": "Exotica"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:alfa-records",
+      "type": "label",
+      "name": "Alfa Records"
+    },
+    {
+      "slug": "label:victor-entertainment",
+      "type": "label",
+      "name": "Victor Entertainment"
+    },
+    {
+      "slug": "label:light-in-the-attic-records",
+      "type": "label",
+      "name": "Light in the Attic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hosono-house",
+      "type": "project",
+      "name": "Hosono House"
+    },
+    {
+      "slug": "project:paraiso",
+      "type": "project",
+      "name": "Paraiso"
+    },
+    {
+      "slug": "project:cochin-moon",
+      "type": "project",
+      "name": "Cochin Moon"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:kaze-wo-atsumete",
+      "type": "track",
+      "name": "Kaze wo Atsumete"
+    },
+    {
+      "slug": "track:cosmic-surfin",
+      "type": "track",
+      "name": "Cosmic Surfin'"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
+    }
+  ]
+}

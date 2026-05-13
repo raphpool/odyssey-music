@@ -1,0 +1,125 @@
+{
+  "slug": "label:rough-trade",
+  "name": "Rough Trade",
+  "editorial_article": "Rough Trade is one of the most significant independent record labels in music history, originating from a record store of the same name founded by Geoff Travis in Ladbroke Grove, London, in 1976. Heavily inspired by the community-centric ethos of San Francisco's City Lights Bookstore, the store became a crucial hub for the burgeoning punk and post-punk scenes. In 1978, the label was formally established to release music by artists who were not being picked up by major labels. Over the decades, Rough Trade became synonymous with uncompromising artistic integrity and musical innovation, championing genres that spanned from experimental post-punk and reggae to indie rock and folk. \\n\\nThroughout the 1980s, the label was a cornerstone of the UK independent scene, famously home to The Smiths, The Raincoats, and Robert Wyatt. Under the guidance of Geoff Travis and later his long-time partner Jeannette Lee, the label maintained an extraordinary knack for discovering generation-defining acts, including The Strokes, The Libertines, and Arcade Fire. Even as it has grown, the label continues to operate with a focus on nurturing new, vanguard artists such as black midi, Jockstrap, and Lankum. Rough Trade's influence extends far beyond its discography; it helped pioneer the independent distribution networks that empowered thousands of DIY artists, firmly cementing its status as a foundational pillar of modern alternative culture. The label’s enduring success is rooted in a philosophy that prioritizes the artist's vision above all else, ensuring that it remains at the creative vanguard of the music industry.",
+  "citations": [
+    {
+      "url": "https://roughtraderecords.com/wp/about/",
+      "title": "About – Rough Trade Records"
+    },
+    {
+      "url": "https://tough-life.squarespace.com/projects-1/the-story-of-rough-trade",
+      "title": "DO IT YOURSELF: THE STORY OF ROUGH TRADE RECORDS"
+    },
+    {
+      "url": "https://www.independent.co.uk/arts-entertainment/music/features/rough-trade-the-label-that-changed-music-history-415021.html",
+      "title": "Rough Trade: The label that changed music history | The Independent"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:07.418Z",
+  "_metrics": {
+    "input_tokens": 13490,
+    "output_tokens": 1613,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005792,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 14914,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "An iconic independent label that grew from a London record shop into a global force, defining the sound of post-punk, indie, and alternative music for over four decades.",
+  "founded": "1978",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-smiths",
+      "type": "artist",
+      "name": "The Smiths"
+    },
+    {
+      "slug": "artist:the-strokes",
+      "type": "artist",
+      "name": "The Strokes"
+    },
+    {
+      "slug": "artist:arcade-fire",
+      "type": "artist",
+      "name": "Arcade Fire"
+    },
+    {
+      "slug": "artist:black-midi",
+      "type": "artist",
+      "name": "black midi"
+    },
+    {
+      "slug": "artist:jockstrap",
+      "type": "artist",
+      "name": "Jockstrap"
+    },
+    {
+      "slug": "artist:lankum",
+      "type": "artist",
+      "name": "Lankum"
+    },
+    {
+      "slug": "artist:the-raincoats",
+      "type": "artist",
+      "name": "The Raincoats"
+    },
+    {
+      "slug": "artist:robert-wyatt",
+      "type": "artist",
+      "name": "Robert Wyatt"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-queen-is-dead",
+      "type": "project",
+      "name": "The Queen Is Dead"
+    },
+    {
+      "slug": "project:room-on-fire",
+      "type": "project",
+      "name": "Room on Fire"
+    },
+    {
+      "slug": "project:funeral",
+      "type": "project",
+      "name": "Funeral"
+    },
+    {
+      "slug": "project:schlagenheim",
+      "type": "project",
+      "name": "Schlagenheim"
+    }
+  ]
+}

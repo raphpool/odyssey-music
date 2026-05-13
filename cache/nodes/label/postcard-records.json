@@ -1,0 +1,101 @@
+{
+  "slug": "label:postcard-records",
+  "name": "Postcard Records",
+  "editorial_article": "Postcard Records was a pivotal independent label based in Glasgow, Scotland, that operated as the quintessential \"Sound of Young Scotland\" during its brief but intensely influential initial run between 1980 and 1981. Founded by the entrepreneurial Alan Horne, the label emerged from a desire to provide a home for a burgeoning scene of articulate, pop-savvy guitar bands, most notably Orange Juice and Josef K. The label’s aesthetic was defined by a sharp, witty, and self-aware approach to music—a conscious subversion of the often dour post-punk landscape of the time, punctuated by its iconic logo of a cartoon cat beating a drum. Its legacy far outstrips its modest output, serving as a primary touchstone for the C86 indie-pop movement and influencing generations of bands who prioritized melody, irony, and independent spirit over major-label artifice.\\n\\nWhile the label’s original 1980–1981 era remains its most mythologized period, defining the indie-pop blueprint with releases like Orange Juice’s \"Falling and Laughing\" and The Go-Betweens' \"I Need Two Heads,\" Postcard also had a significant second life in the 1990s. Between 1992 and 1997, Horne revived the label to release projects by Paul Quinn and the Independent Group, The Nectarine No. 9, and Vic Godard, among others, continuing the label’s legacy of quirky, literate, and deeply idiosyncratic guitar music. The label’s influence is so deeply embedded in the history of British independent music that it has been the subject of extensive documentation, including Simon Goddard's book *Simply Thrilled: The Preposterous Story of Postcard Records* and the documentary *Big Gold Dream*. Today, Postcard remains a legendary emblem of DIY ambition, representing a specific moment in time where a small group of friends in Glasgow managed to shift the trajectory of independent guitar pop forever.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Postcard_Records",
+      "title": "Postcard Records - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/postcard_records/",
+      "title": "Postcard Records - Music label - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:34.939Z",
+  "_metrics": {
+    "input_tokens": 20692,
+    "output_tokens": 1581,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007545,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13105,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary Glasgow-based independent label founded in 1979 by Alan Horne, known for coining the motto \"The Sound of Young Scotland\" and defining the blueprint for melodic, literate indie-pop through acts like Orange Juice and Josef K.",
+  "founded": "1979",
+  "location": "Glasgow, Scotland",
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:orange-juice",
+      "type": "artist",
+      "name": "Orange Juice"
+    },
+    {
+      "slug": "artist:josef-k",
+      "type": "artist",
+      "name": "Josef K"
+    },
+    {
+      "slug": "artist:the-go-betweens",
+      "type": "artist",
+      "name": "The Go-Betweens"
+    },
+    {
+      "slug": "artist:aztec-camera",
+      "type": "artist",
+      "name": "Aztec Camera"
+    },
+    {
+      "slug": "artist:paul-quinn-and-the-independent-group",
+      "type": "artist",
+      "name": "Paul Quinn And The Independent Group"
+    },
+    {
+      "slug": "artist:the-nectarine-no-9",
+      "type": "artist",
+      "name": "The Nectarine No. 9"
+    },
+    {
+      "slug": "artist:vic-godard",
+      "type": "artist",
+      "name": "Vic Godard"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:falling-and-laughing",
+      "type": "project",
+      "name": "Falling and Laughing"
+    },
+    {
+      "slug": "project:the-only-fun-in-town",
+      "type": "project",
+      "name": "The Only Fun in Town"
+    },
+    {
+      "slug": "project:you-can-t-hide-your-love-forever",
+      "type": "project",
+      "name": "You Can't Hide Your Love Forever"
+    }
+  ]
+}

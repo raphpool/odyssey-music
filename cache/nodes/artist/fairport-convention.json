@@ -1,0 +1,91 @@
+{
+  "slug": "artist:fairport-convention",
+  "name": "Fairport Convention",
+  "editorial_article": "Fairport Convention, formed in London in 1967, stands as the quintessential architect of the English folk-rock movement. Originally a group of friends—including Simon Nicol and Ashley Hutchings—who rehearsed in a Muswell Hill house named \"Fairport,\" the band began as a loose collective inspired by American folk-rock, earning early comparisons to the Jefferson Airplane by the London underground press. Their trajectory changed significantly with the arrival of Sandy Denny, whose haunting, pristine vocals and songwriting prowess elevated the band from mere interpreters of American songbooks to masters of the British folk tradition. \\n\\nTheir seminal 1969 album, *Liege & Lief*, is widely regarded as the cornerstone of British folk-rock. Eschewing the American influences that dominated their early records, the band turned their attention toward traditional Celtic and English melodies, blending them with the muscular, electric instrumentation of a rock rhythm section. Despite a tragic car accident in 1969 that claimed the lives of drummer Martin Lamble and Jeannie Franklyn, the band persevered, navigating decades of complex personnel shifts, tragic losses, and artistic pivots. \\n\\nThroughout the 1970s and beyond, the band served as a revolving door for some of the most influential musicians in the genre, including Richard Thompson, Dave Swarbrick, and Dave Pegg. Their work ranges from delicate ballads like \"Who Knows Where the Time Goes?\" to ambitious folk-rock operas such as *Babbacombe Lee*. Beyond their studio catalog, Fairport Convention is perhaps best defined by their endurance and their annual Cropredy Festival in Oxfordshire, which remains a focal point for the global folk community. Their legacy lies in their successful hybridization of traditional, centuries-old English ballads with the electric, expansive sonic possibilities of late-60s rock, creating a timeless sound that continues to define the English folk revival.",
+  "citations": [
+    {
+      "url": "https://www.udiscovermusic.com/artist/fairport-convention/",
+      "title": "Fairport Convention - Influential English Folk-Rock Band | uDiscover Music"
+    },
+    {
+      "url": "https://www.scaruffi.com/vol2/fairport.html",
+      "title": "The History of Rock Music. Fairport Convention - Piero Scaruffi"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:12.757Z",
+  "_metrics": {
+    "input_tokens": 18464,
+    "output_tokens": 1407,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006727,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11915,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Fairport Convention is an iconic English folk-rock band formed in London in 1967, celebrated for pioneering the fusion of traditional British folk music with contemporary rock instrumentation. Widely recognized for their classic 1969 masterpiece 'Liege & Lief', the group has seen numerous personnel changes over several decades but remains a cornerstone of the UK music scene, anchored by their enduring legacy and the annual Cropredy Festival.",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:meet-on-the-ledge",
+      "type": "track",
+      "name": "Meet on the Ledge"
+    },
+    {
+      "slug": "track:who-knows-where-the-time-goes",
+      "type": "track",
+      "name": "Who Knows Where the Time Goes?"
+    },
+    {
+      "slug": "track:matty-groves",
+      "type": "track",
+      "name": "Matty Groves"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:sandy-denny",
+      "type": "artist",
+      "name": "Sandy Denny"
+    },
+    {
+      "slug": "artist:richard-thompson",
+      "type": "artist",
+      "name": "Richard Thompson"
+    },
+    {
+      "slug": "artist:simon-nicol",
+      "type": "artist",
+      "name": "Simon Nicol"
+    },
+    {
+      "slug": "artist:dave-swarbrick",
+      "type": "artist",
+      "name": "Dave Swarbrick"
+    },
+    {
+      "slug": "artist:ashley-hutchings",
+      "type": "artist",
+      "name": "Ashley Hutchings"
+    }
+  ]
+}

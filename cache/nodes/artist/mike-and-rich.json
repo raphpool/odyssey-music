@@ -1,0 +1,100 @@
+{
+  "slug": "artist:mike-and-rich",
+  "name": "Mike & Rich",
+  "editorial_article": "Mike & Rich is the collaborative electronic project formed by two seminal figures of the 1990s IDM (Intelligent Dance Music) scene: Mike Paradinas, widely known as µ-Ziq, and Richard D. James, the artist behind the legendary Aphex Twin. The duo met in late 1992 around the time that James's Rephlex Records label was preparing to issue the debut µ-Ziq album. Their creative partnership reached its height during a series of recording sessions in 1994, which yielded the cult classic album 'Expert Knob Twiddlers'.\\n\\nMost of the material for their collaborative project was recorded at James's home studio in North London, with additional sessions occurring at Paradinas’s family home in South London. The resulting sound is characterized by a playful, idiosyncratic take on the drill 'n' bass and ambient techno styles that both artists were pioneering at the time. The project is marked by intricate rhythms, quirky sound design, and a pervasive sense of humor that often contrasts with the more serious or abstract leanings of their solo work. Although 'Expert Knob Twiddlers' was initially released in 1996, the project saw a significant resurgence in public interest with its expanded reissue on Planet Mu in 2016, cementing its status as a vital document of a transformative era in electronic music production. Their collaboration serves as a rare and fruitful convergence between two of the most influential minds in the genre.",
+  "citations": [
+    {
+      "url": "https://planet.mu/artists/mike-rich/",
+      "title": "Planet Mu • Mike & Rich"
+    },
+    {
+      "url": "https://www.last.fm/music/Mike+&+Rich",
+      "title": "Mike & Rich music, videos, stats, and photos | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:16.070Z",
+  "_metrics": {
+    "input_tokens": 41836,
+    "output_tokens": 3934,
+    "cache_read_tokens": 8038,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.016561,
+    "llm_calls": 10,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 10,
+    "emit_attempts": 6,
+    "agent_ms": 28689,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mike & Rich is the collaborative electronic project formed by two seminal figures of the 1990s IDM scene: Mike Paradinas (µ-Ziq) and Richard D. James (Aphex Twin). Known for their 1996 album 'Expert Knob Twiddlers', they represent a cornerstone of the IDM and Drill 'n' bass sound.",
+  "photo_url": "https://planet.mu/wp-content/uploads/2016/07/MikeRich3-650x440.jpg",
+  "origin": "United Kingdom",
+  "active_years": "1994–1996, 2016",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    },
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:expert-knob-twiddlers",
+      "type": "project",
+      "name": "Expert Knob Twiddlers"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mr-frosty",
+      "type": "track",
+      "name": "Mr. Frosty"
+    },
+    {
+      "slug": "track:eggy-toast",
+      "type": "track",
+      "name": "Eggy Toast"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "artist:the-cars",
+  "name": "The Cars",
+  "editorial_article": "Formed in Boston in 1976, The Cars were a defining force in American new wave, successfully bridging the gap between 1960s power pop, 1970s glam, and the nascent art-pop potential of the synthesizer. Founded by Ric Ocasek and Benjamin Orr—who had collaborated in various projects like Milkwood and Cap'n Swing—the quintet also included guitarist Elliot Easton, keyboardist Greg Hawkes, and drummer David Robinson. Their self-titled 1978 debut remains a landmark of the era, showcasing Ocasek's dry, witty songwriting alongside Hawkes's quirky, precise keyboard work and Easton's sharp, melodically inventive guitar lines. \n\nThe band became early masters of the music video medium, particularly with the 1984 album *Heartbeat City*. Tracks like \"You Might Think\" became staples of early MTV, leveraging innovative computer graphics and high-concept production. While they achieved massive commercial success and critical acclaim, the group’s internal cohesion eventually waned, leading to their breakup in 1988 after the commercial decline of *Door to Door*. Despite their relatively short-lived primary run, their influence on the development of synth-pop and alternative rock is profound, and they were inducted into the Rock and Roll Hall of Fame in 2018. Their legacy remains tethered to a unique sound that balanced icy, futuristic electronics with the warm, driving hooks of classic rock and roll. The Cars redefined the pop-rock landscape, ensuring their songs remain foundational staples of radio and film soundtracks to this day.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/topic/the-Cars",
+      "title": "The Cars | Songs, Members, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Cars_discography",
+      "title": "The Cars discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:48.172Z",
+  "_metrics": {
+    "input_tokens": 24845,
+    "output_tokens": 2428,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009955,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 28650,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Formed in Boston in 1976, The Cars were a defining force in American new wave, successfully bridging the gap between 1960s power pop, 1970s glam, and the nascent art-pop potential of the synthesizer.",
+  "photo_url": "https://cdn.britannica.com/79/240079-050-50B51171/The-Cars-Rock-Band-Ric-Ocasek-1984.jpg",
+  "origin": "Boston, Massachusetts",
+  "active_years": "1976-1988, 2010-2011, 2018",
+  "genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:power-pop",
+      "type": "genre",
+      "name": "Power Pop"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-cars",
+      "type": "project",
+      "name": "The Cars"
+    },
+    {
+      "slug": "project:candy-o",
+      "type": "project",
+      "name": "Candy-O"
+    },
+    {
+      "slug": "project:shake-it-up",
+      "type": "project",
+      "name": "Shake It Up"
+    },
+    {
+      "slug": "project:heartbeat-city",
+      "type": "project",
+      "name": "Heartbeat City"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:just-what-i-needed",
+      "type": "track",
+      "name": "Just What I Needed"
+    },
+    {
+      "slug": "track:you-might-think",
+      "type": "track",
+      "name": "You Might Think"
+    },
+    {
+      "slug": "track:drive",
+      "type": "track",
+      "name": "Drive"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

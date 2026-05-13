@@ -1,0 +1,68 @@
+{
+  "slug": "track:to-hell-with-good-intentions",
+  "name": "To Hell With Good Intentions",
+  "editorial_article": "\"To Hell With Good Intentions\" stands as the quintessential anthem of the Welsh noise-rock trio mclusky. Released in 2002 as a single and a centerpiece of their seminal album 'mclusky Do Dallas', the track captures the band’s signature blend of acerbic wit, jagged guitar lines, and sheer, explosive intensity. Produced by the legendary Steve Albini, the recording strips away all excess, delivering a stark, aggressive sound that perfectly mirrors the track's lyrical themes of irony, frustration, and performative posturing in the music industry.\\n\\nLyrically, the song is a direct, sarcastic assault on the pretensions of rock-and-roll culture. With lines like \"My love is bigger than your love / We take more drugs than a touring funk band,\" the song satirizes the competitive, ego-driven nature of bands and the artifice surrounding them. The refrain, \"And we're all going straight to hell,\" underscores the nihilistic humor that permeated the band's work. Its brevity—clocking in at just over two and a half minutes—highlights the precision of mclusky's songcraft; they do not waste a second, building a wall of sound that is simultaneously repellent and irresistibly catchy. For fans of the early 2000s post-hardcore and noise-rock scenes, this track remains a definitive moment, proving how much impact could be packed into a simple, three-piece setup defined by sharp delivery and uncompromising volume.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/mclusky-to-hell-with-good-intentions",
+      "title": "mclusky – To Hell with Good Intentions (2002) | Track profile - Dork"
+    },
+    {
+      "url": "https://www.amazon.com/Hell-Good-Intention-Mclusky/dp/B00005UD05",
+      "title": "McLusky - To Hell With Good Intention - Amazon.com Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:44.984Z",
+  "_metrics": {
+    "input_tokens": 21479,
+    "output_tokens": 1028,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006912,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 56933,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "A razor-sharp anthem of Welsh noise-rock, \"To Hell With Good Intentions\" serves as an acerbic, high-octane satire of music industry ego from mclusky's defining 2002 album.",
+  "year": "2002",
+  "artists": [
+    {
+      "slug": "artist:mclusky",
+      "type": "artist",
+      "name": "mclusky"
+    }
+  ],
+  "project": {
+    "slug": "project:mclusky-do-dallas",
+    "type": "project",
+    "name": "mclusky Do Dallas"
+  },
+  "genres": [
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    },
+    {
+      "slug": "genre:post-hardcore",
+      "type": "genre",
+      "name": "Post-hardcore"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:steve-albini",
+      "type": "artist",
+      "name": "Steve Albini"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

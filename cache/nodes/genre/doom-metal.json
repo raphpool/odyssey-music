@@ -1,0 +1,97 @@
+{
+  "slug": "genre:doom-metal",
+  "name": "Doom metal",
+  "editorial_article": "Doom metal is an extreme subgenre of heavy metal defined by its deliberate pacing, down-tuned instrumentation, and a pervasive, suffocating atmosphere of gloom. Emerging from the foundational blueprints of the early 1970s—most notably the work of Black Sabbath—the genre distinguishes itself from mainstream heavy metal by favoring slow, crushing tempos and a thick, bass-heavy wall of sound over speed or virtuosity. The aesthetic of doom is deeply rooted in the blues, yet it transmutes those melancholic structures into something more ominous, often utilizing tritones and dissonance to evoke a sense of inevitable despair. Lyrics frequently dwell on themes of suffering, grief, depression, and the existential weight of existence, though they also range into the occult, the religious, and the psychedelic, depending on the specific subgenre.\\n\\nThroughout the 1980s, the genre solidified its identity through pioneering acts like Saint Vitus, Pentagram, Trouble, and Candlemass, who refined the Sabbathian template into a distinct, cohesive sound. As the movement matured, it branched into a diverse spectrum of styles: from the epic, operatic grandeur of Candlemass to the desolate, funeral-paced dirges of funeral doom; from the psychedelic, drug-fueled distortion of stoner metal to the raw, abrasive textures of sludge and drone. By emphasizing sustain, feedback, and the psychological impact of volume rather than rapid-fire riffing, doom metal has maintained its position as one of the most singular and influential corners of the heavy metal lexicon, offering a cathartic, slow-motion descent into the dark heart of musical heaviness. It continues to influence experimental, post-metal, and atmospheric music scenes, remaining a genre built on the power of the heavy, slow-burning riff.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Doom_metal",
+      "title": "Doom metal - Wikipedia"
+    },
+    {
+      "url": "https://daily.bandcamp.com/lists/doom-metal-a-brief-timeline",
+      "title": "Doom Metal: A Brief Timeline | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:27.966Z",
+  "_metrics": {
+    "input_tokens": 19752,
+    "output_tokens": 1445,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007106,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16095,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of heavy metal characterized by slow tempos, low-tuned guitars, and a thick, heavy sound intended to evoke feelings of despair, dread, and impending doom.",
+  "era": "1970s–present",
+  "origin": "United Kingdom and United States",
+  "parent_genres": [
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:funeral-doom",
+      "type": "genre",
+      "name": "Funeral doom"
+    },
+    {
+      "slug": "genre:stoner-metal",
+      "type": "genre",
+      "name": "Stoner metal"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal"
+    },
+    {
+      "slug": "genre:stoner-metal",
+      "type": "genre",
+      "name": "Stoner metal"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:black-sabbath",
+      "type": "artist",
+      "name": "Black Sabbath"
+    },
+    {
+      "slug": "artist:candlemass",
+      "type": "artist",
+      "name": "Candlemass"
+    },
+    {
+      "slug": "artist:saint-vitus",
+      "type": "artist",
+      "name": "Saint Vitus"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:master-of-reality",
+      "type": "project",
+      "name": "Master of Reality"
+    },
+    {
+      "slug": "project:epicus-doomicus-metallicus",
+      "type": "project",
+      "name": "Epicus Doomicus Metallicus"
+    }
+  ],
+  "landmark_tracks": []
+}

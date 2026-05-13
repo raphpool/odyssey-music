@@ -1,0 +1,91 @@
+{
+  "slug": "label:xl-recordings",
+  "name": "XL Recordings",
+  "editorial_article": "XL Recordings is a seminal British independent record label that has profoundly shaped the landscape of modern popular music since its founding in 1989. Established by Tim Palmer and Nick Halkes as an imprint of Beggars Banquet’s dance label Citybeat, XL quickly transcended its rave and breakbeat hardcore origins to become a powerhouse of eclectic, forward-thinking musical output. Under the leadership of Richard Russell, who has steered the company since 1996, the label developed a reputation for an uncompromising A&R approach, prioritizing artistic originality and innovation over mere commercial trends.\\n\\nThroughout the 1990s, XL became synonymous with the explosive energy of UK dance music, defined by legendary releases from The Prodigy. As the millennium turned, Russell successfully transitioned the label into a broader, critically acclaimed force, fostering the careers of diverse icons like Adele, M.I.A., Dizzee Rascal, and The xx. The label’s knack for nurturing talent across genres—from grime and indie rock to electronic and soul—has solidified its status as an institution. With a history of Mercury Prize winners and global chart-toppers, XL Recordings continues to function as a crucial hub for boundary-pushing artists, maintaining its independent spirit while leaving an indelible mark on global culture. It remains a key component of the Beggars Group, balancing a legacy of dance floor dominance with a contemporary roster that continues to challenge the mainstream.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/XL_Recordings",
+      "title": "XL Recordings - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:53.353Z",
+  "_metrics": {
+    "input_tokens": 23590,
+    "output_tokens": 1828,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008741,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 11953,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A powerhouse of British independent music known for its eclectic roster, ranging from 90s rave pioneers to global icons like Adele and The xx.",
+  "founded": "1989",
+  "location": "London, England",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:adele",
+      "type": "artist",
+      "name": "Adele"
+    },
+    {
+      "slug": "artist:the-xx",
+      "type": "artist",
+      "name": "The xx"
+    },
+    {
+      "slug": "artist:m-i-a",
+      "type": "artist",
+      "name": "M.I.A."
+    },
+    {
+      "slug": "artist:dizzee-rascal",
+      "type": "artist",
+      "name": "Dizzee Rascal"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead"
+    },
+    {
+      "slug": "artist:gil-scott-heron",
+      "type": "artist",
+      "name": "Gil Scott-Heron"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-fat-of-the-land",
+      "type": "project",
+      "name": "The Fat of the Land"
+    },
+    {
+      "slug": "project:21",
+      "type": "project",
+      "name": "21"
+    },
+    {
+      "slug": "project:boy-in-da-corner",
+      "type": "project",
+      "name": "Boy in da Corner"
+    },
+    {
+      "slug": "project:in-rainbows",
+      "type": "project",
+      "name": "In Rainbows"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "slug": "genre:opera",
+  "name": "Opera",
+  "editorial_article": "Opera is a comprehensive dramatic art form that emerged in late 16th-century Italy, representing a fusion of vocal and instrumental music, theatrical drama, visual spectacle, and dance. Conceived by the Florentine Camerata, who sought to revive the storytelling power of ancient Greek drama, the genre has evolved over four centuries into a diverse, globally recognized institution. From the ornate, ritualistic productions of the Baroque era—characterized by the rise of the virtuoso castrati and the brilliance of composers like Georg Frideric Handel—to the structurally rigorous and human-focused works of the Classical period exemplified by Wolfgang Amadeus Mozart, opera has mirrored the changing intellectual and social tides of Western history.\\n\\nThe 19th-century Romantic period brought significant expansion to the genre, with composers like Giuseppe Verdi and Richard Wagner pushing the boundaries of harmonic complexity, orchestral scale, and narrative ambition. While Verdi remained rooted in the expressive potential of the human voice and Italian melodic traditions, Wagner revolutionized the medium through the implementation of leitmotifs and monumental, myth-driven cycles. This era also flourished through the bel canto tradition and later, the verismo movement pioneered by Giacomo Puccini, which brought a visceral, realistic intensity to the operatic stage. Throughout the 20th century and into the modern day, opera has continued to adapt, incorporating contemporary political themes—as seen in the works of Benjamin Britten and John Adams—and maintaining its core identity as a heightened, multi-sensory medium for exploring the complexities of the human condition. It remains a cornerstone of Western performance culture, demanding immense technical skill from vocalists, instrumentalists, and conductors alike.",
+  "citations": [
+    {
+      "url": "https://www.sfopera.com/learn/about-opera/a-brief-history-of-opera/",
+      "title": "A Brief History of Opera"
+    },
+    {
+      "url": "https://mdlbeast.com/xp-feed/music-industry/brief-history-of-opera-a-harmonious-journey-through-time",
+      "title": "Brief History of Opera: A Harmonious Journey | MDLBEAST"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:58.279Z",
+  "_metrics": {
+    "input_tokens": 16508,
+    "output_tokens": 1410,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006242,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15904,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Opera is a dramatic, multi-sensory art form that integrates singing, orchestral music, acting, and visual spectacle to tell stories, originating in late Renaissance Italy.",
+  "era": "1597–Present",
+  "origin": "Florence, Italy",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:wolfgang-amadeus-mozart",
+      "type": "artist",
+      "name": "Wolfgang Amadeus Mozart"
+    },
+    {
+      "slug": "artist:giuseppe-verdi",
+      "type": "artist",
+      "name": "Giuseppe Verdi"
+    },
+    {
+      "slug": "artist:richard-wagner",
+      "type": "artist",
+      "name": "Richard Wagner"
+    },
+    {
+      "slug": "artist:giacomo-puccini",
+      "type": "artist",
+      "name": "Giacomo Puccini"
+    },
+    {
+      "slug": "artist:georg-frideric-handel",
+      "type": "artist",
+      "name": "Georg Frideric Handel"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-marriage-of-figaro",
+      "type": "project",
+      "name": "The Marriage of Figaro"
+    },
+    {
+      "slug": "project:the-ring-cycle",
+      "type": "project",
+      "name": "The Ring Cycle"
+    },
+    {
+      "slug": "project:carmen",
+      "type": "project",
+      "name": "Carmen"
+    },
+    {
+      "slug": "project:la-boheme",
+      "type": "project",
+      "name": "La Bohème"
+    },
+    {
+      "slug": "project:lucia-di-lammermoor",
+      "type": "project",
+      "name": "Lucia di Lammermoor"
+    }
+  ],
+  "landmark_tracks": []
+}

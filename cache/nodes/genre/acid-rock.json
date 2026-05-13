@@ -1,0 +1,122 @@
+{
+  "slug": "genre:acid-rock",
+  "name": "Acid rock",
+  "editorial_article": "Acid rock is a potent, high-intensity subgenre of rock music that emerged from the American West Coast in the mid-1960s, acting as both a catalyst and a distinct, heavier sibling to the broader psychedelic rock movement. Rooted in the rawness of garage punk and the primal drive of blues rock, acid rock distinguished itself from the whimsical, pop-oriented sensibilities of British psychedelia and the folk-tinged explorations of the Haight-Ashbury scene. Instead, it emphasized volume, dissonance, and a sense of aggressive spontaneity. Characterized by heavy, distorted electric guitars, the prominent use of fuzztone and wah-wah pedals, and protracted, often meditative or frenzied improvised jams, the music was frequently associated with the underground \"Acid Test\" parties and the countercultural experience of the era.\\n\\nWhile the term \"acid rock\" was often used loosely or interchangeably with \"psychedelic rock\" in the late 1960s—frequently becoming a catch-all descriptor for any band associated with the counterculture—music historians have since solidified its identity as the more extreme, distorted, and rhythmically heavy end of the psychedelic spectrum. As the decade drew to a close, the genre’s commitment to heavy amplification and distorted riffs served as a vital bridge between the loose explorations of the 1960s and the structured aggression of early heavy metal and hard rock. From the proto-metal intensity of the late 60s to its later influence on 1990s stoner metal, acid rock remains a foundational pillar for any sound that seeks to blend deep, psychedelic atmosphere with the crushing power of the overdriven electric guitar. Its legacy persists in every genre that prioritizes the visceral, physical impact of sound alongside its ability to alter consciousness.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Acid_rock",
+      "title": "Acid rock - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/acid+rock?srsltid=AfmBOoru6tnh7T3jS1LXIvqwn89qbACUWnn4bBLugKfzmgFb3Q2XFONB",
+      "title": "Acid Rock Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:40.057Z",
+  "_metrics": {
+    "input_tokens": 12095,
+    "output_tokens": 955,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004456,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8326,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Acid rock is a raw, high-volume subgenre of psychedelic rock that emerged in the mid-1960s, defined by its heavy reliance on distorted guitars, fuzztone, and extended, improvisational jamming. Often used to describe the most intense, blues-rooted side of the West Coast psychedelic movement, it served as a critical precursor to the development of hard rock and heavy metal.",
+  "era": "Mid-1960s to early 1970s",
+  "origin": "United States (specifically West Coast)",
+  "parent_genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:stoner-metal",
+      "type": "genre",
+      "name": "Stoner metal"
+    },
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:grateful-dead",
+      "type": "artist",
+      "name": "Grateful Dead"
+    },
+    {
+      "slug": "artist:jefferson-airplane",
+      "type": "artist",
+      "name": "Jefferson Airplane"
+    },
+    {
+      "slug": "artist:blue-cheer",
+      "type": "artist",
+      "name": "Blue Cheer"
+    },
+    {
+      "slug": "artist:the-doors",
+      "type": "artist",
+      "name": "The Doors"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    },
+    {
+      "slug": "label:philles-records",
+      "type": "label",
+      "name": "Philles Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:anthem-of-the-sun",
+      "type": "project",
+      "name": "Anthem of the Sun"
+    },
+    {
+      "slug": "project:vincebus-eruptum",
+      "type": "project",
+      "name": "Vincebus Eruptum"
+    }
+  ],
+  "landmark_tracks": []
+}

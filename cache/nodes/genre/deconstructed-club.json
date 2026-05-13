@@ -1,0 +1,98 @@
+{
+  "slug": "genre:deconstructed-club",
+  "name": "Deconstructed Club",
+  "editorial_article": "Deconstructed club, often referred to as post-club or avant-club, emerged in the mid-2010s as a radical, internet-native evolution of electronic dance music. It is characterized by the hybridization of various global club rhythms—such as trap, ballroom, batida, jersey club, and grime—with an abrasive, industrial-inspired sound design. This subgenre is not merely a stylistic evolution but a platform for socio-political expression, frequently addressing themes of race, feminism, queer identity, and post-colonialism. Sonic hallmarks include frantic, metallic, and often explosive percussion, constant rhythmic switch-ups, extreme atonality, and the repurposing of pop vocal stems in subversive, \"bootleg\" mashup configurations.\n\nCulturally, the genre is deeply rooted in the confluence of experimental music scenes and digital-age nightlife, most notably epitomized by the influence of New York's GHE20G0TH1K party and the experimental bass movements originating from labels like Night Slugs. The genre's aesthetic is frequently described as an excessive, apocalyptic, or \"distroid\" soundscape, pushing the boundaries of what constitutes danceable music. Central to the genre’s dissemination are \"mixfiles\"—often free mixtapes or DJ mixes that blend original productions with regional club sounds underrepresented in mainstream Western electronic music. Artists like Arca, Lotic, and Elysia Crampton have become defining figures, utilizing the genre's fluid, alien production palette to challenge traditional notions of club-music structures and to foster a sense of 'becoming-with' within their respective communities. Today, deconstructed club continues to serve as an incubator for experimental electronic production, deeply influencing the evolution of hyperpop and other hybrid pop-adjacent movements.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/deconstructed-club/",
+      "title": "Deconstructed Club - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.instagram.com/p/CSe3jJFngq5/",
+      "title": "A starter's guide to Deconstructed Club"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:16.619Z",
+  "_metrics": {
+    "input_tokens": 15660,
+    "output_tokens": 1357,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006052,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 27959,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A mid-2010s experimental electronic genre that hybridizes global club rhythms with abrasive, industrial sound design to challenge traditional dance music structures.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:arca",
+      "type": "artist",
+      "name": "Arca"
+    },
+    {
+      "slug": "artist:lotic",
+      "type": "artist",
+      "name": "Lotic"
+    },
+    {
+      "slug": "artist:sophie",
+      "type": "artist",
+      "name": "SOPHIE"
+    },
+    {
+      "slug": "artist:elysia-crampton",
+      "type": "artist",
+      "name": "Elysia Crampton"
+    },
+    {
+      "slug": "artist:total-freedom",
+      "type": "artist",
+      "name": "Total Freedom"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:night-slugs",
+      "type": "label",
+      "name": "Night Slugs"
+    },
+    {
+      "slug": "label:ghe20g0th1k",
+      "type": "label",
+      "name": "GHE20G0TH1K"
+    },
+    {
+      "slug": "label:hippos-in-tanks",
+      "type": "label",
+      "name": "Hippos in Tanks"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:and-and-and-and-and",
+      "type": "project",
+      "name": "&&&&&"
+    },
+    {
+      "slug": "project:damsel-in-distress",
+      "type": "project",
+      "name": "Damsel in Distress"
+    },
+    {
+      "slug": "project:oil-of-every-pearl-s-un-insides",
+      "type": "project",
+      "name": "Oil of Every Pearl's Un-Insides"
+    }
+  ],
+  "landmark_tracks": []
+}

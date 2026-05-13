@@ -1,0 +1,85 @@
+{
+  "slug": "label:weme-records",
+  "name": "WéMè Records",
+  "editorial_article": "WéMè Records is an independent electronic music label based in Brussels, Belgium, that has carved out a distinct identity since its founding in 2001. Closely associated with the lineage of acid house, IDM, and experimental techno, the label acts as a vital guardian of underground electronic sounds. WéMè is perhaps most widely recognized for its pivotal role in distributing and reissuing catalog materials from legendary artists in the scene, most notably the FSK (Free System Projekt) back catalogue. The label’s aesthetic leans heavily into the gritty, unpolished textures of acid synthesis, often championing artists who operate in the margins of dance music. By maintaining a physical-first distribution ethos and fostering a direct connection with its listeners through its web store and Bandcamp, WéMè has preserved a D.I.Y. spirit that stands in contrast to the increasingly digital-centric landscape of modern electronic labels. Its roster includes both established veterans and niche producers, bridging the gap between historical acid techno archives and contemporary experimental output. WéMè remains an essential touchstone for collectors of hardware-driven electronic music, characterized by a commitment to bold, uncompromising sound design that refuses to cater to mainstream dance floor trends.",
+  "citations": [
+    {
+      "url": "https://wemerecords.com/info/",
+      "title": "Info – Weme records"
+    },
+    {
+      "url": "https://www.serendeepity.net/label/weme-records/",
+      "title": "WeMe Records - Serendeepity"
+    },
+    {
+      "url": "https://wordandsound.net/label/WeMe+Records",
+      "title": "WeMe Records | Label - Word and Sound GmbH"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:24.652Z",
+  "_metrics": {
+    "input_tokens": 27796,
+    "output_tokens": 2112,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010117,
+    "llm_calls": 7,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 23865,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A Brussels-based independent label specializing in gritty, hardware-driven acid house, IDM, and experimental techno since 2001.",
+  "founded": "2001",
+  "location": "Brussels, Belgium",
+  "genres": [
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew"
+    },
+    {
+      "slug": "artist:jodey-kendrick",
+      "type": "artist",
+      "name": "Jodey Kendrick"
+    },
+    {
+      "slug": "artist:free-system-projekt",
+      "type": "artist",
+      "name": "Free System Projekt"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:acid-fiami-vol-1",
+      "type": "project",
+      "name": "Acid Fiami Vol 1"
+    },
+    {
+      "slug": "project:exidy-tours",
+      "type": "project",
+      "name": "Exidy Tours"
+    }
+  ]
+}

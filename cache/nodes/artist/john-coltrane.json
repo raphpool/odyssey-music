@@ -1,0 +1,166 @@
+{
+  "slug": "artist:john-coltrane",
+  "name": "John Coltrane",
+  "editorial_article": "John Coltrane (1926–1967) was an American jazz saxophonist, composer, and bandleader whose profound technical mastery and tireless spiritual search transformed the trajectory of 20th-century music. Born in Hamlet, North Carolina, and coming to prominence in the Philadelphia jazz scene, Coltrane emerged as one of the defining figures of the bebop and hard bop movements. His early career saw him playing with giants such as Miles Davis and Thelonious Monk, where he honed his \"sheets of sound\" technique—a method of rapid-fire, multi-note improvisations that stretched the harmonic boundaries of jazz. However, it was his subsequent move toward modal jazz and, ultimately, avant-garde and free jazz that cemented his status as a visionary. Albums like 'Giant Steps' demonstrated his unparalleled command of harmonic complexity, while 'A Love Supreme' stands as a definitive document of jazz as a meditative, spiritual pursuit. Throughout his short but intensely creative life, Coltrane moved through varied musical landscapes, constantly pushing the limits of his instruments—primarily the tenor and soprano saxophones—to express a depth of emotion and cosmic consciousness that remains unparalleled in modern music. His work with 'Impulse!' records during the mid-60s, which included his second wife Alice Coltrane, pushed the boundaries of collective improvisation and energy, influencing generations of musicians far beyond the confines of jazz, spanning rock, classical, and electronic experimentalism. His legacy is one of perpetual evolution; he never settled for a single sound, always seeking a higher frequency of expression until his untimely death in 1967. Even decades later, his influence remains omnipresent, honored by a posthumous Pulitzer Prize and recognized as a foundational pillar of the American musical canon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/John_Coltrane",
+      "title": "John Coltrane - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/John-Coltrane",
+      "title": "John Coltrane | Biography, Songs, & Albums | Britannica"
+    },
+    {
+      "url": "https://www.kcrw.com/shows/tom-schnabels-rhythm-planet/stories/world-music-influences-on-john-coltranes-music",
+      "title": "World Music influences on John Coltrane's music - KCRW"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:08.479Z",
+  "_metrics": {
+    "input_tokens": 20752,
+    "output_tokens": 1989,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008171,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15852,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "One of the most influential jazz musicians of the 20th century, John Coltrane was a virtuosic saxophonist and composer known for his restless innovation across hard bop, modal, and free jazz. His legacy is defined by his relentless search for spiritual and musical transcendence, culminating in iconic works like 'A Love Supreme'.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/John_Coltrane_1963_cropped_ver2.jpg/500px-John_Coltrane_1963_cropped_ver2.jpg",
+  "origin": "Hamlet, North Carolina, U.S.",
+  "active_years": "1945–1967",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard bop"
+    },
+    {
+      "slug": "genre:spiritual-jazz",
+      "type": "genre",
+      "name": "Spiritual jazz"
+    },
+    {
+      "slug": "genre:modal-jazz",
+      "type": "genre",
+      "name": "Modal jazz"
+    },
+    {
+      "slug": "genre:free-jazz",
+      "type": "genre",
+      "name": "Free jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:prestige",
+      "type": "label",
+      "name": "Prestige"
+    },
+    {
+      "slug": "label:blue-note",
+      "type": "label",
+      "name": "Blue Note"
+    },
+    {
+      "slug": "label:atlantic",
+      "type": "label",
+      "name": "Atlantic"
+    },
+    {
+      "slug": "label:impulse",
+      "type": "label",
+      "name": "Impulse!"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:giant-steps",
+      "type": "project",
+      "name": "Giant Steps"
+    },
+    {
+      "slug": "project:my-favorite-things",
+      "type": "project",
+      "name": "My Favorite Things"
+    },
+    {
+      "slug": "project:a-love-supreme",
+      "type": "project",
+      "name": "A Love Supreme"
+    },
+    {
+      "slug": "project:blue-train",
+      "type": "project",
+      "name": "Blue Train"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:giant-steps",
+      "type": "track",
+      "name": "Giant Steps"
+    },
+    {
+      "slug": "track:my-favorite-things",
+      "type": "track",
+      "name": "My Favorite Things"
+    },
+    {
+      "slug": "track:acknowledgement",
+      "type": "track",
+      "name": "Acknowledgement"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker"
+    },
+    {
+      "slug": "artist:lester-young",
+      "type": "artist",
+      "name": "Lester Young"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:thelonious-monk",
+      "type": "artist",
+      "name": "Thelonious Monk"
+    },
+    {
+      "slug": "artist:alice-coltrane",
+      "type": "artist",
+      "name": "Alice Coltrane"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:trane",
+      "type": "artist",
+      "name": "Trane"
+    }
+  ],
+  "members": []
+}

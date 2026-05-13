@@ -1,0 +1,85 @@
+{
+  "slug": "genre:college-rock",
+  "name": "College rock",
+  "editorial_article": "College rock is a pivotal movement in North American music history, representing the emergence of independent, guitar-driven alternative rock that found its initial lifeblood on university radio stations during the 1980s. Emerging as a reaction against the polished, commercialized sounds dominating mainstream rock radio at the time, college rock flourished through a DIY ethos. It was characterized by its raw, often unrefined production, reliance on jangly or dissonant guitar textures, and introspective, sometimes cryptic lyricism. \n\nThe genre served as the essential bridge between the late 1970s underground punk/new wave explosions and the global explosion of alternative rock in the early 1990s. Artists like R.E.M., The Replacements, Pixies, and Sonic Youth defined the sound, utilizing the burgeoning network of student-run campus radio to bypass major label gatekeepers. This infrastructure allowed for a more eclectic mix of influences to collide, from the earnest, melodic sensibilities of R.E.M. to the experimental noise-rock of Sonic Youth. Because of this, college rock was less a rigid stylistic genre and more a sonic signifier for music that prioritized authenticity, intellectual curiosity, and regional independence. Its success helped cultivate the modern independent music industry, proving that a band could maintain integrity, build a national touring circuit, and reach significant audiences without sacrificing their unique, subterranean identity to the pressures of the corporate music apparatus. By the early 1990s, the \"college rock\" label faded, largely supplanted by the broader, more commercially viable term \"alternative rock,\" but its foundational impact remains the bedrock of modern indie music.",
+  "citations": [
+    {
+      "url": "https://www.musicgateway.com/blog/spotify/a-history-of-college-rock-11-best-hits-of-all-time",
+      "title": "College Rock | Мusic Gateway"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:20.600Z",
+  "_metrics": {
+    "input_tokens": 11974,
+    "output_tokens": 767,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004144,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 11096,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of alternative rock that emerged in the 1980s, driven by its popularity on US college radio stations and characterized by a DIY ethos, jangly guitars, and introspective, anti-commercial sensibilities.",
+  "era": "1980s – early 1990s",
+  "origin": "United States (and Canada)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    },
+    {
+      "slug": "artist:the-replacements",
+      "type": "artist",
+      "name": "The Replacements"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:the-smiths",
+      "type": "artist",
+      "name": "The Smiths"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

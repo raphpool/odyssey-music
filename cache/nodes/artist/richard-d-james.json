@@ -1,0 +1,142 @@
+{
+  "slug": "artist:richard-d-james",
+  "name": "Richard D. James",
+  "editorial_article": "Richard D. James (born August 18, 1971, in Limerick, Ireland) is a highly influential British electronic musician, producer, and DJ, most widely recognized under the moniker Aphex Twin. While his name is synonymous with the evolution of IDM (Intelligent Dance Music) and ambient techno in the 1990s, his creative output has been vast, idiosyncratic, and often challenging, frequently distributed across a dizzying array of pseudonyms—including AFX, Caustic Window, and GAK—that mirror the diverse stylistic pivots of his career. Raised in Cornwall, England, James gained early notoriety for his innovative, highly technical approach to synthesizer programming and unconventional production techniques, which pushed the boundaries of club music and home listening environments alike. Throughout his career, he has been a pillar of the Warp Records roster, though his early works were also instrumental in shaping the identity of the Rephlex Records label, which he co-founded with Grant Wilson-Claridge. James is widely regarded as a pivotal figure whose experimental rigor has influenced generations of electronic musicians, from the complex drill-and-bass structures of his later Aphex Twin output to the lush, minimalist textures of his ambient compositions. His contribution to the canon of 20th-century electronic music remains unmatched in terms of both prolific output and technical sophistication, marking him as a singular voice in the history of music technology and sonic avant-garde. Through his persistent refusal to adhere to genre conventions, he has redefined the possibilities of programmed sound, leaving an indelible mark on the landscape of contemporary electronic culture. His legacy is defined by a relentless curiosity and a profound mastery of synthesis, which continue to resonate across the global electronic music community.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/435132-Richard-D-James?srsltid=AfmBOorrD_zIz2UAFUs1kYBrTsoHR4JIYT5gInOwkmv6O04ET8w9QpAR",
+      "title": "Richard D. James Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/richard-d-james-mn0000355416",
+      "title": "Richard D. James Songs, Albums, Reviews, Bio &... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:57.656Z",
+  "_metrics": {
+    "input_tokens": 23383,
+    "output_tokens": 2529,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009639,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 22068,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Richard D. James is a pioneering electronic producer who reshaped the landscape of ambient techno and IDM through his work as Aphex Twin, AFX, and Caustic Window. Known for his technical mastery, he is a central figure in the Warp Records catalog and a founding force behind the experimental Rephlex label.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000355416/400/mHVS9w0l7oK3zPFDyQsaqd_M69_UI9rrJSVvWL2-yAg=.jpg",
+  "origin": "Cornwall, England",
+  "active_years": "1991–present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85-92"
+    },
+    {
+      "slug": "project:richard-d-james-album",
+      "type": "project",
+      "name": "Richard D. James Album"
+    },
+    {
+      "slug": "project:drukqs",
+      "type": "project",
+      "name": "Drukqs"
+    },
+    {
+      "slug": "project:syro",
+      "type": "project",
+      "name": "Syro"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:xtal",
+      "type": "track",
+      "name": "Xtal"
+    },
+    {
+      "slug": "track:windowlicker",
+      "type": "track",
+      "name": "Windowlicker"
+    },
+    {
+      "slug": "track:alberto-balsalm",
+      "type": "track",
+      "name": "Alberto Balsalm"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:caustic-window",
+      "type": "artist",
+      "name": "Caustic Window"
+    },
+    {
+      "slug": "artist:gak",
+      "type": "artist",
+      "name": "GAK"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ]
+}

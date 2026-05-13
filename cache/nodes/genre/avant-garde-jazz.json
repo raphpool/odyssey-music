@@ -1,0 +1,106 @@
+{
+  "slug": "genre:avant-garde-jazz",
+  "name": "Avant-Garde Jazz",
+  "editorial_article": "Avant-garde jazz, often referred to as avant-jazz, experimental jazz, or simply \"the new thing,\" represents a profound expansion of the jazz language that emerged in the United States during the mid-1950s. By incorporating principles from 20th-century classical music, modernist composition, and rigorous atonal experimentation, it challenged the fundamental conventions of bebop and post-bop. At its core, the genre seeks to bridge the chasm between spontaneous, improvised expression and predetermined structural design. While often conflated with free jazz, avant-garde jazz is frequently distinguished by its emphasis on organized structure, whether through composed melodies, specific rhythmic frameworks, or the calculated tension between soloists and accompaniment. \\n\\nThe genre traces its conceptual roots to late 1940s innovations, such as the early free improvisations of Lennie Tristano. However, it crystallized into a recognizable movement during the late 1950s, driven by visionary figures like Ornette Coleman, whose landmark 1959 album *The Shape of Jazz to Come* fundamentally altered the trajectory of improvisational music. As the movement matured into the 1960s, it attracted influential practitioners like Cecil Taylor, John Coltrane, and the Art Ensemble of Chicago. These artists, along with collectives like the Association for the Advancement of Creative Musicians (AACM), moved jazz into concert halls, museums, and galleries, pushing the boundaries of what constituted a jazz performance. The music remains a testament to the transformative power of artistic rebellion, continuing to influence diverse sounds from modern avant-garde compositions to contemporary post-rock.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Avant-garde_jazz",
+      "title": "Avant-garde jazz - Wikipedia"
+    },
+    {
+      "url": "https://timeline.carnegiehall.org/genres/free-jazz-avant-garde",
+      "title": "History of Free Jazz/Avant-Garde — Timeline of African American Music"
+    },
+    {
+      "url": "https://jazzfuel.com/avant-garde-free-jazz/",
+      "title": "Avant Garde Jazz History | Legendary Free Jazz Artists & Albums"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:10.480Z",
+  "_metrics": {
+    "input_tokens": 19990,
+    "output_tokens": 1368,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007049,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18681,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A genre of jazz that integrates avant-garde art music and modernist composition techniques, emphasizing a balance between structured ensemble composition and improvisational freedom.",
+  "era": "1950s–1960s",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:free-jazz",
+      "type": "genre",
+      "name": "Free jazz"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:free-jazz",
+      "type": "genre",
+      "name": "Free jazz"
+    },
+    {
+      "slug": "genre:post-bop",
+      "type": "genre",
+      "name": "Post-bop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ornette-coleman",
+      "type": "artist",
+      "name": "Ornette Coleman"
+    },
+    {
+      "slug": "artist:cecil-taylor",
+      "type": "artist",
+      "name": "Cecil Taylor"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane"
+    },
+    {
+      "slug": "artist:anthony-braxton",
+      "type": "artist",
+      "name": "Anthony Braxton"
+    },
+    {
+      "slug": "artist:the-art-ensemble-of-chicago",
+      "type": "artist",
+      "name": "The Art Ensemble of Chicago"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:esp-disk",
+      "type": "label",
+      "name": "ESP-Disk"
+    },
+    {
+      "slug": "label:byg-actuel",
+      "type": "label",
+      "name": "BYG Actuel"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-shape-of-jazz-to-come",
+      "type": "project",
+      "name": "The Shape of Jazz to Come"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,87 @@
+{
+  "slug": "artist:deep-purple",
+  "name": "Deep Purple",
+  "editorial_article": "Deep Purple is a seminal English rock band formed in London in 1968, widely recognized as a foundational force in the development of heavy metal and modern hard rock. Often cited alongside Led Zeppelin and Black Sabbath as part of the \"unholy trinity\" of British hard rock, the band's musical evolution is marked by shifting lineups and constant experimentation. Initially emerging as a psychedelic and progressive rock group with their debut album 'Shades of Deep Purple' (1968), they pivoted to a more aggressive, amplified sound with their 1970 breakthrough, 'Deep Purple in Rock'.\\n\\nCentral to their sonic identity—particularly in their most celebrated \"Mark II\" era—was the interplay between Ritchie Blackmore’s virtuosic, neoclassical guitar work and Jon Lord’s heavy, distorted Hammond organ. This signature sound reached its apex on albums such as 'Machine Head' (1972) and the definitive live recording 'Made in Japan' (1972), the latter of which solidified their reputation as one of the most powerful live acts of their time. Though they have seen numerous personnel changes over several decades—most notably the various tenures of vocalists Ian Gillan and David Coverdale—the group remains a towering influence on generations of rock and metal musicians, maintaining a legacy that blends classical complexity with primal, riff-driven intensity. Throughout their long career, they have shifted from the orchestral ambitions of their early years to the high-energy, blues-rooted hard rock that defined the global arena rock movement of the 1970s. Their influence on heavy metal is profound, as they were among the first to integrate high-volume amplification with intricate soloing, creating a template that would be followed for years to come. Their persistent reinvention through various iterations, or \"Marks,\" ensures their status as an enduring fixture in the history of rock music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Deep_Purple",
+      "title": "Deep Purple - Wikipedia"
+    },
+    {
+      "url": "https://www.encyclopedia.com/education/news-wires-white-papers-and-books/deep-purple",
+      "title": "Deep Purple - Encyclopedia.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:24.264Z",
+  "_metrics": {
+    "input_tokens": 20603,
+    "output_tokens": 1656,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007635,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16449,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Deep Purple is a seminal English rock band formed in London in 1968, widely recognized as a foundational force in the development of heavy metal and modern hard rock. Often cited alongside Led Zeppelin and Black Sabbath as part of the \"unholy trinity\" of British hard rock.",
+  "origin": "London, England",
+  "active_years": "1968–1976, 1984–present",
+  "genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:emi-records",
+      "type": "label",
+      "name": "EMI Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:smoke-on-the-water",
+      "type": "track",
+      "name": "Smoke on the Water"
+    },
+    {
+      "slug": "track:highway-star",
+      "type": "track",
+      "name": "Highway Star"
+    },
+    {
+      "slug": "track:child-in-time",
+      "type": "track",
+      "name": "Child in Time"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

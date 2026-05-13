@@ -1,0 +1,117 @@
+{
+  "slug": "artist:otis-redding",
+  "name": "Otis Redding",
+  "editorial_article": "Otis Ray Redding Jr. (1941–1967) was a monumental American singer and songwriter whose raw, emotive vocal power helped define the sound of soul music in the 1960s. Raised in Macon, Georgia, Redding’s early exposure to gospel music and the frenetic energy of local rhythm and blues performers like Little Richard laid the foundation for his own explosive stage presence and deeply soulful delivery. After grinding through the Southern touring circuit as a member of Johnny Jenkins and the Pinetoppers, a serendipitous late-night recording session at Stax Records in Memphis in 1962 launched his solo career with \"These Arms of Mine,\" a track that showcased his unmatched ability to convey heartbreak and yearning.\\n\\nOften called \"The King of Soul,\" Redding became the quintessential artist for Stax Records, epitomizing the label’s gritty, gospel-infused Southern soul sound. His approach was defined by an unvarnished honesty; unlike some of his contemporaries who leaned into polished production, Redding’s music thrived on spontaneity and the interplay between his impassioned voice and the tight, punchy backing of the Stax house bands. Whether performing his own anthems like \"Respect\" or lending his unique, authoritative interpretation to standards like \"Try a Little Tenderness,\" Redding commanded the attention of audiences ranging from segregated Southern juke joints to the counter-culture crowds at the 1967 Monterey Pop Festival.\\n\\nTragically, his meteoric rise was cut short when he died in a plane crash in December 1967, at the age of 26. Released just weeks after his death, \"(Sittin' On) The Dock of the Bay\" became a posthumous chart-topping masterpiece, reflecting a more reflective and contemplative side of his artistry that suggested even greater musical evolution had been on the horizon. His influence remains immeasurable, as his vocal phrasings and commitment to pure, unfiltered expression continue to serve as a blueprint for generations of soul, R&B, and rock singers. Redding’s legacy is not just in his recordings, but in the indelible mark he left on the cultural landscape of the American 20th century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Otis_Redding",
+      "title": "Otis Redding - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/otis-redding",
+      "title": "Otis Redding discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/otis-redding-mn0000414251",
+      "title": "Otis Redding Songs, Albums, Reviews, Bio & Mor... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:43.017Z",
+  "_metrics": {
+    "input_tokens": 16010,
+    "output_tokens": 1809,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006817,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15041,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A seminal figure in 1960s soul music, Otis Redding was a Georgia-born powerhouse singer and songwriter known for his emotive, gospel-influenced delivery and defining role in the Stax Records sound. His career, though tragically cut short at age 26, yielded enduring classics like \"Respect\" and \"Try a Little Tenderness,\" culminating in the posthumous chart-topping success of \"(Sittin' On) The Dock of the Bay.\"",
+  "origin": "Dawson, Georgia, U.S.",
+  "active_years": "1958–1967",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:southern-soul",
+      "type": "genre",
+      "name": "Southern soul"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:stax-records",
+      "type": "label",
+      "name": "Stax Records"
+    },
+    {
+      "slug": "label:volt-records",
+      "type": "label",
+      "name": "Volt Records"
+    },
+    {
+      "slug": "label:atco-records",
+      "type": "label",
+      "name": "Atco Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:pain-in-my-heart",
+      "type": "project",
+      "name": "Pain in My Heart"
+    },
+    {
+      "slug": "project:the-otis-redding-dictionary-of-soul",
+      "type": "project",
+      "name": "The Otis Redding Dictionary of Soul"
+    },
+    {
+      "slug": "project:the-dock-of-the-bay",
+      "type": "project",
+      "name": "The Dock of the Bay"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:these-arms-of-mine",
+      "type": "track",
+      "name": "These Arms of Mine"
+    },
+    {
+      "slug": "track:respect",
+      "type": "track",
+      "name": "Respect"
+    },
+    {
+      "slug": "track:try-a-little-tenderness",
+      "type": "track",
+      "name": "Try a Little Tenderness"
+    },
+    {
+      "slug": "track:sittin-on-the-dock-of-the-bay",
+      "type": "track",
+      "name": "(Sittin' On) The Dock of the Bay"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

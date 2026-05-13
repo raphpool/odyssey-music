@@ -1,0 +1,107 @@
+{
+  "slug": "genre:noise-rock",
+  "name": "Noise Rock",
+  "editorial_article": "Noise rock is a potent, abrasive subgenre of rock music that emerged in the 1980s as an experimental offshoot of punk rock. While it retains the core instrumentation of traditional rock—guitars, bass, and drums—it rejects standard song structures and melodic conventions in favor of visceral, often punishing sonic textures. The genre is characterized by its heavy use of feedback, extreme distortion, and unconventional playing techniques, creating a \"glorious racket\" that prioritizes the sheer power and intensity of sound over technical virtuosity or radio-friendly aesthetics. \n\nThe genre's roots are closely intertwined with the no wave movement, but it expanded significantly as bands began to blend these dissonant sonic explorations with more deliberate songcraft. Pioneers like Sonic Youth were pivotal in bringing noise rock to a broader alternative rock audience, demonstrating how feedback and non-traditional tunings could be woven into compelling, albeit challenging, compositions. Throughout the 1980s and 1990s, the style branched into various iterations: groups like Swans and Big Black channeled a darker, more threatening intensity, while other bands adopted a \"scuzz-rock\" or theatrically repulsive approach, characterized by the output of bands like the Butthole Surfers and Pussy Galore. Often finding a home on labels like Touch & Go, noise rock persists as an essential force in underground music, celebrated for its raw emotional honesty and its refusal to compromise on sonic aggression. Its influence remains widespread, informing decades of experimental, post-hardcore, and avant-garde rock music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/noise-rock-ma0000004455",
+      "title": "Noise-Rock Music Style Overview | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:43.425Z",
+  "_metrics": {
+    "input_tokens": 13283,
+    "output_tokens": 771,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004477,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 7841,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A style of rock music that emerged in the 1980s, characterized by the aggressive use of feedback, heavy distortion, and unconventional song structures to prioritize raw, abrasive sonic texture.",
+  "era": "1980s to present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    },
+    {
+      "slug": "genre:post-hardcore",
+      "type": "genre",
+      "name": "Post-Hardcore"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans"
+    },
+    {
+      "slug": "artist:the-jesus-lizard",
+      "type": "artist",
+      "name": "The Jesus Lizard"
+    },
+    {
+      "slug": "artist:big-black",
+      "type": "artist",
+      "name": "Big Black"
+    },
+    {
+      "slug": "artist:butthole-surfers",
+      "type": "artist",
+      "name": "Butthole Surfers"
+    },
+    {
+      "slug": "artist:daughters",
+      "type": "artist",
+      "name": "Daughters"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:touch-and-go",
+      "type": "label",
+      "name": "Touch & Go"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:liar",
+      "type": "project",
+      "name": "Liar"
+    },
+    {
+      "slug": "project:locust-abortion-technician",
+      "type": "project",
+      "name": "Locust Abortion Technician"
+    },
+    {
+      "slug": "project:you-won-t-get-what-you-want",
+      "type": "project",
+      "name": "You Won't Get What You Want"
+    }
+  ],
+  "landmark_tracks": []
+}

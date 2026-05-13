@@ -1,0 +1,115 @@
+{
+  "slug": "artist:sonny-rollins",
+  "name": "Sonny Rollins",
+  "editorial_article": "Walter Theodore \"Sonny\" Rollins (born September 7, 1930) is an American jazz tenor saxophonist and composer whose towering influence and technical virtuosity earned him the moniker \"Saxophone Colossus.\" Born and raised in New York City, Rollins was a central figure in the mid-20th-century jazz scene, rising to prominence during the bebop and hard bop eras. His career, spanning seven decades, is characterized by a deep, gritty tone, an unmatched ability to improvise thematic variations on jazz standards, and a rhythmic ingenuity that pushed the boundaries of the tenor saxophone.\\n\\nRollins began his professional journey in the late 1940s, quickly establishing himself as a formidable talent by recording with luminaries such as Bud Powell, Miles Davis, and Thelonious Monk. Following a period of personal struggle, he returned to the scene with renewed vigor in the mid-1950s, producing a string of landmark recordings that solidified his status as a giant of the genre. His 1956 masterpiece, \"Saxophone Colossus,\" is widely considered one of the definitive albums in jazz history, showcasing his lyrical phrasing and command of the instrument. Beyond his role as a performer, Rollins is a prolific composer, having contributed timeless standards to the jazz canon, including \"St. Thomas,\" \"Oleo,\" \"Doxy,\" and \"Airegin.\" Throughout his long career, which included a self-imposed sabbatical in the late 1950s and again in the 1960s to practice, Rollins remained a tireless, questing artist, continuously exploring new musical landscapes until his retirement from public performance in 2012. He remains a living titan of jazz, honored for his profound contribution to the evolution of improvisation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sonny_Rollins",
+      "title": "Sonny Rollins - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:16.678Z",
+  "_metrics": {
+    "input_tokens": 12601,
+    "output_tokens": 808,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004362,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10415,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Walter Theodore \"Sonny\" Rollins (born September 7, 1930) is an American jazz tenor saxophonist and composer whose towering influence and technical virtuosity earned him the moniker \"Saxophone Colossus.\" Born and raised in New York City, Rollins was a central figure in the mid-20t",
+  "origin": "New York City, U.S.",
+  "active_years": "1947–2014",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard bop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:prestige-records",
+      "type": "label",
+      "name": "Prestige Records"
+    },
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:riverside-records",
+      "type": "label",
+      "name": "Riverside Records"
+    },
+    {
+      "slug": "label:contemporary-records",
+      "type": "label",
+      "name": "Contemporary Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:saxophone-colossus",
+      "type": "project",
+      "name": "Saxophone Colossus"
+    },
+    {
+      "slug": "project:tenor-madness",
+      "type": "project",
+      "name": "Tenor Madness"
+    },
+    {
+      "slug": "project:sonny-rollins-plus-4",
+      "type": "project",
+      "name": "Sonny Rollins Plus 4"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:st-thomas",
+      "type": "track",
+      "name": "St. Thomas"
+    },
+    {
+      "slug": "track:oleo",
+      "type": "track",
+      "name": "Oleo"
+    },
+    {
+      "slug": "track:doxy",
+      "type": "track",
+      "name": "Doxy"
+    },
+    {
+      "slug": "track:airegin",
+      "type": "track",
+      "name": "Airegin"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:coleman-hawkins",
+      "type": "artist",
+      "name": "Coleman Hawkins"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

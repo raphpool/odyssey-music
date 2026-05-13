@@ -1,0 +1,89 @@
+{
+  "slug": "genre:gothic-rock",
+  "name": "Gothic Rock",
+  "editorial_article": "Gothic rock is a musical movement that emerged in the United Kingdom during the late 1970s, evolving from the ashes of the post-punk explosion. It represents a dramatic departure from the direct, aggressive energy of traditional punk, opting instead for a soundscape characterized by heavy, reverberating basslines, atmospheric keyboards, and moody, introspective guitar textures. Culturally, the genre is deeply indebted to gothic literature, romanticism, and the macabre, with lyrics often exploring themes of existential dread, isolation, despair, and the darker recesses of the human experience. \\n\\nThe genre was defined by pioneering acts such as Bauhaus, whose seminal 1979 single \"Bela Lugosi’s Dead\" is widely considered a foundational moment for the scene, and Siouxsie and the Banshees, who brought an avant-garde sensibility to the movement. Joy Division’s stark, icy soundscapes, as heard on their album *Unknown Pleasures*, also provided a critical template for the genre's atmospheric depth. Throughout the 1980s, the sound expanded into more diverse territories, with The Sisters of Mercy introducing a more rhythmic, drum-machine-heavy approach that would influence future iterations. The aesthetic associated with gothic rock—often incorporating black clothing, dramatic makeup, and theatrical imagery—became a significant cultural subculture in its own right. Over the decades, gothic rock’s influence permeated various other styles, including the emergence of gothic metal in the 1990s and the moodier edges of modern alternative rock. Its legacy remains preserved not just in music, but in the enduring gothic subculture that continues to draw inspiration from the movement's focus on nonconformity, intellectual melancholy, and the beauty found in shadow.",
+  "citations": [
+    {
+      "url": "https://www.musicgateway.com/blog/spotify/what-is-gothic-rock",
+      "title": "What Is Gothic Rock? | Gothic Metal | Goth Rock | Мusic Gateway"
+    },
+    {
+      "url": "https://stampede.clearfield.org/11754/entertainment/music-history-goth-rock/",
+      "title": "Music History: Goth Rock – The Stampede"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:38.708Z",
+  "_metrics": {
+    "input_tokens": 18373,
+    "output_tokens": 1479,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006812,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16876,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A dark, atmospheric offshoot of post-punk that emerged in the late 1970s, defined by its somber, reverb-heavy instrumentation and themes of existential longing and the macabre.",
+  "era": "late 1970s – present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:bauhaus",
+      "type": "artist",
+      "name": "Bauhaus"
+    },
+    {
+      "slug": "artist:siouxsie-and-the-banshees",
+      "type": "artist",
+      "name": "Siouxsie and the Banshees"
+    },
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division"
+    },
+    {
+      "slug": "artist:the-sisters-of-mercy",
+      "type": "artist",
+      "name": "The Sisters of Mercy"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure"
+    },
+    {
+      "slug": "artist:fields-of-the-nephilim",
+      "type": "artist",
+      "name": "Fields of the Nephilim"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:unknown-pleasures",
+      "type": "project",
+      "name": "Unknown Pleasures"
+    },
+    {
+      "slug": "project:first-and-last-and-always",
+      "type": "project",
+      "name": "First and Last and Always"
+    },
+    {
+      "slug": "project:pornography",
+      "type": "project",
+      "name": "Pornography"
+    }
+  ],
+  "landmark_tracks": []
+}

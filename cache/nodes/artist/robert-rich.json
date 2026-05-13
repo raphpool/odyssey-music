@@ -1,0 +1,76 @@
+{
+  "slug": "artist:robert-rich",
+  "name": "Robert Rich",
+  "editorial_article": "Robert Rich is a seminal figure in American ambient and experimental music, renowned for his mastery of microtonal soundscapes, textural synthesis, and deep, immersive listening experiences. Emerging in the early 1980s, Rich became a pioneer of the \"sleep concert\" format, where he performs long-duration, evolving soundscapes intended to be experienced by a sleeping audience. His work often bridges the gap between synthetic electronic manipulation and organic instrumentation, incorporating elements of tribal music, drone, and avant-garde composition. Rich’s approach to sound is characterized by a high degree of technical sophistication; he is a master synthesizer programmer, often utilizing custom instruments and tuning systems to evoke ethereal, psychological spaces. Over a career spanning four decades, his influence has been profound, helping to define the aesthetics of dark ambient and deep listening music. Albums like 'Stalker' (a collaboration with B. Lustmord) and his prolific solo work demonstrate an ability to craft sonic worlds that are simultaneously expansive and intimate, reflecting a lifelong curiosity about acoustics, psychoacoustics, and the intersection of technology and the human spirit. Through his extensive discography and commitment to live performance, Rich has established himself as a cornerstone of the global ambient scene.",
+  "citations": [
+    {
+      "url": "https://robertrich.com/discography/",
+      "title": "Robert Rich | Discography - Robert Rich"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/robert-rich",
+      "title": "Robert Rich discography - RYM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:46.772Z",
+  "_metrics": {
+    "input_tokens": 24395,
+    "output_tokens": 2020,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009129,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 18447,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Robert Rich is a seminal figure in American ambient and experimental music, renowned for his mastery of microtonal soundscapes, textural synthesis, and deep, immersive listening experiences.",
+  "origin": "United States",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:soundscape-productions",
+      "type": "label",
+      "name": "Soundscape Productions"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:stalker",
+      "type": "project",
+      "name": "Stalker"
+    },
+    {
+      "slug": "project:sunyata",
+      "type": "project",
+      "name": "Sunyata"
+    },
+    {
+      "slug": "project:trances",
+      "type": "project",
+      "name": "Trances"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

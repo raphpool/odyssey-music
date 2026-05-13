@@ -1,0 +1,129 @@
+{
+  "slug": "artist:mariah-carey",
+  "name": "Mariah Carey",
+  "editorial_article": "Mariah Carey (born March 27, 1969, Huntington, New York) is an American pop and R&B singer, songwriter, and producer whose phenomenal vocal range—often cited as spanning five octaves—and technical mastery redefined the sound of 1990s and 2000s popular music. Raised by her mother, a vocal coach and former opera singer, Carey developed a sophisticated grasp of vocal mechanics early on, blending pop melodies with gospel inflections and R&B sensibilities. After signing with Columbia Records in 1988 following a fortuitous demo tape discovery by Tommy Mottola, her self-titled 1990 debut became a massive success, establishing her as an immediate force in the industry. Her career is marked by unprecedented commercial benchmarks, including holding the record for the most number-one singles by a solo artist in Billboard Hot 100 history. Her 1994 holiday classic, \"All I Want for Christmas Is You,\" remains one of the most culturally pervasive and successful songs of all time, further cementing her status as an enduring pop icon. Throughout her career, she has received numerous accolades, including Grammy Awards and induction into the Songwriters Hall of Fame in 2022, and her legacy continues to influence generations of vocalists who emulate her distinct melismatic style and command of the studio. Beyond her vocal prowess, Carey is a prolific songwriter who has penned almost all of her chart-topping hits, setting a high standard for artistic control in the commercial pop arena. Her ability to navigate various sonic landscapes—from soulful ballads to hip-hop-inflected pop tracks—demonstrates her enduring versatility as an artist. Even after decades in the public eye, she remains a monumental figure in popular culture, consistently reinventing her sound while maintaining the signature technical brilliance that first brought her to global attention.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Mariah-Carey",
+      "title": "Mariah Carey | Biography, Christmas, Songs, Olympics ... - Britannica"
+    },
+    {
+      "url": "https://www.imdb.com/name/nm0001014/bio/",
+      "title": "Mariah Carey - Biography - IMDb"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:25.424Z",
+  "_metrics": {
+    "input_tokens": 20711,
+    "output_tokens": 1936,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008082,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15167,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mariah Carey is an American pop and R&B superstar, songwriter, and producer widely acclaimed for her five-octave vocal range and her immense influence on modern vocal music. With 19 Billboard Hot 100 number-one hits and over 200 million albums sold, she remains one of the most successful artists in music history.",
+  "photo_url": "https://cdn.britannica.com/57/244057-050-D13DD2C5/Singer-Mariah-Carey-2008-New-York-City.jpg",
+  "origin": "Huntington, New York, U.S.",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mariah-carey",
+      "type": "project",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "project:emotions",
+      "type": "project",
+      "name": "Emotions"
+    },
+    {
+      "slug": "project:music-box",
+      "type": "project",
+      "name": "Music Box"
+    },
+    {
+      "slug": "project:daydream",
+      "type": "project",
+      "name": "Daydream"
+    },
+    {
+      "slug": "project:butterfly",
+      "type": "project",
+      "name": "Butterfly"
+    },
+    {
+      "slug": "project:the-emancipation-of-mimi",
+      "type": "project",
+      "name": "The Emancipation of Mimi"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:vision-of-love",
+      "type": "track",
+      "name": "Vision of Love"
+    },
+    {
+      "slug": "track:fantasy",
+      "type": "track",
+      "name": "Fantasy"
+    },
+    {
+      "slug": "track:all-i-want-for-christmas-is-you",
+      "type": "track",
+      "name": "All I Want for Christmas Is You"
+    },
+    {
+      "slug": "track:we-belong-together",
+      "type": "track",
+      "name": "We Belong Together"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

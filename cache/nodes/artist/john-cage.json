@@ -1,0 +1,109 @@
+{
+  "slug": "artist:john-cage",
+  "name": "John Cage",
+  "editorial_article": "John Cage (1912–1992) stands as perhaps the most transformative and polarizing figure in 20th-century American avant-garde music. Renowned as the pioneer of indeterminacy and a deeply philosophical composer, Cage systematically dismantled the traditional Western reliance on intention, harmony, and structural logic. By integrating the principles of Zen Buddhism and the I Ching, he championed a revolutionary approach to creativity that prioritized the removal of the ego, famously utilizing chance operations to allow sounds to exist as themselves rather than as vehicles for the composer’s personal expression.\n\nBorn in Los Angeles, Cage’s musical evolution began under the tutelage of Henry Cowell and Arnold Schoenberg. However, he quickly broke away from classical constraints. In the late 1930s, he developed the \"prepared piano\"—a seminal innovation that altered the timbre of a standard grand piano by inserting household objects between the strings—transforming the instrument into a one-man percussion ensemble. His career is marked by iconic milestones, most notably the 1952 premiere of 4'33\", a composition consisting entirely of silence, which challenged audiences to reconsider the definition of music by turning their attention to the unintentional environmental sounds filling the room. Through his extensive collaborations with the Merce Cunningham Dance Company and his experimental work with radio, magnetic tape, and electronic synthesis, Cage fundamentally altered the trajectory of modern sound, creating a conceptual legacy that remains foundational to experimental, minimal, and ambient music today.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/john-cage-mn0000183867",
+      "title": "John Cage Songs, Albums, Reviews, Bio & More |... | AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/artist/26955-John-Cage?srsltid=AfmBOorlIVyMf5GgiNqTsw6oecQe0di1YZOvpsy_SBeyYVTaSvfvuu_L",
+      "title": "John Cage Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/john-cage",
+      "title": "John Cage Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:54.941Z",
+  "_metrics": {
+    "input_tokens": 19197,
+    "output_tokens": 1779,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007468,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 19352,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "John Cage (1912–1992) stands as perhaps the most transformative and polarizing figure in 20th-century American avant-garde music.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000183867/400/y98xtyuYHY9jkNURCr3eK9_M69_UI9rrJSVvWL2-yAg=.jpg",
+  "origin": "Los Angeles, CA",
+  "active_years": "1930s - 1990s",
+  "genres": [
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:sonatas-and-interludes",
+      "type": "project",
+      "name": "Sonatas and Interludes"
+    },
+    {
+      "slug": "project:4-33",
+      "type": "project",
+      "name": "4'33\""
+    },
+    {
+      "slug": "project:imaginary-landscape-no-1",
+      "type": "project",
+      "name": "Imaginary Landscape No. 1"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:4-33",
+      "type": "track",
+      "name": "4'33\""
+    },
+    {
+      "slug": "track:in-a-landscape",
+      "type": "track",
+      "name": "In a Landscape"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:arnold-schoenberg",
+      "type": "artist",
+      "name": "Arnold Schoenberg"
+    },
+    {
+      "slug": "artist:henry-cowell",
+      "type": "artist",
+      "name": "Henry Cowell"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

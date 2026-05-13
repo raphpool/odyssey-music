@@ -1,0 +1,77 @@
+{
+  "slug": "artist:aretha-franklin",
+  "name": "Aretha Franklin",
+  "editorial_article": "Aretha Louise Franklin (1942–2018), universally revered as the \"Queen of Soul,\" was an American singer, songwriter, and pianist whose profound influence spanned gospel, R&B, soul, and pop. Born in Memphis and raised in Detroit, where her father C.L. Franklin was a prominent minister, her early musical foundation was rooted in the gospel tradition of the New Bethel Baptist Church. While she initially pursued a recording career with Columbia Records, it was her move to Atlantic Records in 1966 that launched a legendary run of commercial and artistic triumphs. Throughout the late 1960s and 1970s, she defined the sound of soul, delivering powerful, emotionally resonant hits including \"Respect,\" \"Chain of Fools,\" and \"(You Make Me Feel Like) A Natural Woman.\" \\n\\nBeyond her commercial success, Franklin was a pivotal figure in American culture, lending her voice to the civil rights movement and breaking barriers as the first woman inducted into the Rock and Roll Hall of Fame in 1987. Her career saw multiple evolutions, including a significant revival in the 1980s under Arista Records with hits like \"Freeway of Love.\" Recognized by Rolling Stone as the greatest singer of all time, she earned 18 Grammy Awards and remains one of the best-selling artists in history, celebrated for her vocal mastery, virtuosic piano playing, and an uncanny ability to infuse deep spiritual weight into popular songs. Her legacy extends well beyond her discography, serving as a pillar of American music and a global icon of artistic resilience and power.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Aretha_Franklin",
+      "title": "Aretha Franklin - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Aretha_Franklin_discography",
+      "title": "Aretha Franklin discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:41.657Z",
+  "_metrics": {
+    "input_tokens": 20475,
+    "output_tokens": 1955,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008051,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15435,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Aretha Louise Franklin (1942–2018), universally revered as the \"Queen of Soul,\" was an American singer, songwriter, and pianist whose profound influence spanned gospel, R&B, soul, and pop.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Aretha_Franklin_1968.jpg/500px-Aretha_Franklin_1968.jpg",
+  "origin": "Detroit, Michigan, U.S.",
+  "active_years": "1954–2017",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:gospel",
+      "type": "genre",
+      "name": "Gospel"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:arista-records",
+      "type": "label",
+      "name": "Arista Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

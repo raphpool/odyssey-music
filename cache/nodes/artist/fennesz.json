@@ -1,0 +1,149 @@
+{
+  "slug": "artist:fennesz",
+  "name": "Fennesz",
+  "editorial_article": "Christian Fennesz (born 1962, Vienna) is an Austrian guitarist, composer, and electronic musician recognized as one of the most distinctive and influential voices in contemporary electronic music. Emerging from the Viennese techno scene in the early 1990s, he developed a pioneering style by processing electric guitar through digital systems, creating a hallmark sound of shimmering, glitch-inflected, and melodic ambient noise. His early solo work, such as the Prix Ars Electronica-winning debut 'Hotel Paral.lel' (1997), established him as a master of texture. However, it was his 2001 milestone album 'Endless Summer' that fundamentally shifted the landscape of experimental music by integrating delicate, pop-informed melodies beneath colossal, symphonic electronic soundscapes. This approach brought a new emotional depth to abstract music, blurring the lines between high-concept sound design and accessible musicality. Over a career spanning decades, Fennesz has maintained a rigorous collaborative practice, working with luminaries like Ryuichi Sakamoto, David Sylvian, and Jim O'Rourke, and participating in the improvisational trio Fenn O'Berg. His influence extends far beyond the experimental community, as his ability to sculpt expansive sonic spaces—evident in albums like 'Venice' and 'Black Sea'—has redefined the possibilities of guitar-based electronics. He remains a central figure in modern sound art, consistently evolving his practice through both studio recordings and diverse multi-disciplinary collaborations.",
+  "citations": [
+    {
+      "url": "https://www.fennesz.com/biography",
+      "title": "Fennesz | Biography"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/fennesz",
+      "title": "Fennesz Albums: songs, discography, biography, and listening guide"
+    },
+    {
+      "url": "https://www.discogs.com/artist/3837-Fennesz?srsltid=AfmBOooL5aEfac0FiDMx9mYvY7XUWydwXY39IDKJrsqykupn-2D8-r-x",
+      "title": "Fennesz Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:09.619Z",
+  "_metrics": {
+    "input_tokens": 14671,
+    "output_tokens": 1505,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005925,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13599,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "An Austrian visionary who redefined electronic music by blending processed guitar textures with delicate, melodic ambient structures.",
+  "photo_url": "https://www.fennesz.com/media/presspictures/Fennesz%20%E2%80%93%20photo%20by%20Carsten%20Nicolai%201.jpg",
+  "origin": "Vienna, Austria",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:electroacoustic",
+      "type": "genre",
+      "name": "Electroacoustic"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:editions-mego",
+      "type": "label",
+      "name": "Editions Mego"
+    },
+    {
+      "slug": "label:touch-records",
+      "type": "label",
+      "name": "Touch Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hotel-paral-lel",
+      "type": "project",
+      "name": "Hotel Paral.lel"
+    },
+    {
+      "slug": "project:endless-summer",
+      "type": "project",
+      "name": "Endless Summer"
+    },
+    {
+      "slug": "project:venice",
+      "type": "project",
+      "name": "Venice"
+    },
+    {
+      "slug": "project:black-sea",
+      "type": "project",
+      "name": "Black Sea"
+    },
+    {
+      "slug": "project:becs",
+      "type": "project",
+      "name": "Bécs"
+    },
+    {
+      "slug": "project:agora",
+      "type": "project",
+      "name": "Agora"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:caecilia",
+      "type": "track",
+      "name": "Caecilia"
+    },
+    {
+      "slug": "track:a-year-in-a-minute",
+      "type": "track",
+      "name": "A Year in a Minute"
+    },
+    {
+      "slug": "track:endless-summer",
+      "type": "track",
+      "name": "Endless Summer"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    },
+    {
+      "slug": "artist:david-sylvian",
+      "type": "artist",
+      "name": "David Sylvian"
+    },
+    {
+      "slug": "artist:jim-o-rourke",
+      "type": "artist",
+      "name": "Jim O'Rourke"
+    },
+    {
+      "slug": "artist:peter-rehberg",
+      "type": "artist",
+      "name": "Peter Rehberg"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

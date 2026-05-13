@@ -1,0 +1,95 @@
+{
+  "slug": "artist:earth",
+  "name": "Earth",
+  "editorial_article": "Earth is a foundational American rock band, originally formed in Olympia, Washington, in 1989, and led by the visionary guitarist Dylan Carlson. Widely credited as the primary architects of drone metal, the band's early output—most notably the 1993 landmark debut 'Earth 2'—dismantled the conventions of heavy metal, replacing riff-driven aggression with long-form, minimalist explorations of feedback, distortion, and glacial pacing. Their work profoundly shifted the landscape of extreme music, providing a direct blueprint for later experimental acts like Sunn O))). \\n\\nAfter a period of hiatus in the late 1990s due to Carlson's personal struggles, the band reformed in the early 2000s, undergoing a significant stylistic evolution. While maintaining the core principles of drone, repetition, and deliberate tempo, their later work began incorporating diverse influences including American folk, country, jazz-rock, and cinematic soundtracks. Albums such as 'Hex; or Printing in the Infernal Method' and 'The Bees Made Honey in the Lion's Skull' showcased a refined, earthy aesthetic that drew connections between the spiritual, expansive sounds of 1960s psychedelic rock and the narrative weight of classic American Americana. Throughout their decades-long career, Earth has remained a restless experimental project, consistently expanding the definition of heavy music while staying tethered to the minimalist foundations established by Carlson at the group's inception.",
+  "citations": [
+    {
+      "url": "https://www.metal-archives.com/bands/Earth/10278",
+      "title": "Earth - Encyclopaedia Metallum: The Metal Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:23.000Z",
+  "_metrics": {
+    "input_tokens": 51595,
+    "output_tokens": 2775,
+    "cache_read_tokens": 8100,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.017264,
+    "llm_calls": 8,
+    "search_calls": 2,
+    "fetch_calls": 2,
+    "turns": 8,
+    "emit_attempts": 4,
+    "agent_ms": 26382,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Earth is a foundational drone metal band led by Dylan Carlson, known for pioneering minimalist, feedback-heavy compositions that evolved into an expansive, meditative sound incorporating folk and psychedelic influences.",
+  "photo_url": "https://www.metal-archives.com/images/1/0/2/7/10278_photo.jpg?1947",
+  "origin": "Olympia, Washington, U.S.",
+  "active_years": "1989-1997, 2001-present",
+  "genres": [
+    {
+      "slug": "genre:drone-metal",
+      "type": "genre",
+      "name": "Drone metal"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sargent-house",
+      "type": "label",
+      "name": "Sargent House"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:earth-2-special-low-frequency-version",
+      "type": "project",
+      "name": "Earth 2 - Special Low Frequency Version"
+    },
+    {
+      "slug": "project:hex-or-printing-in-the-infernal-method",
+      "type": "project",
+      "name": "Hex; or Printing in the Infernal Method"
+    },
+    {
+      "slug": "project:the-bees-made-honey-in-the-lion-s-skull",
+      "type": "project",
+      "name": "The Bees Made Honey in the Lion's Skull"
+    },
+    {
+      "slug": "project:pentastar-in-the-style-of-demons",
+      "type": "project",
+      "name": "Pentastar: In the Style of Demons"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:geometry-of-murder",
+      "type": "track",
+      "name": "Geometry of Murder"
+    },
+    {
+      "slug": "track:the-bees-made-honey-in-the-lion-s-skull",
+      "type": "track",
+      "name": "The Bees Made Honey in the Lion's Skull"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

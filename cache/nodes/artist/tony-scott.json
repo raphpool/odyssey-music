@@ -1,0 +1,114 @@
+{
+  "slug": "artist:tony-scott",
+  "name": "Tony Scott",
+  "editorial_article": "Tony Scott (1921–2007), born Anthony Joseph Sciacca in Morristown, New Jersey, was a visionary American jazz clarinetist, composer, and bandleader whose restless curiosity led him far beyond the traditional confines of the New York jazz scene. Trained at the Juilliard School, Scott was a dominant figure in the 1950s jazz world, earning multiple DownBeat critics' poll awards as the top clarinetist. He recorded and performed with titans such as Sarah Vaughan and Billie Holiday, and helped launch the early careers of legends like Bill Evans and Paul Motian, who served as sidemen on several of his influential late-50s recordings. \\n\\nDisillusioned with the state of the American jazz industry and the decline of the clarinet's prominence in the bebop era, Scott embarked on extensive travels throughout Asia and Africa in the 1960s. This period of artistic metamorphosis proved defining. His immersion in Eastern musical traditions, Hindu temple music, and meditative practices culminated in the release of the seminal 1964 album Music for Zen Meditation. Often cited as a pioneering work in what would later become the New Age genre, the album showcased Scott’s unique ability to blend the cool, fluid improvisation of jazz with atmospheric, spiritual soundscapes. \\n\\nScott spent his later decades living in Italy, where he continued to perform, collaborate with local jazz artists, and explore new sonic frontiers, including brief forays into electronica. His enduring legacy is that of a \"cool\" jazz master who refused to be tethered to a single style, effectively bridging the gap between mid-century American jazz and global spiritual music traditions. His life and artistic struggles were the subject of the 2010 documentary 'Io sono Tony Scott, ovvero come l'Italia fece fuori il più grande clarinettista del jazz', which cemented his status as a complex, globe-trotting innovator of 20th-century music. His parents were Sicilians who settled in Morristown, New Jersey, where their son was born. Both were amateur musicians and Scott (originally Sciacca) was encouraged to take his turn at family parties and amateur shows, imitating the Mills Brothers, accompanied by his guitarist brother Nick. He learned to love jazz when his brother played him records by Duke Ellington (with whom Scott worked in 1953) and Count Basie, taking up the clarinet when he was 12. Two years later he formed his first quartet, the Hometown Band, with pianist Bobby Tucker.",
+  "citations": [
+    {
+      "url": "https://www.theguardian.com/news/2007/apr/10/guardianobituaries.musicnews1",
+      "title": "Tony Scott | US news | The Guardian"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/tony-scott-mn0000129778",
+      "title": "Tony Scott Songs, Albums, Reviews, Bio & More ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:54.398Z",
+  "_metrics": {
+    "input_tokens": 71494,
+    "output_tokens": 4198,
+    "cache_read_tokens": 24308,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.024778,
+    "llm_calls": 11,
+    "search_calls": 2,
+    "fetch_calls": 2,
+    "turns": 11,
+    "emit_attempts": 5,
+    "agent_ms": 37708,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A pioneering jazz clarinetist, composer, and early architect of New Age music, Tony Scott evolved from a leading figure in the 1950s New York cool jazz scene into a globe-trotting explorer of Eastern spiritual and folk traditions.",
+  "origin": "Morristown, New Jersey, U.S.",
+  "active_years": "1946–2007",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool Jazz"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:rca-victor",
+      "type": "label",
+      "name": "RCA Victor"
+    },
+    {
+      "slug": "label:core",
+      "type": "label",
+      "name": "Core"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:music-for-zen-meditation",
+      "type": "project",
+      "name": "Music for Zen Meditation"
+    },
+    {
+      "slug": "project:both-sides-of-tony-scott",
+      "type": "project",
+      "name": "Both Sides of Tony Scott"
+    },
+    {
+      "slug": "project:music-for-yoga-meditation-and-other-joys",
+      "type": "project",
+      "name": "Music for Yoga Meditation and Other Joys"
+    },
+    {
+      "slug": "project:african-bird",
+      "type": "project",
+      "name": "African Bird"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hare-krishna",
+      "type": "track",
+      "name": "Hare Krishna"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:billie-holiday",
+      "type": "artist",
+      "name": "Billie Holiday"
+    },
+    {
+      "slug": "artist:sarah-vaughan",
+      "type": "artist",
+      "name": "Sarah Vaughan"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

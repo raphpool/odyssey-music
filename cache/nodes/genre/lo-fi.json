@@ -1,0 +1,78 @@
+{
+  "slug": "genre:lo-fi",
+  "name": "Lo-fi",
+  "editorial_article": "Lo-fi, an abbreviation of \"low fidelity,\" describes a music production aesthetic defined by the intentional inclusion of recording imperfections. Unlike high-fidelity standards that prioritize sonic clarity and pristine production, lo-fi embraces harmonic distortion, tape hiss, room noise, and other artifacts typically removed in professional studios. While initially a necessity for independent musicians with limited access to resources, lo-fi evolved into a deliberate stylistic choice that evokes nostalgia, intimacy, and a sense of raw authenticity.\n\nThe roots of lo-fi trace back to the 1960s, with artists like The Beach Boys experimenting with home-recorded tapes and deliberate distortion. As independent production became more viable through the 1970s and 1980s, the aesthetic grew alongside the rise of DIY rock and, later, 1990s grunge. However, its modern cultural saturation began in the 2000s, as hip-hop producers like J Dilla and Nujabes began incorporating dusty, crackling textures and slow jazz-inspired loops into their production. This approach paved the way for the \"chill beats\" phenomenon of the 2010s and 2020s, where lo-fi became a cornerstone of internet culture. Platforms like YouTube enabled the rise of 24/7 streams, such as the iconic \"Lofi Girl\" channel, which solidified the genre as the definitive soundtrack for focus, study, and relaxation in an increasingly digital, work-from-home era. Today, lo-fi represents a unique intersection of technical limitation and creative intent, transforming the \"errors\" of the past into the atmosphere of the present.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/lo-fi-music",
+      "title": "Lo-fi music | Description, Production, & History - Britannica"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/what-is-lofi-explained",
+      "title": "History and Characteristics of Lo-fi Music - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:47.376Z",
+  "_metrics": {
+    "input_tokens": 20872,
+    "output_tokens": 1283,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007142,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11786,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A music production aesthetic characterized by the intentional inclusion of analog or digital artifacts—such as tape hiss, vinyl crackle, and harmonic distortion—to create an atmosphere of warmth, nostalgia, or intimacy.",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:j-dilla",
+      "type": "artist",
+      "name": "J Dilla"
+    },
+    {
+      "slug": "artist:nujabes",
+      "type": "artist",
+      "name": "Nujabes"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

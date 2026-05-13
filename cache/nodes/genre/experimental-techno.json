@@ -1,0 +1,86 @@
+{
+  "slug": "genre:experimental-techno",
+  "name": "Experimental Techno",
+  "editorial_article": "Experimental Techno is an expansive and non-conformist subgenre of electronic music that prioritizes sonic exploration and structural innovation over the utilitarian demands of the traditional dancefloor. While firmly rooted in the rhythmic vocabulary of techno, the genre fundamentally deconstructs the standard four-on-the-floor template, frequently incorporating abstract textures, broken or polyrhythmic structures, and a heavy reliance on digital signal processing, modular synthesis, and granular sound manipulation. Emerging as a distinct aesthetic in the 1990s and 2000s, it functions as a bridge between the repetitive hypnotic pull of club music and the cerebral, unconventional landscape of avant-garde composition. \\n\\nThe genre draws deep stylistic lineage from historical movements such as industrial, which provided the blueprint for abrasive timbres and mechanical grit, and the tape-based experiments of musique concrète, which emphasized the transformation of raw, real-world soundscapes. The evolution of the genre is closely tied to distinct technological shifts: from the early IDM (Intelligent Dance Music) experiments in the UK that championed home listening, to the German minimalist schools like Basic Channel that stripped techno to its barest, dub-inflected essentials, and finally the \"Clicks & Cuts\" era of the early 2000s, which elevated digital errors and microscopic sonic artifacts to the status of primary rhythmic elements. Today, experimental techno exists in a fluid, post-club environment, often utilizing generative systems to create evolving, complex soundscapes that favor tactile, immersive, and often challenging listening experiences over commercial viability. It remains a vital laboratory for producers seeking to push the boundaries of what is possible within a machine-based musical framework.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/experimental-techno",
+      "title": "Experimental Techno - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:39.611Z",
+  "_metrics": {
+    "input_tokens": 12274,
+    "output_tokens": 714,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00414,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 7716,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of techno that prioritizes sonic exploration and structural innovation over dancefloor functionality, characterized by abstract textures, complex or broken rhythms, and heavy digital signal processing.",
+  "era": "1990s to present",
+  "origin": "United Kingdom and Germany",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:deconstructed-club",
+      "type": "genre",
+      "name": "Deconstructed Club"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:mars89",
+      "type": "artist",
+      "name": "Mars89"
+    },
+    {
+      "slug": "artist:shadowax",
+      "type": "artist",
+      "name": "Shadowax"
+    },
+    {
+      "slug": "artist:happa",
+      "type": "artist",
+      "name": "Happa"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:basic-channel",
+      "type": "label",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

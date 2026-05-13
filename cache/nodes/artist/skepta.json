@@ -1,0 +1,78 @@
+{
+  "slug": "artist:skepta",
+  "name": "Skepta",
+  "editorial_article": "Chief Joseph Olaitan Adenuga Jr, professionally known as Skepta, is a transformative figure in British music, widely recognized as a primary architect of the global grime sound. Born in 1982 in North London, Adenuga began his musical journey as a DJ within the Tottenham-based Meridian Crew before pivoting to become one of the most formidable MCs in the scene. Alongside his brother Jme and others, he co-founded the influential collective and label Boy Better Know in 2005, a venture that would prove pivotal in maintaining the independent spirit of grime amidst industry pressure.\\n\\nSkepta's career is marked by a refusal to compromise, most notably seen in his transition from early commercial attempts to the raw, self-produced sound of his 2016 masterpiece, 'Konnichiwa.' That album, featuring seminal tracks such as 'That's Not Me' and 'Shutdown,' earned the Mercury Prize and served as a catalyst for a massive resurgence in grime's global popularity. Beyond his solo work, he has been a bridge between the UK and US hip-hop scenes, with his production and collaborative efforts on tracks like ASAP Rocky’s 'Praise the Lord (Da Shine)' reaching international audiences. A visionary in more than just sound, Skepta's impact extends to fashion, visual arts, and film, securing his place as a central figure in 21st-century British pop culture. He continues to shape the underground and mainstream alike, holding a Nigerian chieftaincy as the 'Amuludun of Odo-Aje,' a testament to his enduring cultural legacy. Skepta's stylistic range spans from early, frantic grime instrumentals to more introspective, bass-heavy explorations in his later work, consistently maintaining an authentic voice that speaks to the realities of London life.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Skepta",
+      "title": "Skepta - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/skepta",
+      "title": "Skepta Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:16.879Z",
+  "_metrics": {
+    "input_tokens": 20246,
+    "output_tokens": 1260,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006951,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13146,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Skepta is a Nigerian-British grime MC, rapper, producer, and co-founder of Boy Better Know, widely credited with bringing the grime genre to international prominence in the mid-2010s.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Skepta_2025_%28cropped%29.jpg/500px-Skepta_2025_%28cropped%29.jpg",
+  "origin": "London, England",
+  "active_years": "2002–present",
+  "genres": [
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    },
+    {
+      "slug": "genre:british-hip-hop",
+      "type": "genre",
+      "name": "British Hip Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:boy-better-know",
+      "type": "label",
+      "name": "Boy Better Know"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:shutdown",
+      "type": "track",
+      "name": "Shutdown"
+    },
+    {
+      "slug": "track:that-s-not-me",
+      "type": "track",
+      "name": "That's Not Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

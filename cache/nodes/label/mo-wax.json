@@ -1,0 +1,81 @@
+{
+  "slug": "label:mo-wax",
+  "name": "Mo' Wax",
+  "editorial_article": "Mo' Wax was a pioneering British independent record label that fundamentally reshaped electronic music and hip-hop in the 1990s. Founded in 1992 by James Lavelle, the label became the essential epicenter for the development of trip-hop and abstract hip-hop, fostering a unique sonic atmosphere that blurred the boundaries between sample-based production, cinematic soundscapes, and experimental electronica. During its decade-long operation, Mo' Wax was celebrated not only for its eclectic roster—which included heavyweights such as DJ Shadow, UNKLE, and Money Mark—but also for its distinctive aesthetic, characterized by high-quality packaging and a strong focus on visual arts, often collaborating with graphic artists like Ben Drury and Futura 2000.\\n\\nThe label served as a vital bridge between experimental hip-hop and downtempo electronica, championing artists who prioritized atmosphere and deep production layering. Landmark releases, most notably DJ Shadow's seminal 'Endtroducing.....', redefined the possibilities of the sampler as a compositional tool. By cultivating a global underground sensibility, Mo' Wax provided a platform for international collaborations and an uncompromising vision that favored artistic depth over commercial trend-chasing. Even after the label ceased active operations around 2002, its influence remains deeply embedded in modern production techniques and the concept of the 'curated' independent label experience. It remains a definitive chapter in British music history, representing a period where independent labels acted as genuine cultural incubators for new, challenging sounds.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/111-Mo-Wax?srsltid=AfmBOorc81wkyGdqUIPGLQt7-Tq4Mqg_r5W53MEkvCy_zAy-_6LD0Zgp",
+      "title": "Mo Wax | Discogs"
+    },
+    {
+      "url": "https://www.onamrecords.com/labels/mo-wax-recordings",
+      "title": "Mo' Wax Recordings | On A&M Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:43.809Z",
+  "_metrics": {
+    "input_tokens": 23642,
+    "output_tokens": 1249,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007784,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16248,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal 1990s British record label founded by James Lavelle, renowned for pioneering trip-hop, abstract hip-hop, and for its unique fusion of experimental music and visual design.",
+  "founded": "1992",
+  "location": "London, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip-Hop"
+    },
+    {
+      "slug": "genre:abstract-hip-hop",
+      "type": "genre",
+      "name": "Abstract Hip-Hop"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:dj-shadow",
+      "type": "artist",
+      "name": "DJ Shadow"
+    },
+    {
+      "slug": "artist:unkle",
+      "type": "artist",
+      "name": "UNKLE"
+    },
+    {
+      "slug": "artist:money-mark",
+      "type": "artist",
+      "name": "Money Mark"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:endtroducing",
+      "type": "project",
+      "name": "Endtroducing....."
+    },
+    {
+      "slug": "project:psyence-fiction",
+      "type": "project",
+      "name": "Psyence Fiction"
+    }
+  ]
+}

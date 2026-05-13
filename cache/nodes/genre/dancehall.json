@@ -1,0 +1,145 @@
+{
+  "slug": "genre:dancehall",
+  "name": "Dancehall",
+  "editorial_article": "Dancehall is a vibrant, rhythm-heavy genre of Jamaican popular music that emerged in the late 1970s, fundamentally transforming the Caribbean musical landscape and influencing global pop culture. Named after the local dance halls where sound systems—massive mobile speaker setups operated by selectors—played everything from ska to roots reggae, the genre evolved into a distinct cultural force. Unlike the spiritual, socially conscious, and live-instrument-focused nature of traditional roots reggae, dancehall embraced synthesized beats, electronic instrumentation, and a lyrical focus on urban reality, party life, and \"slackness\" (racy subject matter).\\n\\nThe technical backbone of dancehall is the \"riddim\"—a pre-recorded instrumental track that acts as a canvas for various vocalists and deejays to \"toast\" or perform. This practice allows for a single production to spawn dozens of unique songs, a modularity that mirrors aspects of hip-hop production. In 1985, the release of Wayne Smith’s \"(Under Me) Sleng Teng,\" produced by King Jammy, signaled a paradigm shift toward digital dancehall, or \"ragga,\" characterized by faster tempos and fully electronic instrumentation. Throughout the 1990s and into the 2000s, dancehall grew into a massive global phenomenon, with artists like Shabba Ranks, Sean Paul, and Vybz Kartel bringing the sound into the mainstream charts of the United States and Europe. Today, dancehall continues to blend with hip-hop, R&B, and dance music, maintaining its status as a vital, high-energy pillar of modern music.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/dancehall-music",
+      "title": "Dancehall Music Guide: Explore the History of Dancehall Music - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:46.193Z",
+  "_metrics": {
+    "input_tokens": 11678,
+    "output_tokens": 898,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004267,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10421,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A high-energy, rhythm-driven Jamaican musical genre that evolved from sound system culture, characterized by the use of \"riddims,\" digital production techniques, and a distinct vocal tradition of toasting.",
+  "era": "1970s–present",
+  "origin": "Jamaica",
+  "parent_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:ragga",
+      "type": "genre",
+      "name": "Ragga"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:ragga",
+      "type": "genre",
+      "name": "Ragga"
+    },
+    {
+      "slug": "genre:reggae-fusion",
+      "type": "genre",
+      "name": "Reggae Fusion"
+    },
+    {
+      "slug": "genre:dancehall-pop",
+      "type": "genre",
+      "name": "Dancehall Pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:shabba-ranks",
+      "type": "artist",
+      "name": "Shabba Ranks"
+    },
+    {
+      "slug": "artist:buju-banton",
+      "type": "artist",
+      "name": "Buju Banton"
+    },
+    {
+      "slug": "artist:sean-paul",
+      "type": "artist",
+      "name": "Sean Paul"
+    },
+    {
+      "slug": "artist:vybz-kartel",
+      "type": "artist",
+      "name": "Vybz Kartel"
+    },
+    {
+      "slug": "artist:popcaan",
+      "type": "artist",
+      "name": "Popcaan"
+    },
+    {
+      "slug": "artist:yellowman",
+      "type": "artist",
+      "name": "Yellowman"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:vp-records",
+      "type": "label",
+      "name": "VP Records"
+    },
+    {
+      "slug": "label:greensleeves-records",
+      "type": "label",
+      "name": "Greensleeves Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:as-raw-as-ever",
+      "type": "project",
+      "name": "As Raw As Ever"
+    },
+    {
+      "slug": "project:mr-mention",
+      "type": "project",
+      "name": "Mr. Mention"
+    },
+    {
+      "slug": "project:stage-one",
+      "type": "project",
+      "name": "Stage One"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:under-me-sleng-teng",
+      "type": "track",
+      "name": "(Under Me) Sleng Teng"
+    },
+    {
+      "slug": "track:mr-lover-man",
+      "type": "track",
+      "name": "Mr. Lover Man"
+    },
+    {
+      "slug": "track:get-busy",
+      "type": "track",
+      "name": "Get Busy"
+    },
+    {
+      "slug": "track:clarks",
+      "type": "track",
+      "name": "Clarks"
+    }
+  ]
+}

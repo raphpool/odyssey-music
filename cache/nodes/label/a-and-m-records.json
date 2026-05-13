@@ -1,0 +1,91 @@
+{
+  "slug": "label:a-and-m-records",
+  "name": "A&M Records",
+  "editorial_article": "A&M Records is one of the most storied independent record labels in the history of the American music industry, founded in 1962 by trumpeter Herb Alpert and businessman Jerry Moss. Operating initially from Alpert’s garage, the label grew into a powerhouse of the 1960s and 1970s, famously headquartered at the historic Charlie Chaplin Studios in Hollywood from 1966 until 1999. A&M distinguished itself through a diverse, artist-focused roster that bridged jazz, pop, folk, and rock, famously launching the careers of acts like The Carpenters and nurturing the diverse output of artists ranging from Cat Stevens and Joe Cocker to Supertramp and Sting.\n\nThe label’s ethos was defined by a commitment to musical quality and artist independence, avoiding the common corporate homogeny of the era. This spirit allowed for eclectic signings, including the mock-signing of the Sex Pistols in 1977, as well as the successful distribution of seminal works through its partnership with Ode Records. After being acquired by PolyGram in 1989 and eventually absorbed into the Universal Music Group ecosystem in 1999, A&M ceased its operations as an autonomous entity, merging into the Interscope-Geffen-A&M structure. Despite these structural shifts, the A&M logo and brand have periodically resurfaced, reflecting its enduring legacy as a cultural pillar that helped shape the sound of twentieth-century popular music. Today, it remains an iconic name in the industry, symbolizing a golden age of artist-friendly label management.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/A%26M_Records",
+      "title": "A&M Records - Wikipedia"
+    },
+    {
+      "url": "https://www.bsnpubs.com/aandm/aandmstory.html",
+      "title": "A&M Album Discography"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:47.666Z",
+  "_metrics": {
+    "input_tokens": 20843,
+    "output_tokens": 1249,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007084,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9879,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Founded by Herb Alpert and Jerry Moss in 1962, A&M Records became a landmark independent label synonymous with musical quality, artist independence, and iconic Hollywood studios. It played a pivotal role in the success of genres ranging from jazz to soft rock, leaving an indelible mark on the landscape of 20th-century music.",
+  "founded": "1962",
+  "location": "Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:herb-alpert-and-the-tijuana-brass",
+      "type": "artist",
+      "name": "Herb Alpert & the Tijuana Brass"
+    },
+    {
+      "slug": "artist:the-carpenters",
+      "type": "artist",
+      "name": "The Carpenters"
+    },
+    {
+      "slug": "artist:sting",
+      "type": "artist",
+      "name": "Sting"
+    },
+    {
+      "slug": "artist:joe-cocker",
+      "type": "artist",
+      "name": "Joe Cocker"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-lonely-bull",
+      "type": "project",
+      "name": "The Lonely Bull"
+    },
+    {
+      "slug": "project:carpenters",
+      "type": "project",
+      "name": "Carpenters"
+    },
+    {
+      "slug": "project:frampton-comes-alive",
+      "type": "project",
+      "name": "Frampton Comes Alive!"
+    }
+  ]
+}

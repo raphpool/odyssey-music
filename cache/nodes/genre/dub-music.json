@@ -1,0 +1,94 @@
+{
+  "slug": "genre:dub-music",
+  "name": "Dub music",
+  "editorial_article": "Dub music emerged in Jamaica during the late 1960s and early 1970s, fundamentally altering the relationship between the recording studio and the musical composition. Born from the innovative practices of sound engineers like King Tubby, Lee \"Scratch\" Perry, and Scientist, dub began as the practice of creating \"versions\" of existing reggae tracks. By isolating and emphasizing the rhythm section—the drums and bass, commonly referred to as the \"riddim\"—and stripping away most vocal elements, producers transformed the mixing console into a creative instrument in its own right. Through the heavy, often psychedelic, application of studio effects like tape delay, reverb, and echo, these engineers created expansive, atmospheric soundscapes that prioritized texture and space over conventional song structure. The term \"dub\" itself stems from the practice of cutting exclusive \"dubplates\" for use by sound system operators, who sought unique tracks to maintain their dominance in the dancehall scene. \\n\\nCulturally, the impact of dub extends far beyond its Jamaican origins. It is widely considered a foundational influence for modern electronic and remix culture. The techniques pioneered by dub producers—treating the studio as an instrument, the importance of bass frequency, and the modular manipulation of audio—have directly shaped the development of numerous global genres, including hip-hop, post-punk, drum and bass, dubstep, and techno. By redefining what a \"remix\" could be, dub shattered the notion of a static, finalized recording, turning every track into a malleable, evolving entity. Its legacy persists in the way contemporary electronic music manipulates space and rhythm, making it one of the most significant sonic innovations of the 20th century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dub_music",
+      "title": "Dub music - Wikipedia"
+    },
+    {
+      "url": "https://www.musicgateway.com/blog/spotify/dub-music-a-definitive-guide",
+      "title": "Dub Music | Jamaican Dub | Мusic Gateway"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:31.182Z",
+  "_metrics": {
+    "input_tokens": 12173,
+    "output_tokens": 767,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004194,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8708,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A pioneering Jamaican genre characterized by the instrumental remixing of reggae tracks, defined by a heavy emphasis on bass, drums, and the creative use of studio effects like delay and reverb.",
+  "parent_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dub-poetry",
+      "type": "genre",
+      "name": "Dub poetry"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:king-tubby",
+      "type": "artist",
+      "name": "King Tubby"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee \"Scratch\" Perry"
+    },
+    {
+      "slug": "artist:scientist",
+      "type": "artist",
+      "name": "Scientist"
+    },
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

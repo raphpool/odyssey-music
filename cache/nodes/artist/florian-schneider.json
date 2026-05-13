@@ -1,0 +1,66 @@
+{
+  "slug": "artist:florian-schneider",
+  "name": "Florian Schneider",
+  "editorial_article": "Florian Schneider (1947–2020) was a pioneering German musician, composer, and a founding member of the seminal electronic music group Kraftwerk. Born in the post-war era, Schneider grew up in a creative environment; his father, Paul Schneider-Esleben, was a prominent architect whose work in the 'New Objectivity' style deeply influenced his son's artistic sensibilities. Schneider met Ralf Hütter while studying at the Academy of Arts in Remscheid in the late 1960s. The two bonded over a shared interest in avant-garde electronics, improvisation, and the possibilities of breaking away from the rock-and-roll paradigms dominated by American influence. After early experiments in the group Organisation, the pair formed Kraftwerk in 1970, aiming to create a uniquely European sound that would eventually define the future of pop music.\\n\\nInitially utilizing instruments like the flute, violin, and guitar in a more progressive, experimental style, Schneider played a key role in the transition toward the minimalist, machine-driven sound that made Kraftwerk global icons. His vision went beyond mere instrumentation; he was instrumental in crafting the group's detached, highly stylized persona, emphasizing precision, uniformity, and 'European' identity. As the group progressed through landmark albums such as 'Autobahn', 'Trans-Europe Express', and 'The Man-Machine', Schneider helped pioneer techniques in sound design and electronic rhythm that provided the bedrock for later genres including synth-pop, hip-hop, techno, and electro. Known for his enigmatic and sometimes mischievous nature, he left Kraftwerk in 2008, having profoundly altered the landscape of modern music by reimagining the relationship between man and machine.",
+  "citations": [
+    {
+      "url": "https://www.npr.org/2020/05/07/852081716/how-florian-schneider-and-kraftwerk-created-pops-future",
+      "title": "How Florian Schneider And Kraftwerk Created Pop's Future : NPR"
+    },
+    {
+      "url": "https://www.newyorker.com/culture/postscript/florian-schneider-esleben-of-kraftwerk-took-music-to-uncharted-territory",
+      "title": "Florian Schneider-Esleben, of Kraftwerk, Took Music to Uncharted Territory | The New Yorker"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:10.942Z",
+  "_metrics": {
+    "input_tokens": 18888,
+    "output_tokens": 1729,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007316,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13265,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Florian Schneider (1947–2020) was a pioneering German musician, composer, and a founding member of the seminal electronic music group Kraftwerk.",
+  "photo_url": "https://media.npr.org/assets/img/2020/05/07/gettyimages-160844877_wide-fc748a86988a3634f62b463ef1f9fc32cb15cfb3.jpg",
+  "origin": "Düsseldorf, Germany",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

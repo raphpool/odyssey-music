@@ -1,0 +1,105 @@
+{
+  "slug": "artist:steve-rutter",
+  "name": "Steve Rutter",
+  "editorial_article": "Steven Rutter is a seminal figure in the development of British electronic music, most notably recognized as one-half of the influential duo B12 alongside Mike Golding. Emerging from the early 1990s UK scene, Rutter’s work was pivotal in bridging the gap between melodic Detroit-influenced techno and the burgeoning Intelligent Dance Music (IDM) movement. Often associated with Warp Records—where their debut 'Electro-Soma' remains a cornerstone of the label's early experimental catalog—Rutter helped define a futuristic, emotive sound palette that many initially mistook for American production. Beyond his collaborative work, Rutter has maintained an active solo career and a legacy as the co-founder of B12 Records, an imprint that provided a crucial platform for early UK techno and experimental electronic artists. His ongoing output under his own name continues to traverse complex synth melodies, precise percussion, and ambient textures, reinforcing his status as a master of atmospheric techno. Over several decades, Rutter has remained a dedicated advocate for hardware-based synthesis, frequently evolving his sound while maintaining the signature depth that made his early 90s work essential listening for fans of deep, emotive electronic music. Rutter’s sustained career reflects an uncompromising dedication to high-fidelity electronic composition. From the foundational releases of the early 1990s that helped establish the 'Artificial Intelligence' aesthetic to his modern solo projects, he remains a key architect of the sound that influenced generations of producers in the IDM and ambient techno spheres. His operation of labels such as FireScope and the preservation of the B12 legacy continue to impact the contemporary electronic underground.",
+  "citations": [
+    {
+      "url": "https://warp.net/artists/b12",
+      "title": "B12 - Artists - WARP"
+    },
+    {
+      "url": "https://ra.co/dj/stevenrutter",
+      "title": "Steven Rutter · Artist Profile - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:06.550Z",
+  "_metrics": {
+    "input_tokens": 28975,
+    "output_tokens": 2063,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010338,
+    "llm_calls": 7,
+    "search_calls": 2,
+    "fetch_calls": 2,
+    "turns": 7,
+    "emit_attempts": 3,
+    "agent_ms": 18714,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Steven Rutter is a seminal figure in British electronic music, best known as half of the influential duo B12 and a co-founder of B12 Records. He is a key pioneer in the development of IDM and ambient techno, helping define the sound that characterized the early 90s UK experimental scene.",
+  "origin": "United Kingdom",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:b12-records",
+      "type": "label",
+      "name": "B12 Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:electro-soma",
+      "type": "project",
+      "name": "Electro-Soma"
+    },
+    {
+      "slug": "project:time-tourist",
+      "type": "project",
+      "name": "Time Tourist"
+    },
+    {
+      "slug": "project:riddle-me-sane",
+      "type": "project",
+      "name": "Riddle Me Sane"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sleep-gives-freedom",
+      "type": "track",
+      "name": "Sleep Gives Freedom"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mike-golding",
+      "type": "artist",
+      "name": "Mike Golding"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    }
+  ]
+}

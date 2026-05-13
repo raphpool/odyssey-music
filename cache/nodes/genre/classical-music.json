@@ -1,0 +1,72 @@
+{
+  "slug": "genre:classical-music",
+  "name": "Classical music",
+  "editorial_article": "Classical music refers to the vast, multifaceted tradition of Western art music, spanning from the medieval era to the present day. Distinguished from folk and popular traditions, it is fundamentally a written, notation-based practice that has evolved through centuries of sophisticated philosophical, historiographical, and technical development. Originating in the sacred environments of the medieval Church and the patronage of royal courts, the genre has undergone several distinct stylistic epochs, each pushing the boundaries of harmonic organization and instrumental form. From the monophonic plainchants of the ninth century to the intricate polyphony of the Renaissance and the rigid structuralism of the Baroque era, classical music has always prioritized formal complexity and structural coherence. \\n\\nThe genre reached a zenith of structural clarity during the Classical period (c. 1750–1820), where composers like Wolfgang Amadeus Mozart, Joseph Haydn, and Ludwig van Beethoven refined the symphony, concerto, and string quartet as cornerstones of absolute music. This was followed by the expansive, emotive, and nationalistic narratives of the Romantic era, which pushed for immense orchestral textures and individual virtuosity. In the 20th century and beyond, the tradition fractured into diverse modernist movements—from the total structuralism of serialism to the meditative repetitions of minimalism—reflecting a shift toward aesthetic plurality. Today, classical music persists as a global practice, continuously balanced between a deep reverence for its canonized history and an ever-evolving engagement with contemporary technique and international influence. It remains uniquely defined by its adherence to written notation as a primary means of transmission, sustaining an unbroken lineage of intellectual and sonic investigation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Classical_music",
+      "title": "Classical music - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/art/classical-music",
+      "title": "Classical music | Description, History, Composers, & Facts | Britannica"
+    },
+    {
+      "url": "https://mdlbeast.com/xp-feed/music-industry/what-is-classical-music-history-influence-lasting-magic",
+      "title": "What Is Classical Music - History & Instruments | MDLBEAST"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:53.190Z",
+  "_metrics": {
+    "input_tokens": 19110,
+    "output_tokens": 1237,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006633,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9589,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A sophisticated tradition of Western art music spanning from the Middle Ages to the present, characterized by its reliance on notation, formal structure, and advanced harmonic organization.",
+  "era": "9th century–Present",
+  "origin": "Western Europe",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:wolfgang-amadeus-mozart",
+      "type": "artist",
+      "name": "Wolfgang Amadeus Mozart"
+    },
+    {
+      "slug": "artist:johann-sebastian-bach",
+      "type": "artist",
+      "name": "Johann Sebastian Bach"
+    },
+    {
+      "slug": "artist:ludwig-van-beethoven",
+      "type": "artist",
+      "name": "Ludwig van Beethoven"
+    },
+    {
+      "slug": "artist:joseph-haydn",
+      "type": "artist",
+      "name": "Joseph Haydn"
+    },
+    {
+      "slug": "artist:richard-wagner",
+      "type": "artist",
+      "name": "Richard Wagner"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

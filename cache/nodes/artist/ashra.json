@@ -1,0 +1,92 @@
+{
+  "slug": "artist:ashra",
+  "name": "Ashra",
+  "editorial_article": "Ashra was the pivotal electronic project of German guitarist and composer Manuel Göttsching, serving as a sophisticated evolution of his earlier work with the krautrock pioneers Ash Ra Tempel. After the dissolution of the original Ash Ra Tempel lineup in the mid-1970s, Göttsching adopted the shortened moniker \"Ashra\" to reflect a shift away from the heavy, improvisational guitar-psych sound of the early 70s toward a more structured, atmospheric, and sequencer-driven approach. This evolution is perhaps best captured on the seminal 1976 album *New Age of Earth*, which seamlessly blended intricate electric guitar textures with lush, hypnotic synth patterns and rhythmic loops.\\n\\nThroughout the late 1970s and 1980s, Ashra refined this aesthetic, influencing countless artists across ambient, electronic, and space rock genres. Unlike the chaotic, high-energy improvisations that defined the early Krautrock era, Ashra’s sound was characterized by its precision, patience, and expansive, cinematic quality. Göttsching used his guitar not just as a rock instrument, but as a textural element that would weave in and out of complex, pre-programmed electronic sequences, creating a template for what would eventually be labeled as \"new age\" or \"ambient.\" His legacy remains a foundational pillar for modern electronic music, establishing how technical virtuosity can meet atmospheric sound design to create deeply meditative and long-form musical landscapes. The project continued to evolve under Göttsching's leadership through the early 2000s, maintaining a consistent focus on pioneering sonic exploration.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ash_Ra_Tempel",
+      "title": "Ash Ra Tempel - Wikipedia"
+    },
+    {
+      "url": "https://www.starsend.org/ashra.html",
+      "title": "Ashra (Manuel Gottsching)"
+    },
+    {
+      "url": "https://open.spotify.com/artist/4qzIpmopZ2KVodpmw7uJKe",
+      "title": "Ashra | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:55.353Z",
+  "_metrics": {
+    "input_tokens": 12310,
+    "output_tokens": 700,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004128,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 7681,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Ashra is the influential German electronic project formed by guitarist Manuel Göttsching as a successor to his seminal krautrock band Ash Ra Tempel, known for pioneering sequencer-driven ambient music and expansive electronic compositions.",
+  "origin": "Berlin, Germany",
+  "active_years": "1976–2000s",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:sunrain",
+      "type": "track",
+      "name": "Sunrain"
+    },
+    {
+      "slug": "track:deep-distance",
+      "type": "track",
+      "name": "Deep Distance"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
+    }
+  ],
+  "members": []
+}

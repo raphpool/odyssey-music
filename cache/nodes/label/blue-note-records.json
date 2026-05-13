@@ -1,0 +1,81 @@
+{
+  "slug": "label:blue-note-records",
+  "name": "Blue Note Records",
+  "editorial_article": "Blue Note Records is an iconic American jazz label founded in New York City in 1939 by German-Jewish immigrants Alfred Lion and Max Margulis. Since its inception, the label has stood as the definitive imprint for recorded jazz, defined by a commitment to \"uncompromising expressions\" of the music. Driven by Lion's passion for the art form, the label famously provided musicians the freedom to experiment and \"stretch out,\" a philosophy that birthed the long-play jazz record format in response to the limitations of 78rpm discs. \\n\\nThroughout the 1940s and 1950s, Blue Note became the epicenter of jazz evolution, transitioning from traditional jazz and swing to bebop and hard bop. The label's aesthetic identity was forged through the partnership of Alfred Lion and photographer Francis Wolff, whose intimate, candid portraits of artists became synonymous with the label's visual identity. This was further bolstered by the legendary sound engineering of Rudy Van Gelder, whose studio sessions captured the visceral energy of the modern jazz era. With a roster that included pillars such as Thelonious Monk, Art Blakey, Horace Silver, and Miles Davis, Blue Note created a blueprint for the modern independent label, prioritizing artistic integrity over commercial adornment. Its legacy continues to permeate modern music, both through its extensive, influential catalog and as an ongoing, vital force in the jazz world.",
+  "citations": [
+    {
+      "url": "https://www.udiscovermusic.com/in-depth-features/blue-note-finest-jazz-since-1939/",
+      "title": "Blue Note Records: A Short History Of A Jazz Institution | uDiscover"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:17.633Z",
+  "_metrics": {
+    "input_tokens": 12209,
+    "output_tokens": 688,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004084,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 11102,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Founded in 1939, Blue Note Records is a legendary jazz label renowned for its commitment to artistic integrity, pioneering sound engineering by Rudy Van Gelder, and an iconic visual aesthetic captured by photographer Francis Wolff.",
+  "founded": "1939",
+  "location": "New York City, USA",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:thelonious-monk",
+      "type": "artist",
+      "name": "Thelonious Monk"
+    },
+    {
+      "slug": "artist:art-blakey",
+      "type": "artist",
+      "name": "Art Blakey"
+    },
+    {
+      "slug": "artist:horace-silver",
+      "type": "artist",
+      "name": "Horace Silver"
+    },
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:sidney-bechet",
+      "type": "artist",
+      "name": "Sidney Bechet"
+    },
+    {
+      "slug": "artist:ike-quebec",
+      "type": "artist",
+      "name": "Ike Quebec"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:thelonious-monk-trio",
+      "type": "project",
+      "name": "Thelonious Monk Trio"
+    },
+    {
+      "slug": "project:moanin",
+      "type": "project",
+      "name": "Moanin'"
+    },
+    {
+      "slug": "project:blue-train",
+      "type": "project",
+      "name": "Blue Train"
+    }
+  ]
+}

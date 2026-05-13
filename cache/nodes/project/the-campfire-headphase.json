@@ -1,0 +1,142 @@
+{
+  "slug": "project:the-campfire-headphase",
+  "name": "The Campfire Headphase",
+  "editorial_article": "The Campfire Headphase is the third studio album by the seminal Scottish electronic duo Boards of Canada, released in October 2005 via Warp Records. Arriving three years after the claustrophobic and intricately layered Geogaddi, the album represents a significant stylistic shift for the pair, Michael and Marcus Sandison. Rather than relying on the dense, ominous synthesizer programming and childhood nostalgia that defined their earlier work, The Campfire Headphase leans into a warmer, organic palette. The record prominently features acoustic guitars—often processed and looped—to create a \"sun-bleached\" sound that the artists described as resembling a road movie soundtrack or the music of \"android cowboys.\"\\n\\nRecording for the project was a meticulous process that involved scrapping an entire initial version of the album in 2004 to pursue a simpler, more optimistic aesthetic. The Sandison brothers intentionally moved away from the \"hellish\" production schedules of their past, seeking to create music that felt less like a rigid electronic formula and more like the output of a traditional band. This pivot was accompanied by a deliberate reduction in their signature use of vocal samples, specifically children's voices, which they felt had become an overly predictable trope in their work. Despite receiving a mixed reception from fans who initially struggled with the departure from their darker, more percussive roots, the album is now widely regarded as a pivotal record in their discography, showcasing their ability to evoke intense, nostalgic landscapes through lo-fi instrumentation and sophisticated sound design. It remains a cornerstone of the mid-2000s downtempo and experimental electronic scene.",
+  "citations": [
+    {
+      "url": "https://bocpages.org/wiki/The_Campfire_Headphase",
+      "title": "The Campfire Headphase - bocpages | Boards of Canada wiki"
+    },
+    {
+      "url": "https://boardsofcanada.bandcamp.com/album/the-campfire-headphase",
+      "title": "The Campfire Headphase | Boards of Canada - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:03.147Z",
+  "_metrics": {
+    "input_tokens": 19307,
+    "output_tokens": 1599,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007225,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16730,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A warm, sun-bleached departure from the dark electronic density of Geogaddi, The Campfire Headphase features Boards of Canada experimenting with processed acoustic guitars and a more organic, cinematic aesthetic.",
+  "year": "2005",
+  "artists": [],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:into-the-rainbow-vein",
+      "type": "track",
+      "name": "Into the Rainbow Vein"
+    },
+    {
+      "slug": "track:chromakey-dreamcoat",
+      "type": "track",
+      "name": "Chromakey Dreamcoat"
+    },
+    {
+      "slug": "track:satellite-anthem-icarus",
+      "type": "track",
+      "name": "Satellite Anthem Icarus"
+    },
+    {
+      "slug": "track:peacock-tail",
+      "type": "track",
+      "name": "Peacock Tail"
+    },
+    {
+      "slug": "track:dayvan-cowboy",
+      "type": "track",
+      "name": "Dayvan Cowboy"
+    },
+    {
+      "slug": "track:amo-bishop-roden",
+      "type": "track",
+      "name": "Amo Bishop Roden"
+    },
+    {
+      "slug": "track:in-a-beautiful-place-out-in-the-country",
+      "type": "track",
+      "name": "In a Beautiful Place Out in the Country"
+    },
+    {
+      "slug": "track:oscar-see-through-red-eye",
+      "type": "track",
+      "name": "Oscar See Through Red Eye"
+    },
+    {
+      "slug": "track:ataronchronon",
+      "type": "track",
+      "name": "Ataronchronon"
+    },
+    {
+      "slug": "track:cylinders",
+      "type": "track",
+      "name": "Cylinders"
+    },
+    {
+      "slug": "track:1969",
+      "type": "track",
+      "name": "1969"
+    },
+    {
+      "slug": "track:constants-are-changing",
+      "type": "track",
+      "name": "Constants Are Changing"
+    },
+    {
+      "slug": "track:slow-this-bird-down",
+      "type": "track",
+      "name": "Slow This Bird Down"
+    },
+    {
+      "slug": "track:tears-from-the-compound-eye",
+      "type": "track",
+      "name": "Tears from the Compound Eye"
+    },
+    {
+      "slug": "track:farewell-fire",
+      "type": "track",
+      "name": "Farewell Fire"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "related_projects": []
+}

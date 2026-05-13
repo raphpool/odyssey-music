@@ -1,0 +1,54 @@
+{
+  "slug": "genre:choral-music",
+  "name": "Choral music",
+  "editorial_article": "Choral music is a foundational mode of human musical expression, defined as music written for and performed by a group of singers—a choir or chorus—where each vocal part is typically sustained by two or more voices. This genre encompasses an immense historical and stylistic breadth, originating in early monophonic traditions such as Gregorian chant and evolving into the complex polyphonic arrangements that defined the Western classical canon. Throughout the medieval and Renaissance periods, the choir became the primary vehicle for liturgical expression. Composers of the Renaissance, such as those writing for the Latin Mass, refined the standard four-part vocal structure (soprano, alto, tenor, bass), establishing a template for vocal harmony that remains dominant today.\n\nThe genre’s evolution is marked by shifting relationships between the voice and instrumentation. While significant portions of the choral repertoire are *a cappella*—sung without instrumental accompaniment—the integration of orchestral support became increasingly prominent from the Baroque period onward. Works such as the cantata, the motet, and the large-scale oratorio showcase the genre's capacity for dramatic narrative and communal power. From the sacred solemnity of Bach’s choral works to the expansive, massive vocal forces utilized in the Romantic era by composers like Mahler, choral music has consistently served as a medium for both intimate spiritual reflection and monumental public statement. Its enduring relevance lies in its inherent focus on the human voice as an instrument of unity, reflecting societal, religious, and artistic shifts across centuries of global development.",
+  "citations": [
+    {
+      "url": "https://www.liveabout.com/what-is-choral-music-2456543",
+      "title": "What Is Choral Music?"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:13.999Z",
+  "_metrics": {
+    "input_tokens": 16275,
+    "output_tokens": 1166,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005818,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9986,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Choral music refers to any composition written for and performed by a group of singers, ranging from intimate chamber ensembles to massive choral symphonic forces. The genre is characterized by the use of multiple vocal parts, where individual lines are supported by multiple singers, and may be performed either a cappella or with instrumental accompaniment.",
+  "era": "Antiquity to present",
+  "origin": "Europe (liturgical traditions)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:johann-sebastian-bach",
+      "type": "artist",
+      "name": "Johann Sebastian Bach"
+    },
+    {
+      "slug": "artist:wolfgang-amadeus-mozart",
+      "type": "artist",
+      "name": "Wolfgang Amadeus Mozart"
+    },
+    {
+      "slug": "artist:ludwig-van-beethoven",
+      "type": "artist",
+      "name": "Ludwig van Beethoven"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

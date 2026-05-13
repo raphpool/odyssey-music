@@ -1,0 +1,106 @@
+{
+  "slug": "genre:electro-industrial",
+  "name": "Electro-industrial",
+  "editorial_article": "Electro-industrial is a subgenre of post-industrial music that emerged in the early 1980s, bridging the gap between the structured, rhythmic patterns of Electronic Body Music (EBM) and the more aggressive, abrasive textures of the industrial underground. While EBM often favored a relatively clean, club-oriented production, electro-industrial introduced a grittier, more layered soundscape. It frequently utilizes harsh, raspy, or heavily digitized vocals, complex rhythmic programming, and a distinct aesthetic rooted in science fiction, dystopian imagery, and horror motifs. Unlike industrial rock, which often incorporates traditional guitar-driven song structures, electro-industrial generally prioritizes electronic synthesis, though exceptions exist within the work of pioneers like Skinny Puppy.\n\nThe genre was fundamentally shaped by international experimentation, with key hubs developing in Canada, Belgium, and across Europe and the United States. Acts such as Skinny Puppy, Front Line Assembly, Cabaret Voltaire, and Klinik are widely regarded as foundational. The Canadian label Nettwerk played a crucial role in disseminating the sound, helping to propel electro-industrial into the 1990s where it further diversified into derivative styles such as dark electro and aggrotech. As the genre evolved, it integrated diverse influences ranging from techno and drum and bass to glitch and experimental electronica, all while maintaining its characteristic mechanical intensity. The subculture surrounding the style, often identified by the term \"rivethead,\" reflects the genre's enduring connection to industrial themes, technology, and the darker side of electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electro-industrial",
+      "title": "Electro-industrial - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/electro-industrial/",
+      "title": "Electro-Industrial - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:16.046Z",
+  "_metrics": {
+    "input_tokens": 19838,
+    "output_tokens": 1419,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007088,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12536,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of post-industrial music characterized by its harsh, abrasive electronic textures, distorted or digitized vocals, and complex, gritty production, often drawing thematic inspiration from dystopia and science fiction.",
+  "era": "1980s–present",
+  "origin": "Belgium, Canada, United States, France, and Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:post-industrial-music",
+      "type": "genre",
+      "name": "Post-industrial music"
+    },
+    {
+      "slug": "genre:electronic-body-music",
+      "type": "genre",
+      "name": "Electronic Body Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dark-electro",
+      "type": "genre",
+      "name": "Dark electro"
+    },
+    {
+      "slug": "genre:aggrotech",
+      "type": "genre",
+      "name": "Aggrotech"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:skinny-puppy",
+      "type": "artist",
+      "name": "Skinny Puppy"
+    },
+    {
+      "slug": "artist:front-line-assembly",
+      "type": "artist",
+      "name": "Front Line Assembly"
+    },
+    {
+      "slug": "artist:klinik",
+      "type": "artist",
+      "name": "Klinik"
+    },
+    {
+      "slug": "artist:numb",
+      "type": "artist",
+      "name": "Numb"
+    },
+    {
+      "slug": "artist:cabaret-voltaire",
+      "type": "artist",
+      "name": "Cabaret Voltaire"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:bites",
+      "type": "project",
+      "name": "Bites"
+    },
+    {
+      "slug": "project:caustic-grip",
+      "type": "project",
+      "name": "Caustic Grip"
+    },
+    {
+      "slug": "project:mind-the-perpetual-intercourse",
+      "type": "project",
+      "name": "Mind: The Perpetual Intercourse"
+    }
+  ],
+  "landmark_tracks": []
+}

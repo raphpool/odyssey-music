@@ -1,0 +1,68 @@
+{
+  "slug": "artist:artful-dodger",
+  "name": "Artful Dodger",
+  "editorial_article": "Artful Dodger emerged from Southampton, England, in the late 1990s as a pivotal force in the UK garage movement. Originally formed by producers Mark Hill and Pete Devereux, the duo helped propel 2-step garage from underground club culture into the mainstream pop charts. Their signature sound merged Hill's deep-rooted R&B and jazz sensibilities with Devereux's rhythmic foundations in hip-hop and house. Unlike many contemporaries who relied heavily on sampling and digital time-stretching, Artful Dodger became renowned for their more organic approach, often preferring to re-record vocals for their remixes to ensure pristine quality and emotional resonance. \\n\\nThe duo gained significant international recognition for their collaboration with Craig David on the landmark 1999 track \"Re-Rewind (The Crowd Say Bo Selecta),\" which became a definitive anthem for the garage sound. This success paved the way for their critically acclaimed studio album, *It's All About the Stragglers* (2000), which solidified their status as architects of the genre. Following an amicable split in 2001, both members continued to pursue influential careers in music production and DJing. The legacy of Artful Dodger remains intertwined with the peak of the UK garage era, characterized by infectious 2-step rhythms, soulful melodies, and a lasting influence on the evolution of British electronic and pop music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/artful-dodger-mn0000604374",
+      "title": "Artful Dodger Songs, Albums, Reviews, Bio & Mo... | AllMusic"
+    },
+    {
+      "url": "https://ra.co/dj/artfuldodger/biography",
+      "title": "Artful Dodger · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:45.528Z",
+  "_metrics": {
+    "input_tokens": 27923,
+    "output_tokens": 3496,
+    "cache_read_tokens": 4043,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.012326,
+    "llm_calls": 6,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 6,
+    "emit_attempts": 4,
+    "agent_ms": 25422,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Artful Dodger emerged from Southampton, England, in the late 1990s as a pivotal force in the UK garage movement.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000604374/400/QP_NMShytdXLLvJF-cyojD6KsMttLlyBmmVTZ6_CLs0=.jpg",
+  "origin": "Southampton, England",
+  "active_years": "1993–2003 (original duo)",
+  "genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:it-s-all-about-the-stragglers",
+      "type": "project",
+      "name": "It's All About the Stragglers"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:re-rewind",
+      "type": "track",
+      "name": "Re-Rewind (The Crowd Say Bo Selecta)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

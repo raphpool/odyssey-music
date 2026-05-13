@@ -1,0 +1,108 @@
+{
+  "slug": "artist:gerry-mulligan",
+  "name": "Gerry Mulligan",
+  "editorial_article": "Gerry Mulligan (1927–1996) was a towering figure in American jazz, a master of the baritone saxophone, and a transformative composer and arranger. Born in Queens, New York, he became one of the most recognizable voices of the 'cool jazz' movement, celebrated for his uniquely light, lyrical, and nimble approach to an instrument often characterized by its heavy, aggressive timbre. Unlike many of his contemporaries who favored the dense, virtuosic speed of bebop, Mulligan championed a more spacious, melodic clarity. His innovative spirit was perhaps best demonstrated in the early 1950s with his legendary 'pianoless' quartet, which featured trumpeter Chet Baker. By removing the harmonic anchor of the piano, Mulligan pushed the group into a new form of contrapuntal interplay that defined the West Coast jazz aesthetic.\n\nBeyond his work as a soloist, Mulligan was a foundational architect of the modern jazz sound. His early career saw him contributing essential arrangements to the Claude Thornhill Orchestra and, most famously, Miles Davis’s 'Birth of the Cool' sessions, where his work helped transition jazz from the big band era into the intellectual rigor of the post-war period. Over a career spanning five decades, Mulligan led various acclaimed ensembles, including the Concert Jazz Band, and solidified his reputation as an endlessly creative musician who could adapt to and influence the evolving landscape of jazz. His compositions, such as 'Walkin' Shoes' and 'Five Brothers', remain enduring staples of the jazz repertoire. Throughout his life, Mulligan’s influence extended far beyond his technical mastery, rooted in his relentless pursuit of a sophisticated and fluid musical language. He remains an essential reference point for any study of cool jazz history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gerry_Mulligan",
+      "title": "Gerry Mulligan - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/37733-Gerry-Mulligan?srsltid=AfmBOoqV3xQW6wyfMXlwzmtCIyivNVYkwEN2Z2yNzuufrSmsUXh1000a",
+      "title": "Gerry Mulligan Discography: Vinyl, CDs, & More - Discogs"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/gerry-mulligan-mn0000542549",
+      "title": "Gerry Mulligan Songs, Albums, Reviews, Bio & M... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:22.262Z",
+  "_metrics": {
+    "input_tokens": 38700,
+    "output_tokens": 3047,
+    "cache_read_tokens": 8104,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.014448,
+    "llm_calls": 7,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 18849,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Gerry Mulligan was a transformative American jazz baritone saxophonist, composer, and arranger, famously recognized for his cool jazz work and his legendary pianoless quartet.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Gerry_Mulligan_%281980s_portrait_by_William_P._Gottlieb%29.jpg/500px-Gerry_Mulligan_%281980s_portrait_by_William_P._Gottlieb%29.jpg",
+  "origin": "Queens, New York, USA",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool Jazz"
+    },
+    {
+      "slug": "genre:third-stream",
+      "type": "genre",
+      "name": "Third Stream"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:blue-note",
+      "type": "label",
+      "name": "Blue Note"
+    },
+    {
+      "slug": "label:pacific-jazz",
+      "type": "label",
+      "name": "Pacific Jazz"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gerry-mulligan-quartet",
+      "type": "project",
+      "name": "Gerry Mulligan Quartet"
+    },
+    {
+      "slug": "project:birth-of-the-cool",
+      "type": "project",
+      "name": "Birth of the Cool"
+    },
+    {
+      "slug": "project:night-lights",
+      "type": "project",
+      "name": "Night Lights"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:walkin-shoes",
+      "type": "track",
+      "name": "Walkin' Shoes"
+    },
+    {
+      "slug": "track:five-brothers",
+      "type": "track",
+      "name": "Five Brothers"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:chico-hamilton",
+      "type": "artist",
+      "name": "Chico Hamilton"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

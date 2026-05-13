@@ -1,0 +1,117 @@
+{
+  "slug": "genre:drone-metal",
+  "name": "Drone Metal",
+  "editorial_article": "Drone metal, often referred to as drone doom, is a distinct and highly specialized style of heavy metal that fuses the crushing, slow-motion weight of doom metal with the sustained, hypnotic tonal explorations of minimalist drone music. Emerging in the early 1990s from the American Pacific Northwest, the genre is characterized by its avoidance of traditional rhythmic patterns, instead favoring massive, reverb-drenched guitar feedback, elongated song structures, and a overwhelming sense of physical, sub-bass intensity. Musicians in this field often treat their instruments more like sound sculptors or architects than traditional songwriters, constructing sprawling, atmospheric landscapes that listeners often describe as both meditative and physically punishing.\\n\\nThe genesis of the genre is largely credited to the band Earth, founded by Dylan Carlson in Olympia, Washington. By stripping away the blues-based clichés of traditional doom metal and embracing the minimalist theories of artists like La Monte Young and Terry Riley, Earth established a sonic blueprint that would influence decades of experimental metal. Throughout the late 1990s and 2000s, the genre expanded internationally through the efforts of influential groups like Sunn O))), whose monumental volume and theatrical presentation brought drone metal into the realm of avant-garde sound art, and the Japanese band Boris, who explored the outer limits of feedback and textural depth. \\n\\nBeyond its musical roots, drone metal frequently engages with broader contemporary art movements. Collaborations between artists like Stephen O'Malley and sculptor Banks Violette have drawn direct parallels between the genre’s aesthetic and the minimalism of Donald Judd or Richard Serra. The listening experience, as described by critics like John Wray, can feel less like hearing a conventional song and more like enduring a slow, tectonic shifting of sound. By prioritizing sustained sonic pressure over melody or standard verse-chorus forms, drone metal remains a vital, if challenging, subgenre that continues to blur the lines between heavy music, ambient composition, and installation art.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drone_metal",
+      "title": "Drone metal - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:06.757Z",
+  "_metrics": {
+    "input_tokens": 12049,
+    "output_tokens": 850,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004287,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 7247,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A style of heavy metal that blends the slow, crushing tempos and extreme heaviness of doom metal with the long-duration, sustained tones of minimalist drone music.",
+  "era": "1990s–Present",
+  "origin": "Olympia, Washington, U.S.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal"
+    },
+    {
+      "slug": "genre:minimalist-music",
+      "type": "genre",
+      "name": "Minimalist music"
+    },
+    {
+      "slug": "genre:post-metal",
+      "type": "genre",
+      "name": "Post-metal"
+    },
+    {
+      "slug": "genre:experimental-metal",
+      "type": "genre",
+      "name": "Experimental metal"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth"
+    },
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))"
+    },
+    {
+      "slug": "artist:boris",
+      "type": "artist",
+      "name": "Boris"
+    },
+    {
+      "slug": "artist:khanate",
+      "type": "artist",
+      "name": "Khanate"
+    },
+    {
+      "slug": "artist:burning-witch",
+      "type": "artist",
+      "name": "Burning Witch"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:southern-lord-records",
+      "type": "label",
+      "name": "Southern Lord Records"
+    },
+    {
+      "slug": "label:hydra-head-records",
+      "type": "label",
+      "name": "Hydra Head Records"
+    },
+    {
+      "slug": "label:southern-records",
+      "type": "label",
+      "name": "Southern Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:earth-2-special-low-frequency-version",
+      "type": "project",
+      "name": "Earth 2: Special Low Frequency Version"
+    },
+    {
+      "slug": "project:monoliths-and-dimensions",
+      "type": "project",
+      "name": "Monoliths & Dimensions"
+    },
+    {
+      "slug": "project:feedbacker",
+      "type": "project",
+      "name": "Feedbacker"
+    }
+  ],
+  "landmark_tracks": []
+}

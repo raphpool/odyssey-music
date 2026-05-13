@@ -1,0 +1,81 @@
+{
+  "slug": "label:sub-soldiers",
+  "name": "Sub Soldiers",
+  "editorial_article": "Sub Soldiers was a pivotal London-based record label that served as a primary outlet for the explosive rise of the UK dubstep sound during the late 2000s. Founded by the producer Caspa, the label acted as a vital platform for both himself and his contemporary Rusko during a transformative period when the genre was shifting from its dark, meditative South London roots toward a more aggressive, festival-ready \"brostep\" aesthetic. The imprint became synonymous with a specific era of high-energy, wobbling bass lines and crisp, rattling drum patterns that would come to define the mid-to-late 2000s dubstep explosion. \\n\\nKey releases on Sub Soldiers, such as Rusko’s \"Babylon: Volume 1\" and Caspa’s \"Ave It\" series, effectively codified the sound that dominated sound systems across Europe and North America during this period. The label’s output was instrumental in bridging the gap between underground pirate radio culture and global electronic music audiences. By fostering the collaborative synergy between Caspa and Rusko—best highlighted by their seminal 2007 *FabricLive.37* mix—the label solidified their positions as architects of the genre's new wave. While the label's primary period of activity was relatively concentrated, its legacy remains deeply embedded in the evolution of bass music, having paved the way for the mainstream dominance of dubstep in the early 2010s. The label was often associated with the wider Submerged Music infrastructure, reflecting the collaborative and interconnected nature of the UK electronic music scene at the time.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/86679-Sub-Soldiers",
+      "title": "Sub Soldiers | Discogs"
+    },
+    {
+      "url": "https://www.beatport.com/label/sub-soldiers/52607?srsltid=AfmBOopqGuDUhVJYW4ZSMmKbkz2tqQbUjGV8ttYMcuAfruh_VMJSqJYo",
+      "title": "Sub Soldiers Music & Downloads on Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:11.455Z",
+  "_metrics": {
+    "input_tokens": 23665,
+    "output_tokens": 1286,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007845,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 14868,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A foundational UK-based dubstep label established by producer Caspa, instrumental in the genre's late 2000s transition to a more aggressive, globally influential sound.",
+  "founded": "2007",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa"
+    },
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko"
+    },
+    {
+      "slug": "artist:emalkay",
+      "type": "artist",
+      "name": "Emalkay"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:ave-it-volume-1",
+      "type": "project",
+      "name": "Ave It: Volume 1"
+    },
+    {
+      "slug": "project:babylon-volume-1",
+      "type": "project",
+      "name": "Babylon: Volume 1"
+    },
+    {
+      "slug": "project:ave-it-volume-2",
+      "type": "project",
+      "name": "Ave It: Volume 2"
+    },
+    {
+      "slug": "project:babylon-volume-2",
+      "type": "project",
+      "name": "Babylon: Volume 2"
+    }
+  ]
+}

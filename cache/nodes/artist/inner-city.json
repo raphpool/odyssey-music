@@ -1,0 +1,114 @@
+{
+  "slug": "artist:inner-city",
+  "name": "Inner City",
+  "editorial_article": "Inner City is a seminal Detroit electronic group formed in 1987 by techno innovator Kevin Saunderson and vocalist Paris Grey. Famed for bridging the gap between underground techno and mainstream pop, they are credited with taking the Motor City's innovative electronic sound to global audiences. The duo's breakout 1988 success, \"Big Fun,\" and its follow-up, \"Good Life,\" combined the jagged rhythms of Detroit techno with accessible, gospel-inflected vocal hooks, resulting in immense commercial success and multiple chart placements in the U.S. and U.K. Their debut album, \"Paradise\" (also released as \"Big Fun\"), remains a cornerstone of dance-pop history. Throughout their long-running, multi-generational career, the project has evolved to incorporate jazz, swingbeat, and contemporary house influences, with newer iterations featuring Kevin Saunderson's son, Dantiez Saunderson, and vocalists like Steffanie Christi'an. By successfully marrying machine-driven rhythms with emotive, soul-influenced performance, Inner City helped define the crossover potential of electronic dance music in the late 1980s and beyond. The influence of the group's early work cannot be overstated, as it provided a template for electronic artists who sought to harmonize the cold, repetitive aesthetic of early techno with the warmth and human connection found in gospel and house music. While Kevin Saunderson later explored various projects and labels, Inner City remains his most commercially potent legacy, serving as a beacon of Detroit's lasting impact on international club culture. The recent resurgence of the name in the 2020s, supported by fresh production from the next generation of the Saunderson family, proves that the group's initial vision continues to resonate with modern audiences, reinforcing the timelessness of their sound.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/inner-city-mn0000091122",
+      "title": "Inner City Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://djmag.com/longreads/solid-gold-how-inner-city%E2%80%99s-paradise-linked-detroit-techno-motor-citys-motown-heritage",
+      "title": "Solid Gold: How Inner City's 'Paradise' linked Detroit techno to the... | DJ Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:23.417Z",
+  "_metrics": {
+    "input_tokens": 20680,
+    "output_tokens": 1903,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008025,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 23477,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Inner City is a seminal Detroit electronic group formed in 1987 by techno innovator Kevin Saunderson and vocalist Paris Grey.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000091122/400/GfhiCnUsjX0w2idJ4B1PDj6KsMttLlyBmmVTZ6_CLs0=.jpg",
+  "origin": "Detroit, MI",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:kms-records",
+      "type": "label",
+      "name": "KMS Records"
+    },
+    {
+      "slug": "label:armada-music",
+      "type": "label",
+      "name": "Armada Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:paradise",
+      "type": "project",
+      "name": "Paradise"
+    },
+    {
+      "slug": "project:fire",
+      "type": "project",
+      "name": "Fire"
+    },
+    {
+      "slug": "project:praise",
+      "type": "project",
+      "name": "Praise"
+    },
+    {
+      "slug": "project:we-all-move-together",
+      "type": "project",
+      "name": "We All Move Together"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:big-fun",
+      "type": "track",
+      "name": "Big Fun"
+    },
+    {
+      "slug": "track:good-life",
+      "type": "track",
+      "name": "Good Life"
+    },
+    {
+      "slug": "track:pennies-from-heaven",
+      "type": "track",
+      "name": "Pennies from Heaven"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

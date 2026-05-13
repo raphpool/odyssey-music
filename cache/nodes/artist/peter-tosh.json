@@ -1,0 +1,151 @@
+{
+  "slug": "artist:peter-tosh",
+  "name": "Peter Tosh",
+  "editorial_article": "Peter Tosh (born Winston Hubert McIntosh; 1944–1987) was a towering figure in Jamaican music, known as a foundational member of The Wailers alongside Bob Marley and Bunny Wailer, and later as a fierce, uncompromising solo artist. A self-taught multi-instrumentalist who famously mentored his bandmates in guitar, Tosh was instrumental in the evolution of Jamaican music from ska and rocksteady into the protest-heavy, spiritually charged reggae that would capture global attention. His solo work, inaugurated by the iconic 1976 album 'Legalize It,' cemented his reputation as an outspoken revolutionary. Unlike his former bandmate Bob Marley, whose international message often leaned toward unification, Tosh’s lyrics were frequently characterized by a confrontational, militant stance against systemic oppression, racism, and the criminalization of marijuana. Beyond his political activism, Tosh was a skilled musician whose distinctive voice and guitar playing defined the sound of early reggae. His tenure with the Rolling Stones-affiliated label and his consistent challenging of the status quo made him an enduring, if often turbulent, symbol of the fight for equal rights and justice. Tragically, his life was cut short in 1987 during a home invasion in Kingston, but his legacy persists as one of the most powerful and authentic voices to ever emerge from the Caribbean. Throughout his career, he remained a steadfast devotee of the Rastafari faith, using his platform to voice grievances about poverty and colonial legacies in Jamaica and across the world. His artistry was marked by a grit and urgency that provided a necessary counterweight to the more radio-friendly sounds of his peers, ensuring that the message of reggae remained rooted in the struggle for human rights.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Peter_Tosh",
+      "title": "Peter Tosh - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Peter-Tosh",
+      "title": "Peter Tosh | Reggae musician, Rastafarian, Wailers | Britannica"
+    },
+    {
+      "url": "https://www.reggaeville.com/artist-details/peter-tosh/about/",
+      "title": "Biography: Peter Tosh | Reggaeville"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:05.596Z",
+  "_metrics": {
+    "input_tokens": 24265,
+    "output_tokens": 2118,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009345,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 17220,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Peter Tosh (born Winston Hubert McIntosh; 1944–1987) was a Jamaican musician and reggae singer, best known as a foundational member of The Wailers and for his uncompromising solo career as a political activist and revolutionary artist.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/BushDoctor1978_%28cropped2%29.jpg",
+  "origin": "Grange Hill, Jamaica",
+  "active_years": "1961–1987",
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jad-records",
+      "type": "label",
+      "name": "JAD Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:rolling-stones-records",
+      "type": "label",
+      "name": "Rolling Stones Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:legalize-it",
+      "type": "project",
+      "name": "Legalize It"
+    },
+    {
+      "slug": "project:equal-rights",
+      "type": "project",
+      "name": "Equal Rights"
+    },
+    {
+      "slug": "project:bush-doctor",
+      "type": "project",
+      "name": "Bush Doctor"
+    },
+    {
+      "slug": "project:mama-africa",
+      "type": "project",
+      "name": "Mama Africa"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:legalize-it",
+      "type": "track",
+      "name": "Legalize It"
+    },
+    {
+      "slug": "track:get-up-stand-up",
+      "type": "track",
+      "name": "Get Up, Stand Up"
+    },
+    {
+      "slug": "track:stepping-razor",
+      "type": "track",
+      "name": "Stepping Razor"
+    },
+    {
+      "slug": "track:equal-rights",
+      "type": "track",
+      "name": "Equal Rights"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bob-marley",
+      "type": "artist",
+      "name": "Bob Marley"
+    },
+    {
+      "slug": "artist:bunny-wailer",
+      "type": "artist",
+      "name": "Bunny Wailer"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee Scratch Perry"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:stepping-razor",
+      "type": "artist",
+      "name": "Stepping Razor"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers"
+    }
+  ]
+}

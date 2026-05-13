@@ -1,0 +1,109 @@
+{
+  "slug": "genre:electroclash",
+  "name": "Electroclash",
+  "editorial_article": "Electroclash is a distinctive subgenre of electronic dance music that emerged in the late 1990s and achieved peak popularity in the early 2000s. Originating from scenes in New York City, Detroit, and across Germany and the Netherlands, the genre was defined by its deliberate revivalism of 1980s tropes—specifically drawing from electro, new wave, synth-pop, and synth-punk—and fusing them with the contemporary, aggressive production values of techno. The term itself was coined by DJ Larry Tee, who sought to capture the aesthetic of a movement that felt both futuristic and deeply indebted to the minimal, throbbing synthesizers and robotic textures of the past. \\n\\nMusically, electroclash is characterized by its use of low-tech, buzzing analog synthesizers, heavy vocoder usage, and stark, driving basslines. Vocal deliveries are frequently monotone, deadpan, or half-spoken, reinforcing the \"robotic\" and detached persona often adopted by its practitioners. Beyond the music, the genre was inseparable from its specific visual culture, which prioritized a highly sexualized, kinky, and deliberately trashy image, often referencing 1980s science fiction cinema like the film Liquid Sky. This combination of retro-futuristic soundscapes and transgressive, campy performance art positioned electroclash as a counter-movement to the perceived seriousness of mainstream dance music at the time. Key figures in the movement included I-F, Miss Kittin & The Hacker, Peaches, and Fischerspooner, whose track \"Emerge\" stands as a landmark of the era. While the genre experienced a decline in mainstream attention after the mid-2000s, its influence persisted through the bloghouse era and was eventually revisited in the 2020s as part of the \"Indie Sleaze\" revival.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/electroclash/",
+      "title": "Electroclash - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://aesthetics.fandom.com/wiki/Electroclash",
+      "title": "Electroclash | Aesthetics Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:36.711Z",
+  "_metrics": {
+    "input_tokens": 20546,
+    "output_tokens": 1490,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007372,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 20629,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of electronic dance music that emerged in the late 1990s, characterized by a revival of 1980s electro, new wave, and synth-punk combined with modern techno production, often featuring deadpan vocals and a trashy, highly stylized aesthetic.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:synth-punk",
+      "type": "genre",
+      "name": "Synth-punk"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:fischerspooner",
+      "type": "artist",
+      "name": "Fischerspooner"
+    },
+    {
+      "slug": "artist:peaches",
+      "type": "artist",
+      "name": "Peaches"
+    },
+    {
+      "slug": "artist:miss-kittin-and-the-hacker",
+      "type": "artist",
+      "name": "Miss Kittin & The Hacker"
+    },
+    {
+      "slug": "artist:i-f",
+      "type": "artist",
+      "name": "I-F"
+    },
+    {
+      "slug": "artist:ladytron",
+      "type": "artist",
+      "name": "Ladytron"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:first-album",
+      "type": "project",
+      "name": "First Album"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:emerge",
+      "type": "track",
+      "name": "Emerge"
+    }
+  ]
+}

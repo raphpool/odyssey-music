@@ -1,0 +1,105 @@
+{
+  "slug": "label:shitkatapult",
+  "name": "Shitkatapult",
+  "editorial_article": "Shitkatapult is a seminal Berlin-based independent record label founded in 1997 by the electronic musician Marco Haas, better known as T.Raumschmiere. Rising from the fertile ground of Germany's late-90s underground electronic music scene, the label quickly established itself as a home for eclectic and uncompromising sounds, spanning cutting-edge electronica, raw tech-rock, dub-inflected beats, and fragile ambient compositions. Often positioned against the commercial machinery of the mainstream music industry, Shitkatapult’s ethos is rooted in the simple, defiant mission of releasing music that the founders genuinely enjoy, regardless of trends or marketability. \\n\\nThroughout its history, the label has been central to the development of the Berlin electronic identity, fostering careers for artists such as Sascha Ring (Apparat), who was a key figure in the label's management during its formative years, and Daniel Meteo. The label expanded its operations over time to include sub-imprints like Musick and Meteosound, eventually operating under the umbrella of Random Noize Musick. By maintaining a distinct aesthetic that extends from its music production to its bold cover artworks and live performances, Shitkatapult has cultivated a loyal community of listeners and remains an essential platform for experimental electronic music that defies easy categorization. Its resilience over decades of shifts in the music industry reflects a staunch commitment to artistic integrity and the cultivation of a \"special brand of music\" for inquisitive minds.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/841",
+      "title": "Shitkatapult · Record label RA"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Shitkatapult",
+      "title": "Shitkatapult - Wikipedia"
+    },
+    {
+      "url": "https://www.shitkatapult.com/info/label",
+      "title": "Label | Shitkatapult"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:59.277Z",
+  "_metrics": {
+    "input_tokens": 13186,
+    "output_tokens": 1346,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005316,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15812,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "An uncompromising Berlin electronic label known for its eclectic output and defiant 'we do what we like' ethos.",
+  "founded": "1997",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:t-raumschmiere",
+      "type": "artist",
+      "name": "T.Raumschmiere"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat"
+    },
+    {
+      "slug": "artist:daniel-meteo",
+      "type": "artist",
+      "name": "Daniel Meteo"
+    },
+    {
+      "slug": "artist:fenin",
+      "type": "artist",
+      "name": "Fenin"
+    },
+    {
+      "slug": "artist:anders-ilar",
+      "type": "artist",
+      "name": "Anders Ilar"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:multifunktionsebene",
+      "type": "project",
+      "name": "Multifunktionsebene"
+    },
+    {
+      "slug": "project:radio-blackout",
+      "type": "project",
+      "name": "Radio Blackout"
+    },
+    {
+      "slug": "project:birdhouse",
+      "type": "project",
+      "name": "Birdhouse"
+    }
+  ]
+}

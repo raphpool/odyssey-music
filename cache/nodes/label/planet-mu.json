@@ -1,0 +1,125 @@
+{
+  "slug": "label:planet-mu",
+  "name": "Planet Mu",
+  "editorial_article": "Planet Mu is a seminal British electronic music label founded in 1995 by Mike Paradinas, the experimental producer best known as µ-Ziq. Originally established as an imprint within Virgin Records, the label gained full independence in 1998. Throughout its history, Planet Mu has operated as a vital conduit for boundary-pushing music, consistently evolving alongside underground electronic scenes. While initially a dedicated platform for Paradinas' own work and the burgeoning IDM movement of the 1990s, the label became renowned for its eclectic and fearless A&R approach. It successfully bridged the gap between complex experimentalism and dancefloor-oriented sounds, championing genres such as jungle, glitch hop, dubstep, grime, and the Chicago footwork scene long before they reached international prominence. \\n\\nFrom its formative years in the late 90s, where it helped frame the sound of cerebral, drum-heavy IDM, to its pivotal role in documenting the rapid acceleration of UK bass music and the global transmission of footwork, Planet Mu has maintained a reputation for artistic integrity over commercial expedience. Paradinas has steered the label through financial hardships, choosing to support forward-thinking, often unconventional artists like Venetian Snares, Luke Vibert, Kuedo, and RP Boo. This commitment to the underground has made Planet Mu an institution in the electronic landscape, prized for its ability to foster niche scenes and provide a lasting home for artists who defy easy categorization. By focusing on the intersection of melodic accessibility and technological experimentation, the label remains a definitive touchstone in contemporary independent music.",
+  "citations": [
+    {
+      "url": "https://dmy.co/10-best/planet-mu-20th-anniversary-best-tracks-according-to-mike-paradinas",
+      "title": "The 20 tracks that define Planet Mu, according to Mike Paradinas | DMY"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Mike_Paradinas",
+      "title": "Mike Paradinas - Wikipedia"
+    },
+    {
+      "url": "https://planet.mu/artists/u-ziq/",
+      "title": "µ-Ziq - Planet Mu"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:51.793Z",
+  "_metrics": {
+    "input_tokens": 12173,
+    "output_tokens": 876,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004357,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 16209,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A highly influential London-based electronic music label founded by Mike Paradinas, recognized for its role in shaping IDM, jungle, dubstep, and Chicago footwork.",
+  "founded": "1995",
+  "location": "London, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    },
+    {
+      "slug": "artist:kuedo",
+      "type": "artist",
+      "name": "Kuedo"
+    },
+    {
+      "slug": "artist:rp-boo",
+      "type": "artist",
+      "name": "RP Boo"
+    },
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega"
+    },
+    {
+      "slug": "artist:capitol-k",
+      "type": "artist",
+      "name": "Capitol K"
+    },
+    {
+      "slug": "artist:ital-tek",
+      "type": "artist",
+      "name": "Ital Tek"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:lunatic-harness",
+      "type": "project",
+      "name": "Lunatic Harness"
+    },
+    {
+      "slug": "project:venetian-snares",
+      "type": "project",
+      "name": "Venetian Snares"
+    },
+    {
+      "slug": "project:bangkok-impact",
+      "type": "project",
+      "name": "Bangkok Impact"
+    }
+  ]
+}

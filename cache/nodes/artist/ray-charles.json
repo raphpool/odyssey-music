@@ -1,0 +1,93 @@
+{
+  "slug": "artist:ray-charles",
+  "name": "Ray Charles",
+  "editorial_article": "Ray Charles, born Ray Charles Robinson in 1930, stands as one of the most transformative figures in 20th-century American music. A multi-instrumentalist, singer, and songwriter who lost his sight in childhood, Charles effectively synthesized R&B, gospel, country, and jazz into a singular, emotional language that helped define the birth of soul music. His virtuosic piano playing, characterized by its deep, church-influenced gospel roots and jazz improvisation, coupled with his gritty, soul-stirring vocal delivery, made him a powerhouse on the charts and a pioneer in the industry. \\n\\nThroughout the 1950s and 60s, Charles broke down rigid barriers between musical genres. His 1962 landmark release, 'Modern Sounds in Country and Western Music,' remains a definitive testament to his adventurous spirit, showcasing how he could take the narrative power of country and elevate it with his own unmistakable gospel-infused flair. Songs like \"I've Got a Woman,\" \"What'd I Say,\" and \"Georgia on My Mind\" are not merely hits; they are fundamental cultural pillars that reshaped pop radio and cemented his legacy as \"The Genius.\" Beyond his technical skill, Charles had an uncanny ability to imbue every song he touched—whether blues, pop, or gospel—with an uncompromising honesty, ensuring that his influence would resonate across generations of artists spanning from soul and rock to modern blues and beyond.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/ray-charles-mn0000046861",
+      "title": "Ray Charles Songs, Albums, Reviews, Bio & More... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:33.859Z",
+  "_metrics": {
+    "input_tokens": 13420,
+    "output_tokens": 686,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004384,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8602,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Ray Charles, born Ray Charles Robinson in 1930, stands as one of the most transformative figures in 20th-century American music.",
+  "origin": "Albany, GA",
+  "active_years": "1940s - 2000s",
+  "genres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:country-soul",
+      "type": "genre",
+      "name": "Country Soul"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:modern-sounds-in-country-and-western-music",
+      "type": "project",
+      "name": "Modern Sounds in Country and Western Music"
+    },
+    {
+      "slug": "project:the-genius-after-hours",
+      "type": "project",
+      "name": "The Genius After Hours"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hit-the-road-jack",
+      "type": "track",
+      "name": "Hit the Road Jack"
+    },
+    {
+      "slug": "track:georgia-on-my-mind",
+      "type": "track",
+      "name": "Georgia on My Mind"
+    },
+    {
+      "slug": "track:i-ve-got-a-woman",
+      "type": "track",
+      "name": "I've Got a Woman"
+    },
+    {
+      "slug": "track:what-d-i-say",
+      "type": "track",
+      "name": "What'd I Say"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

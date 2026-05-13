@@ -1,0 +1,124 @@
+{
+  "slug": "genre:lovers-rock",
+  "name": "Lovers rock",
+  "editorial_article": "Lovers rock is a distinct, romantic style of reggae music that emerged from the vibrant sound system culture of South London during the mid-1970s. While romantic themes had long been present in Jamaican rocksteady and early reggae, lovers rock refined these elements into a specific aesthetic tailored to the British Black experience. It functioned as an apolitical, intimate counterpoint to the militant \"conscious\" Rastafarian reggae dominant in Jamaica, emphasizing smooth vocal delivery and lush, melodic arrangements that drew heavily from American soul and R&B. The genre's name was solidified by the establishment of the Lover's Rock record label by producer Dennis Harris, working alongside figures like John Kpiaye and Dennis Bovell. \\n\\nThe movement was uniquely defined by its strong contingent of young female vocalists, including Louisa Mark and Janet Kay—the latter of whom scored a landmark success with the 1979 hit \"Silly Games,\" which peaked at number two on the UK Singles Chart. Although female stars were central to its early identity, the genre also embraced male solo artists and vocal groups. Throughout the late 1970s and 1980s, the style expanded to include the \"conscious lovers\" subgenre, pioneered by groups like Brown Sugar, which bridged the gap between romantic lyrics and social themes. Lovers rock remains a vital pillar of UK music history, representing a sophisticated, homegrown evolution of reggae that resonated deeply within the diaspora and eventually influenced mainstream pop through crossover successes like Maxi Priest.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lovers_rock",
+      "title": "Lovers rock - Wikipedia"
+    },
+    {
+      "url": "https://list.co.uk/news/a-rough-guide-to-the-genre-of-music-known-as-lovers-rock-24003",
+      "title": "A rough guide to the genre of music known as Lovers Rock"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:51.554Z",
+  "_metrics": {
+    "input_tokens": 19894,
+    "output_tokens": 1538,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007281,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15310,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A romanticized subgenre of reggae that originated in the mid-1970s in London, characterized by its focus on love-themed lyrics, smooth vocal harmonies, and a fusion of Jamaican rhythms with American soul and R&B sensibilities.",
+  "era": "Mid-1970s to present",
+  "origin": "London, England",
+  "sonic_markers": "Smooth vocal arrangements, melodic hooks, soulful influence, reggae basslines, apolitical romantic themes, often features horn sections and soft keyboard accompaniment.",
+  "parent_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:conscious-lovers",
+      "type": "genre",
+      "name": "Conscious lovers"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    },
+    {
+      "slug": "genre:reggae-fusion",
+      "type": "genre",
+      "name": "Reggae fusion"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:janet-kay",
+      "type": "artist",
+      "name": "Janet Kay"
+    },
+    {
+      "slug": "artist:louisa-mark",
+      "type": "artist",
+      "name": "Louisa Mark"
+    },
+    {
+      "slug": "artist:dennis-bovell",
+      "type": "artist",
+      "name": "Dennis Bovell"
+    },
+    {
+      "slug": "artist:carroll-thompson",
+      "type": "artist",
+      "name": "Carroll Thompson"
+    },
+    {
+      "slug": "artist:brown-sugar",
+      "type": "artist",
+      "name": "Brown Sugar"
+    },
+    {
+      "slug": "artist:maxi-priest",
+      "type": "artist",
+      "name": "Maxi Priest"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:lover-s-rock",
+      "type": "label",
+      "name": "Lover's Rock"
+    },
+    {
+      "slug": "label:fashion-records",
+      "type": "label",
+      "name": "Fashion Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:silly-games",
+      "type": "track",
+      "name": "Silly Games"
+    },
+    {
+      "slug": "track:caught-you-in-a-lie",
+      "type": "track",
+      "name": "Caught You in a Lie"
+    }
+  ]
+}

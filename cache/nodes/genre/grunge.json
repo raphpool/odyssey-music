@@ -1,0 +1,143 @@
+{
+  "slug": "genre:grunge",
+  "name": "Grunge",
+  "editorial_article": "Grunge, originally dubbed the \"Seattle Sound,\" is a defining subgenre of alternative rock that crystallized in the Pacific Northwest during the mid-to-late 1980s. Emerging from the underground music scenes of Seattle and Olympia, Washington, the genre synthesized the abrasive, raw energy of punk rock with the down-tuned, sludge-heavy riffs of heavy metal. This sonic hybridization—often characterized by distorted electric guitars, muddy production, and a penchant for \"ultra-loose\" playing—was as much a product of economic necessity as aesthetic choice. Many early bands in the region lacked the funds for high-fidelity studio production, opting instead for a gritty, unpolished sound that would become the genre’s trademark.\n\nThe ethos of grunge was deeply introspective and often cynical, resonating with a generation—often associated with \"Generation X\"—that felt increasingly alienated by the excesses of the 1980s. Lyrically, the genre pivoted toward themes of social isolation, trauma, self-doubt, and emotional betrayal. Through the strategic marketing of independent labels like Sub Pop, the scene gained visibility, but it was the early-1990s breakout success of albums like Nirvana’s 'Nevermind,' Pearl Jam’s 'Ten,' and Soundgarden’s 'Badmotorfinger' that catapulted the sound into the global mainstream. By the mid-90s, grunge had fundamentally altered the rock landscape, pushing introspective, guitar-driven alternative music to the forefront of pop culture before the genre’s prominence began to wane following the tragic death of Kurt Cobain and the eventual fragmentation of its key bands. Its legacy, however, remains enduring, having laid the groundwork for modern alternative rock and post-grunge.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Grunge",
+      "title": "Grunge - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/art/grunge-music",
+      "title": "Grunge | Music, Nirvana, Pearl Jam, Seattle, & Bands | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:14.105Z",
+  "_metrics": {
+    "input_tokens": 12043,
+    "output_tokens": 951,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004437,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8387,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Grunge is a mid-1980s alternative rock genre originating in Washington state, defined by a fusion of punk rock's raw energy and heavy metal's distorted, sludge-heavy guitar sound. It served as the defining sound of the early 1990s, characterized by angst-ridden, introspective lyrics and a shift toward an unpolished, authentic aesthetic.",
+  "era": "Mid-1980s to mid-1990s",
+  "origin": "Seattle, Washington, U.S.",
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:post-grunge",
+      "type": "genre",
+      "name": "Post-grunge"
+    },
+    {
+      "slug": "genre:bubblegrunge",
+      "type": "genre",
+      "name": "Bubblegrunge"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    },
+    {
+      "slug": "artist:pearl-jam",
+      "type": "artist",
+      "name": "Pearl Jam"
+    },
+    {
+      "slug": "artist:soundgarden",
+      "type": "artist",
+      "name": "Soundgarden"
+    },
+    {
+      "slug": "artist:alice-in-chains",
+      "type": "artist",
+      "name": "Alice in Chains"
+    },
+    {
+      "slug": "artist:mudhoney",
+      "type": "artist",
+      "name": "Mudhoney"
+    },
+    {
+      "slug": "artist:the-melvins",
+      "type": "artist",
+      "name": "The Melvins"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:nevermind",
+      "type": "project",
+      "name": "Nevermind"
+    },
+    {
+      "slug": "project:ten",
+      "type": "project",
+      "name": "Ten"
+    },
+    {
+      "slug": "project:badmotorfinger",
+      "type": "project",
+      "name": "Badmotorfinger"
+    },
+    {
+      "slug": "project:dirt",
+      "type": "project",
+      "name": "Dirt"
+    }
+  ],
+  "landmark_tracks": []
+}

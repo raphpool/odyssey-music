@@ -1,0 +1,99 @@
+{
+  "slug": "artist:francois-bayle",
+  "name": "François Bayle",
+  "editorial_article": "François Bayle is a central figure in the evolution of 20th-century electroacoustic music, an influential composer, and a visionary administrator who fundamentally shaped the trajectory of French acousmatic art. Born in Madagascar in 1932, Bayle eventually settled in France, where his self-taught musical background led him to the Groupe de Recherches Musicales (GRM) in 1958. Working alongside pioneers like Pierre Schaeffer and Olivier Messiaen, Bayle became a primary custodian of the musique concrète tradition while pushing it toward new technological and conceptual horizons. From 1966 to 1997, he directed the GRM within the Institut national de l’audiovisuel (INA), a tenure that saw the creation of the Acousmonium—a legendary multi-speaker orchestra designed specifically for the performance of acousmatic music—and the support of groundbreaking tools like GRM Tools and the Acousmographe.\n\nBeyond his institutional leadership, Bayle’s personal body of work is a masterclass in the possibilities of sound manipulation, characterized by intricate textures, massive sound fields, and a profound commitment to the experience of \"pure\" listening. After departing the GRM in 1997, he established his own studio, Studio Magison, and his dedicated label, Magison, ensuring his vast catalog of works remains available to researchers and listeners alike. His career represents a singular bridge between the pioneering tape-manipulation techniques of the mid-century and the contemporary digital sound design landscape. His impact persists not only through his own compositions, but through the rigorous standards of quality and the pedagogical frameworks he established for generations of electroacoustic composers.",
+  "citations": [
+    {
+      "url": "https://electrocd.com/en/artiste/bayle_fr/biographie",
+      "title": "François Bayle — Biography — electrocd"
+    },
+    {
+      "url": "https://www.discogs.com/artist/32200-Fran%C3%A7ois-Bayle?srsltid=AfmBOoqOF3t4GuNhzZNHzu7Cj2PA4NZQeCGU8fDHRz44RmSLAveAUx3m",
+      "title": "François Bayle Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:52.255Z",
+  "_metrics": {
+    "input_tokens": 20560,
+    "output_tokens": 2739,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009249,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19390,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "François Bayle is a central figure in the evolution of 20th-century electroacoustic music, an influential composer, and a visionary administrator who fundamentally shaped the trajectory of French acousmatic art.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Fran%C3%A7ois_Bayle.jpg",
+  "origin": "Tamatave, Madagascar",
+  "active_years": "1958–present",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:acousmatic-music",
+      "type": "genre",
+      "name": "Acousmatic Music"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic Music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:magison",
+      "type": "label",
+      "name": "Magison"
+    },
+    {
+      "slug": "label:ina-grm",
+      "type": "label",
+      "name": "INA-GRM"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:erosphere",
+      "type": "project",
+      "name": "Erosphère"
+    },
+    {
+      "slug": "project:theatre-d-ombre",
+      "type": "project",
+      "name": "Théâtre d'ombre"
+    },
+    {
+      "slug": "project:l-experience-acoustique",
+      "type": "project",
+      "name": "L'Expérience Acoustique"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tremblement-de-terre-tres-doux",
+      "type": "track",
+      "name": "Tremblement de terre très doux"
+    },
+    {
+      "slug": "track:toupie-dans-le-ciel",
+      "type": "track",
+      "name": "Toupie dans le ciel"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

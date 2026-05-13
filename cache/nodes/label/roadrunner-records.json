@@ -1,0 +1,110 @@
+{
+  "slug": "label:roadrunner-records",
+  "name": "Roadrunner Records",
+  "editorial_article": "Founded in 1980, Roadrunner Records began its journey in the Netherlands as an independent importer and distributor of American heavy metal albums. It was established by Cees Wessels, who sought to bridge the gap between North American metal scenes and European listeners. By 1986, the label had established a formal headquarters in New York City, a move that solidified its transformation into a powerhouse for homegrown heavy music. Throughout the late 1980s, the 1990s, and into the 2000s, Roadrunner became synonymous with the evolution of extreme and heavy music. The label was instrumental in the rise and global dissemination of subgenres like death metal, thrash, groove metal, and eventually the nu-metal explosion of the late 90s. \n\nRoadrunner's roster historically boasts some of the most influential bands in heavy metal, including Sepultura, Type O Negative, Machine Head, and King Diamond, who helped define the label's gritty, uncompromising aesthetic. As it matured, the label expanded its footprint, signing genre-defining acts like Slipknot, who helped propel Roadrunner into the mainstream spotlight with multi-platinum success. Despite shifting ownership—becoming a division of Warner Music Group in 2006 and later part of the Elektra Music Group in 2018—the label has maintained its identity as a bastion for hard rock and heavy metal. Its legacy is one of mainstream infiltration, turning aggressive, marginalized sounds into globally recognized movements, while continuing to support modern heavy artists across the rock spectrum.",
+  "citations": [
+    {
+      "url": "https://www.elektra.com/roadrunnerrecords",
+      "title": "Roadrunner Records – Official Site"
+    },
+    {
+      "url": "https://www.loudersound.com/bands-artists/roadrunner-records-type-o-negative-sepultura-life-of-agony",
+      "title": "Roadrunner Records: the most influential metal label of the 90s"
+    },
+    {
+      "url": "https://www.discogs.com/label/34268-Roadrunner-Records?srsltid=AfmBOoogSvA9yc0Ml8r5PHZLbqPU9iILNMI8kQBtxpRNIKzjLQblJ0b_",
+      "title": "Roadrunner Records - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:21.933Z",
+  "_metrics": {
+    "input_tokens": 18553,
+    "output_tokens": 2184,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007914,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 21752,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary heavy metal and hard rock record label founded in 1980 that evolved from an independent European importer to a global industry powerhouse shaping multiple decades of metal history.",
+  "founded": "1980",
+  "location": "New York City, USA",
+  "genres": [
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy Metal"
+    },
+    {
+      "slug": "genre:thrash-metal",
+      "type": "genre",
+      "name": "Thrash Metal"
+    },
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal"
+    },
+    {
+      "slug": "genre:nu-metal",
+      "type": "genre",
+      "name": "Nu Metal"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:sepultura",
+      "type": "artist",
+      "name": "Sepultura"
+    },
+    {
+      "slug": "artist:slipknot",
+      "type": "artist",
+      "name": "Slipknot"
+    },
+    {
+      "slug": "artist:type-o-negative",
+      "type": "artist",
+      "name": "Type O Negative"
+    },
+    {
+      "slug": "artist:machine-head",
+      "type": "artist",
+      "name": "Machine Head"
+    },
+    {
+      "slug": "artist:gojira",
+      "type": "artist",
+      "name": "Gojira"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:roots",
+      "type": "project",
+      "name": "Roots"
+    },
+    {
+      "slug": "project:iowa",
+      "type": "project",
+      "name": "Iowa"
+    },
+    {
+      "slug": "project:bloody-kisses",
+      "type": "project",
+      "name": "Bloody Kisses"
+    }
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "slug": "artist:jan-jelinek",
+  "name": "Jan Jelinek",
+  "editorial_article": "Jan Jelinek is a seminal German electronic musician and producer based in Berlin, celebrated for his pioneering contributions to the microhouse, glitch, and ambient scenes. Rising to prominence in the late 1990s and early 2000s, Jelinek developed a highly distinctive sonic identity defined by \"clicks and cuts\"—a term describing the intricate, fractured micro-sampling techniques he employed. By deconstructing and reassembling loops from jazz, funk, and rock records, he created dense, hypnotic soundscapes that bridged the gap between organic instrumentation and digital reductionism. His seminal work, *Loop-Finding-Jazz-Records* (2001), is widely regarded as a landmark in contemporary electronic music, showcasing his ability to manipulate textures into a seamless, melancholic flow. Beyond his solo work under his own name, Jelinek is known for his various aliases, including Farben and Gramm, each exploring different facets of electronic experimentation. He is also a notable label head, having founded the experimental label Faitiche, which has become a platform for his own sound-art projects and collaborative works, including collaborations with artists like Masayoshi Fujita. His practice remains deeply rooted in the philosophy of the sample, turning the act of repetition into a complex, evolving form of modern composition. His work often reflects his intellectual background, exploring the materiality of recorded sound and the transformative potential of the digital sampler as an instrument of both history and erasure. Whether performing live, releasing intricate ambient explorations, or delving into radio-play experiments, Jelinek’s commitment to the intersection of avant-garde composition and rhythmic structure has firmly established him as a key figure in the evolution of 21st-century electronic sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jan_Jelinek",
+      "title": "Jan Jelinek - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:52.443Z",
+  "_metrics": {
+    "input_tokens": 26388,
+    "output_tokens": 2336,
+    "cache_read_tokens": 4056,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010202,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16855,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Jan Jelinek is a German electronic musician and producer, best known for his influential work in microhouse, glitch, and ambient, and for his unique use of micro-sampling.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Jan_Jelinek_%40_Entw%C3%BCrfnisse_Chemnitz_%C2%A9_Udo_Siegfriedt_2020.jpg/250px-Jan_Jelinek_%40_Entw%C3%BCrfnisse_Chemnitz_%C2%A9_Udo_Siegfriedt_2020.jpg",
+  "origin": "Berlin, Germany",
+  "active_years": "1998-present",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:scape",
+      "type": "label",
+      "name": "~scape"
+    },
+    {
+      "slug": "label:faitiche",
+      "type": "label",
+      "name": "Faitiche"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:loop-finding-jazz-records",
+      "type": "project",
+      "name": "Loop-Finding-Jazz-Records"
+    },
+    {
+      "slug": "project:kosmischer-pitch",
+      "type": "project",
+      "name": "Kosmischer Pitch"
+    },
+    {
+      "slug": "project:tierbeobachtungen",
+      "type": "project",
+      "name": "Tierbeobachtungen"
+    },
+    {
+      "slug": "project:zwischen",
+      "type": "project",
+      "name": "Zwischen"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tendency",
+      "type": "track",
+      "name": "Tendency"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:farben",
+      "type": "artist",
+      "name": "Farben"
+    },
+    {
+      "slug": "artist:gramm",
+      "type": "artist",
+      "name": "Gramm"
+    },
+    {
+      "slug": "artist:the-exposures",
+      "type": "artist",
+      "name": "The Exposures"
+    }
+  ],
+  "members": []
+}

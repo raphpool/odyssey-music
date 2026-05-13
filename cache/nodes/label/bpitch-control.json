@@ -1,0 +1,110 @@
+{
+  "slug": "label:bpitch-control",
+  "name": "BPitch Control",
+  "editorial_article": "BPitch Control (often stylized as BPitch Berlin) is a seminal German record label founded in 1999 by the influential DJ and producer Ellen Allien. Established in the heart of Berlin at a pivotal moment in the city’s post-reunification techno history, the imprint emerged as a vital creative hub, providing a platform for local artists to define their own sounds amidst a rapidly evolving club scene. Far more than just a record label, BPitch Control cultivated a global family of musicians, designers, and creatives, functioning as a \"seal of quality\" that represented a distinctive Berlin identity. The label's aesthetic is deeply tied to its partnership with the design collective Pfadfinderei, ensuring that its visual output is as iconic as the music itself. \\n\\nMusically, BPitch Control has resisted rigid categorization, embracing a \"polyphonic\" approach that spans techno, minimal, electronica, indie, pop, and experimental beats. This diversity reflects the individual voices of the artists it has championed throughout the decades. The roster reads like a definitive list of figures who shaped the 2000s and 2010s electronic landscape, including luminaries such as Paul Kalkbrenner, Modeselektor, Moderat, Sascha Funke, Dillon, and Ellen Allien herself. By fostering close-knit relationships and creative freedom, the label helped propel several of its resident artists into international superstardom while simultaneously continuing to scout and develop new talent from around the world. Today, the label remains a permanent fixture of Berlin’s cultural history, a living bridge between the city’s turbulent past and its status as a global magnet for art and electronic music culture. Its commitment to maintaining the \"island of creativity\" that Allien first established in 1999 ensures that BPitch Berlin continues to be synonymous with the sound and spirit of the German capital.",
+  "citations": [
+    {
+      "url": "https://www.bpitch.de/en/about-us/",
+      "title": "About | BPitch Control"
+    },
+    {
+      "url": "https://inverted-audio.com/label/bpitch-control/",
+      "title": "BPitch Control - Inverted Audio"
+    },
+    {
+      "url": "https://ra.co/labels/737",
+      "title": "BPitch · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:23.630Z",
+  "_metrics": {
+    "input_tokens": 18071,
+    "output_tokens": 1521,
+    "cache_read_tokens": 4059,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006901,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 23027,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary Berlin-based electronic music label founded in 1999 by Ellen Allien, serving as a pillar of the city's techno culture and global electronic music scene.",
+  "founded": "1999",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien"
+    },
+    {
+      "slug": "artist:paul-kalkbrenner",
+      "type": "artist",
+      "name": "Paul Kalkbrenner"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor"
+    },
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat"
+    },
+    {
+      "slug": "artist:sascha-funke",
+      "type": "artist",
+      "name": "Sascha Funke"
+    },
+    {
+      "slug": "artist:dillon",
+      "type": "artist",
+      "name": "Dillon"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:berlin-calling-the-soundtrack",
+      "type": "project",
+      "name": "Berlin Calling - The Soundtrack"
+    },
+    {
+      "slug": "project:stadtkind",
+      "type": "project",
+      "name": "Stadtkind"
+    },
+    {
+      "slug": "project:alientronic",
+      "type": "project",
+      "name": "Alientronic"
+    }
+  ]
+}

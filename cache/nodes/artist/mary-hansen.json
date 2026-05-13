@@ -1,0 +1,103 @@
+{
+  "slug": "artist:mary-hansen",
+  "name": "Mary Hansen",
+  "editorial_article": "Mary Therese Hansen (1966–2002) was an influential Australian-born musician, best known as the charismatic guitarist and vocalist for the seminal art-pop band Stereolab. Moving to the United Kingdom from her native Queensland in the late 1980s, Hansen initially joined the C86-era indie group The Wolfhounds. Her collaborative spirit and unique vocal presence caught the attention of Stereolab founders Lætitia Sadier and Tim Gane, leading her to join the group in 1992. Over the next decade, she became an integral part of the band's identity, contributing her distinctive, airy vocals and guitar work to a prolific run of albums that defined the experimental and avant-pop sound of the 1990s. Beyond her work with Stereolab, Hansen was an active collaborator within the broader alternative music community, lending her talents to projects such as Moonshake, The High Llamas, and Brokeback. She also explored her own creative voice under the moniker The Horizontalist, through which she released soundtrack work. Hansen's life was tragically cut short in December 2002 following a cycling accident in London. Her passing was deeply felt within the international indie scene, leaving behind a legacy as both a vital contributor to one of the most innovative bands of her era and a cherished creative presence whose influence permeated various corners of experimental rock and electronic music. Her solo work, including the posthumously released Hybird EP, offers a glimpse into her idiosyncratic approach to sound.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/mary-hansen",
+      "title": "Mary Hansen Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://exclaim.ca/music/article/farewell_to_stereolabs_mary_hansen_clashs_joe",
+      "title": "Farewell to Stereolab's Mary Hansen and The Clash's Joe Strummer"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:20.747Z",
+  "_metrics": {
+    "input_tokens": 20264,
+    "output_tokens": 1296,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00701,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 2,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 29989,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mary Therese Hansen (1966–2002) was an influential Australian-born musician, best known as the charismatic guitarist and vocalist for the seminal art-pop band Stereolab.",
+  "origin": "Maryborough, Australia",
+  "genres": [
+    {
+      "slug": "genre:indietronica",
+      "type": "genre",
+      "name": "Indietronica"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:duophonic-records",
+      "type": "label",
+      "name": "Duophonic Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:twenty-feet-behind",
+      "type": "track",
+      "name": "Twenty Feet Behind"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:l-titia-sadier",
+      "type": "artist",
+      "name": "Lætitia Sadier"
+    },
+    {
+      "slug": "artist:tim-gane",
+      "type": "artist",
+      "name": "Tim Gane"
+    },
+    {
+      "slug": "artist:sean-o-hagan",
+      "type": "artist",
+      "name": "Sean O'Hagan"
+    },
+    {
+      "slug": "artist:dave-callahan",
+      "type": "artist",
+      "name": "Dave Callahan"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "slug": "genre:shoegaze",
+  "name": "Shoegaze",
+  "editorial_article": "Shoegaze is a subgenre of alternative and indie rock that emerged in the United Kingdom and Ireland during the late 1980s, defined by its immersive, ethereal, and heavily processed sonic landscape. The genre is most famously characterized by its \"wall of sound\" approach, which utilizes cascading layers of distorted, feedback-laden guitars, often processed through extensive effects chains, reverb, and delay. The name \"shoegaze\" originated from the press's tendency to describe the bands as \"staring at their shoes\" while performing, a visual byproduct of the musicians' intense focus on managing their complex pedalboards and effects setups during live shows.\n\nAt the core of the shoegaze aesthetic is a deliberate subversion of traditional rock hierarchies. Vocals are frequently mixed deep within the instrumentation, treated more as another atmospheric layer rather than the focal point of the track. This often creates a striking contrast against delicate, melodic vocal delivery, particularly from artists like Rachel Goswell and Miki Berenyi. While My Bloody Valentine is widely considered the genre's standard-bearers—largely due to Kevin Shields’ pioneering techniques like the \"glide guitar\" vibrato arm manipulation heard on the landmark album 'Loveless'—the scene encompassed a diverse range of sounds from the dream-pop inclinations of Cocteau Twins to the more distorted noise-rock edges of bands like The Jesus and Mary Chain and Dinosaur Jr.\n\nThough its initial mainstream peak was relatively short-lived in the early 1990s, often overshadowed by the burgeoning grunge movement and later by the rise of Britpop, the genre’s influence has been profound and enduring. Shoegaze saw a significant critical and cult revival in the 2000s and 2010s, with \"nu-gaze\" and blackgaze movements further expanding its boundaries. Its legacy remains embedded in contemporary independent music, where its signature textures continue to inspire bands that prioritize mood, immersion, and sonic experimentation over conventional song structures.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/shoegaze-music-guide",
+      "title": "Shoegaze Music Guide: History and Artists of Shoegaze - 2026 - MasterClass"
+    },
+    {
+      "url": "https://splice.com/blog/what-is-shoegaze-music/",
+      "title": "What is Shoegaze? History, Bands, and Key Characteristics - Blog | Splice"
+    },
+    {
+      "url": "https://firebirdmagazine.com/music-history/shoegaze",
+      "title": "The shape of dreams: a journey through the history of shoegaze. — Firebird."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:05.759Z",
+  "_metrics": {
+    "input_tokens": 11327,
+    "output_tokens": 1000,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004332,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 11962,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of indie rock characterized by heavily layered, distorted, and atmospheric guitar textures, often featuring breathy or indistinct vocals buried in the mix.",
+  "era": "Late 1980s–Present",
+  "origin": "United Kingdom / Ireland",
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:nu-gaze",
+      "type": "genre",
+      "name": "Nu-gaze"
+    },
+    {
+      "slug": "genre:blackgaze",
+      "type": "genre",
+      "name": "Blackgaze"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:dream-pop",
+      "type": "genre",
+      "name": "Dream Pop"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine"
+    },
+    {
+      "slug": "artist:slowdive",
+      "type": "artist",
+      "name": "Slowdive"
+    },
+    {
+      "slug": "artist:ride",
+      "type": "artist",
+      "name": "Ride"
+    },
+    {
+      "slug": "artist:cocteau-twins",
+      "type": "artist",
+      "name": "Cocteau Twins"
+    },
+    {
+      "slug": "artist:lush",
+      "type": "artist",
+      "name": "Lush"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:creation-records",
+      "type": "label",
+      "name": "Creation Records"
+    },
+    {
+      "slug": "label:4ad",
+      "type": "label",
+      "name": "4AD"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:loveless",
+      "type": "project",
+      "name": "Loveless"
+    },
+    {
+      "slug": "project:souvlaki",
+      "type": "project",
+      "name": "Souvlaki"
+    },
+    {
+      "slug": "project:psychocandy",
+      "type": "project",
+      "name": "Psychocandy"
+    }
+  ],
+  "landmark_tracks": []
+}

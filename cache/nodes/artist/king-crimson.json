@@ -1,0 +1,98 @@
+{
+  "slug": "artist:king-crimson",
+  "name": "King Crimson",
+  "editorial_article": "King Crimson is a seminal English progressive rock band founded in London in 1968, renowned for their radical reinventions, intricate compositions, and profound influence on rock, jazz, and avant-garde music. Led by guitarist and founding member Robert Fripp—the group's only continuous member across its 50-plus year history—the band has undergone numerous personnel shifts, each resulting in a distinct musical evolution. Their 1969 debut, 'In the Court of the Crimson King', is widely considered a foundational masterpiece of progressive rock, bridging symphonic art-rock, jazz, and proto-heavy metal with its visceral opener, \"21st Century Schizoid Man.\"\\n\\nThroughout their career, King Crimson has constantly pushed boundaries, incorporating elements of 20th-century classical, folk, African music, gamelan, free jazz, new wave, and industrial soundscapes. Notable lineups include the early quintet featuring Greg Lake and Ian McDonald, the experimental avant-heavy metal era of the mid-1970s with Bill Bruford and John Wetton (culminating in the acclaimed album 'Red'), and the 1980s new wave-inflected quartet featuring Adrian Belew. Their refusal to stagnate has made them a touchstone for diverse artists, from Kurt Cobain to the band Tool, cementing their legacy as a pioneering force in avant-garde and progressive rock music. Their discography, spanning decades, remains a testament to constant technical innovation and structural exploration, ensuring their status as one of music's most vital and enduring ensembles.",
+  "citations": [
+    {
+      "url": "https://producelikeapro.com/blog/king-crimson/",
+      "title": "King Crimson - Artists that changed music - Produce Like A Pro"
+    },
+    {
+      "url": "https://metalstorm.net/bands/biography.php?band_id=3223&bandname=King+Crimson",
+      "title": "King Crimson - Biography - Metal Storm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:54.194Z",
+  "_metrics": {
+    "input_tokens": 11198,
+    "output_tokens": 771,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.003956,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8458,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "King Crimson is a seminal English progressive rock band founded in London in 1968, renowned for their radical reinventions, intricate compositions, and profound influence on rock, jazz, and avant-garde music.",
+  "origin": "London, England",
+  "active_years": "1968-1974, 1981-1984, 1994-2003, 2007-2009, 2013-2021",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:avant-garde-rock",
+      "type": "genre",
+      "name": "Avant-garde rock"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz fusion"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:in-the-court-of-the-crimson-king",
+      "type": "project",
+      "name": "In the Court of the Crimson King"
+    },
+    {
+      "slug": "project:larks-tongues-in-aspic",
+      "type": "project",
+      "name": "Larks' Tongues in Aspic"
+    },
+    {
+      "slug": "project:red",
+      "type": "project",
+      "name": "Red"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:21st-century-schizoid-man",
+      "type": "track",
+      "name": "21st Century Schizoid Man"
+    },
+    {
+      "slug": "track:larks-tongues-in-aspic-part-two",
+      "type": "track",
+      "name": "Larks' Tongues in Aspic, Part Two"
+    },
+    {
+      "slug": "track:starless",
+      "type": "track",
+      "name": "Starless"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:bill-bruford",
+      "type": "artist",
+      "name": "Bill Bruford"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "slug": "artist:jimmy-cauty",
+  "name": "Jimmy Cauty",
+  "editorial_article": "James Francis Cauty (born 19 December 1956) is a seminal English artist and musician whose influence on electronic music and British counterculture remains profound. Emerging from a background in graphic art—most notably as the creator of iconic Lord of the Rings posters for Athena—Cauty transitioned into music during the 1980s. He played in various bands including Brilliant and Zodiac Mindwarp and the Love Reaction before forming a legendary partnership with Bill Drummond. Together, they operated under several guises, most famously as The Justified Ancients of Mu Mu (the JAMs) and The KLF. Cauty served as the essential musical architect for these projects, utilizing his technical expertise to craft groundbreaking works in ambient house, hip-hop, and stadium-sized pop. Beyond his musical contributions, Cauty is recognized for his confrontational and conceptual art interventions, most notoriously as the co-instigator of the K Foundation, which gained infamy by publicly burning one million pounds in cash on the island of Jura. Throughout his career, Cauty has maintained an enigmatic persona, often operating behind various pseudonyms, while consistently pushing the boundaries of what pop artists can achieve in terms of both commercial success and radical, provocative performance. His work continues to be characterized by a restless, irreverent creativity that bridges the gap between chart-topping production and avant-garde art practice. This intersection of pop culture, mystery, and deliberate obscurity defined the late 80s and early 90s landscape, leaving an indelible mark on dance music history through the creation of the Trancentral studio sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jimmy_Cauty",
+      "title": "Jimmy Cauty - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/47965-Jimmy-Cauty?srsltid=AfmBOopv3pcObxFc4GdHjcU4dyB6JqrlD3wt0EEYuQdKcMTKEaPtDXdi",
+      "title": "Jimmy Cauty Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:21.405Z",
+  "_metrics": {
+    "input_tokens": 19922,
+    "output_tokens": 1069,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006584,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17440,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "James Francis Cauty (born 19 December 1956) is a seminal English artist and musician whose influence on electronic music and British counterculture remains profound.",
+  "origin": "Wirral, England",
+  "genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient house"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:klf-communications",
+      "type": "label",
+      "name": "KLF Communications"
+    },
+    {
+      "slug": "label:blast-first",
+      "type": "label",
+      "name": "Blast First"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:doctorin-the-tardis",
+      "type": "track",
+      "name": "Doctorin' the Tardis"
+    },
+    {
+      "slug": "track:what-time-is-love",
+      "type": "track",
+      "name": "What Time Is Love?"
+    },
+    {
+      "slug": "track:3-a-m-eternal",
+      "type": "track",
+      "name": "3 a.m. Eternal"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-klf",
+      "type": "artist",
+      "name": "The KLF"
+    },
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    }
+  ]
+}

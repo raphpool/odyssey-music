@@ -1,0 +1,75 @@
+{
+  "slug": "artist:andy-mellwig",
+  "name": "Andy Mellwig",
+  "editorial_article": "Andy Mellwig is a Berlin-based electronic musician and producer, primarily recognized for his foundational role in the development of 1990s dub techno. He is best known as one-half of the influential duo Porter Ricks, alongside ambient composer Thomas Köner. Formed in the mid-1990s, the project became a central pillar of the Chain Reaction label, a sub-label of the legendary Basic Channel. Mellwig’s technical contribution to the duo—often described as the \"beatmeister\" role—was instrumental in shaping the group's signature aesthetic: a fusion of deep, cavernous dub production techniques with abstract, often oceanic-inspired sound design. This partnership redefined the boundaries of techno, stripping it down to its most hypnotic, rhythmic, and textural elements.\\n\\nBeyond his work with Porter Ricks, Mellwig has maintained a solo career under various monikers, most notably Continuous Mode. His solo explorations often dive deeper into technical synthesis and experimental rhythmic structures, reflecting an approach to sound design that is both analytical and atmospheric. Mellwig’s influence on the German electronic underground of the 90s and beyond is significant, particularly in how he helped bridge the gap between ambient listening music and the dancefloor. Throughout his active years, he has remained a respected figure in experimental electronic circles, known for his methodical and uncompromising approach to sound synthesis. His catalog, whether solo or collaborative, serves as an essential archive of a time when the sonic landscape of Berlin was being radically rewritten by those exploring the intersection of dub, drone, and industrial minimalism.",
+  "citations": [
+    {
+      "url": "https://tresorberlin.com/artist/porter-ricks/",
+      "title": "Porter Ricks | Tresor Berlin"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/andy-mellwig-mn0001248312",
+      "title": "Andy Mellwig Songs, Albums, Reviews, Bio & Mor... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:17.778Z",
+  "_metrics": {
+    "input_tokens": 22116,
+    "output_tokens": 1379,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007598,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 19393,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Andy Mellwig is a Berlin-based electronic musician and producer, primarily recognized for his foundational role in the development of 1990s dub techno.",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks"
+    }
+  ]
+}

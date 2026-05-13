@@ -1,0 +1,79 @@
+{
+  "slug": "genre:hip-hop",
+  "name": "Hip-Hop",
+  "editorial_article": "Hip-Hop is a transformative artistic and cultural movement that emerged in the Bronx, New York City, during the 1970s. Born from the block party culture of Black, Latino, and Caribbean youth, it fundamentally redefined popular music through four foundational pillars: DJing, MCing (rapping), breakdancing, and graffiti. Early pioneers like DJ Kool Herc utilized innovative turntable techniques, such as isolating and looping the percussive 'break' from funk and soul records, creating a new canvas for vocal performance. This foundation expanded rapidly in 1979 with the mainstream success of the Sugarhill Gang's 'Rapper's Delight,' transitioning the art form from local gatherings to a commercial global force.\\n\\nThroughout the 1980s and 1990s—often termed the genre's 'Golden Era'—hip-hop diversified into numerous stylistic avenues. 'New School' artists like Run-DMC and the Beastie Boys introduced drum machine-led minimalism and socio-political commentary, moving away from party-centric origins. Simultaneously, the rise of gangsta rap articulated the lived realities of inner-city life, while subgenres like conscious hip-hop utilized the medium for political critique. By the 21st century, hip-hop's inherent adaptability allowed it to integrate with electronic, indie, and pop sensibilities. The explosion of internet distribution and streaming further democratized the genre, solidifying its place as one of the most significant and influential cultural phenomena in modern history, constantly evolving through new production techniques, sampling strategies, and lyrical innovation.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/hip-hop-guide",
+      "title": "Hip-Hop Music Guide: History of Hip-Hop and Notable Artists - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:44.258Z",
+  "_metrics": {
+    "input_tokens": 12324,
+    "output_tokens": 720,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004161,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8680,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A cultural and musical movement originating in 1970s New York, characterized by rhythmic vocal delivery (rapping) and beat-driven production, historically built on the pillars of DJing, MCing, breaking, and graffiti.",
+  "era": "1970s–Present",
+  "origin": "The Bronx, New York City, USA",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:dj-kool-herc",
+      "type": "artist",
+      "name": "DJ Kool Herc"
+    },
+    {
+      "slug": "artist:grandmaster-flash",
+      "type": "artist",
+      "name": "Grandmaster Flash"
+    },
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G."
+    },
+    {
+      "slug": "artist:tupac-shakur",
+      "type": "artist",
+      "name": "Tupac Shakur"
+    },
+    {
+      "slug": "artist:public-enemy",
+      "type": "artist",
+      "name": "Public Enemy"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "Jay-Z"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:run-dmc",
+      "type": "artist",
+      "name": "Run-DMC"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

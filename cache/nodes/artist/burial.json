@@ -1,0 +1,60 @@
+{
+  "slug": "artist:burial",
+  "name": "Burial",
+  "editorial_article": "Burial is the alias of British electronic musician William Emmanuel Bevan, a pivotal and deeply enigmatic figure in the evolution of UK underground dance music. Based in South London, Bevan first emerged in 2005 as the inaugural artist signed to Kode9’s Hyperdub label. His work is celebrated for its evocative, rain-slicked atmosphere—a haunting fusion of UK garage, 2-step, jungle, and dubstep that feels like a lonely walk through a neon-lit, desolate urban landscape. His eponymous 2006 debut and the 2007 masterpiece Untrue became defining records of the 2000s, influencing a generation of producers with their distinctive use of pitch-shifted vocal samples, skittering percussion, and a pervasive sense of melancholy and urban yearning.\\n\\nInitially maintaining a strict anonymity that fueled widespread speculation, Bevan was eventually identified in 2008 following a nomination for the Mercury Prize. Despite this revelation, he has remained intensely private, rarely granting interviews and avoiding live performance in favor of a reclusive creative life. In the years following Untrue, he shifted away from traditional album structures, instead exploring long-form, atmospheric EPs such as Kindred (2012) and Rival Dealer (2013). These releases pushed his sound into more experimental and disorienting territories, often characterized by complex, multi-part suites. Through collaborations with artists like Four Tet, Thom Yorke, and Massive Attack, Burial has maintained his status as one of the most respected and influential architects of modern electronic sound, consistently bridging the gap between underground rave heritage and avant-garde composition.",
+  "citations": [
+    {
+      "url": "https://www.last.fm/music/Burial/+wiki",
+      "title": "Burial biography | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:31.891Z",
+  "_metrics": {
+    "input_tokens": 30910,
+    "output_tokens": 3242,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.012591,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 17273,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Burial is the alias of British electronic musician William Emmanuel Bevan, a pivotal and deeply enigmatic figure in the evolution of UK underground dance music.",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:future-garage",
+      "type": "genre",
+      "name": "Future Garage"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hyperdub",
+      "type": "label",
+      "name": "Hyperdub"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

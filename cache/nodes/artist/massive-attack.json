@@ -1,0 +1,98 @@
+{
+  "slug": "artist:massive-attack",
+  "name": "Massive Attack",
+  "editorial_article": "Massive Attack is an English musical collective formed in Bristol in 1988, widely credited as the pioneers of the trip-hop genre. Originally a quartet consisting of Robert \"3D\" Del Naja, Grant \"Daddy G\" Marshall, Adrian \"Tricky\" Thaws, and Andrew \"Mushroom\" Vowles, the group emerged from the influential local sound system culture of The Wild Bunch. Their 1991 debut album, *Blue Lines*, stands as a landmark release in electronic music, seamlessly blending elements of hip hop, soul, dub, and reggae with deep, atmospheric production and minimalist vocal performances. This \"Bristol Sound\" defined an era of British electronic music, characterized by slow tempos, heavy basslines, and a cinematic, noir aesthetic. Throughout the 1990s and beyond, the group evolved their sound, most notably with their critically acclaimed 1998 album *Mezzanine*, which introduced darker, guitar-inflected textures and solidified their status as experimental pioneers. Across their career, Massive Attack has maintained a reputation for a collaborative, open-ended creative process, frequently working with a rotating cast of guest vocalists such as Horace Andy, Elizabeth Fraser, and Tracey Thorn. Beyond their musical output, the group is known for their political engagement, visual arts integration, and their commitment to human rights and environmental causes. As of the current era, the project continues under the core creative leadership of Del Naja and Marshall, remaining a vital and enduring force in modern electronic music. Their work has influenced a generation of downtempo and alternative electronic artists, cementing their legacy as one of the most significant and influential acts to emerge from the UK's electronic underground.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Massive_Attack",
+      "title": "Massive Attack - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Massive_Attack_discography",
+      "title": "Massive Attack discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:32.860Z",
+  "_metrics": {
+    "input_tokens": 28778,
+    "output_tokens": 2815,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.011417,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19578,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Massive Attack is an English musical collective formed in Bristol in 1988, widely credited as the pioneers of the trip-hop genre. Originally a quartet consisting of Robert \"3D\" Del Naja, Grant \"Daddy G\" Marshall, Adrian \"Tricky\" Thaws, and Andrew \"Mushroom\" Vowles, the group emerged from the influential local sound system culture of The Wild Bunch. Their 1991 debut album, *Blue Lines*, stands as a landmark release in electronic music, seamlessly blending elements of hip hop, soul, dub, and reggae with deep, atmospheric production and minimalist vocal performances. This \"Bristol Sound\" defined an era of British electronic music, characterized by slow tempos, heavy basslines, and a cinematic, noir aesthetic. Throughout the 1990s and beyond, the group evolved their sound, most notably with their critically acclaimed 1998 album *Mezzanine*, which introduced darker, guitar-inflected textures and solidified their status as experimental pioneers. Across their career, Massive Attack has maintained a reputation for a collaborative, open-ended creative process, frequently working with a rotating cast of guest vocalists such as Horace Andy, Elizabeth Fraser, and Tracey Thorn. Beyond their musical output, the group is known for their political engagement, visual arts integration, and their commitment to human rights and environmental causes. As of the current era, the project continues under the core creative leadership of Del Naja and Marshall, remaining a vital and enduring force in modern electronic music. Their work has influenced a generation of downtempo and alternative electronic artists, cementing their legacy as one of the most significant and influential acts to emerge from the UK's electronic underground.",
+  "origin": "Bristol, England",
+  "active_years": "1988–present",
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip hop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:circa-records",
+      "type": "label",
+      "name": "Circa Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:blue-lines",
+      "type": "project",
+      "name": "Blue Lines"
+    },
+    {
+      "slug": "project:protection",
+      "type": "project",
+      "name": "Protection"
+    },
+    {
+      "slug": "project:mezzanine",
+      "type": "project",
+      "name": "Mezzanine"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:unfinished-sympathy",
+      "type": "track",
+      "name": "Unfinished Sympathy"
+    },
+    {
+      "slug": "track:teardrop",
+      "type": "track",
+      "name": "Teardrop"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

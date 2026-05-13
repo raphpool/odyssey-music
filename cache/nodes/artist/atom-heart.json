@@ -1,0 +1,130 @@
+{
+  "slug": "artist:atom-heart",
+  "name": "Atom Heart",
+  "editorial_article": "Atom Heart is an alias of German electronic musician, composer, and producer Uwe Schmidt, active throughout the 1990s as a cornerstone of the Frankfurt techno and ambient scenes. Emerging from the EBM-influenced sounds of his early project Lassigue Bendthaus, Schmidt adopted the Atom Heart persona during the early 1990s as he moved toward house, acid house, and experimental dance music. Operating within the fertile German production landscape of the era, he was instrumental in developing the early trance sound while simultaneously pushing into more abstract territory. Schmidt's output as Atom Heart is vast, characterized by an exploratory spirit that frequently rejected the restrictive confines of standard club music in favor of a more personal, idiosyncratic synthesis of synthesis and rhythm. \\n\\nHis work as Atom Heart served as a precursor to the prolific, multi-faceted career that eventually saw him consolidate his diverse creative output under the singular \"Atom™\" moniker after relocating to Santiago, Chile. Beyond his solo recordings, Atom Heart was central to collaborative projects with figures such as Tetsu Inoue, Pete Namlook, and Tobias Freund, often releasing through labels like POD Communication and his own experimental imprint, Rather Interesting. His influence spans the evolution of IDM, ambient techno, and even the stylistic shifts that would later be categorized as glitch. By consistently defying genre limitations—moving from dance-floor oriented 12-inches to complex, experimental long-form compositions—Atom Heart stands as a quintessential figure in the development of 1990s European electronic music.",
+  "citations": [
+    {
+      "url": "https://atom-tm.com/BIOGRAPHY/",
+      "title": "atom-tm.com"
+    },
+    {
+      "url": "https://www.discogs.com/artist/24-Atom-Heart?srsltid=AfmBOoq_KAV8TPGnIWpbV192A8elL0XsiVIhvT3Lj5x4F7IDIW0Lyx2b",
+      "title": "Atom Heart Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/atom-heart-1",
+      "title": "Atom Heart discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:56.571Z",
+  "_metrics": {
+    "input_tokens": 11337,
+    "output_tokens": 876,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004148,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9969,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Atom Heart is a primary alias of German electronic music pioneer Uwe Schmidt, utilized during his highly productive 1990s period in Frankfurt to explore the intersections of acid house, ambient, and early techno. An prolific composer and sound designer, Schmidt utilized this persona to experiment with the sonic architecture of electronic dance music before ultimately consolidating his work under the Atom™ name.",
+  "photo_url": "https://atom-tm.com/img/logomenu.jpg",
+  "origin": "Frankfurt, Germany",
+  "active_years": "1991-1996",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:pod-communication",
+      "type": "label",
+      "name": "POD Communication"
+    },
+    {
+      "slug": "label:rather-interesting",
+      "type": "label",
+      "name": "Rather Interesting"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:morphogenetic-fields",
+      "type": "project",
+      "name": "Morphogenetic Fields"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:colours",
+      "type": "track",
+      "name": "Colours"
+    },
+    {
+      "slug": "track:jet-chamber",
+      "type": "track",
+      "name": "Jet Chamber"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tetsu-inoue",
+      "type": "artist",
+      "name": "Tetsu Inoue"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook"
+    },
+    {
+      "slug": "artist:tobias-freund",
+      "type": "artist",
+      "name": "Tobias Freund"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:uwe-schmidt",
+      "type": "artist",
+      "name": "Uwe Schmidt"
+    },
+    {
+      "slug": "artist:atomtm",
+      "type": "artist",
+      "name": "Atom™"
+    },
+    {
+      "slug": "artist:atom-tm",
+      "type": "artist",
+      "name": "Atom TM"
+    }
+  ],
+  "members": []
+}

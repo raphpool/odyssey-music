@@ -1,0 +1,96 @@
+{
+  "slug": "genre:vocal-jazz",
+  "name": "Vocal Jazz",
+  "editorial_article": "Vocal jazz, or jazz singing, is a sophisticated genre within the broader jazz tradition where the human voice is treated as a foundational instrument. Originating in the early twentieth century, its roots reach deep into the history of African American music, including field hollers, work songs, and the spiritual traditions that allowed for profound emotional expression and coordination. By the late 1920s, the genre began to crystallize as a distinct form, significantly propelled by the innovative work of Louis Armstrong, whose 1926 recording of \"Heebie Jeebies\" is famously cited for introducing scat singing—a revolutionary technique where vocalists use nonsense syllables to mimic the phrasing, rhythm, and tone of instrumental improvisers.\n\nAs jazz matured through the 1940s into the bebop era, vocalists like Ella Fitzgerald, Sarah Vaughan, and Billie Holiday transitioned from working with big bands to becoming iconic soloists in their own right. These artists defined the genre’s golden age, blending technical precision with a deeply conversational, improvisational delivery. Unlike traditional choral styles that emphasize vibrato and legato, vocal jazz prioritizes shorter, more flexible phrasing, nuanced pitch inflections, and a soft, sensitive release of consonants, often utilizing the microphone as an integral tool for intimacy. The repertoire is largely anchored in the Great American Songbook, though it remains a living, breathing tradition that demands immense technical flexibility and the ability to navigate the complex harmonic language of jazz improvisation. From the cool, laid-back aesthetics of the 1950s to modern interpretations, vocal jazz remains a pillar of American music, celebrating the voice as the ultimate instrument of jazz expression.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Vocal_jazz",
+      "title": "Vocal jazz - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/vocal-jazz/",
+      "title": "Vocal Jazz - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:13.504Z",
+  "_metrics": {
+    "input_tokens": 12183,
+    "output_tokens": 745,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004163,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8406,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of jazz where the human voice is employed as an improvisational instrument, characterized by the use of scatting, conversational phrasing, and deep roots in African American vocal traditions.",
+  "era": "1920s–present",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:vocalese",
+      "type": "genre",
+      "name": "Vocalese"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool Jazz"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong"
+    },
+    {
+      "slug": "artist:ella-fitzgerald",
+      "type": "artist",
+      "name": "Ella Fitzgerald"
+    },
+    {
+      "slug": "artist:sarah-vaughan",
+      "type": "artist",
+      "name": "Sarah Vaughan"
+    },
+    {
+      "slug": "artist:billie-holiday",
+      "type": "artist",
+      "name": "Billie Holiday"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

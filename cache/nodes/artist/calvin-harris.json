@@ -1,0 +1,155 @@
+{
+  "slug": "artist:calvin-harris",
+  "name": "Calvin Harris",
+  "editorial_article": "Calvin Harris (born Adam Richard Wiles on January 17, 1984) is a Scottish electronic music producer, DJ, and songwriter who stands as one of the most successful figures in the history of modern dance music. Emerging from his bedroom in Dumfries, Scotland, in the early 2000s, Harris navigated the transition from internet-era DIY discovery to global pop dominance. After initial struggles in the London music scene, his self-produced demo work captured the attention of EMI, leading to the release of his debut album, I Created Disco (2007). This album firmly established his signature blend of electro-house, synth-pop, and club-oriented dance production, featuring early hits like \"Acceptable in the 80s.\"\\n\\nBy the early 2010s, Harris transitioned from a niche electronic act to a powerhouse producer, architecting the sound of the pop-EDM crossover era. His third album, 18 Months (2012), cemented his status as a cultural phenomenon, famously producing nine top-ten singles in the U.K. and breaking records previously held by Michael Jackson. Throughout his career, Harris has masterfully balanced his persona as a chart-topping pop producer—collaborating with icons such as Rihanna, Florence Welch, Ellie Goulding, and Dua Lipa—with more experimental or niche electronic endeavors, including his \"Love Regenerator\" alias. His ability to synthesize disparate styles—from the funk-infused R&B of Funk Wav Bounces, Vol. 1 to high-octane dancefloor staples—has defined the sound of contemporary radio, ensuring his consistent presence as one of the highest-earning and most influential DJs of the 21st century. His work remains a primary template for the fusion of electronic music and mainstream pop, characterized by meticulous production values and an uncanny ability to identify hooks that transcend genre boundaries, solidifying his legacy within the dance-pop canon.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/calvin-harris-mn0000945951",
+      "title": "Calvin Harris Songs, Albums, Reviews, Bio & Mo... | AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/calvin-harris",
+      "title": "Calvin Harris discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:34.680Z",
+  "_metrics": {
+    "input_tokens": 20846,
+    "output_tokens": 2103,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008366,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18514,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Calvin Harris (born Adam Richard Wiles on January 17, 1984) is a Scottish electronic music producer, DJ, and songwriter who stands as one of the most successful figures in the history of modern dance music.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000945951/400/RJDLnVuvpNYH8_dHHgi8pA4Q1ghY8VaPylnm7PwcKNY=.jpg",
+  "origin": "Dumfries, Scotland",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-Pop"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:i-created-disco",
+      "type": "project",
+      "name": "I Created Disco"
+    },
+    {
+      "slug": "project:ready-for-the-weekend",
+      "type": "project",
+      "name": "Ready for the Weekend"
+    },
+    {
+      "slug": "project:18-months",
+      "type": "project",
+      "name": "18 Months"
+    },
+    {
+      "slug": "project:motion",
+      "type": "project",
+      "name": "Motion"
+    },
+    {
+      "slug": "project:funk-wav-bounces-vol-1",
+      "type": "project",
+      "name": "Funk Wav Bounces, Vol. 1"
+    },
+    {
+      "slug": "project:funk-wav-bounces-vol-2",
+      "type": "project",
+      "name": "Funk Wav Bounces, Vol. 2"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:feel-so-close",
+      "type": "track",
+      "name": "Feel So Close"
+    },
+    {
+      "slug": "track:this-is-what-you-came-for",
+      "type": "track",
+      "name": "This Is What You Came For"
+    },
+    {
+      "slug": "track:slide",
+      "type": "track",
+      "name": "Slide"
+    },
+    {
+      "slug": "track:one-kiss",
+      "type": "track",
+      "name": "One Kiss"
+    },
+    {
+      "slug": "track:we-found-love",
+      "type": "track",
+      "name": "We Found Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ellie-goulding",
+      "type": "artist",
+      "name": "Ellie Goulding"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:love-regenerator",
+      "type": "artist",
+      "name": "Love Regenerator"
+    },
+    {
+      "slug": "artist:stouffer",
+      "type": "artist",
+      "name": "Stouffer"
+    },
+    {
+      "slug": "artist:adam-richard-wiles",
+      "type": "artist",
+      "name": "Adam Richard Wiles"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "label:deram-records",
+  "name": "Deram Records",
+  "editorial_article": "Deram Records was a foundational subsidiary label of Decca Records in the United Kingdom, established in 1966 to serve as a platform for experimental production techniques and a evolving roster of pop, rock, folk, and progressive artists. Named after the \"Deramic Sound\"—a proprietary Decca recording process that utilized dual four-track recorders to achieve a more natural and expansive stereo spread—the label launched with high ambitions to redefine pop fidelity. While the technological marketing behind \"Deramic Sound\" eventually faded as eight-track recording became industry standard by the late 1960s, the label successfully reinvented itself as a crucial home for the burgeoning progressive and psychedelic scenes. Throughout its most vibrant period, Deram provided an early home to seminal artists such as The Moody Blues, whose landmark 1967 album \"Days of Future Passed\" defined the label’s progressive leanings. Its roster also featured pivotal early-career work from David Bowie and Cat Stevens, alongside experimental jazz musicians like John Surman and Mike Westbrook. Despite being positioned to rival independent labels like Island and Harvest, Deram struggled to maintain a singular identity as it balanced pop hits with more avant-garde releases. By the early 1980s, following the acquisition of Decca by PolyGram, the label's focus shifted toward its role as a reissue imprint, preserving the vast catalogue of progressive and pop recordings that had been accumulated over its active decade. Today, Deram is remembered as an essential piece of 1960s British music history, representative of the creative tension between major label infrastructure and the experimental impulses of the era.",
+  "citations": [
+    {
+      "url": "https://www.loudersound.com/features/something-different-but-strong-a-brief-history-of-deram-records",
+      "title": "Something different, but strong: A Brief History of Deram Records"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Deram_Records",
+      "title": "Deram Records - Wikipedia"
+    },
+    {
+      "url": "https://www.cvinyl.com/labelguides/deram.php",
+      "title": "Label Variations: Deram Records - CVINYL.COM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:17.300Z",
+  "_metrics": {
+    "input_tokens": 20175,
+    "output_tokens": 2439,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008702,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17749,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A pioneering British subsidiary of Decca Records established in 1966, best known for the 'Deramic Sound' recording technique and its pivotal role in the development of progressive rock, featuring artists like The Moody Blues and David Bowie.",
+  "founded": "1966",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-moody-blues",
+      "type": "artist",
+      "name": "The Moody Blues"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:the-move",
+      "type": "artist",
+      "name": "The Move"
+    },
+    {
+      "slug": "artist:procol-harum",
+      "type": "artist",
+      "name": "Procol Harum"
+    },
+    {
+      "slug": "artist:john-surman",
+      "type": "artist",
+      "name": "John Surman"
+    },
+    {
+      "slug": "artist:mike-westbrook",
+      "type": "artist",
+      "name": "Mike Westbrook"
+    },
+    {
+      "slug": "artist:bananarama",
+      "type": "artist",
+      "name": "Bananarama"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:days-of-future-passed",
+      "type": "project",
+      "name": "Days of Future Passed"
+    }
+  ]
+}

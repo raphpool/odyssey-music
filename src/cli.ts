@@ -23,6 +23,17 @@ program
 		"Web search backend: tavily | firecrawl (default tavily). Use firecrawl when Tavily quota is exhausted.",
 		"tavily",
 	)
+	.option(
+		"--strategy <s>",
+		"Frontier order: bfs | popularity | hybrid (default hybrid — BFS head then popularity).",
+		"hybrid",
+	)
+	.option(
+		"--bfs-head <n>",
+		"With --strategy hybrid, how many BFS pops before switching to popularity.",
+		(v) => Number.parseInt(v, 10),
+		40,
+	)
 	.option("--heartbeat-ms <n>", "Heartbeat interval (ms)", (v) => Number.parseInt(v, 10), 90_000)
 	.option(
 		"--heartbeat-webhook <url>",
@@ -39,6 +50,8 @@ program
 			concurrency: number;
 			reasoning: string;
 			searchProvider: string;
+			strategy: string;
+			bfsHead: number;
 			heartbeatMs: number;
 			heartbeatWebhook?: string;
 			heartbeatPayload?: string;
@@ -46,6 +59,8 @@ program
 		}) => {
 			const env = loadEnv();
 			const t0 = Date.now();
+			const strategy: "bfs" | "popularity" | "hybrid" =
+				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
 			const base: CrawlOptions = {
 				seed: opts.seed,
 				maxDepth: opts.maxDepth,
@@ -53,6 +68,8 @@ program
 				concurrency: opts.concurrency,
 				out: opts.out,
 				heartbeatMs: opts.heartbeatMs,
+				strategy,
+				bfsHead: opts.bfsHead,
 				deps: {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,

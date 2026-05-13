@@ -1,0 +1,75 @@
+{
+  "slug": "genre:celtic-rock",
+  "name": "Celtic rock",
+  "editorial_article": "Celtic rock is a dynamic subgenre of folk rock that emerged in the late 1960s and early 1970s, characterized by the fusion of traditional music from the Celtic nations—specifically Ireland, Scotland, Wales, and Brittany—with the amplified instrumentation, structures, and attitude of rock music. Emerging in the aftermath of the wider folk-rock revival that saw English bands like Fairport Convention and Steeleye Span experiment with traditional material, Celtic rock uniquely applied this hybrid approach to the jigs, reels, and rhythmic structures of the Celtic tradition. By incorporating fiddles, mandolins, and whistles into standard rock band lineups featuring electric guitars, bass, and drums, artists in this genre created a high-energy sound that bridged the gap between ancient musical heritage and contemporary popular music.\n\nThe genre is perhaps best defined by its early pioneers, most notably the Irish band Horslips. Formed in 1970, Horslips were instrumental in formalizing the genre, utilizing ancient Irish mythological themes—as heard on their landmark concept album *The Táin*—and blending them with rock riffs that remain iconic in Irish musical history, such as those found on \"Dearg Doom.\" While the genre is sometimes debated for its elastic application of the term \"Celtic,\" its cultural significance is undeniable. It transformed the musical landscape in Ireland, moving away from the era's traditional showband model toward a more adventurous, identity-driven rock sound. Other artists, including Thin Lizzy (in their early incorporation of folk motifs) and later acts like The Pogues, helped expand the boundaries of the sound, demonstrating how traditional melodic ornamentation could survive and even thrive within the distortion of rock production. This synthesis continues to influence both folk and rock artists who seek to articulate a sense of place and historical continuity through modern sonic tools.",
+  "citations": [
+    {
+      "url": "https://celticlifeintl.com/celtic-rock/",
+      "title": "Celtic Rock - Celtic Life International"
+    },
+    {
+      "url": "https://hiddentrack.ie/features/stories/horslips-the-original-kings-of-celtic-rock-and-folk-music/",
+      "title": "Horslips: the Original kings Of Celtic Rock and Folk Music. - The Hidden Track"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:50.297Z",
+  "_metrics": {
+    "input_tokens": 19938,
+    "output_tokens": 835,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006237,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 2,
+    "turns": 5,
+    "emit_attempts": 1,
+    "agent_ms": 14878,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of folk rock that fuses traditional Celtic musical forms—such as Irish jigs and Scottish reels—with the instrumentation and energy of rock music.",
+  "era": "1970s - present",
+  "origin": "Ireland, Scotland, and the United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    },
+    {
+      "slug": "genre:traditional-irish-music",
+      "type": "genre",
+      "name": "Traditional Irish music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:horslips",
+      "type": "artist",
+      "name": "Horslips"
+    },
+    {
+      "slug": "artist:thin-lizzy",
+      "type": "artist",
+      "name": "Thin Lizzy"
+    },
+    {
+      "slug": "artist:the-pogues",
+      "type": "artist",
+      "name": "The Pogues"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-tain",
+      "type": "project",
+      "name": "The Táin"
+    }
+  ],
+  "landmark_tracks": []
+}

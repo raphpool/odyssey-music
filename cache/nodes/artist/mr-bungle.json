@@ -1,0 +1,46 @@
+{
+  "slug": "artist:mr-bungle",
+  "name": "Mr. Bungle",
+  "editorial_article": "Mr. Bungle is an influential American experimental rock band formed in 1985 in Eureka, California. Renowned for their highly eclectic and avant-garde approach to composition, the group gained cult notoriety for their ability to seamlessly cycle through disparate genres—often within the span of a single song—including heavy metal, ska, disco, funk, and avant-garde jazz. The band's output is characterized by unconventional song structures, elaborate use of samples, and the virtuosic, multifaceted vocal delivery of frontman Mike Patton. \n\nInitially formed as a death metal project by high school friends, the band evolved rapidly, incorporating a horn section and expanding their musical palette to challenge the boundaries of rock and metal. With consistent core members Mike Patton, Trey Spruance, and Trevor Dunn at the helm, the band signed to Warner Bros. in the early 1990s, where they released three seminal studio albums. Their output during this period, particularly their self-titled debut (1991) and the masterfully chaotic *California* (1999), remains a touchstone for avant-garde metal and experimental music. After a lengthy hiatus and eventual dissolution in 2004, the band reunited in 2020 to revisit their roots, re-recording their 1986 demo *The Raging Wrath of the Easter Bunny* as a full-length professional release, enlisting metal legends Scott Ian and Dave Lombardo to complete the lineup. Mr. Bungle stands as a defining act of musical eclecticism, constantly defying categorization while maintaining a profound impact on the underground experimental scenes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mr._Bungle",
+      "title": "Mr. Bungle - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/mr-bungle",
+      "title": "Mr. Bungle discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/mr-bungle-mn0000506513",
+      "title": "Mr. Bungle Songs, Albums, Reviews, Bio & More ... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:17.886Z",
+  "_metrics": {
+    "input_tokens": 19915,
+    "output_tokens": 1826,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007718,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17262,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mr.",
+  "genres": [],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

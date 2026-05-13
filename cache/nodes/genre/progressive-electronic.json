@@ -1,0 +1,112 @@
+{
+  "slug": "genre:progressive-electronic",
+  "name": "Progressive Electronic",
+  "editorial_article": "Progressive Electronic, often abbreviated as \"prog electronic,\" is a broad and expansive genre defined by a primary commitment to synthesizer-driven, long-form composition and a spirit of experimentalism. Emerging in the late 1960s and early 1970s, it sits at the intersection of technological advancement—specifically the maturation of the synthesizer—and the avant-garde sensibilities of the era. The genre is characterized by the extensive, intentional use of electronic instruments, moving away from rock-standard instrumentation to focus on sound design, layered soundscapes, and often elaborate, multi-sectioned compositions that can span over ten minutes. Its roots are deep in the soil of progressive rock and German experimental music (Krautrock), where artists began to treat electronic oscillators and sequencers not merely as novelties, but as legitimate vehicles for complex musical expression.\n\nThe culture of Progressive Electronic is defined by an emphasis on the \"creator\" archetype—musicians who build their own sonic worlds rather than relying on standard presets. This ethos was championed by foundational pioneers like Tangerine Dream, Klaus Schulze, and Kraftwerk, who effectively expanded the boundaries of what could be achieved with analog gear. Throughout the 1970s and 1980s, the genre's language continued to evolve, pulling from Western classical music, jazz, and eventually, the nascent ambient and New Age movements. By the 1990s and beyond, the influence of these early pioneers became foundational to modern electronic dance music, ambient techno, and IDM. In the 21st century, Progressive Electronic remains a vital, diversifying genre, constantly incorporating elements from industrial noise, minimalism, and global classical traditions, marking it as a genre that is perpetually looking forward by re-evaluating its sonic past.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/progressive-electronic/",
+      "title": "Progressive Electronic - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:02.886Z",
+  "_metrics": {
+    "input_tokens": 12747,
+    "output_tokens": 810,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004402,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 15928,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A synthesizer-centric genre emphasizing long-form composition, sound design, and experimental structures, evolving from the progressive rock and krautrock movements of the late 1960s.",
+  "era": "1969-present",
+  "origin": "Germany, Europe",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:jean-michel-jarre",
+      "type": "artist",
+      "name": "Jean Michel Jarre"
+    },
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:phaedra",
+      "type": "project",
+      "name": "Phaedra"
+    },
+    {
+      "slug": "project:trans-europa-express",
+      "type": "project",
+      "name": "Trans Europa Express"
+    },
+    {
+      "slug": "project:e2-e4",
+      "type": "project",
+      "name": "E2-E4"
+    },
+    {
+      "slug": "project:oxygene",
+      "type": "project",
+      "name": "Oxygène"
+    }
+  ],
+  "landmark_tracks": []
+}

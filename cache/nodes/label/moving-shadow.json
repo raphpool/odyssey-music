@@ -1,0 +1,96 @@
+{
+  "slug": "label:moving-shadow",
+  "name": "Moving Shadow",
+  "editorial_article": "Moving Shadow is a pioneering English record label that played a foundational role in the evolution of breakbeat hardcore, jungle, and drum and bass throughout the 1990s and early 2000s. Founded in 1990 by producer Rob Playford in Stevenage, the label quickly became a epicenter for the UK's burgeoning rave culture. Initially operating from Playford's home, Moving Shadow established itself by nurturing a community of bedroom producers and showcasing the experimental, high-energy sounds that defined the early drum and bass aesthetic.\\n\\nThroughout its active years, the label was instrumental in bridging the gap between underground rave culture and the mainstream. Playford's work with Goldie on the seminal 1995 album *Timeless* stands as a landmark achievement, helping to propel drum and bass into wider consciousness. Moving Shadow’s catalog is vast and varied, ranging from the frantic energy of early breakbeat hardcore to the atmospheric, tech-infused textures of the mid-90s jungle scene. Notable artists such as Omni Trio and Foul Play provided crucial contributions, while the label’s series—including the \"Two on One\" collaboration series and regional compilations like *The Revolutionary Generation*—demonstrated a forward-thinking approach to artist development and curation.\\n\\nWhile the label ceased releasing new artist material in 2006, its legacy remains deeply embedded in the DNA of electronic music. Its back catalog continues to be highly regarded, and its influence is felt in the structural and sonic innovations that defined the golden age of jungle. Today, the label's history is maintained through extensive digital reissues and archival support, ensuring its pivotal role in the development of UK dance music continues to be documented.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moving_Shadow",
+      "title": "Moving Shadow - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/moving_shadow/",
+      "title": "Moving Shadow - Music label - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:22.004Z",
+  "_metrics": {
+    "input_tokens": 20303,
+    "output_tokens": 1493,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007315,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11933,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A cornerstone of UK jungle and drum and bass, Moving Shadow was founded in 1990 by Rob Playford and defined the sound of the era with high-impact breakbeat releases and atmospheric innovation.",
+  "founded": "1990",
+  "location": "Stevenage, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:rob-playford",
+      "type": "artist",
+      "name": "Rob Playford"
+    },
+    {
+      "slug": "artist:omni-trio",
+      "type": "artist",
+      "name": "Omni Trio"
+    },
+    {
+      "slug": "artist:foul-play",
+      "type": "artist",
+      "name": "Foul Play"
+    },
+    {
+      "slug": "artist:2-bad-mice",
+      "type": "artist",
+      "name": "2 Bad Mice"
+    },
+    {
+      "slug": "artist:blame",
+      "type": "artist",
+      "name": "Blame"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:timeless",
+      "type": "project",
+      "name": "Timeless"
+    },
+    {
+      "slug": "project:the-revolutionary-generation",
+      "type": "project",
+      "name": "The Revolutionary Generation"
+    },
+    {
+      "slug": "project:suspected",
+      "type": "project",
+      "name": "Suspected"
+    }
+  ]
+}

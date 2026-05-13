@@ -1,0 +1,70 @@
+{
+  "slug": "label:mercury-records",
+  "name": "Mercury Records",
+  "editorial_article": "Mercury Records, founded in 1945 in Chicago, stands as one of the most significant pillars of 20th-century American music recording. Established by Irving Green, Berle Adams, and Arthur Talmadge, the label quickly evolved from a regional operation into a major, multifaceted enterprise that spanned jazz, blues, classical, country, and eventually, rock and pop. Unlike labels that tethered their brand to a singular sonic aesthetic, Mercury became a vast \"toy-box\" of sounds, characterized by its sheer breadth and technical ambition. \\n\\nCentral to its legacy was its high-fidelity \"Living Presence\" series, which revolutionized the recording of classical music and established an enduring standard for audio fidelity. Simultaneously, its jazz-focused subsidiary, EmArcy, served as a primary outlet for some of the most essential modern jazz recordings of the era, cementing Mercury’s credibility among audiophiles and jazz enthusiasts alike. Throughout the mid-20th century, the label expanded its footprint significantly, forming alliances and eventually merging into the larger PolyGram conglomerate in the 1970s. Despite these corporate shifts, Mercury maintained a consistent output, influencing the trajectory of popular music across multiple genres. Today, its expansive, historically rich catalog is held and managed under the Universal Music Group, serving as a testament to a company that managed to balance mass-market appeal with profound artistic contributions.",
+  "citations": [
+    {
+      "url": "https://microgroove.jp/mercury/About.shtml",
+      "title": "Mercury Records Collection: About Mercury label and this site..."
+    },
+    {
+      "url": "https://roadtorock.org/artist/mercury-records/",
+      "title": "Mercury Records | Illinois Rock & Roll Museum on Route 66"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:26.988Z",
+  "_metrics": {
+    "input_tokens": 17404,
+    "output_tokens": 1060,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005941,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 14338,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary Chicago-born major record label founded in 1945, known for its eclectic catalog spanning jazz, blues, classical, and pop, as well as its pioneering high-fidelity 'Living Presence' recording series.",
+  "founded": "1945",
+  "location": "Chicago, Illinois, USA",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:classical-music",
+      "type": "genre",
+      "name": "Classical music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:brook-benton",
+      "type": "artist",
+      "name": "Brook Benton"
+    },
+    {
+      "slug": "artist:eddie-chamblee",
+      "type": "artist",
+      "name": "Eddie Chamblee"
+    },
+    {
+      "slug": "artist:louis-jordan",
+      "type": "artist",
+      "name": "Louis Jordan"
+    }
+  ],
+  "notable_releases": []
+}

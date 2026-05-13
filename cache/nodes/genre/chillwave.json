@@ -1,0 +1,112 @@
+{
+  "slug": "genre:chillwave",
+  "name": "Chillwave",
+  "editorial_article": "Chillwave, a defining genre of the late 2000s, represents the first major musical movement to be primarily fostered and distributed through the internet. Emerging around 2009, the genre is characterized by its hazy, nostalgic, and lo-fi aesthetic, often utilizing vintage synthesizers, drum machines, and heavy amounts of tape-saturated production. Its sonic palette frequently recalls the texture of 1980s pop, R&B, and soft-rock, rendered through a melancholic, \"sedated\" lens that resonated with a generation coming of age during a period of global economic and political uncertainty.\n\nThe term itself was coined in 2009 by blogger Carlos Perez on the site Hipster Runoff, specifically in reference to the music of Washed Out. The genre's rapid ascent was tightly linked to digital-native distribution methods, favoring platforms like Bandcamp, SoundCloud, and social media over traditional concert arenas or radio stations. Key figures in the movement included Ernest Greene (Washed Out), Alan Palomo (Neon Indian), Chaz Bundick (Toro y Moi), and Matthew Mondanile (Ducktails). These artists created a sound that was distinctly bedroom-produced, often relying on lo-fi recording techniques that embraced amateurism rather than polish.\n\nWhile often criticized by contemporary music establishments as derivative or \"tasteless,\" Chillwave left a lasting cultural imprint by pioneering the template for internet-based genre formation. Its influence paved the way for subsequent subcultures, most notably vaporwave, which pushed the genre’s retro-futurist, sample-heavy sensibilities toward a more extreme and ironic conclusion. Chillwave remains a quintessential \"internet sound,\" documenting a specific moment when personal technology and collective nostalgia converged to reshape the landscape of independent electronic music.",
+  "citations": [
+    {
+      "url": "https://www.scaruffi.com/history/vaporwav.html",
+      "title": "A History of Chillwave and Vaporwave"
+    },
+    {
+      "url": "https://www.soundbridge.io/chillwave",
+      "title": "Chillwave"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:47.641Z",
+  "_metrics": {
+    "input_tokens": 11710,
+    "output_tokens": 849,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004201,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8382,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Chillwave is a lo-fi, synth-heavy subgenre of electronic music that emerged in the late 2000s, defined by its dreamy, nostalgic production and its status as the first major movement to originate and spread via the internet.",
+  "era": "late 2000s - early 2010s",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:vaporwave",
+      "type": "genre",
+      "name": "Vaporwave"
+    },
+    {
+      "slug": "genre:synthwave",
+      "type": "genre",
+      "name": "Synthwave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:washed-out",
+      "type": "artist",
+      "name": "Washed Out"
+    },
+    {
+      "slug": "artist:neon-indian",
+      "type": "artist",
+      "name": "Neon Indian"
+    },
+    {
+      "slug": "artist:toro-y-moi",
+      "type": "artist",
+      "name": "Toro y Moi"
+    },
+    {
+      "slug": "artist:ducktails",
+      "type": "artist",
+      "name": "Ducktails"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:mexican-summer",
+      "type": "label",
+      "name": "Mexican Summer"
+    },
+    {
+      "slug": "label:carpark-records",
+      "type": "label",
+      "name": "Carpark Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:life-of-leisure",
+      "type": "project",
+      "name": "Life of Leisure"
+    },
+    {
+      "slug": "project:psychic-chasms",
+      "type": "project",
+      "name": "Psychic Chasms"
+    },
+    {
+      "slug": "project:causers-of-this",
+      "type": "project",
+      "name": "Causers Of This"
+    }
+  ],
+  "landmark_tracks": []
+}

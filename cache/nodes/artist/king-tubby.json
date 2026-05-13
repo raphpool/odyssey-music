@@ -1,0 +1,85 @@
+{
+  "slug": "artist:king-tubby",
+  "name": "King Tubby",
+  "editorial_article": "King Tubby, born Osbourne Ruddock in Kingston, Jamaica, was a pioneering sound engineer and producer whose technical innovations in the 1960s and 1970s fundamentally altered the landscape of popular music. Originally an expert radio and television repairman, Tubby built his reputation through his sound system, 'Tubby's Hometown Hi-Fi,' where he modified his own equipment to produce high-fidelity sound, including innovative echo and reverb effects that were unprecedented at the time. His mastery of electronic circuits allowed him to transform the recording studio into a creative instrument in its own right, moving away from the conventional role of the engineer as a mere recorder of sound to the role of a remixer and creative producer. By manipulating the mixing desk—often treated as a physical instrument through which he played delays, phase shifts, and filters—Tubby birthed the genre of dub music. By isolating and emphasizing the rhythm sections (bass and drums) of existing reggae tracks and stripping away vocal parts, he created vast, atmospheric, and often radical re-interpretations of original songs. His famous 'big knob' parametric EQ technique allowed for sweeping sound manipulations that became a hallmark of his signature sound. Tubby’s influence extends far beyond Jamaica, as his pioneering work in creating 'versions' and remixes laid the technical and conceptual foundation for modern dance, electronic, and hip-hop production, cementing his legacy as one of the most important figures in recording history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/King_Tubby",
+      "title": "King Tubby - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:25.332Z",
+  "_metrics": {
+    "input_tokens": 28031,
+    "output_tokens": 2728,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0111,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 28075,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "King Tubby, born Osbourne Ruddock in Kingston, Jamaica, was a pioneering sound engineer and producer whose technical innovations in the 1960s and 1970s fundamentally altered the landscape of popular music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/7/77/King_Tubby.jpg",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1968–1989",
+  "genres": [
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:firehouse",
+      "type": "label",
+      "name": "Firehouse"
+    },
+    {
+      "slug": "label:taurus",
+      "type": "label",
+      "name": "Taurus"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:king-tubby-meets-rockers-uptown",
+      "type": "track",
+      "name": "King Tubby Meets Rockers Uptown"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee Scratch Perry"
+    },
+    {
+      "slug": "artist:u-roy",
+      "type": "artist",
+      "name": "U-Roy"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

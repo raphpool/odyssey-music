@@ -1,0 +1,106 @@
+{
+  "slug": "label:ecm-records",
+  "name": "ECM Records",
+  "editorial_article": "Founded in Munich in 1969 by producer and bassist Manfred Eicher, ECM (Edition of Contemporary Music) stands as one of the most influential and stylistically consistent record labels in the history of recorded music. Over more than half a century, the label has cultivated a singular aesthetic often described as the 'ECM sound'—characterized by crystal-clear, spacious engineering, a minimalist design ethos, and an openness to genre-defying collaborations that bridge contemporary jazz, classical music, and world music. Eicher’s vision prioritized artistic autonomy, providing a platform where legendary artists like Keith Jarrett, Jan Garbarek, and Arvo Pärt could explore introspective, ambient, and avant-garde territories without the commercial pressures of traditional jazz labels. The label’s legacy is defined by its ability to foster deep, long-term relationships with composers and improvisers, creating a vast catalog that feels less like a collection of disparate albums and more like a cohesive, meditative sonic archive. From its early output of fusion and European jazz to its deep dive into the 'New Simplicity' of modern classical, ECM has fundamentally reshaped global perceptions of what jazz can encompass, cementing its role as an essential pillar of 20th and 21st-century music culture. The label's meticulous attention to cover art and recording quality turned its physical records into distinct objects of reverence, further separating it from the commercial mainstream and ensuring that its catalog remains a living, breathing testament to the power of artistic patience. By consistently favoring atmosphere, resonance, and profound musicality over technical flash or traditional rhythmic structures, ECM created a unique space where the silence between the notes is as vital as the notes themselves.",
+  "citations": [
+    {
+      "url": "https://ecmrecords.com/story/",
+      "title": "About - ECM Records"
+    },
+    {
+      "url": "https://nerdyjazz.com/labels/ecm-records/",
+      "title": "ECM Records - Best Albums & Artists | NerdyJazz"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/ECM_Records_discography",
+      "title": "ECM Records discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:22.882Z",
+  "_metrics": {
+    "input_tokens": 18117,
+    "output_tokens": 1893,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007369,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 10822,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "ECM is a pioneering German record label renowned for its unique 'ECM sound,' minimalist design, and deep catalog spanning jazz, contemporary classical, and ambient music.",
+  "founded": "1969",
+  "location": "Munich, Germany",
+  "active_years": "1969-present",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:fusion",
+      "type": "genre",
+      "name": "Fusion"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:keith-jarrett",
+      "type": "artist",
+      "name": "Keith Jarrett"
+    },
+    {
+      "slug": "artist:jan-garbarek",
+      "type": "artist",
+      "name": "Jan Garbarek"
+    },
+    {
+      "slug": "artist:arvo-part",
+      "type": "artist",
+      "name": "Arvo Pärt"
+    },
+    {
+      "slug": "artist:pat-metheny",
+      "type": "artist",
+      "name": "Pat Metheny"
+    },
+    {
+      "slug": "artist:chick-corea",
+      "type": "artist",
+      "name": "Chick Corea"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-koln-concert",
+      "type": "project",
+      "name": "The Köln Concert"
+    },
+    {
+      "slug": "project:tabula-rasa",
+      "type": "project",
+      "name": "Tabula Rasa"
+    },
+    {
+      "slug": "project:afric-pepperbird",
+      "type": "project",
+      "name": "Afric Pepperbird"
+    }
+  ]
+}

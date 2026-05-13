@@ -1,0 +1,93 @@
+{
+  "slug": "label:columbia-masterworks",
+  "name": "Columbia Masterworks",
+  "editorial_article": "Columbia Masterworks was a seminal American record label established in 1924 as a specialized division of Columbia Records. Designed to house the company's high-brow catalog, the label played a crucial role in bringing classical music, Broadway cast recordings, and significant spoken-word documents to American households. During its decades of operation, it fostered legendary relationships with elite performers and composers, including conductors Leonard Bernstein, Eugene Ormandy, and George Szell, as well as visionaries like Glenn Gould and Igor Stravinsky. Beyond its classical pedigree, the label broke new ground in the preservation of theatre, issuing definitive original cast recordings of monumental productions such as 'My Fair Lady' and 'Othello'. Its influence on the recording industry was profound, helping establish standards for album packaging and the conceptualization of the phonograph as a tool for cultural documentation. In 1980, the label was rebranded as CBS Masterworks before eventually transitioning into the Sony Classical imprint, marking the end of a pivotal chapter in the history of American recorded sound.\n\nThe label’s legacy is defined by its breadth. While it began with acoustic recordings of orchestral staples by Beethoven and Dvořák, it rapidly evolved to embrace the diverse cultural output of the 20th century. By the post-war era, Masterworks had become the standard-bearer for the prestige album, often pairing orchestral excellence with ambitious aesthetic presentation. The success of cast recordings like the 1956 'My Fair Lady' demonstrated that the label understood how to market prestige art to a mass-market audience, effectively turning Broadway theater into a staple of domestic record collections across the United States. Furthermore, their ventures into spoken word, spearheaded by Edward R. Murrow and others, captured the pulse of contemporary history, cementing the label’s reputation as an institution that transcended traditional musical boundaries to become a guardian of the broader cultural record.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Columbia_Masterworks_Records",
+      "title": "Columbia Masterworks Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:29.511Z",
+  "_metrics": {
+    "input_tokens": 19307,
+    "output_tokens": 1234,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006678,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10659,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legacy American record label founded in 1924, renowned for its definitive recordings of classical music, prestigious Broadway cast albums, and historical spoken-word documents.",
+  "founded": "1924",
+  "location": "New York City",
+  "active_years": "1924-1980",
+  "genres": [
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:spoken-word",
+      "type": "genre",
+      "name": "Spoken Word"
+    },
+    {
+      "slug": "genre:musical-theatre",
+      "type": "genre",
+      "name": "Musical Theatre"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:leonard-bernstein",
+      "type": "artist",
+      "name": "Leonard Bernstein"
+    },
+    {
+      "slug": "artist:glenn-gould",
+      "type": "artist",
+      "name": "Glenn Gould"
+    },
+    {
+      "slug": "artist:igor-stravinsky",
+      "type": "artist",
+      "name": "Igor Stravinsky"
+    },
+    {
+      "slug": "artist:paul-robeson",
+      "type": "artist",
+      "name": "Paul Robeson"
+    },
+    {
+      "slug": "artist:eugene-ormandy",
+      "type": "artist",
+      "name": "Eugene Ormandy"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:my-fair-lady",
+      "type": "project",
+      "name": "My Fair Lady (Original Broadway Cast Recording)"
+    },
+    {
+      "slug": "project:i-can-hear-it-now",
+      "type": "project",
+      "name": "I Can Hear It Now"
+    },
+    {
+      "slug": "project:west-side-story",
+      "type": "project",
+      "name": "West Side Story (Original Motion Picture Soundtrack)"
+    }
+  ]
+}

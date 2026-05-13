@@ -75,6 +75,11 @@
       "slug": "artist:the-black-dog",
       "type": "artist",
       "name": "The Black Dog"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid"
     }
   ]
 }

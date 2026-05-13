@@ -1,0 +1,91 @@
+{
+  "slug": "artist:michael-rother",
+  "name": "Michael Rother",
+  "editorial_article": "Michael Rother (born 1950, Hamburg) is a seminal German musician, guitarist, and composer, widely recognized as a pivotal figure in the development of Krautrock and experimental electronic music. He first gained international attention as a member of the influential bands Neu! and Harmonia, both of which were central to the burgeoning \"Kosmische\" music scene of the 1970s. Rother's signature style—often characterized by hypnotic, motorik rhythms, ethereal guitar soundscapes, and an ingenious fusion of rock instrumentation with nascent electronic textures—helped redefine the boundaries of European popular music. His work with producer Conny Plank was instrumental in shaping the minimalist, forward-thinking sound that would later profoundly influence the trajectory of post-punk, ambient, and alternative rock, finding admirers in artists such as David Bowie, Brian Eno, and John Frusciante. \\n\\nFollowing his tenure in band projects, Rother embarked on a successful solo career in 1977 with the landmark album *Flammende Herzen*. Moving away from the blues-oriented structures prevalent in contemporary rock, he sought to create a distinct, modern musical language. His solo discography, spanning albums like *Sterntaler* and *Katzenmusik*, showcases his evolution into using complex sampling and sequencing techniques, notably incorporating the Fairlight music computer in the 1980s. Known for his technical precision and rhythmic ingenuity, Rother has consistently collaborated with esteemed percussionists such as Klaus Dinger and Jaki Liebezeit. Today, he remains an active performer, continuing to explore the intersection of organic performance and electronic sound design, and his enduring legacy is maintained through comprehensive retrospectives and live performances that bridge generations of music fans. His dedication to \"musical infinity\" and the conscious avoidance of traditional genre tropes have cemented his status as a visionary artist whose work continues to resonate across decades.",
+  "citations": [
+    {
+      "url": "https://www.groenland.com/en/pages/artist/michael-rother?srsltid=AfmBOoqNPXWkVI0b0bucVnAnFhdoegvaiu8c4wdQ4kkknClIAtIHngiT",
+      "title": "Michael Rother - Grönland Records"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/michael-rother-mn0000469688",
+      "title": "Michael Rother - AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/michael-rother",
+      "title": "Michael Rother - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:36.706Z",
+  "_metrics": {
+    "input_tokens": 18888,
+    "output_tokens": 1373,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006781,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 21369,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Michael Rother is a pioneering German multi-instrumentalist and composer, celebrated for his foundational role in the Krautrock movement and his innovative solo discography that melds guitar soundscapes with electronic experimentalism. His work with legendary groups like Neu! and Harmonia, alongside producer Conny Plank, has profoundly influenced global music culture.",
+  "origin": "Hamburg, Germany",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:gronland-records",
+      "type": "label",
+      "name": "Grönland Records"
+    },
+    {
+      "slug": "label:sky-records",
+      "type": "label",
+      "name": "Sky Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:flammende-herzen",
+      "type": "track",
+      "name": "Flammende Herzen"
+    },
+    {
+      "slug": "track:sterntaler",
+      "type": "track",
+      "name": "Sterntaler"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!"
+    }
+  ]
+}

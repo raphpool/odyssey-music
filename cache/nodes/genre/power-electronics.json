@@ -1,0 +1,117 @@
+{
+  "slug": "genre:power-electronics",
+  "name": "Power Electronics",
+  "editorial_article": "Power electronics is a visceral, confrontational subgenre of noise music that emerged from the UK industrial scene during the late 1970s and early 1980s. Defined by its abrasive, high-volume aesthetic, the genre utilizes a heavy reliance on screeching analog synthesizers, raw feedback loops, and harsh, distorted, and often shouted vocals. Unlike other forms of experimental electronic music that might prioritize texture or ambient atmosphere, power electronics is frequently centered around aggressive sonic force and psychological provocation. The term itself was popularized by the group Whitehouse, who codified the aesthetic in their early 1980s releases, particularly their 1982 album 'Psychopathia Sexualis'.\\n\\nCulturally, the genre is notorious for its transgressive approach to performance and lyrical themes. Early practitioners often drew upon dark, taboo, and extreme subject matter—including violence, extremism, and extreme psychological states—with the explicit intent of challenging the listener and provoking a visceral reaction. This approach was deeply rooted in the performance art sensibilities that permeated the broader industrial movement. Beyond its UK origins, the genre quickly developed a global following, branching into various regional scenes. As it evolved, it gave rise to related subgenres such as death industrial, which integrates darker, more atmospheric elements of dark ambient music. In the modern era, artists like Puce Mary and Lingua Ignota have brought critical acclaim back to the genre, demonstrating the continued capacity for power electronics to serve as a platform for intense, deeply personal, and socially confronting avant-garde expression. Its endurance is a testament to its singular focus on the power of sonic extremity.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/power-electronics/",
+      "title": "Power Electronics - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:36.239Z",
+  "_metrics": {
+    "input_tokens": 12817,
+    "output_tokens": 786,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004383,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 15657,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A confrontational subgenre of noise music characterized by high-volume, harsh feedback, analog synthesizer distortion, and aggressive vocal deliveries, originating from the late 1970s UK industrial scene.",
+  "era": "1979-present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    },
+    {
+      "slug": "genre:death-industrial",
+      "type": "genre",
+      "name": "Death Industrial"
+    },
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:whitehouse",
+      "type": "artist",
+      "name": "Whitehouse"
+    },
+    {
+      "slug": "artist:consumer-electronics",
+      "type": "artist",
+      "name": "Consumer Electronics"
+    },
+    {
+      "slug": "artist:sutcliffe-jugend",
+      "type": "artist",
+      "name": "Sutcliffe Jügend"
+    },
+    {
+      "slug": "artist:ramleh",
+      "type": "artist",
+      "name": "Ramleh"
+    },
+    {
+      "slug": "artist:genocide-organ",
+      "type": "artist",
+      "name": "Genocide Organ"
+    },
+    {
+      "slug": "artist:pharmakon",
+      "type": "artist",
+      "name": "Pharmakon"
+    },
+    {
+      "slug": "artist:lingua-ignota",
+      "type": "artist",
+      "name": "Lingua Ignota"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:broken-flag",
+      "type": "label",
+      "name": "Broken Flag"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:psychopathia-sexualis",
+      "type": "project",
+      "name": "Psychopathia Sexualis"
+    },
+    {
+      "slug": "project:caligula",
+      "type": "project",
+      "name": "Caligula"
+    },
+    {
+      "slug": "project:birthdeath-experience",
+      "type": "project",
+      "name": "Birthdeath Experience"
+    }
+  ],
+  "landmark_tracks": []
+}

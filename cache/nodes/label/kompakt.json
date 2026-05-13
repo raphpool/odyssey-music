@@ -1,0 +1,110 @@
+{
+  "slug": "label:kompakt",
+  "name": "Kompakt",
+  "editorial_article": "Based in Cologne, Germany, Kompakt stands as one of the most influential institutions in contemporary electronic music. Founded in 1993 by the creative collective of Wolfgang Voigt, Jürgen Paape, Reinhard Voigt, and Michael Mayer, the entity originated from the iconic Delirium record store. Over the decades, Kompakt evolved far beyond a local vinyl hub to become a multi-faceted music power, encompassing a globally recognized record label, a distribution network, a publishing house, and an artists’ agency. \\n\\nMusically, Kompakt is synonymous with the development of the \"Cologne sound\"—a distinct approach to electronic music that seamlessly blurred the lines between minimal techno, ambient textures, and emotive pop sensibilities. While the label is rooted in the meticulous, loop-based structuralism of artists like Wolfgang Voigt (under his numerous aliases), it famously embraced a warmer, more melodic side of the genre with its \"Pop Ambient\" series and the dancefloor-oriented yet atmospheric output of artists such as The Field, Kölsch, and Gui Boratto. Its influence on the global techno scene remains profound, bridging the gap between underground experimentalism and broader electronic appeal. By maintaining its identity as a family-run, independent enterprise, Kompakt has managed to remain at the vanguard of electronic innovation, consistently releasing high-quality, genre-defining music that refuses to stagnate, adhering to Wolfgang Voigt's mantra: 'Forward ever, backwards never.'",
+  "citations": [
+    {
+      "url": "https://kompakt.fm/label",
+      "title": "Label | Kompakt"
+    },
+    {
+      "url": "https://artsandculture.google.com/story/the-history-of-kompakt-kompakt/bAWxxTH2nWDhnQ?hl=en",
+      "title": "The History of Kompakt - Google Arts & Culture"
+    },
+    {
+      "url": "https://www.vice.com/en/article/youneedtohearthis-a-history-of-kompakt-records-in-eight-records/",
+      "title": "A History of Kompakt Records in Eight Releases"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:46.437Z",
+  "_metrics": {
+    "input_tokens": 16223,
+    "output_tokens": 1474,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006267,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10845,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal Cologne-based record label and music collective instrumental in defining the 'Cologne sound,' blending minimal techno, ambient, and electronic pop.",
+  "founded": "1993",
+  "location": "Cologne, Germany",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electronic-pop",
+      "type": "genre",
+      "name": "Electronic Pop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-field",
+      "type": "artist",
+      "name": "The Field"
+    },
+    {
+      "slug": "artist:kolsch",
+      "type": "artist",
+      "name": "Kölsch"
+    },
+    {
+      "slug": "artist:superpitcher",
+      "type": "artist",
+      "name": "Superpitcher"
+    },
+    {
+      "slug": "artist:matias-aguayo",
+      "type": "artist",
+      "name": "Matias Aguayo"
+    },
+    {
+      "slug": "artist:justus-kohncke",
+      "type": "artist",
+      "name": "Justus Köhncke"
+    },
+    {
+      "slug": "artist:gui-boratto",
+      "type": "artist",
+      "name": "Gui Boratto"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:pop-ambient",
+      "type": "project",
+      "name": "Pop Ambient"
+    },
+    {
+      "slug": "project:from-here-we-go-sublime",
+      "type": "project",
+      "name": "From Here We Go Sublime"
+    },
+    {
+      "slug": "project:1977",
+      "type": "project",
+      "name": "1977"
+    }
+  ]
+}

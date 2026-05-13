@@ -1,0 +1,106 @@
+{
+  "slug": "label:talkin-loud",
+  "name": "Talkin' Loud",
+  "editorial_article": "Talkin' Loud, founded in 1990 by the influential DJ, tastemaker, and producer Gilles Peterson in partnership with Phonogram Records, stands as one of the most significant UK labels of the 1990s. Emerging from the vibrant and evolving acid jazz scene, the label became a primary engine for the fusion of jazz, soul, funk, and hip-hop. Peterson, who had previously been instrumental in the development of the acid jazz movement, established Talkin' Loud as a platform to foster a more sophisticated, globalized sound that moved beyond the confines of genre pigeonholing. \\n\\nThroughout its active years, the label cultivated a roster of artists who were instrumental in shaping the UK's underground dance and contemporary soul landscape. Landmark signings included Incognito, the acid-jazz pioneers who enjoyed significant crossover success; the revolutionary jazz-rap group Galliano, whose eclectic sound defined the label's aesthetic; the Young Disciples, who bridged the gap between classic soul and modern club production; and the introspective Urban Species. Talkin' Loud’s sonic identity was characterized by high-fidelity musicianship, a respect for jazz lineage, and an forward-thinking embrace of contemporary rhythm-driven production. The label not only exported the British 'Rare Groove' sensibility to a wider international audience but also helped define the sound of London in the 1990s, influencing subsequent generations of producers and DJs who continue to draw from its deep, textured catalog. Even years after its most active period, the Talkin' Loud imprint remains synonymous with musical innovation and the successful marriage of intellectual jazz complexity with popular, groove-based accessibility.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/118-Talkin-Loud?srsltid=AfmBOoph_PTq33ARsqmgVgH5OyfT44PDdhSX5c7WIlGbHCacvvVFEQ5n",
+      "title": "Talkin' Loud | Discogs"
+    },
+    {
+      "url": "https://www.mixcloud.com/tony-todd/the-jazz-label-series-talkin-loud/",
+      "title": "The Jazz Label Series: Talkin' Loud by DJ2tee | Mixcloud"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:53.311Z",
+  "_metrics": {
+    "input_tokens": 28966,
+    "output_tokens": 1535,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009544,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 17480,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal UK record label founded in 1990 by Gilles Peterson, central to the evolution and expansion of the acid jazz, funk, and soul scenes.",
+  "founded": "1990",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    },
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-Funk"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:gilles-peterson",
+      "type": "artist",
+      "name": "Gilles Peterson"
+    },
+    {
+      "slug": "artist:incognito",
+      "type": "artist",
+      "name": "Incognito"
+    },
+    {
+      "slug": "artist:galliano",
+      "type": "artist",
+      "name": "Galliano"
+    },
+    {
+      "slug": "artist:young-disciples",
+      "type": "artist",
+      "name": "Young Disciples"
+    },
+    {
+      "slug": "artist:urban-species",
+      "type": "artist",
+      "name": "Urban Species"
+    },
+    {
+      "slug": "artist:nicolette",
+      "type": "artist",
+      "name": "Nicolette"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:positivity",
+      "type": "project",
+      "name": "Positivity"
+    },
+    {
+      "slug": "project:life-stranger-than-fiction",
+      "type": "project",
+      "name": "Life, Stranger Than Fiction"
+    },
+    {
+      "slug": "project:4",
+      "type": "project",
+      "name": ":4"
+    }
+  ]
+}

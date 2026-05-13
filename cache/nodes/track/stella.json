@@ -1,0 +1,39 @@
+{
+  "slug": "track:stella",
+  "name": "Stella",
+  "editorial_article": "\"Stella\" is a seminal electronic track by the German production duo Jam & Spoon, originally released in 1992 on the EP \"Tales from a Danceographic Ocean.\" As a cornerstone of early 1990s trance music, the track emerged during a period of significant evolution for European club culture, characterized by atmospheric textures, driving percussion, and the integration of progressive melodic elements. Jam & Spoon, consisting of Rolf Ellmer (Jam El Mar) and Markus Löffel (Mark Spoon), were instrumental in defining the sound of the era, pushing trance beyond mere rhythmic repetition into the realms of narrative, immersive soundscapes. \\n\\nOften associated with their expansive \"Tripomatic Fairytales\" project, \"Stella\" is frequently noted for its emotional resonance and structural complexity. The track exemplifies the \"trance\" moniker—a state of rhythmic and melodic suspension that was intended for expansive club environments. Its influence is cemented not only by its original reception but by the numerous remixes, re-releases, and inclusions in definitive histories of the genre. For listeners and producers of the time, the track served as a bridge between the harder, industrial-tinged techno of the late 80s and the more melodic, sweeping sound that would dominate European dance floors throughout the 90s. Its enduring legacy is a testament to the duo's pioneering approach to synthesizers and dancefloor architecture.",
+  "citations": [
+    {
+      "url": "https://www.beatport.com/track/stella/4981611?srsltid=AfmBOopAd1VbYjnBEnQzDgQECHUeR0mr08-raCWKoOE7CdSalDPpWMBs",
+      "title": "Jam & Spoon - Stella (Original Mix) [Allstar Music] | Music & Downloads on Beatport"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=CuSqohtcPZ4",
+      "title": "Jam & Spoon - Stella (Original Version) - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:44.360Z",
+  "_metrics": {
+    "input_tokens": 26620,
+    "output_tokens": 1151,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008382,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 19379,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Stella\" is a seminal electronic track by the German production duo Jam & Spoon, originally released in 1992 on the EP \"Tales from a Danceographic Ocean.\" As a cornerstone of early 1990s trance music, the track emerged during a period of significant evolution for European club cu",
+  "artists": [],
+  "genres": [],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

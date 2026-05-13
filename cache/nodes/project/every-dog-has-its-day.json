@@ -1,0 +1,62 @@
+{
+  "slug": "project:every-dog-has-its-day",
+  "name": "Every Dog Has Its Day",
+  "editorial_article": "\"Every Dog Has Its Day\" is the fourth full-length studio project by the Atlanta-based rapper Germ, released on March 15, 2024, through the independent label G*59 Records. Following his established path in the underground rap scene—characterized by gritty, high-energy delivery and lo-fi aesthetics—this project represents another significant milestone in his collaboration-heavy discography. The album features a roster of prominent peers within the G*59 and adjacent soundcloud-rap ecosystems, including contributions from $uicideboy$, Black Kray (performing as Sickboyrari), TiaCorine, and Lil Gnar. \\n\\nProduction-wise, the project leans into the atmospheric, bass-heavy sounds that have become synonymous with the G*59 brand. Notable producers contributing to the project include Budd Dwyer, Cvstillo, and H3NRY. The album's release was preceded by the single \"CC,\" which served as an early indicator of the record's aggressive, percussion-driven tone. With 13 tracks, \"Every Dog Has Its Day\" maintains a consistent energy level, reinforcing Germ's position as a vital, if disruptive, voice in contemporary southern rap. Through his continued partnership with G*59, Germ continues to refine his brand of unconventional, often distorted hip-hop that resonates deeply within digital communities, solidifying the project as a highlight in his 2024 catalog.",
+  "citations": [
+    {
+      "url": "https://genius.com/albums/Germ/Every-dog-has-its-day",
+      "title": "Germ - EVERY DOG HAS ITS DAY Lyrics and Tracklist | Genius"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:44.364Z",
+  "_metrics": {
+    "input_tokens": 16330,
+    "output_tokens": 1315,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006055,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13725,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "Germ’s fourth full-length studio project, \"Every Dog Has Its Day,\" delivers an aggressive, bass-heavy experience that leans into the artist's signature gritty underground sound. Released via G*59 Records, the album features key collaborations with $uicideboy$, Lil Gnar, and others, solidifying its place in the modern Southern rap landscape.",
+  "year": "2024",
+  "artists": [],
+  "label": {
+    "slug": "label:g-59-records",
+    "type": "label",
+    "name": "G*59 Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:trap",
+      "type": "genre",
+      "name": "Trap"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:budd-dwyer",
+      "type": "artist",
+      "name": "Budd Dwyer"
+    },
+    {
+      "slug": "artist:cvstillo",
+      "type": "artist",
+      "name": "Cvstillo"
+    }
+  ],
+  "related_projects": []
+}

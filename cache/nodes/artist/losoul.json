@@ -1,0 +1,77 @@
+{
+  "slug": "artist:losoul",
+  "name": "Losoul",
+  "editorial_article": "Peter Kremeier, better known by his alias Losoul, is a pivotal figure in the German electronic music scene, primarily associated with the influential Frankfurt label Playhouse. Emerging during the 1990s as a member of the Superbleep DJ team, Kremeier carved out a distinct artistic identity that bridged the gap between deep house, minimal techno, and experimental electronic pop. His work is characterized by a unique \"sound signature\"—often described as stoical, majestic, and hypnotic—defined by marathon grooves that avoid stagnation despite their repetitive nature. \n\nThroughout his career, Kremeier has successfully balanced rigorous club-oriented dance tracks, such as his landmark piece \"Open Door,\" with more introspective, song-based albums like 'Belong' (2000) and 'Getting Even' (2004), the latter of which features collaborations with vocalist Malte. His influence extends far beyond his own productions; as a sought-after remixer, he has reinterpreted the works of artists like Blaze, Khan, and Sven Väth. Whether performing live or holding court in legendary clubs like Panorama Bar and Robert-Johnson, Kremeier maintains a reputation for a sophisticated, boundary-pushing approach that continues to impact contemporary house and techno production. His ability to abstract the basic building blocks of dance music into complex, layered, and deeply emotional soundscapes remains his enduring contribution to electronic music culture.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/losoul/biography",
+      "title": "Losoul · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:18.848Z",
+  "_metrics": {
+    "input_tokens": 21535,
+    "output_tokens": 2423,
+    "cache_read_tokens": 4048,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009119,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 22372,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Peter Kremeier, better known by his alias Losoul, is a pivotal figure in the German electronic music scene, primarily associated with the influential Frankfurt label Playhouse.",
+  "genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:playhouse",
+      "type": "label",
+      "name": "Playhouse"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:belong",
+      "type": "project",
+      "name": "Belong"
+    },
+    {
+      "slug": "project:getting-even",
+      "type": "project",
+      "name": "Getting Even"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:open-door",
+      "type": "track",
+      "name": "Open Door"
+    },
+    {
+      "slug": "track:lies",
+      "type": "track",
+      "name": "Lies (Watch Your Lift)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

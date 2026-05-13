@@ -1,0 +1,67 @@
+{
+  "slug": "artist:ron-hardy",
+  "name": "Ron Hardy",
+  "editorial_article": "Ron Hardy (born May 8, 1958; died 1991) was an essential, albeit enigmatic, architect of Chicago house music. While peers like Frankie Knuckles at The Warehouse focused on a more polished, soul-infused disco sound, Hardy developed a reputation for a raw, uncompromising, and relentlessly high-energy approach. He was the resident DJ at the legendary Chicago club The Music Box, where he utilized a specialized sound system and his own idiosyncratic production style to pioneer what would eventually be identified as \"hard house\" or \"jacking\" house. \\n\\nHardy’s sets were renowned for their intensity, often characterized by the creative, live use of reel-to-reel tape decks to loop beats and create impromptu edits of disco records—a technique that presaged the era of sampler-based production. His influence on the Chicago scene in the early-to-mid 1980s was profound, shaping the aesthetic of producers and DJs who would eventually define the global house music movement. Though he left behind a relatively small body of released studio work compared to his contemporaries, his legacy lives on through the myths surrounding his endurance-length DJ sets and his central role in the birth of the house genre at The Music Box. His sound was the visceral, sweating heart of the city's nightlife, bridging the gap between late-70s disco and the more clinical, driving techno that would emerge later in the decade. Today, he remains a foundational figure, cited by electronic music historians as one of the most important figures to move dance music away from the mainstream disco charts and into the darker, more industrial, and deeply rhythmic basement soundscapes that characterized early house. His legacy is etched into the very DNA of house music, and the \"hard\" edge he introduced became a hallmark of the Chicago sound.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/ronhardy",
+      "title": "Ron Hardy · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://magazine.waxpoetics.com/connections/pride/article/ron-hardy-house-of-revolution/",
+      "title": "Ron Hardy's radical style defined a new sound in dance music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:09.657Z",
+  "_metrics": {
+    "input_tokens": 21299,
+    "output_tokens": 1965,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008272,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19951,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Ron Hardy (born May 8, 1958; died 1991) was an essential, albeit enigmatic, architect of Chicago house music, best known for his residency at the legendary Music Box club and his pioneering approach to the harder, jacking side of the genre. His raw production techniques and intense DJ style bridged the gap between disco and early house, profoundly influencing the trajectory of dance music.",
+  "origin": "Chicago, USA",
+  "active_years": "1970s-1991",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

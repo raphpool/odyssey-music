@@ -1,0 +1,125 @@
+{
+  "slug": "artist:arnold-schoenberg",
+  "name": "Arnold Schoenberg",
+  "editorial_article": "Arnold Schoenberg (1874–1951) was an Austrian-American composer, conductor, and teacher who fundamentally reshaped the course of 20th-century Western art music. Born in Vienna, he is best known as the pioneer of atonality and the creator of the twelve-tone technique (serialism), methods that shattered traditional harmonic hierarchies and provided a new structural language for composition. His early works, such as the lush string sextet 'Verklärte Nacht' (1899), were firmly rooted in the Romantic traditions of Brahms and Wagner, but he soon evolved toward more chromatic, and eventually, atonal territory. This radical departure reached its height in works like 'Pierrot Lunaire' (1912), which employed Sprechstimme, a unique vocal technique that sits between speaking and singing.\\n\\nSchoenberg’s influence extends far beyond his own compositions; he was a pedagogical force, notably teaching Alban Berg and Anton Webern, with whom he formed the Second Viennese School. The theoretical weight of his twelve-tone system, which treats all twelve pitches of the chromatic scale as equal, became a cornerstone of modernism. Facing rising antisemitism in Europe, Schoenberg fled Germany in 1933, eventually settling in Los Angeles, where he spent his final years teaching and composing. Despite a reputation for being 'difficult' or 'unapproachable'—often famously blamed for emptying concert halls—his legacy as an architect of modern music is profound, with his innovations continuing to inform and challenge compositional practice to this day. His major works include the massive opera 'Moses und Aron', which remains a testament to his complex artistic and philosophical vision.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Arnold-Schoenberg",
+      "title": "Arnold Schoenberg | Biography, Compositions, & Facts | Britannica"
+    },
+    {
+      "url": "https://www.chambermusicsociety.org/about-the-music/composers/arnold-schoenberg",
+      "title": "Arnold Schoenberg (1874–1951): Biography, Music + More | CMS"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:41.711Z",
+  "_metrics": {
+    "input_tokens": 20041,
+    "output_tokens": 1539,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007319,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16036,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Arnold Schoenberg was an Austrian-American composer who revolutionized music in the 20th century through his development of atonality and the twelve-tone serialism technique. His work shifted from late-Romantic influences to some of the most radical structural innovations in the history of Western classical music.",
+  "photo_url": "https://cdn.britannica.com/60/9460-004-D2BE06CB/Arnold-Schoenberg.jpg",
+  "origin": "Vienna, Austria",
+  "active_years": "1890s-1951",
+  "genres": [
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:atonal-music",
+      "type": "genre",
+      "name": "Atonal music"
+    },
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:verklarte-nacht",
+      "type": "project",
+      "name": "Verklärte Nacht"
+    },
+    {
+      "slug": "project:pierrot-lunaire",
+      "type": "project",
+      "name": "Pierrot Lunaire"
+    },
+    {
+      "slug": "project:moses-und-aron",
+      "type": "project",
+      "name": "Moses und Aron"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [
+    {
+      "slug": "artist:johannes-brahms",
+      "type": "artist",
+      "name": "Johannes Brahms"
+    },
+    {
+      "slug": "artist:richard-wagner",
+      "type": "artist",
+      "name": "Richard Wagner"
+    },
+    {
+      "slug": "artist:richard-strauss",
+      "type": "artist",
+      "name": "Richard Strauss"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:alban-berg",
+      "type": "artist",
+      "name": "Alban Berg"
+    },
+    {
+      "slug": "artist:anton-webern",
+      "type": "artist",
+      "name": "Anton Webern"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:alexander-von-zemlinsky",
+      "type": "artist",
+      "name": "Alexander von Zemlinsky"
+    },
+    {
+      "slug": "artist:alban-berg",
+      "type": "artist",
+      "name": "Alban Berg"
+    },
+    {
+      "slug": "artist:anton-webern",
+      "type": "artist",
+      "name": "Anton Webern"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

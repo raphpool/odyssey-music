@@ -1,0 +1,120 @@
+{
+  "slug": "artist:the-lonely-island",
+  "name": "The Lonely Island",
+  "editorial_article": "The Lonely Island is an American comedy music trio composed of childhood friends Andy Samberg, Akiva Schaffer, and Jorma Taccone. Formed in Berkeley, California, in the early 2000s, the group gained immense cultural prominence through their association with the long-running television sketch program *Saturday Night Live*. As writers and performers on the show, they created the \"SNL Digital Shorts,\" a series of highly viral music videos that redefined digital comedy in the mid-2000s. Their breakout hit, \"Lazy Sunday,\" is widely credited with helping turn YouTube into a mainstream cultural force.\n\nThe trio’s musical style—primarily parody rap and pop—is characterized by high-production values, deadpan delivery, and absurd, hyperbolic lyricism that subverts the tropes of contemporary hip-hop and pop stardom. Their studio albums, including *Incredibad* (2009), *Turtleneck & Chain* (2011), and *The Wack Album* (2013), have frequently topped the Billboard Comedy Albums chart and feature numerous collaborations with mainstream pop and rap artists, bridging the gap between musical satire and legitimate commercial success. Beyond their albums, the group expanded their reach into film, notably writing, directing, and starring in the 2016 mockumentary *Popstar: Never Stop Never Stopping*, which serves as a sprawling, self-referential satire of the modern pop landscape. Their legacy remains deeply tied to the evolution of internet comedy and the successful fusion of high-concept, short-form digital media with traditional music industry infrastructure.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Lonely_Island_discography",
+      "title": "The Lonely Island discography - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/the-lonely-island",
+      "title": "The Lonely Island Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:56.608Z",
+  "_metrics": {
+    "input_tokens": 24604,
+    "output_tokens": 2057,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009338,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16145,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "The Lonely Island is an American comedy music trio founded in Berkeley, California, known for their parody songs and SNL digital shorts.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/The_Lonely_Island.jpg/500px-The_Lonely_Island.jpg",
+  "origin": "Berkeley, California, U.S.",
+  "active_years": "2001–present",
+  "genres": [
+    {
+      "slug": "genre:comedy-rap",
+      "type": "genre",
+      "name": "Comedy Rap"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:universal-republic",
+      "type": "label",
+      "name": "Universal Republic"
+    },
+    {
+      "slug": "label:republic-records",
+      "type": "label",
+      "name": "Republic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:incredibad",
+      "type": "project",
+      "name": "Incredibad"
+    },
+    {
+      "slug": "project:turtleneck-and-chain",
+      "type": "project",
+      "name": "Turtleneck & Chain"
+    },
+    {
+      "slug": "project:the-wack-album",
+      "type": "project",
+      "name": "The Wack Album"
+    },
+    {
+      "slug": "project:popstar-never-stop-never-stopping",
+      "type": "project",
+      "name": "Popstar: Never Stop Never Stopping"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-m-on-a-boat",
+      "type": "track",
+      "name": "I'm on a Boat"
+    },
+    {
+      "slug": "track:i-just-had-sex",
+      "type": "track",
+      "name": "I Just Had Sex"
+    },
+    {
+      "slug": "track:lazy-sunday",
+      "type": "track",
+      "name": "Lazy Sunday"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:andy-samberg",
+      "type": "artist",
+      "name": "Andy Samberg"
+    },
+    {
+      "slug": "artist:akiva-schaffer",
+      "type": "artist",
+      "name": "Akiva Schaffer"
+    },
+    {
+      "slug": "artist:jorma-taccone",
+      "type": "artist",
+      "name": "Jorma Taccone"
+    }
+  ]
+}

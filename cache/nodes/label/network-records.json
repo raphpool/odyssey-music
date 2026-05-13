@@ -1,0 +1,87 @@
+{
+  "slug": "label:network-records",
+  "name": "Network Records",
+  "editorial_article": "Network Records was a pivotal British independent record label founded in Birmingham in 1988 by Neil Rushton and Dave Barker. Emerging from the foundations of Kool Kat Records, the label played a crucial role in bridging the Atlantic, serving as a primary conduit for introducing American Detroit techno and Chicago house to the United Kingdom's burgeoning rave scene. Through its seminal \"Bio Rhythm\" compilation series and consistent output of cutting-edge electronic dance music, Network became synonymous with the high-energy, futuristic sounds that defined the early 90s British dance culture.\\n\\nBeyond its function as an importer of American innovation, Network was instrumental in the development of homegrown talent. The label provided a home for acts that would become legends of the breakbeat hardcore and early jungle movements, most notably the production teams behind projects like Altern-8 and Nexus 21. By fostering an environment where experimental studio techniques were encouraged, the label helped sculpt the sonic identity of the era. Their influence extended throughout the early 1990s, with various sub-labels and spin-offs—such as Six6—continuing to push the boundaries of the scene. Following a long hiatus, the label made a notable return in 2019, underscoring its enduring legacy by re-issuing classics such as Derrick May's 'Innovator'. Network Records remains an essential pillar in the history of UK electronic music, celebrated for its unique blend of curatorial foresight and creative audacity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Network_Records",
+      "title": "Network Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:38.005Z",
+  "_metrics": {
+    "input_tokens": 15385,
+    "output_tokens": 664,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004842,
+    "llm_calls": 4,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 1,
+    "agent_ms": 15814,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A highly influential Birmingham-based label that was instrumental in introducing Detroit techno to the UK and fostering the early 90s breakbeat hardcore scene.",
+  "founded": "1988",
+  "location": "Birmingham, England",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:altern-8",
+      "type": "artist",
+      "name": "Altern-8"
+    },
+    {
+      "slug": "artist:nexus-21",
+      "type": "artist",
+      "name": "Nexus 21"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May"
+    },
+    {
+      "slug": "artist:juan-atkins",
+      "type": "artist",
+      "name": "Juan Atkins"
+    },
+    {
+      "slug": "artist:sl2",
+      "type": "artist",
+      "name": "SL2"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:innovator",
+      "type": "project",
+      "name": "Innovator"
+    },
+    {
+      "slug": "project:bio-rhythm",
+      "type": "project",
+      "name": "Bio Rhythm"
+    }
+  ]
+}

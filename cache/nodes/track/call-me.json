@@ -1,0 +1,59 @@
+{
+  "slug": "track:call-me",
+  "name": "Call Me",
+  "editorial_article": "\"Call Me\" is a seminal new wave anthem released by the American band Blondie in 1980. Originally commissioned as the theme song for the film \"American Gigolo,\" the track was a massive international success, reaching number one on the Billboard Hot 100 for six consecutive weeks and topping charts in the United Kingdom and Canada. The song was the result of a creative collaboration between Blondie’s frontwoman Debbie Harry and the influential Italian disco producer Giorgio Moroder. Moroder initially provided Harry with a rough instrumental demo titled \"Man Machine,\" tasking her with composing the lyrics and melody. Harry, who wrote the lyrics with the imagery of driving along the California coast in mind, successfully synthesized her signature punk-infused new wave aesthetic with Moroder’s slick, high-energy electronic disco production. The finished track is notable for its propulsive, driving rhythm and the bridge, in which Harry sings \"call me\" in both Italian and French—a touch that added to its global appeal. Cementing its status as one of the definitive songs of the early 1980s, \"Call Me\" became the band's biggest commercial success and remains a high-water mark for the intersection of new wave and dance-pop, recognized by its inclusion on numerous lists of the greatest songs of all time.",
+  "citations": [
+    {
+      "url": "https://classicrock.fandom.com/wiki/Call_Me",
+      "title": "Call Me | Classic Rock Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:37.582Z",
+  "_metrics": {
+    "input_tokens": 20545,
+    "output_tokens": 943,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006551,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16268,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Call Me\" is a seminal new wave anthem released by the American band Blondie in 1980.",
+  "year": "1980",
+  "artists": [
+    {
+      "slug": "artist:blondie",
+      "type": "artist",
+      "name": "Blondie"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:giorgio-moroder",
+      "type": "artist",
+      "name": "Giorgio Moroder"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

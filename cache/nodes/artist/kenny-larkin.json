@@ -1,0 +1,80 @@
+{
+  "slug": "artist:kenny-larkin",
+  "name": "Kenny Larkin",
+  "editorial_article": "Kenny Larkin is a seminal figure in the Detroit techno scene, recognized for his sophisticated, melodic, and deeply influential contributions to electronic music. Born in Detroit in 1968, Larkin’s path to techno was unique; while many of his contemporaries were shaping the genre's earliest iterations, Larkin was serving in the military. Upon his return to Detroit, he was deeply impacted by the foundational work of Juan Atkins and Derrick May, as well as the emerging Chicago house sound, which helped mold his distinct approach to rhythm and harmony. Unlike some of his peers who favored a starker, industrial aesthetic, Larkin’s music often incorporated layers of warmth and soul, establishing a signature \"Detroit sound\" that resonated particularly strongly in Europe. \\n\\nLarkin broke into the scene in the early 1990s with pivotal releases like \"We Shall Overcome\" and \"Integration\" on the iconic Plus 8 label, overseen by Richie Hawtin and John Acquaviva. His 1994 debut album, *Azimuth*, remains a landmark in techno history, blending technical precision with high emotional depth. Throughout his career, Larkin has maintained a prolific output, recording under various aliases such as Dark Comedy and Yennek, and releasing music on legendary labels including Warp, R&S, and Planet E. Despite facing greater critical acclaim and commercial success in international markets—particularly in the UK and Germany—than in his home country, Larkin remains an essential architect of the second wave of Detroit techno, consistently pushing the boundaries of the genre through his inventive studio work and DJ performances.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kenny_Larkin",
+      "title": "Kenny Larkin - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/kenny-larkin-mn0000085251",
+      "title": "Kenny Larkin Songs, Albums, Reviews, Bio & Mor... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:41.861Z",
+  "_metrics": {
+    "input_tokens": 27039,
+    "output_tokens": 2254,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010141,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16676,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Kenny Larkin is a seminal figure in the Detroit techno scene, recognized for his sophisticated, melodic, and deeply influential contributions to electronic music.",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:transmat",
+      "type": "label",
+      "name": "Transmat"
+    },
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:plus-8-records",
+      "type": "label",
+      "name": "Plus 8 Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:we-shall-overcome",
+      "type": "track",
+      "name": "We Shall Overcome"
+    },
+    {
+      "slug": "track:integration",
+      "type": "track",
+      "name": "Integration"
+    },
+    {
+      "slug": "track:catatonic",
+      "type": "track",
+      "name": "Catatonic"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

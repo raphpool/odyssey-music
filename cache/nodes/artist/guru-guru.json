@@ -1,0 +1,63 @@
+{
+  "slug": "artist:guru-guru",
+  "name": "Guru Guru",
+  "editorial_article": "Guru Guru is a seminal German krautrock band formed in 1968 in Heidelberg. Originally operating under the name The Guru Guru Groove, the group was founded by drummer Mani Neumeier and bassist Uli Trepte, both of whom brought experience from the jazz scene, specifically through their work with the Irène Schweizer Trio. Over more than five decades, Guru Guru has become synonymous with the experimental, anarchic, and politically charged spirit of the German underground of the late 1960s and early 1970s. Their music is a sprawling synthesis of psychedelic rock, jazz fusion, and avant-garde experimentation, famously described by Neumeier as \"comic rock\" rather than the more common \"cosmic rock\" label of the era. The band's early output, particularly their foundational albums *UFO* (1970) and *Hinten* (1971), defined the krautrock aesthetic through wild improvisation, heavy percussion, and a willingness to break traditional song structures. They were deeply embedded in the social and political movements of the time, often collaborating with the Socialist German Student Union and performing in unconventional spaces, including prisons. Beyond their political leanings, the band lived communally in the Odenwald region, where they explored altered states and radical performance art. Mani Neumeier remains the constant force behind the group, which has released over 40 albums and continues to influence generations of experimental and psychedelic musicians worldwide. Their ability to blend technical jazz proficiency with raw, psychedelic energy remains a hallmark of their enduring legacy in rock history. The band is a central pillar of the Krautrock movement, having bridged the gap between traditional jazz discipline and avant-garde exploration. Their performance style, characterized by flamboyant theatrics and relentless energy, established them as a live powerhouse during their peak years in the 1970s. By constantly evolving their lineup and sonic direction, Guru Guru successfully transcended the boundaries of the krautrock scene, securing their place as one of the most enduring and influential experimental rock acts to emerge from Germany.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Guru_Guru",
+      "title": "Guru Guru - Wikipedia"
+    },
+    {
+      "url": "https://jazzrocksoul.com/artists/guru-guru/",
+      "title": "Guru Guru - JazzRockSoul.com"
+    },
+    {
+      "url": "https://www.progarchives.com/artist.asp?id=943",
+      "title": "GURU GURU discography and reviews - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:12.798Z",
+  "_metrics": {
+    "input_tokens": 29970,
+    "output_tokens": 2532,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.011291,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 26576,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Guru Guru is a seminal German krautrock band formed in 1968 in Heidelberg.",
+  "active_years": "1968–present",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:jazz-rock",
+      "type": "genre",
+      "name": "Jazz rock"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

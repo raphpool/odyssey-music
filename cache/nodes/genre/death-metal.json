@@ -1,0 +1,98 @@
+{
+  "slug": "genre:death-metal",
+  "name": "Death Metal",
+  "editorial_article": "Death metal is an extreme subgenre of heavy metal that emerged in the mid-1980s, primarily within the United States. Characterized by its relentless sonic aggression, the genre pushes the boundaries of traditional metal through the use of heavily distorted, down-tuned guitars, palm muting, and complex, chromatic chord progressions. At its core, death metal is defined by a distinctive rhythmic intensity, featuring rapid-fire tremolo picking, double-kick drumming, and the iconic \"blast beat\" technique. These instrumental assaults are almost universally accompanied by deep, guttural \"death growl\" vocals—a departure from the soaring, melodic vocal styles found in mainstream heavy metal or hard rock.\\n\\nThe genre coalesced from the foundations laid by thrash metal and early black metal, drawing additional kinetic energy from the intensity of hardcore punk. Pioneering bands such as Death, Possessed, Morbid Angel, and Obituary crystallized these elements, crafting a sound that was darker, faster, and more morbid than anything that had come before. Lyrically, the genre frequently explores themes of violence, mortality, science fiction, and dark philosophy, reflecting the extreme nature of the music itself. Throughout the late 1980s and early 1990s, the genre expanded from its Florida and San Francisco roots, finding a massive international audience through dedicated underground labels like Earache and Roadrunner Records.\\n\\nAs the genre matured, it branched into a diverse array of sub-styles, demonstrating a surprising range of technical and atmospheric exploration. This evolution led to the birth of technical death metal, which emphasizes complex time signatures and virtuosic musicianship, as well as melodic death metal, which incorporates harmonic sensibilities reminiscent of the New Wave of British Heavy Metal. Today, death metal remains one of the most resilient and fertile subgenres in extreme music, serving as a foundational pillar that continues to influence everything from death-doom and blackened death metal to the modern, rhythmically focused sound of deathcore. Its enduring cultural significance lies in its uncompromising pursuit of intensity and its capacity to push technical skill to the absolute limit.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Death_metal",
+      "title": "Death metal - Wikipedia"
+    },
+    {
+      "url": "https://metalheadcommunity.com/history-of-death-metal/",
+      "title": "Death Metal History - Pioneers, Influences, and Evolution of the Genre - MetalheadCommunity.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:03.732Z",
+  "_metrics": {
+    "input_tokens": 20135,
+    "output_tokens": 1444,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0072,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18200,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "An extreme subgenre of heavy metal characterized by low-tuned, distorted guitars, guttural vocals, and aggressive percussion including blast beats.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:death",
+      "type": "artist",
+      "name": "Death"
+    },
+    {
+      "slug": "artist:morbid-angel",
+      "type": "artist",
+      "name": "Morbid Angel"
+    },
+    {
+      "slug": "artist:possessed",
+      "type": "artist",
+      "name": "Possessed"
+    },
+    {
+      "slug": "artist:obituary",
+      "type": "artist",
+      "name": "Obituary"
+    },
+    {
+      "slug": "artist:autopsy",
+      "type": "artist",
+      "name": "Autopsy"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:earache-records",
+      "type": "label",
+      "name": "Earache Records"
+    },
+    {
+      "slug": "label:roadrunner-records",
+      "type": "label",
+      "name": "Roadrunner Records"
+    },
+    {
+      "slug": "label:combat-records",
+      "type": "label",
+      "name": "Combat Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:scream-bloody-gore",
+      "type": "project",
+      "name": "Scream Bloody Gore"
+    },
+    {
+      "slug": "project:altars-of-madness",
+      "type": "project",
+      "name": "Altars of Madness"
+    },
+    {
+      "slug": "project:seven-churches",
+      "type": "project",
+      "name": "Seven Churches"
+    }
+  ],
+  "landmark_tracks": []
+}

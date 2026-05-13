@@ -1,0 +1,66 @@
+{
+  "slug": "label:owsla",
+  "name": "OWSLA",
+  "editorial_article": "OWSLA, founded in 2011 by Sonny \"Skrillex\" Moore alongside Tim Smith, Kathryn Frazier, and Clayton Blaha, stands as a seminal American record label and creative collective that defined the explosion of EDM in the early 2010s. Based in Los Angeles, the label was birthed from Skrillex's desire to provide a supportive home for electronic artists who struggled to secure equitable deals or resources within the mainstream music industry. Its name, derived from the governing caste of rabbits in Richard Adams' classic fantasy novel *Watership Down*, signaled a vision of a self-sustaining ecosystem where artists could find a community. Over its active years, OWSLA became synonymous with the bass-heavy, high-energy sounds of dubstep, trap, and house, fostering an environment that valued artistic freedom over rigid genre boundaries. \\n\\nFrom its debut release, Porter Robinson's *Spitfire* EP, to the *Howsla* compilation that highlighted the label's evolution into bassline house, OWSLA consistently acted as a launchpad for major talent. It balanced mainstream appeal with experimental tendencies, partnering with niche imprints like Bromance US and operating subsidiaries like the music discovery site Nest HQ. The label’s ethos was deeply personal, with Skrillex viewing it as an extension of his own family of musicians and creators. While the label entered a period of dormancy in 2020 after nearly a decade of influencing the electronic landscape, its legacy remains embedded in the careers of artists like Zedd, Getter, Dillon Francis, and Hundred Waters, who found early validation and infrastructure within the OWSLA fold. It serves as a prime example of the artist-as-entrepreneur model that revolutionized the dance music industry during the digital era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Owsla",
+      "title": "Owsla - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:08.187Z",
+  "_metrics": {
+    "input_tokens": 34466,
+    "output_tokens": 2686,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.012747,
+    "llm_calls": 6,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 6,
+    "emit_attempts": 4,
+    "agent_ms": 22297,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal Los Angeles-based electronic music label and creative collective co-founded by Skrillex, known for spearheading the mid-2010s bass and trap explosion.",
+  "founded": "2011",
+  "location": "Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:edm",
+      "type": "genre",
+      "name": "EDM"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:trap",
+      "type": "genre",
+      "name": "Trap (EDM)"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex"
+    },
+    {
+      "slug": "artist:porter-robinson",
+      "type": "artist",
+      "name": "Porter Robinson"
+    },
+    {
+      "slug": "artist:zedd",
+      "type": "artist",
+      "name": "Zedd"
+    }
+  ],
+  "notable_releases": []
+}

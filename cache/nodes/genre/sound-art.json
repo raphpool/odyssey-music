@@ -1,0 +1,95 @@
+{
+  "slug": "genre:sound-art",
+  "name": "Sound art",
+  "editorial_article": "Sound art is an interdisciplinary creative practice that positions sound as the primary medium, frequently blurring the boundaries between auditory experience, visual art, and conceptual exploration. Emerging as a distinct discipline in the late 20th century, sound art diverges from traditional music by prioritizing the acoustic environment, spatial interaction, and generative processes over conventional structures like melody, rhythm, or harmonic development. It often manifests as site-specific installations, sound sculptures, or autonomous, self-playing automata that invite the listener to engage with their surroundings in a non-linear, often open-ended manner. While traditional music is typically performed and listened to in a fixed temporal window, sound art often functions as a continuous, ambient experience where the listener determines the duration and focus of their engagement. This approach leans heavily into aleatory or generative sound design, where natural phenomena, mechanical interaction, or environmental variables—such as wind, electromagnetic fields, or architectural resonance—serve as the composition's source material. The practice is inherently linked to experimental traditions, drawing on techniques from field recording, musique concrète, and modern sculpture. Practitioners frequently operate within gallery settings, public spaces, and site-specific environments, positioning their work as a sculptural interaction with acoustic space rather than a performance for a concert hall. Key figures such as David Tudor, Harry Bertoia, and Alvin Lucier have been instrumental in defining this space, utilizing bespoke instruments or environmental systems to challenge how we perceive the physicality of sound itself. Through these methodologies, sound art provides a framework to reconsider our sonic landscapes, moving away from passive consumption toward active, spatialized listening.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/sound-art/",
+      "title": "Sound Art - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.berlinschoolofsound.com/what-is-sound-art-a-complete-beginners-guide-berlin-school-of-sound/",
+      "title": "Sound Art: A Complete Beginner's Guide - Berlin School of Sound"
+    },
+    {
+      "url": "https://www.artdex.com/beyond-visual-how-sound-art-redefines-artistic-boundaries/",
+      "title": "Beyond Visual: How Sound Art Redefines Artistic Boundaries – ARTDEX"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:57.445Z",
+  "_metrics": {
+    "input_tokens": 12543,
+    "output_tokens": 805,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004343,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 15932,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Sound art is an interdisciplinary form of creative expression that utilizes sound as its primary medium, often prioritizing spatial, conceptual, and environmental interaction over traditional musical structures like melody and rhythm.",
+  "era": "Late 20th century to present",
+  "origin": "International/Western Contemporary Art Scene",
+  "sonic_markers": "Aleatory structures, site-specific acoustic design, generative sound, non-linear composition, environmental field recordings, integration with sculpture, use of non-musical objects.",
+  "parent_genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:david-tudor",
+      "type": "artist",
+      "name": "David Tudor"
+    },
+    {
+      "slug": "artist:harry-bertoia",
+      "type": "artist",
+      "name": "Harry Bertoia"
+    },
+    {
+      "slug": "artist:alvin-lucier",
+      "type": "artist",
+      "name": "Alvin Lucier"
+    },
+    {
+      "slug": "artist:max-eastley",
+      "type": "artist",
+      "name": "Max Eastley"
+    },
+    {
+      "slug": "artist:ellen-fullman",
+      "type": "artist",
+      "name": "Ellen Fullman"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:rainforest",
+      "type": "project",
+      "name": "Rainforest"
+    },
+    {
+      "slug": "project:i-am-sitting-in-a-room",
+      "type": "project",
+      "name": "I Am Sitting in a Room"
+    },
+    {
+      "slug": "project:body-music",
+      "type": "project",
+      "name": "Body Music"
+    }
+  ],
+  "landmark_tracks": []
+}

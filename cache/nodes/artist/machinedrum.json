@@ -1,0 +1,185 @@
+{
+  "slug": "artist:machinedrum",
+  "name": "Machinedrum",
+  "editorial_article": "Travis Stewart (born March 4, 1982), widely known by his alias Machinedrum, is a prolific American electronic musician, producer, and performer whose career has spanned over two decades, helping define and evolve the sound of experimental electronic music. Hailing from Eden, North Carolina, Stewart’s early musical foundation was deeply influenced by his family’s background in country and blues, alongside his own immersion in high school marching and jazz bands. This eclectic upbringing, combined with his early fascination with polyrhythms and percussion, became the bedrock of his distinct production style, which seamlessly blends intricate IDM programming with the soulful, kinetic energy of house, footwork, and hip-hop. Starting the Machinedrum project in the late 1990s, he quickly gained recognition for his technical prowess, releasing his debut album, Now You Know, on Merck Records in 2001. Throughout his career, Stewart has been a highly active collaborator, forming notable acts like the house-leaning duo Sepalcure with Praveen Sharma and the bass-heavy project JETS alongside Jimmy Edgar. His work with major labels such as Planet Mu and Ninja Tune has cemented his reputation as an innovator who continuously pushes the boundaries of rhythm and texture. Beyond his own discography, which includes seminal albums like Room(s), Vapor City, and A View of U, Stewart is a sought-after producer who has shaped the sounds of artists ranging from Azealia Banks and Dawn Richard to Theophilus London, showcasing his versatility and enduring impact on contemporary music. As a performer, he has graced major global stages such as the Sydney Opera House and the Sonar Music Festival, cementing his status as a vital figure in the electronic landscape. His ability to synthesize complex, percussive arrangements with deep, emotional resonance remains a hallmark of his long and influential career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Machinedrum",
+      "title": "Machinedrum - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/167734-Machinedrum?srsltid=AfmBOop3d7YEURryU4OFYvERawtfzNAbn4g66185U52LvN8wrpgUxLil",
+      "title": "Machinedrum Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:51.329Z",
+  "_metrics": {
+    "input_tokens": 24530,
+    "output_tokens": 2319,
+    "cache_read_tokens": 8108,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009814,
+    "llm_calls": 6,
+    "search_calls": 2,
+    "fetch_calls": 2,
+    "turns": 6,
+    "emit_attempts": 2,
+    "agent_ms": 22713,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Travis Stewart (born March 4, 1982), widely known by his alias Machinedrum, is a prolific American electronic musician, producer, and performer whose career has spanned over two decades, helping define and evolve the sound of experimental electronic music. Hailing from Eden, North Carolina, Stewart’s early musical foundation was deeply influenced by his family’s background in country and blues, alongside his own immersion in high school marching and jazz bands. This eclectic upbringing, combined with his early fascination with polyrhythms and percussion, became the bedrock of his distinct production style, which seamlessly blends intricate IDM programming with the soulful, kinetic energy of house, footwork, and hip-hop. Starting the Machinedrum project in the late 1990s, he quickly gained recognition for his technical prowess, releasing his debut album, Now You Know, on Merck Records in 2001. Throughout his career, Stewart has been a highly active collaborator, forming notable acts like the house-leaning duo Sepalcure with Praveen Sharma and the bass-heavy project JETS alongside Jimmy Edgar. His work with major labels such as Planet Mu and Ninja Tune has cemented his reputation as an innovator who continuously pushes the boundaries of rhythm and texture. Beyond his own discography, which includes seminal albums like Room(s), Vapor City, and A View of U, Stewart is a sought-after producer who has shaped the sounds of artists ranging from Azealia Banks and Dawn Richard to Theophilus London, showcasing his versatility and enduring impact on contemporary music.",
+  "origin": "Eden, North Carolina, U.S.",
+  "active_years": "2000–present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:glitch-hop",
+      "type": "genre",
+      "name": "Glitch Hop"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ninja-tune",
+      "type": "label",
+      "name": "Ninja Tune"
+    },
+    {
+      "slug": "label:luckyme",
+      "type": "label",
+      "name": "LuckyMe"
+    },
+    {
+      "slug": "label:merck-records",
+      "type": "label",
+      "name": "Merck Records"
+    },
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    },
+    {
+      "slug": "label:hotflush-recordings",
+      "type": "label",
+      "name": "Hotflush Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:now-you-know",
+      "type": "project",
+      "name": "Now You Know"
+    },
+    {
+      "slug": "project:room",
+      "type": "project",
+      "name": "Room(s)"
+    },
+    {
+      "slug": "project:vapor-city",
+      "type": "project",
+      "name": "Vapor City"
+    },
+    {
+      "slug": "project:human-energy",
+      "type": "project",
+      "name": "Human Energy"
+    },
+    {
+      "slug": "project:a-view-of-u",
+      "type": "project",
+      "name": "A View of U"
+    },
+    {
+      "slug": "project:3for82",
+      "type": "project",
+      "name": "3FOR82"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:she-died-there",
+      "type": "track",
+      "name": "She Died There"
+    },
+    {
+      "slug": "track:pencil-pimp",
+      "type": "track",
+      "name": "Pencil Pimp"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:praveen-sharma",
+      "type": "artist",
+      "name": "Praveen Sharma"
+    },
+    {
+      "slug": "artist:jimmy-edgar",
+      "type": "artist",
+      "name": "Jimmy Edgar"
+    },
+    {
+      "slug": "artist:om-unit",
+      "type": "artist",
+      "name": "Om Unit"
+    },
+    {
+      "slug": "artist:dawn-richard",
+      "type": "artist",
+      "name": "Dawn Richard"
+    },
+    {
+      "slug": "artist:azealia-banks",
+      "type": "artist",
+      "name": "Azealia Banks"
+    },
+    {
+      "slug": "artist:theophilus-london",
+      "type": "artist",
+      "name": "Theophilus London"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:syndrone",
+      "type": "artist",
+      "name": "Syndrone"
+    },
+    {
+      "slug": "artist:tstewart",
+      "type": "artist",
+      "name": "tstewart"
+    },
+    {
+      "slug": "artist:neon-black",
+      "type": "artist",
+      "name": "Neon Black"
+    },
+    {
+      "slug": "artist:aden",
+      "type": "artist",
+      "name": "Aden"
+    }
+  ],
+  "members": []
+}

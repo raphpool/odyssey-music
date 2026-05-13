@@ -1,0 +1,96 @@
+{
+  "slug": "genre:post-metal",
+  "name": "Post-metal",
+  "editorial_article": "Post-metal is a musical movement that emerged in the 1990s as a deliberate expansion beyond the conventional boundaries of heavy metal. By incorporating the experimental ethos, structural fluidity, and atmospheric textures of post-rock—and often borrowing from sludge, doom, and industrial music—post-metal artists moved away from the aggression and high-tempo riffing of traditional heavy metal. Instead, they embraced long-form compositions, repetition, and a deliberate focus on sound design to create sprawling, emotionally resonant soundscapes. \\n\\nThe genre traces its roots to foundational acts like Neurosis, whose shift toward texture and dynamic experimentation in the early 90s, particularly on seminal releases like 1996's *Through Silver in Blood*, set the template for the genre's development. Other precursors, such as the sludge-drone of Earth and the industrial-leaning experiments of Godflesh, provided the essential elements of weight and repetition that would define the movement. Over time, post-metal evolved into a global phenomenon, with artists blending diverse influences including black metal, shoegaze, progressive rock, and dark ambient. \\n\\nMusically, post-metal is defined by its patience. It utilizes the slow, crushing weight of sludge metal but balances it with delicate, clean melodies, ethereal soundscapes, and an emphasis on the \"slow build\"—where tension is carefully constructed over lengthy song structures before resolving into massive, distorted crescendos. The genre minimizes the traditional emphasis on vocal-led pop structures in favor of instrumentation that functions as a vehicle for atmospheric exploration. Today, post-metal stands as a testament to the ability of extreme music to integrate with avant-garde and experimental traditions, maintaining its heavy roots while constantly reinventing the language of tension and release.",
+  "citations": [
+    {
+      "url": "https://daily.bandcamp.com/lists/a-brief-history-of-post-metal",
+      "title": "A Brief History of Post-Metal | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:26.563Z",
+  "_metrics": {
+    "input_tokens": 12737,
+    "output_tokens": 775,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004347,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 11288,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A genre of experimental music that combines the heaviness, weight, and distortion of metal with the structure, atmospheric texture, and slow-build dynamics of post-rock.",
+  "era": "1990s-present",
+  "origin": "United States, United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy Metal"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge Metal"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:neurosis",
+      "type": "artist",
+      "name": "Neurosis"
+    },
+    {
+      "slug": "artist:godflesh",
+      "type": "artist",
+      "name": "Godflesh"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth"
+    },
+    {
+      "slug": "artist:isis",
+      "type": "artist",
+      "name": "Isis"
+    },
+    {
+      "slug": "artist:cult-of-luna",
+      "type": "artist",
+      "name": "Cult of Luna"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:through-silver-in-blood",
+      "type": "project",
+      "name": "Through Silver in Blood"
+    },
+    {
+      "slug": "project:earth-2",
+      "type": "project",
+      "name": "Earth 2"
+    },
+    {
+      "slug": "project:panopticon",
+      "type": "project",
+      "name": "Panopticon"
+    }
+  ],
+  "landmark_tracks": []
+}

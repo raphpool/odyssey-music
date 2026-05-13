@@ -1,0 +1,96 @@
+{
+  "slug": "genre:country-music",
+  "name": "Country music",
+  "editorial_article": "Country music, historically known as country and western, is a cornerstone of American popular culture that emerged from the Southern and Southwestern United States in the 1920s. Born from a diverse melting pot of cultural traditions, it synthesized British and Irish folk influences with African American spirituals, blues, and Southern gospel. The genre’s formative years were heavily shaped by the folk traditions of the Appalachian Mountains, as well as the cowboy and vaquero legacies of the American West. Instruments like the fiddle, banjo, and later, the pedal steel guitar, define its distinctive, melancholic, and often narrative-driven sonic landscape. \\n\\nThroughout the 20th century, country music evolved through various regional hubs—from the polished Nashville sound to the harder-edged Bakersfield sound and the rebellious spirit of outlaw country. It has maintained a deep connection to storytelling, focusing on themes of love, faith, heartbreak, and the everyday realities of the American working class. Despite its regional roots, the genre has demonstrated immense adaptability, spawning fusion styles ranging from bluegrass and country rock to contemporary country pop. Today, country remains a massive cultural force, continually reinventing itself while retaining the emotive twang and confessional songwriting that first captured listeners nearly a century ago.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Country_music",
+      "title": "Country music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:13.114Z",
+  "_metrics": {
+    "input_tokens": 12181,
+    "output_tokens": 641,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004007,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 6555,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A widely popular American musical genre rooted in Southern and Appalachian folk, characterized by storytelling lyrics, distinctive vocal twang, and a versatile string-instrumentation core.",
+  "era": "1920s–present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:bluegrass",
+      "type": "genre",
+      "name": "Bluegrass"
+    },
+    {
+      "slug": "genre:honky-tonk",
+      "type": "genre",
+      "name": "Honky-tonk"
+    },
+    {
+      "slug": "genre:outlaw-country",
+      "type": "genre",
+      "name": "Outlaw country"
+    },
+    {
+      "slug": "genre:country-rock",
+      "type": "genre",
+      "name": "Country rock"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash"
+    },
+    {
+      "slug": "artist:dolly-parton",
+      "type": "artist",
+      "name": "Dolly Parton"
+    },
+    {
+      "slug": "artist:hank-williams",
+      "type": "artist",
+      "name": "Hank Williams"
+    },
+    {
+      "slug": "artist:willie-nelson",
+      "type": "artist",
+      "name": "Willie Nelson"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:at-folsom-prison",
+      "type": "project",
+      "name": "At Folsom Prison"
+    },
+    {
+      "slug": "project:coat-of-many-colors",
+      "type": "project",
+      "name": "Coat of Many Colors"
+    },
+    {
+      "slug": "project:red-headed-stranger",
+      "type": "project",
+      "name": "Red Headed Stranger"
+    }
+  ],
+  "landmark_tracks": []
+}

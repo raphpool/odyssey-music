@@ -1,0 +1,39 @@
+{
+  "slug": "project:murmur",
+  "name": "Murmur",
+  "editorial_article": "Murmur, released in 1983 on I.R.S. Records, stands as the landmark debut studio album by the American alternative rock band R.E.M. Recorded in North Carolina under the guidance of producers Don Dixon and Mitch Easter, the album emerged as a pivotal moment in the development of American independent music during the early 1980s. Its production, which famously eschewed the synthesizers and polished rock clichés common at the time, favored an atmospheric, \"timeless\" sound built on Peter Buck's signature ringing, jangly guitar arpeggios, Mike Mills’ melodic basslines, and Michael Stipe's famously enigmatic, sometimes mumbled vocal delivery. \\n\\nThe creation of the album was a reaction against the overly technical, clinical approach of earlier producers, with the band actively seeking a more organic and authentic sonic capture of their live energy. Songs like \"Radio Free Europe\" and \"Talk About the Passion\" showcased a songwriting sensibility that bridged the gap between post-punk intensity and classic folk-rock traditions. Culturally, Murmur is widely credited with establishing the blueprint for the 1980s college rock movement and the subsequent explosion of alternative rock in the following decade. Its influence is cemented by its consistent appearance on critical lists of the greatest albums of all time, serving as a masterclass in how to build a cohesive, mood-driven artistic statement with minimal studio artifice. The album remains a foundational text for students of indie rock, demonstrating how a band can subvert pop conventions while crafting deeply emotive and enduring melodies. Throughout the record, the interplay between the rhythm section and Buck’s guitar creates a dense, layered texture that feels both intimate and expansive, setting the standard for what independent rock would become in the decades that followed. Its critical longevity and historical significance in the Athens, Georgia scene mark it as one of the most important debut records in American music history.",
+  "citations": [
+    {
+      "url": "https://www.sputnikmusic.com/review/13311/R.E.M.-Murmur/",
+      "title": "R.E.M. - Murmur (album review 5)"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/album/6101-rem-murmur.php",
+      "title": "R.E.M. - Murmur - Reviews"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:36.302Z",
+  "_metrics": {
+    "input_tokens": 61706,
+    "output_tokens": 4327,
+    "cache_read_tokens": 8101,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.02212,
+    "llm_calls": 9,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 9,
+    "emit_attempts": 5,
+    "agent_ms": 27813,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "The definitive 1983 debut that defined the American college rock movement, featuring Peter Buck's signature jangle, Mike Mills' melodic bass, and Michael Stipe's iconic, cryptic lyrical style.",
+  "year": "1983",
+  "artists": [],
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

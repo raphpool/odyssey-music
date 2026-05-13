@@ -1,0 +1,138 @@
+{
+  "slug": "genre:roots-reggae",
+  "name": "Roots Reggae",
+  "editorial_article": "Roots reggae is a profoundly spiritual and socially conscious subgenre of reggae that emerged from the Caribbean in the late 1960s, reaching its creative zenith during the 1970s. Deeply intertwined with the Rastafari movement, the genre serves as the voice of the \"sufferer\"—the marginalized communities living within the ghettos of Jamaica. Musically, it is defined by its heavy, hypnotic reliance on the drum-and-bass backbone, often featuring the distinctive \"one drop\" rhythm, which creates a meditative, grounded space for lyrical themes of resistance, black liberation, and the veneration of Jah. Unlike the broader reggae sound, which frequently explores love, dancehall culture, or daily life, roots reggae remains fiercely focused on social critique, poverty, anti-colonialism, and a spiritual yearning for repatriation to a mythical, ancestral Africa.\\n\\nThe development of the genre was spurred by the 1966 visit of Haile Selassie to Jamaica, which galvanized the Rastafarian community and infused the island’s music with unprecedented religious fervor. Producers such as Lee \"Scratch\" Perry, Bunny Lee, and Coxsone Dodd played instrumental roles in shaping the sonic identity of the movement, experimenting with recording techniques that paved the way for the development of dub. During its 1970s heyday, roots reggae provided a potent cultural critique of \"Babylon\"—the systems of capitalism, fascism, and corruption—that resonated globally, impacting punk rockers in London and contributing to the emerging hip-hop soundscapes in New York City. Even as dancehall rose to dominance in the 1980s, the \"conscious\" tradition established by artists like Bob Marley, Burning Spear, and Culture endured, influencing subsequent generations of Jamaican and international musicians who continue to carry the roots reggae banner forward as a vehicle for social justice and spiritual reflection.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Roots_reggae",
+      "title": "Roots reggae - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:14.610Z",
+  "_metrics": {
+    "input_tokens": 12000,
+    "output_tokens": 894,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004341,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 7187,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of reggae music deeply linked to the Rastafari movement, characterized by its focus on spiritual and social consciousness, resistance to systemic oppression, and a signature, bass-heavy rhythmic style.",
+  "era": "Late 1960s–Present (Peak 1970s)",
+  "origin": "Jamaica",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:nyabinghi",
+      "type": "genre",
+      "name": "Nyabinghi"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bob-marley",
+      "type": "artist",
+      "name": "Bob Marley"
+    },
+    {
+      "slug": "artist:burning-spear",
+      "type": "artist",
+      "name": "Burning Spear"
+    },
+    {
+      "slug": "artist:the-abyssinians",
+      "type": "artist",
+      "name": "The Abyssinians"
+    },
+    {
+      "slug": "artist:culture",
+      "type": "artist",
+      "name": "Culture"
+    },
+    {
+      "slug": "artist:steel-pulse",
+      "type": "artist",
+      "name": "Steel Pulse"
+    },
+    {
+      "slug": "artist:dennis-brown",
+      "type": "artist",
+      "name": "Dennis Brown"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:studio-one",
+      "type": "label",
+      "name": "Studio One"
+    },
+    {
+      "slug": "label:trojan-records",
+      "type": "label",
+      "name": "Trojan Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:marcus-garvey",
+      "type": "project",
+      "name": "Marcus Garvey"
+    },
+    {
+      "slug": "project:satta-massagana",
+      "type": "project",
+      "name": "Satta Massagana"
+    },
+    {
+      "slug": "project:two-sevens-clash",
+      "type": "project",
+      "name": "Two Sevens Clash"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:police-and-thieves",
+      "type": "track",
+      "name": "Police & Thieves"
+    },
+    {
+      "slug": "track:blood-and-fire",
+      "type": "track",
+      "name": "Blood & Fire"
+    },
+    {
+      "slug": "track:conquering-lion",
+      "type": "track",
+      "name": "Conquering Lion"
+    }
+  ]
+}

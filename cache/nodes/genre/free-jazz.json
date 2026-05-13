@@ -1,0 +1,120 @@
+{
+  "slug": "genre:free-jazz",
+  "name": "Free Jazz",
+  "editorial_article": "Free jazz, also known as free-form jazz, emerged in the late 1950s and early 1960s as a radical departure from the established conventions of bebop and modal jazz. By discarding fixed chord progressions, regular meters, and pre-established song forms, free jazz practitioners sought to maximize the role of spontaneous improvisation. The genre’s name is often attributed to the 1960 Ornette Coleman album, 'Free Jazz: A Collective Improvisation,' which exemplified the movement's focus on collective, non-linear interplay. Musically, free jazz prioritizes timbre, emotional intensity, and melodic variation, often utilizing stream-of-consciousness techniques that recall the pioneering experiments of early avant-garde artists. \\n\\nThe rise of free jazz was deeply intertwined with the sociopolitical climate of the United States, particularly the Civil Rights Movement and the growing assertions of Black identity and resistance. Critics and historians frequently draw parallels between the liberation implied in the genre's name and the broader quest for racial equity and self-determination during the 1960s. Beyond its American roots, the movement was a global phenomenon, with European scenes adopting the term 'free improvisation' to emphasize the practice’s emphasis on sound for its own sake rather than structural adherence. By incorporating elements of non-Western musical traditions—including African, Asian, and Indian rhythmic and instrumental techniques—free jazz expanded the sonic possibilities of the avant-garde, leaving a legacy that influenced subsequent movements such as no wave, post-rock, and modern free improvisation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Free_jazz",
+      "title": "Free jazz - Wikipedia"
+    },
+    {
+      "url": "https://timeline.carnegiehall.org/genres/free-jazz-avant-garde",
+      "title": "History of Free Jazz/Avant-Garde - Timeline of African American Music"
+    },
+    {
+      "url": "https://jazzfuel.com/avant-garde-free-jazz/",
+      "title": "Avant Garde Jazz History | Legendary Free Jazz Artists & Albums"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:18.735Z",
+  "_metrics": {
+    "input_tokens": 11926,
+    "output_tokens": 856,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004266,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8249,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A revolutionary, experimental style of jazz improvisation that emerged in the late 1950s by discarding traditional jazz conventions like fixed chord changes, standard song structures, and regular tempos in favor of spontaneous, collective expression.",
+  "era": "Late 1950s – present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:avant-garde-jazz",
+      "type": "genre",
+      "name": "Avant-garde jazz"
+    },
+    {
+      "slug": "genre:free-improvisation",
+      "type": "genre",
+      "name": "Free improvisation"
+    },
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ornette-coleman",
+      "type": "artist",
+      "name": "Ornette Coleman"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane"
+    },
+    {
+      "slug": "artist:albert-ayler",
+      "type": "artist",
+      "name": "Albert Ayler"
+    },
+    {
+      "slug": "artist:pharoah-sanders",
+      "type": "artist",
+      "name": "Pharoah Sanders"
+    },
+    {
+      "slug": "artist:archie-shepp",
+      "type": "artist",
+      "name": "Archie Shepp"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:esp-disk",
+      "type": "label",
+      "name": "ESP-Disk"
+    },
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:impulse",
+      "type": "label",
+      "name": "Impulse!"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:free-jazz-a-collective-improvisation",
+      "type": "project",
+      "name": "Free Jazz: A Collective Improvisation"
+    },
+    {
+      "slug": "project:the-shape-of-jazz-to-come",
+      "type": "project",
+      "name": "The Shape of Jazz to Come"
+    },
+    {
+      "slug": "project:ascension",
+      "type": "project",
+      "name": "Ascension"
+    }
+  ],
+  "landmark_tracks": []
+}

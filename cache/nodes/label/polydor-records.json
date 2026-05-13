@@ -1,0 +1,78 @@
+{
+  "slug": "label:polydor-records",
+  "name": "Polydor Records",
+  "editorial_article": "Polydor Records is one of the world's most venerable music labels, with a history spanning over a century. Originally established in Germany in 1913, the label has evolved from its early days in the acoustic era into a global powerhouse within the music industry. The name Polydor was initially utilized primarily for international exports of recordings produced by the German company Deutsche Grammophon, designed to be more accessible to non-German speaking markets. Over the decades, the label established a significant presence in the United Kingdom, becoming a major player in the British music scene during the mid-20th century.\\n\\nThroughout its history, Polydor has been home to some of the most influential acts in popular music. In its early years, it was an early partner to legendary artists including The Who, who helped define the sound of the British Invasion. The label’s roster has remained impressively diverse and long-standing, encompassing classic rock staples, pop icons, and contemporary chart-toppers. The company has navigated several corporate shifts, including its long-standing association with the PolyGram group and its subsequent integration into the global Universal Music Group hierarchy. Despite these structural changes, Polydor has consistently managed to retain its identity, acting as a home for high-profile artists ranging from Cream and The Bee Gees to modern stars like Lana Del Rey, The 1975, and Ellie Goulding. Its enduring legacy is built on a balance of maintaining high-quality legacy catalogues while continuously scouting and fostering emerging talent across the global pop and rock landscapes.",
+  "citations": [
+    {
+      "url": "https://atlasrecords.co.uk/blogs/all-about-vinyl/polydor-records?srsltid=AfmBOop1WvJCilUnRlOFhetQm1ahhjS7TARwnnF3kLicBiBcVmnG-9QU",
+      "title": "Tales Behind The Label: Polydor Records – Atlas Records"
+    },
+    {
+      "url": "https://ultimatepopculture.fandom.com/wiki/Polydor_Records",
+      "title": "Polydor Records | Ultimate Pop Culture Wiki - Fandom"
+    },
+    {
+      "url": "https://volt.fm/label/4220/polydor-records",
+      "title": "Polydor Records Artists, Albums, Songs, Playlists and Listeners"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:15.537Z",
+  "_metrics": {
+    "input_tokens": 17625,
+    "output_tokens": 1535,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006709,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11002,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary international record label founded in Germany in 1913, Polydor has been a cornerstone of the music industry for over a century, known for hosting iconic acts like The Who, The Bee Gees, and numerous modern chart-toppers.",
+  "founded": "1913",
+  "location": "Germany (origin); United Kingdom (major historical base)",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who"
+    },
+    {
+      "slug": "artist:the-bee-gees",
+      "type": "artist",
+      "name": "The Bee Gees"
+    },
+    {
+      "slug": "artist:cream",
+      "type": "artist",
+      "name": "Cream"
+    },
+    {
+      "slug": "artist:lana-del-rey",
+      "type": "artist",
+      "name": "Lana Del Rey"
+    },
+    {
+      "slug": "artist:the-1975",
+      "type": "artist",
+      "name": "The 1975"
+    },
+    {
+      "slug": "artist:ellie-goulding",
+      "type": "artist",
+      "name": "Ellie Goulding"
+    },
+    {
+      "slug": "artist:tony-sheridan",
+      "type": "artist",
+      "name": "Tony Sheridan"
+    }
+  ],
+  "notable_releases": []
+}

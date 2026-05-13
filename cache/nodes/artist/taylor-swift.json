@@ -1,0 +1,139 @@
+{
+  "slug": "artist:taylor-swift",
+  "name": "Taylor Swift",
+  "editorial_article": "Taylor Swift is an American singer-songwriter whose career has evolved from Nashville country prodigy to global pop powerhouse. Born in 1989 and rising to prominence in the mid-2000s, Swift has defined her artistic trajectory through deeply autobiographical songwriting and a willingness to undergo radical stylistic shifts. Beginning with the country-rooted sound of her 2006 self-titled debut and 2008's 'Fearless', she steadily incorporated pop sensibilities that culminated in the full-throttle synth-pop transformation of '1989' (2014). Her ability to navigate genre boundaries—from country and pop to the indie-folk introspection of 'Folklore' and 'Evermore'—has cemented her status as a cultural phenomenon and one of the most prolific songwriters of her generation.\\n\\nBeyond her musical evolution, Swift is known for her mastery of public narrative and her impact on the music industry, most notably highlighted by her highly publicized re-recording project, which sought to reclaim the rights to her master recordings. This period of artistic assertion, alongside monumental global events like 'The Eras Tour', has reinforced her position as a dominant force in modern music, marked by critical acclaim, record-breaking commercial success, and an unparalleled connection with her fanbase, the 'Swifties'. Throughout her career, Swift has secured numerous industry accolades, including multiple Grammy Awards for Album of the Year, reflecting her enduring relevance and craft. Her influence extends into songwriting, music business politics, and film, maintaining a level of cultural saturation that is virtually unique in the 21st century. She continues to reshape the landscape of pop music by blending commercial dominance with intense, personal storytelling.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+      "title": "Taylor Swift - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Taylor_Swift_albums_discography",
+      "title": "Taylor Swift albums discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:42.661Z",
+  "_metrics": {
+    "input_tokens": 24383,
+    "output_tokens": 2540,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010007,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 21338,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Taylor Swift is an American singer-songwriter whose career has evolved from Nashville country prodigy to global pop powerhouse. Born in 1989 and rising to prominence in the mid-2000s, Swift has defined her artistic trajectory through deeply autobiographical songwriting and a willingness to undergo radical stylistic shifts. Beginning with the country-rooted sound of her 2006 self-titled debut and 2008's 'Fearless', she steadily incorporated pop sensibilities that culminated in the full-throttle synth-pop transformation of '1989' (2014). Her ability to navigate genre boundaries—from country and pop to the indie-folk introspection of 'Folklore' and 'Evermore'—has cemented her status as a cultural phenomenon and one of the most prolific songwriters of her generation.\\n\\nBeyond her musical evolution, Swift is known for her mastery of public narrative and her impact on the music industry, most notably highlighted by her highly publicized re-recording project, which sought to reclaim the rights to her master recordings. This period of artistic assertion, alongside monumental global events like 'The Eras Tour', has reinforced her position as a dominant force in modern music, marked by critical acclaim, record-breaking commercial success, and an unparalleled connection with her fanbase, the 'Swifties'. Throughout her career, Swift has secured numerous industry accolades, including multiple Grammy Awards for Album of the Year, reflecting her enduring relevance and craft.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png/250px-Taylor_Swift_at_the_2023_MTV_Video_Music_Awards_%283%29.png",
+  "origin": "Nashville, Tennessee",
+  "active_years": "2003–present",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:country",
+      "type": "genre",
+      "name": "Country"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:big-machine-records",
+      "type": "label",
+      "name": "Big Machine Records"
+    },
+    {
+      "slug": "label:republic-records",
+      "type": "label",
+      "name": "Republic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:taylor-swift",
+      "type": "project",
+      "name": "Taylor Swift"
+    },
+    {
+      "slug": "project:fearless",
+      "type": "project",
+      "name": "Fearless"
+    },
+    {
+      "slug": "project:speak-now",
+      "type": "project",
+      "name": "Speak Now"
+    },
+    {
+      "slug": "project:red",
+      "type": "project",
+      "name": "Red"
+    },
+    {
+      "slug": "project:1989",
+      "type": "project",
+      "name": "1989"
+    },
+    {
+      "slug": "project:reputation",
+      "type": "project",
+      "name": "Reputation"
+    },
+    {
+      "slug": "project:lover",
+      "type": "project",
+      "name": "Lover"
+    },
+    {
+      "slug": "project:folklore",
+      "type": "project",
+      "name": "Folklore"
+    },
+    {
+      "slug": "project:evermore",
+      "type": "project",
+      "name": "Evermore"
+    },
+    {
+      "slug": "project:midnights",
+      "type": "project",
+      "name": "Midnights"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-story",
+      "type": "track",
+      "name": "Love Story"
+    },
+    {
+      "slug": "track:shake-it-off",
+      "type": "track",
+      "name": "Shake It Off"
+    },
+    {
+      "slug": "track:cardigan",
+      "type": "track",
+      "name": "Cardigan"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

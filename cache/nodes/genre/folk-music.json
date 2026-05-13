@@ -1,0 +1,85 @@
+{
+  "slug": "genre:folk-music",
+  "name": "Folk music",
+  "editorial_article": "Folk music is a broad, foundational category of human expression, traditionally defined as music created by, shared among, and preserved by ordinary people within small social networks. Unlike 'art music' composed for professional concert halls or 'popular music' mass-produced for broad commercial consumption, folk music typically exists within an oral tradition. It is learned by ear rather than by reading scores, often passed down through generations within families or specific rural communities. Historically, folk music was deeply functional, serving as an accompaniment to life rituals, labor, work songs, and community gatherings, rather than serving primarily as a passive form of mass entertainment.\\n\\nWhile the definition of folk music varies significantly across global cultures, in the context of Europe and the Americas, it is often viewed as the rural, community-based counterpart to the sophisticated urban traditions of an elite class. The 20th century, however, brought radical shifts as mass media—radio, recordings, and eventually the internet—transformed its dissemination. This era also saw various 'folk revivals,' particularly in the mid-20th century, where the genre was reclaimed, often with strong political or social undercurrents, bridging the gap between traditional communal songs and the emerging folk-pop consciousness. Instruments such as the acoustic guitar, fiddle, banjo, and various regional ethnic instruments remain central to its sonic identity, grounding the music in textures that feel intimate, tactile, and historically connected. Despite the modernization of its transmission, folk music continues to be defined by its spirit of participation and its role as a vessel for storytelling and cultural identity.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/folk-music",
+      "title": "Folk music | Definition, History, Artists, Songs, Bands, Instruments, & Facts | Britannica"
+    },
+    {
+      "url": "https://www.mandalaarts.org/blogs/what-is-folk-music/",
+      "title": "What is Folk Music? History, Characteristics & Global Styles"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:20.682Z",
+  "_metrics": {
+    "input_tokens": 19598,
+    "output_tokens": 1327,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00689,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11014,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Folk music is a genre of traditional music, primarily transmitted through oral tradition, that functions as a communal expression of culture, often associated with labor, ritual, and storytelling rather than institutional or commercial performance.",
+  "era": "Pre-industrial to contemporary",
+  "origin": "Global, with prominent historical development in Europe and the Americas",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:appalachian-folk",
+      "type": "genre",
+      "name": "Appalachian folk"
+    },
+    {
+      "slug": "genre:traditional-irish-music",
+      "type": "genre",
+      "name": "Traditional Irish music"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:americana",
+      "type": "genre",
+      "name": "Americana"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:lead-belly",
+      "type": "artist",
+      "name": "Lead Belly"
+    },
+    {
+      "slug": "artist:woody-guthrie",
+      "type": "artist",
+      "name": "Woody Guthrie"
+    },
+    {
+      "slug": "artist:pete-seeger",
+      "type": "artist",
+      "name": "Pete Seeger"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

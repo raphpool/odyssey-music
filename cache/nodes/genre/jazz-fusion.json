@@ -1,0 +1,125 @@
+{
+  "slug": "genre:jazz-fusion",
+  "name": "Jazz-Fusion",
+  "editorial_article": "Jazz-Fusion, also widely known as jazz-rock, emerged in the late 1960s as a transformative movement that bridged the worlds of jazz and popular music. By integrating jazz harmony, advanced improvisation, and rhythmic sophistication with the high-energy aesthetics of rock, funk, and rhythm and blues, the genre fundamentally altered the trajectory of jazz. As the rock revolution surged and traditional jazz saw its mainstream audience dwindle, forward-thinking musicians began adopting the electric instruments—electric guitars, basses, synthesizers, and electric pianos—that defined the era’s pop and rock sounds, moving away from the acoustic foundations of bebop and cool jazz.\n\nThe movement is most indelibly linked to the experimental output of Miles Davis, particularly his late 1960s and early 1970s recordings like *In a Silent Way* and *Bitches Brew*. These records served as a catalyst, utilizing studio manipulation and long-form improvisation to break conventional structures. Following this breakthrough, a cadre of Davis alumni—including Herbie Hancock, Chick Corea, Joe Zawinul, and John McLaughlin—went on to form some of the genre's most iconic groups, such as Weather Report, Return to Forever, and the Mahavishnu Orchestra. These ensembles pushed the boundaries of musical technicality, frequently employing odd time signatures, virtuosic soloing, and complex arrangements that rivaled the complexity of progressive rock.\n\nThroughout the 1970s, jazz-fusion flourished as a major commercial force, characterized by a relentless drive toward sonic expansion and electronic integration. While the 1980s saw the genre diverge into more polished and radio-friendly territory, such as smooth jazz, the legacy of fusion remains vital. Its ethos—the refusal to accept stylistic boundaries—provided a blueprint for generations of artists working in experimental rock, funk, and contemporary avant-garde music, cementing its position as a pivotal junction in the evolution of modern music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jazz_fusion",
+      "title": "Jazz fusion - Wikipedia"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/jazz-fusion-guide",
+      "title": "Jazz Fusion Guide: A Brief History of Jazz Fusion"
+    },
+    {
+      "url": "https://magazine.waxpoetics.com/connections/saudade-brasil/article/the-history-of-jazz-fusion/",
+      "title": "The History of Jazz Fusion? - Wax Poetics"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:51.869Z",
+  "_metrics": {
+    "input_tokens": 19697,
+    "output_tokens": 1616,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007348,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 16286,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A hybrid genre that emerged in the late 1960s, combining the improvisational and harmonic complexity of jazz with the instrumentation, rhythms, and high-energy dynamics of rock and funk.",
+  "era": "Late 1960s to 1980s",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:herbie-hancock",
+      "type": "artist",
+      "name": "Herbie Hancock"
+    },
+    {
+      "slug": "artist:chick-corea",
+      "type": "artist",
+      "name": "Chick Corea"
+    },
+    {
+      "slug": "artist:john-mclaughlin",
+      "type": "artist",
+      "name": "John McLaughlin"
+    },
+    {
+      "slug": "artist:joe-zawinul",
+      "type": "artist",
+      "name": "Joe Zawinul"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:cti-records",
+      "type": "label",
+      "name": "CTI Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:bitches-brew",
+      "type": "project",
+      "name": "Bitches Brew"
+    },
+    {
+      "slug": "project:in-a-silent-way",
+      "type": "project",
+      "name": "In a Silent Way"
+    },
+    {
+      "slug": "project:head-hunters",
+      "type": "project",
+      "name": "Head Hunters"
+    },
+    {
+      "slug": "project:heavy-weather",
+      "type": "project",
+      "name": "Heavy Weather"
+    }
+  ],
+  "landmark_tracks": []
+}

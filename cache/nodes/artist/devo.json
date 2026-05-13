@@ -1,0 +1,103 @@
+{
+  "slug": "artist:devo",
+  "name": "Devo",
+  "editorial_article": "Devo is an American new wave band formed in 1973 in Akron, Ohio, known for their satirical concept of \"devolution\"—the idea that humanity, instead of evolving, is actually regressing. The band was founded by brothers Mark and Bob Mothersbaugh, and Gerald and Bob Casale, along with drummer Alan Myers. Their formation was heavily influenced by the cultural and political turmoil of the late 1960s, particularly the tragic Kent State University shootings of 1970, which both Mark Mothersbaugh and Gerald Casale witnessed as students. This radical artistic background led to a highly original sonic and visual aesthetic that utilized synthesizers, jagged rhythms, and ironic, often dehumanizing imagery. With their signature radiation suits and distinct \"energy dome\" hats, Devo became a massive visual and sonic presence in the early MTV era. Their breakthrough came with the 1980 album 'Freedom of Choice', which featured their platinum-selling single \"Whip It.\" Beyond their commercial success, the band's subversive approach to music and performance art left a lasting legacy, influencing a diverse array of artists ranging from Nirvana—who famously covered their track \"Turnaround\"—to LCD Soundsystem. Despite various lineups over the decades and a hiatus in the 1990s, Devo has remained a consistent cultural force, blending punk sensibilities with electronic experimentation to critique the absurdity of modern life. Their work serves as a reminder that the line between high art and pop spectacle is often a matter of perspective. Over the decades, they have toured internationally, continuing to perform their sharp, satirical music, proving that their conceptual message of societal regression remains as biting and relevant today as it was at their inception in the 70s.",
+  "citations": [
+    {
+      "url": "https://clubdevo.com/about/",
+      "title": "About | DEVO"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Devo_discography",
+      "title": "Devo discography - Wikipedia"
+    },
+    {
+      "url": "https://goldenrobotrecords.com/pages/devo",
+      "title": "DEVO – Golden Robot Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:39.717Z",
+  "_metrics": {
+    "input_tokens": 25481,
+    "output_tokens": 2190,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009655,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 21827,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Pioneers of the new wave movement, Devo combined their satirical theory of 'devolution' with a radical, synth-driven sound and iconic visual style to become one of the most subversive bands of the MTV era.",
+  "photo_url": "https://clubdevo.com/wp-content/uploads/2024/08/press-22-jpg.webp",
+  "origin": "Akron, Ohio",
+  "active_years": "1973–present",
+  "genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:q-are-we-not-men-a-we-are-devo",
+      "type": "project",
+      "name": "Q: Are We Not Men? A: We Are DEVO!"
+    },
+    {
+      "slug": "project:freedom-of-choice",
+      "type": "project",
+      "name": "Freedom of Choice"
+    },
+    {
+      "slug": "project:new-traditionalists",
+      "type": "project",
+      "name": "New Traditionalists"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:whip-it",
+      "type": "track",
+      "name": "Whip It"
+    },
+    {
+      "slug": "track:uncontrollable-urge",
+      "type": "track",
+      "name": "Uncontrollable Urge"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

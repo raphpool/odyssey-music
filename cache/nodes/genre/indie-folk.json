@@ -1,0 +1,133 @@
+{
+  "slug": "genre:indie-folk",
+  "name": "Indie folk",
+  "editorial_article": "Indie folk, also widely known as alternative folk, is an expansive and often nebulous musical genre that emerged in the 1990s as a hybrid of indie rock's experimental ethos and the traditional, acoustic-focused storytelling of folk music. Rather than strictly adhering to the preservationist roots of traditional folk, indie folk musicians frequently incorporate lo-fi production techniques, contemporary songwriting structures, and a distinctly introspective, often raw emotional lyrical lens. The genre is characterized by its use of acoustic instrumentation—frequently featuring guitars, banjos, mandolins, and ukuleles—reimagined through an alternative rock sensibility. It draws deep inspiration from 1960s and 1970s singer-songwriters such as Bob Dylan, Neil Young, and Joni Mitchell, while simultaneously leaning into the raw experimentalism associated with artists like The Velvet Underground and, in the 1990s, the influential, vulnerable songcraft of Elliott Smith.\n\nThe history of indie folk spans several waves. It began with 1990s artists who brought a grittier, alternative edge to acoustic music, such as Ani DiFranco and Will Oldham. By the 2000s, specialized labels like Saddle Creek, Barsuk, and Sub Pop provided the infrastructure that allowed the genre to flourish, leading to the mainstream success of bands like Fleet Foxes and Mumford & Sons. While the latter half of the 2000s and early 2010s saw a rise in the \"stomp and holler\" or \"stomp clap hey\" sound, the genre has continued to evolve. In recent years, artists including Phoebe Bridgers, Julien Baker, and Taylor Swift have revitalized the genre's profile, emphasizing intimate, highly literate songcraft that reflects contemporary anxieties and deeply personal narratives. Indie folk remains a vital space for artists who prioritize authentic storytelling and sonic vulnerability over polished production, cementing its place as a cornerstone of the modern alternative landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Indie_folk",
+      "title": "Indie folk - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:10.355Z",
+  "_metrics": {
+    "input_tokens": 12411,
+    "output_tokens": 914,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004474,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8428,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A versatile alternative music genre that blends acoustic, folk-rooted instrumentation and traditional storytelling with the DIY, experimental, and introspective sensibilities of indie rock.",
+  "era": "1990s–present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk music"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:folk-pop",
+      "type": "genre",
+      "name": "Folk pop"
+    },
+    {
+      "slug": "genre:folk-punk",
+      "type": "genre",
+      "name": "Folk punk"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    },
+    {
+      "slug": "genre:neofolk",
+      "type": "genre",
+      "name": "Neofolk"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:elliott-smith",
+      "type": "artist",
+      "name": "Elliott Smith"
+    },
+    {
+      "slug": "artist:fleet-foxes",
+      "type": "artist",
+      "name": "Fleet Foxes"
+    },
+    {
+      "slug": "artist:phoebe-bridgers",
+      "type": "artist",
+      "name": "Phoebe Bridgers"
+    },
+    {
+      "slug": "artist:ani-difranco",
+      "type": "artist",
+      "name": "Ani DiFranco"
+    },
+    {
+      "slug": "artist:mumford-and-sons",
+      "type": "artist",
+      "name": "Mumford & Sons"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:saddle-creek",
+      "type": "label",
+      "name": "Saddle Creek"
+    },
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:barsuk",
+      "type": "label",
+      "name": "Barsuk"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:helplessness-blues",
+      "type": "project",
+      "name": "Helplessness Blues"
+    },
+    {
+      "slug": "project:folklore",
+      "type": "project",
+      "name": "Folklore"
+    },
+    {
+      "slug": "project:punisher",
+      "type": "project",
+      "name": "Punisher"
+    },
+    {
+      "slug": "project:sprained-ankle",
+      "type": "project",
+      "name": "Sprained Ankle"
+    }
+  ],
+  "landmark_tracks": []
+}

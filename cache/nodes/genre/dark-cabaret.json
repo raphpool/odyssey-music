@@ -1,0 +1,106 @@
+{
+  "slug": "genre:dark-cabaret",
+  "name": "Dark cabaret",
+  "editorial_article": "Dark cabaret is a stylistic convergence of modern alternative rock, goth, and the theatrical, often transgressive spirit of the Weimar-era German 'Kabarett' and early 20th-century European music hall. Characterized by its moody, dramatic, and often macabre atmosphere, the genre repurposes the kitschy, performative nature of traditional cabaret through a distorted, postmodern lens. Musically, it is defined by an eclectic, non-standard approach to instrumentation; while piano is a central pillar, the soundscapes are frequently filled out with accordion, violin, cello, banjo, and various brass elements, creating an aesthetic that feels at once nostalgic, antique, and distinctly underground. \\n\\nThe lyrical themes of dark cabaret often explore subjects of morbidity, nihilism, heartbreak, and cynical social commentary, delivered with a sense of ironic detachment or heightened, histrionic vulnerability. While its stylistic DNA reaches back to the experimental works of artists like Bertolt Brecht and Kurt Weill, the modern iteration of the genre began to crystallize in the late 20th century. Pioneers like Marc and the Mambas and The Tiger Lillies introduced elements of this theatrical gloom to the post-punk and alternative spheres in the 80s and 90s, respectively. The genre experienced a notable surge in popularity during the early-to-mid 2000s, largely due to the breakout success of acts like The Dresden Dolls, who distilled the genre’s disparate threads—vocal theatrics, piano-led aggression, and gothic art-rock sensibilities—into a recognizable, mainstream-accessible form that resonated deeply within the growing alternative community. It remains a genre of extreme stylistic flexibility, bridging the gap between delicate chamber music and aggressive, punk-influenced performance art.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/dark-cabaret/",
+      "title": "Dark Cabaret - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:16.625Z",
+  "_metrics": {
+    "input_tokens": 12584,
+    "output_tokens": 812,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004364,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 21256,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Dark cabaret is a theatrical, moody subgenre that fuses the performance art and satirical grit of early 20th-century European cabaret with gothic, post-punk, and alternative rock sensibilities.",
+  "era": "1980s–present",
+  "origin": "Global (with roots in European Weimar-era cabaret)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:goth-rock",
+      "type": "genre",
+      "name": "Goth rock"
+    },
+    {
+      "slug": "genre:cabaret",
+      "type": "genre",
+      "name": "Cabaret"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-dresden-dolls",
+      "type": "artist",
+      "name": "The Dresden Dolls"
+    },
+    {
+      "slug": "artist:the-tiger-lillies",
+      "type": "artist",
+      "name": "The Tiger Lillies"
+    },
+    {
+      "slug": "artist:marc-and-the-mambas",
+      "type": "artist",
+      "name": "Marc & the Mambas"
+    },
+    {
+      "slug": "artist:tom-waits",
+      "type": "artist",
+      "name": "Tom Waits"
+    },
+    {
+      "slug": "artist:sopor-aeternus-and-the-ensemble-of-shadows",
+      "type": "artist",
+      "name": "Sopor Aeternus & The Ensemble of Shadows"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-dresden-dolls",
+      "type": "project",
+      "name": "The Dresden Dolls"
+    },
+    {
+      "slug": "project:rain-dogs",
+      "type": "project",
+      "name": "Rain Dogs"
+    },
+    {
+      "slug": "project:torment-and-toreros",
+      "type": "project",
+      "name": "Torment and Toreros"
+    },
+    {
+      "slug": "project:les-fleurs-du-mal",
+      "type": "project",
+      "name": "Les fleurs du mal"
+    }
+  ],
+  "landmark_tracks": []
+}

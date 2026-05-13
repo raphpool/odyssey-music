@@ -1,0 +1,116 @@
+{
+  "slug": "genre:rock-music",
+  "name": "Rock music",
+  "editorial_article": "Rock music is a foundational genre of modern popular music, emerging in the United States during the late 1940s and early 1950s. Rooted in a fusion of rhythm and blues, country, jazz, and gospel, rock 'n' roll was initially defined by its energetic 4/4 time signature, electric guitar instrumentation, and an rebellious, youth-oriented ethos. As it evolved from its early rockabilly and R&B-influenced origins, the genre became a global cultural force, mirroring the social upheavals of the 20th century. By the 1960s, rock had diverged from pure pop into more experimental and gritty territories, fueled by the British Invasion and the burgeoning psychedelic scene. Throughout subsequent decades, it fragmented into a myriad of subgenres—ranging from the heavy amplification of metal and hard rock in the 1970s to the raw, DIY energy of punk, the stadium-filling anthems of the 1980s, and the introspective angst of 1990s grunge. Rock music's legacy lies in its capacity for reinvention, its enduring focus on the electric guitar as a primary voice, and its role as a persistent vehicle for youth culture and social commentary. Its influence continues to permeate diverse musical landscapes, demonstrating both deep historical continuity and a relentless drive toward sonic experimentation.",
+  "citations": [
+    {
+      "url": "https://blog.audionetwork.com/the-edit/music/the-history-of-rock-music",
+      "title": "The History Of Rock Music | Audio Network"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:01.922Z",
+  "_metrics": {
+    "input_tokens": 19022,
+    "output_tokens": 1358,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006793,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15823,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Rock music is a broad, guitar-driven genre originating from a fusion of blues, country, and rhythm and blues, defined by its energetic rhythms, rebellious spirit, and historical evolution into diverse subgenres.",
+  "era": "1950s-present",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and blues"
+    },
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

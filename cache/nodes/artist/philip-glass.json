@@ -1,0 +1,91 @@
+{
+  "slug": "artist:philip-glass",
+  "name": "Philip Glass",
+  "editorial_article": "Philip Glass, born in Baltimore in 1937, is one of the most influential American composers of the late 20th and early 21st centuries. Widely regarded as a foundational figure in minimal music, Glass broke away from the dense, atonal complexities of the mid-century avant-garde to develop a distinct sonic signature rooted in repetitive structures, additive processes, and shifting, cyclical harmonic layers. His evolution as a composer began in earnest with the formation of the Philip Glass Ensemble in 1968, a collective that allowed him to perform his music in contexts ranging from galleries to rock clubs, effectively bridging the divide between high-art classical composition and popular culture. \\n\\nHis body of work is staggering in its breadth and impact, encompassing monumental operas like the \"Portrait Trilogy\"—*Einstein on the Beach* (1976), *Satyagraha* (1980), and *Akhnaten* (1983)—as well as deeply evocative film scores and extensive chamber music. Glass's music is immediately recognizable; his driving, arpeggiated piano motifs and pulsing rhythmic patterns have become synonymous with a certain kind of modern cinematic tension and introspection, evidenced by his celebrated work on films like *Koyaanisqatsi* (1982), *The Truman Show* (1998), and *The Hours* (2002). \\n\\nBeyond his compositions, Glass remains a cultural touchstone whose work has influenced countless artists across genres, from ambient and electronic producers to indie rock musicians. His ability to maintain a rigorous intellectual foundation while producing music that resonates with broad audiences has secured his legacy as a transformative force in modern music. Whether through his symphonies, his string quartets, or his collaborations in the theater, Philip Glass continues to challenge and expand the boundaries of how we listen to and experience music in the modern world.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Philip_Glass",
+      "title": "Philip Glass - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/philip-glass-mn0000849672",
+      "title": "Philip Glass | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:12.054Z",
+  "_metrics": {
+    "input_tokens": 20158,
+    "output_tokens": 1260,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00693,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17105,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "An American composer and pianist widely regarded as one of the most influential figures of the late 20th century, best known for his pioneering work in minimalism characterized by repetitive, additive, and cyclical musical structures.",
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary classical"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:orange-mountain-music",
+      "type": "label",
+      "name": "Orange Mountain Music"
+    },
+    {
+      "slug": "label:sony-classical",
+      "type": "label",
+      "name": "Sony Classical"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:music-in-twelve-parts",
+      "type": "project",
+      "name": "Music in Twelve Parts"
+    },
+    {
+      "slug": "project:glassworks",
+      "type": "project",
+      "name": "Glassworks"
+    },
+    {
+      "slug": "project:einstein-on-the-beach",
+      "type": "project",
+      "name": "Einstein on the Beach"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:koyaanisqatsi",
+      "type": "track",
+      "name": "Koyaanisqatsi"
+    },
+    {
+      "slug": "track:metamorphosis-one",
+      "type": "track",
+      "name": "Metamorphosis One"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

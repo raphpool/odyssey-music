@@ -1,0 +1,107 @@
+{
+  "slug": "label:beggars-banquet-records",
+  "name": "Beggars Banquet Records",
+  "editorial_article": "Beggars Banquet Records stands as one of the most significant pillars of the British independent music industry. Founded in 1977 by Martin Mills and Nick Austin—originally as a record shop chain—the label emerged directly from the burgeoning DIY ethic of the UK punk rock explosion. Its inaugural release, the \"Shadow\" / \"Love Story\" single by the Lurkers, epitomized the raw, grassroots energy that defined the label's early years. However, Beggars Banquet quickly evolved beyond the limitations of its punk origins, becoming a key architect of the post-punk, new wave, and alternative rock scenes that dominated British music throughout the 1980s and beyond.\\n\\nThroughout its lifespan, the label served as a vital home for experimental and iconic artists, ranging from the gothic-tinged post-punk of Bauhaus to the chart-topping electronic pioneering of Gary Numan and Tubeway Army. Its roster fostered a diverse array of sounds, including the jangle-pop sensibilities of the Go-Betweens, the moody atmospheres of the Cult, and the adventurous indie-pop of the Associates. As the label grew in influence, it became a central component of the Beggars Group, a powerhouse collective of independent labels that reshaped the music business landscape in the late 20th century. By 2008, the label shifted its operational focus, with its active roster transitioned to the 4AD imprint, yet its historical legacy as a champion of artistic independence remains firmly cemented. The label’s contribution to defining the aesthetic and commercial viability of the \"indie\" label model provided a blueprint that continues to inform independent music production to this day.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Beggars_Banquet_Records",
+      "title": "Beggars Banquet Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:29.951Z",
+  "_metrics": {
+    "input_tokens": 12393,
+    "output_tokens": 765,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004246,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10536,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary British independent label born from the 1977 punk explosion that became a foundational force in post-punk and alternative rock.",
+  "founded": "1977",
+  "location": "Wandsworth, London, UK",
+  "genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-lurkers",
+      "type": "artist",
+      "name": "The Lurkers"
+    },
+    {
+      "slug": "artist:bauhaus",
+      "type": "artist",
+      "name": "Bauhaus"
+    },
+    {
+      "slug": "artist:gary-numan",
+      "type": "artist",
+      "name": "Gary Numan"
+    },
+    {
+      "slug": "artist:tubeway-army",
+      "type": "artist",
+      "name": "Tubeway Army"
+    },
+    {
+      "slug": "artist:the-cult",
+      "type": "artist",
+      "name": "The Cult"
+    },
+    {
+      "slug": "artist:the-go-betweens",
+      "type": "artist",
+      "name": "The Go-Betweens"
+    },
+    {
+      "slug": "artist:the-associates",
+      "type": "artist",
+      "name": "The Associates"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:in-the-flat-field",
+      "type": "project",
+      "name": "In the Flat Field"
+    },
+    {
+      "slug": "project:the-pleasure-principle",
+      "type": "project",
+      "name": "The Pleasure Principle"
+    },
+    {
+      "slug": "project:16-lovers-lane",
+      "type": "project",
+      "name": "16 Lovers Lane"
+    }
+  ]
+}

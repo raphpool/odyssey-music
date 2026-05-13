@@ -1,0 +1,111 @@
+{
+  "slug": "artist:mogwai",
+  "name": "Mogwai",
+  "editorial_article": "Mogwai is a seminal Scottish post-rock band formed in Glasgow in 1995, renowned for their influential role in defining the genre's \"quiet-loud-loudest\" dynamic. Comprising Stuart Braithwaite, Dominic Aitchison, Martin Bulloch, and Barry Burns, the group moved from the raw, guitar-driven intensity of their debut, 'Mogwai Young Team' (1997), toward increasingly sophisticated, textured compositions that weave together electronics, piano, and immense, distorted crescendos. Their sound is characterized by a mastery of dynamic contrast and melodic, atmospheric tension, often eschewing traditional vocal-led song structures in favor of expansive instrumental storytelling. Throughout their decades-long career, Mogwai has remained a critically acclaimed force in experimental and instrumental rock, maintaining creative autonomy through their own label, Rock Action Records, while continuing to challenge the boundaries of rock music. Their enduring impact is reflected in their steady output of both studio albums—such as the chart-topping 'As the Love Continues' (2021)—and highly regarded film scores, cementing their legacy as architects of modern instrumental soundscapes. The band's name, derived from the film 'Gremlins', has become synonymous with a specific era of alternative music that pushed the guitar to its emotional and sonic limits. Their ability to balance melancholic restraint with explosive, wall-of-sound climaxes has ensured their continued relevance in the global independent music scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mogwai",
+      "title": "Mogwai - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/mogwai",
+      "title": "Mogwai Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:47.779Z",
+  "_metrics": {
+    "input_tokens": 28474,
+    "output_tokens": 2287,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010549,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 23812,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mogwai is a seminal Scottish post-rock band formed in Glasgow in 1995, renowned for their influential role in defining the genre's \"quiet-loud-loudest\" dynamic.",
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:instrumental-rock",
+      "type": "genre",
+      "name": "Instrumental rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rock-action-records",
+      "type": "label",
+      "name": "Rock Action Records"
+    },
+    {
+      "slug": "label:chemikal-underground",
+      "type": "label",
+      "name": "Chemikal Underground"
+    },
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mogwai-young-team",
+      "type": "project",
+      "name": "Mogwai Young Team"
+    },
+    {
+      "slug": "project:come-on-die-young",
+      "type": "project",
+      "name": "Come On Die Young"
+    },
+    {
+      "slug": "project:rock-action",
+      "type": "project",
+      "name": "Rock Action"
+    },
+    {
+      "slug": "project:happy-songs-for-happy-people",
+      "type": "project",
+      "name": "Happy Songs for Happy People"
+    },
+    {
+      "slug": "project:as-the-love-continues",
+      "type": "project",
+      "name": "As the Love Continues"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:fear-satan",
+      "type": "track",
+      "name": "Fear Satan"
+    },
+    {
+      "slug": "track:hunted-by-a-freak",
+      "type": "track",
+      "name": "Hunted by a Freak"
+    },
+    {
+      "slug": "track:auto-rock",
+      "type": "track",
+      "name": "Auto Rock"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "genre:film-score",
+  "name": "Film score",
+  "editorial_article": "Film score represents the essential musical architecture designed specifically to accompany cinematic narratives, serving as a pillar of emotional and rhythmic pacing in storytelling. Unlike a standard soundtrack, which may incorporate pre-existing popular songs or diegetic music (sound heard by characters within the film's world), a film score is an original composition written to enhance the dramatic arc, define character motifs, and manipulate audience engagement. Historically rooted in the grand traditions of Western classical and late-romantic orchestration, the medium has evolved significantly since the era of live accompaniment for silent films. Today, the modern score is a versatile, hybrid landscape where traditional symphony orchestras seamlessly integrate with electronic synthesis, ambient sound design, and avant-garde techniques.\\n\\nThe creative process, known as \"spotting,\" involves a close collaboration between composer and director, where specific musical cues are timed to match visual events. Composers such as John Williams have mastered the art of leitmotif—the recurring melodic themes that attach to characters or abstract concepts—thereby providing a subconscious emotional map for the viewer. Conversely, figures like Ennio Morricone or Hans Zimmer have challenged structural norms by prioritizing texture, avant-garde instrumentation, or collaborative workflows where the film is sometimes edited to fit the music. As digital technology has advanced, the accessibility of sophisticated sampling and MIDI sequencing has blurred the lines between the traditional \"Hollywood sound\" and experimental soundscapes, allowing for unprecedented control over the sonic atmosphere of film. From sweeping orchestral epics to minimalist, synthesized textures, the film score remains a vital, ever-shifting genre that translates visual experience into visceral, auditory memory.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Film_score",
+      "title": "Film score - Wikipedia"
+    },
+    {
+      "url": "https://www.colorblocmagazine.com/post/the-evolution-of-film-scores-a-journey-through-time-and-music",
+      "title": "The Evolution of Film Scores: A Journey Through Time and Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:40.963Z",
+  "_metrics": {
+    "input_tokens": 18676,
+    "output_tokens": 1081,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00629,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9778,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A film score is original music written specifically to accompany a film, television program, or video game, consisting of orchestral or instrumental cues timed to enhance the dramatic narrative and emotional impact of the work.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:john-williams",
+      "type": "artist",
+      "name": "John Williams"
+    },
+    {
+      "slug": "artist:ennio-morricone",
+      "type": "artist",
+      "name": "Ennio Morricone"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass"
+    },
+    {
+      "slug": "artist:gustavo-santaolalla",
+      "type": "artist",
+      "name": "Gustavo Santaolalla"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

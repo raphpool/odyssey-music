@@ -1,0 +1,80 @@
+{
+  "slug": "artist:wendy-carlos",
+  "name": "Wendy Carlos",
+  "editorial_article": "Wendy Carlos is an American composer and electronic music pioneer who fundamentally transformed the landscape of synthesized music in the late 1960s. Born in 1939, she emerged from the world of classical music and academic research to become a leading visionary in the development of electronic sound. Her seminal 1968 album, *Switched-On Bach*, remains a landmark achievement in music history, proving that the Moog synthesizer—then an experimental and intimidating piece of engineering—was not merely a source of \"noise\" or sound effects, but a versatile, expressive musical instrument capable of conveying the nuance and emotional depth of J.S. Bach's compositions. This release not only brought the Moog into the mainstream but also catalyzed the global acceptance of the synthesizer as a primary musical tool.\\n\\nWorking closely with inventor Robert Moog, Carlos helped refine the synthesizer's design, emphasizing the need for touch-sensitive controls and reliable tuning systems that would allow musicians to perform with precision. Her contributions extended far beyond the studio; she was a critical architect of modern sound design and electronic performance. Throughout her career, she has consistently pushed boundaries, moving from virtuosic classical adaptations to influential film soundtracks, most notably for Stanley Kubrick's *A Clockwork Orange* (1971), *The Shining* (1980), and *Tron* (1982). Her work is defined by a meticulous attention to timbre, texture, and complex alternate tunings, showcasing a lifelong dedication to exploring the sonic possibilities of electronic technology. As a composer and inventor, Wendy Carlos occupies a unique place in 20th-century music, bridged between the traditions of the concert hall and the technical innovations of the modern electronic age. Her commitment to sound quality and innovative compositional techniques remains a standard for contemporary electronic musicians, producers, and sound designers worldwide.",
+  "citations": [
+    {
+      "url": "https://www.wendycarlos.com/",
+      "title": "Wendy Carlos HomePage"
+    },
+    {
+      "url": "https://www.classicalcalifornia.org/articles/wendy-carlos-synth-visionary",
+      "title": "Wendy Carlos: Synth Visionary - Classical California"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/wendy-carlos",
+      "title": "Wendy Carlos Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:37.030Z",
+  "_metrics": {
+    "input_tokens": 18192,
+    "output_tokens": 1397,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006643,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15086,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A visionary composer and performer, Wendy Carlos is widely regarded as the most influential figure in popularizing the Moog synthesizer through her ground-breaking Baroque electronic adaptations and iconic film scores. She remains a pioneering force in electronic sound design, alternate tunings, and the evolution of the synthesizer as a legitimate, expressive musical instrument.",
+  "photo_url": "https://www.wendycarlos.com/photos/indexphoto.jpg",
+  "origin": "Rhode Island, USA",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:brandenburg-concerto-no-3-in-g-major-i-allegro",
+      "type": "track",
+      "name": "Brandenburg Concerto No. 3 in G Major: I. Allegro"
+    },
+    {
+      "slug": "track:theme-from-a-clockwork-orange",
+      "type": "track",
+      "name": "Theme from A Clockwork Orange (Beethoviana)"
+    },
+    {
+      "slug": "track:tron-overture",
+      "type": "track",
+      "name": "Tron Overture"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

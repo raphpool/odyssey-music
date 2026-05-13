@@ -1,0 +1,102 @@
+{
+  "slug": "genre:noise-pop",
+  "name": "Noise Pop",
+  "editorial_article": "Noise pop is a subgenre of alternative and indie rock that emerged in the mid-1980s, primarily in the United Kingdom, defined by its juxtaposition of aggressive, dissonant guitar feedback with infectious pop melodies. Often described as occupying a middle ground between the bubblegum pop of the 1960s and the abrasive, avant-garde experiments of the post-punk era, the genre creates a distinctively hazy, often narcotic sonic atmosphere. While rooted in the feedback-laden experiments of the Velvet Underground, the genre crystallized with the 1985 release of The Jesus and Mary Chain’s debut album, *Psychocandy*. That landmark project demonstrated how distortion could be used not just as a texture, but as an essential element of song structure, paving the way for later developments in the shoegaze movement.\\n\\nThroughout the late 1980s and into the 1990s, the influence of noise pop expanded beyond the British scene, with American bands like Sonic Youth, Dinosaur Jr., and Yo La Tengo integrating similar sensibilities into the broader indie rock landscape. By the late 2000s, the style experienced a resurgence, often characterized by a lo-fi, DIY ethos, championed by acts such as The Pains of Being Pure at Heart and Vivian Girls. Whether the sound is bright and propulsive or layered and challenging, noise pop remains a cornerstone of independent music history, continuously bridging the divide between experimental sonic density and classic pop accessibility.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Noise_pop",
+      "title": "Noise pop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:04.567Z",
+  "_metrics": {
+    "input_tokens": 12355,
+    "output_tokens": 699,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004137,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 24844,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A subgenre of alternative and indie rock defined by the fusion of abrasive noise, guitar feedback, and traditional pop song structures.",
+  "era": "Mid-1980s–Present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise rock"
+    },
+    {
+      "slug": "genre:dream-pop",
+      "type": "genre",
+      "name": "Dream pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-jesus-and-mary-chain",
+      "type": "artist",
+      "name": "The Jesus and Mary Chain"
+    },
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:dinosaur-jr",
+      "type": "artist",
+      "name": "Dinosaur Jr."
+    },
+    {
+      "slug": "artist:yo-la-tengo",
+      "type": "artist",
+      "name": "Yo La Tengo"
+    },
+    {
+      "slug": "artist:the-pains-of-being-pure-at-heart",
+      "type": "artist",
+      "name": "The Pains of Being Pure at Heart"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:psychocandy",
+      "type": "project",
+      "name": "Psychocandy"
+    }
+  ],
+  "landmark_tracks": []
+}

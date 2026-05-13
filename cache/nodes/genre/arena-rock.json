@@ -1,0 +1,101 @@
+{
+  "slug": "genre:arena-rock",
+  "name": "Arena Rock",
+  "editorial_article": "Arena Rock is a commercially potent, radio-friendly strain of rock music that emerged in the mid-1970s, defined by its inherent ambition to fill large-scale venues. Unlike the more intimate, blues-rooted rock of the late 1960s, Arena Rock was engineered for the stadium circuit. It features polished production, soaring hooks, heavy use of keyboards, and massive, sing-along choruses that allowed even the most distant concertgoers to feel part of the communal experience. Central to the genre's rise was the combination of FM radio ubiquity and relentless touring, which turned bands like Journey, REO Speedwagon, Foreigner, and Styx into household names. \\n\\nThe sonic signature of the genre is marked by its blend of hard rock punch with pop-rock concision. A critical component of the Arena Rock template is the \"power ballad\"—a sweeping, dramatic composition designed to showcase a vocalist's range while building from a melodic opening to an explosive, guitar-driven climax. This accessibility ensured that these artists dominated both the airwaves and concert halls for over a decade. By prioritizing bombastic energy and memorable refrains over the complexity of progressive rock or the grittiness of earlier blues-rock, Arena Rock solidified its place as the definitive soundtrack of 1970s and 1980s suburban American youth culture. The genre’s legacy endures not only in the sustained popularity of its key bands but in the very blueprint of the modern stadium tour experience.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/arena-rock-ma0000012329",
+      "title": "Arena Rock Music Style Overview | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:55.364Z",
+  "_metrics": {
+    "input_tokens": 13630,
+    "output_tokens": 726,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004497,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 18505,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A radio-friendly, highly produced style of hard rock designed for massive concert arenas, featuring soaring choruses, power ballads, and memorable riffs.",
+  "era": "Mid-1970s to 1980s",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop Rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:journey",
+      "type": "artist",
+      "name": "Journey"
+    },
+    {
+      "slug": "artist:reo-speedwagon",
+      "type": "artist",
+      "name": "REO Speedwagon"
+    },
+    {
+      "slug": "artist:boston",
+      "type": "artist",
+      "name": "Boston"
+    },
+    {
+      "slug": "artist:foreigner",
+      "type": "artist",
+      "name": "Foreigner"
+    },
+    {
+      "slug": "artist:styx",
+      "type": "artist",
+      "name": "Styx"
+    },
+    {
+      "slug": "artist:aerosmith",
+      "type": "artist",
+      "name": "Aerosmith"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:led-zeppelin-iv",
+      "type": "project",
+      "name": "Led Zeppelin IV"
+    },
+    {
+      "slug": "project:rocks",
+      "type": "project",
+      "name": "Rocks"
+    },
+    {
+      "slug": "project:alive",
+      "type": "project",
+      "name": "Alive!"
+    }
+  ],
+  "landmark_tracks": []
+}

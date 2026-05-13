@@ -1,0 +1,86 @@
+{
+  "slug": "artist:godspeed-you-black-emperor",
+  "name": "Godspeed You! Black Emperor",
+  "editorial_article": "Godspeed You! Black Emperor is an influential Canadian post-rock collective hailing from Montreal, Quebec. Formed in 1994, the group is celebrated for its expansive, long-form instrumental compositions that blend elements of chamber rock, drone, and orchestral music to create deeply emotive, cinematic soundscapes. Their work is frequently associated with critiques of late capitalism, political resistance, and alienation, often serving as a visceral, uncompromising soundtrack to modern societal tension. The band’s aesthetic is inseparable from their ethos: they are known for their refusal of standard music industry practices, including the absence of traditional promotional websites, social media accounts, and music videos. \\n\\nCentral to their identity is a commitment to the tactility of music, expressed through their legendary live performances—which feature a dense collage of analog 16mm film loops and projections—and the meticulous physical design of their album packaging. Following their seminal early releases such as F#A#∞ (1997) and the sprawling masterpiece Lift Your Skinny Fists Like Antennas To Heaven (2000), the band entered an extended hiatus in 2003, only to reunite in 2010. Their post-reunion output has maintained the same high level of critical acclaim, marked by a continued dedication to large-scale, politically charged instrumental music that avoids the trappings of personality-driven fame. By allowing their work to speak entirely for itself, Godspeed You! Black Emperor has fostered a fiercely loyal global audience and secured a foundational place in the post-rock canon.",
+  "citations": [
+    {
+      "url": "https://cstrecords.com/pages/artist/godspeed-you-black-emperor?srsltid=AfmBOorexIftpQNJMenxD2nR_AluJtwbieA41tpW9jzu2jmOFIe8Xku6",
+      "title": "Godspeed You! Black Emperor – Constellation"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Godspeed_You!_Black_Emperor",
+      "title": "Godspeed You! Black Emperor - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:42.370Z",
+  "_metrics": {
+    "input_tokens": 21462,
+    "output_tokens": 1733,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007965,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 18104,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Godspeed You!",
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:constellation-records",
+      "type": "label",
+      "name": "Constellation Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:f-a",
+      "type": "project",
+      "name": "F#A#∞"
+    },
+    {
+      "slug": "project:lift-your-skinny-fists-like-antennas-to-heaven",
+      "type": "project",
+      "name": "Lift Your Skinny Fists Like Antennas to Heaven"
+    },
+    {
+      "slug": "project:g-d-s-pee-at-state-s-end",
+      "type": "project",
+      "name": "G_d’s Pee AT STATE’S END!"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-dead-flag-blues",
+      "type": "track",
+      "name": "The Dead Flag Blues"
+    },
+    {
+      "slug": "track:storm",
+      "type": "track",
+      "name": "Storm"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

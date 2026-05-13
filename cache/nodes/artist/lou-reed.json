@@ -1,0 +1,105 @@
+{
+  "slug": "artist:lou-reed",
+  "name": "Lou Reed",
+  "editorial_article": "Lewis Allan Reed (1942–2013) was an American singer, songwriter, and poet whose work profoundly shaped the landscape of modern rock music. Emerging from the New York City avant-garde scene in the mid-1960s, Reed first garnered attention as the primary songwriter, guitarist, and vocalist for The Velvet Underground. Alongside mentor Andy Warhol and collaborator John Cale, Reed introduced themes of urban alienation, transgressive subcultures, and drug addiction to rock—topics that were largely avoided by his contemporaries. His deadpan, spoken-word delivery and unconventional guitar tuning defined a sound that was, at the time, commercially ignored but culturally transformative. Following his departure from the Velvet Underground in 1970, Reed embarked on a prolific solo career that spanned five decades. His 1972 album 'Transformer', produced by David Bowie and Mick Ronson, served as a definitive glam rock landmark, catapulting him to mainstream prominence with the hit single 'Walk on the Wild Side.' Throughout the 1970s and 80s, Reed navigated various artistic phases, from the stark emotional narrative of 'Berlin' to the gritty, observational realism of 'New York.' His influence is immense; as a foundational figure for punk, new wave, and alternative rock, Reed provided a blueprint for artists to treat rock music as a serious, literary, and deeply personal medium. He was inducted into the Rock and Roll Hall of Fame twice—first with the Velvet Underground and later as a solo artist.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lou_Reed",
+      "title": "Lou Reed - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Lou-Reed",
+      "title": "Lou Reed | Biography, Songs, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:56.282Z",
+  "_metrics": {
+    "input_tokens": 28099,
+    "output_tokens": 1986,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010004,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 12582,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "American musician, songwriter, and poet who founded The Velvet Underground and pioneered the narrative and sonic conventions of alternative rock and proto-punk.",
+  "origin": "New York City, U.S.",
+  "active_years": "1958–2013",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:sire-records",
+      "type": "label",
+      "name": "Sire Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:transformer",
+      "type": "project",
+      "name": "Transformer"
+    },
+    {
+      "slug": "project:berlin",
+      "type": "project",
+      "name": "Berlin"
+    },
+    {
+      "slug": "project:new-york",
+      "type": "project",
+      "name": "New York"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:walk-on-the-wild-side",
+      "type": "track",
+      "name": "Walk on the Wild Side"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "slug": "artist:bob-dylan",
+  "name": "Bob Dylan",
+  "editorial_article": "Bob Dylan (born Robert Allen Zimmerman, 1941) is an American singer-songwriter, poet, and visual artist whose body of work has fundamentally altered the landscape of popular music over a career spanning more than six decades. Emerging from the vibrant folk music scene of New York City’s Greenwich Village in the early 1960s, Dylan initially gained renown as a protest singer, penning iconic anthems such as \"Blowin' in the Wind\" and \"The Times They Are a-Changin'\" that became central to the civil rights and anti-war movements of the era. His early output, characterized by acoustic instrumentation and profound, literature-inspired lyrics, established him as the voice of a generation, though he famously resisted this label.\n\nIn 1965, Dylan underwent a radical stylistic evolution, \"going electric\" at the Newport Folk Festival and recording a trilogy of highly influential rock albums: Bringing It All Back Home, Highway 61 Revisited, and Blonde on Blonde. This period, marked by the surrealist, stream-of-consciousness lyrical style of the era, expanded the creative boundaries of rock music. Following a motorcycle accident in 1966, he retreated from the public eye, only to re-emerge with a more introspective, country-influenced sound on albums like John Wesley Harding and Nashville Skyline. Throughout his career, Dylan has traversed gospel, blues, country, and traditional standards, maintaining a prolific, restless creative output. In 2016, he was awarded the Nobel Prize in Literature, a testament to his role in evolving the American song tradition and elevating songwriting to the level of high art. His \"Never Ending Tour,\" which began in the late 1980s, underscores his enduring status as a performing artist.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bob_Dylan",
+      "title": "Bob Dylan - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:37.781Z",
+  "_metrics": {
+    "input_tokens": 31085,
+    "output_tokens": 3522,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.013054,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19041,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Bob Dylan (born Robert Allen Zimmerman, 1941) is an American singer-songwriter, poet, and visual artist whose body of work has fundamentally altered the landscape of popular music over a career spanning more than six decades.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/DylanYoungKilkenny140719v2_%2850_of_52%29_%2852246124397%29_%28cropped%29.jpg/250px-DylanYoungKilkenny140719v2_%2850_of_52%29_%2852246124397%29_%28cropped%29.jpg",
+  "origin": "Duluth, Minnesota, U.S.",
+  "active_years": "1957–present",
+  "genres": [
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    },
+    {
+      "slug": "label:asylum",
+      "type": "label",
+      "name": "Asylum"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-freewheelin-bob-dylan",
+      "type": "project",
+      "name": "The Freewheelin' Bob Dylan"
+    },
+    {
+      "slug": "project:bringing-it-all-back-home",
+      "type": "project",
+      "name": "Bringing It All Back Home"
+    },
+    {
+      "slug": "project:highway-61-revisited",
+      "type": "project",
+      "name": "Highway 61 Revisited"
+    },
+    {
+      "slug": "project:blonde-on-blonde",
+      "type": "project",
+      "name": "Blonde on Blonde"
+    },
+    {
+      "slug": "project:blood-on-the-tracks",
+      "type": "project",
+      "name": "Blood on the Tracks"
+    },
+    {
+      "slug": "project:time-out-of-mind",
+      "type": "project",
+      "name": "Time Out of Mind"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:blowin-in-the-wind",
+      "type": "track",
+      "name": "Blowin' in the Wind"
+    },
+    {
+      "slug": "track:the-times-they-are-a-changin",
+      "type": "track",
+      "name": "The Times They Are a-Changin'"
+    },
+    {
+      "slug": "track:like-a-rolling-stone",
+      "type": "track",
+      "name": "Like a Rolling Stone"
+    },
+    {
+      "slug": "track:girl-from-the-north-country",
+      "type": "track",
+      "name": "Girl from the North Country"
+    },
+    {
+      "slug": "track:a-hard-rain-s-a-gonna-fall",
+      "type": "track",
+      "name": "A Hard Rain's a-Gonna Fall"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

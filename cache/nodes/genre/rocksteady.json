@@ -1,0 +1,125 @@
+{
+  "slug": "genre:rocksteady",
+  "name": "Rocksteady",
+  "editorial_article": "Rocksteady emerged in Jamaica around 1966 as a pivotal, if brief, transition in the island's musical history, serving as the bridge between the high-energy, brass-heavy sound of ska and the slower, bass-driven evolution of reggae. Dominating the Jamaican soundscape for only about two years, until approximately 1968, rocksteady is defined by a significantly slowed tempo that allowed for a greater emphasis on melodic vocal harmonies and deeper, more soulful bass lines. The genre's shift was largely influenced by the adoption of American soul music aesthetics, as well as the practical necessity of adjusting to the changing demands of dancehalls. Musical architects like Jackie Mittoo, Lynn Taitt, and producers such as Duke Reid and Clement \"Coxsone\" Dodd transformed the genre, moving away from the frantic pace of ska to a more relaxed, \"rock steady\" groove. This era emphasized vocal groups, featuring lush, multi-part harmonies reminiscent of US R&B ensembles. Despite its short lifespan, rocksteady left an indelible mark on Jamaican music, providing a framework for the development of reggae and influencing generations of musicians worldwide. Its focus on soulful expression, combined with lyrics that frequently oscillated between themes of romantic love, social commentary, and the bravado of the \"rude boy\" subculture, captured the essence of mid-60s Jamaica. Many of the most iconic songs from this period remain foundational staples in the global reggae canon, showcasing the incredible talent of artists like Alton Ellis, the Paragons, and the Heptones. The transition from ska to rocksteady represents one of the most creative periods in Jamaican music, where innovation was often born out of necessity, experimentation, and a deep appreciation for soul and jazz.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rocksteady",
+      "title": "Rocksteady - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:43.596Z",
+  "_metrics": {
+    "input_tokens": 11780,
+    "output_tokens": 827,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004186,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 6710,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A short-lived but highly influential genre of Jamaican popular music that originated in 1966, characterized by a slower tempo than ska and a strong focus on soulful vocal harmonies and melodic, prominent bass lines.",
+  "era": "1966–1968",
+  "origin": "Jamaica",
+  "sonic_markers": "Slower tempo than ska, prominent melodic bass lines, soulful vocal harmonies, focus on the offbeat, and minimal horn arrangements.",
+  "parent_genres": [
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:alton-ellis",
+      "type": "artist",
+      "name": "Alton Ellis"
+    },
+    {
+      "slug": "artist:the-paragons",
+      "type": "artist",
+      "name": "The Paragons"
+    },
+    {
+      "slug": "artist:the-heptones",
+      "type": "artist",
+      "name": "The Heptones"
+    },
+    {
+      "slug": "artist:phyllis-dillon",
+      "type": "artist",
+      "name": "Phyllis Dillon"
+    },
+    {
+      "slug": "artist:ken-boothe",
+      "type": "artist",
+      "name": "Ken Boothe"
+    },
+    {
+      "slug": "artist:delroy-wilson",
+      "type": "artist",
+      "name": "Delroy Wilson"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:treasure-isle",
+      "type": "label",
+      "name": "Treasure Isle"
+    },
+    {
+      "slug": "label:studio-one",
+      "type": "label",
+      "name": "Studio One"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-treasure-isle-time",
+      "type": "project",
+      "name": "The Treasure Isle Time"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:rocksteady",
+      "type": "track",
+      "name": "Rocksteady"
+    },
+    {
+      "slug": "track:take-it-easy",
+      "type": "track",
+      "name": "Take It Easy"
+    },
+    {
+      "slug": "track:girl-i-ve-got-a-date",
+      "type": "track",
+      "name": "Girl I've Got a Date"
+    },
+    {
+      "slug": "track:the-tide-is-high",
+      "type": "track",
+      "name": "The Tide Is High"
+    }
+  ]
+}

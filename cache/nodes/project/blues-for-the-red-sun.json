@@ -1,0 +1,81 @@
+{
+  "slug": "project:blues-for-the-red-sun",
+  "name": "Blues for the Red Sun",
+  "editorial_article": "\"Blues for the Red Sun\" is the seminal 1992 studio album by the American rock band Kyuss, a record widely credited with defining the sonic template of stoner rock and desert rock. Recorded at the legendary Sound City Studios in Van Nuys, California, and produced by the band alongside Chris Goss, the album captured a singular, heavy atmosphere that emerged from the Palm Desert music scene. Characterized by Josh Homme’s innovative use of down-tuned guitars plugged into bass amplifiers, the record achieved a massive, sludge-filled distortion that felt uniquely rooted in its arid, isolated environment.\n\nWhile the album failed to achieve significant commercial success upon its initial release—selling approximately 39,000 units—its cultural impact grew exponentially in the following decades. It stands as a masterclass in groove-oriented heavy music, balancing crushing, Sabbath-esque riffs with psychedelic, improvisational instrumental sections. Tracks like \"Green Machine\" became underground anthems, showcasing the band's tight, rhythmic interplay. The album was the last to feature original bassist Nick Oliveri, marking a pivotal transition point in the band's short but incredibly influential history.\n\n\"Blues for the Red Sun\" served as a foundational text for a new wave of heavy music, influencing countless bands throughout the 21st century. Critics and musicians alike have praised it for its \"stoned\" atmosphere, uncompromising low-end energy, and its ability to synthesize hard rock, heavy metal, and psychedelic rock into a cohesive, atmospheric whole. Its legacy is cemented by the devotion of fans and its status as a must-hear pillar of the desert rock canon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Blues_for_the_Red_Sun",
+      "title": "Blues for the Red Sun - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/kyuss/blues-for-the-red-sun/",
+      "title": "Blues for the Red Sun by Kyuss (Album, Stoner Rock): Reviews ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:59.228Z",
+  "_metrics": {
+    "input_tokens": 20599,
+    "output_tokens": 1356,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007184,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 10340,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "\"Blues for the Red Sun\" is the seminal 1992 studio album by the American rock band Kyuss, a record widely credited with defining the sonic template of stoner rock and desert rock.",
+  "artists": [],
+  "label": {
+    "slug": "label:dali",
+    "type": "label",
+    "name": "Dali"
+  },
+  "genres": [
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner rock"
+    },
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert rock"
+    },
+    {
+      "slug": "genre:stoner-metal",
+      "type": "genre",
+      "name": "Stoner metal"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:green-machine",
+      "type": "track",
+      "name": "Green Machine"
+    },
+    {
+      "slug": "track:thong-song",
+      "type": "track",
+      "name": "Thong Song"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:chris-goss",
+      "type": "artist",
+      "name": "Chris Goss"
+    },
+    {
+      "slug": "artist:kyuss",
+      "type": "artist",
+      "name": "Kyuss"
+    }
+  ],
+  "related_projects": []
+}

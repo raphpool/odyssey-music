@@ -1,0 +1,79 @@
+{
+  "slug": "label:metalheadz",
+  "name": "Metalheadz",
+  "editorial_article": "Metalheadz is one of the most influential record labels in the history of drum and bass and jungle music. Founded in London in 1994 by the visionary producer Goldie and the pioneering DJ duo Kemistry & Storm, the imprint emerged from the vibrant London rave scene. The label’s name, suggested by Grooverider, referenced the community's obsession with \"metal acetates\" (dubplates) used to test new productions on sound systems. From its inception, Metalheadz served as a crucible for the evolution of the breakbeat-heavy sounds of the early nineties into the more intricate, sophisticated, and futuristic aesthetic of drum and bass. \\n\\nThe label achieved legendary status not only through its output but also through its seminal Sunday Sessions club nights at the Blue Note in London, which became a vital hub for the genre's growth. In the mid-to-late 1990s, Metalheadz was instrumental in bringing drum and bass to broader critical attention, most notably through the release of Goldie’s masterpiece Timeless and the acclaimed Platinum Breakz compilation series. These records showcased the genre’s maturity, drawing on influences from reggae, hip-hop, and experimental electronics. Even after the tragic death of founding member Kemistry in 1999 and the shifting landscape of the UK club scene, Metalheadz has remained a standard-bearer for the genre, consistently nurturing both foundational veterans and new generations of producers who continue to push the boundaries of rhythmic innovation. The label's iconic skull-and-headphones logo, designed by Darren Bartlett and finalized by Goldie, stands as one of the most recognizable symbols in electronic music culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Metalheadz",
+      "title": "Metalheadz - Wikipedia"
+    },
+    {
+      "url": "https://readdork.com/artists/goldie",
+      "title": "Goldie | Artist profile | Dork"
+    },
+    {
+      "url": "https://www.metalheadz.co.uk/artist/goldie",
+      "title": "Goldie - Metalheadz"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:24.127Z",
+  "_metrics": {
+    "input_tokens": 19912,
+    "output_tokens": 1253,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006858,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12667,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A pioneering UK-based drum and bass record label founded in 1994, central to the development of the genre's sophisticated, breakbeat-driven sound.",
+  "founded": "1994",
+  "location": "London, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie"
+    },
+    {
+      "slug": "artist:photek",
+      "type": "artist",
+      "name": "Photek"
+    },
+    {
+      "slug": "artist:dillinja",
+      "type": "artist",
+      "name": "Dillinja"
+    },
+    {
+      "slug": "artist:doc-scott",
+      "type": "artist",
+      "name": "Doc Scott"
+    },
+    {
+      "slug": "artist:grooverider",
+      "type": "artist",
+      "name": "Grooverider"
+    }
+  ],
+  "notable_releases": []
+}

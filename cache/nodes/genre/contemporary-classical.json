@@ -1,0 +1,93 @@
+{
+  "slug": "genre:contemporary-classical",
+  "name": "Contemporary Classical",
+  "editorial_article": "Contemporary classical music represents a vast, kaleidoscopic landscape of Western art music composed in the period following the mid-20th century, typically dated from 1945 to the present day. It serves as a broad umbrella term encompassing a diverse array of aesthetic philosophies and compositional methodologies, ranging from the rigorous, highly structured frameworks of total serialism to the meditative, cyclical repetitions of minimalism, and the expansive, textures-oriented approaches of spectralism. Unlike earlier eras of music history, which were often defined by a unified set of stylistic constraints or harmonic norms, the contemporary era is characterized by an explosion of pluralism. Composers have moved beyond the traditional tonal hierarchies established in the Baroque, Classical, and Romantic periods, often engaging with post-tonal, dissonant, or experimental soundscapes that challenge the listener's perceptions of form, structure, and instrumentation.\\n\\nThe genesis of this movement is rooted in the post-World War II period, where a divergence occurred between European and American traditions. In Europe, figures like Pierre Boulez and Karlheinz Stockhausen led the charge into high modernism and integral serialism, treating sound with mathematical precision and technological curiosity, heavily informed by electronic experiments. Conversely, in the United States, a distinct thread of experimentalism emerged through composers like John Cage, who questioned the very nature of music—deconstructing notation, performance, and the boundaries between sound and silence. Minimalism, pioneered by figures such as Philip Glass and Steve Reich, later emerged as a vital counter-movement to high modernism, emphasizing clarity, steady pulse, and phased repetition, which would eventually deeply influence popular music and ambient genres. Today, contemporary classical continues to thrive as an ever-evolving field, blending traditional acoustic orchestration with digital innovation, post-tonal complexity, and the endurance of neoromantic expression. It remains a testament to the inexhaustible capacity for human art music to re-invent its language, engage with the complexities of the modern world, and provide a vital space for intellectual and sensory exploration beyond the comfortable confines of historical styles.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Contemporary_classical_music",
+      "title": "Contemporary classical music - Wikipedia"
+    },
+    {
+      "url": "https://www.thevinylfactory.com/features/deep-listening-10-contemporary-classical-records-for-the-uninitiated",
+      "title": "Deep listening: 10 contemporary classical records for the uninitiated - The Vinyl Factory"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:49.704Z",
+  "_metrics": {
+    "input_tokens": 24056,
+    "output_tokens": 1604,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00842,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 14120,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Contemporary classical music is an expansive, diverse category of Western art music composed from approximately 1945 to the present, characterized by a rejection of rigid historical constraints and a radical pluralism of styles, ranging from post-tonal modernism and serialism to minimalism and experimental performance art.",
+  "origin": "Western world (Europe and USA)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:modernism",
+      "type": "genre",
+      "name": "Modernism"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental Music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    },
+    {
+      "slug": "artist:pierre-boulez",
+      "type": "artist",
+      "name": "Pierre Boulez"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:olivier-messiaen",
+      "type": "artist",
+      "name": "Olivier Messiaen"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

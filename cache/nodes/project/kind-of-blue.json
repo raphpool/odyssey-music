@@ -1,0 +1,134 @@
+{
+  "slug": "project:kind-of-blue",
+  "name": "Kind of Blue",
+  "editorial_article": "Kind of Blue, released on August 17, 1959, by Columbia Records, stands as the definitive masterpiece of the modal jazz movement and is widely considered one of the most significant albums in the history of recorded music. Led by trumpeter Miles Davis at the peak of his creative powers, the album was recorded at the iconic Columbia 30th Street Studio in New York City. The sessions, held on March 2 and April 22, 1959, featured an legendary sextet including saxophonists John Coltrane and Julian \"Cannonball\" Adderley, pianists Bill Evans and Wynton Kelly, bassist Paul Chambers, and drummer Jimmy Cobb. \\n\\nDeparting from the rigid chord structures of bebop and hard bop, Davis sought to liberate his musicians by basing the album entirely on modality. By providing the ensemble with melodic modes rather than traditional chord changes, Davis fostered an atmosphere of unprecedented creative spontaneity and space. This shift toward \"modal jazz\" allowed the soloists—particularly Coltrane and Adderley—to explore improvisation with a newfound lyrical depth. The album's minimalist approach, combined with the profound interplay between the musicians, created a timeless soundscape that remains as evocative today as it was upon its debut.\\n\\nBeyond its technical innovations, Kind of Blue redefined the aesthetic possibilities of jazz, influencing generations of musicians across rock, classical, and avant-garde genres. Its cultural impact was formally recognized in 2002 when it was selected for the National Recording Registry by the Library of Congress. As the best-selling jazz album of all time, reaching 5× Platinum status, it serves as a cornerstone of the American musical canon. The album remains a paradigm of sonic balance, offering a serene yet sophisticated listening experience that continues to challenge and inspire audiences worldwide.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kind_of_Blue",
+      "title": "Kind of Blue - Wikipedia"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/album/6040-miles-davis-kind-of-blue.php",
+      "title": "Miles Davis - Kind of Blue - Reviews - Album of The Year"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:22.180Z",
+  "_metrics": {
+    "input_tokens": 24634,
+    "output_tokens": 2198,
+    "cache_read_tokens": 4053,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009557,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 25749,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A seminal masterpiece of modal jazz, Miles Davis’ 1959 classic shifted the course of music history by replacing complex chord changes with open modes, fostering a new era of improvisational freedom.",
+  "year": "1959",
+  "artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane"
+    },
+    {
+      "slug": "artist:cannonball-adderley",
+      "type": "artist",
+      "name": "Cannonball Adderley"
+    },
+    {
+      "slug": "artist:bill-evans",
+      "type": "artist",
+      "name": "Bill Evans"
+    },
+    {
+      "slug": "artist:paul-chambers",
+      "type": "artist",
+      "name": "Paul Chambers"
+    },
+    {
+      "slug": "artist:jimmy-cobb",
+      "type": "artist",
+      "name": "Jimmy Cobb"
+    },
+    {
+      "slug": "artist:wynton-kelly",
+      "type": "artist",
+      "name": "Wynton Kelly"
+    }
+  ],
+  "label": {
+    "slug": "label:columbia-records",
+    "type": "label",
+    "name": "Columbia Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:modal-jazz",
+      "type": "genre",
+      "name": "Modal jazz"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:so-what",
+      "type": "track",
+      "name": "So What"
+    },
+    {
+      "slug": "track:freddie-freeloader",
+      "type": "track",
+      "name": "Freddie Freeloader"
+    },
+    {
+      "slug": "track:blue-in-green",
+      "type": "track",
+      "name": "Blue in Green"
+    },
+    {
+      "slug": "track:all-blues",
+      "type": "track",
+      "name": "All Blues"
+    },
+    {
+      "slug": "track:flamenco-sketches",
+      "type": "track",
+      "name": "Flamenco Sketches"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:irving-townsend",
+      "type": "artist",
+      "name": "Irving Townsend"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:milestones",
+      "type": "project",
+      "name": "Milestones"
+    },
+    {
+      "slug": "project:jazz-track",
+      "type": "project",
+      "name": "Jazz Track"
+    }
+  ]
+}

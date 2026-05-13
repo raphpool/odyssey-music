@@ -1,0 +1,119 @@
+{
+  "slug": "artist:james-brown",
+  "name": "James Brown",
+  "editorial_article": "James Brown (1933–2006) was a titan of American music whose innovations fundamentally reshaped the landscape of R&B, soul, and funk. Born in Barnwell, South Carolina, and raised in Augusta, Georgia, Brown overcame a childhood marked by extreme poverty and hardship to become one of the most dynamic performers of the 20th century. Initially rising to prominence in the mid-1950s as the frontman for The Famous Flames—a group founded by his lifelong collaborator Bobby Byrd—Brown established himself through raw, gospel-inflected vocals and an unmatched intensity in his stage presence.\n\nBy the mid-1960s, Brown began moving away from the conventional structures of R&B and soul. He pioneered a \"down-on-the-one\" approach to rhythm, emphasizing the first beat of the bar and interlocking, repetitive syncopation. This radical musical evolution—best captured in tracks like \"Cold Sweat\"—effectively birthed the genre of funk. As the \"Godfather of Soul,\" Brown’s influence extended beyond his own recordings; he remains one of the most sampled artists in the history of hip-hop, his drum breaks and vocal shouts becoming foundational elements for a generation of producers. Known as the \"Hardest-Working Man in Show Business,\" Brown’s career spanned over five decades, leaving an indelible mark as a bandleader, songwriter, and tireless advocate for Black pride through anthems like \"Say It Loud – I'm Black and I'm Proud.\" His legacy remains central to the evolution of modern popular music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/James_Brown",
+      "title": "James Brown - Wikipedia"
+    },
+    {
+      "url": "https://producelikeapro.com/blog/james-brown/",
+      "title": "Artists Who Changed Music: James Brown - Produce Like A Pro"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:40.054Z",
+  "_metrics": {
+    "input_tokens": 21201,
+    "output_tokens": 2026,
+    "cache_read_tokens": 8107,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008542,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19367,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "The undisputed Godfather of Soul, James Brown was a prolific vocalist and visionary bandleader who pioneered the syncopated, rhythmic foundations of funk music. His career spanned over five decades, forever altering the trajectory of popular music through his groundbreaking innovations in rhythm and his legendary, high-energy live performances.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/James_Brown_1996_%28HQ%29.jpg/500px-James_Brown_1996_%28HQ%29.jpg",
+  "origin": "Toccoa, Georgia, U.S.",
+  "active_years": "1953–2006",
+  "genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:king-records",
+      "type": "label",
+      "name": "King Records"
+    },
+    {
+      "slug": "label:people-records",
+      "type": "label",
+      "name": "People Records"
+    },
+    {
+      "slug": "label:polydor",
+      "type": "label",
+      "name": "Polydor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:live-at-the-apollo",
+      "type": "project",
+      "name": "Live at the Apollo"
+    },
+    {
+      "slug": "project:the-payback",
+      "type": "project",
+      "name": "The Payback"
+    },
+    {
+      "slug": "project:sex-machine",
+      "type": "project",
+      "name": "Sex Machine"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:please-please-please",
+      "type": "track",
+      "name": "Please, Please, Please"
+    },
+    {
+      "slug": "track:papa-s-got-a-brand-new-bag",
+      "type": "track",
+      "name": "Papa's Got a Brand New Bag"
+    },
+    {
+      "slug": "track:i-got-you",
+      "type": "track",
+      "name": "I Got You (I Feel Good)"
+    },
+    {
+      "slug": "track:cold-sweat",
+      "type": "track",
+      "name": "Cold Sweat"
+    },
+    {
+      "slug": "track:get-up-i-feel-like-being-a-sex-machine",
+      "type": "track",
+      "name": "Get Up (I Feel Like Being a) Sex Machine"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

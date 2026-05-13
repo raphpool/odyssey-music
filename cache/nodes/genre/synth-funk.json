@@ -1,0 +1,99 @@
+{
+  "slug": "genre:synth-funk",
+  "name": "Synth-funk",
+  "editorial_article": "Synth-funk is a distinct evolution of traditional funk that emerged in the late 1970s and early 1980s, defined by the prominent integration of synthesizers, drum machines, and a more futuristic, stripped-down sonic palette. While traditional funk relied heavily on brass sections, complex horn arrangements, and organic rhythm section textures, synth-funk shifted the spotlight toward the versatility of the synthesizer. This transition allowed for tighter, more precise grooves and a cleaner, often colder production aesthetic that mirrored the rapidly advancing electronic technology of the era. Sometimes referred to as \"naked funk\" for its minimalist, barebones arrangements, the genre often paired these electronic textures with the bold, often risqué lyricism and flamboyant performance styles inherited from the broader funk movement.\n\nThe genre's rise coincided with the waning of the disco era and the nascent development of contemporary R&B. Its influence was vast, bridging the gap between traditional soul-infused rhythm and the electronic dance music that would dominate the late 20th century. Key pioneers like Zapp (led by Roger Troutman, whose use of the talk box became a signature synth-funk marker), The Gap Band, and Prince—who synthesized his own unique blend through the \"Minneapolis sound\"—pushed the boundaries of what dance music could be. Established legends such as Rick James and Cameo also pivoted toward this sound, finding renewed success by adopting the sharper, synth-heavy arrangements. Beyond its direct historical impact, synth-funk has provided a foundational blueprint for later electronic subgenres including modern funk, electro-funk, and various strands of post-millennium funktronica. Its legacy remains visible in contemporary production, where the fusion of organic bass guitar syncopation and synthesized melody continues to drive dancefloors worldwide.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/synth-funk/",
+      "title": "Synth Funk - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.treblezine.com/25081-10-essential-synth-funk-tracks/",
+      "title": "10 Essential Synth-funk tracks | Treble"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:05.097Z",
+  "_metrics": {
+    "input_tokens": 20862,
+    "output_tokens": 1327,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007206,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17310,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A style of funk that emphasizes synthesizers and drum machines over traditional horn arrangements, resulting in a stripped-down, futuristic, and dance-oriented sound.",
+  "parent_genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:minneapolis-sound",
+      "type": "genre",
+      "name": "Minneapolis Sound"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:prince",
+      "type": "artist",
+      "name": "Prince"
+    },
+    {
+      "slug": "artist:zapp",
+      "type": "artist",
+      "name": "Zapp"
+    },
+    {
+      "slug": "artist:the-gap-band",
+      "type": "artist",
+      "name": "The Gap Band"
+    },
+    {
+      "slug": "artist:rick-james",
+      "type": "artist",
+      "name": "Rick James"
+    },
+    {
+      "slug": "artist:cameo",
+      "type": "artist",
+      "name": "Cameo"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:1999",
+      "type": "project",
+      "name": "1999"
+    },
+    {
+      "slug": "project:street-songs",
+      "type": "project",
+      "name": "Street Songs"
+    }
+  ],
+  "landmark_tracks": []
+}

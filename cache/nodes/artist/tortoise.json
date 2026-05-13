@@ -1,0 +1,144 @@
+{
+  "slug": "artist:tortoise",
+  "name": "Tortoise",
+  "editorial_article": "Formed in Chicago in 1991, Tortoise is widely considered one of the most influential instrumental groups of the post-rock era. Emerging from a scene rich in experimental, punk, and indie-rock sensibilities, the group distinguished itself by prioritizing intricate, often multi-layered arrangements that rejected the traditional rock focus on the guitar-vocal dynamic. Instead, Tortoise pioneered an atmospheric synthesis of styles, masterfully weaving together elements of dub, Krautrock, minimalist jazz, electronic music, and ambient soundscapes. \\n\\nThe band's early personnel included seasoned musicians like John McEntire, Douglas McCombs, and John Herndon, many of whom were active in the vital Chicago underground music community. Their creative process often involved collaborative composition and an emphasis on studio production as an instrument in its own right, leading to highly textural records. Landmark albums like 'Millions Now Living Will Never Die' (1996) and 'TNT' (1998) not only defined the mid-90s post-rock sound but also expanded the boundaries of what instrumental rock could convey. Throughout their long career, Tortoise has remained committed to exploring rhythm and timbre, maintaining an enduring legacy that bridges the gap between avant-garde experimentation and accessible, melodic compositions. Their influence persists in their refusal to be tethered to a single genre, consistently evolving while retaining the singular, rhythmic curiosity that defined their early work. Through the decades, the band has continued to challenge the expectations of instrumental music, proving that deep, thoughtful composition remains vital in an increasingly fragmented musical landscape. Their impact on subsequent generations of indie and experimental musicians remains profound.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/tortoise",
+      "title": "Tortoise Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/tortoise-mn0000180023",
+      "title": "Tortoise Songs, Albums, Reviews, Bio & More - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:47.637Z",
+  "_metrics": {
+    "input_tokens": 14191,
+    "output_tokens": 1527,
+    "cache_read_tokens": 8118,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006041,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 24633,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Tortoise is a pioneer of the post-rock movement, known for their instrumental, genre-defying sound that blends jazz, dub, and electronics. Based in Chicago, the group has consistently pushed the boundaries of studio-based composition since their formation in 1991.",
+  "photo_url": "https://cdn.sonemic.net/i/600/w/d916f62dfa50de919124a3b913cbcab3/12319497/tortoise-tnt-cover-art.jpg",
+  "origin": "Chicago, IL, United States",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-Rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:tortoise",
+      "type": "project",
+      "name": "Tortoise"
+    },
+    {
+      "slug": "project:millions-now-living-will-never-die",
+      "type": "project",
+      "name": "Millions Now Living Will Never Die"
+    },
+    {
+      "slug": "project:tnt",
+      "type": "project",
+      "name": "TNT"
+    },
+    {
+      "slug": "project:standards",
+      "type": "project",
+      "name": "Standards"
+    },
+    {
+      "slug": "project:it-s-all-around-you",
+      "type": "project",
+      "name": "It's All Around You"
+    },
+    {
+      "slug": "project:beacons-of-ancestorship",
+      "type": "project",
+      "name": "Beacons of Ancestorship"
+    },
+    {
+      "slug": "project:the-catastrophist",
+      "type": "project",
+      "name": "The Catastrophist"
+    },
+    {
+      "slug": "project:touch",
+      "type": "project",
+      "name": "Touch"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:djed",
+      "type": "track",
+      "name": "Djed"
+    },
+    {
+      "slug": "track:tnt",
+      "type": "track",
+      "name": "TNT"
+    },
+    {
+      "slug": "track:glass-museum",
+      "type": "track",
+      "name": "Glass Museum"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:john-herndon",
+      "type": "artist",
+      "name": "John Herndon"
+    },
+    {
+      "slug": "artist:douglas-mccombs",
+      "type": "artist",
+      "name": "Douglas McCombs"
+    },
+    {
+      "slug": "artist:john-mcentire",
+      "type": "artist",
+      "name": "John McEntire"
+    },
+    {
+      "slug": "artist:dan-bitney",
+      "type": "artist",
+      "name": "Dan Bitney"
+    },
+    {
+      "slug": "artist:jeff-parker",
+      "type": "artist",
+      "name": "Jeff Parker"
+    }
+  ]
+}

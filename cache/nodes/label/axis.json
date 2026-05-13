@@ -1,0 +1,81 @@
+{
+  "slug": "label:axis",
+  "name": "Axis",
+  "editorial_article": "Axis Records is a seminal electronic music label founded in 1992 by the influential Detroit techno producer Jeff Mills. Often considered one of the most significant and recognizable imprints in the history of techno, Axis was established as a vehicle for Mills' own creative output and his exploration of futuristic, science-fiction-inspired soundscapes. The label's aesthetic is built around concepts of outer space, celestial mechanics, and utopian design, a philosophy reflected in its iconic logo—four triangles pointing toward an invisible center, symbolizing the solar system and rotating principles. \\n\\nThroughout its history, Axis has moved beyond a simple discography of dance-floor tracks to become a multidisciplinary creative entity. It has provided the home for Mills’ groundbreaking soundtracks for films such as Fritz Lang’s 'Metropolis' and his ongoing conceptual series like 'The Exhibitionist'. By fostering an ethos where music acts as a form of 'musical science-fiction,' the label has maintained a distinct, high-fidelity sound that values innovation, abstract rhythm, and the mechanics of creativity over commercial trends. Today, Axis operates not just as a record label but as a holistic cultural platform, evidenced by initiatives like 'The Escape Velocity'—a program and digital magazine dedicated to exploring the nuances of electronic music production and the role of artists as modern-day futurist storytellers. Its longevity and refusal to compromise its singular artistic vision have cemented Axis as a bedrock of electronic music culture, continuously bridging the gap between historical techno and future-looking avant-garde experimentation.",
+  "citations": [
+    {
+      "url": "https://www.facebook.com/JeffMills/posts/32-years-and-counting-axis-records-since-1992-established-by-jeff-mills-the-labe/997455288403318/",
+      "title": "Axis Records - Jeff Mills - Facebook"
+    },
+    {
+      "url": "https://www.axisrecords.com/",
+      "title": "Axis Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:23.083Z",
+  "_metrics": {
+    "input_tokens": 23428,
+    "output_tokens": 1188,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007639,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 2,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 24498,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Axis Records is a legendary techno label founded by Jeff Mills in 1992, renowned for its cosmic aesthetic, high-fidelity production, and commitment to futuristic, sci-fi-infused electronic music.",
+  "founded": "1992",
+  "location": "Chicago / Detroit / Berlin (transnational)",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:tomorrow-comes-the-harvest",
+      "type": "artist",
+      "name": "Tomorrow Comes The Harvest"
+    },
+    {
+      "slug": "artist:millsart",
+      "type": "artist",
+      "name": "Millsart"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:live-at-liquid-room",
+      "type": "project",
+      "name": "Live at Liquid Room"
+    },
+    {
+      "slug": "project:metropolis",
+      "type": "project",
+      "name": "Metropolis"
+    },
+    {
+      "slug": "project:the-exhibitionist",
+      "type": "project",
+      "name": "The Exhibitionist"
+    }
+  ]
+}

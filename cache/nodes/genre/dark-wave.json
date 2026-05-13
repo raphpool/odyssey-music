@@ -1,0 +1,140 @@
+{
+  "slug": "genre:dark-wave",
+  "name": "Dark wave",
+  "editorial_article": "Dark wave is a somber, atmospheric music genre that emerged in the late 1970s and early 1980s as a melancholic synthesis of post-punk, new wave, and electronic music. Characterized by its use of minor keys, introspective and poetic lyrics, and a blend of cold, synthesizer-heavy production with the dark, guitar-driven edge of gothic rock, the genre evokes a distinctively moody, cinematic, and often bleaker aesthetic. The term originated in European music press to describe this darker variant of the era’s burgeoning electronic and post-punk scenes, capturing a sound that favored introspective emotional exploration over the brighter, optimistic pop sensibilities often found in mainstream new wave.\\n\\nAt its core, dark wave is defined by its ability to balance organic and digital textures. It frequently utilizes reverb-drenched guitars, pulsating drum machines, and lush, haunting layers of synths, often accompanied by soft, ethereal, or dramatic vocal deliveries. The genre’s themes commonly traverse existentialism, romanticism, mysticism, and the complexities of the human condition, often delivered with a sense of isolation or profound melancholy. Over the decades, it has evolved significantly, branching into various sub-styles such as ethereal wave, neoclassical dark wave, and the theatrical, poetry-driven 'Neue Deutsche Todeskunst,' while maintaining a strong DIY, underground ethos that continues to resonate globally through dedicated scenes and festivals. Its influence extends far beyond its original 1980s peak, shaping the soundscapes of modern electronic, indie, and alternative music.",
+  "citations": [
+    {
+      "url": "https://www.side-line.com/how-new-wave-and-post-punk-gave-birth-to-darkwave/",
+      "title": "How new wave and post-punk gave birth to darkwave"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/dark-wave-guide",
+      "title": "Dark Wave: History and Sound of Dark Wave Music - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:29.446Z",
+  "_metrics": {
+    "input_tokens": 11264,
+    "output_tokens": 916,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00419,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9880,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A genre originating in the late 1970s, blending post-punk and new wave with electronic textures and dark, introspective, and atmospheric themes.",
+  "era": "1970s–present",
+  "origin": "United Kingdom and Europe",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:gothic-rock",
+      "type": "genre",
+      "name": "Gothic rock"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave"
+    },
+    {
+      "slug": "genre:cold-wave",
+      "type": "genre",
+      "name": "Cold wave"
+    },
+    {
+      "slug": "genre:ethereal-wave",
+      "type": "genre",
+      "name": "Ethereal wave"
+    },
+    {
+      "slug": "genre:industrial-music",
+      "type": "genre",
+      "name": "Industrial music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:clan-of-xymox",
+      "type": "artist",
+      "name": "Clan of Xymox"
+    },
+    {
+      "slug": "artist:dead-can-dance",
+      "type": "artist",
+      "name": "Dead Can Dance"
+    },
+    {
+      "slug": "artist:cocteau-twins",
+      "type": "artist",
+      "name": "Cocteau Twins"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode"
+    },
+    {
+      "slug": "artist:drab-majesty",
+      "type": "artist",
+      "name": "Drab Majesty"
+    },
+    {
+      "slug": "artist:she-past-away",
+      "type": "artist",
+      "name": "She Past Away"
+    },
+    {
+      "slug": "artist:lebanon-hanover",
+      "type": "artist",
+      "name": "Lebanon Hanover"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:medusa",
+      "type": "project",
+      "name": "Medusa"
+    },
+    {
+      "slug": "project:within-the-realm-of-a-dying-sun",
+      "type": "project",
+      "name": "Within the Realm of a Dying Sun"
+    },
+    {
+      "slug": "project:treasure",
+      "type": "project",
+      "name": "Treasure"
+    },
+    {
+      "slug": "project:pornography",
+      "type": "project",
+      "name": "Pornography"
+    },
+    {
+      "slug": "project:black-celebration",
+      "type": "project",
+      "name": "Black Celebration"
+    }
+  ],
+  "landmark_tracks": []
+}

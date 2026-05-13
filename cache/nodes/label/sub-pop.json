@@ -1,0 +1,125 @@
+{
+  "slug": "label:sub-pop",
+  "name": "Sub Pop",
+  "editorial_article": "Sub Pop Records stands as one of the most culturally significant independent labels of the late 20th century, forever cemented in history for its role in cultivating the Pacific Northwest grunge explosion. Founded in Seattle in 1986 by Bruce Pavitt and Jonathan Poneman, the label grew out of Pavitt’s earlier fanzine, Subterranean Pop. By focusing intently on a singular regional sound and developing a distinct, cohesive brand identity—often marketing the label itself as much as its individual acts—Sub Pop transformed the underground music landscape. \\n\\nCentral to the \"Seattle sound\" was the work of producer Jack Endino, whose raw, fuzz-heavy recording style provided a sonic backbone for legendary early releases by bands like Mudhoney, Soundgarden, and Nirvana. Through innovative marketing strategies, such as the widely influential Sub Pop Singles Club, the label turned niche regional music into a global cultural phenomenon. Despite its early financial volatility and the eventual 49% acquisition by Warner Music Group in 1995, Sub Pop maintained its commitment to artistic independence. It has successfully evolved beyond its grunge origins, diversifying its roster over the decades to include critically acclaimed indie rock, folk, dream pop, and even comedy, proving to be a resilient and forward-thinking entity that continues to shape the trajectory of independent music today.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sub_Pop",
+      "title": "Sub Pop - Wikipedia"
+    },
+    {
+      "url": "https://www.subpop.com/about",
+      "title": "About - Sub Pop Records"
+    },
+    {
+      "url": "http://drownedinsound.com/in_depth/3990888-label-profile-20--sub-pop",
+      "title": "Label Profile #20: Sub Pop / In Depth // Drowned In Sound"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:04.529Z",
+  "_metrics": {
+    "input_tokens": 20072,
+    "output_tokens": 1431,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007165,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 11974,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary Seattle-based independent label, synonymous with the birth and popularization of grunge in the late 1980s and 1990s, which has since evolved into a diverse powerhouse of modern indie music.",
+  "founded": "1986",
+  "location": "Seattle, Washington",
+  "genres": [
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    },
+    {
+      "slug": "artist:mudhoney",
+      "type": "artist",
+      "name": "Mudhoney"
+    },
+    {
+      "slug": "artist:soundgarden",
+      "type": "artist",
+      "name": "Soundgarden"
+    },
+    {
+      "slug": "artist:fleet-foxes",
+      "type": "artist",
+      "name": "Fleet Foxes"
+    },
+    {
+      "slug": "artist:the-postal-service",
+      "type": "artist",
+      "name": "The Postal Service"
+    },
+    {
+      "slug": "artist:beach-house",
+      "type": "artist",
+      "name": "Beach House"
+    },
+    {
+      "slug": "artist:father-john-misty",
+      "type": "artist",
+      "name": "Father John Misty"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:bleach",
+      "type": "project",
+      "name": "Bleach"
+    },
+    {
+      "slug": "project:superfuzz-bigmuff",
+      "type": "project",
+      "name": "Superfuzz Bigmuff"
+    },
+    {
+      "slug": "project:give-up",
+      "type": "project",
+      "name": "Give Up"
+    },
+    {
+      "slug": "project:helplessness-blues",
+      "type": "project",
+      "name": "Helplessness Blues"
+    },
+    {
+      "slug": "project:bloom",
+      "type": "project",
+      "name": "Bloom"
+    }
+  ]
+}

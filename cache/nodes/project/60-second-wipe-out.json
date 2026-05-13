@@ -1,0 +1,63 @@
+{
+  "slug": "project:60-second-wipe-out",
+  "name": "60 Second Wipe Out",
+  "editorial_article": "Released in 1999 on Digital Hardcore Recordings, *60 Second Wipe Out* stands as the third studio album by the Berlin-based anarchist digital hardcore pioneers, Atari Teenage Riot. Moving away from the purely electronic, breakbeat-heavy intensity of their earlier work, this record incorporates more direct, punk-inflected energy while maintaining the group's signature confrontational sonic aesthetic. Produced by founding member Alec Empire, the album serves as a definitive statement of the 'digital hardcore' genre—a volatile fusion of industrial noise, anarcho-punk, and frantic breakcore programmed into weaponized political protest music.\n\nThe album is notable for its raw, aggressive production, which balances harsh, distortion-heavy synths with live guitar elements and political, chant-like vocal performances. Featuring contributions from group stalwarts Hanin Elias, Carl Crack, and Nic Endo, as well as guest appearances from figures like Kathleen Hanna and Dino Cazares, *60 Second Wipe Out* captures a chaotic intersection of 90s underground movements. Despite its polarizing critical reception at the time—often critiqued for its unrelenting intensity—it remains a landmark project that effectively bridged the gap between electronic subcultures and hardcore punk activism, solidifying ATR's reputation as one of the most abrasive and uncompromising acts of their era. The tracklist includes aggressive anthems like \"Revolution Action\" and \"Digital Hardcore,\" which have since become synonymous with the group's legacy of using high-BPM chaos to challenge cultural and political apathy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/60_Second_Wipe_Out",
+      "title": "60 Second Wipe Out - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:03.408Z",
+  "_metrics": {
+    "input_tokens": 21113,
+    "output_tokens": 1294,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007219,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13129,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "An abrasive masterpiece of 1999, *60 Second Wipe Out* captures the peak, chaotic energy of digital hardcore pioneers Atari Teenage Riot in a collision of punk anger and programmed industrial noise.",
+  "year": "1999",
+  "artists": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot"
+    }
+  ],
+  "label": {
+    "slug": "label:digital-hardcore-recordings",
+    "type": "label",
+    "name": "Digital Hardcore Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital hardcore"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "related_projects": []
+}

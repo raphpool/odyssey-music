@@ -1,0 +1,68 @@
+{
+  "slug": "track:four-violins",
+  "name": "Four Violins",
+  "editorial_article": "\"Four Violins\" is a seminal piece of American minimalist music composed by Tony Conrad in 1964. Often cited as a foundational work of drone music, the composition explores the harmonic resonance produced by four violins tuned in a specific, non-tempered relationship. Rather than focusing on melody or rhythm in the traditional sense, Conrad’s work invites the listener into a dense, vibrating soundscape of overtones and phase interactions. By employing sustained bowing techniques, the performers generate an immersive acoustic environment where the boundaries between individual instruments blur into a unified, shimmering block of sound. Its historical significance lies in its departure from Western tuning systems and its radical commitment to pure frequency relationships, influencing generations of avant-garde and experimental composers. \\n\\nWhile Éliane Radigue is a legendary French composer renowned for her deep, transformative electronic drone works on the ARP 2500 synthesizer and her later, extensive catalog of acoustic works (most notably the \"Occam\" series), \"Four Violins\" is primarily associated with Tony Conrad. Confusion sometimes arises because contemporary performers and ensembles who interpret Radigue's acoustic music—such as those involved in her \"Occam\" cycle—often share the same experimental, drone-focused aesthetic space. However, Conrad's \"Four Violins\" remains an independent pillar of 1960s minimalism. The work is a quintessential example of the shift toward \"process music,\" where the composer sets up an acoustic condition and allows the physical properties of sound and space to dictate the final output, a methodology that resonates deeply with the meditative, time-expanding practices later developed by Radigue. The piece stands alongside the works of figures like La Monte Young in defining the early minimalist movement.",
+  "citations": [
+    {
+      "url": "https://hcmf.co.uk/hcmf-2023-hidden-gems/",
+      "title": "hcmf// 2023: Hidden Gems - Huddersfield Contemporary Music Centre"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/%C3%89liane_Radigue",
+      "title": "Éliane Radigue - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:37.009Z",
+  "_metrics": {
+    "input_tokens": 34335,
+    "output_tokens": 1291,
+    "cache_read_tokens": 12108,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010823,
+    "llm_calls": 8,
+    "search_calls": 5,
+    "fetch_calls": 1,
+    "turns": 8,
+    "emit_attempts": 2,
+    "agent_ms": 26111,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Four Violins\" is a seminal piece of American minimalist music composed by Tony Conrad in 1964.",
+  "year": "1964",
+  "artists": [
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

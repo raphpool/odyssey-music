@@ -1,0 +1,116 @@
+{
+  "slug": "label:harvest-records",
+  "name": "Harvest Records",
+  "editorial_article": "Harvest Records, established by EMI in 1969, stands as one of the quintessential imprints of the progressive rock era. Launched under the direction of Malcolm Jones, the label was designed to provide a home for the burgeoning \"underground\" music scene, directly competing with contemporary rivals like Vertigo and Deram. Harvest quickly carved out a reputation for fostering experimental, progressive, and folk-infused artists, offering a degree of artistic freedom that resonated with listeners who were increasingly looking beyond the constraints of mainstream pop. The label's aesthetic identity was heavily bolstered by its high-quality, lavish gatefold packaging, which transformed many of its releases into collector’s items before the format even became standard. \\n\\nAt its peak in the early 1970s, Harvest was home to some of the most influential names in British rock, including Pink Floyd, whose classic output was central to the label's prestige. The roster was diverse, spanning the jazz-poetry of Pete Brown, the folk sensibilities of Roy Harper, and the proto-metal intensity of Deep Purple. Even as the musical landscape shifted away from prog-rock toward the end of the decade, Harvest maintained a footprint by embracing post-punk and new wave acts like Wire. Today, Harvest is remembered not only for the legendary catalog of its classic era but also for its role in shaping the physical and sonic culture of the 1970s, leaving an indelible mark on how experimental music was presented and consumed.",
+  "citations": [
+    {
+      "url": "https://peel.fandom.com/wiki/Harvest_Records",
+      "title": "Harvest Records | John Peel Wiki - Fandom"
+    },
+    {
+      "url": "https://www.loudersound.com/features/a-brief-history-of-harvest-records",
+      "title": "A Brief History Of Harvest Records - Louder Sound"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:54.705Z",
+  "_metrics": {
+    "input_tokens": 28289,
+    "output_tokens": 1957,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010008,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 21752,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A seminal British record label founded by EMI in 1969 to champion progressive rock, known for its experimental roster and high-quality gatefold album designs.",
+  "founded": "1969",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    },
+    {
+      "slug": "artist:syd-barrett",
+      "type": "artist",
+      "name": "Syd Barrett"
+    },
+    {
+      "slug": "artist:deep-purple",
+      "type": "artist",
+      "name": "Deep Purple"
+    },
+    {
+      "slug": "artist:kevin-ayers",
+      "type": "artist",
+      "name": "Kevin Ayers"
+    },
+    {
+      "slug": "artist:wire",
+      "type": "artist",
+      "name": "Wire"
+    },
+    {
+      "slug": "artist:be-bop-deluxe",
+      "type": "artist",
+      "name": "Be Bop Deluxe"
+    },
+    {
+      "slug": "artist:roy-harper",
+      "type": "artist",
+      "name": "Roy Harper"
+    },
+    {
+      "slug": "artist:barclay-james-harvest",
+      "type": "artist",
+      "name": "Barclay James Harvest"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-dark-side-of-the-moon",
+      "type": "project",
+      "name": "The Dark Side of the Moon"
+    },
+    {
+      "slug": "project:wish-you-were-here",
+      "type": "project",
+      "name": "Wish You Were Here"
+    },
+    {
+      "slug": "project:the-madcap-laughs",
+      "type": "project",
+      "name": "The Madcap Laughs"
+    },
+    {
+      "slug": "project:pink-flag",
+      "type": "project",
+      "name": "Pink Flag"
+    }
+  ]
+}

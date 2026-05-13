@@ -1,0 +1,71 @@
+{
+  "slug": "artist:francis-naughton",
+  "name": "Francis Naughton",
+  "editorial_article": "Francis (Frank) Naughton is a versatile Irish singer and musician hailing from Galway, Ireland. With a musical foundation rooted in his hometown, he began his performance journey during his school years at St Joseph's College in Galway, later becoming an active member of the Galway Music Society. His career has seen him move comfortably between theatrical productions, ensemble band performances, and solo work. Naughton has been noted for his touring experience, performing internationally with various theatre companies and bands. \n\nIn addition to his performance work, Naughton is a co-founder of Teaching Machines, an entity he operates alongside Mat Wigley, which focuses on various aspects of the creative and music industries. His discography includes the 2008 album \"Come What May,\" an independent release that captures his distinctive style as a vocalist. His work often reflects his deep connection to the Irish musical tradition while maintaining the flexibility required to work in contemporary collaborative band settings, such as his involvement with musicians like Toby Hay. Throughout his career, Naughton has maintained a reputation as a steady and reliable talent in both the stage performance and recording worlds, demonstrating a sustained commitment to his craft through multiple artistic channels. Whether appearing on stage in a theatrical production or performing folk music in an intimate setting, his output is characterized by a dedication to vocal performance and technical musicality that has earned him consistent recognition in the Irish arts scene.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/15672108-Frank-Naughton-3?srsltid=AfmBOopbquc20Qu1vCLftGUJyh_X1NhLLnu4NuN6xalbOvzY2cdsetaM",
+      "title": "Frank Naughton (3) Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://teachingmachines.co.uk/story",
+      "title": "Story - Teaching Machines"
+    },
+    {
+      "url": "https://folking.com/tag/frank-naughton/",
+      "title": "Frank Naughton Archives - Folking.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:15.847Z",
+  "_metrics": {
+    "input_tokens": 21148,
+    "output_tokens": 2367,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008838,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 20372,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Francis (Frank) Naughton is a versatile Irish singer and musician hailing from Galway, Ireland.",
+  "origin": "Galway, Ireland",
+  "active_years": "2000s-present",
+  "genres": [
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    },
+    {
+      "slug": "genre:traditional-irish-music",
+      "type": "genre",
+      "name": "Traditional Irish Music"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:come-what-may",
+      "type": "project",
+      "name": "Come What May"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

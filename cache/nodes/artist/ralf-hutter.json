@@ -1,0 +1,135 @@
+{
+  "slug": "artist:ralf-hutter",
+  "name": "Ralf Hütter",
+  "editorial_article": "Ralf Hütter is a German musician, composer, and the foundational visionary behind the electronic music pioneers, Kraftwerk. Born in 1946 in Krefeld, Hütter co-founded the group with Florian Schneider in 1970 in Düsseldorf. Over the subsequent decades, he has remained the sole constant member of the band, guiding its transformation from experimental Krautrock roots into a globally influential force in synth-pop, techno, and ambient music. Working out of the group's legendary Kling Klang Studio, Hütter pioneered the use of custom-built synthesizers, vocoders, and programmed percussion, effectively codifying the aesthetic of the 'man-machine.' \\n\\nBeyond his sonic innovations, Hütter is noted for his meticulous, conceptual approach to art. His personal obsession with cycling—often integrating the mechanical sounds of bicycles into his compositions, most notably on the album Tour de France Soundtracks—is a testament to his synthesis of human lifestyle and technological process. Despite his massive influence on modern music, Hütter has maintained a notoriously secretive, reserved public persona, preferring to let the music and the meticulous image of Kraftwerk speak for itself. He remains an active, singular force in contemporary electronic music, having led the group to late-career recognition, including their induction into the Rock and Roll Hall of Fame in 2021. Throughout his career, he has collaborated with key figures such as Florian Schneider, Karl Bartos, and Wolfgang Flür, all of whom helped shape the distinctive, clinical sound that would eventually pave the way for generations of electronic producers. Hütter's legacy is defined by his uncompromising dedication to the 'Robopop' aesthetic, where machine precision and human emotion converge in a seamless, repetitive, and deeply emotive landscape of sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ralf_H%C3%BCtter",
+      "title": "Ralf Hütter - Wikipedia"
+    },
+    {
+      "url": "https://www.theguardian.com/music/2009/jun/19/kraftwerk-hutter-manchester-international",
+      "title": "'I got a new head, and I'm fine' - The Guardian"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:14.861Z",
+  "_metrics": {
+    "input_tokens": 29040,
+    "output_tokens": 2058,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010347,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 19164,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Ralf Hütter is a German musician, composer, and the foundational visionary behind the electronic music pioneers, Kraftwerk.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Ralf_H%C3%BCtter.jpg/960px-Ralf_H%C3%BCtter.jpg",
+  "origin": "Düsseldorf, Germany",
+  "active_years": "1965–present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:kling-klang",
+      "type": "label",
+      "name": "Kling Klang"
+    },
+    {
+      "slug": "label:vertigo",
+      "type": "label",
+      "name": "Vertigo"
+    },
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:autobahn",
+      "type": "project",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "project:the-man-machine",
+      "type": "project",
+      "name": "The Man-Machine"
+    },
+    {
+      "slug": "project:computer-world",
+      "type": "project",
+      "name": "Computer World"
+    },
+    {
+      "slug": "project:tour-de-france-soundtracks",
+      "type": "project",
+      "name": "Tour de France Soundtracks"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:autobahn",
+      "type": "track",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "track:the-robots",
+      "type": "track",
+      "name": "The Robots"
+    },
+    {
+      "slug": "track:the-model",
+      "type": "track",
+      "name": "The Model"
+    },
+    {
+      "slug": "track:computer-love",
+      "type": "track",
+      "name": "Computer Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider"
+    },
+    {
+      "slug": "artist:karl-bartos",
+      "type": "artist",
+      "name": "Karl Bartos"
+    },
+    {
+      "slug": "artist:wolfgang-flur",
+      "type": "artist",
+      "name": "Wolfgang Flür"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

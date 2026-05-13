@@ -1,0 +1,74 @@
+{
+  "slug": "genre:power-pop",
+  "name": "Power Pop",
+  "editorial_article": "Power pop is an energetic, hook-driven subgenre of rock music that emerged in the United States and the United Kingdom during the late 1960s and early 1970s. Coined by Pete Townshend of The Who in 1967 to describe his own band's sound, the term gained wider critical currency in the late 1970s. Stylistically, power pop synthesizes the crunching, hard-rocking intensity of The Who with the sweet, sophisticated melodicism of The Beatles and The Beach Boys, often overlaid with the jangling, resonant guitar textures pioneered by The Byrds. At its core, the genre is defined by \"catchy tunes with an attitude\"—a blend of sunshine-pop optimism in its vocal harmonies and arrangements, contrasted against a lyrical undercurrent of longing, yearning, or quiet despair.\\n\\nWhile the roots of the sound are found in the mid-60s British Invasion, the genre found its formal footing with acts like Badfinger, The Raspberries, and Big Star. These groups preserved the melodic rigor of the 60s at a time when rock was moving toward heavy prog or experimental abstraction. In the late 1970s, as the raw energy of punk and the clean lines of new wave rose to prominence, power pop enjoyed a brief commercial zenith with bands like Cheap Trick, The Knack, and The Romantics. Although often dismissed by some critics as derivative or \"limp\" in later years, the genre has maintained a durable cult following and profoundly influenced the development of 1990s alternative rock and the subsequent rise of pop-punk, which distilled power pop's structural sensibilities into a faster, more aggressive, and irony-drenched framework. It remains a definitive stylistic touchstone for any guitar-based music that prioritizes perfect hooks, pristine production, and the intersection of joy and melancholy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Power_pop",
+      "title": "Power pop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:13.693Z",
+  "_metrics": {
+    "input_tokens": 12045,
+    "output_tokens": 729,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004105,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 9831,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Power pop is a rock subgenre defined by a synthesis of 1960s British Invasion melodies, vocal harmonies, and ringing guitars with a high-energy, punchy performance style that bridges the gap between pop and hard rock.",
+  "era": "Mid-1960s – Present",
+  "origin": "United States, United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys"
+    },
+    {
+      "slug": "artist:big-star",
+      "type": "artist",
+      "name": "Big Star"
+    },
+    {
+      "slug": "artist:badfinger",
+      "type": "artist",
+      "name": "Badfinger"
+    },
+    {
+      "slug": "artist:cheap-trick",
+      "type": "artist",
+      "name": "Cheap Trick"
+    },
+    {
+      "slug": "artist:raspberries",
+      "type": "artist",
+      "name": "Raspberries"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

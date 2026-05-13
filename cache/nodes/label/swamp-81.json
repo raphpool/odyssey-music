@@ -1,0 +1,116 @@
+{
+  "slug": "label:swamp-81",
+  "name": "Swamp 81",
+  "editorial_article": "Swamp 81 is a seminal British independent record label founded in 2009 by the producer Loefah. Emerging from the foundational years of the UK dubstep scene, particularly the South London environment surrounding the DMZ club nights, the label quickly evolved beyond the tropes of its origins to become a vital laboratory for UK bass, garage, and the mutations of hardcore and grime. The name itself is deeply loaded with cultural context, referencing \"Operation Swamp 81,\" a controversial police stop-and-search operation implemented in the Brixton area in 1981. This policy, which targeted young Black men, served as a primary catalyst for the 1981 Brixton uprising—a defining moment in the history of racial tension and police relations in Britain. By adopting this moniker, Loefah signaled the label's roots in the social and political geography of South London.\\n\\nMusically, Swamp 81 serves as a critical bridge between the dark, cavernous soundscapes of early dubstep and the more kinetic, rhythmic precision of \"post-dubstep.\" The label became a home for artists such as Boddika, Addison Groove, Mickey Pearce, and Zed Bias, who collectively pushed the tempo and texture of UK dance music into new, more aggressive territories. Their releases are characterized by a focus on sound design, punchy percussive motifs, and a distinct aesthetic that balances industrial pressure with high-energy club functionality. Throughout the 2010s, the label remained a bellwether for the sound of UK underground music, consistently championing a gritty, uncompromising production ethos that defined the club sound of a generation. Its output documented the shift away from the genre-defined boundaries of the mid-2000s toward a more fluid, rhythmic experimentation that continues to influence contemporary club producers.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/4427",
+      "title": "Swamp 81 - Record label RA"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/swamp_81/",
+      "title": "Swamp 81 - Music label RYM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:01.605Z",
+  "_metrics": {
+    "input_tokens": 16391,
+    "output_tokens": 1452,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006276,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 17230,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Founded by Loefah in 2009, this influential UK-based label became a central pillar for the evolution of UK bass, garage, and post-dubstep music. Named after a 1981 police operation in Brixton, the label is defined by its gritty, experimental, and uncompromising approach to sound system music.",
+  "founded": "2009",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK Bass"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:garage",
+      "type": "genre",
+      "name": "Garage"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah"
+    },
+    {
+      "slug": "artist:boddika",
+      "type": "artist",
+      "name": "Boddika"
+    },
+    {
+      "slug": "artist:addison-groove",
+      "type": "artist",
+      "name": "Addison Groove"
+    },
+    {
+      "slug": "artist:mickey-pearce",
+      "type": "artist",
+      "name": "Mickey Pearce"
+    },
+    {
+      "slug": "artist:zed-bias",
+      "type": "artist",
+      "name": "Zed Bias"
+    },
+    {
+      "slug": "artist:chunky",
+      "type": "artist",
+      "name": "Chunky"
+    },
+    {
+      "slug": "artist:kryptic-minds",
+      "type": "artist",
+      "name": "Kryptic Minds"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:swims",
+      "type": "project",
+      "name": "Swims"
+    },
+    {
+      "slug": "project:work-it",
+      "type": "project",
+      "name": "Work It"
+    },
+    {
+      "slug": "project:fall-short-work-them",
+      "type": "project",
+      "name": "Fall Short / Work Them"
+    },
+    {
+      "slug": "project:instructions",
+      "type": "project",
+      "name": "Instructions"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "genre:west-coast-jazz",
+  "name": "West Coast jazz",
+  "editorial_article": "West Coast jazz is a subgenre of cool jazz that flourished in California, primarily Los Angeles and San Francisco, during the 1950s. Distinguished by a relaxed, melodic, and cerebral approach, the music often contrasted sharply with the aggressive, high-energy improvisations of New York's bebop and hard bop scenes. While New York jazz was frequently associated with the \"grit and cement\" of an urban environment, West Coast jazz was often described by its practitioners as a reflection of the sun-drenched, laid-back lifestyle of the Pacific Coast.\\n\\nMusically, the genre prioritized composition, intricate arrangements, and harmonic sophistication over the raw, fire-breathing soloing characteristic of East Coast bebop. This stylistic leaning was heavily influenced by the work of Miles Davis and his collaborators on the seminal *Birth of the Cool* sessions, which featured arrangers like Gerry Mulligan. Musicians such as Mulligan, Chet Baker, Dave Brubeck, and Shelly Manne became synonymous with the sound, often incorporating unconventional instrumentation—such as Mulligan's famous piano-less quartet or Chico Hamilton's inclusion of a cello. The genre was bolstered by a network of local musicians, many of whom were alumni of the Stan Kenton and Woody Herman big bands, and supported by specialized record labels such as Pacific Jazz and Contemporary Records, which captured the scene's unique, breezy aesthetic for a national audience. Despite its popularity, the scene faced criticism regarding the systemic exclusion of African American musicians from lucrative studio work, a tension that remained a significant element of the era's social and musical landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/West_Coast_jazz",
+      "title": "West Coast jazz - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/west-coast-jazz/",
+      "title": "West Coast Jazz - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:46.953Z",
+  "_metrics": {
+    "input_tokens": 19262,
+    "output_tokens": 1392,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006904,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 8388,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A style of jazz that developed on the American West Coast during the 1950s, characterized by a relaxed, cool temperament, precise arrangements, and a lighter, more lyrical melodic sensibility.",
+  "era": "1950s",
+  "origin": "Los Angeles and San Francisco, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool jazz"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard bop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:gerry-mulligan",
+      "type": "artist",
+      "name": "Gerry Mulligan"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker"
+    },
+    {
+      "slug": "artist:dave-brubeck",
+      "type": "artist",
+      "name": "Dave Brubeck"
+    },
+    {
+      "slug": "artist:shelly-manne",
+      "type": "artist",
+      "name": "Shelly Manne"
+    },
+    {
+      "slug": "artist:shorty-rogers",
+      "type": "artist",
+      "name": "Shorty Rogers"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:pacific-jazz-records",
+      "type": "label",
+      "name": "Pacific Jazz Records"
+    },
+    {
+      "slug": "label:contemporary-records",
+      "type": "label",
+      "name": "Contemporary Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:birth-of-the-cool",
+      "type": "project",
+      "name": "Birth of the Cool"
+    }
+  ],
+  "landmark_tracks": []
+}

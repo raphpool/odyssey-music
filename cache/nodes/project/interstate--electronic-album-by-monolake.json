@@ -1,0 +1,74 @@
+{
+  "slug": "project:interstate--electronic-album-by-monolake",
+  "name": "Interstate",
+  "editorial_article": "Interstate, released in 1999, stands as a cornerstone of the German electronic music scene, representing a final, high-water mark collaboration between Monolake members Robert Henke and Gerhard Behles. Produced at a time when the boundaries of techno were being aggressively pushed, the album serves as a masterclass in 'semi-organic' sound design. Its intricate, shifting textures and precise, microscopic rhythmic architecture transcend the traditional conventions of dance music, offering an immersive listening experience that exists comfortably in both club and home environments. \\n\\nThe record is widely celebrated for its innovative production techniques—specifically its use of granular synthesis and complex delay lines, which were in their infancy of mainstream application at the time. By weaving together disparate, textural elements into a cohesive, atmospheric whole, Henke and Behles created a sonic blueprint that would deeply influence the trajectory of sound design in electronic music for decades to come. As a seminal document of the era's minimalist, experimental techno aesthetic, Interstate remains both technically impressive and emotionally evocative, cementing its status as an essential landmark for enthusiasts of precision-engineered electronic sound. The project captures a pivotal moment where the mechanical precision of technology met the creative intuition of two visionary producers, resulting in an album that feels as contemporary today as it did upon its initial release. The record has been rightfully re-examined and preserved by labels like Field Records, acknowledging its historical significance in the development of the dub-techno and glitch-influenced soundscapes that dominated the turn of the millennium. By focusing on the interplay between deep, cavernous bass and sharp, crystalline high-end frequencies, Interstate continues to be a profound study in balance and textural depth within the medium of electronic music composition.",
+  "citations": [
+    {
+      "url": "https://roberthenke.bandcamp.com/album/interstate",
+      "title": "Interstate | Monolake | Robert Henke / monolake"
+    },
+    {
+      "url": "https://boomkat.com/products/interstate-31c49ca5-4d15-4f77-a421-82ef6d5761a0",
+      "title": "Monolake - Interstate - Boomkat"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:21.827Z",
+  "_metrics": {
+    "input_tokens": 31636,
+    "output_tokens": 1802,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010612,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 18672,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "electronic album by Monolake",
+  "type": "project",
+  "editorial_pitch": "A seminal work of late-90s experimental electronic music that redefined the possibilities of micro-rhythms and digital sound design.",
+  "cover_url": "https://f4.bcbits.com/img/a3803758404_2.jpg",
+  "year": "1999",
+  "artists": [
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake"
+    }
+  ],
+  "label": {
+    "slug": "label:imbalance-computer-music",
+    "type": "label",
+    "name": "Imbalance Computer Music"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:robert-henke",
+      "type": "artist",
+      "name": "Robert Henke"
+    },
+    {
+      "slug": "artist:gerhard-behles",
+      "type": "artist",
+      "name": "Gerhard Behles"
+    }
+  ],
+  "related_projects": []
+}

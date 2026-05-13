@@ -1,0 +1,127 @@
+{
+  "slug": "genre:big-beat",
+  "name": "Big Beat",
+  "editorial_article": "Big Beat is a high-energy electronic music genre that surged to international prominence in the mid-to-late 1990s, particularly within the United Kingdom. Defined by its heavy reliance on manipulated, funk-inspired breakbeats, deep basslines, and distorted synthesizer loops, the genre bridged the gap between the underground rave culture of the early 90s and mainstream pop audiences. Unlike the more abstract or atmospheric electronic styles prevalent at the time, Big Beat favored a punchy, aggressive, and highly accessible structure that often incorporated samples from classic hip-hop, rock, and soul records. \\n\\nThe genre grew out of the London club scene, notably gaining its name from the 'Big Beat Boutique' night hosted by Norman Cook (Fatboy Slim) in Brighton. Its sonic signature often involved moderate tempos (120–140 BPM), dense production, and a 'rock-star' attitude that turned electronic producers into mainstream festival headliners. Key figures such as The Chemical Brothers, The Prodigy, and Fatboy Slim spearheaded the movement, with their seminal albums defining the sound of the late 90s dancefloor. The genre's commercial apex saw it dominate charts and soundtracks worldwide, eventually giving way to more specialized sub-genres, though its influence remains etched in the DNA of contemporary electronic dance music for its emphasis on rhythm, maximalist production, and sheer, kinetic energy. Despite criticism for its 'anxious' or commercial nature at the time, Big Beat was instrumental in bringing underground electronic music to global radio stations and arena-sized venues, leaving a legacy of massive, bass-heavy anthems that still resonate in modern pop and electronic production.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/big-beat/",
+      "title": "Big Beat - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.npr.org/2011/08/19/139754112/the-big-beat-revolution-11-essential-songs",
+      "title": "The Big Beat Revolution: 11 Essential Songs : NPR"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:42.499Z",
+  "_metrics": {
+    "input_tokens": 12680,
+    "output_tokens": 888,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004502,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 15325,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A style of breakbeat-driven electronic music popular in the 1990s, characterized by aggressive rhythms, heavy bass, and accessible, pop-influenced structures.",
+  "era": "1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:fatboy-slim",
+      "type": "artist",
+      "name": "Fatboy Slim"
+    },
+    {
+      "slug": "artist:the-crystal-method",
+      "type": "artist",
+      "name": "The Crystal Method"
+    },
+    {
+      "slug": "artist:propellerheads",
+      "type": "artist",
+      "name": "Propellerheads"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:heavenly-records",
+      "type": "label",
+      "name": "Heavenly Records"
+    },
+    {
+      "slug": "label:wall-of-sound",
+      "type": "label",
+      "name": "Wall of Sound"
+    },
+    {
+      "slug": "label:astralwerks",
+      "type": "label",
+      "name": "Astralwerks"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-fat-of-the-land",
+      "type": "project",
+      "name": "The Fat of the Land"
+    },
+    {
+      "slug": "project:dig-your-own-hole",
+      "type": "project",
+      "name": "Dig Your Own Hole"
+    },
+    {
+      "slug": "project:you-ve-come-a-long-way-baby",
+      "type": "project",
+      "name": "You've Come a Long Way, Baby"
+    }
+  ],
+  "landmark_tracks": []
+}

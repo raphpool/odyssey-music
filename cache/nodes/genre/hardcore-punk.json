@@ -1,0 +1,123 @@
+{
+  "slug": "genre:hardcore-punk",
+  "name": "Hardcore punk",
+  "editorial_article": "Hardcore punk emerged in the late 1970s and early 1980s as a hyper-kinetic, aggressive evolution of punk rock. Reacting against the perceived commercialization and pop-leaning shifts of late-70s punk, new wave, and post-punk, musicians in American metropolitan hubs sought to re-establish the genre’s confrontational, raw, and DIY ethos. The music is characterized by blistering tempos, short song structures, and a stripped-down, often self-produced sound that prioritizes raw energy over polished musicality.\\n\\nGeographically centered in cities like Los Angeles, Washington D.C., Boston, and New York, the scene functioned as a tightly knit, anti-establishment subculture. It pioneered the DIY record industry model, where bands self-produced, self-released, and toured relentlessly, often bypassing mainstream labels entirely. This ethos was further codified through fanzines, local clubs, and a uniquely participatory live concert experience that birthed the mosh pit and stage diving.\\n\\nThe genre also became a vehicle for distinct social and political ideologies. From the disciplined, drug-and-alcohol-free \"straight edge\" movement pioneered by Minor Threat to the politically charged, satirical commentary of the Dead Kennedys, hardcore provided a platform for disillusioned youth to express intense alienation and social critique. By pushing the boundaries of speed and intensity, hardcore punk created a blueprint for subsequent heavy music, leaving an indelible mark on everything from alternative rock to thrash metal.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/hardcore-punk",
+      "title": "Hardcore punk | Rock, Bands, Songs, Style, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:46:53.793Z",
+  "_metrics": {
+    "input_tokens": 12412,
+    "output_tokens": 798,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.0043,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8297,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "A high-intensity, fast-paced subgenre of punk rock characterized by raw, DIY production, aggressive vocal delivery, and anti-establishment themes.",
+  "era": "Late 1970s–Present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:thrash-metal",
+      "type": "genre",
+      "name": "Thrash metal"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:straight-edge",
+      "type": "genre",
+      "name": "Straight edge"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:black-flag",
+      "type": "artist",
+      "name": "Black Flag"
+    },
+    {
+      "slug": "artist:bad-brains",
+      "type": "artist",
+      "name": "Bad Brains"
+    },
+    {
+      "slug": "artist:minor-threat",
+      "type": "artist",
+      "name": "Minor Threat"
+    },
+    {
+      "slug": "artist:dead-kennedys",
+      "type": "artist",
+      "name": "Dead Kennedys"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sst-records",
+      "type": "label",
+      "name": "SST Records"
+    },
+    {
+      "slug": "label:dischord-records",
+      "type": "label",
+      "name": "Dischord Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:damaged",
+      "type": "project",
+      "name": "Damaged"
+    },
+    {
+      "slug": "project:bad-brains",
+      "type": "project",
+      "name": "Bad Brains (album)"
+    },
+    {
+      "slug": "project:out-of-step",
+      "type": "project",
+      "name": "Out of Step"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:nervous-breakdown",
+      "type": "track",
+      "name": "Nervous Breakdown"
+    },
+    {
+      "slug": "track:pay-to-cum",
+      "type": "track",
+      "name": "Pay to Cum!"
+    },
+    {
+      "slug": "track:straight-edge",
+      "type": "track",
+      "name": "Straight Edge"
+    }
+  ]
+}

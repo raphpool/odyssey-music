@@ -1,0 +1,132 @@
+{
+  "slug": "genre:alternative-dance",
+  "name": "Alternative Dance",
+  "editorial_article": "Alternative dance—frequently referred to as \"indie dance\" or \"underground dance\"—emerged in the early 1980s as a vital stylistic intersection where the structured, melodic sensibility of alternative and indie rock collided with the visceral, rhythm-focused energy of electronic dance music. Rooted primarily in the British Isles, the genre represents a move away from the rigid division between \"bands\" (traditional instrumentation) and \"DJs\" (sequenced electronic production). At its sonic core, alternative dance marries verse-chorus song structures with the textured, synth-heavy palettes of post-disco, synth-pop, and industrial, often utilizing house and electro beats to drive the composition.\n\nThe genre's genesis is frequently attributed to the groundbreaking work of New Order, who, in the aftermath of Joy Division, pioneered a sound that synthesized post-punk angst with the emerging electronic sensibilities of German groups like Kraftwerk. This influence rippled outward, finding a physical home in the legendary Manchester club, The Haçienda, which became a crucial incubator for the Madchester scene of the late 1980s. Throughout the 1990s, the scope of alternative dance widened significantly, with artists like The Prodigy, The Chemical Brothers, and Björk bringing its innovative fusion to international prominence. These artists bridged the gap between underground rave culture and mainstream alternative music, often incorporating diverse elements like breakbeats, trip-hop, and big beat production. \n\nIn the 21st century, the democratization of music production software and the rise of digital connectivity transformed the landscape of the genre. What was once a culture dictated by club DJs and physical record labels shifted toward a decentralized, community-driven ecosystem fostered by internet blogs and digital distribution. By embracing accessible technology, contemporary practitioners continue to blur the boundaries between home-produced electronic experimentation and indie rock aesthetics, ensuring that alternative dance remains a fluid, ever-evolving force in modern music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternative_dance",
+      "title": "Alternative dance - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/alternative-dance/",
+      "title": "Alternative Dance - Music genre"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:19.410Z",
+  "_metrics": {
+    "input_tokens": 11679,
+    "output_tokens": 889,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004253,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8843,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Alternative dance is a musical genre that fuses the melodic song structures and sensibilities of alternative and indie rock with the rhythmic, synth-driven, and club-oriented aesthetics of electronic dance music.",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:madchester",
+      "type": "genre",
+      "name": "Madchester"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:madchester",
+      "type": "genre",
+      "name": "Madchester"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:factory-records",
+      "type": "label",
+      "name": "Factory Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-fat-of-the-land",
+      "type": "project",
+      "name": "The Fat of the Land"
+    },
+    {
+      "slug": "project:debut",
+      "type": "project",
+      "name": "Debut"
+    },
+    {
+      "slug": "project:power-corruption-and-lies",
+      "type": "project",
+      "name": "Power, Corruption & Lies"
+    }
+  ],
+  "landmark_tracks": []
+}

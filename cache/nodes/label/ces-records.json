@@ -1,0 +1,74 @@
+{
+  "slug": "label:ces-records",
+  "name": "CES Records",
+  "editorial_article": "CES Records is an independent record label and publisher headquartered in Tbilisi, Georgia, serving as a pivotal platform for the country's burgeoning electronic music scene. Established in 2018 by Natia Sartania, the label grew out of the Creative Education Studio (CES), a Tbilisi-based institution dedicated to music production and sound engineering education. By operating as the formal outlet for the studio’s most promising graduates and local affiliates, CES Records has become a vital conduit for contemporary Georgian electronic music, bridging the gap between pedagogical development and professional release.\n\nThe label's aesthetic is characterized by a commitment to fostering unique, genre-bending voices within the electronic sphere. Its roster features notable figures such as Anushka Chkheidze, Natalie Beridze, and sTia, whose works often traverse experimental, ambient, and avant-garde electronic landscapes. By concentrating on young talent and providing them with global distribution and professional recognition, CES Records plays a central role in amplifying the distinct sounds of the Caucasian electronic underground, ensuring that local artists receive international exposure while remaining deeply rooted in the supportive ecosystem of their home studio. The label's existence is a testament to the growth of Georgia's cultural scene, providing a professional structure that turns local artistic potential into sustained, career-oriented output for the international market.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/17436",
+      "title": "CES Records · Record label RA"
+    },
+    {
+      "url": "https://www.roughtrade.com/en-gb/label/ces-records",
+      "title": "CES Records - Rough Trade"
+    },
+    {
+      "url": "https://www.discogs.com/label/378264-CES-Records-3?srsltid=AfmBOopaiCyDuX-sHCRaPqouwgEyePsB7U3_5Yjbgo9pLOPwfaJkORhx",
+      "title": "CES Records (3) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:45.762Z",
+  "_metrics": {
+    "input_tokens": 14645,
+    "output_tokens": 1447,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005832,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 9456,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "CES Records is an independent record label and publisher headquartered in Tbilisi, Georgia, serving as a pivotal platform for the country's burgeoning electronic music scene. Established in 2018 by Natia Sartania, the label grew out of the Creative Education Studio (CES), a Tbilisi-based institution dedicated to music production and sound engineering education. By operating as the formal outlet for the studio’s most promising graduates and local affiliates, CES Records has become a vital conduit for contemporary Georgian electronic music, bridging the gap between pedagogical development and professional release.\n\nThe label's aesthetic is characterized by a commitment to fostering unique, genre-bending voices within the electronic sphere. Its roster features notable figures such as Anushka Chkheidze, Natalie Beridze, and sTia, whose works often traverse experimental, ambient, and avant-garde electronic landscapes. By concentrating on young talent and providing them with global distribution and professional recognition, CES Records plays a central role in amplifying the distinct sounds of the Caucasian electronic underground, ensuring that local artists receive international exposure while remaining deeply rooted in the supportive ecosystem of their home studio. The label's existence is a testament to the growth of Georgia's cultural scene, providing a professional structure that turns local artistic potential into sustained, career-oriented output for the international market.",
+  "founded": "2018",
+  "location": "Tbilisi, Georgia",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze"
+    },
+    {
+      "slug": "artist:natalie-beridze",
+      "type": "artist",
+      "name": "Natalie Beridze"
+    },
+    {
+      "slug": "artist:stia",
+      "type": "artist",
+      "name": "sTia"
+    },
+    {
+      "slug": "artist:nasi",
+      "type": "artist",
+      "name": "NASI"
+    }
+  ],
+  "notable_releases": []
+}

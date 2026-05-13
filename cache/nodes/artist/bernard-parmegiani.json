@@ -1,0 +1,85 @@
+{
+  "slug": "artist:bernard-parmegiani",
+  "name": "Bernard Parmegiani",
+  "editorial_article": "Bernard Parmegiani (1927–2013) was a towering figure in the development of 20th-century electroacoustic music, a French composer and sound pioneer who spent much of his career at the Groupe de Recherches Musicales (GRM). Born in Paris, his early life was saturated with music through his parents, but his path to composition was circuitous; he initially worked in the Army Cinema Service and as a sound engineer for television, while also studying mime under masters like Jacques Lecoq. This background—combining technical audio expertise with a physical, gestural understanding of space—would define his unique approach to the \"sound being,\" where recorded textures were not merely manipulated but sculpted with the precision of a visual artist.\\n\\nJoining the GRM in the early 1960s, Parmegiani was mentored by Pierre Schaeffer, the founder of musique concrète, and soon emerged as one of the studio's most vital voices. His breakthrough work, 'Violostries' (1964), set a precedent for electroacoustic composition by treating violin sounds as raw, transmutable material, a technique he would refine for decades. His masterpiece, 'De Natura Sonorum' (1975–76), is widely considered a landmark in the history of sound art, exploring the fundamental properties of the \"sound being\" across 12 meticulous movements. Beyond his purely acousmatic concert pieces, Parmegiani was prolific in \"applied\" music, crafting iconic television jingles, film scores, and radio work, most notably the legendary sound logo for Paris-Charles de Gaulle Airport, which resonated globally for over three decades.\\n\\nThroughout his life, Parmegiani remained a relentless experimenter, transitioning from early tape-splicing methods to exploring digital technology and spatialization. His work constantly bridged the gap between the concrete and the abstract, proving that electronically generated sound could possess as much organic vitality and narrative depth as traditional acoustic instruments. His legacy remains a cornerstone of contemporary sound studies and composition, influencing generations of experimental, ambient, and electronic artists who look to his work as the gold standard for acoustic exploration.",
+  "citations": [
+    {
+      "url": "https://bernard-parmegiani.fr/en/bio/",
+      "title": "Biography - Bernard Parmegiani"
+    },
+    {
+      "url": "https://www.discogs.com/artist/32207-Bernard-Parmegiani?srsltid=AfmBOoraWMB1TQ7UmzxUcFG1TcB9V-ONU82SsQ6YHEs9nK5mIuol32Lc",
+      "title": "Bernard Parmegiani Discography: Vinyl, CDs, & More - Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/bernard-parmegiani",
+      "title": "Bernard Parmegiani discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:11.084Z",
+  "_metrics": {
+    "input_tokens": 23786,
+    "output_tokens": 2305,
+    "cache_read_tokens": 4052,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009505,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16368,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "A pioneer of electroacoustic and musique concrète, Bernard Parmegiani was a French composer whose career at the GRM spanned over fifty years, defined by his innovative, sculptural approach to sound manipulation and his expansive catalog of both concert works and iconic applied sound design.",
+  "origin": "Paris, France",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic Music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ina-grm",
+      "type": "label",
+      "name": "INA-GRM"
+    },
+    {
+      "slug": "label:philips",
+      "type": "label",
+      "name": "Philips"
+    },
+    {
+      "slug": "label:sub-rosa",
+      "type": "label",
+      "name": "Sub Rosa"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:violostries",
+      "type": "track",
+      "name": "Violostries"
+    },
+    {
+      "slug": "track:de-natura-sonorum",
+      "type": "track",
+      "name": "De Natura Sonorum"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

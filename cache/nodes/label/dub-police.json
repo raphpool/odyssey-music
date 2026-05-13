@@ -1,0 +1,96 @@
+{
+  "slug": "label:dub-police",
+  "name": "Dub Police",
+  "editorial_article": "Dub Police is a seminal British independent record label that played a foundational role in the global explosion of dubstep during the mid-2000s. Founded in 2005 (often cited as 2006 by fans) by the influential producer and DJ Caspa, the label emerged from the bubbling South London bass music scene, serving as a vital platform for the more aggressive, dance-floor-oriented evolution of the genre. While early dubstep was often characterized by its sparse, atmospheric, and experimental leanings, Dub Police channeled a heavy, \"half-step\" aesthetic that emphasized sub-bass power and jagged, energetic synth leads. \\n\\nThroughout its most active years, Dub Police was instrumental in defining the \"brostep\" or energetic dancefloor-dubstep sound that would eventually dominate international club culture. The label was the early home for breakout stars such as Rusko, whose releases like 'SNES Dub' showcased the playful, high-energy side of the genre, as well as artists like L-Wiz, Subscape, and The Others. The label's catalog—marked by its signature 'DP' catalog numbering—became a benchmark for producers who sought to blend traditional dub aesthetics with modern sound design, complex rhythms, and pop-sensibility melodies. As a sister label to Storming Productions and part of the wider Submerged ecosystem, Dub Police provided the infrastructure necessary for dubstep to bridge the gap between niche pirate radio scenes and massive international festival stages, influencing a generation of bass-centric electronic music producers.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/53425-Dub-Police?srsltid=AfmBOopkYBosPRBR-GTZqwxvUWiKw_duIFd1-izHzLsEiA6iyOPUK5a1",
+      "title": "Dub Police | Discogs"
+    },
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Dub_Police",
+      "title": "Dub Police | Bass Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:11.325Z",
+  "_metrics": {
+    "input_tokens": 16099,
+    "output_tokens": 1401,
+    "cache_read_tokens": 8125,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006329,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 15792,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "Dub Police is a pivotal London-based independent record label established by Caspa in 2005, widely recognized for shaping the mid-2000s dancefloor-oriented dubstep sound.",
+  "founded": "2005",
+  "location": "London, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa"
+    },
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko"
+    },
+    {
+      "slug": "artist:l-wiz",
+      "type": "artist",
+      "name": "L-Wiz"
+    },
+    {
+      "slug": "artist:subscape",
+      "type": "artist",
+      "name": "Subscape"
+    },
+    {
+      "slug": "artist:the-others",
+      "type": "artist",
+      "name": "The Others"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:girlfriend",
+      "type": "project",
+      "name": "Girlfriend"
+    },
+    {
+      "slug": "project:snes-dub",
+      "type": "project",
+      "name": "SNES Dub"
+    },
+    {
+      "slug": "project:for-the-kids",
+      "type": "project",
+      "name": "For The Kids"
+    },
+    {
+      "slug": "project:way-of-the-dub",
+      "type": "project",
+      "name": "Way Of The Dub"
+    }
+  ]
+}

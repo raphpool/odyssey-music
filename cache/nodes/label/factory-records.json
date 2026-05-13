@@ -1,0 +1,101 @@
+{
+  "slug": "label:factory-records",
+  "name": "Factory Records",
+  "editorial_article": "Factory Records was a seminal Manchester-based independent record label that fundamentally altered the trajectory of post-punk and alternative dance music. Founded in 1978 by Tony Wilson and Alan Erasmus, the label emerged from the vibrant 'Factory' club nights at the Russell Club, capturing the raw energy of the post-punk era before evolving into an architect of the Madchester scene. Factory was characterized by a distinct, uncompromising philosophy: a unique cataloguing system where everything from records and films to office furniture and even Wilson's own coffin was assigned a \"FAC\" number. This intellectual rigor was matched by an aesthetic obsession, driven by the iconic design work of Peter Saville and the innovative production of Martin Hannett, whose atmospheric, cold, and spacious sound defined the early Factory output. \\n\\nThe label served as the primary home for Joy Division, facilitating their transition into New Order following the tragic death of Ian Curtis. Beyond these pillars, the label's eclectic and influential roster included A Certain Ratio, The Durutti Column, and later, the chart-topping Happy Mondays. Central to the label’s story was its partnership with the artists to create The Haçienda, a legendary nightclub that became a crucible for acid house and rave culture, ultimately stretching the label’s financial resources to the breaking point. Despite its financial collapse in 1992, Factory Records left an indelible mark on independent music, proving that a label could function as a coherent, artistic, and community-focused enterprise rather than merely a commercial vehicle. It remains an enduring symbol of Northern English ingenuity and the DIY ethos.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Factory_Records",
+      "title": "Factory Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/857-Factory?srsltid=AfmBOoq0nrulChAAUyHokCbByjDjf1pAZ4_Wne5VqcqQt5dmt49visa3",
+      "title": "Factory - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:35.442Z",
+  "_metrics": {
+    "input_tokens": 19344,
+    "output_tokens": 1495,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007079,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13857,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A legendary Manchester-based independent label (1978–1992) known for its distinctive post-punk/dance roster, avant-garde design, and unique cataloguing system that treated records, clubs, and everyday objects as art.",
+  "founded": "1978",
+  "location": "Manchester, UK",
+  "genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative dance"
+    },
+    {
+      "slug": "genre:madchester",
+      "type": "genre",
+      "name": "Madchester"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order"
+    },
+    {
+      "slug": "artist:a-certain-ratio",
+      "type": "artist",
+      "name": "A Certain Ratio"
+    },
+    {
+      "slug": "artist:the-durutti-column",
+      "type": "artist",
+      "name": "The Durutti Column"
+    },
+    {
+      "slug": "artist:happy-mondays",
+      "type": "artist",
+      "name": "Happy Mondays"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:unknown-pleasures",
+      "type": "project",
+      "name": "Unknown Pleasures"
+    },
+    {
+      "slug": "project:closer",
+      "type": "project",
+      "name": "Closer"
+    },
+    {
+      "slug": "project:power-corruption-and-lies",
+      "type": "project",
+      "name": "Power, Corruption & Lies"
+    },
+    {
+      "slug": "project:pills-n-thrills-and-bellyaches",
+      "type": "project",
+      "name": "Pills 'n' Thrills and Bellyaches"
+    }
+  ]
+}
