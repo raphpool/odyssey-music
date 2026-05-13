@@ -43,6 +43,14 @@ export interface AgentRunResult {
 	turns: number;
 }
 
+/** Thrown when the agent explicitly decided no real entity exists. The crawler discards quietly. */
+export class AbandonedNodeError extends Error {
+	override readonly name = "AbandonedNodeError";
+	constructor(reason: string) {
+		super(`abandoned: ${reason}`);
+	}
+}
+
 const SYSTEM_PROMPT = buildSystemPrompt();
 
 /**
@@ -65,6 +73,8 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		captured: undefined as unknown,
 		lastRejectedPayload: undefined as unknown,
 		lastRejectionReasons: [] as string[],
+		abandoned: false,
+		abandonReason: "",
 	};
 
 	const emitTool: AgentTool = {
@@ -86,25 +96,70 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 			const args = params as { payload: unknown };
 			state.emitAttempts++;
 			const reasons = validateForEmit(args.payload, state.researchToolCalls);
-			const isFinalAttempt = state.emitAttempts >= maxEmitAttempts;
-			if (reasons.length > 0 && !isFinalAttempt) {
+			if (reasons.length > 0) {
 				state.lastRejectedPayload = args.payload;
 				state.lastRejectionReasons = reasons;
 				log(
-					`  emit_node attempt ${state.emitAttempts} rejected: ${reasons[0] ?? "?"}` +
+					`  emit_node attempt ${state.emitAttempts}/${maxEmitAttempts} rejected: ${reasons[0] ?? "?"}` +
 						(reasons.length > 1 ? ` (+${reasons.length - 1} more)` : ""),
 				);
 				throw new Error(
-					`emit_node rejected (attempt ${state.emitAttempts}/${maxEmitAttempts}). Fix and retry. Reasons:\n- ${reasons.join("\n- ")}`,
+					`emit_node rejected (attempt ${state.emitAttempts}/${maxEmitAttempts}). ` +
+						"Fix EVERY listed problem and retry. Reasons:\n- " +
+						reasons.join("\n- ") +
+						(state.emitAttempts >= maxEmitAttempts
+							? "\n\nThis was your LAST allowed attempt. If you cannot produce a grounded payload that satisfies all rules, call abandon_node with the reason. DO NOT submit a stub or hallucinated payload."
+							: ""),
 				);
 			}
 			state.captured = args.payload;
-			if (reasons.length > 0) {
-				log(`  emit_node attempt ${state.emitAttempts} accepted best-effort despite: ${reasons.join("; ")}`);
-			}
 			return {
 				content: [{ type: "text", text: "Captured. Run will terminate." }],
-				details: { captured: true, attempts: state.emitAttempts, bestEffort: reasons.length > 0 },
+				details: { captured: true, attempts: state.emitAttempts },
+				terminate: true,
+			};
+		},
+	};
+
+	const abandonTool: AgentTool = {
+		name: "abandon_node",
+		label: "Abandon node",
+		description:
+			"Call this if, after research, you genuinely cannot find authoritative public information about the target entity (real obscure, ambiguous, not a real music entity, search returned nothing). The node will be discarded — that is the correct outcome when no real entity exists. NEVER hallucinate a stub to avoid abandoning.",
+		parameters: Type.Object({
+			reason: Type.String({ description: "One-sentence reason." }),
+		}),
+		executionMode: "sequential",
+		execute: async (_id, params) => {
+			const args = params as { reason: string };
+			// Guard rails: abandon is for "entity doesn't exist publicly", NOT for "I can't satisfy the validator".
+			if (state.researchToolCalls < 2) {
+				throw new Error(
+					`abandon_node refused: you have only made ${state.researchToolCalls} research tool calls. ` +
+						"You must do at least 1 web_search AND 1 fetch_page on an authoritative-looking result before claiming the entity is unfindable.",
+				);
+			}
+			const r = args.reason.toLowerCase();
+			const looksLikeValidatorComplaint =
+				r.includes("validator") ||
+				r.includes("interface") ||
+				r.includes("schema") ||
+				r.includes("tool") ||
+				r.includes("rejected") ||
+				r.includes("payload");
+			if (looksLikeValidatorComplaint) {
+				throw new Error(
+					"abandon_node refused: your reason references the validator/tool/schema. " +
+						"abandon_node is ONLY for entities that genuinely do not exist publicly. " +
+						"If emit_node keeps rejecting, READ the rejection reasons and fix the payload (likely citations shape or short article). Do not escape via abandon.",
+				);
+			}
+			state.abandoned = true;
+			state.abandonReason = args.reason;
+			log(`  abandon_node: ${args.reason}`);
+			return {
+				content: [{ type: "text", text: "Node abandoned." }],
+				details: { abandoned: true, reason: args.reason },
 				terminate: true,
 			};
 		},
@@ -114,6 +169,7 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		makeTavilyTool(deps.tavilyApiKey),
 		makeFirecrawlTool(deps.firecrawlApiKey),
 		emitTool,
+		abandonTool,
 	];
 
 	const modelId = deps.modelId ?? "gemini-3.1-flash-lite-preview";
@@ -157,20 +213,19 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		unsub();
 	}
 
-	// If the agent timed out or finished without a clean emit, fall back to the last rejected payload.
+	// STRICT: never accept best-effort or rejected payloads. The agent either emits a clean payload,
+	// abandons explicitly, or fails the node — that is the contract.
+	if (state.abandoned) {
+		throw new AbandonedNodeError(state.abandonReason || "agent abandoned the node");
+	}
 	if (state.captured === undefined) {
-		if (state.lastRejectedPayload !== undefined) {
-			log(
-				`  agent exit without clean emit (${timedOut ? "timeout" : "no-more-turns"}); ` +
-					`accepting last rejected payload (attempts=${state.emitAttempts}, turns=${turns}). ` +
-					`Reasons were: ${state.lastRejectionReasons.join("; ")}`,
-			);
-			state.captured = state.lastRejectedPayload;
-		} else {
-			throw new Error(
-				`Agent finished without any emit_node call (timedOut=${timedOut}, turns=${turns}, research=${state.researchToolCalls})`,
-			);
-		}
+		const detail = state.lastRejectionReasons.length
+			? `last rejection: ${state.lastRejectionReasons.join("; ")}`
+			: "no emit_node call";
+		throw new Error(
+			`Agent finished without a clean emit (timedOut=${timedOut}, turns=${turns}, ` +
+				`research=${state.researchToolCalls}, attempts=${state.emitAttempts}). ${detail}`,
+		);
 	}
 
 	const fallbackName = input.name ?? input.text ?? "Unknown";
@@ -326,8 +381,12 @@ function canonicalize(rawInput: unknown, fb: CanonicalizeFallbacks): unknown {
 	if (typeof next.editorial_article !== "string" && typeof next.article === "string") {
 		next.editorial_article = next.article;
 	}
-	if (typeof next.editorial_article !== "string" || (next.editorial_article as string).length < 1) {
-		next.editorial_article = `${nameStr} is a ${nt} in the Culture Graph. (Insufficient public information available at materialization time.)`;
+	if (typeof next.editorial_article !== "string" || (next.editorial_article as string).length < 200) {
+		throw new Error(
+			`editorial_article missing or too short (${
+				typeof next.editorial_article === "string" ? (next.editorial_article as string).length : "missing"
+			} chars) after fallbacks; refusing to write a stub node`,
+		);
 	}
 
 	const teaserField = TYPE_TEASER_FIELD[nt];
@@ -453,6 +512,18 @@ WORKFLOW (do NOT skip steps):
       (genre.editorial_definition, label.editorial_description, artist.editorial_bio,
        project.editorial_pitch, track.editorial_teaser). The teaser is a distinct 1-2 sentence hook, not a copy of the article.
   11. Call emit_node EXACTLY ONCE with the full payload object as the 'payload' parameter. After emit_node the run ends.
+
+EDITORIAL ARTICLE (MUST READ — this is the most common failure mode):
+  - 600-1500 chars of REAL prose written for a curious listener. Not a Wikipedia-style listicle. Not a one-liner bio.
+  - Must be GROUNDED in the pages you fetched. Quote-paraphrase concrete facts: year, label, scene, collaborators, sonic signature, why it matters culturally.
+  - Open with a strong sentence (entity + place + era + what they're known for). Then 2-3 paragraphs of context.
+  - NEVER produce a placeholder like "X is a Y in the Culture Graph." or "Insufficient public information available." The validator will discard the node entirely if the article is short or boilerplate.
+  - If the article is short because you didn't fetch enough, fetch more pages, don't shorten the article.
+
+ABANDONMENT (when to use abandon_node):
+  - If after 1-2 searches and 1 fetch you have ZERO authoritative info and the entity might not be a real music entity OR is so obscure no public source exists, call abandon_node with a one-sentence reason. The crawler discards the node cleanly — that is the CORRECT outcome.
+  - DO NOT submit a stub or hallucinate to avoid abandoning. Abandoning is FREE and expected for genuinely missing entities. Submitting slop is a hard FAIL.
+  - Abandon if: search returned no relevant results, the entity name appears to be a hallucination from a parent node, the entity is too generic ("Electronic music", "Pop", a country name) to be a meaningful Culture Graph node.
 
 QUALITY BAR:
   - editorial_article reads like a real article (history, context, why it matters), not boilerplate or filler.

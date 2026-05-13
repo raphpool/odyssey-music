@@ -8,7 +8,11 @@ async function main(): Promise<void> {
 	const t0 = Date.now();
 	const r = await runAgent(
 		{ text: seed },
-		{ tavilyApiKey: env.TAVILY_API_KEY, firecrawlApiKey: env.FIRECRAWL_API_KEY },
+		{
+			tavilyApiKey: env.TAVILY_API_KEY,
+			firecrawlApiKey: env.FIRECRAWL_API_KEY,
+			logger: (line) => process.stderr.write(`AGENT ${line}\n`),
+		},
 	);
 	const ms = Date.now() - t0;
 	process.stderr.write(`[smoke] OK ${r.slug} turns=${r.turns} ${ms}ms\n`);

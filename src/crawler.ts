@@ -1,4 +1,4 @@
-import { type AgentDeps, type AgentInput, runAgent } from "./agent.js";
+import { AbandonedNodeError, type AgentDeps, type AgentInput, runAgent } from "./agent.js";
 import { NodeCache } from "./cache.js";
 import { makeSlug } from "./slug.js";
 import {
@@ -152,23 +152,28 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					stopped = true;
 					continue;
 				}
-				if (await cache.has(result.slug)) {
-					log(`[w${workerId}] dedup ${result.slug} (already materialized during run)`);
-					continue;
+				const alreadyCached = await cache.has(result.slug);
+				if (alreadyCached) {
+					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
+				} else {
+					await cache.write(result.node);
+					lastCompleted = result.slug;
+					const ms = Date.now() - t0;
+					log(
+						`[w${workerId}] OK ${result.slug} turns=${result.turns} ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
+					);
 				}
-				await cache.write(result.node);
-				lastCompleted = result.slug;
-				const ms = Date.now() - t0;
-				log(
-					`[w${workerId}] OK ${result.slug} turns=${result.turns} ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
-				);
 				if (next.entry.depth + 1 <= opts.maxDepth) {
 					enqueueEdges(result.node, next.entry.depth + 1, frontier, log);
 				}
 			} catch (e) {
-				failed++;
 				const msg = e instanceof Error ? e.message : String(e);
-				log(`[w${workerId}] FAIL ${next.slug}: ${msg}`);
+				if (e instanceof AbandonedNodeError) {
+					log(`[w${workerId}] ABANDON ${next.slug}: ${msg}`);
+				} else {
+					failed++;
+					log(`[w${workerId}] FAIL ${next.slug}: ${msg}`);
+				}
 			} finally {
 				inFlight--;
 			}
