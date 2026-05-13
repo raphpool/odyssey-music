@@ -15,12 +15,26 @@ set -a
 set +a
 
 echo "==> Rsyncing source to $SERVER:/opt/odyssey-music"
+# IMPORTANT: --exclude='cache' so we don't delete nodes the server has materialized
+# via JIT since the last deploy. The repo `cache/` and the server `cache/` evolve
+# independently; both write atomically and share the same schema.
 rsync -az --delete \
   --exclude='.git' \
   --exclude='node_modules' \
   --exclude='.reviews' \
   --exclude='dist' \
+  --exclude='cache' \
   "$REPO_ROOT/" "$SERVER:/opt/odyssey-music/"
+
+# Seed cache only if the server has none (first deploy).
+echo "==> Seeding cache (first deploy only)"
+ssh "$SERVER" 'test -d /opt/odyssey-music/cache/nodes && echo "cache exists, keeping"' \
+  || rsync -az "$REPO_ROOT/cache/" "$SERVER:/opt/odyssey-music/cache/"
+
+# Also pull the server-only nodes back into the repo so they survive the next deploy
+# and are visible to the local CLI / dropcliffs lab generator.
+echo "==> Pulling server-only JIT nodes back into repo"
+rsync -az --ignore-existing "$SERVER:/opt/odyssey-music/cache/" "$REPO_ROOT/cache/" || true
 
 echo "==> Installing on server + writing env + unit + nginx"
 ssh "$SERVER" \
