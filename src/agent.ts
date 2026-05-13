@@ -20,6 +20,12 @@ export interface AgentDeps {
 	firecrawlApiKey: string;
 	/** Override the pi model. Defaults to Gemini 3.1 Flash Lite. */
 	modelId?: string;
+	/** Hard wall-clock cap per agent run, ms. Default 60_000. */
+	timeoutMs?: number;
+	/** Max number of emit_node attempts (incl. rejections). Default 3. On the Nth, accept best-effort. */
+	maxEmitAttempts?: number;
+	/** Optional diagnostic logger called with structured info per run. */
+	logger?: (line: string) => void;
 }
 
 export interface AgentInput {
@@ -49,7 +55,17 @@ const SYSTEM_PROMPT = buildSystemPrompt();
  *   4. We capture, Zod-validate, canonicalize slugs, return.
  */
 export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<AgentRunResult> {
-	const state = { researchToolCalls: 0, captured: undefined as unknown };
+	const timeoutMs = deps.timeoutMs ?? 60_000;
+	const maxEmitAttempts = deps.maxEmitAttempts ?? 3;
+	const log = deps.logger ?? ((): void => undefined);
+
+	const state = {
+		researchToolCalls: 0,
+		emitAttempts: 0,
+		captured: undefined as unknown,
+		lastRejectedPayload: undefined as unknown,
+		lastRejectionReasons: [] as string[],
+	};
 
 	const emitTool: AgentTool = {
 		name: "emit_node",
@@ -57,9 +73,9 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		description:
 			"Emit the final structured node payload. Call this exactly once at the end. " +
 			"The payload must follow the schema described in the system prompt. " +
-			"This call will FAIL (and you must retry) if: you have not called web_search AND fetch_page at least once each before emitting; " +
+			"This call may FAIL on the first attempts if: you have not called web_search AND fetch_page at least once each; " +
 			"OR citations is empty; OR fewer than 3 edge references total across applicable fields; " +
-			"OR editorial_article is shorter than 400 characters.",
+			"OR editorial_article is shorter than 400 characters. Fix the listed reasons and retry. After 3 attempts the best payload is accepted as-is.",
 		parameters: Type.Object({
 			payload: Type.Any({
 				description: "The full node payload object as described in the system prompt.",
@@ -68,16 +84,27 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		executionMode: "sequential",
 		execute: async (_id, params) => {
 			const args = params as { payload: unknown };
+			state.emitAttempts++;
 			const reasons = validateForEmit(args.payload, state.researchToolCalls);
-			if (reasons.length > 0) {
+			const isFinalAttempt = state.emitAttempts >= maxEmitAttempts;
+			if (reasons.length > 0 && !isFinalAttempt) {
+				state.lastRejectedPayload = args.payload;
+				state.lastRejectionReasons = reasons;
+				log(
+					`  emit_node attempt ${state.emitAttempts} rejected: ${reasons[0] ?? "?"}` +
+						(reasons.length > 1 ? ` (+${reasons.length - 1} more)` : ""),
+				);
 				throw new Error(
-					`emit_node rejected. Fix and retry. Reasons:\n- ${reasons.join("\n- ")}`,
+					`emit_node rejected (attempt ${state.emitAttempts}/${maxEmitAttempts}). Fix and retry. Reasons:\n- ${reasons.join("\n- ")}`,
 				);
 			}
 			state.captured = args.payload;
+			if (reasons.length > 0) {
+				log(`  emit_node attempt ${state.emitAttempts} accepted best-effort despite: ${reasons.join("; ")}`);
+			}
 			return {
 				content: [{ type: "text", text: "Captured. Run will terminate." }],
-				details: { captured: true },
+				details: { captured: true, attempts: state.emitAttempts, bestEffort: reasons.length > 0 },
 				terminate: true,
 			};
 		},
@@ -111,17 +138,45 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		}
 	});
 
+	let timedOut = false;
+	const timer = setTimeout(() => {
+		timedOut = true;
+		try {
+			agent.abort();
+		} catch {
+			// ignore
+		}
+	}, timeoutMs);
+
 	try {
 		await agent.prompt(userPrompt);
+	} catch (e) {
+		if (!timedOut) throw e;
 	} finally {
+		clearTimeout(timer);
 		unsub();
 	}
 
+	// If the agent timed out or finished without a clean emit, fall back to the last rejected payload.
 	if (state.captured === undefined) {
-		throw new Error("Agent finished without producing an acceptable emit_node call");
+		if (state.lastRejectedPayload !== undefined) {
+			log(
+				`  agent exit without clean emit (${timedOut ? "timeout" : "no-more-turns"}); ` +
+					`accepting last rejected payload (attempts=${state.emitAttempts}, turns=${turns}). ` +
+					`Reasons were: ${state.lastRejectionReasons.join("; ")}`,
+			);
+			state.captured = state.lastRejectedPayload;
+		} else {
+			throw new Error(
+				`Agent finished without any emit_node call (timedOut=${timedOut}, turns=${turns}, research=${state.researchToolCalls})`,
+			);
+		}
 	}
 
-	const node = canonicalize(state.captured);
+	const fallbackName = input.name ?? input.text ?? "Unknown";
+	const fbObj: { fallbackName: string; fallbackType?: NodeType } = { fallbackName };
+	if (input.type) fbObj.fallbackType = input.type;
+	const node = canonicalize(state.captured, fbObj);
 	const parsed = nodePayloadSchema.parse(node) as NodePayload;
 	return { node: parsed, slug: parsed.slug, turns };
 }
@@ -233,27 +288,47 @@ const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
 	track: ["cover_url", "year", "duration"],
 };
 
-function canonicalize(raw: unknown): unknown {
+interface CanonicalizeFallbacks {
+	fallbackName: string;
+	fallbackType?: NodeType;
+}
+
+function canonicalize(rawInput: unknown, fb: CanonicalizeFallbacks): unknown {
+	// Defensive unwrap: agents sometimes return `{ payload: {...the real thing...} }`.
+	let raw = rawInput;
+	if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+		const cand = (raw as Record<string, unknown>).payload;
+		if (cand && typeof cand === "object" && "type" in cand) raw = cand;
+	}
 	if (!raw || typeof raw !== "object") {
 		throw new Error("Agent payload is not an object");
 	}
 	const p = raw as RawPayload;
-	const type = p.type;
-	if (typeof type !== "string" || !(NODE_TYPES as readonly string[]).includes(type)) {
-		throw new Error(`Agent payload has invalid or missing 'type': ${JSON.stringify(type)}`);
+	let nt: NodeType;
+	const typeRaw = p.type;
+	if (typeof typeRaw === "string" && (NODE_TYPES as readonly string[]).includes(typeRaw)) {
+		nt = typeRaw as NodeType;
+	} else if (fb.fallbackType) {
+		nt = fb.fallbackType;
+	} else {
+		throw new Error(`Agent payload has invalid 'type' and no fallback: ${JSON.stringify(typeRaw)}`);
 	}
-	const nt = type as NodeType;
-	const name = p.name;
-	if (typeof name !== "string" || !name.trim()) {
-		throw new Error("Agent payload missing 'name'");
+	let nameStr: string;
+	const nameRaw = p.name;
+	if (typeof nameRaw === "string" && nameRaw.trim()) {
+		nameStr = nameRaw.trim();
+	} else {
+		nameStr = fb.fallbackName;
 	}
-	const slug = makeSlug(nt, name);
-	const next: Record<string, unknown> = { ...p, type: nt, slug, name: name.trim() };
+	const slug = makeSlug(nt, nameStr);
+	const next: Record<string, unknown> = { ...p, type: nt, slug, name: nameStr };
 
 	if (typeof next.editorial_article !== "string" && typeof next.article === "string") {
 		next.editorial_article = next.article;
 	}
-	if (typeof next.editorial_article !== "string") next.editorial_article = "";
+	if (typeof next.editorial_article !== "string" || (next.editorial_article as string).length < 1) {
+		next.editorial_article = `${nameStr} is a ${nt} in the Culture Graph. (Insufficient public information available at materialization time.)`;
+	}
 
 	const teaserField = TYPE_TEASER_FIELD[nt];
 	if (typeof next[teaserField] !== "string" || !(next[teaserField] as string).trim()) {

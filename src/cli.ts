@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { crawl } from "./crawler.js";
+import { type CrawlOptions, type CrawlProgress, crawl } from "./crawler.js";
 import { loadEnv } from "./env.js";
 
 const program = new Command();
@@ -12,7 +12,13 @@ program
 	.requiredOption("-d, --max-depth <n>", "Max BFS depth", (v) => Number.parseInt(v, 10))
 	.requiredOption("-n, --max-nodes <n>", "Max total nodes to materialize", (v) => Number.parseInt(v, 10))
 	.requiredOption("-o, --out <dir>", "Output cache directory")
-	.option("-c, --concurrency <n>", "Number of parallel agent workers", (v) => Number.parseInt(v, 10), 4)
+	.option("-c, --concurrency <n>", "Parallel agent workers", (v) => Number.parseInt(v, 10), 4)
+	.option("--heartbeat-ms <n>", "Heartbeat interval (ms)", (v) => Number.parseInt(v, 10), 90_000)
+	.option(
+		"--heartbeat-webhook <url>",
+		"POST a JSON progress snapshot here every heartbeat (e.g. WA bridge URL)",
+	)
+	.option("--heartbeat-payload <json>", "Static JSON merged into each heartbeat POST body")
 	.option("--quiet", "Suppress per-node logs", false)
 	.action(
 		async (opts: {
@@ -21,28 +27,39 @@ program
 			maxNodes: number;
 			out: string;
 			concurrency: number;
+			heartbeatMs: number;
+			heartbeatWebhook?: string;
+			heartbeatPayload?: string;
 			quiet: boolean;
 		}) => {
 			const env = loadEnv();
 			const t0 = Date.now();
-			const crawlOpts = {
+			const base: CrawlOptions = {
 				seed: opts.seed,
 				maxDepth: opts.maxDepth,
 				maxNodes: opts.maxNodes,
 				concurrency: opts.concurrency,
 				out: opts.out,
+				heartbeatMs: opts.heartbeatMs,
 				deps: { tavilyApiKey: env.TAVILY_API_KEY, firecrawlApiKey: env.FIRECRAWL_API_KEY },
 			};
-			const result = await crawl(
-				opts.quiet
-					? crawlOpts
-					: {
-							...crawlOpts,
-							logger: (line: string): void => {
-								process.stderr.write(`${line}\n`);
-							},
-						},
-			);
+			if (!opts.quiet) {
+				base.logger = (line: string): void => {
+					process.stderr.write(`${line}\n`);
+				};
+			}
+			const extraPayload = opts.heartbeatPayload
+				? (JSON.parse(opts.heartbeatPayload) as Record<string, unknown>)
+				: {};
+			base.onHeartbeat = (snap: CrawlProgress): void => {
+				const line = formatHeartbeat(snap);
+				process.stderr.write(`HEARTBEAT ${line}\n`);
+				if (opts.heartbeatWebhook) {
+					void postHeartbeat(opts.heartbeatWebhook, snap, line, extraPayload);
+				}
+			};
+
+			const result = await crawl(base);
 			const summary = {
 				seed: opts.seed,
 				out: opts.out,
@@ -55,6 +72,35 @@ program
 			process.stdout.write(`${JSON.stringify(summary, null, 2)}\n`);
 		},
 	);
+
+function formatHeartbeat(s: CrawlProgress): string {
+	const elapsedSec = Math.round(s.elapsedMs / 1000);
+	const eta = s.etaSec > 0 ? `~${s.etaSec}s ETA` : "ETA n/a";
+	const last = s.lastCompleted ? ` last=${s.lastCompleted}` : "";
+	return (
+		`nodes=${s.nodesWritten}/${s.maxNodes} fails=${s.failed} ` +
+		`frontier=${s.frontierSize} inflight=${s.inFlight} ` +
+		`elapsed=${elapsedSec}s ${eta} (${s.nodesPerMin}/min)${last}`
+	);
+}
+
+async function postHeartbeat(
+	webhookUrl: string,
+	snap: CrawlProgress,
+	line: string,
+	extra: Record<string, unknown>,
+): Promise<void> {
+	try {
+		const body = JSON.stringify({ ...extra, text: `crawl: ${line}`, progress: snap });
+		await fetch(webhookUrl, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body,
+		});
+	} catch (e) {
+		process.stderr.write(`heartbeat POST error: ${e instanceof Error ? e.message : String(e)}\n`);
+	}
+}
 
 program.parseAsync().catch((e: unknown) => {
 	const msg = e instanceof Error ? e.message : String(e);

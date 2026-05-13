@@ -18,6 +18,22 @@ export interface CrawlOptions {
 	deps: AgentDeps;
 	logger?: (line: string) => void;
 	signal?: AbortSignal;
+	/** Called approximately every `heartbeatMs` ms with a live progress snapshot. */
+	onHeartbeat?: (snapshot: CrawlProgress) => void | Promise<void>;
+	heartbeatMs?: number;
+}
+
+export interface CrawlProgress {
+	nodesWritten: number;
+	maxNodes: number;
+	failed: number;
+	frontierSize: number;
+	inFlight: number;
+	elapsedMs: number;
+	revUpdates: number;
+	nodesPerMin: number;
+	etaSec: number;
+	lastCompleted?: string;
 }
 
 export interface CrawlResult {
@@ -67,7 +83,40 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	let inFlight = 0;
 	let failed = 0;
 	let stopped = false;
+	let lastCompleted: string | undefined;
 	const startedAt = Date.now();
+
+	const heartbeatMs = opts.heartbeatMs ?? 90_000;
+	let heartbeatTimer: ReturnType<typeof setInterval> | undefined;
+	const snapshot = (): CrawlProgress => {
+		const elapsedMs = Date.now() - startedAt;
+		const elapsedMin = elapsedMs / 60_000;
+		const nodesPerMin = elapsedMin > 0 ? cache.stats.written / elapsedMin : 0;
+		const remaining = Math.max(0, opts.maxNodes - cache.stats.written);
+		const etaSec = nodesPerMin > 0 ? Math.round((remaining / nodesPerMin) * 60) : 0;
+		const snap: CrawlProgress = {
+			nodesWritten: cache.stats.written,
+			maxNodes: opts.maxNodes,
+			failed,
+			frontierSize: frontier.size(),
+			inFlight,
+			elapsedMs,
+			revUpdates: cache.stats.revUpdates,
+			nodesPerMin: Math.round(nodesPerMin * 10) / 10,
+			etaSec,
+		};
+		if (lastCompleted !== undefined) snap.lastCompleted = lastCompleted;
+		return snap;
+	};
+	if (opts.onHeartbeat) {
+		const cb = opts.onHeartbeat;
+		heartbeatTimer = setInterval(() => {
+			void Promise.resolve(cb(snapshot())).catch((e) => {
+				log(`heartbeat error: ${e instanceof Error ? e.message : String(e)}`);
+			});
+		}, heartbeatMs);
+		heartbeatTimer.unref?.();
+	}
 
 	const start = async (workerId: number): Promise<void> => {
 		while (!stopped) {
@@ -108,6 +157,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					continue;
 				}
 				await cache.write(result.node);
+				lastCompleted = result.slug;
 				const ms = Date.now() - t0;
 				log(
 					`[w${workerId}] OK ${result.slug} turns=${result.turns} ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
@@ -126,7 +176,11 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	};
 
 	const workers = Array.from({ length: Math.max(1, opts.concurrency) }, (_, i) => start(i + 1));
-	await Promise.all(workers);
+	try {
+		await Promise.all(workers);
+	} finally {
+		if (heartbeatTimer) clearInterval(heartbeatTimer);
+	}
 
 	return {
 		nodesWritten: cache.stats.written,
