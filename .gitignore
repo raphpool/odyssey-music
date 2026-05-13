@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.env
+.env.local
+*.log
+.DS_Store
+
+# Local crawl outputs
+/tmp/
+out/
+cache/
+
+# Codex review artifacts (kept under .reviews/ but only the latest verdict is committed)
+.reviews/raw/
+.reviews/*.log
