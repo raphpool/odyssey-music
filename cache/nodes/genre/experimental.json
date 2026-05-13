@@ -1,0 +1,54 @@
+{
+  "slug": "genre:experimental",
+  "name": "Experimental",
+  "editorial_article": "Experimental music is not so much a specific stylistic genre as it is a broad, philosophical approach to composition and sound that intentionally defies traditional boundaries. Emerging in its recognized form in the mid-20th century, the movement prioritizes discovery, indeterminacy, and the questioning of musical conventions—such as rhythm, melody, and timbre—over adherence to established norms. Rooted in the post-WWII avant-garde, the term was popularized by composers like Pierre Schaeffer, who utilized the label to categorize early musique concrète, and John Cage, who famously advocated for music without predetermined outcomes. \\n\\nAt the heart of the experimental ethos is the desire to break the listener's expectations. This is often achieved through radical techniques: the use of non-musical objects as instruments, the employment of aleatoric (chance-based) processes, and the manipulation of recording media to create entirely new sonic landscapes. While often associated with modern classical and academic circles, the spirit of experimentation has bled into virtually every corner of the musical map, from free jazz and minimalism to noise rock, ambient, and contemporary electronic music. Whether through the minimalist phasing of Steve Reich or the ambient textures of Brian Eno, the experimental tradition remains a vital, shape-shifting force that continually recalibrates how we define what music can be. By rejecting the commodification of sound and focusing on the process of creation itself, experimental music serves as the laboratory of the sonic world.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/experimental-music-guide",
+      "title": "Experimental Music Guide: 4 Notable Experimental Artists - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:55.343Z",
+  "type": "genre",
+  "editorial_definition": "Experimental music is a wide-ranging, philosophy-driven approach to sound and performance that deliberately challenges conventional musical structure, instrumentation, and composition to prioritize innovation and process over commercial or stylistic adherence.",
+  "origin": "United States and France, mid-20th century",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:music-for-18-musicians",
+      "type": "project",
+      "name": "Music for 18 Musicians"
+    },
+    {
+      "slug": "project:in-c",
+      "type": "project",
+      "name": "In C"
+    }
+  ],
+  "landmark_tracks": []
+}

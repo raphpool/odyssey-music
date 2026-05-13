@@ -1,0 +1,96 @@
+{
+  "slug": "genre:desert-rock",
+  "name": "Desert Rock",
+  "editorial_article": "Desert Rock is a heavy, groove-oriented style of rock music that emerged from the isolated landscape of the Palm Desert and Coachella Valley region in Southern California during the late 1980s and early 1990s. Often serving as the foundation for the broader stoner rock movement, the genre is famously defined by its connection to its geography. The early scene was known for \"generator parties\"—spontaneous, nocturnal outdoor gatherings held in the desert where bands powered their equipment using gasoline generators. This rugged, DIY environment, combined with a psychedelic, often substance-fueled atmosphere, forged a sound characterized by downtuned, heavy, and repetitive guitar riffs, expansive instrumental jams, and a laid-back yet intensely driving rhythm section.\n\nThe genre’s sound is a unique hybrid that blends elements of hard rock, psychedelic rock, punk, and metal. Unlike the high-speed intensity of traditional heavy metal or the bleakness of sludge, desert rock emphasizes groove, space, and texture, often drawing comparisons to the mystical, wide-open nature of the desert landscape at night. Key figures such as the band Kyuss—widely considered the progenitors of the scene—codified the desert rock aesthetic with albums like 'Blues for the Red Sun' and 'Welcome to Sky Valley.' These records shifted the focus toward album-length listening experiences and hypnotic, earth-shaking jams. Following the dissolution of Kyuss, key members like Josh Homme went on to form Queens of the Stone Age, which brought the desert rock sensibility to a broader international audience, while other artists from the scene, including Fu Manchu and Brant Bjork, continued to evolve the genre’s signature heavy, fuzzy, and spacious sound. The legacy of desert rock remains a potent force in modern heavy music, celebrated for its ability to balance crushing power with a sense of cosmic, expansive melody.",
+  "citations": [
+    {
+      "url": "https://rockandrollglobe.com/uncategorized/how-kyuss-defined-desert-rock-with-welcome-to-sky-valley/",
+      "title": "How Kyuss Defined Desert Rock with Welcome to Sky Valley - Rock and Roll Globe"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/desert-rock",
+      "title": "Desert Rock - Melodigging"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoner_rock",
+      "title": "Stoner rock - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:22.686Z",
+  "type": "genre",
+  "editorial_definition": "Desert Rock is a heavy, groove-oriented subgenre of rock music that emerged from the Palm Desert/Coachella Valley region of Southern California in the late 1980s and early 1990s, characterized by downtuned guitars, psychedelic influences, and a raw, atmospheric sound often performed at improvised outdoor desert parties.",
+  "era": "Late 1980s to present",
+  "origin": "Palm Desert, California, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kyuss",
+      "type": "artist",
+      "name": "Kyuss"
+    },
+    {
+      "slug": "artist:queens-of-the-stone-age",
+      "type": "artist",
+      "name": "Queens of the Stone Age"
+    },
+    {
+      "slug": "artist:fu-manchu",
+      "type": "artist",
+      "name": "Fu Manchu"
+    },
+    {
+      "slug": "artist:brant-bjork",
+      "type": "artist",
+      "name": "Brant Bjork"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:welcome-to-sky-valley",
+      "type": "project",
+      "name": "Welcome to Sky Valley"
+    },
+    {
+      "slug": "project:blues-for-the-red-sun",
+      "type": "project",
+      "name": "Blues for the Red Sun"
+    }
+  ],
+  "landmark_tracks": []
+}

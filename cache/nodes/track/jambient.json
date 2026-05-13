@@ -1,0 +1,46 @@
+{
+  "slug": "track:jambient",
+  "name": "Jambient (Descriptive Term)",
+  "editorial_article": "\"Jambient\" is not a singular, widely recognized musical track, but rather a neologism often used in experimental and improvisational circles to describe a fusion of \"jam band\" dynamics and ambient soundscapes. Most notably, the term gained specific resonance in 2024 through the Cowboy Sadness project \"Selected Jambient Works Vol. 1,\" a release that embraces this hybrid identity by combining long-form, atmospheric textural work with the loose, wandering spirit of improvisation. \n\nIn this context, \"Jambient\" functions more as a descriptor for a specific, fluid sonic ethos than a title of a discrete composition. Tracks that might be categorized as \"Jambient\" often prioritize long-form exploration, blending organic instrumentation—frequently guitar, percussion, and synth—with the generative, slow-moving structures characteristic of ambient music. By bridging the gap between the live-in-the-moment electricity of a jam session and the meditative, immersive qualities of ambient production, artists operating in this space seek to capture a sense of place and temporal flow. Cowboy Sadness, in particular, uses the moniker to frame their 2024 collection as a curated exploration of this liminal territory, inviting listeners to engage with music that feels both deeply terrestrial and space-bound. The cultural significance of this term lies in its rejection of rigid genre boundaries, instead leaning into the intersectional nature of contemporary underground electronic and experimental rock scenes. By naming a collection \"Selected Jambient Works,\" artists like Cowboy Sadness signal a departure from traditional song structures in favor of expansive, mood-driven environments that rely on the interplay between spontaneity and control. It remains a micro-genre signifier, a label for those who find the boundary between stage-improvisation and studio-ambient to be a fertile ground for new auditory discovery.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/3409579-Cowboy-Sadness-Selected-Jambient-Works-Vol-1",
+      "title": "Cowboy Sadness – Selected Jambient Works Vol. 1 | Releases | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/29943649-Cowboy-Sadness-Selected-Jambient-Works-Vol-1",
+      "title": "Cowboy Sadness – Selected Jambient Works Vol. 1 - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:17.273Z",
+  "type": "track",
+  "editorial_teaser": "\"Jambient\" is not a singular, widely recognized musical track, but rather a neologism often used in experimental and improvisational circles to describe a fusion of \"jam band\" dynamics and ambient soundscapes.",
+  "year": "2024",
+  "artists": [],
+  "project": {
+    "slug": "project:selected-jambient-works-vol-1",
+    "type": "project",
+    "name": "Selected Jambient Works Vol. 1"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

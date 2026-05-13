@@ -1,0 +1,151 @@
+{
+  "slug": "artist:aphex-twin",
+  "name": "Aphex Twin",
+  "editorial_article": "Richard David James, better known by his moniker Aphex Twin, is one of the most transformative figures in contemporary electronic music. Born in Limerick in 1971 and raised in Cornwall, England, James began his career in the late 1980s, carving out a singular path that moved effortlessly between fragile, melodic ambient pieces and aggressively chaotic, high-tempo drill 'n' bass. His debut, 'Selected Ambient Works 85–92', is widely considered a foundational text for the IDM (Intelligent Dance Music) scene, demonstrating a rare ability to imbue cold, mechanical hardware with profound emotional depth. Throughout his career, James has consistently challenged conventional notions of pop and dance music, oscillating between the mainstream visibility of hit tracks like 'Windowlicker' and his more experimental, reclusive projects. He co-founded the legendary label Rephlex Records and has maintained a career-long association with Warp Records. His work remains characterized by an idiosyncratic, self-built approach to sound design, often blurring the lines between human and machine performance, and his influence continues to permeate every facet of modern electronic soundscapes. Known for his myriad aliases, including AFX, Caustic Window, and The Tuss, he retains an aura of mystery that has only bolstered his status as a singular, uncompromising visionary in music. His evolution from local rave parties in Cornwall to international acclaim marks him as an essential architect of the modern sonic era. Throughout the 1990s and 2000s, his work helped define the aesthetic of experimental electronics, and his ongoing output continues to challenge and influence new generations of producers worldwide.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/45-Aphex-Twin?srsltid=AfmBOop2gDQFZ7UwVHNXv6gE7BwjU7W2_FoEgH5Rc9Cd91qUhZts5OZ0",
+      "title": "Aphex Twin Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Aphex_Twin",
+      "title": "Aphex Twin - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:12.587Z",
+  "type": "artist",
+  "editorial_bio": "Richard David James, better known by his moniker Aphex Twin, is one of the most transformative figures in contemporary electronic music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Aphex_Twin_2.jpg/330px-Aphex_Twin_2.jpg",
+  "origin": "Cornwall, England",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85–92"
+    },
+    {
+      "slug": "project:i-care-because-you-do",
+      "type": "project",
+      "name": "...I Care Because You Do"
+    },
+    {
+      "slug": "project:richard-d-james-album",
+      "type": "project",
+      "name": "Richard D. James Album"
+    },
+    {
+      "slug": "project:syro",
+      "type": "project",
+      "name": "Syro"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:windowlicker",
+      "type": "track",
+      "name": "Windowlicker"
+    },
+    {
+      "slug": "track:come-to-daddy",
+      "type": "track",
+      "name": "Come to Daddy"
+    },
+    {
+      "slug": "track:xtal",
+      "type": "track",
+      "name": "Xtal"
+    },
+    {
+      "slug": "track:alberto-balsalm",
+      "type": "track",
+      "name": "Alberto Balsalm"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:michael-paradinas",
+      "type": "artist",
+      "name": "Michael Paradinas"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:caustic-window",
+      "type": "artist",
+      "name": "Caustic Window"
+    },
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss"
+    },
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window"
+    }
+  ],
+  "members": []
+}

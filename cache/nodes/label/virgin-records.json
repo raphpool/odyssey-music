@@ -1,0 +1,126 @@
+{
+  "slug": "label:virgin-records",
+  "name": "Virgin Records",
+  "editorial_article": "Virgin Records stands as one of the most significant and influential independent labels in music history, fundamentally altering the landscape of the British music industry. Founded in 1972 by Richard Branson, alongside Simon Draper and Nik Powell, the label emerged from the orbit of the Virgin mail-order record business. Its initial success was famously secured by Mike Oldfield’s *Tubular Bells*, an experimental, progressive work that proved a commercial juggernaut and provided the financial bedrock for the label's ambitious expansion. Throughout the 1970s and 1980s, Virgin established a reputation for eclectic and daring A&R, signing quintessential acts across punk, new wave, and electronic music, including the Sex Pistols, The Human League, Culture Club, and Tangerine Dream.\n\nThe label’s evolution tracked the shifts in global music culture, moving from its scrappy, counter-cultural origins toward becoming a dominant major-label powerhouse. By the late 1980s and 1990s, Virgin had become a major international presence, signing global superstars such as The Rolling Stones, Janet Jackson, and Massive Attack. Its stylistic diversity—ranging from the trip-hop atmosphere of Bristol to the pop polish of the Spice Girls—cemented its status as a multifaceted institution. Though Virgin was eventually acquired by Thorn EMI in 1992 and later absorbed into Universal Music Group in 2012, its legacy remains tied to a spirit of iconoclasm and an uncompromising commitment to supporting artists who defied conventional pop formulas. From the avant-garde experiments of the early seventies to the polished chart dominance of the nineties, Virgin Records remains synonymous with the era of the modern music business, bridging the gap between independent discovery and global stardom.",
+  "citations": [
+    {
+      "url": "https://www.musicgateway.com/blog/music-distribution/who-are-virgin-records",
+      "title": "Virgin Records | Мusic Gateway"
+    },
+    {
+      "url": "https://www.loudersound.com/features/a-brief-history-of-virgin-records",
+      "title": "A Brief History Of Virgin Records - Louder Sound"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:10.906Z",
+  "type": "label",
+  "editorial_description": "A legendary British record label founded by Richard Branson that evolved from an experimental, independent progressive-rock outfit into a global music powerhouse.",
+  "founded": "1972",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    },
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip Hop"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop Music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield"
+    },
+    {
+      "slug": "artist:sex-pistols",
+      "type": "artist",
+      "name": "Sex Pistols"
+    },
+    {
+      "slug": "artist:the-human-league",
+      "type": "artist",
+      "name": "The Human League"
+    },
+    {
+      "slug": "artist:culture-club",
+      "type": "artist",
+      "name": "Culture Club"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    },
+    {
+      "slug": "artist:janet-jackson",
+      "type": "artist",
+      "name": "Janet Jackson"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack"
+    },
+    {
+      "slug": "artist:spice-girls",
+      "type": "artist",
+      "name": "Spice Girls"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:tubular-bells",
+      "type": "project",
+      "name": "Tubular Bells"
+    },
+    {
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols",
+      "type": "project",
+      "name": "Never Mind the Bollocks, Here's the Sex Pistols"
+    },
+    {
+      "slug": "project:mezzanine",
+      "type": "project",
+      "name": "Mezzanine"
+    },
+    {
+      "slug": "project:colour-by-numbers",
+      "type": "project",
+      "name": "Colour by Numbers"
+    },
+    {
+      "slug": "project:the-joshua-tree",
+      "type": "project",
+      "name": "The Joshua Tree"
+    }
+  ]
+}

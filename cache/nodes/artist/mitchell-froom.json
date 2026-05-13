@@ -1,0 +1,101 @@
+{
+  "slug": "artist:mitchell-froom",
+  "name": "Mitchell Froom",
+  "editorial_article": "Mitchell Froom (born June 29, 1953) is an American keyboardist, composer, and highly influential record producer whose work has defined the sound of several pivotal alternative and roots-rock albums from the late 1980s through the 2000s. Known for his eclectic and often textural approach to arrangement, Froom emerged from the Northern California music scene, initially gaining recognition as a keyboardist for the band Gamma and through his early collaborations with David LaFlamme. However, his reputation was firmly cemented by his production work, particularly his partnership with engineer Tchad Blake, which produced iconic albums for artists such as Los Lobos, Suzanne Vega, Richard Thompson, and Crowded House. His production style is noted for its ability to balance artistic experimentation with accessible, song-oriented structures, earning him multiple Grammy nominations, including for Producer of the Year. Throughout his prolific career, Froom has also been active as a performer, releasing solo material and serving as an integral member of groups such as the Latin Playboys and, as of 2019, Crowded House. His influence extends across genres, from folk-inflected rock to avant-pop, marking him as a singular architectural force in modern record production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mitchell_Froom",
+      "title": "Mitchell Froom - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/mitchell-froom-mn0000484163",
+      "title": "Mitchell Froom Songs, Albums, Reviews, Bio & M... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:07.129Z",
+  "type": "artist",
+  "editorial_bio": "An American keyboardist and producer noted for his idiosyncratic production work on albums for Los Lobos, Suzanne Vega, and Crowded House, and his later tenure as a member of Crowded House.",
+  "origin": "United States",
+  "active_years": "1982–present",
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:roots-rock",
+      "type": "genre",
+      "name": "Roots rock"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:slash-records",
+      "type": "label",
+      "name": "Slash Records"
+    },
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dopamine",
+      "type": "project",
+      "name": "Dopamine"
+    },
+    {
+      "slug": "project:a-thousand-days",
+      "type": "project",
+      "name": "A Thousand Days"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:noodletown",
+      "type": "track",
+      "name": "Noodletown"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:david-laflamme",
+      "type": "artist",
+      "name": "David LaFlamme"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:tchad-blake",
+      "type": "artist",
+      "name": "Tchad Blake"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:tchad-blake",
+      "type": "artist",
+      "name": "Tchad Blake"
+    },
+    {
+      "slug": "artist:neil-finn",
+      "type": "artist",
+      "name": "Neil Finn"
+    },
+    {
+      "slug": "artist:suzanne-vega",
+      "type": "artist",
+      "name": "Suzanne Vega"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

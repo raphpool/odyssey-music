@@ -1,0 +1,76 @@
+{
+  "slug": "artist:cyrus",
+  "name": "Cyrus",
+  "editorial_article": "Cyrus, born Jason Flynn, is a foundational producer within the UK dubstep scene, hailing from Croydon, the crucible of the genre. Active since the mid-2000s, his work is synonymous with the dark, heavy, and atmospheric aesthetic that defined the formative years of dubstep. Cyrus quickly gained recognition for his meticulous approach to sound design, balancing deep, sub-bass-heavy frequencies with intricate percussion patterns that favored a more clinical and industrial feel compared to the more melodic or garage-oriented tracks of his peers. \\n\\nHe is perhaps best known for his pivotal role in running Random Trio Productions, an independent label that helped nurture the burgeoning scene and solidify the sound of \"dark garage\" as it mutated into what the world would soon know as dubstep. Throughout his discography, which includes essential releases on influential labels such as Tectonic, Deep Medi Musik, and Chestplate, Cyrus maintained a commitment to a stripped-back, brooding sonic identity. His 2007 debut album, 'From The Shadows', released on Pinch's Tectonic label, remains a landmark project that encapsulates the grim, nocturnal energy of the Croydon sound, cementing his reputation as an architect of the genre's darkest corners. Beyond his solo work, his collaborative efforts with fellow heavyweights like Distance, Hatcha, and Kromestar highlighted his versatility and centrality to the underground movement. His contributions are etched into the foundations of bass music history, representing the uncompromising, experimental spirit that allowed dubstep to evolve from local UK club experiments into a global phenomenon.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/669685-Cyrus-9",
+      "title": "Cyrus (9) Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://medium.com/30-minutes-of-bass-education/30-minutes-of-cyrus-d766a386f4d6",
+      "title": "30 minutes of Cyrus. A Bass Education | by Wil Benton - Medium"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:07.435Z",
+  "type": "artist",
+  "editorial_bio": "Cyrus is a seminal British dubstep producer and label head from Croydon, best known for his influential work in the mid-to-late 2000s that helped define the dark, minimalist, and sub-heavy aesthetic of the genre. Through his own label, Random Trio Productions, and legendary imprints like Tectonic and Chestplate, he crafted a legacy of uncompromising, atmosphere-driven bass music.",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tectonic",
+      "type": "label",
+      "name": "Tectonic"
+    },
+    {
+      "slug": "label:chestplate",
+      "type": "label",
+      "name": "Chestplate"
+    },
+    {
+      "slug": "label:deep-medi-musik",
+      "type": "label",
+      "name": "Deep Medi Musik"
+    },
+    {
+      "slug": "label:random-trio-productions",
+      "type": "label",
+      "name": "Random Trio Productions"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:claret",
+      "type": "track",
+      "name": "Claret"
+    },
+    {
+      "slug": "track:haunted",
+      "type": "track",
+      "name": "Haunted"
+    },
+    {
+      "slug": "track:golden-gate",
+      "type": "track",
+      "name": "Golden Gate"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    }
+  ],
+  "members": []
+}

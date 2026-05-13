@@ -1,0 +1,81 @@
+{
+  "slug": "genre:ambient-house",
+  "name": "Ambient House",
+  "editorial_article": "Ambient House is a pivotal, atmospheric subgenre of electronic music that emerged in the late 1980s and early 1990s as a creative offshoot of the UK's burgeoning acid house scene. It functioned as an early categorical marker for artists who sought to move beyond the high-energy, club-centric mandates of dance music, instead prioritizing hypnotic, dreamlike soundscapes that were often intended for home listening rather than the dance floor. While it borrowed the rhythmic foundations of house—specifically mid-tempo, four-on-the-floor beats—it heavily subverted them by integrating lush synthesizer pads, expansive, spacey sound design, and unconventional, often lengthy vocal samples. This fusion created a listening experience that was as much an evolution of ambient experimentation as it was a reaction to the repetitive drive of rave culture.\n\nThe genre's rise was largely fueled by pioneers such as The Orb, whose landmark album 'The Orb's Adventures Beyond the Ultraworld' remains a definitive touchstone, and The KLF, whose 'Chill Out' redefined the potential for ambient narrative in an electronic context. Other instrumental figures included The Future Sound of London and The Irresistible Force. By emphasizing sonic immersion, these artists paved the way for \"chill-out rooms\" at raves, providing a serene sanctuary for exhausted party-goers. While the term 'Ambient House' was eventually superseded or complicated by a proliferation of more specific sub-classifications, its legacy persists as the essential bridge between the kinetic energy of house music and the introspective, boundless nature of ambient sound design. It transformed the perception of synthesized electronic music from a mere functional dance utility into a profound, atmospheric medium.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/ambient-house-ma0000012031",
+      "title": "Ambient House Music Style Overview | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:45.581Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of electronic music originating in the late 1980s UK, characterized by the blending of house music's rhythmic pulse with the atmospheric, expansive textures of ambient music.",
+  "era": "Late 1980s – mid-1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    },
+    {
+      "slug": "artist:the-klf",
+      "type": "artist",
+      "name": "The KLF"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London"
+    },
+    {
+      "slug": "artist:the-irresistible-force",
+      "type": "artist",
+      "name": "The Irresistible Force"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
+      "type": "project",
+      "name": "The Orb's Adventures Beyond the Ultraworld"
+    },
+    {
+      "slug": "project:chill-out",
+      "type": "project",
+      "name": "Chill Out"
+    },
+    {
+      "slug": "project:lifeforms",
+      "type": "project",
+      "name": "Lifeforms"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "genre:brostep",
+  "name": "Brostep",
+  "editorial_article": "Brostep is a polarizing and high-intensity offshoot of the dubstep genre that emerged in the late 2000s, fundamentally transforming the sound of bass music. Diverging from the sub-bass-focused, atmospheric, and nocturnal roots of original UK dubstep, brostep emphasized aggressive, atonal mid-range synth leads, dramatic builds, and heavy, arena-ready drops. While originally coined as a pejorative term—supposedly to describe a 'bro-friendly' or more frat-boy-oriented version of the music—it eventually became a descriptor for the mainstream American explosion of the genre between 2010 and 2014. The movement was largely driven by a stylistic shift towards EDM-adjacent production techniques, where technical prowess in sound design, especially with aggressive, 'robotic' bass timbres, took precedence over traditional rhythmic subtlety.\\n\\nThough early precursors can be found in the work of British producers like Rusko, Caspa, and Coki, who began experimenting with catchier, party-oriented leads, the sound fully coalesced in North America. Artists like Skrillex became the commercial face of the movement, bringing complex, distorted bass textures to a massive global audience. The genre’s expansion gave rise to a host of sub-variants and stylistic offshoots, including the drum-and-bass-infused 'drumstep,' the distorted 'deathstep,' and the triplet-heavy 'briddim.' Despite being met with intense scrutiny and criticism from purists of the early UK scene—who often viewed it as a hollowed-out version of the original—brostep was an undeniable cultural force that redefined the sonic palette of 2010s dance music, influencing everything from electro house to future bass and trap. Today, while it has largely been subsumed back into broader electronic music definitions, its footprint remains a permanent, highly recognizable fixture of the bass music sphere.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/brostep/",
+      "title": "Brostep - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:29.547Z",
+  "type": "genre",
+  "editorial_definition": "A high-intensity, EDM-leaning derivative of dubstep characterized by aggressive mid-range bass modulation, polished production, and drop-focused song structures.",
+  "era": "Late 2000s – Present",
+  "origin": "United Kingdom / North America",
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:deathstep",
+      "type": "genre",
+      "name": "Deathstep"
+    },
+    {
+      "slug": "genre:briddim",
+      "type": "genre",
+      "name": "Briddim"
+    },
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House"
+    },
+    {
+      "slug": "genre:riddim",
+      "type": "genre",
+      "name": "Riddim"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex"
+    },
+    {
+      "slug": "artist:excision",
+      "type": "artist",
+      "name": "Excision"
+    },
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko"
+    },
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa"
+    },
+    {
+      "slug": "artist:flux-pavilion",
+      "type": "artist",
+      "name": "Flux Pavilion"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:never-say-die",
+      "type": "label",
+      "name": "Never Say Die"
+    },
+    {
+      "slug": "label:rottun-recordings",
+      "type": "label",
+      "name": "Rottun Recordings"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:fabriclive-37",
+      "type": "project",
+      "name": "Fabriclive.37"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "genre:chillstep",
+  "name": "Chillstep",
+  "editorial_article": "Chillstep is a distinct subgenre of electronic dance music that emerged in the early 2010s as a melodic, atmospheric, and intentionally relaxed alternative to the aggressive, bass-heavy sounds of contemporary dubstep. While rooted in the syncopated, bass-driven structures of its parent genre, chillstep strips away the frantic, jarring \"brostep\" energy—often characterized by aggressive mid-range metallic synths and chaotic rhythmic patterns—in favor of lush soundscapes, melancholic vocal samples, and smooth, resonant basslines. Its sonic identity is heavily influenced by ambient music, deep house, and post-dubstep, often utilizing sub-bass and the signature \"wobble\" synth common to the wider dubstep family, but applying them in a more subdued, cinematic manner.\n\nThe genre peaked in popularity during the early 2010s, finding a dedicated audience on platforms like YouTube where \"chillstep mixes\" became staples for study, focus, and relaxation. Artists such as Seven Lions, Rameses B, MitiS, and Skrux were instrumental in defining the genre's aesthetic, which frequently incorporates piano melodies, ethereal pads, and downtempo rhythms. Unlike the high-energy rave environment of traditional dubstep, chillstep is designed to be introspective. Its structure is typically simpler and more repetitive, allowing the listener to settle into its sonic textures. As a subculture, it has influenced broader trends in \"chill-out\" electronic music, including the rise of lofi hip-hop, by demonstrating a massive cultural demand for high-production-value electronic music that prioritizes mood and atmosphere over aggressive dancefloor impact. While it has waned from its original peak in the mid-2010s, it remains a foundational pillar of internet-native electronic music culture.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/chillstep-music-guide",
+      "title": "Chillstep Music Guide: 4 Characteristics of Chillstep - 2026 - MasterClass"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Chillstep",
+      "title": "Chillstep - Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:25.960Z",
+  "type": "genre",
+  "editorial_definition": "Chillstep is an atmospheric, downtempo subgenre of dubstep that prioritizes melody, emotional resonance, and relaxed pacing over the aggressive, high-energy aggression typical of its parent genre.",
+  "era": "2010s-present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-dubstep"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop"
+    },
+    {
+      "slug": "genre:future-garage",
+      "type": "genre",
+      "name": "Future Garage"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:seven-lions",
+      "type": "artist",
+      "name": "Seven Lions"
+    },
+    {
+      "slug": "artist:rameses-b",
+      "type": "artist",
+      "name": "Rameses B"
+    },
+    {
+      "slug": "artist:mitis",
+      "type": "artist",
+      "name": "MitiS"
+    },
+    {
+      "slug": "artist:skrux",
+      "type": "artist",
+      "name": "Skrux"
+    },
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

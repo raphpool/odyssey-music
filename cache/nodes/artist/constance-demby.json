@@ -1,0 +1,88 @@
+{
+  "slug": "artist:constance-demby",
+  "name": "Constance Demby",
+  "editorial_article": "Constance Demby (1939–2021) was an American visionary musician, composer, and multimedia artist who played a pivotal role in shaping the aesthetic of New Age and ambient music. Born in Oakland, California, Demby’s career was defined by a restless creativity that spanned sculpture, painting, and sound engineering. In the 1960s, she began experimenting with sound sculptures made of sheet metal, eventually leading to the creation of unique instruments like the sonic steel space bass and the whale sail. Her early artistic life in Greenwich Village involved multimedia \"happenings,\" and she later co-founded the Central Maine Power Music Company, a collective that embraced avant-garde, electronic sound, and immersive light installations. \\n\\nBy the late 1970s, Demby had shifted her focus toward more introspective, devotional music, mastering instruments like the hammered dulcimer, synthesizer, and koto. Her landmark 1986 album, *Novus Magnificat*, is widely considered a defining masterwork of the New Age genre. It utilized synthesizers to create vast, symphonic, and immersive soundscapes that transcended simple relaxation music, leaning instead into a space-ambient style that felt both ancient and futuristic. Her influence extended beyond her own discography; she was a pioneer in blending acoustic instrumentation with electronic textures, bridging the gap between experimental sound art and meditative listening. Throughout her long career, she remained deeply committed to music as a spiritual and environmental experience, leaving behind a legacy that continues to resonate within ambient and electronic circles.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Constance_Demby",
+      "title": "Constance Demby - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/constance-demby-mn0000778865",
+      "title": "Constance Demby Songs, Albums, Reviews, Bio & ... - AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/constance-demby",
+      "title": "Constance Demby discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:48.147Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering multi-instrumentalist and sound sculptor known for her profound contributions to New Age and space-ambient music, most notably her 1986 masterwork 'Novus Magnificat'.",
+  "origin": "Oakland, California, U.S.",
+  "active_years": "1960s–2021",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hearts-of-space",
+      "type": "label",
+      "name": "Hearts of Space"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:skies-above-skies",
+      "type": "project",
+      "name": "Skies Above Skies"
+    },
+    {
+      "slug": "project:novus-magnificat",
+      "type": "project",
+      "name": "Novus Magnificat"
+    },
+    {
+      "slug": "project:faces-of-the-christ",
+      "type": "project",
+      "name": "Faces of The Christ"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:novus-magnificat",
+      "type": "track",
+      "name": "Novus Magnificat"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:robert-rutman",
+      "type": "artist",
+      "name": "Robert Rutman"
+    },
+    {
+      "slug": "artist:dorothy-carter",
+      "type": "artist",
+      "name": "Dorothy Carter"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

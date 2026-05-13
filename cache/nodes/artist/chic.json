@@ -1,0 +1,99 @@
+{
+  "slug": "artist:chic",
+  "name": "Chic",
+  "editorial_article": "Chic is a foundational American disco and funk group formed in 1977 by guitarist Nile Rodgers and bassist Bernard Edwards in New York City. Known for their tight, sophisticated instrumentation and the unmistakable \"Chic sound\"—built on Edwards' melodic, driving basslines and Rodgers' rhythmic \"chucking\" guitar style—the group became synonymous with the golden era of disco. Their self-titled debut album and subsequent releases like C'est Chic and Risqué delivered era-defining hits such as \"Le Freak\" and \"Good Times,\" which exerted a massive influence on the trajectory of popular music, including early hip-hop; \"Good Times\" famously provided the foundational rhythm for the Sugarhill Gang’s \"Rapper's Delight.\" Beyond their success as a band, the duo of Rodgers and Edwards—known as 'The Chic Organization'—became legendary producers, crafting hits for artists including Sister Sledge, Diana Ross, and David Bowie. Despite the changing tides of popular music, Chic’s rhythmic architecture remains a blueprint for funk, dance, and modern pop, cemented by the band's continued activity and their 2018 studio comeback, It's About Time. The group’s members, including drummer Tony Thompson, were crucial to creating a studio polish that separated Chic from the more loose, sprawling disco of the late 70s. Their influence extends well beyond their commercial peak, as they remain one of the most sampled and referenced acts in dance music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chic_discography",
+      "title": "Chic discography - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/chic-mn0000092942",
+      "title": "Chic Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://www.liveabout.com/chic-band-bio-and-discography-2522020",
+      "title": "Chic: The Songs and History of Disco's \"Greatest\" Band - LiveAbout"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:27.302Z",
+  "type": "artist",
+  "editorial_bio": "Chic is a foundational American disco and funk group formed in 1977 by guitarist Nile Rodgers and bassist Bernard Edwards in New York City.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Chicgf.JPG/250px-Chicgf.JPG",
+  "origin": "New York City, NY",
+  "active_years": "1977-present",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chic",
+      "type": "project",
+      "name": "Chic"
+    },
+    {
+      "slug": "project:c-est-chic",
+      "type": "project",
+      "name": "C'est Chic"
+    },
+    {
+      "slug": "project:risque",
+      "type": "project",
+      "name": "Risqué"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:le-freak",
+      "type": "track",
+      "name": "Le Freak"
+    },
+    {
+      "slug": "track:good-times",
+      "type": "track",
+      "name": "Good Times"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards"
+    },
+    {
+      "slug": "artist:tony-thompson",
+      "type": "artist",
+      "name": "Tony Thompson"
+    }
+  ]
+}

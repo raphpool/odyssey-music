@@ -1,0 +1,115 @@
+{
+  "slug": "artist:robert-owens",
+  "name": "Robert Owens",
+  "editorial_article": "Robert Owens (born August 17, 1961) is an American singer, songwriter, DJ, and producer who became a defining voice of the Chicago house music scene in the mid-1980s. Emerging from a background of singing in church, Owens made his mark as a foundational member of the group Fingers Inc., a seminal house trio he formed with producer Larry Heard and Ron Wilson. His soulful, emotive vocal style helped elevate house music from club-bound tracks to emotionally resonant songs, most notably on the classic \"Tears\" with Frankie Knuckles and Satoshi Tomiie, and Fingers Inc. releases. Unlike many vocalists of the era who were often relegated to session work, Owens maintained a robust career as a solo artist and collaborator, bridging the gap between underground Chicago house, club-oriented dance anthems, and later electronic genres like drum and bass. His solo discography includes albums such as Rhythms in Me and The Journey, and he has frequently appeared as a guest vocalist on records by artists like Photek, London Elektricity, and Kris Menace. His enduring legacy is cemented by his ability to infuse technical electronic production with profound gospel-infused humanity, ensuring his status as one of house music’s most vital and enduring icons. Throughout his career, he has successfully transitioned between being a group collaborator, a prominent solo artist, and an international DJ, continuously influencing the development of house and electronic music culture globally through his distinctive, recognizable voice and artistic vision. By consistently delivering powerful vocal performances that ground complex electronic arrangements in real-world emotion, he remains a key figure whose contributions span decades of dance music history. His work remains essential for understanding how the Chicago house movement expanded and evolved into the various electronic dance music subgenres we hear today.",
+  "citations": [
+    {
+      "url": "https://www.jango.com/music/Robert+Owens/_full_bio",
+      "title": "Robert Owens on Jango Radio | Full Bio, Songs, Videos"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:25.194Z",
+  "type": "artist",
+  "editorial_bio": "Robert Owens (born August 17, 1961) is an American singer, songwriter, DJ, and producer who became a defining voice of the Chicago house music scene in the mid-1980s.",
+  "origin": "Ohio, U.S.",
+  "active_years": "1985-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:4th-and-b-way-records",
+      "type": "label",
+      "name": "4th & B'way Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:rhythms-in-me",
+      "type": "project",
+      "name": "Rhythms in Me"
+    },
+    {
+      "slug": "project:the-journey",
+      "type": "project",
+      "name": "The Journey"
+    },
+    {
+      "slug": "project:night-time-stories",
+      "type": "project",
+      "name": "Night-Time Stories"
+    },
+    {
+      "slug": "project:art",
+      "type": "project",
+      "name": "Art"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-ll-be-your-friend",
+      "type": "track",
+      "name": "I'll Be Your Friend"
+    },
+    {
+      "slug": "track:mine-to-give",
+      "type": "track",
+      "name": "Mine to Give"
+    },
+    {
+      "slug": "track:tears",
+      "type": "track",
+      "name": "Tears"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:satoshi-tomiie",
+      "type": "artist",
+      "name": "Satoshi Tomiie"
+    },
+    {
+      "slug": "artist:photek",
+      "type": "artist",
+      "name": "Photek"
+    },
+    {
+      "slug": "artist:london-elektricity",
+      "type": "artist",
+      "name": "London Elektricity"
+    },
+    {
+      "slug": "artist:kris-menace",
+      "type": "artist",
+      "name": "Kris Menace"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

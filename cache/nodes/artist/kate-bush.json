@@ -1,0 +1,118 @@
+{
+  "slug": "artist:kate-bush",
+  "name": "Kate Bush",
+  "editorial_article": "Kate Bush is a British singer, songwriter, and producer whose imaginative and inventive art rock has made her one of the most influential and successful musicians of the late 20th century. Born in Bexleyheath, Kent, in 1958, she demonstrated an early talent for composition and performance, eventually coming to the attention of Pink Floyd’s David Gilmour, who helped secure her a contract with EMI Records. Bush burst into the public consciousness in 1978 with her debut single, \"Wuthering Heights,\" a track that defied the era's dominant punk rock aesthetic with its keening, operatic vocals and literary inspiration. Throughout her career, she has been noted for her meticulous production and refusal to rush the creative process, famously taking a 12-year hiatus between the release of The Red Shoes (1993) and the critically acclaimed Aerial (2005). Her work is characterized by its theatricality, sophisticated use of synthesizer technology—particularly on albums like The Dreaming and Hounds of Love—and lyrical depth, often drawing inspiration from literature, history, and the natural world. In 2014, she returned to live performance for a series of highly lauded theatrical shows, cementing her legacy as a visionary artist whose influence continues to resonate with new generations of listeners. Over the decades, she has collaborated with a diverse array of artists including Peter Gabriel, Eric Clapton, and Prince, further diversifying her sonic palette. Her impact on alternative music and pop culture is profound, recently seeing a massive resurgence in popularity due to the inclusion of her 1985 classic \"Running Up That Hill\" in the television series Stranger Things, which introduced her unique sonic world to millions of new listeners across the globe.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Kate-Bush",
+      "title": "Kate Bush | Biography, Songs, Running Up That Hill, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Kate_Bush_discography",
+      "title": "Kate Bush discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:21.649Z",
+  "type": "artist",
+  "editorial_bio": "Kate Bush is a British singer, songwriter, and producer whose imaginative and inventive art rock has made her one of the most influential and successful musicians of the late 20th century.",
+  "origin": "Bexleyheath, Kent, England",
+  "active_years": "1978-present",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    },
+    {
+      "slug": "label:fish-people",
+      "type": "label",
+      "name": "Fish People"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-kick-inside",
+      "type": "project",
+      "name": "The Kick Inside"
+    },
+    {
+      "slug": "project:lionheart",
+      "type": "project",
+      "name": "Lionheart"
+    },
+    {
+      "slug": "project:never-for-ever",
+      "type": "project",
+      "name": "Never for Ever"
+    },
+    {
+      "slug": "project:the-dreaming",
+      "type": "project",
+      "name": "The Dreaming"
+    },
+    {
+      "slug": "project:hounds-of-love",
+      "type": "project",
+      "name": "Hounds of Love"
+    },
+    {
+      "slug": "project:the-sensual-world",
+      "type": "project",
+      "name": "The Sensual World"
+    },
+    {
+      "slug": "project:the-red-shoes",
+      "type": "project",
+      "name": "The Red Shoes"
+    },
+    {
+      "slug": "project:aerial",
+      "type": "project",
+      "name": "Aerial"
+    },
+    {
+      "slug": "project:50-words-for-snow",
+      "type": "project",
+      "name": "50 Words for Snow"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:wuthering-heights",
+      "type": "track",
+      "name": "Wuthering Heights"
+    },
+    {
+      "slug": "track:running-up-that-hill",
+      "type": "track",
+      "name": "Running Up That Hill"
+    },
+    {
+      "slug": "track:babooshka",
+      "type": "track",
+      "name": "Babooshka"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

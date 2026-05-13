@@ -1,0 +1,46 @@
+{
+  "slug": "track:computer-love",
+  "name": "Computer Love",
+  "editorial_article": "\"Computer Love\" is a defining anthem of 1980s funk, recorded by the legendary Ohio group Zapp and released as a single in 1986 from their fourth studio album, *The New Zapp IV U*. Known for its distinctive, melancholy use of the talk box—a signature instrument utilized masterfully by band leader Roger Troutman—the song articulates the isolation and longing associated with seeking love in an increasingly digitized and distant world. The track’s production, handled by Roger Troutman, showcases a smooth, mid-tempo groove that bridges the gap between traditional R&B and the emerging synth-funk sound of the era, bolstered by evocative backing vocals from soul legends Shirley Murdock and Charlie Wilson. \n\nBeyond its initial chart success, peaking at number eight on the Billboard R&B chart, \"Computer Love\" has cemented its status as a cornerstone of popular music culture. Its iconic, shimmering synth hooks and emotionally resonant lyrics about digital-age loneliness have made it one of the most frequently sampled tracks in hip-hop and R&B history, notably forming the backbone of the 1995 blockbuster hit \"California Love\" by 2Pac featuring Dr. Dre and Roger Troutman himself. The track remains a poignant example of Zapp's ability to imbue mechanical, electronic sounds with profound human emotion, continuing to resonate with listeners decades after its original release. Its presence in films like *Menace II Society* further secured its place as a quintessential sonic landmark of the 1980s urban music landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_New_Zapp_IV_U",
+      "title": "The New Zapp IV U - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/14299-Zapp-Computer-Love?srsltid=AfmBOorJrCvtL_IV9s4QXzlkPMptMbZ4Qdi-mm4iR4mOD77bpDzbLIL9",
+      "title": "Zapp – Computer Love | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:40.120Z",
+  "type": "track",
+  "editorial_teaser": "\"Computer Love\" is a defining anthem of 1980s funk, recorded by the legendary Ohio group Zapp and released as a single in 1986 from their fourth studio album, *The New Zapp IV U*.",
+  "artists": [],
+  "project": {
+    "slug": "project:the-new-zapp-iv-u",
+    "type": "project",
+    "name": "The New Zapp IV U"
+  },
+  "genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:synth-funk",
+      "type": "genre",
+      "name": "Synth-funk"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:roger-troutman",
+      "type": "artist",
+      "name": "Roger Troutman"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

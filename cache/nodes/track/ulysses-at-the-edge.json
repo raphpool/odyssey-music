@@ -1,0 +1,58 @@
+{
+  "slug": "track:ulysses-at-the-edge",
+  "name": "Ulysses at the Edge",
+  "editorial_article": "\"Ulysses at the Edge\" is a seminal instrumental work by the American composer and instrument inventor Harry Partch. Composed in 1955 at his studio in Evanston, Illinois, the piece represents a significant transitional moment in Partch’s late-period output, marking a distinct shift away from his earlier, lyric-focused \"intoning voice\" works toward a more purely instrumental, percussive-driven idiom. The composition was designed to utilize his unique microtonal instrument collection, specifically featuring the Diamond Marimba and Cloud-Chamber Bowls, alongside brass elements that suggest a connection to his interest in jazz-inflected timbres—Partch reportedly originally envisioned the work for trumpeter Chet Baker.\n\nThe music of \"Ulysses at the Edge\" moves through dense, resonant soundscapes characteristic of Partch’s just-intonation tuning system, which allows for pure, beating-free intervals that differ significantly from the standard Western equal temperament. In the 1958 recording—which was eventually released on Gate 5 Records—Partch himself performs on the Diamond Marimba and Cloud-Chamber Bowls, accompanied by a small ensemble that includes David Reid on baritone saxophone and Dick Schleppe on alto saxophone. This ensemble-based approach highlights the textural innovation of Partch’s later career, where the physicality of the custom-built instruments defines the harmonic structure. As part of the \"Ulysses\" cycle, the work bridges the gap between his earlier music-dance dramas and the complex percussive explorations of his later years, remaining a crucial entry in the catalog of American 20th-century experimental music. It stands as a testament to Partch’s refusal to conform to conventional academic or classical boundaries, favoring instead a sound-world deeply rooted in ritual and raw, tactile resonance.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/track/73uoR5g4GkQORh2YDvGwyN",
+      "title": "Ulysses at the Edge - song and lyrics by Harry Partch, Gate ... - Spotify"
+    },
+    {
+      "url": "https://nwr-site-liner-notes.s3.amazonaws.com/80621.pdf",
+      "title": "The Harry Partch Collection Volume 1 liner notes"
+    },
+    {
+      "url": "http://corporeal.com/freshpix_txt.html",
+      "title": "Fresh Picks: The Meadows Guide to Partch Recordings"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:04.796Z",
+  "type": "track",
+  "editorial_teaser": "A pivotal instrumental composition by Harry Partch, \"Ulysses at the Edge\" showcases the composer’s move toward a percussive-focused idiom utilizing his custom-built, microtonal instruments.",
+  "year": "1958",
+  "duration": "6:39",
+  "artists": [
+    {
+      "slug": "artist:harry-partch",
+      "type": "artist",
+      "name": "Harry Partch"
+    }
+  ],
+  "project": {
+    "slug": "project:the-harry-partch-collection-volume-1",
+    "type": "project",
+    "name": "The Harry Partch Collection, Volume 1"
+  },
+  "genres": [
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    },
+    {
+      "slug": "genre:microtonal-music",
+      "type": "genre",
+      "name": "Microtonal music"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:harry-partch",
+      "type": "artist",
+      "name": "Harry Partch"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

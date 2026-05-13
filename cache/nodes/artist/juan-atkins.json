@@ -1,0 +1,78 @@
+{
+  "slug": "artist:juan-atkins",
+  "name": "Juan Atkins",
+  "editorial_article": "Juan Atkins (born 1962) is a foundational American electronic musician and producer, widely recognized as the primary architect of Detroit techno. Raised in the Detroit area, Atkins was a central figure in the \"Belleville Three,\" a group of high school friends—alongside Derrick May and Kevin Saunderson—who bridged the gap between European synth-pop, electro-funk, and the experimental spirit of the Motor City. In 1981, he co-founded the seminal electro outfit Cybotron with Richard \"3070\" Davis, creating landmark tracks like \"Alleys of Your Mind\" and \"Clear.\" Following his tenure with Cybotron, Atkins established the influential label Metroplex Records in 1985. Through this imprint, he launched his most significant solo and collaborative project, Model 500, which helped codify the futuristic, mechanical aesthetic of techno. Atkins' work served as a blueprint for global dance music in the 1990s and beyond, characterized by its reliance on sophisticated drum machine programming, deep synthesizers, and an uncompromising, forward-thinking approach to production. His influence extends far beyond his own releases, as he remains a titan of electronic music whose innovations continue to shape contemporary club and experimental soundscapes. He is a primary architect of what would eventually become the world's most enduring electronic subgenres, and his legacy is cemented by his constant reinvention of the sonic boundaries within the Detroit scene. As a pioneer, he brought a specific, cold, and rhythmic intelligence to dance floors that transformed how the world viewed electronic music production, marking him as a singular figure in the history of 20th-century music. His ongoing work continues to influence new generations of electronic artists.",
+  "citations": [
+    {
+      "url": "https://kresgeartsindetroit.org/artist/juan-atkins/",
+      "title": "Juan Atkins - Kresge Arts in Detroit"
+    },
+    {
+      "url": "https://toneglow.substack.com/p/tone-glow-151-juan-atkins",
+      "title": "Tone Glow 151: Juan Atkins"
+    },
+    {
+      "url": "https://www.detroithistorical.org/learn/online-research/encyclopedia-of-detroit/atkins-juan",
+      "title": "Atkins, Juan | Detroit Historical Society"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:53.073Z",
+  "type": "artist",
+  "editorial_bio": "Juan Atkins is a pioneering Detroit-based producer known as the godfather of techno, whose work in Cybotron and as Model 500 defined the genre's mechanical, futuristic sound.",
+  "origin": "Detroit, Michigan",
+  "active_years": "1981-Present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:metroplex-records",
+      "type": "label",
+      "name": "Metroplex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:enter",
+      "type": "project",
+      "name": "Enter"
+    },
+    {
+      "slug": "project:deep-space",
+      "type": "project",
+      "name": "Deep Space"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:clear",
+      "type": "track",
+      "name": "Clear"
+    },
+    {
+      "slug": "track:no-ufos",
+      "type": "track",
+      "name": "No UFOs"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

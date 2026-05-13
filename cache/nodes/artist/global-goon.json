@@ -1,0 +1,80 @@
+{
+  "slug": "artist:global-goon",
+  "name": "Global Goon",
+  "editorial_article": "Global Goon is the primary creative persona of British electronic musician and former programmer Jonathan Taylor. Emerging from Lydiate, England, Taylor moved to London in the mid-1990s, where he famously entered the orbit of the burgeoning UK electronic underground, sharing a house with luminaries such as Richard D. James (Aphex Twin), Tom Jenkinson (Squarepusher), and Grant Wilson-Claridge. This environment facilitated his entry into the scene, leading to the release of his debut album, 'Goon', on the seminal Rephlex Records in 1996.\\n\\nHis music is characterized by a playful, idiosyncratic approach to IDM and braindance, often blending intricate programming with quirky, melodic sensibilities that stand apart from the darker or more mechanical tropes of the era. Following early acclaim and persistent, albeit unfounded, rumors that he was an alias for Aphex Twin, Taylor continued to refine his sound through albums like 'Cradle of History' and 'Vatican Nitez'. His career is defined by a commitment to independent production; after leaving Rephlex, he established his own label, J-HOK Records, while also releasing material through reputable labels such as WéMè Records and Audio Dregs. His discography reflects a prolific and enduring dedication to experimental electronics, marked by an ability to balance technical complexity with a distinctively human, often humorous, charm. His influence persists as a cult figure within the braindance genre, celebrated for maintaining an authentic and uncompromising vision throughout decades of production.",
+  "citations": [
+    {
+      "url": "https://www.idmdiscovery.com/artist/global-goon",
+      "title": "Global Goon — IDM Discovery"
+    },
+    {
+      "url": "https://www.discogs.com/artist/1081-Global-Goon",
+      "title": "Global Goon Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.upitup.com/artists/77",
+      "title": "Global Goon - Upitup Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:09.553Z",
+  "type": "artist",
+  "editorial_bio": "Global Goon is the electronic music project of British musician Jonathan Taylor, a key figure in the UK's 1990s braindance scene known for his time at Rephlex Records and his unique, melodic approach to IDM.",
+  "origin": "Lydiate, England",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:braindance",
+      "type": "genre",
+      "name": "Braindance"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    },
+    {
+      "slug": "label:weme-records",
+      "type": "label",
+      "name": "WéMè Records"
+    },
+    {
+      "slug": "label:j-hok-records",
+      "type": "label",
+      "name": "J-HOK Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:craehrzhd",
+      "type": "track",
+      "name": "Craehrzhd"
+    },
+    {
+      "slug": "track:afterlife",
+      "type": "track",
+      "name": "Afterlife"
+    },
+    {
+      "slug": "track:g-o-l-d",
+      "type": "track",
+      "name": "G.O.L.D."
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

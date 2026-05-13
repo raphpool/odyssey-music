@@ -1,0 +1,105 @@
+{
+  "slug": "genre:soul-music",
+  "name": "Soul music",
+  "editorial_article": "Soul music is a genre that emerged in mid-20th century America, born from the confluence of gospel, rhythm and blues, jazz, and blues. It is often described as music that is not just heard, but felt, channeling the profound emotional range of the Black experience—from the highs of love and joy to the depths of heartbreak and the weight of social struggle. The genre began to crystallize in the late 1950s, with pioneers like Ray Charles, Sam Cooke, and James Brown spearheading a secularization of gospel-style phrasing and fervor. Ray Charles is particularly credited for bringing gospel’s emotive power into secular contexts, while Sam Cooke’s smooth, vulnerable vocal delivery set a new standard for pop performance.\\n\\nBy the 1960s, soul had become a central pillar of American pop culture, heavily shaped by legendary labels like Motown Records in Detroit, Stax Records in Memphis, and Atlantic Records in New York. Motown cultivated a polished, radio-friendly \"hit factory\" sound with artists like The Supremes, The Temptations, and Marvin Gaye. Conversely, Stax and Atlantic fostered a grittier, raw, and gospel-steeped sound, championed by figures like Aretha Franklin—the \"Queen of Soul\"—and Otis Redding. Throughout the civil rights movement, soul became a vehicle for social consciousness, with anthems like \"A Change Is Gonna Come\" and \"People Get Ready\" serving as hymns for hope and resistance.\\n\\nAs the 1970s arrived, the genre continued to evolve, branching into the lush, orchestral sounds of Philadelphia Soul—typified by artists like The O’Jays and Teddy Pendergrass—and integrating with the emerging grooves of funk and psychedelia, most notably through the work of Sly & The Family Stone. Soul music’s influence is foundational to modern music, providing the DNA for funk, R&B, and the breakbeats and sampling culture of hip hop. Its legacy endures in its commitment to raw emotional truth and its ability to bridge communal experience with personal narrative.",
+  "citations": [
+    {
+      "url": "https://splice.com/blog/what-is-soul-music/",
+      "title": "What is Soul Music? History, Key Artists, and Ongoing Legacy - Blog | Splice"
+    },
+    {
+      "url": "https://pages.stolaf.edu/americanmusic/2023/10/03/the-origins-of-soul-music/",
+      "title": "The Origins of Soul Music | Music 345 - St. Olaf Pages"
+    },
+    {
+      "url": "https://thejazzcafe.co.uk/blog/2021/07/21/the-history-of-soul-music/",
+      "title": "The History of Soul Music - Jazz Cafe"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:44.589Z",
+  "type": "genre",
+  "editorial_definition": "A genre of African-American popular music that emerged in the 1950s and 1960s, fusing gospel, rhythm and blues, and jazz, characterized by intense vocal expression and deep emotional resonance.",
+  "era": "1950s–1970s (peak period)",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:philadelphia-soul",
+      "type": "genre",
+      "name": "Philadelphia soul"
+    },
+    {
+      "slug": "genre:southern-soul",
+      "type": "genre",
+      "name": "Southern soul"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles"
+    },
+    {
+      "slug": "artist:sam-cooke",
+      "type": "artist",
+      "name": "Sam Cooke"
+    },
+    {
+      "slug": "artist:james-brown",
+      "type": "artist",
+      "name": "James Brown"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye"
+    },
+    {
+      "slug": "artist:otis-redding",
+      "type": "artist",
+      "name": "Otis Redding"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:motown-records",
+      "type": "label",
+      "name": "Motown Records"
+    },
+    {
+      "slug": "label:stax-records",
+      "type": "label",
+      "name": "Stax Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:what-s-going-on",
+      "type": "project",
+      "name": "What's Going On"
+    },
+    {
+      "slug": "project:i-never-loved-a-man-the-way-i-love-you",
+      "type": "project",
+      "name": "I Never Loved a Man the Way I Love You"
+    }
+  ],
+  "landmark_tracks": []
+}

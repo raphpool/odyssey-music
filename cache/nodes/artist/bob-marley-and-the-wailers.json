@@ -1,0 +1,103 @@
+{
+  "slug": "artist:bob-marley-and-the-wailers",
+  "name": "Bob Marley & The Wailers",
+  "editorial_article": "Bob Marley & The Wailers was a seminal Jamaican reggae band that fundamentally reshaped the trajectory of world music. Founded in 1963 in Kingston, Jamaica, the group originated as a ska vocal trio consisting of Bob Marley, Peter Tosh, and Bunny Wailer. Throughout the 1960s, they evolved through the shifts in Jamaican music, navigating the transition from the upbeat rhythms of ska to the more deliberate, bass-heavy grooves of rocksteady and eventually into the politically charged, spiritual intensity of roots reggae. Their early work under producers like Lee 'Scratch' Perry at Studio One helped establish a distinct Jamaican identity, moving away from American R&B influences toward a sound that captured the local spirit and struggles of Trench Town.\\n\\nAfter signing with Island Records in 1972, the group—specifically under Bob Marley's leadership—propelled reggae to the global stage. While the original trio split in 1974 due to ideological and professional friction, Marley continued to record and tour under the banner, eventually integrating a sophisticated lineup that featured the I-Threes on backing vocals and the foundational rhythm section of brothers Aston 'Family Man' Barrett and Carlton Barrett. Their catalog, spanning albums from 'Catch a Fire' to the career-spanning 'Legend', blended messages of liberation, pan-Africanism, and spiritual devotion with irresistible, danceable production. Marley's tenure as the voice of the band turned him into a global cultural icon, making the Wailers not merely a backing group, but the primary vehicle for popularizing the reggae aesthetic worldwide until Marley's untimely death in 1981.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bob_Marley_and_the_Wailers",
+      "title": "Bob Marley and the Wailers - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Bob-Marley",
+      "title": "Bob Marley | Biography, Songs, Albums, Death, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:37.774Z",
+  "type": "artist",
+  "editorial_bio": "Bob Marley & The Wailers was a seminal Jamaican reggae band that fundamentally reshaped the trajectory of world music. Founded in 1963 in Kingston, Jamaica, the group originated as a ska vocal trio consisting of Bob Marley, Peter Tosh, and Bunny Wailer. Throughout the 1960s, they evolved through the shifts in Jamaican music, navigating the transition from the upbeat rhythms of ska to the more deliberate, bass-heavy grooves of rocksteady and eventually into the politically charged, spiritual intensity of roots reggae. Their early work under producers like Lee 'Scratch' Perry at Studio One helped establish a distinct Jamaican identity, moving away from American R&B influences toward a sound that captured the local spirit and struggles of Trench Town.\\n\\nAfter signing with Island Records in 1972, the group—specifically under Bob Marley's leadership—propelled reggae to the global stage. While the original trio split in 1974 due to ideological and professional friction, Marley continued to record and tour under the banner, eventually integrating a sophisticated lineup that featured the I-Threes on backing vocals and the foundational rhythm section of brothers Aston 'Family Man' Barrett and Carlton Barrett. Their catalog, spanning albums from 'Catch a Fire' to the career-spanning 'Legend', blended messages of liberation, pan-Africanism, and spiritual devotion with irresistible, danceable production. Marley's tenure as the voice of the band turned him into a global cultural icon, making the Wailers not merely a backing group, but the primary vehicle for popularizing the reggae aesthetic worldwide until Marley's untimely death in 1981.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1963–1981",
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:studio-one",
+      "type": "label",
+      "name": "Studio One"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:tuff-gong",
+      "type": "label",
+      "name": "Tuff Gong"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:simmer-down",
+      "type": "track",
+      "name": "Simmer Down"
+    },
+    {
+      "slug": "track:get-up-stand-up",
+      "type": "track",
+      "name": "Get Up, Stand Up"
+    },
+    {
+      "slug": "track:i-shot-the-sheriff",
+      "type": "track",
+      "name": "I Shot the Sheriff"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:bob-marley",
+      "type": "artist",
+      "name": "Bob Marley"
+    },
+    {
+      "slug": "artist:peter-tosh",
+      "type": "artist",
+      "name": "Peter Tosh"
+    },
+    {
+      "slug": "artist:bunny-wailer",
+      "type": "artist",
+      "name": "Bunny Wailer"
+    },
+    {
+      "slug": "artist:aston-family-man-barrett",
+      "type": "artist",
+      "name": "Aston 'Family Man' Barrett"
+    },
+    {
+      "slug": "artist:carlton-barrett",
+      "type": "artist",
+      "name": "Carlton Barrett"
+    }
+  ]
+}

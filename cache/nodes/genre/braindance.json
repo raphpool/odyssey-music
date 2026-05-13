@@ -1,0 +1,89 @@
+{
+  "slug": "genre:braindance",
+  "name": "Braindance",
+  "editorial_article": "Braindance is a distinct, idiosyncratic sub-genre of electronic music that emerged in the early 1990s, primarily associated with the influential UK label Rephlex Records. Coined by label founders Richard D. James (Aphex Twin) and Grant Wilson-Claridge, the term served as a label-specific descriptor that often functioned in tandem with, yet distinct from, the broader, more academically-inclined label of \"Intelligent Dance Music\" (IDM). Where IDM became a catch-all for complex, experimental electronic textures, Braindance maintained a specific aesthetic focus: it was deeply rooted in the legacy of acid techno, particularly the squelching, resonant timbres of the Roland TB-303, while simultaneously embracing high-speed, intricate, and often glitch-heavy breakbeat manipulation.\\n\\nMusically, the genre is characterized by a moderate-to-fast tempo, a playful or irreverent attitude toward sonic structure, and a heavy reliance on analogue synthesizers and classic drum machines. While it shares technical DNA with ambient techno and acid, it is defined by a sense of restless experimentation and a rejection of the more clinical, \"pure\" listening experiences found in other experimental corners of the time. The sound is often erratic, blending the visceral punch of club-oriented acid with complex, programmed rhythmic sequences that demand active, cognitive engagement—hence the \"brain\" in the moniker. By fostering a roster that included artists like µ-Ziq, DMX Krew, Ceephax Acid Crew, and Global Goon, Rephlex Records created a dedicated community that viewed electronic music as a sandbox for unlimited individual expression, rather than a genre bound by stylistic orthodoxy. Its influence persists today, not only as a historical marker of 90s experimentalism but as a thriving stylistic ethos that continues to inform modern producers exploring the intersection of raw analogue heat and algorithmic complexity.",
+  "citations": [
+    {
+      "url": "https://www.idmdiscovery.com/genres/braindance",
+      "title": "Braindance — IDM Discovery"
+    },
+    {
+      "url": "https://volt.fm/genre/1792/braindance",
+      "title": "Braindance Artists, Songs, Albums, Playlists and Listeners - Volt.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:44.181Z",
+  "type": "genre",
+  "editorial_definition": "Braindance is an experimental electronic genre defined by its fusion of acid techno aesthetics, intricate rhythmic structures, and a playful, non-academic approach to sound design, spearheaded by Rephlex Records in the early 1990s.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    },
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew"
+    },
+    {
+      "slug": "artist:global-goon",
+      "type": "artist",
+      "name": "Global Goon"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:mike-and-rich",
+      "type": "project",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "project:polygon-window",
+      "type": "project",
+      "name": "Polygon Window"
+    }
+  ],
+  "landmark_tracks": []
+}

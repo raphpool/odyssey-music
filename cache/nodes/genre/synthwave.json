@@ -1,0 +1,97 @@
+{
+  "slug": "genre:synthwave",
+  "name": "Synthwave",
+  "editorial_article": "Synthwave is a microgenre of electronic music that emerged in the mid-to-late 2000s, rooted in a deep nostalgia for the synthesizers, pop culture, and cinematic aesthetics of the 1980s. Often referred to as \"retrowave\" or \"outrun,\" the genre is characterized by its use of gated reverb drums, lush synthesizer pads, and driving, arpeggiated basslines that evoke the feeling of night driving through a futuristic, neon-lit cityscape. While initially emerging from the French electro-house scene, where producers like Kavinsky began blending modern production techniques with retro-analog textures, the genre rapidly expanded into a global movement. It draws significant stylistic inspiration from the soundtracks of iconic 1980s science fiction and action films—such as *Blade Runner* and *The Terminator*—as well as the era's video games, television programs, and fashion.\n\nThe sound of synthwave is predominantly instrumental, focusing on mood, atmosphere, and a sense of \"retro-futuristic\" melancholy. As the genre matured throughout the 2010s, it branched into distinct sub-styles, including the aggressive, gritty \"darksynth\" pioneered by artists like Perturbator and Carpenter Brut, and the more ambient, dream-like \"chillsynth\" influenced by chillwave. The genre gained substantial mainstream visibility through high-profile media like the film *Drive* (2011) and the video game *Hotline Miami* (2012), which cemented its aesthetic and sonic identity in the public consciousness. Labels such as Valerie, Italians Do It Better, and Rosso Corsa Records have been instrumental in curating the scene, supporting a community that treats music, graphic design, and video production as a unified artistic vision. Today, synthwave stands as one of the most prolific examples of contemporary electronic music's ability to re-imagine the past as a vibrant, living aesthetic.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/synthwave/",
+      "title": "Synthwave - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://midweekcrisis.medium.com/a-brief-history-of-synthwave-3ca71f08845f",
+      "title": "A brief history of Synthwave - Medium"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:06.819Z",
+  "type": "genre",
+  "editorial_definition": "Synthwave is an electronic subgenre characterized by heavy use of analog-style synthesizers, retro 1980s aesthetics, and a nostalgic, cinematic atmosphere often inspired by sci-fi, horror, and action media of the era.",
+  "era": "2000s-present",
+  "origin": "France",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:synthpop",
+      "type": "genre",
+      "name": "Synthpop"
+    },
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave"
+    },
+    {
+      "slug": "genre:vaporwave",
+      "type": "genre",
+      "name": "Vaporwave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kavinsky",
+      "type": "artist",
+      "name": "Kavinsky"
+    },
+    {
+      "slug": "artist:college",
+      "type": "artist",
+      "name": "College"
+    },
+    {
+      "slug": "artist:perturbator",
+      "type": "artist",
+      "name": "Perturbator"
+    },
+    {
+      "slug": "artist:carpenter-brut",
+      "type": "artist",
+      "name": "Carpenter Brut"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:valerie",
+      "type": "label",
+      "name": "Valerie"
+    },
+    {
+      "slug": "label:italians-do-it-better",
+      "type": "label",
+      "name": "Italians Do It Better"
+    },
+    {
+      "slug": "label:rosso-corsa-records",
+      "type": "label",
+      "name": "Rosso Corsa Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:odyssey",
+      "type": "project",
+      "name": "Odyssey"
+    },
+    {
+      "slug": "project:the-uncanny-valley",
+      "type": "project",
+      "name": "The Uncanny Valley"
+    }
+  ],
+  "landmark_tracks": []
+}

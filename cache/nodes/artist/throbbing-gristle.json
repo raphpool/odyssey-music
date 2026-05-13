@@ -1,0 +1,87 @@
+{
+  "slug": "artist:throbbing-gristle",
+  "name": "Throbbing Gristle",
+  "editorial_article": "Throbbing Gristle was a seminal English music and visual arts group formed in Kingston upon Hull in 1975, widely recognized as the pioneers of industrial music. Evolving from the experimental performance art collective COUM Transmissions, the band consisted of Genesis P-Orridge, Cosey Fanni Tutti, Chris Carter, and Peter \"Sleazy\" Christopherson. Operating out of their Hackney studio, \"The Death Factory,\" the quartet utilized modified electronic equipment, tape loops, and disturbing, transgressive imagery to explore the darker, obsessive aspects of the human condition. Their work often challenged societal norms through confrontational live performances and experimental soundscapes, heavily influenced by the cut-up techniques of William S. Burroughs and Brion Gysin.\\n\\nThe band founded their own label, Industrial Records, which became a vital platform for their releases, including the landmark albums 'The Second Annual Report' (1977), 'D.o.A: The Third and Final Report of Throbbing Gristle' (1978), and the more rhythm-oriented '20 Jazz Funk Greats' (1979). Their confrontational aesthetics and rejection of conventional musical structures left an indelible mark on post-punk, electronic, and noise music scenes. Despite dissolving in 1981 due to interpersonal conflicts—leading to the formation of influential projects like Psychic TV, Coil, and Chris & Cosey—the group reformed in 2004 for a final period of activity, producing several more projects before permanently disbanding following the departure of Genesis P-Orridge and the death of Peter Christopherson in 2010. Their legacy remains foundational to the development of industrial culture worldwide.\\n\\nThrobbing Gristle's influence extends far beyond their initial output, having paved the way for genres like power electronics, noise, and ambient industrial. By treating the act of music creation as a form of social investigation and subversion, they dismantled the barrier between the performer and the audience, frequently using irony, fascist aesthetics, and extreme auditory textures to provoke emotional and intellectual responses rather than aesthetic pleasure. The work remains as challenging today as it was in the late 1970s, standing as a testament to the power of art to operate outside the mainstream capitalist framework.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Throbbing_Gristle",
+      "title": "Throbbing Gristle - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/throbbing-gristle-mn0000926604",
+      "title": "Throbbing Gristle Songs, Albums, Reviews, Bio ... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:58.381Z",
+  "type": "artist",
+  "editorial_bio": "Throbbing Gristle was a pioneering industrial music group formed in England in 1975, known for their confrontational sound, transgressive imagery, and experimental electronics. They founded the Industrial Records label and heavily influenced the development of noise, post-punk, and ambient industrial music.",
+  "origin": "Kingston upon Hull, England",
+  "genres": [
+    {
+      "slug": "genre:industrial-music",
+      "type": "genre",
+      "name": "Industrial music"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:industrial-records",
+      "type": "label",
+      "name": "Industrial Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:united",
+      "type": "track",
+      "name": "United"
+    },
+    {
+      "slug": "track:zyklon-b-zombie",
+      "type": "track",
+      "name": "Zyklon B Zombie"
+    },
+    {
+      "slug": "track:hamburger-lady",
+      "type": "track",
+      "name": "Hamburger Lady"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:genesis-p-orridge",
+      "type": "artist",
+      "name": "Genesis P-Orridge"
+    },
+    {
+      "slug": "artist:cosey-fanni-tutti",
+      "type": "artist",
+      "name": "Cosey Fanni Tutti"
+    },
+    {
+      "slug": "artist:chris-carter",
+      "type": "artist",
+      "name": "Chris Carter"
+    },
+    {
+      "slug": "artist:peter-christopherson",
+      "type": "artist",
+      "name": "Peter Christopherson"
+    }
+  ]
+}

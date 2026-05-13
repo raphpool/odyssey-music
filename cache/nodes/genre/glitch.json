@@ -1,0 +1,75 @@
+{
+  "slug": "genre:glitch",
+  "name": "Glitch",
+  "editorial_article": "Glitch is an experimental electronic music genre that emerged in the 1990s, defined by the aesthetic of technical failure. Rather than seeking the pristine fidelity commonly associated with electronic music production, Glitch artists intentionally utilize the sounds of malfunctioning technology—digital artifacts, skipping CDs, bit-crushed noises, circuit-bent hardware, and the erratic clicks of failing circuitry—as the primary rhythmic and melodic building blocks of their compositions. By elevating these sounds of system error to the status of musical instruments, the genre challenges traditional notions of composition, structure, and \"musical\" timbre.\\n\\nHistorically, the genre developed within the broader experimental and IDM (Intelligent Dance Music) scenes, often pushing the boundaries of what could be considered listenable. While some Glitch compositions are abstract and non-linear, others find a middle ground by grounding their digital textures within the minimalist structures of micro-techno or downtempo, making the sonic dissonance accessible through steady, albeit fragmented, pulse and rhythm. The genre represents a post-modern celebration of imperfection, where the beauty of a composition is found in the unstable, the broken, and the accidentally generated, transforming the limitations of digital hardware into a creative toolset. Its influence has permeated various subgenres, giving rise to distinct hybridizations such as Glitch Hop, which marries these fractured textures with rhythmic foundations, and Glitch Pop, which integrates glitch aesthetics into more conventional songwriting structures. Over decades, Glitch has evolved from a niche experimental movement into a foundational technique utilized across diverse electronic music landscapes.",
+  "citations": [
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Glitch",
+      "title": "Glitch | Electronic Music Wiki | Fandom"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/glitch-pop-guide",
+      "title": "Glitch Music Guide: Characteristics and Origins of Glitch Music - 2026"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:25.827Z",
+  "type": "genre",
+  "editorial_definition": "Glitch is an experimental electronic music genre that utilizes the sounds of digital error, hardware malfunction, and signal distortion as primary compositional elements, often treating technical imperfection as an aesthetic cornerstone.",
+  "era": "1990s–Present",
+  "origin": "Global, predominantly Europe and North America",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:raster-noton",
+      "type": "label",
+      "name": "Raster-Noton"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

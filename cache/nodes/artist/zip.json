@@ -1,0 +1,55 @@
+{
+  "slug": "artist:zip",
+  "name": "Zip",
+  "editorial_article": "Thomas Franzmann, widely known as Zip, is a cornerstone figure in the development of minimal techno and house music. Born in Germany, his journey began in the mid-1980s as a vocalist for the band Second Voice, before transitioning into electronic production during the early 1990s as a member of Bigod 20. In 1997, Franzmann co-founded the legendary label Perlon alongside Markus Nikolai. Through Perlon, Zip became one of the primary architects of the distinctive minimal sound that flourished in Frankfurt and later Berlin. His approach to DJing and production is marked by subtle, hypnotic textures and complex shifts within a 4/4 rhythmic framework, earning him a reputation as a master of the dance floor. Beyond his solo work, Zip has been deeply involved in collaborative projects including Pantytec (with Sammy Dee), Narcotic Syntax (with James Dean Brown), and the experimental live jam group Narod Niki alongside artists such as Ricardo Villalobos and Richie Hawtin. His enduring influence is cemented by his residencies at seminal clubs like Robert Johnson and Panorama Bar, as well as his continued dedication to the aesthetic principles of Perlon. Franzmann has been a defining force in the European electronic music landscape for over three decades, continuously pushing the boundaries of rhythm and sound design while maintaining the underground integrity that first brought the Perlon sound to international prominence. His discography reflects a deep exploration of the minimal genre, characterized by meticulous engineering and an uncanny ability to sustain tension on the dance floor.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/zip/biography",
+      "title": "Zip · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Perlon",
+      "title": "Perlon - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:16.539Z",
+  "type": "artist",
+  "editorial_bio": "Thomas Franzmann, widely known as Zip, is a cornerstone figure in the development of minimal techno and house music.",
+  "origin": "Germany",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal House"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:perlon",
+      "type": "label",
+      "name": "Perlon"
+    },
+    {
+      "slug": "label:playhouse",
+      "type": "label",
+      "name": "Playhouse"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "track:foil",
+  "name": "Foil",
+  "editorial_article": "\"Foil\" is the opening track of Autechre's highly influential 1994 album, *Amber*. Released on Warp Records, the track serves as a seminal moment in early Intelligent Dance Music (IDM), capturing the duo's early ability to weave complex, evolving soundscapes with rhythmic, mechanical precision. Spanning over six minutes, \"Foil\" sets the tone for the entire album, blending ambient, deep-space textures with the subtle, syncopated percussive patterns that would define the Sheffield duo's evolving sound throughout the 1990s.\\n\\nThe track is notable for its atmospheric weight and its structural balance—feeling both futuristic and grounded in the techno scene of the mid-90s. Its production reflects the label's commitment to pushing electronic boundaries, moving away from the club-heavy tropes of the era towards more cerebral, home-listening experiences. \"Foil\" effectively utilizes shifting, metallic-sounding synthesizers and carefully modulated percussion, creating a sense of forward motion that never quite resolves into traditional dance structures. It remains a hallmark of Autechre’s early discography, marking a pivotal shift in how electronic artists approached production, layering, and texture, influencing generations of producers who sought to marry ambient sensibilities with the rigorous logic of algorithmic composition. By grounding the album *Amber*, \"Foil\" highlights the duo’s knack for establishing an immersive, alien world from the very first beat. Autechre, comprised of Rob Brown and Sean Booth, crafted this track as a cornerstone of the burgeoning IDM genre, a scene that found its home on labels like Warp Records, alongside peers such as Aphex Twin and Boards of Canada. Its legacy is found in its precise sound engineering, influencing electronic music producers for decades.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/1302-Autechre-Amber?srsltid=AfmBOopCjZ_X1s98TwQ3FOu2t6iAlc5HYhbWH5iwag0kRf76CJ2SYDIb",
+      "title": "Autechre - Amber | Releases - Discogs"
+    },
+    {
+      "url": "https://autechre.bandcamp.com/track/foil",
+      "title": "Foil | Autechre"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:43.204Z",
+  "type": "track",
+  "editorial_teaser": "\"Foil\" is the opening track of Autechre's highly influential 1994 album, *Amber*.",
+  "year": "1994",
+  "artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    }
+  ],
+  "project": {
+    "slug": "project:amber",
+    "type": "project",
+    "name": "Amber"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "genre:cool-jazz",
+  "name": "Cool Jazz",
+  "editorial_article": "Cool jazz is a seminal jazz subgenre that emerged in the United States during the post-World War II era, primarily during the late 1940s and 1950s. Developed largely as a reflective, subdued alternative to the rapid-fire, virtuosic complexities of bebop, cool jazz is characterized by its relaxed tempos, lighter tonal colors, and an emphasis on formal arrangements and linear melodic flow. While bebop musicians often prioritized fiery improvisation and intense rhythmic drive, cool jazz pioneers favored a \"cool\" aesthetic that incorporated elements from classical music—sometimes leading to the development of \"Third Stream\" jazz—and emphasized smooth, lyrical improvisation. The genre’s roots can be traced back to the work of swing-era musicians like Lester Young, whose light, airy saxophone tone and laid-back rhythmic phrasing prefigured the movement. Proponents of the style moved away from the intense vibrato and aggressive attack typical of earlier jazz, opting instead for a more detached, pastel-like sonic quality. Regional scenes, particularly on the U.S. West Coast, became synonymous with the genre, leading to the interchangeable use of terms \"Cool Jazz\" and \"West Coast Jazz\" during the 1950s. Key figures defining this movement include Miles Davis, whose 1949–1950 nonet recordings (later compiled as Birth of the Cool) set a template for the sound, as well as the Modern Jazz Quartet, Dave Brubeck, Gerry Mulligan, Chet Baker, and Stan Getz. By integrating sophisticated arranging and a more contemplative attitude, cool jazz significantly expanded the harmonic and structural vocabulary of jazz, influencing subsequent developments such as modal jazz and straight-ahead jazz. Despite being sometimes criticized as overly academic or \"white\" in its reception, cool jazz remains a foundational cornerstone of 20th-century music, having successfully bridged the gap between popular jazz performance and formalist compositional rigors.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cool_jazz",
+      "title": "Cool jazz - Wikipedia"
+    },
+    {
+      "url": "https://study.com/learn/lesson/cool-jazz-characteristics-history.html",
+      "title": "Cool Jazz Definition, Characteristics & Origin"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:38.390Z",
+  "type": "genre",
+  "editorial_definition": "A subdued, harmonically sophisticated subgenre of modern jazz that emerged after WWII, characterized by relaxed tempos, lighter tones, and an emphasis on melodic flow over rhythmic intensity.",
+  "era": "1940s–1950s",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:west-coast-jazz",
+      "type": "genre",
+      "name": "West Coast jazz"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:third-stream",
+      "type": "genre",
+      "name": "Third Stream"
+    },
+    {
+      "slug": "genre:modal-jazz",
+      "type": "genre",
+      "name": "Modal jazz"
+    },
+    {
+      "slug": "genre:west-coast-jazz",
+      "type": "genre",
+      "name": "West Coast jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:dave-brubeck",
+      "type": "artist",
+      "name": "Dave Brubeck"
+    },
+    {
+      "slug": "artist:gerry-mulligan",
+      "type": "artist",
+      "name": "Gerry Mulligan"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker"
+    },
+    {
+      "slug": "artist:modern-jazz-quartet",
+      "type": "artist",
+      "name": "Modern Jazz Quartet"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
+    },
+    {
+      "slug": "artist:lennie-tristano",
+      "type": "artist",
+      "name": "Lennie Tristano"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:birth-of-the-cool",
+      "type": "project",
+      "name": "Birth of the Cool"
+    }
+  ],
+  "landmark_tracks": []
+}

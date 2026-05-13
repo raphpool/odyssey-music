@@ -1,0 +1,41 @@
+{
+  "slug": "genre:satire",
+  "name": "Satire",
+  "editorial_article": "Satire is not a singular genre in the technical, sonic sense, but rather a cross-disciplinary aesthetic and rhetorical mode that permeates music across almost all eras and styles. Defined by the use of irony, parody, sarcasm, and exaggeration, it serves as a sophisticated tool for social, political, and cultural critique. Unlike pure comedy, which aims primarily for laughter, the goal of satire is to \"wince while you chuckle,\" forcing the audience to reflect upon the vices, follies, and institutional failures of their contemporary environment. By adopting a persona—often feigning approval of the very norms it wishes to dismantle—the satirist acts as a \"safety valve\" for social tension, exposing hypocrisy in government, media, and artistic convention. \n\nIn music, satire manifests through lyrics, vocal delivery, and the subversion of established musical tropes. Whether it is the biting political commentary found in the protest songs of the mid-20th century, the irreverent deconstruction of commercial pop clichés, or the self-aware irony of post-modern performance art, satire functions by holding a mirror up to society. It does not necessarily provide solutions to the problems it critiques; rather, it performs the essential cultural work of destabilizing unquestioned authority and challenging the \"collective imaginary.\" From the complex, multi-layered burlesque of classical compositions to the immediate, punchy critiques found in punk and modern internet-age satire, this mode remains one of the most effective, enduring methods for artists to reclaim power and demand improvement from the institutions that shape our lives. It is the art of being \"militantly ironic,\" ensuring that the listener is never entirely comfortable in the status quo.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Satire",
+      "title": "Satire - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/art/parody-music",
+      "title": "Parody | Humor, Satire, Comedy | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:58.487Z",
+  "type": "genre",
+  "editorial_definition": "A cross-disciplinary artistic mode characterized by the use of irony, parody, sarcasm, and exaggeration to critique social, political, or institutional flaws, aiming to provoke both laughter and critical reflection.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa"
+    },
+    {
+      "slug": "artist:randy-newman",
+      "type": "artist",
+      "name": "Randy Newman"
+    },
+    {
+      "slug": "artist:dead-kennedys",
+      "type": "artist",
+      "name": "Dead Kennedys"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

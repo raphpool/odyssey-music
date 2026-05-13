@@ -1,0 +1,123 @@
+{
+  "slug": "genre:guitar-pop",
+  "name": "Guitar Pop",
+  "editorial_article": "Guitar pop is a vibrant, enduring subgenre of rock music that centers on the electric guitar as the primary vehicle for melody, hook-writing, and structural organization. Emerging as a distinct aesthetic in the wake of the 1960s British Invasion, the genre emphasizes accessible songwriting, jangly or crunchy guitar textures, and bright, chorus-driven arrangements that prioritize pop sensibility over the more aggressive or expansive ambitions of hard rock or progressive rock. At its core, guitar pop is defined by its brevity and its commitment to the \"hook\"—that immediate, infectious musical idea, often delivered via a sharp riff or a sparkling chord progression. \\n\\nCulturally, guitar pop has evolved through various waves. In the late 1970s and 80s, it found a significant home within the jangle pop movement, where bands utilized Rickenbacker 12-strings and melodic, clean tones to capture a sense of nostalgia or wistfulness. Simultaneously, the power pop movement—often seen as a cousin to guitar pop—blended the high-energy, distorted riffs of hard rock with the meticulous vocal harmonies of 60s sunshine pop, bridging the gap between underground grit and commercial appeal. Throughout the 90s and beyond, the genre continued to influence indie rock and alternative scenes, as bands adopted its ethos of song-first composition, ensuring that the guitar remained the centerpiece of the modern pop song.\\n\\nWhat makes guitar pop essential is its remarkable flexibility. It is a genre that thrives on craft, valuing the economy of a three-minute song as much as the technical proficiency of its practitioners. From the influence of early masters like The Beatles and The Byrds to the modern reinterpretations found in college radio staples and bedroom pop, guitar pop serves as the connective tissue between generations of music fans who value melody, structure, and the tactile, organic sound of electric guitars in a pop context. It is an aesthetic that prizes clarity, emotional directness, and the simple, undeniable power of a well-placed chord change.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/genre/pop-rock-ma0000002613",
+      "title": "Pop/Rock Music Genre Overview | AllMusic"
+    },
+    {
+      "url": "https://www.allmusic.com/style/power-pop-ma0000002793",
+      "title": "Power Pop Music Style Overview - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:29.018Z",
+  "type": "genre",
+  "editorial_definition": "A rock music style characterized by the prominence of melodic electric guitar work, infectious hooks, and accessible, pop-oriented song structures.",
+  "era": "1960s–present",
+  "origin": "United Kingdom and United States",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle Pop"
+    },
+    {
+      "slug": "genre:power-pop",
+      "type": "genre",
+      "name": "Power Pop"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:power-pop",
+      "type": "genre",
+      "name": "Power Pop"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle Pop"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    },
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and Roll"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:the-byrds",
+      "type": "artist",
+      "name": "The Byrds"
+    },
+    {
+      "slug": "artist:big-star",
+      "type": "artist",
+      "name": "Big Star"
+    },
+    {
+      "slug": "artist:teenage-fanclub",
+      "type": "artist",
+      "name": "Teenage Fanclub"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:creation-records",
+      "type": "label",
+      "name": "Creation Records"
+    },
+    {
+      "slug": "label:flying-nun-records",
+      "type": "label",
+      "name": "Flying Nun Records"
+    },
+    {
+      "slug": "label:sire-records",
+      "type": "label",
+      "name": "Sire Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:1-record",
+      "type": "project",
+      "name": "#1 Record"
+    },
+    {
+      "slug": "project:bandwagonesque",
+      "type": "project",
+      "name": "Bandwagonesque"
+    },
+    {
+      "slug": "project:fifth-dimension",
+      "type": "project",
+      "name": "Fifth Dimension"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:mr-tambourine-man",
+      "type": "track",
+      "name": "Mr. Tambourine Man"
+    },
+    {
+      "slug": "track:september-gurls",
+      "type": "track",
+      "name": "September Gurls"
+    }
+  ]
+}

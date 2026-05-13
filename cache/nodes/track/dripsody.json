@@ -1,0 +1,48 @@
+{
+  "slug": "track:dripsody",
+  "name": "Dripsody",
+  "editorial_article": "\"Dripsody,\" composed in 1955 by Canadian physicist, inventor, and composer Hugh Le Caine, stands as a seminal work in the history of electroacoustic music and musique concrète. Created in his studio in Ottawa, the piece is a masterclass in the creative possibilities of the magnetic tape recorder, an instrument Le Caine was intimately involved in developing and refining. At the heart of the composition is a single, humble source: the sound of a drop of water. \n\nThrough painstaking manual labor—the physical splicing, looping, and rerecording of magnetic tape—Le Caine transformed this singular, fleeting event into an intricate rhythmic and melodic soundscape. By varying the speed of the tape playback, he was able to alter the pitch of the droplets, creating a kaleidoscopic array of \"drips\" that oscillate and dance across the stereo field. The result is a work that feels remarkably modern even decades later, demonstrating an early mastery of timbre and spatialization that would go on to influence generations of electronic music producers and sound designers. Beyond its technical ingenuity, \"Dripsody\" is celebrated for its playful, organic musicality, proving that even the most clinical laboratory-based sound manipulation could yield deeply expressive and resonant art. It serves as an essential bridge between the avant-garde experiments of the mid-20th century and the digital production techniques that would eventually dominate the sonic landscape.",
+  "citations": [
+    {
+      "url": "https://timbreandorchestration.org/writings/amazing-moments-in-timbre/2018/11/30/dripsody",
+      "title": "Dripsody — Hugh Le Caine — Timbre and Orchestration Resource"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=zvHSvSBwFYM",
+      "title": "Hugh Le Caine: Dripsody (1955) YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:07.105Z",
+  "type": "track",
+  "editorial_teaser": "\"Dripsody,\" composed in 1955 by Canadian physicist, inventor, and composer Hugh Le Caine, stands as a seminal work in the history of electroacoustic music and musique concrète.",
+  "year": "1955",
+  "artists": [
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique concrète"
+    },
+    {
+      "slug": "genre:electroacoustic",
+      "type": "genre",
+      "name": "Electroacoustic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

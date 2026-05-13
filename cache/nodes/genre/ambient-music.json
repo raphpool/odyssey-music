@@ -1,0 +1,91 @@
+{
+  "slug": "genre:ambient-music",
+  "name": "Ambient music",
+  "editorial_article": "Ambient music is a transformative genre that prioritizes atmosphere, texture, and sonic environment over the traditional constraints of melody, rhythm, and song structure. Emergent from a confluence of 20th-century experimentalism—including Erik Satie’s early concept of 'furniture music' and the tape manipulation techniques of musique concrète—the genre was formalized and popularized by Brian Eno in the late 1970s. Eno’s seminal 1978 release, 'Ambient 1: Music for Airports', established the foundational aesthetic: music that is as 'ignorable as it is interesting.' \\n\\nRather than demanding the focused attention of a listener, ambient music functions to shape the space it inhabits. It frequently utilizes sustained synthesizer pads, drone-based compositions, and organic soundscapes, creating a sense of calm, contemplation, or introspection. While often perceived as minimalist or unobtrusive, the genre encompasses a wide sonic palette. Since its inception, it has evolved through various iterations, influencing and being influenced by everything from new age and classical minimalism to ambient techno, dub, and even metal. By providing a backdrop for life, ambient music effectively blurs the line between artistic intent and environmental sound, encouraging a mode of listening that is both deep and passive. Today, it remains a vital, expansive category, bridging the gap between high-concept experimentalism and functional, meditative soundscapes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_music",
+      "title": "Ambient music - Wikipedia"
+    },
+    {
+      "url": "https://blog.roughtrade.com/a-rough-guide-to-ambient-music/",
+      "title": "A Rough Guide To: Ambient Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:36.338Z",
+  "type": "genre",
+  "editorial_definition": "A genre that emphasizes tone, texture, and atmospheric space over traditional musical structures, designed to be as 'ignorable as it is interesting' while actively shaping its environment.",
+  "origin": "United Kingdom, Japan, and Jamaica (dub influence)",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark ambient"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:ambient-dub",
+      "type": "genre",
+      "name": "Ambient dub"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:wendy-carlos",
+      "type": "artist",
+      "name": "Wendy Carlos"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    }
+  ],
+  "landmark_tracks": []
+}

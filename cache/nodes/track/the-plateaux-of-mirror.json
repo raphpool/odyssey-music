@@ -1,0 +1,53 @@
+{
+  "slug": "track:the-plateaux-of-mirror",
+  "name": "The Plateaux of Mirror",
+  "editorial_article": "\"The Plateaux of Mirror\" is the title track from the 1980 landmark ambient album of the same name, a collaborative masterpiece between avant-garde pioneer Brian Eno and minimalist pianist Harold Budd. Recorded in Hamilton, Ontario, the track encapsulates the core philosophy of the album: a delicate, meditative dialogue between Budd's sparse, lyrical piano improvisations and Eno's transformative studio treatments. Eno described the recording process as having Budd perform in a \"sound-world\" that he had specifically cultivated, using the studio itself as a compositional tool. \\n\\nMusically, the track relies on a minimalist structure, where Budd’s notes are processed through delay and choral effects in ways that were highly unconventional for the era. Rather than using these effects for standard enhancement, Eno treated them as integral sonic textures, allowing the piano notes to decay and resonate in a shimmering, ethereal space. The result is a piece that exists in a state of suspended animation—a fragile, light-filled landscape that rewards both deep listening and peripheral atmosphere. As the centerpiece of the album, \"The Plateaux of Mirror\" represents a pivotal moment in the development of the ambient genre, demonstrating how organic instrumentation could be seamlessly fused with electronic experimentation to create a work of profound, timeless emotional resonance. Its enduring legacy remains as a testament to the intuitive, \"phantom-like\" ease with which Budd and Eno combined their distinct musical sensibilities to craft one of the most evocative recordings of the late 20th century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_2:_The_Plateaux_of_Mirror",
+      "title": "Ambient 2: The Plateaux of Mirror - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/6195-Harold-Budd-Brian-Eno-Ambient-2-The-Plateaux-Of-Mirror?srsltid=AfmBOoq5SewPAKIbH3wOGIiEE8cL0Mt4MZg61E94a-dWCstvKX_SYgUJ",
+      "title": "Harold Budd / Brian Eno – Ambient 2 (The Plateaux Of Mirror) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:17.016Z",
+  "type": "track",
+  "editorial_teaser": "\"The Plateaux of Mirror\" is the title track from the 1980 landmark ambient album of the same name, a collaborative masterpiece between avant-garde pioneer Brian Eno and minimalist pianist Harold Budd.",
+  "year": "1980",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    }
+  ],
+  "project": {
+    "slug": "project:ambient-2-the-plateaux-of-mirror",
+    "type": "project",
+    "name": "Ambient 2: The Plateaux of Mirror"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

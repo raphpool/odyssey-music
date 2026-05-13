@@ -1,0 +1,103 @@
+{
+  "slug": "artist:roxy-music",
+  "name": "Roxy Music",
+  "editorial_article": "Roxy Music were an English rock band formed in London in 1970, standing as one of the most influential and stylistically distinct acts of the 20th century. Spearheaded by lead singer, keyboardist, and primary songwriter Bryan Ferry, the group emerged from an art-school sensibility to redefine the boundaries of glam rock, art rock, and eventually, the sophisticated pop sound of the late 1970s and early 1980s. The original lineup famously featured the avant-garde aesthetic of Brian Eno, whose synthesizer manipulation and \"non-musician\" approach created a sonic tension against Ferry's classicist crooning and pop melodicism. This clash of the traditional and the experimental—further bolstered by the technical finesse of guitarist Phil Manzanera, saxophonist Andy Mackay, and drummer Paul Thompson—gave the band a signature sound that was as intellectual as it was glamorous.\\n\\nThroughout the 1970s, Roxy Music evolved from an eccentric, visually arresting glam ensemble into a polished, atmospheric outfit. After Eno’s departure in 1973, the band gradually refined its sound, culminating in the sleek, masterfully produced textures of their final studio album, *Avalon* (1982). This transition anticipated the rise of sophisti-pop and left an indelible mark on post-punk and new wave musicians, who drew inspiration from both Ferry's romantic persona and the band’s commitment to high-concept visual and sonic art. Their 2019 induction into the Rock and Roll Hall of Fame cemented their status as pioneers who successfully navigated the bridge between underground art-rock experimentalism and international pop superstardom. Beyond their own discography, the solo careers of Ferry and Eno further cemented their individual legacies as two of the most significant figures in British popular music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Roxy_Music",
+      "title": "Roxy Music - Wikipedia"
+    },
+    {
+      "url": "https://teachrock.org/people/roxy-music/",
+      "title": "Roxy Music - TeachRock"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:27.489Z",
+  "type": "artist",
+  "editorial_bio": "A foundational English art rock band formed in 1970 by Bryan Ferry, Roxy Music pioneered a sophisticated blend of glam rock, avant-garde experimentation, and pop that fundamentally shaped the sounds of new wave and sophisti-pop. Throughout their career, they evolved from an eccentric, multi-textured ensemble to a masterfully polished pop outfit, most notably on their swan song, 'Avalon'.",
+  "origin": "London, England",
+  "active_years": "1970–1976, 1978–1983, 2001–2011, 2022",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:sophisti-pop",
+      "type": "genre",
+      "name": "Sophisti-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:e-g-records",
+      "type": "label",
+      "name": "E.G. Records"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:roxy-music",
+      "type": "project",
+      "name": "Roxy Music"
+    },
+    {
+      "slug": "project:for-your-pleasure",
+      "type": "project",
+      "name": "For Your Pleasure"
+    },
+    {
+      "slug": "project:avalon",
+      "type": "project",
+      "name": "Avalon"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:phil-manzanera",
+      "type": "artist",
+      "name": "Phil Manzanera"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay"
+    },
+    {
+      "slug": "artist:paul-thompson",
+      "type": "artist",
+      "name": "Paul Thompson"
+    }
+  ]
+}

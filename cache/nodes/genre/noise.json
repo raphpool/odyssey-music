@@ -1,0 +1,67 @@
+{
+  "slug": "genre:noise",
+  "name": "Noise",
+  "editorial_article": "Noise is a genre that rejects traditional musical conventions, standing as a sonic practice defined by its refusal of melody, harmony, and song structure in favor of textures, distortion, and extreme sonic output. Rather than a static set of formal rules, noise functions as a position of resistance, often blurring the distinction between intentional musical performance and incidental sound. Historically, its roots reach back to early twentieth-century avant-garde movements like Italian Futurism—notably Luigi Russolo’s 'Art of Noises' manifesto—and later developments in musique concrète, which pioneered the incorporation of non-musical sounds into composition. By the 1970s and 80s, the genre solidified as a distinct cultural force, drawing influence from industrial music’s abrasive textures, the transgressive performance art of figures like Throbbing Gristle, and the anarchic energy of punk. \\n\\nModern noise is a vast, heterogeneous field that encompasses everything from the 'brutal reduction' of onkyo (Japanese experimentalism characterized by subtle sine waves and silence) to the maximalist, high-decibel wall-of-sound assaults of artists like Merzbow. At its core, noise challenges the listener’s passive reception, demanding an active engagement with the materiality of sound. Whether through feedback, harsh electronic synthesis, or found-sound manipulation, the genre functions as an interrogation of the 'culture industry' and the boundaries of what is considered acceptable musical form, continuously evolving by embracing the very sounds that traditional music seeks to exclude.",
+  "citations": [
+    {
+      "url": "https://www.bookforum.com/print/1403/paul-hegarty-s-noise-music-a-history-870",
+      "title": "Noise/Music: A History – Bookforum Magazine"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:40.969Z",
+  "type": "genre",
+  "editorial_definition": "A broad, experimental musical genre characterized by the intentional use of discordant, non-traditional, and abrasive sounds to challenge conventional song structures, tonality, and the binary between music and noise.",
+  "era": "Early 20th century to present",
+  "origin": "Global, with significant developments in Italy (Futurism), France (Musique concrète), and Japan.",
+  "sonic_markers": "Extreme volume, harsh distortion, feedback, atonality, lack of traditional meter, static textures, and field recordings.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow"
+    },
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:cold-spring",
+      "type": "label",
+      "name": "Cold Spring"
+    },
+    {
+      "slug": "label:hospital-productions",
+      "type": "label",
+      "name": "Hospital Productions"
+    },
+    {
+      "slug": "label:important-records",
+      "type": "label",
+      "name": "Important Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:pulse-demon",
+      "type": "project",
+      "name": "Pulse Demon"
+    },
+    {
+      "slug": "project:20-jazz-funk-greats",
+      "type": "project",
+      "name": "20 Jazz Funk Greats"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "artist:ellie-goulding",
+  "name": "Ellie Goulding",
+  "editorial_article": "Ellie Goulding is a British singer-songwriter and vocalist who emerged as a defining figure in 2010s electropop. Born in Hereford, England, Goulding moved to London to pursue music, where she successfully blended her background in folk music with electronic production. Her breakthrough 2010 debut, 'Lights', established her unique soprano and knack for crafting emotionally earnest songs that resonated on both sides of the Atlantic. Throughout her career, Goulding has navigated a sound that evolved from acoustic-electronic fusion to dance-pop and ambient synth-pop. She is noted for her significant commercial success, having achieved multiple number-one albums in the U.K., and a massive global footprint characterized by frequent high-profile collaborations with dance and electronic producers like Calvin Harris, Diplo, and Kygo. Her discography showcases her versatility, ranging from the introspective, experimental textures of 'Brightest Blue' (2020) to the euphoric, dance-floor-oriented synth sounds of 'Higher than Heaven' (2023). Her ability to cross between indie-leaning credibility and massive mainstream radio appeal has cemented her status as one of the most prominent pop voices of her generation. Goulding's transition from the blogosphere to stardom—marked by winning the BBC's Sound of 2010 poll—cemented her as a bridge between independent electronic experimentation and the global pop charts. By layering her distinctively airy, folk-inspired vocals over polished, synth-heavy production, she helped define the aesthetic of late 2000s and early 2010s mainstream crossover music. Her ongoing ability to remain relevant, evidenced by consistent chart performances in the 2020s, underscores her skill as both a songwriter and a malleable performer who can thrive in various electronic sub-genres.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/ellie-goulding-mn0001596642",
+      "title": "Ellie Goulding Songs, Albums, Reviews, Bio & M... | AllMusic"
+    },
+    {
+      "url": "https://excellentmusic.miraheze.org/wiki/Ellie_Goulding",
+      "title": "Ellie Goulding - Excellent Music Wiki - Miraheze"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:22.779Z",
+  "type": "artist",
+  "editorial_bio": "Ellie Goulding is a British singer-songwriter and vocalist who emerged as a defining figure in 2010s electropop.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0001596642/400/iN21ysbiwxk4w55fP02Joj6KsMttLlyBmmVTZ6_CLs0=.jpg",
+  "origin": "Hereford, England",
+  "active_years": "2000s - 2020s",
+  "genres": [
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:polydor-records",
+      "type": "label",
+      "name": "Polydor Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:lights",
+      "type": "project",
+      "name": "Lights"
+    },
+    {
+      "slug": "project:halcyon",
+      "type": "project",
+      "name": "Halcyon"
+    },
+    {
+      "slug": "project:delirium",
+      "type": "project",
+      "name": "Delirium"
+    },
+    {
+      "slug": "project:brightest-blue",
+      "type": "project",
+      "name": "Brightest Blue"
+    },
+    {
+      "slug": "project:higher-than-heaven",
+      "type": "project",
+      "name": "Higher than Heaven"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lights",
+      "type": "track",
+      "name": "Lights"
+    },
+    {
+      "slug": "track:starry-eyed",
+      "type": "track",
+      "name": "Starry Eyed"
+    },
+    {
+      "slug": "track:burn",
+      "type": "track",
+      "name": "Burn"
+    },
+    {
+      "slug": "track:love-me-like-you-do",
+      "type": "track",
+      "name": "Love Me Like You Do"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:calvin-harris",
+      "type": "artist",
+      "name": "Calvin Harris"
+    },
+    {
+      "slug": "artist:diplo",
+      "type": "artist",
+      "name": "Diplo"
+    },
+    {
+      "slug": "artist:kygo",
+      "type": "artist",
+      "name": "Kygo"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

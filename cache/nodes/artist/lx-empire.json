@@ -1,0 +1,62 @@
+{
+  "slug": "artist:lx-empire",
+  "name": "LX Empire",
+  "editorial_article": "LX Empire is an early alias of the German electronic music pioneer Alexander Wilke, better known to the world as Alec Empire. Active during the burgeoning European rave and techno scene of the early 1990s, this persona allowed Wilke to experiment with the raw, machine-driven sounds that would eventually define his more aggressive output. Under the LX Empire name, Wilke produced what he later characterized as \"faceless DJ music\"—functional, club-oriented tracks that captured the propulsive energy of the era's techno and rave culture. This period of his career was essential for his development as a producer, bridging the gap between underground rave culture and his later, more radical innovations in the Digital Hardcore genre. His contribution to early compilations, such as the 1991 release \"Techno Rave!\", illustrates his commitment to the gritty, experimental side of electronic production long before he gained global notoriety as a founder of the trailblazing group Atari Teenage Riot. The LX Empire moniker remains a significant footnote in his expansive discography, marking the formative years of an artist whose relentless sonic evolution would fundamentally alter the landscape of electronic music throughout the 1990s and beyond. His work as LX Empire documents the raw, unrefined textures of the Berlin techno movement, setting the stage for the genre-blurring aesthetics that would later define his collaborative projects and solo career as a legendary producer and label head.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/239251-LX-Empire?srsltid=AfmBOookUGII-JVEGk0ZJp9l4BWPg9wTp3n46YMtmceBFdBXO1rujGh_",
+      "title": "LX Empire Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Alec_Empire",
+      "title": "Alec Empire Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:51.219Z",
+  "type": "artist",
+  "editorial_bio": "LX Empire is an early alias of the German electronic music pioneer Alexander Wilke, better known to the world as Alec Empire.",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hype",
+      "type": "label",
+      "name": "!Hype"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:unequal-chord",
+      "type": "track",
+      "name": "Unequal Chord"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "members": []
+}

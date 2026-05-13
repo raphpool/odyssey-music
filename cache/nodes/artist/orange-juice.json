@@ -1,0 +1,111 @@
+{
+  "slug": "artist:orange-juice",
+  "name": "Orange Juice",
+  "editorial_article": "Orange Juice were a pioneering Scottish indie pop and post-punk band formed in Bearsden, a suburb of Glasgow, in 1976. Originally known as the Nu-Sonics, the group adopted the name Orange Juice in 1979 and became the flagship act of the iconic independent label Postcard Records. Led by the charismatic vocalist and guitarist Edwyn Collins, the band emerged as a key force in the \"Sound of Young Scotland,\" bridging the gap between the raw urgency of post-punk and the melodic, clean-toned sensibility of what would become known as jangle pop and indie pop. \\n\\nMusically, Orange Juice was known for their bright, intricately woven guitar lines, often characterized by a playful and sometimes intentionally off-kilter approach to tuning and structure. They drew influence from 1960s pop acts like The Byrds and The Velvet Underground, while simultaneously absorbing the contemporary energy of punk and disco. This unconventional blend allowed them to stand out amidst the often austere post-punk scene of the late 1970s and early 1980s. Their early output on Postcard, such as the debut single \"Falling and Laughing\" and \"Blue Boy,\" set a blueprint for generations of independent guitar bands, most notably influencing the sound and ethos of The Smiths and numerous other guitar-based alternative acts. \\n\\nThroughout their career, the band underwent significant lineup changes, with Edwyn Collins remaining the constant driving force. Following their influential stint at Postcard, they moved to a major label, Polydor, where they enjoyed chart success, most notably with the 1982 single \"Rip It Up.\" While their later work moved into more polished funk and soul-inflected territory, their early DIY spirit remains their most enduring legacy. The band effectively disbanded in 1985, leaving behind a discography that remains a cornerstone of British independent music history, celebrated for its wit, stylistic courage, and foundational role in the development of 1980s indie pop.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/channel/UCgM_mprR4EMc-sOqfNuDVFw",
+      "title": "Orange Juice - YouTube"
+    },
+    {
+      "url": "https://postpunkmonk.com/2014/08/26/a-grievous-omission-orange-juice/",
+      "title": "A Grievous Omission: Orange Juice | Post-Punk Monk"
+    },
+    {
+      "url": "https://anthemmagazine.com/qa-with-organge-juice/",
+      "title": "Q&A with Organge Juice - Anthem Magazine"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:24.225Z",
+  "type": "artist",
+  "editorial_bio": "Orange Juice were a highly influential Scottish jangle pop and post-punk band, founded in 1976, that became the cornerstone of the Postcard Records label and a vital precursor to the 1980s indie pop movement. Led by Edwyn Collins, the band is remembered for their bright, intricate guitar sound and their role in defining the \"Sound of Young Scotland.\"",
+  "origin": "Bearsden, Scotland",
+  "genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle pop"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:postcard-records",
+      "type": "label",
+      "name": "Postcard Records"
+    },
+    {
+      "slug": "label:polydor-records",
+      "type": "label",
+      "name": "Polydor Records"
+    },
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:falling-and-laughing",
+      "type": "track",
+      "name": "Falling and Laughing"
+    },
+    {
+      "slug": "track:blue-boy",
+      "type": "track",
+      "name": "Blue Boy"
+    },
+    {
+      "slug": "track:rip-it-up",
+      "type": "track",
+      "name": "Rip It Up"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:edwyn-collins",
+      "type": "artist",
+      "name": "Edwyn Collins"
+    },
+    {
+      "slug": "artist:james-kirk",
+      "type": "artist",
+      "name": "James Kirk"
+    },
+    {
+      "slug": "artist:david-mcclymont",
+      "type": "artist",
+      "name": "David McClymont"
+    },
+    {
+      "slug": "artist:steven-daly",
+      "type": "artist",
+      "name": "Steven Daly"
+    },
+    {
+      "slug": "artist:malcolm-ross",
+      "type": "artist",
+      "name": "Malcolm Ross"
+    },
+    {
+      "slug": "artist:zeke-manyika",
+      "type": "artist",
+      "name": "Zeke Manyika"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "artist:bryan-ferry",
+  "name": "Bryan Ferry",
+  "editorial_article": "Bryan Ferry is a celebrated English singer, songwriter, and musician whose career has spanned over five decades. Born in 1945 in Washington, County Durham, Ferry rose to global prominence as the charismatic frontman and primary songwriter for the influential art-rock band Roxy Music. His background in fine art, studied at Newcastle University, heavily influenced the band's sophisticated aesthetic and genre-blending approach to music. After forming Roxy Music in 1970, Ferry helped redefine the glam rock era, blending experimental electronic textures with romantic, crooner-inspired vocal deliveries. \\n\\nBeyond his tenure with Roxy Music, Ferry established a highly successful parallel solo career. His debut solo album, 'These Foolish Things' (1973), was a pioneering effort in popularizing the concept of the contemporary artist recording standards. Throughout the 1970s and 1980s, his work evolved from avant-garde glam toward a refined, lush sophisti-pop sound, exemplified by hits like 'Slave to Love' and 'Don't Stop the Dance' from the 1985 album 'Boys and Girls'. With over 30 million records sold worldwide and a 2019 induction into the Rock and Roll Hall of Fame as a member of Roxy Music, Ferry remains a towering figure in British music, known for his unique blend of nostalgia and modernity. His work, characterized by suave sophistication and a blend of romanticism with avant-garde sensibilities, has left a profound mark on the evolution of popular music, influence that continues to resonate across pop and art-rock scenes today. His ability to interpret standards while pushing sonic boundaries defines his enduring cultural legacy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bryan_Ferry",
+      "title": "Bryan Ferry - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Bryan_Ferry_discography",
+      "title": "Bryan Ferry discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:58.170Z",
+  "type": "artist",
+  "editorial_bio": "Bryan Ferry is a celebrated English singer, songwriter, and musician whose career has spanned over five decades.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/RoxyMusicO2141022_%2840_of_68%29_%28cropped%29.jpg/500px-RoxyMusicO2141022_%2840_of_68%29_%28cropped%29.jpg",
+  "origin": "Washington, Tyne and Wear, England, UK",
+  "active_years": "1967–present",
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:sophisti-pop",
+      "type": "genre",
+      "name": "Sophisti-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:e-g-records",
+      "type": "label",
+      "name": "E.G. Records"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:these-foolish-things",
+      "type": "project",
+      "name": "These Foolish Things"
+    },
+    {
+      "slug": "project:another-time-another-place",
+      "type": "project",
+      "name": "Another Time, Another Place"
+    },
+    {
+      "slug": "project:boys-and-girls",
+      "type": "project",
+      "name": "Boys and Girls"
+    },
+    {
+      "slug": "project:bete-noire",
+      "type": "project",
+      "name": "Bête Noire"
+    },
+    {
+      "slug": "project:taxi",
+      "type": "project",
+      "name": "Taxi"
+    },
+    {
+      "slug": "project:dylanesque",
+      "type": "project",
+      "name": "Dylanesque"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:slave-to-love",
+      "type": "track",
+      "name": "Slave to Love"
+    },
+    {
+      "slug": "track:don-t-stop-the-dance",
+      "type": "track",
+      "name": "Don't Stop the Dance"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "slug": "artist:pavement",
+  "name": "Pavement",
+  "editorial_article": "Pavement was an iconic American indie rock band formed in Stockton, California, in 1989, that defined the aesthetic of the 1990s underground. Initially a secretive studio project fronted by Stephen Malkmus and Scott Kannberg, the band evolved from a lo-fi studio curiosity into a full touring ensemble that captured the slacker ethos of the decade. Their sound—characterized by unconventional, fractured song structures, jagged guitar hooks, and a detached yet earnest lyrical wit—remains one of the most influential touchstones in alternative rock history.\\n\\nThroughout their decade-long initial run, the band rejected the major-label feeding frenzy typical of the post-Nirvana era, maintaining strong ties to independent labels like Matador and Drag City. Their seminal 1992 debut album, *Slanted and Enchanted*, is widely considered a landmark of the era, blending noisy, lo-fi experimentation with infectious pop sensibilities. Over five studio albums, including the critically revered *Crooked Rain, Crooked Rain* (1994) and *Wowee Zowee* (1995), the band’s songwriting matured from raw, tape-hiss-laden noise to sophisticated, melodic rock that earned them comparisons to the finest songwriters of their generation.\\n\\nWhile they largely avoided mainstream stardom, a brief flirtation with visibility followed the release of the single \"Cut Your Hair,\" which briefly appeared on MTV. Despite their eventual dissolution in 1999 amidst inner-band tensions, Pavement's legacy has only grown, with their work influencing countless artists in the indie and alternative spheres. Their periodic reunions, beginning in 2010, have served to cement their standing not just as a cult band, but as a defining force in the history of independent music. Pavement’s commitment to artistic integrity and their signature, anti-virtuoso musicality solidified their position as, in the eyes of many critics, the quintessential band of the 1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pavement_discography",
+      "title": "Pavement discography - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/pavement",
+      "title": "Pavement Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:21.268Z",
+  "type": "artist",
+  "editorial_bio": "Pavement was an iconic American indie rock band formed in Stockton, California, in 1989, that defined the aesthetic of the 1990s underground.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Pavement%2C_the_band%2C_in_Tokyo.jpg",
+  "origin": "Stockton, California, U.S.",
+  "active_years": "1989–1999, 2010, 2022–present",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:slacker-rock",
+      "type": "genre",
+      "name": "Slacker rock"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    },
+    {
+      "slug": "label:drag-city",
+      "type": "label",
+      "name": "Drag City"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:slanted-and-enchanted",
+      "type": "project",
+      "name": "Slanted and Enchanted"
+    },
+    {
+      "slug": "project:crooked-rain-crooked-rain",
+      "type": "project",
+      "name": "Crooked Rain, Crooked Rain"
+    },
+    {
+      "slug": "project:wowee-zowee",
+      "type": "project",
+      "name": "Wowee Zowee"
+    },
+    {
+      "slug": "project:brighten-the-corners",
+      "type": "project",
+      "name": "Brighten the Corners"
+    },
+    {
+      "slug": "project:terror-twilight",
+      "type": "project",
+      "name": "Terror Twilight"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cut-your-hair",
+      "type": "track",
+      "name": "Cut Your Hair"
+    },
+    {
+      "slug": "track:summer-babe",
+      "type": "track",
+      "name": "Summer Babe (Winter Version)"
+    },
+    {
+      "slug": "track:gold-soundz",
+      "type": "track",
+      "name": "Gold Soundz"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:stephen-malkmus",
+      "type": "artist",
+      "name": "Stephen Malkmus"
+    },
+    {
+      "slug": "artist:scott-kannberg",
+      "type": "artist",
+      "name": "Scott Kannberg"
+    },
+    {
+      "slug": "artist:bob-nastanovich",
+      "type": "artist",
+      "name": "Bob Nastanovich"
+    },
+    {
+      "slug": "artist:mark-ibold",
+      "type": "artist",
+      "name": "Mark Ibold"
+    },
+    {
+      "slug": "artist:steve-west",
+      "type": "artist",
+      "name": "Steve West"
+    }
+  ]
+}

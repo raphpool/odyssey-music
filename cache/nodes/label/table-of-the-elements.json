@@ -1,0 +1,67 @@
+{
+  "slug": "label:table-of-the-elements",
+  "name": "Table of the Elements",
+  "editorial_article": "Table of the Elements is an influential American avant-garde and experimental record label, founded in 1993 by Jeff Hunt. Operating initially out of various U.S. locations, including Northampton, the label established a unique identity by cataloging its releases according to the periodic table of elements, ordering them by increasing atomic weight rather than traditional numbering systems. This conceptual framework mirrored the label's commitment to rigorous, historically significant, and often challenging sonic output. \n\nThe label’s catalog serves as a vital archive of 20th and 21st-century art music, minimalism, noise rock, and sound art. By focusing on both new recordings and crucial reissues, Table of the Elements provided a platform for seminal figures like Tony Conrad, La Monte Young, John Cale, and Rhys Chatham, often documenting long-neglected works or pairing experimental legends with contemporary practitioners. Their releases, which include recordings by Thurston Moore, Jim O’Rourke, and Fushitsusha, helped shape the landscape of modern experimental music by elevating it to a status comparable to classical art music. The label also maintains an extensive archive at Within Things, underscoring its role as a curator of the avant-garde history it continues to expand. After a period of relative quiet, the label relaunched in 2025, continuing its mission of producing high-quality physical releases of challenging and essential compositions.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Table_of_the_Elements",
+      "title": "Table of the Elements - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:54.858Z",
+  "type": "label",
+  "editorial_description": "An essential American experimental and avant-garde label known for its periodic-table-based cataloging system and deep commitment to documenting minimal music, art music, and noise pioneers.",
+  "founded": "1993",
+  "location": "Northampton, U.S.",
+  "genres": [
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    },
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:rhys-chatham",
+      "type": "artist",
+      "name": "Rhys Chatham"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:early-minimalism",
+      "type": "project",
+      "name": "Early Minimalism"
+    },
+    {
+      "slug": "project:four-violins",
+      "type": "project",
+      "name": "Four Violins"
+    }
+  ]
+}

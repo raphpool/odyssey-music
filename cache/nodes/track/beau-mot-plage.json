@@ -1,0 +1,48 @@
+{
+  "slug": "track:beau-mot-plage",
+  "name": "Beau Mot Plage",
+  "editorial_article": "\"Beau Mot Plage\" is a seminal minimal techno track by the German producer Isolée (Rajko Müller), released at the turn of the millennium. Serving as a defining anthem of the microhouse and minimal techno movements, the track is celebrated for its warm, organic textures, sophisticated syncopated rhythms, and a melancholic yet danceable aesthetic that bridged the gap between club functionality and home-listening depth. By eschewing the abrasive, repetitive loops common to the techno of the late 90s, Isolée crafted a masterpiece that feels both futuristic and oddly nostalgic, characterized by its shuffling percussion and crystalline synth motifs. The track’s enduring legacy stems from its ability to retain its freshness decades later; it remains a staple in sets by forward-thinking DJs and producers, illustrating the enduring influence of the \"Kompakt sound\" and the broader German minimal scene of the 2000s. Its success helped define a softer, more melodic approach to electronic music that prioritizes sonic texture and emotional resonance over sheer percussive force, marking a vital pivot point in the evolution of electronic dance music. The track has seen numerous re-releases and re-edits, confirming its status as a timeless classic in the electronic canon. The composition's distinctive blend of delicate melodies and deep, driving basslines demonstrates the innovative production techniques that brought microhouse to the forefront of the global electronic music scene, solidifying its place in history as a quintessential production for the era.",
+  "citations": [
+    {
+      "url": "https://classicmusiccompany.bandcamp.com/track/beau-mot-plage-original",
+      "title": "Beau Mot Plage (Original) | Isolée | Classic Music Company"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:16.711Z",
+  "type": "track",
+  "editorial_teaser": "\"Beau Mot Plage\" is a seminal minimal techno track by the German producer Isolée (Rajko Müller), released at the turn of the millennium.",
+  "artists": [
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée"
+    }
+  ],
+  "project": {
+    "slug": "project:restless",
+    "type": "project",
+    "name": "Restless"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "artist:the-residents",
+  "name": "The Residents",
+  "editorial_article": "The Residents are a pioneering American art collective and music group formed in the late 1960s, widely considered one of the most influential and enduring acts in the experimental, avant-garde, and art pop movements. Originating in Shreveport, Louisiana, the group moved to the San Francisco Bay Area in the late 1960s, where they established a legendary reputation for radical anonymity, costumed performances—most notably wearing oversized eyeball helmets—and a prolific output that spans over 60 albums, experimental film, and early multimedia projects. Since their debut release, the 'Santa Dog' EP (1972), they have consistently challenged the boundaries of popular music, utilizing surrealism, tape manipulation, and biting social commentary to deconstruct pop culture icons. The group founded their own label, Ralph Records, in 1972 to maintain total artistic control, fostering an independent ethos that predated the DIY punk movement. Throughout their career, they have explored the limits of recording technology, early home video, and CD-ROM art, all while maintaining their enigmatic status as a collective that prioritizes the 'art' over the 'artist.' Their influence stretches across industrial, synth-pop, and experimental music circles, cementing their legacy as one of the most mysterious and consistent ensembles in modern music history. Beyond their music, their impact on the visual presentation of an artist—specifically their signature use of the eyeball mask—created a template for image-based performance that has been echoed by countless acts in the decades since. By consistently refusing to reveal their true identities, they turned the act of 'being a band' into a meta-commentary on the fame machine itself, ensuring that their work would be analyzed as a cohesive, long-form performance piece rather than mere entertainment.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Residents",
+      "title": "The Residents - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/the-residents",
+      "title": "The Residents discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:14.757Z",
+  "type": "artist",
+  "editorial_bio": "The Residents are a pioneering American art collective and music group formed in the late 1960s, widely considered one of the most influential and enduring acts in the experimental, avant-garde, and art pop movements.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Residents_Eye_-_EMP_-_Sarah_Stierch.jpg/250px-The_Residents_Eye_-_EMP_-_Sarah_Stierch.jpg",
+  "origin": "Shreveport, Louisiana, U.S.",
+  "active_years": "1969–present",
+  "genres": [
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ralph-records",
+      "type": "label",
+      "name": "Ralph Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:meet-the-residents",
+      "type": "project",
+      "name": "Meet the Residents"
+    },
+    {
+      "slug": "project:the-third-reich-n-roll",
+      "type": "project",
+      "name": "The Third Reich 'n Roll"
+    },
+    {
+      "slug": "project:not-available",
+      "type": "project",
+      "name": "Not Available"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:santa-dog",
+      "type": "track",
+      "name": "Santa Dog"
+    },
+    {
+      "slug": "track:constantinople",
+      "type": "track",
+      "name": "Constantinople"
+    },
+    {
+      "slug": "track:hello-skinny",
+      "type": "track",
+      "name": "Hello Skinny"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

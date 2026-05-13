@@ -1,0 +1,61 @@
+{
+  "slug": "project:renaissance-the-mix-collection",
+  "name": "Renaissance: The Mix Collection",
+  "editorial_article": "Renaissance: The Mix Collection, released in 1994, is a landmark compilation that effectively defined the blueprint for the modern commercial DJ mix album. Mixed by the iconic duo Sasha and John Digweed, the release was a direct extension of their legendary residency at the UK's Renaissance nightclub. At the time of its release, the mix was instrumental in codifying the emerging progressive house sound, blending house, early trance, and atmospheric, melodic electronics into a cohesive, euphoric narrative that mirrored the all-night journey of the club's dancefloor. \n\nThe collection is widely credited with bringing the \"second wave\" of dance music to a significantly wider audience, transitioning electronic music from underground club culture into the mainstream consciousness. With its three-disc format housed in a distinctive digipack featuring Michelangelo's *Zechariah* on the cover, the project became a cornerstone for a generation of DJs. It demonstrated how a curated mix could transcend individual track selection to create a singular, immersive listening experience. \n\nCritics and publications like Resident Advisor and The Quietus have frequently cited the album as the \"daddy of all mix compilations,\" emphasizing its lasting influence on the evolution of progressive house and the subsequent boom of the DJ-led mix series. In 2004, the collection was reissued as a remastered edition, for which Sasha and Digweed meticulously re-created the original blend using modern digital techniques, proving the enduring relevance of their debut collaborative masterwork.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Renaissance:_The_Mix_Collection",
+      "title": "Renaissance: The Mix Collection - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/release/100874-Sasha-John-Digweed-Renaissance-The-Mix-Collection?srsltid=AfmBOopf2kBEUjMSdvAgRx2zgpC6u9b6BrJqovB1NMuwZqsKb1NKUH6n",
+      "title": "Sasha & John Digweed – Renaissance: The Mix Collection - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:14.943Z",
+  "type": "project",
+  "editorial_pitch": "Renaissance: The Mix Collection, released in 1994, is a landmark compilation that effectively defined the blueprint for the modern commercial DJ mix album.",
+  "year": "1994",
+  "artists": [],
+  "label": {
+    "slug": "label:renaissance-records",
+    "type": "label",
+    "name": "Renaissance Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:song-of-life",
+      "type": "track",
+      "name": "Song of Life (Lemon Interrupt mix)"
+    },
+    {
+      "slug": "track:for-what-you-dream-of",
+      "type": "track",
+      "name": "For What You Dream Of (Full On Renaissance mix)"
+    },
+    {
+      "slug": "track:perfect-motion",
+      "type": "track",
+      "name": "Perfect Motion (Boy's Own mix)"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

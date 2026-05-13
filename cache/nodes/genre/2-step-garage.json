@@ -1,0 +1,111 @@
+{
+  "slug": "genre:2-step-garage",
+  "name": "2-step garage",
+  "editorial_article": "2-step garage, commonly referred to as 2-step, emerged from the vibrant UK garage scene in the mid-1990s as a distinct, rhythmically complex subgenre that shifted away from the standard four-on-the-floor pulse of house music. Centered in London, the genre was defined by its jittery, syncopated drum patterns—often featuring two kicks per bar—that abandoned the repetitive, heavy kick-drum drive of traditional garage. This \"missing beat\" gave 2-step a lighter, more irregular, and danceable feel, drawing heavily from the swing of R&B, the breakbeat energy of jungle, and the bass-heavy textures of contemporary electronic music. The production style frequently involved pitching up imported US garage tracks to achieve higher BPMs, a technique that forced producers to rely on instrumental dub versions and creative sampling of vocals and percussive hits like rimshots and woodblocks. \\n\\nBy the late 1990s and early 2000s, 2-step evolved from a niche pirate radio sound into a mainstream force in the UK. Tracks like Tina Moore’s \"Never Gonna Let You Go\" (1997) and Artful Dodger’s massive crossover hit \"Re-Rewind\" (1999) featuring Craig David helped define the genre’s commercial peak. Beyond its chart success, 2-step became the foundational rhythm for the \"UK hardcore continuum,\" directly influencing and paving the way for later, darker, and more experimental genres like dubstep, grime, and breakstep. Its legacy remains etched in the evolution of British electronic music, representing a pivotal moment where urban, soul-infused vocals met the jagged, forward-thinking aesthetics of underground sound system culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2-step_garage",
+      "title": "2-step garage - Wikipedia"
+    },
+    {
+      "url": "https://edm.fandom.com/wiki/2_Step",
+      "title": "2 Step | EDM Wiki - Fandom"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/2-step/",
+      "title": "2-Step - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:27.519Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of UK garage characterized by syncopated, irregular drum patterns that lack a standard four-on-the-floor kick, resulting in a jittery, swing-heavy rhythm.",
+  "era": "1990s-2000s",
+  "origin": "London, England",
+  "parent_genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "dubstep"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "grime"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "drum and bass"
+    },
+    {
+      "slug": "genre:breakstep",
+      "type": "genre",
+      "name": "breakstep"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:artful-dodger",
+      "type": "artist",
+      "name": "Artful Dodger"
+    },
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David"
+    },
+    {
+      "slug": "artist:dem-2",
+      "type": "artist",
+      "name": "Dem 2"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions"
+    },
+    {
+      "slug": "artist:todd-edwards",
+      "type": "artist",
+      "name": "Todd Edwards"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hyperdub",
+      "type": "label",
+      "name": "Hyperdub"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:re-rewind",
+      "type": "track",
+      "name": "Re-Rewind (The Crowd Say Bo Selecta)"
+    },
+    {
+      "slug": "track:never-gonna-let-you-go",
+      "type": "track",
+      "name": "Never Gonna Let You Go"
+    },
+    {
+      "slug": "track:destiny",
+      "type": "track",
+      "name": "Destiny"
+    }
+  ]
+}

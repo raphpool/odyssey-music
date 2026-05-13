@@ -1,0 +1,65 @@
+{
+  "slug": "artist:duke-ellington",
+  "name": "Duke Ellington",
+  "editorial_article": "Edward Kennedy \"Duke\" Ellington (1899–1974) was a preeminent American composer, pianist, and leader of his own jazz orchestra for over five decades. Born in Washington, D.C., he rose to national prominence in the mid-1920s following his orchestra's legendary residency at the Cotton Club in Harlem. Ellington transformed big-band jazz, moving far beyond standard section-based scoring. Instead, he treated his orchestra as a singular, nuanced instrument, crafting arrangements that highlighted the idiosyncratic talents of individual soloists like Johnny Hodges, Cootie Williams, and Harry Carney. \\n\\nEllington’s prolific output—numbering thousands of compositions—blended blues, swing, and innovative harmonic structures that redefined the possibilities of orchestral jazz. His partnership with composer-arranger Billy Strayhorn resulted in some of the most enduring jazz standards, such as \"Take the 'A' Train.\" Beyond the swing era, he composed extended suites and classical-inspired works, cementing his legacy as one of the most significant musical figures of the 20th century. His ability to fuse individual expression with collective cohesion remains a cornerstone of the jazz tradition. Ellington's music is recognized not only for its technical complexity and melodic richness but for its profound impact on the evolution of American popular music. By consistently pushing the boundaries of the jazz idiom, he bridged the gap between popular dance music and sophisticated, serious composition, leaving a body of work that continues to influence contemporary performers and composers worldwide. His influence on musicians like Miles Davis is well-documented, and his work continues to be studied as the height of the big-band era.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Duke-Ellington",
+      "title": "Duke Ellington | Biography, Songs, Albums, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:52.807Z",
+  "type": "artist",
+  "editorial_bio": "Duke Ellington was an American composer, pianist, and bandleader who defined the sound of big-band jazz for over half a century. Known for his thousands of scores, his work elevated the genre from dance hall music to a sophisticated, globally recognized art form.",
+  "photo_url": "https://cdn.britannica.com/01/301-050-049D071C/Duke-Ellington.jpg",
+  "origin": "Washington, D.C.",
+  "active_years": "1917-1974",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:big-band-jazz",
+      "type": "genre",
+      "name": "Big Band Jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:black-brown-and-beige",
+      "type": "project",
+      "name": "Black, Brown and Beige"
+    },
+    {
+      "slug": "project:ellington-at-newport",
+      "type": "project",
+      "name": "Ellington at Newport"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:take-the-a-train",
+      "type": "track",
+      "name": "Take the 'A' Train"
+    },
+    {
+      "slug": "track:mood-indigo",
+      "type": "track",
+      "name": "Mood Indigo"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "artist:jimi-hendrix",
+  "name": "Jimi Hendrix",
+  "editorial_article": "Jimi Hendrix (born Johnny Allen Hendrix, 1942–1970) was an American guitarist, singer, and songwriter who fundamentally transformed the possibilities of the electric guitar. Emerging from the Seattle R&B scene and gaining global fame in London in the late 1960s, Hendrix bridged blues, jazz, and soul with groundbreaking psychedelic and hard rock innovations. As the primary creative force behind The Jimi Hendrix Experience, he crafted a sonic signature defined by his mastery of feedback, distortion, and experimental studio techniques, most famously captured on the seminal album 'Are You Experienced'. Despite a career that lasted only a few years, his influence on popular music, guitar performance, and recording techniques is immeasurable. His work continued to resonate through both his studio masterpieces and the fierce, improvisational power of his later projects like Band of Gypsys. Hendrix remains an icon whose fusion of technical virtuosity and deep emotional expression redefined rock music in the 20th century. Hendrix's journey from a backing musician for acts like Little Richard and The Isley Brothers to a solo superstar was marked by a tireless commitment to sonic exploration. In London, he formed The Jimi Hendrix Experience, where his partnership with bassist Noel Redding and drummer Mitch Mitchell resulted in a cohesive, explosive sound that defined the psychedelic era. His albums, notably the trio of records released between 1967 and 1968, remain essential pillars of rock history. He not only revolutionized guitar technique but also expanded the boundaries of the recording studio, turning the studio itself into an instrument. Even after the dissolution of his most famous trio, he continued to push boundaries with the Band of Gypsys, showcasing a more funk-inflected, blues-heavy approach that prefigured later developments in soul and funk. His legacy is cemented as one of the most influential musicians of the 20th century.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/jimi-hendrix",
+      "title": "Jimi Hendrix Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/the-jimi-hendrix-experience",
+      "title": "The Jimi Hendrix Experience discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:36.326Z",
+  "type": "artist",
+  "editorial_bio": "Jimi Hendrix (born Johnny Allen Hendrix, 1942–1970) was an American guitarist, singer, and songwriter who fundamentally transformed the possibilities of the electric guitar. Emerging from the Seattle R&B scene and gaining global fame in London in the late 1960s, Hendrix bridged blues, jazz, and soul with groundbreaking psychedelic and hard rock innovations. As the primary creative force behind The Jimi Hendrix Experience, he crafted a sonic signature defined by his mastery of feedback, distortion, and experimental studio techniques, most famously captured on the seminal album 'Are You Experienced'. Despite a career that lasted only a few years, his influence on popular music, guitar performance, and recording techniques is immeasurable. His work continued to resonate through both his studio masterpieces and the fierce, improvisational power of his later projects like Band of Gypsys. Hendrix remains an icon whose fusion of technical virtuosity and deep emotional expression redefined rock music in the 20th century.",
+  "origin": "Seattle, WA, United States",
+  "active_years": "1960-1970",
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues Rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:are-you-experienced",
+      "type": "project",
+      "name": "Are You Experienced"
+    },
+    {
+      "slug": "project:axis-bold-as-love",
+      "type": "project",
+      "name": "Axis: Bold as Love"
+    },
+    {
+      "slug": "project:electric-ladyland",
+      "type": "project",
+      "name": "Electric Ladyland"
+    },
+    {
+      "slug": "project:band-of-gypsys",
+      "type": "project",
+      "name": "Band of Gypsys"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:purple-haze",
+      "type": "track",
+      "name": "Purple Haze"
+    },
+    {
+      "slug": "track:the-wind-cries-mary",
+      "type": "track",
+      "name": "The Wind Cries Mary"
+    },
+    {
+      "slug": "track:hey-joe",
+      "type": "track",
+      "name": "Hey Joe"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-jimi-hendrix-experience",
+      "type": "artist",
+      "name": "The Jimi Hendrix Experience"
+    }
+  ]
+}

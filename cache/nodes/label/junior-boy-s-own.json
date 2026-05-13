@@ -1,0 +1,75 @@
+{
+  "slug": "label:junior-boy-s-own",
+  "name": "Junior Boy's Own",
+  "editorial_article": "Junior Boy’s Own (JBO) emerged in 1992 as the primary record label imprint of the legendary Boy’s Own collective, an organization born from the irreverent, style-conscious fanzine and party scene of late 1980s London. Founded by Terry Farley, Andrew Weatherall, Steve Mayes, and Cymon Eckel, the original Boy’s Own operation was instrumental in documenting and shaping the UK's Acid House revolution, blending the grit of football casual culture with the cosmopolitan, Balearic-inspired ethos of the rave movement. When the team transitioned from independent fanzine publishers and party organizers into a professional music business entity, they established Junior Boy’s Own in partnership with the major label EMI. \\n\\nJBO became a vital conduit for the sounds that defined British dance music throughout the 1990s. The label is perhaps most famous for fostering the early careers of electronic music titans, serving as the launching pad for Underworld and The Chemical Brothers (who originally recorded under the name The Dust Brothers). The label’s aesthetic was defined by a commitment to quality house music, often leaning into the melodic and progressive side of the genre, while maintaining the DIY spirit and discerning taste that characterized the original Boy’s Own community. Through key figures like Pete Heller and X-Press 2, JBO solidified a uniquely British sound that successfully exported the energy of London’s clubs to the global stage. It remains a cornerstone of dance music history, not merely for its massive commercial successes, but for maintaining an authentic connection to the cultural roots of the rave era while navigating the machinery of the global music industry.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/283-Junior-Boys-Own?srsltid=AfmBOopkaB_j-DEtpb_yQ7leQniSEOMoMlz_FMc7r6hBEUYOizZhH59L",
+      "title": "Junior Boy's Own | Discogs"
+    },
+    {
+      "url": "https://www.boysownproductions.com/shop",
+      "title": "HISTORY — Boy's Own"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/junior_boys_own/",
+      "title": "Junior Boy's Own - Music label - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:23.604Z",
+  "type": "label",
+  "editorial_description": "Junior Boy's Own was a seminal London-based record label formed in 1992 as an offshoot of the iconic Boy's Own collective, known for fostering electronic music legends like Underworld and The Chemical Brothers. It served as a critical nexus for the UK dance scene, balancing professional industry success with the authentic, irreverent spirit of the Acid House era.",
+  "founded": "1992",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:x-press-2",
+      "type": "artist",
+      "name": "X-Press 2"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:second-toughest-in-the-infants",
+      "type": "project",
+      "name": "Second Toughest in the Infants"
+    },
+    {
+      "slug": "project:dig-your-own-hole",
+      "type": "project",
+      "name": "Dig Your Own Hole"
+    },
+    {
+      "slug": "project:musik-x-press",
+      "type": "project",
+      "name": "Musik X-Press"
+    }
+  ]
+}

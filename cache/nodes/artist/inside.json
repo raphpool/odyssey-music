@@ -1,0 +1,49 @@
+{
+  "slug": "artist:inside",
+  "name": "Inside",
+  "editorial_article": "Inside was an influential American emo band hailing from Long Island, New York, active from 1995 to 1999. Emerging during a formative period for the Long Island hardcore and emo scenes, the band served as a critical stepping stone for musicians who would later achieve prominence in other acts, including The Movielife and Taking Back Sunday. Their discography, while relatively concise, captured the raw, emotional intensity typical of late-90s emo, characterized by introspective lyrics and melodic yet abrasive instrumentation. Throughout their tenure, they released several EPs and a full-length studio album, 'My Funeral' (1999), which solidified their reputation within independent underground circuits. Their work continues to be remembered by aficionados of the era as part of the lineage that helped shape the trajectory of melodic emo and pop-punk in the early 2000s. Their legacy persists not just in recordings, but in the enduring influence of the musicians who passed through their ranks. The band's discography, which includes titles such as 'Regarding Time Lost' and 'Untitled', remains a staple for those exploring the regional roots of the American emo explosion at the turn of the millennium. By balancing the aggression of their hardcore roots with the burgeoning melodic sensibility of the emo movement, Inside left a mark on their local scene that transcended their short time together. Following their dissolution in 1999, the members went on to participate in a variety of projects, further cementing the band's status as a vital, if short-lived, link in the chain of American punk history.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/1352496-Inside-9?srsltid=AfmBOopSNhPPCyplZNzXw_Iaus47vkMpW9nCZs03LpMmf2bGI_n3ksU3",
+      "title": "Inside (9) Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://longislandmusicscene.fandom.com/wiki/Inside",
+      "title": "Inside | Long Island Music Scene Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:15.431Z",
+  "type": "artist",
+  "editorial_bio": "Inside was an influential American emo band hailing from Long Island, New York, active from 1995 to 1999.",
+  "genres": [
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore Punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:redwood-records",
+      "type": "label",
+      "name": "Redwood Records"
+    },
+    {
+      "slug": "label:motherbox",
+      "type": "label",
+      "name": "Motherbox"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

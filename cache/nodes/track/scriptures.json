@@ -1,0 +1,38 @@
+{
+  "slug": "track:scriptures",
+  "name": "scriptures.",
+  "editorial_article": "\"scriptures.\" is a 2025 hip-hop/rap single by the artist known as db., released on January 31, 2025. The track, which runs for two minutes and eighteen seconds, emerged as part of the artist's prolific output during the mid-2020s, a period marked by a series of singles and project-based releases like \"Grime Sessions.\" Within the broader context of the artist's work, \"scriptures.\" showcases the lean, direct approach to production and vocal delivery characteristic of their contemporary output. By focusing on brevity and impact, the track reflects the fast-paced, digital-first distribution model of modern hip-hop and grime scenes. The song's title, written in lowercase with a period—a common stylistic choice among contemporary electronic and hip-hop artists—points to an aesthetic rooted in internet-era presentation and understated branding. It serves as a concise example of the artist's ability to maintain a consistent flow of material for an audience engaged with streaming platforms and evolving niche subgenres. The work is representative of an era where singular tracks act as the primary currency for maintaining visibility and audience connection. This song is part of the broader independent rap movement that emphasizes high-frequency drops and individual identity within the streaming landscape. Throughout this period, db. has cemented a reputation for delivering consistent, rhythmically driven content that resonates with fans of modern underground rap and grime-adjacent aesthetics. The song’s duration and structure make it an ideal study in the efficiency of modern production techniques, where every second is utilized to establish a specific mood and cadence, leaving little room for unnecessary filler. It stands as a pivotal moment in the artist's discography, bridging the gap between their early experimental work and their more focused rap releases found in projects like \"Grime Sessions.\"",
+  "citations": [
+    {
+      "url": "https://music.apple.com/gb/album/scriptures-single/1792113573",
+      "title": "‎scriptures. - Single - Album by db. - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:46.721Z",
+  "type": "track",
+  "editorial_teaser": "\"scriptures.\" is a lean, two-minute 2025 hip-hop/rap track by the artist db., highlighting the direct and prolific production style emblematic of their modern output.",
+  "year": "2025",
+  "artists": [
+    {
+      "slug": "artist:db",
+      "type": "artist",
+      "name": "db."
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:hip-hop-rap",
+      "type": "genre",
+      "name": "Hip-Hop/Rap"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

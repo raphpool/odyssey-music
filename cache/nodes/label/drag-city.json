@@ -1,0 +1,101 @@
+{
+  "slug": "label:drag-city",
+  "name": "Drag City",
+  "editorial_article": "Drag City is an influential American independent record label based in Chicago, Illinois, founded in 1989 by Dan Koretzky and Dan Osborn. Emerging from the vibrant underground scene of the late 1980s, the label was initially established to release music by the noise rock band Royal Trux. Over the following three decades, Drag City evolved into a cornerstone of American independent music, championing artists who operate in the margins of folk, noise, indie rock, and experimental soundscapes. The label is widely respected for its long-standing commitment to artistic autonomy, often nurturing deep, long-term relationships with its roster. \\n\\nIts catalog is defined by a distinct, uncompromising aesthetic that helped shape the trajectory of \"outsider\" music. Key contributors to the label's identity include legendary songwriters and performers such as Will Oldham (often known as Bonnie \"Prince\" Billy), Bill Callahan, and Joanna Newsom, as well as the experimental output of musicians like Jim O'Rourke and David Grubbs. The label’s influence extends beyond mere output, having facilitated significant creative intersections between the experimental underground and more traditional song-based genres. While it maintained a staunchly anti-digital posture for years, refusing to participate in streaming services until 2017, Drag City remains a benchmark for the ethos of the independent label as a platform for challenging, deeply personal artistic visions. Its legacy is underscored by a willingness to embrace the idiosyncratic, ranging from the surreal noise of early releases to the intricate, expansive folk compositions that came to define much of their later output.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/label/drag_city/",
+      "title": "Drag City - Music label - Rate Your Music"
+    },
+    {
+      "url": "https://ra.co/labels/4513",
+      "title": "Drag City · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:30.379Z",
+  "type": "label",
+  "editorial_description": "A premier American independent record label based in Chicago, celebrated for its eclectic and uncompromising roster of indie, folk, and experimental artists.",
+  "founded": "1989",
+  "location": "Chicago, Illinois",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise rock"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:royal-trux",
+      "type": "artist",
+      "name": "Royal Trux"
+    },
+    {
+      "slug": "artist:bill-callahan",
+      "type": "artist",
+      "name": "Bill Callahan"
+    },
+    {
+      "slug": "artist:joanna-newsom",
+      "type": "artist",
+      "name": "Joanna Newsom"
+    },
+    {
+      "slug": "artist:bonnie-prince-billy",
+      "type": "artist",
+      "name": "Bonnie \"Prince\" Billy"
+    },
+    {
+      "slug": "artist:silver-jews",
+      "type": "artist",
+      "name": "Silver Jews"
+    },
+    {
+      "slug": "artist:jim-o-rourke",
+      "type": "artist",
+      "name": "Jim O'Rourke"
+    },
+    {
+      "slug": "artist:ty-segall",
+      "type": "artist",
+      "name": "Ty Segall"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:twin-infinitives",
+      "type": "project",
+      "name": "Twin Infinitives"
+    },
+    {
+      "slug": "project:american-water",
+      "type": "project",
+      "name": "American Water"
+    },
+    {
+      "slug": "project:ys",
+      "type": "project",
+      "name": "Ys"
+    },
+    {
+      "slug": "project:tilt",
+      "type": "project",
+      "name": "Tilt"
+    }
+  ]
+}

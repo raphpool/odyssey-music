@@ -1,0 +1,73 @@
+{
+  "slug": "artist:ricardo-villalobos",
+  "name": "Ricardo Villalobos",
+  "editorial_article": "Born in Santiago, Chile, in 1970 and relocating to Germany at a young age, Ricardo Villalobos has cemented himself as a towering, idiosyncratic figure in modern electronic music. Best known for his pivotal role in developing the minimal techno and microhouse soundscapes that defined the European underground in the early 2000s, his work is characterized by complex, rhythmic layering and a deep, hypnotic sensibility that frequently defies the standard structures of club music. Villalobos’s creative journey began in his youth, deeply influenced by the synthetic compositions of Depeche Mode and the innovative production of artists like Daniel Bell and Baby Ford. His early career saw him navigating the German electronic music scene, notably through his relationship with the seminal Playhouse label. The release of his 2003 masterpiece, 'Alcachofa', stands as a defining moment in his discography, showcasing his ability to blend organic percussive textures—honed by his background in conga and bongo playing—with intricate, often lengthy, minimalist compositions. Throughout his career, Villalobos has been a champion of extended, immersive DJ sets, often performing in the iconic venues of Berlin’s nightlife. His approach to production and performance remains influential, bridging the gap between Latin American rhythmic sensibilities and the clinical, precise aesthetic of German techno. His legacy is one of persistent sonic experimentation, continuously pushing the boundaries of what dance music can express beyond the dancefloor.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/ricardovillalobos/biography",
+      "title": "Ricardo Villalobos · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ricardo_Villalobos",
+      "title": "Ricardo Villalobos - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:04.594Z",
+  "type": "artist",
+  "editorial_bio": "Chilean-born German producer and DJ, internationally recognized for his pioneering influence on minimal techno and microhouse.",
+  "origin": "Santiago, Chile / Germany",
+  "active_years": "1993–present",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:playhouse",
+      "type": "label",
+      "name": "Playhouse"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:alcachofa",
+      "type": "project",
+      "name": "Alcachofa"
+    },
+    {
+      "slug": "project:fizheuer-zieheuer",
+      "type": "project",
+      "name": "Fizheuer Zieheuer"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:fizheuer-zieheuer",
+      "type": "track",
+      "name": "Fizheuer Zieheuer"
+    },
+    {
+      "slug": "track:easy-lee",
+      "type": "track",
+      "name": "Easy Lee"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

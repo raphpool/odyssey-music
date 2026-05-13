@@ -1,0 +1,45 @@
+{
+  "slug": "project:the-world-of-harry-partch",
+  "name": "The World of Harry Partch",
+  "editorial_article": "The World of Harry Partch is a landmark 1969 studio album released on Columbia Masterworks that serves as the definitive audio showcase for the radical microtonal compositions of American pioneer Harry Partch. The album features iconic realizations of some of his most significant works, including the \"Daphne of the Dunes\" and the classic \"Barstow,\" which captures the idiosyncratic, hitchhiker-inspired vocal style that Partch cultivated during his life as a wanderer. The recording documents the specific sonic reality of Partch’s custom-built instrumentarium, including the Surrogate Kithara, the Diamond Marimba, and the Chromelodeon—all of which were famously cataloged in his theoretical manifesto, *Genesis of a Music*. Because Partch’s work required entirely new techniques of tuning and performance, the production of this album—supervised by Partch himself and conducted by long-time collaborator Danlee Mitchell—is considered a crucial historical record of his compositional vision. By bringing these intricate, 11-limit just intonation compositions to the Columbia Masterworks label, the album acted as a catalyst for bringing experimental, microtonal music to a wider audience, influencing subsequent generations of composers like Lou Harrison and James Tenney. It remains the essential starting point for listeners attempting to understand the intersection of physical instrument craft and avant-garde music theory in the 20th century.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/833758-Harry-Partch-The-World-Of-Harry-Partch?srsltid=AfmBOoo8W5oTE87nhtpDktiRErJiDmCMII_w0io3SWPQ8YGWAQ3QINsZ",
+      "title": "Harry Partch – The World Of Harry Partch – Vinyl (LP, Album), 1969 [r833758] | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Genesis_of_a_Music",
+      "title": "Genesis of a Music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:00.287Z",
+  "type": "project",
+  "editorial_pitch": "A seminal 1969 collection documenting the radical microtonal sound world of Harry Partch, featuring his custom-built instruments and legendary compositions like 'Barstow'.",
+  "year": "1969",
+  "artists": [],
+  "label": {
+    "slug": "label:columbia-masterworks",
+    "type": "label",
+    "name": "Columbia Masterworks"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:daphne-of-the-dunes",
+      "type": "track",
+      "name": "Daphne of the Dunes"
+    },
+    {
+      "slug": "track:barstow",
+      "type": "track",
+      "name": "Barstow"
+    },
+    {
+      "slug": "track:castor-and-pollux",
+      "type": "track",
+      "name": "Castor & Pollux"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

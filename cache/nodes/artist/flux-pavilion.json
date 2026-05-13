@@ -1,0 +1,84 @@
+{
+  "slug": "artist:flux-pavilion",
+  "name": "Flux Pavilion",
+  "editorial_article": "Flux Pavilion, the creative alias of British electronic musician Joshua Steele, is a towering figure in the development of dubstep and the broader EDM explosion of the late 2000s and early 2010s. Born in Towcester, UK, in 1989, Steele helped pioneer the aggressive, sample-heavy sound known as brostep, characterized by heavy modulation, sweeping bass lines, and high-energy production. In 2009, he co-founded the influential Circus Records label alongside Doctor P, a venture that became central to the genre's mainstream ascendancy. Flux Pavilion gained global prominence with signature tracks like \"Bass Cannon\" and \"I Can't Stop\"—the latter famously sampled by Kanye West and Jay-Z on \"Who Gon Stop Me\"—which became anthems of the bass music era. Throughout his career, his sound has evolved to encompass elements of future bass, synthpop, and melodic dubstep, as showcased on studio albums like 'Tesla' (2015) and '.wav' (2021). His legacy is cemented by his instrumental role in shaping the aesthetic of North American festival culture and his continued influence on contemporary electronic producers. Beyond his solo work, he remains a key figure in the electronic scene, frequently collaborating with other prominent artists in the bass music community and evolving his production style to bridge the gap between club-focused dubstep and more melodic, pop-oriented electronic music structures. The sheer impact of his early releases helped define the trajectory of UK bass music during a pivotal period of global expansion, ensuring his influence is felt in the work of countless modern producers who continue to experiment with the sonic boundaries he helped establish in his formative years.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/flux-pavilion",
+      "title": "Flux Pavilion Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:25.971Z",
+  "type": "artist",
+  "editorial_bio": "Flux Pavilion, the creative alias of British electronic musician Joshua Steele, is a towering figure in the development of dubstep and the broader EDM explosion of the late 2000s and early 2010s.",
+  "genres": [
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:circus-records",
+      "type": "label",
+      "name": "Circus Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tesla",
+      "type": "project",
+      "name": "Tesla"
+    },
+    {
+      "slug": "project:wav",
+      "type": "project",
+      "name": ".wav"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bass-cannon",
+      "type": "track",
+      "name": "Bass Cannon"
+    },
+    {
+      "slug": "track:i-can-t-stop",
+      "type": "track",
+      "name": "I Can't Stop"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:doctor-p",
+      "type": "artist",
+      "name": "Doctor P"
+    },
+    {
+      "slug": "artist:excision",
+      "type": "artist",
+      "name": "Excision"
+    },
+    {
+      "slug": "artist:datsik",
+      "type": "artist",
+      "name": "Datsik"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:joshua-steele",
+      "type": "artist",
+      "name": "Joshua Steele"
+    }
+  ],
+  "members": []
+}

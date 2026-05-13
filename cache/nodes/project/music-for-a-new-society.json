@@ -1,0 +1,98 @@
+{
+  "slug": "project:music-for-a-new-society",
+  "name": "Music for a New Society",
+  "editorial_article": "Music for a New Society (1982) is the eighth solo studio album by the Welsh rock musician John Cale, released through ZE Records and Island Records. Created in New York City's Skyline Studios following the suggestion of label head Michael Zilkha, the album marks a significant departure from Cale's previous rock-oriented output. Eschewing a standard backing band, the record is characterized by its sparse, improvised-style piano arrangements and deeply introspective, almost agonizing atmosphere. Cale described the experience of making the album as a form of personal exorcism, noting that the songs were largely concerned with regret and misplaced faith.\n\nThe recording process involved Cale meticulously mapping out structures before sitting down at the piano to record, aiming to capture the \"terror of the moment.\" With the notable exception of \"Changes Made,\" which features guitarist Allen Lanier of Blue Öyster Cult, the album remains a stark, intimate solo endeavor. Its influence extends far beyond music; the final lines of the track \"Sanities\" served as the epigraph for Alan Moore and Dave Gibbons' iconic graphic novel Watchmen (1986–1987). Despite its initial commercial failure, the album has gained status as a masterpiece of experimental and art rock, eventually being revisited by Cale in his 2016 re-imagining, M:FANS. Throughout its stark, emaciated landscapes, the album remains a haunting testament to Cale's singular ability to transform personal pain into resonant, enduring art.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_for_a_New_Society",
+      "title": "Music for a New Society - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/music-for-a-new-society-mw0000113434",
+      "title": "Music for a New Society - John Cale | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:26.581Z",
+  "type": "project",
+  "editorial_pitch": "A haunting, sparse masterpiece of art rock, John Cale’s 1982 album is an exercise in emotional exorcism that remains one of the most chilling and resonant works of his career.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/5/51/Music_For_A_New_Society.jpg",
+  "year": "1982",
+  "artists": [
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    }
+  ],
+  "label": {
+    "slug": "label:ze-records",
+    "type": "label",
+    "name": "ZE Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:taking-your-life-in-your-hands",
+      "type": "track",
+      "name": "Taking Your Life in Your Hands"
+    },
+    {
+      "slug": "track:thoughtless-kind",
+      "type": "track",
+      "name": "Thoughtless Kind"
+    },
+    {
+      "slug": "track:sanities",
+      "type": "track",
+      "name": "Sanities"
+    },
+    {
+      "slug": "track:if-you-were-still-around",
+      "type": "track",
+      "name": "If You Were Still Around"
+    },
+    {
+      "slug": "track:close-watch",
+      "type": "track",
+      "name": "Close Watch"
+    },
+    {
+      "slug": "track:broken-bird",
+      "type": "track",
+      "name": "Broken Bird"
+    },
+    {
+      "slug": "track:changes-made",
+      "type": "track",
+      "name": "Changes Made"
+    },
+    {
+      "slug": "track:damn-life",
+      "type": "track",
+      "name": "Damn Life"
+    },
+    {
+      "slug": "track:rise-sam-and-rimsky-korsakov",
+      "type": "track",
+      "name": "Risé, Sam and Rimsky-Korsakov"
+    },
+    {
+      "slug": "track:mama-s-song",
+      "type": "track",
+      "name": "Mama's Song"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

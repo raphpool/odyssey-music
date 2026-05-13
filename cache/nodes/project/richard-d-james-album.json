@@ -1,0 +1,98 @@
+{
+  "slug": "project:richard-d-james-album",
+  "name": "Richard D. James Album",
+  "editorial_article": "Released in 1996 on Warp Records, the *Richard D. James Album* is widely considered a seminal work in the evolution of intelligent dance music (IDM) and drill 'n' bass. Serving as the fourth studio album by Aphex Twin (the primary alias of Richard D. James), the record represents a pivotal shift from his earlier, ambient-heavy works like *Selected Ambient Works 85–92* toward a more fractured, hyper-kinetic, and rhythmically complex soundscape. The album is defined by its juxtaposition of aggressive, glitch-heavy breakcore beats—often constructed using rapid-fire, chopped-up drum samples—with delicate, melodic, and sometimes melancholic piano and synth arrangements.\\n\\nThroughout the tracklist, James demonstrates a mastery of contrast. Tracks like \"Girl/Boy Song\" exemplify this approach, blending lush, orchestral-leaning string arrangements with intense, staccato percussion that anticipated the later developments of the drill 'n' bass genre. Similarly, \"Yellow Calx\" and \"To Cure a Weakling Child\" showcase his ability to manipulate audio with surgical precision, creating textures that feel both inhumanly mechanical and deeply personal. The album is frequently cited by critics and peers alike as a masterclass in production, where the limitations of the technology of the time were pushed to their creative brink.\\n\\nBeyond its sonic innovations, *Richard D. James Album* is also noted for its cryptic and personal imagery, with the cover art featuring a distorted, unsettling portrait of James himself—a visual signature that would become synonymous with the Aphex Twin persona. The album’s enduring influence can be heard in the work of countless electronic artists who followed, solidifying its place as a cornerstone of experimental electronic music in the late 1990s. Its success helped bridge the gap between the underground rave scene and experimental music fans, cementing James's reputation as one of the most enigmatic and influential figures in modern music history.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/510-Aphex-Twin-Richard-D-James-Album?srsltid=AfmBOopEqCVfuUwjY6TQ88wwgmXe1JTC14Nr-XpYm43kSBWz4QJsY-WK",
+      "title": "Aphex Twin – Richard D. James Album | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:37.953Z",
+  "type": "project",
+  "editorial_pitch": "The Richard D. James Album is a landmark of IDM and drill 'n' bass, where Aphex Twin perfectly balances hyper-kinetic, glitch-ridden drum programming with haunting, fragile melodies. It remains one of the most significant and influential experimental electronic albums of the 1990s.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:4",
+      "type": "track",
+      "name": "4"
+    },
+    {
+      "slug": "track:cornish-acid",
+      "type": "track",
+      "name": "Cornish Acid"
+    },
+    {
+      "slug": "track:peek-824545201",
+      "type": "track",
+      "name": "Peek 824545201"
+    },
+    {
+      "slug": "track:fingerbib",
+      "type": "track",
+      "name": "Fingerbib"
+    },
+    {
+      "slug": "track:carn-marth",
+      "type": "track",
+      "name": "Carn Marth"
+    },
+    {
+      "slug": "track:to-cure-a-weakling-child",
+      "type": "track",
+      "name": "To Cure A Weakling Child"
+    },
+    {
+      "slug": "track:goon-gumpas",
+      "type": "track",
+      "name": "Goon Gumpas"
+    },
+    {
+      "slug": "track:yellow-calx",
+      "type": "track",
+      "name": "Yellow Calx"
+    },
+    {
+      "slug": "track:girl-boy-song",
+      "type": "track",
+      "name": "Girl/Boy Song"
+    },
+    {
+      "slug": "track:logan-rock-witch",
+      "type": "track",
+      "name": "Logan Rock Witch"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

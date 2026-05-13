@@ -1,0 +1,124 @@
+{
+  "slug": "artist:mitis",
+  "name": "MitiS",
+  "editorial_article": "MitiS is the professional stage name of Joseph Torre, an American electronic music producer, DJ, and classically trained pianist originating from Media, Pennsylvania. Emerging in the early 2010s, Torre built a distinct musical identity by blending the technical discipline of his classical piano background with the high-energy, emotive soundscapes of modern electronic dance music. This fusion of classical foundation and electronic production—particularly within the subgenres of melodic dubstep, progressive house, and future bass—has become a hallmark of his sound.\\n\\nThroughout his career, MitiS has become a prominent figure in the melodic bass movement, frequently finding a home for his music on labels like Ophelia Records. His discography includes several notable EPs and studio albums, such as *Til the End* (2018), *Lost* (2021), and *Unity* (2024), the latter of which highlights his continued evolution in the melodic dubstep scene. Beyond his solo work, MitiS has established a reputation for collaboration, working alongside notable peers like Seven Lions and Jason Ross. His work is characterized by lush, piano-driven melodies that provide a stark contrast to the heavy, synthesized basslines typical of the genre, allowing him to carve out a niche that appeals to both traditional dance music fans and those seeking a more melodic, compositionally focused experience. Torre remains an active touring artist, performing at major festivals and venues globally, bringing his signature blend of technical musicality and EDM energy to live stages.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/MitiS",
+      "title": "MitiS - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:48.297Z",
+  "type": "artist",
+  "editorial_bio": "MitiS is the professional stage name of Joseph Torre, an American electronic music producer, DJ, and classically trained pianist originating from Media, Pennsylvania.",
+  "origin": "Media, Pennsylvania, U.S.",
+  "active_years": "2010–present",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:melodic-dubstep",
+      "type": "genre",
+      "name": "Melodic dubstep"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive house"
+    },
+    {
+      "slug": "genre:future-bass",
+      "type": "genre",
+      "name": "Future bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ophelia-records",
+      "type": "label",
+      "name": "Ophelia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:til-the-end",
+      "type": "project",
+      "name": "Til the End"
+    },
+    {
+      "slug": "project:lost",
+      "type": "project",
+      "name": "Lost"
+    },
+    {
+      "slug": "project:unity",
+      "type": "project",
+      "name": "Unity"
+    },
+    {
+      "slug": "project:living-color-ep",
+      "type": "project",
+      "name": "Living Color EP"
+    },
+    {
+      "slug": "project:born",
+      "type": "project",
+      "name": "Born"
+    },
+    {
+      "slug": "project:foundations-ep",
+      "type": "project",
+      "name": "Foundations EP"
+    },
+    {
+      "slug": "project:moments",
+      "type": "project",
+      "name": "Moments"
+    },
+    {
+      "slug": "project:life-of-sin-series",
+      "type": "project",
+      "name": "Life of Sin Series"
+    },
+    {
+      "slug": "project:shattered",
+      "type": "project",
+      "name": "Shattered"
+    },
+    {
+      "slug": "project:all-i-have",
+      "type": "project",
+      "name": "All I Have"
+    },
+    {
+      "slug": "project:together",
+      "type": "project",
+      "name": "Together"
+    },
+    {
+      "slug": "project:memories",
+      "type": "project",
+      "name": "Memories"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:try",
+      "type": "track",
+      "name": "Try"
+    },
+    {
+      "slug": "track:break-the-silence",
+      "type": "track",
+      "name": "Break The Silence"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

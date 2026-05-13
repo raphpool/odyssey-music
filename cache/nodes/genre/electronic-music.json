@@ -1,0 +1,133 @@
+{
+  "slug": "genre:electronic-music",
+  "name": "Electronic music",
+  "editorial_article": "Electronic music is an expansive, evolving umbrella term for any musical composition that utilizes electronic instruments, circuitry-based sound generation, or software-driven production methods. Its roots extend back to the late 19th and early 20th centuries, when inventors sought to harness emerging electrical technology to expand the sonic palette beyond traditional acoustic limitations. Early milestones include the massive Telharmonium, which streamed synthesized sounds over telephone wires, and later, the development of the theremin and early synthesizers in the 1920s and 30s. The post-WWII era accelerated this trajectory, as magnetic tape technology enabled composers like those in the Musique concrète movement to manipulate recorded sounds in ways previously impossible. \\n\\nBy the 1950s and 60s, electronic music had solidified its presence in avant-garde and experimental circles, with pioneering figures like Karlheinz Stockhausen moving away from natural sounds toward pure electronic synthesis. The landscape shifted dramatically in the 1970s, as the accessibility of Moog synthesizers and drum machines brought electronic textures into the mainstream. Genres like krautrock, synth-pop, and disco paved the way for the electronic explosion of the 1980s, driven by digital technology and the standardization of MIDI. Today, electronic music is foundational to global popular culture, ranging from the intricate soundscapes of ambient and experimental music to the high-energy, dance-floor-oriented forms of EDM, techno, and house. It remains a dynamic, technology-dependent field that continues to redefine the boundaries between art, science, and popular performance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electronic_music",
+      "title": "Electronic music - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/art/electronic-music",
+      "title": "Electronic music | Definition, History, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:38.642Z",
+  "type": "genre",
+  "editorial_definition": "Electronic music is a broad musical category encompassing any sound or composition created or significantly modified through electronic devices, synthesizers, computers, and digital production software.",
+  "era": "Late 19th century to present",
+  "origin": "Europe and United States (late 19th century)",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:mute-records",
+      "type": "label",
+      "name": "Mute Records"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:trans-europe-express",
+      "type": "project",
+      "name": "Trans-Europe Express"
+    },
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85-92"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:autobahn",
+      "type": "track",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "track:windowlicker",
+      "type": "track",
+      "name": "Windowlicker"
+    }
+  ]
+}

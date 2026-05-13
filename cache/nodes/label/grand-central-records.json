@@ -1,0 +1,86 @@
+{
+  "slug": "label:grand-central-records",
+  "name": "Grand Central Records",
+  "editorial_article": "Grand Central Records was a highly influential independent record label based in the Northern Quarter of Manchester, England, that operated between 1995 and 2006. Founded by DJ Mark Rae, the label became synonymous with the unique sound of Manchester's underground music scene during the late 90s and early 2000s, blending hip hop, downtempo, and electronic production with soulful sensibilities. The label was closely linked to the local Fat City Records ecosystem, fostering a tight-knit community of artists that prioritized organic creativity and distinct visual identities. Grand Central was particularly notable for its high-profile collaborations with international luminaries such as Bobby Womack and the Jungle Brothers, which helped propel its roster—including key figures like Aim, Fingathing, and Rae & Christian—to critical acclaim. Beyond its releases, the label was a pioneer in using the early web to build an international fan base through merchandise and community-focused digital communication. Its sudden closure in 2006, allegedly due to financial pressures involving copyright disputes, marked the end of an era for a label that had championed the intersection of crate-digging culture and electronic innovation. Despite its relatively short lifespan, Grand Central Records remains a cornerstone of British independent music history, leaving a legacy that influenced subsequent labels like ATIC Records. The label's compilations, such as 'Central Heating' and the 'Grand Central' volumes, defined a specific era of chilled-out, break-heavy, yet deeply rhythmic music that provided a blueprint for many independent dance music labels that followed. It successfully managed to bridge the gap between niche hip-hop production and accessible electronic pop, ensuring its catalog remained relevant long after the label ceased operations.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Grand_Central_Records",
+      "title": "Grand Central Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/738-Grand-Central-Records?srsltid=AfmBOopPgNlWxK05dDu0XNzlrZerhh9HHch80wyzaECd8pqgSYgr_LVv",
+      "title": "Grand Central Records | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:28.288Z",
+  "type": "label",
+  "editorial_description": "A seminal Manchester-based label (1995–2006) that defined the downtempo and trip-hop sound with a roster of innovative local talent.",
+  "founded": "1995",
+  "location": "Manchester, England",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim"
+    },
+    {
+      "slug": "artist:fingathing",
+      "type": "artist",
+      "name": "Fingathing"
+    },
+    {
+      "slug": "artist:rae-and-christian",
+      "type": "artist",
+      "name": "Rae & Christian"
+    },
+    {
+      "slug": "artist:boca-45",
+      "type": "artist",
+      "name": "Boca 45"
+    },
+    {
+      "slug": "artist:niko",
+      "type": "artist",
+      "name": "Niko"
+    },
+    {
+      "slug": "artist:mark-rae",
+      "type": "artist",
+      "name": "Mark Rae"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:central-heating",
+      "type": "project",
+      "name": "Central Heating"
+    },
+    {
+      "slug": "project:grand-central-vol-1",
+      "type": "project",
+      "name": "Grand Central Vol. 1"
+    },
+    {
+      "slug": "project:frying-the-fat",
+      "type": "project",
+      "name": "Frying the Fat"
+    }
+  ]
+}

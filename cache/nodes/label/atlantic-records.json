@@ -1,0 +1,91 @@
+{
+  "slug": "label:atlantic-records",
+  "name": "Atlantic Records",
+  "editorial_article": "Founded in New York City in October 1947 by Ahmet Ertegun and Herb Abramson, Atlantic Records stands as one of the most transformative institutions in the history of American popular music. Emerging in the post-war era, the label initially focused on jazz and R&B, rapidly establishing itself as a vital force in documenting the sounds of Black American music. In its early years, under the guidance of key figures like Tom Dowd and the formidable Miriam Bienstock, the label navigated the challenges of the American Federation of Musicians recording ban by stockpiling critical sessions, eventually building a roster that included giants such as Ray Charles, Aretha Franklin, and Otis Redding. Their work in the 1950s and 1960s—frequently enhanced by strategic distribution partnerships like the one with Stax Records—helped define the sound of soul and modern R&B.\\n\\nAs the musical landscape shifted in the late 1960s, Atlantic demonstrated a remarkable capacity for evolution, successfully pivoting into rock and pop. Following its acquisition by Warner Bros.-Seven Arts (now Warner Music Group) in 1967, the label expanded its reach significantly, signing legendary acts such as Led Zeppelin, Crosby, Stills, Nash & Young, and Yes. This transition mirrored the broader industry move toward album-oriented rock while maintaining the high production standards set by their early studio pioneers. Throughout its history, Atlantic has remained a dominant cultural force, balancing deep historical roots in soul and jazz with an enduring commitment to contemporary commercial success. Under the later leadership of figures like Craig Kallman, the label has navigated the digital transition while continuing to serve as a cornerstone of the global music industry.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Atlantic_Records",
+      "title": "Atlantic Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/98679-Atlantic-Records?srsltid=AfmBOorYFJlDXeq92Z9pOapSdnhowbpeO7aR1F5iiP7Oh6q8qNVDw5N1",
+      "title": "Atlantic Records | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:05.876Z",
+  "type": "label",
+  "editorial_description": "A legendary American record label founded in 1947, known for its foundational role in soul, jazz, and R&B before expanding into rock and pop dominance within the Warner Music Group ecosystem.",
+  "founded": "1947",
+  "location": "New York City, U.S.",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    },
+    {
+      "slug": "artist:otis-redding",
+      "type": "artist",
+      "name": "Otis Redding"
+    },
+    {
+      "slug": "artist:crosby-stills-nash-and-young",
+      "type": "artist",
+      "name": "Crosby, Stills, Nash & Young"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:led-zeppelin-iv",
+      "type": "project",
+      "name": "Led Zeppelin IV"
+    },
+    {
+      "slug": "project:i-never-loved-a-man-the-way-i-love-you",
+      "type": "project",
+      "name": "I Never Loved a Man the Way I Love You"
+    },
+    {
+      "slug": "project:modern-sounds-in-country-and-western-music",
+      "type": "project",
+      "name": "Modern Sounds in Country and Western Music"
+    }
+  ]
+}

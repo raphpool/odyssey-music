@@ -1,0 +1,60 @@
+{
+  "slug": "label:geffen-records",
+  "name": "Geffen Records",
+  "editorial_article": "Founded in 1980 by music industry mogul David Geffen, Geffen Records emerged as a formidable powerhouse in the American music landscape. Quickly establishing itself as a label that could balance massive commercial pop success with credible rock and alternative acts, it became a cultural touchstone throughout the 1980s and 1990s. The label’s early roster, bolstered by hits from Donna Summer and John Lennon's 'Double Fantasy,' set a tone of prestige and mainstream appeal. However, the label is arguably best remembered for its pivotal role in the explosion of hard rock and grunge, providing the home for Guns N' Roses and Nirvana, acts that fundamentally reshaped the trajectory of rock music. By nurturing raw, high-energy talent and effectively managing their massive market penetration, Geffen became synonymous with the 'hit-making' machine that defined the major label era. Throughout its history, the label navigated shifts in ownership and industry consolidation, eventually becoming a critical component of the Interscope Geffen A&M division under Universal Music Group. Its influence remains palpable, representing an era where A&R vision combined with significant promotional muscle to turn subcultural movements into global phenomena. The label's ability to pivot between the synthesized pop of the early 80s and the raw guitar sounds of the 90s provided a soundtrack for multiple generations, ensuring its place in the pantheon of iconic 20th-century music institutions. This legacy is firmly cemented by the legendary albums released on the imprint, which shaped rock and pop history alike.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/821-Geffen-Records?srsltid=AfmBOopReGquq_p_379LvluGGeF5PBsQH5O29hD-o0J3k1-8UyeQZsfr",
+      "title": "Geffen Records | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/List_of_Geffen_Records_artists",
+      "title": "List of Geffen Records artists - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:17.612Z",
+  "type": "label",
+  "editorial_description": "Founded in 1980, Geffen Records became an iconic major label powerhouse, balancing massive pop success with defining hard rock and grunge acts throughout the 80s and 90s. Its history includes pivotal releases from artists ranging from Donna Summer to Guns N' Roses and Nirvana.",
+  "founded": "1980",
+  "location": "United States",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:guns-n-roses",
+      "type": "artist",
+      "name": "Guns N' Roses"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer"
+    },
+    {
+      "slug": "artist:john-lennon",
+      "type": "artist",
+      "name": "John Lennon"
+    },
+    {
+      "slug": "artist:blink-182",
+      "type": "artist",
+      "name": "Blink-182"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:appetite-for-destruction",
+      "type": "project",
+      "name": "Appetite for Destruction"
+    },
+    {
+      "slug": "project:double-fantasy",
+      "type": "project",
+      "name": "Double Fantasy"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "slug": "label:b12-records",
+  "name": "B12 Records",
+  "editorial_article": "Founded in 1991 by the British electronic duo Mike Golding and Steve Rutter, B12 Records stands as a seminal imprint in the development of UK ambient techno and IDM. Inspired by the pioneering Detroit techno of Juan Atkins and Derrick May, as well as the business model of Richie Hawtin's Plus 8 Records, the duo established the label to provide a home for their own productions—often released under various aliases like Musicology, Redcell, and Cmetric—and the music of close associates such as Kirk Degiorgio (As One) and Steve Pickton (Stasis). \\n\\nB12 Records quickly became synonymous with a specific aesthetic: highly limited, often colored vinyl pressings that frequently featured cryptic, hand-etched messages in the run-out grooves. This air of mystery, combined with the founders' general refusal to engage with the music press, solidified the label's cult status among electronic music aficionados. The label's early output was so influential that tracks from its catalog were curated by Warp Records for the legendary 'Artificial Intelligence' series, effectively bridging the gap between underground techno and the emerging experimental electronic scene of the 1990s. Despite long periods of dormancy—most notably a significant hiatus between 1996 and 2005—B12 Records remains a cornerstone of electronic music history, with original pressings still highly sought after by collectors for their rarity and enduring sonic relevance. The label’s legacy is defined by a synthesis of futuristic sci-fi themes, meticulous production, and a fiercely independent approach to distribution.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/1224-B12?srsltid=AfmBOopujl_Fsi6J1oN09PP3AC0aTX5Zptwsi7Al3Q6KI9_2nDjM5ptw",
+      "title": "B12 | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:36.699Z",
+  "type": "label",
+  "editorial_description": "A seminal UK independent electronic music label founded in 1991 by the duo B12, specializing in ambient techno and intelligent dance music.",
+  "founded": "1991",
+  "location": "Ilford, Essex, England",
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:as-one",
+      "type": "artist",
+      "name": "As One"
+    },
+    {
+      "slug": "artist:stasis",
+      "type": "artist",
+      "name": "Stasis"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:electro-soma",
+      "type": "project",
+      "name": "Electro-Soma"
+    },
+    {
+      "slug": "project:time-tourist",
+      "type": "project",
+      "name": "Time Tourist"
+    },
+    {
+      "slug": "project:last-days-of-silence",
+      "type": "project",
+      "name": "Last Days of Silence"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "label:prestige-records",
+  "name": "Prestige Records",
+  "editorial_article": "Prestige Records is a seminal independent American jazz label established in 1949 by Bob Weinstock in New York City. Originally launched under the name \"New Jazz,\" the imprint became one of the most vital engines of the post-war jazz explosion, providing a home for the evolving sounds of bebop, hard bop, and later, the groovy, infectious textures of soul jazz. Throughout the 1950s, Prestige distinguished itself through its approach to recording sessions; rather than laboring over perfection, the label championed the spontaneity of \"blowing sessions.\" This environment allowed titans of the genre, including Miles Davis, John Coltrane, Sonny Rollins, and Eric Dolphy, to document their growth and improvisation in real-time.\n\nAs the jazz landscape shifted toward the 1960s, Prestige evolved alongside it. The label became a primary driver of the \"soul jazz\" movement, leaning into the blues-drenched, organ-heavy sounds of artists like Jack McDuff, Richard \"Groove\" Holmes, and Charles Earland. This shift toward a more accessible, groove-oriented sound served as a precursor to what would later be identified as acid jazz. Today, the Prestige catalog remains a cornerstone of the jazz canon, managed by Concord/Craft Recordings, which continues to preserve and reissue these foundational recordings while maintaining a legacy that connects the radical innovations of the mid-century to the modern era of jazz musicianship. Its influence on the development of modern American music remains immeasurable, bridging the gap between high-art improvisational jazz and the visceral, rhythmic appeal of soul and funk.",
+  "citations": [
+    {
+      "url": "https://concord.com/labels/prestige-records/",
+      "title": "Prestige Records - Concord"
+    },
+    {
+      "url": "https://www.jazzdisco.org/prestige-records/",
+      "title": "Prestige Records Discography Project"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:50.470Z",
+  "type": "label",
+  "editorial_description": "Prestige Records is a foundational independent jazz label founded in 1949 by Bob Weinstock, known for capturing essential performances from bebop and hard bop masters through to the soul-jazz era.",
+  "founded": "1949",
+  "location": "New York City, USA",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:soul-jazz",
+      "type": "genre",
+      "name": "Soul Jazz"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:relaxin-with-the-miles-davis-quintet",
+      "type": "project",
+      "name": "Relaxin' with the Miles Davis Quintet"
+    }
+  ]
+}

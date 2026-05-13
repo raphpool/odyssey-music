@@ -1,0 +1,76 @@
+{
+  "slug": "artist:microstoria",
+  "name": "Microstoria",
+  "editorial_article": "Microstoria is a pioneering experimental electronic duo formed in 1994 in Düsseldorf, Germany, consisting of Markus Popp of the influential project Oval and Jan St. Werner of the Cologne-based group Mouse on Mars. Their collaboration emerged during the height of the mid-90s experimental electronic scene, specifically helping define the intersection between digital glitch aesthetics and warmer, ambient textures. While Markus Popp was known for the often grueling, rhythmic abstraction of Oval, he described Microstoria as a more playful, exploration-focused project that allowed for greater melodic and textural warmth. \\n\\nThe duo's output, spanning from their 1995 debut *init ding* through releases like *\\_snd* (1996) and *Model 3, Step 2* (2000), cemented them as essential figures in electronic music history, with *\\_snd* notably recognized as one of the best ambient albums of all time by critics. Their process often blurred the lines between sonic art and techno, utilizing intricate sound processing and sampling techniques to build dense, immersive soundscapes. Throughout the late 90s and early 2000s, Microstoria maintained a significant presence on labels like Mille Plateaux and Thrill Jockey, leaving an indelible mark on the development of glitch, ambient, and avant-garde electronic music. Even decades later, their work remains a touchstone for sound designers and experimental producers, with continued interest reflected in archival reissues.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Microstoria",
+      "title": "Microstoria - Wikipedia"
+    },
+    {
+      "url": "https://thrilljockey.com/artists/microstoria",
+      "title": "Microstoria | Thrill Jockey Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:27.273Z",
+  "type": "artist",
+  "editorial_bio": "Microstoria is a pioneering experimental electronic duo formed in 1994 in Düsseldorf, Germany, consisting of Markus Popp of the influential project Oval and Jan St.",
+  "genres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    },
+    {
+      "slug": "label:thrill-jockey",
+      "type": "label",
+      "name": "Thrill Jockey"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:init-ding",
+      "type": "project",
+      "name": "init ding"
+    },
+    {
+      "slug": "project:snd",
+      "type": "project",
+      "name": "_snd"
+    },
+    {
+      "slug": "project:model-3-step-2",
+      "type": "project",
+      "name": "Model 3, Step 2"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "members": []
+}

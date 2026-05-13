@@ -1,0 +1,58 @@
+{
+  "slug": "genre:contemporary-classical-music",
+  "name": "Contemporary classical music",
+  "editorial_article": "Contemporary classical music is a broad, evolving category of Western art music composed from the mid-20th century to the present day. Emerging in the wake of World War II, the genre represents a profound shift away from the traditional tonal language that dominated Western music for centuries. Initially defined by the rigorous intellectualism of high modernism—characterized by the total serialism of figures like Pierre Boulez and Karlheinz Stockhausen, as well as the twelve-tone techniques of Milton Babbitt—the genre eventually splintered into a diverse, pluralistic landscape. By the late 20th century, contemporary classical music expanded to encompass minimalist pioneers like Philip Glass and Steve Reich, the experimental, indeterminate approaches of John Cage, and the theatrical, mixed-media explorations that challenged the very definition of performance and notation.\\n\\nToday, the term acts as an umbrella for a vast array of aesthetic approaches, ranging from the complex, non-linear structures of spectral music to the accessible textures of neoromanticism and post-minimalism. Unlike earlier historical periods defined by a specific stylistic coherence, contemporary classical music is marked by its refusal to adhere to a single set of rules. It is a field characterized by relentless self-expression and innovation, where technology, acoustic experimentation, and global influences converge. Whether through orchestral works, chamber music, or electronic compositions, the genre remains a vital, ongoing dialogue between tradition and radical invention, continuously reshaping what it means to create and perform \"classical\" music in the modern world.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Contemporary_classical_music",
+      "title": "Contemporary classical music - Wikipedia"
+    },
+    {
+      "url": "https://www.classicfm.com/discover-music/periods-genres/contemporary/",
+      "title": "Contemporary - Periods & Genres - Discover Music - Classic FM"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:53.236Z",
+  "type": "genre",
+  "editorial_definition": "Contemporary classical music is an expansive category of Western art music composed in the modern era, generally post-1945, encompassing a wide range of aesthetic movements including modernism, minimalism, spectralism, and experimentalism.",
+  "era": "1945-present",
+  "origin": "Western Europe and North America",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    },
+    {
+      "slug": "artist:pierre-boulez",
+      "type": "artist",
+      "name": "Pierre Boulez"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:milton-babbitt",
+      "type": "artist",
+      "name": "Milton Babbitt"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

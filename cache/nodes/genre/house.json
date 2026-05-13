@@ -1,0 +1,128 @@
+{
+  "slug": "genre:house",
+  "name": "House",
+  "editorial_article": "House music is a foundational pillar of electronic dance music, emerging in the early 1980s from the vibrant, queer Black and Latino club culture of Chicago. Named after The Warehouse, the club where seminal DJ Frankie Knuckles famously played a fusion of disco, post-disco, and electronic tracks, the genre evolved as producers sought to create a more mechanical, dance-ready sound. By isolating and looping the rhythm sections of disco records and layering them with synthesizers and drum machines—most notably the Roland TR-808, TR-909, and the TB-303—pioneers crafted the signature four-on-the-floor beat that defines the genre. This rhythmic foundation, typically set between 115 and 130 beats per minute, provided an accessible yet hypnotic framework that allowed dance floors to pulsate for hours.\\n\\nThe early Chicago scene, spearheaded by figures such as Ron Hardy, Marshall Jefferson, Jesse Saunders, and Steve \"Silk\" Hurley, quickly transformed from a local underground movement into a global phenomenon. As the sound expanded to New York, London, and beyond, it branched into countless subgenres, including the squelching, raw aesthetic of acid house, the deep, soulful grooves of deep house, and the high-energy sounds of garage and tech house. House music fundamentally altered the landscape of popular music, forcing a rhythmic shift in mainstream radio and club culture that persists to this day. Its legacy is found not only in the evolution of dance music but also in the way it fostered inclusive, community-driven spaces where the DJ became a conductor of sonic euphoria, bridging disparate influences of jazz, soul, and post-punk into a singular, cohesive experience. Today, house continues to evolve, serving as both a respected underground tradition and an essential component of modern pop production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/House_music",
+      "title": "House music - Wikipedia"
+    },
+    {
+      "url": "https://noiseera.com/blog/types-of-house-music-key-house-genres-explained/",
+      "title": "Exploring the Different Types of House Music: A Comprehensive Guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:35.458Z",
+  "type": "genre",
+  "editorial_definition": "A genre of electronic dance music characterized by a repetitive 4/4 'four-on-the-floor' beat, typically ranging from 115 to 130 beats per minute, which emerged in Chicago in the early 1980s.",
+  "era": "1980s–present",
+  "origin": "Chicago, Illinois, U.S.",
+  "sonic_markers": "Four-on-the-floor kick drum pattern, 115–130 BPM tempo, heavy use of drum machines (TR-808/909) and synthesizers (TB-303), repetitive melodic loops, syncopated hi-hats.",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:marshall-jefferson",
+      "type": "artist",
+      "name": "Marshall Jefferson"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    },
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve \"Silk\" Hurley"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:move-your-body",
+      "type": "track",
+      "name": "Move Your Body"
+    },
+    {
+      "slug": "track:your-love",
+      "type": "track",
+      "name": "Your Love"
+    },
+    {
+      "slug": "track:acid-tracks",
+      "type": "track",
+      "name": "Acid Tracks"
+    }
+  ]
+}

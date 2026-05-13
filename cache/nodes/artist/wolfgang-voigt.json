@@ -1,0 +1,125 @@
+{
+  "slug": "artist:wolfgang-voigt",
+  "name": "Wolfgang Voigt",
+  "editorial_article": "Wolfgang Voigt (born 1961, Cologne) is a seminal figure in German electronic music, recognized as a primary architect of the \"Cologne sound\" and a pioneer of minimal techno. Emerging from the pop and punk subcultures of the 1970s and 80s, Voigt embraced acid house in the late 1980s, ultimately dedicating himself to the rhythmic discipline of the 4/4 bass drum. He is famously a co-founder of the influential record label Kompakt, which cemented Cologne's status as a global hub for sophisticated electronic music. Throughout his prolific career, Voigt has utilized an exhaustive list of aliases—including Gas, Mike Ink, Studio1, Wassermann, and Love Inc.—to explore vastly different aesthetic terrains, ranging from the glitchy, subverted \"concept disco\" to the pastoral, immersive ambient landscapes of his Gas project. \\n\\nVoigt's artistic philosophy is defined by two primary mechanisms: the \"loop principle\" and \"Entdeutung\" (de-signification). The former relies on the hypnotic, repetitive nature of minimalist structures, often influenced by the logic of music production software. The latter involves the abstract condensation and stripping away of context from sampled source material, such as German folk or classical music, recontextualizing raw aesthetic elements into new, challenging frameworks. His work often sits at the intersection of high art and the dancefloor, frequently exploring serial patterns reminiscent of industrial design. In 2019, Voigt was honored with the inaugural Holger Czukay Preis for Pop Music, recognizing his profound influence on generations of electronic producers. His relentless output remains characterized by a deliberate refusal to be categorized, maintaining a complex tension between extreme abstraction and the structural familiarity of pop and techno. This artistic duality has seen him bridge the divide between the underground experimental scenes of labels like Raster-Noton and the more accessible, dance-oriented releases that define the modern Kompakt catalog. His legacy continues to evolve, constantly challenging the listener to find meaning in the repetitive, the minimal, and the abstract.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Wolfgang_Voigt",
+      "title": "Wolfgang Voigt - Wikipedia"
+    },
+    {
+      "url": "https://kompakt.fm/artists/wolfgang_voigt",
+      "title": "Wolfgang Voigt | Kompakt"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:11.894Z",
+  "type": "artist",
+  "editorial_bio": "A foundational producer, label founder, and artist whose work defines the Cologne minimal techno scene and the ambient-industrial hybrid style.",
+  "photo_url": "https://s3.amazonaws.com/media.kompakt.fm/01/assets/artists/5tEq2GG5GYAq-fitted.jpg",
+  "origin": "Cologne, Germany",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    },
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:raster-noton",
+      "type": "label",
+      "name": "Raster-Noton"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:pop",
+      "type": "project",
+      "name": "Pop"
+    },
+    {
+      "slug": "project:zauberberg",
+      "type": "project",
+      "name": "Zauberberg"
+    },
+    {
+      "slug": "project:konigsforst",
+      "type": "project",
+      "name": "Königsforst"
+    },
+    {
+      "slug": "project:earquake-wolfgang-voigt-1991-1999",
+      "type": "project",
+      "name": "EARQUAKE – Wolfgang Voigt 1991 – 1999"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pop-1",
+      "type": "track",
+      "name": "Pop 1"
+    },
+    {
+      "slug": "track:konigsforst-1",
+      "type": "track",
+      "name": "Königsforst 1"
+    },
+    {
+      "slug": "track:wassermann-wurst",
+      "type": "track",
+      "name": "Wassermann - Wurst"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:gas",
+      "type": "artist",
+      "name": "Gas"
+    },
+    {
+      "slug": "artist:mike-ink",
+      "type": "artist",
+      "name": "Mike Ink"
+    },
+    {
+      "slug": "artist:studio1",
+      "type": "artist",
+      "name": "Studio1"
+    },
+    {
+      "slug": "artist:wassermann",
+      "type": "artist",
+      "name": "Wassermann"
+    },
+    {
+      "slug": "artist:love-inc",
+      "type": "artist",
+      "name": "Love Inc."
+    }
+  ],
+  "members": []
+}

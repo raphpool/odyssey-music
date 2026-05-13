@@ -1,0 +1,74 @@
+{
+  "slug": "artist:todd-edwards",
+  "name": "Todd Edwards",
+  "editorial_article": "Todd Edwards (born Todd Edward Imperatrice, December 9, 1972) is an American garage house record producer, DJ, and singer-songwriter from Bloomfield, New Jersey. A seminal figure in the development of the UK garage and speed garage genres, Edwards is renowned for his highly distinctive, innovative vocal reconstruction techniques. By meticulously chopping, layering, and rearranging vocal samples over syncopated, four-on-the-floor beats, he created a signature sonic aesthetic that profoundly influenced the evolution of electronic dance music. During the 1990s, he built his reputation through releases on the iconic New York house label Nervous Records, crafting hits like 1993’s \\\"Guide My Soul\\\" and 1994’s \\\"Saved My Life.\\\" His work caught the attention of electronic music pioneers, most notably Daft Punk, who famously name-checked him in their 1997 track \\\"Teachers.\\\" This mutual admiration led to a long-standing creative relationship, with Edwards co-producing and providing vocals on \\\"Face to Face\\\" from their 2001 album Discovery, and later contributing to \\\"Fragments of Time\\\" for their Grammy-winning 2013 masterpiece, Random Access Memories. Following a period of disillusionment and temporary retirement during the 2000s, Edwards experienced a triumphant resurgence in the 2010s, reaffirming his status as \\\"Todd the God\\\" and a cornerstone of the global house scene. His music remains vital, characterized by its infectious energy, complex vocal sampling, and emotional resonance. He serves as a bridge between the classic New York house tradition and the experimental, high-octane sounds that would eventually define the UK garage movement. His legacy is not only found in his vast catalog of remixes and original productions but in the generation of producers he inspired, who continue to emulate his unparalleled approach to vocal sampling and rhythmic arrangement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Todd_Edwards",
+      "title": "Todd Edwards - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/dj/toddedwards",
+      "title": "Todd Edwards · Artist Profile - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:51.384Z",
+  "type": "artist",
+  "editorial_bio": "Todd Edwards (born Todd Edward Imperatrice, December 9, 1972) is an American garage house record producer, DJ, and singer-songwriter from Bloomfield, New Jersey.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Todd_Edwards_crop.jpg/250px-Todd_Edwards_crop.jpg",
+  "origin": "Bloomfield, New Jersey",
+  "active_years": "1992–2007, 2013–present",
+  "genres": [
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage house"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:nervous-records",
+      "type": "label",
+      "name": "Nervous Records"
+    },
+    {
+      "slug": "label:defected-records",
+      "type": "label",
+      "name": "Defected Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:face-to-face",
+      "type": "track",
+      "name": "Face to Face"
+    },
+    {
+      "slug": "track:fragments-of-time",
+      "type": "track",
+      "name": "Fragments of Time"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

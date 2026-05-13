@@ -1,0 +1,112 @@
+{
+  "slug": "project:loop-finding-jazz-records",
+  "name": "Loop-Finding-Jazz-Records",
+  "editorial_article": "\"Loop-Finding-Jazz-Records\" (2001) is the second studio album by the German electronic producer Jan Jelinek, released on the influential ~scape label. Often regarded as a definitive document of the \"clicks + cuts\" movement, the record is famous for its intricate, manual manipulation of jazz samples. Despite its title, the music itself bears little direct resemblance to traditional jazz; instead, Jelinek uses fragments of jazz instrumentation—piano chords, horn swells, and double-bass plucks—as raw material for an immersive, glitch-heavy ambient journey. \\n\\nRecorded in Jelinek's Berlin flat using an Ensoniq ASR-10 sampler, the album represents a unique intersection of technical precision and emotional resonance. Critics have frequently praised the record for its \"organic\" texture, contrasting it with the colder, more sterile output often associated with the early 2000s electronic scene. Through constant looping and rhythmic stuttering, Jelinek builds dense, hypnotic atmospheres that seem to constantly evolve while remaining fundamentally static in structure. Its importance to electronic music was solidified decades later, when publications like Pitchfork named it among the best IDM albums ever released. By stripping the context from his source materials, Jelinek invited listeners to focus on the microstructure of sound itself, creating a record that feels as warm and timeless today as it did at the dawn of the millennium.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Loop-Finding-Jazz-Records",
+      "title": "Loop-Finding-Jazz-Records - Wikipedia"
+    },
+    {
+      "url": "https://inverted-audio.com/feature/jan-jelinek-on-loop-finding-jazz-records/",
+      "title": "Jan Jelinek on Loop-Finding-Jazz-Records - Inverted Audio"
+    },
+    {
+      "url": "https://janjelinek.bandcamp.com/album/loop-finding-jazz-records",
+      "title": "Loop-Finding-Jazz-Records | Jan Jelinek - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:22.038Z",
+  "type": "project",
+  "editorial_pitch": "Released in 2001, Jan Jelinek's \"Loop-Finding-Jazz-Records\" is a seminal masterpiece of the clicks + cuts era, masterfully transforming jazz samples into abstract, hypnotic soundscapes. Through an Ensoniq ASR-10 sampler, Jelinek created a lush, organic, and glitchy universe that transcended its minimalist roots to become a cornerstone of modern electronic production.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a0/Jan_Jelinek_Loop_Finding_Jazz_Records.jpg/250px-Jan_Jelinek_Loop_Finding_Jazz_Records.jpg",
+  "year": "2001",
+  "artists": [],
+  "label": {
+    "slug": "label:scape",
+    "type": "label",
+    "name": "~scape"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:moire",
+      "type": "track",
+      "name": "Moiré (Piano & Organ)"
+    },
+    {
+      "slug": "track:rock-in-the-video-age",
+      "type": "track",
+      "name": "Rock in the Video Age"
+    },
+    {
+      "slug": "track:they-them",
+      "type": "track",
+      "name": "They, Them"
+    },
+    {
+      "slug": "track:them-their",
+      "type": "track",
+      "name": "Them, Their"
+    },
+    {
+      "slug": "track:tendency",
+      "type": "track",
+      "name": "Tendency"
+    },
+    {
+      "slug": "track:moire",
+      "type": "track",
+      "name": "Moiré (Strings)"
+    },
+    {
+      "slug": "track:do-dekor",
+      "type": "track",
+      "name": "Do Dekor"
+    },
+    {
+      "slug": "track:drift",
+      "type": "track",
+      "name": "Drift"
+    },
+    {
+      "slug": "track:moire",
+      "type": "track",
+      "name": "Moiré (Guitar & Horns)"
+    },
+    {
+      "slug": "track:poren",
+      "type": "track",
+      "name": "Poren"
+    },
+    {
+      "slug": "track:audio-liner-notes",
+      "type": "track",
+      "name": "Audio Liner Notes (The Village Vanguard)"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "related_projects": []
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "label:touch",
+  "name": "Touch",
+  "editorial_article": "Touch is a pioneering British audio-visual organisation and independent label based in London, founded in 1982 by Mike Harding and Jon Wozencroft. Since its inception, Touch has distinguished itself from conventional record labels by functioning as a multi-disciplinary platform, emphasizing the synergy between experimental electronic music, sound art, and distinctive graphic design. The label is widely recognized for its high-concept approach, often pairing complex, immersive soundscapes with Wozencroft’s unique, evocative visual aesthetics, which have become a hallmark of the label's identity. \\n\\nRather than adhering to the rigid commercial structures of a standard record company, Touch operates on a curatorial model, fostering long-term relationships with a diverse group of avant-garde and experimental artists. The roster has historically included luminaries such as Fennesz, Ryoji Ikeda, and Hildur Guðnadóttir, whose work often explores the boundaries of texture, field recording, and minimalism. By maintaining a commitment to quality over trend-driven output, Touch has remained a vital fixture in the experimental music landscape for over four decades, bridging the gap between gallery-grade sound art and innovative electronic listening music. Its enduring influence is felt not only in the music released but also in the meticulous presentation of its physical artifacts and live presentations. Their commitment to the medium of sound extends to live performances and installations, solidifying their reputation as one of the most enduring and conceptually consistent independent entities in the history of experimental music.",
+  "citations": [
+    {
+      "url": "https://touch33.net/about",
+      "title": "About | Touch"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Touch_Music",
+      "title": "Touch Music - Wikipedia"
+    },
+    {
+      "url": "https://www.forcedexposure.com/Labels/TOUCH.UK.html",
+      "title": "TOUCH - Forced Exposure"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:01.050Z",
+  "type": "label",
+  "editorial_description": "A pioneering London-based audio-visual organization and label focused on experimental music, sound art, and high-concept aesthetics.",
+  "founded": "1982",
+  "location": "London, England",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda"
+    },
+    {
+      "slug": "artist:hildur-gu-nadottir",
+      "type": "artist",
+      "name": "Hildur Guðnadóttir"
+    },
+    {
+      "slug": "artist:philip-jeck",
+      "type": "artist",
+      "name": "Philip Jeck"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:endless-summer",
+      "type": "project",
+      "name": "Endless Summer"
+    },
+    {
+      "slug": "project:dataplex",
+      "type": "project",
+      "name": "Dataplex"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "slug": "track:irresistible--1987-r-and-b-track-by-audrey-wheeler",
+  "name": "Irresistible",
+  "editorial_article": "\"Irresistible\" is a sleek, mid-1980s R&B track released in 1987 by the American singer Audrey Wheeler. Known primarily for her session work and background vocals with major acts, Wheeler stepped into the spotlight with this solo outing, which perfectly captures the polished, synthesizer-driven soundscape of late-80s urban radio. The track was produced by Lionel Job, a producer who had previously worked with the band Starpoint, and Preston Glass, both of whom contributed their signature smooth-yet-punchy production style to the recording. Written by a team including André Pessis, Lionel Job, Preston Glass, and Thor Baldursson, the song relies on a tight, danceable groove typical of the era's contemporary R&B, elevated by Wheeler’s strong, soulful vocal performance. \\n\\nThe single was released on Capitol Records and gained traction on local radio stations, solidifying its place as a quintessential example of the polished, professional soul-pop sound that dominated the US R&B charts during that period. Despite not becoming a massive crossover pop hit, \"Irresistible\" remains a sought-after gem for collectors of late-80s R&B, praised for its production quality and the technical precision of its arrangement. It serves as a reminder of the era when studio professionals and skilled vocalists like Wheeler could craft high-quality, radio-ready soul music that bridged the gap between traditional R&B and the emerging electronic pop aesthetic. The availability of 12-inch versions and instrumentals at the time further highlights its utility and popularity within the club and radio DJ circuits of 1987.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/257488-Audrey-Wheeler-Irresistible?srsltid=AfmBOoptnTPTsYDafny2qjqoK1UhRayk8Md82V4y_BLlRxdye0ppvXVF",
+      "title": "Audrey Wheeler – Irresistible | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:44.844Z",
+  "type": "track",
+  "editorial_teaser": "A polished, synth-driven R&B track from 1987, \"Irresistible\" showcases the soulful vocals of session singer Audrey Wheeler over a sophisticated production by Lionel Job and Preston Glass.",
+  "year": "1987",
+  "artists": [
+    {
+      "slug": "artist:audrey-wheeler",
+      "type": "artist",
+      "name": "Audrey Wheeler"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

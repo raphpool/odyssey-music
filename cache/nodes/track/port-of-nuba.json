@@ -1,0 +1,64 @@
+{
+  "slug": "track:port-of-nuba",
+  "name": "Port Of Nuba",
+  "editorial_article": "\"Port Of Nuba\" is a seminal track by the German electronic duo Porter Ricks, released in 1996 as the A-side to their second 12-inch single on the legendary Chain Reaction label. As key architects of the dub techno sound, Porter Ricks—comprising Thomas Köner and Andy Mellwig—utilized this release to cement their reputation for melding deep, cavernous textures with the skeletal, repetitive structures of Berlin techno. The track is defined by its cold, atmospheric production, characterized by heavily processed dub echoes and a rolling, hypnotic rhythm that exemplifies the \"Chain Reaction sound\" defined by minimal, abstract landscapes. \\n\\n\"Port Of Nuba\" serves as a masterclass in spatial sound design, where the lack of traditional harmonic progression is compensated for by the sheer density of its reverberant sonic field. It captured the zeitgeist of the mid-1990s Berlin underground, moving away from the more melodic or aggressive tropes of contemporary techno in favor of a cerebral, introspective approach that remains highly influential. The track’s release on Chain Reaction—an offshoot of the iconic Basic Channel label—situates it within a canon of music that prioritized the physical presence of sound, often pressed with specific attention to the vinyl medium's acoustic capabilities at Dubplates & Mastering in Berlin. As a definitive example of dub techno, \"Port Of Nuba\" remains a touchstone for producers exploring the intersection of industrial weight and dub-influenced atmosphere. The label Chain Reaction was founded as a platform for deeper, more abstract techno following the success of Basic Channel, and its influence on electronic music culture in the late 90s cannot be overstated. By pairing this release with \"Nautical Nuba\" on the B-side, Porter Ricks showcased their ability to create immersive, long-form compositions that functioned as modular, shifting pieces of art. Their work continues to be referenced by modern producers in ambient and experimental techno scenes worldwide. The track's duration and technical precision illustrate the high standards set by the studio partners at the label, influencing a generation of sound engineers.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/11279-Porter-Ricks-Port-Of-Nuba-Nautical-Nuba?srsltid=AfmBOop7ll_WqpIlFt179MZ9xzwR2LYdZ38alMWTTwxjidSlVtV1StoW",
+      "title": "Porter Ricks – Port Of Nuba / Nautical Nuba – Vinyl (12'), 1996 [r11279] | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/single/porter-ricks/port-of-nuba-nautical-nuba/",
+      "title": "Port of Nuba / Nautical Nuba by Porter Ricks (Single, Dub Techno ..."
+    },
+    {
+      "url": "https://forceincmilleplateaux.bandcamp.com/track/port-of-nuba",
+      "title": "Port Of Nuba | Porter Ricks | Force Inc. / Mille Plateaux"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:13.256Z",
+  "type": "track",
+  "editorial_teaser": "A seminal piece of 1996 dub techno, \"Port Of Nuba\" is a masterclass in atmospheric sound design that defined the influential, minimalist aesthetic of Berlin's Chain Reaction label.",
+  "cover_url": "https://i.discogs.com/lxpLMt8Ni3Px6hmJhj2sia7ypulOusU07p6-XbtuXII/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczOTkt/MTU4MTUzMDk1Ni00/NDA1LmpwZWc.jpeg",
+  "year": "1996",
+  "duration": "8:02",
+  "artists": [
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks"
+    }
+  ],
+  "project": {
+    "slug": "project:port-of-nuba-nautical-nuba",
+    "type": "project",
+    "name": "Port Of Nuba / Nautical Nuba"
+  },
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

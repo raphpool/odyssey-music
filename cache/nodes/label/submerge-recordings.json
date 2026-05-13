@@ -1,0 +1,66 @@
+{
+  "slug": "label:submerge-recordings",
+  "name": "Submerge Recordings",
+  "editorial_article": "Submerge Recordings is a foundational institution in the global techno landscape, serving as a critical hub for the Detroit electronic music movement since its inception in 1994. Founded by \"Mad\" Mike Banks—a co-founder of the seminal collective Underground Resistance—Submerge was established not merely as a record label, but as a distribution entity and community pillar designed to reclaim autonomy for Detroit-based artists. Operating out of the Motor City, it has functioned as the engine room for the legendary UR orbit, facilitating the release and global dissemination of records by seminal acts such as Drexciya, Scan 7, and Los Hermanos. The label's aesthetic is deeply intertwined with the radical, anti-commercial ethos of Detroit techno, characterized by a commitment to sonic innovation, spiritual depth, and the preservation of the genre's Afro-futurist heritage. Beyond its catalog, Submerge is central to the lore of Detroit techno, often linked to \"Exhibit 3000,\" a space that served as a physical archive and repository of the city’s profound contribution to dance music history. By operating its own distribution network, Submerge ensured that the sounds emerging from the Detroit underground remained independent of major label exploitation, solidifying its status as an uncompromising bastion of electronic music integrity. Its influence persists through the continued reverence for its catalog and its role in mentorship, fostering generations of artists who continue to carry the \"Detroit Way\" across the globe. The label remains a testament to the power of self-reliance, providing a platform for artists to project their visions outward while remaining firmly rooted in the landscape of their origin. Its ongoing legacy is marked by a refusal to dilute the intensity and soulfulness that define the classic Detroit techno sound, ensuring its records remain perennial touchstones for producers and fans worldwide.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/1079",
+      "title": "Submerge Recordings · Record label ⟋ RA"
+    },
+    {
+      "url": "https://musicorigins.org/item/submerge-records/",
+      "title": "Submerge Records and Exhibit 3000- A Monument to Detroit Techno Giants | The Music Origins Project"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:18.590Z",
+  "type": "label",
+  "editorial_description": "A foundational Detroit techno label and distribution hub established by Mike Banks, serving as a pillar for the Underground Resistance orbit and preserving the city's Afro-futurist electronic legacy.",
+  "founded": "1994",
+  "location": "Detroit, Michigan, USA",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya"
+    },
+    {
+      "slug": "artist:scan-7",
+      "type": "artist",
+      "name": "Scan 7"
+    },
+    {
+      "slug": "artist:los-hermanos",
+      "type": "artist",
+      "name": "Los Hermanos"
+    },
+    {
+      "slug": "artist:aux-88",
+      "type": "artist",
+      "name": "Aux 88"
+    },
+    {
+      "slug": "artist:dj-3000",
+      "type": "artist",
+      "name": "DJ 3000"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:on-another-level",
+      "type": "project",
+      "name": "On Another Level"
+    }
+  ]
+}

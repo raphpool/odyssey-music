@@ -1,0 +1,45 @@
+{
+  "slug": "genre:celtic-music",
+  "name": "Celtic music",
+  "editorial_article": "Celtic music represents a broad, diverse grouping of folk-derived genres that emerged from the traditions of the Celtic nations of Northwestern Europe—specifically Ireland, Scotland, Wales, Brittany, Cornwall, the Isle of Man, and regions like Galicia in Spain. Rather than a singular, static sound, the term encompasses a spectrum ranging from ancient, orally transmitted melodies to modern, highly produced hybrid forms known as \"Celtic fusion.\" While often grouped together due to shared historical and cultural roots among the Celtic peoples, these styles display unique regional variations influenced by language, geography, and instrument development. \\n\\nAt the core of the tradition are instruments that have come to define the \"Celtic\" sound: the melodic, haunting quality of the fiddle, the rhythmic pulse of the bodhrán (a frame drum), the piercing resonance of the uilleann pipes and Great Highland bagpipes, and the crystalline tones of the Celtic harp. Tin whistles, concertinas, and more recent adaptions like the Irish bouzouki also play vital roles in the arrangement of reels, jigs, and laments. The traditions are loosely divided by linguistic history into Q-Celtic (Gaelic: Irish, Scottish, Manx) and P-Celtic (Brythonic: Breton, Welsh, Cornish), with musicians like Alan Stivell noting key differences in scale usage—Gaelic music often favoring the pure pentatonic scale and broader melodic ranges, while Brythonic music frequently utilizes more compressed scales.\\n\\nThe global footprint of this music expanded significantly alongside the Irish and Scottish diasporas, particularly in North America. Regions such as Atlantic Canada—notably Cape Breton and Newfoundland—have become bastions of the genre, preserving older stylistic nuances like fiddle-piano accompaniments that have occasionally faded in the \"old country.\" Furthermore, the foundational rhythms and melodic structures of Celtic music left an indelible mark on the development of American folk, bluegrass, and country music, illustrating how these ancient traditions have remained resilient and evolutionary across centuries.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Celtic_music",
+      "title": "Celtic music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:40.267Z",
+  "type": "genre",
+  "editorial_definition": "A broad, diverse grouping of music genres derived from the folk traditions of the Celtic nations, spanning traditional acoustic styles to contemporary hybrids.",
+  "era": "Ancient to Modern",
+  "origin": "Northwestern Europe (Celtic Nations)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk music"
+    },
+    {
+      "slug": "genre:bluegrass",
+      "type": "genre",
+      "name": "Bluegrass"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:alan-stivell",
+      "type": "artist",
+      "name": "Alan Stivell"
+    },
+    {
+      "slug": "artist:the-chieftains",
+      "type": "artist",
+      "name": "The Chieftains"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

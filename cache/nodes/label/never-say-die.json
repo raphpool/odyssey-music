@@ -1,0 +1,41 @@
+{
+  "slug": "label:never-say-die",
+  "name": "Never Say Die",
+  "editorial_article": "Never Say Die Records (NSD) was a highly influential British independent electronic music record label that played a pivotal role in the evolution of the global bass music scene. Founded in 2009 by Thomas Petais, better known as SKisM, and Nicholas Sadler (Mobscene), the label emerged as a cornerstone for dubstep, drum and bass, and later, bass house and EDM trap. Named after a famous quote from the film The Goonies, the label became synonymous with the aggressive, high-energy sound that defined the 2010s bass music explosion. Over its thirteen-year lifespan, NSD served as a crucial launchpad for many prominent bass artists, including Zomboy, Eptic, Must Die!, and Dodge & Fuski, helping to bridge the gap between underground dubstep roots and the mainstream festival sound.\n\nThe label’s operations were marked by a commitment to fostering a distinct community, famously expanding its footprint through sublabels like the bass-heavy \"Black Label\" and \"No Tomorrow Recordings,\" which allowed for the exploration of diverse electronic sub-genres. NSD consistently pushed the sonic boundaries of its roster, winning the 'Best Label' award at the Bass Music Awards in 2014. Despite its significant impact on the industry, the label announced its retirement from releasing music in April 2022, with the founders concluding that they had achieved their original goals for the project. While it remains inactive, its extensive catalog remains a foundational resource for bass music listeners and producers worldwide, representing a defining era of modern dance music history. The legacy of Never Say Die is not just found in its tracklists, but in the way it cultivated an aesthetic and culture that moved bass music from niche dancefloors into the heart of major global festival stages.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Never_Say_Die_Records",
+      "title": "Never Say Die Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:07.426Z",
+  "type": "label",
+  "editorial_description": "Never Say Die Records was a quintessential British bass music label that dominated the dubstep, trap, and drum and bass scenes for over a decade. Founded in 2009 by SKisM and Mobscene, it acted as a major catalyst for the evolution and popularization of bass-heavy electronic music.",
+  "founded": "2009-07-17",
+  "location": "Clacton-on-Sea, England, United Kingdom",
+  "active_years": "2009–2022",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:trap",
+      "type": "genre",
+      "name": "Trap"
+    }
+  ],
+  "roster": [],
+  "notable_releases": []
+}

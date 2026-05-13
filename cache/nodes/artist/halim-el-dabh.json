@@ -1,0 +1,83 @@
+{
+  "slug": "artist:halim-el-dabh",
+  "name": "Halim El-Dabh",
+  "editorial_article": "Halim El-Dabh (1921–2017) was a towering figure in 20th-century music, recognized globally as a pioneering composer, ethnomusicologist, and performer whose work bridged the traditions of Africa, Asia, and the Western avant-garde. Born in Cairo, Egypt, El-Dabh initially pursued studies in agricultural engineering, a background he frequently credited with providing him deep, authentic access to village musical traditions, puppetry, and folklore. This unique intersection of technical precision and cultural immersion defined his approach to sound. In the early 1940s, he famously recorded and processed ritual music for his composition *Ta'abir al-Zaar* (\"The Elements of Zaar\") using a wire recorder—a landmark act that predates the formal emergence of *musique concrète* and established him as a pioneer of electronic music. Throughout his life, El-Dabh treated sound as a phenomenon of \"elements and noise,\" drawing inspiration from the textures of life itself. His prolific career spanned symphonies, operas, and ballets, including significant collaborations with choreographer Martha Graham, most notably the score for *Clytemnestra* (1960). Beyond his compositions, El-Dabh was an influential educator and ethnomusicologist, holding long-standing academic positions at Kent State University and Haile Selassie University, where he notably organized the Orchestra Ethiopia. His work remains a profound exploration of the \"Fourth World,\" a conceptual framework he used to bridge diverse musical diasporas, uniting percussion ensembles, traditional African themes, and experimental electronic soundscapes in a lifelong quest to integrate global heritage with modern composition.",
+  "citations": [
+    {
+      "url": "http://www.halimeldabh.com/bio.html",
+      "title": "THE OFFICIAL WEBSITE OF HALIM EL-DABH"
+    },
+    {
+      "url": "https://findingaids.library.northwestern.edu/agents/people/1047",
+      "title": "Halim El-Dabh | Archival and Manuscript Collections"
+    },
+    {
+      "url": "https://newmusicusa.org/nmbx/remembering-halim-el-dabh-1921-2017-a-citizen-of-the-fourth-world/",
+      "title": "Remembering Halim El-Dabh (1921-2017): A Citizen of the Fourth World"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:48.839Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Egyptian-American composer and ethnomusicologist, Halim El-Dabh is celebrated for his early experiments with wire recording and his profound contributions to electronic, orchestral, and percussive music across global traditions.",
+  "origin": "Cairo, Egypt",
+  "active_years": "1940s–2017",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:contemporary-classical-music",
+      "type": "genre",
+      "name": "Contemporary classical music"
+    },
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:halim-el-dabh-music-llc",
+      "type": "label",
+      "name": "Halim El-Dabh Music LLC"
+    },
+    {
+      "slug": "label:c-f-peters-corporation",
+      "type": "label",
+      "name": "C. F. Peters Corporation"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:wire-recorder-piece",
+      "type": "project",
+      "name": "Wire Recorder Piece"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:wire-recorder-piece",
+      "type": "track",
+      "name": "Wire Recorder Piece"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:fela-sowande",
+      "type": "artist",
+      "name": "Fela Sowande"
+    },
+    {
+      "slug": "artist:akin-euba",
+      "type": "artist",
+      "name": "Akin Euba"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

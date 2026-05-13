@@ -1,0 +1,49 @@
+{
+  "slug": "track:simdi--track-by-gokhan-k-rdar-and-cem-adrian",
+  "name": "Şimdi",
+  "editorial_article": "\"Şimdi\" is a collaborative track released in 2024 by two of the most prominent figures in the Turkish alternative and electronic music scenes, Gökhan Kırdar and Cem Adrian. The track, appearing on the album \"Mücevher,\" signifies a creative intersection between Kırdar's long-established mastery of electronic synthesis and atmospheric production and Adrian's distinctive, multi-octave vocal range. Known for his pioneering work in blending electronic structures with Anatolian traditional elements, Kırdar provides a sophisticated, polished backdrop that allows Adrian's expressive and melancholic vocal delivery to take center stage. The release captures a contemporary moment in Turkish music, where heritage and futuristic production continue to blur, appealing to both long-time listeners of Kırdar's cinematic soundscapes and the dedicated, expansive audience of Adrian. The track runs at 3 minutes and 55 seconds, embodying the thematic depth often found in their collaborative projects, emphasizing atmospheric tension and emotional resonance. It is a testament to the enduring influence both artists hold, bridging different generations of fans through shared, emotionally charged musical expression.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/us/song/%C5%9Fimdi/1774228624",
+      "title": "‎Şimdi - Song by Gökhan Kırdar & Cem Adrian - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:54.702Z",
+  "type": "track",
+  "editorial_teaser": "A evocative 2024 collaboration between Turkish music luminaries Gökhan Kırdar and Cem Adrian, blending polished electronic production with powerful, emotive vocals.",
+  "year": "2024",
+  "duration": "3:55",
+  "artists": [
+    {
+      "slug": "artist:gokhan-k-rdar",
+      "type": "artist",
+      "name": "Gökhan Kırdar"
+    },
+    {
+      "slug": "artist:cem-adrian",
+      "type": "artist",
+      "name": "Cem Adrian"
+    }
+  ],
+  "project": {
+    "slug": "project:mucevher",
+    "type": "project",
+    "name": "Mücevher"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

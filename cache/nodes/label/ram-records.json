@@ -1,0 +1,56 @@
+{
+  "slug": "label:ram-records",
+  "name": "Ram Records",
+  "editorial_article": "Ram Records is a foundational independent record label in the UK drum and bass scene, established in 1992 by the legendary DJ and producer Andy C alongside his collaborator Ant Miles. Based in London, the label has been instrumental in shaping the sonic identity of drum and bass, evolving from the gritty, sample-heavy hardcore roots of the early 90s into a globally recognized powerhouse for dancefloor-oriented, high-production-value electronic music. Its influence extends far beyond mere releases, as the label has historically anchored vital club culture through long-running residencies at iconic London venues like The End and Fabric, fostering a dedicated community of ravers and producers alike.\n\nThroughout its history, Ram Records has served as a launchpad for many of the most significant names in the genre, including Sub Focus, Chase & Status, and Wilkinson. By consistently balancing underground credibility with mainstream chart success, the label has played a key role in bringing drum and bass into the popular consciousness. Beyond its flagship output, the label has diversified its sonic footprint through sister imprints like PROGRAM, which explores different facets of the genre. With its longevity and consistent commitment to high-energy, technically proficient production, Ram Records remains a cornerstone of the global bass music landscape, embodying the relentless evolution of the drum and bass sound from its humble beginnings to its position as a major fixture in electronic music. The label's ability to adapt while maintaining a distinct, high-impact aesthetic has cemented its status as one of the most respected and influential labels in the history of jungle and drum and bass.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/RAM_Records",
+      "title": "RAM Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:44.675Z",
+  "type": "label",
+  "editorial_description": "A seminal independent drum and bass label founded by Andy C and Ant Miles, defining the genre's sound for over three decades through its iconic releases and club residencies.",
+  "founded": "1992",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:andy-c",
+      "type": "artist",
+      "name": "Andy C"
+    },
+    {
+      "slug": "artist:sub-focus",
+      "type": "artist",
+      "name": "Sub Focus"
+    },
+    {
+      "slug": "artist:chase-and-status",
+      "type": "artist",
+      "name": "Chase & Status"
+    },
+    {
+      "slug": "artist:wilkinson",
+      "type": "artist",
+      "name": "Wilkinson"
+    },
+    {
+      "slug": "artist:calyx",
+      "type": "artist",
+      "name": "Calyx"
+    },
+    {
+      "slug": "artist:teebee",
+      "type": "artist",
+      "name": "TeeBee"
+    }
+  ],
+  "notable_releases": []
+}

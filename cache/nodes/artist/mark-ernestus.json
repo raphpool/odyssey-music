@@ -1,0 +1,119 @@
+{
+  "slug": "artist:mark-ernestus",
+  "name": "Mark Ernestus",
+  "editorial_article": "Mark Ernestus is a pivotal figure in the development of electronic music, best known for his influential work in Berlin as a producer, record store proprietor, and label head. As the founder of the legendary Hard Wax record store in 1989, Ernestus played an essential role in establishing a bridge between the burgeoning techno scenes in Detroit and Berlin. His production work, notably as one-half of the seminal project Basic Channel (often alongside Moritz von Oswald), redefined the textures of techno by integrating deep, spacious dub production techniques. This fusion of dub and techno—further explored through his project Rhythm & Sound—became a hallmark sound that influenced generations of producers in the minimalist and experimental electronic scenes.\n\nThroughout his career, Ernestus has continuously pushed the boundaries of club music, expanding his sonic palette beyond traditional techno structures. In the 1990s, he co-founded the influential mastering facility Dubplates & Mastering and the Chain Reaction label. His later work has seen him engage deeply with African rhythms, most notably through his collaboration with Senegalese musicians in the ensemble Mark Ernestus' Ndagga Rhythm Force. Through this project, he explores the intersection of traditional West African percussion and modern electronic sensibilities, further cementing his reputation as an artist who constantly seeks to synthesize disparate musical lineages into cohesive, forward-thinking works. His label work, including the imprint Ndagga, continues to showcase his dedication to fostering unique rhythmic dialogues across global sound cultures. He remains an active force in the scene, both through his label activities and his continued output of genre-blurring, rhythm-centric electronic music that defies easy categorization. His career represents a constant synthesis of disparate musical lineages, from the deep roots of Jamaican dub to the polyrhythms of Senegal, all filtered through his signature Berlin-inflected electronic lens.",
+  "citations": [
+    {
+      "url": "https://www.hebbel-am-ufer.de/en/programme/artist/adetail/mark-ernestus",
+      "title": "Mark Ernestus - Biography - HAU Hebbel am Ufer"
+    },
+    {
+      "url": "https://www.discogs.com/artist/456229-Mark-Ernestus?srsltid=AfmBOorTSvkWxsAvt9ZiByrGrSPbCBaKWL6-7-F4waQuo66VxwFCqsQA",
+      "title": "Mark Ernestus Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:19.187Z",
+  "type": "artist",
+  "editorial_bio": "Mark Ernestus is a pioneering Berlin-based producer, label founder, and record shop owner who helped define the minimalist aesthetic of dub-techno. Through his legendary Hard Wax store and his collaborative projects Basic Channel and Rhythm & Sound, he fundamentally shaped the electronic landscape by marrying Detroit techno with Jamaican dub production. In recent decades, he has pivoted toward intricate collaborations with Senegalese musicians through his ensemble, Ndagga Rhythm Force.",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:basic-channel",
+      "type": "label",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:ndagga",
+      "type": "label",
+      "name": "Ndagga"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:basic-channel",
+      "type": "project",
+      "name": "Basic Channel (album)"
+    },
+    {
+      "slug": "project:rhythm-and-sound",
+      "type": "project",
+      "name": "Rhythm & Sound (album)"
+    },
+    {
+      "slug": "project:800-ndagga",
+      "type": "project",
+      "name": "800% Ndagga (album)"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mango-walk",
+      "type": "track",
+      "name": "Mango Walk"
+    },
+    {
+      "slug": "track:trace",
+      "type": "track",
+      "name": "Trace (feat. Paul St. Hilaire)"
+    },
+    {
+      "slug": "track:ndagga",
+      "type": "track",
+      "name": "Ndagga (feat. Jeri-Jeri)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald"
+    },
+    {
+      "slug": "artist:paul-st-hilaire",
+      "type": "artist",
+      "name": "Paul St. Hilaire"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound"
+    }
+  ]
+}

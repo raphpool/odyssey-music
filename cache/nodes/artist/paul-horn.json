@@ -1,0 +1,90 @@
+{
+  "slug": "artist:paul-horn",
+  "name": "Paul Horn",
+  "editorial_article": "Paul Horn (1930–2014) was a prolific American flautist, saxophonist, and composer whose career spanned from the sophisticated cool jazz of the 1950s to the pioneering ambient soundscapes of the New Age movement. Born in New York and raised in Washington, D.C., Horn was a virtuoso technician educated at the Oberlin Conservatory and the Manhattan School of Music. In the 1950s, he established himself in the West Coast jazz scene, performing as a member of the Chico Hamilton Quintet and the Sauter-Finegan Orchestra, and becoming a sought-after Hollywood session player. \\n\\nHis artistic trajectory shifted dramatically in the late 1960s, driven by a deep commitment to Transcendental Meditation and spiritual exploration. This pursuit led him to travel with the Beatles and the Maharishi Mahesh Yogi to Rishikesh, India. It was during these spiritual journeys that he discovered the profound, haunting acoustics of monumental spaces like the Taj Mahal and the Great Pyramid of Giza. Recording his flute improvisations within these echoing environments resulted in the 1968 album *Inside*, a cornerstone of the New Age movement that combined meditative focus with expansive, natural acoustics. Horn remained prolific throughout his later life, settling in Victoria, British Columbia, in 1970, and continuing to explore global musical traditions, recording in diverse locations from Tibet to Brazil, and collaborating with artists and experimentalists like R. Carlos Nakai and orca whales. His legacy remains that of a bridge-builder between the technical precision of jazz and the ethereal, introspective possibilities of ambient music.",
+  "citations": [
+    {
+      "url": "https://www.theguardian.com/music/2014/jul/07/paul-horn",
+      "title": "Paul Horn obituary | Jazz | The Guardian"
+    },
+    {
+      "url": "https://thecanadianencyclopedia.ca/en/article/paul-horn-emc",
+      "title": "Paul Horn | The Canadian Encyclopedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:37.050Z",
+  "type": "artist",
+  "editorial_bio": "Paul Horn (1930–2014) was a prolific American flautist, saxophonist, and composer whose career spanned from the sophisticated cool jazz of the 1950s to the pioneering ambient soundscapes of the New Age movement. Born in New York and raised in Washington, D.C., Horn was a virtuoso technician educated at the Oberlin Conservatory and the Manhattan School of Music. In the 1950s, he established himself in the West Coast jazz scene, performing as a member of the Chico Hamilton Quintet and the Sauter-Finegan Orchestra, and becoming a sought-after Hollywood session player. \\n\\nHis artistic trajectory shifted dramatically in the late 1960s, driven by a deep commitment to Transcendental Meditation and spiritual exploration. This pursuit led him to travel with the Beatles and the Maharishi Mahesh Yogi to Rishikesh, India. It was during these spiritual journeys that he discovered the profound, haunting acoustics of monumental spaces like the Taj Mahal and the Great Pyramid of Giza. Recording his flute improvisations within these echoing environments resulted in the 1968 album *Inside*, a cornerstone of the New Age movement that combined meditative focus with expansive, natural acoustics. Horn remained prolific throughout his later life, settling in Victoria, British Columbia, in 1970, and continuing to explore global musical traditions, recording in diverse locations from Tibet to Brazil, and collaborating with artists and experimentalists like R. Carlos Nakai and orca whales. His legacy remains that of a bridge-builder between the technical precision of jazz and the ethereal, introspective possibilities of ambient music.",
+  "photo_url": "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2014/7/7/1404749565507/Paul-Horn-in-1979.-011.jpg?width=465&dpr=1&s=none&crop=none",
+  "origin": "New York, USA",
+  "active_years": "1950-2014",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:epic-records",
+      "type": "label",
+      "name": "Epic Records"
+    },
+    {
+      "slug": "label:golden-flute",
+      "type": "label",
+      "name": "Golden Flute"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:inside",
+      "type": "project",
+      "name": "Inside"
+    },
+    {
+      "slug": "project:traveler",
+      "type": "project",
+      "name": "Traveler"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:inside",
+      "type": "track",
+      "name": "Inside (The Taj Mahal)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:chico-hamilton",
+      "type": "artist",
+      "name": "Chico Hamilton"
+    },
+    {
+      "slug": "artist:r-carlos-nakai",
+      "type": "artist",
+      "name": "R. Carlos Nakai"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,111 @@
+{
+  "slug": "artist:terry-riley",
+  "name": "Terry Riley",
+  "editorial_article": "Terry Riley (born 1935) is an American composer and performer whose innovative work in the early 1960s laid the foundation for the minimalist movement. Born in Colfax, California, Riley's work is characterized by the use of repetitive, interlocking patterns, tape loops, and an interest in non-Western tuning systems, particularly Indian classical music. He is perhaps best known for his 1964 composition *In C*, a revolutionary piece that remains a cornerstone of 20th-century music, which utilized a modular design where performers repeat specific cells of music in a loosely structured, evolving improvisation. This approach fundamentally changed the rhythmic and structural language of contemporary classical music, influencing a wide array of composers, including Steve Reich, Philip Glass, and John Adams.\\n\\nBeyond his impact on classical minimalism, Riley’s work often intersects with psychedelic and ambient textures. Albums such as *A Rainbow in Curved Air* (1969) demonstrated his ability to blend hypnotic, polymetric layers with an Eastern-influenced aesthetic that resonated deeply with the rock culture of the late 1960s and 1970s. His professional trajectory took a profound turn in 1970 when he became a disciple of the Indian raga vocalist Pandit Pran Nath, a relationship that would define much of his musical output and performance practice for the next 26 years. Throughout his career, Riley has maintained a diverse collaborative output, notably his long-standing association with the Kronos Quartet, which led to numerous string quartet compositions, including *Sun Rings* and *Salome Dances for Peace*. His influence spans multiple genres, from academic avant-garde circles to progressive rock and electronic music, establishing him as a seminal figure in the development of modern auditory experiences.",
+  "citations": [
+    {
+      "url": "http://terryriley.net/biography.htm",
+      "title": "Bio Info for Terry Riley"
+    },
+    {
+      "url": "https://www.ojaifestival.org/terry-riley/",
+      "title": "Terry Riley - Ojai Music Festival"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:22.611Z",
+  "type": "artist",
+  "editorial_bio": "Terry Riley is a pioneering American composer and performer, widely recognized as a founding figure of the minimalist movement for his revolutionary 1964 work 'In C' and his fusion of Indian classical music with Western contemporary composition.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Terry_Riley_1980.jpg",
+  "origin": "Colfax, California, USA",
+  "active_years": "1950s-present",
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:cbs-masterworks",
+      "type": "label",
+      "name": "CBS Masterworks"
+    },
+    {
+      "slug": "label:nonesuch",
+      "type": "label",
+      "name": "Nonesuch"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:in-c",
+      "type": "project",
+      "name": "In C"
+    },
+    {
+      "slug": "project:a-rainbow-in-curved-air",
+      "type": "project",
+      "name": "A Rainbow in Curved Air"
+    },
+    {
+      "slug": "project:poppy-nogood-and-the-phantom-band",
+      "type": "project",
+      "name": "Poppy Nogood and the Phantom Band"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:in-c",
+      "type": "track",
+      "name": "In C"
+    },
+    {
+      "slug": "track:a-rainbow-in-curved-air",
+      "type": "track",
+      "name": "A Rainbow in Curved Air"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:kronos-quartet",
+      "type": "artist",
+      "name": "Kronos Quartet"
+    },
+    {
+      "slug": "artist:pandit-pran-nath",
+      "type": "artist",
+      "name": "Pandit Pran Nath"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "genre:industrial",
+  "name": "Industrial",
+  "editorial_article": "Industrial is a transgressive and technologically driven genre that emerged in the late 1970s, defined by its abrasive synthesis of rock instrumentation, electronic experimentation, and transgressive thematic concerns. Originating from the UK-based Industrial Records—the label formed to release the output of Throbbing Gristle—the genre sought to break the boundaries of conventional music by incorporating field recordings of machinery, tape manipulation, and harsh, atonal textures. It was envisioned as a form of avant-garde performance art, explicitly designed to be provocative, macabre, and socially confrontational.\n\nAs the genre evolved through the 1980s and 1990s, it split into several distinct stylistic paths. While early pioneers like Cabaret Voltaire and SPK focused on industrial noise and electronic texture, the genre became increasingly hybridised. In Europe and North America, acts began merging industrial sensibilities with dance floor rhythms, leading to the rise of Electronic Body Music (EBM) with groups like Front 242 and Nitzer Ebb. Simultaneously, in the United States, labels like Chicago's Wax Trax! Records became a focal point for the development of \"industrial rock\" and \"industrial metal,\" where the aggressive, distorted guitars and thunderous percussion of metal were integrated with sequencing and sampling. This evolution hit its commercial peak in the 1990s through artists like Nine Inch Nails, whose multi-platinum records brought industrial's brooding, goth-inflected atmospheres to a global mainstream audience. The genre remains a cornerstone of electronic music history, recognized for its unrelenting embrace of modern technology and its refusal to shy away from dark, often disturbing subject matter.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/industrial-music-guide",
+      "title": "Industrial Music Guide: A Brief History of Industrial Music - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:22.947Z",
+  "type": "genre",
+  "editorial_definition": "A transgressive electronic-rock hybrid genre that utilizes synthesizers, samplers, and abrasive, machine-like textures to create challenging, often provocative music.",
+  "era": "1970s–Present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle"
+    },
+    {
+      "slug": "artist:ministry",
+      "type": "artist",
+      "name": "Ministry"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails"
+    },
+    {
+      "slug": "artist:front-242",
+      "type": "artist",
+      "name": "Front 242"
+    },
+    {
+      "slug": "artist:cabaret-voltaire",
+      "type": "artist",
+      "name": "Cabaret Voltaire"
+    },
+    {
+      "slug": "artist:skinny-puppy",
+      "type": "artist",
+      "name": "Skinny Puppy"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:industrial-records",
+      "type": "label",
+      "name": "Industrial Records"
+    },
+    {
+      "slug": "label:wax-trax-records",
+      "type": "label",
+      "name": "Wax Trax! Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:pretty-hate-machine",
+      "type": "project",
+      "name": "Pretty Hate Machine"
+    },
+    {
+      "slug": "project:the-downward-spiral",
+      "type": "project",
+      "name": "The Downward Spiral"
+    },
+    {
+      "slug": "project:twitch",
+      "type": "project",
+      "name": "Twitch"
+    }
+  ],
+  "landmark_tracks": []
+}

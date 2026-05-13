@@ -1,0 +1,80 @@
+{
+  "slug": "label:diynamic",
+  "name": "Diynamic",
+  "editorial_article": "Diynamic Music, based in Hamburg, Germany, stands as one of the most influential imprints in the contemporary underground electronic music scene. Founded in 2006 by Mladen Solomun and Adriano Trolio, the label embodies a DIY ethos—a commitment to independence and self-determination that has guided its growth from local roots to a global powerhouse. Over nearly two decades, Diynamic has cultivated a distinct sonic identity often associated with melodic house and techno, frequently bridging the gap between deep, atmospheric soundscapes and high-energy, dancefloor-focused productions.\n\nThe label's success is inseparable from the massive international profile of its co-founder, Solomun, whose \"Solomun+1\" residencies at Pacha in Ibiza have become legendary fixtures of the electronic music calendar. Beyond its curation of high-profile talent, the label is recognized for its commitment to developing a consistent stable of artists, fostering a \"Diynamic\" sound that resonates at major festivals worldwide. Through its recurring compilation series, \"Four To The Floor,\" and numerous EPs from a diverse roster of producers, the label has maintained relevance, balancing consistent stylistic output with the evolving demands of the global club culture. By hosting its own festival brand across Amsterdam, Berlin, and Brazil, Diynamic has transcended the traditional role of a record label to become a comprehensive lifestyle and event curation entity.",
+  "citations": [
+    {
+      "url": "https://www.diynamic.com/about/",
+      "title": "About | Diynamic"
+    },
+    {
+      "url": "https://ra.co/labels/1006",
+      "title": "Diynamic Music · Record label RA"
+    },
+    {
+      "url": "https://www.diynamic.com/",
+      "title": "Diynamic Music - Since 2006"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:49.524Z",
+  "type": "label",
+  "editorial_description": "A Hamburg-based electronic music label co-founded by Solomun and Adriano Trolio in 2006, renowned for its melodic house and techno output and global event presence.",
+  "founded": "2006",
+  "location": "Hamburg, Germany",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:melodic-techno",
+      "type": "genre",
+      "name": "Melodic Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:solomun",
+      "type": "artist",
+      "name": "Solomun"
+    },
+    {
+      "slug": "artist:adriatique",
+      "type": "artist",
+      "name": "Adriatique"
+    },
+    {
+      "slug": "artist:h-o-s-h",
+      "type": "artist",
+      "name": "H.O.S.H."
+    },
+    {
+      "slug": "artist:karmon",
+      "type": "artist",
+      "name": "Karmon"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:customer-is-king",
+      "type": "project",
+      "name": "Customer Is King"
+    },
+    {
+      "slug": "project:four-to-the-floor-12",
+      "type": "project",
+      "name": "Four To The Floor 12"
+    },
+    {
+      "slug": "project:forever",
+      "type": "project",
+      "name": "Forever"
+    }
+  ]
+}

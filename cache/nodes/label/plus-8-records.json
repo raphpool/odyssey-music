@@ -1,0 +1,76 @@
+{
+  "slug": "label:plus-8-records",
+  "name": "Plus 8 Records",
+  "editorial_article": "Plus 8 Records stands as a cornerstone of the 'Second Wave' of Detroit techno, established in 1990 by Canadian producers Richie Hawtin and John Acquaviva in Windsor, Ontario. The label's name derived from the standard pitch-control range on turntables, reflecting the founders' obsession with the technical and aesthetic possibilities of dance music. Initially rooted in the raw, industrial, and high-tempo aesthetic of early 90s rave culture, the label quickly evolved into a sophisticated laboratory for sound design. Throughout its peak in the 1990s, Plus 8 provided a vital home for pioneering artists such as Speedy J and Kenny Larkin, while also serving as the primary vessel for Hawtin's own essential monikers, most notably F.U.S.E. and Plastikman. Following a creative pivot away from the hyper-aggressive tempos of the early rave scene, the label helped define the minimalist and atmospheric textures that would eventually influence the global trajectory of techno. While operations slowed significantly in the late 1990s as Hawtin pivoted to his M-nus project, Plus 8 remains a definitive institution in electronic music history, symbolizing the bridge between raw North American rave and the intellectualized, minimalist movements that followed. The label's impact is not merely historical; it continues to represent the adventurous spirit of electronic music production, where the boundaries of technology are constantly pushed to redefine the sonic landscape. Through its rigorous catalog and influential roster, Plus 8 cemented its status as a foundational pillar in the development of modern electronic music. From the early days of industrial-edged 12-inch singles that defined the rave sound in the Midwest to the later, more introspective and experimental works that pushed techno into new, cerebral territories, Plus 8 has always prioritized innovation over trend. It is a label that challenged both the producers and the dancers to listen closer and think bigger, bridging the gap between underground clubs and the evolution of electronic music as a high-art form. Its influence is heard in countless artists and labels that emerged in its wake, ensuring its legacy remains a central point of reference for fans of serious electronic dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Plus_8",
+      "title": "Plus 8 - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/labels/742",
+      "title": "Plus 8 Records Ltd · Record label RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:30.962Z",
+  "type": "label",
+  "editorial_description": "A definitive North American techno label founded by Richie Hawtin and John Acquaviva in 1990, pivotal to the second wave of Detroit techno.",
+  "founded": "1990",
+  "location": "Windsor, Ontario, Canada",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:john-acquaviva",
+      "type": "artist",
+      "name": "John Acquaviva"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:dimension-intrusion",
+      "type": "project",
+      "name": "Dimension Intrusion"
+    },
+    {
+      "slug": "project:sheet-one",
+      "type": "project",
+      "name": "Sheet One"
+    },
+    {
+      "slug": "project:from-my-mind-to-yours",
+      "type": "project",
+      "name": "From My Mind to Yours"
+    }
+  ]
+}

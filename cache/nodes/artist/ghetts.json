@@ -1,0 +1,89 @@
+{
+  "slug": "artist:ghetts",
+  "name": "Ghetts",
+  "editorial_article": "Ghetts (born Justin Jude Clarke-Samuel) is a highly influential British grime MC, rapper, and songwriter from Plaistow, East London. Emerging during the early 2000s when grime was still crystallizing as a genre, he initially performed under the name Ghetto. His early work, most notably his 2005 mixtape '2000 & Life', established him as a technical prodigy known for his dense wordplay, staccato flow, and visceral storytelling. Over a career spanning nearly two decades, he has evolved from a raw, high-energy underground figure into an elder statesman of the UK rap scene. His music often explores complex personal themes, navigating the intersection of street wisdom, personal trauma, and existential reflection. With his 2021 album 'Conflict Of Interest', which earned widespread critical acclaim and reached the top of the UK charts, he solidified his reputation as a visionary artist who refuses to conform to genre expectations, instead choosing to craft bespoke soundscapes that serve his lyrical narratives. Ghetts remains a central, respected figure in British music, bridging the gap between the pioneers of the pirate radio era and the contemporary mainstream. Throughout his career, he has collaborated with key figures such as Kano and Stormzy, and his work continues to influence new generations of British rappers and grime artists. His journey from the crucible of London's pirate radio stations to the top of the national charts serves as a blueprint for artistic integrity and sustained evolution within a rapidly shifting musical landscape.",
+  "citations": [
+    {
+      "url": "https://www.gq-magazine.co.uk/culture/article/ghetts-interview",
+      "title": "Ghetts: the definitive origin story of a British rap icon | British GQ"
+    },
+    {
+      "url": "https://rap.fandom.com/wiki/Ghetts",
+      "title": "Ghetts - Rap Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:19.815Z",
+  "type": "artist",
+  "editorial_bio": "Ghetts (born Justin Jude Clarke-Samuel) is a highly influential British grime MC, rapper, and songwriter from Plaistow, East London. Emerging during the early 2000s when grime was still crystallizing as a genre, he initially performed under the name Ghetto. His early work, most notably his 2005 mixtape '2000 & Life', established him as a technical prodigy known for his dense wordplay, staccato flow, and visceral storytelling. Over a career spanning nearly two decades, he has evolved from a raw, high-energy underground figure into an elder statesman of the UK rap scene. His music often explores complex personal themes, navigating the intersection of street wisdom, personal trauma, and existential reflection. With his 2021 album 'Conflict Of Interest', which earned widespread critical acclaim and reached the top of the UK charts, he solidified his reputation as a visionary artist who refuses to conform to genre expectations, instead choosing to craft bespoke soundscapes that serve his lyrical narratives. Ghetts remains a central, respected figure in British music, bridging the gap between the pioneers of the pirate radio era and the contemporary mainstream. Throughout his career, he has collaborated with key figures such as Kano and Stormzy, and his work continues to influence new generations of British rappers and grime artists. His journey from the crucible of London's pirate radio stations to the top of the national charts serves as a blueprint for artistic integrity and sustained evolution within a rapidly shifting musical landscape.",
+  "photo_url": "https://media.gq-magazine.co.uk/photos/60363bd54abd0c2a6bc721d2/master/w_1600%2Cc_limit/23022021_Ghetts_04.jpg",
+  "origin": "Plaistow, London, England",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    },
+    {
+      "slug": "genre:uk-hip-hop",
+      "type": "genre",
+      "name": "UK Hip Hop"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:2000-and-life",
+      "type": "project",
+      "name": "2000 & Life"
+    },
+    {
+      "slug": "project:conflict-of-interest",
+      "type": "project",
+      "name": "Conflict Of Interest"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:skengman",
+      "type": "track",
+      "name": "Skengman"
+    },
+    {
+      "slug": "track:top-3-selected",
+      "type": "track",
+      "name": "Top 3 Selected"
+    },
+    {
+      "slug": "track:crud",
+      "type": "track",
+      "name": "Crud"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kano",
+      "type": "artist",
+      "name": "Kano"
+    },
+    {
+      "slug": "artist:stormzy",
+      "type": "artist",
+      "name": "Stormzy"
+    },
+    {
+      "slug": "artist:ed-sheeran",
+      "type": "artist",
+      "name": "Ed Sheeran"
+    },
+    {
+      "slug": "artist:giggs",
+      "type": "artist",
+      "name": "Giggs"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

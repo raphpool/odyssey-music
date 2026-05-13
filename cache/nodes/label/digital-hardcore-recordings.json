@@ -1,0 +1,96 @@
+{
+  "slug": "label:digital-hardcore-recordings",
+  "name": "Digital Hardcore Recordings",
+  "editorial_article": "Digital Hardcore Recordings (DHR) is a foundational record label established in 1994 in London, England, by Alec Empire, Joel Amaretto, and Pete Lawton. Born from the proceeds of an aborted major-label deal for the band Atari Teenage Riot, the label became the primary engine for the \"digital hardcore\" genre—a high-velocity, abrasive fusion of punk, industrial noise, and breakbeat electronic music. While the label was headquartered in London for business, distribution, and manufacturing, its creative heart pulsed within the underground club scene of Berlin, Germany, where many of its seminal artists produced their work.\n\nThroughout the mid-to-late 1990s, DHR stood as a bastion of anti-establishment, high-intensity sound. It fostered a distinct aesthetic that rejected the polished textures of mainstream electronica in favor of distorted, raw sonic landscapes. Its roster—which included Atari Teenage Riot, EC8OR, Hanin Elias, Christoph de Babalon, and Shizuo—built a global cult following. The label’s influence extended deep into industrial, metal, and breakcore scenes, often blurring the lines between these genres through aggressive sampling and relentless tempos.\n\nDHR was not merely a passive conduit for music; it was a cultural force that staged festivals and built international bridges, notably through a distribution deal with the Beastie Boys' Grand Royal label in the United States. Despite the volatility of the scene, including the tragic death of ATR member Carl Crack and the shifting tides of the Berlin underground around the turn of the millennium, DHR remained a pivotal institution in the history of electronic music, celebrated for its uncompromising vision and its role in defining a new, confrontational sonic language. Its legacy persists in the enduring influence of the digital hardcore aesthetic on subsequent generations of artists in the noise and electronic spheres.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Digital_Hardcore_Recordings",
+      "title": "Digital Hardcore Recordings - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/1094-Digital-Hardcore-Recordings-DHR?srsltid=AfmBOooXWlOJQ0nImcZTFt9k67QGpH8oXWbW9ADy1E6JFiWb77d47XxP",
+      "title": "Digital Hardcore Recordings (DHR) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:13.970Z",
+  "type": "label",
+  "editorial_description": "A seminal London-based label founded by Alec Empire, Joel Amaretto, and Pete Lawton in 1994, famous for spearheading the 'digital hardcore' genre by fusing punk, industrial, and breakbeats.",
+  "founded": "1994",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital hardcore"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    },
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot"
+    },
+    {
+      "slug": "artist:ec8or",
+      "type": "artist",
+      "name": "EC8OR"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias"
+    },
+    {
+      "slug": "artist:christoph-de-babalon",
+      "type": "artist",
+      "name": "Christoph de Babalon"
+    },
+    {
+      "slug": "artist:shizuo",
+      "type": "artist",
+      "name": "Shizuo"
+    },
+    {
+      "slug": "artist:nic-endo",
+      "type": "artist",
+      "name": "Nic Endo"
+    },
+    {
+      "slug": "artist:cobra-killer",
+      "type": "artist",
+      "name": "Cobra Killer"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:harder-than-the-rest",
+      "type": "project",
+      "name": "Harder Than The Rest"
+    },
+    {
+      "slug": "project:intelligence-and-sacrifice",
+      "type": "project",
+      "name": "Intelligence and Sacrifice"
+    },
+    {
+      "slug": "project:don-t-fuck-with-us",
+      "type": "project",
+      "name": "Don’t Fuck With Us!"
+    }
+  ]
+}

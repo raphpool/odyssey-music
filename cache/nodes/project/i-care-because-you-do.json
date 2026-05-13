@@ -1,0 +1,64 @@
+{
+  "slug": "project:i-care-because-you-do",
+  "name": "...I Care Because You Do",
+  "editorial_article": "\"...I Care Because You Do\" is the third studio album by the influential electronic musician Aphex Twin (Richard D. James), released in April 1995 on Warp Records. Marking a pivotal shift from the ambient textures of his earlier \"Selected Ambient Works\" era toward a more abrasive, complex, and rhythmic sound, the album is widely recognized as a cornerstone of the IDM (Intelligent Dance Music) genre. The record is noted for its idiosyncratic blend of aggressive breakbeats, haunting synth melodies, and experimental noise arrangements, bridging the gap between underground techno experimentation and structured electronic pop. \\n\\nStylistically, the album showcases the dual nature of Richard D. James’ production: moments of serene, melodic beauty—epitomized by the classic track \"Alberto Balsalm\"—coexist with chaotic, distorted percussion and jarring industrial textures found in tracks like \"Ventolin\" and \"Come On You Slags!\". The album also contains a characteristic layer of playfulness and subversion, famously utilizing anagrams of \"Aphex Twin\" and \"Richard D. James\" for many of its track titles. Released during a time of significant maturation for Warp Records, \"...I Care Because You Do\" solidified Aphex Twin's reputation as a visionary in the electronic music landscape, proving that electronic music could be as intellectually demanding as it was rhythmically captivating. Its influence on subsequent generations of electronic producers remains immense, cementing its status as a landmark release in 90s electronic music history.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/461-Aphex-Twin-I-Care-Because-You-Do?srsltid=AfmBOoqezsHXVG78hpa8Xodyjs7l8KNtD5LVOtO2sfBdrv2flmhM3h3P",
+      "title": "Aphex Twin – ...I Care Because You Do | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:52.253Z",
+  "type": "project",
+  "editorial_pitch": "A defining, abrasive, and melodic masterpiece from Aphex Twin that helped bridge the divide between ambient techno and the jagged, complex rhythms of 90s IDM.",
+  "year": "1995",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:alberto-balsalm",
+      "type": "track",
+      "name": "Alberto Balsalm"
+    },
+    {
+      "slug": "track:ventolin",
+      "type": "track",
+      "name": "Ventolin"
+    },
+    {
+      "slug": "track:icct-hedral",
+      "type": "track",
+      "name": "Icct Hedral"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "related_projects": []
+}

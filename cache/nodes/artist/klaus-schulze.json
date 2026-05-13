@@ -1,0 +1,112 @@
+{
+  "slug": "artist:klaus-schulze",
+  "name": "Klaus Schulze",
+  "editorial_article": "Klaus Schulze (1947–2022) was a monumental figure in the history of electronic music, a German composer whose pioneering work with synthesizers, sequencers, and long-form soundscapes laid the bedrock for the Berlin School, ambient music, and contemporary electronic genres. Born in Berlin, Schulze’s early career saw him as a percussionist for some of the most influential Krautrock outfits of the late 1960s, including early iterations of Tangerine Dream and the foundational Ash Ra Tempel. By 1971, he embarked on a solo career that would span five decades and result in over sixty albums, characterized by a transition from experimental organ and orchestral tape work to the complex, hypnotically sequenced synthesizer tapestries that defined his signature sound.\\n\\nSchulze is often credited with helping to define the 'Berlin School' of electronic music, a style marked by lengthy, meditative compositions, intricate sequencer patterns, and a cinematic, expansive quality. Albums like 'Timewind' (1975), 'Moondawn' (1976), and his ambitious 1978 double-LP 'X' demonstrated his ability to blend rigorous electronic experimentation with classical sensibilities—often drawing inspiration from historical figures and literary icons. Unlike many of his contemporaries who focused purely on synthetic textures, Schulze often incorporated organic elements—cello, electric guitar, and operatic vocals—into his arrangements, creating a unique sonic tension. Throughout the 1980s and beyond, he continued to evolve, embracing digital instrumentation while maintaining the profound sense of scale and atmosphere that made him a titan of the genre. His influence remains pervasive, reaching across ambient, trance, and modern electronic production, solidifying his legacy as the 'Godfather of Techno' and a visionary who fundamentally altered how we conceive of electronic sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Klaus_Schulze",
+      "title": "Klaus Schulze - Wikipedia"
+    },
+    {
+      "url": "https://www.slantmagazine.com/music/klaus-schulze-discography-guide/",
+      "title": "The Godfather of Techno: A Guide to Klaus Schulze’s Discography"
+    },
+    {
+      "url": "https://www.progarchives.com/artist.asp?id=1613",
+      "title": "Klaus Schulze Discography and reviews - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:47.527Z",
+  "type": "artist",
+  "editorial_bio": "Klaus Schulze (1947–2022) was a monumental figure in the history of electronic music, a German composer whose pioneering work with synthesizers, sequencers, and long-form soundscapes laid the bedrock for the Berlin School, ambient music, and contemporary electronic genres.",
+  "origin": "Berlin, Germany",
+  "active_years": "1969–2022",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ohr",
+      "type": "label",
+      "name": "Ohr"
+    },
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    },
+    {
+      "slug": "label:virgin",
+      "type": "label",
+      "name": "Virgin"
+    },
+    {
+      "slug": "label:metronome",
+      "type": "label",
+      "name": "Metronome"
+    },
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "FAX +49-69/450464"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:irrlicht",
+      "type": "project",
+      "name": "Irrlicht"
+    },
+    {
+      "slug": "project:timewind",
+      "type": "project",
+      "name": "Timewind"
+    },
+    {
+      "slug": "project:moondawn",
+      "type": "project",
+      "name": "Moondawn"
+    },
+    {
+      "slug": "project:x",
+      "type": "project",
+      "name": "X"
+    },
+    {
+      "slug": "project:in-blue",
+      "type": "project",
+      "name": "In Blue"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:return-to-the-tempel",
+      "type": "track",
+      "name": "Return to the Tempel"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

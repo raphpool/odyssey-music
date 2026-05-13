@@ -1,0 +1,57 @@
+{
+  "slug": "project:four-violins",
+  "name": "Four Violins",
+  "editorial_article": "\"Four Violins\" (1964) is a foundational document of minimalist composition, realized by the visionary American composer and multi-instrumentalist Tony Conrad. Recorded in 1964 but not widely released until 2004, the piece occupies a critical space in the history of the New York avant-garde. It represents an extreme, rigorous approach to just intonation and sustained-tone exploration, diverging from the more structured, rhythmic minimalism associated with some of his contemporaries. Conrad, a key member of the Theatre of Eternal Music alongside La Monte Young, John Cale, and Marian Zazeela, utilized the violin to generate a dense, shimmering field of overtones that fundamentally challenged existing ideas of musical structure and performance. \\n\\nBy layering multiple takes of his own violin playing, Conrad achieved a sustained, psychoacoustic richness that was ahead of its time. The work is characterized by its raw, uncompromising aesthetic, offering an immersive experience that unfolds through microtonal shifts and the physical intensity of bowed strings. Its delayed release allowed later generations of drone and experimental musicians to reassess Conrad’s contributions to early minimal music, situating \"Four Violins\" as an essential precursor to the drone and ambient movements that would follow in subsequent decades. It remains a stark testament to the conceptual power of sound in its purest, most sustained form.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/four-violins-1964-mw0000745959",
+      "title": "Four Violins (1964) - Tony Conrad | Album | AllMusic"
+    },
+    {
+      "url": "https://www.tableoftheelements.co.uk/tcc-08-four-violins-1964",
+      "title": "Four Violins (1964) - Tony Conrad - Table of the Elements"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:21.179Z",
+  "type": "project",
+  "editorial_pitch": "A monumental work of 1964 minimalism by Tony Conrad, \"Four Violins\" is a raw, multi-tracked exploration of just intonation and drone that remains a cornerstone of the avant-garde canon.",
+  "year": "1964",
+  "artists": [
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    }
+  ],
+  "label": {
+    "slug": "label:table-of-the-elements",
+    "type": "label",
+    "name": "Table of the Elements"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    },
+    {
+      "slug": "genre:drone-music",
+      "type": "genre",
+      "name": "Drone music"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:four-violins",
+      "type": "track",
+      "name": "Four Violins"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

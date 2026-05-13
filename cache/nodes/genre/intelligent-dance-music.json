@@ -1,0 +1,95 @@
+{
+  "slug": "genre:intelligent-dance-music",
+  "name": "Intelligent Dance Music",
+  "editorial_article": "Intelligent Dance Music, commonly referred to by the acronym IDM, is a genre of electronic music that emerged in the early 1990s as a cerebral, experimental offshoot of dance music culture. Unlike the functional, club-oriented beats of acid house, techno, or jungle, IDM shifted the focus toward home listening, favoring complex rhythmic structures, layered sound design, and an overall sense of detachment from the traditional nightclub environment. The term itself is often attributed to the influence of Warp Records' seminal 1992 compilation, *Artificial Intelligence*, which marketed its contents as \"electronic listening music,\" though the moniker \"IDM\" was codified by an internet mailing list shortly thereafter.\\n\\nWhile the genre is characterized by a \"cold, digital aesthetic\" and a willingness to borrow from various electronic lineages—including ambient, Detroit techno, electro, and experimental musique concrète—it is famously resistant to strict formal definitions. Many artists associated with the label have expressed disdain for the term, viewing it as pretentious or exclusionary toward the very dance music it was derived from. Richard D. James (Aphex Twin) and his Rephlex Records label, for instance, championed the term \"braindance\" as a more descriptive and less patronizing alternative. Despite this controversy, the genre remains a vital chapter in electronic music, known for pioneers who pushed the boundaries of sequencing and synthesis, paving the way for later movements like drill 'n' bass, glitch, and breakcore.\\n\\nThe music is often deeply technical, showcasing the capabilities of early home computing and hardware sequencers. Its legacy is found in the highly intricate, non-linear productions of artists such as Aphex Twin, Autechre, and Squarepusher, who treated the studio as a laboratory for sound. By prioritizing idiosyncratic experimentation over utility, IDM transformed electronic music into a serious art form, earning its place as a cornerstone of the \"intelligent\" electronica landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Intelligent_dance_music",
+      "title": "Intelligent dance music - Wikipedia"
+    },
+    {
+      "url": "https://raygum.com/genres/idm-intelligent-dance-music",
+      "title": "Idm Intelligent Dance Music | Raygum"
+    },
+    {
+      "url": "https://www.soundbridge.io/idm",
+      "title": "IDM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:32.546Z",
+  "type": "genre",
+  "editorial_definition": "Intelligent Dance Music (IDM) is an experimental and often abstract style of electronic music that prioritizes complex, home-listening-oriented sound design over the functional, dance-floor-driven nature of traditional techno and house.",
+  "era": "1990s to present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:warp",
+      "type": "label",
+      "name": "Warp"
+    },
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "genre:garage-house",
+  "name": "Garage House",
+  "editorial_article": "Garage House, a cornerstone of 1980s American dance culture, emerged simultaneously alongside Chicago House in the early-to-mid 1980s. Centered in the vibrant nightlife scenes of New York City—specifically the legendary Paradise Garage—and Newark, New Jersey’s Club Zanzibar, the genre took its name from the former venue. While early house music and garage were often indistinguishable, garage distinguished itself through a deeper, warmer sound palette heavily indebted to its disco, soul, gospel, and R&B roots. Unlike the more mechanical or stripped-back aesthetics of some Chicago counterparts, Garage House is celebrated for its lush production, often incorporating powerful gospel-inflected female vocals and intricate, soulful piano melodies. \\n\\nKey figures like DJ Larry Levan at the Paradise Garage were instrumental in shaping the genre’s sonic identity, championing an eclectic and innovative approach to mixing that prioritized emotional resonance and dancefloor energy. Producers like Boyd Jarvis and groups such as The Peech Boys were pivotal in cementing the genre's distinct early identity with seminal releases on labels like Prelude Records. As it evolved, Garage House maintained a close connection to the sophisticated side of dance music, eventually providing the foundational influence for the burgeoning UK garage scene of the 1990s. The legacy of Garage House persists today, not only as a vital precursor to modern electronic dance music but as a testament to the transformative power of the New York and New Jersey club landscapes, where electronic instrumentation—synthesizers, drum machines, and sequencers—was imbued with profound human spirit and soul.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Garage_house",
+      "title": "Garage house - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:59.231Z",
+  "type": "genre",
+  "editorial_definition": "Garage House is a soulful style of electronic dance music originating in the 1980s across New York City and New Jersey, characterized by its deep roots in disco, gospel, and R&B, often featuring emotive female vocals and expressive piano arrangements.",
+  "era": "1980s",
+  "origin": "New York City and Newark, New Jersey, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:soul-music",
+      "type": "genre",
+      "name": "Soul music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:larry-levan",
+      "type": "artist",
+      "name": "Larry Levan"
+    },
+    {
+      "slug": "artist:boyd-jarvis",
+      "type": "artist",
+      "name": "Boyd Jarvis"
+    },
+    {
+      "slug": "artist:the-peech-boys",
+      "type": "artist",
+      "name": "The Peech Boys"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:prelude-records",
+      "type": "label",
+      "name": "Prelude Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,122 @@
+{
+  "slug": "genre:ragga-jungle",
+  "name": "Ragga Jungle",
+  "editorial_article": "Ragga Jungle represents the most direct fusion of UK rave culture and Jamaican sound system traditions, emerging as a vibrant subgenre of jungle in the early 1990s. While \"jungle\" as a broader umbrella encompasses various breakbeat-driven electronic styles that evolved from hardcore, the \"ragga\" prefix specifically denotes the heavy incorporation of dancehall and reggae vocal samples, toasting, and deep, dub-infused basslines. It is a music defined by its polyrhythmic intensity; rapid-fire, chopped-up breakbeats (most famously the Amen break) are layered beneath thunderous, sub-bass-heavy low-end frequencies, often accompanied by the aggressive or uplifting vocal patois characteristic of the Jamaican dancehall scene.\n\nThis genre became the cultural epicenter of the Black British experience in the mid-90s, acting as a \"postmodern dub music\" that bridged the gap between underground pirate radio scenes and the burgeoning mainstream dance music market. Labels like V Recordings and producers such as Rebel MC (X Project) were fundamental in moving the sound from the rave's experimental breakbeat hardcore foundations toward this more defined, reggae-drenched aesthetic. It wasn't just a stylistic choice; for many, it was a politicized space, a confluence of the Black Atlantic diaspora that placed the sound system experience at the heart of London’s electronic landscape. The genre peaked in popularity between 1994 and 1995, frequently clashing with and shaping the concurrent rise of drum and bass. While the latter often smoothed out the jagged edges of jungle, the ragga-infused style remained, and remains, the definitive, raw sound of the London underground, celebrated for its rebellious energy and its deep historical roots in Jamaican rhythm.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jungle_music",
+      "title": "Jungle music - Wikipedia"
+    },
+    {
+      "url": "https://music.ishkur.com/?query=RaggaJungle",
+      "title": "Ragga Jungle - Ishkur's Guide to Electronic Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:30.402Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of jungle music defined by the heavy integration of Jamaican dancehall, reggae, and dub elements, featuring rapid breakbeats, deep sub-bass, and prominent ragga vocal samples.",
+  "era": "Early 1990s–mid 1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jungle-music",
+      "type": "genre",
+      "name": "Jungle music"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore"
+    },
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall"
+    },
+    {
+      "slug": "genre:dub-music",
+      "type": "genre",
+      "name": "Dub music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:rebel-mc",
+      "type": "artist",
+      "name": "Rebel MC"
+    },
+    {
+      "slug": "artist:general-levy",
+      "type": "artist",
+      "name": "General Levy"
+    },
+    {
+      "slug": "artist:dj-hype",
+      "type": "artist",
+      "name": "DJ Hype"
+    },
+    {
+      "slug": "artist:m-beat",
+      "type": "artist",
+      "name": "M-Beat"
+    },
+    {
+      "slug": "artist:dj-ron",
+      "type": "artist",
+      "name": "DJ Ron"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:v-recordings",
+      "type": "label",
+      "name": "V Recordings"
+    },
+    {
+      "slug": "label:moving-shadow",
+      "type": "label",
+      "name": "Moving Shadow"
+    },
+    {
+      "slug": "label:suburban-base",
+      "type": "label",
+      "name": "Suburban Base"
+    },
+    {
+      "slug": "label:renk",
+      "type": "label",
+      "name": "Renk"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:jungle-hits",
+      "type": "project",
+      "name": "Jungle Hits (Compilation series)"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:incredible",
+      "type": "track",
+      "name": "Incredible (M-Beat song)"
+    },
+    {
+      "slug": "track:we-are-i-e",
+      "type": "track",
+      "name": "We Are I.E."
+    },
+    {
+      "slug": "track:burial",
+      "type": "track",
+      "name": "Burial (Leviticus song)"
+    }
+  ]
+}

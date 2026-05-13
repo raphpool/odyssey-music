@@ -1,0 +1,129 @@
+{
+  "slug": "artist:television-personalities",
+  "name": "Television Personalities",
+  "editorial_article": "Television Personalities are a seminal English post-punk and indie pop band formed in London in 1977 by singer-songwriter Dan Treacy. Rising from the DIY movement of the late 70s, the band became a foundational influence on the development of British indie pop, the C86 movement, and the twee aesthetic. Treacy, the band's sole constant member and primary creative force, gained recognition for his dryly witty, culturally referential, and deeply personal lyrics. Their early breakthrough single \"Part Time Punks,\" a sharp satire of the contemporary punk scene, earned them the patronage of legendary BBC DJ John Peel, effectively launching their career as icons of the independent music scene. Throughout their long and varied career, the Television Personalities explored a distinctive sonic territory that blended the raw energy of early post-punk with strong undercurrents of neo-psychedelia and classic 60s pop sensibilities. Despite limited mainstream commercial success, they earned a fervent cult following and the admiration of major artists, counting Kurt Cobain and Pavement among their vocal champions. Their legacy is defined by a commitment to musical independence, a whimsical yet cynical perspective on youth culture, and a lasting impact on generations of alternative songwriters who valued raw, unvarnished expression over polished production. Their discography, spanning several decades, remains a testament to Treacy's status as a quintessential, if idiosyncratic, voice in British independent music, having influenced countless acts from the Creation Records roster to modern indie luminaries.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Television_Personalities",
+      "title": "Television Personalities - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/television-personalities",
+      "title": "Television Personalities Albums - Rate Your Music"
+    },
+    {
+      "url": "https://peel.fandom.com/wiki/Television_Personalities",
+      "title": "Television Personalities | John Peel Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:22.101Z",
+  "type": "artist",
+  "editorial_bio": "A seminal British post-punk and indie pop band led by Dan Treacy, known for their influential DIY aesthetic and wry, culturally-infused songwriting.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Television_Personalities_%285363667797%29.jpg/960px-Television_Personalities_%285363667797%29.jpg",
+  "origin": "London, England",
+  "active_years": "1977–1998, 2004–present",
+  "genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:neo-psychedelia",
+      "type": "genre",
+      "name": "Neo-psychedelia"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rough-trade",
+      "type": "label",
+      "name": "Rough Trade"
+    },
+    {
+      "slug": "label:fire-records",
+      "type": "label",
+      "name": "Fire Records"
+    },
+    {
+      "slug": "label:creation-records",
+      "type": "label",
+      "name": "Creation Records"
+    },
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:and-don-t-the-kids-just-love-it",
+      "type": "project",
+      "name": "...And Don't the Kids Just Love It"
+    },
+    {
+      "slug": "project:mummy-your-not-watching-me",
+      "type": "project",
+      "name": "Mummy Your Not Watching Me"
+    },
+    {
+      "slug": "project:they-could-have-been-bigger-than-the-beatles",
+      "type": "project",
+      "name": "They Could Have Been Bigger Than The Beatles"
+    },
+    {
+      "slug": "project:the-painted-word",
+      "type": "project",
+      "name": "The Painted Word"
+    },
+    {
+      "slug": "project:privilege",
+      "type": "project",
+      "name": "Privilege"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:part-time-punks",
+      "type": "track",
+      "name": "Part Time Punks"
+    },
+    {
+      "slug": "track:14th-floor",
+      "type": "track",
+      "name": "14th Floor"
+    },
+    {
+      "slug": "track:i-know-where-syd-barrett-lives",
+      "type": "track",
+      "name": "I Know Where Syd Barrett Lives"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:dan-treacy",
+      "type": "artist",
+      "name": "Dan Treacy"
+    },
+    {
+      "slug": "artist:jowe-head",
+      "type": "artist",
+      "name": "Jowe Head"
+    },
+    {
+      "slug": "artist:ed-ball",
+      "type": "artist",
+      "name": "Ed Ball"
+    }
+  ]
+}

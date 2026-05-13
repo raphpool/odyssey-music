@@ -1,0 +1,71 @@
+{
+  "slug": "genre:experimental-metal",
+  "name": "Experimental metal",
+  "editorial_article": "Experimental metal, also widely known as avant-garde metal, art metal, or avant-metal, represents a boundary-pushing evolution within the heavy metal lexicon. Emerging in the mid-1980s, the genre is characterized by a deliberate departure from the standard, tightly-wound structures of traditional heavy metal. Instead, artists working within this style incorporate unconventional song structures, unorthodox instrumentation, and experimental sound design, often drawing from sources as disparate as jazz, noise music, classical, and progressive rock. The genesis of experimental metal is often linked to the desire of musicians—particularly within the extreme metal scene—to explore the abstract potential of their instruments, breaking away from the rigid conventions that defined early death and thrash metal.\\n\\nThe genre’s sonic identity is incredibly fluid. Pioneer bands like the Swiss group Celtic Frost, particularly with their 1987 landmark release 'Into the Pandemonium,' are frequently cited as establishing the template for the genre's eclectic nature, utilizing operatic vocals and varied textures. Similarly, the Canadian band Voivod injected the scene with dissonance, robotic vocal processing, and complex, fractured time signatures that heavily influenced later generations of musicians. As the style matured through the 1990s and into the 2000s, labels such as The End Records, Misanthropy Records, and Ipecac Recordings provided a home for acts that refused to adhere to a singular sound. Today, experimental metal continues to thrive as an umbrella for artists who prioritize creative risk, treating metal not as a closed system, but as a dynamic medium for intense, avant-garde expression. It remains a vital space for technical, emotional, and structural experimentation, proving that the heaviest music is often the most open to transformation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Avant-garde_metal",
+      "title": "Avant-garde metal - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:12.526Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of heavy metal defined by its embrace of non-traditional sounds, unorthodox song structures, and the integration of avant-garde or experimental techniques from outside the standard metal framework.",
+  "era": "Mid-1980s to present",
+  "origin": "Scandinavia, Switzerland, Japan, and the United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:celtic-frost",
+      "type": "artist",
+      "name": "Celtic Frost"
+    },
+    {
+      "slug": "artist:voivod",
+      "type": "artist",
+      "name": "Voivod"
+    },
+    {
+      "slug": "artist:gorguts",
+      "type": "artist",
+      "name": "Gorguts"
+    },
+    {
+      "slug": "artist:boris",
+      "type": "artist",
+      "name": "Boris"
+    },
+    {
+      "slug": "artist:mr-bungle",
+      "type": "artist",
+      "name": "Mr. Bungle"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:the-end-records",
+      "type": "label",
+      "name": "The End Records"
+    },
+    {
+      "slug": "label:ipecac-recordings",
+      "type": "label",
+      "name": "Ipecac Recordings"
+    },
+    {
+      "slug": "label:hydra-head-records",
+      "type": "label",
+      "name": "Hydra Head Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:into-the-pandemonium",
+      "type": "project",
+      "name": "Into the Pandemonium"
+    }
+  ],
+  "landmark_tracks": []
+}

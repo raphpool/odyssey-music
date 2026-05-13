@@ -1,0 +1,81 @@
+{
+  "slug": "label:k-records",
+  "name": "K Records",
+  "editorial_article": "K Records is an iconic independent record label based in Olympia, Washington, founded in 1982 by Calvin Johnson. Emerging from the city's vibrant underground scene—nurtured by community radio KAOS-FM and magazines like 'Op'—the label was initially established as a cassette-only operation, capitalizing on the format's low manufacturing costs to decentralize music distribution and challenge corporate-dominated culture. K Records became a cornerstone of the American indie and \"twee pop\" movements, championing a DIY aesthetic that privileged raw, authentic expression over commercial polish. Over its four decades, the label has documented the works of over 150 artists, serving as a hub for the \"International Pop Underground.\" Its sonic footprint is eclectic, ranging from the lo-fi indie rock of Beat Happening to the quirky pop sensibilities of Mirah, The Blow, and Karl Blau. Beyond its catalog, the label is defined by its fiercely independent philosophy, acting as a \"library card for the culturally deadpan\" and continuously encouraging listeners to cultivate tastes outside the \"petri dish\" of mainstream music. Through its long-standing collaboration with Dub Narcotic Studio and its commitment to local and international comrades, K Records remains one of the most influential entities in the history of independent music. The label's influence on the 1990s indie landscape cannot be overstated; it provided a platform for musicians who refused to conform to industry standards, influencing generations of artists to pursue creative independence. By prioritizing the \"tummy\" over corporate bottom lines, Calvin Johnson fostered an environment where art was measured by its honesty rather than its chart performance. Today, the label continues to serve as an essential archive and ongoing participant in the global independent music dialogue, maintaining its core values while adapting to the evolving landscape of digital and physical distribution.",
+  "citations": [
+    {
+      "url": "https://nwmusicarchives.com/label/k-records-2/",
+      "title": "K Records | THE NORTHWEST MUSIC ARCHIVES"
+    },
+    {
+      "url": "https://krecs.com/pages/about",
+      "title": "About K – The K Mail Order Department"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:23.135Z",
+  "type": "label",
+  "editorial_description": "K Records is an iconic independent record label based in Olympia, Washington, founded in 1982 by Calvin Johnson. Emerging from the city's vibrant underground scene, it became a cornerstone of the American indie and twee pop movements, championing a DIY aesthetic.",
+  "founded": "1982",
+  "location": "Olympia, Washington",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee Pop"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:calvin-johnson",
+      "type": "artist",
+      "name": "Calvin Johnson"
+    },
+    {
+      "slug": "artist:beat-happening",
+      "type": "artist",
+      "name": "Beat Happening"
+    },
+    {
+      "slug": "artist:mirah",
+      "type": "artist",
+      "name": "Mirah"
+    },
+    {
+      "slug": "artist:the-blow",
+      "type": "artist",
+      "name": "The Blow"
+    },
+    {
+      "slug": "artist:karl-blau",
+      "type": "artist",
+      "name": "Karl Blau"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:beat-happening",
+      "type": "project",
+      "name": "Beat Happening"
+    },
+    {
+      "slug": "project:god-don-t-make-no-junk",
+      "type": "project",
+      "name": "God Don't Make No Junk"
+    },
+    {
+      "slug": "project:you-think-it-s-like-this-but-really-it-s-like-this",
+      "type": "project",
+      "name": "You Think It's Like This But Really It's Like This"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "track:soft-drink--cherry-glazerr-track",
+  "name": "Soft Drink",
+  "editorial_article": "\"Soft Drink\" is a 2021 indie rock track by the Los Angeles-based band Cherry Glazerr. Released through the indie label Secretly Canadian, the song is a quintessential example of Clementine Creevy’s ability to blend vulnerability with an infectious, danceable energy. Lyrically, the track explores themes of social anxiety, the desire for connection, and the awkwardness of romantic interest—using the metaphor of a soft drink being shaken up to describe the internal feeling of being overwhelmed or \"shaken\" by someone else's presence.\n\nMusically, the song is built on a driving, melodic rhythm section that leans into the band's signature mix of garage rock grittiness and pop-leaning sensibilities. The production is sharp and focused, highlighting Creevy’s conversational vocal delivery. The song fits neatly into the modern indie-pop landscape, balancing introspective, slightly anxious lyrics with a refrain designed for movement and catharsis. The music video, directed by Jessica Calleiro, captures this duality, mirroring the track’s upbeat tempo with a visual aesthetic that feels both intimate and slightly surreal, reinforcing the band's reputation for quirky, thoughtful artistic expression. Through \"Soft Drink,\" Cherry Glazerr proves their continued evolution from lo-fi origins to a more polished, nuanced sound that still retains the raw spirit of their early recordings.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/watch?v=xuuErrlTIqo",
+      "title": "Cherry Glazerr - Soft Drink (Official Video) - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:14.494Z",
+  "type": "track",
+  "editorial_teaser": "A propulsive, anxiety-laced indie-pop gem from Cherry Glazerr, \"Soft Drink\" uses the image of a shaken beverage to capture the dizzying, unsettled feeling of new romantic interest.",
+  "artists": [
+    {
+      "slug": "artist:cherry-glazerr",
+      "type": "artist",
+      "name": "Cherry Glazerr"
+    }
+  ],
+  "project": {
+    "slug": "project:soft-drink",
+    "type": "project",
+    "name": "Soft Drink (Single)"
+  },
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

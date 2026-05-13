@@ -1,0 +1,110 @@
+{
+  "slug": "artist:richie-hawtin",
+  "name": "Richie Hawtin",
+  "editorial_article": "Richie Hawtin is a preeminent electronic music artist, DJ, and technological innovator who has fundamentally shaped the sound of minimal techno. Born in the UK and raised in Ontario, Canada, Hawtin emerged from the burgeoning Detroit techno scene in the late 1980s, co-founding the seminal Plus 8 Records with John Acquaviva in 1990. Throughout his career, he has navigated the intersection of cutting-edge technology and avant-garde composition, notably through his celebrated Plastikman project, which explored deep, atmospheric, and highly textural electronic soundscapes. His impact on electronic music extends beyond his discography; he has been a tireless promoter of new talent through labels like Minus and a pioneer in live performance technology, pushing the boundaries of what is possible on stage. Hawtin's work frequently bridges the gap between club culture and the fine arts, as evidenced by his site-specific performances at venues like the Guggenheim and his collaborations with artists such as Anish Kapoor. A multi-faceted figure, he has received honorary doctorates for his contributions to music technology and remains a central pillar of the global electronic music community, constantly evolving his approach while maintaining an unwavering focus on sonic experimentation. His work, characterized by a precision and clinical minimal aesthetic, has served as a blueprint for generations of producers and DJs, solidifying his status as a key intellectual force within the dance music world.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/richiehawtin/biography",
+      "title": "Richie Hawtin · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:15.655Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering techno artist and producer known for his minimal aesthetic, label management (Plus 8, M_nus), and innovative integration of technology into live performance.",
+  "origin": "Windsor, Ontario, Canada",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:plus-8-records",
+      "type": "label",
+      "name": "Plus 8 Records"
+    },
+    {
+      "slug": "label:m-nus",
+      "type": "label",
+      "name": "M_nus"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sheet-one",
+      "type": "project",
+      "name": "Sheet One"
+    },
+    {
+      "slug": "project:consumed",
+      "type": "project",
+      "name": "Consumed"
+    },
+    {
+      "slug": "project:ex",
+      "type": "project",
+      "name": "EX"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:spastik",
+      "type": "track",
+      "name": "Spastik"
+    },
+    {
+      "slug": "track:plasticity",
+      "type": "track",
+      "name": "Plasticity"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-acquaviva",
+      "type": "artist",
+      "name": "John Acquaviva"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    },
+    {
+      "slug": "artist:sven-vath",
+      "type": "artist",
+      "name": "Sven Väth"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman"
+    },
+    {
+      "slug": "artist:f-u-s-e",
+      "type": "artist",
+      "name": "F.U.S.E."
+    }
+  ],
+  "members": []
+}

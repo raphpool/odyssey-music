@@ -1,0 +1,106 @@
+{
+  "slug": "label:important-records",
+  "name": "Important Records",
+  "editorial_article": "Important Records is a cornerstone of the American experimental and avant-garde music scene, founded in 2001 by John Brien in Massachusetts. Initially established as an online record store, the label quickly evolved into a vital conduit for challenging, boundary-pushing music, with its inaugural releases—Daniel Johnston's \"Impossible Love\" and Merzbow's \"Amlux\"—setting a clear precedent for its eclectic, uncompromising curatorial vision. Over the past two decades, Important Records has fostered a vast network of artists working across the spectrums of noise, drone, contemporary classical, psych-folk, and jazz. Its catalog is celebrated for its breadth, housing works by legendary figures such as Pauline Oliveros, Éliane Radigue, and Conrad Schnitzler alongside influential experimental acts like Boris, Xiu Xiu, and Keiji Haino. By acting as both a distributor and a publisher, the label has played a crucial role in documenting the histories of modern sound-art while actively supporting contemporary explorations in synthesis and ambient composition. The label's dedication to physical media, including its sublabels like Cassauna—which specializes in letterpress-packaged cassettes—underscores a deep commitment to the object-hood of music, ensuring that the label remains a destination for listeners who value sonic depth and meticulous presentation. Through its consistent output and long-standing presence, Important Records has become a preeminent force in the independent sphere, bridging the gap between historical avant-garde pioneers and the current generation of experimental musicians.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Important_Records",
+      "title": "Important Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/12114-Important-Records-2?srsltid=AfmBOoon9KmbiC1_8KrWPjQTpwEgxfJIotD8OzM9f91CHJdh-BoM-fl7",
+      "title": "Important Records (2) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:54.021Z",
+  "type": "label",
+  "editorial_description": "A vital, long-running independent label dedicated to documenting and championing experimental, drone, noise, and avant-garde music.",
+  "founded": "2001",
+  "location": "Groveland, Massachusetts",
+  "genres": [
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    },
+    {
+      "slug": "genre:drone-music",
+      "type": "genre",
+      "name": "Drone music"
+    },
+    {
+      "slug": "genre:noise-music",
+      "type": "genre",
+      "name": "Noise music"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary classical"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros"
+    },
+    {
+      "slug": "artist:eliane-radigue",
+      "type": "artist",
+      "name": "Éliane Radigue"
+    },
+    {
+      "slug": "artist:boris",
+      "type": "artist",
+      "name": "Boris"
+    },
+    {
+      "slug": "artist:xiu-xiu",
+      "type": "artist",
+      "name": "Xiu Xiu"
+    },
+    {
+      "slug": "artist:keiji-haino",
+      "type": "artist",
+      "name": "Keiji Haino"
+    },
+    {
+      "slug": "artist:the-dresden-dolls",
+      "type": "artist",
+      "name": "The Dresden Dolls"
+    },
+    {
+      "slug": "artist:daniel-johnston",
+      "type": "artist",
+      "name": "Daniel Johnston"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:amlux",
+      "type": "project",
+      "name": "Amlux"
+    },
+    {
+      "slug": "project:a-is-for-accident",
+      "type": "project",
+      "name": "A Is for Accident"
+    },
+    {
+      "slug": "project:impossible-love",
+      "type": "project",
+      "name": "Impossible Love"
+    }
+  ]
+}

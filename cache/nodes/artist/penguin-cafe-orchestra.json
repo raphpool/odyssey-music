@@ -1,0 +1,109 @@
+{
+  "slug": "artist:penguin-cafe-orchestra",
+  "name": "Penguin Cafe Orchestra",
+  "editorial_article": "The Penguin Cafe Orchestra was an influential avant-pop ensemble founded in 1972 by English multi-instrumentalist and composer Simon Jeffes. Emerging as a radical departure from the rigid structures of both traditional classical music and conventional rock, the band became a vehicle for Jeffes’ unique, whimsical, and highly melodic vision. The group's origin is tied to a surreal vision Jeffes experienced while convalescing in the south of France, where he imagined a \"Penguin Cafe\"—a place of spontaneity, irrationality, and acceptance of the unconscious mind. This philosophy underpinned the music, which famously blurred the lines between minimalist chamber music, folk, and early electronic avant-garde. \\n\\nThroughout their existence, the Penguin Cafe Orchestra evolved into a fluid collective, incorporating a rotating cast of virtuosic musicians on instruments including the cello, viola, ukulele, and various percussion. Their debut album, 'Music from the Penguin Cafe' (1976), was released on Brian Eno's legendary Obscure Records, establishing an aesthetic that resonated with both art-pop and contemporary classical audiences. Their work remained distinctive for its cyclical, hypnotic melodies—often likened to Philip Glass but imbued with a more pastoral, British eccentricity—and a playful disregard for genre boundaries. The ensemble continued to record and tour globally until the untimely death of Simon Jeffes in 1997, leaving behind a legacy as one of the most singular and imaginative groups to emerge from the UK's fertile art-rock scene. In the decades since, the music has maintained a devoted following, influencing generations of musicians in the minimalist and indie-folk spheres.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Penguin_Cafe_Orchestra",
+      "title": "Penguin Cafe Orchestra - Wikipedia"
+    },
+    {
+      "url": "https://www.penguincafe.com/pages/about",
+      "title": "About – Penguin Cafe Official Store"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:07.472Z",
+  "type": "artist",
+  "editorial_bio": "The Penguin Cafe Orchestra was an influential avant-pop ensemble founded by Simon Jeffes in 1972 that blended chamber music, folk, and minimalism. Known for their cyclical, hypnotic melodies and whimsical aesthetic, they remained a singular force in the British avant-pop scene until 1997.",
+  "origin": "England",
+  "active_years": "1972–1997",
+  "genres": [
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop"
+    },
+    {
+      "slug": "genre:chamber-music",
+      "type": "genre",
+      "name": "Chamber music"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:obscure-records",
+      "type": "label",
+      "name": "Obscure Records"
+    },
+    {
+      "slug": "label:e-g-records",
+      "type": "label",
+      "name": "E.G. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:music-from-the-penguin-cafe",
+      "type": "project",
+      "name": "Music from the Penguin Cafe"
+    },
+    {
+      "slug": "project:penguin-cafe-orchestra",
+      "type": "project",
+      "name": "Penguin Cafe Orchestra"
+    },
+    {
+      "slug": "project:broadcasting-from-home",
+      "type": "project",
+      "name": "Broadcasting From Home"
+    },
+    {
+      "slug": "project:union-cafe",
+      "type": "project",
+      "name": "Union Cafe"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:music-for-a-found-harmonium",
+      "type": "track",
+      "name": "Music for a Found Harmonium"
+    },
+    {
+      "slug": "track:telephone-and-rubber-band",
+      "type": "track",
+      "name": "Telephone and Rubber Band"
+    },
+    {
+      "slug": "track:perpetuum-mobile",
+      "type": "track",
+      "name": "Perpetuum Mobile"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:simon-jeffes",
+      "type": "artist",
+      "name": "Simon Jeffes"
+    },
+    {
+      "slug": "artist:helen-liebmann",
+      "type": "artist",
+      "name": "Helen Liebmann"
+    },
+    {
+      "slug": "artist:geoffrey-richardson",
+      "type": "artist",
+      "name": "Geoffrey Richardson"
+    }
+  ]
+}

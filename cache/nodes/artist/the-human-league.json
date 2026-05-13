@@ -1,0 +1,135 @@
+{
+  "slug": "artist:the-human-league",
+  "name": "The Human League",
+  "editorial_article": "The Human League, formed in Sheffield, England, in 1977, stands as one of the most influential acts in the development of synth-pop and electronic music. Initially emerging from the industrial, post-punk landscape of Northern England, the group began as The Future—an experimental electronic outfit founded by Martyn Ware and Ian Craig Marsh. Upon recruiting Philip Oakey as their charismatic, glam-inspired frontman, they rebranded as The Human League, pioneering a sound that fused traditional pop sensibilities with the cold, precise textures of early synthesizers. Their early output, including the cult classic \"Being Boiled,\" established them as vanguard figures in the British electronic scene. \\n\\nFollowing the departure of founding members Ware and Marsh in 1980—who went on to form Heaven 17—Oakey dramatically restructured the group, recruiting teenage singers Joanne Catherall and Susan Ann Sulley. This pivot proved revolutionary. The resulting 1981 album, 'Dare', became a global phenomenon, balancing avant-garde electronic roots with accessible, melody-driven production. The lead single \"Don't You Want Me\" became an iconic moment in pop history, helping to spearhead the \"Second British Invasion\" of the US charts during the early 1980s. Throughout their long career, The Human League has demonstrated remarkable longevity, continuing to tour and record while maintaining a core identity centered on Oakey’s distinctive vocals and a commitment to electronic experimentation. Their impact extends far beyond their own hits, as their early integration of synthesizers into the pop mainstream paved the way for generations of electronic and pop artists alike.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Human_League",
+      "title": "The Human League - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/10383-The-Human-League?srsltid=AfmBOooyfpH_Mzapxo_S3qdmL67iitsqrGsfTw4Ab32uiodd5lpwpMIo",
+      "title": "The Human League Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:59.435Z",
+  "type": "artist",
+  "editorial_bio": "The Human League, formed in Sheffield, England, in 1977, stands as one of the most influential acts in the development of synth-pop and electronic music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/The_Human_League_2007.jpg/960px-The_Human_League_2007.jpg",
+  "origin": "Sheffield, England",
+  "active_years": "1977–present",
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:fast-product",
+      "type": "label",
+      "name": "Fast Product"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dare",
+      "type": "project",
+      "name": "Dare"
+    },
+    {
+      "slug": "project:travelogue",
+      "type": "project",
+      "name": "Travelogue"
+    },
+    {
+      "slug": "project:reproduction",
+      "type": "project",
+      "name": "Reproduction"
+    },
+    {
+      "slug": "project:hysteria",
+      "type": "project",
+      "name": "Hysteria"
+    },
+    {
+      "slug": "project:crash",
+      "type": "project",
+      "name": "Crash"
+    },
+    {
+      "slug": "project:octopus",
+      "type": "project",
+      "name": "Octopus"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:don-t-you-want-me",
+      "type": "track",
+      "name": "Don't You Want Me"
+    },
+    {
+      "slug": "track:being-boiled",
+      "type": "track",
+      "name": "Being Boiled"
+    },
+    {
+      "slug": "track:human",
+      "type": "track",
+      "name": "Human"
+    },
+    {
+      "slug": "track:love-action",
+      "type": "track",
+      "name": "Love Action (I Believe in Love)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:philip-oakey",
+      "type": "artist",
+      "name": "Philip Oakey"
+    },
+    {
+      "slug": "artist:joanne-catherall",
+      "type": "artist",
+      "name": "Joanne Catherall"
+    },
+    {
+      "slug": "artist:susan-ann-sulley",
+      "type": "artist",
+      "name": "Susan Ann Sulley"
+    },
+    {
+      "slug": "artist:martyn-ware",
+      "type": "artist",
+      "name": "Martyn Ware"
+    },
+    {
+      "slug": "artist:ian-craig-marsh",
+      "type": "artist",
+      "name": "Ian Craig Marsh"
+    }
+  ]
+}

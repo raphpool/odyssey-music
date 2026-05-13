@@ -1,0 +1,78 @@
+{
+  "slug": "artist:giorgio-moroder",
+  "name": "Giorgio Moroder",
+  "editorial_article": "Giorgio Moroder is an iconic Italian producer, composer, and songwriter who fundamentally reshaped the landscape of electronic music and disco during the 1970s and 1980s. Born in Ortisei, Italy, in 1940, Moroder moved to Munich, Germany, where he established his influential 'Musicland Studios'. He is widely celebrated as a pioneer of 'computer disco,' most famously demonstrated in his revolutionary production work for Donna Summer, including the seminal 1977 track 'I Feel Love,' which utilized synthesizers in a way that laid the groundwork for modern techno and house music. Beyond his massive impact on the dance floor, Moroder became a titan of film scoring, winning three Academy Awards for his work on 'Midnight Express,' 'Flashdance,' and the hit 'Take My Breath Away' from 'Top Gun.' His production credits bridge decades and genres, including collaborations with legends like David Bowie, Cher, and Elton John. In the 2010s, he experienced a significant career resurgence, notably collaborating with Daft Punk on the song 'Giorgio by Moroder' for their album 'Random Access Memories,' which introduced his visionary production techniques to a new generation of listeners. Throughout his career, Moroder has accumulated numerous awards and remains a revered figure whose pioneering use of electronic sequences fundamentally altered pop and electronic composition. His work remains essential for understanding the evolution of modern dance and electronic music.",
+  "citations": [
+    {
+      "url": "https://www.giorgiomoroder.com/biography/",
+      "title": "BIOGRAPHY - Giorgio Moroder"
+    },
+    {
+      "url": "https://www.discogs.com/artist/4205-Giorgio-Moroder?srsltid=AfmBOooGr4YIbjzlNYpoOV1UqVoy2O6-8wBp_aDkAfHFbTTC8q2ddCCd",
+      "title": "Giorgio Moroder Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:47.656Z",
+  "type": "artist",
+  "editorial_bio": "Giorgio Moroder is a pioneer of disco and electronic music, known for his groundbreaking work in Munich during the 1970s and his iconic film scores. He is celebrated for his collaborative work with Donna Summer, which pioneered the use of synthesizers in dance music.",
+  "photo_url": "http://www.giorgiomoroder.com/wp-content/uploads/2014/11/giorgio-moroder-bio.jpg",
+  "origin": "Ortisei, Italy",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:casablanca-records",
+      "type": "label",
+      "name": "Casablanca Records"
+    },
+    {
+      "slug": "label:sony-music",
+      "type": "label",
+      "name": "Sony Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:deja-vu",
+      "type": "project",
+      "name": "Deja Vu"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-feel-love",
+      "type": "track",
+      "name": "I Feel Love"
+    },
+    {
+      "slug": "track:take-my-breath-away",
+      "type": "track",
+      "name": "Take My Breath Away"
+    },
+    {
+      "slug": "track:call-me",
+      "type": "track",
+      "name": "Call Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

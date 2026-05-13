@@ -1,0 +1,62 @@
+{
+  "slug": "track:2-1--brian-eno-track-from-ambient-1",
+  "name": "2/1",
+  "editorial_article": "\"2/1\" is the second track on Brian Eno's landmark 1978 album, Ambient 1: Music for Airports. As part of a foundational work in the ambient genre, the piece was meticulously constructed using tape loops of piano performances—notably featuring Robert Wyatt—that are layered to create an evolving, semi-randomized soundscape. The track is representative of Eno’s early ambient philosophy: music that is \"as ignorable as it is interesting,\" designed to transform the listener's environment and provide a sense of calm without demanding focused, linear engagement. By utilizing tape loops of varying lengths, Eno ensured that the constituent parts of the composition cycle against one another, meaning the harmonic relationships between the loops shift constantly, preventing the track from ever repeating in exactly the same way. This approach, heavily inspired by minimalist composers and the concept of \"furniture music,\" moved away from traditional pop song structures to create a spatial, atmospheric experience that redefined how electronic music could be utilized in public and private spaces alike. Through its austere, shimmering textures, \"2/1\" exemplifies the minimalist ambition to induce a meditative space for the listener, standing as a testament to the power of deliberate, technological minimalism in sound art. It remains one of the most significant pieces of 20th-century ambient music, illustrating the effectiveness of mechanical repetition in achieving profound, organic-feeling beauty.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_1:_Music_for_Airports",
+      "title": "Ambient 1: Music for Airports - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/6265-Brian-Eno-Ambient-1-Music-For-Airports?srsltid=AfmBOoqJ-KZJP2BLxYYHrsop2Jk12gEHjhkVNRBKUwdns6YdwPAgeAxp",
+      "title": "Brian Eno – Ambient 1 (Music For Airports) - Discogs"
+    },
+    {
+      "url": "https://open.spotify.com/track/1ZUySbUWzsCQAOZMlR2DeK",
+      "title": "2/1 - song and lyrics by Brian Eno, Robert Wyatt, Rhett Davies, Bang On A Can All-Stars"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:36.570Z",
+  "type": "track",
+  "editorial_teaser": "\"2/1\" is a seminal ambient composition by Brian Eno, defined by shifting, overlapping tape loops of piano melodies that create an immersive, ever-changing soundscape.",
+  "year": "1978",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "project": {
+    "slug": "project:ambient-1-music-for-airports",
+    "type": "project",
+    "name": "Ambient 1: Music for Airports"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

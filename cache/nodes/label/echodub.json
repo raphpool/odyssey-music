@@ -1,0 +1,86 @@
+{
+  "slug": "label:echodub",
+  "name": "Echodub",
+  "editorial_article": "Echodub was a pioneering UK-based record label that carved out a distinct space in the landscape of deep, atmospheric electronic music. Founded in 2008 by Alex Cowles—the producer known as DFRNT (and later, Stillhead)—the label originated as a collective designed to nurture like-minded artists operating at the intersection of deep dubstep, future-garage, and dub-influenced techno. During its most active years, Echodub served as a vital platform for forward-thinking producers who favored textured sound design and cavernous, sub-heavy aesthetics over the more aggressive, mainstream-leaning trends of the time.\\n\\nBased out of Edinburgh, Scotland, Echodub was instrumental in defining the sound of the 'deep' electronic scene in the late 2000s and early 2010s. The label's output was characterized by its moody, introspective character, bridging the gap between traditional dub-techno sensibilities and the rapidly evolving UK bass music culture. Notable for its cohesive artistic direction and commitment to underground talent, Echodub provided an early home for artists such as Daega Sound, Simon/off, and Skyence. While the label is no longer active as a current imprint, its legacy persists through its comprehensive back-catalog, which remains available for listeners interested in the evocative, experimental side of British electronic production during its formative years. The label remains a touchstone for those exploring the evolution of the deep dubstep subgenre.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/6551",
+      "title": "Echodub · Record label ⟋ RA"
+    },
+    {
+      "url": "https://www.discogs.com/label/142147-Echodub?srsltid=AfmBOopY_PkV27rU5mX-4tkfR68eGBf629qt5T24jknZZ3ymxkHlQc4m",
+      "title": "Echodub | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:25.173Z",
+  "type": "label",
+  "editorial_description": "A key UK-based independent label founded in 2008 by DFRNT, renowned for its role in fostering deep, dub-influenced electronic, future-garage, and atmospheric dubstep.",
+  "founded": "2008",
+  "location": "Edinburgh, Scotland",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:future-garage",
+      "type": "genre",
+      "name": "Future Garage"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:dfrnt",
+      "type": "artist",
+      "name": "DFRNT"
+    },
+    {
+      "slug": "artist:daega-sound",
+      "type": "artist",
+      "name": "Daega Sound"
+    },
+    {
+      "slug": "artist:simon-off",
+      "type": "artist",
+      "name": "Simon/off"
+    },
+    {
+      "slug": "artist:skyence",
+      "type": "artist",
+      "name": "Skyence"
+    },
+    {
+      "slug": "artist:sines",
+      "type": "artist",
+      "name": "Sines"
+    },
+    {
+      "slug": "artist:furesshu",
+      "type": "artist",
+      "name": "Furesshu"
+    },
+    {
+      "slug": "artist:lojik",
+      "type": "artist",
+      "name": "Lojik"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:fading",
+      "type": "project",
+      "name": "Fading"
+    },
+    {
+      "slug": "project:waterfoul",
+      "type": "project",
+      "name": "Waterfoul"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "label:planet-e-communications",
+  "name": "Planet E Communications",
+  "editorial_article": "Founded in 1991 in Detroit, Planet E Communications serves as one of the most significant pillars in the evolution of techno music. Established by producer Carl Craig, the label emerged from a desire for absolute creative autonomy, providing a dedicated platform to move beyond the constraints of the major label industrial complex. Throughout its existence, the label has functioned as a conduit for the experimental and soulful sensibilities that define the Detroit sound, famously bridging the gap between underground dance floor functionality and elevated artistic expression.\n\nBeyond merely serving as a home for Craig’s own diverse output—which spans from deep, ambient-inflected techno to jazz-infused electronic fusion—the label has hosted a variety of pivotal artists, maintaining a legacy of forward-thinking production. Its identity is inextricably linked to its home city, reflecting the metallic, industrial, and deeply humanistic pulse of Detroit. By consistently releasing material that challenges genre conventions while remaining rooted in the history of soul and electronic innovation, Planet E Communications has remained a touchstone for electronic music globally for over three decades, influencing generations of producers and maintaining a standard of sonic excellence that transcends the temporary trends of the dance music market. The label's philosophy, built on the idea of constant communication between Earth and the vast, unknown reaches of space, continues to drive its output, ensuring it remains an essential hub for vital, genre-defying electronic music in the modern era.",
+  "citations": [
+    {
+      "url": "https://planet-e.net/about/",
+      "title": "About – Planet-e"
+    },
+    {
+      "url": "https://www.tailored-communication.com/record-labels/planet-e",
+      "title": "Planet E - Tailored Communication"
+    },
+    {
+      "url": "https://www.beatportal.com/articles/240666-label-of-the-month-planet-e-communications",
+      "title": "Label of the Month: Planet E Communications - Beatportal"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:23.905Z",
+  "type": "label",
+  "editorial_description": "A Detroit-based institution founded by Carl Craig in 1991, Planet E Communications represents the height of independence and artistic integrity in techno, fostering the city's experimental and soulful musical heritage.",
+  "founded": "1991",
+  "location": "Detroit, USA",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin"
+    },
+    {
+      "slug": "artist:moodymann",
+      "type": "artist",
+      "name": "Moodymann"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:more-songs-about-food-and-revolutionary-art",
+      "type": "project",
+      "name": "More Songs About Food and Revolutionary Art"
+    },
+    {
+      "slug": "project:the-album-formerly-known-as",
+      "type": "project",
+      "name": "The Album Formerly Known As..."
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "artist:todd-rundgren",
+  "name": "Todd Rundgren",
+  "editorial_article": "Todd Harry Rundgren (born June 22, 1948) is an American musician, singer, songwriter, and record producer who has maintained a remarkably diverse career spanning pop, rock, progressive rock, electronic, and R&B. A native of Upper Darby, Pennsylvania, Rundgren first gained prominence in the late 1960s with the psychedelic band Nazz, but he quickly transitioned to a prolific solo career and a highly influential stint as a record producer. His landmark 1972 double album 'Something/Anything?' showcased his versatility, delivering hits like 'I Saw the Light' and 'Hello It's Me', while his 1973 follow-up 'A Wizard, a True Star' pushed the boundaries of studio experimentation, influencing generations of bedroom musicians. \n\nBeyond his own output, Rundgren's impact on music production is profound, having engineered and produced foundational albums such as The New York Dolls' debut, Meat Loaf's 'Bat Out of Hell', and XTC's 'Skylarking'. His career is marked by a restless desire to bridge music and technology; he was an early adopter of music video production, pioneered interactive television concerts in the late 1970s, and developed the first interactive album, 'No World Order' (1993). Whether performing as a solo artist, leading the progressive rock band Utopia, or shaping the sound of other iconic acts, Rundgren remains a singular force in American music, celebrated for his technical prowess, melodic ingenuity, and uncompromisingly creative spirit. He was inducted into the Rock and Roll Hall of Fame in 2021. Throughout his decades-long career, he has successfully blurred the lines between high-fidelity studio production and experimental, often unorthodox, musical structures, marking him as a pivotal figure in the development of modern power pop and progressive rock.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Todd_Rundgren",
+      "title": "Todd Rundgren - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:08.078Z",
+  "type": "artist",
+  "editorial_bio": "A legendary American musician, producer, and technological innovator known for his diverse solo career and groundbreaking work with Nazz and Utopia.",
+  "origin": "Upper Darby, Pennsylvania, U.S.",
+  "active_years": "1966–present",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bearsville",
+      "type": "label",
+      "name": "Bearsville"
+    },
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:something-anything",
+      "type": "project",
+      "name": "Something/Anything?"
+    },
+    {
+      "slug": "project:a-wizard-a-true-star",
+      "type": "project",
+      "name": "A Wizard, a True Star"
+    },
+    {
+      "slug": "project:hermit-of-mink-hollow",
+      "type": "project",
+      "name": "Hermit of Mink Hollow"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-saw-the-light",
+      "type": "track",
+      "name": "I Saw the Light"
+    },
+    {
+      "slug": "track:hello-it-s-me",
+      "type": "track",
+      "name": "Hello It's Me"
+    },
+    {
+      "slug": "track:bang-the-drum-all-day",
+      "type": "track",
+      "name": "Bang the Drum All Day"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

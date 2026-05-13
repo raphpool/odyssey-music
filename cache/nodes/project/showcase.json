@@ -1,0 +1,47 @@
+{
+  "slug": "project:showcase",
+  "name": "Showcase",
+  "editorial_article": "\"Showcase\" is a landmark 1979 reggae album by the legendary roots reggae group Black Uhuru, produced by the iconic rhythm section Sly & Robbie. The album serves as a definitive example of the \"showcase\" format, a staple of the Jamaican music industry in the late 1970s. In this format, an album typically features a selection of vocal tracks, each immediately followed by its instrumental dub version. This structure allowed sound system DJs and producers to demonstrate the creative potential of mixing and remixing in the studio, effectively showcasing the artist's songs alongside the innovative production techniques of the dub era. \n\nBlack Uhuru’s \"Showcase\" features some of the group’s most essential early material, including tracks like \"General Penitentiary,\" \"Guess Who's Coming to Dinner,\" and \"Plastic Smile.\" With the masterful, tight rhythm arrangements provided by Sly Dunbar and Robbie Shakespeare, the album helped solidify Black Uhuru as a powerhouse of the roots reggae movement. The sound is characterized by deep, heavy basslines, atmospheric delays, and the distinct, soulful vocal harmonies that defined the group's signature style. Because of its cultural impact, the album has seen numerous reissues across international labels, often under variations of the title like \"Black Uhuru\" or \"Guess Who's Coming to Dinner,\" underscoring its status as a foundational record in reggae history. By providing listeners with both the vocal performances and their dub counterparts, \"Showcase\" captures the dual nature of reggae production: the song as a story and the song as a sonic playground.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/35772-Black-Uhuru-Showcase?srsltid=AfmBOorCDQUGTc-iJ66_ybNnPvvVpvxxv_tuF08ZUBNSq0d4GRNFV9wO",
+      "title": "Black Uhuru – Showcase | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:33.977Z",
+  "type": "project",
+  "editorial_pitch": "\"Showcase\" is a landmark 1979 reggae album by the legendary roots reggae group Black Uhuru, produced by the iconic rhythm section Sly & Robbie.",
+  "year": "1979",
+  "artists": [],
+  "label": {
+    "slug": "label:d-roy-records",
+    "type": "label",
+    "name": "D-Roy Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:sly-and-robbie",
+      "type": "artist",
+      "name": "Sly & Robbie"
+    }
+  ],
+  "related_projects": []
+}

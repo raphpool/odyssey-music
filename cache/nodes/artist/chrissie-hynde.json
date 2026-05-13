@@ -1,0 +1,61 @@
+{
+  "slug": "artist:chrissie-hynde",
+  "name": "Chrissie Hynde",
+  "editorial_article": "Chrissie Hynde (born September 7, 1951) is a seminal American-British singer, songwriter, and musician who became a central figure in the post-punk and new wave scenes of the late 1970s. Born in Akron, Ohio, Hynde moved to London in 1973, immersing herself in the burgeoning punk movement where she worked at Vivienne Westwood’s boutique, 'Sex', and navigated various short-lived musical projects. Her tenacity led to the formation of the Pretenders in 1978 in Hereford, England. As the group's lead vocalist, guitarist, and primary songwriter, Hynde established a distinct rock sound characterized by her sharp lyricism and gritty vocal style. Throughout her career, she has remained the band's only consistent member, guiding it through critical acclaim and commercial success. Hynde’s influence spans decades, and her contributions to rock music were recognized in 2005 with her induction into the Rock and Roll Hall of Fame. Her artistry extends beyond her iconic work with the Pretenders, including collaborations with diverse artists such as Frank Sinatra, Cher, and UB40, and a solo career that saw the release of her debut album, 'Stockholm', in 2014. As a songwriter and performer, she bridged the gap between raw punk energy and melodic pop sensibility, creating a catalog that remains essential to rock history. Her career, which has spanned over five decades, showcases her enduring relevance, adaptability, and uncompromising creative vision within the rock tradition.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chrissie_Hynde",
+      "title": "Chrissie Hynde - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/11070-Chrissie-Hynde?srsltid=AfmBOorIGzF9dLgt2xIql33liyOJ80eyc05c6ZLQ0qzN784VNQeMOL5H",
+      "title": "Chrissie Hynde Discography: Vinyl, CDs, & More"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:45.051Z",
+  "type": "artist",
+  "editorial_bio": "Chrissie Hynde (born September 7, 1951) is a seminal American-British singer, songwriter, and musician who became a central figure in the post-punk and new wave scenes of the late 1970s. Born in Akron, Ohio, Hynde moved to London in 1973, immersing herself in the burgeoning punk movement where she worked at Vivienne Westwood’s boutique, 'Sex', and navigated various short-lived musical projects. Her tenacity led to the formation of the Pretenders in 1978 in Hereford, England. As the group's lead vocalist, guitarist, and primary songwriter, Hynde established a distinct rock sound characterized by her sharp lyricism and gritty vocal style. Throughout her career, she has remained the band's only consistent member, guiding it through critical acclaim and commercial success. Hynde’s influence spans decades, and her contributions to rock music were recognized in 2005 with her induction into the Rock and Roll Hall of Fame. Her artistry extends beyond her iconic work with the Pretenders, including collaborations with diverse artists such as Frank Sinatra, Cher, and UB40, and a solo career that saw the release of her debut album, 'Stockholm', in 2014.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Chrissie_Hynde_2013.jpg/500px-Chrissie_Hynde_2013.jpg",
+  "origin": "Akron, Ohio, USA",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sire-records",
+      "type": "label",
+      "name": "Sire Records"
+    },
+    {
+      "slug": "label:warner-music-group",
+      "type": "label",
+      "name": "Warner Music Group"
+    },
+    {
+      "slug": "label:rhino-records",
+      "type": "label",
+      "name": "Rhino Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "track:triangles-and-rhombuses",
+  "name": "Triangles & Rhombuses",
+  "editorial_article": "\"Triangles & Rhombuses\" is a brief, evocative interstitial piece by the Scottish electronic duo Boards of Canada, released as part of their landmark 1998 debut album, *Music Has the Right to Children* (Warp Records). Serving as one of the many short, texture-driven interludes that define the album’s hauntological atmosphere, the track encapsulates the group’s signature approach to sound design: a delicate, blurred synthesis of vintage synthesizer textures, degraded analog tape loops, and a nostalgic, almost eerie sense of domestic intimacy. \\n\\nClocking in at under two minutes, \"Triangles & Rhombuses\" demonstrates the duo’s mastery of minimalism. Rather than relying on complex structures, the track focuses on the layering of warped, nostalgic melodies that evoke memories of mid-century educational documentaries or dusty children’s programming. Its inclusion within the tracklist of *Music Has the Right to Children* is essential to the album's success as a cohesive, immersive project; it provides a necessary pause between the more rhythmically driving, hip-hop-influenced tracks, allowing the listener to settle deeper into the album’s unique, pastoral-electronic landscape. It remains a fan-favorite example of how the duo could conjure entire emotional worlds out of mere fragments of sound, solidifying their status as architects of the IDM and ambient subgenres. Boards of Canada are famously associated with the Warp Records label and the Scottish electronic scene. Their influence stretches across multiple decades of electronic music production. The production of the album featured the foundational work of Michael Sandison and Marcus Eoin, who together create the singular aesthetic recognized globally as Boards of Canada. The track itself reflects the hazy, saturated aesthetic found on labels like Warp and Skam.",
+  "citations": [
+    {
+      "url": "https://boardsofcanada.bandcamp.com/track/triangles-rhombuses",
+      "title": "Triangles & Rhombuses | Boards of Canada"
+    },
+    {
+      "url": "https://rateyourmusic.com/song/boards-of-canada/triangles-and-rhombuses/",
+      "title": "Boards of Canada - Triangles and Rhombuses"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:18.322Z",
+  "type": "track",
+  "editorial_teaser": "A haunting, minute-long interlude from Boards of Canada's debut masterpiece that perfectly captures their signature blend of analog warmth and nostalgic mystery.",
+  "cover_url": "https://f4.bcbits.com/img/a3351001335_10.jpg",
+  "year": "1998",
+  "duration": "01:50",
+  "artists": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "project": {
+    "slug": "project:music-has-the-right-to-children",
+    "type": "project",
+    "name": "Music Has The Right To Children"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

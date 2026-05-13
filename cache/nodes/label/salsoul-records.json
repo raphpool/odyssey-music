@@ -1,0 +1,71 @@
+{
+  "slug": "label:salsoul-records",
+  "name": "Salsoul Records",
+  "editorial_article": "Salsoul Records is an iconic American record label founded in 1974 in New York City by brothers Joseph, Kenneth, and Stanley Cayre. The label serves as a pillar of the disco era, having played a pivotal role in the professionalization of dance music production and distribution. Its name, coined by artist Joe Bataan, famously synthesized \"salsa\" and \"soul,\" reflecting the vibrant, multicultural dance floors of 1970s New York. Salsoul is perhaps most historically significant for pioneering the commercial 12-inch single—most notably with the 1976 release of Double Exposure's \"Ten Percent\"—a format that revolutionized club DJing and sound fidelity for the dance floor.\\n\\nThe label’s sonic signature was heavily influenced by the \"Philly Soul\" sound. Ken Cayre aggressively recruited elite session musicians who had previously worked with Gamble and Huff at Philadelphia International Records, including Vince Montana (vibes and orchestral arrangements), bassist Ronnie Baker, guitarist Norman Harris, and drummer Earl Young. These virtuoso players formed the backbone of The Salsoul Orchestra, a massive ensemble that defined the label's opulent, string-laden disco sound. Beyond the Orchestra, the label fostered influential acts like Skyy, First Choice, and Instant Funk, whose 1979 hit \"Got My Mind Made Up\" became an R&B chart-topping smash. Despite the widespread \"disco backlash\" of the late 1970s, Salsoul managed to survive by pivoting into funk and post-disco, maintaining its cultural impact until the Cayre brothers shifted their focus to the home video market in 1985. The label remains a cornerstone of dance music history, with its extensive catalog continuing to be cherished and sampled by producers worldwide.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Salsoul_Records",
+      "title": "Salsoul Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/751-Salsoul-Records?srsltid=AfmBOoqo3HePgR4h0Fup14VlhZPlaZ4gPc-HKUt8Yfb5_blKtox0koJR",
+      "title": "Salsoul Records - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:23.136Z",
+  "type": "label",
+  "editorial_description": "A seminal New York disco label that pioneered the 12-inch single and defined the opulent, string-laden 'Philly Soul' sound for the dance floor.",
+  "founded": "1974",
+  "location": "New York City, U.S.",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-salsoul-orchestra",
+      "type": "artist",
+      "name": "The Salsoul Orchestra"
+    },
+    {
+      "slug": "artist:skyy",
+      "type": "artist",
+      "name": "Skyy"
+    },
+    {
+      "slug": "artist:double-exposure",
+      "type": "artist",
+      "name": "Double Exposure"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:ten-percent",
+      "type": "project",
+      "name": "Ten Percent"
+    },
+    {
+      "slug": "project:salsoul-hustle",
+      "type": "project",
+      "name": "Salsoul Hustle"
+    },
+    {
+      "slug": "project:got-my-mind-made-up",
+      "type": "project",
+      "name": "Got My Mind Made Up"
+    }
+  ]
+}

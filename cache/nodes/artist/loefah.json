@@ -1,0 +1,99 @@
+{
+  "slug": "artist:loefah",
+  "name": "Loefah",
+  "editorial_article": "Peter Livingston, better known as Loefah, is a seminal figure in the development of dubstep and a foundational influence in the UK bass music scene. Emerging from the Croydon area of South London in the early 2000s, Loefah became synonymous with the dark, minimal, and menacing soundscapes that defined the early days of the DMZ club night and record label. Alongside the Digital Mystikz, Loefah’s production style helped establish the genre’s aesthetic—using bone-rattling basslines, sparse percussion, and a sense of encroaching dread that set his tracks apart. His contribution to the influential \"Dubstep Warz\" radio show hosted by Mary Anne Hobbs in 2006 proved pivotal in bringing the sound to a global audience.\n\nBy 2007, Loefah began to evolve his creative direction, moving away from the restrictive boundaries of the initial dubstep sound. In 2009, he established the record label Swamp 81, which initially served as a home for high-quality bass music but rapidly transitioned into a label that championed a broader, genre-defying sonic spectrum. Through the release of tracks like Addison Groove’s \"Footcrab,\" Swamp 81 helped usher in a new era of experimental bass music, blending elements of jungle, house, and grime. Loefah remains a respected selector and label head, maintaining his legacy as a restless innovator who fundamentally shaped the evolution of contemporary electronic dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Loefah",
+      "title": "Loefah - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/207974-Loefah",
+      "title": "Loefah Discography - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:10.227Z",
+  "type": "artist",
+  "editorial_bio": "Loefah is a pioneering London-based producer who was central to the birth of the dubstep genre and later shifted the landscape of UK bass music through his label, Swamp 81. Known for his dark, minimal aesthetic and deep, dread-inducing sound design, he continues to be a highly influential figure in electronic music.",
+  "origin": "Croydon, UK",
+  "active_years": "2004-present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dmz",
+      "type": "label",
+      "name": "DMZ"
+    },
+    {
+      "slug": "label:swamp-81",
+      "type": "label",
+      "name": "Swamp 81"
+    },
+    {
+      "slug": "label:tectonic",
+      "type": "label",
+      "name": "Tectonic"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mud-rufage",
+      "type": "project",
+      "name": "Mud / Rufage"
+    },
+    {
+      "slug": "project:disko-rekah-all-of-a-sudden",
+      "type": "project",
+      "name": "Disko Rekah / All of a Sudden"
+    },
+    {
+      "slug": "project:western",
+      "type": "project",
+      "name": "Western (Did a Skank)"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mud",
+      "type": "track",
+      "name": "Mud"
+    },
+    {
+      "slug": "track:rufage",
+      "type": "track",
+      "name": "Rufage"
+    },
+    {
+      "slug": "track:disko-rekah",
+      "type": "track",
+      "name": "Disko Rekah"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

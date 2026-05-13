@@ -1,0 +1,113 @@
+{
+  "slug": "genre:progressive-rock",
+  "name": "Progressive Rock",
+  "editorial_article": "Progressive rock, often shortened to \"prog,\" emerged in the late 1960s as a bold attempt to elevate rock music from its blues-based roots to a more sophisticated, art-conscious form. Born primarily in the United Kingdom, the genre sought to expand the boundaries of the typical pop song structure, drawing deep inspiration from classical music, jazz, and the experimental avant-garde. Musicians began to abandon the three-minute single format in favor of sprawling, multi-movement compositions, intricate time signatures, and technically demanding instrumental passages. \\n\\nKey to the genre's development was the integration of new technologies, most notably the Mellotron and various early synthesizers, which allowed keyboardists to create rich, orchestral textures. Concept albums became a hallmark of the movement, with bands weaving complex lyrical narratives around literary or philosophical themes. Bands such as King Crimson, Yes, Genesis, and Pink Floyd defined this era, creating landmark albums that treated rock as a medium for serious artistic statement rather than just light entertainment. While its peak in popularity arguably occurred during the early to mid-1970s, progressive rock left an enduring legacy, influencing everything from the technical precision of modern metal to the atmospheric experiments of contemporary post-rock. It remains a genre defined by the spirit of restless curiosity, where technical virtuosity and compositional ambition are held as the ultimate virtues.",
+  "citations": [
+    {
+      "url": "https://www.progarchives.com/Progressive-rock.asp",
+      "title": "Progressive Rock - Definition, Genres & Articles"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/progressive-rock-guide",
+      "title": "Progressive Rock Guide: A Brief History of Prog Rock"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:23.496Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of rock music characterized by complex compositions, technical virtuosity, and an ambition to elevate rock to the status of high art, often integrating elements of classical, jazz, and experimental music.",
+  "era": "Late 1960s–Present; peak popularity 1970s.",
+  "origin": "United Kingdom",
+  "sonic_markers": "Complex time signatures, multi-movement song structures, use of synthesizers and Mellotrons, virtuosic musicianship, concept-driven albums.",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:symphonic-prog",
+      "type": "genre",
+      "name": "Symphonic Prog"
+    },
+    {
+      "slug": "genre:canterbury-scene",
+      "type": "genre",
+      "name": "Canterbury Scene"
+    },
+    {
+      "slug": "genre:zeuhl",
+      "type": "genre",
+      "name": "Zeuhl"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson"
+    },
+    {
+      "slug": "artist:yes",
+      "type": "artist",
+      "name": "Yes"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:charisma-records",
+      "type": "label",
+      "name": "Charisma Records"
+    },
+    {
+      "slug": "label:vertigo-records",
+      "type": "label",
+      "name": "Vertigo Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:in-the-court-of-the-crimson-king",
+      "type": "project",
+      "name": "In the Court of the Crimson King"
+    },
+    {
+      "slug": "project:close-to-the-edge",
+      "type": "project",
+      "name": "Close to the Edge"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moon",
+      "type": "project",
+      "name": "The Dark Side of the Moon"
+    }
+  ],
+  "landmark_tracks": []
+}

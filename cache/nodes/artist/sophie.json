@@ -1,0 +1,76 @@
+{
+  "slug": "artist:sophie",
+  "name": "SOPHIE",
+  "editorial_article": "SOPHIE (born Sophie Xeon, 1986–2021) was a trailblazing Scottish-born electronic producer, songwriter, and DJ who fundamentally reshaped the landscape of contemporary pop and experimental electronic music. Based in Los Angeles during her most active years, she gained notoriety in the early 2010s for her hyperkinetic, maximalist sound, often categorized as 'bubblegum bass.' Utilizing custom-built synthesizer sounds and industrial textures, SOPHIE bridged the gap between underground club culture and chart-topping mainstream pop. Her work is characterized by high-pitched vocals, aggressive metallic percussion, and a playful yet deeply emotional sensibility that interrogated themes of identity, transhumanism, and artifice. Her 2018 studio album, 'Oil of Every Pearl's Un-Insides', received widespread critical acclaim and a Grammy nomination, cementing her status as a singular visionary. Throughout her career, she collaborated with prominent figures in the avant-pop scene, including Charli XCX and A. G. Cook, while also leaving a lasting impact on electronic subgenres like deconstructed club. Her tragic death in 2021 left behind an immense, influential catalog that continues to serve as a bedrock for a generation of experimental electronic musicians. The sound she crafted, often described as 'synthetic' or 'plastic,' did not aim to imitate nature but rather to amplify the artificiality of the digital age, turning sounds typically considered abrasive into catchy, accessible pop hooks. SOPHIE remains a seminal figure whose influence is still deeply felt across modern electronic and pop music.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/sophie-1",
+      "title": "SOPHIE Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/sophie-mn0003301582",
+      "title": "SOPHIE Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://www.imdb.com/name/nm3146383/",
+      "title": "Sophie - IMDb"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:26.433Z",
+  "type": "artist",
+  "editorial_bio": "SOPHIE (born Sophie Xeon, 1986–2021) was a trailblazing Scottish-born electronic producer, songwriter, and DJ who fundamentally reshaped the landscape of contemporary pop and experimental electronic music.",
+  "photo_url": "https://cdn.sonemic.net/i/600/w/d6e4d95a42b3310fa1a77858c76c6b9f/6711312/sophie-its-okay-to-cry-cover-art.jpg",
+  "origin": "Northampton, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:bubblegum-bass",
+      "type": "genre",
+      "name": "Bubblegum Bass"
+    },
+    {
+      "slug": "genre:deconstructed-club",
+      "type": "genre",
+      "name": "Deconstructed Club"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:bipp",
+      "type": "track",
+      "name": "Bipp"
+    },
+    {
+      "slug": "track:lemonade",
+      "type": "track",
+      "name": "Lemonade"
+    },
+    {
+      "slug": "track:it-s-okay-to-cry",
+      "type": "track",
+      "name": "It's Okay to Cry"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:charli-xcx",
+      "type": "artist",
+      "name": "Charli XCX"
+    },
+    {
+      "slug": "artist:a-g-cook",
+      "type": "artist",
+      "name": "A. G. Cook"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

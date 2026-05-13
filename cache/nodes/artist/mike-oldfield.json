@@ -1,0 +1,82 @@
+{
+  "slug": "artist:mike-oldfield",
+  "name": "Mike Oldfield",
+  "editorial_article": "Michael Gordon Oldfield (born 15 May 1953) is a retired English musician, composer, and producer whose profound impact on progressive rock and multi-instrumental composition defined a significant era in British music. Often characterized by his virtuoso command of the guitar, keyboards, and percussion, Oldfield is most celebrated for his landmark debut album, *Tubular Bells* (1973). This ambitious, largely instrumental work became the inaugural release for Virgin Records and achieved massive commercial success after its opening theme was prominently featured in the film *The Exorcist*. The album’s success granted Oldfield the creative freedom to explore expansive, long-form compositions throughout the 1970s, including *Hergest Ridge* and *Ommadawn*.\\n\\nOldfield's career trajectory is notable for its versatility. While his early work is deeply rooted in progressive rock, folk, and minimalist textures, he successfully transitioned into a more commercially accessible, song-oriented sound in the 1980s, exemplified by the worldwide hit \"Moonlight Shadow\" featuring vocalist Maggie Reilly. Over his decades-long career, he continued to push boundaries, blending ambient, world music, and classical influences, and even experimenting with virtual reality technology in the 1990s. His enduring legacy was underscored by his performance at the 2012 London Olympic Games opening ceremony, cementing his status as a pivotal, if singular, figure in English music history until his retirement in 2023.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mike_Oldfield",
+      "title": "Mike Oldfield - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/18666-Mike-Oldfield?srsltid=AfmBOoqidCJJsS28PInLhXX7ltZMDdJIsd-9QZ1FCwi32NQRsaCMsPik",
+      "title": "Mike Oldfield Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:09.249Z",
+  "type": "artist",
+  "editorial_bio": "Michael Gordon Oldfield (born 15 May 1953) is a retired English musician, composer, and producer whose profound impact on progressive rock and multi-instrumental composition defined a significant era in British music.",
+  "origin": "Reading, Berkshire, England",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk music"
+    },
+    {
+      "slug": "genre:ambient-music",
+      "type": "genre",
+      "name": "Ambient music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:epic-records",
+      "type": "label",
+      "name": "Epic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tubular-bells",
+      "type": "project",
+      "name": "Tubular Bells"
+    },
+    {
+      "slug": "project:hergest-ridge",
+      "type": "project",
+      "name": "Hergest Ridge"
+    },
+    {
+      "slug": "project:ommadawn",
+      "type": "project",
+      "name": "Ommadawn"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tubular-bells",
+      "type": "track",
+      "name": "Tubular Bells (Part One)"
+    },
+    {
+      "slug": "track:moonlight-shadow",
+      "type": "track",
+      "name": "Moonlight Shadow"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

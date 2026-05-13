@@ -1,0 +1,101 @@
+{
+  "slug": "genre:detroit-techno",
+  "name": "Detroit Techno",
+  "editorial_article": "Detroit Techno is a seminal electronic dance music genre that emerged from the urban landscape of Detroit, Michigan, in the mid-1980s. Born from the intersection of African American musical tradition, futuristic science fiction, and the industrial decline of the city, the genre is characterized by its use of synthesizers, drum machines, and samplers to create percussive, machine-like, and often soul-infused dance music. At its core, the sound represents a \"triple-whammy\" of influences: the cosmic funk of George Clinton and Parliament-Funkadelic, the precise, repetitive electronic melodies of Kraftwerk, and the soulful, groove-driven rhythms of local soul and R&B.\\n\\nThe genesis of Detroit Techno is famously credited to \"The Belleville Three\"—Juan Atkins, Derrick May, and Kevin Saunderson—who experimented with electronic soundscapes while attending high school in the suburbs of Detroit. Their music was propelled by radio personalities like The Electrifying Mojo, whose midnight radio sessions provided a lifeline and cultural hub for a generation of youth, fostering a community that valued innovation, independence, and an intellectual approach to dance music. As the city suffered from deindustrialization and economic isolation, these artists found liberation in the \"futurist\" possibilities of technology, effectively turning local dance floors and basement parties into portals for a new, globalized sound.\\n\\nOver the decades, the genre expanded from its grassroots beginnings into a massive international cultural force. Key collectives such as Underground Resistance (formed by Mad Mike Banks, Rob Hood, and Jeff Mills) infused the music with explicit themes of social resistance and revolutionary politics, while platforms like Submerge and the annual Movement electronic music festival helped cement Detroit as the global epicenter of techno. Unlike purely ephemeral dance fads, Detroit Techno remains a deeply rooted, intellectual, and entrepreneurial tradition, sustained by a tight-knit community of producers, label owners, and DJs who view the machine not as a cold replacement for human expression, but as an instrument to be mastered for the sake of rhythm, soul, and social cohesion.",
+  "citations": [
+    {
+      "url": "https://timeline.carnegiehall.org/genres/detroit-techno",
+      "title": "History of Detroit Techno — Timeline of African American Music"
+    },
+    {
+      "url": "https://www.redbull.com/za-en/quickfire-history-of-detroit-techno",
+      "title": "History of techno music: Discover the genre's roots"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:34.606Z",
+  "type": "genre",
+  "editorial_definition": "A foundational genre of electronic dance music originating in Detroit in the 1980s, defined by the integration of futuristic synthetic textures with funk-inspired rhythmic foundations.",
+  "era": "Mid-1980s to present",
+  "origin": "Detroit, Michigan, USA",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:juan-atkins",
+      "type": "artist",
+      "name": "Juan Atkins"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May"
+    },
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:metroplex",
+      "type": "label",
+      "name": "Metroplex"
+    },
+    {
+      "slug": "label:transmat",
+      "type": "label",
+      "name": "Transmat"
+    },
+    {
+      "slug": "label:kms-records",
+      "type": "label",
+      "name": "KMS Records"
+    },
+    {
+      "slug": "label:submerge-recordings",
+      "type": "label",
+      "name": "Submerge Recordings"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:techno-the-new-dance-sound-of-detroit",
+      "type": "project",
+      "name": "Techno! The New Dance Sound of Detroit"
+    }
+  ],
+  "landmark_tracks": []
+}

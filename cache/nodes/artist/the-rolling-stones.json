@@ -1,0 +1,96 @@
+{
+  "slug": "artist:the-rolling-stones",
+  "name": "The Rolling Stones",
+  "editorial_article": "The Rolling Stones are one of the most significant and enduring forces in the history of rock music. Formed in London in 1962, the band initially gained notoriety as the grittier, more rebellious counterparts to The Beatles, heavily infusing their early work with the rhythms and sensibilities of Chicago blues. Anchored by the songwriting partnership of Mick Jagger and Keith Richards—a dynamic often described as the Glimmer Twins—the band evolved through the 1960s, moving from blues covers into sophisticated, blues-inflected rock masterpieces. Throughout their career, they successfully navigated changing musical landscapes, from the psychedelic experimentation of the late 60s to the hard-driving rock of the 70s, establishing themselves as icons of the counterculture and ultimate arena rock titans. \\n\\nBeyond their musical output, the Stones are famous for their remarkable longevity, sustaining a career that has spanned over six decades of tours and studio albums. Their lineup underwent significant changes over the years, including the departure and untimely death of founding member Brian Jones, the exit of bassist Bill Wyman, and the passing of longtime drummer Charlie Watts in 2021. Despite these shifts, Jagger and Richards have maintained a consistent presence, ensuring the band's relevance across generations. Inducted into the Rock and Roll Hall of Fame in 1989, The Rolling Stones remain a cultural touchstone whose influence on guitar rock, performance style, and the aesthetic of the rock star persona is immeasurable. Their transition from raw blues aficionados to global touring legends defines the trajectory of mainstream rock music in the modern era. Their discography, comprising dozens of studio and live albums, continues to be revisited and celebrated, underscoring their status as one of the most vital bands in musical history.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/topic/the-Rolling-Stones",
+      "title": "The Rolling Stones | Songs, Albums, Members, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Rolling_Stones_discography",
+      "title": "The Rolling Stones discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:10.514Z",
+  "type": "artist",
+  "editorial_bio": "Formed in London in 1962, The Rolling Stones are a legendary rock band known for their longevity, blues-infused sound, and iconic status as cultural rebels and arena rock titans.",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:i-can-t-get-no-satisfaction",
+      "type": "track",
+      "name": "(I Can't Get No) Satisfaction"
+    },
+    {
+      "slug": "track:paint-it-black",
+      "type": "track",
+      "name": "Paint It, Black"
+    },
+    {
+      "slug": "track:get-off-of-my-cloud",
+      "type": "track",
+      "name": "Get Off of My Cloud"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:mick-jagger",
+      "type": "artist",
+      "name": "Mick Jagger"
+    },
+    {
+      "slug": "artist:keith-richards",
+      "type": "artist",
+      "name": "Keith Richards"
+    },
+    {
+      "slug": "artist:brian-jones",
+      "type": "artist",
+      "name": "Brian Jones"
+    },
+    {
+      "slug": "artist:bill-wyman",
+      "type": "artist",
+      "name": "Bill Wyman"
+    },
+    {
+      "slug": "artist:charlie-watts",
+      "type": "artist",
+      "name": "Charlie Watts"
+    },
+    {
+      "slug": "artist:mick-taylor",
+      "type": "artist",
+      "name": "Mick Taylor"
+    },
+    {
+      "slug": "artist:ron-wood",
+      "type": "artist",
+      "name": "Ron Wood"
+    },
+    {
+      "slug": "artist:darryl-jones",
+      "type": "artist",
+      "name": "Darryl Jones"
+    }
+  ]
+}

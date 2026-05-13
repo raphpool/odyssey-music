@@ -1,0 +1,117 @@
+{
+  "slug": "project:makesaracket",
+  "name": "Makesaracket",
+  "editorial_article": "Released in 1995 on the seminal label Clear, Makesaracket serves as a vibrant, rhythmic entry in the vast discography of British electronic musician Mike Paradinas. Operating under the Jake Slazenger moniker—a persona specifically tailored for his more humorous, funk-driven, and structurally loose experiments—Paradinas crafts a sonic landscape that bridges the gap between the colder, cerebral textures of early 90s IDM and the loose, swinging grooves of jazz and funk. Unlike the often dense, abstract, and frantic arrangements found in his work as µ-Ziq, Makesaracket feels remarkably tactile and inviting. The album is characterized by its playful utilization of breakbeats and an infectious, often whimsical keyboard-led melodic sensibility. \n\nThe project stands as a testament to Paradinas' versatility during the mid-90s, a period defined by an explosion of creative experimentation within the UK electronic scene. By incorporating influences from electro and nu-jazz, the tracks—such as the standout \"Megaphonk\"—display a masterful balance of mechanical rhythm and organic feel, avoiding the rigidity that often plagued contemporary electronic music of the era. Despite being periodically overlooked in favor of his more \"serious\" projects, Makesaracket remains a cult favorite among listeners who appreciate the more jovial side of electronica. It captures an artist having fun with his tools, refusing to take the self-serious atmosphere of the era's IDM too literally, while still maintaining the high-level production standards and technical complexity for which he is renowned. It is an essential listen for those interested in the cross-pollination of electronic breakbeat music and vintage jazz motifs.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/jake-slazenger/makesaracket/",
+      "title": "Makesaracket by Jake Slazenger (Album, IDM): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    },
+    {
+      "url": "https://readdork.com/album/jake-slazenger-makesaracket",
+      "title": "Jake Slazenger – Makesaracket (1995) | Album profile - Dork"
+    },
+    {
+      "url": "https://www.allmusic.com/album/makesaracket-mw0000960430",
+      "title": "MakesARacket - Jake Slazenger | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:54.701Z",
+  "type": "project",
+  "editorial_pitch": "Makesaracket is the debut album by the prolific electronic producer Mike Paradinas under his Jake Slazenger alias, offering a playful, jazz-inflected exploration of IDM that diverges from his more intense µ-Ziq output. Released in 1995 on Clear, the record captures a specific moment in British electronic music where the genre's mechanical precision began to embrace the swing and warmth of funk and soul samples.",
+  "cover_url": "https://cdn.sonemic.net/i/600/w/54ed512d296c8b5707ce3e033a579399/1364233/jake-slazenger-makesaracket-Cover-Art.jpg",
+  "year": "1995",
+  "artists": [],
+  "label": {
+    "slug": "label:clear",
+    "type": "label",
+    "name": "Clear"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:megaphonk",
+      "type": "track",
+      "name": "Megaphonk"
+    },
+    {
+      "slug": "track:get-up-r",
+      "type": "track",
+      "name": "Get Up R"
+    },
+    {
+      "slug": "track:stupid-wanker",
+      "type": "track",
+      "name": "Stupid Wanker"
+    },
+    {
+      "slug": "track:gary-s-birthday",
+      "type": "track",
+      "name": "Gary's Birthday"
+    },
+    {
+      "slug": "track:daytime-kiss",
+      "type": "track",
+      "name": "Daytime Kiss"
+    },
+    {
+      "slug": "track:erp",
+      "type": "track",
+      "name": "ERP"
+    },
+    {
+      "slug": "track:watt",
+      "type": "track",
+      "name": "Watt"
+    },
+    {
+      "slug": "track:flod",
+      "type": "track",
+      "name": "Flod"
+    },
+    {
+      "slug": "track:bolus",
+      "type": "track",
+      "name": "Bolus"
+    },
+    {
+      "slug": "track:feet",
+      "type": "track",
+      "name": "Feet"
+    },
+    {
+      "slug": "track:five-alive",
+      "type": "track",
+      "name": "Five Alive"
+    },
+    {
+      "slug": "track:lux",
+      "type": "track",
+      "name": "Lux"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "related_projects": []
+}

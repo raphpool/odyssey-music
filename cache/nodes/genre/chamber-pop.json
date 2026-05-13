@@ -1,0 +1,98 @@
+{
+  "slug": "genre:chamber-pop",
+  "name": "Chamber pop",
+  "editorial_article": "Chamber pop, occasionally referred to as \"ork-pop,\" is an emotive and sophisticated subgenre of indie pop that emerged prominently in the 1990s as a deliberate, ornate alternative to the prevailing raw aesthetics of grunge and slacker rock. Rooted in the melodic sensibilities of 1960s pop, the genre draws heavy inspiration from the legendary arrangements of Brian Wilson’s \"Pet Sounds\" era with The Beach Boys, as well as the polished songwriting of Burt Bacharach and the orchestral ambition of mid-century baroque pop. Unlike more minimalist indie genres, chamber pop thrives on the integration of traditional rock instrumentation—guitars, bass, and drums—with an array of \"classical\" and pop-orchestral elements such as strings, horns, woodwinds, piano, Rhodes keyboards, and vibraphone.\n\nThe genre matured in the 1990s on both sides of the Atlantic, finding a home in independent scenes that valued craftsmanship and harmonic complexity. In the UK, artists like The High Llamas, Tindersticks, and Belle and Sebastian became synonymous with the sound, utilizing lush arrangements to color their literate and often melancholic songwriting. Simultaneously, the US scene fostered entities like The Elephant 6 Recording Co. collective and artists like Eric Matthews, who pushed the boundaries of indie pop production. The genre continued to evolve into the 2000s, with critically acclaimed output from acts like Arcade Fire, Sufjan Stevens, and Rufus Wainwright, who moved the sound into more maximalist and experimental art-pop territory. While it has moved away from the specific \"ork-pop\" moniker, the influence of chamber pop persists in modern indie music, representing a bridge between the introspective simplicity of independent rock and the grandiose textures of orchestral scoring.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/chamber-pop/",
+      "title": "Chamber Pop - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:07.261Z",
+  "type": "genre",
+  "editorial_definition": "A style of indie pop that emerged in the 1990s, characterized by the fusion of traditional rock instrumentation with orchestral elements such as strings, horns, and piano, deeply informed by 1960s baroque and sunshine pop.",
+  "era": "1990s–2000s (peak)",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:baroque-pop",
+      "type": "genre",
+      "name": "Baroque pop"
+    },
+    {
+      "slug": "genre:sunshine-pop",
+      "type": "genre",
+      "name": "Sunshine pop"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-high-llamas",
+      "type": "artist",
+      "name": "The High Llamas"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian"
+    },
+    {
+      "slug": "artist:arcade-fire",
+      "type": "artist",
+      "name": "Arcade Fire"
+    },
+    {
+      "slug": "artist:sufjan-stevens",
+      "type": "artist",
+      "name": "Sufjan Stevens"
+    },
+    {
+      "slug": "artist:tindersticks",
+      "type": "artist",
+      "name": "Tindersticks"
+    },
+    {
+      "slug": "artist:lambchop",
+      "type": "artist",
+      "name": "Lambchop"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:the-elephant-6-recording-co",
+      "type": "label",
+      "name": "The Elephant 6 Recording Co."
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:illinois",
+      "type": "project",
+      "name": "Illinois"
+    },
+    {
+      "slug": "project:funeral",
+      "type": "project",
+      "name": "Funeral"
+    },
+    {
+      "slug": "project:if-you-re-feeling-sinister",
+      "type": "project",
+      "name": "If You're Feeling Sinister"
+    }
+  ],
+  "landmark_tracks": []
+}

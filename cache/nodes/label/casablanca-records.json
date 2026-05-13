@@ -1,0 +1,71 @@
+{
+  "slug": "label:casablanca-records",
+  "name": "Casablanca Records",
+  "editorial_article": "Founded in 1973 by the legendary Neil Bogart, Casablanca Records emerged as one of the most iconic and notorious independent labels of the 1970s. Headquartered in Los Angeles and named after the classic film, the label became the commercial powerhouse of the decade's excess, successfully navigating the divergent worlds of hard rock and disco. Bogart, a Brooklyn-born industry hustler, leveraged his keen visual instinct to sign acts that demanded attention, essentially creating the blueprint for the MTV generation before the network even existed. The Casablanca roster—which included KISS, Donna Summer, Parliament, and the Village People—defined a cultural era marked by decadence, theatricality, and massive commercial ambition.\n\nThe label's aesthetic was inextricably linked to its Sunset Boulevard offices, which earned a reputation for cocaine-fueled meetings and chaotic energy. Despite constant financial brinkmanship—including Bogart's infamous and high-stakes methods of funding the label—Casablanca propelled its artists to the pop stratosphere through groundbreaking marketing and generous tour support. From Giorgio Moroder’s pioneering production on Donna Summer’s tracks to the elaborate, sci-fi-infused stage shows of George Clinton’s Parliament, the label’s influence on pop culture and the evolution of music as a \"brand\" cannot be overstated. Though it eventually succumbed to the pressures of debt and over-extension by 1980, Casablanca remains a monument to a time when record executives were as much a part of the spectacle as the musicians themselves.",
+  "citations": [
+    {
+      "url": "https://nelsongeorge.substack.com/p/remembering-casablanca-records",
+      "title": "Remembering Casablanca Records - The Nelson George Mixtape"
+    },
+    {
+      "url": "https://songstats.com/label/10jrtzel/casablanca-records",
+      "title": "Casablanca Records | Label Analytics | Songstats"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:25.656Z",
+  "type": "label",
+  "editorial_description": "Founded in 1973 by the legendary Neil Bogart, Casablanca Records emerged as one of the most iconic and notorious independent labels of the 1970s, defining the sound and excess of the decade.",
+  "founded": "1973",
+  "location": "Los Angeles, USA",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:kiss",
+      "type": "artist",
+      "name": "KISS"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer"
+    },
+    {
+      "slug": "artist:parliament",
+      "type": "artist",
+      "name": "Parliament"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:alive",
+      "type": "project",
+      "name": "Alive!"
+    },
+    {
+      "slug": "project:love-to-love-you-baby",
+      "type": "project",
+      "name": "Love to Love You Baby"
+    },
+    {
+      "slug": "project:mothership-connection",
+      "type": "project",
+      "name": "Mothership Connection"
+    }
+  ]
+}

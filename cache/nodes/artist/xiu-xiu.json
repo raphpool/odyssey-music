@@ -1,0 +1,107 @@
+{
+  "slug": "artist:xiu-xiu",
+  "name": "Xiu Xiu",
+  "editorial_article": "Xiu Xiu is a long-standing American experimental rock and art pop project formed in San Jose, California, in 2002 by singer-songwriter Jamie Stewart. Throughout its more than two-decade existence, the project has served as a vehicle for Stewart to explore deeply personal, often harrowing themes of trauma, existential despair, and societal critique. Initially emerging with a unique, minimalist approach that eschewed traditional rock instrumentation in favor of harmoniums, gongs, brass bells, and programmed percussion, the band established an immediate, polarizing sonic identity. Their early work, including landmark albums like 'Knife Play' (2002) and 'A Promise' (2003), set a template for a sound that could pivot seamlessly between fragile, acoustic intimacy and violent, cathartic noise. \n\nWhile Xiu Xiu began as a collaborative ensemble, it evolved into a fluid project anchored by Stewart, with multi-instrumentalist Angela Seo becoming a vital creative partner starting in the late 2000s. The band’s discography is vast and remarkably diverse, encompassing everything from noise-inflected post-punk and synth-heavy experimentalism to evocative reinterpretations of classical film scores, such as their 2016 album 'Plays the Music of Twin Peaks.' Their aesthetic is defined by a refusal to sanitize difficult emotions; Stewart’s vocal performances—which often oscillate between whisper-thin vulnerability and frantic, blood-curdling screams—are central to this unflinching approach. Influenced by a disparate range of artists from Nina Simone to Krzysztof Penderecki and The Birthday Party, Xiu Xiu has maintained a reputation as one of the most uncompromising and intellectually rigorous acts in the modern experimental landscape, frequently blurring the lines between art rock, industrial, and avant-garde pop. Their commitment to challenging the listener continues to manifest in their frequent stylistic shifts, maintaining a trajectory that remains as unpredictable as it is emotionally charged.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Xiu_Xiu",
+      "title": "Xiu Xiu - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:00.211Z",
+  "type": "artist",
+  "editorial_bio": "Xiu Xiu is a long-standing American experimental rock and art pop project formed in San Jose, California, in 2002 by singer-songwriter Jamie Stewart.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/XiuXiuLegitBiz.jpg/250px-XiuXiuLegitBiz.jpg",
+  "origin": "San Jose, California, U.S.",
+  "active_years": "2002–present",
+  "genres": [
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:polyvinyl-record-co",
+      "type": "label",
+      "name": "Polyvinyl Record Co."
+    },
+    {
+      "slug": "label:kill-rock-stars",
+      "type": "label",
+      "name": "Kill Rock Stars"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:knife-play",
+      "type": "project",
+      "name": "Knife Play"
+    },
+    {
+      "slug": "project:a-promise",
+      "type": "project",
+      "name": "A Promise"
+    },
+    {
+      "slug": "project:fabulous-muscles",
+      "type": "project",
+      "name": "Fabulous Muscles"
+    },
+    {
+      "slug": "project:girl-with-basket-of-fruit",
+      "type": "project",
+      "name": "Girl with Basket of Fruit"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-luv-the-valley-oh",
+      "type": "track",
+      "name": "I Luv the Valley OH!"
+    },
+    {
+      "slug": "track:sad-pony-guerrilla-girl",
+      "type": "track",
+      "name": "Sad Pony Guerrilla Girl"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:nina-simone",
+      "type": "artist",
+      "name": "Nina Simone"
+    },
+    {
+      "slug": "artist:the-birthday-party",
+      "type": "artist",
+      "name": "The Birthday Party"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jamie-stewart",
+      "type": "artist",
+      "name": "Jamie Stewart"
+    },
+    {
+      "slug": "artist:angela-seo",
+      "type": "artist",
+      "name": "Angela Seo"
+    }
+  ]
+}

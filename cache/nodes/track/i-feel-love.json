@@ -1,0 +1,58 @@
+{
+  "slug": "track:i-feel-love",
+  "name": "I Feel Love",
+  "editorial_article": "\"I Feel Love\" is a landmark 1977 single by the American singer Donna Summer, produced by Giorgio Moroder and Pete Bellotte. Recorded in Munich at Musicland Studios, the track represents a pivotal moment in music history where disco crossed paths with the nascent world of electronic synthesis. As part of Summer’s album *I Remember Yesterday*—a project designed to explore different musical decades—the track was intended to represent the future. Moroder and his team achieved this by eschewing traditional orchestral arrangements in favor of a Moog synthesizer, which was programmed and sequenced with painstaking precision. Because the vintage analog synthesizer was notoriously unstable and prone to drifting out of tune, the recording process involved layering short, 20-to-30-second segments of audio that were manually retuned and spliced together. This technical struggle birthed a hypnotic, driving, and perfectly mechanical beat that stood in stark contrast to the organic, often bombastic sounds of the disco era. \\n\\nThe result was a sonic revolution. Featuring Summer’s ethereal, head-voice vocals layered over a relentless, repetitive synthesizer sequence and a steady kick drum provided by Keith Forsey, \"I Feel Love\" stripped dance music down to its most fundamental, hypnotic elements. It was an instant global success, reaching number one in various countries and becoming an enduring club staple. Its influence on modern music cannot be overstated; by demonstrating the power of sequenced, machine-made rhythm, it provided a blueprint for the development of electronic dance music, including synth-pop, techno, and house. In 2011, it was recognized by the Library of Congress for its cultural and historical significance, solidifying its status as one of the most influential records of the 20th century. Its legacy continues to echo through generations of producers and artists who have sampled, covered, and been inspired by its pioneering electronic pulse.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/I_Feel_Love",
+      "title": "I Feel Love - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:35.343Z",
+  "type": "track",
+  "editorial_teaser": "\"I Feel Love\" is a landmark 1977 single by the American singer Donna Summer, produced by Giorgio Moroder and Pete Bellotte.",
+  "artists": [
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer"
+    }
+  ],
+  "project": {
+    "slug": "project:i-remember-yesterday",
+    "type": "project",
+    "name": "I Remember Yesterday"
+  },
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco"
+    },
+    {
+      "slug": "genre:dance",
+      "type": "genre",
+      "name": "Dance"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:giorgio-moroder",
+      "type": "artist",
+      "name": "Giorgio Moroder"
+    },
+    {
+      "slug": "artist:pete-bellotte",
+      "type": "artist",
+      "name": "Pete Bellotte"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

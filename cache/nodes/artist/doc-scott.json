@@ -1,0 +1,84 @@
+{
+  "slug": "artist:doc-scott",
+  "name": "Doc Scott",
+  "editorial_article": "Scott McIlroy (born 1971), better known as Doc Scott or by his alias Nasty Habits, is a foundational figure in the evolution of British drum and bass and jungle. Hailing from Coventry, England, Scott emerged in the late 1980s and early 1990s as a vital DJ and producer during the burgeoning UK rave and hardcore scene, playing key sets at influential venues like Amnesia House and The Eclipse. Throughout the mid-1990s, his work became synonymous with the deeper, more atmospheric, and technically precise shifts in drum and bass, particularly through his involvement with iconic labels like Reinforced Records and Metalheadz. Often referred to by peers—including Goldie—as the 'King of the Rollers,' Doc Scott’s production style balanced the frenetic energy of jungle with a forward-thinking, dark aesthetic that defined the sound of the mid-90s. Beyond his studio output, he founded 31 Records, which served as a crucial platform for his own seminal tracks, such as the widely celebrated 'Shadow Boxing.' His influence continues to resonate in the genre, characterized by his technical prowess behind the decks and his enduring role as a tastemaker in the electronic music community. Doc Scott’s contribution remains integral to the history of underground electronic music, representing a bridge between the early rave era and the sophisticated, complex soundscapes that characterize modern drum and bass production. His discography, which includes essential releases across major jungle and D&B imprints, solidified his legacy as one of the most respected figures in the scene. He also demonstrated a broad impact on the scene through his curatorial efforts, including his 'Future Beats' radio show, which showcased his dedication to pushing new sounds. His work is still frequently cited by producers and DJs alike as a primary reference point for atmospheric drum and bass and technical sound design.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Doc_Scott",
+      "title": "Doc Scott - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/1744-Doc-Scott?srsltid=AfmBOorXpFB9pAzoxUPguNwoWTatJ3ZR4BaobgmzH0BZdukWjuQd17Rv",
+      "title": "Doc Scott Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:41.652Z",
+  "type": "artist",
+  "editorial_bio": "Foundational British drum and bass DJ and producer, best known for his work in the 1990s and his 'King of the Rollers' production style.",
+  "origin": "Coventry, England",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:reinforced-records",
+      "type": "label",
+      "name": "Reinforced Records"
+    },
+    {
+      "slug": "label:metalheadz",
+      "type": "label",
+      "name": "Metalheadz"
+    },
+    {
+      "slug": "label:31-records",
+      "type": "label",
+      "name": "31 Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:nhs-ep-surgery",
+      "type": "project",
+      "name": "NHS EP - Surgery"
+    },
+    {
+      "slug": "project:shadow-boxing",
+      "type": "project",
+      "name": "Shadow Boxing"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:shadow-boxing",
+      "type": "track",
+      "name": "Shadow Boxing"
+    },
+    {
+      "slug": "track:vip-drumz",
+      "type": "track",
+      "name": "VIP Drumz"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:nasty-habits",
+      "type": "artist",
+      "name": "Nasty Habits"
+    }
+  ],
+  "members": []
+}

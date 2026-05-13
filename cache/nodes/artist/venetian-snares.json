@@ -1,0 +1,116 @@
+{
+  "slug": "artist:venetian-snares",
+  "name": "Venetian Snares",
+  "editorial_article": "Aaron Funk, better known by his recording alias Venetian Snares, is a highly influential Canadian electronic musician based in Winnipeg, Manitoba. Rising to prominence in the late 1990s and early 2000s, Funk is widely credited with helping to pioneer and popularize breakcore, an intense, sample-heavy subgenre of electronic music defined by its erratic rhythms, hyper-complex drum programming, and often aggressive use of odd time signatures. His musical output is characterized by its sheer volume and relentless evolution, moving from the abrasive, lo-fi experiments of his earliest cassette releases to the genre-defying, cinematic compositions that define his most celebrated work.\n\nFunk’s breakthrough in the mid-2000s arrived with his masterpiece, \"Rossz Csillag Alatt Született\" (2005), an album that famously fused blistering, jagged breakbeats with sweeping classical strings and orchestral instrumentation. This record showcased his ability to blend chaotic, technical dance music with emotional, delicate soundscapes, effectively broadening the scope of what experimental electronic music could express. Throughout his career, he has maintained a prolific, often unpredictable release schedule across various labels, most notably Mike Paradinas's Planet Mu, while constantly reinventing his sound through numerous aliases such as Last Step and Speed Dealer Moms. By utilizing tools ranging from tracker software to modular synthesizers, Venetian Snares has established a legacy as one of the most technical and uncompromising figures in modern experimental electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Venetian_Snares",
+      "title": "Venetian Snares - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:21.971Z",
+  "type": "artist",
+  "editorial_bio": "Venetian Snares is the primary alias of prolific Canadian electronic producer Aaron Funk, an architect of the breakcore genre known for his hyper-complex rhythms, unconventional time signatures, and deep exploration of experimental electronic textures. Based in Winnipeg, he has released a vast discography of critically acclaimed work, most notably his 2005 fusion of breakbeats and classical music, 'Rossz Csillag Alatt Született'.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Venetian_Snares_-_Ilosaarirock_2008.jpg/500px-Venetian_Snares_-_Ilosaarirock_2008.jpg",
+  "origin": "Winnipeg, Manitoba, Canada",
+  "active_years": "1992–present",
+  "genres": [
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:experimental-electronic-music",
+      "type": "genre",
+      "name": "Experimental electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    },
+    {
+      "slug": "label:hymen-records",
+      "type": "label",
+      "name": "Hymen Records"
+    },
+    {
+      "slug": "label:sublight-records",
+      "type": "label",
+      "name": "Sublight Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:songs-about-my-cats",
+      "type": "project",
+      "name": "Songs About My Cats"
+    },
+    {
+      "slug": "project:rossz-csillag-alatt-szuletett",
+      "type": "project",
+      "name": "Rossz Csillag Alatt Született"
+    },
+    {
+      "slug": "project:huge-chrome-cylinder-box-unfolding",
+      "type": "project",
+      "name": "Huge Chrome Cylinder Box Unfolding"
+    },
+    {
+      "slug": "project:my-love-is-a-bulldozer",
+      "type": "project",
+      "name": "My Love Is a Bulldozer"
+    },
+    {
+      "slug": "project:greg-hates-car-culture",
+      "type": "project",
+      "name": "Greg Hates Car Culture"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:szamar-madar",
+      "type": "track",
+      "name": "Szamár Madár"
+    },
+    {
+      "slug": "track:bebikoej",
+      "type": "track",
+      "name": "Bebikóéj"
+    },
+    {
+      "slug": "track:koonut-kaliffee",
+      "type": "track",
+      "name": "Koonut-Kaliffee"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:last-step",
+      "type": "artist",
+      "name": "Last Step"
+    },
+    {
+      "slug": "artist:speed-dealer-moms",
+      "type": "artist",
+      "name": "Speed Dealer Moms"
+    },
+    {
+      "slug": "artist:snares-man",
+      "type": "artist",
+      "name": "Snares Man!"
+    }
+  ],
+  "members": []
+}

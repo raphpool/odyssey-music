@@ -1,0 +1,50 @@
+{
+  "slug": "artist:jaguar",
+  "name": "Jaguar",
+  "editorial_article": "Jaguar, born Jaguar Bingham, is a prominent British DJ, broadcaster, and music journalist who has become a defining voice in the UK dance music scene. Rising to prominence through her work on BBC Radio 1, particularly as the host of the 'Introducing Dance' show, she has dedicated much of her career to championing emerging talent and advocating for better representation within the industry. Beyond her radio presence, Jaguar is a dynamic performer known for her bass-forward, high-energy DJ sets that bridge the gap between contemporary house, techno, and UK club sounds. Her influence extends into the business of music, where she has spearheaded initiatives and reports addressing gender inequality and senior representation in dance music. Based in London, she remains a central figure in the European festival and club circuit, balancing a heavy touring schedule with her continued commitment to supporting the next generation of dance music producers and performers. Her sets often explore the intersections of modern club culture, utilizing her platform to craft spaces that are both musically forward-thinking and socially conscious. As an artist, her work is deeply rooted in the foundational sounds of British dance while constantly looking toward future innovations in the scene. She continues to be a pivotal figure in London’s cultural landscape, performing at major venues like FOLD and DRUMSHEDS, while mentoring new artists through her radio platform.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/jaguar-uk",
+      "title": "Jaguar · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://www.dazeddigital.com/music/article/61427/1/jaguar-interview-dazed-club",
+      "title": "Jaguar is the DJ bringing new British dance music to the masses - Dazed"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:47.630Z",
+  "type": "artist",
+  "editorial_bio": "Jaguar, born Jaguar Bingham, is a prominent British DJ, broadcaster, and music journalist who has become a defining voice in the UK dance music scene. Known for her bass-forward DJ sets, she is a central figure in the UK club circuit and a champion of emerging dance music.",
+  "origin": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "members": []
+}

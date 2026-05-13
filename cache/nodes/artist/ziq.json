@@ -1,0 +1,85 @@
+{
+  "slug": "artist:ziq",
+  "name": "μ-Ziq",
+  "editorial_article": "μ-Ziq (pronounced \"music\") is the primary recording alias of the English electronic musician Mike Paradinas. Emerging from the vibrant and experimental IDM (Intelligent Dance Music) scene of the early 1990s, Paradinas quickly distinguished himself from his contemporaries—such as Aphex Twin and Autechre—through his uniquely emotional approach to synthesis, intricate melody writing, and a willingness to blend harsh, abstract textures with accessible, often pastoral or jazz-inflected compositions. Born in 1971, he first gained recognition with his debut album 'Tango N'Vectif' (1993), released on Richard D. James’s Rephlex Records, which laid the foundation for his reputation as an architect of complex, emotive electronic soundscapes. Over the course of his extensive career, Paradinas has explored a vast range of styles, from the jungle-infused, high-tempo complexity of his 1997 masterpiece 'Lunatic Harness' to the orchestral, melodic sophistication of 'Royal Astronomy'. He is also a pivotal figure in the industry as the founder of the independent record label Planet Mu. Since its inception, Planet Mu has become a vital platform for experimental electronic music, fostering the careers of artists like Venetian Snares, Jlin, and Machinedrum. Paradinas's output is noted for its restless innovation, frequently shifting gears between aggressive \"drill and bass\" patterns, ambient textures, and idiosyncratic funk-inspired grooves. His work remains a bridge between the clinical, experimental fringe of 90s IDM and the more rhythmic, genre-fluid evolution of modern electronic music. His discography as μ-Ziq and his various other aliases like Jake Slazenger, Kid Spatula, and Tusken Raiders represents a seminal body of work that has influenced generations of electronic music producers. Beyond his own production, he has collaborated with notable peers including Richard D. James on the 'Expert Knob Twiddlers' album and Speedy J under the Slag Boom Van Loon project. Through the consistent operation of Planet Mu, he has maintained a presence as a curator and tastemaker in the global electronic landscape for over two decades.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/u-ziq/biography",
+      "title": "µ-Ziq · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:22.444Z",
+  "type": "artist",
+  "editorial_bio": "μ-Ziq (pronounced \"music\") is the primary recording alias of the English electronic musician Mike Paradinas, a pivotal figure in the evolution of IDM and electronic music. Beyond his own genre-defying work, he founded the influential label Planet Mu.",
+  "origin": "Raynes Park, London, United Kingdom",
+  "active_years": "1991–present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    },
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:the-fear",
+      "type": "track",
+      "name": "The Fear"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tusken-raiders",
+      "type": "artist",
+      "name": "Tusken Raiders"
+    },
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger"
+    },
+    {
+      "slug": "artist:kid-spatula",
+      "type": "artist",
+      "name": "Kid Spatula"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,116 @@
+{
+  "slug": "artist:underworld",
+  "name": "Underworld",
+  "editorial_article": "Underworld is a pioneering British electronic music group, primarily consisting of the duo Karl Hyde and Rick Smith. Formed in 1987 in Cardiff, Wales, the project emerged from the ashes of the synth-pop band Freur. After two early, less successful albums that leaned toward pop and rock, the duo underwent a major creative transformation in the early 1990s. By recruiting DJ Darren Emerson and relocating to London, they aligned themselves with the burgeoning electronic dance music scene, releasing records on the influential Junior Boy's Own label. This second phase, often referred to as \"Underworld Mk2,\" solidified their signature sound: a sophisticated fusion of driving techno, progressive house, and ambient textures, elevated by Karl Hyde’s distinct, stream-of-consciousness lyrical delivery. Their landmark album, 'Dubnobasswithmyheadman' (1994), remains a definitive document of the era's electronic music, blending hypnotic, dance-floor-ready beats with artful songwriting. Their global breakthrough followed in 1996 with the inclusion of the monumental track \"Born Slippy .NUXX\" in the soundtrack for the film *Trainspotting*. Over decades, Underworld has evolved through various iterations, consistently maintaining a reputation for atmospheric, emotive compositions and legendary, high-energy live performances that have influenced generations of electronic producers. Their work is characterized by a commitment to innovation, utilizing found sounds and unconventional song structures to push the boundaries of what dance music can achieve. Their influence spans across decades, helping to define the sound of British electronic music in the mid-90s and continuing to evolve with experimental and ambient projects into the 21st century. Their ability to bridge the gap between club-oriented techno and introspective, lyrical songwriting remains one of their most significant contributions to the genre.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Underworld_discography",
+      "title": "Underworld discography - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/1280-Underworld?srsltid=AfmBOoqo3BHzG7v8_UrLtKc0XoYuEW8BCCi0cAaqDSKVW4jCZskL_gLj",
+      "title": "Underworld Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:17.367Z",
+  "type": "artist",
+  "editorial_bio": "Underworld is a pioneering British electronic music group, primarily consisting of the duo Karl Hyde and Rick Smith.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/UW_AllyPally_2017_%28cropped%29.jpg/960px-UW_AllyPally_2017_%28cropped%29.jpg",
+  "origin": "Cardiff, Wales",
+  "active_years": "1987–present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:junior-boy-s-own",
+      "type": "label",
+      "name": "Junior Boy's Own"
+    },
+    {
+      "slug": "label:v2-records",
+      "type": "label",
+      "name": "V2 Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dubnobasswithmyheadman",
+      "type": "project",
+      "name": "Dubnobasswithmyheadman"
+    },
+    {
+      "slug": "project:second-toughest-in-the-infants",
+      "type": "project",
+      "name": "Second Toughest in the Infants"
+    },
+    {
+      "slug": "project:beaucoup-fish",
+      "type": "project",
+      "name": "Beaucoup Fish"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:born-slippy-nuxx",
+      "type": "track",
+      "name": "Born Slippy .NUXX"
+    },
+    {
+      "slug": "track:rez",
+      "type": "track",
+      "name": "Rez"
+    },
+    {
+      "slug": "track:cowgirl",
+      "type": "track",
+      "name": "Cowgirl"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:lemon-interupt",
+      "type": "artist",
+      "name": "Lemon Interupt"
+    },
+    {
+      "slug": "artist:steppin-razor",
+      "type": "artist",
+      "name": "Steppin' Razor"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:karl-hyde",
+      "type": "artist",
+      "name": "Karl Hyde"
+    },
+    {
+      "slug": "artist:rick-smith",
+      "type": "artist",
+      "name": "Rick Smith"
+    },
+    {
+      "slug": "artist:darren-emerson",
+      "type": "artist",
+      "name": "Darren Emerson"
+    }
+  ]
+}

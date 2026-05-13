@@ -1,0 +1,109 @@
+{
+  "slug": "project:ambient-2-the-plateaux-of-mirror",
+  "name": "Ambient 2: The Plateaux of Mirror",
+  "editorial_article": "Released in 1980, Ambient 2: The Plateaux of Mirror stands as a seminal collaboration between minimalist pianist Harold Budd and ambient music pioneer Brian Eno. As the second entry in Eno's pioneering 'Ambient' series—following the foundational Ambient 1: Music for Airports—this album serves as a masterclass in atmospheric minimalism. Recorded in Hamilton, Ontario, the project captured a unique creative synergy where Budd’s fragile, improvisational piano melodies were fed into Eno’s electronic sound-world. Eno acted as both producer and sonic manipulator, treating Budd's acoustic output with delay, choral effects, and other processing to expand the piano's timbral potential. This process was a formative experience for Budd, marking his first deep dive into utilizing the recording studio as an active compositional instrument. \\n\\nThe result is a work of delicate, light-filled beauty that avoids the clinical coldness sometimes associated with minimalist experiments. The interplay between Budd's humanistic, often busy phrasing and Eno’s abstract, ambient treatments creates a prism-like sonic environment, described by critics as a conduit for deep introspection. While later collaborations like The Pearl (1984) would refine this approach, Ambient 2 remains a touchstone for the genre, illustrating the immense potential of dialogue between acoustic tradition and modern electronic processing. It effectively bridged the gap between avant-garde minimalism and the burgeoning ambient genre, leaving a lasting influence on generations of neoclassical and electronic musicians who continue to explore the space between stillness and texture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_2:_The_Plateaux_of_Mirror",
+      "title": "Ambient 2: The Plateaux of Mirror - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/6195-Harold-Budd-Brian-Eno-Ambient-2-The-Plateaux-Of-Mirror?srsltid=AfmBOooMeizzNa3ipv6Ut9t03DSTgoDvdHIGIvZG60BhMRjiX-WsA2TR",
+      "title": "Harold Budd / Brian Eno – Ambient 2 (The Plateaux Of Mirror) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:39.995Z",
+  "type": "project",
+  "editorial_pitch": "A landmark ambient collaboration that fuses Harold Budd's fragile, improvisational piano melodies with Brian Eno's pioneering electronic soundscapes.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/The_Plateaux_of_Mirror.jpg/250px-The_Plateaux_of_Mirror.jpg",
+  "year": "1980",
+  "artists": [],
+  "label": {
+    "slug": "label:e-g-records",
+    "type": "label",
+    "name": "E.G. Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:first-light",
+      "type": "track",
+      "name": "First Light"
+    },
+    {
+      "slug": "track:steal-away",
+      "type": "track",
+      "name": "Steal Away"
+    },
+    {
+      "slug": "track:the-plateaux-of-mirror",
+      "type": "track",
+      "name": "The Plateaux of Mirror"
+    },
+    {
+      "slug": "track:above-chiangmai",
+      "type": "track",
+      "name": "Above Chiangmai"
+    },
+    {
+      "slug": "track:an-arc-of-doves",
+      "type": "track",
+      "name": "An Arc of Doves"
+    },
+    {
+      "slug": "track:not-yet-remembered",
+      "type": "track",
+      "name": "Not Yet Remembered"
+    },
+    {
+      "slug": "track:the-white-arcades",
+      "type": "track",
+      "name": "The White Arcades"
+    },
+    {
+      "slug": "track:the-province",
+      "type": "track",
+      "name": "The Province"
+    },
+    {
+      "slug": "track:among-swallows",
+      "type": "track",
+      "name": "Among Swallows"
+    },
+    {
+      "slug": "track:before-drawings",
+      "type": "track",
+      "name": "Before Drawings"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    },
+    {
+      "slug": "project:the-pearl",
+      "type": "project",
+      "name": "The Pearl"
+    }
+  ]
+}

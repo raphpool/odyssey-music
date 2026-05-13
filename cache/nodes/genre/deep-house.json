@@ -1,0 +1,103 @@
+{
+  "slug": "genre:deep-house",
+  "name": "Deep House",
+  "editorial_article": "Deep house originated in the vibrant Chicago dance music scene of the mid-1980s, acting as an emotive, sophisticated counterpoint to the raw energy of early house and acid house. Pioneers such as Larry Heard (operating as Mr. Fingers), Marshall Jefferson, and Frankie Knuckles began experimenting with the format, stripping back the harder, percussion-heavy arrangements of the era in favor of lush, jazz-inflected chords, soul-drenched vocal samples, and deeply resonant basslines. This focus on atmosphere and musicality—often utilizing the warmth of analog synthesizers and electric pianos—defined the genre's early \"deep\" moniker, suggesting a psychological and emotional complexity that transcended simple dance-floor functionality.\n\nThroughout the 1990s and 2000s, the genre expanded internationally, finding deep roots in labels and scenes from New York to Europe. While its foundational essence remained rooted in the soulful, hypnotic rhythms established by Chicago's innovators, the genre proved remarkably malleable. It became a primary vehicle for artists like Kerri Chandler and Ron Trent to explore intricate production techniques, further cementing the genre’s reputation for technical depth and melodic refinement. \n\nIn the late 2000s and 2010s, the term \"deep house\" underwent a significant commercial expansion. Labels like Diynamic, founded by Solomun and Adriano Trolio, helped usher in a modern wave of deep house that prioritized clean production and catchy melodic hooks, eventually paving the way for a crossover into pop consciousness. This newer era often incorporates organic elements, such as acoustic guitars and polished pop vocal arrangements, creating a broader, more accessible iteration of the sound. Despite these stylistic shifts, the core of deep house remains anchored in a commitment to creating an immersive, refined soundscape that remains as much a listen for the home as it is a staple for the club. Whether in its original 1985 inception or its modern commercial form, the genre continues to be defined by its pursuit of depth, warmth, and musical emotionality.",
+  "citations": [
+    {
+      "url": "https://www.armadamusic.com/news/deep-house-music",
+      "title": "All You Need To Know About Deep House Music | Armada Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:22.142Z",
+  "type": "genre",
+  "editorial_definition": "Deep house is a sophisticated subgenre of house music characterized by its fusion of soul, jazz, and funk influences with electronic rhythms, typically operating between 110 and 124 beats per minute. Originally emerging from the Chicago house scene in the mid-1980s, it emphasizes atmospheric textures, complex chord progressions, and warmth, often utilizing electric pianos and synthesizers to create a smooth, hypnotic aesthetic that bridges the gap between deep club culture and emotive, melodic songwriting.",
+  "era": "1985–present",
+  "origin": "Chicago, Illinois, USA",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal House"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard"
+    },
+    {
+      "slug": "artist:kerri-chandler",
+      "type": "artist",
+      "name": "Kerri Chandler"
+    },
+    {
+      "slug": "artist:ron-trent",
+      "type": "artist",
+      "name": "Ron Trent"
+    },
+    {
+      "slug": "artist:solomun",
+      "type": "artist",
+      "name": "Solomun"
+    },
+    {
+      "slug": "artist:chez-damier",
+      "type": "artist",
+      "name": "Chez Damier"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:diynamic",
+      "type": "label",
+      "name": "Diynamic"
+    },
+    {
+      "slug": "label:armada-deep",
+      "type": "label",
+      "name": "Armada Deep"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:atmosphere-ep",
+      "type": "project",
+      "name": "Atmosphere EP"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:mystery-of-love",
+      "type": "track",
+      "name": "Mystery of Love"
+    },
+    {
+      "slug": "track:pacific-state",
+      "type": "track",
+      "name": "Pacific State"
+    },
+    {
+      "slug": "track:can-you-feel-it",
+      "type": "track",
+      "name": "Can You Feel It"
+    }
+  ]
+}

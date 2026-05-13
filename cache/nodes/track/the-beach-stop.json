@@ -1,0 +1,56 @@
+{
+  "slug": "track:the-beach-stop",
+  "name": "The Beach Stop",
+  "editorial_article": "\"The Beach Stop\" is the opening track of the 2012 album \"Parastrophics,\" a pivotal release in the discography of the German electronic duo Mouse on Mars. Released on the Monkeytown Records label, the track exemplifies the duo's signature approach to intricate, playful electronic music—a style that frequently incorporates glitch aesthetics, splintered rhythms, and a sense of hyper-kinetic invention. Within the context of the \"Parastrophics\" album, \"The Beach Stop\" acts as a sonic manifesto, setting a tone of unpredictable modular synthesis and rhythmic agility that defined Mouse on Mars’ return to prominence during the early 2010s.\n\nThe duo, consisting of Andi Toma and Jan St. Werner, has been a cornerstone of the German electronic music scene since the mid-1990s, evolving from early IDM roots into a more expansive, genre-blurring project. On \"The Beach Stop,\" listeners are treated to the hallmarks of this evolution: a dense, layered production style that remains somehow airy and accessible. By the time of this track's release in 2012, the group had cemented their reputation as masters of sound design, capable of balancing cerebral abstraction with a propulsive energy that resonated deeply within the underground electronic scene. The track remains an essential point of entry for listeners looking to explore the duo's later, highly refined period of studio experimentation, showcasing how they continued to innovate while maintaining the infectious curiosity that characterized their earliest work. The album was produced by Andi Toma and Jan St. Werner and was distributed via Monkeytown Records. As a track on the album, it showcases the signature sound of Mouse on Mars at that time. Other artists associated with the genre include Autechre, Boards of Canada, and Aphex Twin, all of whom have explored similarly experimental electronic soundscapes in their careers, providing cultural context for the release.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/412957-Mouse-On-Mars-Parastrophics",
+      "title": "Mouse On Mars – Parastrophics | Releases | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/3570199-Mouse-On-Mars-Parastrophics?srsltid=AfmBOoqC8MbQQ84XvsPUzvoc2rmHaZdkwJvUst4AEZ5CqRjmXTMFFUwp",
+      "title": "Mouse On Mars – Parastrophics - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:25.171Z",
+  "type": "track",
+  "editorial_teaser": "\"The Beach Stop\" is the opening track of the 2012 album \"Parastrophics,\" a pivotal release in the discography of the German electronic duo Mouse on Mars.",
+  "artists": [],
+  "project": {
+    "slug": "project:parastrophics",
+    "type": "project",
+    "name": "Parastrophics"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    },
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

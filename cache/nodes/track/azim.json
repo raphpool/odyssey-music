@@ -1,0 +1,60 @@
+{
+  "slug": "track:azim",
+  "name": "Azim",
+  "editorial_article": "'Azim' is the opening track of the self-titled debut album by the Turkish rock duo Balina, released independently in 2013. The track, clocking in at over eight minutes, encapsulates the duo’s signature approach to progressive rock and post-metal, which they have described as “raw metal rising from the depths of the ocean.” Based in İzmir, the duo—comprising guitarist Alican Öyke and drummer Burçin Esin—crafts a sound rooted in dark, heavy riffs and long-form, psychedelic arrangements. \n\nMusically, 'Azim' emphasizes texture and dynamics, characteristic of the band's self-recorded aesthetic. By combining the crushing weight of sludge metal with expansive post-rock sensibilities, the track moves through shifting rhythmic landscapes, prioritizing a slow, deliberate build rather than traditional verse-chorus structures. Its melancholic and hypnotic quality is central to Balina's identity, reflecting the \"painful psychedelia\" that define their early discography and established them within the Turkish independent heavy music scene. The track serves as an introduction to their self-produced sonic world, where the interplay between guitar and drums is used to convey a sense of depth and atmospheric tension. The composition is a testament to their self-funded approach to music making, maintaining raw production qualities that heighten the intensity and emotional gravitas of the performance. Through this release, Balina cemented their presence in the underground circuit, bridging local influences with global post-metal trends, marking an essential moment in their creative output as a band. The duo's instrumentation provides a heavy, hypnotic foundation, solidifying their reputation as a significant act in the contemporary underground music scene of Turkey. The music is characterized by long, groovy, and often dark riffs that slowly unfold, inviting the listener into an immersive and often intense atmosphere, representative of their broader sound across their self-titled album. This record remains a cornerstone of their discography, illustrating their progression from local performers to a notable name in the niche of heavy, progressive rock and sludge metal, and capturing the essence of their creative vision during this period. The track 'Azim' is widely cited by listeners as a standout example of their sound, showcasing their unique ability to blend metal intensity with progressive structures and long-form storytelling. Throughout the album, the band explores a wide array of sounds, yet 'Azim' remains a crucial starting point that defines their sonic identity, deeply rooted in the DIY ethic and their specific geographic and creative context.",
+  "citations": [
+    {
+      "url": "https://balina.bandcamp.com/album/balina",
+      "title": "Balina | Balina - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:34.743Z",
+  "type": "track",
+  "editorial_teaser": "An expansive, slow-burning opener from the Turkish duo’s debut, 'Azim' blends sludge-inflected post-metal with atmospheric, dark psychedelia.",
+  "year": "2013}}\n",
+  "duration": "08:18",
+  "artists": [
+    {
+      "slug": "artist:balina",
+      "type": "artist",
+      "name": "Balina"
+    }
+  ],
+  "project": {
+    "slug": "project:balina",
+    "type": "project",
+    "name": "Balina"
+  },
+  "genres": [
+    {
+      "slug": "genre:post-metal",
+      "type": "genre",
+      "name": "Post-metal"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:alican-oyke",
+      "type": "artist",
+      "name": "Alican Öyke"
+    },
+    {
+      "slug": "artist:burcin-esin",
+      "type": "artist",
+      "name": "Burçin Esin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

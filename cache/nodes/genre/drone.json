@@ -1,0 +1,86 @@
+{
+  "slug": "genre:drone",
+  "name": "Drone",
+  "editorial_article": "Drone music is a profound, minimalist genre centered on the aesthetic power of sustained sound. Emerging from the American avant-garde and experimental scenes of the 1960s, it formalizes the use of long-held tones, tone clusters, and slow-moving harmonic shifts to create immersive, meditative, or abrasive soundscapes. While the concept of a \"drone\"—a constant, underlying pitch—has existed for millennia in global traditions like Indian Hindustani classical music, Scottish bagpiping, and Australian didgeridoo performance, the modern Western genre of Drone was catalyzed by pioneers such as La Monte Young and his Theatre of Eternal Music. These early practitioners moved away from traditional Western developmental structures, choosing instead to explore the psychoacoustic effects of pure frequencies and harmonic resonance. By discarding conventional melody and rhythm, drone music forces the listener to engage with timbre, texture, and the physics of sound itself. The genre’s influence has permeated various underground movements, branching out into dark ambient, drone metal, and broader experimental electronic compositions. Its capacity to be simultaneously meditative and overwhelming remains its defining hallmark, challenging the traditional definition of music as a progression of notes and re-establishing it as a phenomenon of vibration. Through the influence of foundational figures like Phill Niblock and the evolution of the genre within avant-garde circles, drone continues to serve as a critical bridge between academic sound art and contemporary experimental music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drone_music",
+      "title": "Drone music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:44.010Z",
+  "type": "genre",
+  "editorial_definition": "A minimalist genre defined by the use of sustained sounds, tones, or clusters, often characterized by a lack of traditional rhythmic or melodic progression to emphasize timbre and resonance.",
+  "era": "1960s–present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    },
+    {
+      "slug": "genre:drone-metal",
+      "type": "genre",
+      "name": "Drone metal"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:phill-niblock",
+      "type": "artist",
+      "name": "Phill Niblock"
+    },
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:table-of-the-elements",
+      "type": "label",
+      "name": "Table of the Elements"
+    },
+    {
+      "slug": "label:important-records",
+      "type": "label",
+      "name": "Important Records"
+    },
+    {
+      "slug": "label:kranky",
+      "type": "label",
+      "name": "Kranky"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

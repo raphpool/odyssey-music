@@ -1,0 +1,68 @@
+{
+  "slug": "genre:serialism",
+  "name": "Serialism",
+  "editorial_article": "Serialism is a profound and revolutionary approach to musical composition that emerged in the early 20th century, fundamentally challenging the long-standing hierarchies of Western tonal music. At its core, serialism is a methodology where a fixed, ordered series of elements—most commonly the twelve pitches of the chromatic scale—acts as the foundational structural principle for a composition. By systematically organizing these elements (the \"row\" or \"set\"), composers sought to replace the traditional reliance on key centers and functional harmony with a new logic where all tones are treated with equal weight, theoretically devoid of the gravitational pull of a tonal home key. While often associated with the strictures of Arnold Schoenberg's twelve-tone technique, serialism evolved significantly in the post-WWII era. Composers such as Pierre Boulez expanded the concept, applying serial ordering not just to pitch, but to other musical parameters including rhythm, dynamics, and even articulation. This total or \"integral\" serialism represented an aesthetic shift toward rigorous, objective organizational structures, often resulting in music of immense complexity and stark, angular beauty. Despite criticism that the methodology was overly mathematical or divorced from human emotion, serialism remains a landmark development in art music, exerting a profound influence on modernism, avant-garde classical traditions, and the broader intellectual history of the 20th century. Its impact is felt in the works of the Second Viennese School—Schoenberg, Berg, and Webern—and reaches into the Darmstadt School's experiments, where it became a focal point for the mid-century European avant-garde. The diversity of outcomes produced by serial techniques—ranging from the dense, expressionist textures of Berg to the pointillist precision of Webern—proves that serialism is a tool for liberation as much as it is a system of constraint.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/serialism",
+      "title": "Serialism | Twelve-Tone, Atonality & Schoenberg | Britannica"
+    },
+    {
+      "url": "https://pressbooks.uiowa.edu/twentieth-and-twenty-first-century-music/chapter/serialism/",
+      "title": "Serialism – Twentieth- and Twenty-First-Century Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:07.056Z",
+  "type": "genre",
+  "editorial_definition": "A compositional technique characterized by the use of an ordered series of elements (most notably pitch) as the generative basis for musical structure, effectively replacing traditional tonal hierarchy.",
+  "origin": "Austria, Germany, and France",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:atonality",
+      "type": "genre",
+      "name": "Atonality"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:arnold-schoenberg",
+      "type": "artist",
+      "name": "Arnold Schoenberg"
+    },
+    {
+      "slug": "artist:anton-webern",
+      "type": "artist",
+      "name": "Anton Webern"
+    },
+    {
+      "slug": "artist:alban-berg",
+      "type": "artist",
+      "name": "Alban Berg"
+    },
+    {
+      "slug": "artist:pierre-boulez",
+      "type": "artist",
+      "name": "Pierre Boulez"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

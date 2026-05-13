@@ -1,0 +1,55 @@
+{
+  "slug": "artist:sonja-moonear",
+  "name": "Sonja Moonear",
+  "editorial_article": "Sonja Moonear is a prominent Swiss DJ, producer, and label manager who has become a defining figure in the global underground electronic music scene. Originally trained in classical music, her transition to electronic production and performance marked the beginning of an influential career defined by a sophisticated approach to minimal house and techno. Rising through the Geneva underground, particularly as a resident at the iconic Weetamix club in the early 2000s, Moonear honed a versatile DJing style characterized by intricate layering and a deep, rhythmic sensibility that bridges the gap between classic dance floor staples and avant-garde experimentalism. Her production work is synonymous with precision and texture, often appearing on prestigious labels such as Perlon and Karat Records. Beyond her studio output, she is widely recognized as a pivotal curator, having launched her own imprint, Ruta5, which has served as a platform for both her own explorations and those of her contemporaries. Over the last two decades, Moonear has maintained a consistent presence on the world's most discerning stages, from the fabric nightclub in London to major international festivals, consistently pushing the boundaries of the minimal aesthetic while retaining an infectious, danceable energy. Her work is a testament to the endurance and evolution of the Swiss electronic music landscape.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/sonjamoonear",
+      "title": "Sonja Moonear · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://www.altrimage.com/wordpress/sonja-moonear/",
+      "title": "SONJA MOONEAR – Bartist Agency"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:08.357Z",
+  "type": "artist",
+  "editorial_bio": "Sonja Moonear is a prominent Swiss DJ, producer, and label manager who has become a defining figure in the global underground electronic music scene.",
+  "photo_url": "https://ra.co/dj/sonjamoonear",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal house"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:perlon",
+      "type": "label",
+      "name": "Perlon"
+    },
+    {
+      "slug": "label:karat-records",
+      "type": "label",
+      "name": "Karat Records"
+    },
+    {
+      "slug": "label:ruta5",
+      "type": "label",
+      "name": "Ruta5"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,28 @@
+{
+  "slug": "project:hymnen",
+  "name": "Hymnen",
+  "editorial_article": "\"Hymnen\" (German for \"Anthems\") is a landmark work of electronic and concrete music composed by Karlheinz Stockhausen between 1966 and 1967, with further elaborations in 1969. In Stockhausen's catalog, it is recognized as work No. 22. The composition is a massive, ambitious exploration of national identity and global connectivity, utilizing recordings of various national anthems—including \"The Internationale,\" \"La Marseillaise,\" the \"Deutschlandlied,\" the Russian anthem, \"The Star-Spangled Banner,\" and others—as its primary source material. Stockhausen processes these recordings into a vast, transformative soundscape that defies traditional symphonic structures, existing in four distinct \"Regions.\" \\n\\nThe work is deeply experimental, pushing the boundaries of what electronic music could represent in the late 1960s. Stockhausen conceived of three different versions: one for purely electronic and concrete sound (tape), one that incorporates live soloists to interact with the pre-recorded tape, and an orchestral version of the third region. Its premiere, particularly the 1971 New York Philharmonic performance, remains one of the most significant moments in contemporary classical history, noted for its sheer scale and duration. By dismantling and rebuilding the sonic symbols of nations, Stockhausen created a work often interpreted as \"music after the apocalypse,\" reflecting the political tensions and global shifts of the era while grounding the avant-garde in the most recognizable of human sonic cultural markers. It serves as a testament to the power of the WDR Studio for Electronic Music in Cologne, where Stockhausen spent much of his most influential period developing his unique language of sound in space.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hymnen",
+      "title": "Hymnen - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/release/359412-Karlheinz-Stockhausen-Hymnen?srsltid=AfmBOor9-g7F5tZkwGLcQiIX1p9mMRPEM_kYrzKUSsCgv0I3L0UT4OHN",
+      "title": "Karlheinz Stockhausen – Hymnen - Discogs"
+    },
+    {
+      "url": "https://www.allmusic.com/album/stockhausen-hymnen-mw0001850389",
+      "title": "Karlheinz Stockhausen - Hymnen - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:55.506Z",
+  "type": "project",
+  "editorial_pitch": "A sprawling, monumental work of musique concrète and electronic sound, \"Hymnen\" deconstructs the world's national anthems into a four-region soundscape that challenges the listener to find unity within the fragments of global political symbols.",
+  "year": "1967",
+  "artists": [],
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

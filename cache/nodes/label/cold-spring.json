@@ -1,0 +1,91 @@
+{
+  "slug": "label:cold-spring",
+  "name": "Cold Spring",
+  "editorial_article": "Cold Spring is a venerable British independent record label that has served as a cornerstone of the global industrial, dark ambient, and experimental music scenes since its inception in 1987. Founded by Justin Mitchell, the label evolved from a DIY operation selling bootleg cassettes to a sophisticated, internationally recognized institution known for its uncompromising curation. Based in Manchester, UK, Cold Spring has built an expansive catalog that bridges the gap between early industrial noise and contemporary dark electronics, often championing artists who push the boundaries of sound design, ritual, and atmosphere. \\n\\nThe label's output is characterized by its breadth, ranging from heavy death industrial and harsh noise to cinematic dark ambient and rare soundtrack reissues. Mitchell’s A&R philosophy relies heavily on personal intuition, maintaining a focus on high-quality, physical artifacts that honor the legacy of the artists involved. Over the decades, Cold Spring has been instrumental in preserving and reissuing seminal works from influential acts such as Coil, Psychic TV, and Merzbow, while simultaneously fostering a new generation of experimentalists. Its commitment to physical formats—from detailed box sets to vinyl reissues—has made it a cult favorite among collectors. The label stands as a testament to the endurance of independent music, navigating the shifting landscape of the recording industry by remaining dedicated to the dark, the experimental, and the profound. Through hundreds of releases, Cold Spring has become more than just a label; it is a repository of avant-garde history and a vital platform for sonic explorers.",
+  "citations": [
+    {
+      "url": "https://www.electronicsound.co.uk/qandas/label-profile/cold-spring/",
+      "title": "Cold Spring – Electronic Sound"
+    },
+    {
+      "url": "https://retrofuturista.com/label/cold-spring-records/",
+      "title": "Cold Spring: Industrial, Dark Ambient & Ritual Music News News & Discography - RetroFuturista"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:07.228Z",
+  "type": "label",
+  "editorial_description": "A legendary Manchester-based independent label specializing in industrial, dark ambient, and experimental music, renowned for its commitment to both emerging artists and definitive reissues of underground legends.",
+  "founded": "1987",
+  "location": "Manchester, UK",
+  "genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil"
+    },
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow"
+    },
+    {
+      "slug": "artist:psychic-tv",
+      "type": "artist",
+      "name": "Psychic TV"
+    },
+    {
+      "slug": "artist:sleep-research-facility",
+      "type": "artist",
+      "name": "Sleep Research Facility"
+    },
+    {
+      "slug": "artist:mz-412",
+      "type": "artist",
+      "name": "MZ 412"
+    },
+    {
+      "slug": "artist:little-annie",
+      "type": "artist",
+      "name": "Little Annie"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:nostromo",
+      "type": "project",
+      "name": "Nostromo"
+    },
+    {
+      "slug": "project:themes",
+      "type": "project",
+      "name": "Themes"
+    },
+    {
+      "slug": "project:music-for-stowaways",
+      "type": "project",
+      "name": "Music For Stowaways"
+    }
+  ]
+}

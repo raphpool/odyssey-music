@@ -1,0 +1,113 @@
+{
+  "slug": "artist:the-magnetic-fields",
+  "name": "The Magnetic Fields",
+  "editorial_article": "The Magnetic Fields are an American band formed in Boston in 1989, serving primarily as the vehicle for the prolific and idiosyncratic songwriting of Stephin Merritt. Known for their conceptual depth and adventurous shifts in instrumentation, the group has evolved from a synth-driven studio project into a multifaceted ensemble. Merritt, the group's primary songwriter, producer, and vocalist, initially utilized synthesized textures to explore themes of romance and alienation. The band's breakthrough, the 1999 triple album '69 Love Songs', remains a landmark in indie pop, blending baroque instrumentation—including ukuleles, banjos, and cellos—with Merritt’s dry wit and expansive pop sensibilities. Following this success, the group explored a \"no-synth\" trilogy throughout the 2000s, before returning to electronic textures with records like 'Love at the Bottom of the Sea'. Throughout their decades-long career, The Magnetic Fields have maintained a reputation for meticulous songcraft, often organizing albums around strict thematic or conceptual constraints, such as the 50-song autobiographical memoir '50 Song Memoir' or the brevity-focused 'Quickies'. Their enduring influence on independent music lies in Merritt's unique ability to bridge the gap between traditional Tin Pan Alley songwriting and experimental indie pop. The band has been a staple of the American indie scene, particularly through their long-term association with the Merge Records label, and their work continues to define the boundaries of experimental pop through Merritt's unparalleled melodic and lyrical output. The band's core roster has remained remarkably consistent, with Merritt at the center, supported by long-time collaborators like Claudia Gonson, whose multi-instrumentalist contributions and vocal performances have become integral to the band's aesthetic identity over the past thirty years. Their discography stands as a testament to the power of song as a means of personal and artistic exploration.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/41095-The-Magnetic-Fields?srsltid=AfmBOopsrtEMrJ6gPh1PU6U9gkYlnTLYE8lnIaRgCSCJ5geXxu6t4d2Z",
+      "title": "The Magnetic Fields Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Magnetic_Fields",
+      "title": "The Magnetic Fields - Wikipedia"
+    },
+    {
+      "url": "https://www.mergerecords.com/artist/the_magnetic_fields",
+      "title": "The Magnetic Fields - Merge Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:28.046Z",
+  "type": "artist",
+  "editorial_bio": "The Magnetic Fields are an American band formed in Boston in 1989, serving primarily as the vehicle for the prolific and idiosyncratic songwriting of Stephin Merritt.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/MagneticVlcsnap-2024-04-14-11h09m07s983.png/960px-MagneticVlcsnap-2024-04-14-11h09m07s983.png",
+  "origin": "Boston, Massachusetts, U.S.",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:merge-records",
+      "type": "label",
+      "name": "Merge Records"
+    },
+    {
+      "slug": "label:nonesuch-records",
+      "type": "label",
+      "name": "Nonesuch Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:69-love-songs",
+      "type": "project",
+      "name": "69 Love Songs"
+    },
+    {
+      "slug": "project:i",
+      "type": "project",
+      "name": "i"
+    },
+    {
+      "slug": "project:distortion",
+      "type": "project",
+      "name": "Distortion"
+    },
+    {
+      "slug": "project:realism",
+      "type": "project",
+      "name": "Realism"
+    },
+    {
+      "slug": "project:love-at-the-bottom-of-the-sea",
+      "type": "project",
+      "name": "Love at the Bottom of the Sea"
+    },
+    {
+      "slug": "project:50-song-memoir",
+      "type": "project",
+      "name": "50 Song Memoir"
+    },
+    {
+      "slug": "project:quickies",
+      "type": "project",
+      "name": "Quickies"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:100-000-fireflies",
+      "type": "track",
+      "name": "100,000 Fireflies"
+    },
+    {
+      "slug": "track:andrew-in-drag",
+      "type": "track",
+      "name": "Andrew in Drag"
+    },
+    {
+      "slug": "track:the-book-of-love",
+      "type": "track",
+      "name": "The Book of Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

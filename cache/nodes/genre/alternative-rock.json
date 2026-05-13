@@ -1,0 +1,122 @@
+{
+  "slug": "genre:alternative-rock",
+  "name": "Alternative rock",
+  "editorial_article": "Alternative rock, frequently referred to simply as \"alt-rock\" or \"alternative,\" represents a pivotal shift in the trajectory of popular music. Emerging from the independent, DIY (do-it-yourself) music scenes of the 1980s, the genre was defined by a shared rejection of the slick, commercialized sound of 1970s and 80s \"classic rock\" and metal. Musicians associated with the movement sought to distance themselves from the industry-standard polish, instead favoring raw, distorted guitar tones, unconventional structures, and lyrical themes that resonated with feelings of alienation and generational angst.\\n\\nWhile the genre has roots in the late 1970s and early 80s underground—drawing heavily on the aesthetic aggression of punk and the artistic experimentation of post-punk—it reached its cultural zenith in the early 1990s. The seismic shift occurred in 1991, often traced back to the release of Nirvana's *Nevermind* and the immediate, explosive success of the lead single \"Smells Like Teen Spirit.\" This moment catapulted previously niche scenes, such as the Seattle-based \"grunge,\" into the global mainstream. Suddenly, the underground had become the dominant pop force, effectively rendering the \"hair metal\" and arena-rock excess of the 1980s commercially and culturally obsolete.\\n\\nThe movement was inherently heterogeneous, encompassing a vast array of subgenres that shared an ethos rather than a singular sonic palette. From the college-rock intellectualism of R.E.M. and the feedback-drenched textures of shoegaze to the aggressive, sludge-inflected output of the grunge scene, alternative rock became a broad umbrella for those who felt out of sync with mainstream culture. By the mid-1990s, the term had solidified as a major radio format, though it remained anchored in its foundational belief: the pursuit of music that felt authentic, unconventional, and inherently \"alternative\" to the status quo. Its legacy remains profound, as it redefined how rock music was produced, consumed, and understood in the late 20th century.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/alternative-rock",
+      "title": "Alternative rock | Definition, Bands, Songs, & Facts | Britannica"
+    },
+    {
+      "url": "https://mysoundposter.blog/genres/alternative-rock/",
+      "title": "Alternative Rock Music Genre - mySoundposter.blog"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:45.729Z",
+  "type": "genre",
+  "editorial_definition": "A broad rock music movement that emerged from the 1980s underground, defined by its rejection of mainstream classic rock tropes and characterized by distorted guitars, a DIY ethos, and themes of generational discontent.",
+  "era": "1980s–1990s",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction"
+    },
+    {
+      "slug": "artist:smashing-pumpkins",
+      "type": "artist",
+      "name": "Smashing Pumpkins"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:sst-records",
+      "type": "label",
+      "name": "SST Records"
+    },
+    {
+      "slug": "label:rough-trade",
+      "type": "label",
+      "name": "Rough Trade"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:nevermind",
+      "type": "project",
+      "name": "Nevermind"
+    },
+    {
+      "slug": "project:murmur",
+      "type": "project",
+      "name": "Murmur"
+    },
+    {
+      "slug": "project:daydream-nation",
+      "type": "project",
+      "name": "Daydream Nation"
+    },
+    {
+      "slug": "project:nothing-s-shocking",
+      "type": "project",
+      "name": "Nothing's Shocking"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:smells-like-teen-spirit",
+      "type": "track",
+      "name": "Smells Like Teen Spirit"
+    }
+  ]
+}

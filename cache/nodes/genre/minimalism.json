@@ -1,0 +1,65 @@
+{
+  "slug": "genre:minimalism",
+  "name": "Minimalism",
+  "editorial_article": "Minimalism is a seminal movement in 20th-century art music, originating in the United States during the late 1950s and early 1960s. Characterized by its use of limited, pared-down musical materials, the genre emerged as a reaction against the density and complexity of serialism and the European avant-garde. Instead, minimalist composers focused on the exploration of internal musical processes, often relying on repetitive patterns, steady pulses, drones, and consonant harmonies. This approach often results in a non-narrative, hypnotic quality that demands an heightened state of active listening from the audience, allowing the subtle shifts within the sound to become the primary event.\\n\\nThe movement took root in the West Coast of the United States, centered around visionaries like La Monte Young, Terry Riley, and Steve Reich. As these pioneers gravitated toward the New York 'Downtown' scene in the mid-1960s, minimalism gained broader recognition, initially as an offshoot of broader experimental music practices. Techniques such as 'phase shifting'—most famously explored by Reich in works like 'It's Gonna Rain' (1968)—and gradual rhythmic or melodic transformations became hallmark features. While the term 'minimalism' is sometimes debated regarding its origin, it successfully captured a radical shift in how sound could be structured, stripping away traditional teleological frameworks in favor of circular, evolving textures. Today, minimalism remains a foundational pillar of contemporary music, having influenced everything from electronic dance music and ambient, to post-minimalist film scoring and modern classical compositions. Its legacy persists through its insistence that even the most sparse musical gestures can contain vast emotional and intellectual resonance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Minimal_music",
+      "title": "Minimal music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:27.302Z",
+  "type": "genre",
+  "editorial_definition": "A form of art music employing limited or minimal materials, characterized by repetitive patterns, steady pulses, consonant harmonies, and a non-narrative approach to structure.",
+  "era": "1960s–present",
+  "origin": "United States (primarily California and New York City)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:john-adams",
+      "type": "artist",
+      "name": "John Adams"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:music-for-18-musicians",
+      "type": "project",
+      "name": "Music for 18 Musicians"
+    },
+    {
+      "slug": "project:in-c",
+      "type": "project",
+      "name": "In C"
+    },
+    {
+      "slug": "project:einstein-on-the-beach",
+      "type": "project",
+      "name": "Einstein on the Beach"
+    }
+  ],
+  "landmark_tracks": []
+}

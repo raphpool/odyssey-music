@@ -1,0 +1,116 @@
+{
+  "slug": "genre:experimental-rock",
+  "name": "Experimental rock",
+  "editorial_article": "Experimental rock represents one of the most intellectually curious and sonically adventurous branches of the broader rock tradition. Emerging in the late 1960s as a rejection of the rigid verse-chorus-verse structures that defined commercial radio and popular music, the genre sought to expand the expressive possibilities of the rock ensemble. By incorporating techniques from avant-garde classical music, musique concrète, jazz improvisation, and world music, artists within this sphere effectively treated the recording studio as an instrument in its own right, prioritize sonic texture and atmosphere over traditional melodic catchiness.\\n\\nThe genesis of experimental rock is often tied to the late 60s avant-rock scene, where foundational acts like The Velvet Underground and Captain Beefheart began dismantling rock music's core tropes, favoring dissonance, drone, and rhythmic complexity. In Europe, the development of Krautrock—led by bands like Can and Faust—introduced a hypnotic, motorik repetition and studio-based modular approach that would fundamentally alter the trajectory of post-punk and electronic music. Throughout the 1970s and 80s, the genre's influence widened through the art-rock experiments of David Bowie and Brian Eno, the jagged structural deconstructions of Wire, and the free-form sonic collages of Sonic Youth.\\n\\nUltimately, experimental rock is defined not by a single aesthetic, but by an inherent drive to innovate and defy categorization. It remains a fluid, boundary-less field where the unconventional is the norm. Whether through the inclusion of non-traditional instrumentation, the use of non-linear song structures, or a general disregard for commercial radio standards, experimental rock continues to serve as an essential laboratory for modern music, feeding into everything from post-rock to modern industrial and ambient sounds. Its cultural importance lies in its role as a persistent check against stagnation, constantly challenging listeners to engage with music as an evolving, multi-dimensional art form rather than a disposable commodity.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/experimental-rock-ma0000002583",
+      "title": "Experimental Rock Music Style Overview | AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/experimental-rock/",
+      "title": "Experimental Rock - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:26.332Z",
+  "type": "genre",
+  "editorial_definition": "A broad, diverse category of rock music that consciously rejects conventional song structures and commercial pop sensibilities in favor of innovation, avant-garde textures, and unconventional instrumentation.",
+  "era": "1960s–present",
+  "origin": "United States, United Kingdom, and West Germany",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:avant-garde-jazz",
+      "type": "genre",
+      "name": "Avant-garde jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:can",
+      "type": "artist",
+      "name": "Can"
+    },
+    {
+      "slug": "artist:captain-beefheart",
+      "type": "artist",
+      "name": "Captain Beefheart"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:mr-bungle",
+      "type": "artist",
+      "name": "Mr. Bungle"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:trout-mask-replica",
+      "type": "project",
+      "name": "Trout Mask Replica"
+    },
+    {
+      "slug": "project:low",
+      "type": "project",
+      "name": "Low"
+    },
+    {
+      "slug": "project:millions-now-living-will-never-die",
+      "type": "project",
+      "name": "Millions Now Living Will Never Die"
+    },
+    {
+      "slug": "project:disco-volante",
+      "type": "project",
+      "name": "Disco Volante"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:sister-ray",
+      "type": "track",
+      "name": "Sister Ray"
+    },
+    {
+      "slug": "track:mushroom",
+      "type": "track",
+      "name": "Mushroom"
+    }
+  ]
+}

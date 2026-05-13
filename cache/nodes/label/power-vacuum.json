@@ -1,0 +1,91 @@
+{
+  "slug": "label:power-vacuum",
+  "name": "Power Vacuum",
+  "editorial_article": "Power Vacuum is a UK-based independent record label established in 2012 by the producer and DJ Milo Smee, also known as Bintus. The label quickly carved out a distinctive niche within the electronic music landscape, focusing on a raw, abrasive, and often uncompromising aesthetic that leans heavily into techno, electro, and experimental soundscapes. From its inception, Power Vacuum served as a primary platform for Smee's own material—both under his Bintus moniker and other guises—as well as a hub for like-minded artists who prioritize sonic textures that range from metallic and industrial to funk-infused and rhythmically complex.\n\nThe label's catalog is characterized by a \"no-nonsense\" approach, often featuring jagged synthesis, distorted drum machines, and a lean production style that strips away excess polish in favor of visceral energy. Its influence grew throughout the 2010s as it brought together a network of producers known for pushing the boundaries of club music, including figures like EDMX, Mark Broom, Objekt, and Cylob. The label's output is notable not only for the consistent quality of its productions but also for its visual and thematic identity, which often reflects a gritty, retro-futuristic, or starkly utilitarian ethos. Through its series of EPs, LPs, and various artist compilations—such as the 'Vectors' series—Power Vacuum has maintained a firm standing as a vital, if sometimes underground, institution for those seeking music that bridges the gap between functional dance floor techno and experimental electronic art. It remains a definitive reference point for fans of British electronic music that rejects mainstream homogenization.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/351162-Power-Vacuum?srsltid=AfmBOopXMXDTLkO7c4vWZcGJabkyW0PEHZZgOHvnntmPbuGeZ07D11k2",
+      "title": "Power Vacuum - Discogs"
+    },
+    {
+      "url": "https://powervacuum.bandcamp.com/",
+      "title": "Power Vacuum Label: Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:04.245Z",
+  "type": "label",
+  "editorial_description": "A UK-based underground electronic label founded by Milo Smee (Bintus), known for its raw, gritty, and experimental approach to techno and electro.",
+  "founded": "2012",
+  "location": "UK",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:bintus",
+      "type": "artist",
+      "name": "Bintus"
+    },
+    {
+      "slug": "artist:edmx",
+      "type": "artist",
+      "name": "EDMX"
+    },
+    {
+      "slug": "artist:mark-broom",
+      "type": "artist",
+      "name": "Mark Broom"
+    },
+    {
+      "slug": "artist:objekt",
+      "type": "artist",
+      "name": "Objekt"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob"
+    },
+    {
+      "slug": "artist:joefarr",
+      "type": "artist",
+      "name": "JoeFarr"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:corrosion-control",
+      "type": "project",
+      "name": "Corrosion Control"
+    },
+    {
+      "slug": "project:cerberus",
+      "type": "project",
+      "name": "Cerberus"
+    },
+    {
+      "slug": "project:live-and-locked",
+      "type": "project",
+      "name": "Live & Locked"
+    },
+    {
+      "slug": "project:vectors-2",
+      "type": "project",
+      "name": "Vectors 2"
+    }
+  ]
+}

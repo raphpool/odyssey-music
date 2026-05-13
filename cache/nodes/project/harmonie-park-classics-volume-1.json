@@ -1,0 +1,58 @@
+{
+  "slug": "project:harmonie-park-classics-volume-1",
+  "name": "Harmonie Park Classics Volume 1",
+  "editorial_article": "Released in 2002 on the Deep Transportation label, \"Harmonie Park Classics Volume 1\" is an essential EP by Detroit producer and educator Mike Huckaby. The project highlights the deep, soulful, and intricately textured house sound for which Huckaby was globally revered. Spanning three tracks—\"Disco Time,\" \"Radiance,\" and \"Luv Time\"—the EP serves as a showcase for Huckaby's mastery of atmosphere and groove, emphasizing subtle percussive elements and lush synthesizer work that became hallmarks of the Detroit deep house sound of the late 90s and early 2000s. \n\n\"Radiance,\" in particular, is frequently cited by fans and fellow DJs as a defining track in Huckaby’s discography. Its hypnotic, sweeping pads and meticulously crafted rhythms illustrate why he was considered a master of his craft, capable of creating music that felt both timeless and deeply embedded in the spirit of his hometown, Detroit. The project takes its name from the influential Harmonie Park label—founded by Rick Wade—which was a pivotal outlet for the city's producers. By compiling these tracks, Huckaby not only provided a home for his classic sound but also reaffirmed his status as a central figure in the lineage of modern electronic music. The EP has seen multiple reissues, including a 2013 remaster, reflecting its enduring legacy and its continued status as a must-have for vinyl collectors and house music historians alike. Beyond its sonic qualities, the record represents a snapshot of a specific era of underground dance music, where the focus remained on the emotional resonance of the music rather than commercial trends.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/25966-Mike-Huckaby-Harmonie-Park-Classics-Volume-1",
+      "title": "Mike Huckaby – Harmonie Park Classics Volume 1 - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:37.015Z",
+  "type": "project",
+  "editorial_pitch": "A definitive testament to the sophisticated deep house sound emanating from Detroit, \"Harmonie Park Classics Volume 1\" collects timeless works by the late, legendary Mike Huckaby. Featuring the atmospheric masterwork \"Radiance,\" this EP remains a cornerstone for house music collectors and fans of the deep, dub-infused aesthetic that defined the label.",
+  "year": "2002",
+  "artists": [
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    }
+  ],
+  "label": {
+    "slug": "label:deep-transportation",
+    "type": "label",
+    "name": "Deep Transportation"
+  },
+  "genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:disco-time",
+      "type": "track",
+      "name": "Disco Time"
+    },
+    {
+      "slug": "track:radiance",
+      "type": "track",
+      "name": "Radiance"
+    },
+    {
+      "slug": "track:luv-time",
+      "type": "track",
+      "name": "Luv Time"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

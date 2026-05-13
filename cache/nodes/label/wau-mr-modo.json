@@ -1,0 +1,71 @@
+{
+  "slug": "label:wau-mr-modo",
+  "name": "WAU! Mr. Modo",
+  "editorial_article": "WAU! Mr. Modo Recordings was an influential British independent record label founded in the late 1980s by Alex Paterson (of The Orb) and Martin Glover (known as Youth), in partnership with Paterson’s manager Adam Morris. The label’s name, \"WAU,\" was variously interpreted as \"What About Us?\" or \"Weird And Unusual,\" reflecting the label's eclectic and experimental ethos. Based in London, WAU! Mr. Modo served as a crucial outlet for the burgeoning ambient-house and dub-influenced electronic scene of the early 1990s. It is perhaps best known for releasing early, seminal works by The Orb, which helped define the ambient-house genre. Beyond the high-profile ambient releases, the label maintained a strong connection to dub culture, issuing discomix-style recordings from roots reggae and dub artists including Bim Sherman, Naphtali, and Manasseh. This unique blend of psychedelic, studio-centered electronic experimentation and deep-rooted bass music underscored the label's identity as a catalyst for the UK’s post-rave sonic expansion. Through its sublabel, Inter-Modo, the collective further extended its reach, releasing material by acts like Juno Reactor and FFWD, cementing its status as a vital curator of the era's innovative electronic underground. The label’s output remains a cornerstone for understanding the convergence of ambient house, dub, and experimental electronic music in the London scene during the early 1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/WAU!_Mr._Modo_Recordings",
+      "title": "WAU! Mr. Modo Recordings - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/370482-WAU!-Mr-Modo-Recordings?srsltid=AfmBOopzNa68iJOkde_7JI-dlCCaq9BZ8iqSVhYp5_xFjsuuReGpkUQe",
+      "title": "WAU! Mr. Modo Recordings - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:25.202Z",
+  "type": "label",
+  "editorial_description": "WAU! Mr. Modo Recordings was a seminal London-based label founded by Alex Paterson and Youth, instrumental in defining the ambient house movement and curating deep-rooted dub explorations.",
+  "founded": "1989",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient house"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    },
+    {
+      "slug": "artist:bim-sherman",
+      "type": "artist",
+      "name": "Bim Sherman"
+    },
+    {
+      "slug": "artist:sun-electric",
+      "type": "artist",
+      "name": "Sun Electric"
+    },
+    {
+      "slug": "artist:juno-reactor",
+      "type": "artist",
+      "name": "Juno Reactor"
+    },
+    {
+      "slug": "artist:manasseh",
+      "type": "artist",
+      "name": "Manasseh"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
+      "type": "project",
+      "name": "The Orb's Adventures Beyond The Ultraworld"
+    }
+  ]
+}

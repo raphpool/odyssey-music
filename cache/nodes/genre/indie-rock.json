@@ -1,0 +1,101 @@
+{
+  "slug": "genre:indie-rock",
+  "name": "Indie rock",
+  "editorial_article": "Indie rock emerged in the late 1970s and early 1980s as a decentralized, grassroots reaction to the corporate consolidation of the music industry. Originally rooted in the ethics of the punk movement, it prioritized artistic autonomy, direct distribution, and a \"Do It Yourself\" (DIY) ethos over the polished production and commercial mandates of major labels. While the genre initially took form in the UK with the success of independent label releases like the Buzzcocks' \"Spiral Scratch\" EP, it quickly found a powerful foothold in the United States. Labels such as Dischord (Washington, D.C.), SST (California), and later, Sub Pop (Seattle) and Matador (New York), became critical incubators, fostering scenes that ranged from D.C. hardcore to the grunge explosion that would eventually dominate the 1990s.\\n\\nMusically, indie rock is defined less by a singular sonic signature and more by its structural approach. Characteristics include a preference for self-contained songwriting, where band members write and produce their own material without reliance on outside teams, and a historical tendency toward lo-fi production—at times born of necessity due to limited budgets, and at other times chosen for its raw, authentic aesthetic. This focus on authenticity over technical virtuosity has allowed for an incredibly diverse sonic landscape, spanning post-punk, jangle-pop, noise-rock, and folk-infused experimentalism. Though the line between \"indie\" and \"alternative\" has blurred significantly due to modern industry shifts and the rise of the digital creator economy, indie rock remains the foundational banner for artists who insist on retaining control over their creative output, serving as a permanent counter-balance to the mainstream pop apparatus. Today, it stands as both a historical movement of label-based independence and a contemporary mindset of creative self-reliance.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/indie-rock-music-guide",
+      "title": "Indie Rock Music: History and Artists of Independent Rock - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:19.829Z",
+  "type": "genre",
+  "editorial_definition": "Indie rock is a decentralized rock music subculture defined by its DIY (Do-It-Yourself) ethic, independence from major corporate labels, and a focus on artistic authenticity over commercial polish.",
+  "era": "1970s–present",
+  "origin": "United Kingdom and United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth"
+    },
+    {
+      "slug": "artist:dinosaur-jr",
+      "type": "artist",
+      "name": "Dinosaur Jr."
+    },
+    {
+      "slug": "artist:fugazi",
+      "type": "artist",
+      "name": "Fugazi"
+    },
+    {
+      "slug": "artist:guided-by-voices",
+      "type": "artist",
+      "name": "Guided By Voices"
+    },
+    {
+      "slug": "artist:sleater-kinney",
+      "type": "artist",
+      "name": "Sleater-Kinney"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:4ad",
+      "type": "label",
+      "name": "4AD"
+    },
+    {
+      "slug": "label:dischord-records",
+      "type": "label",
+      "name": "Dischord Records"
+    },
+    {
+      "slug": "label:sst-records",
+      "type": "label",
+      "name": "SST Records"
+    },
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "artist:pauline-oliveros",
+  "name": "Pauline Oliveros",
+  "editorial_article": "Pauline Oliveros (1932–2016) was a towering figure in the landscape of American experimental music, renowned as both a pioneer of electronic composition and a philosopher of sound. Born in Houston, Texas, she maintained a lifelong, idiosyncratic commitment to the accordion, often processing its acoustic output through complex electronic chains to explore new sonic dimensions. In 1961, she helped co-found the San Francisco Tape Music Center, a critical laboratory for early electronic experimentation that eventually became the Center for Contemporary Music at Mills College. \\n\\nOliveros’s most significant cultural contribution is the concept of 'Deep Listening.' Developed through her intensive study of natural sounds, meditation, and Eastern philosophies, this practice serves as both a musical technique and a mode of being. It differentiates between 'hearing'—the involuntary physical process—and 'listening'—a conscious, intentional engagement with the soundscape. Her landmark 1971 work *Sonic Meditations* codified this approach, emphasizing the importance of presence and global awareness within a performance space. Throughout her career, Oliveros moved fluidly between the rigorous worlds of academia and the intuitive realms of avant-garde improvisation. Her work bridge the gap between humanistic experience and technological innovation, leaving an indelible mark on generations of composers, ambient musicians, and sound artists who seek to understand the auditory environment in more profound, interconnected ways. Her legacy continues through the Center for Deep Listening at Rensselaer Polytechnic Institute.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Pauline-Oliveros",
+      "title": "Pauline Oliveros | American Composer, Musician & Innovator | Britannica"
+    },
+    {
+      "url": "https://www.deeplistening.rpi.edu/deep-listening/pauline-oliveros/",
+      "title": "Pauline Oliveros – The Center For Deep Listening"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:59.201Z",
+  "type": "artist",
+  "editorial_bio": "Pauline Oliveros was a foundational American composer, performer, and pioneer of electronic music, best known for establishing the philosophy and practice of 'Deep Listening.' Through her work with the accordion, tape, and soundscapes, she fundamentally expanded the boundaries of how we define and experience music.",
+  "photo_url": "https://www.deeplistening.rpi.edu/files/2020/07/223521942_360W-360x200.png",
+  "origin": "Houston, Texas, U.S.",
+  "active_years": "1950-2016",
+  "genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:san-francisco-tape-music-center",
+      "type": "label",
+      "name": "San Francisco Tape Music Center"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sonic-meditations",
+      "type": "project",
+      "name": "Sonic Meditations"
+    },
+    {
+      "slug": "project:deep-listening-pieces",
+      "type": "project",
+      "name": "Deep Listening Pieces"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

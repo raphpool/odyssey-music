@@ -1,0 +1,107 @@
+{
+  "slug": "genre:hard-rock",
+  "name": "Hard Rock",
+  "editorial_article": "Hard rock is a foundational genre of modern popular music, emerging in the mid-1960s from the collision of blues-rock and early psychedelia. Defined by a shift toward heavier, more aggressive guitar-driven sounds, hard rock moved away from the swing and fluidity of traditional blues toward a more rigid, thumping power. It is characterized by the use of distorted electric guitars—often playing anthemic, riff-based chord progressions—supported by thunderous drums and expressive, high-energy vocals. Unlike its more intense and darker cousin, heavy metal, hard rock has historically maintained an exuberant, party-oriented spirit and a focus on catchy, radio-ready hooks. \\n\\nThe genre solidified its identity in the early 1970s, with pivotal bands like Led Zeppelin, Deep Purple, and the Rolling Stones establishing a blueprint for stadium-filling rock. Throughout the decade, the aesthetic expanded to include the virtuosic guitar displays of Van Halen, the theatrical excess of Alice Cooper and Kiss, and the punchy, stripped-back riffs of AC/DC. While the 1980s saw the genre morph into the more polished sound of pop-metal and arena rock, artists such as Guns N' Roses maintained a grittier connection to the genre's roots. Despite the shifting tides of the alternative and grunge eras in the 1990s, the core values of hard rock—fist-pumping choruses, swaggering machismo, and the visceral thrill of high-amplification performance—remain a pervasive influence on contemporary guitar music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/hard-rock-ma0000002636",
+      "title": "Hard Rock Music Style Overview | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:13.324Z",
+  "type": "genre",
+  "editorial_definition": "A loud, aggressive subgenre of rock music that centers on distorted guitar riffs, anthemic choruses, and high-energy performance, serving as the bridge between 1960s blues-rock and heavier metal.",
+  "era": "1960s-present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy Metal"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues Rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:arena-rock",
+      "type": "genre",
+      "name": "Arena Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    },
+    {
+      "slug": "artist:ac-dc",
+      "type": "artist",
+      "name": "AC/DC"
+    },
+    {
+      "slug": "artist:aerosmith",
+      "type": "artist",
+      "name": "Aerosmith"
+    },
+    {
+      "slug": "artist:van-halen",
+      "type": "artist",
+      "name": "Van Halen"
+    },
+    {
+      "slug": "artist:guns-n-roses",
+      "type": "artist",
+      "name": "Guns N' Roses"
+    },
+    {
+      "slug": "artist:deep-purple",
+      "type": "artist",
+      "name": "Deep Purple"
+    },
+    {
+      "slug": "artist:cream",
+      "type": "artist",
+      "name": "Cream"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:led-zeppelin-iv",
+      "type": "project",
+      "name": "Led Zeppelin IV"
+    },
+    {
+      "slug": "project:highway-to-hell",
+      "type": "project",
+      "name": "Highway to Hell"
+    },
+    {
+      "slug": "project:van-halen",
+      "type": "project",
+      "name": "Van Halen"
+    },
+    {
+      "slug": "project:appetite-for-destruction",
+      "type": "project",
+      "name": "Appetite for Destruction"
+    }
+  ],
+  "landmark_tracks": []
+}

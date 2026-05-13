@@ -1,0 +1,50 @@
+{
+  "slug": "track:phylyps-trak",
+  "name": "Phylyps Trak",
+  "editorial_article": "\"Phylyps Trak\" is a seminal techno track by the influential Berlin duo Basic Channel, released in 1993 on their label of the same name. Often cited as a blueprint for the \"Berlin-Detroit\" sound, the track is renowned for its raw, hypnotic, and industrial-inflected aesthetic. Recorded live at the Waschhaus in Potsdam, it captures a transient, improvisational energy that defined much of the duo’s output during that era. The track is characterized by heavy, wobbling drum loops and complex, evolving synth sequences that create a deeply immersive listening experience. Over the years, \"Phylyps Trak\" has attained a status approaching the religious among techno enthusiasts, with its minimalist production serving as a masterclass in tension and release. \\n\\nIts enduring cultural significance lies in its departure from the more polished, upbeat sounds common in early 90s dance music, favoring instead a gritty, texture-focused approach that helped solidify the aesthetic identity of the Berlin techno scene. The track's influence can be heard in the subsequent waves of dub techno and minimal techno producers who looked to the Basic Channel discography as a foundational source of inspiration. With its persistent relevance and timeless sound, \"Phylyps Trak\" continues to be viewed as one of the most important compositions in electronic music history, embodying an essence of the genre that remains both avant-garde and rhythmically essential.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/2163-Basic-Channel-Phylyps-Trak?srsltid=AfmBOorzpYgBgHOxMyZfPuFVLh6ChW6BAPhHjpP2XGXjnH9mudLkNUgl",
+      "title": "Basic Channel – Phylyps Trak – Vinyl (12', 33 ⅓ RPM), 1993 [r2163] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:07.623Z",
+  "type": "track",
+  "editorial_teaser": "A seminal 1993 techno masterpiece by Basic Channel, \"Phylyps Trak\" is celebrated for its raw, industrial-inflected hypnotic energy and remains a foundational blueprint for the Berlin dub-techno sound.",
+  "year": "1993",
+  "duration": "9:46",
+  "artists": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    }
+  ],
+  "project": {
+    "slug": "project:phylyps-trak",
+    "type": "project",
+    "name": "Phylyps Trak"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

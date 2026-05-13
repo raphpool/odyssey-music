@@ -1,0 +1,62 @@
+{
+  "slug": "artist:marshall-jefferson",
+  "name": "Marshall Jefferson",
+  "editorial_article": "Marshall Jefferson, born September 19, 1959, in Chicago, stands as a pivotal architect of modern electronic music. Frequently cited as one of the founding fathers of house music, his contributions were instrumental in shaping the sound of the mid-1980s Chicago scene. After working at Universal Recording Studios, Jefferson connected with Larry Sherman of Trax Records, a partnership that would result in some of the most influential records in the history of dance music. He is perhaps best known for his 1986 anthem \"Move Your Body,\" a track that effectively laid the template for the commercial explosion of house music by incorporating soulful piano arrangements and infectious rhythms. Beyond his individual hits, Jefferson was a primary catalyst in the emergence of the acid house subgenre. He played a critical role in the production of early genre milestones like \"Acid Tracks\" by Phuture, pioneering the \"squelchy\" sonic signature derived from the Roland TB-303 synthesizer that would come to define the acid house movement worldwide. In addition to his own studio output, Jefferson was deeply involved in the production of high-profile house acts, including the first two albums by the influential group Ten City, as well as work for artists such as Ce Ce Rogers and Sterling Void. His legacy persists through his continued influence on generations of producers, and his seminal work remains a standard-bearer for the genre, recognized even by mainstream culture through appearances in global media.",
+  "citations": [
+    {
+      "url": "https://www.last.fm/music/Marshall+Jefferson/+wiki",
+      "title": "Marshall Jefferson age, hometown, biography | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:09.501Z",
+  "type": "artist",
+  "editorial_bio": "Marshall Jefferson, born September 19, 1959, in Chicago, stands as a pivotal architect of modern electronic music.",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:move-your-body",
+      "type": "track",
+      "name": "Move Your Body"
+    },
+    {
+      "slug": "track:acid-tracks",
+      "type": "track",
+      "name": "Acid Tracks"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

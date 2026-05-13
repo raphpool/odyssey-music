@@ -1,0 +1,72 @@
+{
+  "slug": "label:v2-records",
+  "name": "V2 Records",
+  "editorial_article": "V2 Records (short for Virgin 2) is a British independent record label founded in 1996 by entrepreneur Richard Branson, five years after he famously sold his original label, Virgin Records, to EMI. Intended to be a fresh platform for diverse musical talent, V2 established a significant footprint in the industry through both its own signing roster and a robust distribution and licensing arm. The label famously signed Stereophonics as its first act and went on to house critically and commercially successful artists such as Moby and The White Stripes. V2's operational philosophy evolved over the years, characterized by a complex history of acquisitions, management buyouts, and structural changes within the global music landscape.\\n\\nThroughout its history, V2 functioned as an umbrella for various imprints and distribution efforts. In 2005, the company launched Cooperative Music, a transnational operation designed to license independent labels for the European, Australian, and Japanese markets. This division became a pivotal vehicle for independent success, working with acts like Fleet Foxes, Phoenix, and The Black Keys. While the core V2 brand saw various ownership shifts—including a 2007 acquisition by Universal Music Group, a 2013 purchase by the [PIAS] Group, and subsequent equity movements—the label remains a recognized entity in the Benelux region, where it has maintained a distinct operation since a management buyout in 2007. Its legacy remains deeply tied to the shifting sands of the late 90s and 2000s music industry, representing the intersection of major label infrastructure and independent artistry.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/V2_Records",
+      "title": "V2 Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:23.540Z",
+  "type": "label",
+  "editorial_description": "V2 Records is a multi-national record label founded by Richard Branson in 1996, known for its significant roster of rock and electronic artists and its role in distributing independent music globally through initiatives like Cooperative Music.",
+  "founded": "1996",
+  "location": "Hilversum, The Netherlands (current)",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:stereophonics",
+      "type": "artist",
+      "name": "Stereophonics"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby"
+    },
+    {
+      "slug": "artist:the-white-stripes",
+      "type": "artist",
+      "name": "The White Stripes"
+    },
+    {
+      "slug": "artist:kaiser-chiefs",
+      "type": "artist",
+      "name": "Kaiser Chiefs"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:performance-and-cocktails",
+      "type": "project",
+      "name": "Performance and Cocktails"
+    },
+    {
+      "slug": "project:play",
+      "type": "project",
+      "name": "Play"
+    },
+    {
+      "slug": "project:white-blood-cells",
+      "type": "project",
+      "name": "White Blood Cells"
+    }
+  ]
+}

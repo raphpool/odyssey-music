@@ -1,0 +1,57 @@
+{
+  "slug": "artist:shinichi-yuize",
+  "name": "Shinichi Yuize",
+  "editorial_article": "Shinichi Yuize (1923–2003) was a Japanese composer and koto virtuoso whose work bridged the gap between traditional Japanese court music and contemporary composition. Throughout the mid-20th century, Yuize became one of the most prominent international ambassadors for the koto—a 13-stringed zither that traces its origins to the 7th-century Chinese guzheng. His career was defined by a deep reverence for the classical repertoire of the Edo period, exemplified by his mastery of works like the 16th-century 'Rokudan,' while simultaneously championing the modernization of the instrument.\\n\\nYuize’s significance in music history lies in his ability to push the koto beyond strictly traditional confines. His own compositions, often categorized as contemporary, incorporated Western-influenced structural elements and programmatic themes, as heard in works like his 'Dance Suite' or 'Three Etudes,' which depict everything from local festivals to scenes of nature and labor. He was instrumental in bringing Japanese traditional music to Western audiences, with notable recordings issued on labels like Smithsonian Folkways, which helped introduce the intricate, percussive, and delicate tonal possibilities of the koto to international ears. His contributions established a template for later generations of Japanese avant-garde and traditional musicians who sought to integrate the koto into diverse musical frameworks.",
+  "citations": [
+    {
+      "url": "https://folkways.si.edu/shinichi-yuize/the-japanese-koto/world/music/album/smithsonian",
+      "title": "The Japanese Koto | Smithsonian Folkways Recordings"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=uheE9vhk1uM",
+      "title": "Musique du Japon Impérial (Shinichi Yuize) (1959, LP, vinyl)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:11.117Z",
+  "type": "artist",
+  "editorial_bio": "A distinguished Japanese composer and koto virtuoso, Shinichi Yuize was central to preserving classical repertoire while pioneering contemporary compositions for the instrument during the mid-20th century.",
+  "photo_url": "https://folkways-media.si.edu/images/album_covers/SF700/COOK01132.jpg",
+  "origin": "Japan",
+  "genres": [
+    {
+      "slug": "genre:traditional-japanese-music",
+      "type": "genre",
+      "name": "Traditional Japanese Music"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:smithsonian-folkways-recordings",
+      "type": "label",
+      "name": "Smithsonian Folkways Recordings"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:rokudan",
+      "type": "track",
+      "name": "Rokudan"
+    },
+    {
+      "slug": "track:dance-suite-shuttlecock-lantern-parade-ainu-children-s-dance",
+      "type": "track",
+      "name": "Dance Suite: Shuttlecock, Lantern Parade, Ainu Children's Dance"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "label:stockhausen-verlag",
+  "name": "Stockhausen-Verlag",
+  "editorial_article": "Stockhausen-Verlag is a specialized German record label founded by the pioneering avant-garde composer Karlheinz Stockhausen. Dedicated exclusively to the preservation and dissemination of his vast and complex body of work, the label serves as the primary archival repository for his compositions, scores, books, and audiovisual recordings. Unlike conventional commercial labels, Stockhausen-Verlag was established as a centralized entity to ensure that the composer maintained absolute authority over the production, presentation, and sonic integrity of his music. \\n\\nBy managing his own distribution, Stockhausen was able to bypass the inconsistencies of major labels—many of which had previously issued his work, such as Deutsche Grammophon—and guarantee that his intricate vision for spatialized sound, electronic music, and large-scale serialist works reached his audience exactly as he intended. The catalog, which is organized through the \"Stockhausen-Gesamtausgabe\" (Complete Edition), offers listeners an unprecedented look into one of the most influential minds in 20th-century music. From his early electronic experiments to the monumental cycles of his later years, the label functions as a living document of a singular artistic career. It continues to be essential for scholars, performers, and listeners seeking authoritative editions of his music, ensuring that his technical innovations and compositional methods remain accessible and properly documented for future generations.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/34911-Stockhausen-Verlag?srsltid=AfmBOoo3C0K9Ris2WylD0XmCyCEzAK7bvSc775bwbt-We_a-ExRAWsL3",
+      "title": "Stockhausen-Verlag | Discogs"
+    },
+    {
+      "url": "https://www.karlheinzstockhausen.org/complete_list_of_works_english.htm",
+      "title": "KARLHEINZ STOCKHAUSEN: COMPLETE LIST OF WORKS"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:10.206Z",
+  "type": "label",
+  "editorial_description": "A specialized German record label founded by Karlheinz Stockhausen to serve as the definitive, composer-controlled archive and distributor for his complete body of work.",
+  "founded": "1975",
+  "location": "Germany",
+  "genres": [
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:mantra",
+      "type": "project",
+      "name": "Mantra"
+    },
+    {
+      "slug": "project:momente",
+      "type": "project",
+      "name": "Momente"
+    },
+    {
+      "slug": "project:licht-bilder",
+      "type": "project",
+      "name": "Licht-Bilder"
+    }
+  ]
+}

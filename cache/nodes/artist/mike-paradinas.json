@@ -1,0 +1,150 @@
+{
+  "slug": "artist:mike-paradinas",
+  "name": "Mike Paradinas",
+  "editorial_article": "Michael Robert Paradinas, born in 1971 in Wimbledon, London, is a seminal figure in British electronic music, celebrated for his prolific output and his role as the founder of the influential independent label Planet Mu. Emerging in the early 1990s, Paradinas first gained widespread recognition under the alias μ-Ziq (pronounced \"music\"). His association with Richard D. James (Aphex Twin) and the Rephlex Records label placed him at the heart of the burgeoning Intelligent Dance Music (IDM) scene. Paradinas is renowned for his restless sonic exploration, seamlessly traversing styles such as techno, jazz-funk, experimental breakbeat, and what would become known as drill 'n' bass.\\n\\nHis 1997 album, *Lunatic Harness*, stands as a landmark release in his catalog, credited with helping define the frantic, intricate rhythms of the drill 'n' bass subgenre. Throughout the mid-90s, Paradinas’s creative output was staggering; he utilized a multitude of aliases—including Jake Slazenger, Kid Spatula, Tusken Raiders, and Gary Moscheles—each serving as a vessel for his shifting aesthetic interests. This period also saw him collaborate with Aphex Twin under the moniker Mike & Rich for the 1996 album *Expert Knob Twiddlers*.\\n\\nBeyond his work as a producer, Paradinas’s impact on electronic music culture is cemented by his establishment of Planet Mu in 1995. Originally conceived as a sub-label under Virgin Records before becoming an independent entity, Planet Mu has been instrumental in championing forward-thinking genres, including IDM, juke, and footwork, while providing a platform for artists like Venetian Snares and Jega. His commitment to innovation has kept him active and relevant for over three decades, continuing to release music well into the 2020s while maintaining a collaborative relationship with his wife, musician Lara Rix-Martin, with whom he records as Heterotic.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mike_Paradinas",
+      "title": "Mike Paradinas - Wikipedia"
+    },
+    {
+      "url": "https://es.ra.co/dj/u-ziq/biography",
+      "title": "µ-Ziq · Biografía - Resident Advisor"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/mike-paradinas-mn0000415399",
+      "title": "Mike Paradinas - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:38.415Z",
+  "type": "artist",
+  "editorial_bio": "Prolific British electronic musician, founder of Planet Mu, and a primary architect of 1990s IDM and drill 'n' bass under the μ-Ziq moniker.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mike_Paradinas_%28cropped%29.jpg/500px-Mike_Paradinas_%28cropped%29.jpg",
+  "origin": "Wimbledon, London, England",
+  "active_years": "Late 1980s–present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    },
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tango-n-vectif",
+      "type": "project",
+      "name": "Tango n' Vectif"
+    },
+    {
+      "slug": "project:lunatic-harness",
+      "type": "project",
+      "name": "Lunatic Harness"
+    },
+    {
+      "slug": "project:expert-knob-twiddlers",
+      "type": "project",
+      "name": "Expert Knob Twiddlers"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:brace-yourself",
+      "type": "track",
+      "name": "Brace Yourself"
+    },
+    {
+      "slug": "track:the-fear",
+      "type": "track",
+      "name": "The Fear"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:lara-rix-martin",
+      "type": "artist",
+      "name": "Lara Rix-Martin"
+    },
+    {
+      "slug": "artist:francis-naughton",
+      "type": "artist",
+      "name": "Francis Naughton"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:tusken-raiders",
+      "type": "artist",
+      "name": "Tusken Raiders"
+    },
+    {
+      "slug": "artist:kid-spatula",
+      "type": "artist",
+      "name": "Kid Spatula"
+    },
+    {
+      "slug": "artist:rude-ass-tinker",
+      "type": "artist",
+      "name": "Rude Ass Tinker"
+    },
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger"
+    },
+    {
+      "slug": "artist:gary-moscheles",
+      "type": "artist",
+      "name": "Gary Moscheles"
+    },
+    {
+      "slug": "artist:frost-jockey",
+      "type": "artist",
+      "name": "Frost Jockey"
+    },
+    {
+      "slug": "artist:heterotic",
+      "type": "artist",
+      "name": "Heterotic"
+    }
+  ],
+  "members": []
+}

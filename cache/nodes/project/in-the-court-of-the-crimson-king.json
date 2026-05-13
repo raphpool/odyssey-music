@@ -1,0 +1,73 @@
+{
+  "slug": "project:in-the-court-of-the-crimson-king",
+  "name": "In the Court of the Crimson King",
+  "editorial_article": "Released in October 1969, 'In the Court of the Crimson King' is widely regarded as the cornerstone of the progressive rock genre. King Crimson, led by guitarist Robert Fripp, crafted a sound that defied the boundaries of the era's psychedelic and blues-rock trends. The album is characterized by its dynamic shifts, ranging from the frantic, dissonant intensity of '21st Century Schizoid Man' to the melancholic, symphonic beauty of the title track. \\n\\nThe record's success was largely built on the virtuosic contributions of its members, including Greg Lake’s powerful vocals and bass, and Michael Giles' fluid, complex drumming. Beyond the technical proficiency, the album is famous for its haunting, iconic cover art painted by Barry Godber, which matches the album's often dark and introspective atmosphere. By integrating mellotrons, jazz-inspired improvisations, and complex structures, the band set a blueprint for symphonic rock that would influence countless artists in the subsequent decades. It remains a essential document of the counterculture era, representing a bold leap into experimental music that still resonates with listeners today.\\n",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/406634-King-Crimson-In-The-Court-Of-The-Crimson-King-An-Observation-By-King-Crimson",
+      "title": "King Crimson – In The Court Of The Crimson King (An Observation By King Crimson) | Releases | Discogs"
+    },
+    {
+      "url": "https://genius.com/albums/King-crimson/In-the-court-of-the-crimson-king",
+      "title": "King Crimson - In the Court of the Crimson King Lyrics and Tracklist | Genius"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:07.347Z",
+  "type": "project",
+  "editorial_pitch": "A landmark of progressive rock, King Crimson's debut album blended jazz, classical, and hard rock into a haunting, symphonic masterpiece that remains one of the most influential records of the late 1960s.",
+  "cover_url": "https://i.discogs.com/kHBUxoIdI-naKXWCubfnP4hiZoobtC5RLqqHjk3GF84/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyODc2/NjktMTYwMDU5MDg4/MC00MDU3LmpwZWc.jpeg",
+  "year": "1969",
+  "artists": [
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson"
+    }
+  ],
+  "label": {
+    "slug": "label:island-records",
+    "type": "label",
+    "name": "Island Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:symphonic-rock",
+      "type": "genre",
+      "name": "Symphonic Rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:21st-century-schizoid-man",
+      "type": "track",
+      "name": "21st Century Schizoid Man"
+    },
+    {
+      "slug": "track:i-talk-to-the-wind",
+      "type": "track",
+      "name": "I Talk to the Wind"
+    },
+    {
+      "slug": "track:epitaph",
+      "type": "track",
+      "name": "Epitaph"
+    },
+    {
+      "slug": "track:moonchild",
+      "type": "track",
+      "name": "Moonchild"
+    },
+    {
+      "slug": "track:the-court-of-the-crimson-king",
+      "type": "track",
+      "name": "The Court of the Crimson King"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

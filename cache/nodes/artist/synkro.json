@@ -1,0 +1,113 @@
+{
+  "slug": "artist:synkro",
+  "name": "Synkro",
+  "editorial_article": "Synkro, the alias of Manchester-based producer Joe McBride, is a seminal figure in the evolution of modern UK bass, ambient, and downtempo music. Rising to prominence in the late 2000s, he initially made his mark within the burgeoning dubstep and UK garage scenes, releasing bass-heavy, rhythmically swinging tracks that echoed the moody, nocturnal textures of pioneers like Burial. However, McBride’s sound was never static; as the 2010s progressed, he navigated a sophisticated pivot toward atmospheric drum and bass, ambient, and IDM. His discography serves as a map of this stylistic shift—moving from the early, raw energy of his work on labels like Smokin' Sessions to the more introspective, sound-design-heavy projects found on R&S Records' Apollo imprint. Notable for his complex beat programming and fragile, melancholic melodies, Synkro has cultivated a distinct sonic language that bridges the gap between dancefloor-focused bass music and cerebral, home-listening electronica. Beyond his solo output, he has maintained a rich collaborative spirit, most notably as one-half of the experimental duo Akkord alongside Indigo, as well as working with artists like ASC and Arovane. Through years of consistent output, Synkro remains a respected architect of atmospheric electronic music, continuously refining a sound characterized by its emotional resonance and technical precision. His trajectory from gritty UK dancefloors to the expansive, ethereal soundscapes of his recent work highlights his versatility and sustained influence within the global electronic community.",
+  "citations": [
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Synkro",
+      "title": "Synkro | Bass Music Wiki - Fandom"
+    },
+    {
+      "url": "https://music.apple.com/us/artist/synkro/119630330",
+      "title": "Synkro - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:24.800Z",
+  "type": "artist",
+  "editorial_bio": "Manchester-based electronic producer known for his atmospheric, melancholic fusion of dubstep, UK garage, and ambient music.",
+  "origin": "Manchester, United Kingdom",
+  "active_years": "2007-present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:apollo",
+      "type": "label",
+      "name": "Apollo"
+    },
+    {
+      "slug": "label:smokin-sessions",
+      "type": "label",
+      "name": "Smokin' Sessions"
+    },
+    {
+      "slug": "label:deep-heads",
+      "type": "label",
+      "name": "Deep Heads"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:acceptance",
+      "type": "project",
+      "name": "Acceptance"
+    },
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes"
+    },
+    {
+      "slug": "project:images",
+      "type": "project",
+      "name": "Images"
+    },
+    {
+      "slug": "project:broken-promise",
+      "type": "project",
+      "name": "Broken Promise"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:memories-of-love",
+      "type": "track",
+      "name": "Memories of Love"
+    },
+    {
+      "slug": "track:look-at-yourself",
+      "type": "track",
+      "name": "Look at Yourself"
+    },
+    {
+      "slug": "track:midnight-sun",
+      "type": "track",
+      "name": "Midnight Sun"
+    },
+    {
+      "slug": "track:acceptance",
+      "type": "track",
+      "name": "Acceptance"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

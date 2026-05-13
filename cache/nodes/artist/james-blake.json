@@ -1,0 +1,113 @@
+{
+  "slug": "artist:james-blake",
+  "name": "James Blake",
+  "editorial_article": "James Blake Litherland, professionally known as James Blake, is an English singer, songwriter, and record producer who redefined the boundaries of electronic music and soul in the early 2010s. Born in London in 1988, he emerged from the vibrant U.K. dubstep scene, but his work quickly transcended the genre's typical rhythmic constraints. By merging the sparse, bass-heavy aesthetic of dubstep with the emotional vulnerability of contemporary R&B and the melodic sensibility of a classically trained pianist, Blake created a singular, fractured sound characterized by heavy use of space, vocal manipulation, and intimate lyrical themes. His 2011 self-titled debut album marked a critical turning point, establishing his identity as a musician who could just as comfortably inhabit the dark, sub-bass-filled atmosphere of a club track as he could the delicate landscape of a piano ballad. Over the following decade, he became a central figure in modern pop and hip-hop, lending his voice and production talents to high-profile collaborators including Beyoncé, Kendrick Lamar, Frank Ocean, and Bon Iver. His second album, 2013's Overgrown, cemented his status by earning him the prestigious Mercury Prize, and his subsequent releases—such as The Colour in Anything and Assume Form—continued to push his experimental pop sensibilities toward broader commercial success. Despite his high-profile collaborations, Blake has consistently returned to his electronic roots, as evidenced by his 2023 album Playing Robots Into Heaven, which revisited the jagged, rhythmically focused compositions of his early career. Today, he is widely regarded for his ability to translate internal emotional intensity into dense, avant-garde electronic landscapes, influencing a generation of musicians who work at the intersection of pop, soul, and electronic music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/james-blake-mn0002435745",
+      "title": "James Blake Songs, Albums, Reviews, Bio & More... | AllMusic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/James_Blake_discography",
+      "title": "James Blake discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:30.967Z",
+  "type": "artist",
+  "editorial_bio": "James Blake is a genre-defying English producer and singer-songwriter known for his pioneering, atmospheric fusion of dubstep textures and emotive, soulful R&B ballads. He gained widespread acclaim for his self-titled debut in 2011 and has since become an influential figure in modern pop, collaborating with artists such as Beyoncé, Kendrick Lamar, and Bon Iver.",
+  "origin": "Enfield, London, England",
+  "active_years": "2000s - 2020s",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hemlock-recordings",
+      "type": "label",
+      "name": "Hemlock Recordings"
+    },
+    {
+      "slug": "label:r-and-s-records",
+      "type": "label",
+      "name": "R&S Records"
+    },
+    {
+      "slug": "label:atlas-recordings",
+      "type": "label",
+      "name": "Atlas Recordings"
+    },
+    {
+      "slug": "label:polydor-records",
+      "type": "label",
+      "name": "Polydor Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:james-blake",
+      "type": "project",
+      "name": "James Blake"
+    },
+    {
+      "slug": "project:overgrown",
+      "type": "project",
+      "name": "Overgrown"
+    },
+    {
+      "slug": "project:the-colour-in-anything",
+      "type": "project",
+      "name": "The Colour in Anything"
+    },
+    {
+      "slug": "project:assume-form",
+      "type": "project",
+      "name": "Assume Form"
+    },
+    {
+      "slug": "project:playing-robots-into-heaven",
+      "type": "project",
+      "name": "Playing Robots Into Heaven"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:limit-to-your-love",
+      "type": "track",
+      "name": "Limit to Your Love"
+    },
+    {
+      "slug": "track:retrograde",
+      "type": "track",
+      "name": "Retrograde"
+    },
+    {
+      "slug": "track:cmyk",
+      "type": "track",
+      "name": "CMYK"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

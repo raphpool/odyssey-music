@@ -1,0 +1,95 @@
+{
+  "slug": "artist:b12",
+  "name": "B12",
+  "editorial_article": "B12 is a pioneering British electronic music duo consisting of Mike Golding and Steve Rutter. Emerging in the early 1990s, they became instrumental figures in the development of intelligent techno and the broader IDM (Intelligent Dance Music) scene. Throughout their career, they have recorded under various aliases including Musicology, Redcell, and Cmetric, which allowed them to experiment with different facets of their sound. Their aesthetic is characterized by intricate, atmospheric synthesizer work and a deep appreciation for the melodic, futuristic sensibilities of Detroit techno, which led many early listeners to misidentify them as an American act. With their seminal release 'Electro-Soma' on Warp Records, B12 helped bridge the gap between hard-hitting dancefloor techno and the more cerebral, introspective electronica that defined the UK underground in the mid-90s. Beyond their work as producers, they founded the B12 Records label, playing a crucial role in curating the sound of UK techno during its formative years. Their legacy continues to be celebrated, with extensive archival projects and reissues keeping their early, influential material accessible to contemporary audiences. Today, they remain a foundational reference point for producers exploring the intersection of precise electronic sequencing and deep, evocative atmospheric textures. By crafting a sound that felt both human and machine-made, B12 ensured their place in the lineage of artists who moved electronic music from the club into the living room and beyond, profoundly influencing generations of bedroom producers and high-concept electronic artists. Their work remains a cornerstone of the 'Artificial Intelligence' era.",
+  "citations": [
+    {
+      "url": "https://warp.net/artists/b12",
+      "title": "B12 - Artists - WARP"
+    },
+    {
+      "url": "https://www.theaudiodb.com/artist/143979-B12",
+      "title": "B12 | TheAudioDB.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:04.331Z",
+  "type": "artist",
+  "editorial_bio": "B12 is a pioneering British electronic music duo consisting of Mike Golding and Steve Rutter.",
+  "photo_url": "https://d1rgjmn2wmqeif.cloudfront.net/a/2000/98.jpg",
+  "origin": "United Kingdom",
+  "active_years": "1990s - present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:b12-records",
+      "type": "label",
+      "name": "B12 Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:electro-soma",
+      "type": "project",
+      "name": "Electro-Soma"
+    },
+    {
+      "slug": "project:time-tourist",
+      "type": "project",
+      "name": "Time Tourist"
+    },
+    {
+      "slug": "project:last-days-of-silence",
+      "type": "project",
+      "name": "Last Days of Silence"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:scriptures",
+      "type": "track",
+      "name": "Scriptures"
+    },
+    {
+      "slug": "track:soundtrack-of-space",
+      "type": "track",
+      "name": "Soundtrack of Space"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:mike-golding",
+      "type": "artist",
+      "name": "Mike Golding"
+    },
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    }
+  ]
+}

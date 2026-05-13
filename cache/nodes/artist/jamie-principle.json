@@ -1,0 +1,97 @@
+{
+  "slug": "artist:jamie-principle",
+  "name": "Jamie Principle",
+  "editorial_article": "Born Byron Walton on the South Side of Chicago in 1960, Jamie Principle is a foundational figure in the development of house music. Unlike many of his contemporaries who looked primarily to funk and disco for inspiration, Principle drew heavily from the electronic textures of David Bowie, Depeche Mode, The Human League, and Prince. By 1980, he was writing songs using synthesizers and his own drum accompaniment. Through the assistance of DJ José Gomez, his reel-to-reel demos found their way into the hands of Frankie Knuckles, who championed tracks like \"Your Love\" and \"Baby Wants to Ride\" at the Warehouse. These recordings, which bridged the gap between early dance-floor experimentation and traditional songwriting, are considered some of the first true vocal house songs. Though his relationship with the Chicago house establishment was often contentious—marked by disputes over rights and production credits—his influence remains undeniable. His work, characterized by sexually charged lyrics and dark, synthetic melodies, defined the sound of the mid-80s Chicago club scene and laid the template for the evolution of dance music. Throughout his long career, Principle has consistently pushed the boundaries of the electronic medium, collaborating with other pioneers like Steve \"Silk\" Hurley and Jesse Saunders, while maintaining his distinct, songwriting-first approach that separates him from the purely beat-driven artists of his era. Even as his profile shifted from local Chicago secret to international figure, the core of his musical identity remained rooted in that singular moment in the early 80s when the pulse of the warehouse was synonymous with his voice.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/jamie-principle-mn0000808155",
+      "title": "Jamie Principle Songs, Albums, Reviews, Bio & ... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:09.995Z",
+  "type": "artist",
+  "editorial_bio": "A Chicago house originator and songwriter who fused electronic pop sensibilities with the raw, synthetic energy of the city's early dance floors.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000808155/400/Sl4whlz86YpaNH1pCaNMe1WnbEN5fCjifro6xhIBuB4=.jpg",
+  "origin": "Chicago, Illinois",
+  "active_years": "1980s-2020s",
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:smash-records",
+      "type": "label",
+      "name": "Smash Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:midnite-hour",
+      "type": "project",
+      "name": "Midnite Hour"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:your-love",
+      "type": "track",
+      "name": "Your Love"
+    },
+    {
+      "slug": "track:baby-wants-to-ride",
+      "type": "track",
+      "name": "Baby Wants to Ride"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve Silk Hurley"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:byron-walton",
+      "type": "artist",
+      "name": "Byron Walton"
+    }
+  ],
+  "members": []
+}

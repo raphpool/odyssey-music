@@ -1,0 +1,78 @@
+{
+  "slug": "artist:nick-drake",
+  "name": "Nick Drake",
+  "editorial_article": "Nick Drake (1948–1974) was a singular and deeply influential English singer-songwriter whose brief, tragic career stands as one of the most poignant examples of posthumous recognition in music history. Born in Rangoon to English parents and raised in the rural village of Tanworth-in-Arden, Drake was an exceptionally gifted guitarist known for his intricate fingerpicking, unusual open tunings, and somber, evocative lyrics. While still a student at Cambridge, he was discovered by Fairport Convention member Ashley Hutchings, which led to a contract with Island Records. Working with producer Joe Boyd, Drake released three studio albums—'Five Leaves Left' (1969), 'Bryter Layter' (1970), and 'Pink Moon' (1972)—each showcasing a different facet of his artistry, moving from lush, orchestrally-arranged folk to the stark, haunting minimalism of his final recording. Drake never found commercial success during his lifetime, hampered by his profound aversion to live performance and his withdrawal into deep depression. He died in 1974 from an overdose of antidepressant medication. In the decades since, his music has undergone an immense critical re-evaluation, solidifying his status as a master of intimate, atmospheric folk and an essential influence on generations of alternative and singer-songwriter artists. His legacy continues to grow as his songs find new audiences, revealing an artist whose vulnerability and technical mastery were far ahead of his time.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Nick-Drake",
+      "title": "Nick Drake | Biography, Albums, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nick_Drake_discography",
+      "title": "Nick Drake discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:47.035Z",
+  "type": "artist",
+  "editorial_bio": "An English folk musician known for intricate guitar work and haunting, introspective songwriting during the late 1960s and early 1970s.",
+  "origin": "Tanworth-in-Arden, England",
+  "active_years": "1968-1974",
+  "genres": [
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:five-leaves-left",
+      "type": "project",
+      "name": "Five Leaves Left"
+    },
+    {
+      "slug": "project:bryter-layter",
+      "type": "project",
+      "name": "Bryter Layter"
+    },
+    {
+      "slug": "project:pink-moon",
+      "type": "project",
+      "name": "Pink Moon"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pink-moon",
+      "type": "track",
+      "name": "Pink Moon"
+    },
+    {
+      "slug": "track:river-man",
+      "type": "track",
+      "name": "River Man"
+    },
+    {
+      "slug": "track:place-to-be",
+      "type": "track",
+      "name": "Place to Be"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

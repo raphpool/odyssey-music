@@ -1,0 +1,116 @@
+{
+  "slug": "genre:post-punk",
+  "name": "Post-Punk",
+  "editorial_article": "Post-punk emerged in the late 1970s as a transformative, experimental offshoot of the initial punk rock explosion. While punk was defined by its raw, aggressive simplicity and anti-establishment spirit, post-punk sought to dismantle those very boundaries, trading traditional three-chord structures for atmospheric, avant-garde, and often melancholic textures. The genre acted as a sonic laboratory, absorbing influences from dub, funk, disco, electronic music, and krautrock to create a sound that was darker, more intellectual, and significantly more rhythmically complex than its predecessor. \\n\\nCentered largely in the UK, but with vital roots in cities like New York, the movement pushed music into a \"post-\" state where the rules of rock were being rewritten in real-time. Bands often adopted a sardonic or cynical lyrical perspective, moving away from explicit political sloganeering toward introspection, alienation, and surrealist narratives. Landmark acts such as Joy Division, Siouxsie and the Banshees, The Fall, and Gang of Four exemplified the movement's versatility—from Joy Division’s stark, icy minimalism to Gang of Four’s angular, funk-infused social critiques. The genre was also characterized by its \"do-it-yourself\" ethos, as the spirit of independence from punk fueled the rise of influential independent labels and a network of creative production that would influence alternative and indie rock for decades to come. By roughly 1984, the initial wave had dissipated, but its DNA—defined by bass-heavy rhythms, atmospheric guitar layering, and a refusal to be categorized—remains a foundational influence on modern indie, industrial, and dance-punk artists.",
+  "citations": [
+    {
+      "url": "https://www.nme.com/features/best-post-punk-albums-ever-joy-division-the-fall-souxsie-and-the-banshees-2742625",
+      "title": "The 15 best post-punk albums ever"
+    },
+    {
+      "url": "https://daysofpunk.com/06/2023/fashion/blog/5-iconic-bands-that-defined-post-punk",
+      "title": "5 Iconic Bands that Defined Post-Punk » Days of Punk"
+    },
+    {
+      "url": "https://blog.roughtrade.com/rough-trade-essential-post-punk/",
+      "title": "Rough Trade Essential: Post-Punk"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:04.656Z",
+  "type": "genre",
+  "editorial_definition": "Post-punk is an experimental, art-leaning evolution of punk rock that emerged in the late 1970s, characterized by darker, atmospheric textures, rhythmic complexity, and the incorporation of genres like funk, dub, and electronic music.",
+  "era": "Late 1970s – Mid 1980s",
+  "origin": "United Kingdom and United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:gothic-rock",
+      "type": "genre",
+      "name": "Gothic Rock"
+    },
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division"
+    },
+    {
+      "slug": "artist:the-fall",
+      "type": "artist",
+      "name": "The Fall"
+    },
+    {
+      "slug": "artist:siouxsie-and-the-banshees",
+      "type": "artist",
+      "name": "Siouxsie and the Banshees"
+    },
+    {
+      "slug": "artist:gang-of-four",
+      "type": "artist",
+      "name": "Gang of Four"
+    },
+    {
+      "slug": "artist:suicide",
+      "type": "artist",
+      "name": "Suicide"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rough-trade",
+      "type": "label",
+      "name": "Rough Trade"
+    },
+    {
+      "slug": "label:factory-records",
+      "type": "label",
+      "name": "Factory Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:unknown-pleasures",
+      "type": "project",
+      "name": "Unknown Pleasures"
+    },
+    {
+      "slug": "project:entertainment",
+      "type": "project",
+      "name": "Entertainment!"
+    },
+    {
+      "slug": "project:the-scream",
+      "type": "project",
+      "name": "The Scream"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:love-will-tear-us-apart",
+      "type": "track",
+      "name": "Love Will Tear Us Apart"
+    },
+    {
+      "slug": "track:damaged-goods",
+      "type": "track",
+      "name": "Damaged Goods"
+    }
+  ]
+}

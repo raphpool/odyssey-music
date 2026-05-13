@@ -1,0 +1,130 @@
+{
+  "slug": "artist:karlheinz-stockhausen",
+  "name": "Karlheinz Stockhausen",
+  "editorial_article": "Karlheinz Stockhausen (1928–2007) was a monumental German composer and a central figure of the post-war avant-garde, widely regarded as one of the most influential and innovative figures in the history of 20th-century music. Associated early on with the Darmstadt School, Stockhausen was a pioneer of total serialism, but he quickly moved beyond rigid structures to become the \"father of electronic music.\" Throughout his prolific sixty-year career, he fundamentally changed how music is conceptualized, performed, and experienced. Working extensively at the WDR Electronic Music Studio in Cologne, he introduced revolutionary techniques including controlled aleatory (chance) elements, complex spatialization, and live-electronic performance. His massive, genre-defying output ranges from intimate miniatures for music boxes to the epic seven-part opera cycle *Licht*. Stockhausen’s work sought to restore a sense of philosophical and spiritual significance to music, often bridging the gap between scientific rigorousness and metaphysical exploration. His influence remains pervasive, extending far beyond the conservatory into the realms of jazz, psychedelic rock, and experimental electronic music. Beyond his compositions, he was a prolific writer, educator, and tireless advocate for the sonic possibilities of the future. By re-imagining the performance space and the electronic medium, Stockhausen solidified his status as an architect of sound, whose impact on contemporary sonic arts—from ambient to industrial—is almost impossible to overstate. He remains a towering figure, both revered for his uncompromising vision and debated for his singular, often radical, approach to the art of sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Karlheinz_Stockhausen",
+      "title": "Karlheinz Stockhausen - Wikipedia"
+    },
+    {
+      "url": "https://www.deutschegrammophon.com/en/composers/karlheinz-stockhausen/news/biography-128793",
+      "title": "Biography - Karlheinz Stockhausen | Deutsche Grammophon"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:47.521Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering German composer and central figure of the 20th-century avant-garde, renowned for his revolutionary contributions to electronic music, serialism, and spatialized sound.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Stockhausen_1994_WDR.jpg/960px-Stockhausen_1994_WDR.jpg",
+  "origin": "Mödrath, Germany",
+  "active_years": "1950–2007",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    },
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:deutsche-grammophon",
+      "type": "label",
+      "name": "Deutsche Grammophon"
+    },
+    {
+      "slug": "label:stockhausen-verlag",
+      "type": "label",
+      "name": "Stockhausen-Verlag"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:klavierstucke-i-xi",
+      "type": "project",
+      "name": "Klavierstücke I–XI"
+    },
+    {
+      "slug": "project:gesang-der-junglinge",
+      "type": "project",
+      "name": "Gesang der Jünglinge"
+    },
+    {
+      "slug": "project:gruppen",
+      "type": "project",
+      "name": "Gruppen"
+    },
+    {
+      "slug": "project:kontakte",
+      "type": "project",
+      "name": "Kontakte"
+    },
+    {
+      "slug": "project:momente",
+      "type": "project",
+      "name": "Momente"
+    },
+    {
+      "slug": "project:hymnen",
+      "type": "project",
+      "name": "Hymnen"
+    },
+    {
+      "slug": "project:stimmung",
+      "type": "project",
+      "name": "Stimmung"
+    },
+    {
+      "slug": "project:mantra",
+      "type": "project",
+      "name": "Mantra"
+    },
+    {
+      "slug": "project:licht",
+      "type": "project",
+      "name": "Licht"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:gesang-der-junglinge",
+      "type": "track",
+      "name": "Gesang der Jünglinge"
+    },
+    {
+      "slug": "track:kontakte",
+      "type": "track",
+      "name": "Kontakte"
+    },
+    {
+      "slug": "track:stimmung",
+      "type": "track",
+      "name": "Stimmung"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "artist:studio1",
+  "name": "Studio1",
+  "editorial_article": "Studio 1 is one of the most significant and influential aliases of the Cologne-based electronic music producer Wolfgang Voigt. Launched in 1995, the project functioned as a conceptual exploration of minimal techno, characterized by a rigorous, minimalist aesthetic that stripped dance music down to its most fundamental, hypnotic elements. The project is perhaps best remembered for its series of ten 12-inch vinyl releases, each featuring identical minimalist design, differentiated only by their distinct color-coded sleeves. These releases became iconic staples of the German electronic scene and served as essential precursors to the broader minimal techno movement that would dominate European dance floors in the late 1990s and 2000s. Unlike many of his other projects, such as the lush, forest-inspired textures of Gas, Studio 1 showcased Voigt's capacity for cold, precise, and driving rhythmic structures. The project's output was eventually compiled in 2009, cementing its legacy as a pivotal touchstone in contemporary electronic music history. Through this work, Voigt helped define the sonic landscape of Cologne’s techno sound, exerting an influence that stretched far beyond the city’s underground clubs. By stripping away melodic complexity in favor of textural and rhythmic repetition, Studio 1 anticipated the direction of a whole generation of electronic producers, making it a critical entity for understanding the evolution of techno in the post-rave era.",
+  "citations": [
+    {
+      "url": "https://kompakt.fm/releases/studio_1",
+      "title": "Studio 1 by Studio 1 | Kompakt"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Wolfgang_Voigt",
+      "title": "Wolfgang Voigt - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:53.086Z",
+  "type": "artist",
+  "editorial_bio": "Studio 1 is one of the most significant and influential aliases of the Cologne-based electronic music producer Wolfgang Voigt.",
+  "genres": [],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "label:kms-records",
+  "name": "KMS Records",
+  "editorial_article": "KMS Records, an acronym for Kevin Maurice Saunderson, stands as one of the fundamental pillars of the Detroit techno sound. Founded in 1987 by Kevin Saunderson—a central figure in the Belleville Three alongside Derrick May and Juan Atkins—the label was conceived as a vehicle to maintain artistic control over his own productions and to foster the burgeoning electronic scene in Motor City. While Saunderson was initially influenced by the success of his peers' labels, Transmat and Metroplex, KMS quickly established its own distinct identity.\n\nThe label's output serves as a blueprint for the evolution of Detroit house and techno. Over its three-decade history, KMS has been instrumental in bridging the gap between raw, industrial techno textures and the soul-infused rhythms of house music. Its roster has included pioneering artists like Ron Trent, Chez Damier, MK, Derrick Carter, and Kenny Larkin. Saunderson himself utilized the platform to release a vast array of influential projects under various aliases, including E-Dancer, Reese, and the iconic vocal house outfit Inner City. By consistently balancing club-focused intensity with melodic innovation, KMS Records remains a vital link to the foundational era of American electronic dance music, continuing to influence contemporary producers worldwide. The label not only provided a home for Saunderson's own creative explorations but also helped launch and refine the careers of numerous seminal artists who defined the house and techno aesthetic throughout the 1990s and beyond, ensuring that Detroit's sonic signature remained at the cutting edge of global dance culture.",
+  "citations": [
+    {
+      "url": "https://www.behindthegroove.co.uk/behind-the-groove-classic-deephouse-house-techno-music-blog/2017/12/18/label-focus-kms-records-with-kevin-the-elevator-sauderson",
+      "title": "Label focus - KMS Records with Kevin 'The Elevator' Sauderson — Classic House Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:25.386Z",
+  "type": "label",
+  "editorial_description": "Founded in 1987 by Detroit techno pioneer Kevin Saunderson, KMS Records is a seminal label that played a vital role in defining the sounds of techno and house. It remains a cornerstone of the Detroit electronic music legacy, serving as a platform for Saunderson's own innovative work and numerous influential collaborators.",
+  "founded": "1987",
+  "location": "Detroit, Michigan, USA",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City"
+    },
+    {
+      "slug": "artist:chez-damier",
+      "type": "artist",
+      "name": "Chez Damier"
+    },
+    {
+      "slug": "artist:mk",
+      "type": "artist",
+      "name": "MK"
+    },
+    {
+      "slug": "artist:derrick-carter",
+      "type": "artist",
+      "name": "Derrick Carter"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:inner-city",
+      "type": "project",
+      "name": "Inner City"
+    },
+    {
+      "slug": "project:e-dancer",
+      "type": "project",
+      "name": "E-Dancer"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "artist:sorrow",
+  "name": "Sorrow",
+  "editorial_article": "Sorrow is a Bristol-based, Birmingham-born electronic music producer who emerged in the early 2010s as a significant voice in the evolution of UK bass culture. Known for his evocative, atmospheric approach, Sorrow has skillfully bridged the gap between harder-edged styles like grime, dubstep, and garage, and the more emotive textures of ambient and downtempo music. His sound is characterized by a \"melancholic\" signature, frequently utilizing lush synth pads, intricate drum programming, and deeply resonant sub-bass to create soundscapes that feel both intimate and expansive. \\n\\nStarting his career with releases on labels like L2S Recordings and Broken Bubble around 2011, Sorrow quickly gained recognition for his ability to craft immersive musical journeys. His discography spans a substantial collection of EPs and single releases, alongside his 2013 studio album, *Dreamstone*, released on Monotreme Records. This body of work solidified his reputation among enthusiasts of atmospheric bass music. Throughout his career, he has frequently collaborated with other artists in the sphere, including producers like Asa and Owsey, further cementing his place within the tight-knit network of independent electronic artists. His influence is felt in the continued development of modern UK garage and future garage, genres that draw heavily on the fusion of club rhythms and introspective, cinematic production styles that define his output. His music remains a staple for listeners drawn to electronic sounds that prioritize emotional resonance without sacrificing rhythmic energy.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/2266671-Sorrow-6",
+      "title": "Sorrow (6) Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://ra.co/dj/sorrow/biography",
+      "title": "Sorrow · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://ukf.com/discover/artists/sorrow/",
+      "title": "Sorrow - UKF"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:35.713Z",
+  "type": "artist",
+  "editorial_bio": "Sorrow is a Bristol-based, Birmingham-born electronic producer who creates evocative, ambient-infused garage and dubstep. His melancholic, bass-heavy sound has made him a staple in the UK bass scene since his debut in 2011.",
+  "origin": "Bristol, UK",
+  "genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:monotreme-records",
+      "type": "label",
+      "name": "Monotreme Records"
+    },
+    {
+      "slug": "label:l2s-recordings",
+      "type": "label",
+      "name": "L2S Recordings"
+    },
+    {
+      "slug": "label:inspected-records",
+      "type": "label",
+      "name": "Inspected Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

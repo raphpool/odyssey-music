@@ -1,0 +1,66 @@
+{
+  "slug": "artist:iannis-xenakis",
+  "name": "Iannis Xenakis",
+  "editorial_article": "Iannis Xenakis (1922–2001) was a visionary Romanian-born Greek-French composer, architect, and engineer who profoundly reshaped the landscape of 20th-century avant-garde music. A survivor of the Greek Civil War, which left him with a lifelong facial injury, Xenakis brought a unique perspective to composition that bridged the gap between scientific rigorousness and raw, visceral sound. He is renowned for pioneering the use of mathematical models in music, including stochastic processes, set theory, and game theory, moving away from the linear, tonal structures of the past toward complex textures and massive sonic architectures. His seminal orchestral work, Metastaseis (1953–54), famously introduced the concept of independent parts for every musician, creating dense \"clouds\" of sound that defied traditional counterpoint. Beyond his musical output, Xenakis was a key collaborator of the architect Le Corbusier, contributing to major projects like the Philips Pavilion at Expo 58. His holistic approach—viewing music as a spatial, architectural, and mathematical construct—led to the development of 'polytopes,' massive multimedia performances that fused light, space, and sound. Xenakis’s influence remains foundational to modern electronic music, computer music, and contemporary classical composition, marking him as one of the most intellectually ambitious and structurally innovative composers of his era. Throughout his career, he authored seminal theoretical texts such as 'Formalized Music,' cementing his status not just as a creator, but as a philosopher of sonic structure. His work continues to challenge listeners and influence new generations of composers who seek to explore the intersection of technology, mathematics, and the raw, unadulterated power of sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Iannis_Xenakis",
+      "title": "Iannis Xenakis - Wikipedia"
+    },
+    {
+      "url": "https://blogs.iu.edu/jsomcomposition/iannis-xenakis/",
+      "title": "Iannis Xenakis – Composition Department - IU Blogs"
+    },
+    {
+      "url": "https://interlude.hk/iannis-xenakis/",
+      "title": "Iannis Xenakis (1922-2001) | Biography, Music & More - Interlude.HK"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:59.849Z",
+  "type": "artist",
+  "editorial_bio": "Iannis Xenakis was a pioneering Greek-French composer and architect who revolutionized 20th-century music through the application of mathematical and stochastic models. His work remains a foundational influence on contemporary classical, electronic, and avant-garde music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/XenakisMDaniel_crop.jpg/500px-XenakisMDaniel_crop.jpg",
+  "origin": "Romania",
+  "active_years": "1947–1997",
+  "genres": [
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:metastaseis",
+      "type": "track",
+      "name": "Metastaseis"
+    },
+    {
+      "slug": "track:psappha",
+      "type": "track",
+      "name": "Psappha"
+    },
+    {
+      "slug": "track:pleiades",
+      "type": "track",
+      "name": "Pléïades"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

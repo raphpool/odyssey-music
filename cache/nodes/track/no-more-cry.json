@@ -1,0 +1,69 @@
+{
+  "slug": "track:no-more-cry",
+  "name": "No More Cry",
+  "editorial_article": "\"No More Cry\" is a track by the Irish quartet The Corrs, released in 2000 as part of their highly successful studio album, *In Blue*. Known for their synthesis of traditional Irish instrumentation—such as the tin whistle and bodhrán—with sophisticated, contemporary pop-rock production, the band achieved massive international fame during the late 1990s and early 2000s. \"No More Cry\" exemplifies this transition into the new millennium, carrying the polished, radio-friendly sound that defined the *In Blue* era, which moved the group further away from their more roots-oriented early work toward a cleaner, more rhythmic pop sound.\n\nThe track is notable for its collaborative songwriting, credited to all four siblings: Andrea, Caroline, Jim, and Sharon Corr. Musically, it balances the band’s folk heritage with modern studio polish, utilizing elements like programming and additional keyboards alongside their traditional instruments. Produced collectively by the siblings, the track serves as a quintessential example of the group's tight-knit creative process. With Andrea Corr on lead vocals and tin whistle, the song features a characteristic blend of longing and resilience, themes that frequently recurred in their lyrics. Upon its release, *In Blue* cemented The Corrs' status as global stars, and \"No More Cry\" remains a fan-favorite cut that highlights the intricate multi-instrumental abilities of the ensemble. By integrating modern digital production tools and meticulous mastering, the track represents the high-budget, highly polished aesthetic of Atlantic Records pop music at the turn of the century, successfully bridging the gap between Celtic-pop crossover success and mainstream commercial viability.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/watch?v=C8IESLZMiKc",
+      "title": "No More Cry - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:53.492Z",
+  "type": "track",
+  "editorial_teaser": "A poignant, upbeat pop-rock anthem from The Corrs' international breakout album, 'In Blue,' showcasing the siblings' signature blend of Irish folk instrumentation and polished production.",
+  "year": "2000",
+  "artists": [
+    {
+      "slug": "artist:the-corrs",
+      "type": "artist",
+      "name": "The Corrs"
+    }
+  ],
+  "project": {
+    "slug": "project:in-blue",
+    "type": "project",
+    "name": "In Blue"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:celtic-pop",
+      "type": "genre",
+      "name": "Celtic pop"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:andrea-corr",
+      "type": "artist",
+      "name": "Andrea Corr"
+    },
+    {
+      "slug": "artist:caroline-corr",
+      "type": "artist",
+      "name": "Caroline Corr"
+    },
+    {
+      "slug": "artist:jim-corr",
+      "type": "artist",
+      "name": "Jim Corr"
+    },
+    {
+      "slug": "artist:sharon-corr",
+      "type": "artist",
+      "name": "Sharon Corr"
+    },
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

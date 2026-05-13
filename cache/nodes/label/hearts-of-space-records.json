@@ -1,0 +1,66 @@
+{
+  "slug": "label:hearts-of-space-records",
+  "name": "Hearts of Space Records",
+  "editorial_article": "Hearts of Space Records is an influential American independent record label and cultural institution founded in 1984 by producers Stephen Hill and Anna Turner. Originally conceived as a physical extension of their long-running syndicated radio program, *Music from the Hearts of Space*, the label became a primary tastemaker for the burgeoning New Age and ambient music scenes of the 1980s and 90s. Based in the San Francisco Bay Area for much of its tenure, the label curated a diverse, international roster that specialized in atmospheric, meditative, and \"space-creating\" sounds.\n\nThe label’s catalog became synonymous with high-fidelity, contemplative music, spanning genres such as ambient electronics, neoclassical, Celtic fusion, and world music. Its landmark releases, such as Constance Demby’s *Novus Magnificat* (1986) and the exceptionally successful *Celtic Twilight* compilation series, garnered significant critical acclaim and commercial success, helping to define the sound of contemporary instrumental music. In 2001, the record label division was acquired by Valley Entertainment in New York, which continues to manage the extensive catalog of nearly 150 titles while maintaining the label’s commitment to high-quality production standards. Beyond its physical releases, Hearts of Space remains a pioneering force in music broadcasting and digital distribution, bridging the gap between niche contemplative artists and a broad, international listening audience. The label's evolution from a local radio hobby to a global curator reflects the broader trajectory of ambient music, where production quality and atmospheric depth are prioritized above commercial pop structures, allowing the music to function as an immersive, transformative experience for the listener.",
+  "citations": [
+    {
+      "url": "https://www.hos.com/about/company-past-present-future",
+      "title": "THE COMPANY: PAST, PRESENT AND FUTURE - Hearts of Space"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/hearts-of-space-records/",
+      "title": "Hearts of Space Records - Music label - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:38.873Z",
+  "type": "label",
+  "editorial_description": "Hearts of Space Records is a landmark independent label founded by Stephen Hill and Anna Turner in 1984, serving as a pillar for New Age, ambient, and atmospheric world music. Best known for its high-fidelity releases and successful curation of contemplative, space-creating soundscapes, the label remains a cornerstone of the ambient music scene.",
+  "founded": "1984",
+  "location": "San Francisco, California",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:world-music",
+      "type": "genre",
+      "name": "World Music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:constance-demby",
+      "type": "artist",
+      "name": "Constance Demby"
+    },
+    {
+      "slug": "artist:stephen-hill",
+      "type": "artist",
+      "name": "Stephen Hill"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:novus-magnificat",
+      "type": "project",
+      "name": "Novus Magnificat"
+    },
+    {
+      "slug": "project:celtic-twilight",
+      "type": "project",
+      "name": "Celtic Twilight"
+    }
+  ]
+}

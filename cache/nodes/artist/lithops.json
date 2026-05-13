@@ -1,0 +1,62 @@
+{
+  "slug": "artist:lithops",
+  "name": "Lithops",
+  "editorial_article": "Lithops is one of the primary aliases of Berlin-based electronic producer and sound artist Jan Jelinek. Active alongside his work under his own name and aliases like Farben and Gramm, the Lithops persona focuses on a distinctively organic approach to electronic music production, bridging the gap between glitch, minimal techno, and ambient soundscapes. Much of Jelinek’s output under the Lithops name is characterized by a \"micro-house\" aesthetic, where intricate, rhythmically fractured samples—often sourced from jazz and rock recordings—are processed and looped into hypnotic, fluid compositions. This technique defines his signature sonic signature: a warm, dusty, and deeply textured sound that feels both nostalgic and futuristic. While Jelinek explores varied conceptual themes across his extensive discography, the Lithops material consistently maintains a focus on rhythmic experimentation and the subtle manipulation of acoustic sources, demonstrating his masterful ability to create dense, immersive musical environments from seemingly simple fragments. Through projects released on respected labels like Thrill Jockey, Lithops has contributed significantly to the development of the \"clicks & cuts\" movement that emerged from Berlin at the turn of the millennium, influencing a generation of producers interested in the intersection of digital processing and analog soul.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jan_Jelinek",
+      "title": "Jan Jelinek - Wikipedia"
+    },
+    {
+      "url": "https://dienststelle.de/visuals/",
+      "title": "Dienststelle » Visuals"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:24.334Z",
+  "type": "artist",
+  "editorial_bio": "Lithops is one of the primary aliases of Berlin-based electronic producer and sound artist Jan Jelinek.",
+  "origin": "Berlin, Germany",
+  "active_years": "1998-present",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:thrill-jockey",
+      "type": "label",
+      "name": "Thrill Jockey"
+    },
+    {
+      "slug": "label:scape",
+      "type": "label",
+      "name": "~scape"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:ye-viols",
+      "type": "project",
+      "name": "Ye Viols!"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

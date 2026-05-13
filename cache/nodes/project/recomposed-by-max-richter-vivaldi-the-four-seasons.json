@@ -1,0 +1,62 @@
+{
+  "slug": "project:recomposed-by-max-richter-vivaldi-the-four-seasons",
+  "name": "Recomposed by Max Richter: Vivaldi – The Four Seasons",
+  "editorial_article": "Released in 2012, \"Recomposed by Max Richter: Vivaldi – The Four Seasons\" stands as a landmark in contemporary classical music. British-German composer Max Richter embarked on an ambitious project to deconstruct and reassemble Antonio Vivaldi's 18th-century violin concertos, *The Four Seasons*. Richter, known for his post-minimalist sensibilities and electronic textures, famously stated that he discarded approximately 75 percent of the original score, focusing on specific motifs that he then treated with techniques like phasing and looping. The result is a work that feels simultaneously ancient and radically modern, bridging the gap between Baroque structure and 21st-century electronica. \\n\\nThe recording features violinist Daniel Hope accompanied by the Konzerthaus Kammerorchester Berlin, conducted by André de Ridder. The production creates a shimmering, atmospheric soundscape that retains the visceral energy of Vivaldi while imbuing it with a melancholic, reflective quality inherent to Richter's own style. Upon its release on Deutsche Grammophon, the album achieved rare success for a contemporary classical work, topping iTunes classical charts across the US, UK, and Germany. It proved that classical music could be \"remixed\" or \"recomposed\" with genuine artistic integrity, moving beyond the often-trite crossover attempts of the previous decades and sparking a renewed interest in the creative possibilities of reinterpreting the Western classical canon. The project’s influence remains significant, having paved the way for subsequent experiments in the genre and cemented Richter’s reputation as a pioneer of the post-classical movement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Recomposed_by_Max_Richter:_Vivaldi_%E2%80%93_The_Four_Seasons",
+      "title": "Recomposed by Max Richter: Vivaldi – The Four Seasons - Wikipedia"
+    },
+    {
+      "url": "https://www.deutschegrammophon.com/en/catalogue/products/the-new-four-seasons-vivaldi-recomposed-max-richter-12667",
+      "title": "The New Four Seasons - Max Richter"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:27.554Z",
+  "type": "project",
+  "editorial_pitch": "A radical, post-minimalist reinterpretation of Vivaldi's \"The Four Seasons\" that deconstructs the Baroque classic using modern loop-based techniques and electronic sensibilities.",
+  "year": "2012",
+  "artists": [
+    {
+      "slug": "artist:max-richter",
+      "type": "artist",
+      "name": "Max Richter"
+    },
+    {
+      "slug": "artist:daniel-hope",
+      "type": "artist",
+      "name": "Daniel Hope"
+    }
+  ],
+  "label": {
+    "slug": "label:deutsche-grammophon",
+    "type": "label",
+    "name": "Deutsche Grammophon"
+  },
+  "genres": [
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary classical"
+    },
+    {
+      "slug": "genre:post-minimalism",
+      "type": "genre",
+      "name": "Post-minimalism"
+    },
+    {
+      "slug": "genre:baroque",
+      "type": "genre",
+      "name": "Baroque"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:max-richter",
+      "type": "artist",
+      "name": "Max Richter"
+    }
+  ],
+  "related_projects": []
+}

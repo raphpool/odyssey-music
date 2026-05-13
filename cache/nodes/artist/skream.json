@@ -1,0 +1,131 @@
+{
+  "slug": "artist:skream",
+  "name": "Skream",
+  "editorial_article": "Skream, born Oliver Dene Jones in London in 1986, is a seminal figure in the evolution of electronic dance music, most famously recognized as a pioneer of the dubstep genre. Growing up in Croydon, his early exposure to the local record store scene—particularly the influential Big Apple—put him at the epicenter of the nascent dubstep movement. Alongside contemporaries such as Benga and Hatcha, Skream helped define the genre’s signature sound: a minimalist, bass-heavy, and tension-filled aesthetic that moved away from the faster tempos of garage and drum'n'bass. His 2005 track \"Midnight Request Line\" is widely regarded as a watershed moment for dubstep, bridging the gap between underground sound system culture and broader electronic music appreciation. Throughout the 2000s, he remained a cornerstone of the scene, releasing essential projects like his self-titled debut album and becoming a prominent radio presence on stations like Rinse FM.\n\nAs the 2010s progressed, Skream’s artistic scope expanded significantly. His involvement in the supergroup Magnetic Man—alongside Benga and Artwork—brought dubstep into the mainstream, achieving commercial success with chart-topping records. However, Skream’s restless creativity soon led him away from the constraints of a single genre. He began incorporating elements of house, techno, disco, and breakbeat into his sets and productions. This evolution is documented through his Fabriclive mix CDs and numerous club-oriented releases on labels like Crosstown Rebels and his own imprints. From his foundational role in shaping the \"wobble\" and sub-bass textures of the 2000s to his current status as a versatile, club-ready producer of tech-house and breaks, Skream remains one of the UK’s most influential and enduring electronic music architects. His work continues to evolve, reflecting a deep commitment to the vitality of the UK club sound.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/skream-mn0000555075",
+      "title": "Skream Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Skream",
+      "title": "Skream | Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:40.541Z",
+  "type": "artist",
+  "editorial_bio": "London-born pioneer of the dubstep scene who evolved from an early architectural figure in bass music into a versatile producer of house, techno, and breakbeat.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000555075/400/R2iXcwZKn8n1TWrndmqsPIAf7E_1E-2MlBBPmPAXRBU=.jpg",
+  "origin": "London, England",
+  "active_years": "2000s-2020s",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tempa",
+      "type": "label",
+      "name": "Tempa"
+    },
+    {
+      "slug": "label:tectonic",
+      "type": "label",
+      "name": "Tectonic"
+    },
+    {
+      "slug": "label:big-apple-records",
+      "type": "label",
+      "name": "Big Apple Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:skream",
+      "type": "project",
+      "name": "Skream!"
+    },
+    {
+      "slug": "project:outside-the-box",
+      "type": "project",
+      "name": "Outside the Box"
+    },
+    {
+      "slug": "project:fabriclive-96",
+      "type": "project",
+      "name": "Fabriclive 96"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:midnight-request-line",
+      "type": "track",
+      "name": "Midnight Request Line"
+    },
+    {
+      "slug": "track:i-need-air",
+      "type": "track",
+      "name": "I Need Air"
+    },
+    {
+      "slug": "track:bang-that",
+      "type": "track",
+      "name": "Bang That"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga"
+    },
+    {
+      "slug": "artist:artwork",
+      "type": "artist",
+      "name": "Artwork"
+    },
+    {
+      "slug": "artist:hatcha",
+      "type": "artist",
+      "name": "Hatcha"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:oliver-dene-jones",
+      "type": "artist",
+      "name": "Oliver Dene Jones"
+    },
+    {
+      "slug": "artist:oliver-jones",
+      "type": "artist",
+      "name": "Oliver Jones"
+    },
+    {
+      "slug": "artist:ollie-jones",
+      "type": "artist",
+      "name": "Ollie Jones"
+    }
+  ],
+  "members": []
+}

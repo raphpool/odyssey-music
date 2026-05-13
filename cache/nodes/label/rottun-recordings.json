@@ -1,0 +1,77 @@
+{
+  "slug": "label:rottun-recordings",
+  "name": "Rottun Recordings",
+  "editorial_article": "Rottun Recordings was a landmark Canadian independent record label founded in 2007 by Jeff Abel, professionally known as Excision. Emerging from Kelowna, British Columbia, the label became a primary engine for the North American dubstep explosion, championing a gritty, high-energy sound often categorized as brostep or heavy bass. Throughout its tenure, Rottun served as the launchpad for a generation of dubstep producers who would go on to define the genre's aggressive, mid-range-heavy aesthetic in the 2010s. Its roster read like a who's-who of the scene, featuring foundational contributions from artists like Datsik, Downlink, and Ajapai, and acting as a central hub for the global bass music community. The label was renowned for its compilation series—including the annual Excision mix compilations—which captured the evolution of the genre year by year. In 2020, Rottun Recordings was officially retired, succeeded by Excision's newer platform, Subsidia, marking the end of a pivotal chapter in electronic music history that cemented dubstep as a festival-mainstage powerhouse. The label's impact on the sound design of modern electronic dance music is difficult to overstate; by curating a relentless stream of heavy bass tracks, it helped transition dubstep from intimate underground clubs to massive stadium spectacles. Even after its closure, the catalog remains a critical archive for scholars and fans of the mid-2010s bass music boom.",
+  "citations": [
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Rottun_Recordings",
+      "title": "Rottun Recordings | Bass Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:18.451Z",
+  "type": "label",
+  "editorial_description": "A pioneering independent Canadian record label that defined the North American dubstep sound, founded by Excision in 2007.",
+  "founded": "2007",
+  "location": "Kelowna, British Columbia, Canada",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:excision",
+      "type": "artist",
+      "name": "Excision"
+    },
+    {
+      "slug": "artist:datsik",
+      "type": "artist",
+      "name": "Datsik"
+    },
+    {
+      "slug": "artist:downlink",
+      "type": "artist",
+      "name": "Downlink"
+    },
+    {
+      "slug": "artist:ajapai",
+      "type": "artist",
+      "name": "Ajapai"
+    },
+    {
+      "slug": "artist:virtual-riot",
+      "type": "artist",
+      "name": "Virtual Riot"
+    },
+    {
+      "slug": "artist:space-laces",
+      "type": "artist",
+      "name": "Space Laces"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:rottun-classics",
+      "type": "project",
+      "name": "Rottun Classics"
+    },
+    {
+      "slug": "project:lost-lands-2017-compilation",
+      "type": "project",
+      "name": "Lost Lands 2017 Compilation"
+    }
+  ]
+}

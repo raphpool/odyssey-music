@@ -1,0 +1,83 @@
+{
+  "slug": "artist:flying-lotus",
+  "name": "Flying Lotus",
+  "editorial_article": "Steven Ellison, known professionally as Flying Lotus, is a Los Angeles-based producer, composer, and multi-disciplinary artist whose work has fundamentally reshaped the landscape of electronic music and modern jazz. Emerging from the vibrant beat-culture scene of the mid-2000s in California, Ellison quickly established himself as a central figure in the global music community, bridging the gaps between hip-hop, experimental electronic, and spiritual jazz. As the founder of the influential Brainfeeder label, he became a conduit for a new generation of musicians, nurturing the careers of boundary-pushing artists such as Thundercat and Kamasi Washington, while frequently collaborating with luminaries like Kendrick Lamar. \\n\\nHis discography, characterized by its dense, layered textures, syncopated rhythms, and cosmic, often surreal aesthetic, includes landmark albums like 'Cosmogramma', 'Until the Quiet Comes', and 'You're Dead!'. Beyond his studio output, Flying Lotus is a recognized visual storyteller and filmmaker, whose explorations extend into experimental horror-comedy and multi-sensory performances. His influence has rippled across the industry, blurring the lines between the avant-garde and the mainstream by consistently challenging the listener's expectations of what electronic music can convey. Whether through his beat-driven origins or his more recent orchestral and cinematic compositions, Flying Lotus remains one of the most vital, alchemical forces in contemporary music, constantly building and expanding the intricate, genre-defying worlds of his imagination.",
+  "citations": [
+    {
+      "url": "https://warp.net/artists/flying-lotus",
+      "title": "Flying Lotus - Artists - WARP"
+    },
+    {
+      "url": "https://www.jazzmusicarchives.com/artist/flying-lotus",
+      "title": "FLYING LOTUS discography (top albums) and reviews"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:41.976Z",
+  "type": "artist",
+  "editorial_bio": "Steven Ellison, known professionally as Flying Lotus, is a Los Angeles-based producer, composer, and multi-disciplinary artist whose work has fundamentally reshaped the landscape of electronic music and modern jazz.",
+  "photo_url": "https://d1rgjmn2wmqeif.cloudfront.net/a/2000/3746-3.jpg",
+  "origin": "Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:brainfeeder",
+      "type": "label",
+      "name": "Brainfeeder"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cosmogramma",
+      "type": "project",
+      "name": "Cosmogramma"
+    },
+    {
+      "slug": "project:you-re-dead",
+      "type": "project",
+      "name": "You're Dead!"
+    },
+    {
+      "slug": "project:flamagra",
+      "type": "project",
+      "name": "Flamagra"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:never-catch-me",
+      "type": "track",
+      "name": "Never Catch Me"
+    },
+    {
+      "slug": "track:mmmhmm",
+      "type": "track",
+      "name": "Mmmhmm"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

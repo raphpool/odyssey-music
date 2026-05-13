@@ -1,0 +1,89 @@
+{
+  "slug": "artist:jeff-mills",
+  "name": "Jeff Mills",
+  "editorial_article": "Jeff Mills is an influential American DJ and producer, widely recognized as one of the definitive architects of the Detroit techno sound. Born in Detroit in 1963, Mills emerged from the city's vibrant electronic music scene in the 1980s, gaining early notoriety as 'The Wizard' for his rapid-fire, technically virtuosic radio sets. He was a founding member of the seminal collective Underground Resistance, alongside Mike Banks and Robert Hood, which helped solidify techno’s political and uncompromising aesthetic. After leaving Detroit for New York in the early 1990s, Mills continued to shape the global underground through his fierce, minimal production style and his own label, Axis Records. Known for his hyper-kinetic, machine-like DJ sets that often utilize three turntables and a drum machine, Mills has transcended the confines of club culture, frequently collaborating with orchestras and scoring silent films, including a legendary re-imagining of Fritz Lang’s 'Metropolis.' His contributions to the genre have been monumental, bridging the gap between raw, abrasive industrial influence and futuristic minimalism, cementing his legacy as a pioneer of electronic music who prioritizes sonic experimentation and high-concept performance. Today, he remains one of the most respected figures in dance music, constantly pushing the boundaries of what electronic composition can achieve in both gallery and club settings.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/jeff-mills-mn0000228027",
+      "title": "Jeff Mills Songs, Albums, Reviews, Bio & More ... | AllMusic"
+    },
+    {
+      "url": "https://www.galerie-vallois.com/en/artiste/jeff-mills/biographie/",
+      "title": "Jeff Mills — Galerie Georges-Philippe & Nathalie Vallois"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:56.861Z",
+  "type": "artist",
+  "editorial_bio": "Jeff Mills is an influential American DJ and producer, widely recognized as one of the definitive architects of the Detroit techno sound. Born in Detroit in 1963, Mills emerged from the city's vibrant electronic music scene in the 1980s, gaining early notoriety as 'The Wizard' for his rapid-fire, technically virtuosic radio sets. He was a founding member of the seminal collective Underground Resistance, alongside Mike Banks and Robert Hood, which helped solidify techno’s political and uncompromising aesthetic. After leaving Detroit for New York in the early 1990s, Mills continued to shape the global underground through his fierce, minimal production style and his own label, Axis Records. Known for his hyper-kinetic, machine-like DJ sets that often utilize three turntables and a drum machine, Mills has transcended the confines of club culture, frequently collaborating with orchestras and scoring silent films.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000228027/400/Uiiwry2Nxtl1FtlqnFnT9Q4Q1ghY8VaPylnm7PwcKNY=.jpg",
+  "origin": "Detroit, Michigan, USA",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:axis-records",
+      "type": "label",
+      "name": "Axis Records"
+    },
+    {
+      "slug": "label:underground-resistance",
+      "type": "label",
+      "name": "Underground Resistance"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:waveform-transmission-vol-1",
+      "type": "project",
+      "name": "Waveform Transmission, Vol. 1"
+    },
+    {
+      "slug": "project:waveform-transmission-vol-3",
+      "type": "project",
+      "name": "Waveform Transmission, Vol. 3"
+    },
+    {
+      "slug": "project:every-dog-has-its-day",
+      "type": "project",
+      "name": "Every Dog Has Its Day"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:millsart",
+      "type": "artist",
+      "name": "Millsart"
+    },
+    {
+      "slug": "artist:the-wizard",
+      "type": "artist",
+      "name": "The Wizard"
+    }
+  ],
+  "members": []
+}

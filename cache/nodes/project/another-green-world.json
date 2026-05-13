@@ -1,0 +1,73 @@
+{
+  "slug": "project:another-green-world",
+  "name": "Another Green World",
+  "editorial_article": "Released in 1975, Another Green World is the third solo studio album by English musician Brian Eno, representing a pivotal bridge between his earlier art-pop excursions and the groundbreaking ambient experiments for which he would later become world-renowned. Produced by Eno and Rhett Davies, the record is frequently cited as a masterpiece of late-20th-century music, radical in its time yet possessing a timeless, modern quality. Moving away from the glam-rock sensibilities of his work with Roxy Music and his first two solo efforts, Eno adopted an anti-rock stance here, favoring intuition and structural experimentation over conventional song forms. \\n\\nRather than drawing from established rock tropes, the album was crafted using unconventional techniques and self-devised instruction cards, which encouraged contributors to rethink their instruments and roles. These sessions convened a remarkable group of musicians, including guitarist Robert Fripp, bassist Percy Jones, violist John Cale, and drummer Phil Collins. The resulting sound palette, described by Eno with terms like \\\"snake guitar\\\" and \\\"uncertain piano,\\\" blends pop-adjacent structures with abstract, atmospheric textures. While songs like \\\"Sky Saw\\\" hint at the album's experimental core, tracks such as \\\"The Big Ship\\\" and \\\"Becalmed\\\" showcase the expansive harmonic focus that would define the ambient genre. By balancing radical, experimental approaches with a profound sense of accessibility and beauty, Another Green World stands as a landmark of creative, inward-looking production. It remains an essential artifact in the evolution of modern electronic and art-pop music.",
+  "citations": [
+    {
+      "url": "https://www.hhv-mag.com/feature/records-revisited-brian-eno-another-green-world-1975/?lang=en",
+      "title": "Records Revisited: Brian Eno – Another Green World (1975) – HHV Mag"
+    },
+    {
+      "url": "https://www.theingroove.com/products/brian-eno-another-green-world-lp?srsltid=AfmBOorSOUu7RocZL0E9_hxP0SVFa6-Zys097TipsnD5Je1c-5z1UFDe",
+      "title": "Brian Eno - Another Green World - LP - The 'In' Groove"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:00.689Z",
+  "type": "project",
+  "editorial_pitch": "Brian Eno's 1975 masterpiece stands as a definitive bridge between art-pop and ambient, utilizing unconventional studio techniques to create a soundscape that remains as modern today as it was at its inception.",
+  "year": "1975",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "label": {
+    "slug": "label:island-records",
+    "type": "label",
+    "name": "Island Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental Pop"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:rhett-davies",
+      "type": "artist",
+      "name": "Rhett Davies"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    },
+    {
+      "slug": "project:here-come-the-warm-jets",
+      "type": "project",
+      "name": "Here Come the Warm Jets"
+    }
+  ]
+}

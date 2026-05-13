@@ -1,0 +1,54 @@
+{
+  "slug": "label:ina-grm",
+  "name": "INA-GRM",
+  "editorial_article": "INA-GRM (Groupe de Recherches Musicales) stands as one of the most significant institutions in the history of electronic and electroacoustic music. Founded in 1948 by the pioneering composer Pierre Schaeffer, the group emerged as the bedrock of French experimental sound exploration. Initially part of the ORTF (Office de Radiodiffusion Télévision Française), it was integrated into the Institut national de l'audiovisuel (INA) upon its creation in 1975, cementing its role as a premier center for research, creation, and pedagogy.\\n\\nHistorically, the GRM is synonymous with the development of \"musique concrète,\" a revolutionary compositional method that treats recorded sounds as autonomous materials. Over the decades, the group has fostered an environment where avant-garde composers could push the boundaries of sound manipulation. Figures such as François Bayle, who developed the Acousmonium—a complex spatialization system for concert performance—have been instrumental in shaping the aesthetics of acousmatic music. Beyond its historical archive, the label continues to be a vital contemporary force, releasing high-quality recordings of both archival treasures and new commissions, ensuring that the legacy of experimental electroacoustic music remains vibrant for new generations of listeners.\\n\\nToday, INA-GRM maintains a multi-faceted approach to its mission: it operates as a record label, a research hub for software development (notably the industry-standard GRM Tools plugins), and a promoter of live events through its \"Multiphonies\" concert series and collaborations at festivals like Présences électronique. By bridging the gap between historical preservation and cutting-edge digital synthesis, the institution remains a cornerstone of global experimental music culture. Its discography serves as an essential map of 20th and 21st-century sonic innovation, encompassing works that define the possibilities of the recorded medium.",
+  "citations": [
+    {
+      "url": "https://www.ina.fr/offres-et-services/ina-grm",
+      "title": "INA grm | INA"
+    },
+    {
+      "url": "https://www.discogs.com/label/6111-INA-GRM?srsltid=AfmBOoobEUNlAU0ynweYhC51ecoUiIABJyIzek02M3nsq_vdV3jPD1VN",
+      "title": "INA-GRM - Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/ina_grm/963/",
+      "title": "INA-GRM - Music label"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:50.789Z",
+  "type": "label",
+  "editorial_description": "A pioneering French institution dedicated to electroacoustic and musique concrète, serving as both a prestigious record label and a historical research hub for experimental sound.",
+  "founded": "1948 (GRM), 1975 (INA-GRM as label)",
+  "location": "Paris, France",
+  "genres": [
+    {
+      "slug": "genre:electroacoustic",
+      "type": "genre",
+      "name": "Electroacoustic"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:francois-bayle",
+      "type": "artist",
+      "name": "François Bayle"
+    }
+  ],
+  "notable_releases": []
+}

@@ -1,0 +1,111 @@
+{
+  "slug": "genre:hard-bop",
+  "name": "Hard Bop",
+  "editorial_article": "Hard bop is a pivotal subgenre of jazz that emerged in the mid-1950s, primarily in New York City and Detroit, as a robust, rhythmically driving evolution of bebop. While the cool jazz movement of the era often embraced more restrained, European-influenced aesthetics, hard bop sought to reassert the genre's connection to its African-American roots. By incorporating the visceral elements of gospel, blues, and rhythm and blues, musicians developed a \"harder\" sound characterized by earthy melodies, simpler yet impactful chord structures, and a rollicking, \"funky\" rhythmic drive.\n\nThe genre’s development is inextricably linked to the efforts of key figures like drummer Art Blakey and pianist Horace Silver, whose group, The Jazz Messengers, became the archetype for the hard bop sound. Their approach was deliberate: they aimed to move away from the informal jam sessions of the early 1950s—which often relied on spontaneous performances of familiar standards—and toward a more disciplined, planned aesthetic that prioritized memorable, shorter compositions. This focus on accessibility and deep groove helped revitalize jazz audiences, effectively bridging the gap between high-art complexity and the popular appeal of the music emerging from urban ghettos.\n\nMusicians within this movement, including legends like Clifford Brown, Sonny Rollins, Lee Morgan, and Hank Mobley, pushed the technical boundaries of their instruments while maintaining that essential, soulful grit. The bassists gained more freedom, moving beyond the role of mere timekeepers, and saxophonists often utilized a wider, more urgent tone. While the term \"hard bop\" was coined by critics, it captured a genuine cultural shift. By the late 1960s, the style’s influence branched out into various derivative forms, including soul jazz and post-bop, cementing its status as one of the most influential and enduring chapters in jazz history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hard_bop",
+      "title": "Hard bop - Wikipedia"
+    },
+    {
+      "url": "https://timeline.carnegiehall.org/genres/hard-bop",
+      "title": "History of Hard Bop — Timeline of African American Music"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/hard-bop-music-guide",
+      "title": "Guide to Hard Bop Music: 4 Notable Hard Bop Musicians - 2026"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:02.413Z",
+  "type": "genre",
+  "editorial_definition": "A 1950s jazz subgenre that fused the technical complexity of bebop with the soulful, rhythmic influences of blues, gospel, and rhythm and blues.",
+  "era": "1950s-1960s",
+  "origin": "New York City and Detroit, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:soul-jazz",
+      "type": "genre",
+      "name": "Soul Jazz"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:soul-jazz",
+      "type": "genre",
+      "name": "Soul Jazz"
+    },
+    {
+      "slug": "genre:post-bop",
+      "type": "genre",
+      "name": "Post-bop"
+    },
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool Jazz"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:art-blakey",
+      "type": "artist",
+      "name": "Art Blakey"
+    },
+    {
+      "slug": "artist:horace-silver",
+      "type": "artist",
+      "name": "Horace Silver"
+    },
+    {
+      "slug": "artist:clifford-brown",
+      "type": "artist",
+      "name": "Clifford Brown"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins"
+    },
+    {
+      "slug": "artist:lee-morgan",
+      "type": "artist",
+      "name": "Lee Morgan"
+    },
+    {
+      "slug": "artist:hank-mobley",
+      "type": "artist",
+      "name": "Hank Mobley"
+    },
+    {
+      "slug": "artist:cannonball-adderley",
+      "type": "artist",
+      "name": "Cannonball Adderley"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:prestige-records",
+      "type": "label",
+      "name": "Prestige Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

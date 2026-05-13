@@ -1,0 +1,116 @@
+{
+  "slug": "genre:electro-house",
+  "name": "Electro House",
+  "editorial_article": "Electro House is a high-energy genre of electronic dance music that emerged in the mid-to-late 1990s as a gritty, bass-heavy evolution of house music. Distinguishable from traditional house by its emphasis on distortion, buzzing synth-basslines, and aggressive production techniques, the genre typically sits at a tempo of 125 to 135 beats per minute. Its aesthetic is rooted in the fusion of house, electro, and elements of electroclash, with early tracks often characterized by \"dirty\" sawtooth bass patterns and grinding, mechanical soundscapes. \\n\\nWhile its origins are somewhat eclectic, drawing influence from artists like Daft Punk and Basement Jaxx, the genre gained significant traction in the 2000s. Benny Benassi's 2002 hit \"Satisfaction\" is frequently cited as a crucial precursor that brought the sound to a global audience. By the late 2000s and early 2010s, Electro House became a dominant force in the mainstream electronic scene, driven by high-profile producers such as Deadmau5, Justice, Steve Aoki, and Skrillex. As the genre matured, it splintered into various successful subgenres, including the festival-ready \"Big Room\" sound, the complex rhythmic textures of \"Complextro,\" and the bouncy energy of Melbourne Bounce. Its cultural impact remains substantial, having defined the sound of the international EDM boom and major festival circuits for over a decade.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electro_house",
+      "title": "Electro house - Wikipedia"
+    },
+    {
+      "url": "https://www.6amgroup.co/electro-house-music-guide-history-artists-tracks/",
+      "title": "Electro House Music Guide: History, Artists, Tracks - 6AM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:56.312Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of house music defined by its heavy, distorted basslines—often using sawtooth waves—and aggressive, synthesizer-driven production at tempos typically between 125 and 135 BPM.",
+  "era": "Mid-1990s to present",
+  "origin": "Global (origins in Europe and North America)",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:big-room-house",
+      "type": "genre",
+      "name": "Big room house"
+    },
+    {
+      "slug": "genre:complextro",
+      "type": "genre",
+      "name": "Complextro"
+    },
+    {
+      "slug": "genre:dutch-house",
+      "type": "genre",
+      "name": "Dutch house"
+    },
+    {
+      "slug": "genre:fidget-house",
+      "type": "genre",
+      "name": "Fidget house"
+    },
+    {
+      "slug": "genre:melbourne-bounce",
+      "type": "genre",
+      "name": "Melbourne bounce"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech house"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:benny-benassi",
+      "type": "artist",
+      "name": "Benny Benassi"
+    },
+    {
+      "slug": "artist:deadmau5",
+      "type": "artist",
+      "name": "Deadmau5"
+    },
+    {
+      "slug": "artist:justice",
+      "type": "artist",
+      "name": "Justice"
+    },
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex"
+    },
+    {
+      "slug": "artist:steve-aoki",
+      "type": "artist",
+      "name": "Steve Aoki"
+    },
+    {
+      "slug": "artist:fedde-le-grand",
+      "type": "artist",
+      "name": "Fedde Le Grand"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:discovery",
+      "type": "project",
+      "name": "Discovery"
+    },
+    {
+      "slug": "project:cross",
+      "type": "project",
+      "name": "Cross"
+    }
+  ],
+  "landmark_tracks": []
+}

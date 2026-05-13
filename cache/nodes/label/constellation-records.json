@@ -1,0 +1,82 @@
+{
+  "slug": "label:constellation-records",
+  "name": "Constellation Records",
+  "editorial_article": "Founded in 1997 by Don Wilkie and Ian Ilavsky, Constellation Records emerged from the vibrant yet resource-scarce underground music scene of Montréal’s Mile End neighborhood. Originally conceived to provide a sustainable infrastructure for local artists, the label quickly transcended its humble beginnings to become a cornerstone of experimental and post-rock music worldwide. The imprint is defined by a deep sense of community and artistic interdependency; many of its rostered artists share members, collaborate as guest musicians, or rely on the label's tightly knit network of producers and visual artists. This collaborative spirit is central to the label's identity, fostering an environment where musical visions are emboldened through shared resources, such as the iconic Hotel2Tango studio. \\n\\nWhile the label earned early, widespread international acclaim through the sprawling, symphonic compositions of Godspeed You! Black Emperor—particularly their landmark debut, F♯ A♯ ∞—Constellation has never been confined to a singular sonic profile. Its catalog is remarkably diverse, spanning avant-garde jazz, neo-classical chamber music, rustic folk, polyrhythmic post-punk, and intricate electronic minimalism. From the tattered white noise of early experimental releases to the rhythmic complexities of contemporary electronic projects, the label has consistently championed \"genre-bending\" music. By maintaining a fiercely independent, artist-friendly ethos and continuing to release challenging, long-form instrumental suites alongside avant-pop and noise-oriented works, Constellation Records has cultivated a legacy defined as much by its principled, anti-corporate approach as by the profound, emotive scope of the music it releases. It remains a vital node in the global independent landscape, constantly expanding its aesthetic borders while preserving the intimate, community-driven origins that first defined it.",
+  "citations": [
+    {
+      "url": "https://daily.bandcamp.com/label-profile/constellation-records-guide",
+      "title": "Exploring the Outer Reaches of Montreal’s Constellation Records | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:31.471Z",
+  "type": "label",
+  "editorial_description": "A legendary Montréal-based independent record label known for its foundational role in post-rock and experimental music, defined by a spirit of communal collaboration and artistic integrity.",
+  "founded": "1997",
+  "location": "Montréal, Canada",
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:avant-garde-jazz",
+      "type": "genre",
+      "name": "Avant-garde jazz"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:godspeed-you-black-emperor",
+      "type": "artist",
+      "name": "Godspeed You! Black Emperor"
+    },
+    {
+      "slug": "artist:esmerine",
+      "type": "artist",
+      "name": "Esmerine"
+    },
+    {
+      "slug": "artist:fly-pan-am",
+      "type": "artist",
+      "name": "Fly Pan Am"
+    },
+    {
+      "slug": "artist:colin-stetson",
+      "type": "artist",
+      "name": "Colin Stetson"
+    },
+    {
+      "slug": "artist:sarah-neufeld",
+      "type": "artist",
+      "name": "Sarah Neufeld"
+    },
+    {
+      "slug": "artist:sandro-perri",
+      "type": "artist",
+      "name": "Sandro Perri"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:f-a",
+      "type": "project",
+      "name": "F♯ A♯ ∞"
+    },
+    {
+      "slug": "project:lost-voices",
+      "type": "project",
+      "name": "Lost Voices"
+    },
+    {
+      "slug": "project:c-est-ca",
+      "type": "project",
+      "name": "C'est ça"
+    }
+  ]
+}

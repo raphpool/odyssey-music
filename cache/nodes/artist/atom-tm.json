@@ -1,0 +1,111 @@
+{
+  "slug": "artist:atom-tm",
+  "name": "Atom TM",
+  "editorial_article": "Atom™, the artistic persona of German electronic composer Uwe Schmidt, stands as one of the most prolific and shape-shifting figures in modern electronic music. Based for much of his career in Santiago de Chile, Schmidt’s work under the Atom™ moniker—as well as his extensive list of other aliases like Atom Heart and Señor Coconut—defies easy categorization, spanning genres from ambient and IDM to experimental techno and his unique invention of \"electrolatino.\" Born in Frankfurt, Schmidt began his journey in the mid-1980s, co-founding the N.G. Medien cassette label and exploring EBM with his project Lassigue Bendthaus. By the early 1990s, his involvement in the Frankfurt techno scene saw him producing seminal early trance tracks before he began to distance himself from the rigid structures of club music. \\n\\nThe Atom™ name, which Schmidt eventually adopted as the primary umbrella for his diverse creative output, represents a philosophy where individual project names serve more as thematic \"headlines\" than traditional artistic aliases. His career is marked by an obsessive work ethic; in the 1990s, he maintained an almost monthly album release schedule through his own label, Rather Interesting. His work, ranging from the glitch-heavy exploration of \"Pop Artificielle\" (originally recorded as Lassigue Bendthaus) to the genre-defying Latin-infused re-imaginings of Kraftwerk as Señor Coconut, has been foundational to the development of glitch, ambient, and cross-cultural electronic music. Through collaborations with artists like Tetsu Inoue, Bill Laswell, and Bernd Friedmann, Schmidt has consistently pushed the boundaries of electronic music, blending pop structures with rigorous digital sound design. His move to Chile in 1997 further expanded his sonic palette, solidifying his reputation as a master of both intimate, experimental studio production and global electronic exploration.",
+  "citations": [
+    {
+      "url": "https://atom-tm.com/BIOGRAPHY/",
+      "title": "atom-tm.com"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/atom%E2%84%A2",
+      "title": "Atom™ Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:06.424Z",
+  "type": "artist",
+  "editorial_bio": "German electronic composer and producer known for his vast discography, multi-alias output, and foundational work in IDM, ambient, and the invention of 'electrolatino.'",
+  "photo_url": "https://atom-tm.com/img/logomenu.jpg",
+  "origin": "Frankfurt, Germany",
+  "active_years": "1983-present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rather-interesting",
+      "type": "label",
+      "name": "Rather Interesting"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hd",
+      "type": "project",
+      "name": "HD"
+    },
+    {
+      "slug": "project:liedgut",
+      "type": "project",
+      "name": "Liedgut"
+    },
+    {
+      "slug": "project:pop-artificielle",
+      "type": "project",
+      "name": "Pop Artificielle"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:liedgut",
+      "type": "track",
+      "name": "Liedgut"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tetsu-inoue",
+      "type": "artist",
+      "name": "Tetsu Inoue"
+    },
+    {
+      "slug": "artist:bernd-friedmann",
+      "type": "artist",
+      "name": "Bernd Friedmann"
+    },
+    {
+      "slug": "artist:tobias-freund",
+      "type": "artist",
+      "name": "Tobias Freund"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:senor-coconut",
+      "type": "artist",
+      "name": "Señor Coconut"
+    },
+    {
+      "slug": "artist:lassigue-bendthaus",
+      "type": "artist",
+      "name": "Lassigue Bendthaus"
+    }
+  ],
+  "members": []
+}

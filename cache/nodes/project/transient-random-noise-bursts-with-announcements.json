@@ -1,0 +1,91 @@
+{
+  "slug": "project:transient-random-noise-bursts-with-announcements",
+  "name": "Transient Random-Noise Bursts with Announcements",
+  "editorial_article": "\"Transient Random-Noise Bursts with Announcements\" is the second studio album by the influential Anglo-French band Stereolab, released in 1993. Emerging from the vibrant London experimental rock scene, the album serves as a defining pivot point in the group's early trajectory. It is perhaps best remembered for its aggressive sonic textures, characterized by heavy use of distorted guitars, driving feedback, and dissonant, driving keyboard work that draws heavily from the motorik rhythms of German Krautrock. This record marked the debut of long-serving members Mary Hansen and drummer Andy Ramsay, whose contributions were instrumental in shaping the band’s signature interlocking, rhythm-focused aesthetic.\n\nConceptually and sonically, the album is a masterpiece of intellectualized pop, blending avant-garde noise aesthetics with melodies that are both catchy and austere. The album’s distinctive sleeve art was a direct homage to a 1969 hi-fi test record, a choice that underscores the group’s fascination with vintage audio technology and pop culture ephemera—themes that would continue to weave through their catalog. \"Transient Random-Noise Bursts\" occupies a space between the raw experimentation of their debut and the more refined, lush orchestrations of their mid-90s work, standing as a pivotal, darker, and more persistent entry in their discography. Its legacy is secured by its uncompromising approach to composition and its synthesis of pop sensibilities with an experimental, often abrasive, sonic palette. The record consists of ten tracks, including \"Jenny Ondioline,\" which remains one of their most celebrated compositions for its motorik pulse and feedback-drenched arrangement. The album is a testament to the group's early creative ambition and their foundational role in the post-rock and experimental indie movements of the 1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Transient_Random-Noise_Bursts_with_Announcements",
+      "title": "Transient Random-Noise Bursts with Announcements - Wikipedia"
+    },
+    {
+      "url": "https://stereolab.bandcamp.com/album/transient-random-noise-bursts-with-announcements-expanded-edition",
+      "title": "Transient Random-Noise Bursts With Announcements [Expanded Edition] | Stereolab"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:07.609Z",
+  "type": "project",
+  "editorial_pitch": "\"Transient Random-Noise Bursts with Announcements\" is the second studio album by the influential Anglo-French band Stereolab, released in 1993.",
+  "artists": [
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    }
+  ],
+  "label": {
+    "slug": "label:duophonic-records",
+    "type": "label",
+    "name": "Duophonic Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:tone-burst",
+      "type": "track",
+      "name": "Tone Burst"
+    },
+    {
+      "slug": "track:our-trinitone-blast",
+      "type": "track",
+      "name": "Our Trinitone Blast"
+    },
+    {
+      "slug": "track:pack-yr-romantic-mind",
+      "type": "track",
+      "name": "Pack Yr Romantic Mind"
+    },
+    {
+      "slug": "track:i-m-going-out-of-my-way",
+      "type": "track",
+      "name": "I'm Going Out of My Way"
+    },
+    {
+      "slug": "track:jenny-ondioline",
+      "type": "track",
+      "name": "Jenny Ondioline"
+    },
+    {
+      "slug": "track:analogue-rock",
+      "type": "track",
+      "name": "Analogue Rock"
+    },
+    {
+      "slug": "track:crest",
+      "type": "track",
+      "name": "Crest"
+    },
+    {
+      "slug": "track:lock-groove-lullaby",
+      "type": "track",
+      "name": "Lock-Groove Lullaby"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

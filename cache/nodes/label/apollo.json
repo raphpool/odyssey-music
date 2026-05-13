@@ -1,0 +1,85 @@
+{
+  "slug": "label:apollo",
+  "name": "Apollo",
+  "editorial_article": "Apollo Records, established in 1992, stands as one of the most pivotal sub-labels in the history of electronic music. Founded by Renaat Vandepapeliere and Sabine Maes as the ambient-focused division of the legendary Belgian imprint R&S Records, Apollo provided a vital platform for artists to explore the intersection of early ambient soundscapes and the evolving textures of techno. During the early 1990s, the label became synonymous with the \"ambient-techno\" movement, curating releases that often featured hypnotic, low-BPM beats rather than purely beatless, minimal soundscapes. This aesthetic mirrored the broader output of R&S, bridging the gap between home-listening experimentation and dancefloor immersion.\\n\\nThe label's roster during its formative years was remarkably influential, acting as a home for seminal figures such as Biosphere, the Norwegian project of Geir Jenssen, and the legendary Aphex Twin, whose \"Selected Ambient Works 85-92\" remains one of the most highly regarded electronic albums of all time. Apollo's catalog was deeply interconnected with its parent label, often hosting releases from R&S staples like Robert Leiner, Sun Electric, and Ken Ishii, allowing them to showcase their more introspective, sound-focused work. By championing a fusion of deep, emotional resonance and crisp production, Apollo helped define the sonic landscape of 1990s intelligent dance music (IDM) and ambient techno, leaving an enduring legacy that continues to influence contemporary electronic producers.\\n\\nFollowing a period of dormancy, both R&S and Apollo were revived in the late 2000s, reflecting the continued reverence for the label's back catalog and its unique curatorial voice. The label remains a touchstone for listeners seeking music that bridges the gap between the cerebral and the rhythmic, documenting a golden era of European electronic innovation. Its influence persists not only through its classic releases but through the continued cultural appreciation for the boundary-pushing ethos it fostered in the early 90s.",
+  "citations": [
+    {
+      "url": "http://music.hyperreal.org/labels/apollo/intro.html",
+      "title": "Apollo Records Discography-Singles - Hyperreal Music Archive"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/R%26S_Records",
+      "title": "R&S Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/683-Apollo?srsltid=AfmBOoqR-eAJ97G99skeCvSsjmI27XYBfgPC9LfKp3rj0ZSYWx4hS6bh",
+      "title": "Apollo - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:12.316Z",
+  "type": "label",
+  "editorial_description": "The dedicated ambient and experimental sub-label of the legendary Belgian imprint R&S Records, renowned for defining the ambient-techno sound of the 1990s.",
+  "founded": "1992",
+  "location": "Ghent, Belgium",
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere"
+    },
+    {
+      "slug": "artist:robert-leiner",
+      "type": "artist",
+      "name": "Robert Leiner"
+    },
+    {
+      "slug": "artist:sun-electric",
+      "type": "artist",
+      "name": "Sun Electric"
+    },
+    {
+      "slug": "artist:ken-ishii",
+      "type": "artist",
+      "name": "Ken Ishii"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85-92"
+    },
+    {
+      "slug": "project:microgravity",
+      "type": "project",
+      "name": "Microgravity"
+    },
+    {
+      "slug": "project:patashnik",
+      "type": "project",
+      "name": "Patashnik"
+    }
+  ]
+}

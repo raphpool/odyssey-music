@@ -1,0 +1,84 @@
+{
+  "slug": "genre:nu-disco",
+  "name": "Nu-disco",
+  "editorial_article": "Nu-disco is a 21st-century dance music genre defined by a contemporary synthesis of late 1970s disco, 1980s Euro-disco, and early 1990s electronic dance music. Emerging in the mid-1990s, particularly within the United Kingdom, the movement was birthed from the underground culture of disco edits—where DJs used tape and scissors to extend dance-friendly sections of classic funk and disco tracks. While the genre shares DNA with house music, it distinguishes itself from styles like French house through its reliance on programmed or live original instrumentation rather than heavy sampling, and a songwriting structure that often incorporates traditional pop elements like verses, choruses, and breakdowns.\\n\\nThe pioneers of the genre, including British acts like the Idjut Boys and Faze Action, drew heavy inspiration from the post-disco and dub-influenced sounds of the early 1980s. Throughout the 2000s, the term gained wider usage as artists like Todd Terje and labels such as Nuphonic Records and the influential Razor-N-Tape helped bridge the gap between retro aesthetic reverence and modern club production. Unlike the constant, repetitive nature of disco house, nu-disco preserves the dynamic, melodic sensibility of the music that inspired it, often incorporating synthesizers, funky basslines, and polished, high-fidelity production techniques that ensure its relevance on modern dancefloors. The 2002 self-titled album by Metro Area is widely considered a cornerstone work that solidified the genre's aesthetic, blending deep house sensibilities with a sophisticated, analog-heavy disco revival sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nu-disco",
+      "title": "Nu-disco - Wikipedia"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/nu-disco-music-guide",
+      "title": "Nu Disco Music Guide: A Brief History of Nu Disco - MasterClass"
+    },
+    {
+      "url": "https://www.soundbridge.io/nu-disco",
+      "title": "Nu-Disco - Soundbridge"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:18.527Z",
+  "type": "genre",
+  "editorial_definition": "A modern dance music movement that revives the aesthetic of 1970s disco and 1980s Euro-disco through contemporary, polished production and traditional songwriting structures.",
+  "era": "2000s-present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:todd-terje",
+      "type": "artist",
+      "name": "Todd Terje"
+    },
+    {
+      "slug": "artist:idjut-boys",
+      "type": "artist",
+      "name": "Idjut Boys"
+    },
+    {
+      "slug": "artist:faze-action",
+      "type": "artist",
+      "name": "Faze Action"
+    },
+    {
+      "slug": "artist:metro-area",
+      "type": "artist",
+      "name": "Metro Area"
+    },
+    {
+      "slug": "artist:crazy-p",
+      "type": "artist",
+      "name": "Crazy P"
+    },
+    {
+      "slug": "artist:joey-negro",
+      "type": "artist",
+      "name": "Joey Negro"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:nuphonic-records",
+      "type": "label",
+      "name": "Nuphonic Records"
+    },
+    {
+      "slug": "label:razor-n-tape",
+      "type": "label",
+      "name": "Razor-N-Tape"
+    },
+    {
+      "slug": "label:black-cock-records",
+      "type": "label",
+      "name": "Black Cock Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:metro-area",
+      "type": "project",
+      "name": "Metro Area"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,51 @@
+{
+  "slug": "label:kling-klang",
+  "name": "Kling Klang",
+  "editorial_article": "Kling Klang is both a legendary recording studio and the personal vanity record label founded by the pioneering German electronic group Kraftwerk. Established in 1975 in Düsseldorf, the label emerged as a necessary conduit for the band to maintain absolute creative control over their highly influential electronic discography. Named after the studio itself—which was initially located on Mintropstraße 16—the label has operated under various names including Kling Klang Schallplatten, Kling Klang Produkt, and simply Klingklang.\n\nThe label is deeply synonymous with the band's \"musical worker\" philosophy, where the studio was treated not merely as a recording space, but as a laboratory for sound design and innovation. By managing their own distribution and business affairs through this vehicle, Kraftwerk ensured their sonic legacy remained untainted by external commercial pressures. Throughout its history, the label has navigated complex distribution arrangements with global majors like EMI and Warner Music, yet it has always functioned primarily as a home for the meticulously crafted soundscapes that defined the trajectory of modern electronic, techno, and synth-pop music. The label also manages the band's extensive intellectual property and merchandising arm, further cementing its role as the central hub of the Kraftwerk ecosystem. Following the 2009 relocation of the studio to Meerbusch, the organization continues to oversee the ongoing reissues and management of one of electronic music’s most vital catalogs.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kling_Klang_Studio",
+      "title": "Kling Klang Studio - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/780-Kling-Klang?srsltid=AfmBOoqysu7VF1w02UHorxTTVYzD6yfxNfrUBwoH9uFStkrYpkl66LqQ",
+      "title": "Kling Klang - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:21.228Z",
+  "type": "label",
+  "editorial_description": "The vanity label of the electronic music pioneers Kraftwerk, used to maintain absolute creative control over their highly influential discography and merchandising.",
+  "founded": "1975",
+  "location": "Düsseldorf, Germany",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:computer-world",
+      "type": "project",
+      "name": "Computer World"
+    },
+    {
+      "slug": "project:trans-europe-express",
+      "type": "project",
+      "name": "Trans-Europe Express"
+    },
+    {
+      "slug": "project:the-man-machine",
+      "type": "project",
+      "name": "The Man-Machine"
+    }
+  ]
+}

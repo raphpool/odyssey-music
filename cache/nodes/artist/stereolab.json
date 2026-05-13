@@ -1,0 +1,147 @@
+{
+  "slug": "artist:stereolab",
+  "name": "Stereolab",
+  "editorial_article": "Stereolab are an influential British-French avant-pop band formed in London in 1990 by the core songwriting partnership of Tim Gane and Lætitia Sadier. Rising from the wreckage of Gane's previous band, McCarthy, Stereolab became pioneers of a distinct sonic aesthetic that blended the repetitive, hypnotic \"motorik\" beats of 1970s German krautrock—most notably the influence of groups like Neu! and Can—with the harmonic sweetness of 1960s French yé-yé pop, lounge music, and bossa nova. Their sound is instantly recognizable by its layering of vintage analog synthesizers, pointillist electronic textures, and the delicate, often politically charged vocal interplay between Sadier and the late, beloved Australian-born member Mary Hansen.\\n\\nThroughout the 1990s, the band cultivated a fiercely independent spirit, establishing their own label, Duophonic Records, to maintain creative control while simultaneously engaging with major label interest through a licensing deal with Elektra. Stereolab's work is characterized by a marriage of intellectual, left-wing, and Situationist-inspired lyricism with an accessible, pop-leaning musical framework, a feat that allowed them to be both experimental and surprisingly radio-friendly in the era of post-rock and electronica. Their influence on the development of indietronica, dream pop, and chamber pop is profound. After a long hiatus starting in 2009, the band returned to touring in 2019, cementing their legacy as one of the most intellectually curious and musically cohesive acts of the alternative era. Their discography, marked by landmark albums like 'Dots and Loops' and 'Emperor Tomato Ketchup', continues to define the sound of intelligent, groove-oriented pop music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Stereolab",
+      "title": "Stereolab - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:46.598Z",
+  "type": "artist",
+  "editorial_bio": "Stereolab is a critically acclaimed British-French avant-pop band renowned for bridging the gap between underground krautrock sensibilities and infectious, polyglot pop melodies. Formed by Tim Gane and Lætitia Sadier, their music serves as a unique synthesis of vintage electronic textures, motorik rhythms, and deep socio-political engagement.",
+  "photo_url": "https://en.wikipedia.org/wiki/File:StereolabRoundhs141121_(8_of_59)_(51681815198).jpg",
+  "origin": "London, England",
+  "active_years": "1990–2009, 2019–present",
+  "genres": [
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:indietronica",
+      "type": "genre",
+      "name": "Indietronica"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:duophonic-records",
+      "type": "label",
+      "name": "Duophonic Records"
+    },
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    },
+    {
+      "slug": "label:too-pure",
+      "type": "label",
+      "name": "Too Pure"
+    },
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:peng",
+      "type": "project",
+      "name": "Peng!"
+    },
+    {
+      "slug": "project:transient-random-noise-bursts-with-announcements",
+      "type": "project",
+      "name": "Transient Random-Noise Bursts with Announcements"
+    },
+    {
+      "slug": "project:mars-audiac-quintet",
+      "type": "project",
+      "name": "Mars Audiac Quintet"
+    },
+    {
+      "slug": "project:emperor-tomato-ketchup",
+      "type": "project",
+      "name": "Emperor Tomato Ketchup"
+    },
+    {
+      "slug": "project:dots-and-loops",
+      "type": "project",
+      "name": "Dots and Loops"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:french-disko",
+      "type": "track",
+      "name": "French Disko"
+    },
+    {
+      "slug": "track:lo-boob-oscillator",
+      "type": "track",
+      "name": "Lo Boob Oscillator"
+    },
+    {
+      "slug": "track:the-flower-called-nowhere",
+      "type": "track",
+      "name": "The Flower Called Nowhere"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:sean-o-hagan",
+      "type": "artist",
+      "name": "Sean O'Hagan"
+    },
+    {
+      "slug": "artist:mary-hansen",
+      "type": "artist",
+      "name": "Mary Hansen"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:tim-gane",
+      "type": "artist",
+      "name": "Tim Gane"
+    },
+    {
+      "slug": "artist:l-titia-sadier",
+      "type": "artist",
+      "name": "Lætitia Sadier"
+    },
+    {
+      "slug": "artist:andy-ramsay",
+      "type": "artist",
+      "name": "Andy Ramsay"
+    },
+    {
+      "slug": "artist:mary-hansen",
+      "type": "artist",
+      "name": "Mary Hansen"
+    }
+  ]
+}

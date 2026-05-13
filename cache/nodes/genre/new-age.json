@@ -1,0 +1,104 @@
+{
+  "slug": "genre:new-age",
+  "name": "New age",
+  "editorial_article": "New age is a genre of music—and, more broadly, a complex cultural phenomenon—that emerged in the late 20th century primarily in the United States and Europe. Defined less by a specific instrumentation and more by its intended function, the genre is crafted to facilitate artistic inspiration, relaxation, and a sense of optimism. Listeners often utilize the music to support activities such as yoga, massage, meditation, and stress management. While it is frequently associated with the New Age spiritual movement, many of the genre’s most influential artists operate independently of any formal spiritual affiliation, sometimes even distancing their work from the label itself.\n\nMusically, New age is highly eclectic. It encompasses acoustic arrangements featuring piano, flute, acoustic guitar, or harp, as well as electronic compositions that rely on sustained synth pads and sequencer-based textures. Many artists blend these approaches into electroacoustic soundscapes. The genre's origins are deeply rooted in the late 1960s and 1970s, drawing influences from ambient, folk, classical, jazz, and the German 'kosmische musik' scene. Key foundational recordings include Tony Scott’s 'Music for Zen Meditation' (1964) and Paul Horn’s 'Inside' (1968). By the 1970s, figures like Steven Halpern helped solidify the genre's focus on healing and atmospheric utility. Throughout its peak in the 1980s and early 1990s, New age thrived as both a genuine artistic pursuit and a catch-all marketing category, often overlapping with space music, world music, and minimalist electronics. Despite its \"undefined\" nature, it remains one of the most culturally pervasive ambient-adjacent genres of the modern era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New-age_music",
+      "title": "New-age music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:42.557Z",
+  "type": "genre",
+  "editorial_definition": "A genre defined by its therapeutic, atmospheric, and meditative intent rather than a singular instrumental style, often blending acoustic and electronic elements to foster relaxation and optimism.",
+  "era": "1960s–present",
+  "origin": "United States and Europe",
+  "parent_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music"
+    },
+    {
+      "slug": "genre:neoclassical-new-age-music",
+      "type": "genre",
+      "name": "Neoclassical new-age music"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:world-music",
+      "type": "genre",
+      "name": "World music"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    },
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn"
+    },
+    {
+      "slug": "artist:tony-scott",
+      "type": "artist",
+      "name": "Tony Scott"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:windham-hill-records",
+      "type": "label",
+      "name": "Windham Hill Records"
+    },
+    {
+      "slug": "label:hearts-of-space-records",
+      "type": "label",
+      "name": "Hearts of Space Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:spectrum-suite",
+      "type": "project",
+      "name": "Spectrum Suite"
+    },
+    {
+      "slug": "project:inside",
+      "type": "project",
+      "name": "Inside"
+    },
+    {
+      "slug": "project:music-for-zen-meditation",
+      "type": "project",
+      "name": "Music for Zen Meditation"
+    }
+  ],
+  "landmark_tracks": []
+}

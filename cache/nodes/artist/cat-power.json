@@ -1,0 +1,133 @@
+{
+  "slug": "artist:cat-power",
+  "name": "Cat Power",
+  "editorial_article": "Cat Power is the long-running, deeply emotive project of American singer-songwriter Chan Marshall. Born Charlyn Marie Marshall in 1972, she rose from the underground scene of early 90s Atlanta to become one of indie rock’s most singular and respected voices. Initially conceived as a band name inspired by a trucker cap slogan, \"Cat Power\" quickly evolved into a solo moniker that Marshall has used to navigate a haunting, ever-shifting sonic landscape. Her early work, characterized by sparse instrumentation, lo-fi aesthetics, and raw, vulnerable songwriting, helped define the sound of the era’s indie-folk and \"sadcore\" scenes.\\n\\nHer career path has been marked by a profound sense of reinvention. After debuting with raw, experimental records like 1995's *Dear Sir* and 1996's *Myra Lee*—recorded with the support of Sonic Youth’s Steve Shelley—she signed to the influential Matador Records. Landmark albums such as *Moon Pix* (1998) showcased a deepening of her artistic vision, blending folk-rock sensibilities with ethereal, ghostly textures. Over the decades, Marshall has continuously expanded her palette, moving from the minimalism of *The Covers Record* (2000) to the grand, soul-influenced instrumentation of *The Greatest* (2006), and the self-produced, pop-conscious synthesis of *Sun* (2012). Her ability to channel emotional intensity through a fragile, powerful voice remains a constant, cementing her status as a crucial figure in contemporary alternative music. Her evolution—from a reclusive, lo-fi pioneer to a self-assured, eclectic artist—mirrors the changing tides of indie rock itself, all while maintaining an unmistakable, singular intimacy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cat_Power",
+      "title": "Cat Power - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/103195-Cat-Power?srsltid=AfmBOoqfYnKvDcx_Ht_ZcUZqMhQStloyV0RWt3oW9iWH81ynpC_0h3ZY",
+      "title": "Cat Power Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:29.331Z",
+  "type": "artist",
+  "editorial_bio": "Cat Power is the long-running, deeply emotive project of American singer-songwriter Chan Marshall.",
+  "origin": "Atlanta, Georgia, USA",
+  "active_years": "1992–present",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    },
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    },
+    {
+      "slug": "label:smells-like-records",
+      "type": "label",
+      "name": "Smells Like Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dear-sir",
+      "type": "project",
+      "name": "Dear Sir"
+    },
+    {
+      "slug": "project:myra-lee",
+      "type": "project",
+      "name": "Myra Lee"
+    },
+    {
+      "slug": "project:what-would-the-community-think",
+      "type": "project",
+      "name": "What Would the Community Think"
+    },
+    {
+      "slug": "project:moon-pix",
+      "type": "project",
+      "name": "Moon Pix"
+    },
+    {
+      "slug": "project:the-covers-record",
+      "type": "project",
+      "name": "The Covers Record"
+    },
+    {
+      "slug": "project:you-are-free",
+      "type": "project",
+      "name": "You Are Free"
+    },
+    {
+      "slug": "project:the-greatest",
+      "type": "project",
+      "name": "The Greatest"
+    },
+    {
+      "slug": "project:jukebox",
+      "type": "project",
+      "name": "Jukebox"
+    },
+    {
+      "slug": "project:sun",
+      "type": "project",
+      "name": "Sun"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-greatest",
+      "type": "track",
+      "name": "The Greatest"
+    },
+    {
+      "slug": "track:metal-heart",
+      "type": "track",
+      "name": "Metal Heart"
+    },
+    {
+      "slug": "track:nude-as-the-news",
+      "type": "track",
+      "name": "Nude as the News"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

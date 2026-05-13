@@ -1,0 +1,57 @@
+{
+  "slug": "label:guerilla-records",
+  "name": "Guerilla Records",
+  "editorial_article": "Guerilla Records was a seminal British independent label that played a defining role in the evolution of progressive house during the early 1990s. Founded in 1990 by Dick O'Dell and John Gosling, alongside electronic innovator William Orbit, the label emerged from the UK dance scene as a hub for a specific, atmospheric iteration of house music that the founders often characterized as \"dub house.\" Guerilla was renowned not only for its sonic output but also for its distinctive aesthetic identity, utilizing a generic blue camouflage sleeve designed by Steve Cook (of 2000 AD comic fame) across all its releases. \n\nDuring its peak years (roughly 1992–1993), Guerilla became a primary tastemaker, fostering a roster that bridged the gap between underground club culture and wider electronic popularity. Its catalog featured foundational acts like Leftfield, Bass-O-Matic, Spooky, and Billie Ray Martin. By prioritizing texture, atmosphere, and rhythmic depth over the more aggressive, rave-focused sounds prevalent at the time, Guerilla helped pave the way for the progressive house movement. While the label faced financial difficulties and was wound up by 1995, its influence on the development of dance music aesthetics remains significant. The label's dissolution was finalized in 2003, but its legacy persists in the classic tracks that continue to be referenced in the history of UK electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Guerilla_Records",
+      "title": "Guerilla Records - Wikipedia"
+    },
+    {
+      "url": "https://medium.com/@anthonyteasdale_30408/the-greatest-tunes-from-guerilla-records-the-uks-top-progressive-house-label-eb7d9b499e69",
+      "title": "The greatest tunes from Guerilla Records — the UK’s top progressive house label"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:12.204Z",
+  "type": "label",
+  "editorial_description": "A seminal British label that defined the early 90s progressive house sound, characterized by its \"dub house\" approach and iconic blue camouflage sleeves.",
+  "founded": "1990",
+  "location": "United Kingdom",
+  "active_years": "1990-1995",
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:leftfield",
+      "type": "artist",
+      "name": "Leftfield"
+    },
+    {
+      "slug": "artist:bass-o-matic",
+      "type": "artist",
+      "name": "Bass-O-Matic"
+    },
+    {
+      "slug": "artist:spooky",
+      "type": "artist",
+      "name": "Spooky"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:release-1",
+      "type": "project",
+      "name": "Release 1"
+    }
+  ]
+}

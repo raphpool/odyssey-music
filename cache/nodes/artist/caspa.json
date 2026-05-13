@@ -1,0 +1,92 @@
+{
+  "slug": "artist:caspa",
+  "name": "Caspa",
+  "editorial_article": "Gary McCann, better known as Caspa, is a pioneering figure in the UK dubstep scene, originating from West London. Initially inspired by Jungle and Hip Hop, McCann pivoted to music production after a promising basketball career was sidelined by injury. His contributions to the genre were pivotal in the mid-2000s; he was instrumental in establishing the labels Dub Police and Sub Soldiers, which became essential platforms for the developing dubstep sound and fostered foundational talent such as Rusko. Caspa’s sonic signature—characterized by heavy, sub-bass-driven structures and aggressive, rhythmic syncopation—gained significant traction, leading to iconic remixes for artists ranging from Depeche Mode to Deadmau5. With a career spanning over two decades, he has been a consistent fixture at major international festivals and remains a vital influence in the global bass music community. His work reflects both the raw, club-focused origins of dubstep in London and its subsequent expansion into broader electronic landscapes. His debut album, 'Everybody's Talking, Nobody's Listening' (2009), marked a major milestone for the genre, featuring collaborations that bridged the gap between underground dubstep culture and mainstream appeal. Since moving to Denver, Colorado in 2014, he has continued to produce and tour, maintaining his legacy as a key architect of the sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Caspa",
+      "title": "Caspa - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:04.334Z",
+  "type": "artist",
+  "editorial_bio": "Gary McCann, better known as Caspa, is a pioneering figure in the UK dubstep scene, originating from West London. Initially inspired by Jungle and Hip Hop, McCann pivoted to music production after a promising basketball career was sidelined by injury. His contributions to the genre were pivotal in the mid-2000s; he was instrumental in establishing the labels Dub Police and Sub Soldiers, which became essential platforms for the developing dubstep sound and fostered foundational talent such as Rusko. Caspa’s sonic signature—characterized by heavy, sub-bass-driven structures and aggressive, rhythmic syncopation—gained significant traction, leading to iconic remixes for artists ranging from Depeche Mode to Deadmau5. With a career spanning over two decades, he has been a consistent fixture at major international festivals and remains a vital influence in the global bass music community. His work reflects both the raw, club-focused origins of dubstep in London and its subsequent expansion into broader electronic landscapes. His debut album, 'Everybody's Talking, Nobody's Listening' (2009), marked a major milestone for the genre, featuring collaborations that bridged the gap between underground dubstep culture and mainstream appeal. Since moving to Denver, Colorado in 2014, he has continued to produce and tour, maintaining his legacy as a key architect of the sound.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Caspa.png",
+  "origin": "London, England",
+  "active_years": "2003–present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dub-police",
+      "type": "label",
+      "name": "Dub Police"
+    },
+    {
+      "slug": "label:sub-soldiers",
+      "type": "label",
+      "name": "Sub Soldiers"
+    },
+    {
+      "slug": "label:storming-productions",
+      "type": "label",
+      "name": "Storming Productions"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:everybody-s-talking-nobody-s-listening",
+      "type": "project",
+      "name": "Everybody's Talking, Nobody's Listening"
+    },
+    {
+      "slug": "project:alpha-omega",
+      "type": "project",
+      "name": "Alpha Omega"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cockney-flute",
+      "type": "track",
+      "name": "Cockney Flute"
+    },
+    {
+      "slug": "track:love-never-dies",
+      "type": "track",
+      "name": "Love Never Dies (Back for the First Time)"
+    },
+    {
+      "slug": "track:war",
+      "type": "track",
+      "name": "War"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:quiet-storm",
+      "type": "artist",
+      "name": "Quiet Storm"
+    }
+  ],
+  "members": []
+}

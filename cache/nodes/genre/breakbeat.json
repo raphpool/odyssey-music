@@ -1,0 +1,131 @@
+{
+  "slug": "genre:breakbeat",
+  "name": "Breakbeat",
+  "editorial_article": "Breakbeat is a foundational genre and rhythmic technique in electronic music, defined by the use of sampled drum loops—or \"breaks\"—that deviate from the rigid, straight 4/4 time signature characteristic of standard house and techno. The term stems from the practice of isolating the drum solo section of funk, jazz, and R&B recordings, famously epitomized by the \"Amen break\" from The Winstons' \"Amen, Brother.\" Emerging in the 1970s via hip-hop turntablism in the United States, pioneers like DJ Kool Herc and Grandmaster Flash utilized two turntables to loop these percussive segments, providing a dynamic foundation for dancers and MCs. By the late 1980s and early 1990s, the concept evolved from a hip-hop production tool into a distinct electronic dance music genre, finding a second life within the UK rave scene. As producers began manipulating these samples with technology, the genre branched into aggressive and complex subgenres including breakbeat hardcore, jungle, and drum and bass. Unlike the repetitive, hypnotic nature of contemporary house music, breakbeat is characterized by its ever-changing, syncopated drum patterns. Throughout the 1990s, the sound attained significant mainstream popularity through the \"big beat\" phenomenon, led by acts like The Prodigy and The Chemical Brothers, who fused the gritty, sample-heavy aesthetic with rock energy and pop sensibilities. Its legacy persists in modern production, influencing everything from contemporary UK pop to the intricate rhythms of dubstep.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Breakbeat",
+      "title": "Breakbeat - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:44.940Z",
+  "type": "genre",
+  "editorial_definition": "A broad style of electronic music defined by its use of syncopated, sampled drum loops—'breaks'—originating from funk and soul records, which break away from standard 4/4 rhythmic structures.",
+  "era": "1970s–Present",
+  "origin": "United States (Hip-hop) / United Kingdom (Rave)",
+  "sonic_markers": "Syncopated drum loops, heavy use of sampling, organic drum textures (funk/jazz origins), complex percussion patterns, typically 110–175 BPM.",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:florida-breaks",
+      "type": "genre",
+      "name": "Florida Breaks"
+    },
+    {
+      "slug": "genre:nu-skool-breaks",
+      "type": "genre",
+      "name": "Nu Skool Breaks"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:the-crystal-method",
+      "type": "artist",
+      "name": "The Crystal Method"
+    },
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:mo-wax",
+      "type": "label",
+      "name": "Mo' Wax"
+    },
+    {
+      "slug": "label:breakbeat-kaos",
+      "type": "label",
+      "name": "Breakbeat Kaos"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:timeless",
+      "type": "project",
+      "name": "Timeless"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:amen-brother",
+      "type": "track",
+      "name": "Amen, Brother"
+    },
+    {
+      "slug": "track:funky-drummer",
+      "type": "track",
+      "name": "Funky Drummer"
+    }
+  ]
+}

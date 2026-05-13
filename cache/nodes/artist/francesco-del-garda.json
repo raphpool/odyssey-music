@@ -1,0 +1,45 @@
+{
+  "slug": "artist:francesco-del-garda",
+  "name": "Francesco Del Garda",
+  "editorial_article": "Francesco Del Garda is an Italian DJ and selector who has carved out a distinct space in the global electronic music scene through his deep-seated dedication to vinyl culture and a relentlessly groovy, fluid approach to dance music. Born in 1978, he discovered his passion for electronic music at the age of sixteen and has spent decades refining a technical and musical style that bridges the gaps between classic house, electro, garage, techno, and minimal. Throughout his career, he has remained steadfast in his commitment to the vinyl format, often curating sets filled with rare \"unknown gems\" and overlooked records that defy the transient trends of the dance floor. This devotion to sound, coupled with his infectious energy and joy behind the decks, has earned him a reputation as an artist who values the historical lineage of electronic music while constantly evolving his own sound. His sets are characterized by a seamless, organic blend of the old and the new, marking him as a pivotal figure for those who favor crate-digging culture and rhythmic depth over genre rigidity. Del Garda continues to influence new generations of DJs by championing the tactile experience of wax and the artistry of the long-form, adventurous mix. Whether playing intimate clubs or major festivals, his ability to curate a narrative through obscure finds and rhythmic groove has solidified his status as an essential curator in contemporary electronic music. He stands as a link between the underground traditions of the past and the evolving landscape of modern dance music.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/francescodelgarda/biography",
+      "title": "Francesco Del Garda · Biography"
+    },
+    {
+      "url": "https://www.paradisecity.be/en/bands/francesco-del-garda",
+      "title": "Francesco Del Garda"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:14.988Z",
+  "type": "artist",
+  "editorial_bio": "Francesco Del Garda is an Italian DJ and selector who has carved out a distinct space in the global electronic music scene through his deep-seated dedication to vinyl culture and a relentlessly groovy, fluid approach to dance music.",
+  "origin": "Italy",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

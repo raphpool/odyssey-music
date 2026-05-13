@@ -1,0 +1,46 @@
+{
+  "slug": "project:spectrum-suite",
+  "name": "Spectrum Suite",
+  "editorial_article": "Spectrum Suite, released in 1975 by American composer Steven Halpern, is widely considered a foundational milestone in the development of New Age music. Recorded at the Music Annex in Menlo Park, California, the album marked a radical departure from the structured compositions that dominated popular music at the time. Halpern focused on creating an immersive, meditative soundscape intended to reduce stress and induce relaxation. By incorporating sustained tones and minimalist textures, the album challenged listeners to move away from conventional melodic expectations, instead prioritizing an ambient, \"healing\" experience that would go on to influence decades of wellness, meditation, and ambient music production.\n\nThe structure of Spectrum Suite is deeply tied to esoteric concepts of color and energy. Each of the album's tracks is associated with a specific color of the visible spectrum and, by extension, a corresponding chakra in the human energy system. This conceptual framework was not just an aesthetic choice; it established a template for later \"healing music\" projects that sought to merge electronic music with spiritual and holistic health practices. Despite initially facing skepticism from the mainstream music industry—which struggled to categorize his unconventional, ambient approach—the album eventually garnered a cult following and became a cornerstone of the burgeoning New Age movement. Its legacy persists as a seminal work in the history of ambient and environmental sound, providing the blueprint for countless independent artists and producers working at the intersection of music and mindfulness. Through labels like his own Sound Rx, Halpern turned the project into a catalyst for an entire industry of meditative and therapeutic audio production that remains influential today.",
+  "citations": [
+    {
+      "url": "https://newagemusic.guide/new-age-music/the-amazing-spectrum-suite/",
+      "title": "The Amazing Spectrum Suite - New Age Music Guide"
+    },
+    {
+      "url": "https://www.allmusic.com/album/spectrum-suite-mw0000197106",
+      "title": "Spectrum Suite - Steven Halpern | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:36.590Z",
+  "type": "project",
+  "editorial_pitch": "A foundational 1975 New Age milestone, Spectrum Suite by Steven Halpern introduced ambient, meditative soundscapes designed to facilitate healing and relaxation through color-coded, chakra-aligned compositions.",
+  "year": "1975",
+  "artists": [],
+  "label": {
+    "slug": "label:sound-rx",
+    "type": "label",
+    "name": "Sound Rx"
+  },
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:keynote-c-red",
+      "type": "track",
+      "name": "Keynote C: Red"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

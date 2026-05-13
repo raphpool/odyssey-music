@@ -1,0 +1,84 @@
+{
+  "slug": "artist:robert-leiner",
+  "name": "Robert Leiner",
+  "editorial_article": "Robert Leiner is an influential Swedish electronic musician and producer, best known for his pivotal role in the early 1990s ambient techno scene. Emerging from the vibrant electronic music landscape of Scandinavia, he gained international recognition through his association with the legendary Belgian label R&S Records. His work, particularly under the alias The Source Experience, helped define the atmospheric, emotive, and rhythmically complex sound that characterized the transition from high-energy techno to more introspective, home-listening forms. Leiner’s discography is noted for its deep, cosmic synth textures and masterful production, exemplified by seminal tracks like \"Neuromancer,\" which became an instant classic upon its inclusion in the R&S 'In Order To Dance' compilation series. Throughout a career spanning several decades, Leiner has remained a respected figure in underground electronic music, continuing to explore modular synthesis and experimental landscapes across various releases and live performances. His multifaceted output often spans labels such as Apollo Records and Börft Records, cementing his reputation as an architect of the Swedish electronic sound. His evolution from early DJing in the 80s to establishing his own studio in Sweden laid the groundwork for an enduring artistic career that continues to impact producers and listeners today. Leiner remains active, bridging the gap between historical influence and contemporary experimental electronic production.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/robertleiner",
+      "title": "Robert Leiner · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://www.discogs.com/artist/6367-Robert-Leiner",
+      "title": "Robert Leiner Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:35.938Z",
+  "type": "artist",
+  "editorial_bio": "Robert Leiner is an influential Swedish electronic musician and producer, best known for his pivotal role in the early 1990s ambient techno scene. Emerging from the vibrant electronic music landscape of Scandinavia, he gained international recognition through his association with the legendary Belgian label R&S Records.",
+  "photo_url": "https://ra.co/dj/robertleiner",
+  "origin": "Sweden",
+  "active_years": "1981-present",
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:r-and-s-records",
+      "type": "label",
+      "name": "R&S Records"
+    },
+    {
+      "slug": "label:apollo-records",
+      "type": "label",
+      "name": "Apollo Records"
+    },
+    {
+      "slug": "label:borft-records",
+      "type": "label",
+      "name": "Börft Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:visions-of-the-past",
+      "type": "project",
+      "name": "Visions of the Past"
+    },
+    {
+      "slug": "project:melomania",
+      "type": "project",
+      "name": "Melomania"
+    },
+    {
+      "slug": "project:analog-days",
+      "type": "project",
+      "name": "Analog Days"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:neuromancer",
+      "type": "track",
+      "name": "Neuromancer"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

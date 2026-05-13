@@ -1,0 +1,84 @@
+{
+  "slug": "artist:snail-mail",
+  "name": "Snail Mail",
+  "editorial_article": "Snail Mail is the indie rock project led by American singer-songwriter and guitarist Lindsey Jordan. Formed in Ellicott City, Maryland, around 2015, the project quickly captured the attention of the indie music community with Jordan's precocious songwriting, characterized by searing, confessional lyrics and dynamic guitar work. Jordan’s ability to weave personal narratives with a distinctive, often melancholic melodic sense helped define a sound that bridges the gap between classic 90s-style indie rock and more contemporary, vulnerable bedroom pop aesthetics. After the release of the breakthrough EP 'Habit' in 2016, which featured the fan-favorite track 'Thinning', Snail Mail transitioned into a more polished studio ensemble with the release of the acclaimed debut album 'Lush' in 2018. The project continued to evolve with the 2021 album 'Valentine', which introduced more lush production textures and synth-influenced elements while retaining the core of Jordan's sharp, emotionally resonant songwriting. Over the years, Snail Mail has solidified its place as a key voice in modern independent music, known for its consistent output and Jordan's charismatic, albeit guarded, public persona as she navigates the complexities of professional musicianship at a young age. The project's discography reflects a journey from youthful DIY beginnings to more expansive, atmospheric compositions. Throughout this time, Jordan has consistently utilized Snail Mail as a primary vehicle for exploring themes of heartbreak, identity, and the growing pains of early adulthood, marking her as one of the most prominent songwriters to emerge in the late 2010s indie circuit. Her influence extends beyond her own compositions, having toured and performed alongside a variety of notable peers, continuously refining the balance between raw, unplugged sincerity and the fuller band sound that characterizes her later work.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/snail-mail-1",
+      "title": "Snail Mail Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/snail-mail-mn0003593168",
+      "title": "Snail Mail - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:47.038Z",
+  "type": "artist",
+  "editorial_bio": "Snail Mail is the indie rock project led by American singer-songwriter and guitarist Lindsey Jordan. Formed in Ellicott City, Maryland, around 2015, the project quickly captured the attention of the indie music community with Jordan's precocious songwriting, characterized by searing, confessional lyrics and dynamic guitar work. Jordan’s ability to weave personal narratives with a distinctive, often melancholic melodic sense helped define a sound that bridges the gap between classic 90s-style indie rock and more contemporary, vulnerable bedroom pop aesthetics. After the release of the breakthrough EP 'Habit' in 2016, which featured the fan-favorite track 'Thinning', Snail Mail transitioned into a more polished studio ensemble with the release of the acclaimed debut album 'Lush' in 2018. The project continued to evolve with the 2021 album 'Valentine', which introduced more lush production textures and synth-influenced elements while retaining the core of Jordan's sharp, emotionally resonant songwriting. Over the years, Snail Mail has solidified its place as a key voice in modern independent music, known for its consistent output and Jordan's charismatic, albeit guarded, public persona as she navigates the complexities of professional musicianship at a young age. The project's discography reflects a journey from youthful DIY beginnings to more expansive, atmospheric compositions. Throughout this time, Jordan has consistently utilized Snail Mail as a primary vehicle for exploring themes of heartbreak, identity, and the growing pains of early adulthood, marking her as one of the most prominent songwriters to emerge in the late 2010s indie circuit. Her influence extends beyond her own compositions, having toured and performed alongside a variety of notable peers, continuously refining the balance between raw, unplugged sincerity and the fuller band sound that characterizes her later work.",
+  "photo_url": "https://cdn.sonemic.net/i/600/w/4a1b021e35324dc05146393fbe799a6a/6973941/snail-mail-snail-mail-audiotree-live-cover-art.jpg",
+  "origin": "Ellicott City, MD, United States",
+  "active_years": "2015-present",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie Folk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:habit",
+      "type": "project",
+      "name": "Habit"
+    },
+    {
+      "slug": "project:lush",
+      "type": "project",
+      "name": "Lush"
+    },
+    {
+      "slug": "project:valentine",
+      "type": "project",
+      "name": "Valentine"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pristine",
+      "type": "track",
+      "name": "Pristine"
+    },
+    {
+      "slug": "track:heat-wave",
+      "type": "track",
+      "name": "Heat Wave"
+    },
+    {
+      "slug": "track:thinning",
+      "type": "track",
+      "name": "Thinning"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

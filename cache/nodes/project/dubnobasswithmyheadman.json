@@ -1,0 +1,79 @@
+{
+  "slug": "project:dubnobasswithmyheadman",
+  "name": "Dubnobasswithmyheadman",
+  "editorial_article": "Released on January 24, 1994, on the legendary Junior Boy's Own label, Dubnobasswithmyheadman marked a pivotal transformation for Underworld. Following a failed stint as an 80s synth-pop outfit, the core duo of Karl Hyde and Rick Smith recruited teenage DJ Darren Emerson, effectively realigning their sound with the burgeoning UK electronic dance scene. The album serves as an expansive, sprawling synthesis of acid house, dub, and techno, characterized by a fluid, improvisational production approach where loops, samples, and vocal fragments were constantly reshaped. \\n\\nThe record's lyrical content, much of which was penned by Karl Hyde during travels in the United States, leans heavily into surreal, stream-of-consciousness observational poetry. Tracks like \\\"Dark & Long\\\" and \\\"Mmm... Skyscraper I Love You\\\" vividly capture the urban alienation and kinetic energy of cities like New York and the open spaces of the American Midwest. This sonic and lyrical tension—grounded in raw, club-oriented beats but elevated by Hyde’s literate, impressionistic vocals—was deeply influential, helping to drag dance music out of the rave tent and into the realm of introspective, artful listening. \\n\\nBeyond the music, the album's aesthetic, designed by the Tomato collective, became synonymous with 90s \\\"grunge\\\" graphic design. Its dense, fragmented typography and chaotic visual style set a new standard for dance music packaging, solidifying the band's identity as a cross-disciplinary artistic unit. Decades later, Dubnobasswithmyheadman is still hailed as a foundational text of intelligent dance music, illustrating the moment Underworld transitioned from industry survivors to one of the most innovative and enduring electronic acts in history. It remains a quintessential document of the 1990s, capturing a unique intersection of club culture, experimental production, and literary songcraft.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dubnobasswithmyheadman",
+      "title": "Dubnobasswithmyheadman - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/43549-Underworld-Dubnobasswithmyheadman?srsltid=AfmBOorkNQXjWl-I54fUfBS3Wno24XuMXLrbb54RfBFlZu4n_soiS8pA",
+      "title": "Underworld – Dubnobasswithmyheadman | Releases"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:25.454Z",
+  "type": "project",
+  "editorial_pitch": "A landmark in electronic dance music, Underworld's debut as a trio synthesizes the gritty textures of the 90s dancefloor with the poetic, stream-of-consciousness storytelling of Karl Hyde. It remains a seminal work that bridged the gap between underground rave culture and art-school ambition.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Underworld.dubnobasswithmyheadman.jpg",
+  "year": "1994",
+  "artists": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    }
+  ],
+  "label": {
+    "slug": "label:junior-boy-s-own",
+    "type": "label",
+    "name": "Junior Boy's Own"
+  },
+  "genres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:dark-and-long",
+      "type": "track",
+      "name": "Dark & Long"
+    },
+    {
+      "slug": "track:mmm-skyscraper-i-love-you",
+      "type": "track",
+      "name": "Mmm... Skyscraper I Love You"
+    },
+    {
+      "slug": "track:cowgirl",
+      "type": "track",
+      "name": "Cowgirl"
+    },
+    {
+      "slug": "track:dirty-epic",
+      "type": "track",
+      "name": "Dirty Epic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    }
+  ],
+  "related_projects": []
+}

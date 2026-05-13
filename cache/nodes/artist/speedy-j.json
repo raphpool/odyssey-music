@@ -1,0 +1,99 @@
+{
+  "slug": "artist:speedy-j",
+  "name": "Speedy J",
+  "editorial_article": "Jochem George Paap (born 1969), professionally known as Speedy J, is a cornerstone of the Dutch electronic music scene and a pivotal figure in the evolution of techno. Hailing from Rotterdam, Paap emerged in the early 1990s, swiftly gaining recognition for his technical prowess and his ability to navigate the intersection of dance-floor-oriented techno and experimental sound design. His 1992 track \"Pullover\" served as a significant breakthrough, establishing his place in the burgeoning techno movement. During the mid-90s, he became an essential contributor to the Warp Records *Artificial Intelligence* series, which helped define the IDM (Intelligent Dance Music) genre. His debut album, *Ginger* (1993), remains a classic in this field, showcasing his ability to blend intricate rhythms with atmospheric production.\\n\\nThroughout his career, Paap has refused to stay static, shifting his focus through various iterations of techno and ambient music. From the experimental textures of *Public Energy No. 1* (1997) and *A Shocking Hobby* (2000) to the stark, minimal precision of *Loudboxer* (2002), his sound is characterized by a deep engagement with the possibilities of electronic hardware. Beyond his solo work, his collaborative spirit has led him to work with prominent artists like Chris Liebing—with whom he produced the *Collabs 3000: Metalism* project—as well as Surgeon, Mike Paradinas, and Luca Mortellaro (Zeitgeber). In 2008, he established his own label, Electric Deluxe, creating a platform for his own boundary-pushing output and the work of contemporaries, cementing his legacy as a restless innovator in the techno landscape. His influence continues to ripple through modern electronic music, balancing technical mastery with a forward-thinking aesthetic that avoids easy categorization. Whether performing live or engineering in the studio, Paap remains one of the most respected names in global techno, bridging the gap between underground authenticity and professional excellence.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Speedy_J",
+      "title": "Speedy J - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:38.671Z",
+  "type": "artist",
+  "editorial_bio": "Jochem George Paap (born 1969), professionally known as Speedy J, is a cornerstone of the Dutch electronic music scene and a pivotal figure in the evolution of techno.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Speedy_J_%28Seattle_2006%29.jpg/250px-Speedy_J_%28Seattle_2006%29.jpg",
+  "origin": "Rotterdam, Netherlands",
+  "active_years": "1990s–present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:plus-8",
+      "type": "label",
+      "name": "Plus 8"
+    },
+    {
+      "slug": "label:novamute",
+      "type": "label",
+      "name": "NovaMute"
+    },
+    {
+      "slug": "label:electric-deluxe",
+      "type": "label",
+      "name": "Electric Deluxe"
+    },
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing"
+    },
+    {
+      "slug": "artist:surgeon",
+      "type": "artist",
+      "name": "Surgeon"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:luca-mortellaro",
+      "type": "artist",
+      "name": "Luca Mortellaro"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "project:the-wayward",
+  "name": "The Wayward",
+  "editorial_article": "\"The Wayward\" is the self-titled debut full-length studio album from the Baltimore-based experimental punk trio The Wayward. Released on June 6, 2006, via Black Box Recordings, the album represents a critical juncture in the early career of the band, which formed in 2004 following the dissolution of the group Carrion. The record was captured at Translator Audio in Brooklyn, New York, with engineering duties handled by Mike Hill, capturing the raw and abrasive energy that would define much of the group's subsequent output. \\n\\nMusically, the album occupies a distinct space between jagged, angular post-hardcore and experimental rock. With a lineup consisting of Nick Skrobisz on guitar and vocals, Jesse Skrobisz on Bass VI, and Nate Simms on drums, the trio crafted a sonic landscape marked by dissonance and kinetic complexity. The compositions on \"The Wayward\" range from driving, rhythmic attacks to disjointed, psych-inflected passages, showcasing an approach that resists conventional genre boundaries. The album's tracklist, featuring nine cuts including \"Balthazar,\" \"No Remainder,\" and \"Ye Olde Battle Axe,\" serves as a testament to the technical proficiency and creative restlessness of a group that would continue to evolve, eventually shifting to an atypical trio format and later a duo, further expanding their minimalist, abrasive aesthetic. The project remains a touchstone for the band's transition into the Baltimore noise-rock and experimental scenes.",
+  "citations": [
+    {
+      "url": "https://thewayward.bandcamp.com/album/the-wayward",
+      "title": "The Wayward | The Wayward - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:41.978Z",
+  "type": "project",
+  "editorial_pitch": "\"The Wayward\" is the self-titled debut full-length studio album from the Baltimore-based experimental punk trio The Wayward.",
+  "year": "2006",
+  "artists": [],
+  "label": {
+    "slug": "label:black-box-recordings",
+    "type": "label",
+    "name": "Black Box Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:experimental-punk",
+      "type": "genre",
+      "name": "Experimental Punk"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:balthazar",
+      "type": "track",
+      "name": "Balthazar"
+    },
+    {
+      "slug": "track:no-remainder",
+      "type": "track",
+      "name": "No Remainder"
+    },
+    {
+      "slug": "track:corrosive-qualities",
+      "type": "track",
+      "name": "Corrosive Qualities"
+    },
+    {
+      "slug": "track:twenty-twenty",
+      "type": "track",
+      "name": "Twenty/Twenty"
+    },
+    {
+      "slug": "track:you-can-have-it",
+      "type": "track",
+      "name": "You Can Have It"
+    },
+    {
+      "slug": "track:cross-section",
+      "type": "track",
+      "name": "Cross Section"
+    },
+    {
+      "slug": "track:detour",
+      "type": "track",
+      "name": "Detour"
+    },
+    {
+      "slug": "track:piss",
+      "type": "track",
+      "name": "Piss"
+    },
+    {
+      "slug": "track:ye-olde-battle-axe",
+      "type": "track",
+      "name": "Ye Olde Battle Axe"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-hill",
+      "type": "artist",
+      "name": "Mike Hill"
+    }
+  ],
+  "related_projects": []
+}

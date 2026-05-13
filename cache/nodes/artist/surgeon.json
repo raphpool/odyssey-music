@@ -1,0 +1,72 @@
+{
+  "slug": "artist:surgeon",
+  "name": "Surgeon",
+  "editorial_article": "Surgeon is the alias of Anthony Child, a pivotal figure in the development of British techno who has remained a cornerstone of the scene since his emergence in the mid-1990s. Based in Birmingham, England, Child helped define a specific, gritty, and industrial-tinged sound that became synonymous with the city's influential club culture, particularly through his involvement with the House of God night. His early releases on the seminal Downwards label—co-founded with Karl O'Connor (Regis)—established a template for UK techno that balanced raw, mechanical percussion with an unexpected sense of space, funk, and dub-informed depth. This distinctive approach resonated far beyond Birmingham, profoundly influencing the development of the \"Berlin sound\" that would later dominate the global techno consciousness in the 2000s and 2010s. Throughout his career, Surgeon has demonstrated remarkable artistic evolution. While he is celebrated for his uncompromising techno productions, his discography reveals a far more versatile musician who frequently explores experimental, ambient, and drone territories under his own name or through various collaborative projects. Projects such as the fierce, industrial-oriented British Murder Boys (with Regis) and his work with Speedy J as Multiples, illustrate his penchant for improvisation and sonic exploration. In the contemporary era, Surgeon is equally lauded for his innovative approach to DJing, where he increasingly blurs the lines between traditional track selection and live hardware improvisation. By consistently pushing the boundaries of what dancefloor technology can achieve, he remains one of the most respected and intuitive selectors in electronic music.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/surgeon/biography",
+      "title": "Surgeon · Biography"
+    },
+    {
+      "url": "https://www.last.fm/music/Surgeon/+wiki",
+      "title": "Surgeon age, biography | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:38.414Z",
+  "type": "artist",
+  "editorial_bio": "Surgeon is the alias of Anthony Child, a pivotal figure in the development of British techno who has remained a cornerstone of the scene since his emergence in the mid-1990s. Based in Birmingham, England, Child helped define a specific, gritty, and industrial-tinged sound that became synonymous with the city's influential club culture.",
+  "origin": "Birmingham, England",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:downwards",
+      "type": "label",
+      "name": "Downwards"
+    },
+    {
+      "slug": "label:tresor",
+      "type": "label",
+      "name": "Tresor"
+    },
+    {
+      "slug": "label:dynamic-tension-records",
+      "type": "label",
+      "name": "Dynamic Tension Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:regis",
+      "type": "artist",
+      "name": "Regis"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    },
+    {
+      "slug": "artist:lady-starlight",
+      "type": "artist",
+      "name": "Lady Starlight"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

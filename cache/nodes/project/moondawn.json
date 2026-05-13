@@ -1,0 +1,70 @@
+{
+  "slug": "project:moondawn",
+  "name": "Moondawn",
+  "editorial_article": "Moondawn, released in 1976, stands as the sixth studio album by German electronic music pioneer Klaus Schulze and represents a pivotal moment in the development of the Berlin School style. Recorded during a period of prolific creativity, this album marked a significant shift in Schulze's sonic approach, serving as his first work to fully embrace the rhythmic and structural characteristics of the Berlin School. Unlike some of his more amorphous, experimental earlier works, Moondawn is anchored by hypnotic sequencer patterns and immersive, long-form synthesizer textures that define the genre's enduring appeal. \\n\\nA key element of Moondawn’s distinction is the contribution of drummer Harald Grosskopf, whose percussive input provided a dynamic, rhythmic foundation that perfectly complemented Schulze’s expansive keyboard layers. The album consists of two massive side-long compositions, \"Floating\" and \"Mindphaser,\" which demonstrate Schulze’s mastery of the Moog synthesizer, ARP 2600, and other vintage analog gear. By balancing cosmic, space-age soundscapes with grounded, propulsive rhythms, Moondawn helped bridge the gap between experimental electronic music and the more accessible, driving rhythms that would influence later generations of ambient, techno, and trance producers. It remains a hallmark of 1970s electronic music, often cited for its influence on the evolution of ambient and space music. Over the decades, it has been reissued several times, sometimes including bonus material that provides further insight into Schulze’s recording process and his ability to construct vast, evolving sonic narratives.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moondawn",
+      "title": "Moondawn - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:19.885Z",
+  "type": "project",
+  "editorial_pitch": "A cornerstone of the 1970s Berlin School, Moondawn is Klaus Schulze's seminal 1976 album that famously combined expansive analog synthesizer textures with the rhythmic drive of drummer Harald Grosskopf.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/a/a6/Moondawn_%28Klaus_Schulze_album_-_cover_art%29.jpg",
+  "year": "1976",
+  "artists": [
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
+  "label": {
+    "slug": "label:brain-records",
+    "type": "label",
+    "name": "Brain Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:floating",
+      "type": "track",
+      "name": "Floating"
+    },
+    {
+      "slug": "track:mindphaser",
+      "type": "track",
+      "name": "Mindphaser"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
+  "related_projects": []
+}

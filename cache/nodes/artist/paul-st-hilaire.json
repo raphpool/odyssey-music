@@ -1,0 +1,114 @@
+{
+  "slug": "artist:paul-st-hilaire",
+  "name": "Paul St. Hilaire",
+  "editorial_article": "Paul St. Hilaire is a Dominica-born, Berlin-based vocalist and producer whose work serves as a foundational bridge between Caribbean roots reggae and the cold, minimalist architecture of Berlin's dub techno scene. Initially rising to prominence in the mid-1990s under the alias Tikiman, St. Hilaire became the quintessential voice for the production duo Rhythm & Sound. His style is marked by a unique, hypnotic vocal delivery—often described as \"forcefully understated\"—that manages to retain the rhythmic cadence and spiritual weight of Rastafarian lingo while floating atop the sparse, subsonic textures characteristic of the Basic Channel lineage. Throughout his career, St. Hilaire has maintained a philosophy of stylistic fluidity, refusing to be confined solely to the techno world. His discography explores a wide sonic spectrum, ranging from introspective, reverb-drenched dub tracks like 'Never Tell You' to more direct, organic roots reggae compositions on his own False Tuned imprint. Known for his legendary reticence and preference for letting his output speak for itself, St. Hilaire remains a pivotal figure in electronic music, proving that human warmth can thrive even within the most rigorous, non-human machine environments. His ability to balance the emotional resonance of soul and roots with the calculated austerity of dub techno has influenced a generation of artists exploring the intersection of organic and digital sounds. While his early work is synonymous with the groundbreaking aesthetic of the mid-90s Berlin scene, his later solo albums demonstrate a continued commitment to deep, spiritual musical exploration.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/104604-Paul-St-Hilaire?srsltid=AfmBOoofIHF02LII4cDFZfH72UQvJrjN7SM0fTuablaNAl783fea3GoI",
+      "title": "Paul St. Hilaire Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://daily.redbullmusicacademy.com/2013/09/paul-st-hilaire-tikiman-guide/",
+      "title": "A Guide to the Discography of Paul St Hilaire / Tikiman | Red Bull Music Academy Daily"
+    },
+    {
+      "url": "https://echospace313.com/paul-st-hilaire",
+      "title": "paul st. hilaire - echospace [detroit]"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:31.863Z",
+  "type": "artist",
+  "editorial_bio": "Paul St. Hilaire is a Dominica-born, Berlin-based vocalist and producer whose work serves as a foundational bridge between Caribbean roots reggae and the cold, minimalist architecture of Berlin's dub techno scene. Initially rising to prominence in the mid-1990s under the alias Tikiman, St. Hilaire became the quintessential voice for the production duo Rhythm & Sound. His style is marked by a unique, hypnotic vocal delivery—often described as \"forcefully understated\"—that manages to retain the rhythmic cadence and spiritual weight of Rastafarian lingo while floating atop the sparse, subsonic textures characteristic of the Basic Channel lineage. Throughout his career, St. Hilaire has maintained a philosophy of stylistic fluidity, refusing to be confined solely to the techno world. His discography explores a wide sonic spectrum, ranging from introspective, reverb-drenched dub tracks like 'Never Tell You' to more direct, organic roots reggae compositions on his own False Tuned imprint. Known for his legendary reticence and preference for letting his output speak for itself, St. Hilaire remains a pivotal figure in electronic music, proving that human warmth can thrive even within the most rigorous, non-human machine environments. His ability to balance the emotional resonance of soul and roots with the calculated austerity of dub techno has influenced a generation of artists exploring the intersection of organic and digital sounds. While his early work is synonymous with the groundbreaking aesthetic of the mid-90s Berlin scene, his later solo albums demonstrate a continued commitment to deep, spiritual musical exploration.",
+  "photo_url": "https://daily.redbullmusicacademy.com/assets/Untitled-1.7c91a340.jpg",
+  "origin": "Dominica",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:burial-mix",
+      "type": "label",
+      "name": "Burial Mix"
+    },
+    {
+      "slug": "label:false-tuned",
+      "type": "label",
+      "name": "False Tuned"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:showcase",
+      "type": "project",
+      "name": "Showcase"
+    },
+    {
+      "slug": "project:adsom-a-divine-state-of-mind",
+      "type": "project",
+      "name": "ADSOM - A Divine State of Mind"
+    },
+    {
+      "slug": "project:unspecified",
+      "type": "project",
+      "name": "Unspecified"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:never-tell-you",
+      "type": "track",
+      "name": "Never Tell You"
+    },
+    {
+      "slug": "track:spend-some-time",
+      "type": "track",
+      "name": "Spend Some Time"
+    },
+    {
+      "slug": "track:ruff-way",
+      "type": "track",
+      "name": "Ruff Way"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound"
+    },
+    {
+      "slug": "artist:stereotyp",
+      "type": "artist",
+      "name": "Stereotyp"
+    },
+    {
+      "slug": "artist:rene-lowe",
+      "type": "artist",
+      "name": "Rene Lowe"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

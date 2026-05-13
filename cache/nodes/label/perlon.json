@@ -1,0 +1,80 @@
+{
+  "slug": "label:perlon",
+  "name": "Perlon",
+  "editorial_article": "Perlon is one of the most influential and widely revered electronic music labels in the world, serving as a pillar of the minimal techno and microhouse scenes. Founded in 1997 in Frankfurt, Germany, by Thomas Franzmann (Zip), Markus Nikolai, and Chris Rehberger, the label eventually relocated its operations to Berlin, mirroring the migration of many key figures in the German electronic music underground during that era. Perlon is celebrated for its uncompromisingly high quality, its idiosyncratic visual design, and a curated, tight-knit roster of artists who have defined the \"minimal\" sound through the early 2000s and beyond.\\n\\nThe label's sonic identity is famously precise—often dry, percussive, and highly detailed—yet consistently imbued with a deep, soulful musicality that distinguishes it from more clinical or repetitive minimal techno labels. Key to its enduring legacy is the involvement of visionary producers such as Ricardo Villalobos, whose long-playing records on Perlon have become genre benchmarks, as well as the work of artists like Margaret Dygas, Melchior Productions Ltd, and the label co-founder Zip. Through its iconic \"Superlongevity\" compilation series, Perlon has documented the evolution of its unique aesthetic, providing a map for the sound’s development while maintaining a mysterious, almost cult-like status in the global dance music community. Even decades into its existence, Perlon remains defined by its dedication to the vinyl format and a deliberate, organic growth that contrasts with the fast-paced nature of modern digital music consumption. Its influence continues to permeate techno and house scenes globally, with a sound that is as instantly recognizable as the distinctive, minimalist sleeve art of its record releases.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/538-Perlon?srsltid=AfmBOoprwKX9b8-zlwSX08oaLbayJnTuNZWuWECTDrIF5ChYNCZauEUv",
+      "title": "Perlon - Discogs"
+    },
+    {
+      "url": "https://ra.co/labels/750",
+      "title": "Perlon · Record label RA"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Perlon",
+      "title": "Perlon - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:12.588Z",
+  "type": "label",
+  "editorial_description": "A legendary German label based in Berlin, Perlon is widely considered the primary architect of the minimal techno and microhouse sound, characterized by its meticulous production standards and an iconic, tight-knit roster.",
+  "founded": "1997",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:margaret-dygas",
+      "type": "artist",
+      "name": "Margaret Dygas"
+    },
+    {
+      "slug": "artist:melchior-productions-ltd",
+      "type": "artist",
+      "name": "Melchior Productions Ltd"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:superlongevity",
+      "type": "project",
+      "name": "Superlongevity"
+    },
+    {
+      "slug": "project:dependent-and-happy",
+      "type": "project",
+      "name": "Dependent and Happy"
+    },
+    {
+      "slug": "project:invisible-circles",
+      "type": "project",
+      "name": "Invisible Circles"
+    }
+  ]
+}

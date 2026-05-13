@@ -1,0 +1,74 @@
+{
+  "slug": "artist:andy-c",
+  "name": "Andy C",
+  "editorial_article": "Andy C, born Andrew Michael Clarke in Walsall, England, is a foundational figure in the drum and bass genre, widely regarded as one of the most influential DJs and producers in the scene's history. Rising to prominence in the early 1990s, Clarke became synonymous with the rapid evolution of breakbeat and jungle, co-founding the legendary RAM Records in 1992. His production work, notably through the seminal group Origin Unknown—which delivered the iconic 1993 track \"Valley of the Shadows\"—helped define the sonic landscape of early UK jungle and drum and bass. \\n\\nBeyond the studio, Andy C built a reputation for unparalleled technical prowess on the decks. Known for his \"double drop\" mixing technique, he frequently utilizes three analogue turntables, crafting sets that remain high-energy, complex, and flawlessly executed. His performance at Wembley Arena in 2018 marked a major milestone, serving as the first headline drum and bass show at the venue. Throughout his career, he has nurtured the scene through RAM Records, championing essential artists like Sub Focus, Chase & Status, and Wilkinson, while consistently touring globally. His sustained success is marked by numerous \"Best DJ\" awards, particularly from Drum & Bass Arena, cementing his status as an ambassador of the bass music culture. His evolution from the early rave era to modern festival headliner highlights a career built on technical mastery and an unyielding commitment to the drum and bass sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Andy_C",
+      "title": "Andy C - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/337-Andy-C?srsltid=AfmBOopWMghISuFPOVYCbkHPPUN61E4lF9Q3hIP2eMxiWAHmhay0uu0K",
+      "title": "Andy C Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:49.022Z",
+  "type": "artist",
+  "editorial_bio": "Andy C, born Andrew Michael Clarke in Walsall, England, is a foundational figure in the drum and bass genre, widely regarded as one of the most influential DJs and producers in the scene's history.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Andy_C_live_in_2011_3_%28cropped%29.jpg/250px-Andy_C_live_in_2011_3_%28cropped%29.jpg",
+  "origin": "Walsall, England",
+  "active_years": "1991–present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ram-records",
+      "type": "label",
+      "name": "RAM Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:valley-of-the-shadows",
+      "type": "track",
+      "name": "Valley of the Shadows"
+    },
+    {
+      "slug": "track:body-rock",
+      "type": "track",
+      "name": "Body Rock"
+    },
+    {
+      "slug": "track:heartbeat-loud",
+      "type": "track",
+      "name": "Heartbeat Loud"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ant-miles",
+      "type": "artist",
+      "name": "Ant Miles"
+    },
+    {
+      "slug": "artist:shimon",
+      "type": "artist",
+      "name": "Shimon"
+    },
+    {
+      "slug": "artist:fiora",
+      "type": "artist",
+      "name": "Fiora"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

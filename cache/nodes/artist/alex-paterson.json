@@ -1,0 +1,62 @@
+{
+  "slug": "artist:alex-paterson",
+  "name": "Alex Paterson",
+  "editorial_article": "Alex Paterson, born Duncan Alexander Robert Paterson in 1959, is a central architect of ambient house music and the co-founder of The Orb. Beginning his career as a roadie for post-punk band Killing Joke and working in A&R for E.G. Records, Paterson's exposure to diverse sounds—ranging from experimental industrial music to the vibrant New York radio scene—deeply influenced his production style. In 1988, he formed The Orb with Jimmy Cauty, creating a sonic landscape that blended deep dub rhythms, ethereal soundscapes, and intricate, often humorous, audio sampling. This innovative approach helped define the chill-out room phenomenon of the early 1990s.\n\nThroughout his career, Paterson has maintained The Orb as a versatile vehicle for sonic exploration, collaborating with a wide array of musicians including Thomas Fehlmann, Kris Weston, Robert Fripp, and Youth. His output is characterized by a signature \"interstellar\" aesthetic that defies strict genre boundaries, weaving together elements of dub, ambient, IDM, and electronic music. Beyond his work with The Orb, Paterson has been involved in projects such as FFWD, Transit Kings, and SCREEN. He has also been an active label head, co-founding WAU! Mr. Modo in the late 1980s and launching the Badorb.com project in 2002. More recently, he established Orbscure Recordings to continue his commitment to experimental and ambient sounds, cementing his legacy as a pivotal figure in British electronic music. His contribution to the evolution of electronic sound—from dance floor rhythms to immersive, meditative ambient experiences—remains one of the most significant narratives in contemporary music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alex_Paterson",
+      "title": "Alex Paterson - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/dr-alex-paterson-mn0000805187",
+      "title": "Dr. Alex Paterson Songs, Albums, Reviews, Bio - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:14.173Z",
+  "type": "artist",
+  "editorial_bio": "Co-founder and constant driving force of the ambient house pioneers, The Orb, known for his signature blend of dub, ambient, and sample-heavy soundscapes.",
+  "origin": "Battersea, London, England",
+  "active_years": "1988–present",
+  "genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient house"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:wau-mr-modo",
+      "type": "label",
+      "name": "WAU! Mr. Modo"
+    },
+    {
+      "slug": "label:orbscure-recordings",
+      "type": "label",
+      "name": "Orbscure Recordings"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    }
+  ]
+}

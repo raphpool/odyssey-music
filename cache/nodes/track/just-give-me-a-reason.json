@@ -1,0 +1,45 @@
+{
+  "slug": "track:just-give-me-a-reason",
+  "name": "Just Give Me a Reason",
+  "editorial_article": "\"Just Give Me a Reason\" is a poignant, chart-topping pop ballad by American singer P!nk, featuring Nate Ruess of the indie-pop band Fun. Released in February 2013 as the third single from P!nk's sixth studio album, 'The Truth About Love' (2012), the track became one of the defining hits of the year. Written by P!nk and Ruess alongside producer Jeff Bhasker—who was instrumental in shaping the sound of Fun.'s album 'Some Nights'—the song explores the complex emotional landscape of a relationship on the brink of collapse, articulating the desire for reconciliation without offering easy resolutions. \\n\\nThe composition is noted for its relative simplicity compared to the bombastic pop productions prevalent in the era. It opens with a spare, melancholic piano melody, gradually introducing drum machines and bass to build a delicate, tension-filled atmosphere. The song functions as a narrative conversation, with P!nk and Ruess trading verses before blending their voices in a climactic duet. Critical reception was overwhelmingly positive, with many reviewers—including those at Rolling Stone—praising it as the album's standout track for its stripped-back approach and genuine sentimentality. Its success was truly global, reaching the number-one spot in over twenty countries and securing multiple Grammy nominations, solidifying its place as a staple of 2010s mainstream radio. The music video, which earned an MTV Video Music Award for Best Collaboration, further cemented the song's cultural footprint, featuring P!nk alongside her husband, Carey Hart.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Just_Give_Me_a_Reason",
+      "title": "Just Give Me a Reason - Wikipedia"
+    },
+    {
+      "url": "https://open.spotify.com/track/6TUHuZCexBi8StxreRfQyE",
+      "title": "Just Give Me a Reason (feat. Nate Ruess) - Spotify"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=QG530n7VEDk",
+      "title": "Just Give Me A Reason ft. Nate Ruess [Official Music Video]"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:27.459Z",
+  "type": "track",
+  "editorial_teaser": "\"Just Give Me a Reason\" is a poignant, chart-topping pop ballad by American singer P!nk, featuring Nate Ruess of the indie-pop band Fun.",
+  "artists": [],
+  "project": {
+    "slug": "project:the-truth-about-love",
+    "type": "project",
+    "name": "The Truth About Love"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jeff-bhasker",
+      "type": "artist",
+      "name": "Jeff Bhasker"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

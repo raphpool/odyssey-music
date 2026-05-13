@@ -1,0 +1,37 @@
+{
+  "slug": "artist:69",
+  "name": "69",
+  "editorial_article": "69 is one of the many aliases used by the prolific and influential British electronic musician Richard D. James. Primarily active during the 1990s, James utilized a vast array of pseudonyms—including Aphex Twin, AFX, Caustic Window, and Polygon Window—to explore different sonic territories within electronic music, ranging from ambient techno and acid to drill 'n' bass and experimental soundscapes. The 69 moniker represents one of the more obscure corners of his discography, often associated with his early work in the British rave and techno scenes. Like much of his output under various aliases, the music released as 69 is characterized by intricate programming, innovative synthesizer use, and a playful, often challenging approach to rhythm and texture that defined the IDM (Intelligent Dance Music) movement. James’s ability to constantly reinvent his sound while maintaining a distinct, recognizable creative DNA has cemented his legacy as a titan of contemporary electronic music. His work under these aliases often served as a testing ground for techniques and textures that would later influence the broader trajectory of electronic composition, making the 69 alias a vital, if enigmatic, part of a career that has continually pushed the boundaries of what is possible within the medium. By operating under multiple names, James created an expansive, interconnected musical world that continues to be a subject of intense fascination for enthusiasts of experimental electronic sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Aphex_Twin",
+      "title": "Aphex Twin - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/435132-Richard-D-James",
+      "title": "Richard D. James - Discogs Artist Page"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Richard_D._James_discography",
+      "title": "Richard D. James Discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:06.523Z",
+  "type": "artist",
+  "editorial_bio": "69 is one of the many aliases used by the prolific and influential British electronic musician Richard D.",
+  "genres": [],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    }
+  ],
+  "members": []
+}

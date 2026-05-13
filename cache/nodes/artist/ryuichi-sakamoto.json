@@ -1,0 +1,146 @@
+{
+  "slug": "artist:ryuichi-sakamoto",
+  "name": "Ryuichi Sakamoto",
+  "editorial_article": "Ryuichi Sakamoto (1952–2023) was a transformative Japanese musician, composer, and pioneer who profoundly shaped the landscape of modern electronic, experimental, and classical music. Emerging from the Tokyo academic scene in the mid-1970s, he achieved early global fame as a founding member of the influential synth-pop group Yellow Magic Orchestra (YMO). Alongside Haruomi Hosono and Yukihiro Takahashi, Sakamoto utilized state-of-the-art synthesizers and early digital technology to craft a sound that bridged pop, avant-garde, and early electronic music, influencing hip-hop, electro, and techno in the process. His landmark 1980 solo album, 'B-2 Unit', which featured the seminal, rhythmically innovative track 'Riot in Lagos', is frequently cited as a blueprint for the development of electro-funk and subsequent dance music genres. \\n\\nBeyond his work in electronic pop, Sakamoto maintained a career as a celebrated, classically-trained composer. He gained international renown for his evocative film scores, beginning with his role as both actor and composer in 'Merry Christmas, Mr. Lawrence' (1983). His mastery of melody and atmosphere culminated in an Academy Award for his work on 'The Last Emperor' (1987), marking him as the first Japanese composer to receive the honor. Throughout the latter half of his career, Sakamoto increasingly blurred the lines between the organic and the synthetic, frequently collaborating with luminaries of the glitch and ambient scenes—such as Carsten Nicolai (Alva Noto) and Fennesz—to explore delicate, experimental textures. His lifelong dedication to sonic innovation, deep respect for traditional composition (particularly Debussy and Bach), and fearless cross-genre exploration cemented his legacy as a titan of 20th- and 21st-century music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ryuichi_Sakamoto",
+      "title": "Ryuichi Sakamoto - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/%E5%9D%82%E6%9C%AC%E9%BE%8D%E4%B8%80",
+      "title": "坂本龍一 [Ryuichi Sakamoto] - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:04.752Z",
+  "type": "artist",
+  "editorial_bio": "Ryuichi Sakamoto was a legendary Japanese composer and producer who pioneered electronic pop with Yellow Magic Orchestra and became a celebrated film score master.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Ryuichi_Sakamoto_side.jpg/250px-Ryuichi_Sakamoto_side.jpg",
+  "origin": "Tokyo, Japan",
+  "active_years": "1975–2023",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "ambient"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "experimental"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "classical"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "synth-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:alfa",
+      "type": "label",
+      "name": "Alfa"
+    },
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    },
+    {
+      "slug": "label:midi",
+      "type": "label",
+      "name": "MIDI"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:thousand-knives",
+      "type": "project",
+      "name": "Thousand Knives"
+    },
+    {
+      "slug": "project:b-2-unit",
+      "type": "project",
+      "name": "B-2 Unit"
+    },
+    {
+      "slug": "project:merry-christmas-mr-lawrence",
+      "type": "project",
+      "name": "Merry Christmas, Mr. Lawrence"
+    },
+    {
+      "slug": "project:the-last-emperor",
+      "type": "project",
+      "name": "The Last Emperor"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:riot-in-lagos",
+      "type": "track",
+      "name": "Riot in Lagos"
+    },
+    {
+      "slug": "track:merry-christmas-mr-lawrence",
+      "type": "track",
+      "name": "Merry Christmas Mr. Lawrence"
+    },
+    {
+      "slug": "track:forbidden-colours",
+      "type": "track",
+      "name": "Forbidden Colours"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono"
+    },
+    {
+      "slug": "artist:yukihiro-takahashi",
+      "type": "artist",
+      "name": "Yukihiro Takahashi"
+    },
+    {
+      "slug": "artist:carsten-nicolai",
+      "type": "artist",
+      "name": "Carsten Nicolai"
+    },
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz"
+    },
+    {
+      "slug": "artist:david-sylvian",
+      "type": "artist",
+      "name": "David Sylvian"
+    },
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
+    }
+  ]
+}

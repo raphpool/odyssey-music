@@ -1,0 +1,128 @@
+{
+  "slug": "project:artificial-intelligence",
+  "name": "Artificial Intelligence",
+  "editorial_article": "Artificial Intelligence, released by Warp Records on July 6, 1992, stands as a watershed moment in electronic music history. Often cited as the foundational document for what would become known as Intelligent Dance Music (IDM) or \"electronic listening music,\" the album fundamentally reoriented the reception of electronic sounds at a time when rave and club culture were at their peak in the United Kingdom. By positioning these tracks—which drew from Detroit techno, ambient, and avant-garde influences—as pieces for sedentary, home-based listening, Warp effectively decoupled the music from the kinetic demands of the dancefloor, encouraging listeners to engage with the compositions as they would with a rock or experimental album.\\n\\nThe curation of the compilation brought together a roster of visionary artists who would go on to shape the next decade of electronic production, including Aphex Twin (appearing as The Dice Man), Autechre, The Black Dog (as I.A.O.), Speedy J, Richie Hawtin (as UP!), and B12 (as Musicology). The iconic cover art—depicting an android lounging with copies of Kraftwerk and Pink Floyd—served as a clear manifesto, signaling to the listener that the interior contents were meant for focused, meditative consumption. With its fusion of otherworldly melody, mechanical, polyrhythmic beats, and lush ambient textures, the album succeeded in legitimizing electronic music as a form of intellectual, high-fidelity art. Its legacy is immense, not only for spawning a cult-like series of subsequent releases under the same banner but for its long-term influence on how electronic production is understood, distributed, and appreciated by audiences worldwide. It remains a testament to the idea that machine-made music could carry as much emotional depth and structural complexity as any traditional acoustic form. The compilation solidified Warp Records' reputation as a forward-thinking label that was willing to push beyond dance-pop and warehouse bangers into more cerebral, textural realms. In retrospect, it is hard to imagine the evolution of ambient techno and IDM without this specific collection, which bridged the gap between the chaotic energy of early 90s rave and the structured, home-listening electronic experiments that defined the latter half of the decade. Each track on this record serves as an essential stepping stone into the future of electronic artistry, cementing its status as one of the most important compilations in the genre.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/549-Various-Artificial-Intelligence?srsltid=AfmBOornbyzcKgL_yIWl6ddn5QLMvzAwS2RRUMYBfJ4oIFpMtc2kPOTb",
+      "title": "Artificial Intelligence – CD (Compilation), 1992 [r549]"
+    },
+    {
+      "url": "https://warprecords.bandcamp.com/album/artificial-intelligence",
+      "title": "Artificial Intelligence | Various Artists | Warp Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:28.550Z",
+  "type": "project",
+  "editorial_pitch": "Released in 1992, Artificial Intelligence is the seminal compilation that shifted the trajectory of electronic music by moving it from the rave dancefloor to the domestic listening space, effectively birthing the IDM genre.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/e/e3/WarpAI.jpg",
+  "year": "1992",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:alex-paterson",
+      "type": "artist",
+      "name": "Alex Paterson"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:polygon-window",
+      "type": "track",
+      "name": "Polygon Window"
+    },
+    {
+      "slug": "track:telefone-529",
+      "type": "track",
+      "name": "Telefone 529"
+    },
+    {
+      "slug": "track:crystel",
+      "type": "track",
+      "name": "Crystel"
+    },
+    {
+      "slug": "track:the-clan",
+      "type": "track",
+      "name": "The Clan"
+    },
+    {
+      "slug": "track:de-orbit",
+      "type": "track",
+      "name": "De-Orbit"
+    },
+    {
+      "slug": "track:preminition",
+      "type": "track",
+      "name": "Preminition"
+    },
+    {
+      "slug": "track:spiritual-high",
+      "type": "track",
+      "name": "Spiritual High"
+    },
+    {
+      "slug": "track:the-egg",
+      "type": "track",
+      "name": "The Egg"
+    },
+    {
+      "slug": "track:fill-3",
+      "type": "track",
+      "name": "Fill 3"
+    },
+    {
+      "slug": "track:loving-you-live",
+      "type": "track",
+      "name": "Loving You Live"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

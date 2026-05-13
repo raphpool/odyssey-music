@@ -1,0 +1,62 @@
+{
+  "slug": "track:rubycon-part-two",
+  "name": "Rubycon, Part Two",
+  "editorial_article": "\"Rubycon, Part Two\" is the haunting, expansive second movement of Tangerine Dream’s landmark 1975 album, *Rubycon*. Clocking in at over seventeen minutes, the track serves as a cornerstone of the Berlin School of electronic music, showcasing the group's pioneering use of analog sequencers to create vast, evolving soundscapes. Recorded at The Manor in England, the piece demonstrates the trio's—Edgar Froese, Christopher Franke, and Peter Baumann—mastery over primitive electronic technology, blending oscillating synthesizer pulses with atmospheric Mellotron swells, eerie organ chords, and resonant gong strikes. \\n\\nCritics have long noted the track’s \"haunted\" quality, which stands in contrast to the slightly more active, rhythmic texture of the album’s first part. As the track progresses, the interplay between the arpeggiated sequencer lines and the sweeping, cosmic melodies creates a feeling of profound distance and mystery. For many listeners, \"Rubycon, Part Two\" represents an apex of early ambient-electronic composition, an \"ever-unfolding\" journey that avoids conventional structures in favor of texture and mood. Its influence on subsequent generations of electronic, ambient, and drone artists is immeasurable, solidifying its place as a definitive document of the mid-1970s kosmische musik movement. It remains a hallmark of Tangerine Dream’s mid-seventies output, reflecting the group at the height of their technical ambition and creative vision. The track features iconic performances by the members, including Edgar Froese's VCS 3 synthesis and Christopher Franke's elaborate Moog arrangements. Its legacy is tied to the development of the genre-defining sound that would dominate electronic music for the next decade.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/song/rubycon-pt-2-mt0040991827",
+      "title": "Rubycon, Pt. 2 - Tangerine Dream - AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/release/13766708-Tangerine-Dream-Rubycon?srsltid=AfmBOoq_s1MD9h9pVV1F5xr_B3s7b-HPqH2Hndt4Ks67x9iSWG45eX1Y",
+      "title": "Tangerine Dream – Rubycon – CD (Album, Reissue + 2 ... - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:25.969Z",
+  "type": "track",
+  "editorial_teaser": "\"Rubycon, Part Two\" is the haunting, expansive second movement of Tangerine Dream’s landmark 1975 album, *Rubycon*.",
+  "artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    }
+  ],
+  "project": {
+    "slug": "project:rubycon",
+    "type": "project",
+    "name": "Rubycon"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:kosmische-musik",
+      "type": "genre",
+      "name": "Kosmische Musik"
+    },
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

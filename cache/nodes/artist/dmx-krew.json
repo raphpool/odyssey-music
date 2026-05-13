@@ -1,0 +1,72 @@
+{
+  "slug": "artist:dmx-krew",
+  "name": "DMX Krew",
+  "editorial_article": "DMX Krew is the influential stage name of British electronic musician Edward Upton, a prolific producer, performer, and label head known for his vital role in shaping the modern electro and IDM landscapes. Active since the mid-1990s, Upton gained significant recognition through his releases on Aphex Twin's legendary label, Rephlex Records, where he established a distinct sound rooted in retro-futuristic electro, acid techno, and experimental synthpop. His music is characterized by its playful yet intricate use of vintage synthesizers and hardware, blending nostalgic funk-inflected melodies with the jagged, complex rhythmic textures common in the late 90s IDM scene. \\n\\nBeyond his work as DMX Krew, Upton operates under a vast array of aliases—including EDMX, House of Brakes, and Computor Rockers—which allow him to traverse diverse sonic territories ranging from club-ready bass tracks to abstract electronic explorations. As a central figure in independent music, he also founded and curated his own record labels, most notably Breakin' Records, providing a platform for his own prolific output and fostering a community of like-minded electronic artists. His career remains defined by a restless creative energy, with a discography spanning decades that balances deep-seated respect for the roots of electro with constant, forward-thinking sonic innovation. Throughout his long-standing career, he has collaborated with and been influenced by a wide spectrum of pioneers in the electronic community, cementing his reputation as an indispensable pillar of the underground electronic scene. His extensive body of work, ranging from the classic 'Sound of the Street' to more recent explorations, serves as a testament to his enduring creativity and technical prowess in the realm of synthesized music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DMX_Krew",
+      "title": "DMX Krew - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/dmx-krew-mn0000662270",
+      "title": "DMX Krew Songs, Albums, Reviews, Bio & More - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:00.680Z",
+  "type": "artist",
+  "editorial_bio": "DMX Krew is the influential stage name of British electronic musician Edward Upton, a prolific producer, performer, and label head known for his vital role in shaping the modern electro and IDM landscapes.",
+  "origin": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sound-of-the-street",
+      "type": "project",
+      "name": "Sound of the Street"
+    },
+    {
+      "slug": "project:nu-romantix",
+      "type": "project",
+      "name": "Nu Romantix"
+    },
+    {
+      "slug": "project:we-are-dmx",
+      "type": "project",
+      "name": "We are DMX"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sound-of-the-street",
+      "type": "track",
+      "name": "Sound of the Street"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

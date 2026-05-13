@@ -1,0 +1,85 @@
+{
+  "slug": "genre:sophisti-pop",
+  "name": "Sophisti-pop",
+  "editorial_article": "Sophisti-pop emerged in the mid-1980s as a refined, urbane evolution of pop, characterized by its glossy production, intricate arrangements, and a stylistic blend of jazz, soul, and New Wave aesthetics. Distinct from the raw energy of punk or the overt aggression of early industrial, sophisti-pop prioritized technical proficiency and a polished, \"adult\" sound that flourished in both adult contemporary and quiet storm radio formats. Musically, the genre is marked by its use of lush synthesizer textures, tasteful saxophone and horn sections, and sophisticated chord progressions derived from jazz, often laid over crisp, understated rhythm sections. \\n\\nThe genre was predominantly centered in the United Kingdom, where artists sought to combine the intellectual rigor of songwriting with a sleek, fashion-forward visual identity. The aesthetic was as much a part of the experience as the music itself, favoring minimalist, high-fashion sensibilities that stood in contrast to the era's more garish pop trends. While the movement never achieved the massive, singular cultural dominance of its contemporary pop peers, it left an enduring footprint through the work of seminal acts like Sade, Prefab Sprout, The Blue Nile, and The Style Council. By the early 1990s, the movement had largely dispersed, though its commitment to high-fidelity, atmospheric production remains a touchstone for later developments in chill-out, downtempo, and modern synth-pop. Its reliance on \"smoothness\" and studio perfectionism positioned it as an aspirational, if sometimes criticized, peak of 1980s commercial artistry.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/sophisti-pop-ma0000011994",
+      "title": "Sophisti-Pop Music Style Overview | AllMusic"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/sophisti-pop",
+      "title": "Sophisti-Pop - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:51.807Z",
+  "type": "genre",
+  "editorial_definition": "Sophisti-pop is a polished, jazz-inflected style of mid-80s pop/rock characterized by sophisticated production, urbane arrangements, and a fusion of soul, synth-pop, and jazz influences.",
+  "era": "Mid-1980s to early 1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:quiet-storm",
+      "type": "genre",
+      "name": "Quiet storm"
+    },
+    {
+      "slug": "genre:jazz-pop",
+      "type": "genre",
+      "name": "Jazz-pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:sade",
+      "type": "artist",
+      "name": "Sade"
+    },
+    {
+      "slug": "artist:prefab-sprout",
+      "type": "artist",
+      "name": "Prefab Sprout"
+    },
+    {
+      "slug": "artist:the-blue-nile",
+      "type": "artist",
+      "name": "The Blue Nile"
+    },
+    {
+      "slug": "artist:the-style-council",
+      "type": "artist",
+      "name": "The Style Council"
+    },
+    {
+      "slug": "artist:everything-but-the-girl",
+      "type": "artist",
+      "name": "Everything But the Girl"
+    },
+    {
+      "slug": "artist:simply-red",
+      "type": "artist",
+      "name": "Simply Red"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:diamond-life",
+      "type": "project",
+      "name": "Diamond Life"
+    },
+    {
+      "slug": "project:steve-mcqueen",
+      "type": "project",
+      "name": "Steve McQueen"
+    }
+  ],
+  "landmark_tracks": []
+}

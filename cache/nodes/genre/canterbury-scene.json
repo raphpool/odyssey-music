@@ -1,0 +1,111 @@
+{
+  "slug": "genre:canterbury-scene",
+  "name": "Canterbury Scene",
+  "editorial_article": "The Canterbury Scene, often referred to as the 'Canterbury Sound,' is a highly influential, albeit loosely defined, musical movement that emerged from the city of Canterbury, Kent, England, in the late 1960s. While not strictly tied to the geographic location—many key participants moved to London or elsewhere early in their careers—the term serves as a vital shorthand for a specific aesthetic intersection of progressive rock, jazz-fusion, psychedelia, and avant-garde composition. Musically, the scene is renowned for its idiosyncratic blend of whimsical, surrealist pop sensibilities with complex, often asymmetrical, time signatures and virtuosic jazz improvisation. \\n\\nAt the heart of the Canterbury Scene was an incredibly fluid network of musicians, with members constantly migrating between groups, creating a collaborative, familial atmosphere that persisted for decades. This personnel overlap—involving key figures such as Robert Wyatt, Kevin Ayers, Daevid Allen, and Dave Stewart—resulted in a consistent musical 'DNA' characterized by clear production, frequent use of keyboards (particularly the organ and electric piano), and a unique approach to harmony that often eschewed standard blues-rock tropes in favor of more challenging, modal-based jazz structures. Often described as a 'bookish' or 'eccentric' corner of the British progressive rock world, the movement was as much about the juxtaposition of the serious and the silly as it was about technical prowess. The scene's legacy is immense, not only for the landmark albums produced by bands like Soft Machine, Caravan, and Gong but also for its foundational role in the development of Rock in Opposition (RIO) and the broader avant-progressive landscape. While some participants have historically bristled at the 'Canterbury' label as a journalistic oversimplification, the term remains the most enduring way to categorize this remarkably creative and interlinked collective of progressive visionaries.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Canterbury_scene",
+      "title": "Canterbury scene - Wikipedia"
+    },
+    {
+      "url": "https://www.progarchives.com/subgenre.asp?style=12",
+      "title": "Canterbury Scene, a progressive rock music sub-genre"
+    },
+    {
+      "url": "https://www.udiscovermusic.com/stories/canterbury-scene-prog/",
+      "title": "The Canterbury Scene: Rock's Answer To Monty Python"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:38.321Z",
+  "type": "genre",
+  "editorial_definition": "A progressive rock subgenre originating in late 1960s England, characterized by an idiosyncratic blend of jazz-fusion, psychedelia, and whimsical, avant-garde pop, defined by highly fluid, interlinked band memberships.",
+  "era": "late 1960s to mid-1970s",
+  "origin": "Canterbury, Kent, England",
+  "parent_genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:rock-in-opposition",
+      "type": "genre",
+      "name": "Rock in Opposition"
+    },
+    {
+      "slug": "genre:avant-prog",
+      "type": "genre",
+      "name": "Avant-prog"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:soft-machine",
+      "type": "artist",
+      "name": "Soft Machine"
+    },
+    {
+      "slug": "artist:caravan",
+      "type": "artist",
+      "name": "Caravan"
+    },
+    {
+      "slug": "artist:gong",
+      "type": "artist",
+      "name": "Gong"
+    },
+    {
+      "slug": "artist:hatfield-and-the-north",
+      "type": "artist",
+      "name": "Hatfield and the North"
+    },
+    {
+      "slug": "artist:robert-wyatt",
+      "type": "artist",
+      "name": "Robert Wyatt"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:harvest-records",
+      "type": "label",
+      "name": "Harvest Records"
+    },
+    {
+      "slug": "label:deram-records",
+      "type": "label",
+      "name": "Deram Records"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:volume-two",
+      "type": "project",
+      "name": "Volume Two"
+    },
+    {
+      "slug": "project:in-the-land-of-grey-and-pink",
+      "type": "project",
+      "name": "In the Land of Grey and Pink"
+    },
+    {
+      "slug": "project:flying-teapot",
+      "type": "project",
+      "name": "Flying Teapot"
+    }
+  ],
+  "landmark_tracks": []
+}

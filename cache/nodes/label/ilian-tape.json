@@ -1,0 +1,105 @@
+{
+  "slug": "label:ilian-tape",
+  "name": "Ilian Tape",
+  "editorial_article": "Ilian Tape is a highly influential independent record label based in Munich, Germany, founded in 2007 by the brothers Dario and Marco Zenker. Initially emerging as a platform for the siblings to release their own collaborative techno productions, the label quickly evolved into an internationally recognized bastion of experimental and forward-thinking electronic music. Over the last two decades, Ilian Tape has cultivated a distinct, identifiable sound that defies simple classification, seamlessly blending the rhythmic intensity of techno with the intricate textures of IDM, ambient, drum & bass, and UK bass music. \\n\\nCentral to the label's identity is a commitment to the 'human touch' in production, favoring raw, organic textures and emotional depth over sterile, peak-time studio polish. This ethos is reflected in their expansive roster, which includes key figures such as Skee Mask, Stenny, and Andrea—artists who have become synonymous with the 'Ilian Tape sound.' The label's aesthetic is further distinguished by its long-standing collaboration with the Zenker brothers' mother, whose vibrant, painterly artwork frequently adorns their releases. By prioritizing long-form projects, specifically their highly acclaimed series of artist albums, Ilian Tape has managed to push the boundaries of modern club music, proving that experimentalism and danceability are not mutually exclusive. Today, it remains one of the most respected imprints in contemporary electronic music, lauded for its consistency, artistic freedom, and refusal to chase fleeting trends.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/2873",
+      "title": "Ilian Tape · Record label RA - Resident Advisor"
+    },
+    {
+      "url": "https://www.discogs.com/label/97715-Ilian-Tape",
+      "title": "Ilian Tape | Discogs"
+    },
+    {
+      "url": "https://daily.bandcamp.com/label-profile/ilian-tape-label-profile",
+      "title": "The Inventive Electronic Music of German Label Ilian Tape | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:51.143Z",
+  "type": "label",
+  "editorial_description": "A seminal Munich-based independent label, founded by the Zenker Brothers in 2007, known for its genre-blurring approach to techno, IDM, and bass music.",
+  "founded": "2007",
+  "location": "Munich, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:skee-mask",
+      "type": "artist",
+      "name": "Skee Mask"
+    },
+    {
+      "slug": "artist:stenny",
+      "type": "artist",
+      "name": "Stenny"
+    },
+    {
+      "slug": "artist:andrea",
+      "type": "artist",
+      "name": "Andrea"
+    },
+    {
+      "slug": "artist:zenker-brothers",
+      "type": "artist",
+      "name": "Zenker Brothers"
+    },
+    {
+      "slug": "artist:laksa",
+      "type": "artist",
+      "name": "Laksa"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:compro",
+      "type": "project",
+      "name": "Compro"
+    },
+    {
+      "slug": "project:shred",
+      "type": "project",
+      "name": "Shred"
+    },
+    {
+      "slug": "project:due-in-colour",
+      "type": "project",
+      "name": "Due In Colour"
+    },
+    {
+      "slug": "project:cosmic-transmission",
+      "type": "project",
+      "name": "Cosmic Transmission"
+    },
+    {
+      "slug": "project:upsurge",
+      "type": "project",
+      "name": "Upsurge"
+    }
+  ]
+}

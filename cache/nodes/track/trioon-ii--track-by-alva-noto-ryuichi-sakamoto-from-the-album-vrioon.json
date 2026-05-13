@@ -1,0 +1,69 @@
+{
+  "slug": "track:trioon-ii--track-by-alva-noto-ryuichi-sakamoto-from-the-album-vrioon",
+  "name": "Trioon II",
+  "editorial_article": "\"Trioon II\" is a centerpiece of the minimalist collaboration between the German electronic pioneer Alva Noto (Carsten Nicolai) and the legendary Japanese composer Ryuichi Sakamoto. Released on the 2002 album \"Vrioon\"—the inaugural entry in their acclaimed V.I.R.U.S. series—the track exemplifies the meticulous fusion of digital synthesis and acoustic warmth that defines their collaborative output. Clocking in at nearly ten minutes, \"Trioon II\" is a masterclass in reductionist sound design, where Sakamoto’s delicate, skeletal piano phrasing is woven into a shimmering tapestry of Nicolai’s microtonal glitches and static textures. \\n\\nThe composition navigates a landscape of quiet tension, where silence is as much a sonic element as the frequencies themselves. Like the other entries on \"Vrioon,\" the track eschews traditional melodic development in favor of a static, atmospheric immersion. It demands active, patient listening, rewarding the audience with an evolving exploration of timbre and digital decay. Its cultural significance lies in its role as a milestone for modern ambient and glitch music, helping to establish the aesthetic of the Noton label. \"Vrioon\" was eventually honored as Album of the Year by The Wire magazine in 2004, solidifying the importance of this specific sonic palette in the early 2000s electronic music canon. The enduring legacy of \"Trioon II\" persists not just as a high-water mark for the duo's early work, but as an exemplar of how two distinct artistic approaches—classical minimalism and digital glitch—can exist in perfect, sublime symbiosis.",
+  "citations": [
+    {
+      "url": "https://noton.info/product/n-051/",
+      "title": "N-051 . Alva Noto + Ryuichi Sakamoto . Vrioon (reMASTER) - NOTON"
+    },
+    {
+      "url": "https://www.discogs.com/master/9557-Alva-Noto-Ryuichi-Sakamoto-Vrioon?srsltid=AfmBOopd4YIcF1ArZOiav0ZKWJicHcPy1KgGiHbHFBpN6Y-J3DaVZqWf",
+      "title": "Alva Noto + Ryuichi Sakamoto – Vrioon | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:12.992Z",
+  "type": "track",
+  "editorial_teaser": "A defining, minimalist exploration of piano and glitch synthesis, \"Trioon II\" is an expansive, ten-minute masterwork from the inaugural Alva Noto and Ryuichi Sakamoto collaboration, Vrioon.",
+  "year": "2002",
+  "duration": "9:55",
+  "artists": [
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    }
+  ],
+  "project": {
+    "slug": "project:vrioon",
+    "type": "project",
+    "name": "Vrioon"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

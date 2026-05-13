@@ -1,0 +1,100 @@
+{
+  "slug": "genre:pop",
+  "name": "Pop",
+  "editorial_article": "Pop music, or simply \"pop,\" is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom. While the broader term \"popular music\" can encompass any commercially successful style, \"pop\" as a specific genre refers to a body of work designed for mass appeal, typically characterized by its emphasis on catchy melodies, polished production, and structural accessibility. Unlike genres that prioritize album-length artistic statements or subcultural authenticity, pop is frequently centered on the single as its primary unit of expression. \\n\\nThe sonic signature of pop is defined by its chameleon-like ability to absorb elements from other styles—ranging from rock and rhythm and blues to electronic dance music, hip hop, and country—to maintain a contemporary sound that resonates with a broad, often youth-oriented, audience. Common characteristics include repeated choruses, memorable hooks, and the classic verse-chorus song structure, all designed to ensure maximum memorability. Throughout its history, pop has served as a bridge between high-art experimentation and commercial viability, often leading to the birth of subgenres such as synth-pop, dance-pop, and art pop. By its nature, pop is ephemeral and constantly evolving, mirroring the technological advancements of the recording industry and the changing social tastes of the global urban middle class. Its enduring cultural power lies in its ability to be both a reflection of the present moment and a universal language of melody.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pop_music",
+      "title": "Pop music - Wikipedia"
+    },
+    {
+      "url": "https://themusicstudio.ca/characteristics-of-music-pop/",
+      "title": "Characteristics of Music: Pop - The Music Studio"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:41.590Z",
+  "type": "genre",
+  "editorial_definition": "A genre of popular music characterized by its focus on mass-appeal, catchy melodies, hooks, and polished production, typically structured around the single rather than the album.",
+  "era": "1950s–present",
+  "origin": "United States and United Kingdom, mid-1950s",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    },
+    {
+      "slug": "genre:teen-pop",
+      "type": "genre",
+      "name": "Teen pop"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears"
+    },
+    {
+      "slug": "artist:taylor-swift",
+      "type": "artist",
+      "name": "Taylor Swift"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

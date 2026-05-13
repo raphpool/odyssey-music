@@ -1,0 +1,85 @@
+{
+  "slug": "genre:briddim",
+  "name": "Briddim",
+  "editorial_article": "Briddim is a hybrid strain of bass music that emerged in the mid-to-late 2010s as a direct synthesis of Brostep and Riddim. Its name, a portmanteau of the two styles, reflects the tension between riddim’s syncopated, minimalist focus on the \"kick-clap\" pattern and the high-octane, drop-oriented maximalism of American-style brostep. Unlike the loop-driven, repetitive progression found in traditional riddim, briddim leans into the structural dynamics of brostep, favoring dramatic buildups and intense, metallic sound design characterized by \"growly\" LFO synth leads.\n\nThe genre’s origins are deeply rooted in the output of labels like Never Say Die and its Black Label subsidiary, where producers began experimenting with crossing aggressive dubstep soundscapes with the newfound popularity of riddim rhythms. The term itself gained popular legitimacy following the release of the Wooli and Kompany track \"Briddim Bomb.\" While initially polarized—often dismissed by purists of the riddim scene as an inauthentic or overly produced iteration of their favored aesthetic—the style found massive success in the mainstream EDM circuit. It bridged the gap between the underground club scene and large-scale festival stages, with producers such as Virtual Riot and Excision playing pivotal roles in refining and popularizing the sound. Briddim remains a defining, if controversial, chapter in the evolution of modern bass music, emblematic of how localized electronic subgenres are transformed when subjected to the commercial pressures and sonic expectations of the broader EDM ecosystem.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/briddim/",
+      "title": "Briddim - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Briddim",
+      "title": "Briddim | Electronic Music Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:58.308Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid genre combining the syncopated, kick-clap rhythm of riddim with the aggressive, growl-heavy sound design and dramatic arrangements of brostep.",
+  "era": "2015-present",
+  "origin": "United States / International",
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:riddim",
+      "type": "genre",
+      "name": "Riddim"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:wooli",
+      "type": "artist",
+      "name": "Wooli"
+    },
+    {
+      "slug": "artist:kompany",
+      "type": "artist",
+      "name": "Kompany"
+    },
+    {
+      "slug": "artist:virtual-riot",
+      "type": "artist",
+      "name": "Virtual Riot"
+    },
+    {
+      "slug": "artist:excision",
+      "type": "artist",
+      "name": "Excision"
+    },
+    {
+      "slug": "artist:badklaat",
+      "type": "artist",
+      "name": "BadKlaat"
+    },
+    {
+      "slug": "artist:megalodon",
+      "type": "artist",
+      "name": "Megalodon"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:never-say-die",
+      "type": "label",
+      "name": "Never Say Die"
+    },
+    {
+      "slug": "label:black-label",
+      "type": "label",
+      "name": "Black Label"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "genre:avant-pop",
+  "name": "Avant-pop",
+  "editorial_article": "Avant-pop represents a compelling, liminal space within music history where the boundaries between high-art experimentation and popular accessibility dissolve. It is characterized by its intentional synthesis of avant-garde sensibilities—often rooted in academic composition, electronic music, or minimalism—with the structural immediacy of pop songcraft. Rather than rejecting commercial appeal, avant-pop seeks to re-sequence traditional musical tropes, ensuring that catchy melodies remain intact while simultaneously exposing listeners to \"weirder\" or more subversive elements welded into the design.\n\nThe genre's roots can be traced back to the mid-1960s, as pop artists began to treat the recording studio as an experimental laboratory. Influential early examples include The Beatles’ \"Tomorrow Never Knows,\" which utilized musique concrète techniques, and the Velvet Underground, who infused drone and minimalism into rock structures. The term gained further relevance throughout the 1970s and 1980s as the lines between \"progressive\" exploration and pop music became increasingly porous, bolstered by artists like Brian Eno, Kate Bush, and Laurie Anderson. These musicians navigated the divide between contemporary classical leanings and the evolving landscapes of rock and electronica.\n\nIn a contemporary context, avant-pop continues to function as a non-hierarchical genre that reflects the postmodern condition. It moves beyond the limitations of standard song forms to challenge listener expectations, often drawing on a diverse palette including jazz, noise, classical, and global music traditions. Artists such as Björk, Julia Holter, Holly Herndon, and Oneohtrix Point Never exemplify this approach, using their platform to pioneer new modes of vocal and electronic expression that push pop music into radical, uncharted territories. It remains one of the most vital intersections for those seeking music that is both deeply intelligent and intuitively engaging.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Avant-pop",
+      "title": "Avant-pop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:25.698Z",
+  "type": "genre",
+  "editorial_definition": "Avant-pop describes popular music that integrates avant-garde experimentalism, novel sonic design, or idiosyncratic compositional techniques while maintaining an immediate, accessible pop sensibility.",
+  "era": "1960s–present",
+  "origin": "United Kingdom, United States, Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:laurie-anderson",
+      "type": "artist",
+      "name": "Laurie Anderson"
+    },
+    {
+      "slug": "artist:julia-holter",
+      "type": "artist",
+      "name": "Julia Holter"
+    },
+    {
+      "slug": "artist:oneohtrix-point-never",
+      "type": "artist",
+      "name": "Oneohtrix Point Never"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:scott-walker",
+      "type": "artist",
+      "name": "Scott Walker"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:i-hear-a-new-world",
+      "type": "project",
+      "name": "I Hear a New World"
+    },
+    {
+      "slug": "project:an-electric-storm",
+      "type": "project",
+      "name": "An Electric Storm"
+    }
+  ],
+  "landmark_tracks": []
+}

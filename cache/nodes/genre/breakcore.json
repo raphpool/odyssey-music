@@ -1,0 +1,66 @@
+{
+  "slug": "genre:breakcore",
+  "name": "Breakcore",
+  "editorial_article": "Breakcore is a high-energy, chaotic subgenre of electronic dance music that emerged in the mid-to-late 1990s from the intersections of jungle, hardcore, and drum and bass. Defined by its frantic pace and intricate, heavily processed breakbeats—most notably the iconic \"Amen break\"—breakcore pushes the boundaries of rhythmic complexity. Unlike more standardized dance music, breakcore is known for its \"anything-goes\" approach to sampling, pulling from a vast spectrum that includes industrial noise, jazz fusion, heavy metal, classical music, and even chiptune. This genre is often viewed as a \"connoisseur’s\" form of electronic music, where the producer's technical skill in chopping and resequencing digital samples takes center stage over traditional pop structures.\\n\\nThe genre’s development is inextricably linked to the rise of the internet and peer-to-peer file sharing, which allowed a fragmented global community to exchange tracks, techniques, and philosophies. Throughout the 2000s, iconic labels like Planet Mu and Peace Off served as hubs for the scene, fostering an environment where artists could experiment with humor, dark-edged aggression, and genre-defying sound collages. In the 2020s, the sound experienced a significant revival, evolving into a more nostalgic, atmospheric, and sentimental style that integrates aesthetics from internet subcultures, video games, and anime, cementing its status as a constantly mutating force in underground electronic music. Prominent figures like Venetian Snares, Kid606, and Machine Girl have shaped its trajectory, moving the genre from the dark corners of underground rave culture to a broader, multifaceted digital-first presence.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Breakcore",
+      "title": "Breakcore - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:11.246Z",
+  "type": "genre",
+  "editorial_definition": "A volatile and complex form of electronic dance music characterized by high-speed, intricately cut-up breakbeats and a chaotic, sample-heavy aesthetic that draws from a wide array of musical influences.",
+  "era": "1990s–Present",
+  "origin": "Australia, Europe, UK",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares"
+    },
+    {
+      "slug": "artist:kid606",
+      "type": "artist",
+      "name": "Kid606"
+    },
+    {
+      "slug": "artist:machine-girl",
+      "type": "artist",
+      "name": "Machine Girl"
+    },
+    {
+      "slug": "artist:igorrr",
+      "type": "artist",
+      "name": "Igorrr"
+    },
+    {
+      "slug": "artist:dj-scotch-egg",
+      "type": "artist",
+      "name": "DJ Scotch Egg"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    },
+    {
+      "slug": "label:peace-off",
+      "type": "label",
+      "name": "Peace Off"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:songs-about-my-cats",
+      "type": "project",
+      "name": "Songs About My Cats"
+    }
+  ],
+  "landmark_tracks": []
+}

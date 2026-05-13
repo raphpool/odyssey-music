@@ -1,0 +1,88 @@
+{
+  "slug": "artist:steven-halpern",
+  "name": "Steven Halpern",
+  "editorial_article": "Steven Halpern is widely recognized as one of the definitive pioneers of New Age music. Emerging from the California counterculture of the 1970s, Halpern fundamentally shifted the focus of instrumental music from narrative-driven or rhythmically complex structures toward the creation of immersive, healing sonic environments. Initially active in the New York jazz scene as a trumpeter and guitarist, Halpern moved to the West Coast, where he became disillusioned with the tension-and-release paradigms of Western music. He sought to create an \"anti-frantic alternative\"—music that did not \"go anywhere\" in a traditional melodic sense, but instead occupied a positive, restorative space for the listener. This vision was solidified with the 1976 release of his seminal album, *Spectrum Suite*, which is frequently cited as one of the foundational records of the New Age genre. \\n\\nHalpern’s signature sound is defined by improvisational electric piano work, often characterized by cascading major-key arpeggios, generous use of reverb, and a lack of rhythmic stress. His work is heavily informed by both metaphysical inquiry and research into psychoacoustics, exploring how sound vibrations interact with the human body and mind. Throughout his prolific career, spanning over a hundred recordings, he has expanded his palette to include woodwinds, percussion, and natural sounds, and has collaborated with artists such as Dallas Smith and Georgia Kelly. Beyond his compositions, Halpern has contributed significantly to the intellectual foundation of the genre through his writing, including the books *Tuning the Human Instrument* and *Sound Health*. His influence extends far beyond traditional record stores; by promoting his music in health food stores and wellness centers, he played a critical role in establishing the alternative retail networks that allowed New Age music to flourish in the late 20th century. Today, his work continues to be at the forefront of sound-based healing, ranging from brainwave synchronization projects to collaborations in the field of psychedelic-assisted therapy.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/steven-halpern-mn0000042234",
+      "title": "Steven Halpern Songs, Albums, Reviews, Bio & M... | AllMusic"
+    },
+    {
+      "url": "https://www.iheart.com/artist/steven-halpern-46873/",
+      "title": "Steven Halpern | iHeart"
+    },
+    {
+      "url": "https://newagemusic.guide/new-age-music-history/steven-halpern-notes-on-new-age-music-1989/",
+      "title": "Steven Halpern: Notes on New Age Music (1989)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:35.462Z",
+  "type": "artist",
+  "editorial_bio": "Steven Halpern is a pioneering New Age composer, author, and researcher known for creating restorative, \"anti-frantic\" instrumental music designed for healing and meditation. Often credited with kick-starting the New Age movement with his 1976 album Spectrum Suite, he has released over 100 recordings exploring the therapeutic potential of sound.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000042234/400/upQEUEysNX1alMrFWDXziN_M69_UI9rrJSVvWL2-yAg=.jpg",
+  "origin": "New York, NY",
+  "active_years": "1960s-2020s",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:halpern-sounds",
+      "type": "label",
+      "name": "Halpern Sounds"
+    },
+    {
+      "slug": "label:gramavision",
+      "type": "label",
+      "name": "Gramavision"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:spectrum-suite",
+      "type": "project",
+      "name": "Spectrum Suite"
+    },
+    {
+      "slug": "project:starborn-suite",
+      "type": "project",
+      "name": "Starborn Suite"
+    },
+    {
+      "slug": "project:eastern-peace",
+      "type": "project",
+      "name": "Eastern Peace"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dallas-smith",
+      "type": "artist",
+      "name": "Dallas Smith"
+    },
+    {
+      "slug": "artist:georgia-kelly",
+      "type": "artist",
+      "name": "Georgia Kelly"
+    },
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

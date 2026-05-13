@@ -1,0 +1,49 @@
+{
+  "slug": "genre:rock",
+  "name": "Rock",
+  "editorial_article": "Rock music, emerging from the United States in the mid-1950s, stands as one of the most significant and transformative developments in 20th-century popular culture. Often defined by a strong, driving beat and an emphasis on the electric guitar, rock is notoriously difficult to categorize due to its inherent eclecticism. It began as a synthesis of rhythm and blues, country, and gospel, quickly evolving into a diverse language of rebellion, youth culture, and artistic experimentation. By the 1960s, it had spread globally, undergoing a significant British-led evolution that deepened its complexity and political consciousness. Over subsequent decades, rock fractured into myriad subgenres—ranging from the raw intensity of punk and the technical ambition of progressive rock to the atmospheric textures of indie and the heavy impact of metal. Its dominance in the global musical mainstream was cemented by the infrastructure of the multinational recording industry, yet it has consistently maintained a paradoxical relationship between commercial success and an ethos of artistic authenticity. Even as digital shifts in the 21st century altered the industry, rock’s legacy persists as a bedrock of modern songwriting, performance, and cultural expression, functioning both as a mass-market phenomenon and a deeply personal mode of creative inquiry. Throughout its history, it has consistently adapted, absorbing and reframing local musical traditions worldwide into its fundamental, guitar-centric framework.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/rock-music",
+      "title": "Rock | Definition, History, Artists, Songs, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:42.523Z",
+  "type": "genre",
+  "editorial_definition": "A broad, dominant genre of popular music characterized by a strong, driving beat and electric instrumentation, which emerged in the 1950s and encompasses a vast array of styles ranging from the early rock and roll of the 1950s to later developments in punk, metal, and indie.",
+  "era": "1950s–Present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

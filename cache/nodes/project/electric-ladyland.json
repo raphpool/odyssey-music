@@ -1,0 +1,69 @@
+{
+  "slug": "project:electric-ladyland",
+  "name": "Electric Ladyland",
+  "editorial_article": "Released in October 1968, *Electric Ladyland* stands as the ambitious third and final studio album by The Jimi Hendrix Experience, a double-record masterwork that solidified Jimi Hendrix’s status as one of the most innovative musical minds of the 20th century. Departing from the tighter song structures of his previous albums, *Axis: Bold as Love* and *Are You Experienced*, *Electric Ladyland* is a sprawling exploration of sonic textures and studio alchemy. Produced entirely by Hendrix himself, the album reflects his transition from a band-focused artist to a singular vision-driven auteur, often leading to perfectionist demands in the studio that pushed his collaborators to their limits. \n\nThe recording sessions, split between London and the newly opened Record Plant in New York, were famously chaotic and fluid, often doubling as social gatherings that fostered impromptu collaborations with artists like Steve Winwood and Jack Casady. This atmosphere is crystallized in tracks like the extended blues jam \"Voodoo Chile,\" which captures a raw, late-night communal energy. Simultaneously, the album pushes the technical boundaries of psychedelic production, utilizing complex tape-delay techniques and expansive, dreamlike arrangements on tracks such as \"1983... (A Merman I Should Turn to Be).\" \n\nBeyond the sonic experimentation, the album contains some of Hendrix’s most iconic work, including the definitive cover of Bob Dylan’s \"All Along the Watchtower,\" which remains one of the most celebrated interpretations in music history. Other standout tracks like \"Voodoo Child (Slight Return)\" and the rhythmically intricate \"Crosstown Traffic\" showcase Hendrix's unparalleled ability to synthesize funk, blues, and hard rock into a cohesive, futuristic aesthetic. Despite initial mixed reviews, *Electric Ladyland* has since been re-evaluated as one of the greatest albums ever recorded, a foundational text in rock music that continues to define the potential of the studio as an instrument in its own right. It remains a testament to Hendrix’s restless creative drive, bridging the gap between 1960s psychedelia and the heavier, funkier sounds that would follow in the 1970s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Electric_Ladyland",
+      "title": "Electric Ladyland - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:11.889Z",
+  "type": "project",
+  "editorial_pitch": "Electric Ladyland is the expansive, definitive double-album masterpiece by The Jimi Hendrix Experience, representing the pinnacle of Hendrix’s studio experimentation and his final studio release during his lifetime. Combining elements of psychedelic rock, blues, soul, and proto-funk, the album serves as a sonic landscape where the guitar is reimagined as an orchestrational tool, pushing the boundaries of what a rock record could achieve in 1968.",
+  "year": "1968",
+  "artists": [
+    {
+      "slug": "artist:the-jimi-hendrix-experience",
+      "type": "artist",
+      "name": "The Jimi Hendrix Experience"
+    }
+  ],
+  "label": {
+    "slug": "label:reprise-records",
+    "type": "label",
+    "name": "Reprise Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:are-you-experienced",
+      "type": "project",
+      "name": "Are You Experienced"
+    },
+    {
+      "slug": "project:axis-bold-as-love",
+      "type": "project",
+      "name": "Axis: Bold as Love"
+    }
+  ]
+}

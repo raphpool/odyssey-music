@@ -1,0 +1,107 @@
+{
+  "slug": "genre:r-and-b",
+  "name": "R&B",
+  "editorial_article": "Rhythm and blues, commonly known as R&B, is an influential American musical genre developed by Black artists in the 1940s that has continuously evolved and maintained its dominance in popular culture for over eighty years. Emerging from the vibrant Black communities in urban centers like Chicago, New York, Detroit, and Los Angeles, the genre was initially deeply rooted in gospel, jazz, and traditional blues traditions. In its foundational mid-twentieth-century era, R&B was characterized by electric guitar-driven instrumentation, propulsive rhythm sections, and emotional vocal performances, frequently sharing a musical language with the nascent genre of rock ‘n’ roll. The lines between R&B and rock were often blurred by racial industry labels of the era, though R&B eventually carved out a distinct identity through the soulful, polished output of labels like Motown and Stax.\\n\\nAs the genre transitioned into the 1970s and beyond, it underwent significant sonic transformations. The influence of funk and disco introduced syncopated rhythms and broader instrumentation, eventually paving the way for the smooth, production-heavy sound of contemporary R&B. Modern iterations of the genre lean heavily on digital technology—keyboard-based production, drum machines, and sophisticated sound loops—rather than the guitar-heavy arrangements of its past. Today, contemporary R&B occupies a prominent place in the global music industry, often blurring the lines between pop, hip-hop, and electronic music. Its enduring legacy is defined by a commitment to vocal virtuosity, melismatic delivery, and expressive songwriting that continues to define the landscape of modern popular music.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/r-and-b-music-guide",
+      "title": "R&B Music Guide: The Evolution of Rhythm and Blues - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:48.020Z",
+  "type": "genre",
+  "editorial_definition": "Rhythm and blues (R&B) is an American musical genre developed by Black artists in the 1940s, evolving from roots in gospel, jazz, and blues into a diverse soundscape that includes modern contemporary R&B.",
+  "era": "1940s–present",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:gospel",
+      "type": "genre",
+      "name": "Gospel"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and Roll"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:james-brown",
+      "type": "artist",
+      "name": "James Brown"
+    },
+    {
+      "slug": "artist:etta-james",
+      "type": "artist",
+      "name": "Etta James"
+    },
+    {
+      "slug": "artist:sam-cooke",
+      "type": "artist",
+      "name": "Sam Cooke"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:motown-records",
+      "type": "label",
+      "name": "Motown Records"
+    },
+    {
+      "slug": "label:stax-records",
+      "type": "label",
+      "name": "Stax Records"
+    },
+    {
+      "slug": "label:chess-records",
+      "type": "label",
+      "name": "Chess Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

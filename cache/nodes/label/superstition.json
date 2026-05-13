@@ -1,0 +1,81 @@
+{
+  "slug": "label:superstition",
+  "name": "Superstition",
+  "editorial_article": "Superstition Records was a seminal German independent record label that emerged as a cornerstone of the global electronic music underground during the 1990s. Founded in Frankfurt in 1993 by Tobias Lampe and Marc Chung, the label became synonymous with a sophisticated approach to techno and trance. Operating during a pivotal decade for electronic music, Superstition played a crucial role in bridging the gap between underground club tracks and more experimental, artist-driven soundscapes. Throughout its primary active period, the label fostered a community of visionary producers, most notably Oliver Lieb, whose various projects like L.S.G. and Paragliders defined the \"Superstition sound\"—a blend of intricate, atmospheric depth, driving rhythms, and futuristic textures. The label's catalog served as a vital influence on the development of melodic techno and trance, remaining a benchmark for production quality and curatorial integrity long after its initial peak. Its releases were not merely functional club tools but cohesive artistic statements that captured the zeitgeist of the era, leaving a lasting legacy on the trajectory of dance music production in Europe and beyond. The label was instrumental in distributing early works that challenged conventional dancefloor tropes, maintaining a distinct identity that helped solidify Frankfurt's reputation as a techno capital. Producers like Steve Bug and many others contributed to a legacy that persists in contemporary electronic music culture through ongoing interest in its vast, influential catalog. Superstition remains a touchstone for those exploring the depth of early 90s techno evolution.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/517-Superstition?srsltid=AfmBOop2Hj5p2PGEVctMQvw-BVaINU7NDYVAJAHnTaLKRL0hkFKDAJeL",
+      "title": "Superstition | Discogs"
+    },
+    {
+      "url": "https://www.youtube.com/@SuperstitionRecords/about",
+      "title": "Superstition Records - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:19.154Z",
+  "type": "label",
+  "editorial_description": "A pioneering German label that defined 1990s techno and trance with atmospheric, high-quality production.",
+  "founded": "1993",
+  "location": "Frankfurt, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:oliver-lieb",
+      "type": "artist",
+      "name": "Oliver Lieb"
+    },
+    {
+      "slug": "artist:l-s-g",
+      "type": "artist",
+      "name": "L.S.G."
+    },
+    {
+      "slug": "artist:paragliders",
+      "type": "artist",
+      "name": "Paragliders"
+    },
+    {
+      "slug": "artist:azid-force",
+      "type": "artist",
+      "name": "Azid Force"
+    },
+    {
+      "slug": "artist:steve-bug",
+      "type": "artist",
+      "name": "Steve Bug"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:rendezvous-in-outer-space",
+      "type": "project",
+      "name": "Rendezvous In Outer Space"
+    },
+    {
+      "slug": "project:oasis",
+      "type": "project",
+      "name": "Oasis"
+    },
+    {
+      "slug": "project:glomb-ep",
+      "type": "project",
+      "name": "Glomb EP"
+    }
+  ]
+}

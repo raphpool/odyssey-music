@@ -1,0 +1,79 @@
+{
+  "slug": "artist:chris-liebing",
+  "name": "Chris Liebing",
+  "editorial_article": "Chris Liebing is a central pillar of the German techno scene, an influential producer, DJ, and label founder who has been active since the early 1990s. Born in Giessen, Germany, in 1968, Liebing first cut his teeth as a resident DJ at the Red Brick club in 1991. Throughout the 1990s, he emerged as a key figure in the hard techno and minimal techno movements, establishing influential imprints like Audio and, most notably, CLR (Create Learn Realize). His early production work, including collaborative projects and gritty techno releases, defined much of the aesthetic of the era. \\n\\nOver the course of his multi-decade career, Liebing’s sound has undergone significant evolution. While his early work was defined by high-energy, purist techno—frequently using digital tools in innovative, real-time setups—his later projects have embraced a more spacious, atmospheric, and eclectic approach. Notable shifts in his artistic trajectory occurred with his signing to the Mute label, resulting in albums such as 'Burn Slow' (2018) and 'Another Day' (2021). These works, co-produced with Ralf Hildenbeutel, showcased a departure from the club-floor-only focus toward song-oriented, atmospheric electronica that incorporated guest vocalists from various genres. A dedicated radio personality and podcast host, Liebing has remained a vital tastemaker, known as much for his creative DJ sets as for his enduring commitment to the evolution of the techno form. His collaborations with artists such as Speedy J and Ben Sims have further cemented his reputation as a collaborator who bridges the gap between the underground and experimental electronic music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/chris-liebing-mn0000110283",
+      "title": "Chris Liebing Songs, Albums, Reviews, Bio & Mo... | AllMusic"
+    },
+    {
+      "url": "https://grayarea.co/artists/chris-liebing",
+      "title": "Chris Liebing | Gray Area"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:34.426Z",
+  "type": "artist",
+  "editorial_bio": "A seminal figure in German techno known for his evolution from hard minimal roots to atmospheric and eclectic soundscapes.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000110283/400/5dH638qwfM5-txc3V1jTmIAf7E_1E-2MlBBPmPAXRBU=.jpg",
+  "origin": "Giessen, Germany",
+  "active_years": "1990-2020s",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:clr",
+      "type": "label",
+      "name": "CLR"
+    },
+    {
+      "slug": "label:mute",
+      "type": "label",
+      "name": "Mute"
+    },
+    {
+      "slug": "label:fine-audio-recordings",
+      "type": "label",
+      "name": "Fine Audio Recordings"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:liquid-slow",
+      "type": "track",
+      "name": "Liquid Slow"
+    },
+    {
+      "slug": "track:keep-it-low",
+      "type": "track",
+      "name": "Keep It Low"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

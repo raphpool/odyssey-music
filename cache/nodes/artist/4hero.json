@@ -1,0 +1,141 @@
+{
+  "slug": "artist:4hero",
+  "name": "4hero",
+  "editorial_article": "4hero is a seminal London-based electronic music duo comprising producers Mark \"Marc Mac\" Clair and Denis \"Dego\" McFarlane. Emerging from the vibrant pirate radio scene of late 1980s Dollis Hill, the group became architectural figures in the evolution of UK dance music. They were instrumental in the development of breakbeat hardcore and the subsequent explosion of jungle and drum and bass, establishing their own influential imprint, Reinforced Records, in 1989. Beyond their foundational work in high-tempo breakbeat rhythms, 4hero are celebrated for their genre-defying creative evolution, pushing electronic music toward jazz, soul, and atmospheric experimentation. \\n\\nThe duo's impact extends far beyond the hard-edged \"darkcore\" aesthetic they helped pioneer in the early 1990s. With their 1998 album \"Two Pages,\" released via Gilles Peterson’s Talkin' Loud label, they masterfully bridged the gap between club-focused drum and bass and broader jazz-soul influences. The album earned a Mercury Music Prize nomination and solidified their reputation as sophisticated songwriters and arrangers. This capacity to harmonize complex, syncopated breakbeats with organic instrumentation and soulful vocals laid critical groundwork for the burgeoning broken beat scene. Throughout their prolific career, 4hero have remained constant innovators, consistently evolving their sound while maintaining an uncompromising commitment to artistic integrity and the exploration of new sonic territories. Their influence persists today, not only through their own vast discography and aliases—such as Tom & Jerry and Jacob's Optical Stairway—but through the foundational role they played in shaping the careers of legendary artists like Goldie and the ethos of the entire jungle movement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/4hero",
+      "title": "4hero - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/4hero-1",
+      "title": "4hero Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:41.688Z",
+  "type": "artist",
+  "editorial_bio": "Pioneering electronic duo from London, instrumental in the development of jungle, drum and bass, and broken beat.",
+  "origin": "Dollis Hill, London, England",
+  "active_years": "1989–present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:reinforced-records",
+      "type": "label",
+      "name": "Reinforced Records"
+    },
+    {
+      "slug": "label:talkin-loud",
+      "type": "label",
+      "name": "Talkin' Loud"
+    },
+    {
+      "slug": "label:raw-canvas",
+      "type": "label",
+      "name": "Raw Canvas"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:in-rough-territory",
+      "type": "project",
+      "name": "In Rough Territory"
+    },
+    {
+      "slug": "project:parallel-universe",
+      "type": "project",
+      "name": "Parallel Universe"
+    },
+    {
+      "slug": "project:two-pages",
+      "type": "project",
+      "name": "Two Pages"
+    },
+    {
+      "slug": "project:creating-patterns",
+      "type": "project",
+      "name": "Creating Patterns"
+    },
+    {
+      "slug": "project:play-with-the-changes",
+      "type": "project",
+      "name": "Play with the Changes"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mr-kirk-s-nightmare",
+      "type": "track",
+      "name": "Mr Kirk's Nightmare"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie"
+    },
+    {
+      "slug": "artist:ursula-rucker",
+      "type": "artist",
+      "name": "Ursula Rucker"
+    },
+    {
+      "slug": "artist:terry-callier",
+      "type": "artist",
+      "name": "Terry Callier"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tom-and-jerry",
+      "type": "artist",
+      "name": "Tom & Jerry"
+    },
+    {
+      "slug": "artist:jacob-s-optical-stairway",
+      "type": "artist",
+      "name": "Jacob's Optical Stairway"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:marc-mac",
+      "type": "artist",
+      "name": "Marc Mac"
+    },
+    {
+      "slug": "artist:dego",
+      "type": "artist",
+      "name": "Dego"
+    }
+  ]
+}

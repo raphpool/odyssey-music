@@ -1,0 +1,75 @@
+{
+  "slug": "artist:grace-jones",
+  "name": "Grace Jones",
+  "editorial_article": "Grace Jones is a Jamaican-born model, actress, and singer who redefined the landscape of pop culture in the late 1970s and 1980s. Emerging from the New York City disco scene, she evolved from a disco diva into a pioneering force in new wave, reggae, and art pop. Known for her androgynous look, towering presence, and fearless artistic vision, Jones became an icon of high fashion and avant-garde performance. Her most pivotal creative period occurred during her collaboration with producer Chris Blackwell and the Compass Point All Stars in the Bahamas. Albums like 'Warm Leatherette' (1980) and 'Nightclubbing' (1981) synthesized reggae rhythms with cold, industrial synth-pop and new wave, creating a sound that was at once sophisticated, danceable, and profoundly weird. Hits like 'Pull Up to the Bumper' and 'Slave to the Rhythm' remain hallmarks of her genre-bending approach, which influenced countless artists in electronic music, pop, and R&B. Throughout her career, she has consistently subverted gender norms and media expectations, maintaining an aura of uncompromising mystery and stylistic dominance. Her 2008 album 'Hurricane' showcased her enduring relevance, proving that her blend of dub-infused rhythm and theatrical delivery remains as potent today as it was at the height of her chart success. Jones' legacy transcends the boundaries of traditional pop stardom, as her contributions have permeated fashion, film, and the arts, solidifying her status as a cultural icon who continuously challenged the status quo.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Grace_Jones_discography",
+      "title": "Grace Jones discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:44.052Z",
+  "type": "artist",
+  "editorial_bio": "Grace Jones is a Jamaican-born model, actress, and singer who redefined the landscape of pop culture in the late 1970s and 1980s.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Grace_Jones.jpg/500px-Grace_Jones.jpg",
+  "origin": "Spanish Town, Jamaica",
+  "active_years": "1975-present",
+  "genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:nightclubbing",
+      "type": "project",
+      "name": "Nightclubbing"
+    },
+    {
+      "slug": "project:warm-leatherette",
+      "type": "project",
+      "name": "Warm Leatherette"
+    },
+    {
+      "slug": "project:slave-to-the-rhythm",
+      "type": "project",
+      "name": "Slave to the Rhythm"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pull-up-to-the-bumper",
+      "type": "track",
+      "name": "Pull Up to the Bumper"
+    },
+    {
+      "slug": "track:slave-to-the-rhythm",
+      "type": "track",
+      "name": "Slave to the Rhythm"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

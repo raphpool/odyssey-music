@@ -1,0 +1,125 @@
+{
+  "slug": "artist:luke-vibert",
+  "name": "Luke Vibert",
+  "editorial_article": "Luke Vibert (born 26 January 1973) is a highly influential British electronic musician and producer, widely recognized for his vast output and masterful ability to traverse diverse subgenres of electronic music. Born in Redruth, Cornwall, Vibert was a foundational figure in the development of the 1990s IDM and experimental electronic scene. He was a contemporary and schoolmate of several key members of the Rephlex Records circle, including Aphex Twin, with whom he shared an early connection to the label's ethos. \\n\\nVibert's career is marked by a protean approach to production, utilizing a dizzying array of aliases—such as Wagon Christ, Plug, Kerrier District, Amen Andrews, and Spac Hand Luke—to explore specific sonic territories. Under the Plug moniker, he was a pivotal pioneer of 'drill 'n' bass,' a style that deconstructed and reassembled jungle and drum and bass breakbeats into complex, rhythmically jarring mosaics. Conversely, his work as Wagon Christ often leaned into more melodic, trip-hop, and ambient-inflected territories, demonstrating his versatility as a sound designer. \\n\\nThroughout his career, Vibert has maintained a prolific release schedule across premier independent labels, including Rephlex, Warp, Ninja Tune, and Planet Mu. His later work has often embraced his deep-seated love for analog synthesis and classic acid sounds, highlighted by projects like 'Lover's Acid' and his involvement in the 'I Love Acid' club night and label. His enduring significance lies in his technical proficiency, his playful and irreverent approach to electronic textures, and his ability to evolve alongside the changing landscape of electronic dance music while retaining a distinct, recognizable production thumbprint.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Luke_Vibert",
+      "title": "Luke Vibert - Wikipedia"
+    },
+    {
+      "url": "https://www.lukevibert.com/bio",
+      "title": "BIO - LUKE VIBERT"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:24.359Z",
+  "type": "artist",
+  "editorial_bio": "Luke Vibert (born 26 January 1973) is a highly influential British electronic musician and producer, widely recognized for his vast output and masterful ability to traverse diverse subgenres of electronic music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Luke_Vibert_2.JPG/250px-Luke_Vibert_2.JPG",
+  "origin": "Redruth, Cornwall, England",
+  "active_years": "1990–present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid techno"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    },
+    {
+      "slug": "label:ninja-tune",
+      "type": "label",
+      "name": "Ninja Tune"
+    },
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:drum-n-bass-for-papa",
+      "type": "project",
+      "name": "Drum 'n' Bass for Papa"
+    },
+    {
+      "slug": "project:big-soup",
+      "type": "project",
+      "name": "Big Soup"
+    },
+    {
+      "slug": "project:lover-s-acid",
+      "type": "project",
+      "name": "Lover's Acid"
+    },
+    {
+      "slug": "project:throbbing-pouch",
+      "type": "project",
+      "name": "Throbbing Pouch"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:analord",
+      "type": "track",
+      "name": "Analord"
+    },
+    {
+      "slug": "track:shadows",
+      "type": "track",
+      "name": "Shadows"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:plug",
+      "type": "artist",
+      "name": "Plug"
+    },
+    {
+      "slug": "artist:wagon-christ",
+      "type": "artist",
+      "name": "Wagon Christ"
+    },
+    {
+      "slug": "artist:kerrier-district",
+      "type": "artist",
+      "name": "Kerrier District"
+    },
+    {
+      "slug": "artist:amen-andrews",
+      "type": "artist",
+      "name": "Amen Andrews"
+    },
+    {
+      "slug": "artist:spac-hand-luke",
+      "type": "artist",
+      "name": "Spac Hand Luke"
+    }
+  ],
+  "members": []
+}

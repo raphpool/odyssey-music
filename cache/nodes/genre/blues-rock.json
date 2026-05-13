@@ -1,0 +1,104 @@
+{
+  "slug": "genre:blues-rock",
+  "name": "Blues rock",
+  "editorial_article": "Blues rock is a seminal fusion genre that emerged in the early 1960s within the United States and the United Kingdom, bridging the emotive, improvisational structures of traditional blues with the high-energy, amplified dynamics of rock and roll. At its core, the genre retains the harmonic frameworks and 12-bar progressions of electric blues while significantly escalating the tempo, adopting a more aggressive sonic posture, and frequently utilizing the \"ensemble\" format—electric guitar, bass, and drums—that would become the bedrock of later rock music. Unlike the more restrained, syncopated rhythms of traditional blues, blues rock often favors a straight-eighth-note pulse and dense, distortion-heavy textures, prioritizing extended guitar solos and riff-based songwriting. \\n\\nHistorically, the genre served as the primary conduit through which the innovations of African American blues pioneers like Muddy Waters, Willie Dixon, and Albert King reached a global, youth-oriented rock audience. Early exponents in the UK, such as The Rolling Stones and The Yardbirds, reinterpreted blues standards for pop charts, while American acts like The Paul Butterfield Blues Band and Lonnie Mack laid the technical foundations for the genre’s future. By the late 1960s and early 1970s, blues rock evolved into the hard rock and heavy metal movements, with iconic groups like Led Zeppelin, The Allman Brothers Band, and Cream demonstrating how the genre could expand into expansive, virtuosic jams. Today, blues rock remains a foundational pillar of classic rock culture, defined by its enduring commitment to the expressive, string-bending guitar language that originally revitalized the blues in the modern age.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Blues_rock",
+      "title": "Blues rock - Wikipedia"
+    },
+    {
+      "url": "https://bluesrockreview.com/2026/03/10-essential-blues-rock-albums.html",
+      "title": "10 Essential Blues Rock Albums - Blues Rock Review"
+    },
+    {
+      "url": "https://ultimateclassicrock.com/blues-rock-albums/",
+      "title": "Top 40 Blues Rock Albums - Ultimate Classic Rock"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:27.406Z",
+  "type": "genre",
+  "editorial_definition": "Blues rock is a fusion of electric blues and rock music characterized by fast-paced improvisation, extended guitar solos, and a heavy, riff-oriented sound.",
+  "era": "1960s–present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:electric-blues",
+      "type": "genre",
+      "name": "Electric blues"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:southern-rock",
+      "type": "genre",
+      "name": "Southern rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    },
+    {
+      "slug": "artist:cream",
+      "type": "artist",
+      "name": "Cream"
+    },
+    {
+      "slug": "artist:the-allman-brothers-band",
+      "type": "artist",
+      "name": "The Allman Brothers Band"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    },
+    {
+      "slug": "artist:the-paul-butterfield-blues-band",
+      "type": "artist",
+      "name": "The Paul Butterfield Blues Band"
+    },
+    {
+      "slug": "artist:lonnie-mack",
+      "type": "artist",
+      "name": "Lonnie Mack"
+    },
+    {
+      "slug": "artist:zz-top",
+      "type": "artist",
+      "name": "ZZ Top"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:crossroads",
+      "type": "track",
+      "name": "Crossroads"
+    },
+    {
+      "slug": "track:stormy-monday",
+      "type": "track",
+      "name": "Stormy Monday"
+    },
+    {
+      "slug": "track:whole-lotta-love",
+      "type": "track",
+      "name": "Whole Lotta Love"
+    }
+  ]
+}

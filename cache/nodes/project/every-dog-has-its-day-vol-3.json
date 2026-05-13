@@ -1,0 +1,95 @@
+{
+  "slug": "project:every-dog-has-its-day-vol-3",
+  "name": "Every Dog Has Its Day vol.3",
+  "editorial_article": "Every Dog Has Its Day vol. 3 stands as a pivotal installment in the discography of Jeff Mills, specifically showcasing his more melodic and introspective 'Millsart' moniker. While Mills is synonymous with the brutalist, machine-driven soundscapes that defined the Detroit techno aesthetic in the 1990s, the Millsart project serves as a laboratory for atmospheric exploration and textural curiosity. Originally released in 2002 on Axis Records, this volume is meticulously crafted to be a therapeutic listening experience, designed—as Mills himself described—to ease restlessness and build high expectations through a refined, electronic lens. \\n\\nMusically, the project moves away from the hard-edged, floor-filling techno of his major club releases. Instead, it leans into fluid synthesizers, rhythmic sequences that pulse with intent rather than aggression, and a sense of space that feels distinctly cosmic. Tracks such as 'Planets And Satellites' and 'Asteroid' highlight this departure, favoring a sonic narrative that feels as much like an ambient-techno meditation as it does a dance floor experiment. The record invites the listener to understand time and anticipation, framing the act of listening as a way to unlock passages of personal discovery. \\n\\nBy releasing this under the Millsart alias, Jeff Mills effectively separated his commercial, high-energy techno identity from his more experimental, introspective work, allowing for a creative freedom that influenced a generation of artists exploring the intersection of deep techno and ambient music. The record’s enduring status—demonstrated by its re-release and continued availability through Axis Records—cements it as a crucial piece of the Detroit techno evolution, proving that Mills’ technical prowess is as effective at quiet contemplation as it is at driving a warehouse full of dancers. It is a work that demands patience, rewarding the listener with layers of rich, synthetic sound that bloom over time.",
+  "citations": [
+    {
+      "url": "https://www.axisrecords.com/product/every-dog-has-its-day-vol-3-digital-full-album/",
+      "title": "Every Dog Has Its Day vol.3 (Digital full album) | Axis Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:08.888Z",
+  "type": "project",
+  "editorial_pitch": "Every Dog Has Its Day vol. 3 is a standout collection of electronic music by legendary techno producer Jeff Mills, released under his 'Millsart' alias. Originally conceptualized in 2002, this release serves as an atmospheric, deeply introspective counterpart to the high-velocity, industrial-tinged techno he is best known for, offering a sonic journey intended to soothe impatience and elevate expectations.",
+  "cover_url": "https://www.axisrecords.com/wp-content/uploads/2020/08/AX026D-600x600.jpg",
+  "year": "2002",
+  "artists": [
+    {
+      "slug": "artist:millsart",
+      "type": "artist",
+      "name": "Millsart"
+    }
+  ],
+  "label": {
+    "slug": "label:axis-records",
+    "type": "label",
+    "name": "Axis Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:roll-of-the-dice",
+      "type": "track",
+      "name": "Roll Of The Dice"
+    },
+    {
+      "slug": "track:planets-and-satellites",
+      "type": "track",
+      "name": "Planets And Satellites"
+    },
+    {
+      "slug": "track:ruby-red",
+      "type": "track",
+      "name": "Ruby Red"
+    },
+    {
+      "slug": "track:asteroid",
+      "type": "track",
+      "name": "Asteroid"
+    },
+    {
+      "slug": "track:la-couturiere-au-travail",
+      "type": "track",
+      "name": "La Couturière Au Travail"
+    },
+    {
+      "slug": "track:break-it-you-own-it",
+      "type": "track",
+      "name": "Break It, You Own It"
+    },
+    {
+      "slug": "track:fake-rolex-in-times-square",
+      "type": "track",
+      "name": "Fake Rolex In Times Square"
+    },
+    {
+      "slug": "track:the-early-years",
+      "type": "track",
+      "name": "The Early Years"
+    },
+    {
+      "slug": "track:with",
+      "type": "track",
+      "name": "With"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    }
+  ],
+  "related_projects": []
+}

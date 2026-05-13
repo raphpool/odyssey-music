@@ -1,0 +1,65 @@
+{
+  "slug": "artist:the-corrs",
+  "name": "The Corrs",
+  "editorial_article": "The Corrs are a globally recognized Irish band formed in Dundalk, Ireland, in 1990, consisting of four siblings: Andrea (lead vocals, tin whistle), Sharon (violin, vocals), Caroline (drums, vocals), and Jim Corr (guitar, keyboards, vocals). Fusing traditional Celtic folk music with modern pop-rock production, the group emerged during the 1990s as a significant international force. Their sound is characterized by Andrea's melodic, breathy vocals, intricate violin arrangements, and a signature blend of organic instrumentation like the tin whistle and bodhrán layered over contemporary pop arrangements. They achieved massive commercial success throughout the late 1990s and early 2000s, selling over 40 million albums worldwide. Their breakout came with the sophomore release 'Talk on Corners' (1997), which became one of the best-selling albums in British chart history. Their polished, radio-friendly sound, exemplified by hits like \"Breathless\" and their cover of Fleetwood Mac's \"Dreams,\" established them as quintessential figures of the Celtic pop explosion. Following an indefinite hiatus beginning in the mid-2000s, during which the siblings pursued various solo projects, the band reformed in 2015, continuing to tour and release new music, including 'White Light' and 'Jupiter Calling'. Their legacy remains firmly rooted in their ability to bridge the gap between their Irish musical heritage and mainstream global pop success. The group's influence is marked by the way they mainstreamed the sound of the tin whistle and fiddle in pop-rock radio play, making traditional instruments accessible to a global audience. Through their long-standing partnership with producer David Foster, they perfected an immaculate, high-gloss production style that became a template for late 90s crossover pop. Whether performing intimate unplugged sessions or stadium anthems, the Corrs maintained a familial chemistry that distinguished them within the competitive landscape of the era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Corrs_discography",
+      "title": "The Corrs discography - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/the-corrs-mn0000075591",
+      "title": "The Corrs Songs, Albums, Reviews, Bio & More | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:18.819Z",
+  "type": "artist",
+  "editorial_bio": "The Corrs are a globally recognized Irish band formed in Dundalk, Ireland, in 1990, consisting of four siblings: Andrea (lead vocals, tin whistle), Sharon (violin, vocals), Caroline (drums, vocals), and Jim Corr (guitar, keyboards, vocals).",
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    },
+    {
+      "slug": "genre:celtic-pop",
+      "type": "genre",
+      "name": "Celtic pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:143-records",
+      "type": "label",
+      "name": "143 Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:breathless",
+      "type": "track",
+      "name": "Breathless"
+    },
+    {
+      "slug": "track:runaway",
+      "type": "track",
+      "name": "Runaway"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

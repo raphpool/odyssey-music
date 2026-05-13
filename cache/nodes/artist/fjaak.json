@@ -1,0 +1,101 @@
+{
+  "slug": "artist:fjaak",
+  "name": "FJAAK",
+  "editorial_article": "FJAAK is a Berlin-based electronic music project known for its high-energy approach to warehouse techno, house, and breakbeat. Formed in 2009 by childhood friends Felix Wagner, Aaron Röbig, and Kevin Kozicki, the group grew from the local Spandau scene into a prominent international live act. Their sound is characterized by a raw, analog-driven aesthetic that frequently incorporates elements of 90s rave, UK garage, and dub, creating a texture that feels both nostalgic and aggressively forward-thinking. Throughout their career, they have cultivated a DIY spirit, heavily utilizing their own labels—most notably FJAAK and SPANDAU20—to release their music. \n\nFollowing their early EPs on Baalsaal and Klasse Recordings, the trio gained significant momentum through their association with Modeselektor's seminal 50Weapons imprint. After the label's closure in 2015, they transitioned to Monkeytown Records for the release of their self-titled debut album in 2017. In 2019, Kevin Kozicki departed to pursue solo work, leaving Wagner and Röbig to continue the project as a duo. Today, they remain a staple of the global underground, consistently delivering gritty, warehouse-ready productions that maintain the visceral impact of their early club hits. Their discography is marked by a vast array of vinyl-focused singles and EPs that prioritize immediate dancefloor functionality over conventional album formats. FJAAK’s impact on the Berlin scene is substantial, defined by their unyielding commitment to analog production and their status as one of the most recognizable, hardware-heavy live acts in modern techno. Their transition from a three-piece to a two-piece did not stifle their productivity, as they continue to explore new textures in club music through their persistent output on their personal imprints and major dance music staples like Seilscheibenpfeiler.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/fjaak-mn0003273124",
+      "title": "FJAAK Songs, Albums, Reviews, Bio & More | All... | AllMusic"
+    },
+    {
+      "url": "https://www.insomniac.com/music/artists/fjaak/",
+      "title": "FJAAK - Artists - Insomniac"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:09.071Z",
+  "type": "artist",
+  "editorial_bio": "Berlin electronic duo FJAAK, formerly a trio, are masters of raw, analog-fueled warehouse techno and breakbeat, defined by a distinct DIY ethos and a legendary live performance energy.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0003273124/400/HHPbo6S9fk4SCOv7_63l1ByhM-OFI8zG4l-qVpXXB1I=.jpg",
+  "origin": "Berlin, Germany",
+  "active_years": "2009-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:monkeytown-records",
+      "type": "label",
+      "name": "Monkeytown Records"
+    },
+    {
+      "slug": "label:50weapons",
+      "type": "label",
+      "name": "50Weapons"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:fjaak",
+      "type": "project",
+      "name": "FJAAK"
+    },
+    {
+      "slug": "project:havel",
+      "type": "project",
+      "name": "Havel"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:don-t-leave-me",
+      "type": "track",
+      "name": "Don't Leave Me"
+    },
+    {
+      "slug": "track:wolves",
+      "type": "track",
+      "name": "Wolves"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:felix-wagner",
+      "type": "artist",
+      "name": "Felix Wagner"
+    },
+    {
+      "slug": "artist:aaron-robig",
+      "type": "artist",
+      "name": "Aaron Röbig"
+    },
+    {
+      "slug": "artist:kevin-kozicki",
+      "type": "artist",
+      "name": "Kevin Kozicki"
+    }
+  ]
+}

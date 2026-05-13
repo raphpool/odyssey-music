@@ -1,0 +1,49 @@
+{
+  "slug": "genre:minimal-music",
+  "name": "Minimal music",
+  "editorial_article": "Minimal music, also frequently referred to simply as minimalism, is a pivotal movement in 20th-century art music that emerged in the United States during the late 1950s and early 1960s. Characterized by a radical reduction of compositional elements, the genre focuses on the deliberate use of limited musical materials to create immersive, often hypnotic listening experiences. Unlike the complex, teleological structures of traditional Western classical music or the high-density serialism that dominated the mid-century avant-garde, minimal music embraces repetitive patterns, steady pulses, slow harmonic changes, and the use of drones. By stripping away extraneous ornamentation and narrative progression, these composers redirect the listener’s attention toward the internal micro-processes of the sound itself—such as phase shifting, rhythmic accretion, or long-form textural evolution.\n\nThe movement coalesced on the American West Coast before becoming a central feature of the Downtown New York experimental scene. Early pioneers like La Monte Young, Terry Riley, Steve Reich, and Philip Glass developed techniques that fundamentally challenged how music is structured and perceived. Over the following decades, the influence of minimalism expanded far beyond the concert hall. Its ethos of reduction and repetition left an indelible mark on electronic music, ambient, krautrock, and post-minimalist styles. By prioritizing the act of listening over linear narrative, minimal music transformed the landscape of modern composition, proving that the most profound emotional and intellectual impacts can arise from the simplest of foundations. It remains a foundational framework for contemporary composers who continue to explore the tension between stasis and change.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Minimal_music",
+      "title": "Minimal music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:02.245Z",
+  "type": "genre",
+  "editorial_definition": "A form of art music defined by the use of limited musical materials, repetitive patterns, steady pulses, and drones, emphasizing the process of listening over traditional narrative structure.",
+  "era": "1960s-present",
+  "origin": "United States (California/New York)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:john-adams",
+      "type": "artist",
+      "name": "John Adams"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

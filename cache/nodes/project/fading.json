@@ -1,0 +1,87 @@
+{
+  "slug": "project:fading",
+  "name": "Fading",
+  "editorial_article": "\"Fading\" is the critically acclaimed 2012 studio album by the UK-based electronic producer DFRNT, released via the Echodub label. Representing a significant evolution in DFRNT’s sound, the album navigates the atmospheric intersection of dubstep and dub techno, characterized by lush, sprawling soundscapes and intricate, emotionally resonant production. Clocking in with 11 tracks, including standout pieces like \"Everyone Is Moving\" and \"Silent Witness,\" the project is widely considered one of the most underrated electronic long-players of its era, often compared to the deep, cinematic textures of artists like Burial or the immersive sonic environments crafted by DeepChord. \\n\\nThroughout the record, DFRNT demonstrates a masterful command of space, balancing rhythmic complexity with a sense of melancholic bliss that defines the album's unique aesthetic. The project avoids the aggressive tropes often associated with mainstream dubstep in favor of hypnotic, dub-infused atmospheres that prioritize texture and mood. By integrating vocal samples with delicate, layered synthesis, the producer creates an immersive listening experience that is both introspective and expansive. \"Fading\" cemented DFRNT's reputation as a thoughtful architect of electronic sound and remains a touchstone for listeners drawn to the deeper, more experimental fringes of UK bass music. Its legacy persists in its status as a cult classic, celebrated for its cohesive narrative, technical precision, and enduring emotional depth.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/507067-DFRNT-Fading",
+      "title": "DFRNT – Fading | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:23.791Z",
+  "type": "project",
+  "editorial_pitch": "A masterwork of atmospheric electronic music, DFRNT’s 2012 album 'Fading' blends deep, dub-infused techno with the melancholic textures of UK bass to create an immersive, timeless sonic experience.",
+  "year": "2012",
+  "artists": [],
+  "label": {
+    "slug": "label:echodub",
+    "type": "label",
+    "name": "Echodub"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:silent-witness",
+      "type": "track",
+      "name": "Silent Witness"
+    },
+    {
+      "slug": "track:el-spirito",
+      "type": "track",
+      "name": "El Spirito"
+    },
+    {
+      "slug": "track:everyone-is-moving",
+      "type": "track",
+      "name": "Everyone Is Moving"
+    },
+    {
+      "slug": "track:that-s-interesting",
+      "type": "track",
+      "name": "That's Interesting"
+    },
+    {
+      "slug": "track:deep-into-it",
+      "type": "track",
+      "name": "Deep Into It"
+    },
+    {
+      "slug": "track:prism",
+      "type": "track",
+      "name": "Prism"
+    },
+    {
+      "slug": "track:cruise",
+      "type": "track",
+      "name": "Cruise"
+    },
+    {
+      "slug": "track:incubus",
+      "type": "track",
+      "name": "Incubus"
+    },
+    {
+      "slug": "track:in-you-go",
+      "type": "track",
+      "name": "In You Go"
+    },
+    {
+      "slug": "track:our-little-secret",
+      "type": "track",
+      "name": "Our Little Secret"
+    },
+    {
+      "slug": "track:suspended-in-the-deep",
+      "type": "track",
+      "name": "Suspended In The Deep"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:dfrnt",
+      "type": "artist",
+      "name": "DFRNT"
+    }
+  ],
+  "related_projects": []
+}

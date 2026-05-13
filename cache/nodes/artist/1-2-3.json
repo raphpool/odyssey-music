@@ -1,0 +1,67 @@
+{
+  "slug": "artist:1-2-3",
+  "name": "1,2,3",
+  "editorial_article": "1,2,3 (often styled as 123) is a Pittsburgh-based rock band that gained prominence in the early 2010s for their blend of lo-fi guitar pop, bluesy shuffles, and classic songwriting sensibilities. The band was formed by frontman Nic Snyder and drummer Josh Sickels, rooted in a musical heritage that includes inspiration from Roy Orbison, Neil Young, and the blues-rock lineage of Pittsburgh’s Iron City Houserockers. They first gained traction after being discovered by producer Theo Aronson, which led to the recording of their debut 7-inch, 'Confetti,' released on Ooh La La Records. This release launched the label and garnered significant international attention, including airplay on the UK's BBC Radio 1 from DJ Zane Lowe and a subsequent deal with Frenchkiss Records. The band's sound has been noted for its evocative wails and references to classic acts like Big Star and T. Rex, establishing them as a notable act in the indie-rock circuit during their active period. Their work reflects a mix of angst-filled, raw pop energy balanced with deep-seated respect for the rock and roll traditions Snyder observed growing up. The band exemplifies the mid-2000s and 2010s indie underground, capturing a specific grit of the American Rust Belt transitioning into a more polished pop aesthetic. Their brief but impactful run remains a point of reference for fans of authentic, guitar-driven pop-rock.",
+  "citations": [
+    {
+      "url": "https://oohlalarecordings.com/artists/123",
+      "title": "1,2,3 - Ooh La La Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:48.996Z",
+  "type": "artist",
+  "editorial_bio": "1,2,3 was a Pittsburgh-based indie rock band known for lo-fi guitar pop and raw, classic songwriting sensibilities. Fronted by Nic Snyder, the band earned attention in the early 2010s via Ooh La La Records and Frenchkiss Records.",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    },
+    {
+      "slug": "genre:guitar-pop",
+      "type": "genre",
+      "name": "Guitar Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ooh-la-la-records",
+      "type": "label",
+      "name": "Ooh La La Records"
+    },
+    {
+      "slug": "label:frenchkiss-records",
+      "type": "label",
+      "name": "Frenchkiss Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:new-heaven",
+      "type": "project",
+      "name": "New Heaven"
+    },
+    {
+      "slug": "project:confetti",
+      "type": "project",
+      "name": "Confetti"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:confetti",
+      "type": "track",
+      "name": "Confetti"
+    },
+    {
+      "slug": "track:bigger-black-car",
+      "type": "track",
+      "name": "Bigger Black Car"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

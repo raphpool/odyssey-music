@@ -1,0 +1,156 @@
+{
+  "slug": "artist:alec-empire",
+  "name": "Alec Empire",
+  "editorial_article": "Alec Empire, born Alexander Wilke-Steinhof in West Berlin in 1972, is a transformative figure in electronic music, best known as the primary architect of the digital hardcore genre and a founding member of the seminal political electronic group Atari Teenage Riot. Growing up near the Berlin Wall during the Cold War, his formative years were shaped by the intense political atmosphere and the radical left-wing movements of 1970s Berlin. His journey began in punk rock, playing in bands like Die Kinder at age twelve, before he eventually transitioned into electronic music, where he sought to dismantle the perceived decadence and commercialism of the rave scene.\\n\\nIn the early 1990s, Empire sought to challenge the mainstream rave culture, which he felt had become politically hollowed out and susceptible to infiltration by neo-Nazi elements. He responded by fusing the aggression and anti-establishment ethos of punk with the blistering speed of hardcore techno and the sample-heavy, rhythm-driven intensity of breakbeat music. This fusion, characterized by distorted synthesis, relentless breakbeats, and politically charged, confrontational lyrics, became known as \"digital hardcore.\" To foster this sound and provide a platform for like-minded artists, he founded his own influential label, Digital Hardcore Recordings (DHR) in 1994.\\n\\nThroughout his prolific career, Empire has operated under numerous aliases—including Nintendo Teenage Robots, Death Funk, and Jaguar—and has maintained an extensive solo discography that frequently pushes the boundaries of experimental electronic music. His work often reflects a deeply held ideological stance; he is a noted proponent of straight-edge living and has consistently used his music as a medium for social and political protest. Beyond his own recordings, he has proven himself a highly sought-after producer and remixer, having worked with a diverse array of artists such as Björk. His enduring influence remains visible in the continued intersection of aggressive electronic production, punk rock energy, and activist-oriented songwriting.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alec_Empire",
+      "title": "Alec Empire - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/alec-empire",
+      "title": "Alec Empire discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/alec-empire-mn0000935389",
+      "title": "Alec Empire Songs, Albums, Reviews, Bio & More... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:56.374Z",
+  "type": "artist",
+  "editorial_bio": "Alec Empire is a pioneer of digital hardcore and a foundational member of Atari Teenage Riot, recognized for his aggressive fusion of punk ideology and experimental electronic music. His career, spanning from the early 1990s to the present, is defined by his commitment to political activism, his founding of the Digital Hardcore Recordings label, and a vast body of work that spans techno, noise, and breakbeat culture.",
+  "origin": "West Berlin, Germany",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore Techno"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:digital-hardcore-recordings",
+      "type": "label",
+      "name": "Digital Hardcore Recordings"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    },
+    {
+      "slug": "label:force-inc",
+      "type": "label",
+      "name": "Force Inc."
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:generation-star-wars",
+      "type": "project",
+      "name": "Generation Star Wars"
+    },
+    {
+      "slug": "project:low-on-ice",
+      "type": "project",
+      "name": "Low on Ice (The Iceland Sessions)"
+    },
+    {
+      "slug": "project:the-destroyer",
+      "type": "project",
+      "name": "The Destroyer"
+    },
+    {
+      "slug": "project:intelligence-and-sacrifice",
+      "type": "project",
+      "name": "Intelligence and Sacrifice"
+    },
+    {
+      "slug": "project:futurist",
+      "type": "project",
+      "name": "Futurist"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-peak",
+      "type": "track",
+      "name": "The Peak"
+    },
+    {
+      "slug": "track:intelligence-and-sacrifice",
+      "type": "track",
+      "name": "Intelligence and Sacrifice"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias"
+    },
+    {
+      "slug": "artist:carl-crack",
+      "type": "artist",
+      "name": "Carl Crack"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:nintendo-teenage-robots",
+      "type": "artist",
+      "name": "Nintendo Teenage Robots"
+    },
+    {
+      "slug": "artist:death-funk",
+      "type": "artist",
+      "name": "Death Funk"
+    },
+    {
+      "slug": "artist:jaguar",
+      "type": "artist",
+      "name": "Jaguar"
+    },
+    {
+      "slug": "artist:lx-empire",
+      "type": "artist",
+      "name": "LX Empire"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot"
+    }
+  ]
+}

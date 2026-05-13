@@ -1,0 +1,92 @@
+{
+  "slug": "genre:indietronica",
+  "name": "Indietronica",
+  "editorial_article": "Indietronica—frequently also known as \"indie electronic\" or \"lap-pop\"—is a sprawling, hybrid genre that emerged as a creative synthesis between the ethos of indie rock and the vast, evolving textures of electronic production. Characterized by a DIY approach to music-making, it prioritizes accessible, often pop-informed melodies while integrating eclectic instrumentation that bridges the gap between traditional live performance and computer-based synthesis. Emerging from the underground in the 1990s, the genre was initially nurtured by independent labels such as the UK's Too Pure and Duophonic, which provided a home for acts that experimented with analog gear and early digital editing tools. \n\nBy the early 2000s, labels like Germany's Morr Music became crucial in formalizing the aesthetic, further popularized by compilations such as 2002's *Indietronica: Pop + Electronica*. At its core, the genre eschews the typical club-oriented structure of mainstream dance music, instead leaning into a more textural, often intimate, and occasionally experimental sensibility. Influences are wide-ranging, pulling from synth-pop, post-rock, ambient pop, and even glitch music. As the movement matured, it gained widespread appeal through major independent artists—ranging from the emotive, avant-garde pop of Björk to the indie-dance innovations of The Postal Service, LCD Soundsystem, and MGMT. The genre remains a vibrant, evolving landscape, continually cross-pollinating with contemporary underground movements like post-dubstep and chillwave, serving as a testament to the enduring dialogue between rock songcraft and electronic experimentation.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/indietronica/",
+      "title": "Indietronica - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:04.783Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid genre merging indie rock's songwriting, DIY ethos, and eclectic instrumentation with electronic music's production techniques, often prioritizing pop-sensibilities while avoiding mainstream club structures.",
+  "era": "1990s - Present",
+  "origin": "United Kingdom, United States, Germany, Japan",
+  "sonic_markers": "DIY production approach, blend of live instruments and digital synthesis, melodic indie-pop structures, electronic textures, emphasis on arrangement over club-driven beat design.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    },
+    {
+      "slug": "artist:the-postal-service",
+      "type": "artist",
+      "name": "The Postal Service"
+    },
+    {
+      "slug": "artist:broadcast",
+      "type": "artist",
+      "name": "Broadcast"
+    },
+    {
+      "slug": "artist:lcd-soundsystem",
+      "type": "artist",
+      "name": "LCD Soundsystem"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:morr-music",
+      "type": "label",
+      "name": "Morr Music"
+    },
+    {
+      "slug": "label:too-pure",
+      "type": "label",
+      "name": "Too Pure"
+    },
+    {
+      "slug": "label:duophonic-super-45s",
+      "type": "label",
+      "name": "Duophonic Super 45s"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:vespertine",
+      "type": "project",
+      "name": "Vespertine"
+    },
+    {
+      "slug": "project:dots-and-loops",
+      "type": "project",
+      "name": "Dots and Loops"
+    },
+    {
+      "slug": "project:sound-of-silver",
+      "type": "project",
+      "name": "Sound of Silver"
+    },
+    {
+      "slug": "project:give-up",
+      "type": "project",
+      "name": "Give Up"
+    }
+  ],
+  "landmark_tracks": []
+}

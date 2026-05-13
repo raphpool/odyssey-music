@@ -1,0 +1,103 @@
+{
+  "slug": "artist:gary-numan",
+  "name": "Gary Numan",
+  "editorial_article": "Gary Numan, born Gary Anthony James Webb in 1958, is a towering figure in the evolution of electronic music and a definitive icon of the British post-punk and new wave scenes. Emerging from the late-1970s London punk circuit as the frontman of Tubeway Army, Numan rapidly pivoted from raw, guitar-driven urgency to a cold, synthesized aesthetic that would define the sound of the era. His discovery of a Minimoog synthesizer during a recording session in 1978 proved transformative, leading to the creation of the groundbreaking album 'Replicas' and the massive success of the single \"Are 'Friends' Electric?\". This track, characterized by its mechanical groove and dystopian themes, signaled the arrival of a new musical language where synthesizers were treated with the same aggression as electric guitars.\n\nNuman’s aesthetic, particularly his stoic, \"android\" persona, provided a stark contrast to the flamboyant rock stars of the time, exerting a profound influence on everything from early synth-pop to goth rock and later industrial music. His solo debut, 'The Pleasure Principle' (1979), solidified his status as a pioneer, featuring the chart-topping hit \"Cars.\" While his commercial peak occurred during this initial wave, Numan’s career is marked by a relentless commitment to creative reinvention. Throughout the decades, he has transitioned into heavier, more abrasive industrial rock textures, maintaining a fiercely loyal cult following and earning accolades such as the Ivor Novello Inspiration Award. His influence is pervasive, felt in the work of countless artists across electronic, darkwave, and alternative rock genres, proving his enduring relevance as a visionary of modern sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gary_Numan",
+      "title": "Gary Numan - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/gary-numan-mn0000183858",
+      "title": "Gary Numan Songs, Albums, Reviews, Bio & More ... - AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/gary-numan",
+      "title": "Gary Numan discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:58.957Z",
+  "type": "artist",
+  "editorial_bio": "Gary Numan, born Gary Anthony James Webb in 1958, is a towering figure in the evolution of electronic music and a definitive icon of the British post-punk and new wave scenes.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Glasto2025-211_Gary_Numan_%28cropped%29.jpg/250px-Glasto2025-211_Gary_Numan_%28cropped%29.jpg",
+  "origin": "London, England",
+  "active_years": "1976–present",
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave"
+    },
+    {
+      "slug": "genre:industrial-rock",
+      "type": "genre",
+      "name": "Industrial rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:beggars-banquet-records",
+      "type": "label",
+      "name": "Beggars Banquet Records"
+    },
+    {
+      "slug": "label:bmg",
+      "type": "label",
+      "name": "BMG"
+    },
+    {
+      "slug": "label:metropolis-records",
+      "type": "label",
+      "name": "Metropolis Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-pleasure-principle",
+      "type": "project",
+      "name": "The Pleasure Principle"
+    },
+    {
+      "slug": "project:replicas",
+      "type": "project",
+      "name": "Replicas"
+    },
+    {
+      "slug": "project:telekon",
+      "type": "project",
+      "name": "Telekon"
+    },
+    {
+      "slug": "project:the-savage",
+      "type": "project",
+      "name": "The Savage (Songs from a Broken World)"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cars",
+      "type": "track",
+      "name": "Cars"
+    },
+    {
+      "slug": "track:are-friends-electric",
+      "type": "track",
+      "name": "Are 'Friends' Electric?"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

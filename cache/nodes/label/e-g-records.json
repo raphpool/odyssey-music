@@ -1,0 +1,75 @@
+{
+  "slug": "label:e-g-records",
+  "name": "E.G. Records",
+  "editorial_article": "E.G. Records was a prominent British record label and artist management firm that defined the progressive rock and art rock landscape during the 1970s and 1980s. Established in 1969 by David Enthoven and John Gaydon, the label's initials served as a shorthand for their pioneering management agency, E.G. Music. Initially rising to prominence by managing acts like King Crimson, the label eventually evolved into a powerhouse platform for some of the most intellectual and experimental voices in contemporary music, most notably Brian Eno, Robert Fripp, and Roxy Music.\n\nThroughout its existence, E.G. Records provided a dedicated home for high-concept art rock, jazz-fusion, and neoclassical experimentation. Unlike many of its contemporaries, the label maintained a distinctively high-brow sonic signature, favoring long-form compositions, structural innovation, and the avant-garde. Beyond the pillars of progressive rock, the roster featured eclectic artists ranging from the Penguin Cafe Orchestra to the experimental jazz of Loose Tubes and the subversive satire of Killing Joke.\n\nHowever, the legacy of E.G. Records is complex. While it fostered immense creative freedom, its final years were marred by significant financial instability under later management, specifically by Sam Alder and Mark Fenwick. During the late 1980s and early 1990s, the label was embroiled in severe legal battles over unpaid royalties, a period that prompted Robert Fripp to eventually form Discipline Global Mobile as a direct, artist-centric opposition to the label's business practices. Despite its tumultuous end and absorption into the Virgin-EMI ecosystem in 1996, the imprint remains a vital touchstone in British rock history, synonymous with an era where intellectual rigor and musical boundary-pushing were front and center.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/E.G._Records",
+      "title": "E.G. Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/291535-EG-Records-Ltd?srsltid=AfmBOorQhTEbEVX7wxUj5X749tnfZ_zW1HmMvy-JRScXQLg_KFL4ObS6",
+      "title": "E.G. Records Ltd. - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:45.576Z",
+  "type": "label",
+  "editorial_description": "A highly influential, if controversial, British label synonymous with the progressive and art-rock movements, known for stewarding the careers of King Crimson, Brian Eno, and Roxy Music.",
+  "founded": "1969",
+  "location": "UK",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    },
+    {
+      "slug": "artist:robert-fripp",
+      "type": "artist",
+      "name": "Robert Fripp"
+    },
+    {
+      "slug": "artist:killing-joke",
+      "type": "artist",
+      "name": "Killing Joke"
+    },
+    {
+      "slug": "artist:penguin-cafe-orchestra",
+      "type": "artist",
+      "name": "Penguin Cafe Orchestra"
+    },
+    {
+      "slug": "artist:bill-bruford",
+      "type": "artist",
+      "name": "Bill Bruford"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:in-the-court-of-the-crimson-king",
+      "type": "project",
+      "name": "In the Court of the Crimson King"
+    },
+    {
+      "slug": "project:here-come-the-warm-jets",
+      "type": "project",
+      "name": "Here Come the Warm Jets"
+    },
+    {
+      "slug": "project:for-your-pleasure",
+      "type": "project",
+      "name": "For Your Pleasure"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "slug": "artist:quadrant",
+  "name": "Quadrant",
+  "editorial_article": "Quadrant is a Seattle-based drum and bass production entity, primarily known as the project of producer Leigh Caplan, though it has evolved through various collaborative configurations, including notable work with Iris and Kid Hops. Emerging in the mid-2000s, Quadrant quickly established themselves within the tech-leaning, atmospheric spectrum of drum and bass. Throughout his career, Caplan has been a prolific producer, releasing music on esteemed labels such as Commercial Suicide, Citrus Recordings, and Renegade Hardware. \\n\\nThe project is celebrated for its precise, intricate engineering and a penchant for blending high-energy, dark-edged rhythms with emotive, expansive soundscapes. Whether operating as a solo venture or in collaborative partnerships, Quadrant's contributions are consistently defined by their technical depth and unwavering adherence to the fundamental, bass-heavy spirit of the D&B genre. Their collaborative album '206'—a nod to the Seattle area code—stands as a high-water mark for the project, demonstrating an ability to cultivate a cohesive sound while navigating complex, multi-artist arrangements. Today, Quadrant remains a respected pillar of the North American drum and bass community, influencing subsequent generations of producers who prioritize technical sophistication alongside artistic narrative.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/342217-Quadrant-4?srsltid=AfmBOopZJXP2AENj2dpPgzpWL0jR9o5At7xKV3axdLk-XCP0GQF64d19",
+      "title": "Quadrant (4) Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "http://commercialsuicide.org/artists/quadrant-iris/",
+      "title": "Quadrant & Iris - Commercial Suicide"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:13.445Z",
+  "type": "artist",
+  "editorial_bio": "Quadrant is a Seattle-based drum and bass production entity, primarily known as the project of producer Leigh Caplan, though it has evolved through various collaborative configurations, including notable work with Iris and Kid Hops.",
+  "origin": "Seattle, USA",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:commercial-suicide",
+      "type": "label",
+      "name": "Commercial Suicide"
+    },
+    {
+      "slug": "label:citrus-recordings",
+      "type": "label",
+      "name": "Citrus Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:206",
+      "type": "project",
+      "name": "206"
+    },
+    {
+      "slug": "project:dermaphoria",
+      "type": "project",
+      "name": "Dermaphoria"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:only-mortal",
+      "type": "track",
+      "name": "Only Mortal"
+    },
+    {
+      "slug": "track:lost-city",
+      "type": "track",
+      "name": "Lost City"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    }
+  ],
+  "members": []
+}

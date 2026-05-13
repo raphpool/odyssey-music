@@ -1,0 +1,74 @@
+{
+  "slug": "genre:glam-rock",
+  "name": "Glam Rock",
+  "editorial_article": "Glam rock, also known as glitter rock, was a vibrant and theatrical subgenre of rock music that emerged in the United Kingdom during the early 1970s. Arising as a direct response to the perceived \"denim dullness\" and increasingly serious, progressive-leaning rock landscape of the late 1960s, glam rock championed artifice, decadence, and pure spectacle. Its aesthetic was defined by flamboyant costumes, heavy makeup, glitter, and towering platform shoes, creating a visual language that challenged conventional notions of masculinity and gender roles through radical androgyny and camp sensibility. Musically, the genre was a heterogeneous collage, drawing inspiration from the simple, driving energy of 1950s rock and roll and bubblegum pop, while filtering these influences through the experimentation of art rock and the dramatic flair of cabaret. While often criticized at the time as shallow or purely commercial, glam rock proved to be a pivotal cultural movement that dismantled the barrier between the audience and the performer. Pioneers such as T. Rex and David Bowie utilized the stage as a canvas for character-driven performances, famously exemplified by Bowie's Ziggy Stardust persona. Though the movement's peak was relatively short-lived—roughly 1971 to 1975—its DNA is embedded in the subsequent development of punk rock, gothic rock, synth-pop, and the later explosion of glam metal. By foregrounding the importance of style, performance, and the persona of the rock star, glam rock fundamentally reshaped the trajectory of pop and rock culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Glam_rock",
+      "title": "Glam rock - Wikipedia"
+    },
+    {
+      "url": "https://msmokemusic.com/blogs/mind-smoke-blog/posts/5834697/a-brief-history-of-glam-rock",
+      "title": "The History of Glam Rock"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:16.242Z",
+  "type": "genre",
+  "editorial_definition": "Glam rock is a high-energy, visually spectacular subgenre of 1970s rock, defined by its blend of 1950s rock and roll roots with flamboyant, androgynous fashion and theatrical stage personae.",
+  "era": "1970-1975",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:t-rex",
+      "type": "artist",
+      "name": "T. Rex"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    },
+    {
+      "slug": "artist:sweet",
+      "type": "artist",
+      "name": "Sweet"
+    },
+    {
+      "slug": "artist:new-york-dolls",
+      "type": "artist",
+      "name": "New York Dolls"
+    },
+    {
+      "slug": "artist:alice-cooper",
+      "type": "artist",
+      "name": "Alice Cooper"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars",
+      "type": "project",
+      "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars"
+    },
+    {
+      "slug": "project:electric-warrior",
+      "type": "project",
+      "name": "Electric Warrior"
+    },
+    {
+      "slug": "project:for-your-pleasure",
+      "type": "project",
+      "name": "For Your Pleasure"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,114 @@
+{
+  "slug": "genre:stoner-rock",
+  "name": "Stoner Rock",
+  "editorial_article": "Stoner rock, a fusion genre that crystallized in the early 1990s within the California desert scene, represents a heavy, psychedelic reinvention of rock and metal. At its core, the genre is defined by a slow-to-mid tempo, downtuned guitars, and a massive, fuzz-drenched sound that emphasizes groove over technical speed. It draws significant stylistic lineage from 1970s acid rock and doom metal, particularly the riff-centric innovations of pioneers like Black Sabbath and Blue Cheer. The \"stoner\" moniker, often contested by the artists themselves, reflects the genre's loose, hypnotic atmosphere and its frequent association with cannabis culture. \n\nBands like Kyuss and Sleep are widely considered the genre's foundational pillars. Kyuss, hailing from the Palm Desert, pioneered the \"desert rock\" aesthetic—a sun-baked, arid take on hard rock that favored long, improvisational jams and natural, rugged production. Sleep, conversely, leaned further into the doom metal side of the spectrum, producing monolithic, endurance-testing tracks that stretched the limits of song length and volume. While the genre has expanded globally and fractured into various sub-styles—often crossing over with sludge, garage punk, and progressive metal—it remains anchored by its commitment to \"retro\" production values, heavy amplification, and a reverence for the iconic, bone-crushing guitar riff. Whether or not individual bands embrace the label, the genre persists as a celebration of rock music’s primal, hypnotic roots, updated for a modern, often transcendent listening experience.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Stoner_rock",
+      "title": "Stoner rock - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:15.534Z",
+  "type": "genre",
+  "editorial_definition": "A heavy, psychedelic rock fusion genre defined by slow-to-mid tempos, downtuned and distorted guitar riffs, and a hypnotic, groove-oriented sound heavily influenced by 1970s doom and acid rock.",
+  "era": "1990s–present",
+  "origin": "California, United States",
+  "parent_genres": [
+    {
+      "slug": "genre:rock-music",
+      "type": "genre",
+      "name": "Rock music"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert rock"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert rock"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kyuss",
+      "type": "artist",
+      "name": "Kyuss"
+    },
+    {
+      "slug": "artist:sleep",
+      "type": "artist",
+      "name": "Sleep"
+    },
+    {
+      "slug": "artist:monster-magnet",
+      "type": "artist",
+      "name": "Monster Magnet"
+    },
+    {
+      "slug": "artist:electric-wizard",
+      "type": "artist",
+      "name": "Electric Wizard"
+    },
+    {
+      "slug": "artist:fu-manchu",
+      "type": "artist",
+      "name": "Fu Manchu"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:meteorcity-records",
+      "type": "label",
+      "name": "MeteorCity Records"
+    },
+    {
+      "slug": "label:roadrunner-records",
+      "type": "label",
+      "name": "Roadrunner Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:blues-for-the-red-sun",
+      "type": "project",
+      "name": "Blues for the Red Sun"
+    },
+    {
+      "slug": "project:dopesmoker",
+      "type": "project",
+      "name": "Dopesmoker"
+    },
+    {
+      "slug": "project:welcome-to-meteorcity",
+      "type": "project",
+      "name": "Welcome to MeteorCity"
+    }
+  ],
+  "landmark_tracks": []
+}

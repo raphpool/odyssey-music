@@ -1,0 +1,66 @@
+{
+  "slug": "artist:lustmord",
+  "name": "Lustmord",
+  "editorial_article": "Lustmord, the moniker of British musician and sound designer Brian Williams, is widely considered the foundational architect of dark ambient music. Emerging from the post-industrial and experimental scenes of the early 1980s, Williams moved away from the more aggressive, abrasive sounds of his contemporaries to craft vast, cinematic soundscapes defined by immense spatial depth, sub-bass frequencies, and a pervasive, occult atmosphere. Often utilizing field recordings, manipulated environmental sounds, and intricate synth layering, his work evokes themes of ancient dread, geological time, and the void. His 1989 release, 'Heresy,' is frequently cited as a landmark in the genre, effectively establishing a template for the dark ambient sound that has influenced countless artists within industrial, metal, and electronic music. Throughout his long career, Williams has balanced his own solo output with significant contributions to film scores, such as 'The Crow,' and high-profile collaborations with artists across the alternative spectrum, including Tool, Puscifer, Melvins, and Robert Rich. His sound remains distinct for its physical, almost sculptural approach to audio, treating silence and sub-sonic pressure with as much importance as melody. His influence persists as he continues to explore new sonic terrains, constantly redefining the boundaries of ambient music through his meticulous production and evocative, often unsettling, sound design.",
+  "citations": [
+    {
+      "url": "https://www.lustmord.com/discography",
+      "title": "Discography — LUSTMORD"
+    },
+    {
+      "url": "https://www.discogs.com/artist/8265-Lustmord?srsltid=AfmBOoqahH7XKPIWDrbqqmzjcA4_9-Tnhd4AZk2N_wJt5-4LX6mtBt3b",
+      "title": "Lustmord Discography: Vinyl, CDs, & More - Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/lustmord",
+      "title": "Lustmord Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:58.022Z",
+  "type": "artist",
+  "editorial_bio": "Lustmord is the pioneer of dark ambient, known for his cinematic, bass-heavy, and occult-infused soundscapes.",
+  "photo_url": "https://images.squarespace-cdn.com/content/v1/5b455162365f025079337017/1531783242388-9KXWKUYGRHYF5H7GF5Q6/sunfall-1-long.jpg?format=2500w",
+  "origin": "United Kingdom",
+  "active_years": "1980–present",
+  "genres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:heresy",
+      "type": "project",
+      "name": "Heresy"
+    },
+    {
+      "slug": "project:the-word-as-power",
+      "type": "project",
+      "name": "The Word As Power"
+    },
+    {
+      "slug": "project:stalker",
+      "type": "project",
+      "name": "Stalker"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

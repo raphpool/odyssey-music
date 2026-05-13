@@ -1,0 +1,39 @@
+{
+  "slug": "label:metronome",
+  "name": "Metronome",
+  "editorial_article": "Metronome Records is a pivotal Scandinavian label that played a decisive role in the development and distribution of jazz and popular music across Northern Europe during the mid-to-late 20th century. Established in Stockholm in 1949 by brothers Lars and Anders Burman along with their partner Börje Ekberg, the label initially functioned as a vital outlet for jazz music. Anders Burman, a jazz drummer himself, became a central figure in the Swedish music scene, acting not only as a label head but as one of the country's most significant producers. Under his guidance, the label nurtured a unique Swedish sound while simultaneously fostering international connections.\n\nThe label’s reach expanded rapidly throughout the 1950s, with Mats Bjerke and Bent Fabricius-Bjerre establishing a Danish division, Metronome Records A/S, in 1950, followed by a German arm, Metronome Records GmbH, in 1954. This cross-border structure allowed the label to navigate the evolving tastes of the European market, moving from post-war jazz into the complexities of the pop and rock eras. By the 1970s, Metronome had cemented its reputation as Sweden's most influential and exciting label. However, the changing economics of the music industry saw the Swedish entity sold to WEA in 1979, while the German arm was absorbed into the Polygram group in the mid-1970s, marking the end of the label’s era as an independent multinational powerhouse. Today, the catalogs are largely under the stewardship of major labels like Universal and Warner Music, but the Metronome legacy remains synonymous with the professionalization and artistic maturation of the Nordic music industry.",
+  "citations": [
+    {
+      "url": "https://78rpm.club/record-labels/metronome-records/",
+      "title": "Metronome Records – The 78 rpm Club"
+    },
+    {
+      "url": "https://www.discogs.com/forum/thread/197341?srsltid=AfmBOorKdo-aD-fhZVSHo8tc-4rqmO2NamCbp1t3qfQCarYXDgnVHXgl",
+      "title": "Metronome Records on Discogs (Forum discussion)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:18.119Z",
+  "type": "label",
+  "editorial_description": "A seminal Swedish record label founded in 1949 that became a cornerstone of Scandinavian jazz, pop, and rock, ultimately expanding into a significant multinational network before being acquired by major labels in the late 20th century.",
+  "founded": "1949",
+  "location": "Stockholm, Sweden",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "roster": [],
+  "notable_releases": []
+}

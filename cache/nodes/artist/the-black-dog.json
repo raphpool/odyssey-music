@@ -1,0 +1,84 @@
+{
+  "slug": "artist:the-black-dog",
+  "name": "The Black Dog",
+  "editorial_article": "Formed in Sheffield, England, in 1989, The Black Dog stands as one of the most significant and influential forces in British electronic music. Initially established as a trio featuring Ken Downie, Ed Handley, and Andy Turner, the group played a foundational role in defining the \"intelligent techno\" and \"home listening\" aesthetic that emerged in the early 1990s. Their early work, heavily influenced by Detroit techno, electro, and hip-hop, distinguished itself through the use of intricate, breakbeat-heavy rhythms, complex time signatures, and deep, atmospheric sound design. This approach helped transition techno from the high-energy environment of rave clubs into the conceptual and cerebral spaces of the domestic listener.\\n\\nThroughout the 1990s, The Black Dog’s association with Warp Records—exemplified by landmark albums like 'Bytes' (1993) and 'Spanners' (1995)—cemented their place in the avant-garde electronic scene. Following the departure of Handley and Turner to focus on their own project, Plaid, in the mid-90s, Ken Downie continued to operate under the The Black Dog name, evolving the project’s sonic identity through various collaborations. Since the mid-2000s, the group’s output, bolstered by the addition of Martin and Richard Dust, has frequently taken on more political and observational themes. Albums from this later period, such as 'Music for Real Airports' (2010), serve as critiques of modern life, maintaining the project's reputation for concept-driven, restless innovation. Spanning over three decades, The Black Dog remains a pivotal entity in the development of ambient techno and experimental electronica, consistently challenging the boundaries of the genre while maintaining a profound connection to their industrial home city.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/the-black-dog-mn0000048481",
+      "title": "The Black Dog Songs, Albums, Reviews, Bio & Mo... - AllMusic"
+    },
+    {
+      "url": "https://insheepsclothinghifi.com/the-black-dog-and-ken-downie-pioneers-of-warp-era-electronic-sound/",
+      "title": "The Black Dog and Ken Downie, Pioneers of Warp-Era Electronic Sound | In Sheeps Clothing"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:12.701Z",
+  "type": "artist",
+  "editorial_bio": "Formed in Sheffield, England, in 1989, The Black Dog stands as one of the most significant and influential forces in British electronic music.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000048481/400/UvXzOEjqfKImFbvTtWmA8z6KsMttLlyBmmVTZ6_CLs0=.jpg",
+  "origin": "Sheffield, England",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:dust-science",
+      "type": "label",
+      "name": "Dust Science"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bytes",
+      "type": "project",
+      "name": "Bytes"
+    },
+    {
+      "slug": "project:spanners",
+      "type": "project",
+      "name": "Spanners"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:ken-downie",
+      "type": "artist",
+      "name": "Ken Downie"
+    },
+    {
+      "slug": "artist:ed-handley",
+      "type": "artist",
+      "name": "Ed Handley"
+    },
+    {
+      "slug": "artist:andy-turner",
+      "type": "artist",
+      "name": "Andy Turner"
+    }
+  ]
+}

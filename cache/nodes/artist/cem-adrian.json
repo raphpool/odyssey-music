@@ -1,0 +1,66 @@
+{
+  "slug": "artist:cem-adrian",
+  "name": "Cem Adrian",
+  "editorial_article": "Cem Adrian (born Cem Filiz, 1980) is a highly distinctive Turkish singer-songwriter, musician, and record producer hailing from Edirne. Known for his expansive vocal range, he emerged into the Turkish music scene in the early 2000s, blending a diverse array of genres including alternative rock, electronic, jazz, blues, and a cappella. Adrian’s stage name is a nod to his hometown’s ancient name, Adrianople. His career was propelled by his discovery by renowned composer Fazıl Say, leading to his training at Bilkent University’s Department of Performing Arts. Since his debut album, 'Ben Bu Şarkıyı Sana Yazdım' (2005), Adrian has maintained a prolific output, consistently self-producing much of his work and exploring themes of social justice, loneliness, and human rights. Beyond his musical accomplishments, he is a notable public figure in Turkey, often advocating for freedom of speech and the rights of the LGBT community, a stance that has both defined his public image and informed his art. His sound, characterized by atmospheric textures and emotive, multi-octave vocals, continues to evolve through numerous studio albums and experimental collaborations. Over his two-decade-long career, he has collaborated with artists such as Umay Umay and continues to release music that challenges boundaries within the Turkish independent scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cem_Adrian",
+      "title": "Cem Adrian - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/cem-adrian",
+      "title": "Cem Adrian discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:55.019Z",
+  "type": "artist",
+  "editorial_bio": "Cem Adrian is a multi-talented Turkish singer-songwriter, musician, and record producer known for his expansive vocal range and genre-defying approach that blends alternative rock, electronic, and jazz elements.",
+  "origin": "Edirne, Turkey",
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dokuz-sekiz-muzik",
+      "type": "label",
+      "name": "Dokuz Sekiz Müzik"
+    },
+    {
+      "slug": "label:adrianopolis",
+      "type": "label",
+      "name": "ADRIANOPOLIS"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:yaln-zl-k",
+      "type": "track",
+      "name": "Yalnızlık"
+    },
+    {
+      "slug": "track:sessizce",
+      "type": "track",
+      "name": "Sessizce"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

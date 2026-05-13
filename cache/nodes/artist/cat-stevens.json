@@ -1,0 +1,75 @@
+{
+  "slug": "artist:cat-stevens",
+  "name": "Cat Stevens",
+  "editorial_article": "Cat Stevens, born Steven Demetre Georgiou, is an iconic British singer-songwriter whose career defined the intimate, introspective folk-pop sound of the early 1970s. Rising to fame in the mid-1960s as a teen pop idol with hits like \"Matthew and Son,\" his trajectory was irrevocably altered by a near-fatal bout of tuberculosis in 1968. This period of convalescence prompted a profound shift toward minimalism, spirituality, and poetic lyricism. Emerged from this experience, he released a string of landmark albums in the early 1970s—most notably 'Tea for the Tillerman' (1970) and 'Teaser and the Firecat' (1971)—that cemented his status as a global superstar. His songs from this era, such as \"Wild World,\" \"Father & Son,\" \"Peace Train,\" and \"Moonshadow,\" became enduring anthems for a generation searching for meaning and unity. In 1977, following a transformative spiritual journey, he embraced Islam and took the name Yusuf Islam, leading to a long hiatus from mainstream pop music to focus on his faith and educational work. He eventually returned to recording and performing under the name Yusuf / Cat Stevens in the 21st century, continuing to influence songwriters with his melodic sensibility and earnest, philosophical exploration of the human experience. His influence spans decades, and his compositions remain essential pillars of the singer-songwriter movement, characterized by a unique fusion of folk, pop, and deeply personal storytelling that resonates across cultural and religious divides. Today, he is recognized not only for his massive contributions to the 1970s acoustic-rock canon but also as a bridge between Western pop sensibility and his adopted Islamic identity, embodying a rare artistic evolution that transitioned from the superficiality of teen stardom to the profound searching of a true modern mystic.",
+  "citations": [
+    {
+      "url": "https://catstevens.com/life/",
+      "title": "Life | Yusuf / Cat Stevens"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cat_Stevens_discography",
+      "title": "Cat Stevens - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:49.309Z",
+  "type": "artist",
+  "editorial_bio": "Cat Stevens is an iconic British singer-songwriter known for his introspective, melodic folk-pop and his later work as Yusuf Islam. Rising to fame in the late 1960s and early 1970s, he defined the era's singer-songwriter movement with classic albums like 'Tea for the Tillerman' and 'Teaser and the Firecat.'",
+  "genres": [
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:a-and-m-records",
+      "type": "label",
+      "name": "A&M Records"
+    },
+    {
+      "slug": "label:deram-records",
+      "type": "label",
+      "name": "Deram Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:wild-world",
+      "type": "track",
+      "name": "Wild World"
+    },
+    {
+      "slug": "track:father-and-son",
+      "type": "track",
+      "name": "Father & Son"
+    },
+    {
+      "slug": "track:peace-train",
+      "type": "track",
+      "name": "Peace Train"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

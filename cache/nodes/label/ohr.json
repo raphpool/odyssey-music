@@ -1,0 +1,97 @@
+{
+  "slug": "label:ohr",
+  "name": "Ohr",
+  "editorial_article": "Ohr (German for \"Ear\") was a pioneering and highly influential German record label founded in 1970 by the cultural provocateur Rolf-Ulrich Kaiser. Based in Germany, the label acted as a crucial incubator for the burgeoning Krautrock and electronic music scenes, providing a platform for artists who would define the psychedelic, experimental, and Berlin School sounds of the 1970s. The label is perhaps most celebrated for releasing the debut albums of electronic pioneers Tangerine Dream and Klaus Schulze, as well as work by Ash Ra Tempel, Guru Guru, and Popol Vuh. Visually, the label was as striking as its sound; its initial releases were infamous for their confrontational cover art featuring dismembered baby doll parts, designed by Reinhard Hippen. Although the label was relatively short-lived—ceasing operations by 1973—its impact was immense. Kaiser’s vision expanded to include spin-off labels like Pilz and Cosmic Couriers, further diversifying the experimental soundscape of the era. Ohr's output remains a cornerstone of 20th-century avant-garde music, capturing a restless, transformative period in German cultural history. The label's distribution was handled by Metronome, and even after its dissolution, its catalog continues to be cited as a foundational influence on ambient, electronic, and experimental rock movements globally. Its unique roster, ranging from the repetitive rhythms of Guru Guru to the vast, evolving textures of Tangerine Dream, serves as a comprehensive archive of the German underground in the early 1970s. The label remains a vital touchstone for any student of European experimental music history.",
+  "citations": [
+    {
+      "url": "https://krautrock.fandom.com/wiki/Ohr",
+      "title": "Ohr | Krautrock Wikia - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:20.218Z",
+  "type": "label",
+  "editorial_description": "An influential German experimental label founded in 1970 that pioneered Krautrock and electronic music, releasing seminal works by Tangerine Dream and Klaus Schulze.",
+  "founded": "1970",
+  "location": "Germany",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:ash-ra-tempel",
+      "type": "artist",
+      "name": "Ash Ra Tempel"
+    },
+    {
+      "slug": "artist:guru-guru",
+      "type": "artist",
+      "name": "Guru Guru"
+    },
+    {
+      "slug": "artist:embryo",
+      "type": "artist",
+      "name": "Embryo"
+    },
+    {
+      "slug": "artist:amon-duul",
+      "type": "artist",
+      "name": "Amon Düül"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:electronic-meditation",
+      "type": "project",
+      "name": "Electronic Meditation"
+    },
+    {
+      "slug": "project:alpha-centauri",
+      "type": "project",
+      "name": "Alpha Centauri"
+    },
+    {
+      "slug": "project:zeit",
+      "type": "project",
+      "name": "Zeit"
+    },
+    {
+      "slug": "project:irrlicht",
+      "type": "project",
+      "name": "Irrlicht"
+    },
+    {
+      "slug": "project:ash-ra-tempel",
+      "type": "project",
+      "name": "Ash Ra Tempel"
+    }
+  ]
+}

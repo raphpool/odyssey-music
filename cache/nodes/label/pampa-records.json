@@ -1,0 +1,91 @@
+{
+  "slug": "label:pampa-records",
+  "name": "Pampa Records",
+  "editorial_article": "Pampa Records is an independent electronic music label based in Germany, founded in 2009 by Stefan Kozalla, better known as the influential producer DJ Koze, alongside Marcus Fink. Since its inception, the label has established itself as a unique pillar within the dance music landscape, celebrated for a curated, highly personal aesthetic that prioritizes emotional resonance and artistic quirkiness over the standardized tropes of club music. The label’s output spans a wide range of house, ambient, and avant-pop, always maintaining a cohesive, melodic sensibility that feels distinctively 'Kozellian' in its playfulness and depth.\\n\\nThe label serves as a primary home for DJ Koze’s own critically acclaimed releases, including landmark albums like 'Amygdala' (2013) and the genre-bending 'Knock Knock' (2018). Beyond its founder, Pampa acts as a creative hub for a diverse roster of artists who align with its ethos of 'seriously danceable' music that refuses to rely on tried-and-tested ingredients. Notable contributors include Robag Wruhme, Isolée, Axel Boman, Mano Le Tough, and Lawrence, among others. By championing music that is brave enough to break conventions, Pampa Records has carved out a dedicated following among listeners looking for electronic sounds that offer both rhythmic functionality and genuine heart. Through his label, Koze has created a space where the boundaries between dance floor functionality and artful home listening are blurred, resulting in a catalog that feels both timeless and deeply rooted in the contemporary electronic underground.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/3095",
+      "title": "Pampa · Record label ⟋ RA"
+    },
+    {
+      "url": "https://inverted-audio.com/label/pampa-records/",
+      "title": "Pampa Records - Inverted Audio"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:09.635Z",
+  "type": "label",
+  "editorial_description": "An influential German record label founded by DJ Koze and Marcus Fink, known for its eclectic, soulful, and danceable approach to house and electronic music.",
+  "founded": "2009",
+  "location": "Germany",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:dj-koze",
+      "type": "artist",
+      "name": "DJ Koze"
+    },
+    {
+      "slug": "artist:robag-wruhme",
+      "type": "artist",
+      "name": "Robag Wruhme"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée"
+    },
+    {
+      "slug": "artist:axel-boman",
+      "type": "artist",
+      "name": "Axel Boman"
+    },
+    {
+      "slug": "artist:mano-le-tough",
+      "type": "artist",
+      "name": "Mano Le Tough"
+    },
+    {
+      "slug": "artist:lawrence",
+      "type": "artist",
+      "name": "Lawrence"
+    },
+    {
+      "slug": "artist:sophia-kennedy",
+      "type": "artist",
+      "name": "Sophia Kennedy"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:amygdala",
+      "type": "project",
+      "name": "Amygdala"
+    },
+    {
+      "slug": "project:knock-knock",
+      "type": "project",
+      "name": "Knock Knock"
+    },
+    {
+      "slug": "project:thora-vukk",
+      "type": "project",
+      "name": "Thora Vukk"
+    }
+  ]
+}

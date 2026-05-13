@@ -1,0 +1,78 @@
+{
+  "slug": "artist:harry-partch",
+  "name": "Harry Partch",
+  "editorial_article": "Harry Partch (1901–1974) was a singular figure in 20th-century American music, renowned as a composer, music theorist, and creator of custom-built musical instruments. Born in Oakland, California, Partch rejected the standard Western system of twelve-tone equal temperament in favor of just intonation. Inspired by the theories of Hermann von Helmholtz and the sounds of diverse global cultures—including those of the American Southwest—he developed a unique musical system based on a 43-tone scale to the octave. \\n\\nCentral to his practice was the creation of a physical sound world; because traditional instruments could not play his microtonal compositions, Partch built his own. His \"corporeal\" music integrated sound, movement, and visual theater, often involving massive, sculptural instruments like the Cloud-Chamber Bowls, the Quadrangularis Reversum, and the Adapted Viola. His life was marked by periods of extreme instability, particularly during the Great Depression, which profoundly influenced his perspective and informed works like 'The Wayward'. His influential treatise, 'Genesis of a Music', remains a foundational text for microtonal theory, and his legacy continues to influence experimental musicians, composers, and instrument builders who seek to break the boundaries of conventional Western musical structures. His work stands as a testament to the pursuit of pure harmonic resonance and artistic independence. Throughout his career, Partch remained fiercely independent, moving through various residencies in Illinois and California while constantly evolving his complex tonal language. He stands today as one of the most original and uncompromising American voices of the 20th century.",
+  "citations": [
+    {
+      "url": "https://www.harrypartch.com/bio",
+      "title": "About Partch | harrypartch"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Harry-Partch",
+      "title": "Harry Partch | microtonal music, experimental instruments, avant ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:08.622Z",
+  "type": "artist",
+  "editorial_bio": "Harry Partch (1901–1974) was a singular figure in 20th-century American music, renowned as a composer, music theorist, and creator of custom-built musical instruments.",
+  "origin": "Oakland, California",
+  "active_years": "1923-1974",
+  "genres": [
+    {
+      "slug": "genre:microtonal-music",
+      "type": "genre",
+      "name": "Microtonal Music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental Music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:the-wayward",
+      "type": "project",
+      "name": "The Wayward"
+    },
+    {
+      "slug": "project:delusion-of-the-fury",
+      "type": "project",
+      "name": "Delusion of the Fury"
+    },
+    {
+      "slug": "project:genesis-of-a-music",
+      "type": "project",
+      "name": "Genesis of a Music"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:barstow",
+      "type": "track",
+      "name": "Barstow"
+    },
+    {
+      "slug": "track:ulysses-at-the-edge",
+      "type": "track",
+      "name": "Ulysses at the Edge"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:hermann-von-helmholtz",
+      "type": "artist",
+      "name": "Hermann von Helmholtz"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

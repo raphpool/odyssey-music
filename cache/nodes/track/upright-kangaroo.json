@@ -1,0 +1,63 @@
+{
+  "slug": "track:upright-kangaroo",
+  "name": "Upright Kangaroo",
+  "editorial_article": "\"Upright Kangaroo\" is a standout track from the collaborative project 'Expert Knob Twiddlers', the singular 1996 studio album by electronic pioneers Mike Paradinas (µ-Ziq) and Richard D. James (Aphex Twin). Released under the moniker Mike & Rich, the project represents a rare meeting of minds between two of the most influential figures in the 1990s IDM and braindance movements. The track itself is emblematic of the album’s playful, high-energy approach to synthesizers, featuring a labyrinthine arrangement of squelching analog basslines, frenetic, jagged drum programming, and the signature whimsical melodies that characterize the collaborative output of both artists.\\n\\nWhile the album was originally released on James's own label, Rephlex Records, it gained a significant resurgence in popularity following its 2016 reissue by Planet Mu, the label founded by Paradinas. This reissue, which included previously unreleased bonus material, cemented the record's status as a cult classic of the IDM genre. \"Upright Kangaroo\" serves as a microcosm of the duo’s creative synergy, successfully balancing technical complexity with a sense of irreverence that contrasts with the more austere or ambient works often associated with their individual solo outputs. It remains a frequently cited highlight for fans of the late 90s experimental electronic sound, capturing a moment where the boundaries of the genre were being actively pushed through idiosyncratic sonic exploration.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/mike-and-rich-upright-kangaroo",
+      "title": "Upright Kangaroo (1996) - Mike & Rich - Dork"
+    },
+    {
+      "url": "https://mikeandrich.bandcamp.com/track/upright-kangaroo",
+      "title": "Upright Kangaroo | Mike & Rich - Expert Knob Twiddlers - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:29.181Z",
+  "type": "track",
+  "editorial_teaser": "\"Upright Kangaroo\" is a standout track from the collaborative project 'Expert Knob Twiddlers', the singular 1996 studio album by electronic pioneers Mike Paradinas (µ-Ziq) and Richard D.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ],
+  "project": {
+    "slug": "project:expert-knob-twiddlers",
+    "type": "project",
+    "name": "Expert Knob Twiddlers"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:braindance",
+      "type": "genre",
+      "name": "Braindance"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

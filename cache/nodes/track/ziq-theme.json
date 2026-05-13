@@ -1,0 +1,59 @@
+{
+  "slug": "track:ziq-theme",
+  "name": "µ-Ziq Theme",
+  "editorial_article": "\"µ-Ziq Theme\" serves as the foundational opening statement for Mike Paradinas's debut album as µ-Ziq, \"Tango N'Vectif,\" released in 1993 on Richard D. James’s pioneering Rephlex Records. As one of the earliest full-length explorations of the IDM (Intelligent Dance Music) sound, the track establishes the project's signature balance between experimental, glitch-infused textures and a rhythmic sensibility deeply rooted in breakbeat and techno. Paradinas, operating out of the UK electronic music underground, crafted a sound here that was both intricate and accessible—qualities that would define not only his career but also the output of his later label, Planet Mu.\\n\\nMusically, \"µ-Ziq Theme\" represents a pivotal moment in early 90s electronic production, signaling a shift away from standard club-oriented techno toward more adventurous, home-listening-focused compositions. The track utilizes layers of synthetic melody and complex rhythmic programming that challenge the listener while maintaining a cohesive, melodic core. Its inclusion on \"Tango N'Vectif\" helped cement the reputation of the Rephlex label as a hub for groundbreaking, genre-defying artists who refused to adhere to conventional dance floor expectations. By blending the frantic energy of contemporary UK breakbeat with a uniquely melodic, almost whimsical approach to synth programming, the track encapsulates the essence of the µ-Ziq project, showcasing Paradinas's ability to create immersive, personal electronic soundscapes that remain influential decades after their initial release. Through this track, listeners gain entry into a world where machine-made music is infused with a distinct, human curiosity.",
+  "citations": [
+    {
+      "url": "https://mikeparadinas.bandcamp.com/track/ziq-theme-2",
+      "title": "µ-Ziq Theme | µ-Ziq | Mike Paradinas"
+    },
+    {
+      "url": "https://rateyourmusic.com/list/Komsur/a-comprehensive-guide-to-%CE%BC-ziq-1/",
+      "title": "A Comprehensive Guide to μ-Ziq - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:37.105Z",
+  "type": "track",
+  "editorial_teaser": "A foundational IDM anthem, \"µ-Ziq Theme\" is the opening statement from Mike Paradinas's 1993 debut album, *Tango N'Vectif*, showcasing a unique fusion of breakbeat rhythms and melodic experimentalism.",
+  "year": "1993",
+  "duration": "04:36",
+  "artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "project": {
+    "slug": "project:tango-n-vectif",
+    "type": "project",
+    "name": "Tango N'Vectif"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

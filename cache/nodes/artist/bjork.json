@@ -1,0 +1,108 @@
+{
+  "slug": "artist:bjork",
+  "name": "Björk",
+  "editorial_article": "Björk Guðmundsdóttir is an Icelandic singer-songwriter and composer whose experimental, visionary approach to pop music has made her one of the most influential artists of the late 20th and early 21st centuries. Born in Reykjavík in 1965, she first gained international recognition as the lead vocalist of the post-punk/alternative band The Sugarcubes before embarking on a solo career that redefined the boundaries of electronic and art pop music. Her debut solo studio album, Debut (1993), brought avant-garde sounds into the mainstream, utilizing sophisticated production that married dance beats with eclectic instrumentation. Throughout her prolific career, she has continuously challenged musical norms, ranging from the string-drenched emotional landscapes of Homogenic (1997) and the minimalist, beat-free vocal experimentation of Medúlla (2004), to the multimedia explorations of Biophilia (2011) and the deeply personal, string-led heartbreak of Vulnicura (2015). Beyond her solo discography, she has also achieved critical acclaim as an actress and composer for film, most notably in Lars von Trier’s Dancer in the Dark. Her work remains characterized by a commitment to innovation, often integrating cutting-edge technology, unique visual aesthetics, and deeply humanistic, often surrealist, lyrical themes. Through her tenure with labels like One Little Independent Records and her constant experimentation, Björk has solidified her place as an icon of artistic integrity and sonic exploration. Her impact extends well beyond her music, influencing a wide spectrum of contemporary art, fashion, and digital media production. By blending nature-inspired themes with glitchy, synthesized textures, she created a sound that was at once alien and deeply empathetic. Her collaboration with various producers, from Nellee Hooper to Arca, has also been integral to her evolving sound, constantly keeping her music at the vanguard of avant-garde pop. She remains one of the few artists who has successfully managed to balance a high-concept, intellectual approach to music-making with massive international crossover success.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bj%C3%B6rk_discography",
+      "title": "Björk discography - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Bjork",
+      "title": "Björk - Biography, Songs, Albums, Discography & Facts - Britannica"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/bjork",
+      "title": "Björk Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:00.078Z",
+  "type": "artist",
+  "editorial_bio": "An Icelandic visionary blending electronic, experimental, and avant-pop, Björk is an icon of sonic innovation and artistic fearlessness. Her career spans decades of groundbreaking work, from the post-punk energy of The Sugarcubes to her globally acclaimed, boundary-pushing solo discography.",
+  "origin": "Reykjavík, Iceland",
+  "active_years": "1977–present",
+  "genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:one-little-independent-records",
+      "type": "label",
+      "name": "One Little Independent Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:debut",
+      "type": "project",
+      "name": "Debut"
+    },
+    {
+      "slug": "project:post",
+      "type": "project",
+      "name": "Post"
+    },
+    {
+      "slug": "project:homogenic",
+      "type": "project",
+      "name": "Homogenic"
+    },
+    {
+      "slug": "project:vespertine",
+      "type": "project",
+      "name": "Vespertine"
+    },
+    {
+      "slug": "project:medulla",
+      "type": "project",
+      "name": "Medúlla"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:human-behaviour",
+      "type": "track",
+      "name": "Human Behaviour"
+    },
+    {
+      "slug": "track:hyperballad",
+      "type": "track",
+      "name": "Hyperballad"
+    },
+    {
+      "slug": "track:army-of-me",
+      "type": "track",
+      "name": "Army of Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

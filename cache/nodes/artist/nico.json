@@ -1,0 +1,111 @@
+{
+  "slug": "artist:nico",
+  "name": "Nico",
+  "editorial_article": "Nico, born Christa Päffgen (1938–1988), was a German singer, songwriter, actress, and model whose haunting voice and stark, avant-garde musical vision left an indelible mark on the landscape of rock music. Emerging from the vibrant but intense creative circles of mid-1960s New York, she first garnered international attention as a Warhol Superstar and a guest vocalist on the influential debut album 'The Velvet Underground & Nico' (1967). Her contributions, particularly on tracks like \"Femme Fatale\" and \"All Tomorrow's Parties,\" introduced a cool, detached, and melancholic aesthetic that contrasted sharply with the high-energy rock of the era.\n\nFollowing her departure from the Velvet Underground, Nico cultivated a highly distinctive solo career that defied the conventions of pop music. Her subsequent work, beginning with 'The Marble Index' (1968), famously utilized the harmonium as a primary instrument rather than conventional rock instrumentation. Collaborating closely with John Cale, who produced her solo albums, she moved toward a sound that bridged art rock, avant-folk, and early gothic rock, characterized by sparse arrangements and deeply introspective, often desolate, lyrical themes. Her later work, including 'Desertshore' (1970) and 'The End...' (1974), continued to challenge listeners, cementing her status as an uncompromising artist who prioritized raw, atmospheric expression over commercial accessibility. Nico remained an active touring and recording artist until her untimely death in 1988 following a bicycle accident in Ibiza. She remains a seminal influence on generations of alternative and dark-ambient musicians. Her legacy is defined by her refusal to conform, creating a somber, cinematic sound that continues to resonate with those drawn to the shadows of the musical avant-garde. Throughout her life, her persona evolved from a fashion model in Paris to an enigmatic, spectral figure of the underground, influencing everyone from Joy Division to Björk. Her dedication to her craft and her singular artistic integrity ensure that her music remains as captivating and unsettling today as it was at the time of its release.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nico",
+      "title": "Nico - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/158676-Nico-3?srsltid=AfmBOopBxRToC2QnwlcN-sUM6x04UQbEcD5wFZD9TNS_W5bkGDbRa9-5",
+      "title": "Nico (3) Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:44.487Z",
+  "type": "artist",
+  "editorial_bio": "Nico, born Christa Päffgen, was a German singer, songwriter, and actress known for her work with The Velvet Underground and her influential solo career as an avant-garde artist.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Nico_at_Lampeter_University_-_November_1985_%281%29.jpg/250px-Nico_at_Lampeter_University_-_November_1985_%281%29.jpg",
+  "origin": "Cologne, Germany",
+  "active_years": "1955–1988",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    },
+    {
+      "slug": "genre:avant-folk",
+      "type": "genre",
+      "name": "Avant-folk"
+    },
+    {
+      "slug": "genre:gothic-rock",
+      "type": "genre",
+      "name": "Gothic Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    },
+    {
+      "slug": "label:beggars-banquet-records",
+      "type": "label",
+      "name": "Beggars Banquet Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-velvet-underground-and-nico",
+      "type": "project",
+      "name": "The Velvet Underground & Nico"
+    },
+    {
+      "slug": "project:chelsea-girl",
+      "type": "project",
+      "name": "Chelsea Girl"
+    },
+    {
+      "slug": "project:the-marble-index",
+      "type": "project",
+      "name": "The Marble Index"
+    },
+    {
+      "slug": "project:desertshore",
+      "type": "project",
+      "name": "Desertshore"
+    },
+    {
+      "slug": "project:the-end",
+      "type": "project",
+      "name": "The End..."
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:femme-fatale",
+      "type": "track",
+      "name": "Femme Fatale"
+    },
+    {
+      "slug": "track:all-tomorrow-s-parties",
+      "type": "track",
+      "name": "All Tomorrow's Parties"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    }
+  ]
+}

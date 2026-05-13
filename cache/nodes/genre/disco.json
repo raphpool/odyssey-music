@@ -1,0 +1,126 @@
+{
+  "slug": "genre:disco",
+  "name": "Disco",
+  "editorial_article": "Disco emerged in the late 1960s and early 1970s as a vibrant subculture and musical genre rooted in the urban nightlife of the United States, specifically within African-American, Latino, Italian-American, and LGBTQ+ communities. Serving as a direct counter-reaction to the dominance of rock music and the prevailing social stigmatization of dance music, disco transformed the dance floor into a sanctuary of expression. Musically, it is defined by a distinct \"four-on-the-floor\" beat, driving syncopated basslines, lush orchestral string arrangements, bright brass sections, and the frequent use of electric pianos and early synthesizers. These elements coalesced into a relentless, beat-driven sound designed to maintain the energy of dancers in discothèques throughout the night.\n\nThe cultural impact of disco was profound, characterized by a fusion of fashion, club-based drug subcultures, and a sense of liberation fueled by the sexual revolution. Iconic venues such as Studio 54 in Manhattan became legendary epicenters for the movement, where the role of the DJ evolved into an art form, mastering the craft of blending records to create an uninterrupted sonic flow. Although the genre faced a harsh, highly publicized backlash in the United States following the 1979 \"Disco Demolition Night,\" its foundational influence remains undeniable. It acted as the vital precursor to modern electronic dance music, laying the structural and technological groundwork for subsequent movements including house, techno, garage, and synth-pop. Even as it receded from mainstream U.S. pop charts in the early 1980s, disco continued to mutate internationally, evolving into subgenres like Italo disco and Eurodisco, and ultimately cementing its status as one of the most transformative movements in the history of popular music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Disco",
+      "title": "Disco - Wikipedia"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/disco-history-and-influence",
+      "title": "All About Disco: Inside the History and Influence of Disco Music - 2026"
+    },
+    {
+      "url": "https://timeline.carnegiehall.org/genres/disco",
+      "title": "History of Disco - Timeline of African American Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:58.336Z",
+  "type": "genre",
+  "editorial_definition": "A beat-driven style of popular dance music characterized by four-on-the-floor rhythms, syncopated basslines, and orchestral instrumentation, which emerged from the underground nightlife of late 1960s and 1970s urban America.",
+  "era": "1960s–1980s",
+  "origin": "United States (New York City, Philadelphia)",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo disco"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco"
+    },
+    {
+      "slug": "genre:hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG"
+    },
+    {
+      "slug": "genre:nu-disco",
+      "type": "genre",
+      "name": "Nu-disco"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic"
+    },
+    {
+      "slug": "artist:bee-gees",
+      "type": "artist",
+      "name": "Bee Gees"
+    },
+    {
+      "slug": "artist:sylvester",
+      "type": "artist",
+      "name": "Sylvester"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:casablanca-records",
+      "type": "label",
+      "name": "Casablanca Records"
+    },
+    {
+      "slug": "label:salsoul-records",
+      "type": "label",
+      "name": "Salsoul Records"
+    },
+    {
+      "slug": "label:tk-records",
+      "type": "label",
+      "name": "TK Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:bad-girls",
+      "type": "project",
+      "name": "Bad Girls"
+    },
+    {
+      "slug": "project:saturday-night-fever-the-original-movie-soundtrack",
+      "type": "project",
+      "name": "Saturday Night Fever: The Original Movie Soundtrack"
+    },
+    {
+      "slug": "project:c-est-chic",
+      "type": "project",
+      "name": "C'est Chic"
+    }
+  ],
+  "landmark_tracks": []
+}

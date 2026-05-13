@@ -1,0 +1,81 @@
+{
+  "slug": "label:frenchkiss-records",
+  "name": "Frenchkiss Records",
+  "editorial_article": "Founded in 1999 by Syd Butler, the bassist and core member of the influential New York indie rock band Les Savy Fav, Frenchkiss Records emerged as a vital pillar of the NYC indie rock scene. Initially established as a vehicle to release Les Savy Fav's second album, *The Cat and The Cobra*, the label rapidly evolved into a prolific independent entity known for its astute A&R, effectively bridging the gap between underground DIY spirit and broader critical acclaim. Throughout the 2000s and early 2010s, Frenchkiss played a pivotal role in fostering a distinctively eclectic roster, championing bands that would define the era’s indie landscape, including The Hold Steady, Passion Pit, The Antlers, The Dodos, and Local Natives. \n\nBeyond its foundational roster, the label demonstrated a commitment to nurturing emerging talent and expanding the boundaries of indie rock distribution. In 2012, the label launched the Frenchkiss Label Group, a distribution venture aimed at bolstering the visibility of other independent labels, mirroring the collaborative community ethics found in long-standing institutions like Dischord Records. Although the label was acquired by The Orchard in 2014, its two-decade legacy remains solidified by its significant contribution to the development and exposure of countless artists, cementing its status as a quintessential NYC indie institution that helped shape the modern independent music ecosystem. The label's longevity and consistency in identifying genre-shifting talent have left an indelible mark on independent music culture, proving that a label born from the necessity of one band's creative output could grow to empower hundreds of other artists across multiple musical generations.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Frenchkiss_Records",
+      "title": "Frenchkiss Records - Wikipedia"
+    },
+    {
+      "url": "https://www.frenchkissrecords.com/about-us/",
+      "title": "About Us - Frenchkiss Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:28.763Z",
+  "type": "label",
+  "editorial_description": "An influential New York City independent record label established in 1999 by Syd Butler, instrumental in launching the careers of notable indie rock acts like The Hold Steady, Passion Pit, and Local Natives.",
+  "founded": "1999",
+  "location": "New York City, USA",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:les-savy-fav",
+      "type": "artist",
+      "name": "Les Savy Fav"
+    },
+    {
+      "slug": "artist:the-hold-steady",
+      "type": "artist",
+      "name": "The Hold Steady"
+    },
+    {
+      "slug": "artist:the-antlers",
+      "type": "artist",
+      "name": "The Antlers"
+    },
+    {
+      "slug": "artist:passion-pit",
+      "type": "artist",
+      "name": "Passion Pit"
+    },
+    {
+      "slug": "artist:the-dodos",
+      "type": "artist",
+      "name": "The Dodos"
+    },
+    {
+      "slug": "artist:local-natives",
+      "type": "artist",
+      "name": "Local Natives"
+    },
+    {
+      "slug": "artist:the-drums",
+      "type": "artist",
+      "name": "The Drums"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-cat-and-the-cobra",
+      "type": "project",
+      "name": "The Cat and The Cobra"
+    },
+    {
+      "slug": "project:manners",
+      "type": "project",
+      "name": "Manners"
+    },
+    {
+      "slug": "project:gorilla-manor",
+      "type": "project",
+      "name": "Gorilla Manor"
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "artist:rameses-b",
+  "name": "Rameses B",
+  "editorial_article": "Rameses B, the musical project of producer Rameses Kevin Booth, is a prominent fixture in the UK electronic music scene, based in Leeds. Emerging under this moniker in 2010, Booth has cultivated a diverse sound that bridges the gap between atmospheric, downtempo chill-out music and high-energy bass genres like drum and bass, dubstep, and psytrance. His approach is characterized by a dedication to melodic structures and emotional resonance, often blending driving rhythmic patterns with ethereal vocal features and lush synth textures. Over the course of his career, Rameses B has established himself as a versatile creator, having released hundreds of tracks across various platforms. He gained significant traction through his frequent collaborations with major independent labels in the electronic dance music circuit, most notably Monstercat, Liquicity, and NoCopyrightSounds. His music frequently resonates with digital creators and gamers, contributing to his broad international appeal. By consistently maintaining a high output of music that balances intense, dance-floor-oriented production with contemplative, melodic sensibilities, Rameses B remains a highly influential figure in the modern independent electronic music landscape. His prolific catalog, which includes over 200 tracks, highlights a journey of consistent innovation and a commitment to refining his sonic palette, influencing a new generation of bedroom producers and electronic enthusiasts who value both the technical depth of D&B and the expansive, emotive qualities of ambient soundscapes.",
+  "citations": [
+    {
+      "url": "https://monstercat.fandom.com/wiki/Rameses_B",
+      "title": "Rameses B - Monstercat Wiki - Fandom"
+    },
+    {
+      "url": "https://www.monstercat.com/artist/ramesesb",
+      "title": "Rameses B - Monstercat"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:58.123Z",
+  "type": "artist",
+  "editorial_bio": "Rameses B is a prolific British electronic music producer from Leeds, known for his signature blend of melodic chill-out, drum and bass, and dubstep.",
+  "origin": "Leeds, UK",
+  "active_years": "2010-present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:chill-out",
+      "type": "genre",
+      "name": "Chill-out"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:monstercat",
+      "type": "label",
+      "name": "Monstercat"
+    },
+    {
+      "slug": "label:liquicity",
+      "type": "label",
+      "name": "Liquicity"
+    },
+    {
+      "slug": "label:nocopyrightsounds",
+      "type": "label",
+      "name": "NoCopyrightSounds"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:beside-you",
+      "type": "track",
+      "name": "Beside You"
+    },
+    {
+      "slug": "track:children",
+      "type": "track",
+      "name": "Children"
+    },
+    {
+      "slug": "track:thinking-about-you",
+      "type": "track",
+      "name": "Thinking About You"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

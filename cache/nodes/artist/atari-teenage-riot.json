@@ -1,0 +1,100 @@
+{
+  "slug": "artist:atari-teenage-riot",
+  "name": "Atari Teenage Riot",
+  "editorial_article": "Atari Teenage Riot (ATR) is an influential German band formed in Berlin in 1992, widely credited with pioneering the genre of \"digital hardcore.\" Founded by Alec Empire, Hanin Elias, and Carl Crack, the group emerged as a radical political response to the rise of Neo-Nazi subcultures in post-reunification Germany. By fusing the aggressive energy of hardcore punk with the high-velocity, distorted rhythms of German techno and breakbeat, they created a sonic signature that was as chaotic as it was politically charged. Their lyrics, rooted in anarchist and anti-fascist ideologies, served as a rallying cry against state control and political complacency.\n\nFrom their inception, ATR maintained a confrontational stance toward the music industry, famously using the advance from a major label contract with Phonogram to secretly bankroll their own independent label, Digital Hardcore Recordings (DHR). This act of subversion allowed them to release landmark albums like 'Delete Yourself!' (internationally known as 'Burn Berlin Burn') and '60 Second Wipe Out' on their own terms. The band's live shows, known for their overwhelming intensity and volume, often mirrored the volatility of their political protests. Following a hiatus in the early 2000s and the tragic death of founding member Carl Crack, the band reformed in 2010, continuing to influence a new generation of electronic and punk fusion artists with their uncompromising ethos and abrasive, genre-blurring soundscapes. Their work remains a seminal reference point for the synthesis of extreme electronic music and political activism, having toured with major acts such as Rage Against the Machine and Nine Inch Nails during their initial peak.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Atari_Teenage_Riot",
+      "title": "Atari Teenage Riot - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/6930-Atari-Teenage-Riot?srsltid=AfmBOopsXP573RWAgKXpof43J5RRO-HeoRvG8jH34_NIwChdSpNUTlpr",
+      "title": "Atari Teenage Riot Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:36.524Z",
+  "type": "artist",
+  "editorial_bio": "A seminal Berlin-based band that pioneered digital hardcore, blending punk ethos with abrasive industrial-techno beats to fuel radical political activism.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Atari_Teenage_Riot_2010_02.jpg/500px-Atari_Teenage_Riot_2010_02.jpg",
+  "origin": "Berlin, Germany",
+  "active_years": "1992–2000, 2010–present",
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital hardcore"
+    },
+    {
+      "slug": "genre:industrial-music",
+      "type": "genre",
+      "name": "Industrial music"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:digital-hardcore-recordings",
+      "type": "label",
+      "name": "Digital Hardcore Recordings"
+    },
+    {
+      "slug": "label:grand-royal",
+      "type": "label",
+      "name": "Grand Royal"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:revolution-action",
+      "type": "track",
+      "name": "Revolution Action"
+    },
+    {
+      "slug": "track:hunt-down-the-nazis",
+      "type": "track",
+      "name": "Hunt Down the Nazis!"
+    },
+    {
+      "slug": "track:rage",
+      "type": "track",
+      "name": "Rage"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    },
+    {
+      "slug": "artist:nic-endo",
+      "type": "artist",
+      "name": "Nic Endo"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias"
+    },
+    {
+      "slug": "artist:carl-crack",
+      "type": "artist",
+      "name": "Carl Crack"
+    }
+  ]
+}

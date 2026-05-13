@@ -1,0 +1,80 @@
+{
+  "slug": "artist:polygon-window",
+  "name": "Polygon Window",
+  "editorial_article": "Polygon Window is a seminal electronic music alias of the British producer Richard D. James, primarily utilized during the early 1990s to explore the harder, more industrial-leaning peripheries of the nascent IDM and techno scenes. Emerging from the United Kingdom, the project became a cornerstone of Warp Records' influential 'Artificial Intelligence' series. Through his work as Polygon Window, James stripped away some of the more playful or ambient tendencies found in his other work, focusing instead on precision-engineered rhythms, mechanical textures, and bracing, metallic sound design. The project's seminal 1993 album, 'Surfing on Sine Waves', is widely regarded as a classic of early 90s electronic music, bridging the gap between underground rave culture and the more cerebral, experimental listening experiences that would soon define the Intelligent Dance Music genre. The project's legacy is defined by its ability to balance intense, driving techno percussion with the innovative sound-sculpting capabilities that James would continue to pioneer throughout his career. Although it served as a relatively short-lived moniker compared to his primary alias, Aphex Twin, the output under the Polygon Window name remains a critical, high-water mark for the exploration of experimental techno at the start of the decade. Its influence persists in the work of countless experimental techno producers who have been inspired by its unique synthesis of raw, aggressive energy and meticulous production design.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/polygon-window",
+      "title": "Polygon Window Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/polygon-window-mn0000852148",
+      "title": "Polygon Window Songs, Albums, Reviews, Bio & More - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:08.507Z",
+  "type": "artist",
+  "editorial_bio": "Polygon Window is a seminal electronic music alias of the British producer Richard D.",
+  "photo_url": "https://cdn.sonemic.net/i/600/w/d9f167277068dc5c523d39d3aa66f365/9547450/polygon-window-quoth-cover-art.jpg",
+  "origin": "United Kingdom",
+  "active_years": "1992-1993, 2001",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:surfing-on-sine-waves",
+      "type": "project",
+      "name": "Surfing on Sine Waves"
+    },
+    {
+      "slug": "project:quoth",
+      "type": "project",
+      "name": "Quoth"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:quoth",
+      "type": "track",
+      "name": "Quoth"
+    },
+    {
+      "slug": "track:ut1-dot",
+      "type": "track",
+      "name": "UT1-Dot"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "members": []
+}

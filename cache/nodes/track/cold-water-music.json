@@ -1,0 +1,58 @@
+{
+  "slug": "track:cold-water-music",
+  "name": "Cold Water Music",
+  "editorial_article": "\"Cold Water Music\" is the evocative, downtempo title track from the 1999 debut studio album of the same name by British musician Aim. Emerging from the vibrant Manchester electronic scene of the late 1990s, Aim (the production moniker of Andy Turner) combined elements of hip-hop, electronica, and trip-hop to craft a signature sound that felt both urban and introspective. \"Cold Water Music,\" the track, exemplifies this atmospheric aesthetic, leaning into smooth, jazz-inflected instrumentation and deliberate, hypnotic pacing. It is built upon a sample of \"Maureen in the Desert,\" a haunting composition by Carter Burwell taken from the soundtrack to the film 'Psycho III' (1986). \n\nThe album 'Cold Water Music' was released on the influential Grand Central Records, a label synonymous with the \"Manchester sound\" of the era, which often prioritized organic textures and sample-based production over the harder-edged styles popular in other dance scenes. As a centerpiece of this debut, the track \"Cold Water Music\" serves as a sonic manifesto for Aim’s work: it is moody, cinematic, and masterfully arranged, showcasing his ability to repurpose disparate influences into a cohesive, immersive experience. The track’s lasting appeal lies in this seamless fusion, cementing Aim’s reputation as a pivotal figure in the evolution of downtempo and British electronic music at the turn of the millennium. By balancing technical prowess with deep, emotive resonance, the track continues to be celebrated by fans of late-90s trip-hop for its timeless, chilled-out quality.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cold_Water_Music",
+      "title": "Cold Water Music - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/121507-Aim-Cold-Water-Music?srsltid=AfmBOooZxSNqYgz8j1SWhIIoig6I8JlBLPKTl1hbZBeMm5EcWewED0C0",
+      "title": "Aim – Cold Water Music | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:42.787Z",
+  "type": "track",
+  "editorial_teaser": "\"Cold Water Music\" is the evocative, downtempo title track from the 1999 debut studio album of the same name by British musician Aim.",
+  "year": "1999",
+  "artists": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim"
+    }
+  ],
+  "project": {
+    "slug": "project:cold-water-music",
+    "type": "project",
+    "name": "Cold Water Music"
+  },
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip hop"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

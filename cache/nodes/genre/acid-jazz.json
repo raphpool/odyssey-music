@@ -1,0 +1,116 @@
+{
+  "slug": "genre:acid-jazz",
+  "name": "Acid Jazz",
+  "editorial_article": "Acid jazz, often referred to as club jazz or groove jazz, emerged from the vibrant and experimental London club scene of the 1980s. It represents a sophisticated fusion of dance-oriented musical traditions—specifically funk, soul, hip hop, and disco—with the harmonic depth and improvisation associated with jazz. Far from being a traditional jazz subgenre, acid jazz was birthed by DJs who sought to bridge the gap between their record collections of obscure 1960s/70s jazz-funk and the contemporary sounds dominating the underground dance floors. The moniker itself was likely coined by Gilles Peterson, a seminal figure in the scene, and shares its name with the influential Acid Jazz Records label, though the music holds no aesthetic relation to the electronic \"acid\" house movement prevalent in the UK at the same time.\\n\\nThe genre evolved in two primary ways: through the efforts of DJs who remixed or re-contextualized vintage jazz records with modern, rhythmic beats, and through live performance bands who embodied this aesthetic by incorporating horn sections, heavy rhythm sections, and soulful vocalists. By the early 1990s, the movement gained international traction, with iconic acts like The Brand New Heavies, Incognito, Jamiroquai, and Galliano bringing a polished, groovy sound to mainstream radio. The style’s emphasis on \"the groove\"—a danceable, repetitive foundation—distinguished it from the more cerebral and abstract forms of jazz, making it a cornerstone of 90s lounge and dance culture. As electronic production techniques advanced and tastes shifted in the late 1990s, the rigid boundaries of acid jazz began to dissolve, bleeding into the broader landscapes of nu-jazz and jazz-rap. Its legacy remains in the enduring popularity of sample-based music and the continued appreciation for the fusion of organic instrumentation with contemporary club rhythms.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Acid_jazz",
+      "title": "Acid jazz - Wikipedia"
+    },
+    {
+      "url": "https://sylviabrooks.com/blog/acid-jazz/",
+      "title": "What Is Acid Jazz? History, Key Artists & Essential Albums"
+    },
+    {
+      "url": "https://wdet.org/2020/08/28/the-progressive-undergrounds-primer-to-acid-jazz/",
+      "title": "The Progressive Underground's Primer to Acid Jazz - WDET 101.9 FM"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:36.672Z",
+  "type": "genre",
+  "editorial_definition": "Acid jazz is a 1980s London-born genre that fused 1960s-70s jazz-funk and soul with contemporary hip hop and dance beats, characterized by its infectious groove and live-band instrumentation.",
+  "era": "1980s-1990s",
+  "origin": "London, United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-brand-new-heavies",
+      "type": "artist",
+      "name": "The Brand New Heavies"
+    },
+    {
+      "slug": "artist:incognito",
+      "type": "artist",
+      "name": "Incognito"
+    },
+    {
+      "slug": "artist:jamiroquai",
+      "type": "artist",
+      "name": "Jamiroquai"
+    },
+    {
+      "slug": "artist:galliano",
+      "type": "artist",
+      "name": "Galliano"
+    },
+    {
+      "slug": "artist:guru",
+      "type": "artist",
+      "name": "Guru"
+    },
+    {
+      "slug": "artist:james-taylor-quartet",
+      "type": "artist",
+      "name": "James Taylor Quartet"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:acid-jazz-records",
+      "type": "label",
+      "name": "Acid Jazz Records"
+    },
+    {
+      "slug": "label:talkin-loud",
+      "type": "label",
+      "name": "Talkin' Loud"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:totally-wired",
+      "type": "project",
+      "name": "Totally Wired"
+    }
+  ],
+  "landmark_tracks": []
+}

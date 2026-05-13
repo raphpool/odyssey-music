@@ -1,0 +1,99 @@
+{
+  "slug": "artist:mike-sandison",
+  "name": "Mike Sandison",
+  "editorial_article": "Michael Sandison (born 14 July 1971 in Dundee, Scotland) is a foundational figure in contemporary electronic music, best known as one-half of the influential duo Boards of Canada, alongside his brother Marcus Eoin. Emerging from the Scottish electronic scene in the mid-1990s, Sandison helped pioneer a unique, nostalgic aesthetic defined by its blend of analog synthesis, distorted tape loops, field recordings, and organic, hip-hop-influenced rhythms. His work—both within Boards of Canada and under aliases like Hell Interface—is characterized by a hazy, dreamlike atmosphere that often evokes childhood memories, natural environments, and the subtle uncanny. His contributions to electronic music, particularly on landmark albums like 'Music Has the Right to Children' (1998) and 'Geogaddi' (2002), have left an indelible mark on the development of IDM, ambient, and downtempo genres, earning him and the group widespread critical acclaim and an enduring cult following. Sandison remains a master of texture, utilizing vintage equipment and meticulous production techniques to craft soundscapes that feel both ancient and futuristic. Beyond his primary work, he has been involved in various production and remixing endeavors, consistently maintaining a reputation for sonic depth and atmospheric storytelling. His legacy is one of the most significant in electronic music, influencing generations of producers through his uncanny ability to bridge the gap between technical complexity and profound emotional resonance. Sandison's process is marked by a deliberate restraint and a focus on long-form development, often recording directly to tape to achieve the signature warmth and degradation that defines his sound. His collaborative partnership with Marcus Eoin serves as the core of their creative identity, allowing them to iterate on ideas in a closed, intensely personal environment that shields their music from external trends. Consequently, their discography remains highly focused and cohesive, with each major release serving as a distinct exploration of a particular sonic landscape, from the pastoral warmth of 'The Campfire Headphase' to the intricate, paranoid claustrophobia of 'Geogaddi'. The duo continues to be held in high regard for their refusal to engage with the standard promotional cycles of the music industry, opting instead for a mysterious, enigmatic public presence that only heightens the impact of their rare output. By focusing on analog hardware, tape manipulation, and complex layerings, Sandison has successfully created a sonic world that feels entirely his own.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/430140-Michael-Sandison?srsltid=AfmBOoryLvPYIahN_EaGUGXmn0oQ_FdxMDb6xrYATwPLc-UCY45I49gY",
+      "title": "Michael Sandison Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.last.fm/music/Mike+Sandison",
+      "title": "Mike Sandison music, videos, stats, and photos | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:34.575Z",
+  "type": "artist",
+  "editorial_bio": "Michael Sandison is a Scottish electronic musician, producer, and one-half of the pioneering duo Boards of Canada, known for his masterful use of tape manipulation, analog synthesis, and nostalgic, atmospheric soundscapes.",
+  "origin": "Dundee, Scotland",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:music70",
+      "type": "label",
+      "name": "Music70"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:music-has-the-right-to-children",
+      "type": "project",
+      "name": "Music Has the Right to Children"
+    },
+    {
+      "slug": "project:geogaddi",
+      "type": "project",
+      "name": "Geogaddi"
+    },
+    {
+      "slug": "project:the-campfire-headphase",
+      "type": "project",
+      "name": "The Campfire Headphase"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:roygbiv",
+      "type": "track",
+      "name": "Roygbiv"
+    },
+    {
+      "slug": "track:dayvan-cowboy",
+      "type": "track",
+      "name": "Dayvan Cowboy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:michael-sandison",
+      "type": "artist",
+      "name": "Michael Sandison"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    },
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "label:soundcloud",
+  "name": "SoundCloud",
+  "editorial_article": "SoundCloud is a pioneering artist-first music streaming and sharing platform that fundamentally transformed the digital landscape for independent musicians and audio creators. Founded in 2007 by Swedish sound designer Alexander Ljung and musician Eric Wahlforss in Berlin, the platform was conceived as a streamlined, accessible utility for creators to upload, host, and share audio content directly. Over the subsequent decade, it evolved into an expansive, social-first ecosystem that bridged the gap between creators and listeners, fostering global underground movements and providing a foundational infrastructure for genres ranging from SoundCloud rap to niche electronic subcultures.\\n\\nUnlike traditional streaming services that prioritize licensed major label catalogs, SoundCloud’s two-sided model focused on removing barriers for creators. Its ability to allow users to comment directly on specific points of a waveform and share tracks instantly made it an essential tool for discovery, collaboration, and community-building. Throughout its history, the platform has navigated challenges related to copyright, monetization, and evolving industry standards while maintaining its reputation as a hub for raw, unpolished, and innovative music. Today, it hosts hundreds of millions of tracks from tens of millions of creators, cementing its role as a vital repository of contemporary global musical culture. By democratizing access to music distribution, SoundCloud empowered a generation of artists to bypass legacy gatekeepers and find direct connections with audiences worldwide.",
+  "citations": [
+    {
+      "url": "https://soundcloud.com/company/about-us",
+      "title": "About SoundCloud"
+    },
+    {
+      "url": "https://www.britannica.com/topic/SoundCloud",
+      "title": "SoundCloud | Overview, History, & Facts - Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:08.119Z",
+  "type": "label",
+  "editorial_description": "A foundational social music distribution and streaming platform that democratized audio sharing and accelerated the rise of independent and underground music movements globally.",
+  "founded": "2007",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:soundcloud-rap",
+      "type": "genre",
+      "name": "SoundCloud Rap"
+    }
+  ],
+  "roster": [],
+  "notable_releases": []
+}

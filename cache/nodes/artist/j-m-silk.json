@@ -1,0 +1,68 @@
+{
+  "slug": "artist:j-m-silk",
+  "name": "J. M. Silk",
+  "editorial_article": "J. M. Silk was a seminal Chicago house music duo comprised of producer Steve \"Silk\" Hurley and vocalist Keith Nunnally. Emerging from the vibrant, early 1980s South Side Chicago club scene, the duo became a pillar of the genre's formative era, helping to codify the sound that evolved from disco and underground dance parties into the global phenomenon known as house music. Their collaborative work, most notably the 1986 classic \"Jack Your Body,\" served as a foundational template for the \"Chicago sound\"—characterized by driving, repetitive drum machine patterns, infectious synthesized basslines, and soulful, expressive vocal performances that mirrored the gospel and R&B traditions of their upbringing.\\n\\nWhile Steve \"Silk\" Hurley is perhaps more widely recognized for his immense contributions as a solo producer and remixer, J. M. Silk represented the quintessential pairing of technical studio wizardry and emotive live performance. Keith Nunnally’s dynamic vocal presence brought an essential human element to the raw, machine-driven tracks, bridging the gap between the DJ-centric environment of the Warehouse and Music Box clubs and the commercial appeal of dance-pop. As a project, J. M. Silk was integral to the era's transition from local Chicago underground culture to international chart success, epitomizing the spirit of a movement defined by communal dance floor experiences and raw, innovative DIY production. Their legacy remains deeply woven into the history of electronic dance music, representing a moment when the city of Chicago defined the sound of the future.",
+  "citations": [
+    {
+      "url": "https://medium.com/cuepoint/the-divine-creation-of-chicago-house-dc25c59e0901",
+      "title": "The Divine Creation of Chicago House | by rondaracha, Ronda Racha Penrice | Cuepoint | Medium"
+    },
+    {
+      "url": "https://www.ebay.com/itm/277149037036",
+      "title": "LP Steve Silk Hurley, Tyree, JM Silk ao The House Sound Of Chicago"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:37.485Z",
+  "type": "artist",
+  "editorial_bio": "J.",
+  "origin": "Chicago, Illinois, USA",
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:d-j-international-records",
+      "type": "label",
+      "name": "D.J. International Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:jack-your-body",
+      "type": "track",
+      "name": "Jack Your Body"
+    },
+    {
+      "slug": "track:let-the-music-take-control",
+      "type": "track",
+      "name": "Let the Music Take Control"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve \"Silk\" Hurley"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve Silk Hurley"
+    },
+    {
+      "slug": "artist:keith-nunnally",
+      "type": "artist",
+      "name": "Keith Nunnally"
+    }
+  ]
+}

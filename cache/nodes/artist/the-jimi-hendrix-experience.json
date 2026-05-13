@@ -1,0 +1,97 @@
+{
+  "slug": "artist:the-jimi-hendrix-experience",
+  "name": "The Jimi Hendrix Experience",
+  "editorial_article": "The Jimi Hendrix Experience was an iconic Anglo-American rock trio formed in London in October 1966, comprising the legendary guitarist and singer Jimi Hendrix, bassist Noel Redding, and drummer Mitch Mitchell. The band became the primary vehicle for Hendrix's meteoric rise to global fame, defining the sound and aesthetic of late 1960s psychedelic and hard rock. With their revolutionary approach to studio production and an aggressive, feedback-heavy performance style, the group shattered conventions of what a rock trio could achieve, pushing the boundaries of blues-rock and setting a new standard for the electric guitar in popular music. \\n\\nDuring their brief but intensely influential existence—which lasted until 1970—the band released three landmark studio albums: 'Are You Experienced' (1967), 'Axis: Bold as Love' (1967), and the expansive double-album 'Electric Ladyland' (1968). These records showcased Hendrix's unrivaled mastery of guitar texture, song structure, and production experimentation. While the band eventually disbanded in 1970, their legacy remains monolithic; their work, characterized by songs like 'Purple Haze', 'Foxy Lady', and 'All Along the Watchtower', continues to serve as a foundational pillar of rock music, influencing generations of musicians across multiple genres. Their performance at the Monterey Pop Festival in 1967 stands as one of the most famous moments in rock history, cementing their reputation as a live force that changed the face of the medium forever. The band’s interplay, specifically the tight yet improvisational rhythm section provided by Mitchell and Redding, allowed Hendrix the freedom to explore the outer limits of sonic expression, turning the electric guitar into a true orchestral instrument. Today, they are studied not just for their technical prowess, but for the fundamental shift they catalyzed in the potential of popular, guitar-based music.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/the-jimi-hendrix-experience",
+      "title": "The Jimi Hendrix Experience Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://jimihendrix.fandom.com/wiki/The_Jimi_Hendrix_Experience",
+      "title": "The Jimi Hendrix Experience | Fandom"
+    },
+    {
+      "url": "https://www.sasktalent.com/resources/history-of-rock-music/the-jimi-hendrix-experience.html",
+      "title": "History of Rock Music: The Jimi Hendrix Experience"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:35.391Z",
+  "type": "artist",
+  "editorial_bio": "The Jimi Hendrix Experience was a pioneering and highly influential rock band formed in London in 1966, known for revolutionizing the sound of the electric guitar.",
+  "origin": "Westminster, Greater London, United Kingdom",
+  "active_years": "1966-1970",
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues Rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:are-you-experienced",
+      "type": "project",
+      "name": "Are You Experienced"
+    },
+    {
+      "slug": "project:axis-bold-as-love",
+      "type": "project",
+      "name": "Axis: Bold as Love"
+    },
+    {
+      "slug": "project:electric-ladyland",
+      "type": "project",
+      "name": "Electric Ladyland"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:purple-haze",
+      "type": "track",
+      "name": "Purple Haze"
+    },
+    {
+      "slug": "track:foxy-lady",
+      "type": "track",
+      "name": "Foxy Lady"
+    },
+    {
+      "slug": "track:the-wind-cries-mary",
+      "type": "track",
+      "name": "The Wind Cries Mary"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix"
+    },
+    {
+      "slug": "artist:noel-redding",
+      "type": "artist",
+      "name": "Noel Redding"
+    },
+    {
+      "slug": "artist:mitch-mitchell",
+      "type": "artist",
+      "name": "Mitch Mitchell"
+    }
+  ]
+}

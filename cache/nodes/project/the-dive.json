@@ -1,0 +1,47 @@
+{
+  "slug": "project:the-dive",
+  "name": "The Dive",
+  "editorial_article": "The Dive (Original Motion Picture Soundtrack) is the evocative 2023 collaborative score composed by Volker Bertelmann—often known by his moniker Hauschka—and Raffael Seyfried for the German survival thriller film 'The Dive'. Released via Needlewood Records, the project captures the claustrophobic and life-threatening urgency of a story centered on two sisters trapped underwater during a diving excursion. Throughout the seventeen tracks, Bertelmann and Seyfried utilize a sparse, experimental instrumental palette to mirror the protagonists' physical isolation and encroaching panic. The music relies on shifting dynamics, moving from the ethereal, fluid textures of the opening tracks to the percussive, jagged rhythms that signify the sisters' desperate attempts to communicate and survive. The score is notable for how it avoids traditional cinematic tropes of high-octane suspense, instead opting for a deeper, psychological exploration of fear and hope through subtle sound design. It stands as a significant entry in modern soundtrack work, demonstrating the composers' ability to create an immersive, suspenseful world that functions effectively both as a narrative aid to the film and as an independent, textured ambient experience. The work further solidifies Bertelmann's reputation for innovative scoring, following his acclaimed contributions to films like 'All Quiet on the Western Front', and highlights his successful partnership with Seyfried in building complex, emotionally resonant sound worlds. By deconstructing the sonic environment of the ocean, the project creates a sense of dread that remains palpable even outside the context of the film, showcasing the technical precision of its creators.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/album/17N6FQ78JCi37nBkcWBDwf",
+      "title": "The Dive (Original Motion Picture Soundtrack) - Album by Volker Bertelmann, Raffael Seyfried | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:26.664Z",
+  "type": "project",
+  "editorial_pitch": "The Dive (Original Motion Picture Soundtrack) is a gripping cinematic score composed by Volker Bertelmann and Raffael Seyfried for the 2023 survival thriller film. Its soundscape masterfully balances high-tension atmosphere with delicate, melancholic motifs, reflecting the desperate struggle of the film's protagonists trapped underwater.",
+  "year": "2023",
+  "artists": [],
+  "label": {
+    "slug": "label:needlewood-records",
+    "type": "label",
+    "name": "Needlewood Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:volker-bertelmann",
+      "type": "artist",
+      "name": "Volker Bertelmann"
+    },
+    {
+      "slug": "artist:raffael-seyfried",
+      "type": "artist",
+      "name": "Raffael Seyfried"
+    }
+  ],
+  "related_projects": []
+}

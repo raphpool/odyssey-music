@@ -1,0 +1,74 @@
+{
+  "slug": "genre:blues",
+  "name": "Blues",
+  "editorial_article": "The blues is a foundational genre of American music, born from the experiences of African Americans in the Deep South during the late 19th and early 20th centuries. Emerging from a complex blend of work songs, field hollers, spirituals, and oral folk traditions in the post-Civil War era, the blues provided a secular outlet for expressing the hardships, resilience, and personal tribulations of Black life. It is essentially a vocal-centric form, defined by its emotional immediacy rather than structured narrative, with lyrics often organized in the classic AAB stanza pattern. Musically, the blues is anchored by the twelve-bar progression and characterized by \"blue notes\"—microtonal pitch inflections that deviate from the standard Western diatonic scale, giving the music its signature melancholic, yearning quality. Instruments such as the guitar, piano, and harmonica are central, often utilizing techniques like string bending or sliding to mimic the expressive contours of the human voice. Historically dismissed by some as the \"Devil’s music\" due to its association with juke joints and worldly themes, the blues eventually became the primary engine for 20th-century popular music. Its harmonic language and rhythmic sensibilities directly catalyzed the development of jazz, rhythm and blues, rock and roll, and country, cementing its status as an unparalleled pillar of global musical heritage. Throughout the mid-20th century, the migration of Black Americans to urban centers like Chicago transformed the rural acoustic Delta blues into a louder, amplified electric form, ensuring its continued evolution and profound influence on generations of musicians worldwide.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/blues-music",
+      "title": "Blues | Definition, Artists, History, Characteristics, Types, Songs, & Facts | Britannica"
+    },
+    {
+      "url": "https://www.musicnotes.com/blog/what-is-blues-music-defining-a-legendary-genre/?srsltid=AfmBOoq5TgDlWxZo-8oOVrXH0i_lKVYKld5pLrr3EBVjs9UjDeLel_Rm",
+      "title": "What is Blues Music? Defining a Legendary Genre"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:40.231Z",
+  "type": "genre",
+  "editorial_definition": "A secular vocal and instrumental genre originating in the American South, characterized by its twelve-bar structure, AAB lyrical pattern, and the use of 'blue notes' to convey deep personal expression and struggle.",
+  "era": "1890s-present",
+  "origin": "Deep South, United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and Blues"
+    },
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and Roll"
+    },
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bessie-smith",
+      "type": "artist",
+      "name": "Bessie Smith"
+    },
+    {
+      "slug": "artist:muddy-waters",
+      "type": "artist",
+      "name": "Muddy Waters"
+    },
+    {
+      "slug": "artist:howlin-wolf",
+      "type": "artist",
+      "name": "Howlin' Wolf"
+    },
+    {
+      "slug": "artist:blind-lemon-jefferson",
+      "type": "artist",
+      "name": "Blind Lemon Jefferson"
+    },
+    {
+      "slug": "artist:ma-rainey",
+      "type": "artist",
+      "name": "Ma Rainey"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

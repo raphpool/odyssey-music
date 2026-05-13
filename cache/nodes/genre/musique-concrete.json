@@ -1,0 +1,75 @@
+{
+  "slug": "genre:musique-concrete",
+  "name": "Musique Concrète",
+  "editorial_article": "Musique concrète (French for \"concrete music\") is a pioneering form of electroacoustic music that emerged in Paris during the mid-1940s, fundamentally transforming the definition of musical composition. Developed primarily by the composer and radio engineer Pierre Schaeffer at the Radiodiffusion-Télévision Française (RTF), the genre rejects traditional musical notation and harmony in favor of assembling music from \"concrete\" sound objects—prerecorded sounds captured from the natural environment, human voices, or musical instruments. By utilizing tape manipulation techniques such as splicing, looping, varying speed, and reversing, composers transformed everyday sounds into abstract auditory landscapes. This process often exploits \"acousmatic\" listening, where the listener perceives sound without identifying its source, detaching the auditory experience from its physical origin.\\n\\nThe theoretical foundations of musique concrète were formalised in Schaeffer’s 1952 text, *À la recherche d'une musique concrète*. His work at the Groupe de Recherches de Musique Concrète (GRMC) attracted a generation of avant-garde innovators, including Pierre Henry, Luc Ferrari, and Iannis Xenakis, who collectively pushed the boundaries of what was considered \"musical\" material. The genre stood in stark contrast to the West German *elektronische Musik* school, which focused on sound synthesized from pure electronic sources. While the historical divide between concrete recordings and synthetic generation has largely dissolved in modern sound art, the legacy of musique concrète remains central to contemporary experimental music, field recording, sound design, and the broader practice of electroacoustic composition. Its radical insistence that any sound could be music paved the way for industrial music, sampling-based hip-hop, and ambient soundscapes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Musique_concr%C3%A8te",
+      "title": "Musique concrète - Wikipedia"
+    },
+    {
+      "url": "https://daily.bandcamp.com/lists/pioneers-of-musique-concrete-album-guide",
+      "title": "The Builders: Pioneers of Musique Concrète | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:00.395Z",
+  "type": "genre",
+  "editorial_definition": "A revolutionary form of electroacoustic music characterized by the use of found, recorded sounds—rather than abstract notation—as the primary raw material for composition.",
+  "era": "1940s-present",
+  "origin": "France",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music"
+    },
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    },
+    {
+      "slug": "genre:acousmatic-music",
+      "type": "genre",
+      "name": "Acousmatic music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari"
+    },
+    {
+      "slug": "artist:iannis-xenakis",
+      "type": "artist",
+      "name": "Iannis Xenakis"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:symphonie-pour-un-homme-seul",
+      "type": "project",
+      "name": "Symphonie pour un homme seul"
+    },
+    {
+      "slug": "project:etudes-de-bruits",
+      "type": "project",
+      "name": "Études de bruits"
+    }
+  ],
+  "landmark_tracks": []
+}

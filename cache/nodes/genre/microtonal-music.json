@@ -1,0 +1,52 @@
+{
+  "slug": "genre:microtonal-music",
+  "name": "Microtonal Music",
+  "editorial_article": "Microtonal music refers to a diverse and expansive musical approach that utilizes intervals smaller than the standard semitone found in the familiar Western twelve-tone equal temperament system. While the term \"microtonal\" gained traction in Western musicology during the early 20th century, the practice of employing microintervals is deeply embedded in numerous global musical traditions, including those of India, the Middle East, Southeast Asia, and various African cultures. For these traditions, microtonality is not an experimental deviation but a fundamental component of melodic expression, often realized through intricate tuning systems like the Indian śruti or various gamelan scales. \\n\\nIn the context of 20th and 21st-century Western art music and avant-garde composition, microtonality emerged as a method for composers to break free from the constraints of the piano's standard tuning. By exploring quarter tones, just intonation, or alternative divisions of the octave, figures like Charles Ives, Julián Carrillo, and later minimalist and experimental composers sought to expand the harmonic and expressive possibilities of their work. This sonic movement bridges the gap between ancient cultural practices and cutting-edge contemporary theory, challenging listeners to perceive pitch not as a rigid set of twelve keys, but as a continuous, nuanced spectrum of sound that can be subdivided into near-infinite levels of detail. Its impact persists today across electronic music, contemporary composition, and sound art, as digital tools have made microtonal exploration more accessible than ever. By re-evaluating the physical and acoustic nature of sound, this genre encourages a deeper connection to the physics of harmony and a departure from the hegemony of the piano.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Microtonality",
+      "title": "Microtonality - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/art/microtonal-music",
+      "title": "Microtonal music | Exploring Pitch, Harmony & Tuning Systems | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:46.143Z",
+  "type": "genre",
+  "editorial_definition": "Microtonal music is any music that employs intervals smaller than the standard semitone found in Western twelve-tone equal temperament, encompassing both non-Western traditional systems and Western experimental or avant-garde compositions.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde Music"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:charles-ives",
+      "type": "artist",
+      "name": "Charles Ives"
+    },
+    {
+      "slug": "artist:julian-carrillo",
+      "type": "artist",
+      "name": "Julián Carrillo"
+    },
+    {
+      "slug": "artist:ezra-sims",
+      "type": "artist",
+      "name": "Ezra Sims"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

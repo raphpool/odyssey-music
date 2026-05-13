@@ -1,0 +1,58 @@
+{
+  "slug": "genre:world-beat",
+  "name": "World beat",
+  "editorial_article": "World beat is a vibrant and stylistically porous genre that emerged in the mid-1980s, primarily as a synthesis of popular Western pop and rock sensibilities with traditional or indigenous musical styles from around the globe. While it is often discussed as a subgenre or a subset of the broader \"world music\" umbrella, world beat is specifically characterized by a conscious hybridity, emphasizing a rhythmic, harmonic, or textural contrast between modern production techniques and localized ethnic musical elements. The term gained initial popularity in the mid-1980s, bolstered by radio programming like Dan Del Santo’s show in Austin, Texas, and the increasingly globalized reach of artists who were actively incorporating international sounds into mainstream consciousness. \n\nThe aesthetic of world beat is fundamentally integrative. It relies on the cross-pollination of Western pop structures—such as standard verse-chorus arrangements and rock instrumentation—with non-Western folk elements, including Afrobeat rhythms, highlife melodic sensibilities, qawwali vocal intensity, and the intricate percussion patterns found in samba or bossa nova. As the genre matured, it benefited significantly from the rise of digital production and high-quality sampling, allowing producers to integrate indigenous sonic textures with ease. Though the term has been criticized by purists who view it as an overly commercialized or diluted version of \"authentic\" folk traditions, world beat remains a crucial cultural phenomenon, reflecting the rapid globalization of music at the turn of the 21st century and the ongoing, complex dialogue between local heritage and global pop culture. It continues to influence contemporary music production, where the boundaries between \"local\" and \"international\" remain fluid.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Worldbeat",
+      "title": "Worldbeat - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/subgenre/worldbeat-ma0000011922",
+      "title": "Worldbeat Music Genre Overview - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:37.587Z",
+  "type": "genre",
+  "editorial_definition": "A cross-cultural musical hybrid that blends contemporary Western pop and rock structures with traditional, indigenous musical styles from various global regions, often emphasizing rhythmic synthesis.",
+  "era": "Mid-1980s to present",
+  "origin": "United Kingdom, United States, West Africa",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:peter-gabriel",
+      "type": "artist",
+      "name": "Peter Gabriel"
+    },
+    {
+      "slug": "artist:david-byrne",
+      "type": "artist",
+      "name": "David Byrne"
+    },
+    {
+      "slug": "artist:paul-simon",
+      "type": "artist",
+      "name": "Paul Simon"
+    },
+    {
+      "slug": "artist:youssou-n-dour",
+      "type": "artist",
+      "name": "Youssou N'Dour"
+    },
+    {
+      "slug": "artist:king-sunny-ade",
+      "type": "artist",
+      "name": "King Sunny Ade"
+    },
+    {
+      "slug": "artist:mory-kante",
+      "type": "artist",
+      "name": "Mory Kanté"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

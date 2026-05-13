@@ -1,0 +1,72 @@
+{
+  "slug": "artist:plastician",
+  "name": "Plastician",
+  "editorial_article": "Plastician (born Chris Reed) is a foundational figure in the development of South London’s electronic music scene, widely recognized for his pivotal roles in both the grime and dubstep genres. Emerging from Croydon in the early 2000s, Reed began his journey within the UK garage circuit, quickly transitioning into the darker, experimental sonic landscapes that would define the early dubstep era. Originally performing under the moniker Plasticman—which he eventually changed to Plastician due to legal conflicts—he was a resident DJ at the legendary FWD>> club nights at Plastic People, a crucible for the emerging dubstep sound. His production work seamlessly bridges the rhythmic tension of grime with the cavernous, bass-heavy atmosphere of early dubstep, exemplified by his seminal 2007 debut album, Beg to Differ. Beyond his production, Reed has demonstrated significant A&R prowess through his own imprint, Terrorhythm Recordings, established in 2002. The label has been instrumental in the careers of artists like Joker and Om Unit, and has later served as a primary conduit for the rise of wave music, with Reed’s 'Wavepool' mix series serving as a foundational cultural touchstone for that movement. Today, Plastician remains a central figure in the evolution of underground electronic music, consistently pushing the boundaries of what he describes as bass music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Plastician",
+      "title": "Plastician - Wikipedia"
+    },
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Plastician",
+      "title": "Plastician - Bass Music Wiki - Fandom"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/plastician-mn0001935755",
+      "title": "Plastician - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:37.459Z",
+  "type": "artist",
+  "editorial_bio": "Plastician (born Chris Reed) is a foundational figure in the development of South London’s electronic music scene, widely recognized for his pivotal roles in both the grime and dubstep genres.",
+  "origin": "Croydon, London, England",
+  "active_years": "1999–present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    },
+    {
+      "slug": "genre:wave",
+      "type": "genre",
+      "name": "Wave"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:terrorhythm-recordings",
+      "type": "label",
+      "name": "Terrorhythm Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:beg-to-differ",
+      "type": "project",
+      "name": "Beg to Differ"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:japan",
+      "type": "track",
+      "name": "Japan"
+    },
+    {
+      "slug": "track:intensive-snare",
+      "type": "track",
+      "name": "Intensive Snare"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

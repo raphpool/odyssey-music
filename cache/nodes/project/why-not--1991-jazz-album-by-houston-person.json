@@ -1,0 +1,79 @@
+{
+  "slug": "project:why-not--1991-jazz-album-by-houston-person",
+  "name": "Why Not!",
+  "editorial_article": "Why Not! is a 1991 studio album by the acclaimed jazz saxophonist Houston Person, released on the Muse Records label. Recorded on October 5, 1990, at the legendary Van Gelder Studio in Englewood Cliffs, New Jersey, the album documents a pivotal moment in Person's career, marking the start of a fruitful musical partnership with the young, prodigious organist Joey DeFrancesco. Known for his warm, robust tenor saxophone tone and an effortless ability to swing, Person had long established himself as a master of the soulful, blues-inflected jazz idiom. \\n\\nThe project is noted for its cohesive and elegant delivery of a diverse set, ranging from deep-pocket blues to sensitive readings of classic standards. DeFrancesco’s Hammond organ provides the perfect textural counterpart to Person's saxophone, creating a chemistry that critics praised for its technical fluidity and emotional sincerity. The tracklist includes soulful originals like the title track \"Why Not\" and \"Joey's Blues,\" alongside timeless material such as \"As Time Goes By\" and \"Where Is Love?\". Supporting the core duo, the ensemble includes Philip Harper on trumpet, Randy Johnston on guitar, Winard Harper on drums, and Sammy Figueroa on percussion, rounding out a sound that is both intimate and deeply rooted in the traditional jazz vocabulary. The album stands as a testament to Person's consistency and his uncanny talent for fostering vibrant, collaborative environments that breathe new life into standard repertoire.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Why_Not!",
+      "title": "Why Not! - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:30.260Z",
+  "type": "project",
+  "editorial_pitch": "Why Not! captures the warm, soulful tenor saxophone of Houston Person in a vibrant collaboration with a young Joey DeFrancesco, showcasing a seamless blend of blues, ballads, and standards recorded at the iconic Van Gelder Studio.",
+  "year": "1991",
+  "artists": [
+    {
+      "slug": "artist:houston-person",
+      "type": "artist",
+      "name": "Houston Person"
+    }
+  ],
+  "label": {
+    "slug": "label:muse-records",
+    "type": "label",
+    "name": "Muse Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:why-not",
+      "type": "track",
+      "name": "Why Not"
+    },
+    {
+      "slug": "track:as-time-goes-by",
+      "type": "track",
+      "name": "As Time Goes By"
+    },
+    {
+      "slug": "track:namely-you",
+      "type": "track",
+      "name": "Namely You"
+    },
+    {
+      "slug": "track:where-is-love",
+      "type": "track",
+      "name": "Where Is Love?"
+    },
+    {
+      "slug": "track:joey-s-blues",
+      "type": "track",
+      "name": "Joey's Blues"
+    },
+    {
+      "slug": "track:blue-gardenia",
+      "type": "track",
+      "name": "Blue Gardenia"
+    },
+    {
+      "slug": "track:deed-i-do",
+      "type": "track",
+      "name": "'Deed I Do"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:houston-person",
+      "type": "artist",
+      "name": "Houston Person"
+    }
+  ],
+  "related_projects": []
+}

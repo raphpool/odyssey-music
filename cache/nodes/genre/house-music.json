@@ -1,0 +1,112 @@
+{
+  "slug": "genre:house-music",
+  "name": "House music",
+  "editorial_article": "House music is a transformative electronic dance genre that emerged from the underground club scenes of early 1980s Chicago, evolving into a global cultural phenomenon. Born at the legendary venue 'The Warehouse,' where resident DJ Frankie Knuckles began mixing disco, soul, and post-disco records with electronic drum machine rhythms, the genre provided a sanctuary for marginalized communities—specifically Black, Latino, and gay clubgoers. The name 'house' itself is a direct nod to the Warehouse, where owner Robert Williams marketed his events as 'house' parties. \n\nSonically, house music is defined by its steady, hypnotic four-on-the-floor beat, typically set at a tempo between 120 and 130 BPM. Early producers relied heavily on iconic hardware, most notably the Roland TR-808 and TR-909 drum machines, to craft the driving, repetitive kick-drum patterns that form the backbone of the genre. Over the decades, house has splintered into countless subgenres, each retaining the core, pulse-driven energy of its Chicago roots while incorporating diverse textures—from the squelching, synthetic resonant basslines of acid house to the lush, atmospheric arrangements of deep house and the percussive, minimal-leaning aesthetics of tech house. More than just a collection of production techniques, house music represents a ethos of inclusion, endurance, and communal release, maintaining its relevance in nightlife cultures worldwide for over forty years.",
+  "citations": [
+    {
+      "url": "https://splice.com/blog/what-is-house-music/",
+      "title": "What is House Music? History, Artists, and Subgenres - Blog | Splice"
+    },
+    {
+      "url": "https://www.iconcollective.edu/the-history-of-house-music",
+      "title": "The History of House Music and Its Cultural Influence - Icon Collective"
+    },
+    {
+      "url": "https://timeline.carnegiehall.org/genres/house",
+      "title": "History of House — Timeline of African American Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:33.059Z",
+  "type": "genre",
+  "editorial_definition": "A foundational genre of electronic dance music originating in early 1980s Chicago, characterized by a persistent four-on-the-floor beat, synthesized basslines, and soulful vocal samples, initially fostered in underground, inclusive club spaces.",
+  "era": "1980s–present",
+  "origin": "Chicago, Illinois, USA",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy"
+    },
+    {
+      "slug": "artist:marshall-jefferson",
+      "type": "artist",
+      "name": "Marshall Jefferson"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    },
+    {
+      "slug": "label:dj-international-records",
+      "type": "label",
+      "name": "DJ International Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:can-you-feel-it",
+      "type": "project",
+      "name": "Can You Feel It"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:your-love",
+      "type": "track",
+      "name": "Your Love"
+    },
+    {
+      "slug": "track:move-your-body",
+      "type": "track",
+      "name": "Move Your Body"
+    },
+    {
+      "slug": "track:i-ve-lost-control",
+      "type": "track",
+      "name": "I've Lost Control"
+    }
+  ]
+}

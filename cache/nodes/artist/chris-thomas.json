@@ -1,0 +1,88 @@
+{
+  "slug": "artist:chris-thomas",
+  "name": "Chris Thomas",
+  "editorial_article": "Christopher P. Thomas (born January 13, 1947) is a highly influential English record producer who played a pivotal role in shaping the sound of rock, punk, and new wave music from the late 1960s through the 1990s. Classically trained on the violin and piano, Thomas began his career as an assistant to George Martin at AIR Studios in London. His tenure at AIR brought him into the inner circle of The Beatles, where he famously stepped in to assist with production duties during the recording of the band’s self-titled double album, \"The White Album\" (1968), contributing uncredited production and instrumentation on key tracks like \"Birthday\" and \"Happiness Is a Warm Gun.\"\\n\\nFollowing his apprenticeship, Thomas established a stellar independent career defined by his versatility and ear for breakthrough talent. He became a primary architect for the sound of bands such as Roxy Music, Procol Harum, and The Pretenders. His mid-1970s work is particularly noted for its wide stylistic range; remarkably, he was co-producing albums for Paul McCartney and Wings while simultaneously working with the Sex Pistols on their seminal \"Never Mind the Bollocks, Here's the Sex Pistols.\" Throughout the 1980s and 1990s, he remained a sought-after collaborator for acts including INXS, Pulp, and U2, helping refine the raw energy of these artists into polished, chart-topping records. His production style is characterized by a clean, balanced sonic profile that emphasizes song structure and clear instrumentation, consistently bridging the gap between artistic experimentation and commercial accessibility. His adaptability allowed him to work across widely differing genres with equal efficacy, solidifying his status as a foundational figure in modern recording history.",
+  "citations": [
+    {
+      "url": "https://www.the-paulmccartney-project.com/artist/chris-thomas/",
+      "title": "Chris Thomas (artist) • The Paul McCartney Project"
+    },
+    {
+      "url": "https://blog.musoscribe.com/index.php/2019/02/25/a-conversation-with-producer-chris-thomas/",
+      "title": "A Conversation with Producer Chris Thomas"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:17.346Z",
+  "type": "artist",
+  "editorial_bio": "A legendary British producer who cut his teeth with The Beatles before crafting the sound of iconic acts ranging from Roxy Music and the Sex Pistols to The Pretenders and INXS.",
+  "photo_url": "https://www.the-paulmccartney-project.com/_images/wp-uploads/2019/12/15e6963ea585e93c6944b4042a985250.jpg",
+  "origin": "Brentford, Middlesex, England",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-beatles",
+      "type": "project",
+      "name": "The Beatles (White Album)"
+    },
+    {
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols",
+      "type": "project",
+      "name": "Never Mind the Bollocks, Here's the Sex Pistols"
+    },
+    {
+      "slug": "project:back-to-the-egg",
+      "type": "project",
+      "name": "Back to the Egg"
+    },
+    {
+      "slug": "project:learning-to-crawl",
+      "type": "project",
+      "name": "Learning to Crawl"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:birthday",
+      "type": "track",
+      "name": "Birthday"
+    },
+    {
+      "slug": "track:happiness-is-a-warm-gun",
+      "type": "track",
+      "name": "Happiness Is a Warm Gun"
+    },
+    {
+      "slug": "track:god-save-the-queen",
+      "type": "track",
+      "name": "God Save the Queen"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

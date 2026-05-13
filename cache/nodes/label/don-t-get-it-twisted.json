@@ -1,0 +1,62 @@
+{
+  "slug": "label:don-t-get-it-twisted",
+  "name": "Don't Get It Twisted",
+  "editorial_article": "Don't Get It Twisted is a specialized independent record label founded by the seminal dubstep producer Coki. Established in 2012, the label has served as a dedicated platform for Coki to release his own productions, as well as works from collaborators within the UK underground scene. Operating primarily within the dubstep genre, the label's aesthetic is characterized by the raw, bass-heavy, and minimalist approach that defined the original wave of dubstep, while also incorporating the darker, more industrial-leaning sounds that Coki has championed throughout his career. \\n\\nThe label's catalog reflects a commitment to the \"system\" sound—music crafted specifically for large-scale sound systems. Early releases such as \"Bob's Pillow / Spooky\" and \"Hold On Wait / Bedouins\" set a high bar for the label's output, showcasing intricate, heavy-hitting production techniques that cemented Coki's reputation as one of the genre's most influential architects. Beyond his solo material, Don't Get It Twisted has provided a release vehicle for artists like Blacks, Subzee D, and Shack D, maintaining a tight-knit and authentic output that often bypasses the standard digital distribution routes in favor of limited vinyl and lathe-cut releases. The label functions not merely as a commercial entity but as a curated space where the uncompromising ethos of early 2000s dubstep is preserved and evolved for modern bass music audiences. By maintaining complete creative control, Coki ensures that every release—whether it is a digital-only EP or a rare, hand-pressed 10-inch—remains true to the deep, percussive, and atmospheric roots of the genre he helped define.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/441601-Dont-Get-It-Twisted?srsltid=AfmBOoqxttafgGfX6Q4KuijGK3XoNwCzXlSBJ-qDCnoA8b2ZBiCBqgBU",
+      "title": "Don't Get It Twisted | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:56.609Z",
+  "type": "label",
+  "editorial_description": "A dedicated dubstep imprint founded by Coki, known for showcasing his own raw, bass-heavy productions and those of his close associates within the UK underground.",
+  "founded": "2012",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki"
+    },
+    {
+      "slug": "artist:blacks",
+      "type": "artist",
+      "name": "Blacks"
+    },
+    {
+      "slug": "artist:subzee-d",
+      "type": "artist",
+      "name": "Subzee D"
+    },
+    {
+      "slug": "artist:shack-d",
+      "type": "artist",
+      "name": "Shack D"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:bob-s-pillow-spooky",
+      "type": "project",
+      "name": "Bob's Pillow / Spooky"
+    },
+    {
+      "slug": "project:hold-on-wait-bedouins",
+      "type": "project",
+      "name": "Hold On Wait / Bedouins"
+    },
+    {
+      "slug": "project:voodoo-dolls-prototype",
+      "type": "project",
+      "name": "Voodoo Dolls / Prototype"
+    }
+  ]
+}

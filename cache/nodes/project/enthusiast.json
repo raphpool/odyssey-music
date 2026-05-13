@@ -1,0 +1,43 @@
+{
+  "slug": "project:enthusiast",
+  "name": "Enthusiast",
+  "editorial_article": "Released on June 14, 2013, via Modeselektor’s influential Monkeytown Records, Enthusiast stands as a landmark project for the Berlin-based producer Siriusmo (Moritz Friedrich). Following a period of intense creative exploration and a tongue-in-cheek narrative involving the rejection of an \"outrageously expensive\" orchestral recording project, Enthusiast arrived as a bold statement of artistic independence and stylistic breadth. The record is a sprawling, 13-track exploration that refuses to settle into a single genre, instead opting to weave together neo-disco, electro-pop, intricate hip-hop beats, and heavy, UK bass-influenced sound design. \\n\\nWhat defines Enthusiast is its frantic, playful energy—a signature trait of Siriusmo’s production style. The tracks often feel like sonic experiments, shifting abruptly yet fluidly between dancefloor-ready hooks and dense, idiosyncratic listening passages. By avoiding the pitfalls of a homogenous sound palette, Siriusmo created a project that resonates with both club-focused listeners and those seeking sophisticated electronic compositions. Enthusiast solidified Siriusmo's reputation within the German electronic scene as an artist capable of marrying high-concept production with raw, unfiltered enthusiasm, proving that polish does not have to come at the expense of an artist's signature idiosyncrasy. The album remains a defining example of the label’s forward-thinking output in the early 2010s.",
+  "citations": [
+    {
+      "url": "https://monkeytownrecords.com/release/enthusiast/",
+      "title": "Enthusiast – Monkeytown Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:15.889Z",
+  "type": "project",
+  "editorial_pitch": "Released in 2013 on the Monkeytown imprint, Enthusiast serves as a high-water mark for Siriusmo's unique brand of eclectic, multi-genre electronica, blending chaotic energy with meticulous production. Spanning disco house, electro-pop, hip-hop, and UK bass, the album captures a moment of creative transition and refinement for the Berlin-based artist.",
+  "cover_url": "https://monkeytownrecords.com/wp-content/uploads/yootheme/cache/cd/MONKEYTOWN033-cdc3666c.jpg",
+  "year": "2013",
+  "artists": [
+    {
+      "slug": "artist:siriusmo",
+      "type": "artist",
+      "name": "Siriusmo"
+    }
+  ],
+  "label": {
+    "slug": "label:monkeytown-records",
+    "type": "label",
+    "name": "Monkeytown Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

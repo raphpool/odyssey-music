@@ -1,0 +1,68 @@
+{
+  "slug": "artist:deadbeat",
+  "name": "Deadbeat",
+  "editorial_article": "Deadbeat is the primary recording moniker of Scott Monteith, a Canadian-born electronic music producer, sound artist, and educator who has spent much of his career bridge-building between the Montreal minimal techno scene of the early 2000s and the thriving club culture of Berlin. Known for his deep, dub-infused approach to electronic music, Monteith’s work under the Deadbeat name masterfully combines the space, bass, and echoes of traditional Jamaican dub with the precision and rhythmic drive of contemporary minimal techno. \\n\\nHis early creative life in Montreal saw him becoming a vital part of the city’s experimental music scene, eventually leading him to relocate to Berlin in 2006 to further embed himself in the global electronic landscape. His discography spans several foundational LPs including Primordia (2001), Wildlife Documentaries (2002), and the critically regarded New World Observer (2005), which was released on Pole’s seminal ~scape label. Monteith is recognized not just for his solo output but for his collaborative curiosity, ranging from his work in the duo Crackhaus to his later experimental projects, such as the Trinity Thirty album with Fatima Camara, which reinterpreted the Cowboy Junkies' landmark work. A lifelong student of music technology, his process often involves elaborate laptop-based setups that define his live performances, making him a fixture at international festivals such as Mutek and Sonar. His enduring influence persists through his consistent output and his commitment to the dub ethos, continuing to reshape electronic textures for dancefloors and sound-art spaces alike. He remains a key figure in the intersection of dub-techno, minimal electronic production, and academic sound-design pedagogy.",
+  "citations": [
+    {
+      "url": "https://montreal.mutek.org/en/artists/deadbeat-1",
+      "title": "Deadbeat | MUTEK Montréal"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:49.837Z",
+  "type": "artist",
+  "editorial_bio": "Deadbeat is the primary recording moniker of Scott Monteith, a Canadian-born electronic music producer, sound artist, and educator who has spent much of his career bridge-building between the Montreal minimal techno scene of the early 2000s and the thriving club culture of Berlin",
+  "origin": "Kitchener, Ontario, Canada",
+  "active_years": "2001–present",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:scape",
+      "type": "label",
+      "name": "~scape"
+    },
+    {
+      "slug": "label:echocord",
+      "type": "label",
+      "name": "Echocord"
+    },
+    {
+      "slug": "label:constellation-records",
+      "type": "label",
+      "name": "Constellation Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:fatima-camara",
+      "type": "artist",
+      "name": "Fatima Camara"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

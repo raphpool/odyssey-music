@@ -1,0 +1,130 @@
+{
+  "slug": "artist:carl-craig",
+  "name": "Carl Craig",
+  "editorial_article": "Carl Craig (born May 22, 1969) is a preeminent American electronic music producer, DJ, and the founder of the influential label Planet E Communications. As a central figure of the Detroit techno scene’s \"second wave,\" he helped bridge the gap between the raw, industrial origins of early techno and a more sophisticated, experimental approach that incorporated elements of ambient, jazz, and classical music. His expansive career, beginning in the late 1980s, is defined by his restless creativity and an refusal to be limited by a single sound, leading him to record under a multitude of monikers—most notably 69, Paperclip People, Innerzone Orchestra, BFC, and Psyche.\\n\\nBeyond his recorded work, Craig has been a pivotal figure in the cultural stewardship of Detroit's electronic legacy. He founded Planet E in 1991, which became a vital home for pioneering artists, and he has frequently served as a curator and artistic director for the Detroit Electronic Music Festival. His impact extends into the art world, evidenced by his immersive installation *Party/After-Party*, which bridged techno and minimalism. Craig's influence is global, marked by acclaimed collaborations with artists like Moritz von Oswald and Green Velvet, as well as his forward-thinking remix work that has brought his distinct \"Detroit sound\" to a wide array of musical landscapes. His work remains a cornerstone of the conversation surrounding the evolution of dance music. Throughout his decades of output, Craig has demonstrated a unique ability to synthesize the driving energy of the machine with the organic textures of jazz and soul, cementing his status as an indispensable voice in the global pantheon of modern electronic music. His work bridges the underground with the avant-garde, continually pushing the boundaries of what techno can be.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Carl_Craig",
+      "title": "Carl Craig - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/871-Carl-Craig?srsltid=AfmBOor9TaPw5hm3QnAy23tO-PywSCS-9m7PqF-Vz1vLHXrM1lumBXhG",
+      "title": "Carl Craig Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:00.520Z",
+  "type": "artist",
+  "editorial_bio": "A pivotal architect of the Detroit techno sound, Carl Craig has spent over three decades redefining the boundaries of electronic music through his prolific solo work, myriad aliases, and his foundational label, Planet E Communications.",
+  "origin": "Detroit, Michigan, U.S.",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:planet-e-communications",
+      "type": "label",
+      "name": "Planet E Communications"
+    },
+    {
+      "slug": "label:transmat",
+      "type": "label",
+      "name": "Transmat"
+    },
+    {
+      "slug": "label:infine",
+      "type": "label",
+      "name": "InFiné"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:landcruising",
+      "type": "project",
+      "name": "Landcruising"
+    },
+    {
+      "slug": "project:more-songs-about-food-and-revolutionary-art",
+      "type": "project",
+      "name": "More Songs About Food and Revolutionary Art"
+    },
+    {
+      "slug": "project:recomposed",
+      "type": "project",
+      "name": "Recomposed"
+    },
+    {
+      "slug": "project:unity",
+      "type": "project",
+      "name": "Unity"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:at-les",
+      "type": "track",
+      "name": "At Les"
+    },
+    {
+      "slug": "track:bug-in-the-bassbin",
+      "type": "track",
+      "name": "Bug in the Bassbin"
+    },
+    {
+      "slug": "track:throw",
+      "type": "track",
+      "name": "Throw"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:psyche",
+      "type": "artist",
+      "name": "Psyche"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    },
+    {
+      "slug": "artist:69",
+      "type": "artist",
+      "name": "69"
+    },
+    {
+      "slug": "artist:paperclip-people",
+      "type": "artist",
+      "name": "Paperclip People"
+    },
+    {
+      "slug": "artist:innerzone-orchestra",
+      "type": "artist",
+      "name": "Innerzone Orchestra"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:paperclip-people",
+      "type": "artist",
+      "name": "Paperclip People"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "label:studio-one",
+  "name": "Studio One",
+  "editorial_article": "Studio One is widely considered the \"Motown of Jamaica,\" a cornerstone institution that effectively architected the development of modern Jamaican popular music. Founded by producer Clement \"Sir Coxsone\" Dodd in the late 1950s—with the iconic studio facility on Brentford Road (later renamed Studio One Boulevard) in Kingston opening its doors in 1963—the label served as the crucible for ska, rocksteady, and reggae. Dodd’s influence originated in the Kingston sound system culture, where he operated \"Sir Coxsone the Downbeat,\" one of the city's most formidable mobile rigs. Frustrated by the high cost and reliance on imported American R&B, Dodd began producing local music to keep his dancehall patrons engaged. \\n\\nThe impact of Studio One on global music culture is immeasurable. It provided a launchpad for foundational legends including Bob Marley and the Wailers, Peter Tosh, Bunny Wailer, The Skatalites, The Heptones, and Burning Spear. As both a studio and a label, Studio One functioned as a conservatory where talent was nurtured in a high-pressure, high-creativity environment. Dodd’s keen ear for talent and his ability to fuse local Mento and Calypso traditions with American R&B and Jazz rhythms created the \"Studio One sound\"—a warm, soulful, and rhythmic aesthetic that became the gold standard for Caribbean music. The label’s legacy is preserved not just in its vast catalog, but in its status as the \"University of Reggae,\" having mentored generations of engineers, vocalists, and instrumentalists who would define the sonic landscape of the island for decades. Even today, the label’s catalog remains a vital source for producers and DJs worldwide, reflecting the enduring ingenuity of Dodd’s vision.",
+  "citations": [
+    {
+      "url": "https://musicorigins.org/item/studio-one-jamaican-music/",
+      "title": "Studio One Was The Cradle of Reggae, Dancehall, Ska and Most Jamaican Music | The Music Origins Project"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Coxsone_Dodd",
+      "title": "Coxsone Dodd - Wikipedia"
+    },
+    {
+      "url": "https://bassculture.substack.com/p/the-house-that-coxsone-built-studio",
+      "title": "The House That Coxsone Built: Studio One and the Sound of Modern Jamaica"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:29.982Z",
+  "type": "label",
+  "editorial_description": "Often described as the 'Motown of Reggae,' Studio One is the legendary Kingston-based record label and recording studio founded by Clement 'Coxsone' Dodd that served as the foundational birthplace for ska, rocksteady, and reggae music.",
+  "founded": "1954",
+  "location": "Kingston, Jamaica",
+  "genres": [
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley and the Wailers"
+    },
+    {
+      "slug": "artist:the-skatalites",
+      "type": "artist",
+      "name": "The Skatalites"
+    },
+    {
+      "slug": "artist:the-heptones",
+      "type": "artist",
+      "name": "The Heptones"
+    },
+    {
+      "slug": "artist:burning-spear",
+      "type": "artist",
+      "name": "Burning Spear"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-wailing-wailers",
+      "type": "project",
+      "name": "The Wailing Wailers"
+    },
+    {
+      "slug": "project:ska-boo-da-ba",
+      "type": "project",
+      "name": "Ska Boo-Da-Ba"
+    },
+    {
+      "slug": "project:studio-one-presents-burning-spear",
+      "type": "project",
+      "name": "Studio One Presents Burning Spear"
+    }
+  ]
+}

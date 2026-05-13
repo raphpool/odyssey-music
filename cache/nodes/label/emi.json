@@ -1,0 +1,53 @@
+{
+  "slug": "label:emi",
+  "name": "EMI",
+  "editorial_article": "EMI Records stands as one of the most significant and storied entities in the history of the modern music industry. Originating from the legacy of Electric & Musical Industries (EMI), the flagship label was formally launched on January 1, 1973, in the United Kingdom. It served as a centralized successor to several long-standing and prestigious imprints under the EMI umbrella, including Parlophone and the Columbia Graphophone Company. Throughout the 1970s and 1980s, the label became synonymous with a massive roster of genre-defining artists, including Pink Floyd, Queen, Kraftwerk, Kate Bush, and Iron Maiden, cementing its reputation as a powerhouse for global popular music.\\n\\nThe history of the label is a complex tapestry of corporate evolution, demergers, and acquisitions. Following decades of growth, the company underwent major structural changes in the late 20th century, notably its merger with Thorn Electrical Industries in 1979 to form Thorn EMI, followed by a demerger in 1996 that established the EMI Group. The label’s trajectory fundamentally shifted in the 21st century during the consolidation of the major music labels. Following Universal Music Group's acquisition of EMI in 2012, the label underwent significant rebranding and restructuring. Today, EMI Records functions under the Universal Music Group banner, having been relaunched in various international markets, including Europe and Japan, where it continues to carry the weight of a century-old musical heritage while adapting to the digital-first landscape of contemporary record distribution.\\n\\nIts influence extends far beyond its discography; EMI’s legacy is deeply tied to the development of recording technology and the professionalization of the pop-music business. By aggregating legendary catalogs and continuing to sign influential artists, the label remains a vital, if transformed, institution in the global cultural economy, bridging the gap between the golden age of vinyl and the current streaming era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/EMI_Records",
+      "title": "EMI Records - Wikipedia"
+    },
+    {
+      "url": "https://www.cbsnews.com/news/history-of-record-label-emi/",
+      "title": "History of record label EMI - CBS News"
+    },
+    {
+      "url": "https://atlasrecords.co.uk/blogs/all-about-vinyl/emi-records?srsltid=AfmBOorTomekuLh-L3j4KX4GoA_M-0vsFe4mM2VuJiMSqGj5M81Pa70E",
+      "title": "Tales Behind The Label: EMI Records – Atlas Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:21.290Z",
+  "type": "label",
+  "editorial_description": "A storied British multinational record label, EMI Records has been a pillar of the global music industry since its formal launch in 1973, housing legendary catalogs and defining the sounds of successive generations.",
+  "founded": "1973",
+  "location": "London, UK",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    },
+    {
+      "slug": "artist:queen",
+      "type": "artist",
+      "name": "Queen"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:iron-maiden",
+      "type": "artist",
+      "name": "Iron Maiden"
+    }
+  ],
+  "notable_releases": []
+}

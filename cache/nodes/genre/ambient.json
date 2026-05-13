@@ -1,0 +1,102 @@
+{
+  "slug": "genre:ambient",
+  "name": "Ambient",
+  "editorial_article": "Ambient music is an atmospheric genre that prioritizes texture, tone, and mood over traditional musical structures like rhythm, melody, and conventional song form. Emerging as a distinct, named category in the late 1970s, it traces its philosophical roots back to early 20th-century experiments—most notably Erik Satie’s concept of \"furniture music\"—which posited that music could exist as an environmental presence rather than a centerpiece of performance. The genre was crystallized by British musician Brian Eno, whose seminal 1978 album, *Ambient 1: Music for Airports*, provided the foundational manifesto: music that must be \"as ignorable as it is interesting.\"\\n\\nUnlike most musical forms, ambient music is designed to exist in the background, capable of rewarding both passive, unobtrusive listening and active, focused immersion. Its sonic signature is defined by sustained tones, slowly evolving harmonic textures, and the creative use of synthesizers to emulate or abstract acoustic instruments like pianos and strings. The genre draws heavily from experimental traditions, including musique concrète, minimalist music, and the German \"kosmische musik\" of the 1970s. While it intentionally avoids the rigid constraints of beat-driven music, ambient is a porous genre, constantly interacting with other sound worlds; it has fueled diverse sub-movements ranging from the rhythmic pull of ambient house and techno to the stark, cinematic landscapes of dark ambient and drone. By redefining the relationship between the listener, the space, and the sound itself, ambient music remains a pivotal pillar of contemporary electronic and avant-garde culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_music",
+      "title": "Ambient music - Wikipedia"
+    },
+    {
+      "url": "https://blog.roughtrade.com/a-rough-guide-to-ambient-music/",
+      "title": "A Rough Guide To: Ambient Music"
+    },
+    {
+      "url": "https://www.edmprod.com/what-is-ambient-music/",
+      "title": "What is Ambient Music? Everything You Need to Know in 5min"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:23.550Z",
+  "type": "genre",
+  "editorial_definition": "A genre of music emphasizing atmospheric texture and tone over traditional musical structures, designed to create a sense of place or mood through unobtrusive soundscapes.",
+  "era": "1970s–present",
+  "origin": "United Kingdom / Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark ambient"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:eg-records",
+      "type": "label",
+      "name": "EG Records"
+    },
+    {
+      "slug": "label:kranky",
+      "type": "label",
+      "name": "Kranky"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    },
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85–92"
+    }
+  ],
+  "landmark_tracks": []
+}

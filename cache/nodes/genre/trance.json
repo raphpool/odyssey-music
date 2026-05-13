@@ -1,0 +1,108 @@
+{
+  "slug": "genre:trance",
+  "name": "Trance",
+  "editorial_article": "Trance is a foundational genre of electronic dance music that emerged in the early 1990s, primarily taking root in Germany and the Netherlands before expanding into a global phenomenon. Characterized by its emphasis on melody, harmony, and repetitive rhythmic structures, the genre was designed to create immersive, sense-awakening, and spiritual experiences on the dance floor. In its nascent stage, trance functioned as a melodic, more emotive counterpart to the harsher, harder-edged techno and acid house sounds dominating the European club underground. It draws deep stylistic lineage from the 'kosmische' experiments of 1970s ambient and electronic pioneers like Tangerine Dream and Klaus Schulze, as well as the psychedelic, free-form, and ritualistic parties held on the beaches of Goa, India. \\n\\nAs the genre matured, it split into various sub-movements, including the atmospheric and often experimental 'Goa Trance,' the euphoric, melodic, and commercially successful 'Uplifting Trance,' and the deeper, tech-oriented sounds emerging from production hubs like Frankfurt. The mid-90s saw the genre achieve significant commercial and cultural prominence, with key labels like MFS, FAX +49-69/450464, and later outfits, helping define the sound. Artists like Paul van Dyk, Jam & Spoon, Armin van Buuren, and Tiësto became central figures, elevating the stature of the DJ to that of a stadium performer. Despite being periodically maligned by music critics, trance has maintained a resilient, dedicated fanbase and remains a definitive pillar of dance culture. Its hallmark—a build-up followed by a transcendent, euphoric 'breakdown'—continues to influence modern pop, progressive house, and contemporary EDM production.",
+  "citations": [
+    {
+      "url": "https://www.beatportal.com/articles/51518-beatports-definitive-history-of-trance",
+      "title": "Trance Music History - From The Early 1990s Till Today | By Beatportal"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:47.207Z",
+  "type": "genre",
+  "editorial_definition": "A genre of electronic dance music characterized by emotive melodies, repetitive rhythmic patterns, and an emphasis on creating transcendent, euphoric atmospheres, often featuring distinctive builds and breakdowns.",
+  "era": "1990s-Present",
+  "origin": "Germany and the Netherlands",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk"
+    },
+    {
+      "slug": "artist:armin-van-buuren",
+      "type": "artist",
+      "name": "Armin van Buuren"
+    },
+    {
+      "slug": "artist:tiesto",
+      "type": "artist",
+      "name": "Tiësto"
+    },
+    {
+      "slug": "artist:jam-and-spoon",
+      "type": "artist",
+      "name": "Jam & Spoon"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:mfs",
+      "type": "label",
+      "name": "MFS"
+    },
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "FAX +49-69/450464"
+    },
+    {
+      "slug": "label:superstition",
+      "type": "label",
+      "name": "Superstition"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:45-rpm",
+      "type": "project",
+      "name": "45 RPM"
+    },
+    {
+      "slug": "project:tranceformed-from-beyond",
+      "type": "project",
+      "name": "Tranceformed From Beyond"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:for-an-angel",
+      "type": "track",
+      "name": "For An Angel"
+    },
+    {
+      "slug": "track:the-age-of-love",
+      "type": "track",
+      "name": "The Age Of Love"
+    },
+    {
+      "slug": "track:stella",
+      "type": "track",
+      "name": "Stella"
+    }
+  ]
+}

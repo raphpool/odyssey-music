@@ -1,0 +1,123 @@
+{
+  "slug": "genre:chicago-house",
+  "name": "Chicago house",
+  "editorial_article": "Chicago house is the foundational genre of modern electronic dance music, emerging from the vibrant, marginalized underground club culture of Chicago in the early 1980s. Born as a radical reimagining of disco following the 1979 \"Disco Demolition Night\" backlash, it was crafted by Black and Latinx DJs in queer spaces like The Warehouse—where resident DJ Frankie Knuckles helped pioneer the sound. By repurposing drum machines like the Roland TR-808 and TR-909, synthesizers like the TB-303, and creating innovative tape edits of Italo-disco, electro, and post-punk records, these producers replaced the lush, organic orchestration of disco with a raw, stripped-down, repetitive 4/4 rhythm designed specifically to induce trance-like states on the dancefloor. \\n\\nFar more than just a musical style, Chicago house represented a new performance economy centered on the DJ rather than the live band, empowering local producers to create their own tracks for their specific dance floors. Labels like Trax Records and DJ International became central, disseminating tracks like Jesse Saunders' \"On and On\"—often cited as one of the first house records—to the wider world. The genre’s emphasis on inclusivity, repetition, and electronic experimentation became the blueprint for subsequent global dance movements, including acid house, Detroit techno, and the massive festival-scale EDM of today. Despite its deep roots in the city's specific socio-cultural history, its sonic DNA remains the universal language of global club culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chicago_house",
+      "title": "Chicago house - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:39.461Z",
+  "type": "genre",
+  "editorial_definition": "A seminal style of electronic dance music originating in early 1980s Chicago, characterized by its repetitive 4/4 house beat, raw electronic percussion, and heavy use of synthesizers and drum machines as a successor to disco.",
+  "era": "Early 1980s to present",
+  "origin": "Chicago, U.S.",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house"
+    },
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto house"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo disco"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley 'Jackmaster' Funk"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    },
+    {
+      "slug": "label:dj-international-records",
+      "type": "label",
+      "name": "DJ International Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:on-and-on",
+      "type": "track",
+      "name": "On and On"
+    },
+    {
+      "slug": "track:your-love",
+      "type": "track",
+      "name": "Your Love"
+    },
+    {
+      "slug": "track:acid-tracks",
+      "type": "track",
+      "name": "Acid Tracks"
+    }
+  ]
+}

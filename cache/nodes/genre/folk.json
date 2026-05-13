@@ -1,0 +1,48 @@
+{
+  "slug": "genre:folk",
+  "name": "Folk",
+  "editorial_article": "Folk music is a broad, culturally foundational category of musical expression that encompasses both ancient traditional practices and the contemporary genres that emerged from 20th-century revivals. Historically, folk music served as a repository for cultural identity, transmitted primarily through oral tradition within small, tight-knit communities rather than through formal institutional training or written notation. It is frequently functional—embedded in the rhythms of daily labor, seasonal rituals, life-cycle ceremonies, and religious practice. While traditional folk music is characterized by its rural origins and participatory nature, the term has evolved significantly in the modern era to describe a distinct genre of performance, particularly in the Americas and Europe, where acoustic instrumentation and lyrical storytelling—often touching upon social, political, or personal narratives—take center stage.\\n\\nThe 20th-century folk revival, particularly in the United States and the United Kingdom, transformed the genre into a major force in popular music. Artists began to recontextualize traditional songs, blending them with modern sensibilities and often utilizing them as vehicles for political protest and social commentary. This period blurred the lines between the \"amateur\" tradition and the professionalization of music. Today, the folk label is applied to a vast spectrum of music: from the intimate, acoustic-driven singer-songwriter compositions of artists like Bob Dylan and Joni Mitchell to the preservation and interpretation of traditional styles from diverse indigenous cultures worldwide. Ultimately, folk remains defined by its focus on narrative authenticity, the primacy of the voice, and a deep, historical connection to the communities and histories that fostered it. Whether through the preservation of archaic ballads or the creation of new songs rooted in tradition, folk music remains a vital, shifting conversation between the past and the present.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/folk-music",
+      "title": "Folk music | Definition, History, Artists, Songs, Bands, Instruments, & Facts | Britannica"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/folk-music-guide",
+      "title": "Folk Music Artists: A Brief History of Folk Music - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:47.775Z",
+  "type": "genre",
+  "editorial_definition": "Folk music is a genre defined by traditional, orally transmitted music rooted in rural culture and community rituals, which evolved in the 20th century into a contemporary genre characterized by narrative storytelling, acoustic instrumentation, and social or political resonance.",
+  "era": "Antiquity to present",
+  "origin": "Global (primarily rural/community-based)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:joni-mitchell",
+      "type": "artist",
+      "name": "Joni Mitchell"
+    },
+    {
+      "slug": "artist:lead-belly",
+      "type": "artist",
+      "name": "Lead Belly"
+    },
+    {
+      "slug": "artist:woody-guthrie",
+      "type": "artist",
+      "name": "Woody Guthrie"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

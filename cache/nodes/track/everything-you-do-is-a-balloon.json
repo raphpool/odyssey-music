@@ -1,0 +1,37 @@
+{
+  "slug": "track:everything-you-do-is-a-balloon",
+  "name": "Everything You Do Is a Balloon",
+  "editorial_article": "\"Everything You Do Is a Balloon\" stands as one of the most evocative and celebrated compositions in the early discography of the Scottish electronic duo Boards of Canada. First appearing on their 1996 EP 'Hi Scores', and subsequently on the 1996 compilation 'BoC Maxima', the track exemplifies the group's signature blend of nostalgic, textured analog synthesis and subtle, melancholic rhythmic patterns. Spanning approximately seven minutes, the track is renowned for its slow-building structure, where intricate layers are introduced through delicate percussive cues—such as a snare drum roll or hi-hat choke—creating a hypnotic, evolving atmosphere that feels simultaneously pastoral and hauntological.\\n\\nThe duo, composed of brothers Michael Sandison and Marcus Eoin, has described the enigmatic title as originating from a personal realization they experienced in a forest years prior to the track's release. This narrative of a solitary, profound moment aligns with the music's sonic character: a hazy, warm, and deeply introspective soundscape that defined the duo's early aesthetic. The production is characterized by its heavy use of tape saturation and vintage equipment, giving the track a weathered, dream-like quality. Notably, the fade-out of the track incorporates a guitar sample taken from the piece \"Timeless\" by jazz guitarist John Abercrombie, a subtle nod to their broad range of influences. Over the decades, the track has maintained a cult status among fans of IDM and ambient electronica, serving as a landmark example of how the duo used hardware-based improvisation to capture fleeting, elusive emotions. It remains a quintessential listening experience for those seeking to understand the foundational DNA of Boards of Canada’s sound—a fragile architecture built from memory, texture, and organic decay.",
+  "citations": [
+    {
+      "url": "https://bocpages.org/wiki/Everything_You_Do_Is_A_Balloon",
+      "title": "Everything You Do Is A Balloon - bocpages | Boards of Canada wiki"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:52.617Z",
+  "type": "track",
+  "editorial_teaser": "An iconic, slow-building masterpiece of early IDM that layers warm analog textures and melancholic melodies into a hypnotic soundscape.",
+  "artists": [],
+  "project": {
+    "slug": "project:hi-scores",
+    "type": "project",
+    "name": "Hi Scores"
+  },
+  "genres": [],
+  "producers": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "samples": [
+    {
+      "slug": "track:timeless",
+      "type": "track",
+      "name": "Timeless"
+    }
+  ],
+  "sampled_by": [],
+  "remixed_by": []
+}

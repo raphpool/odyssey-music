@@ -1,0 +1,59 @@
+{
+  "slug": "genre:modular-synth",
+  "name": "Modular Synth",
+  "editorial_article": "Modular synthesis refers to both a foundational technology in electronic music production and an expansive, experimental sonic aesthetic rooted in the flexibility of signal flow. Unlike traditional fixed-architecture synthesizers, a modular system consists of discrete, individual modules—such as oscillators, filters, amplifiers, and envelope generators—that are housed in a frame and connected via patch cables. This architecture allows the user to reconfigure the signal path entirely, enabling complex modulation, non-linear sound design, and generative processes that go far beyond standard musical performance. The genre and practice originated in the mid-1960s with the pioneering systems of Robert Moog and Don Buchla. While Moog’s designs, largely based on subtractive synthesis and keyboard control, helped bring electronic sound into popular consciousness through works like Wendy Carlos's 'Switched-On Bach', Buchla’s instruments favored waveshaping and experimental control interfaces, laying the groundwork for the more avant-garde explorations of modular sound.\\n\\nFollowing a decline in the 1970s and 80s as integrated, polyphonic, and digital instruments became dominant, the modular format experienced a profound resurgence in the 21st century, particularly with the standardization of the Eurorack format. This renaissance has transformed modular synthesis from a niche academic pursuit into a vibrant culture of DIY builders, performance artists, and producers who prioritize the tactile, unpredictable, and highly personal nature of patching. Today, the genre encompasses a massive spectrum of music, ranging from ambient soundscapes and rhythmic industrial textures to generative algorithmic compositions. It is characterized by its sonic depth—often involving evolving timbres, complex harmonic interdependencies, and a 'living' quality that differentiates it from static digital recordings. As a cultural force, modular synthesis fosters a philosophy of 'infinite possibility,' where the instrument is never truly finished, but instead constantly iterated upon by the artist.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Modular_synthesizer",
+      "title": "Modular synthesizer - Wikipedia"
+    },
+    {
+      "url": "https://www.perfectcircuit.com/signal/what-is-a-modular-synthesizer?srsltid=AfmBOopCnZaIz1_BT4HsBGPY96DR7TkpRd8ljUAMAj7tIKE6MoyEA9Js",
+      "title": "What is a Modular Synthesizer? - Perfect Circuit"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:02.400Z",
+  "type": "genre",
+  "editorial_definition": "A practice and sonic aesthetic built upon interconnected modules, allowing for infinite signal routing and complex, highly malleable sound design.",
+  "era": "1960s–present",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:experimental-electronics",
+      "type": "genre",
+      "name": "Experimental Electronics"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:wendy-carlos",
+      "type": "artist",
+      "name": "Wendy Carlos"
+    },
+    {
+      "slug": "artist:don-buchla",
+      "type": "artist",
+      "name": "Don Buchla"
+    },
+    {
+      "slug": "artist:robert-moog",
+      "type": "artist",
+      "name": "Robert Moog"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

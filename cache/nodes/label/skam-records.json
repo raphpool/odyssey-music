@@ -1,0 +1,81 @@
+{
+  "slug": "label:skam-records",
+  "name": "Skam Records",
+  "editorial_article": "Skam Records is an influential, Manchester-based independent record label that has served as a cornerstone of the experimental electronic music scene since its founding in 1990 by Andy Maddocks. Known for its highly selective roster and an uncompromising aesthetic, the label became a cult destination for listeners of IDM, glitch, and left-field electronica. Skam distinguished itself not only through its sound but also through its mysterious aura and its propensity for releasing highly limited, collectible vinyl editions—a hallmark of its early years that helped foster a dedicated, almost obsessive following among electronic music enthusiasts.\\n\\nThe label is perhaps most culturally significant for its early championing of Boards of Canada, serving as the first home for the duo and releasing seminal works like the 'Hi Scores' 12\". The partnership between Skam and Warp Records on the seminal 1998 album 'Music Has the Right to Children' solidified Skam's status as a tastemaker within the IDM movement. Beyond its high-profile collaborations, the label’s roster has included respected experimental figures such as Bola, Gescom, Jega, and Freeform, all of whom embodied the label's signature blend of complex, emotive, and rhythmically challenging textures. Through its limited 'MASK' series and a general commitment to artistic purity over commercial appeal, Skam Records remains a vital artifact of the 1990s and 2000s UK electronic landscape, standing as a testament to the power of independent vision and the enduring mystique of the cult music label.",
+  "citations": [
+    {
+      "url": "https://bocpages.org/wiki/SKAM",
+      "title": "SKAM - bocpages | Boards of Canada wiki"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/skam/",
+      "title": "Skam - Music label - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:09.542Z",
+  "type": "label",
+  "editorial_description": "An enigmatic and highly influential Manchester-based electronic music label, founded in 1990 by Andy Maddocks, known for its pivotal role in the UK IDM scene and its penchant for limited-edition, cult-status vinyl releases.",
+  "founded": "1990",
+  "location": "Manchester, England",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    },
+    {
+      "slug": "artist:bola",
+      "type": "artist",
+      "name": "Bola"
+    },
+    {
+      "slug": "artist:gescom",
+      "type": "artist",
+      "name": "Gescom"
+    },
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega"
+    },
+    {
+      "slug": "artist:freeform",
+      "type": "artist",
+      "name": "Freeform"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:hi-scores",
+      "type": "project",
+      "name": "Hi Scores"
+    },
+    {
+      "slug": "project:music-has-the-right-to-children",
+      "type": "project",
+      "name": "Music Has the Right to Children"
+    },
+    {
+      "slug": "project:mask100",
+      "type": "project",
+      "name": "MASK100"
+    }
+  ]
+}

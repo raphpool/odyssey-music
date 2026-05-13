@@ -1,0 +1,84 @@
+{
+  "slug": "genre:acid-house",
+  "name": "Acid House",
+  "editorial_article": "Acid House is a seminal subgenre of house music that emerged in Chicago during the mid-1980s, fundamentally transforming the landscape of electronic dance music. Characterized by a hypnotic, minimalist aesthetic, the genre is defined by its iconic use of the Roland TB-303 synthesizer. By manipulating the 303’s filter resonance, cutoff frequency, and accent parameters, producers crafted the signature \"squelching\" basslines that serve as the sonic centerpiece of the style. This aggressive, textural approach to production, often paired with steady four-on-the-floor rhythms, offered a radical departure from more melodic forms of house music, favoring sonic experimentation over traditional musical structures. \\n\\nThe genre's name is inextricably linked to the landmark track \"Acid Tracks\" by Phuture, which was famously championed by DJ Ron Hardy at the Chicago nightclub The Music Box. While the term \"acid\" initially sparked debate—ranging from references to the psychedelic effects of LSD to slang regarding music sampling—it became a cultural touchstone that defined a global movement. By the late 1980s, the sound had crossed the Atlantic, finding a massive, enthusiastic audience in the United Kingdom, where it became the foundational pulse of the burgeoning rave scene. Acid House not only brought house music into the international mainstream but also laid the groundwork for a vast array of subsequent electronic genres, including acid techno, trance, and big beat, cementing its legacy as a pivotal force in the evolution of modern dance culture. Its influence remains palpable, with its distinctive TB-303 tones continuing to define the \"acid\" aesthetic across contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Acid_house",
+      "title": "Acid house - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:58.745Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of house music born in mid-80s Chicago, defined by its hypnotic, minimalist sound and the aggressive, squelching basslines produced by the Roland TB-303 synthesizer.",
+  "era": "Mid-1980s–Present",
+  "origin": "Chicago, U.S.",
+  "parent_genres": [
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:acid-trance",
+      "type": "genre",
+      "name": "Acid Trance"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:acid-tracks",
+      "type": "project",
+      "name": "Acid Tracks"
+    }
+  ],
+  "landmark_tracks": []
+}

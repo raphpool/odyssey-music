@@ -1,0 +1,91 @@
+{
+  "slug": "genre:jazz",
+  "name": "Jazz",
+  "editorial_article": "Jazz is a foundational music genre that emerged within the African American communities of New Orleans, Louisiana, during the late 19th and early 20th centuries. It represents a profound fusion of cultural legacies, drawing its primary stylistic origins from blues, ragtime, spirituals, and folk music, while integrating elements of European harmonic structures and West African rhythmic sensibilities. At its core, jazz is defined by a spirit of creative spontaneity, historically prioritized through improvisation, syncopated rhythms, and the expressive use of blue notes. \\n\\nThroughout the 20th century, jazz functioned as a mirror of social and artistic evolution. The \"Jazz Age\" of the 1920s saw it rise to prominence as a popular music form, while the subsequent swing era of the 1930s and 1940s cemented its role in American dance halls and broadcast media. The mid-century shift toward bebop and hard bop marked a move toward more cerebral, complex improvisational frameworks, reasserting the music's intellectual depth and its foundational ties to the blues. As the genre matured, it expanded into a massive global vernacular, spawning numerous subgenres—from the relaxed, melodic cool jazz of the West Coast to the radical experiments of free jazz and the cross-pollination of jazz fusion. Jazz remains a vital, ongoing dialogue between tradition and innovation, continually reshaped by new generations of artists globally who utilize its vocabulary to explore fresh harmonic and rhythmic territories.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jazz",
+      "title": "Jazz - Wikipedia"
+    },
+    {
+      "url": "https://splice.com/blog/what-is-jazz-music/",
+      "title": "What is Jazz Music? Characteristics, Origins, and Subgenres - Blog | Splice"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:53.426Z",
+  "type": "genre",
+  "editorial_definition": "Jazz is a music genre characterized by complex harmony, syncopated rhythm, and an emphasis on improvisation, originating from African-American traditions in New Orleans.",
+  "era": "Late 19th century to present",
+  "origin": "New Orleans, U.S.",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:bebop",
+      "type": "genre",
+      "name": "Bebop"
+    },
+    {
+      "slug": "genre:cool-jazz",
+      "type": "genre",
+      "name": "Cool Jazz"
+    },
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard Bop"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:ragtime",
+      "type": "genre",
+      "name": "Ragtime"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane"
+    },
+    {
+      "slug": "artist:duke-ellington",
+      "type": "artist",
+      "name": "Duke Ellington"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:prestige-records",
+      "type": "label",
+      "name": "Prestige Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

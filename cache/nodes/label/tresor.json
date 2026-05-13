@@ -1,0 +1,77 @@
+{
+  "slug": "label:tresor",
+  "name": "Tresor",
+  "editorial_article": "Founded in 1991 by Dimitri Hegemann in the aftermath of German reunification, Tresor is one of the most influential record labels in the history of techno. Emerging from the same creative energy that established the legendary Berlin nightclub of the same name, the label played a pivotal role in bridging the musical gap between Detroit and Berlin. By signing iconic figures such as Jeff Mills, Robert Hood, and Juan Atkins during its foundational years, Tresor helped formalize the 'Berlin-Detroit axis,' a sonic and cultural exchange that defined the trajectory of underground dance music in the 1990s. \\n\\nUnder the early guidance of label manager Carola Stoiber, Tresor expanded its scope beyond the Detroit sound, famously embracing the abrasive, experimental aesthetics of British techno artists like Surgeon and Cristian Vogel. The label operated as a symbiotic ecosystem with the Tresor nightclub; the club served as a laboratory for testing new productions, while the label provided the definitive documentation of the 'Tresor sound'—a dark, industrial-tinged, and uncompromising techno aesthetic that reflected the gritty atmosphere of its original home, the vaults of the former Wertheim department store in Mitte.\\n\\nOver its three decades of existence, Tresor has maintained its position as a central pillar of global club culture. It has nurtured generations of artists, consistently championing avant-garde experimentation while honoring its roots in the industrial and proto-techno scenes of the late 1980s. As a label, it is defined by its long-term relationships with artists, its role as a cross-pollinator of international electronic music scenes, and its unwavering commitment to the underground spirit that birthed the techno movement in post-Wall Berlin.",
+  "citations": [
+    {
+      "url": "https://djmag.com/longreads/tresor-30-evolution-berlin-techno-institution",
+      "title": "Tresor at 30: the evolution of a Berlin techno institution | DJ Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:44.751Z",
+  "type": "label",
+  "editorial_description": "A legendary Berlin-based label synonymous with the development of the global techno sound, known for cementing the historic musical axis between Detroit and Berlin.",
+  "founded": "1991",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood"
+    },
+    {
+      "slug": "artist:juan-atkins",
+      "type": "artist",
+      "name": "Juan Atkins"
+    },
+    {
+      "slug": "artist:surgeon",
+      "type": "artist",
+      "name": "Surgeon"
+    },
+    {
+      "slug": "artist:cristian-vogel",
+      "type": "artist",
+      "name": "Cristian Vogel"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:x-101",
+      "type": "project",
+      "name": "X-101"
+    },
+    {
+      "slug": "project:absolute-time",
+      "type": "project",
+      "name": "Absolute Time"
+    },
+    {
+      "slug": "project:tresor-30",
+      "type": "project",
+      "name": "Tresor 30"
+    }
+  ]
+}

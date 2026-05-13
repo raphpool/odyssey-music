@@ -1,0 +1,56 @@
+{
+  "slug": "artist:mike-huckaby",
+  "name": "Mike Huckaby",
+  "editorial_article": "Mike Huckaby was a towering figure in the Detroit electronic music scene, celebrated for his profound contributions as a producer, DJ, sound designer, and educator. Known for his deep, soulful approach to house and techno, Huckaby served as a vital bridge between the Motor City and the global electronic community, particularly through his enduring connection with Berlin’s Tresor club. His musical philosophy was rooted in the belief that an artist must be both a tireless researcher of history and a disciplined storyteller. Beyond his own discography, which includes essential releases on labels like Deep Transportation and S Y N T H, Huckaby was a dedicated mentor. He famously integrated music production with interdisciplinary education, most notably through his work at the Detroit youth center YouthVille, where he taught young people that mastering the craft—from synthesis to drum machine programming—was a pathway to discipline and hope. Whether shaping factory sounds for Waldorf synthesizers or mentoring the next generation in schools, Huckaby viewed music as a transformative social tool that offered a way out and a means of personal expression for those in challenging environments. His legacy is defined by this rare combination of technical mastery, profound community dedication, and an uncompromising commitment to the integrity of the Detroit sound. He was a central figure in the history of the legendary Record Time store in Detroit, where he helped shape the taste of many aspiring artists, cementing his reputation as a true tastemaker and advocate for the city's unique electronic heritage. His work continues to influence contemporary producers who look to his precise sound design and narrative DJ sets as the gold standard for artistic depth in electronic dance music.",
+  "citations": [
+    {
+      "url": "https://waldorfmusic.com/mike-huckaby/",
+      "title": "Mike Huckaby – Waldorf Music"
+    },
+    {
+      "url": "https://tresorberlin.com/artist/mike-huckaby/",
+      "title": "Mike Huckaby | Tresor Berlin"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:33.465Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Detroit producer, DJ, and educator known for his deep house and techno sound, his role in the Record Time store, and his dedication to teaching youth.",
+  "photo_url": "https://waldorfmusic.com/wp-content/uploads/2025/03/mike-a.jpg",
+  "origin": "Detroit, USA",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tresor",
+      "type": "label",
+      "name": "Tresor"
+    },
+    {
+      "slug": "label:deep-transportation",
+      "type": "label",
+      "name": "Deep Transportation"
+    },
+    {
+      "slug": "label:s-y-n-t-h",
+      "type": "label",
+      "name": "S Y N T H"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

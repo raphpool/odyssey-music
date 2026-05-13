@@ -1,0 +1,101 @@
+{
+  "slug": "genre:dusseldorf-school",
+  "name": "Düsseldorf School",
+  "editorial_article": "The Düsseldorf School is a foundational strand of German electronic and experimental rock that emerged in the early 1970s, centered around the industrial and design-conscious environment of Düsseldorf. Unlike its more ethereal, cosmic, and improvisatory counterpart, the Berlin School, the Düsseldorf School prioritized a sleek, modernist, and rhythmic approach. It is primarily characterized by the \"motorik\" beat—a relentless, steady, and propulsive 4/4 rhythm that emphasizes machine-like endurance over syncopated jazz-fusion complexity. This mechanical pulse was often paired with static or slowly evolving harmonic structures, the extensive use of synthesizers, sequencers, and vocoders, and a distinct lack of blues-based improvisation.\\n\\nArtists associated with this scene, most notably the pioneering group Kraftwerk and the duo of Klaus Dinger and Michael Rother in NEU!, shifted away from the \"Krautrock\" improvisational trope toward a focus on repetition, production clarity, and a fascination with urban life, technology, and transit. Their output directly influenced the development of synth-pop, EBM, electro-funk, and early techno. By discarding emotional maximalism in favor of detached, design-oriented minimalism, the Düsseldorf School turned the studio into an instrument, embedding the future of global electronic pop within its machine-precise frameworks. Its legacy remains a cornerstone for any music that relies on the interplay between rigid synthetic pulses and modern aesthetic rigor.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/dusseldorf-school",
+      "title": "Düsseldorf School - Melodigging"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/dusseldorf-school/",
+      "title": "Düsseldorf School - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:30.024Z",
+  "type": "genre",
+  "editorial_definition": "A seminal electronic and experimental rock movement characterized by the driving 'motorik' beat, minimalist synth textures, and a sleek, modernist approach to pop and avant-garde music.",
+  "era": "1970s - 1980s (with ongoing influence)",
+  "origin": "Düsseldorf, Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk"
+    },
+    {
+      "slug": "genre:ebm",
+      "type": "genre",
+      "name": "EBM"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "NEU!"
+    },
+    {
+      "slug": "artist:la-dusseldorf",
+      "type": "artist",
+      "name": "La Düsseldorf"
+    },
+    {
+      "slug": "artist:deutsch-amerikanische-freundschaft",
+      "type": "artist",
+      "name": "Deutsch Amerikanische Freundschaft (DAF)"
+    },
+    {
+      "slug": "artist:die-krupps",
+      "type": "artist",
+      "name": "Die Krupps"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:autobahn",
+      "type": "project",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "project:neu",
+      "type": "project",
+      "name": "NEU!"
+    },
+    {
+      "slug": "project:trans-europa-express",
+      "type": "project",
+      "name": "Trans Europa Express"
+    },
+    {
+      "slug": "project:die-mensch-maschine",
+      "type": "project",
+      "name": "Die Mensch-Maschine"
+    }
+  ],
+  "landmark_tracks": []
+}

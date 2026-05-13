@@ -1,0 +1,71 @@
+{
+  "slug": "artist:phil-manzanera",
+  "name": "Phil Manzanera",
+  "editorial_article": "Phil Manzanera (born Philip Geoffrey Targett-Adams, 1951) is a seminal English guitarist, songwriter, and producer, best known for his long-standing role as the lead guitarist of the influential art-rock band Roxy Music. Born in London to a Colombian mother and an English father, Manzanera spent much of his childhood across the Americas, an upbringing that infused his musical development with diverse Latin American rhythms and global influences. These experiences shaped his unique sonic signature, which blended conventional rock and roll with atmospheric, avant-garde textures, and jazz-fusion sensibilities.\n\nManzanera’s professional career took off in 1971 when he auditioned for Roxy Music. Although initially hired as a roadie and guitar technician, he became the band's lead guitarist following the departure of David O'List in 1972. His distinct, textured guitar work became a defining element of Roxy Music’s sound across albums like \"Stranded,\" \"Country Life,\" and the ambient-leaning \"Avalon.\" Beyond his tenure with Roxy Music, Manzanera has maintained a prolific career as a solo artist and collaborator, fronting projects such as 801 and Quiet Sun. He is also highly regarded as a producer, notably working with artists like Brian Eno and David Gilmour. His work represents a crucial bridge between 1970s glam rock, progressive rock, and the art-pop evolution that followed, cementing his status as a key figure in British music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Phil_Manzanera",
+      "title": "Phil Manzanera - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/10351-Phil-Manzanera?srsltid=AfmBOorZZ7RbYsRbFSdqkatoEkYKOOh1204lsXXBwdhJGsjsoSK-922d",
+      "title": "Phil Manzanera Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:02.267Z",
+  "type": "artist",
+  "editorial_bio": "Phil Manzanera is a pioneering guitarist, songwriter, and producer, internationally celebrated for his iconic lead guitar contributions to the art-rock legends Roxy Music. Beyond his influence in the glam and progressive rock spheres, he has cultivated a multifaceted career as a solo artist and collaborator with legendary figures like David Gilmour and Brian Eno.",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:diamond-head",
+      "type": "track",
+      "name": "Diamond Head"
+    },
+    {
+      "slug": "track:listen-now",
+      "type": "track",
+      "name": "Listen Now"
+    },
+    {
+      "slug": "track:k-scope",
+      "type": "track",
+      "name": "K-Scope"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ]
+}

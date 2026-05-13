@@ -1,0 +1,78 @@
+{
+  "slug": "artist:georgia-kelly",
+  "name": "Georgia Kelly",
+  "editorial_article": "Georgia Kelly is a pioneering American harpist and composer whose work was fundamental to the emergence of the New Age music genre in the late 1970s. Classically trained from the age of three, Kelly brought a level of technical precision and aesthetic depth to the genre that distinguished her from many of her contemporaries. Based on the West Coast, she was instrumental not only in creating music intended for meditation, relaxation, and healing but also in establishing independent distribution models for this burgeoning sound. Through her own label, Heru Records, she successfully bypassed traditional industry gatekeepers, finding an eager audience in bookstores and spiritual centers long before the wider mainstream caught onto the New Age movement. Kelly's influence reached a significant peak with the 1978 release of 'Seapeace', a collaborative project with electric violinist Tony Selvage. The album became an underground phenomenon, eventually selling over a quarter-million copies and cementing her reputation as a leading light in the scene. Her collaborative spirit also led to notable works like 'Ancient Echoes' with Steven Halpern, an exploration of spiritual improvisations, and later, 'A Journey Home' with guitarist Dusan Bogdanovic, which touched upon her Eastern European heritage. Beyond commercial success, Kelly’s music became recognized for its therapeutic applications, frequently utilized in hospital environments, cancer clinics, and by practitioners in massage therapy, solidifying her legacy as both a composer of ethereal instrumental music and a contributor to the field of sound-based healing.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/georgia-kelly-mn0000542923",
+      "title": "Georgia Kelly Songs, Albums, Reviews, Bio & Mo... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:12.933Z",
+  "type": "artist",
+  "editorial_bio": "Georgia Kelly is a pioneering American harpist and composer whose work was fundamental to the emergence of the New Age music genre in the late 1970s.",
+  "origin": "San Francisco, CA",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:contemporary-instrumental",
+      "type": "genre",
+      "name": "Contemporary Instrumental"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:heru-records",
+      "type": "label",
+      "name": "Heru Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:seapeace",
+      "type": "project",
+      "name": "Seapeace"
+    },
+    {
+      "slug": "project:ancient-echoes",
+      "type": "project",
+      "name": "Ancient Echoes"
+    },
+    {
+      "slug": "project:harp-and-soul",
+      "type": "project",
+      "name": "Harp and Soul"
+    },
+    {
+      "slug": "project:a-journey-home",
+      "type": "project",
+      "name": "A Journey Home"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tony-selvage",
+      "type": "artist",
+      "name": "Tony Selvage"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    },
+    {
+      "slug": "artist:dusan-bogdanovic",
+      "type": "artist",
+      "name": "Dusan Bogdanovic"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,80 @@
+{
+  "slug": "artist:andy-turner",
+  "name": "Andy Turner",
+  "editorial_article": "Andy Turner, widely known by his recording moniker Aim, is a British electronic music producer, DJ, and songwriter who became a central figure in the UK's late 1990s trip-hop and downtempo scenes. Born in Barrow-in-Furness, Cumbria, and the son of a jazz musician, Turner's musical foundation was heavily influenced by his early years working as a rap DJ, starting in 1989. This hip-hop sensibility informed his later production style, which blended cinematic, atmospheric textures with boom-bap rhythmic structures. After meeting Mark Rae at a record store, Turner joined the influential Manchester-based Grand Central Records label, where he released his debut EP 'Pacific Northwest' in 1995. His seminal album 'Cold Water Music' (1999) cemented his reputation as a key innovator within the Grand Central roster, sitting alongside peers like Rae & Christian. Turner is noted for his meticulous production, layering dusty samples and live instrumentation into a cohesive, melancholy, and expansive sound. Throughout his career, he has extended his influence as a prolific remixer, working on tracks for artists including Ian Brown, St. Etienne, and The Charlatans UK, further bridging the gap between underground electronic production and alternative indie sensibilities. His work remains a defining example of the Grand Central era's polished, sample-heavy aesthetic.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/aim-mn0000604090",
+      "title": "Aim Songs, Albums, Reviews, Bio & More | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:05.067Z",
+  "type": "artist",
+  "editorial_bio": "Andy Turner, widely known by his recording moniker Aim, is a British electronic music producer, DJ, and songwriter who became a central figure in the UK's late 1990s trip-hop and downtempo scenes.",
+  "origin": "Barrow-in-Furness, England",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip-hop"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grand-central-records",
+      "type": "label",
+      "name": "Grand Central Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cold-water-music",
+      "type": "project",
+      "name": "Cold Water Music"
+    },
+    {
+      "slug": "project:hinterland",
+      "type": "project",
+      "name": "Hinterland"
+    },
+    {
+      "slug": "project:flight-602",
+      "type": "project",
+      "name": "Flight 602"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cold-water-music",
+      "type": "track",
+      "name": "Cold Water Music"
+    },
+    {
+      "slug": "track:ain-t-got-time-to-waste",
+      "type": "track",
+      "name": "Ain't Got Time to Waste"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog"
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "slug": "genre:jungle",
+  "name": "Jungle",
+  "editorial_article": "Jungle is a pioneering electronic dance music subgenre that emerged from the vibrant UK rave and sound system culture of the early 1990s. Rooted in London and Bristol, it represents a pivotal evolution from breakbeat hardcore, defined by its frantic, syncopated breakbeats—often sampled from classic funk and soul records—and deep, heavy sub-basslines. The genre is inextricably linked to Caribbean influence, drawing heavily from reggae, dancehall, and dub music, which provided both the rhythmic sensibilities and the atmospheric aesthetic that gave jungle its distinct, often gritty, character.\n\nMusically, jungle is characterized by its high tempo, typically hovering around 160 beats per minute, which allowed producers to weave complex, layered rhythms using iconic breakbeats such as the \"Amen Break.\" By integrating these aggressive, chopped-up drum patterns with the weight of dub-influenced bass and the melodic nuances of synth-driven electronic music, producers created a sound that was at once chaotic and profoundly soulful. This unique fusion allowed jungle to act as a bridge between disparate musical worlds, bringing together elements of hip-hop, R&B, and electronic dance music in a multicultural, high-energy environment.\n\nAs the scene matured in the mid-1990s, jungle's influence expanded globally, reaching its commercial peak before evolving into subsequent forms, most notably drum and bass. While the later genre adopted higher tempos and increased production complexity, the foundational innovations of jungle—the reliance on sampling, the focus on sub-bass pressure, and the intricate treatment of breakbeats—continue to underpin much of contemporary dance music. Its legacy persists in modern electronic production, with new generations of artists continuing to revisit and retool its signature sound.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/jungle-music-guide",
+      "title": "Jungle Music Genre: An Overview of Jungle Music History - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:28.540Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy electronic music genre originating in the UK in the early 1990s, characterized by fast, complex breakbeats, deep sub-bass, and strong influences from Caribbean reggae and dub sound system culture.",
+  "era": "1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:ragga-jungle",
+      "type": "genre",
+      "name": "Ragga Jungle"
+    },
+    {
+      "slug": "genre:jump-up",
+      "type": "genre",
+      "name": "Jump-up"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:andy-c",
+      "type": "artist",
+      "name": "Andy C"
+    },
+    {
+      "slug": "artist:shy-fx",
+      "type": "artist",
+      "name": "Shy FX"
+    },
+    {
+      "slug": "artist:roni-size",
+      "type": "artist",
+      "name": "Roni Size"
+    },
+    {
+      "slug": "artist:4hero",
+      "type": "artist",
+      "name": "4hero"
+    },
+    {
+      "slug": "artist:congo-natty",
+      "type": "artist",
+      "name": "Congo Natty"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:suburban-base",
+      "type": "label",
+      "name": "Suburban Base"
+    },
+    {
+      "slug": "label:moving-shadow",
+      "type": "label",
+      "name": "Moving Shadow"
+    },
+    {
+      "slug": "label:ram-records",
+      "type": "label",
+      "name": "RAM Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:new-forms",
+      "type": "project",
+      "name": "New Forms"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:original-nuttah",
+      "type": "track",
+      "name": "Original Nuttah"
+    },
+    {
+      "slug": "track:valley-of-the-shadows",
+      "type": "track",
+      "name": "Valley of the Shadows"
+    },
+    {
+      "slug": "track:incredible",
+      "type": "track",
+      "name": "Incredible"
+    },
+    {
+      "slug": "track:brown-paper-bag",
+      "type": "track",
+      "name": "Brown Paper Bag"
+    }
+  ]
+}

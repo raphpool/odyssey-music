@@ -1,0 +1,86 @@
+{
+  "slug": "genre:space-rock",
+  "name": "Space rock",
+  "editorial_article": "Space rock emerged in the late 1960s as a specialized, atmospheric offshoot of psychedelic and progressive rock, defined by its obsession with the cosmos, science fiction, and non-terrestrial themes. Musically, it is characterized by extended, trance-inducing instrumental passages, the heavy use of early synthesizers, electronic sound effects, and reverb-drenched guitars designed to simulate the vast, drifting silence of outer space. While its roots are often traced back to the imaginative sound design of Joe Meek's 1959 album I Hear a New World, the genre found its definitive sonic language through the early, experimental explorations of Pink Floyd and the aggressive, heavy-psych rituals of Hawkwind. The movement found a potent parallel in the West German \"Kosmische Musik\" scene—often conflated with Krautrock—where artists prioritized ambient, abstract textures over traditional rock song structures. Space rock is not merely a collection of sounds but an immersive experience, frequently accompanied by elaborate light shows and theatrical displays. Its influence is deeply embedded in the DNA of later genres, providing the foundational blueprint for the hypnotic repetition of shoegaze, the sweeping architectures of post-rock, and the meditative soundscapes of modern ambient music. By shifting the focus from the terrestrial to the celestial, space rock remains a foundational pillar of experimental rock history.",
+  "citations": [
+    {
+      "url": "https://www.soundbridge.io/space-rock",
+      "title": "Space Rock - SoundBridge"
+    },
+    {
+      "url": "https://rock.fandom.com/wiki/Space_rock",
+      "title": "Space rock | Rock Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:08.760Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of rock characterized by atmospheric, electronic, and experimental soundscapes, featuring extended instrumental passages and themes related to space, science fiction, and the cosmos.",
+  "era": "Late 1960s to present",
+  "origin": "United Kingdom and West Germany",
+  "sonic_markers": "Extended song structures, prominent synthesizer use, heavy reverb/delay, abstract sound effects, cosmic and sci-fi lyrical themes.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:hawkwind",
+      "type": "artist",
+      "name": "Hawkwind"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    },
+    {
+      "slug": "artist:gong",
+      "type": "artist",
+      "name": "Gong"
+    },
+    {
+      "slug": "artist:spirits-burning",
+      "type": "artist",
+      "name": "Spirits Burning"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:space-ritual",
+      "type": "project",
+      "name": "Space Ritual"
+    },
+    {
+      "slug": "project:the-piper-at-the-gates-of-dawn",
+      "type": "project",
+      "name": "The Piper at the Gates of Dawn"
+    },
+    {
+      "slug": "project:i-hear-a-new-world",
+      "type": "project",
+      "name": "I Hear a New World"
+    }
+  ],
+  "landmark_tracks": []
+}

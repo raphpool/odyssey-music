@@ -1,0 +1,54 @@
+{
+  "slug": "genre:easy-listening",
+  "name": "Easy listening",
+  "editorial_article": "Easy listening is a genre of popular music and a radio format that rose to prominence in the mid-20th century, reaching the zenith of its popularity between the 1950s and 1970s. Originally referred to as \"mood music,\" it was designed to be soothing, unobtrusive, and pleasant, serving as a melodic backdrop for domestic life, cocktail hours, and commercial spaces. Musically, the genre is characterized by lush orchestral arrangements, a heavy reliance on string sections, and a consistent, gentle tempo. Unlike the more aggressive, improvisational, or high-energy sounds found in contemporary jazz or rock and roll, easy listening emphasized smooth transitions and familiar melodies, often featuring instrumental interpretations of popular standards, movie themes, and soft pop hits.\n\nThe genre’s structural identity was solidified by its prevalence on FM radio. The term \"easy listening\" itself was popularized in the 1960s by Billboard magazine editor Claude Hall to describe the successful programming format of stations like WPIX-FM in New York. These radio stations carefully curated a mix of instrumental and light vocal tracks to fit the rhythms of the broadcast day, focusing on the adult demographic. While frequently confused with the purely functional, background-focused \"elevator music\" or \"Muzak\" (which was specifically designed to be ignored in workplaces or transit), easy listening was a broader stylistic category that encompassed the work of renowned arrangers, conductors, and pop vocalists. Eventually, as the 1970s progressed, the format evolved into what is now broadly termed Adult Contemporary, marking a shift away from the genre's distinct instrumental focus toward a more vocal-centric, pop-oriented sound. Despite its decline in mainstream commercial dominance, the era of easy listening remains a significant touchstone in 20th-century American culture, capturing a specific aesthetic of mid-century suburban comfort and sonic elegance. Key artists mentioned in the context of the genre's development include Dinah Washington, whose work in the early 1950s helped define the era, and Jackie Gleason, whose 1952 recordings were central to the \"mood music\" aesthetic. Artists like Frank Sinatra, Nat King Cole, and Engelbert Humperdinck are frequently cited as pillars of the vocal-inclusive side of the genre, while the orchestral sound was championed by figures like Mantovani. These artists benefited from the radio culture of the time, where lush production and accessible melodies were a staple of suburban airwaves.",
+  "citations": [
+    {
+      "url": "https://culture.fandom.com/wiki/Easy_listening",
+      "title": "Easy listening | Culture Wikia - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:11.701Z",
+  "type": "genre",
+  "editorial_definition": "A popular music genre characterized by soothing, melodic, and lush orchestral arrangements, designed for ambient listening and popular on radio from the 1950s to the 1970s.",
+  "era": "1950s–1970s",
+  "origin": "United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:dinah-washington",
+      "type": "artist",
+      "name": "Dinah Washington"
+    },
+    {
+      "slug": "artist:jackie-gleason",
+      "type": "artist",
+      "name": "Jackie Gleason"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:nat-king-cole",
+      "type": "artist",
+      "name": "Nat King Cole"
+    },
+    {
+      "slug": "artist:mantovani",
+      "type": "artist",
+      "name": "Mantovani"
+    },
+    {
+      "slug": "artist:engelbert-humperdinck",
+      "type": "artist",
+      "name": "Engelbert Humperdinck"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

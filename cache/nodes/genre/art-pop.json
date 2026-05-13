@@ -1,0 +1,74 @@
+{
+  "slug": "genre:art-pop",
+  "name": "Art Pop",
+  "editorial_article": "Art Pop is a transformative, post-modern approach to popular music that emerged in the mid-1960s in the United Kingdom and the United States. Unlike traditional pop, which often prioritizes immediate emotional relatability or personal expression, Art Pop is rooted in the concepts of the visual art world—drawing specifically from the Pop Art movement’s collapse of the barriers between 'high' and 'low' culture. At its core, Art Pop emphasizes style, artifice, irony, and the construction of the self as a deliberate performance. Artists within this sphere frequently leverage interdisciplinary influences, integrating elements from fashion, cinema, avant-garde literature, and experimental theory into the framework of the pop song. \\n\\nThe genre experienced its 'golden age' during the 1970s, particularly within the glam rock movement, where performers such as David Bowie and Roxy Music treated the musical stage as a theatrical canvas. This era solidified the genre's tendency toward grand gestures and the intentional, often ironic, use of historical musical tropes. As the genre evolved through the late 1970s and 1980s, it heavily informed post-punk, synth-pop, and the New Romantic scenes, moving away from conventional rock instrumentation toward synthetic textures and dance-oriented production. Throughout its history, Art Pop has functioned as a 'formalist' project—a way to explore the structural and aesthetic possibilities of pop music while maintaining a critical, often detached, distance from commercial populism. By focusing on the manipulation of imagery and the aestheticization of the everyday, Art Pop remains a vital force for artists who view the pop medium not just as a vehicle for sentiment, but as a space for high-concept experimentation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Art_pop",
+      "title": "Art pop - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/art-pop/",
+      "title": "Art Pop - Music genre"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:00.811Z",
+  "type": "genre",
+  "editorial_definition": "A loosely defined, intellectually ambitious style of pop music that draws heavily from visual art, fashion, and avant-garde theory, prioritizing artifice, irony, and aesthetic construction over traditional personal expression.",
+  "era": "1960s–present",
+  "origin": "United Kingdom, United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:sparks",
+      "type": "artist",
+      "name": "Sparks"
+    },
+    {
+      "slug": "artist:10cc",
+      "type": "artist",
+      "name": "10cc"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

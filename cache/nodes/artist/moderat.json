@@ -1,0 +1,97 @@
+{
+  "slug": "artist:moderat",
+  "name": "Moderat",
+  "editorial_article": "Moderat is a highly influential German electronic music supergroup based in Berlin, formed by the collaboration between Apparat (Sascha Ring) and the duo Modeselektor (Gernot Bronsert and Sebastian Szary). Their sound is a sophisticated synthesis of Apparat’s emotive, melodic sensibilities—often rooted in IDM and ambient textures—and the hard-hitting, rhythmically complex techno and bass music foundations favored by Modeselektor. This partnership created a distinct sonic bridge between the experimental, introspective side of the Berlin electronic scene and its more aggressive club-oriented dancefloors. \\n\\nSince their debut EP, *Auf Kosten der Gesundheit* (2003), the group has maintained a reputation for creating emotionally resonant electronic music, exemplified by critically acclaimed studio albums like *Moderat* (2009), *II* (2013), and *III* (2016). Their live performances are widely celebrated, having been voted the #1 live act by *Resident Advisor* readers in 2009. Known for their intricate visual collaborations—notably with the artist collective Pfadfinderei—Moderat elevated the standard for electronic live shows, matching their evocative, melancholic soundscapes with striking imagery. Following a hiatus in 2017, the trio reunited in 2021 to release *More D4ta* in 2022, continuing to explore themes of modern isolation and digital disconnection while further refining their trademark production style that balances mechanical coldness with profound human intimacy. Their music has crossed into various media, including notable appearances in cinema, further cementing their status as a defining act of modern European electronica.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moderat",
+      "title": "Moderat - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/moderat",
+      "title": "Moderat Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:04.027Z",
+  "type": "artist",
+  "editorial_bio": "Moderat is a highly influential German electronic music supergroup based in Berlin, formed by the collaboration between Apparat (Sascha Ring) and the duo Modeselektor (Gernot Bronsert and Sebastian Szary).",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bpitch-control",
+      "type": "label",
+      "name": "BPitch Control"
+    },
+    {
+      "slug": "label:monkeytown-records",
+      "type": "label",
+      "name": "Monkeytown Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:moderat",
+      "type": "project",
+      "name": "Moderat"
+    },
+    {
+      "slug": "project:ii",
+      "type": "project",
+      "name": "II"
+    },
+    {
+      "slug": "project:iii",
+      "type": "project",
+      "name": "III"
+    },
+    {
+      "slug": "project:more-d4ta",
+      "type": "project",
+      "name": "More D4ta"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bad-kingdom",
+      "type": "track",
+      "name": "Bad Kingdom"
+    },
+    {
+      "slug": "track:a-new-error",
+      "type": "track",
+      "name": "A New Error"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor"
+    }
+  ]
+}

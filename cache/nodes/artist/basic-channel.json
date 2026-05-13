@@ -1,0 +1,114 @@
+{
+  "slug": "artist:basic-channel",
+  "name": "Basic Channel",
+  "editorial_article": "Basic Channel is a seminal German music duo and collective consisting of producers Moritz von Oswald and Mark Ernestus, based in Berlin. Emerging in 1993, they became the architects of a singular, atmospheric sound that bridged the gap between the skeletal rhythms of Detroit techno and the deep, reverberating sonic textures of Jamaican dub reggae. By operating out of their own ecosystem—which included the influential Hard Wax record store and their dedicated mastering facility, Dubplates & Mastering—they maintained complete control over the production, cutting, and distribution of their music. Their initial series of vinyl-only 12-inch releases, characterized by minimal, repetitive loops and expansive echo, fundamentally redefined electronic music in the 1990s and laid the groundwork for the global dub techno movement.\n\nThroughout their career, the duo has employed a wide array of aliases, including Rhythm & Sound, Maurizio, and Round One through Round Five, allowing them to explore different facets of their aesthetic, from the cold, industrial machine-funk of early Basic Channel tracks to the warmer, vocal-heavy dub excursions of their later Rhythm & Sound period. Their legacy remains deeply influential, not just for their technical innovation in delay-based production, but for their uncompromising, anti-commercial ethos. By eschewing promotional hype and keeping information about their releases intentionally sparse, they established a template for mystery and focus that remains a hallmark of high-integrity underground electronic music culture. Their work continues to be regarded as essential listening for those exploring the intersections of minimalism, dub, and experimental dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Basic_Channel",
+      "title": "Basic Channel - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/13117-Basic-Channel?srsltid=AfmBOoq_h9jOuzIkiCu0_JLUsk6OvWX3nLN_Bat6FXbN_XyBbU8mCeMh",
+      "title": "Basic Channel Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:09.239Z",
+  "type": "artist",
+  "editorial_bio": "Basic Channel is a seminal German music duo and collective consisting of producers Moritz von Oswald and Mark Ernestus, based in Berlin.",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:basic-channel",
+      "type": "label",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:burial-mix",
+      "type": "label",
+      "name": "Burial Mix"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bcd",
+      "type": "project",
+      "name": "BCD"
+    },
+    {
+      "slug": "project:bcd-2",
+      "type": "project",
+      "name": "BCD-2"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:phylyps-trak",
+      "type": "track",
+      "name": "Phylyps Trak"
+    },
+    {
+      "slug": "track:quadrant-dub",
+      "type": "track",
+      "name": "Quadrant Dub"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound"
+    },
+    {
+      "slug": "artist:maurizio",
+      "type": "artist",
+      "name": "Maurizio"
+    },
+    {
+      "slug": "artist:cyrus",
+      "type": "artist",
+      "name": "Cyrus"
+    },
+    {
+      "slug": "artist:quadrant",
+      "type": "artist",
+      "name": "Quadrant"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    }
+  ]
+}

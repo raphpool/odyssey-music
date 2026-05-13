@@ -1,0 +1,82 @@
+{
+  "slug": "genre:breakstep",
+  "name": "breakstep",
+  "editorial_article": "Breakstep, often referred to as breakbeat garage, emerged in London around 1999 as a direct offshoot and mutation of the burgeoning UK garage scene. While traditional UK garage at the time was characterized by soulful R&B vocal samples and a polished production sheen, breakstep sought to strip away these elements in favor of a grittier, more minimal, and aggressive aesthetic. The genre acted as a bridge between the syncopated, shuffling rhythms of 2-step garage and the intense, industrial-influenced breakbeats of techstep and nu skool breaks. By adopting the tempo of 2-step but replacing its lighter percussion with rugged, drum-and-bass-adjacent breakbeat patterns, breakstep carved out a niche that prioritized sound system weight over commercial pop appeal.\\n\\nThe genre was pivotal in the evolution of UK dance music, particularly as a key precursor to dubstep. Pioneering tracks like DJ Zinc’s \"138 Trek\"—which famously applied drum and bass rhythmic sensibility to a garage tempo—and Deekline’s breakthrough hit \"I Don't Smoke\" defined the sound’s blueprint: deep sub-bass, minimal arrangements, and a focus on rugged, technical drum programming. Although the genre’s initial mainstream momentum waned by 2002 as the garage scene shifted and the nascent dubstep movement began to take hold, breakstep remained a vital underground influence. Its legacy persisted in the DNA of bass music, and in recent years, producers have increasingly revisited its syncopated, dark-hued aesthetic, blending it with contemporary production techniques to bridge the gap between classic garage history and modern electronic experimentation.",
+  "citations": [
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Breakstep",
+      "title": "Breakstep - Electronic Music Wiki - Fandom"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/breakstep/",
+      "title": "Breakstep - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:33.541Z",
+  "type": "genre",
+  "editorial_definition": "Breakstep is a subgenre of UK garage that trades the style's usual soulful R&B leanings for darker, more aggressive, and minimal breakbeat-driven rhythms. Emerging in the late 1990s, it served as a crucial transition point between the 2-step garage scene and the early development of dubstep.",
+  "era": "1999–2002 (initial era); post-2020 (revival)",
+  "origin": "London, UK",
+  "sonic_markers": "Syncopated breakbeat drum patterns, 138-140 BPM tempo range, minimal arrangements, heavy use of sub-bass, sparse and dark atmosphere.",
+  "parent_genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "breakbeat"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "dubstep"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "drum and bass"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-zinc",
+      "type": "artist",
+      "name": "DJ Zinc"
+    },
+    {
+      "slug": "artist:deekline",
+      "type": "artist",
+      "name": "Deekline"
+    },
+    {
+      "slug": "artist:wookie",
+      "type": "artist",
+      "name": "Wookie"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:138-trek",
+      "type": "track",
+      "name": "138 Trek"
+    },
+    {
+      "slug": "track:i-don-t-smoke",
+      "type": "track",
+      "name": "I Don't Smoke"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "slug": "artist:moritz-von-oswald",
+  "name": "Moritz von Oswald",
+  "editorial_article": "Moritz von Oswald (born 1962 in Hamburg) is a central figure in the evolution of modern electronic music, widely recognized as one of the definitive architects of the dub techno genre. After an early career as a percussionist in the German new wave band Palais Schaumburg, von Oswald transitioned into the burgeoning electronic scene in Berlin. He gained initial notoriety for his work as an in-house producer at the influential Tresor label and his collaborations with Thomas Fehlmann under monikers like 2MB and 3MB. In 1993, he co-founded the seminal Basic Channel label alongside Mark Ernestus, a partnership that would go on to reshape the sonic landscape of techno by infusing it with deep, cavernous dub aesthetics and minimalist, texture-driven structures. Over a career spanning more than three decades, von Oswald has maintained a restless, experimental approach. He has led the polymorphic Moritz von Oswald Trio—which has featured collaborators like Vladislav Delay, Max Loderbauer, and Tony Allen—and explored further cross-genre fusions in projects like Borderland with Detroit legend Juan Atkins. His work is characterized by a meticulous attention to sound design, space, and rhythm, bridging the gap between historical rhythmic traditions and avant-garde electronic production. Beyond his own artistic outputs, his deep involvement with the legendary studio Dubplates & Mastering solidified his legacy as a technical innovator, influencing generations of producers. His work remains essential for any study of Berlin's influential electronic music history. He continues to perform live and record, maintaining a bridge between the roots of classic techno and contemporary experimental soundscapes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Moritz_von_Oswald",
+      "title": "Moritz von Oswald - Wikipedia"
+    },
+    {
+      "url": "https://tresorberlin.com/artist/moritz-von-oswald/",
+      "title": "Moritz von Oswald | Tresor Berlin"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:13.442Z",
+  "type": "artist",
+  "editorial_bio": "Moritz von Oswald is a German electronic musician and producer, best known as a co-founder of Basic Channel and a pioneer of dub techno.",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:basic-channel",
+      "type": "label",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "label:tresor",
+      "type": "label",
+      "name": "Tresor"
+    },
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:quadrant-dub",
+      "type": "track",
+      "name": "Quadrant Dub"
+    },
+    {
+      "slug": "track:octagon",
+      "type": "track",
+      "name": "Octagon"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound"
+    }
+  ]
+}

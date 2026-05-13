@@ -1,0 +1,86 @@
+{
+  "slug": "artist:thomas-koner",
+  "name": "Thomas Köner",
+  "editorial_article": "Thomas Köner is a German multimedia artist and composer whose work has profoundly influenced the landscape of ambient, dark ambient, and electronic music. Born in Bochum in 1965, Köner developed a signature sonic aesthetic that is often characterized as \"deep listening\" or \"glacial ambient.\" Throughout the 1990s, he garnered international acclaim for seminal projects like *Permafrost* and *Teimo*, which utilized low-frequency textures and immense, cavernous soundscapes to evoke the stark isolation of Arctic landscapes. His work often blurs the line between music composition and environmental sound sculpture, creating immersive, meditative environments that demand attentive engagement. \\n\\nBeyond his influence on ambient music, Köner is a prolific multimedia artist whose practice spans video, film, and installation art. His education at the CEM-Studio in Arnhem, Netherlands, provided a foundation in electronic music that he has continuously expanded, moving into gallery installations and site-specific sound works. He is a multiple-award-winning creator, having received a Golden Nica at Prix Ars Electronica and numerous international accolades for his innovative approach to blending light, darkness, and sound. His discography remains a cornerstone of the dark ambient genre, offering listeners an expansive, often challenging sonic geography that remains as evocative today as it was at the height of its initial release. His ability to craft \"sonic environments\" has not only defined his career but has also influenced subsequent generations of experimental sound artists working at the intersection of installation, film scoring, and ambient production.",
+  "citations": [
+    {
+      "url": "http://thomaskoner.com/biography/",
+      "title": "Biography - THOMAS KÖNER"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Thomas_K%C3%B6ner",
+      "title": "Thomas Köner - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:05.012Z",
+  "type": "artist",
+  "editorial_bio": "Thomas Köner is a German multimedia artist and composer whose work has profoundly influenced the landscape of ambient, dark ambient, and electronic music.",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:barooni",
+      "type": "label",
+      "name": "Barooni"
+    },
+    {
+      "slug": "label:touch",
+      "type": "label",
+      "name": "Touch"
+    },
+    {
+      "slug": "label:die-stadt",
+      "type": "label",
+      "name": "Die Stadt"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:permafrost",
+      "type": "project",
+      "name": "Permafrost"
+    },
+    {
+      "slug": "project:teimo",
+      "type": "project",
+      "name": "Teimo"
+    },
+    {
+      "slug": "project:nunatak-gongamur-ram",
+      "type": "project",
+      "name": "Nunatak... Gongamur... Ram‎"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:permafrost",
+      "type": "track",
+      "name": "Permafrost"
+    },
+    {
+      "slug": "track:teimo",
+      "type": "track",
+      "name": "Teimo"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

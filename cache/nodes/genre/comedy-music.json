@@ -1,0 +1,73 @@
+{
+  "slug": "genre:comedy-music",
+  "name": "Comedy Music",
+  "editorial_article": "Comedy music is a broad, expansive genre defined not by a specific sonic texture, but by its primary intent: to provoke laughter, satire, or lighthearted amusement. While often dismissed as a mere novelty, the genre possesses a lineage that stretches back to ancient Greek Dionysiac festivals, through the court jesters of the medieval period, and into the refined wit of 18th-century opera buffa. By utilizing techniques such as musical parody, wordplay, and the jarring juxtaposition of serious and absurd elements, comedy music effectively dismantles the listener's expectations, subverting musical tropes to create psychological and emotional responses that mirror the structure of traditional comedic theater. In the contemporary era, the genre has found a home in popular music, ranging from the meticulously crafted parodies of \"Weird Al\" Yankovic to the satirical folk-rock of Tenacious D and the deadpan, absurdist musical comedy of Flight of the Conchords. The genre often serves as a vehicle for counterculture, offering artists a subversive platform to critique societal norms under the guise of entertainment. Whether through the theatrical bombast of a musical play, the bite of a political novelty song, or the viral nature of modern comedy hip-hop, comedy music remains an essential, albeit often underrated, pillar of musical expression that prioritizes the spirit of play over technical purity. Its longevity is rooted in its fundamental human appeal: the shared experience of humor, which allows it to transcend changing musical fashions and remain a permanent fixture in cultural discourse.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Comedy_music",
+      "title": "Comedy music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:53.551Z",
+  "type": "genre",
+  "editorial_definition": "A genre of music designed to provoke laughter, satire, or amusement, utilizing techniques like parody, absurdity, and musical subversion across a wide range of styles.",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:parody-music",
+      "type": "genre",
+      "name": "Parody music"
+    },
+    {
+      "slug": "genre:novelty-song",
+      "type": "genre",
+      "name": "Novelty song"
+    },
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:weird-al-yankovic",
+      "type": "artist",
+      "name": "\"Weird Al\" Yankovic"
+    },
+    {
+      "slug": "artist:tenacious-d",
+      "type": "artist",
+      "name": "Tenacious D"
+    },
+    {
+      "slug": "artist:flight-of-the-conchords",
+      "type": "artist",
+      "name": "Flight of the Conchords"
+    },
+    {
+      "slug": "artist:the-lonely-island",
+      "type": "artist",
+      "name": "The Lonely Island"
+    },
+    {
+      "slug": "artist:bo-burnham",
+      "type": "artist",
+      "name": "Bo Burnham"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

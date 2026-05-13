@@ -1,0 +1,159 @@
+{
+  "slug": "genre:uk-bass",
+  "name": "UK bass",
+  "editorial_article": "UK Bass is a broad, atmospheric electronic dance music genre that coalesced in the late 2000s, emerging as a sophisticated evolution of the UK’s vibrant dubstep scene. Moving away from the aggressive \"brostep\" and halftime formulas that dominated the global commercial market, UK Bass producers maintained the dark, mechanical, and minimalistic sensibilities of early 2000s dubstep while diversifying their rhythmic and tonal palette. This shift saw the integration of percussive structures, syncopation, and synth design drawn from diverse influences including UK Funky, Juke, Footwork, Techno, and breakbeat culture. \\n\\nThe genre is as much defined by its fluidity as it is by its focus on deep, resonant sub-bass frequencies. Throughout the 2010s, it flourished through an ecosystem of independent labels that curated specific, recognizable strands of the sound. Labels like Hessle Audio bridged the gap between dubstep and the percussive, house-infused leanings of the UK underground; Night Slugs became a focal point for experimentation by incorporating elements of US club music and hip-hop; and Swamp 81 refined a stripped-back, bass-heavy aesthetic that stayed true to the genre's dark roots. Because of this adaptability, UK Bass functioned as a crucial incubator for modern electronic music, influencing subsequent micro-genres like Deconstructed Club and Hard Drum, and facilitating high-profile collaborations between underground producers and alternative R&B and pop vocalists. It remains a testament to the enduring ingenuity of British underground dance music, proving how effectively a scene can rewire its own foundations to create an expansive, forward-thinking sonic language.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/uk-bass/",
+      "title": "UK Bass - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:28.908Z",
+  "type": "genre",
+  "editorial_definition": "A diverse, bass-heavy electronic dance music style originating from the UK's late-2000s dubstep scene, characterized by its mechanical sound design, emphasis on sub-bass, and fusion of various global electronic and percussive rhythms.",
+  "era": "Late 2000s–Present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:hard-drum",
+      "type": "genre",
+      "name": "Hard Drum"
+    },
+    {
+      "slug": "genre:bubblegum-bass",
+      "type": "genre",
+      "name": "Bubblegum Bass"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-funky",
+      "type": "genre",
+      "name": "UK Funky"
+    },
+    {
+      "slug": "genre:juke",
+      "type": "genre",
+      "name": "Juke"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-Dubstep"
+    },
+    {
+      "slug": "genre:deconstructed-club",
+      "type": "genre",
+      "name": "Deconstructed Club"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:sophie",
+      "type": "artist",
+      "name": "SOPHIE"
+    },
+    {
+      "slug": "artist:jamie-xx",
+      "type": "artist",
+      "name": "Jamie xx"
+    },
+    {
+      "slug": "artist:andy-stott",
+      "type": "artist",
+      "name": "Andy Stott"
+    },
+    {
+      "slug": "artist:machinedrum",
+      "type": "artist",
+      "name": "Machinedrum"
+    },
+    {
+      "slug": "artist:kelela",
+      "type": "artist",
+      "name": "Kelela"
+    },
+    {
+      "slug": "artist:shackleton",
+      "type": "artist",
+      "name": "Shackleton"
+    },
+    {
+      "slug": "artist:peverelist",
+      "type": "artist",
+      "name": "Peverelist"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:night-slugs",
+      "type": "label",
+      "name": "Night Slugs"
+    },
+    {
+      "slug": "label:hessle-audio",
+      "type": "label",
+      "name": "Hessle Audio"
+    },
+    {
+      "slug": "label:swamp-81",
+      "type": "label",
+      "name": "Swamp 81"
+    },
+    {
+      "slug": "label:numbers",
+      "type": "label",
+      "name": "Numbers."
+    },
+    {
+      "slug": "label:pc-music",
+      "type": "label",
+      "name": "PC Music"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:in-colour",
+      "type": "project",
+      "name": "In Colour"
+    },
+    {
+      "slug": "project:faith-in-strangers",
+      "type": "project",
+      "name": "Faith in Strangers"
+    },
+    {
+      "slug": "project:room",
+      "type": "project",
+      "name": "Room(s)"
+    },
+    {
+      "slug": "project:take-me-apart",
+      "type": "project",
+      "name": "Take Me Apart"
+    }
+  ],
+  "landmark_tracks": []
+}

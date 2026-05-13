@@ -1,0 +1,90 @@
+{
+  "slug": "genre:berlin-school-of-electronic-music",
+  "name": "Berlin school of electronic music",
+  "editorial_article": "The Berlin School of electronic music emerged in the early 1970s as a foundational movement within the wider landscape of West German experimental music, frequently overlapping with the broader, more eclectic 'Krautrock' scene. Centered in Berlin, this genre is defined by its revolutionary approach to electronic instrumentation, relying heavily on modular analog synthesizers and tape-based sequencing rather than conventional song structures or percussion. Artists within this movement—most notably Tangerine Dream, Klaus Schulze, and Manuel Göttsching (through his work as Ashra)—pioneered a style characterized by expansive, multi-layered soundscapes that prioritized texture and evolution over rhythm. \n\nA quintessential Berlin School composition often unfolds as a lengthy, immersive journey, where repetitive, sequencer-generated pulses create a hypnotic foundation upon which delicate, improvisational lead melodies are woven. Unlike contemporary electronic forms that favored the strict, repetitive beats of early disco or pop, the Berlin School sought to explore the 'inner space' of sound, creating atmosphere and drama through the manipulation of filter resonances and evolving synthesizer modulation. This aesthetic, immortalized on landmark albums such as Tangerine Dream’s 'Phaedra' and Klaus Schulze’s 'X', not only set the template for modern ambient and trance music but also provided a sophisticated blueprint for what electronic music could achieve as a purely expressive, non-narrative art form. Its influence remains profound, continuing to resonate through contemporary ambient, space music, and experimental electronic sound design.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/berlin-school/",
+      "title": "Berlin School - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://sonicstate.com/news/2015/06/09/the-berlin-school-of-electronic-music-1969-1980/",
+      "title": "The Berlin School Of Electronic Music (1969-1980) - Sonicstate"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Berlin_School",
+      "title": "Berlin School | Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:11.587Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of electronic music defined by long-form, sequencer-driven compositions, atmospheric synthesizer textures, and the intentional avoidance of traditional, percussion-heavy rhythms in favor of hypnotic, evolving soundscapes. Originating in West Berlin during the early 1970s, it stands as a pivotal development in progressive electronic music, deeply linked to the experimental ethos of the broader Krautrock movement.",
+  "era": "1970s",
+  "origin": "West Berlin, Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra"
+    },
+    {
+      "slug": "artist:edgar-froese",
+      "type": "artist",
+      "name": "Edgar Froese"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:phaedra",
+      "type": "project",
+      "name": "Phaedra"
+    },
+    {
+      "slug": "project:x",
+      "type": "project",
+      "name": "X"
+    },
+    {
+      "slug": "project:rubycon",
+      "type": "project",
+      "name": "Rubycon"
+    },
+    {
+      "slug": "project:timewind",
+      "type": "project",
+      "name": "Timewind"
+    }
+  ],
+  "landmark_tracks": []
+}

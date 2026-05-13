@@ -1,0 +1,99 @@
+{
+  "slug": "artist:four-tet",
+  "name": "Four Tet",
+  "editorial_article": "Kieran Hebden, known professionally as Four Tet, is a highly influential British electronic musician whose career has bridged the gap between post-rock experimentation, folktronica, and modern dance music. Born in Putney, London, in 1977, Hebden first emerged in the mid-1990s as a member of the post-rock trio Fridge. However, he achieved widespread critical acclaim under the Four Tet moniker, starting with the fusion of hip-hop rhythms and jazz textures found on his 1999 debut album, 'Dialogue'. \\n\\nThroughout the early 2000s, Hebden became synonymous with the \"folktronica\" movement, a sound characterized by his masterful use of samplers and keyboards to weave together acoustic textures, pastoral atmospheres, and intricate electronic production. Landmark releases such as 'Pause' (2001) and the widely praised 'Rounds' (2003) solidified his reputation as a genre-bending composer. Over the decades, his aesthetic has evolved significantly; while his early work leaned toward organic, folk-influenced IDM, his later output has moved closer to club-oriented sounds, house, and experimental dance music, often released through his own Text Records imprint. Known for his collaborative spirit, Hebden has worked with legends such as Steve Reid, Thom Yorke, and Burial, and has produced for diverse artists ranging from Omar Souleyman to Madlib, maintaining a prolific presence that defines his status as a central pillar of contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Four_Tet",
+      "title": "Four Tet - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/dj/fourtet/biography",
+      "title": "Four Tet · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:39.184Z",
+  "type": "artist",
+  "editorial_bio": "Kieran Hebden, known professionally as Four Tet, is a highly influential British electronic musician whose career has bridged the gap between post-rock experimentation, folktronica, and modern dance music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Four_Tet_2004-04-04_%28cropped%29.jpg/250px-Four_Tet_2004-04-04_%28cropped%29.jpg",
+  "origin": "Putney, London, England",
+  "active_years": "1995–present",
+  "genres": [
+    {
+      "slug": "genre:folktronica",
+      "type": "genre",
+      "name": "Folktronica"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    },
+    {
+      "slug": "label:text-records",
+      "type": "label",
+      "name": "Text Records"
+    },
+    {
+      "slug": "label:output-recordings",
+      "type": "label",
+      "name": "Output Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dialogue",
+      "type": "project",
+      "name": "Dialogue"
+    },
+    {
+      "slug": "project:pause",
+      "type": "project",
+      "name": "Pause"
+    },
+    {
+      "slug": "project:rounds",
+      "type": "project",
+      "name": "Rounds"
+    },
+    {
+      "slug": "project:everything-ecstatic",
+      "type": "project",
+      "name": "Everything Ecstatic"
+    },
+    {
+      "slug": "project:there-is-love-in-you",
+      "type": "project",
+      "name": "There Is Love in You"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:as-serious-as-your-life",
+      "type": "track",
+      "name": "As Serious as Your Life"
+    },
+    {
+      "slug": "track:my-angel-rocks-back-and-forth",
+      "type": "track",
+      "name": "My Angel Rocks Back and Forth"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

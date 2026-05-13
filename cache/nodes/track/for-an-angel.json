@@ -1,0 +1,48 @@
+{
+  "slug": "track:for-an-angel",
+  "name": "For An Angel",
+  "editorial_article": "\"For an Angel\" stands as one of the most defining and enduring anthems in the history of electronic dance music. Written and produced by the German pioneer Paul van Dyk, the track made its initial appearance in 1994 as part of his debut studio album, 45 RPM, released on the influential MFS label. However, it was the 1998 re-release, featuring the iconic \"E-Werk Remix\"—a direct tribute to the legendary Berlin nightclub where van Dyk held a residency—that truly cemented the song’s status as a global trance classic. \\n\\nCharacterized by its soaring, melodic synths, a driving, euphoric bassline, and an infectious sense of emotional progression, \"For an Angel\" encapsulates the \"uplifting trance\" sound that dominated late-90s dance floors. Its production, crafted using a hardware-heavy setup including the Roland Juno-60, Juno-106, JX-1, and TR-808, balances raw vintage warmth with a polished, anthem-sized arrangement. The track's cultural impact is profound; it has been consistently ranked among the greatest dance records of all time by major publications like Mixmag and remains a centerpiece of Paul van Dyk’s live sets, often utilized as a climactic closing track that unites audiences. Its longevity is further evidenced by its continued relevance, spawning multiple re-releases, remixes, and high-profile samples, such as the 2022 collaboration with Topic, Robin Schulz, and Nico Santos. More than just a song, \"For an Angel\" serves as a bridge between the underground acid and techno scenes of early 90s Berlin and the massive, melodic, and stadium-ready trance movement that followed.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/For_an_Angel",
+      "title": "For an Angel - Wikipedia"
+    },
+    {
+      "url": "https://djmag.com/watch/paul-van-dyk-angel-making-of-trance-classic",
+      "title": "Paul van Dyk 'For An Angel' | The making of a trance classic | DJ Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:29.101Z",
+  "type": "track",
+  "editorial_teaser": "Widely considered one of the most influential trance tracks of all time, Paul van Dyk’s \"For an Angel\" is a soaring, melodic masterpiece that helped define the uplifting sound of the late 1990s.",
+  "year": "1994",
+  "artists": [
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk"
+    }
+  ],
+  "project": {
+    "slug": "project:45-rpm",
+    "type": "project",
+    "name": "45 RPM"
+  },
+  "genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "artist:luigi-nono",
+  "name": "Luigi Nono",
+  "editorial_article": "Luigi Nono (1924–1990) was a towering figure of the post-war European avant-garde, renowned for his uncompromising synthesis of serialist rigor and radical political commitment. Born in Venice, Nono studied under Bruno Maderna and Hermann Scherchen, emerging in the early 1950s as a key voice in the Darmstadt circle. His music often served as a vehicle for his ardent communist ideals, creating a sonic language that interrogated power, history, and the human condition. Nono’s early work, such as 'Il canto sospeso' (1955–56), utilized extreme fragmentation of melody to deliver profound emotional and ethical weight, setting letters from victims of Nazi persecution to a disorienting, sparse musical landscape. Throughout his career, Nono's commitment to the 'mural' form—large-scale works like the opera 'Intolleranza 1960'—challenged the boundaries of conventional operatic and orchestral theater, incorporating aleatory techniques and magnetic tape. \\n\\nIn his later years, Nono moved toward a more contemplative, ethereal space, heavily influenced by his explorations with live electronics at the Experimentalstudio der Heinrich-Strobel-Stiftung in Freiburg. Works like 'A Pierre: Dell’azzurro silenzio, inquietum' (1985) and the late orchestral meditation 'No hay caminos, hay que caminar' (1987) demonstrated a profound fascination with silence, spatialization, and the microscopic textures of sound. These late works, marked by long silences and hauntingly quiet instrumental passages, transcended his earlier, more aggressive political rhetoric while retaining the core of his humanistic vision. Nono remained a dedicated activist throughout his life, serving on the Central Committee of the Italian Communist Party, and his work remains essential for understanding the intersection of modernism, technological experimentation, and political agency in the 20th century.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Luigi-Nono",
+      "title": "Luigi Nono | 20th Century Italian Composer & Avant-Garde Innovator | Britannica"
+    },
+    {
+      "url": "https://ressources.ircam.fr/en/luigi-nono",
+      "title": "Biographie - Luigi Nono | Ressources IRCAM"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Luigi_Nono",
+      "title": "Luigi Nono - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:54.994Z",
+  "type": "artist",
+  "editorial_bio": "Luigi Nono (1924–1990) was a towering figure of the post-war European avant-garde, renowned for his uncompromising synthesis of serialist rigor and radical political commitment.",
+  "photo_url": "https://cdn.britannica.com/45/37745-004-0CDBFF93/Nono.jpg",
+  "origin": "Venice, Italy",
+  "genres": [
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical"
+    },
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ricordi",
+      "type": "label",
+      "name": "Ricordi"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:intolleranza-1960",
+      "type": "project",
+      "name": "Intolleranza 1960"
+    },
+    {
+      "slug": "project:il-canto-sospeso",
+      "type": "project",
+      "name": "Il canto sospeso"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:il-canto-sospeso",
+      "type": "track",
+      "name": "Il canto sospeso"
+    },
+    {
+      "slug": "track:intolleranza-1960",
+      "type": "track",
+      "name": "Intolleranza 1960"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bruno-maderna",
+      "type": "artist",
+      "name": "Bruno Maderna"
+    },
+    {
+      "slug": "artist:hermann-scherchen",
+      "type": "artist",
+      "name": "Hermann Scherchen"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

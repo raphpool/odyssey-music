@@ -1,0 +1,121 @@
+{
+  "slug": "artist:apparat",
+  "name": "Apparat",
+  "editorial_article": "Apparat is the primary solo project of Sascha Ring, a Berlin-based German electronic musician and producer who has significantly shaped the trajectory of contemporary experimental music. Born in Quedlinburg in 1978, Ring moved to Berlin in 1997, where he became a pivotal figure in the city's electronic scene. He was instrumental in helping manage the experimental techno label Shitkatapult, which released his debut album, Multifunktionsebene, in 2001. Initially recognized for his intricate, glitch-laden IDM and experimental techno, Apparat’s sonic evolution has been marked by a transition toward highly melodic, vocal-heavy, and orchestrally nuanced electronic pop. This shift became increasingly apparent with the release of Duplex (2003) and the acclaimed collaboration with Ellen Allien, Orchestra of Bubbles (2006). Throughout his career, Ring has masterfully balanced his introspective solo work with the high-energy, festival-ready output of Moderat, the supergroup he formed with the techno duo Modeselektor. His solo discography, including albums like The Devil's Walk (2011) and LP5 (2019), reflects a restless curiosity, often incorporating film and theater scores, such as the evocative Krieg und Frieden (2013). Apparat’s music is characterized by its emotive depth, where sophisticated programming meets organic instrumentation, creating a sound that is both technically dense and accessible. His ability to move between the cerebral requirements of underground experimentalism and the emotional resonance of modern songcraft has made him a defining voice in European electronic music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/apparat-mn0000927009",
+      "title": "Apparat Songs, Albums, Reviews, Bio & More | A... | AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/artist/50406-Apparat?srsltid=AfmBOopX0X9QwPHFYhuH9etgfdRLSfSEM35PZPIoY165IC-rn0VK85_Y",
+      "title": "Apparat Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:57.618Z",
+  "type": "artist",
+  "editorial_bio": "Apparat is the moniker of German electronic producer Sascha Ring, known for his evolution from abrasive glitch techno to introspective, orchestrally layered electronic pop. As an associate of the label Shitkatapult and a core member of the supergroup Moderat, he has been a central figure in the Berlin electronic scene since the late 1990s.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000927009/400/632Ykb2gTacro0vjZpXjJZhUoDg0hsvx4F4sL4oO-nA=.jpg",
+  "origin": "Quedlinburg, Germany",
+  "active_years": "1990s-2020s",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno"
+    },
+    {
+      "slug": "genre:indie-electronic",
+      "type": "genre",
+      "name": "Indie Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:shitkatapult",
+      "type": "label",
+      "name": "Shitkatapult"
+    },
+    {
+      "slug": "label:mute",
+      "type": "label",
+      "name": "Mute"
+    },
+    {
+      "slug": "label:monkeytown-records",
+      "type": "label",
+      "name": "Monkeytown Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:multifunktionsebene",
+      "type": "project",
+      "name": "Multifunktionsebene"
+    },
+    {
+      "slug": "project:duplex",
+      "type": "project",
+      "name": "Duplex"
+    },
+    {
+      "slug": "project:walls",
+      "type": "project",
+      "name": "Walls"
+    },
+    {
+      "slug": "project:the-devil-s-walk",
+      "type": "project",
+      "name": "The Devil's Walk"
+    },
+    {
+      "slug": "project:krieg-und-frieden",
+      "type": "project",
+      "name": "Krieg und Frieden (Music for Theatre)"
+    },
+    {
+      "slug": "project:lp5",
+      "type": "project",
+      "name": "LP5"
+    },
+    {
+      "slug": "project:a-hum-of-maybe",
+      "type": "project",
+      "name": "A Hum of Maybe"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:black-water",
+      "type": "track",
+      "name": "Black Water"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor"
+    },
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat"
+    }
+  ]
+}

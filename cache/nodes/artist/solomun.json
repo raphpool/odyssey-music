@@ -1,0 +1,59 @@
+{
+  "slug": "artist:solomun",
+  "name": "Solomun",
+  "editorial_article": "Mladen Solomun, known professionally simply as Solomun, is a highly influential Croatian-Bosnian DJ and producer who became a cornerstone of the modern house music scene from his base in Hamburg, Germany. Emerging in the mid-2000s, he co-founded the Diynamic Music label in 2006 alongside Adriano Martino and Magdalena, which served as a crucial platform for both his own productions and those of a new generation of electronic artists. Solomun is celebrated for a sound that bridges the gap between deep, emotive melodies and floor-filling house grooves, often prioritizing a sense of narrative and atmosphere in his extended DJ sets. He rose to international prominence through his residencies in Ibiza, most notably the \"Solomun +1\" concept at Pacha, which redefined club nights on the island by shifting the focus to intimate, single-guest collaborative performances. Renowned for his prolific output of remixes—ranging from indie acts like Lana Del Rey and Foals to underground electronic peers—Solomun is regarded as an \"honest entertainer\" whose sets focus on human connection and communal experience rather than mere technical spectacle. His philosophy, summarized by his mantra \"Nobody is not loved,\" has cemented his status as a permanent fixture at major festivals and clubs worldwide, cementing his role as a key architect of the melodic house sound that dominated much of the 2010s.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/solomun/biography",
+      "title": "Solomun · Biography - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:51.495Z",
+  "type": "artist",
+  "editorial_bio": "Mladen Solomun, known professionally simply as Solomun, is a highly influential Croatian-Bosnian DJ and producer who became a cornerstone of the modern house music scene from his base in Hamburg, Germany.",
+  "origin": "Hamburg, Germany",
+  "active_years": "2005-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:diynamic-music",
+      "type": "label",
+      "name": "Diynamic Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dance-baby",
+      "type": "project",
+      "name": "Dance Baby"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:kackvogel",
+      "type": "track",
+      "name": "Kackvogel"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

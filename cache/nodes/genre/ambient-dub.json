@@ -1,0 +1,101 @@
+{
+  "slug": "genre:ambient-dub",
+  "name": "Ambient Dub",
+  "editorial_article": "Ambient dub is a hypnotic, experimental subgenre that emerged in the early 1990s, primarily in the United Kingdom. It represents a foundational synthesis of two seemingly disparate worlds: the cavernous, bass-heavy studio-as-instrument ethos of Jamaican dub and the expansive, beatless soundscapes of ambient electronic music. By applying the \"dubwise\" techniques—such as extreme use of spring reverbs, tape delays, and live-manipulated filtering—to the synthesizer-led textures of ambient and ambient house, producers created a style that was both deeply immersive and physically resonant. The music is characterized by its focus on \"negative space,\" where long, drawn-out synth pads, field recordings, and fragmentary vocal snippets are layered over simple, warm sub-bass patterns. \\n\\nHistorically, the genre crystallized as artists sought to move beyond the high-energy demands of contemporary dance music, looking instead toward the \"chill-out rooms\" of UK club culture for inspiration. Influential labels and compilations, such as Beyond’s *Ambient Dub* series, helped define the aesthetic during the 90s. As the decade progressed, the genre’s DNA bled into various other electronic styles, acting as a crucial bridge between reggae-inflected sounds and the rise of dub techno in Berlin and Detroit, as well as the more experimental, grit-heavy sounds of illbient. Because the genre relies more on performance-based mixing techniques than rigid composition, it remains a vital reference point for modern producers exploring minimal, meditative electronic music that still maintains a tangible, tactile connection to its roots. Its legacy persists in contemporary music through the continued importance of spatial design and the transformative power of the mixing desk.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/ambient-dub",
+      "title": "Ambient Dub - Melodigging"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/ambient-dub/",
+      "title": "Ambient Dub - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:57.475Z",
+  "type": "genre",
+  "editorial_definition": "A fusion genre that combines the expansive, atmospheric textures of ambient music with the heavy bass, rhythmic space, and echo-drenched production techniques of Jamaican dub.",
+  "era": "Early 1990s–present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:illbient",
+      "type": "genre",
+      "name": "Illbient"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    },
+    {
+      "slug": "artist:jah-wobble",
+      "type": "artist",
+      "name": "Jah Wobble"
+    },
+    {
+      "slug": "artist:banco-de-gaia",
+      "type": "artist",
+      "name": "Banco de Gaia"
+    },
+    {
+      "slug": "artist:higher-intelligence-agency",
+      "type": "artist",
+      "name": "Higher Intelligence Agency"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:beyond",
+      "type": "label",
+      "name": "Beyond"
+    },
+    {
+      "slug": "label:planet-dog",
+      "type": "label",
+      "name": "Planet Dog"
+    },
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "Fax +49-69/450464"
+    },
+    {
+      "slug": "label:axiom",
+      "type": "label",
+      "name": "Axiom"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

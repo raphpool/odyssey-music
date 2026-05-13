@@ -1,0 +1,56 @@
+{
+  "slug": "artist:john-acquaviva",
+  "name": "John Acquaviva",
+  "editorial_article": "John Acquaviva (born 19 November 1963, Orsara di Puglia, Italy) is a foundational figure in the global techno movement, celebrated as both a DJ, producer, and a serial entrepreneur who reshaped the digital music landscape. Relocating from Italy to Canada, Acquaviva became a central architect of the Detroit techno scene in the late 1980s. He is perhaps best known for co-founding the legendary Plus 8 Records with Richie Hawtin in 1989—a label that served as a crucible for early 1990s techno and fostered the careers of many influential artists. Acquaviva’s influence extends far beyond his own discography; he was a key proponent of early digital DJing technology like Final Scratch and was a founding partner of Beatport, the definitive digital storefront for electronic dance music. Throughout his career, which includes running the tech-house focused label Definitive Recordings, Acquaviva has maintained a balance between artistic innovation and industrial vision, remaining a permanent fixture on the international circuit. His production work, characterized by precise, driving techno and tech-house aesthetics, has consistently resonated with dance floors worldwide, making him one of the most enduring figures in the evolution of electronic dance music. Over the decades, his influence as a tastemaker and his dedication to the development of the electronic music industry have solidified his status as an industry visionary, linking the early warehouse days of Detroit to the modern era of global digital dance culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/John_Acquaviva",
+      "title": "John Acquaviva - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:44.496Z",
+  "type": "artist",
+  "editorial_bio": "John Acquaviva (born 19 November 1963, Orsara di Puglia, Italy) is a foundational figure in the global techno movement, celebrated as both a DJ, producer, and a serial entrepreneur who reshaped the digital music landscape.",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech house"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:plus-8",
+      "type": "label",
+      "name": "Plus 8"
+    },
+    {
+      "slug": "label:definitive-recordings",
+      "type": "label",
+      "name": "Definitive Recordings"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

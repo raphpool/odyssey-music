@@ -1,0 +1,54 @@
+{
+  "slug": "track:xmas-evet10-120",
+  "name": "XMAS_EVET10 [120] [thanaton3 mix]",
+  "editorial_article": "\"XMAS_EVET10 [120][thanaton3 mix]\" is a sprawling, intricate electronic composition by the pioneering producer Aphex Twin (Richard D. James). Originally released as the concluding track on his 2014 album \"Syro,\" the piece is a definitive example of his signature synthesis of high-tempo complexity and melodic melancholy. Clocking in at over ten minutes, the track is renowned among fans for its evolution from a frantic, rhythmic base into a lush, expansive soundscape. Its title, like much of James’s discography, follows his idiosyncratic naming conventions—often referencing live performances, technical BPM data, or personal shorthand. The \"thanaton3 mix\" variant became synonymous with the \"Metz track,\" a piece that had circulated among bootleggers and fans for years following a 2010 live performance in Metz, France, before finally receiving a studio release. \"Syro\" itself served as a massive cultural touchpoint upon release, marking James's return to studio album production after a thirteen-year hiatus. The track encapsulates the dual nature of \"Syro\"—simultaneously celebrating the crisp, modern production techniques James honed over the intervening years, while retaining the emotional unpredictability and sonic density that defined his earliest work. Through its shifting percussion, melodic interplay, and progressive structure, it remains a standout moment in the artist's vast catalog, illustrating his ability to balance chaotic electronic architecture with genuine, resonant feeling.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/xmas-evet10-120-thanaton3-mix",
+      "title": "XMAS_EVET10 [120][thanaton3 mix] | Aphex Twin"
+    },
+    {
+      "url": "https://genius.com/Aphex-twin-xmas-evet10-120-thanaton3-mix-lyrics",
+      "title": "Aphex Twin – XMAS_EVET10 [120][thanaton3 mix] Lyrics - Genius"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:04.508Z",
+  "type": "track",
+  "editorial_teaser": "A decade-long fan favorite finally realized, this sprawling ten-minute masterpiece from Aphex Twin's 2014 'Syro' album blends frenetic, complex drum programming with an emotional, unfolding melodic progression.",
+  "year": "2014",
+  "duration": "10:31",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:syro",
+    "type": "project",
+    "name": "Syro"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

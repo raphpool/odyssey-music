@@ -1,0 +1,56 @@
+{
+  "slug": "project:time-tourist",
+  "name": "Time Tourist",
+  "editorial_article": "'Time Tourist' is the seminal 1996 album by the electronic duo B12, released on the iconic Sheffield label Warp Records. Following their groundbreaking debut 'Electro-Soma' (1993), this record further solidified the project’s reputation as architects of the sound that would eventually be classified as 'intelligent dance music' or IDM. The album is characterized by its lush, atmospheric synthesis, intricate, stuttering rhythms, and a deep-seated connection to the melodic, soulful roots of Detroit techno. Throughout the record, Steve Rutter and Michael Golding craft a sonic journey that feels like a science-fiction narrative—a thematic choice amplified by the distinctive, futuristic design work of The Designers Republic.\n\nThe music on 'Time Tourist' moves between crystalline, ambient-leaning soundscapes and more rhythmic, mechanically precise compositions. Tracks like 'VOID/Comm' and 'Cymetry' demonstrate the duo's signature ability to balance technical complexity with a poignant, almost melancholic sense of melody. The work sits at the intersection of several sub-genres prevalent in the mid-90s UK underground, pulling from bleep techno, ambient, and early experimental electronic music. It is often cited for its dense layering and a cold, yet inviting, aesthetic that manages to feel both alien and human. Beyond the sound, the album is a landmark for its conceptual ambition; the intricate packaging and track naming conventions ('Game 01 / Levels 01-02 / Zones 01-05') suggest a video-game-inspired world-building that was ahead of its time, cementing its status as a cornerstone release of the era.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/b12/time-tourist-4/",
+      "title": "Time Tourist by B12 (Album, IDM): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    },
+    {
+      "url": "https://warprecords.bandcamp.com/album/time-tourist",
+      "title": "Time Tourist by B12, released 26 February 1996 - Warp Records Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:43.617Z",
+  "type": "project",
+  "editorial_pitch": "Released in 1996 on Warp Records, 'Time Tourist' is a foundational work of intelligent dance music (IDM) that blends Detroit techno aesthetics with ambient textures and sci-fi narrative concepts. Developed by the duo B12, the album acts as a sprawling, atmospheric soundscape that feels both futuristic and distinctly grounded in the bleep-techno lineage of the early nineties.",
+  "year": "1996",
+  "artists": [],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    },
+    {
+      "slug": "artist:michael-golding",
+      "type": "artist",
+      "name": "Michael Golding"
+    }
+  ],
+  "related_projects": []
+}

@@ -1,0 +1,103 @@
+{
+  "slug": "project:perfect-combination",
+  "name": "Perfect Combination",
+  "editorial_article": "Perfect Combination is the defining full-length studio album by the German Euro-disco duo Saphir, released in 1986 under the EMI label. Emerging during the height of the 1980s German disco scene, the project captures the polished, synthesizer-driven aesthetic characteristic of the era. Produced by the duo of Walter Gerke and Mick Hannes, the album was recorded at Hermes Music Studio in Kamen. Saphir’s sound is defined by infectious, rhythm-focused electronic arrangements, blending high-energy, danceable beats with polished pop melodies. \\n\\nThe tracklist features a mix of high-tempo dance tracks and mid-tempo synth-pop, such as the title track \"Perfect Combination,\" \"I Feel Good (I Feel Fine),\" and their rendition of \"The Witch-Queen Of New-Orleans.\" The production utilized C-lab computer systems, showcasing the technical precision that became a hallmark of European dance music in the mid-80s. While Saphir did not achieve the massive global crossover success of contemporaries like Modern Talking, Perfect Combination stands as a cult artifact of the Euro-disco subgenre, reflecting a specific period in European studio craftsmanship where programmed beats and melodic pop sensibility fused seamlessly to dominate regional charts and dance floors. The album remains a celebrated entry for fans of 80s synthesizer music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/1286431-Saphir-Perfect-Combination",
+      "title": "Saphir – Perfect Combination – Vinyl (LP, Album, Stereo), 1986 [r1286431] | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/artist/267703-Saphir",
+      "title": "Saphir Discography: Vinyl, CDs, & More"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:37.989Z",
+  "type": "project",
+  "editorial_pitch": "A quintessential slice of 1986 German Euro-disco, 'Perfect Combination' blends tight, synth-heavy production with the infectious, rhythm-driven pop melodies that defined the mid-80s European club sound.",
+  "year": "1986",
+  "artists": [
+    {
+      "slug": "artist:saphir",
+      "type": "artist",
+      "name": "Saphir"
+    }
+  ],
+  "label": {
+    "slug": "label:emi",
+    "type": "label",
+    "name": "EMI"
+  },
+  "genres": [
+    {
+      "slug": "genre:euro-disco",
+      "type": "genre",
+      "name": "Euro-disco"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:i-feel-good",
+      "type": "track",
+      "name": "I Feel Good (I Feel Fine)"
+    },
+    {
+      "slug": "track:the-witch-queen-of-new-orleans",
+      "type": "track",
+      "name": "The Witch-Queen Of New-Orleans"
+    },
+    {
+      "slug": "track:little-rock",
+      "type": "track",
+      "name": "Little Rock"
+    },
+    {
+      "slug": "track:through-your-eyes",
+      "type": "track",
+      "name": "Through Your Eyes"
+    },
+    {
+      "slug": "track:shot-in-the-night",
+      "type": "track",
+      "name": "Shot In The Night"
+    },
+    {
+      "slug": "track:perfect-combination",
+      "type": "track",
+      "name": "Perfect Combination"
+    },
+    {
+      "slug": "track:never-give-up",
+      "type": "track",
+      "name": "Never Give Up"
+    },
+    {
+      "slug": "track:storms-of-love",
+      "type": "track",
+      "name": "Storms Of Love"
+    },
+    {
+      "slug": "track:stand-up",
+      "type": "track",
+      "name": "Stand Up"
+    },
+    {
+      "slug": "track:i-am-alive",
+      "type": "track",
+      "name": "I Am Alive"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mick-hannes",
+      "type": "artist",
+      "name": "Mick Hannes"
+    },
+    {
+      "slug": "artist:walter-gerke",
+      "type": "artist",
+      "name": "Walter Gerke"
+    }
+  ],
+  "related_projects": []
+}

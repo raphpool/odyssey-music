@@ -1,0 +1,85 @@
+{
+  "slug": "genre:berlin-school",
+  "name": "Berlin School",
+  "editorial_article": "Berlin School emerged from the vibrant, experimental underground of West Berlin in the early 1970s, serving as a foundational pillar of electronic music. Rooted in the wider Kosmische Musik and krautrock movements, the genre rejected the verse-chorus structures of conventional rock in favor of immersive, long-form explorations. At its heart, Berlin School is a pursuit of atmosphere and hypnotic repetition, utilizing analog hardware—primarily Moog, ARP, and EMS synthesizers—to craft spacious, shifting sonic landscapes that invite deep, trance-like engagement.\\n\\nTechnologically, the genre was defined by the innovative use of step-sequencers (most notably the Moog 960), which allowed musicians to set up repeating ostinato patterns that could be manipulated in real-time. By muting steps, modulating filter cutoff frequencies, and transposing sequences while layering Mellotron pads or improvising modal guitar/keyboard solos, artists like Tangerine Dream and Klaus Schulze transformed electronic performance into a dynamic, architectural art form. Pieces were often built over slow harmonic movements or drone-like pedal points, creating a sense of weightlessness that resonated with the era’s 'cosmic' cultural aspirations.\\n\\nWhile the 1970s marked the classic era of the style, its influence has proven enduring. Throughout the 1980s, the aesthetic shifted toward soundtrack work and more polished digital textures, but the fundamental language of cyclical sequencing and textural development remained. In the decades since, a significant revival—supported by the resurgence of Eurorack and modular synthesis—has solidified Berlin School as a distinct and respected genre that continues to inform modern ambient, progressive electronic, and modular techno communities. It stands as a testament to the power of human interaction with generative machines, bridging the gap between cold circuitry and human musicality.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/berlin-school",
+      "title": "Berlin School - Melodigging"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Berlin_School",
+      "title": "Berlin School | Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:04.491Z",
+  "type": "genre",
+  "editorial_definition": "Berlin School is a genre of electronic music originating in early 1970s West Berlin, characterized by its reliance on long, evolving analog sequences, hypnotic arpeggiations, and expansive, atmospheric soundscapes created with modular synthesizers and tape effects.",
+  "era": "1970s–Present",
+  "origin": "West Berlin, Germany",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:kosmische-musik",
+      "type": "genre",
+      "name": "Kosmische Musik"
+    },
+    {
+      "slug": "genre:modular-synth",
+      "type": "genre",
+      "name": "Modular Synth"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra"
+    },
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:phaedra",
+      "type": "project",
+      "name": "Phaedra"
+    },
+    {
+      "slug": "project:timewind",
+      "type": "project",
+      "name": "Timewind"
+    },
+    {
+      "slug": "project:rubycon",
+      "type": "project",
+      "name": "Rubycon"
+    }
+  ],
+  "landmark_tracks": []
+}

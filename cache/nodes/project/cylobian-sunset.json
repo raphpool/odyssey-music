@@ -1,0 +1,35 @@
+{
+  "slug": "project:cylobian-sunset",
+  "name": "Cylobian Sunset",
+  "editorial_article": "Cylobian Sunset stands as a hallmark release in the discography of British electronic producer Cylob, capturing the nuanced, playful, and often jarring spirit of mid-90s Intelligent Dance Music (IDM). Released independently via the artist's own channels, the project is a testament to the versatility of the genre, moving seamlessly between aggressive, rhythmically complex tracks and fragile, ambient-leaning soundscapes. Listeners and critics alike have praised the album for its cohesive yet adventurous atmosphere, noting how tracks like \"Synek\" and \"Diof\" reflect a masterful command of digital synthesis and unconventional melodic structures. \\n\\nThe project is frequently highlighted for its cinematic quality, effectively utilizing texture and space to evoke a sense of \"robo-emo\"—a descriptor often applied by fans to characterize the balance between cold, calculated programming and genuine, heart-wrenching emotional depth. The influence of the Rephlex Records era is palpable throughout, with the production mirroring the mischievous, brain-bending melodic playfulness often associated with Aphex Twin. From the frantic, skittering beats of \"Ofid\" to the atmospheric weight of the title track, \"Cylobian Sunset\" remains a cornerstone for those interested in the evolution of IDM, continuing to resonate with listeners who value both technical precision and melodic charm. It remains a definitive entry point for exploring Cylob’s broad creative palette, offering a window into a period of electronic music where technical experimentation was deeply intertwined with thematic expression.",
+  "citations": [
+    {
+      "url": "https://cylob.bandcamp.com/album/cylobian-sunset",
+      "title": "Cylobian Sunset | Cylob"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:06.884Z",
+  "type": "project",
+  "editorial_pitch": "Cylobian Sunset is a captivating collection of IDM and ambient electronica from producer Cylob, showcasing a blend of skittering rhythms, feral melodies, and lush, cinematic soundscapes. The album is highly regarded for its distinct personality and emotive technicality, often drawing favorable comparisons to the innovative, off-kilter aesthetic pioneered by artists like Aphex Twin.",
+  "artists": [],
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

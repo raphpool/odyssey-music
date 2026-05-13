@@ -1,0 +1,67 @@
+{
+  "slug": "project:etudes-de-bruits",
+  "name": "Études de bruits",
+  "editorial_article": "\"Cinq études de bruits\" (Five Studies of Noises) stands as the foundational cornerstone of 20th-century electroacoustic music. Composed in 1948 by French engineer and composer Pierre Schaeffer at the Studio d'Essai in Paris, this series of five short compositions introduced the world to \"musique concrète\"—a radical departure from traditional composition that favored recorded, found sounds over the abstractions of written musical notation. Using phonograph discs and magnetic tape technology in its infancy, Schaeffer manipulated industrial and everyday sounds—including steam trains, spinning tops, saucepans, and human voices—to explore the physical properties of sound itself, moving away from melody and harmony to focus on rhythm and texture.\n\nThe collection is comprised of \"Étude aux chemins de fer\" (trains), \"Étude aux tourniquets\" (toy tops), \"Étude violette,\" \"Étude noire,\" and \"Étude pathétique.\" Each piece served as an experiment in what Schaeffer would later formalize as the \"sound object\" (objet sonore). By isolating and looping specific sounds, Schaeffer forced the listener to hear the raw material of reality as music, prefiguring the sampling and sound-collage techniques that would dominate electronic, hip-hop, and avant-garde music decades later. Premiering in 1948 during a radio broadcast titled \"Concert de bruits,\" the work fundamentally altered the trajectory of modern sound, cementing Schaeffer’s legacy as a pioneer who proved that any sound, when recorded and manipulated, possesses inherent musical potential. It remains a mandatory study for anyone interested in the origins of sound art and the transition from analog recording to modern electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cinq_%C3%A9tudes_de_bruits",
+      "title": "Cinq études de bruits - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/release/2713820-Pierre-Schaeffer-5-%C3%89tudes-De-Bruits-%C3%89tude-Aux-Objets?srsltid=AfmBOorUL8oocRetTJQBL1Z8WIK29_SsiBMgfRGVI5_mEQGhPuedzEc_",
+      "title": "Pierre Schaeffer – 5 Études De Bruits - Étude Aux Objets - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:00.557Z",
+  "type": "project",
+  "editorial_pitch": "\"Cinq études de bruits\" (Five Studies of Noises) stands as the foundational cornerstone of 20th-century electroacoustic music.",
+  "year": "1948",
+  "artists": [],
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique concrète"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:etude-aux-chemins-de-fer",
+      "type": "track",
+      "name": "Étude aux chemins de fer"
+    },
+    {
+      "slug": "track:etude-aux-tourniquets",
+      "type": "track",
+      "name": "Étude aux tourniquets"
+    },
+    {
+      "slug": "track:etude-violette",
+      "type": "track",
+      "name": "Étude violette"
+    },
+    {
+      "slug": "track:etude-noire",
+      "type": "track",
+      "name": "Étude noire"
+    },
+    {
+      "slug": "track:etude-pathetique",
+      "type": "track",
+      "name": "Étude pathétique"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    }
+  ],
+  "related_projects": []
+}

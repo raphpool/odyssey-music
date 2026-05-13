@@ -1,0 +1,59 @@
+{
+  "slug": "track:suspended-in-the-deep",
+  "name": "Suspended In The Deep",
+  "editorial_article": "\"Suspended In The Deep\" is a track by the British electronic producer DFRNT, originally released as part of his 2012 album, *Fading*, on the label Echodub. The composition serves as a representative piece of DFRNT’s signature aesthetic during this era, blending elements of dub techno, IDM, and post-dubstep into an atmospheric, immersive sonic space. Throughout *Fading*, DFRNT—the moniker of Alex—demonstrates a mastery of textured soundscapes, utilizing subtle rhythms, cavernous reverb, and rhythmic precision to create a sense of deep, liquid introspection. \\n\\nThe track is characteristic of the UK electronic underground of the early 2010s, where producers frequently explored the intersections between the club-focused weight of dubstep and the expansive, experimental production styles found in dub techno and ambient music. \"Suspended In The Deep\" functions as a tonal anchor for the album, characterized by its focus on hypnotic repetition, delicate harmonic shifts, and a polished, professional production quality that emphasizes space and \"depth\"—a recurring motif in the artist's work. The track invites the listener to navigate an expansive, aquatic-feeling environment, highlighting DFRNT's ability to maintain a compelling musical narrative through subtle shifts in texture rather than reliance on traditional song structures. As part of a pivotal release for Echodub, the track helped solidify the producer's reputation within the niche but influential circles of deep, dub-infused electronic music.",
+  "citations": [
+    {
+      "url": "https://edub.bandcamp.com/track/suspended-in-the-deep",
+      "title": "Suspended In The Deep | DFRNT | Echodub"
+    },
+    {
+      "url": "https://edub.bandcamp.com/album/fading",
+      "title": "Fading | DFRNT | Echodub"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:35.652Z",
+  "type": "track",
+  "editorial_teaser": "A masterclass in textured soundscapes, \"Suspended In The Deep\" sees UK producer DFRNT navigating an immersive, aquatic landscape of dub techno and IDM.",
+  "year": "2012",
+  "duration": "03:28",
+  "artists": [
+    {
+      "slug": "artist:dfrnt",
+      "type": "artist",
+      "name": "DFRNT"
+    }
+  ],
+  "project": {
+    "slug": "project:fading",
+    "type": "project",
+    "name": "Fading"
+  },
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:dfrnt",
+      "type": "artist",
+      "name": "DFRNT"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "label:scape",
+  "name": "~scape",
+  "editorial_article": "~scape is a highly influential Berlin-based record label founded in 1999 by electronic music pioneer Stefan Betke (best known for his project Pole) and Barbara Preisinger. The label served as a vital cornerstone for the experimental electronic scene of the early 2000s, carving out a distinct sonic identity that balanced the crackling, dub-influenced textures of Betke’s own work with the cerebral explorations of IDM, glitch, and minimal techno. During its most active years in the 2000s, ~scape acted as a hub for artists who were pushing the boundaries of digital production, often favoring subtle, granular synthesis and rhythmic playfulness over the more rigid structures found in dance music at the time.\n\nThe label’s catalog remains a testament to the versatility of experimental electronica. It featured releases from key figures such as Jan Jelinek, whose \"Tierbeobachtungen\" stands as a landmark of the genre, and Deadbeat, whose dub-drenched soundscapes were instrumental in bridging the gap between techno and Jamaican sound system culture. By fostering a community that embraced both acoustic-sounding textures and sophisticated digital manipulation, ~scape not only defined the \"Berlin sound\" of the early 2000s but also left an indelible mark on how producers approach texture and space in electronic music. Though the label’s primary active period spanned roughly 1999 to 2010, its influence continues to resonate through the works of its alumni and the enduring appreciation for the distinctively \"hazy\" aesthetic it championed.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/label/_scape/",
+      "title": "~scape - Music label - Rate Your Music"
+    },
+    {
+      "url": "https://www.discogs.com/label/1495-~scape?srsltid=AfmBOoouCdaaWJUjbz0VW-Owl8rkV7XTnAXNk5JeoMaxoJXzaQL4TykS",
+      "title": "~scape | Discogs"
+    },
+    {
+      "url": "https://ra.co/labels/886",
+      "title": "~scape · Record label · RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:37.744Z",
+  "type": "label",
+  "editorial_description": "An influential Berlin-based electronic label founded by Stefan Betke (Pole) and Barbara Preisinger, defining the minimal, dub-inflected glitch sound of the early 2000s.",
+  "founded": "1999",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    },
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole"
+    },
+    {
+      "slug": "artist:burnt-friedman",
+      "type": "artist",
+      "name": "Burnt Friedman"
+    },
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:tierbeobachtungen",
+      "type": "project",
+      "name": "Tierbeobachtungen"
+    },
+    {
+      "slug": "project:journeyman-s-annual",
+      "type": "project",
+      "name": "Journeyman’s Annual"
+    },
+    {
+      "slug": "project:123",
+      "type": "project",
+      "name": "123"
+    }
+  ]
+}

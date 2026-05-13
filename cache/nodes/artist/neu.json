@@ -1,0 +1,111 @@
+{
+  "slug": "artist:neu",
+  "name": "Neu!",
+  "editorial_article": "NEU! was a profoundly influential German experimental duo formed in Düsseldorf in 1971 by guitarist Michael Rother and drummer Klaus Dinger, both former members of Kraftwerk. Over the course of three seminal albums released between 1972 and 1975, the pair defined the \"motorik\" rhythm—a hypnotically steady, repetitive beat that acted as the bedrock for their expansive, texture-focused compositions. Their minimalist yet radical approach, heavily supported by the innovative engineering of producer Conny Plank, bridged the gap between ambient abstraction and the raw, driving energy of proto-punk. \\n\\nTheir debut, 'Neu!' (1972), introduced the iconic \"Hallogallo,\" showcasing a landscape of layered electric guitar and disciplined, pulse-driven percussion. 'Neu! 2' (1973) pushed boundaries further through experimental tape manipulation and remix techniques, while 'Neu! '75' (1975) starkly divided their dual creative instincts: one side captured Rother’s dreamy, ambient-leaning soundscapes, while the other—featuring Dinger’s harder-edged, proto-punk vocals and drumming—pointed toward the group's punk and post-punk legacy. By prioritizing repetitive, drone-like structures over conventional rock tropes, NEU! became a foundational influence on countless bands in the decades that followed, spanning art rock, industrial, and indie experimentalism. Their radical departure from song-based structures into pure, sustained kinetic energy remains a cornerstone of the Krautrock movement. The project's legacy as architects of repetitive, forward-leaning music helped usher in the era of post-punk and electronic art rock, influencing everyone from David Bowie to Stereolab and beyond. Their work remains a definitive example of how limited resources and distinct musical philosophies can coalesce into revolutionary art.",
+  "citations": [
+    {
+      "url": "https://jazzrocksoul.com/artists/neu/",
+      "title": "NEU! - JazzRockSoul.com"
+    },
+    {
+      "url": "https://www.discogs.com/artist/12636-Neu!?srsltid=AfmBOop_PC8yu6ibveAMyiIhQWHr5WGURzy3LRo9jK-YFw90FfFccojT",
+      "title": "Neu! Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:47.685Z",
+  "type": "artist",
+  "editorial_bio": "NEU! was a profoundly influential German experimental duo formed in Düsseldorf in 1971 by guitarist Michael Rother and drummer Klaus Dinger. Known for pioneering the \"motorik\" beat, they were a seminal force in the Krautrock scene.",
+  "photo_url": "https://jazzrocksoul.com/wp-content/uploads/2018/01/Neu.jpg",
+  "origin": "Düsseldorf, Germany",
+  "active_years": "1971-1975, 1985-1986",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:electronic-rock",
+      "type": "genre",
+      "name": "Electronic Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:neu",
+      "type": "project",
+      "name": "Neu!"
+    },
+    {
+      "slug": "project:neu-2",
+      "type": "project",
+      "name": "Neu! 2"
+    },
+    {
+      "slug": "project:neu-75",
+      "type": "project",
+      "name": "Neu! '75"
+    },
+    {
+      "slug": "project:neu-4",
+      "type": "project",
+      "name": "Neu! 4"
+    },
+    {
+      "slug": "project:neu-86",
+      "type": "project",
+      "name": "Neu! '86"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hallogallo",
+      "type": "track",
+      "name": "Hallogallo"
+    },
+    {
+      "slug": "track:negativland",
+      "type": "track",
+      "name": "Negativland"
+    },
+    {
+      "slug": "track:hero",
+      "type": "track",
+      "name": "Hero"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:michael-rother",
+      "type": "artist",
+      "name": "Michael Rother"
+    },
+    {
+      "slug": "artist:klaus-dinger",
+      "type": "artist",
+      "name": "Klaus Dinger"
+    }
+  ]
+}

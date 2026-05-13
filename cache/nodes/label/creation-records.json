@@ -1,0 +1,91 @@
+{
+  "slug": "label:creation-records",
+  "name": "Creation Records",
+  "editorial_article": "Creation Records stands as one of the most significant and influential British independent labels of the late 20th century, serving as a vital engine for the evolution of indie rock, shoegaze, and the defining sound of the Britpop era. Founded in 1983 in London by Alan McGee, Dick Green, and Joe Foster, the label was named in honor of the 1960s psychedelic group The Creation. From its inception, the label was defined by McGee’s punk-rock ethos, emerging as an essential, snarling counterpoint to the more polished, synthetic pop music dominating the UK charts. Early output was raw and fiercely DIY, showcasing acts like The Jesus and Mary Chain and Primal Scream, who captured the label's gritty, rebellious spirit. \\n\\nAs the 1980s turned into the 1990s, the label underwent a profound sonic evolution, embracing the ethereal, textured walls of sound characteristic of the shoegaze movement. The release of My Bloody Valentine’s landmark album 'Loveless' in 1991 remains a cornerstone of the label’s legacy, symbolizing the label's commitment to uncompromising artistic vision despite significant financial and production-related turmoil. Shortly after, the label’s trajectory changed irrevocably with the signing of Oasis. The massive global success of the Gallagher brothers propelled Creation from a revered indie outpost into the center of the mid-1990s Britpop phenomenon. While the label faced commercial pressures after selling a stake to Sony Music in 1992, it remained an influential cultural force until its closure in 1999. Creation Records did not merely distribute records; it curated a specific aesthetic sensibility that connected the aggressive energy of post-punk with the melodic sophistication of 90s alternative rock, leaving an indelible mark on the British musical landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Creation_Records",
+      "title": "Creation Records - Wikipedia"
+    },
+    {
+      "url": "https://www.vulture.com/article/guide-creation-records-alan-mcgee-britpop-indie-rock.html",
+      "title": "Creation Records, the Label History Loves to Overlook"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:20.075Z",
+  "type": "label",
+  "editorial_description": "A legendary British independent label founded in 1983 that became the epicenter of the UK's indie, shoegaze, and Britpop scenes. Over its sixteen-year run, it championed iconic acts like Oasis, My Bloody Valentine, and Primal Scream.",
+  "founded": "1983",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:oasis",
+      "type": "artist",
+      "name": "Oasis"
+    },
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine"
+    },
+    {
+      "slug": "artist:primal-scream",
+      "type": "artist",
+      "name": "Primal Scream"
+    },
+    {
+      "slug": "artist:the-jesus-and-mary-chain",
+      "type": "artist",
+      "name": "The Jesus and Mary Chain"
+    },
+    {
+      "slug": "artist:ride",
+      "type": "artist",
+      "name": "Ride"
+    },
+    {
+      "slug": "artist:slowdive",
+      "type": "artist",
+      "name": "Slowdive"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:loveless",
+      "type": "project",
+      "name": "Loveless"
+    },
+    {
+      "slug": "project:definitely-maybe",
+      "type": "project",
+      "name": "Definitely Maybe"
+    },
+    {
+      "slug": "project:xtrmntr",
+      "type": "project",
+      "name": "XTRMNTR"
+    }
+  ]
+}

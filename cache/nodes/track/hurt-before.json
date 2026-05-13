@@ -1,0 +1,62 @@
+{
+  "slug": "track:hurt-before",
+  "name": "Hurt Before",
+  "editorial_article": "\"Hurt Before\" is a track by the Irish Celtic pop band The Corrs, featured on their commercially successful 2000 studio album, \"In Blue.\" Written by the four members of the band—Andrea, Caroline, Jim, and Sharon Corr—the song showcases the group's signature blend of traditional Irish instrumentation, particularly Andrea Corr’s tin whistle, alongside contemporary pop-rock production. The track serves as a reflective, mid-tempo ballad that sits within the lush, radio-friendly soundscape that defined the band's peak global popularity at the turn of the millennium. \n\nMusically, \"Hurt Before\" exemplifies the polished, multi-layered arrangements that characterized \"In Blue,\" an album recorded across various studios with producers including Mitchell Froom and the band members themselves. The track utilizes a clean, driving pop aesthetic—incorporating programming and synths—while grounding itself in the family band's core vocal harmonies and instrumental interplay. As a song, it captures a sense of emotional vulnerability and resignation, themes common in their songwriting during this era. Its inclusion on \"In Blue\" was significant as the album marked a stylistic pivot for the band toward a more mainstream, adult-contemporary sound, which helped propel them to international stardom. The professional quality of the production, involving industry veterans like mastering engineer Bob Ludwig, highlights the high-budget approach Atlantic Records took to ensure the band's cross-over success. Even years later, the track remains a touchstone for listeners of late-nineties and early-two-thousands pop-rock, representing a bridge between their Celtic roots and the global pop market.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/watch?v=RjMdisGVwg8",
+      "title": "Hurt Before - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:05.164Z",
+  "type": "track",
+  "editorial_teaser": "\"Hurt Before\" is a track by the Irish Celtic pop band The Corrs, featured on their commercially successful 2000 studio album, \"In Blue.\" Written by the four members of the band—Andrea, Caroline, Jim, and Sharon Corr—the song showcases the group's signature blend of traditional Ir",
+  "artists": [],
+  "project": {
+    "slug": "project:in-blue",
+    "type": "project",
+    "name": "In Blue"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:celtic-pop",
+      "type": "genre",
+      "name": "Celtic pop"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:andrea-corr",
+      "type": "artist",
+      "name": "Andrea Corr"
+    },
+    {
+      "slug": "artist:caroline-corr",
+      "type": "artist",
+      "name": "Caroline Corr"
+    },
+    {
+      "slug": "artist:jim-corr",
+      "type": "artist",
+      "name": "Jim Corr"
+    },
+    {
+      "slug": "artist:sharon-corr",
+      "type": "artist",
+      "name": "Sharon Corr"
+    },
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

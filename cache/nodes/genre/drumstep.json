@@ -1,0 +1,98 @@
+{
+  "slug": "genre:drumstep",
+  "name": "Drumstep",
+  "editorial_article": "Drumstep emerged in the late 2000s and early 2010s as a high-energy fusion of two pillars of bass music: Drum and Bass (specifically the frantic, aggressive textures of Jump-Up) and the heavy, metallic wobbles of modern Dubstep (particularly Brostep). While Drum and Bass typically moves at a breakneck 170-175 beats per minute (BPM), Dubstep is traditionally slower, hovering around 140 BPM with a distinct half-time feel. Drumstep bridges this gap by applying the rhythmic structures and sound design palette of Dubstep—characterized by its abrasive bass patches and aggressive synths—to the faster, high-tempo canvas of Drum and Bass.\n\nThe genre is defined by its versatility. It maintains the rapid-fire energy required for high-tempo dance floors while utilizing the complex, mid-range frequency manipulation that made Brostep a global phenomenon during the early 2010s. Because of its flexibility, the sound quickly spawned various offshoots, including Melodic Drumstep, which incorporates more atmospheric pads and ethereal vocal chops, as well as hybrid variants that borrow from Neurofunk's intricate, metallic percussion. By combining the \"half-time\" feel of Dubstep with the sheer kinetic pace of DnB, Drumstep provided a bridge for fans of both styles, becoming a staple of the festival circuit during the mid-2010s. It remains a definitive sound for producers seeking to maximize dynamic impact through a contrast between high-speed drums and heavy, modulated basslines. Its evolution highlights the broader trend of genre-blending in the digital age, where producers freely borrow rhythmic DNA across disparate BPM territories to create intense, hybrid floor-fillers.",
+  "citations": [
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Drumstep",
+      "title": "Drumstep | Electronic Music Wiki | Fandom"
+    },
+    {
+      "url": "https://monstercat.fandom.com/wiki/Drumstep",
+      "title": "Drumstep | Monstercat Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:05.757Z",
+  "type": "genre",
+  "editorial_definition": "Drumstep is a hybrid electronic dance music genre that fuses the high-tempo, breakbeat-driven energy of Drum and Bass with the aggressive, bass-heavy sound design and rhythmic focus of Dubstep and Brostep.",
+  "era": "Late 2000s - Present",
+  "origin": "United Kingdom / International",
+  "sonic_markers": "Fast-paced tempos (170-175 BPM), half-time rhythmic structures, metallic or modulated bass patches, aggressive sound design, high-energy percussion.",
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:melodic-drumstep",
+      "type": "genre",
+      "name": "Melodic Drumstep"
+    },
+    {
+      "slug": "genre:liquid-drumstep",
+      "type": "genre",
+      "name": "Liquid Drumstep"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:jump-up",
+      "type": "genre",
+      "name": "Jump-Up"
+    },
+    {
+      "slug": "genre:neurofunk",
+      "type": "genre",
+      "name": "Neurofunk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tristam",
+      "type": "artist",
+      "name": "Tristam"
+    },
+    {
+      "slug": "artist:knife-party",
+      "type": "artist",
+      "name": "Knife Party"
+    },
+    {
+      "slug": "artist:roy-knox",
+      "type": "artist",
+      "name": "Roy Knox"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:bonfire",
+      "type": "track",
+      "name": "Bonfire"
+    },
+    {
+      "slug": "track:flight",
+      "type": "track",
+      "name": "Flight"
+    },
+    {
+      "slug": "track:lost-in-sound",
+      "type": "track",
+      "name": "Lost in Sound"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "track:hyph-mngo",
+  "name": "Hyph Mngo",
+  "editorial_article": "Released in 2009, \"Hyph Mngo\" by British producer Joy Orbison is a landmark track that acted as a bridge between the darkening, bass-heavy sounds of dubstep and the brighter, more melodic textures of post-dubstep and future garage. As Joy Orbison's debut single, the track was an immediate sensation in the UK underground dance scene, moving through clubs and radio sets before its official release on Hotflush Recordings. \n\nIts production is characterized by a \"gloriously epic\" and euphoric sensibility, blending propulsive garage rhythms with spacious, atmospheric synth lines that felt distinct from the grimier aesthetic dominating much of the dubstep landscape at the time. The track was widely praised for its ability to balance emotional resonance with dancefloor functionality, quickly earning \"anthem\" status among DJs. Its influence was immense, frequently cited by music critics as a pivotal turning point that opened up new sonic possibilities for electronic producers in the early 2010s, signaling a seismic shift toward more hybridized, experimental dance music. Critics and publications like Fact and Pitchfork heralded it as one of the defining tracks of its era, marking the arrival of one of the most innovative voices in modern electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hyph_Mngo",
+      "title": "Hyph Mngo - Wikipedia"
+    },
+    {
+      "url": "https://djmag.com/features/10-years-joy-how-hyph-mngo-changed-game",
+      "title": "10 years of Joy: how 'Hyph Mngo' changed the game - DJ Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:46.898Z",
+  "type": "track",
+  "editorial_teaser": "Released in 2009, \"Hyph Mngo\" by British producer Joy Orbison is a landmark track that acted as a bridge between the darkening, bass-heavy sounds of dubstep and the brighter, more melodic textures of post-dubstep and future garage.",
+  "year": "2009",
+  "artists": [
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison"
+    }
+  ],
+  "project": {
+    "slug": "project:hyph-mngo-wet-look",
+    "type": "project",
+    "name": "Hyph Mngo / Wet Look"
+  },
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:future-garage",
+      "type": "genre",
+      "name": "Future Garage"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

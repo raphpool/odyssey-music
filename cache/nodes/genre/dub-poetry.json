@@ -1,0 +1,76 @@
+{
+  "slug": "genre:dub-poetry",
+  "name": "Dub poetry",
+  "editorial_article": "Dub poetry is a powerful form of performance art rooted in the Caribbean diaspora, emerging in the 1970s from the intersections of dub music and political consciousness. Originally burgeoning in Kingston, Jamaica, and finding profound expression in the immigrant communities of London and Toronto, the genre serves as a rhythmic, spoken-word conduit for social critique. Unlike the spontaneous, extemporized nature of dancehall toasting, dub poetry is characterized by prepared, highly rhythmic texts often delivered with dramatic intent. While many dub poets perform over carefully crafted reggae backing tracks, the genre also honors the a cappella tradition, where the poet’s own voice—laden with accentuation, cadence, and gestural nuance—serves as the primary instrument.\\n\\nAt its core, the genre is a tool for articulating the struggle, heritage, and socio-political reality of the black experience. Artists like Linton Kwesi Johnson, who coined the term in 1976, transformed the landscape with seminal works like *Dread Beat an' Blood*, establishing a precedent for intellectualizing the reggae rhythm as a foundation for poetry. Figures such as Oku Onuora, Benjamin Zephaniah, and Lillian Allen further expanded the genre’s reach, proving that the medium could bridge the gap between street-level activism and high-level literary performance. The music often incorporates studio techniques intrinsic to dub—such as echo, reverb, and heavy, atmospheric bass lines—creating an immersive, hypnotic environment that amplifies the poet's message. Today, dub poetry remains a vital cultural pillar, emphasizing collective voice, political defiance, and the enduring power of the spoken word in the face of injustice.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dub_poetry",
+      "title": "Dub poetry - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:21.628Z",
+  "type": "genre",
+  "editorial_definition": "A genre of performance poetry rooted in Jamaican reggae and dub music, characterized by rhythmically delivered spoken-word text focused on political and social commentary.",
+  "era": "1970s–Present",
+  "origin": "Kingston, Jamaica",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:linton-kwesi-johnson",
+      "type": "artist",
+      "name": "Linton Kwesi Johnson"
+    },
+    {
+      "slug": "artist:oku-onuora",
+      "type": "artist",
+      "name": "Oku Onuora"
+    },
+    {
+      "slug": "artist:benjamin-zephaniah",
+      "type": "artist",
+      "name": "Benjamin Zephaniah"
+    },
+    {
+      "slug": "artist:lillian-allen",
+      "type": "artist",
+      "name": "Lillian Allen"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:lkj-records",
+      "type": "label",
+      "name": "LKJ Records"
+    },
+    {
+      "slug": "label:ariwa-records",
+      "type": "label",
+      "name": "Ariwa Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:dread-beat-an-blood",
+      "type": "project",
+      "name": "Dread Beat an' Blood"
+    },
+    {
+      "slug": "project:reflection-in-red",
+      "type": "project",
+      "name": "Reflection In Red"
+    },
+    {
+      "slug": "project:revolutionary-tea-party",
+      "type": "project",
+      "name": "Revolutionary Tea Party"
+    },
+    {
+      "slug": "project:rasta",
+      "type": "project",
+      "name": "Rasta"
+    }
+  ],
+  "landmark_tracks": []
+}

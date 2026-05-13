@@ -1,0 +1,71 @@
+{
+  "slug": "genre:avant-garde",
+  "name": "Avant-Garde",
+  "editorial_article": "Avant-Garde music represents a persistent, trans-historical impulse toward radical innovation, experimentalism, and the active disruption of established musical norms. Rather than a specific stylistic template or rhythmic structure, it acts as a cultural state of mind, pushing the boundaries of what is considered audible, acceptable, or even musical. By its very nature, avant-garde music is often antagonistic toward the status quo, frequently utilizing dissonance, unconventional sound sources, silence, or the rejection of traditional tonality to challenge the listener's expectations and force a confrontation with the raw, unfamiliar potential of sound. Because it exists in a state of constant flux, the designation of \"avant-garde\" is inherently relative; what is perceived as shock-inducing or groundbreaking in one era may eventually be absorbed into the broader musical lexicon. From the experimental compositions of the early 20th century that rejected functional harmony to the rise of free jazz and the electronic investigations of the post-war era, the movement has consistently sought to redefine the relationship between creator, audience, and the medium itself. Iconic figures such as John Cage, whose silence-centered composition '4'33\"' serves as a defining conceptual pillar, illustrate the genre's tendency to prioritize intellectual and aesthetic challenge over mere entertainment. This ongoing dialogue between innovation and tradition ensures that avant-garde music remains the vanguard of artistic development, constantly testing the limits of human expression and daring to redefine the fundamental nature of music itself.",
+  "citations": [
+    {
+      "url": "https://www.classical-music.com/features/musical-terms/avant-garde-music",
+      "title": "Avant garde music: what it is and some famous examples of avant garde music - Classical Music"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/avant-garde-jazz-guide",
+      "title": "A Guide to the History of Avant-Garde Jazz - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:04.511Z",
+  "type": "genre",
+  "editorial_definition": "Avant-garde music refers to compositions that are innovative, experimental, and inherently subversive, intentionally bucking normative trends to challenge audience expectations. It is a fluid, trans-genre phenomenon that prioritizes artistic boundary-pushing and conceptual exploration over established musical rules.",
+  "era": "20th century to present",
+  "origin": "Western Europe and North America, early 20th century",
+  "parent_genres": [
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:free-jazz",
+      "type": "genre",
+      "name": "Free Jazz"
+    },
+    {
+      "slug": "genre:atonal-music",
+      "type": "genre",
+      "name": "Atonal music"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:arnold-schoenberg",
+      "type": "artist",
+      "name": "Arnold Schoenberg"
+    },
+    {
+      "slug": "artist:ornette-coleman",
+      "type": "artist",
+      "name": "Ornette Coleman"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:4-33",
+      "type": "track",
+      "name": "4'33\""
+    }
+  ]
+}

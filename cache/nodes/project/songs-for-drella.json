@@ -1,0 +1,51 @@
+{
+  "slug": "project:songs-for-drella",
+  "name": "Songs for Drella",
+  "editorial_article": "Songs for Drella, released in 1990, stands as one of the most significant and emotionally charged collaborations in rock history. Born from the shared grief of Lou Reed and John Cale—who had been estranged since their time together in the Velvet Underground—the project was conceived as a tribute to their mentor, Andy Warhol, who passed away in 1987. The album's title itself refers to \"Drella,\" a nickname for Warhol (a portmanteau of Dracula and Cinderella) that was known to his inner circle of \"Superstars\" at The Factory. Following a suggestion by painter Julian Schnabel, the two legends reconnected at Warhol's memorial service, eventually coalescing around the creation of this song cycle. Recorded in New York, the album is marked by a stripped-back, minimalist aesthetic that allows the narrative weight of the lyrics to take center stage. The songwriting is split between first-person perspectives—channeling Warhol himself—and direct reflections from Reed and Cale on their complicated relationship with the artist. The songs navigate Warhol's life chronologically, from his humble roots in Pittsburgh to his ascension as an icon of Pop Art, and finally to his isolation and decline. The result is a work of immense vulnerability and precision, acting as both an exorcism of past demons and a profound act of artistic closure. While the tension between Reed and Cale was significant enough that it prevented a supporting tour, the project effectively paved the way for the eventual, albeit fleeting, reunion of the classic Velvet Underground lineup. It remains a definitive statement on the intersection of avant-garde art, rock music, and the complicated, often parasitic nature of fame.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Songs_for_Drella",
+      "title": "Songs for Drella - Wikipedia"
+    },
+    {
+      "url": "https://www.criterionchannel.com/songs-for-drella",
+      "title": "Songs for Drella - The Criterion Channel"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:30.408Z",
+  "type": "project",
+  "editorial_pitch": "A haunting, intimate song cycle and artistic reconciliation, Songs for Drella serves as Lou Reed and John Cale’s poignant tribute to their former mentor, Andy Warhol. Recorded following years of estrangement, this stark, minimalist masterpiece captures the complexities of Warhol’s life and the complicated legacy he left behind for his most famous protégés.",
+  "year": "1990",
+  "artists": [
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    }
+  ],
+  "label": {
+    "slug": "label:sire-records",
+    "type": "label",
+    "name": "Sire Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:minimalist-music",
+      "type": "genre",
+      "name": "Minimalist music"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

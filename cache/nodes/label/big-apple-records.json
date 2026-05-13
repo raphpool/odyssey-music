@@ -1,0 +1,76 @@
+{
+  "slug": "label:big-apple-records",
+  "name": "Big Apple Records",
+  "editorial_article": "Big Apple Records was an influential independent record label and retail store based in Croydon, South London, that became a central pillar in the birth and early development of the dubstep genre. Originally founded in 1992 by John Kennedy alongside partners Gary Hughes and Steve Robertson as a brick-and-mortar record shop on Surrey Street, the location served as an essential social hub for local producers, DJs, and vinyl enthusiasts. Throughout the 1990s, the shop evolved from stocking house, techno, and drum & bass to becoming the go-to destination for the emerging UK garage and 2-step scene. \\n\\nBy the early 2000s, the upstairs of the shop housed a studio where producer Artwork began crafting experimental sounds that blended 2-step garage with techno and darker, minimalist textures. This environment, where customers and local producers gathered to trade white labels and test new dubs, fostered the collaboration necessary for the genre that would eventually be named dubstep. The label imprint was launched in 2002 to release the experimental music being produced by this local circle. The label's inaugural release, Artwork's 'Red', and subsequent contributions from pivotal artists like Benga, Skream, and Digital Mystikz (Mala and Coki), codified the genre’s signature sound—characterized by 140 BPM tempos, swung drum patterns, and cavernous, wobbling basslines. With DJ Hatcha—a cornerstone of the label who also managed the shop's stock—championing these records at the legendary FWD>> club night, Big Apple Records solidified its reputation as the birthplace of the dubstep underground before the shop's closure in 2004. Today, its legacy is preserved through the global proliferation of the sound and occasional retrospective reissues of its rare, seminal back catalog.",
+  "citations": [
+    {
+      "url": "https://djmag.com/features/how-big-apple-records-became-birthplace-of-dubstep",
+      "title": "How Big Apple Records became the birthplace of dubstep | DJ Mag"
+    },
+    {
+      "url": "https://www.discogs.com/label/9630-Big-Apple-Records?srsltid=AfmBOoqYE4-Okc4fy-H2_wqA6zuPH9XVA9ad7Ivdxf2ufas28sM44Lce",
+      "title": "Big Apple Records | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:40.390Z",
+  "type": "label",
+  "editorial_description": "A seminal Croydon-based record shop and label that served as the primary incubator for the UK dubstep scene in the early 2000s.",
+  "founded": "1992",
+  "location": "Croydon, London, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:artwork",
+      "type": "artist",
+      "name": "Artwork"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    },
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:dj-hatcha",
+      "type": "artist",
+      "name": "DJ Hatcha"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:red",
+      "type": "project",
+      "name": "Red"
+    },
+    {
+      "slug": "project:skank",
+      "type": "project",
+      "name": "Skank"
+    },
+    {
+      "slug": "project:judgement",
+      "type": "project",
+      "name": "Judgement"
+    }
+  ]
+}

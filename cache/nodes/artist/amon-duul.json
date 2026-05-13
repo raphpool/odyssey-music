@@ -1,0 +1,40 @@
+{
+  "slug": "artist:amon-duul",
+  "name": "Amon Düül",
+  "editorial_article": "Amon Düül emerged in 1967 as a radical political art commune in Munich, West Germany, standing as a pivotal, if unconventional, figure in the early Krautrock movement. Born from the fervent atmosphere of the late 1960s student protests, the collective prioritized communal living and artistic expression over formal musical training. The commune's fluid membership, which included prominent figures like Uschi Obermaier, embraced free-form improvisation as both a musical act and a political statement. Their performances were less like traditional concerts and more like happenings embedded within the radical youth culture of the era. In 1968, a split occurred within the commune, resulting in the formation of two distinct bands: the more structurally ambitious Amon Düül II, who went on to achieve significant acclaim in the progressive and psychedelic rock scenes, and the original collective that continued under the name Amon Düül (often retroactively called Amon Düül I). The original group's recorded legacy is primarily rooted in a sprawling series of jam sessions from 1968, which record labels later released in an attempt to capitalize on their sister group's fame. While their output is sometimes considered uneven, albums like 'Paradieswärts Düül' showcased a more pastoral, folk-influenced sound that distinguished them from their more aggressive counterparts. The legacy of Amon Düül remains firmly tethered to the explosive, transformative energy of the 1968 German underground scene. It is vital to distinguish between the various iterations of the name, as the trademark for the Amon Düül moniker was eventually held by members of the splinter group Amon Düül II, which often complicated the release and re-issue history of the original commune's recordings. The group's influence is historical, rooted in their refusal to conform to conventional song structures and their embrace of total creative autonomy within the 1960s German counterculture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Amon_D%C3%BC%C3%BCl",
+      "title": "Amon Düül - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:59.137Z",
+  "type": "artist",
+  "editorial_bio": "Amon Düül emerged in 1967 as a radical political art commune in Munich, West Germany, standing as a pivotal, if unconventional, figure in the early Krautrock movement.",
+  "origin": "Munich, West Germany",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

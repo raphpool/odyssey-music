@@ -1,0 +1,100 @@
+{
+  "slug": "artist:la-monte-young",
+  "name": "La Monte Young",
+  "editorial_article": "La Monte Young (born 1935) is an American composer and musician, widely considered the architect of minimalism. Emerging from the Los Angeles jazz scene in the 1950s—where he performed with luminaries like Don Cherry and Ornette Coleman—Young moved toward experimental music, becoming a primary influence on the Fluxus movement and avant-garde composition. His 1958 work, Trio for Strings, is often cited as the fountainhead of American musical minimalism, marking a shift toward extended durations and the exploration of sound as an environment rather than a linear progression. \\n\\nYoung's most significant contributions lie in his pioneering use of just intonation and the creation of \"Dream House\" environments. Alongside light artist Marian Zazeela, Young developed the concept of a permanent, continuous sound-and-light space, most notably realized in their long-running installations in New York City. His work, such as \"The Well-Tuned Piano\" and \"The Four Dreams of China,\" relies on precise mathematical ratios and rational number-based tuning systems. These compositions often span hours or days, creating immersive sonic experiences that challenge conventional notions of time and musical structure. Through his ensemble, The Theatre of Eternal Music, and his later work with the Just Alap Raga Ensemble, Young has left an indelible mark on contemporary classical, drone, and ambient music, influencing generations of artists from across the musical spectrum. His lifelong study of Indian classical music under Pandit Pran Nath, particularly the Kirana style, further informs the vibratory and meditative quality of his recent output.",
+  "citations": [
+    {
+      "url": "https://www.laphil.com/musicdb/artists/5845/la-monte-young",
+      "title": "La Monte Young | LA Phil"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:52.836Z",
+  "type": "artist",
+  "editorial_bio": "La Monte Young is an influential American composer and pioneer of minimalism, renowned for his use of just intonation, extended performance durations, and immersive 'Dream House' sound environments. His groundbreaking work has shaped fields ranging from avant-garde classical music to ambient and experimental electronic soundscapes.",
+  "origin": "United States",
+  "active_years": "1957-present",
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:trio-for-strings",
+      "type": "track",
+      "name": "Trio for Strings"
+    },
+    {
+      "slug": "track:the-well-tuned-piano",
+      "type": "track",
+      "name": "The Well-Tuned Piano"
+    },
+    {
+      "slug": "track:the-second-dream-of-the-high-tension-line-stepdown-transformer",
+      "type": "track",
+      "name": "The Second Dream of The High-Tension Line Stepdown Transformer"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:pandit-pran-nath",
+      "type": "artist",
+      "name": "Pandit Pran Nath"
+    },
+    {
+      "slug": "artist:don-cherry",
+      "type": "artist",
+      "name": "Don Cherry"
+    },
+    {
+      "slug": "artist:ornette-coleman",
+      "type": "artist",
+      "name": "Ornette Coleman"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:tony-conrad",
+      "type": "artist",
+      "name": "Tony Conrad"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:pandit-pran-nath",
+      "type": "artist",
+      "name": "Pandit Pran Nath"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

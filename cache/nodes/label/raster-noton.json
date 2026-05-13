@@ -1,0 +1,80 @@
+{
+  "slug": "label:raster-noton",
+  "name": "Raster-Noton",
+  "editorial_article": "Raster-Noton was a highly influential German record label and artistic collective that stood at the forefront of experimental electronic music, glitch, and sound art from its formation in 2000 until its dissolution in 2017. Formed as a merger between Carsten Nicolai’s noton.archiv für ton und nichtton and Olaf Bender and Frank Bretschneider’s Rastermusic, the label operated as a nexus where science, mathematics, and sonic exploration converged. Raster-Noton was celebrated for its strict adherence to aesthetic reductionism, producing releases that were not merely musical albums but curated sensory objects—often packaged with meticulous attention to design that reflected the mathematical and frequency-based nature of the music itself. \\n\\nThe label's roster included some of the most innovative figures in late 20th and early 21st-century electronic music, including Ryoji Ikeda, Mika Vainio, and Frank Bretschneider, as well as collaborative projects like the renowned Alva Noto and Ryuichi Sakamoto partnership. By prioritizing the intersection of visual art and sound, Raster-Noton expanded the definition of what a label could be, often blurring the boundaries between art installations and commercial music. Its influence extended far beyond the experimental underground, providing a rigorous, intellectual framework for the digital glitch aesthetic that defined much of the IDM and minimal techno scenes during the early 2000s. After 2017, the label split back into its foundational components, with Carsten Nicolai continuing the vision through his own imprint, NOTON, while maintaining the legacy of the original collaboration.",
+  "citations": [
+    {
+      "url": "https://noton.info/about/",
+      "title": "About - NOTON"
+    },
+    {
+      "url": "https://inverted-audio.com/label/raster-noton/",
+      "title": "raster-noton - Inverted Audio"
+    },
+    {
+      "url": "https://www.thevinylfactory.com/features/10-essential-works-on-carsten-nicolais-raster-noton-label",
+      "title": "10 essential works on Carsten Nicolai’s Raster-Noton label"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:00.122Z",
+  "type": "label",
+  "editorial_description": "A quintessential German electronic label (2000–2017) known for minimalist, glitch-oriented sound art and rigorous, design-led aesthetic standards.",
+  "founded": "2000",
+  "location": "Chemnitz, Germany",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda"
+    },
+    {
+      "slug": "artist:mika-vainio",
+      "type": "artist",
+      "name": "Mika Vainio"
+    },
+    {
+      "slug": "artist:frank-bretschneider",
+      "type": "artist",
+      "name": "Frank Bretschneider"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:vrioon",
+      "type": "project",
+      "name": "Vrioon"
+    },
+    {
+      "slug": "project:dataplex",
+      "type": "project",
+      "name": "Dataplex"
+    },
+    {
+      "slug": "project:modul",
+      "type": "project",
+      "name": "Modul"
+    }
+  ]
+}

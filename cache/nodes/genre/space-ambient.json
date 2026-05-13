@@ -1,0 +1,80 @@
+{
+  "slug": "genre:space-ambient",
+  "name": "Space ambient",
+  "editorial_article": "Space ambient, often interchangeably referred to as \"space music\" or \"spacemusic,\" is an evocative subgenre of ambient music designed to conjure a sense of infinite, cosmic scale and the stillness of the interstellar void. Rooted in the early 1970s, the genre emerged as an eclectic blend of electronic textures, soundscapes, and experimental sensibilities, finding fertile ground in Germany and Japan. Unlike more rhythmic or melody-driven styles, space ambient prioritizes a sense of \"contemplative spaciousness,\" utilizing slow-evolving pads, long-form reverbs, and sustained drones to create a feeling of weightlessness. It is music that functions as much as an internal map of the psyche as it does a sonic depiction of the cosmos, frequently used for introspection, deep listening, and meditation.\\n\\nThe aesthetic of space ambient is characterized by its transportative quality. Listeners often report sensations of flying, gliding, or drifting through vast, sound-induced vistas. Because the genre is less concerned with conventional song structures or compositional rigors, it has historically leaned into minimalism and timbre-based arrangements. This flexibility allows it to incorporate acoustic elements, world music textures, and classical motifs, provided they remain unified by a sense of atmospheric depth. Often associated with planetariums and deep-space themed soundtracks, the genre occupies a unique, loyal, and niche cultural space, championed by curators like Stephen Hill of the influential radio program *Hearts of Space*. It bridges the gap between the scientific fascination with outer space and the spiritual, meditative traditions of ambient and new-age music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Space_music",
+      "title": "Space music - Wikipedia"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/space-ambient",
+      "title": "Space Ambient - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:06.764Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of ambient music characterized by slow, hypnotic, and expansive soundscapes designed to evoke the vastness of space and promote contemplative states.",
+  "era": "Early 1970s – present",
+  "origin": "Germany and Japan (early 1970s)",
+  "parent_genres": [
+    {
+      "slug": "genre:ambient-music",
+      "type": "genre",
+      "name": "Ambient music"
+    },
+    {
+      "slug": "genre:new-age-music",
+      "type": "genre",
+      "name": "New-age music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:steve-roach",
+      "type": "artist",
+      "name": "Steve Roach"
+    },
+    {
+      "slug": "artist:robert-rich",
+      "type": "artist",
+      "name": "Robert Rich"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hearts-of-space-records",
+      "type": "label",
+      "name": "Hearts of Space Records"
+    },
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "Fax +49-69/450464"
+    },
+    {
+      "slug": "label:projekt-records",
+      "type": "label",
+      "name": "Projekt Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

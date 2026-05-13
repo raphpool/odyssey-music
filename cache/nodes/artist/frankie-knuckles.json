@@ -1,0 +1,129 @@
+{
+  "slug": "artist:frankie-knuckles",
+  "name": "Frankie Knuckles",
+  "editorial_article": "Francis Warren Nicholls Jr. (1955–2014), professionally known as Frankie Knuckles, stands as one of the most pivotal figures in the history of electronic dance music. Frequently referred to as \"the godfather of house music,\" Knuckles was an American DJ, producer, and remixer whose residency at Chicago’s legendary nightclub, The Warehouse (1977–1982), laid the sonic foundation for the global house music movement. Born in the Bronx, New York, Knuckles was deeply influenced by the vibrant disco and soul scenes of the 1970s. Alongside his lifelong friend and collaborator Larry Levan, he cut his teeth at iconic New York venues like the Continental Baths and The Gallery before relocating to Chicago. At The Warehouse, Knuckles faced the decline of commercial disco by skillfully editing and blending records, overlaying classic disco tracks with bare, driving drum machine pulses—an innovation that defined the nascent Chicago house sound. Beyond his DJing, Knuckles’ studio output, including seminal collaborations with Jamie Principle on tracks like \"Your Love\" and \"Baby Wants to Ride,\" solidified his status as a master of the dancefloor. In 1997, he was honored with the Grammy Award for Remixer of the Year. Throughout his prolific career, particularly through his partnership in Def Mix Productions with David Morales, Knuckles’ influence echoed far beyond Chicago, helping to bring the deep, soulful ethos of house music to international audiences. His legacy remains deeply etched into the cultural landscape of modern dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Frankie_Knuckles",
+      "title": "Frankie Knuckles - Wikipedia"
+    },
+    {
+      "url": "https://www.thehistorymakers.org/biography/frankie-knuckles",
+      "title": "Frankie Knuckles's Biography - The HistoryMakers"
+    },
+    {
+      "url": "https://music.newcity.com/2014/04/11/in-memoriam-frankie-knuckles-1955-2014/",
+      "title": "In Memoriam: Frankie Knuckles, 1955-2014 | Newcity Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:08.896Z",
+  "type": "artist",
+  "editorial_bio": "A legendary American DJ and producer, Frankie Knuckles is widely regarded as the 'godfather of house music' for his pioneering work in Chicago. His innovative blending of disco and drum machine rhythms at The Warehouse defined a new era of dance music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Frankie_Knuckles_at_The_Mighty_%28SF%29%2C_2012_-1.jpg/250px-Frankie_Knuckles_at_The_Mighty_%28SF%29%2C_2012_-1.jpg",
+  "origin": "New York City, U.S.",
+  "active_years": "1975–2014",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:beyond-the-mix",
+      "type": "project",
+      "name": "Beyond the Mix"
+    },
+    {
+      "slug": "project:welcome-to-the-real-world",
+      "type": "project",
+      "name": "Welcome to the Real World"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:your-love",
+      "type": "track",
+      "name": "Your Love"
+    },
+    {
+      "slug": "track:baby-wants-to-ride",
+      "type": "track",
+      "name": "Baby Wants to Ride"
+    },
+    {
+      "slug": "track:tears",
+      "type": "track",
+      "name": "Tears"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:larry-levan",
+      "type": "artist",
+      "name": "Larry Levan"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    },
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    },
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    },
+    {
+      "slug": "artist:satoshi-tomiie",
+      "type": "artist",
+      "name": "Satoshi Tomiie"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E."
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

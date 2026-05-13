@@ -1,0 +1,86 @@
+{
+  "slug": "artist:eliane-radigue",
+  "name": "Éliane Radigue",
+  "editorial_article": "Éliane Radigue (1932–2026) was a pioneering French composer whose work fundamentally reshaped the landscape of electronic music through her masterful command of slow-moving, immersive sound. Initially trained in the mid-1950s within the rigorous academic environment of Parisian musique concrète under masters Pierre Schaeffer and Pierre Henry, Radigue eventually diverged from their techniques. While her early career involved experimentation with microphone feedback and tape loops, her true artistic voice found its form in the 1970s with the ARP 2500 modular synthesizer. This instrument became her primary tool for over two decades, allowing her to sculpt vast, shifting drones that prioritized subtle, minuscule developments over the course of hours rather than minutes.\\n\\nRadigue's philosophy of sound was deeply influenced by her conversion to Tibetan Buddhism in the 1970s. Following a period of intense spiritual devotion, she returned to composition with a heightened sense of purpose, creating works that often functioned as meditative experiences. Her magnum opus, the *Trilogie de la Mort* (1998), serves as a testament to this period, drawing inspiration from the *Bardo Thodol* (Tibetan Book of the Dead) to explore states of consciousness and grief following the loss of her spiritual teacher and her son. Even after transitioning from synthesizers to acoustic instrumentation in the early 2000s, Radigue maintained her signature focus on the elasticity of time and the profound harmonic resonance inherent in sustained tones. Her legacy remains a pillar of minimalist and drone music, continuously influencing generations of sound artists who seek to explore the meditative and transcendental possibilities of audio.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/%C3%89liane_Radigue",
+      "title": "Éliane Radigue - Wikipedia"
+    },
+    {
+      "url": "https://www.soundohm.com/artist/eliane-radigue",
+      "title": "Eliane Radigue – Soundohm"
+    },
+    {
+      "url": "http://www.lovely.com/bios/radigue.html",
+      "title": "Eliane Radigue - • Lovely Music •"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:56.852Z",
+  "type": "artist",
+  "editorial_bio": "Éliane Radigue (1932–2026) was a pioneering French composer whose work fundamentally reshaped the landscape of electronic music through her masterful command of slow-moving, immersive sound.",
+  "origin": "Paris, France",
+  "active_years": "1950s–2026",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:drone-music",
+      "type": "genre",
+      "name": "Drone music"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique concrète"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:lovely-music-ltd",
+      "type": "label",
+      "name": "Lovely Music Ltd"
+    },
+    {
+      "slug": "label:important-records",
+      "type": "label",
+      "name": "Important Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:trilogie-de-la-mort",
+      "type": "project",
+      "name": "Trilogie de la Mort"
+    },
+    {
+      "slug": "project:adnos-i-iii",
+      "type": "project",
+      "name": "Adnos I-III"
+    },
+    {
+      "slug": "project:songs-of-milarepa",
+      "type": "project",
+      "name": "Songs of Milarepa"
+    },
+    {
+      "slug": "project:l-ile-re-sonante",
+      "type": "project",
+      "name": "L'Ile Re-sonante"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

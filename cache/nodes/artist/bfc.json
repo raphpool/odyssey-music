@@ -1,0 +1,69 @@
+{
+  "slug": "artist:bfc",
+  "name": "BFC",
+  "editorial_article": "BFC is an influential early 1990s techno alias of the British-Canadian producer Richie Hawtin. Operating during the formative years of the Detroit techno scene's second wave, BFC served as a vehicle for Hawtin to explore more stripped-back, hypnotic, and atmospheric sounds alongside his more abrasive projects like F.U.S.E. The alias is perhaps most famously associated with the track \"Galaxy,\" a foundational piece of early intelligent techno that demonstrated Hawtin's ability to weave deep, spacey synthesizer textures into driving rhythmic structures. Alongside his work as Plastikman and his central role in establishing Plus 8 Records, the BFC project captures a specific moment in electronic music history where the boundaries between dancefloor functionality and home-listening introspection were being rapidly dismantled. The project remains a touchstone for enthusiasts of the early 90s ambient-techno and minimal movements, highlighting Hawtin's early creative breadth and his instrumental role in shaping the evolving sonic identity of the Windsor-Detroit corridor during the early 1990s. Beyond the dancefloor, the sound of BFC bridged the gap for listeners who desired both the precision of modern machine music and the atmospheric depth of electronic pioneers, helping cement Hawtin's reputation as a visionary in the scene. Furthermore, the collaboration between Hawtin and fellow innovators in the Detroit orbit highlighted the collaborative spirit of the time. The BFC project stands as a essential, if brief, chapter in the evolution of minimal techno, showcasing an artist at the height of his experimental period.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/835-Richie-Hawtin",
+      "title": "Richie Hawtin Discography - Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Richie_Hawtin",
+      "title": "Richie Hawtin - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:56.914Z",
+  "type": "artist",
+  "editorial_bio": "BFC is an influential early 1990s techno alias of the British-Canadian producer Richie Hawtin. Operating during the formative years of the Detroit techno scene's second wave, BFC served as a vehicle for Hawtin to explore more stripped-back, hypnotic, and atmospheric sounds alongside his more abrasive projects like F.U.S.E. The alias is perhaps most famously associated with the track \"Galaxy,\" a foundational piece of early intelligent techno that demonstrated Hawtin's ability to weave deep, spacey synthesizer textures into driving rhythmic structures. Alongside his work as Plastikman and his central role in establishing Plus 8 Records, the BFC project captures a specific moment in electronic music history where the boundaries between dancefloor functionality and home-listening introspection were being rapidly dismantled. The project remains a touchstone for enthusiasts of the early 90s ambient-techno and minimal movements, highlighting Hawtin's early creative breadth and his instrumental role in shaping the evolving sonic identity of the Windsor-Detroit corridor during the early 1990s. Beyond the dancefloor, the sound of BFC bridged the gap for listeners who desired both the precision of modern machine music and the atmospheric depth of electronic pioneers, helping cement Hawtin's reputation as a visionary in the scene.",
+  "origin": "Windsor, Ontario, Canada",
+  "active_years": "1990-1992",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:plus-8-records",
+      "type": "label",
+      "name": "Plus 8 Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:galaxy",
+      "type": "track",
+      "name": "Galaxy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    }
+  ],
+  "members": []
+}

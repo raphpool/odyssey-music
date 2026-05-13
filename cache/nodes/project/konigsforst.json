@@ -1,0 +1,84 @@
+{
+  "slug": "project:konigsforst",
+  "name": "Königsforst",
+  "editorial_article": "Königsforst, released in 1998 on the influential Mille Plateaux label, stands as the third studio album by Wolfgang Voigt's Gas project. A seminal work in the development of ambient techno, the record is named after the Königsforst recreation park near Voigt’s hometown of Köln. The park, which served as a site for Voigt’s youthful psychedelic experiments with LSD, provides the conceptual and aesthetic bedrock for the entire Gas project—an attempt to sonically map the interplay of light, shadow, and nature within a dense German forest. Musically, Königsforst is defined by its colossal, shifting layers of tape-looped textures, subterranean bass pulses, and a hazy, muffled production style that mimics the feeling of moving through an impenetrable, fog-laden landscape. The album effectively bridges the gap between deep, hypnotic techno rhythms and the ethereal soundscapes of ambient music, creating a monolithic listening experience that feels simultaneously ancient and avant-garde. Upon its initial release, the project’s complex interplay of distorted loops and classical-inspired melodies marked a significant shift in electronic music, influencing a generation of sound designers and experimental producers who sought to blend organic atmosphere with machine-made repetition. The album exists in multiple iterations, with differences between the original 1998 vinyl, the contemporaneous CD, and the eventual 2016 inclusion in the Gas Box set, adding a layer of archival complexity to its legacy. By transforming the memory of a specific physical location into an abstract sonic experience, Wolfgang Voigt created one of the most haunting and immersive landmarks in late-90s electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/K%C3%B6nigsforst",
+      "title": "Königsforst - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:36.564Z",
+  "type": "project",
+  "editorial_pitch": "A monumental work of ambient techno, Königsforst uses immersive, fog-drenched tape loops to capture the haunting, psychedelic atmosphere of the German forest after which it is named.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/b/b2/Gas_konigsforst_cover.png",
+  "year": "1998",
+  "artists": [],
+  "label": {
+    "slug": "label:mille-plateaux",
+    "type": "label",
+    "name": "Mille Plateaux"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:konigsforst-1",
+      "type": "track",
+      "name": "Königsforst 1"
+    },
+    {
+      "slug": "track:konigsforst-2",
+      "type": "track",
+      "name": "Königsforst 2"
+    },
+    {
+      "slug": "track:konigsforst-3",
+      "type": "track",
+      "name": "Königsforst 3"
+    },
+    {
+      "slug": "track:konigsforst-4",
+      "type": "track",
+      "name": "Königsforst 4"
+    },
+    {
+      "slug": "track:konigsforst-5",
+      "type": "track",
+      "name": "Königsforst 5"
+    },
+    {
+      "slug": "track:konigsforst-6",
+      "type": "track",
+      "name": "Königsforst 6"
+    },
+    {
+      "slug": "track:konigsforst-7",
+      "type": "track",
+      "name": "Königsforst 7"
+    },
+    {
+      "slug": "track:konigsforst-8",
+      "type": "track",
+      "name": "Königsforst 8"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
+    }
+  ],
+  "related_projects": []
+}

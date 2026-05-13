@@ -1,0 +1,98 @@
+{
+  "slug": "genre:post-dubstep",
+  "name": "Post-dubstep",
+  "editorial_article": "Post-dubstep emerged in the late 2000s as a transformative movement within the South London electronic music scene. Functioning less as a rigid genre and more as an umbrella term for producers evolving past the established sounds of UK dubstep, the movement was defined by a shift toward introspection, atmosphere, and sonic experimentation. While early dubstep was characterized by driving sub-bass and a distinct, aggressive energy, post-dubstep artists began integrating elements from a broader, more eclectic palette, including ambient textures, minimalist composition, IDM, and the soulful, rhythmic sensibilities of early 2000s R&B.\n\nKey figures in this transition, such as James Blake, Mount Kimbie, and Joy Orbison, moved the focus from the dancefloor's physical intensity to a more \"home-listening\" aesthetic. Tracks often featured sparse, syncopated drum patterns, woozy synthesizers, and intricate piano arrangements, favoring texture and mood over the relentless mechanical force of earlier bass music. Labels like Hyperdub and Hotflush provided the critical infrastructure for these artists to explore these new, melancholic, and often fragile sonic landscapes.\n\nBy 2013, the term had largely fallen out of usage as the specific scene dissolved and its influence permeated the wider electronic music landscape. Many of its stylistic markers—specifically the hybridity of UK bass, experimental percussion, and vocal manipulation—were eventually absorbed into newer iterations of UK bass music, alternative R&B, and even pop production. Despite its brief lifespan, the post-dubstep movement was instrumental in proving that the foundations of dubstep could be repurposed for more nuanced, emotive, and compositionally complex electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Post-dubstep",
+      "title": "Post-dubstep - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:25.957Z",
+  "type": "genre",
+  "editorial_definition": "An influential, short-lived umbrella term emerging in the late 2000s in London, describing a move away from the high-energy, aggressive tropes of dubstep toward a more restrained, textured, and experimental electronic sound.",
+  "era": "Late 2000s - Early 2010s",
+  "origin": "London, UK",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK bass"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie"
+    },
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison"
+    },
+    {
+      "slug": "artist:burial",
+      "type": "artist",
+      "name": "Burial"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hyperdub",
+      "type": "label",
+      "name": "Hyperdub"
+    },
+    {
+      "slug": "label:hotflush-recordings",
+      "type": "label",
+      "name": "Hotflush Recordings"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:james-blake",
+      "type": "project",
+      "name": "James Blake"
+    },
+    {
+      "slug": "project:maybes-ep",
+      "type": "project",
+      "name": "Maybes EP"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:hyph-mngo",
+      "type": "track",
+      "name": "Hyph Mngo"
+    }
+  ]
+}

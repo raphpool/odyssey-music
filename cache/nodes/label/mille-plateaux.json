@@ -1,0 +1,82 @@
+{
+  "slug": "label:mille-plateaux",
+  "name": "Mille Plateaux",
+  "editorial_article": "Founded in Frankfurt, Germany in 1993 by philosopher and musician Achim Szepanski, Mille Plateaux stands as one of the most intellectually rigorous and aesthetically significant labels in the history of experimental electronic music. Named after the seminal post-structuralist text 'A Thousand Plateaus' by Gilles Deleuze and Félix Guattari, the label functioned as a focal point for the 1990s electronic avant-garde. It bridged the gap between academic theory and club culture, providing a platform for music that explored de-territorialization, the rhizome, and the aesthetic of 'error' that defined the era.\n\nMille Plateaux is perhaps most synonymous with the rise of the 'glitch' and 'clicks & cuts' movements. By embracing the sounds of digital artifacts—broken machines, CD skipping, and industrial hum—the label challenged traditional notions of musical composition and production. Key releases such as the 'Clicks + Cuts' compilation series documented this mutation, capturing a sonic landscape where microsounds and pointillist percussion replaced conventional rhythms.\n\nThroughout its initial eleven-year tenure, the label hosted an elite roster of artists including Alec Empire, Vladislav Delay, Akufen, Porter Ricks, Thomas Köner, and Gas (Wolfgang Voigt). These artists utilized tools like MAX/MSP to create self-structuring compositions, pushing the boundaries of what electronic music could represent. Following the bankruptcy of its distributor EFA-Medien in 2004, the label underwent significant ownership changes and eventually relaunched, though its legacy remains firmly rooted in its original mission: to foster a non-hierarchical, multidisciplinary exploration of sound that remains as potent and challenging today as it was at its inception.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/270-Mille-Plateaux?srsltid=AfmBOoqYKa4UUwdcvGzOKAKqhxObSGzNO6H1bNZ2uVh5WcFfeMHcJg2P",
+      "title": "Mille Plateaux - Discogs"
+    },
+    {
+      "url": "https://www.trebuchet-magazine.com/art-music-remembering-mille-plateaux-on-the-eve-of-its-relaunch/",
+      "title": "Art Music: Remembering Mille Plateaux on the eve of its relaunch - Trebuchet Magazine"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:07.899Z",
+  "type": "label",
+  "editorial_description": "A pioneering German experimental electronic label synonymous with the glitch, minimal techno, and clicks & cuts movements.",
+  "founded": "1993",
+  "location": "Frankfurt, Germany",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    },
+    {
+      "slug": "artist:vladislav-delay",
+      "type": "artist",
+      "name": "Vladislav Delay"
+    },
+    {
+      "slug": "artist:akufen",
+      "type": "artist",
+      "name": "Akufen"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks"
+    },
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
+    },
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:clicks-cuts",
+      "type": "project",
+      "name": "Clicks + Cuts"
+    },
+    {
+      "slug": "project:electric-ladyland",
+      "type": "project",
+      "name": "Electric Ladyland"
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "label:ruta5",
+  "name": "Ruta5",
+  "editorial_article": "Ruta5 is a boutique electronic music label based in Lausanne, Switzerland, founded by the prolific producer and musician Dandy Jack (Martin Schopf). The label serves as a crucial bridge between the electronic music scenes of Europe and South America, particularly highlighting artists from Chile who were instrumental in the development of minimal techno and experimental electronic music. Ruta5 acts as a home for Dandy Jack's myriad projects, as well as a platform for collaborative work involving a close-knit group of electronic musicians like Sonja Moonear, Atom Heart, and Paula Schopf.\n\nThe label is defined by its adventurous, organic approach to production, often blurring the lines between abstract electronica, Latin-inflected rhythms, and minimal dance music. Musically, Ruta5 stands out by emphasizing \"less highlighted\" voices, avoiding the standardized sounds often associated with major European techno hubs in favor of a more idiosyncratic, global perspective. Its releases frequently feature the experimental compositions of Dandy Jack, whose collaborative output with various personas—such as the Junction SM (with Sonja Moonear) or The Revolting Hearts—represents the label's signature blend of rhythmic complexity and melodic surrealism. Ruta5 remains a deeply personal project, reflecting the nomadic and creative spirit of its founder and the rich artistic exchanges within his circle of collaborators. By maintaining an independent, artisanal release style, Ruta5 preserves a unique space for sonic exploration that defies conventional electronic music categorization.",
+  "citations": [
+    {
+      "url": "https://ruta5.bandcamp.com/music",
+      "title": "Music | RUTA5"
+    },
+    {
+      "url": "https://www.discogs.com/label/2675516-Ruta5?srsltid=AfmBOopD75-5UMMcCmwgwWKFpuulerVrJ5wBnyI0Jgsf6j5do4gflaVr",
+      "title": "Ruta5 | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:19.457Z",
+  "type": "label",
+  "editorial_description": "Ruta5 is a Lausanne-based electronic label founded by Dandy Jack, serving as a creative hub for experimental, minimal, and global electronic collaborations.",
+  "location": "Lausanne, Switzerland",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:dandy-jack",
+      "type": "artist",
+      "name": "Dandy Jack"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:paula-schopf",
+      "type": "artist",
+      "name": "Paula Schopf"
+    },
+    {
+      "slug": "artist:muan",
+      "type": "artist",
+      "name": "Muan"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:one-step-backwards",
+      "type": "project",
+      "name": "One Step Backwards"
+    },
+    {
+      "slug": "project:oniromancia",
+      "type": "project",
+      "name": "Oniromancia"
+    },
+    {
+      "slug": "project:paradise-paradox",
+      "type": "project",
+      "name": "Paradise Paradox"
+    }
+  ]
+}

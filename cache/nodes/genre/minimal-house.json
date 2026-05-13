@@ -1,0 +1,63 @@
+{
+  "slug": "genre:minimal-house",
+  "name": "Minimal house",
+  "editorial_article": "Minimal house is a subgenre of house music defined by its \"less is more\" philosophy, characterized by stripped-back, repetitive compositions that prioritize sound quality, spatial arrangement, and subtle, gradual progression over dense arrangement. Often sharing a lineage with minimal techno, the genre is distinguished by its groovier, swing-heavy percussion and basslines, typically oscillating between 115 and 130 BPM. It often utilizes clean drum machine sounds—notably from Roland’s 707, 808, and 909 units—interwoven with loopy, spacey synth leads, sci-fi pads, and hard-panned sound effects. The resulting aesthetic is one of hypnotic, futuristic, or meditative immersion, designed to lock the listener into a trance-like state on the dance floor.\n\nThe genre is versatile and encompasses several distinct \"flavors.\" These include the menacing \"dark minimal house,\" which features sinister, horror-inspired soundscapes and deep, distorted bass; and \"deep minimal house,\" which leans into soulful, jazzy elements and advanced emotional chord structures. Other variations incorporate ethnic, tribal, or organic instrumentation, sometimes overlapping with scenes like \"Playa Tech.\" While the roots of the minimal aesthetic are tied to the early experimentation in 1990s Detroit techno and the broader minimalism movement, minimal house refined these concepts into a specifically house-oriented groove. Over the decades, it has fostered an occult-like, dedicated global following, with key figures ranging from early pioneers like Larry Heard and Frankie Knuckles to contemporary purveyors such as Nicolas Lutz and Quest, who continue to push the boundaries of what is possible within the minimal framework.",
+  "citations": [
+    {
+      "url": "https://6amgroup.com/articles/all/minimal-house-music-guide-history-artists-and-songs",
+      "title": "Minimal House Music Guide: History, Artists, and Songs | SIX AM"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Minimal_techno",
+      "title": "Minimal techno - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:59.206Z",
+  "type": "genre",
+  "editorial_definition": "Minimal house is a subgenre of house music emphasizing a stripped-back aesthetic, characterized by 4-on-the-floor rhythms, sparse but high-quality sound design, and hypnotic, gradual progressions.",
+  "origin": "Detroit/Chicago influence, evolved globally",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:nicolas-lutz",
+      "type": "artist",
+      "name": "Nicolas Lutz"
+    },
+    {
+      "slug": "artist:quest",
+      "type": "artist",
+      "name": "Quest"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

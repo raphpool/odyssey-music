@@ -1,0 +1,51 @@
+{
+  "slug": "track:stechmuck",
+  "name": "Stechmück",
+  "editorial_article": "\"Stechmück\" is a masterfully crafted track by the acclaimed German electronic producer Stefan Betke, widely known under the alias Pole. Released in 2022 on the album 'Tempus', the track stands as a testament to Betke's enduring influence on the intersection of minimal techno, dub, and experimental electronic music. True to the sonic ethos that has defined his career—most famously his use of damaged, glitchy dub-delay units—\"Stechmück\" creates a dense, immersive environment that feels simultaneously organic and mechanical. The track unfolds over six minutes, showcasing the refined, hazy production style that characterizes his later period while maintaining the rhythmic subversion that made his early trilogy (1, 2, 3) a landmark in electronic music history.\n\n\"Stechmück\" captures a sense of sonic depth where sound is treated not just as a sequence of notes, but as a textured, physical presence. By utilizing complex echo chambers and precise, minimalist arrangements, Betke allows the track to breathe in a way that is distinctly 'dub-influenced' yet uniquely avant-garde. The music seems to hover just behind the listener’s consciousness, pulling them into a fog of reverb and decaying bass frequencies. As part of 'Tempus', the track represents a bridge between his classic sound and a contemporary sensibility that continues to push the boundaries of what techno can express in a quiet, contemplative space. It remains a pivotal moment in the 'Tempus' project, highlighting Betke's masterful ability to balance technical innovation with genuine, haunting atmosphere. Stefan Betke remains one of the most vital figures in Berlin's experimental scene, and this release serves to cement his ongoing legacy in the evolution of electronic sound design. His output is frequently associated with the German minimal techno movement and experimental circles, and this track exemplifies the high standard of production associated with his label, Pole Music. This particular work also sits alongside other influential experimental projects from figures such as Monolake, who, like Pole, have helped shape the sonic textures of modern electronic music. The track's release on his own imprint highlights the independence and creative control that have defined the latter half of his storied career. Through this track, listeners can experience the maturation of a sound that has long pushed the limits of electronic production. Ultimately, the work is supported by a community of listeners who appreciate the nuances of experimental electronic composition, a testament to the lasting power of Pole's singular artistic vision.",
+  "citations": [
+    {
+      "url": "https://pole-stefanbetke.bandcamp.com/track/stechm-ck",
+      "title": "Stechmück | pole (stefan betke) - Bandcamp"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=NtxJIaydlpA",
+      "title": "Pole - Stechmück (Official Audio) - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:40.309Z",
+  "type": "track",
+  "editorial_teaser": "\"Stechmück\" is a masterfully crafted track by the acclaimed German electronic producer Stefan Betke, widely known under the alias Pole.",
+  "artists": [],
+  "project": {
+    "slug": "project:tempus",
+    "type": "project",
+    "name": "Tempus"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:stefan-betke",
+      "type": "artist",
+      "name": "Stefan Betke"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "project:no-world-order--todd-rundgren-as-tr-i-interactive-album",
+  "name": "No World Order",
+  "editorial_article": "Released in 1993, 'No World Order' stands as a landmark experimental work by American multi-instrumentalist and producer Todd Rundgren, recorded under his alias TR-i. It holds a distinct place in music history as the first truly interactive album. Developed specifically for the Philips CD-i multimedia platform, the project was designed to shatter the static nature of recorded music by allowing the listener to manipulate playback in real-time. By utilizing an interface that controlled tempo, mood, mix complexity, and musical form, users could rearrange segments of the music—which consisted of over 900 individual four-bar musical cells—to create a personalized experience. \\n\\nBeyond its technical ambition, the album is a compelling snapshot of Rundgren’s interest in the collision of rock, electronica, and hip-hop. The music itself was crafted to be modular, ensuring that the transitions between user-selected segments remained seamless, regardless of the order in which they were played. While the interactive CD-i version offered the most advanced implementation, Rundgren also released a traditional linear CD version, which served as his curated 'Rundgren mix,' and later, a more conventional song-oriented edition titled 'No World Order Lite'. The project earned accolades from the interactive media community for its pioneering vision of a non-linear musical medium, proving to be years ahead of the algorithmic streaming era that would eventually define how audiences consume music. The 'No World Order' experience remains a testament to Rundgren's long-standing persona as a musical futurist who constantly sought to challenge the boundaries between creator and listener.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/No_World_Order",
+      "title": "No World Order - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:05.540Z",
+  "type": "project",
+  "editorial_pitch": "An ambitious 1993 multimedia experiment by Todd Rundgren (as TR-i), 'No World Order' is recognized as the first interactive album, allowing listeners to rearrange modular musical segments in real-time via the Philips CD-i platform.",
+  "year": "1993",
+  "artists": [
+    {
+      "slug": "artist:todd-rundgren",
+      "type": "artist",
+      "name": "Todd Rundgren"
+    }
+  ],
+  "label": {
+    "slug": "label:rhino-records",
+    "type": "label",
+    "name": "Rhino Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:todd-rundgren",
+      "type": "artist",
+      "name": "Todd Rundgren"
+    }
+  ],
+  "related_projects": []
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "artist:laetitia-sadier",
+  "name": "Laetitia Sadier",
+  "editorial_article": "Lætitia Sadier is a French musician, singer, and songwriter who became a seminal figure in alternative music as a co-founder of the London-based avant-pop band Stereolab. Born in Vincennes, France, in 1968, Sadier moved to London in 1989, where she met McCarthy guitarist Tim Gane. Together, they formed Stereolab in 1990, a group that redefined the possibilities of indie pop by blending krautrock rhythms, experimental electronics, and Marxist-inflected lyrical content. Sadier’s distinctive, coolly detached vocal delivery, frequently performed in both French and English, became one of the defining sonic signatures of the 1990s and early 2000s independent music scene.\n\nBeyond her foundational work with Stereolab, Sadier has maintained a prolific and eclectic solo career. She formed the side project Monade in 1996, which served as a home for her more intimate, melodic explorations until its dissolution in 2009. Following this, she began recording under her own name, further honing her songwriting craft on solo albums such as \"The Trip\" (2010), \"Silencio\" (2012), and \"Something Shines\" (2014), often performing with her band, the Lætitia Sadier Source Ensemble. Sadier is also a highly sought-after collaborator, lending her unique vocal style to a diverse range of artists, including Blur, Common, Deerhoof, and Tyler, The Creator, proving her ability to seamlessly traverse genres ranging from experimental post-rock to contemporary hip-hop. Her influence remains profound, characterized by a career-long commitment to musical exploration, social awareness, and the synthesis of global pop influences.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/L%C3%A6titia_Sadier",
+      "title": "Lætitia Sadier - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/72408-Laetitia-Sadier?srsltid=AfmBOoqK1-mPKe7ViA0l00vW5MN-5UbVkHelSVDziefpYQg45_Xn_z_r",
+      "title": "Laetitia Sadier Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:23.945Z",
+  "type": "artist",
+  "editorial_bio": "Lætitia Sadier is a French musician and songwriter best known for co-founding Stereolab and her subsequent diverse solo and collaborative career. Her work is celebrated for its unique blend of avant-pop, krautrock, and political lyricism, defined by her signature, coolly detached vocal style.",
+  "origin": "Vincennes, France",
+  "genres": [
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:duophonic-records",
+      "type": "label",
+      "name": "Duophonic Records"
+    },
+    {
+      "slug": "label:drag-city",
+      "type": "label",
+      "name": "Drag City"
+    },
+    {
+      "slug": "label:too-pure",
+      "type": "label",
+      "name": "Too Pure"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

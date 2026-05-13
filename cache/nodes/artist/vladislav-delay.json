@@ -1,0 +1,87 @@
+{
+  "slug": "artist:vladislav-delay",
+  "name": "Vladislav Delay",
+  "editorial_article": "Vladislav Delay is the primary moniker of Finnish electronic musician and producer Sasu Ripatti (born 1976). A central figure in the experimental electronic scene since the late 1990s, Ripatti is renowned for his mastery of glitch, ambient dub, and deeply textured micro-rhythms. His work under the Vladislav Delay name often explores abrasive, immersive soundscapes, blending organic percussion with digital artifacts to evoke raw, brutal environments. \\n\\nThroughout his prolific career, Ripatti has operated across a wide spectrum of electronic sub-genres, employing various aliases such as Luomo, Sistol, and Uusitalo to distinguish his different musical approaches—moving from the house-inflected sensibilities of Luomo to the more austere, experimental explorations of the Vladislav Delay project. He has been a frequent collaborator with avant-garde electronic institutions and has released seminal works on influential labels such as Chain Reaction, Raster-Noton, and his own imprint. His music remains highly regarded for its physical intensity and technical sophistication, often challenging conventional listening experiences through granular manipulation and complex sonic layering. His influence extends deeply into the fabric of contemporary experimental production, defining an aesthetic that reconciles the warmth of jazz-influenced instrumentation with the cold, precise architecture of digital signal processing.",
+  "citations": [
+    {
+      "url": "https://inverted-audio.com/artist/vladislav-delay/",
+      "title": "Vladislav Delay - Inverted Audio"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/vladislav-delay",
+      "title": "Vladislav Delay discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/vladislav-delay-mn0000185680",
+      "title": "Vladislav Delay Songs, Albums, Reviews, Bio & ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:54.760Z",
+  "type": "artist",
+  "editorial_bio": "Vladislav Delay is the primary moniker of Finnish electronic musician and producer Sasu Ripatti (born 1976). A central figure in the experimental electronic scene since the late 1990s, Ripatti is renowned for his mastery of glitch, ambient dub, and deeply textured micro-rhythms. His work under the Vladislav Delay name often explores abrasive, immersive soundscapes, blending organic percussion with digital artifacts to evoke raw, brutal environments. \\n\\nThroughout his prolific career, Ripatti has operated across a wide spectrum of electronic sub-genres, employing various aliases such as Luomo, Sistol, and Uusitalo to distinguish his different musical approaches—moving from the house-inflected sensibilities of Luomo to the more austere, experimental explorations of the Vladislav Delay project. He has been a frequent collaborator with avant-garde electronic institutions and has released seminal works on influential labels such as Chain Reaction, Raster-Noton, and his own imprint. His music remains highly regarded for its physical intensity and technical sophistication, often challenging conventional listening experiences through granular manipulation and complex sonic layering. His influence extends deeply into the fabric of contemporary experimental production, defining an aesthetic that reconciles the warmth of jazz-influenced instrumentation with the cold, precise architecture of digital signal processing.",
+  "origin": "Finland",
+  "active_years": "1990s - present",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:ambient-dub",
+      "type": "genre",
+      "name": "Ambient Dub"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:raster-noton",
+      "type": "label",
+      "name": "Raster-Noton"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:multila",
+      "type": "project",
+      "name": "Multila"
+    },
+    {
+      "slug": "project:entain",
+      "type": "project",
+      "name": "Entain"
+    },
+    {
+      "slug": "project:visa",
+      "type": "project",
+      "name": "Visa"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:vastaa",
+      "type": "track",
+      "name": "Vastaa"
+    },
+    {
+      "slug": "track:huone",
+      "type": "track",
+      "name": "Huone"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

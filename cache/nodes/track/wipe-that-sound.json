@@ -1,0 +1,64 @@
+{
+  "slug": "track:wipe-that-sound",
+  "name": "Wipe That Sound",
+  "editorial_article": "\"Wipe That Sound\" is a standout track from the 2004 album *Radical Connector* by the German electronic duo Mouse on Mars. Known for their intricate, playful, and glitch-heavy approach to electronic music, the duo—comprised of Jan St. Werner and Andi Toma—crafted *Radical Connector* as a synthesis of their characteristic IDM roots with more pop-oriented vocal hooks and rhythmic experimentation. \"Wipe That Sound\" exemplifies this era of their career, blending jagged, unpredictable production techniques with an infectious, vocoder-heavy vocal melody that feels both alien and strangely accessible.\n\nThe track is widely recognized for its off-kilter, cut-up style that balances electronic precision with an almost punk-like disregard for structural norms. By 2004, Mouse on Mars had firmly established themselves as key figures in the German electronic scene, having spent the previous decade bridging the gap between ambient, techno, and avant-garde sound design. In \"Wipe That Sound,\" the listener is treated to a dense, shifting soundscape of manipulated percussion and textured synths that defined the group's mid-2000s output. It remains a hallmark of their ability to make high-concept, complex electronic arrangements feel surprisingly immediate. The song’s legacy persists not only as a highlight of their discography but as a representative example of the playful, experimental pop-electronica that flourished in European underground circles during the early 2000s. Its persistence in their live sets and retrospective collections underscores its enduring appeal as a quintessential piece of their sonic identity. The song's production is notable for the interplay of its digital synthesis and organic-sounding, yet highly processed, drum patterns, a signature of the duo's collaborative working method at the time. It is a quintessential slice of the Mouse on Mars aesthetic from their most experimental pop period. The production remains as crisp and inventive today as it was upon release, highlighting the duo's lasting influence on electronic music producers who continue to blend organic instrumentation with digital processing. It remains one of their most celebrated tracks from this era, encapsulating their unique brand of rhythmic complexity and melodic invention. Overall, \"Wipe That Sound\" stands as a testament to the duo's enduring creative partnership and their dedication to pushing the boundaries of what pop-oriented electronic music can achieve. It is essential listening for any fan of the glitch-pop and IDM sounds they helped cultivate. Throughout, the track remains a masterclass in synthesis and creative sampling, demonstrating why the group remained at the forefront of the genre. They have successfully blended these diverse elements into a cohesive and captivating listening experience that continues to resonate with fans of electronic and alternative music. The track continues to be played and discussed, solidifying its place in the history of German electronic music and the wider IDM scene. With its distinctive sound and innovative structure, it remains a defining work for both the artist and the genre.",
+  "citations": [
+    {
+      "url": "https://mouseonmars.bandcamp.com/album/radical-connector",
+      "title": "Radical Connector - Mouse on Mars - Bandcamp"
+    },
+    {
+      "url": "https://www.discogs.com/release/392903-Mouse-On-Mars-Radical-Connector",
+      "title": "Mouse On Mars – Radical Connector (2004, Vinyl) - Discogs"
+    },
+    {
+      "url": "https://genius.com/Mouse-on-mars-wipe-that-sound-lyrics",
+      "title": "Mouse On Mars – Wipe That Sound Lyrics | Genius Lyrics"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:41.246Z",
+  "type": "track",
+  "editorial_teaser": "\"Wipe That Sound\" is a jittery, vocoder-drenched electronic experiment from Mouse on Mars's 2004 album *Radical Connector*.",
+  "cover_url": "https://f4.bcbits.com/img/a0105389445_10.jpg",
+  "year": "2004",
+  "duration": "4:12",
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "project": {
+    "slug": "project:radical-connector",
+    "type": "project",
+    "name": "Radical Connector"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

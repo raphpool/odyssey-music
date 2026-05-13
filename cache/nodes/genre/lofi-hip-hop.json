@@ -1,0 +1,77 @@
+{
+  "slug": "genre:lofi-hip-hop",
+  "name": "Lofi Hip-Hop",
+  "editorial_article": "Lofi hip-hop, often interchangeably referred to as \"chillhop,\" emerged in the early 2000s as a distinctive confluence of instrumental hip-hop, downtempo electronic, and jazz-inflected textures. Rooted in the underground beatmaking scene, the genre gained significant traction through the use of specific hardware samplers, most notably the Roland SP-303 and SP-404, which featured dedicated \"lo-fi\" effects buttons that allowed producers to impart a nostalgic, degraded audio quality—complete with simulated vinyl crackle and tape hiss—onto their beats. Unlike mainstream hip-hop, the genre typically prioritizes atmosphere over lyrical content, creating a sonic landscape of poky tempos, smooth piano or guitar loops, and hazy, fuzzed-out production.\\n\\nThe cultural trajectory of lofi hip-hop is inextricably linked to the evolution of internet media. While its sonic foundations were laid by influential producers like J Dilla, Nujabes, and the collaborative work of MF DOOM and Madlib, the genre exploded into a global phenomenon in the mid-2010s. Platforms like YouTube and SoundCloud enabled the rise of 24/7 \"radio\" livestreams, often paired with looped, melancholic, or studious anime visuals—a trend famously exemplified by the \"Lofi Girl\" (formerly ChilledCow) channel. These streams transitioned from background music for late-night study sessions into digital communal spaces where listeners gathered in chatrooms to find solace and a sense of belonging. The COVID-19 pandemic further cemented lofi hip-hop's role as a primary sonic companion for a digitally confined generation, highlighting the genre’s capacity to evoke intense, quiet nostalgia and provide a soothing, predictable auditory environment in an increasingly fragmented world. Despite its current ubiquity in curated playlists, the genre remains a testament to the power of bedroom production and the DIY ethos of the digital age.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lofi_hip-hop",
+      "title": "Lofi hip-hop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:41.864Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by intentionally low-fidelity production, downtempo beats, and a nostalgic, atmospheric sound, widely popularized as background music for study and relaxation through internet livestreams.",
+  "era": "Early 2000s - present",
+  "origin": "United States, Japan",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:chill-out",
+      "type": "genre",
+      "name": "Chill-out"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:nujabes",
+      "type": "artist",
+      "name": "Nujabes"
+    },
+    {
+      "slug": "artist:j-dilla",
+      "type": "artist",
+      "name": "J Dilla"
+    },
+    {
+      "slug": "artist:madlib",
+      "type": "artist",
+      "name": "Madlib"
+    },
+    {
+      "slug": "artist:mf-doom",
+      "type": "artist",
+      "name": "MF DOOM"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:madvillainy",
+      "type": "project",
+      "name": "Madvillainy"
+    }
+  ],
+  "landmark_tracks": []
+}

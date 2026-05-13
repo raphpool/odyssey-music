@@ -1,0 +1,127 @@
+{
+  "slug": "genre:alternative",
+  "name": "Alternative",
+  "editorial_article": "Alternative rock, often simply referred to as \"alternative\" or \"alt-rock,\" is a vast, multifaceted category of music that emerged from the independent music underground of the late 1970s and early 1980s. Defining itself fundamentally against the perceived commercial stagnation of mainstream arena rock and glam metal, alternative music was rooted in the DIY ethic and stylistic diversity of punk rock, post-punk, and new wave. Throughout the 1980s, the genre developed through a decentralized network of independent labels, college radio stations, and grassroots zines, allowing for regional scenes—from the jangle pop of Athens, Georgia, to the abrasive noise of the American underground—to flourish outside the gaze of major label A&R departments.\n\nThe genre's explosion into the mainstream arrived in the early 1990s, driven by a cultural shift toward Generation X and the breakthrough success of grunge bands like Nirvana. This era effectively collapsed the barrier between the underground and the commercial mainstream, paving the way for disparate styles such as shoegaze, Britpop, and eventually, the emo movements of the 2000s to command massive audiences. While \"alternative\" remains a notoriously elastic term that resists a single sonic definition, it is historically unified by its origins in independent music and a consistent emphasis on artistic autonomy, dynamic songwriting, and emotional or social introspection. From the distortion-heavy anthems of the Pacific Northwest to the introspective textures of British indie, alternative music remains a primary lens through which the evolution of modern guitar-based music is understood.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Alternative_rock",
+      "title": "Alternative rock - Wikipedia"
+    },
+    {
+      "url": "https://www.kits.ai/blog/alternative-music-genre-history-alt-style",
+      "title": "What is Alternative Music? A Deep Dive into the Style and Genre"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:01.354Z",
+  "type": "genre",
+  "editorial_definition": "A broadly defined category of rock music originating in the late 1970s that emphasizes independence from mainstream commercial trends, often drawing upon the DIY ethos and experimental spirit of post-punk and underground music.",
+  "era": "1980s-present",
+  "origin": "United States and United Kingdom, late 1970s",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze"
+    },
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    },
+    {
+      "slug": "artist:the-smiths",
+      "type": "artist",
+      "name": "The Smiths"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:rough-trade",
+      "type": "label",
+      "name": "Rough Trade"
+    },
+    {
+      "slug": "label:factory-records",
+      "type": "label",
+      "name": "Factory Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:nevermind",
+      "type": "project",
+      "name": "Nevermind"
+    },
+    {
+      "slug": "project:murmur",
+      "type": "project",
+      "name": "Murmur"
+    }
+  ],
+  "landmark_tracks": []
+}

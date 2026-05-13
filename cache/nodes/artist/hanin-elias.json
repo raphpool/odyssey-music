@@ -1,0 +1,83 @@
+{
+  "slug": "artist:hanin-elias",
+  "name": "Hanin Elias",
+  "editorial_article": "Hanin Elias is a pioneering Syrian-German artist, widely recognized for her critical role in the 1990s Berlin underground as a core member of the influential digital hardcore band Atari Teenage Riot. Growing up in a conservative household, Elias moved to Berlin and became a central figure in the city's post-reunification explosion of political, electronic-punk fusion. Her work with Atari Teenage Riot—a group known for their abrasive blend of Atari ST-generated electronics, punk vocals, and staunch anti-fascist, anarchist politics—defined an era of sonic rebellion. \\n\\nFollowing the band's hiatus around the year 2000, Elias embarked on a prolific solo career that continued to challenge genre boundaries. She founded her own independent imprint, Fatal Recordings, to maintain creative autonomy and support experimental sound. Her solo discography, starting with the album *In Flames* (2000), demonstrates a restless stylistic evolution, incorporating elements of drum and bass, hip hop, house, and folk into her foundational hardcore and electropop sensibilities. Throughout her career, she has cultivated a reputation as a fierce, uncompromising performer, often cited as a \"21st-Century Punk Goddess.\" Beyond her solo projects, Elias has maintained a collaborative spirit, working with diverse artists such as Thurston Moore, Merzbow, and the industrial supergroup Pigface, as well as engaging in pop-oriented experimental projects like Fantome with Marcel Zürcher. Her trajectory from a marginalized youth in Berlin to an international icon of digital hardcore remains a cornerstone of electronic music history.",
+  "citations": [
+    {
+      "url": "https://archive2013-2020.ctm-festival.de/archive/all-artists/f-j/hanin-elias/",
+      "title": "Hanin Elias :: CTM Berlin - Festival for Adventurous Music and Art"
+    },
+    {
+      "url": "https://www.discogs.com/artist/8472-Hanin-Elias",
+      "title": "Hanin Elias Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:41.877Z",
+  "type": "artist",
+  "editorial_bio": "Hanin Elias is a pioneering Syrian-German artist, widely recognized for her critical role in the 1990s Berlin underground as a core member of the influential digital hardcore band Atari Teenage Riot.",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore"
+    },
+    {
+      "slug": "genre:punk",
+      "type": "genre",
+      "name": "Punk"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fatal-recordings",
+      "type": "label",
+      "name": "Fatal Recordings"
+    },
+    {
+      "slug": "label:digital-hardcore-recordings",
+      "type": "label",
+      "name": "Digital Hardcore Recordings"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:teenage-riot",
+      "type": "track",
+      "name": "Teenage Riot"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:thurston-moore",
+      "type": "artist",
+      "name": "Thurston Moore"
+    },
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot"
+    }
+  ]
+}

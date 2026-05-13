@@ -1,0 +1,56 @@
+{
+  "slug": "artist:hozan-yamamoto",
+  "name": "Hōzan Yamamoto",
+  "editorial_article": "Hōzan Yamamoto (1937–2014) was a preeminent Japanese shakuhachi master, composer, and educator whose work bridged the chasm between traditional Japanese music and global contemporary jazz and avant-garde idioms. Born in Ōtsu, Shiga Prefecture, Yamamoto began his lifelong study of the bamboo flute at the age of nine. Throughout a career spanning over five decades, he emerged as a pioneering figure who challenged the insularity of the traditional shakuhachi community, famously electrifying the genre through prolific, cross-cultural collaborations. Yamamoto achieved international recognition early on, notably through his participation in the seminal 1964 album 'Music for Zen Meditation' alongside jazz clarinetist Tony Scott and koto player Shinichi Yuize. This collaboration helped introduce the meditative, resonant qualities of the shakuhachi to Western ears, establishing a precedent for his later crossover success. In 1966, he founded the influential \"Shakuhachi Sanbon Kai\" trio, which remained a pillar of his artistic output. His discography reflects a restless spirit, featuring adventurous sessions with jazz luminaries like Gary Peacock and Masabumi Kikuchi—most notably on the 1971 masterpiece 'Ginkai'—as well as fruitful exchanges with artists ranging from Ravi Shankar to Karl Berger. For his profound contributions to music, he was designated a Living National Treasure of Japan in 2002. Yamamoto’s legacy is defined not only by his technical mastery of a demanding, centuries-old instrument but by his vision to recontextualize it within modern sonic landscapes. By the time of his passing, he had established the Hozan-kai Shakuhachi Guild, ensuring his pedagogical influence would continue long after his death. His ability to navigate between the austere, minimalist aesthetics of traditional Zen music and the complex, improvised textures of free jazz remains a benchmark for cross-cultural musical synthesis.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/H%C5%8Dzan_Yamamoto",
+      "title": "Hōzan Yamamoto - Wikipedia"
+    },
+    {
+      "url": "https://www.shakuhachi.com/R-Shaku-Yamamoto.html",
+      "title": "Hozan Yamamoto - Shakuhachi Recordings"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:19.649Z",
+  "type": "artist",
+  "editorial_bio": "Hōzan Yamamoto was a legendary Japanese shakuhachi master, composer, and teacher whose revolutionary approach bridged traditional Japanese music with modern jazz and avant-garde soundscapes, eventually earning him the status of a Living National Treasure. Over a career spanning more than fifty years, he recorded hundreds of albums and collaborated with diverse international artists including Tony Scott, Ravi Shankar, and Gary Peacock, forever expanding the global perception of the bamboo flute.",
+  "origin": "Ōtsu, Shiga, Japan",
+  "active_years": "1958 – 2014",
+  "genres": [
+    {
+      "slug": "genre:shakuhachi",
+      "type": "genre",
+      "name": "Shakuhachi"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    },
+    {
+      "slug": "genre:avant-garde-jazz",
+      "type": "genre",
+      "name": "Avant-Garde Jazz"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:music-for-zen-meditation",
+      "type": "project",
+      "name": "Music for Zen Meditation"
+    },
+    {
+      "slug": "project:ginkai",
+      "type": "project",
+      "name": "Ginkai"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

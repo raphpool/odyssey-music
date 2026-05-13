@@ -1,0 +1,79 @@
+{
+  "slug": "artist:michael-hedges",
+  "name": "Michael Hedges",
+  "editorial_article": "Michael Alden Hedges (1953–1997) was an American composer, guitarist, and multi-instrumentalist whose innovative, percussive approach to the steel-string acoustic guitar fundamentally reshaped the instrument's possibilities in the late 20th century. While frequently categorized under the Windham Hill label's new-age umbrella, Hedges viewed himself primarily as a composer, drawing profound creative inspiration from 20th-century classical icons like Igor Stravinsky, Edgard Varèse, and Steve Reich. His technique was a masterclass in complexity; he utilized unconventional alternate tunings, intricate string damping, two-handed tapping, and syncopated percussive slaps against the guitar's body, often blurring the lines between a single instrument and a full ensemble. His landmark 1984 album, *Aerial Boundaries*, remains a seminal release, capturing the technical brilliance and emotional depth that defined his career. Beyond his technical prowess, Hedges was a sensitive songwriter who sought to bridge the gap between his instrumental virtuosity and his vocal compositions. His life and career were tragically cut short in 1997 by a fatal car accident in Mendocino County, California, yet his influence remains pervasive among modern fingerstyle guitarists. He was posthumously honored with a Grammy Award for his final studio album, *Oracle*. Throughout his career, he maintained a deep, collaborative relationship with bassist Michael Manring, who provided the foundational support for most of his recorded output.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Michael_Hedges",
+      "title": "Michael Hedges - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/michael-hedges-1",
+      "title": "Michael Hedges Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:56.571Z",
+  "type": "artist",
+  "editorial_bio": "Michael Alden Hedges (1953–1997) was an American composer, guitarist, and multi-instrumentalist whose innovative, percussive approach to the steel-string acoustic guitar fundamentally reshaped the instrument's possibilities in the late 20th century.",
+  "origin": "Sacramento, California, U.S.",
+  "active_years": "1974–1997",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:new-acoustic",
+      "type": "genre",
+      "name": "New Acoustic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:windham-hill-records",
+      "type": "label",
+      "name": "Windham Hill Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:aerial-boundaries",
+      "type": "project",
+      "name": "Aerial Boundaries"
+    },
+    {
+      "slug": "project:oracle",
+      "type": "project",
+      "name": "Oracle"
+    },
+    {
+      "slug": "project:breakfast-in-the-field",
+      "type": "project",
+      "name": "Breakfast in the Field"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:aerial-boundaries",
+      "type": "track",
+      "name": "Aerial Boundaries"
+    },
+    {
+      "slug": "track:bensusan",
+      "type": "track",
+      "name": "Bensusan"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:michael-manring",
+      "type": "artist",
+      "name": "Michael Manring"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

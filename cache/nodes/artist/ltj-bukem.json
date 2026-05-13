@@ -1,0 +1,61 @@
+{
+  "slug": "artist:ltj-bukem",
+  "name": "LTJ Bukem",
+  "editorial_article": "LTJ Bukem, the professional alias of British producer and DJ Danny Williamson, is a pioneering figure in electronic music, best known for defining the atmospheric, jazz-inflected side of jungle and drum and bass in the 1990s. Trained as a classical pianist with a deep-seated appreciation for jazz fusion, Bukem brought a sophisticated, melodic sensibility to the UK rave scene. In contrast to the aggressive, high-energy hardcore sound that dominated early 1990s dance floors, Bukem’s productions—exemplified by classics like \"Demon's Theme\" (1992), \"Music\" (1993), and the widely celebrated \"Horizons\" (1995)—offered a lush, ambient-inspired alternative. This aesthetic, often termed \"intelligent drum and bass,\" drew heavily on the sounds of 1970s jazz fusion and rare groove. \\n\\nBeyond his work as a producer, Bukem was instrumental in fostering a global community through his record label, Good Looking Records, and his legendary London club night, Speed, which he co-founded with DJ Fabio. His compilations, particularly the *Logical Progression* and *Earth* series, served as foundational texts for the deeper, atmospheric spectrum of drum and bass, showcasing artists like Peshay, Source Direct, and Blu Mar Ten. Throughout his career, Bukem has remained an influential force, bridge-building between the technical innovations of breakbeat culture and the organic, emotive structures of jazz, cementing his legacy as one of electronic music’s most refined architects.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/LTJ_Bukem",
+      "title": "LTJ Bukem - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:35.917Z",
+  "type": "artist",
+  "editorial_bio": "LTJ Bukem, the professional alias of British producer and DJ Danny Williamson, is a pioneering figure in electronic music, best known for defining the atmospheric, jazz-inflected side of jungle and drum and bass in the 1990s.",
+  "genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:jazzstep",
+      "type": "genre",
+      "name": "Jazzstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:good-looking-records",
+      "type": "label",
+      "name": "Good Looking Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:horizons",
+      "type": "track",
+      "name": "Horizons"
+    },
+    {
+      "slug": "track:demon-s-theme",
+      "type": "track",
+      "name": "Demon's Theme"
+    },
+    {
+      "slug": "track:music",
+      "type": "track",
+      "name": "Music"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

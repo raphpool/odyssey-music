@@ -1,0 +1,91 @@
+{
+  "slug": "label:obscure-records",
+  "name": "Obscure Records",
+  "editorial_article": "Obscure Records was a seminal, short-lived British record label founded and curated by Brian Eno, active between 1975 and 1978. Operating as a platform for 20th-century classical, experimental, and avant-garde music, the label produced a concise but highly influential catalog of ten albums. Eno established the imprint to provide a dedicated venue for artists whose work often fell outside the reach of mainstream record distribution, focusing on composers and performers who blended academic rigor with the exploratory ethos of the 1970s experimental underground. \n\nThe label’s catalog featured definitive works from a range of pivotal figures, including Gavin Bryars, Michael Nyman, Harold Budd, and John Cage. Notably, the label served as the original home for Brian Eno's own landmark ambient work, 'Discreet Music' (1975). Beyond purely avant-garde compositions, the label released music that bridged the gap between modern classical structures and contemporary sonic innovation, such as the initial output of the Penguin Café Orchestra. Each release followed a consistent aesthetic, frequently including detailed liner notes reminiscent of classical music releases, which helped contextualize the challenging and avant-garde nature of the recordings for the listener. Although the label ceased operations in 1978 after its tenth release, its legacy remains massive, both for legitimizing the ambient movement and for documenting a vital cross-section of British and international experimental music during a period of significant artistic transition. Its commitment to challenging, non-commercial compositions paved the way for subsequent experimental imprints and remains a foundational reference point for listeners exploring ambient and modern classical traditions.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Obscure_Records",
+      "title": "Obscure Records - Wikipedia"
+    },
+    {
+      "url": "http://music.hyperreal.org/artists/brian_eno/obscure.html",
+      "title": "Eno's Obscure Label - Hyperreal Music Archive"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:15.765Z",
+  "type": "label",
+  "editorial_description": "A pioneering experimental and ambient label curated by Brian Eno between 1975 and 1978, responsible for releasing ten influential albums of 20th-century avant-garde and modern classical music.",
+  "founded": "1975",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:gavin-bryars",
+      "type": "artist",
+      "name": "Gavin Bryars"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:michael-nyman",
+      "type": "artist",
+      "name": "Michael Nyman"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:penguin-cafe-orchestra",
+      "type": "artist",
+      "name": "Penguin Cafe Orchestra"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-sinking-of-the-titanic",
+      "type": "project",
+      "name": "The Sinking of the Titanic"
+    },
+    {
+      "slug": "project:discreet-music",
+      "type": "project",
+      "name": "Discreet Music"
+    },
+    {
+      "slug": "project:decay-music",
+      "type": "project",
+      "name": "Decay Music"
+    },
+    {
+      "slug": "project:the-pavilion-of-dreams",
+      "type": "project",
+      "name": "The Pavilion of Dreams"
+    }
+  ]
+}

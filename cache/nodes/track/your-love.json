@@ -1,0 +1,49 @@
+{
+  "slug": "track:your-love",
+  "name": "Your Love",
+  "editorial_article": "\"Your Love\" is a foundational track in the history of electronic music, serving as one of the definitive anthems of Chicago house. Conceived by Frankie Knuckles in the DJ booth of The Power Plant, the track was created with a drum machine borrowed from Derrick May and features vocals by Jamie Principle. Its sonic signature is marked by an iconic, arpeggiated synth line paired with a thick, analogue bassline, elements that capture the spirit of early acid house and continue to influence dance music production decades later. Beyond its role in the Chicago scene, the song became a massive cultural touchstone, recognized internationally as an anthem for the UK's 1989 Summer of Love. Its cultural longevity is evidenced by its widespread influence, having been sampled by artists like Animal Collective and covered or reinterpreted in various forms by many others. Often described as balancing soulful spirituality with a darker, sexual energy, \"Your Love\" remains an essential record that transcended the dancefloor to become a permanent fixture in modern music history. Frankie Knuckles, widely regarded as the \"godfather of house,\" utilized his unique production sensibility to create a track that defies the typical sell-by date of club music, ensuring its place as a perennial classic in electronic culture.",
+  "citations": [
+    {
+      "url": "https://www.theguardian.com/music/musicblog/2011/may/19/your-love-frankie-knuckles",
+      "title": "Your Love by Frankie Knuckles: a song that will be raved about for ever | Frankie Knuckles | The Guardian"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:10.659Z",
+  "type": "track",
+  "editorial_teaser": "\"Your Love\" is a foundational track in the history of electronic music, serving as one of the definitive anthems of Chicago house.",
+  "year": "1987",
+  "artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

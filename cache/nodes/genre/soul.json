@@ -1,0 +1,128 @@
+{
+  "slug": "genre:soul",
+  "name": "Soul",
+  "editorial_article": "Soul is a defining African American musical genre that emerged in the United States during the late 1950s and reached its peak throughout the 1960s and 1970s. Arising from a fusion of gospel, rhythm and blues, and jazz, the genre is characterized by its intense emotional delivery, powerful vocalization, and rhythmic drive. Soul music is inseparable from the social and political climate of its era, particularly the Civil Rights and Black Power movements. It provided a sonic soundtrack for Black pride, self-determination, and the communal experience of the inner city, with lyrics often oscillating between deep-seated personal longing and overt political activism. \n\nMusically, the genre is anchored by gospel-inflected structures, including call-and-response patterns, melismatic vocalizing, and a dynamic use of tempo and timbre. Icons like Ray Charles and James Brown paved the way, blending the ecstatic energy of the pulpit with the secular groove of R&B. By the mid-60s, artists such as Aretha Franklin, Otis Redding, and Sam Cooke refined the sound, with the genre finding production powerhouses in labels like Motown and Stax. The legacy of soul music is foundational, directly influencing subsequent styles such as funk, disco, and contemporary R&B, while its emphasis on raw, authentic performance remains a benchmark for popular vocal music. Beyond its musical contributions, \"soul\" became a cultural descriptor for a broader array of Black creative expressions, reflecting a ethos of resilience and empowerment that persists to this day.",
+  "citations": [
+    {
+      "url": "https://timeline.carnegiehall.org/genres/soul",
+      "title": "History of Soul Music — Timeline of African American Music"
+    },
+    {
+      "url": "https://thejazzcafe.co.uk/blog/2021/07/21/the-history-of-soul-music/",
+      "title": "The History of Soul Music - Jazz Cafe"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:33.804Z",
+  "type": "genre",
+  "editorial_definition": "A gospel-influenced African American popular music style characterized by intense vocal delivery, deep emotional honesty, and a fusion of rhythm and blues, jazz, and spiritual traditions, serving as a pillar of Black cultural expression during the Civil Rights era.",
+  "era": "1950s–1970s",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and Blues"
+    },
+    {
+      "slug": "genre:gospel",
+      "type": "genre",
+      "name": "Gospel"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:neo-soul",
+      "type": "genre",
+      "name": "Neo Soul"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:james-brown",
+      "type": "artist",
+      "name": "James Brown"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles"
+    },
+    {
+      "slug": "artist:otis-redding",
+      "type": "artist",
+      "name": "Otis Redding"
+    },
+    {
+      "slug": "artist:sam-cooke",
+      "type": "artist",
+      "name": "Sam Cooke"
+    },
+    {
+      "slug": "artist:curtis-mayfield",
+      "type": "artist",
+      "name": "Curtis Mayfield"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:motown",
+      "type": "label",
+      "name": "Motown"
+    },
+    {
+      "slug": "label:stax-records",
+      "type": "label",
+      "name": "Stax Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:live-at-the-apollo",
+      "type": "project",
+      "name": "Live at the Apollo"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:respect",
+      "type": "track",
+      "name": "Respect"
+    },
+    {
+      "slug": "track:i-got-you",
+      "type": "track",
+      "name": "I Got You (I Feel Good)"
+    },
+    {
+      "slug": "track:people-get-ready",
+      "type": "track",
+      "name": "People Get Ready"
+    },
+    {
+      "slug": "track:a-change-is-gonna-come",
+      "type": "track",
+      "name": "A Change Is Gonna Come"
+    }
+  ]
+}

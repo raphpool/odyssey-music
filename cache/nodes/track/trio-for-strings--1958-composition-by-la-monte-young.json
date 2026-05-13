@@ -1,0 +1,40 @@
+{
+  "slug": "track:trio-for-strings--1958-composition-by-la-monte-young",
+  "name": "Trio for Strings",
+  "editorial_article": "Trio for Strings (1958) is a landmark composition by American avant-garde pioneer La Monte Young, widely recognized by musicologists as a foundational work of the Minimalist movement. Composed during his final period of serial exploration, the work represented a radical departure from the dense, frantic activity common to Western classical music of the time. Instead, Young constructed the piece exclusively of long, sustained tones and silences, shifting the listener's focus toward the microscopic qualities of sound, timbre, and harmonic interval rather than traditional melodic or thematic development. By prioritizing stasis over progression, the composition anticipated the drone-based musical languages that would dominate Young's later career and heavily influenced the trajectory of American minimalism, including the work of Terry Riley and the ambient movement.\\n\\nThe historical weight of the Trio is rooted in its revolutionary treatment of time and perception. While the structure utilizes serialist techniques common to Young’s mentor Leonard Stein and the influence of Anton Webern, the application of extreme augmentation—where individual tones and rests may last a minute or more—creates a sense of \"timelessness\" that feels strikingly modern even decades later. Over the years, the work has been realized in various formats, most notably in Just Intonation versions developed in collaboration with cellist Charles Curtis and the Theatre of Eternal Music. These later interpretations have sought to manifest the work’s inner harmonic meaning, often using larger ensembles to better sustain the pure tones and intricate intonations that define Young's idiosyncratic tonal language. The Trio remains a vital document of 20th-century avant-garde history, bridging the gap between late-modernist serialism and the meditative, immersive experiences of drone music.",
+  "citations": [
+    {
+      "url": "https://www.melafoundation.org/Trio_September_2005.htm",
+      "title": "MELA: Trio for Strings, La Monte Young, The Theater of Eternal Music String Ensemble, Charles Curtis"
+    },
+    {
+      "url": "https://www.soundohm.com/article/la-monte-young-trio-for-s",
+      "title": "La Monte Young - Trio for Strings - Soundohm"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:35.394Z",
+  "type": "track",
+  "editorial_teaser": "La Monte Young’s seminal 1958 composition is widely cited as the inaugural work of musical minimalism, replacing melodic development with extended, sustained tones and profound silence.",
+  "artists": [],
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

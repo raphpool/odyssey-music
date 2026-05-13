@@ -1,0 +1,99 @@
+{
+  "slug": "project:ambient-4-on-land",
+  "name": "Ambient 4: On Land",
+  "editorial_article": "Released in 1982, \"Ambient 4: On Land\" marks a pivotal shift in Brian Eno's career and the development of ambient music as a genre. Unlike his earlier, more structural explorations such as \"Ambient 1: Music for Airports,\" which utilized generative cycles to create serene, open environments, \"On Land\" presents a denser, darker, and more subterranean soundscape. It is a work defined by its psychological depth and environmental immersion, often evoking landscapes that are at once alien and deeply rooted in the physical earth. Eno famously utilized complex studio techniques to layer naturalistic field recordings—such as the chirping of insects or the low rumble of shifting soil—with processed synthesizers, creating a \"surrealist\" geography that resists traditional melodic progression.\\n\\nThe album represents a high-water mark for the use of the recording studio as an instrument, where the spatial arrangement of sound—the \"texture\" and \"depth\" of the sonic field—becomes more significant than any single note or beat. Contributions from musicians like Michael Brook and Daniel Lanois add distinct melodic and rhythmic accents that emerge from the gloom like ghosts, providing fragile points of reference in a largely amorphous auditory landscape. \"Ambient 4: On Land\" has proven to be an immensely influential record, serving as a primary blueprint for later developments in dark ambient, industrial ambient, and drone music. It invites the listener not merely to listen, but to inhabit the spaces Eno constructs, offering a meditative experience that balances tranquility with an underlying sense of mystery and displacement. It remains a foundational text in electronic music history, embodying Eno’s pursuit of music that functions as \"a place to be\" rather than a narrative to be followed.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/ambient-4-on-land-mw0000189816",
+      "title": "Ambient 4: On Land - Brian Eno | Album | AllMusic"
+    },
+    {
+      "url": "https://shop.udiscovermusic.com/products/brian-eno-ambient-4-on-land-1lp?srsltid=AfmBOoqnwp0CSx6hLg1Wc3fm2zcEFJLhIg14a69r8YhxwcIOr6OO63AL",
+      "title": "Brian Eno - Ambient 4: On Land (180g) LP - uDiscover Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:44.671Z",
+  "type": "project",
+  "editorial_pitch": "A dark, subterranean masterwork of ambient music, Brian Eno’s 1982 release moves beyond the serene minimalism of his earlier work into a dense, immersive exploration of sonic geography.",
+  "year": "1982",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:lizard-point",
+      "type": "track",
+      "name": "Lizard Point"
+    },
+    {
+      "slug": "track:the-lost-day",
+      "type": "track",
+      "name": "The Lost Day"
+    },
+    {
+      "slug": "track:talya",
+      "type": "track",
+      "name": "Talya"
+    },
+    {
+      "slug": "track:unfamiliar-wind",
+      "type": "track",
+      "name": "Unfamiliar Wind (Leek Hills)"
+    },
+    {
+      "slug": "track:a-clearing",
+      "type": "track",
+      "name": "A Clearing"
+    },
+    {
+      "slug": "track:dunwich-beach-autumn-1960",
+      "type": "track",
+      "name": "Dunwich Beach, Autumn 1960"
+    },
+    {
+      "slug": "track:an-ending",
+      "type": "track",
+      "name": "An Ending (Ascent)"
+    },
+    {
+      "slug": "track:shadow",
+      "type": "track",
+      "name": "Shadow"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    },
+    {
+      "slug": "project:apollo-atmospheres-and-soundtracks",
+      "type": "project",
+      "name": "Apollo: Atmospheres & Soundtracks"
+    }
+  ]
+}

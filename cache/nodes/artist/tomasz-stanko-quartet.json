@@ -1,0 +1,109 @@
+{
+  "slug": "artist:tomasz-stanko-quartet",
+  "name": "Tomasz Stańko Quartet",
+  "editorial_article": "The Tomasz Stańko Quartet, centered around the iconic Polish trumpeter Tomasz Stańko and his young trio of mentees—pianist Marcin Wasilewski, bassist Sławomir Kurkiewicz, and drummer Michał Miśkiewicz—represents one of the most influential and critically acclaimed ensembles in modern European jazz. Forming in the early 2000s, this quartet became the definitive vehicle for Stańko's mature output, acting as a crucial bridge between traditional melodic jazz and the expansive, atmospheric freedom that characterized the \"ECM sound.\" Stańko, already a legendary figure whose career spanned from his early associations with Krzysztof Komeda to his own groundbreaking leadership roles, found a unique, telepathic connection with these three younger musicians. \\n\\nThroughout their tenure, the quartet recorded landmark albums for ECM Records, including *Soul of Things* (2002), *Suspended Night* (2004), and *Lontano* (2006). These records, produced by Manfred Eicher, solidified their reputation for a distinctively European lyricism—marked by melancholic, brooding atmospheres, \"film-noir\" tonal colors, and a profound sense of space. While Stańko’s trumpet work was often defined by its introspective beauty and minimal vibrato, the quartet was equally celebrated for its ability to dissolve rigid song forms into collective improvisation. The live energy of the group, captured retrospectively on albums like *September Night* (recorded in 2004 but released in 2024), reveals an ensemble capable of both hushed, evocative storytelling and fiery, telepathic interaction. The partnership not only defined Stańko’s later career but also launched the international careers of the Marcin Wasilewski Trio, who continue to carry forward the quartet's legacy of rigorous, deeply communicative improvisational jazz.",
+  "citations": [
+    {
+      "url": "https://ecmrecords.com/product/september-night-tomasz-stanko-quartet/",
+      "title": "September Night - ECM Records"
+    },
+    {
+      "url": "https://pl.wikipedia.org/wiki/Tomasz_Sta%C5%84ko",
+      "title": "Tomasz Stańko – Wikipedia, wolna encyklopedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:04.336Z",
+  "type": "artist",
+  "editorial_bio": "The Tomasz Stańko Quartet was a seminal Polish jazz ensemble led by trumpeter Tomasz Stańko, featuring the rhythm section that would later become the Marcin Wasilewski Trio. Renowned for their atmospheric, lyrical, and improvisational style, they released several acclaimed albums on the ECM label, becoming a defining voice in contemporary European jazz.",
+  "origin": "Poland",
+  "active_years": "2000s–2010s",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:contemporary-jazz",
+      "type": "genre",
+      "name": "Contemporary Jazz"
+    },
+    {
+      "slug": "genre:european-jazz",
+      "type": "genre",
+      "name": "European Jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ecm-records",
+      "type": "label",
+      "name": "ECM Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:soul-of-things",
+      "type": "project",
+      "name": "Soul of Things"
+    },
+    {
+      "slug": "project:suspended-night",
+      "type": "project",
+      "name": "Suspended Night"
+    },
+    {
+      "slug": "project:lontano",
+      "type": "project",
+      "name": "Lontano"
+    },
+    {
+      "slug": "project:september-night",
+      "type": "project",
+      "name": "September Night"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:song-for-sarah",
+      "type": "track",
+      "name": "Song For Sarah"
+    },
+    {
+      "slug": "track:elegant-piece",
+      "type": "track",
+      "name": "Elegant Piece"
+    },
+    {
+      "slug": "track:kaetano",
+      "type": "track",
+      "name": "Kaetano"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:tomasz-stanko",
+      "type": "artist",
+      "name": "Tomasz Stańko"
+    },
+    {
+      "slug": "artist:marcin-wasilewski",
+      "type": "artist",
+      "name": "Marcin Wasilewski"
+    },
+    {
+      "slug": "artist:s-awomir-kurkiewicz",
+      "type": "artist",
+      "name": "Sławomir Kurkiewicz"
+    },
+    {
+      "slug": "artist:micha-miskiewicz",
+      "type": "artist",
+      "name": "Michał Miśkiewicz"
+    }
+  ]
+}

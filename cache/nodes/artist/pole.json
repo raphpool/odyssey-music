@@ -1,0 +1,103 @@
+{
+  "slug": "artist:pole",
+  "name": "Pole",
+  "editorial_article": "Pole is the influential creative alias of German electronic producer, musician, and mastering engineer Stefan Betke. Born in Düsseldorf in 1967, Betke fundamentally altered the landscape of late 1990s electronic music through his pioneering approach to sound design, most notably using a damaged Waldorf 4-Pole resonant filter to generate his signature aesthetic. This happy accident resulted in a glitch-heavy, dub-inflected sound characterized by crackling textures, unstable basslines, and a hypnotic, subterranean rhythmic pulse that bridged the gap between minimal techno, ambient, and avant-garde experimentalism. \\n\\nStarting with his seminal trilogy of albums—1 (1998), 2 (1999), and 3 (2000)—Betke established a distinct sonic vocabulary that defined the \"glitch\" movement, proving that digital errors could possess profound emotional and rhythmic weight. Beyond his output as a recording artist, Betke is a central figure in the Berlin electronic scene; he co-founded the influential label ~scape in 1999, which became a vital home for artists like Jan Jelinek. In addition to his production work, he is a highly regarded mastering engineer, having contributed his technical expertise to the sounds of artists ranging from John Frusciante to Oneohtrix Point Never. Over a career spanning more than two decades, Pole has consistently evolved, moving from the rigid, programmed unwieldiness of his early material toward more open, serene, and textured soundscapes as heard on later works like Fading (2020) and Tempus (2022).",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/pole",
+      "title": "Pole · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://pole-music.com/",
+      "title": "POLE"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:39.581Z",
+  "type": "artist",
+  "editorial_bio": "Pole is the influential creative alias of German electronic producer, musician, and mastering engineer Stefan Betke.",
+  "origin": "Düsseldorf, Germany",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:scape",
+      "type": "label",
+      "name": "~scape"
+    },
+    {
+      "slug": "label:mute",
+      "type": "label",
+      "name": "Mute"
+    },
+    {
+      "slug": "label:matador-records",
+      "type": "label",
+      "name": "Matador Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:1",
+      "type": "project",
+      "name": "1"
+    },
+    {
+      "slug": "project:2",
+      "type": "project",
+      "name": "2"
+    },
+    {
+      "slug": "project:3",
+      "type": "project",
+      "name": "3"
+    },
+    {
+      "slug": "project:fading",
+      "type": "project",
+      "name": "Fading"
+    },
+    {
+      "slug": "project:tempus",
+      "type": "project",
+      "name": "Tempus"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:raum",
+      "type": "track",
+      "name": "Raum"
+    },
+    {
+      "slug": "track:stechmuck",
+      "type": "track",
+      "name": "Stechmück"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

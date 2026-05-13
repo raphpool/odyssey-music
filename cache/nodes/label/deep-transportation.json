@@ -1,0 +1,51 @@
+{
+  "slug": "label:deep-transportation",
+  "name": "Deep Transportation",
+  "editorial_article": "Deep Transportation is an influential record label established in 2002 by the legendary Detroit producer and DJ Mike Huckaby. Serving as a crucial outlet for Huckaby’s own sophisticated, soulful, and tech-infused deep house, the label became synonymous with a specific strain of the Detroit sound—one that bridges the gap between the emotive, jazz-inflected textures of deep house and the precise, mechanical rhythms of Detroit techno. As a curator, Huckaby used the label to preserve and present both new compositions and essential reissues that defined his specific, highly-regarded artistic vision. \\n\\nThroughout its history, Deep Transportation maintained a focused catalog, prioritizing quality and sonic depth over rapid-fire releases. Projects like the 'Harmonie Park Classics' series are landmark documents of Huckaby’s influence, showcasing his ability to craft immersive soundscapes that resonated far beyond the confines of the Motor City. By maintaining strict control over his output, Huckaby ensured that every release on the imprint served as a masterclass in production, characterized by deep, liquid synth lines and impeccably programmed percussion. The label remains a vital pillar of the Detroit canon, reflecting the uncompromising dedication of one of electronic music's most respected figures to the craft of house and techno music. Following Huckaby’s passing, the label’s catalog continues to serve as an essential study in the emotional weight and rhythmic intelligence of the Detroit tradition.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/1851",
+      "title": "Deep Transportation · Record label ⟋ RA"
+    },
+    {
+      "url": "https://www.discogs.com/label/6412-Deep-Transportation",
+      "title": "Deep Transportation | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:43.399Z",
+  "type": "label",
+  "editorial_description": "A boutique label founded by Detroit electronic music icon Mike Huckaby, specializing in sophisticated, soulful deep house and techno.",
+  "founded": "2002",
+  "location": "Detroit, Michigan, USA",
+  "genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:harmonie-park-classics-volume-1",
+      "type": "project",
+      "name": "Harmonie Park Classics Volume 1"
+    },
+    {
+      "slug": "project:harmonie-park-classics-volume-2",
+      "type": "project",
+      "name": "Harmonie Park Classics Volume 2"
+    }
+  ]
+}

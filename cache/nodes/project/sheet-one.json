@@ -1,0 +1,20 @@
+{
+  "slug": "project:sheet-one",
+  "name": "Sheet One",
+  "editorial_article": "Released in 1993, 'Sheet One' stands as a foundational monument in the history of electronic music, serving as the debut studio album for Canadian producer Richie Hawtin under his seminal Plastikman alias. Emerging from the vibrant and experimental landscape of early 1990s techno, the album was released through NovaMute, solidifying Hawtin's reputation as a pioneer of the minimal techno movement. 'Sheet One' is celebrated not just for its music—a sprawling, hypnotic exploration of acid techno that eschewed the frenetic energy of the era for a more patient, internal focus—but also for its iconic, provocative visual presentation. The original cover art was intentionally perforated to resemble a sheet of LSD tabs, a daring aesthetic choice that famously led to legal troubles for at least one listener when it was misinterpreted by law enforcement. Musically, tracks like 'Plasticity' and 'Plasticine' define the Plastikman sound: deep, bubbling basslines, minimal arrangements, and a sense of space that was revolutionary at the time. Over the decades, it has consistently appeared on 'greatest of all time' dance music lists, reflecting its enduring influence on techno producers worldwide. The album serves as a bridge between the raw, hardware-driven intensity of the early 90s and the sophisticated, atmospheric production styles that would come to define the genre for years to come. It remains a masterclass in how to build tension and atmosphere through minimal means, proving that space and silence are as much instruments as the synthesizers that power the record.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Sheet_One",
+      "title": "Sheet One - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:25.315Z",
+  "type": "project",
+  "editorial_pitch": "'Sheet One' is the seminal 1993 debut from Richie Hawtin's Plastikman project, an influential masterwork of minimal and acid techno defined by its hypnotic, spaced-out soundscapes and infamous LSD-inspired album art.",
+  "year": "1993",
+  "artists": [],
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

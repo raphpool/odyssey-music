@@ -1,0 +1,100 @@
+{
+  "slug": "artist:coki",
+  "name": "Coki",
+  "editorial_article": "Dean Harris, better known by his stage name Coki, is a seminal British electronic musician and a foundational figure in the development of the dubstep genre. Born in Croydon, London, Harris emerged in the early 2000s as a key architect of the sound that would define South London's underground music scene. He is widely recognized for his work as one half of the production duo Digital Mystikz alongside Mala, and as a core member of the influential DMZ collective, which helped steer the genre toward a distinct, bass-heavy, and meditative aesthetic.\\n\\nCoki’s production style is characterized by its technical ingenuity, often utilizing complex LFO-modulated basslines that create the \"scrambled,\" fractal textures his music is famous for. While early works under the Digital Mystikz banner often leaned into dub-reggae influences and a cavernous, spiritual atmosphere, Coki's solo output evolved into a more aggressive, industrial, and rhythmically challenging sound. His track \"Spongebob\" is frequently cited as a turning point in the genre, moving away from the skeletal structures of early dubstep toward a more abrasive, high-energy style that would influence the trajectory of tearout and heavier sub-genres of bass music. Despite his massive influence on global electronic music, Coki maintained a reputation for humility, famously balancing his prolific production career with a 9-5 job for many years, avoiding the typical DJ celebrity lifestyle in favor of a focus on the craft and the visceral reaction of the audience in the club. His role within the DMZ label was not merely musical; it provided a vital, stable nexus for camaraderie and independent music culture that allowed the genre to flourish without corporate influence. Today, he remains a revered figure, representing the integrity and creative spontaneity of original dubstep.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/coki/biography",
+      "title": "Coki · Biography - Resident Advisor"
+    },
+    {
+      "url": "http://theartsdesk.com/new-music/theartsdesk-qa-producerdj-coki-digital-mystikz",
+      "title": "theartsdesk Q&A: Producer/DJ Coki (from Digital Mystikz) | The Arts Desk"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/coki",
+      "title": "Coki Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:41.135Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Croydon-born producer, Coki is a foundational figure in dubstep, famously known for his technical, aggressive bass sound and his role in the Digital Mystikz duo and the DMZ collective.",
+  "photo_url": "https://theartsdesk.com/sites/default/files/styles/840_wide/public/mastimages/Coki-Photo1.jpg?itok=LtDHBz0b",
+  "origin": "Croydon, UK",
+  "active_years": "\"2003-present\"",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dmz",
+      "type": "label",
+      "name": "DMZ"
+    },
+    {
+      "slug": "label:don-t-get-it-twisted",
+      "type": "label",
+      "name": "Don't Get It Twisted"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:spongebob-the-end",
+      "type": "project",
+      "name": "Spongebob / The End"
+    },
+    {
+      "slug": "project:night",
+      "type": "project",
+      "name": "Night"
+    },
+    {
+      "slug": "project:fabriclive-37",
+      "type": "project",
+      "name": "Fabriclive.37"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:spongebob",
+      "type": "track",
+      "name": "Spongebob"
+    },
+    {
+      "slug": "track:night",
+      "type": "track",
+      "name": "Night"
+    },
+    {
+      "slug": "track:tree-trunk",
+      "type": "track",
+      "name": "Tree Trunk"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz"
+    }
+  ]
+}

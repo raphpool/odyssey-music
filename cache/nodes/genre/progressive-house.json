@@ -1,0 +1,113 @@
+{
+  "slug": "genre:progressive-house",
+  "name": "Progressive House",
+  "editorial_article": "Progressive House emerged in the early 1990s within the United Kingdom's vibrant club and rave culture as a sophisticated, melodic, and expansive evolution of traditional house music. Moving away from the gritty, raw aesthetic of Chicago acid house, the genre was initially characterized by a \"hard but tuneful\" sound—a fusion of US house, European techno, and Italo disco that prioritized gradual build-ups, intricate layering, and atmospheric textures. Journalists and DJs of the era, such as those at Mixmag, used the term \"progressive\" to delineate this new, introspective style that sought to elevate the dance floor experience beyond standard club tracks.\n\nKey early landmarks for the genre include seminal tracks like Leftfield’s \"Not Forgotten\" (1990) and Gat Decor’s \"Passion.\" As the sound matured through the mid-1990s, it found a powerful home on compilation albums like \"Renaissance: The Mix Collection\" (1994) and \"Northern Exposure\" (1996), which solidified the genre’s reputation for epic, long-form DJ sets. Throughout its history, Progressive House has remained defined by its structural commitment to growth and tension, moving through various iterations from the underground, trance-adjacent sounds of its infancy to the more bombastic, festival-ready \"big room\" interpretations that dominated the global electronic landscape in the 2010s. Despite shifts in its sonic profile and the inevitable commercialization that follows any popular movement, the essence of the genre remains a dedication to the narrative arc of a mix, favoring immersive soundscapes that slowly unfold.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Progressive_house",
+      "title": "Progressive house - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:00.287Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of house music characterized by its focus on gradual structural evolution, atmospheric layering, and a melodic, trance-infused approach that prioritizes long-form mixing over traditional, loop-heavy track construction.",
+  "era": "1990s–Present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:leftfield",
+      "type": "artist",
+      "name": "Leftfield"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha"
+    },
+    {
+      "slug": "artist:john-digweed",
+      "type": "artist",
+      "name": "John Digweed"
+    },
+    {
+      "slug": "artist:dave-seaman",
+      "type": "artist",
+      "name": "Dave Seaman"
+    },
+    {
+      "slug": "artist:gat-decor",
+      "type": "artist",
+      "name": "Gat Decor"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:bedrock-records",
+      "type": "label",
+      "name": "Bedrock Records"
+    },
+    {
+      "slug": "label:guerilla-records",
+      "type": "label",
+      "name": "Guerilla Records"
+    },
+    {
+      "slug": "label:renaissance-recordings",
+      "type": "label",
+      "name": "Renaissance Recordings"
+    },
+    {
+      "slug": "label:deconstruction-records",
+      "type": "label",
+      "name": "Deconstruction Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:renaissance-the-mix-collection",
+      "type": "project",
+      "name": "Renaissance: The Mix Collection"
+    },
+    {
+      "slug": "project:northern-exposure",
+      "type": "project",
+      "name": "Northern Exposure"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:not-forgotten",
+      "type": "track",
+      "name": "Not Forgotten"
+    },
+    {
+      "slug": "track:passion",
+      "type": "track",
+      "name": "Passion"
+    }
+  ]
+}

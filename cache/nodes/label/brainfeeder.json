@@ -1,0 +1,110 @@
+{
+  "slug": "label:brainfeeder",
+  "name": "Brainfeeder",
+  "editorial_article": "Brainfeeder is an influential independent record label based in Los Angeles, founded in 2008 by producer Flying Lotus. Originating from the city's vibrant underground beat scene—specifically tied to the community centered around the Low End Theory club nights—the label became a primary engine for the hybridization of instrumental hip-hop, IDM, nu-jazz, and neo-soul. Brainfeeder emerged from the name of a radio show on Dublab, rapidly cementing itself as a nexus for left-field electronic music that challenged standard genre definitions. Throughout its history, Brainfeeder has been celebrated for cultivating a unique family atmosphere, often fostering collaborations between its diverse roster of virtuoso musicians and beat-makers. The label gained significant international reach through a partnership with Ninja Tune for global distribution, while maintaining its identity as a bastion for experimental soundscapes and avant-garde jazz fusions. It is recognized not only for its impact on electronic music culture but for launching the careers of pivotal figures like Thundercat and Kamasi Washington, who bridged the gap between experimental beat production and high-level jazz musicianship. Beyond its music output, the label expanded its creative footprint by establishing Brainfeeder Films, reinforcing the multi-disciplinary creative vision of its founder. Over more than a decade, Brainfeeder has remained a definitive institution, maintaining a consistent aesthetic of progressive, high-fidelity music that continues to shape contemporary experimental genres.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brainfeeder",
+      "title": "Brainfeeder - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/brainfeeder/",
+      "title": "Brainfeeder - Music label - Rate Your Music"
+    },
+    {
+      "url": "https://www.stereofox.com/labels/brainfeeder/",
+      "title": "Brainfeeder Label Profile - Stereofox Music Blog"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:31.755Z",
+  "type": "label",
+  "editorial_description": "A pioneering Los Angeles independent label founded by Flying Lotus, known for bridging instrumental hip-hop, IDM, and avant-garde jazz. It serves as a creative hub for a collective of virtuoso artists, including Thundercat and Kamasi Washington, consistently pushing the boundaries of contemporary electronic music.",
+  "founded": "2008",
+  "location": "Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus"
+    },
+    {
+      "slug": "artist:thundercat",
+      "type": "artist",
+      "name": "Thundercat"
+    },
+    {
+      "slug": "artist:kamasi-washington",
+      "type": "artist",
+      "name": "Kamasi Washington"
+    },
+    {
+      "slug": "artist:lapalux",
+      "type": "artist",
+      "name": "Lapalux"
+    },
+    {
+      "slug": "artist:daedelus",
+      "type": "artist",
+      "name": "Daedelus"
+    },
+    {
+      "slug": "artist:louis-cole",
+      "type": "artist",
+      "name": "Louis Cole"
+    },
+    {
+      "slug": "artist:teebs",
+      "type": "artist",
+      "name": "Teebs"
+    },
+    {
+      "slug": "artist:iglooghost",
+      "type": "artist",
+      "name": "Iglooghost"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:los-angeles",
+      "type": "project",
+      "name": "Los Angeles"
+    },
+    {
+      "slug": "project:the-golden-age-of-apocalypse",
+      "type": "project",
+      "name": "The Golden Age of Apocalypse"
+    },
+    {
+      "slug": "project:the-epic",
+      "type": "project",
+      "name": "The Epic"
+    },
+    {
+      "slug": "project:you-re-dead",
+      "type": "project",
+      "name": "You're Dead!"
+    }
+  ]
+}

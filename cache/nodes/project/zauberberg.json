@@ -1,0 +1,50 @@
+{
+  "slug": "project:zauberberg",
+  "name": "Zauberberg",
+  "editorial_article": "Released in 1997, *Zauberberg* is the second studio album by the influential electronic project Gas, the alias of Cologne-based producer Wolfgang Voigt. Representing a pivotal moment in the development of ambient techno, the record serves as the debut of the forest-inspired aesthetic that would define the project’s later acclaim. Named in reference to Thomas Mann’s classic novel *The Magic Mountain* (German: *Der Zauberberg*), the album is widely considered the darkest and most dissonant entry in the Gas discography. \\n\\nMusically, *Zauberberg* moves through dense, immersive soundscapes characterized by heavily processed orchestral loops, hazy textures, and a subtle, thumping pulse that mimics the sensation of navigating a deep, claustrophobic woodland. Eschewing the conventional structures of dance music, Voigt instead creates a liminal space where melody is subsumed by rhythmic decay and static. This immersive quality helped codify the \"forest techno\" sub-genre, positioning the record as a landmark piece of late-1990s experimental electronica. Released on the iconic Frankfurt-based imprint Mille Plateaux, the album was later instrumental in building the enduring legacy of the Gas project, eventually being compiled alongside other early works in the *Nah und Fern* and *Box* collections. *Zauberberg* remains a seminal work for its pioneering use of deep, atmospheric sampling, solidifying its status as a cornerstone of the ambient techno canon.",
+  "citations": [
+    {
+      "url": "https://www.amazon.com/Zauberberg-GAS/dp/B08MSMP1S1",
+      "title": "GAS - Zauberberg"
+    },
+    {
+      "url": "https://kompakt-gas.bandcamp.com/album/zauberberg",
+      "title": "Zauberberg | GAS"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/gas-gas/",
+      "title": "GAS Album Review - Pitchfork"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:24.648Z",
+  "type": "project",
+  "editorial_pitch": "A seminal work of ambient techno and the dark, forest-inspired debut of the Gas project's signature atmospheric sound.",
+  "year": "1997",
+  "artists": [],
+  "label": {
+    "slug": "label:mille-plateaux",
+    "type": "label",
+    "name": "Mille Plateaux"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno"
+    },
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark ambient"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
+    }
+  ],
+  "related_projects": []
+}

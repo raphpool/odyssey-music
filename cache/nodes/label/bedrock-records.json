@@ -1,0 +1,80 @@
+{
+  "slug": "label:bedrock-records",
+  "name": "Bedrock Records",
+  "editorial_article": "Bedrock Records is a seminal British independent record label, founded in 1999 by DJ and producer John Digweed. Originating from the success of the Bedrock club nights held in Hastings and at Heaven in London, the label quickly became a cornerstone of the progressive house, trance, and techno movements. Its identity is deeply tied to the partnership between John Digweed and Nick Muir, who have collectively steered the label through decades of shifting electronic music trends while maintaining a high standard of production quality. Bedrock Records has served as a pivotal platform for both established legends and emerging talent, fostering the careers of artists like Guy J, Henry Saiz, and Steve Lawler. The label's longevity is marked by its ability to evolve, branching out into sub-imprints such as Bedrock Digital and nurturing the rise of imprints like Guy J's Lost & Found. Celebrating its 20th anniversary in 2018, Bedrock remains a vital force in global underground electronic music, representing a bridge between the classic progressive sound of the late 90s and the sophisticated, atmospheric techno of the modern era. Its catalog remains a testament to the enduring influence of the UK club culture from which it emerged. The label has consistently maintained a reputation for curating deep, immersive soundscapes that transcend fleeting genre boundaries, ensuring its relevance in the global DJ circuit. Whether through its early foundational releases or its contemporary output, Bedrock continues to define the cutting edge of progressive dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bedrock_Records",
+      "title": "Bedrock Records - Wikipedia"
+    },
+    {
+      "url": "https://www.traxsource.com/label/16289/bedrock-records",
+      "title": "Bedrock Records | Traxsource"
+    },
+    {
+      "url": "https://ra.co/labels/1",
+      "title": "Bedrock Records · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:11.663Z",
+  "type": "label",
+  "editorial_description": "A seminal British independent record label founded in 1999 by John Digweed, central to the evolution of progressive house and underground electronic music.",
+  "founded": "1999",
+  "location": "London, United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:john-digweed",
+      "type": "artist",
+      "name": "John Digweed"
+    },
+    {
+      "slug": "artist:nick-muir",
+      "type": "artist",
+      "name": "Nick Muir"
+    },
+    {
+      "slug": "artist:guy-j",
+      "type": "artist",
+      "name": "Guy J"
+    },
+    {
+      "slug": "artist:henry-saiz",
+      "type": "artist",
+      "name": "Henry Saiz"
+    },
+    {
+      "slug": "artist:steve-lawler",
+      "type": "artist",
+      "name": "Steve Lawler"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:bedrock",
+      "type": "project",
+      "name": "Bedrock (album)"
+    },
+    {
+      "slug": "project:bedrock-xx",
+      "type": "project",
+      "name": "Bedrock XX"
+    }
+  ]
+}

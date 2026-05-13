@@ -1,0 +1,135 @@
+{
+  "slug": "artist:roni-size",
+  "name": "Roni Size",
+  "editorial_article": "Born Ryan Owen Granville Williams in Bristol, England, in 1969, Roni Size emerged as a central figure in the evolution of British electronic music, specifically within the jungle and drum and bass movements. Growing up in the St. Andrews suburb of Bristol, Williams was deeply influenced by the vibrant soundsystem culture and local reggae scene. His path to innovation began at a youth club, where he gained early access to production equipment—a formative experience that allowed him to bridge the gap between traditional reggae rhythms and the emerging intensity of the rave era. Throughout his career, Size has been lauded for his ability to integrate live instrumentation, such as double bass and acoustic drums, into the synthetic, high-energy world of jungle.\\n\\nHe achieved international prominence in 1997 as the mastermind behind the drum and bass collective Roni Size & Reprazent. Their debut studio album, 'New Forms' (1997), was a landmark release that won the prestigious Mercury Prize, signaling the mainstream breakthrough of drum and bass as an artistic force. The album's sophisticated fusion of breakbeats, jazz-infused textures, and soulful vocals—largely contributed by Onallee—helped redefine the sonic possibilities of the genre. Beyond Reprazent, Size has been a prolific collaborator and label founder. He co-founded the influential Full Cycle Records alongside Krust, DJ Die, and Suv, a label that played a critical role in shaping the Bristol sound. Over the decades, his discography has expanded to include diverse projects such as Breakbeat Era and numerous solo albums, solidifying his status as a foundational architect of contemporary breakbeat music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Roni_Size",
+      "title": "Roni Size - Wikipedia"
+    },
+    {
+      "url": "https://www.umusicpub.com/uk/Artists/R/Roni-Size.aspx",
+      "title": "Roni Size - Universal Music Publishing Group | UK"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:59.191Z",
+  "type": "artist",
+  "editorial_bio": "Bristol-based DJ and producer Roni Size is a pioneering force in jungle and drum and bass, best known for his Mercury Prize-winning work with the collective Reprazent. His production style is characterized by a sophisticated blend of rapid-fire breakbeats, live instrumentation, and deep roots in soundsystem culture.",
+  "origin": "Bristol, England",
+  "active_years": "1988–present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:full-cycle-records",
+      "type": "label",
+      "name": "Full Cycle Records"
+    },
+    {
+      "slug": "label:v-recordings",
+      "type": "label",
+      "name": "V Recordings"
+    },
+    {
+      "slug": "label:dope-dragon",
+      "type": "label",
+      "name": "Dope Dragon"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:new-forms",
+      "type": "project",
+      "name": "New Forms"
+    },
+    {
+      "slug": "project:in-the-mode",
+      "type": "project",
+      "name": "In the Mode"
+    },
+    {
+      "slug": "project:touching-down",
+      "type": "project",
+      "name": "Touching Down"
+    },
+    {
+      "slug": "project:return-to-v",
+      "type": "project",
+      "name": "Return To V"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:brown-paper-bag",
+      "type": "track",
+      "name": "Brown Paper Bag"
+    },
+    {
+      "slug": "track:heroes",
+      "type": "track",
+      "name": "Heroes"
+    },
+    {
+      "slug": "track:share-the-fall",
+      "type": "track",
+      "name": "Share the Fall"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:krust",
+      "type": "artist",
+      "name": "Krust"
+    },
+    {
+      "slug": "artist:dj-die",
+      "type": "artist",
+      "name": "DJ Die"
+    },
+    {
+      "slug": "artist:dynamite-mc",
+      "type": "artist",
+      "name": "Dynamite MC"
+    },
+    {
+      "slug": "artist:onallee",
+      "type": "artist",
+      "name": "Onallee"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:firefox",
+      "type": "artist",
+      "name": "Firefox"
+    },
+    {
+      "slug": "artist:hokuspokus",
+      "type": "artist",
+      "name": "Hokuspokus"
+    },
+    {
+      "slug": "artist:mask",
+      "type": "artist",
+      "name": "Mask"
+    }
+  ],
+  "members": []
+}

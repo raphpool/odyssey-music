@@ -1,0 +1,83 @@
+{
+  "slug": "artist:oval",
+  "name": "Oval",
+  "editorial_article": "Oval is the influential German electronic music project founded in Berlin in 1991, primarily the work of composer Markus Popp. Initially formed with collaborators Frank Metzger and Sebastian Oschatz, the project became a cornerstone of the 1990s \"glitch\" movement. Oval is widely recognized for pioneering techniques that manipulated the sounds of defective compact discs, treating digital errors as an instrument to create fluid, ambient, and avant-garde soundscapes. This methodology—often referred to as \"clicks-and-cuts\"—challenged traditional notions of electronic composition by elevating digital artifacts and stochastic processes to the center of the musical experience.\n\nThroughout the 1990s, particularly on seminal albums like 'Systemisch' (1994) and '94 Diskont' (1996), Oval’s music evolved from the studio manipulation of acoustic material into complex, layered textures that bridged the gap between early musique concrète and contemporary electronic music. Popp’s output has remained restlessly inventive; he has frequently abandoned established sonic signatures to embrace new methodologies, from the mathematical, deconstructed pop of his earlier work to the more abrasive, noise-oriented explorations of the early 2000s, and eventually moving toward sophisticated, genre-bending vignettes that integrate more conventional instrumentation. His long-running collaborations, most notably with Jan Werner of Mouse on Mars under the banner Microstoria, further explored the boundaries of ambient and improvisational electronic music, ensuring Oval's place as a seminal entity in the development of modern experimental sound design.",
+  "citations": [
+    {
+      "url": "https://www.scaruffi.com/vol6/oval.html",
+      "title": "The History of Rock Music. Oval: biography, discography, reviews, best albums, ratings"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/oval-mn0000897181",
+      "title": "Oval Songs, Albums, Reviews, Bio & More | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:59.330Z",
+  "type": "artist",
+  "editorial_bio": "Oval is the influential German electronic music project founded in Berlin in 1991, primarily the work of composer Markus Popp.",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:thrill-jockey",
+      "type": "label",
+      "name": "Thrill Jockey"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:do-while",
+      "type": "track",
+      "name": "Do While"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    },
+    {
+      "slug": "artist:frank-metzger",
+      "type": "artist",
+      "name": "Frank Metzger"
+    },
+    {
+      "slug": "artist:sebastian-oschatz",
+      "type": "artist",
+      "name": "Sebastian Oschatz"
+    }
+  ]
+}

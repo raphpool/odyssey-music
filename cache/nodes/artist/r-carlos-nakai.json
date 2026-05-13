@@ -1,0 +1,109 @@
+{
+  "slug": "artist:r-carlos-nakai",
+  "name": "R. Carlos Nakai",
+  "editorial_article": "R. Carlos Nakai, born in 1946, is the world’s most influential performer of the Native American flute. Of Navajo-Ute heritage, Nakai transformed the perception of the flute from a strictly traditional or ceremonial instrument into a versatile voice capable of crossing into jazz, classical, and New Age soundscapes. His journey began after a car accident ended his early career as a trumpet player, prompting him to master the traditional cedar flute. Since his debut album 'Changes' in 1983, released on Canyon Records, Nakai has become a cornerstone of the label’s catalog, achieving unprecedented commercial success including the first-ever Platinum record for a Native American solo flutist with 'Canyon Trilogy'.\\n\\nNakai's music is characterized by an 'iconoclastic traditionalist' approach, where he treats cultural heritage not as a static historical artifact, but as a living, evolving language. He has actively pushed boundaries, collaborating with a wide array of artists—from guitarist William Eaton and pianist Peter Kater to Tibetan flutist Nawang Khechog and the Wind Travelin’ Band of Japan. His work has spanned film scores for major motion pictures like 'Geronimo' and 'New World', and he has performed as a soloist with over 30 symphony orchestras. By blending the organic, breath-based resonance of the cedar flute with complex orchestral arrangements and modern ensemble settings, Nakai has secured his legacy as a vital ambassador for Native American musical culture, bridging the gap between ancient traditions and contemporary global music audiences. Beyond his performance career, Nakai is an accomplished educator and author, dedicated to sharing the nuances of the cedar flute with future generations through workshops and scholarly contributions. His dedication to his craft has earned him numerous Grammy nominations and an induction into the Arizona Music & Entertainment Hall of Fame, reflecting his enduring impact on the American musical landscape and his role in bringing indigenous sounds to a worldwide stage.",
+  "citations": [
+    {
+      "url": "https://rcarlosnakai.com/r-carlos-nakai-biography/",
+      "title": "R. Carlos Nakai’s Biography – Native American Flutist"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/R._Carlos_Nakai",
+      "title": "R. Carlos Nakai - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:41.480Z",
+  "type": "artist",
+  "editorial_bio": "R. Carlos Nakai is a renowned Native American flutist of Navajo-Ute heritage, celebrated for bringing the traditional cedar flute to global prominence through jazz, classical, and New Age collaborations. With over four million albums sold and multiple Grammy nominations, his work as a soloist and ensemble leader continues to bridge indigenous traditions with contemporary music.",
+  "photo_url": "http://rcarlosnakai.com/wp-content/uploads/2015/12/nakai-portrait.jpg",
+  "origin": "United States",
+  "genres": [
+    {
+      "slug": "genre:native-american-music",
+      "type": "genre",
+      "name": "Native American music"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ethnic-jazz",
+      "type": "genre",
+      "name": "Ethnic Jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:canyon-records",
+      "type": "label",
+      "name": "Canyon Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes"
+    },
+    {
+      "slug": "project:canyon-trilogy",
+      "type": "project",
+      "name": "Canyon Trilogy"
+    },
+    {
+      "slug": "project:earth-spirit",
+      "type": "project",
+      "name": "Earth Spirit"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:canyon-trilogy",
+      "type": "track",
+      "name": "Canyon Trilogy"
+    },
+    {
+      "slug": "track:earth-spirit",
+      "type": "track",
+      "name": "Earth Spirit"
+    },
+    {
+      "slug": "track:cycles",
+      "type": "track",
+      "name": "Cycles"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:william-eaton",
+      "type": "artist",
+      "name": "William Eaton"
+    },
+    {
+      "slug": "artist:james-demars",
+      "type": "artist",
+      "name": "James DeMars"
+    },
+    {
+      "slug": "artist:peter-kater",
+      "type": "artist",
+      "name": "Peter Kater"
+    },
+    {
+      "slug": "artist:nawang-khechog",
+      "type": "artist",
+      "name": "Nawang Khechog"
+    },
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

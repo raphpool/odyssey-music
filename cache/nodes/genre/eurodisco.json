@@ -1,0 +1,97 @@
+{
+  "slug": "genre:eurodisco",
+  "name": "Eurodisco",
+  "editorial_article": "Eurodisco, also frequently referred to as \"Euro disco,\" emerged in the mid-1970s as a distinctly European interpretation of the disco phenomenon that had originated in the United States. While rooted in the core tenets of disco—a dance-oriented beat, funk-inspired basslines, and high-energy arrangements—Eurodisco distinguished itself through a heavier reliance on electronic instrumentation, synthesizers, and highly polished, often grandiose production values. Rather than strictly focusing on the blues or R&B influences prevalent in American disco, Eurodisco synthesized these rhythms with traditional European pop structures, resulting in a sound that was frequently more melodic, anthemic, and accessible to international audiences. Key architects of this sound, such as Giorgio Moroder, Frank Farian, and Michael Kunze, helped export this polished, synth-forward approach to dance music, creating hits for acts like Boney M., Donna Summer, and Silver Convention. Throughout the late 1970s and 1980s, the genre evolved rapidly, spawning numerous subgenres and variations, including the science-fiction-inspired \"space disco,\" the Italy-centered \"Italo disco,\" and the high-tempo \"hi-NRG.\" As the sound matured, it moved away from its organic disco origins toward a more purely electronic aesthetic, paving the way for the development of synth-pop and eventually Eurodance in the 1990s. Beyond its status as a defining soundtrack of the era, Eurodisco's influence persisted globally, shaping pop production techniques for decades and retaining a massive cult following in Eastern Europe and parts of Asia. Its legacy is embedded in the DNA of contemporary dance music, from the \"back-to-the-roots\" ethos of French house to the enduring popularity of major-key, synth-driven dance anthems.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eurodisco",
+      "title": "Eurodisco - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:11.566Z",
+  "type": "genre",
+  "editorial_definition": "Eurodisco is a melodic, synth-heavy form of electronic dance music that emerged in mid-1970s Europe as a polished, electronic evolution of the American disco sound.",
+  "era": "1970s–1980s",
+  "origin": "Europe",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo disco"
+    },
+    {
+      "slug": "genre:space-disco",
+      "type": "genre",
+      "name": "Space disco"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG"
+    },
+    {
+      "slug": "genre:europop",
+      "type": "genre",
+      "name": "Europop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:boney-m",
+      "type": "artist",
+      "name": "Boney M."
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer"
+    },
+    {
+      "slug": "artist:giorgio-moroder",
+      "type": "artist",
+      "name": "Giorgio Moroder"
+    },
+    {
+      "slug": "artist:modern-talking",
+      "type": "artist",
+      "name": "Modern Talking"
+    },
+    {
+      "slug": "artist:silver-convention",
+      "type": "artist",
+      "name": "Silver Convention"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hansa-records",
+      "type": "label",
+      "name": "Hansa Records"
+    },
+    {
+      "slug": "label:casablanca-records",
+      "type": "label",
+      "name": "Casablanca Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:love-to-love-you-baby",
+      "type": "project",
+      "name": "Love to Love You Baby"
+    },
+    {
+      "slug": "project:take-the-heat-off-me",
+      "type": "project",
+      "name": "Take the Heat off Me"
+    }
+  ],
+  "landmark_tracks": []
+}

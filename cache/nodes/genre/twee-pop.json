@@ -1,0 +1,107 @@
+{
+  "slug": "genre:twee-pop",
+  "name": "Twee pop",
+  "editorial_article": "Twee pop is an influential and distinctive subgenre of indie pop that emerged in the United Kingdom during the early 1980s. Defined by its \"cute\" aesthetic, DIY ethics, and a musical simplicity often rooted in punk rock, the genre challenged the posturing and masculine hegemony of the contemporary rock scene. Musically, it is characterized by jangly, clean-toned electric guitars, soft or breathy vocals, and song structures that favor short, sweet, and hook-laden melodies. Lyrically, twee pop often explores themes of naive sentimentality, young love, childhood, and idiosyncratic nostalgia, intentionally stripping away the grit associated with traditional rock music. \\n\\nThe term \"twee,\" a British colloquialism meaning overly quaint or dainty, was originally deployed by music critics as a pejorative. However, the movement eventually reclaimed the label, turning it into a badge of honor that underscored the genre's commitment to vulnerability, sensitivity, and accessibility. The scene gained significant momentum through the legendary C86 compilation and the stewardship of figures like DJ John Peel, who provided a platform for these understated, melody-driven bands. Landmark labels such as Sarah Records became bastions for the sound, fostering a community that embraced an inclusive, artistic spirit. Throughout the 1990s and beyond, the genre expanded internationally, finding resonance in the Scottish indie scene with bands like Belle and Sebastian, and in American DIY circles with K Records artists like Beat Happening. By emphasizing sincerity over cynicism and melody over aggression, twee pop left an indelible mark on independent music, influencing everything from noise pop to the sophisticated arrangements of indie folk and beyond.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/twee-pop/",
+      "title": "Twee Pop - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:05.647Z",
+  "type": "genre",
+  "editorial_definition": "A style of indie pop defined by a DIY ethos, jangly melodic guitars, and a conscious embrace of vulnerability, innocence, and sentimental aesthetic.",
+  "era": "1980s-present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle Pop"
+    },
+    {
+      "slug": "genre:cuddlecore",
+      "type": "genre",
+      "name": "Cuddlecore"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian"
+    },
+    {
+      "slug": "artist:beat-happening",
+      "type": "artist",
+      "name": "Beat Happening"
+    },
+    {
+      "slug": "artist:dolly-mixture",
+      "type": "artist",
+      "name": "Dolly Mixture"
+    },
+    {
+      "slug": "artist:heavenly",
+      "type": "artist",
+      "name": "Heavenly"
+    },
+    {
+      "slug": "artist:the-pastels",
+      "type": "artist",
+      "name": "The Pastels"
+    },
+    {
+      "slug": "artist:talulah-gosh",
+      "type": "artist",
+      "name": "Talulah Gosh"
+    },
+    {
+      "slug": "artist:alvvays",
+      "type": "artist",
+      "name": "Alvvays"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sarah-records",
+      "type": "label",
+      "name": "Sarah Records"
+    },
+    {
+      "slug": "label:k-records",
+      "type": "label",
+      "name": "K Records"
+    },
+    {
+      "slug": "label:elefant-records",
+      "type": "label",
+      "name": "Elefant Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:if-you-re-feeling-sinister",
+      "type": "project",
+      "name": "If You're Feeling Sinister"
+    },
+    {
+      "slug": "project:tiger-trap",
+      "type": "project",
+      "name": "Tiger Trap"
+    }
+  ],
+  "landmark_tracks": []
+}

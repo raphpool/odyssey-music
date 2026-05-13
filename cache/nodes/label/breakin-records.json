@@ -1,0 +1,66 @@
+{
+  "slug": "label:breakin-records",
+  "name": "Breakin' Records",
+  "editorial_article": "Breakin' Records is a British independent record label that has served as a cornerstone of the electro and electronic music scene since the late 1990s. Initially gaining traction during the height of the electro and electroclash movements, the label carved out a distinct identity by fostering the works of producers who prioritized synthesized textures, propulsive rhythms, and a reverence for the genre’s Detroit and mid-Atlantic roots. While it garnered attention for early releases, the label became synonymous with the prolific output of DMX Krew, whose varied works—ranging from raw, driving electro to experimental synth-funk explorations—have defined much of the label's catalog throughout the 2010s and 2020s.\\n\\nThe label's legacy is deeply tied to its ability to preserve the \"sound of the street\" while simultaneously pushing toward new sonic landscapes. By maintaining a home for artists like DMX Krew and Ed Handley’s alias EDMX, Breakin' Records provided a necessary platform for material that balanced dance-floor functionality with the idiosyncratic, slightly off-kilter arrangements characteristic of high-quality electro. The label’s persistent focus on vinyl-quality digital releases and deep, thematic series—such as the 'Synth Funk' volumes—highlights its commitment to long-form electronic narratives. It remains a vital reference point for listeners navigating the evolution of electro in the 21st century, maintaining a consistent standard of production that honors the machines and melodies that defined the genre’s formative years. Through its decades of activity, the label has solidified its reputation as an uncompromising conduit for electronic music that refuses to fade into the background.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/2408-Breakin-Records",
+      "title": "Breakin' Records | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/breakin_records/",
+      "title": "Breakin' Records - Music label"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:05.665Z",
+  "type": "label",
+  "editorial_description": "A long-standing UK-based label dedicated to the sounds of electro, synth-funk, and underground electronic music, famously home to much of DMX Krew's extensive discography.",
+  "founded": "1997",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:synth-funk",
+      "type": "genre",
+      "name": "Synth-funk"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew"
+    },
+    {
+      "slug": "artist:edmx",
+      "type": "artist",
+      "name": "EDMX"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:sound-of-the-street",
+      "type": "project",
+      "name": "Sound Of The Street"
+    },
+    {
+      "slug": "project:synth-funk-vol-1-electro-worm",
+      "type": "project",
+      "name": "Synth Funk, Vol. 1: Electro Worm"
+    },
+    {
+      "slug": "project:cosmic-awakening-ep",
+      "type": "project",
+      "name": "Cosmic Awakening EP"
+    }
+  ]
+}

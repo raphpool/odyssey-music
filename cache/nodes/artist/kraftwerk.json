@@ -1,0 +1,94 @@
+{
+  "slug": "artist:kraftwerk",
+  "name": "Kraftwerk",
+  "editorial_article": "Kraftwerk is a seminal German electronic band formed in Düsseldorf in 1970 by Ralf Hütter and Florian Schneider. Often hailed as the godfathers of electronic music, the group moved from the experimental landscape of early 1970s krautrock into a highly stylized, precise, and groundbreaking form of \"robot pop.\" By utilizing custom-built electronic instruments, synthesizers, vocoders, and drum machines, they created a sonic blueprint that would irrevocably shape the future of synth-pop, techno, hip-hop, and house music. Their iconic aesthetic—often involving monochromatic suits and an obsession with man-machine symbiosis—reflected themes of technology, transportation, and computerization, turning their Kling Klang studio into a laboratory for sonic innovation. Throughout the 1970s and 1980s, albums such as Autobahn, Trans-Europe Express, The Man-Machine, and Computer World established a minimalist, rhythmic vocabulary that influenced countless artists across global musical genres. Despite various line-up changes over the decades, the group—continuing under Hütter's direction—has remained a monumental, living institution of experimental and popular music, recognized with Grammy awards and induction into the Rock & Roll Hall of Fame for their profound contribution to modern culture. Their influence spans decades, turning the coldness of machines into the heartbeat of global pop music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kraftwerk",
+      "title": "Kraftwerk - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:47.948Z",
+  "type": "artist",
+  "editorial_bio": "Kraftwerk are pioneers of electronic music who transformed the sound of the 20th century through their minimalist 'robot pop' and pioneering use of synthesis. Formed in Düsseldorf, they remain one of the most influential acts in history, bridging the gap between avant-garde krautrock and modern global pop.",
+  "origin": "Düsseldorf, Germany",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:kling-klang",
+      "type": "label",
+      "name": "Kling Klang"
+    },
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:autobahn",
+      "type": "project",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "project:trans-europe-express",
+      "type": "project",
+      "name": "Trans-Europe Express"
+    },
+    {
+      "slug": "project:the-man-machine",
+      "type": "project",
+      "name": "The Man-Machine"
+    },
+    {
+      "slug": "project:computer-world",
+      "type": "project",
+      "name": "Computer World"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:autobahn",
+      "type": "track",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "track:the-model",
+      "type": "track",
+      "name": "The Model"
+    },
+    {
+      "slug": "track:computer-love",
+      "type": "track",
+      "name": "Computer Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

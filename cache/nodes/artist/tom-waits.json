@@ -1,0 +1,52 @@
+{
+  "slug": "artist:tom-waits",
+  "name": "Tom Waits",
+  "editorial_article": "Thomas Alan Waits (born December 7, 1949, in Pomona, California) is an American singer-songwriter, composer, and actor renowned for his gravelly, distinctive voice and deeply atmospheric, idiosyncratic storytelling. Rising to prominence in the 1970s with a series of jazz-inflected, piano-based albums on Asylum Records—starting with his 1973 debut, *Closing Time*—Waits cultivated a persona as an urban poet chronicling the lives of outsiders, barflies, and down-on-their-luck characters. His early work drew heavily from the traditions of folk, jazz, and the Beat generation, creating a world populated by neon-lit diners and late-night solitude. \\n\\nIn the 1980s, Waits underwent a radical artistic evolution, pivoting toward a more experimental, percussion-heavy, and avant-garde sound. Collaborating closely with his wife and creative partner, Kathleen Brennan, he embraced the 'junkyard orchestra' aesthetic—incorporating unconventional instrumentation, industrial clatter, and warped blues sensibilities on landmark albums like *Swordfishtrombones* (1983) and *Rain Dogs* (1985). This transition marked his move to Island Records and solidified his status as an iconoclastic figure in popular music. Beyond his studio output, Waits is an accomplished actor and film composer, frequently blending his cinematic sensibilities into his songcraft. His influence is immense, spanning generations of alternative, rock, and experimental artists who have been drawn to his unwavering commitment to sonic texture, lyrical depth, and stylistic reinvention. Throughout his five-decade career, Waits has maintained a reputation for privacy and artistic independence, ensuring his work remains as enigmatic and evocative as the characters he portrays.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/82294-Tom-Waits?srsltid=AfmBOorpn7GRY0Nc_EUkQeJMXIkiSDw8TsklbRz3LKfKoL1f6uq2dhh4",
+      "title": "Tom Waits Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:49.365Z",
+  "type": "artist",
+  "editorial_bio": "Thomas Alan Waits (born December 7, 1949, in Pomona, California) is an American singer-songwriter, composer, and actor renowned for his gravelly, distinctive voice and deeply atmospheric, idiosyncratic storytelling.",
+  "origin": "Pomona, California, USA",
+  "active_years": "1973-present",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:asylum-records",
+      "type": "label",
+      "name": "Asylum Records"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

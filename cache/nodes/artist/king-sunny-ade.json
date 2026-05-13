@@ -1,0 +1,79 @@
+{
+  "slug": "artist:king-sunny-ade",
+  "name": "King Sunny Ade",
+  "editorial_article": "Chief Sunday Adeniyi Adegeye, professionally known as King Sunny Adé, is a towering figure in Nigerian music, widely credited as the king of jùjú. Born in 1946 into a Yoruba royal family in Osogbo, Nigeria, Adé began his career in the highlife scene before revolutionizing jùjú music, a genre rooted in traditional guitar traditions, poetic praise singing, and the rhythmic complexity of Yoruba oral history. His innovative approach involved transforming the band dynamic, introducing the pedal steel guitar, synthesizers, and intricate electric guitar arrangements that functioned almost as a percussion section. By the 1970s, he was a massive star in Nigeria, and in 1982, he achieved global acclaim with the release of the album 'Juju Music' on Island Records, followed by 'Syncro System' in 1983. The latter earned him the first Grammy nomination ever for a Nigerian artist. Throughout his prolific career, Adé has remained a bridge between traditional African music and global pop sensibilities, sustained by his legendary, multi-hour-long live performances with his band, the African Beats. Beyond his music, he has been a consistent leader in the Nigerian creative industry, serving as the chairman of the Musical Copyright Society of Nigeria and founding his own foundation to support local musicians. His influence remains foundational, as he continues to be recognized not just as a pioneer of jùjú, but as one of the most significant bandleaders of the twentieth century. His music documents the oral traditions of his people for posterity, blending the ancient with the modern in a way that continues to resonate across the African continent and beyond. The legacy of his 'African Beats' band and his own role as a cultural ambassador mark him as a definitive force in the history of world music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/King_Sunny_Ad%C3%A9",
+      "title": "King Sunny Adé - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/king-sunny-ade-mn0000771297",
+      "title": "King Sunny Ade Songs, Albums, Reviews, Bio & M... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:43.882Z",
+  "type": "artist",
+  "editorial_bio": "Chief Sunday Adeniyi Adegeye, professionally known as King Sunny Adé, is a towering figure in Nigerian music, widely credited as the king of jùjú.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/King_Sunny_Ade.jpg/250px-King_Sunny_Ade.jpg",
+  "origin": "Ondo, Nigeria",
+  "active_years": "1960s–present",
+  "genres": [
+    {
+      "slug": "genre:juju",
+      "type": "genre",
+      "name": "Jùjú"
+    },
+    {
+      "slug": "genre:african-pop",
+      "type": "genre",
+      "name": "African pop"
+    },
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:i-r-s-records",
+      "type": "label",
+      "name": "I.R.S. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:juju-music",
+      "type": "project",
+      "name": "Juju Music"
+    },
+    {
+      "slug": "project:syncro-system",
+      "type": "project",
+      "name": "Syncro System"
+    },
+    {
+      "slug": "project:odu",
+      "type": "project",
+      "name": "Odu"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [
+    {
+      "slug": "artist:tunde-nightingale",
+      "type": "artist",
+      "name": "Tunde Nightingale"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

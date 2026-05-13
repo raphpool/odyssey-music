@@ -1,0 +1,66 @@
+{
+  "slug": "project:slanted-and-enchanted",
+  "name": "Slanted and Enchanted",
+  "editorial_article": "Released on April 20, 1992, Pavement’s debut studio album, *Slanted and Enchanted*, stands as a definitive cornerstone of 1990s American indie rock. Recorded on a tight budget across sessions in Stockton, California, and Brooklyn, New York, the album captured the raw, inventive energy of Stephen Malkmus and Scott Kannberg before the band had solidified into a fully formed touring unit. The album is deeply associated with the lo-fi movement, characterized by its distorted, clattering production, tape-hiss charm, and a distinct aesthetic of casual, intellectual detachment.\\n\\nMusically, *Slanted and Enchanted* oscillates between feedback-drenched noise-pop—exemplified by tracks like \"Trigger Cut\"—and more introspective, melodic folk-leaning songs like \"Here.\" The album’s unique character stems from the interplay of Malkmus's cryptic, witty lyricism and the loose, idiosyncratic drumming of Gary Young, the only original member to appear on this specific LP. Its influence on the underground music landscape was profound, effectively codifying a new sonic vocabulary for indie rock that prioritized idiosyncratic song structures and a rejection of polished studio production. Over the decades, it has been consistently cited by music critics as one of the most important albums of its era, marking a bridge between the DIY experiments of the 1980s and the commercial prominence of indie rock in the late 90s. Beyond the original record, the *Luxe & Reduxe* expanded reissue later provided an exhaustive look at the era, cementing its place in the canon of American alternative music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Slanted_and_Enchanted",
+      "title": "Slanted and Enchanted - Wikipedia"
+    },
+    {
+      "url": "https://open.spotify.com/album/7o14zVcXSRk7clV6QCEdOD",
+      "title": "Slanted & Enchanted - Album by Pavement | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:42.953Z",
+  "type": "project",
+  "editorial_pitch": "The definitive 1992 debut that redefined indie rock, blending lo-fi charm, cryptic lyrics, and inventive noise-pop hooks into an enduring masterpiece of the underground.",
+  "artists": [],
+  "label": {
+    "slug": "label:matador-records",
+    "type": "label",
+    "name": "Matador Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise pop"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:summer-babe",
+      "type": "track",
+      "name": "Summer Babe (Winter Version)"
+    },
+    {
+      "slug": "track:trigger-cut",
+      "type": "track",
+      "name": "Trigger Cut"
+    },
+    {
+      "slug": "track:here",
+      "type": "track",
+      "name": "Here"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement"
+    }
+  ],
+  "related_projects": []
+}

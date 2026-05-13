@@ -1,0 +1,47 @@
+{
+  "slug": "project:have-some",
+  "name": "Have Some",
+  "editorial_article": "\"Have Some\" is a raucous, high-energy studio album by the Brooklyn-based trio We Ride On, released on July 30, 2013, through Sick Room Records. Known for its lean, driving instrumentation, the album captures the intensity of the New York City underground rock scene of the early 2010s, blending elements of garage rock, post-hardcore, and punk rock. Comprising members Rhett Mataix, Stephen McColl, and Aaron Boroughs, the group delivers a sharp, minimalist sound that prioritizes raw power and rhythmic momentum.\\n\\nRecorded at The Kennel in Brooklyn with producer Billy Szeflinski and mixed by Andy Manganello, the project features nine tracks that showcase the band’s ability to balance grit with punchy, infectious energy. Highlights such as \"Plastic Vampire Teeth\" and \"Knifeback City\" exemplify their signature aesthetic—direct, no-frills rock music that feels both urgent and tightly composed. The physical release of the album, issued on 10-inch vinyl, included an accompanying audio CD, reflecting the band's appreciation for tangible, multifaceted releases within the indie rock community. Through its tight arrangements and aggressive delivery, \"Have Some\" stands as a definitive document of the band’s collaborative dynamic and their contribution to the Brooklyn post-hardcore aesthetic.",
+  "citations": [
+    {
+      "url": "https://werideonmusic.com/album/have-some-2",
+      "title": "Have Some | We Ride On"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:18.224Z",
+  "type": "project",
+  "editorial_pitch": "A raucous and lean garage rock/post-hardcore record from the Brooklyn trio We Ride On, delivering nine tracks of high-intensity energy and tight, driving songcraft.",
+  "year": "2013",
+  "artists": [
+    {
+      "slug": "artist:we-ride-on",
+      "type": "artist",
+      "name": "We Ride On"
+    }
+  ],
+  "label": {
+    "slug": "label:sick-room-records",
+    "type": "label",
+    "name": "Sick Room Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage Rock"
+    },
+    {
+      "slug": "genre:post-hardcore",
+      "type": "genre",
+      "name": "Post-hardcore"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

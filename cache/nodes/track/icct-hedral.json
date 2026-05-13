@@ -1,0 +1,55 @@
+{
+  "slug": "track:icct-hedral",
+  "name": "Icct Hedral",
+  "editorial_article": "\"Icct Hedral\" is a seminal piece of electronic composition by the enigmatic British producer Aphex Twin, famously re-orchestrated by the minimalist pioneer Philip Glass. Originally appearing on the 1995 album \"I Care Because You Do,\" the track exemplifies Richard D. James’s mastery of layered, melancholic atmosphere and complex, fractured beat patterns. The collaboration with Glass, titled \"Icct Hedral (Phillip Glass Orchestration),\" transformed the original track into a haunting symphonic work, marking a high-profile intersection between the worlds of experimental electronic music and contemporary classical minimalism. The track is renowned for its cathedral-like, ominous chords and a sense of architectural structure that feels both alien and deeply emotive. The collaboration came about when Glass, recognizing the sophistication in James's work, chose to arrange the piece, thereby validating the electronic producer's standing as a serious composer within the avant-garde canon. The piece remains a focal point in discussions surrounding the \"intelligent dance music\" (IDM) movement of the 1990s, demonstrating how electronic textures could possess the same depth and emotional resonance as traditional orchestral arrangements. Whether in its original studio form or the sweeping, emotive re-orchestration, \"Icct Hedral\" serves as a landmark document of mid-90s experimentalism. The piece continues to influence producers who bridge the gap between high-concept sound design and classical arrangement, remaining one of the most recognizable and critically discussed entries in the vast Aphex Twin discography.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/icct-hedral-phillip-glass-orchestration",
+      "title": "Icct Hedral (Phillip Glass Orchestration) | Aphex Twin & Philip Glass | Aphex Twin"
+    },
+    {
+      "url": "https://www.last.fm/music/Aphex+Twin/...I+Care+Because+You+Do/Icct+Hedral",
+      "title": "Icct Hedral — Aphex Twin - Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:52.945Z",
+  "type": "track",
+  "editorial_teaser": "A landmark atmospheric composition by Aphex Twin that gained renown for its haunting, cathedral-like structure and an acclaimed re-orchestration by minimalist legend Philip Glass.",
+  "cover_url": "https://f4.bcbits.com/img/a3529847488_10.jpg",
+  "year": "1995",
+  "duration": "08:05",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:i-care-because-you-do",
+    "type": "project",
+    "name": "I Care Because You Do"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

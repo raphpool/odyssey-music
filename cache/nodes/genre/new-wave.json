@@ -1,0 +1,106 @@
+{
+  "slug": "genre:new-wave",
+  "name": "New wave",
+  "editorial_article": "New wave emerged in the mid-to-late 1970s as a vibrant, multifaceted genre that broadened the sonic horizons of punk. While punk rock was often characterized by its abrasive, anti-establishment ethos, new wave offered a more melodic, radio-friendly, and frequently experimental alternative. The term itself, championed by industry figures like Sire Records’ Seymour Stein, served as a catch-all for diverse styles—ranging from the jagged, guitar-driven energy of power pop to the burgeoning, avant-garde use of synthesizers—that flourished after the initial punk explosion. It drew inspiration from a wide array of sources, including glam rock, art pop, funk, reggae, and the intellectual sensibilities of 1970s krautrock.\n\nA hallmark of the new wave sound was its distinctive \"twitchy\" or agitated aesthetic. Musicians often employed choppy rhythm guitars, stop-start song structures, and angular riffs paired with high-pitched, occasionally detached vocal styles. As the 1980s dawned, the genre’s integration of synthesizers and electronic production laid the foundational architecture for the synth-pop explosion. Culturally, new wave was inextricably linked to the visual era; the 1981 launch of MTV in the United States served as a massive catalyst, prioritizing visually distinctive British new wave acts that had previously been a staple of UK television programs like *Top of the Pops*.\n\nThough the genre experienced a commercial decline by the mid-1980s as it was subsumed by the \"new pop\" and Second British Invasion movements, its influence on subsequent decades remains profound. From the 1990s and 2000s revivals to its structural fingerprints in modern microgenres like bloghouse, synthwave, and chillwave, new wave remains a pivotal transitional moment in rock history—a bridge between the rawness of punk and the high-gloss, electronic-driven future of modern pop music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New_wave_music",
+      "title": "New wave music - Wikipedia"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/new-wave-music-guide",
+      "title": "The History and Bands of New Wave Music - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:56.780Z",
+  "type": "genre",
+  "editorial_definition": "A melodic, pop-oriented genre emerging in the late 1970s as a successor to punk, characterized by quirky, idiosyncratic sensibilities, angular guitar work, and the increasing incorporation of synthesizers and electronic elements.",
+  "era": "Mid-1970s to mid-1980s",
+  "origin": "United Kingdom and United States",
+  "parent_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave"
+    },
+    {
+      "slug": "genre:new-romantic",
+      "type": "genre",
+      "name": "New Romantic"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:blondie",
+      "type": "artist",
+      "name": "Blondie"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads"
+    },
+    {
+      "slug": "artist:devo",
+      "type": "artist",
+      "name": "Devo"
+    },
+    {
+      "slug": "artist:elvis-costello",
+      "type": "artist",
+      "name": "Elvis Costello"
+    },
+    {
+      "slug": "artist:the-cars",
+      "type": "artist",
+      "name": "The Cars"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sire-records",
+      "type": "label",
+      "name": "Sire Records"
+    },
+    {
+      "slug": "label:stiff-records",
+      "type": "label",
+      "name": "Stiff Records"
+    },
+    {
+      "slug": "label:rough-trade",
+      "type": "label",
+      "name": "Rough Trade"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

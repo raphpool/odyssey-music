@@ -1,0 +1,75 @@
+{
+  "slug": "artist:robert-john-mutt-lange",
+  "name": "Robert John \"Mutt\" Lange",
+  "editorial_article": "Robert John \"Mutt\" Lange is a legendary producer and songwriter who defined the sound of arena rock and pop-country across four decades. Born in Mufulira, Zambia, in 1948, Lange emerged in the 1970s, but his reputation for unparalleled studio perfectionism truly took hold with AC/DC's 'Highway to Hell' (1979) and 'Back in Black' (1980). His signature production style—characterized by dense vocal layering, immense sonic clarity, and a meticulous approach to arrangement—turned acts like Def Leppard into global icons, with 'Hysteria' (1987) standing as a benchmark of commercial rock production. \\n\\nLange’s influence extends far beyond heavy rock. In the 1990s, he shifted his focus to the country-pop landscape, most notably through his transformative work with Shania Twain. Albums like 'The Woman in Me' and 'Come on Over' broke the boundaries between country and mainstream pop, creating a blueprint for the polished, crossover sound that dominated the decade. His ability to distill complex arrangements into radio-ready, hit-oriented compositions made him a premier, albeit reclusive, force in the music industry. Throughout his career, he has successfully adapted his meticulous sonic sensibility to artists ranging from Foreigner and The Cars to Bryan Adams, The Backstreet Boys, and Maroon 5, cementing his legacy as one of the most commercially successful and technically influential producers in history.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/robert-john-mutt-lange-mn0000241225",
+      "title": "Robert John 'Mutt' Lange Songs, Albums, Review... | AllMusic"
+    },
+    {
+      "url": "https://www.loudersound.com/features/mutt-lange-best-albums",
+      "title": "Mutt Lange productions: the best albums - A Buyers' Guide | Louder"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:06.602Z",
+  "type": "artist",
+  "editorial_bio": "Robert John \"Mutt\" Lange is a legendary producer and songwriter who defined the sound of arena rock and pop-country across four decades.",
+  "genres": [
+    {
+      "slug": "genre:arena-rock",
+      "type": "genre",
+      "name": "Arena Rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    },
+    {
+      "slug": "genre:country-pop",
+      "type": "genre",
+      "name": "Country Pop"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:back-in-black",
+      "type": "track",
+      "name": "Back in Black"
+    },
+    {
+      "slug": "track:photograph",
+      "type": "track",
+      "name": "Photograph"
+    },
+    {
+      "slug": "track:hysteria",
+      "type": "track",
+      "name": "Hysteria"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:shania-twain",
+      "type": "artist",
+      "name": "Shania Twain"
+    },
+    {
+      "slug": "artist:ac-dc",
+      "type": "artist",
+      "name": "AC/DC"
+    },
+    {
+      "slug": "artist:def-leppard",
+      "type": "artist",
+      "name": "Def Leppard"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

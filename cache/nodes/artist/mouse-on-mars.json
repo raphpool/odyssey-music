@@ -1,0 +1,116 @@
+{
+  "slug": "artist:mouse-on-mars",
+  "name": "Mouse on Mars",
+  "editorial_article": "Mouse on Mars is an influential German electronic music duo formed in 1993 by Jan St. Werner and Andi Toma. Emerging from the vibrant scene in Cologne and Düsseldorf, the project quickly established itself as a boundary-pushing force in experimental pop and electronic music, operating in a unique space between club culture, the avant-garde, and intellectual theory. Unlike their predecessors who prioritized precision and robotic discipline, Mouse on Mars embraced an anarchic, chaotic, yet meticulously structured sonic language. Their sound is characterized by a \\\"destructive compulsion,\\\" blending fragmented melodies, warped electronics, noise, and complex rhythmic textures. Over decades of prolific output, the duo has consistently reinvented their approach, incorporating diverse influences from trap and grime to orchestral arrangements. Their commitment to collaboration extends across disciplines, working with artists like Stereolab's Laetitia Sadier, Mark E. Smith (as part of Von Südenfed), and the Chicago Symphony Orchestra. By maintaining their own label, Sonig, and engaging deeply with technology, theory, and academia, Mouse on Mars have successfully navigated the friction between DIY subculture and the cultural establishment, remaining one of Germany’s most versatile and restless creative forces. Throughout their long career, they have defied genre conventions, constantly pushing the boundaries of what is possible within the realm of electronic music, ensuring that their work remains as unpredictable today as it was in the early 1990s. Their influence spans from underground club music to contemporary classical performance, cementing their legacy as innovators. Their work continues to evolve, reflecting a restless spirit and a refusal to settle into any singular, definable artistic identity.",
+  "citations": [
+    {
+      "url": "http://www.mouseonmars.com/biography",
+      "title": "BIOGRAPHY — Mouse Mars on"
+    },
+    {
+      "url": "https://www.dominomusic.com/artists/mouse-on-mars",
+      "title": "Mouse On Mars | Artists - Domino Recording Company"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:08.807Z",
+  "type": "artist",
+  "editorial_bio": "Mouse on Mars is a highly influential German electronic music duo recognized for their versatile, boundary-pushing approach that traverses experimental pop, avant-garde, and club music. Formed in 1993 by Jan St. Werner and Andi Toma, they have spent over two decades mapping an idiosyncratic trajectory that bridges the gap between DIY subculture and academic theory.",
+  "photo_url": "https://images.squarespace-cdn.com/content/v1/57fe634737c581bd88718be3/1477393827398-FJWNZLWHGIMWLW2M4H3T/11157413_968994703125335_8660105955931706848_o.jpg?format=2500w",
+  "origin": "Cologne, Germany",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:too-pure",
+      "type": "label",
+      "name": "Too Pure"
+    },
+    {
+      "slug": "label:monkeytown-records",
+      "type": "label",
+      "name": "Monkeytown Records"
+    },
+    {
+      "slug": "label:sonig",
+      "type": "label",
+      "name": "Sonig"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:vulvaland",
+      "type": "project",
+      "name": "Vulvaland"
+    },
+    {
+      "slug": "project:parastrophics",
+      "type": "project",
+      "name": "Parastrophics"
+    },
+    {
+      "slug": "project:idiology",
+      "type": "project",
+      "name": "Idiology"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:wipe-that-sound",
+      "type": "track",
+      "name": "Wipe That Sound"
+    },
+    {
+      "slug": "track:pinwheel-herman",
+      "type": "track",
+      "name": "Pinwheel Herman"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier"
+    },
+    {
+      "slug": "artist:mark-e-smith",
+      "type": "artist",
+      "name": "Mark E. Smith"
+    },
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:microstoria",
+      "type": "artist",
+      "name": "Microstoria"
+    },
+    {
+      "slug": "artist:von-sudenfed",
+      "type": "artist",
+      "name": "Von Südenfed"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "artist:tusken-raiders",
+  "name": "Tusken Raiders",
+  "editorial_article": "Tusken Raiders are a rock band hailing from Viareggio, Italy, known for their fusion of stoner rock and desert rock influences. Drawing inspiration from the heavy, expansive sounds typical of the desert rock scene, the band crafts music that feels both gritty and atmospheric. They gained recognition in the local Italian underground scene following their transformation from a previous project known as Charming Chaos. The band's discography, highlighted by the 2019 EP \"We Ride On,\" showcases their ability to blend aggressive riffs with the hypnotic, sand-swept textures of their genre counterparts. While operating within the independent circuit, they have cultivated a distinct identity rooted in their Viareggio origins and their thematic commitment to the heavy, fuzz-laden soundscapes that define their output. Through tracks like \"CINGHIALE\" and \"DRINKING WITH THE MONSTER,\" the band demonstrates a commitment to the raw, unpolished energy of stoner rock. Their sound remains a testament to the enduring influence of 1990s desert rock in modern European underground music, characterized by low-tuned guitars, heavy rhythmic foundations, and an emphasis on heavy, psychedelic atmospheres. The band's sound is deeply indebted to the classic heavy rock sounds of the 70s and 90s, reinterpreted through a modern, independent lens that emphasizes raw production and visceral performance. As they continue to navigate the Italian underground, their work serves as a prime example of how international genres are localized and recontextualized within regional scenes like that of Viareggio.",
+  "citations": [
+    {
+      "url": "https://soundcloud.com/tusken-raiders",
+      "title": "Tusken Raiders - SoundCloud"
+    },
+    {
+      "url": "https://www.facebook.com/tuskenraidersband/",
+      "title": "Tusken Raiders (@tuskenraidersband) - Facebook"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:37.001Z",
+  "type": "artist",
+  "editorial_bio": "Tusken Raiders are a rock band hailing from Viareggio, Italy, known for their fusion of stoner rock and desert rock influences.",
+  "genres": [
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner Rock"
+    },
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:we-ride-on",
+      "type": "project",
+      "name": "We Ride On"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cinghiale",
+      "type": "track",
+      "name": "CINGHIALE"
+    },
+    {
+      "slug": "track:drinking-with-the-monster",
+      "type": "track",
+      "name": "DRINKING WITH THE MONSTER"
+    },
+    {
+      "slug": "track:burn",
+      "type": "track",
+      "name": "BURN"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "genre:deathstep",
+  "name": "Deathstep",
+  "editorial_article": "Deathstep is a hyper-aggressive subgenre of brostep that emerged in the early 2010s, defined by its fusion of dubstep's structural intensity with the sonic palette of extreme metal. While initially a loose descriptor for any metal-leaning bass music, the genre found its formal footing around 2011, notably catalyzed by the release of Bratkilla's *The Deathstep LP*. Sonically, deathstep is characterized by its bleak, oppressive atmosphere and the use of \"machine gun\" basses—rapid, triplet-based synthesized bass patterns that mimic the percussion of death metal. Early iterations often relied on overt metal tropes, including chopped-up guitar riffs, sampled death growls, and literal break-downs. \\n\\nAs the genre matured through the mid-2010s, it drifted away from direct metal sampling toward a more synthetic, industrial-inspired aesthetic. This evolution prioritized atonality, immense distortion, and a hypnotic, often bleak minimalism that borrowed structural concepts from riddim. Unlike the mainstream pop-leaning tendencies of early 2010s brostep, deathstep maintained a cult-like, outsider status, focusing on abrasive sound design and sensory overload rather than accessible dancefloor hooks. Key figures in the scene, such as Code: Pandorum and Bratkilla, established a framework for a sound that serves as a bridge between the visceral rage of deathcore and the rhythmic precision of high-energy electronic bass music, cementing it as a distinct, albeit challenging, corner of the dubstep landscape.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/deathstep/",
+      "title": "Deathstep - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Deathstep",
+      "title": "Deathstep - Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:56.815Z",
+  "type": "genre",
+  "editorial_definition": "A dark, abrasive subgenre of dubstep characterized by extreme distortion, metallic textures, atonal \"machine gun\" basslines, and heavy influence from death metal and industrial music.",
+  "era": "2010s–present",
+  "origin": "International (Online communities)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal"
+    },
+    {
+      "slug": "genre:riddim",
+      "type": "genre",
+      "name": "Riddim"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bratkilla",
+      "type": "artist",
+      "name": "Bratkilla"
+    },
+    {
+      "slug": "artist:code-pandorum",
+      "type": "artist",
+      "name": "Code: Pandorum"
+    },
+    {
+      "slug": "artist:getter",
+      "type": "artist",
+      "name": "Getter"
+    },
+    {
+      "slug": "artist:phyllomedusa",
+      "type": "artist",
+      "name": "Phyllomedusa"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-deathstep-lp",
+      "type": "project",
+      "name": "The Deathstep LP"
+    },
+    {
+      "slug": "project:videodrome",
+      "type": "project",
+      "name": "Videodrome"
+    },
+    {
+      "slug": "project:hope-floats",
+      "type": "project",
+      "name": "Hope Floats"
+    }
+  ],
+  "landmark_tracks": []
+}

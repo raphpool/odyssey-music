@@ -1,0 +1,49 @@
+{
+  "slug": "track:pewter-dragon",
+  "name": "Pewter Dragon",
+  "editorial_article": "\"Pewter Dragon\" is an electronic track by the influential producer Mike Paradinas, operating under his pseudonym Jake Slazenger. Released in 2006 on Planet Mu, the track exemplifies the playful yet intricate sound design that Paradinas cultivated throughout his career. As an artist persona, Jake Slazenger was often used to explore funk-inflected, slightly absurd, and technically dense electronic music, distinguishing itself from the more abrasive or ambient textures found under his primary monikers. \"Pewter Dragon\" serves as a testament to the quirky, rhythmic dynamism of the mid-2000s IDM (Intelligent Dance Music) scene, where producers often prioritized idiosyncratic, wonky grooves over traditional genre structures. By this point in his career, Paradinas had established himself as a central figure in the UK electronic underground through his label, Planet Mu, and his own prolific output. The track is notable for its compact, punchy delivery, released as a digital single that highlights the artist's ability to maintain a distinct, whimsical sonic identity even while traversing various sub-genres of experimental electronic music. It remains a cult favorite among fans of Paradinas' expansive catalog, standing as a singular, mid-tempo excursion into his signature melodic eccentricity.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/gb/album/pewter-dragon-single/1046214531",
+      "title": "Pewter Dragon - Single - Album by Jake Slazenger - Apple Music"
+    },
+    {
+      "url": "https://www.amazon.com/Pewter-Dragon-Jake-Slazenger/dp/B00FQS1U4G",
+      "title": "Pewter Dragon - Jake Slazenger - Amazon.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:02.293Z",
+  "type": "track",
+  "editorial_teaser": "\"Pewter Dragon\" is an electronic track by the influential producer Mike Paradinas, operating under his pseudonym Jake Slazenger.",
+  "year": "2006",
+  "duration": "4:31",
+  "artists": [
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

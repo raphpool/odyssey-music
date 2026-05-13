@@ -1,0 +1,58 @@
+{
+  "slug": "project:analord-10",
+  "name": "Analord 10",
+  "editorial_article": "Analord 10 is a pivotal 12-inch EP released in 2005 by the influential electronic musician Richard D. James under his AFX moniker. Serving as a crucial installment in the broader Analord series—a sequence of EPs that captured James' deep fascination with analog synthesis—this record continues his exploration of raw, machine-driven rhythms. Much of the material released under the Analord umbrella was recorded using vintage hardware, showcasing a departure from the intricate, software-heavy glitch textures of his earlier Warp Records output, and leaning instead into a more direct, acid-inflected, and hardware-focused sound palette. \\n\\nFeaturing tracks like \"Fenix Funk 5\" and \"XMD 5a,\" Analord 10 highlights James' unparalleled ability to manipulate analog equipment to generate infectious, complex polyrhythms that feel simultaneously nostalgic and futuristic. The series itself was famously distributed through his own label, Rephlex Records, which helped define the sound of the mid-2000s underground IDM scene. The physical release of Analord 10, often accompanied by a limited-edition PVC binder for collectors, underscores the idiosyncratic and tactile nature of the project. It remains a testament to the enduring influence of hardware-based electronic music and Richard D. James' technical ingenuity. By focusing on the interplay between deep, warm basslines and jagged, rapid-fire percussion, the project remains a landmark release within his expansive discography.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/48859-Aphex-Twin-Analord-10",
+      "title": "Aphex Twin – Analord 10 | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:13.799Z",
+  "type": "project",
+  "editorial_pitch": "An essential piece of the analog-focused Analord series, this 2005 EP from Richard D. James (as AFX) delivers raw, hardware-driven acid and complex polyrhythms via his own Rephlex label.",
+  "year": "2005",
+  "artists": [],
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:fenix-funk-5",
+      "type": "track",
+      "name": "Fenix Funk 5"
+    },
+    {
+      "slug": "track:xmd-5a",
+      "type": "track",
+      "name": "XMD 5a"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "related_projects": []
+}

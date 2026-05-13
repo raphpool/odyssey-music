@@ -1,0 +1,92 @@
+{
+  "slug": "artist:skee-mask",
+  "name": "Skee Mask",
+  "editorial_article": "Bryan Müller, born in 1993, is a highly influential Munich-based electronic music producer and DJ operating under the alias Skee Mask. His artistic identity was born from a desire for anonymity and a shift away from the baggage of his earlier, more commercially-oriented moniker, SCNTST. Initially emerging in 2014 via the Ilian Tape label with the 'Serum' EP, Skee Mask has carved out a unique sonic space that deftly bridges the gap between the atmospheric intricacies of IDM, the rhythmic propulsion of breakbeat, and the foundational weight of techno and dub techno. His critically acclaimed albums—including the breakout 2018 record 'Compro' and the subsequent 'Pool' and 'Resort'—have garnered widespread praise for their emotional depth, technical precision, and refusal to conform to standard club tropes. Müller’s work is deeply informed by 90s electronic music, hip-hop, and the aesthetic legacy of labels such as Warp Records and Chain Reaction. Beyond his production work, his tenure as a resident DJ at Munich’s Blitz Club between 2017 and 2022 cemented his status as a key figure in modern European club culture. Müller is known for his outspoken critiques of the modern music streaming industry, a stance that has seen him remove much of his catalog from major platforms to prioritize artistic sovereignty. His ongoing commitment to the Ilian Tape imprint and his prolific output of EPs and self-released material continue to define his reputation as one of the most innovative and uncompromising producers of his generation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Skee_Mask",
+      "title": "Skee Mask - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/4039564-Skee-Mask",
+      "title": "Skee Mask Discogs Profile"
+    },
+    {
+      "url": "https://ra.co/reviews/22568",
+      "title": "Resident Advisor Review: Skee Mask - Compro"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:13.637Z",
+  "type": "artist",
+  "editorial_bio": "Bryan Müller, born in 1993, is a highly influential Munich-based electronic music producer and DJ operating under the alias Skee Mask.",
+  "origin": "Munich, Germany",
+  "active_years": "2014–present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ilian-tape",
+      "type": "label",
+      "name": "Ilian Tape"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:shred",
+      "type": "project",
+      "name": "Shred"
+    },
+    {
+      "slug": "project:compro",
+      "type": "project",
+      "name": "Compro"
+    },
+    {
+      "slug": "project:pool",
+      "type": "project",
+      "name": "Pool"
+    },
+    {
+      "slug": "project:resort",
+      "type": "project",
+      "name": "Resort"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:50-euro-to-break-boost",
+      "type": "track",
+      "name": "50 Euro to Break Boost"
+    },
+    {
+      "slug": "track:flyby-vfr",
+      "type": "track",
+      "name": "Flyby VFR"
+    },
+    {
+      "slug": "track:rev8617",
+      "type": "track",
+      "name": "Rev8617"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

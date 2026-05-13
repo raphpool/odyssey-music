@@ -1,0 +1,83 @@
+{
+  "slug": "artist:merlinberlin",
+  "name": "MerlinBerlin",
+  "editorial_article": "MerlinBerlin is an electronic music producer and DJ based in Washington, D.C., known for her distinct synthesis of glittery, playful melodies and gritty, hypnotic techno rhythms. Her sound is deeply influenced by a diverse sonic palette, ranging from the mechanical pulse of Detroit techno and big room house to the nostalgic textures of 1980s synthwave, all underscored by an aesthetic inspired by anime and video game soundtracks. She first gained attention for her debut EP, 'Get Lost', which was born from her desire to return to the music creation software of her childhood. Since then, she has refined her production style, blending cavernous chords, syncopated rhythms, and robotic sound design to create an atmosphere she describes as a \"dreamy and euphoric sonic playground.\"\\n\\nHer later work, such as the 'Lens Shift EP' (2024), showcases a maturation in her sound, balancing light and dark energies through tracks that explore cosmic themes. Released on the Black Techno Matters label, this collection highlights her ability to bridge the gap between hard-hitting club techno and more nuanced, melodic compositions. Beyond her individual output, MerlinBerlin is a dedicated member of the D.C. electronic community, notably hosting the 'Sonic Sessions' listening series for Black Techno Matters, where she fosters collaboration and discourse among peers. As a performer, she is praised for her energetic DJ sets, which mirror her production philosophy of creating infectious, boundary-blurring experiences for the dancefloor. Her ongoing journey—marked by EPs like 'Living Moon' and various collaborations—underscores a commitment to exploring new musical realms while maintaining an accessible, high-energy core.",
+  "citations": [
+    {
+      "url": "https://merlinberlinmusic.com/",
+      "title": "MerlinBerlin Official Site"
+    },
+    {
+      "url": "https://www.blacktechnomatters.org/",
+      "title": "Black Techno Matters Label"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:19.710Z",
+  "type": "artist",
+  "editorial_bio": "MerlinBerlin is an electronic music producer and DJ based in Washington, D.C., known for her distinct synthesis of glittery, playful melodies and gritty, hypnotic techno rhythms.",
+  "photo_url": "https://images.squarespace-cdn.com/content/v1/64c919144b560140f431c080/4fbb917c-61e0-48c6-91dc-a3df0cb0a53f/MB-04.jpg",
+  "origin": "Washington, D.C.",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:synthwave",
+      "type": "genre",
+      "name": "Synthwave"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:black-techno-matters",
+      "type": "label",
+      "name": "Black Techno Matters"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:lens-shift-ep",
+      "type": "project",
+      "name": "Lens Shift EP"
+    },
+    {
+      "slug": "project:living-moon",
+      "type": "project",
+      "name": "Living Moon"
+    },
+    {
+      "slug": "project:get-lost",
+      "type": "project",
+      "name": "Get Lost"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:navi-el",
+      "type": "track",
+      "name": "Navi’el"
+    },
+    {
+      "slug": "track:night-signal",
+      "type": "track",
+      "name": "Night Signal"
+    },
+    {
+      "slug": "track:anomaly",
+      "type": "track",
+      "name": "Anomaly"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "genre:hi-nrg-hi-nrg",
+  "name": "Hi-NRG,Hi-NRG",
+  "editorial_article": "Hi-NRG is a high-tempo, synthesized evolution of disco that emerged in the early 1980s, primarily out of queer dance culture in San Francisco and New York. Characterized by its relentless \"four-on-the-floor\" drum machine patterns, driving arpeggiated synth basslines, and dramatic, often wailing vocal performances, Hi-NRG shifted dance music away from the orchestral, funk-infused arrangements of late 70s disco toward a colder, more mechanical, and purely rhythmic aesthetic. By prioritizing speed (often 130-140 BPM) and intensity, it served as a critical stylistic bridge between the disco era and the subsequent explosion of house and techno, providing a foundational vocabulary of electronic production techniques.\\n\\nCulturally, Hi-NRG was a sanctuary for marginalized communities, providing the high-octane soundtrack for gay nightclubs where the aesthetic of excess and theatricality was celebrated. Producers like Patrick Cowley were instrumental in crafting this sound, utilizing sequencers and synthesizers to push the boundaries of what dance music could sound like, moving away from organic instrumentation. While the genre eventually crossed over into mainstream pop and left a lasting imprint on Eurodance, its core contribution remains its role in the development of contemporary electronic dance music. It transformed the dance floor into a site of mechanical precision, effectively anticipating the colder, more repetitive structures that would come to define the house and techno scenes of the later 80s and 90s.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/style/hi-nrg-ma0000012074",
+      "title": "Hi-NRG Music Style Overview | AllMusic"
+    },
+    {
+      "url": "https://www.internationaldiscoday.org/history-of-disco/1980-1984-hi-nrg/",
+      "title": "1980-1984 (Hi-NRG) - Celebrating the Spirit of Disco and Its Legacy"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:16.854Z",
+  "type": "genre",
+  "editorial_definition": "A fast-paced, synthesizer-driven subgenre of disco defined by a steady four-on-the-floor beat, driving arpeggios, and high-intensity production that emerged in the early 1980s.",
+  "era": "1980s",
+  "origin": "United States (San Francisco/New York)",
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:sylvester",
+      "type": "artist",
+      "name": "Sylvester"
+    },
+    {
+      "slug": "artist:patrick-cowley",
+      "type": "artist",
+      "name": "Patrick Cowley"
+    },
+    {
+      "slug": "artist:dead-or-alive",
+      "type": "artist",
+      "name": "Dead or Alive"
+    },
+    {
+      "slug": "artist:bronski-beat",
+      "type": "artist",
+      "name": "Bronski Beat"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:do-ya-wanna-funk",
+      "type": "track",
+      "name": "Do Ya Wanna Funk"
+    },
+    {
+      "slug": "track:i-feel-love",
+      "type": "track",
+      "name": "I Feel Love"
+    }
+  ]
+}

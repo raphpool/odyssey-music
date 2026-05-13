@@ -1,0 +1,128 @@
+{
+  "slug": "artist:armin-van-buuren",
+  "name": "Armin van Buuren",
+  "editorial_article": "Armin Jozef Jacobus Daniël van Buuren (born 25 December 1976) is a Dutch DJ, record producer, and musician who has become one of the most recognizable figures in the global electronic dance music scene. Rising to prominence in the late 1990s, he emerged as a pivotal architect of modern trance, particularly through his melodic and uplifting soundscapes. Beyond his studio work, he is globally revered for his weekly radio show, A State of Trance (ASOT), which debuted in 2001. The show grew from a small radio project into a massive, multi-platform franchise reaching nearly 40 million listeners across 84 countries, playing an instrumental role in fostering a loyal, worldwide trance community. \\n\\nVan Buuren's discography includes numerous critically acclaimed albums, and he holds the record for the most entries on the Billboard Dance/Electronic Albums chart for a trance artist. His early success with tracks like \"Blue Fear\" and \"Communication\" established a foundation of quality production that he has maintained for over two decades. A law graduate who famously balanced his academic pursuits with a relentless touring and production schedule, he has been voted the world's number one DJ by DJ Mag five times. As the co-founder of the influential Armada Music label, he has nurtured countless artists, cementing his legacy not just as a performer, but as a central pillar of the electronic music industry. His influence extends across progressive trance, psytrance, and pop-infused dance music, consistently pushing the boundaries of what trance can achieve on a global scale. His ability to synthesize complex, high-energy synths with emotional, melodic hooks remains his signature, ensuring his enduring relevance in an ever-evolving electronic landscape. Throughout his career, he has collaborated with a vast array of vocalists and producers, further broadening his reach and impact on the global electronic scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Armin_van_Buuren",
+      "title": "Armin van Buuren - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/armin-van-buuren",
+      "title": "Armin van Buuren discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.arminvanbuuren.com/biography/",
+      "title": "Biography - Armin van Buuren"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:30.466Z",
+  "type": "artist",
+  "editorial_bio": "Armin Jozef Jacobus Daniël van Buuren (born 25 December 1976) is a Dutch DJ, record producer, and musician who has become one of the most recognizable figures in the global electronic dance music scene.",
+  "origin": "Leiden, Netherlands",
+  "active_years": "1996–present",
+  "genres": [
+    {
+      "slug": "genre:uplifting-trance",
+      "type": "genre",
+      "name": "Uplifting trance"
+    },
+    {
+      "slug": "genre:progressive-trance",
+      "type": "genre",
+      "name": "Progressive trance"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive house"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:armada-music",
+      "type": "label",
+      "name": "Armada Music"
+    },
+    {
+      "slug": "label:armind",
+      "type": "label",
+      "name": "Armind"
+    },
+    {
+      "slug": "label:a-state-of-trance",
+      "type": "label",
+      "name": "A State of Trance"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:76",
+      "type": "project",
+      "name": "76 (2003)"
+    },
+    {
+      "slug": "project:shivers",
+      "type": "project",
+      "name": "Shivers (2005)"
+    },
+    {
+      "slug": "project:imagine",
+      "type": "project",
+      "name": "Imagine (2008)"
+    },
+    {
+      "slug": "project:mirage",
+      "type": "project",
+      "name": "Mirage (2010)"
+    },
+    {
+      "slug": "project:intense",
+      "type": "project",
+      "name": "Intense (2013)"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:blue-fear",
+      "type": "track",
+      "name": "Blue Fear"
+    },
+    {
+      "slug": "track:communication",
+      "type": "track",
+      "name": "Communication"
+    },
+    {
+      "slug": "track:this-is-what-it-feels-like",
+      "type": "track",
+      "name": "This Is What It Feels Like"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:rising-star",
+      "type": "artist",
+      "name": "Rising Star"
+    },
+    {
+      "slug": "artist:perpetuous-dreamer",
+      "type": "artist",
+      "name": "Perpetuous Dreamer"
+    }
+  ],
+  "members": []
+}

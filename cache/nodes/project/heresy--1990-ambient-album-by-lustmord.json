@@ -1,0 +1,46 @@
+{
+  "slug": "project:heresy--1990-ambient-album-by-lustmord",
+  "name": "Heresy",
+  "editorial_article": "Released in 1990 by Soleilmoon Recordings, \"Heresy\" by Lustmord (the project of Brian Williams) stands as a foundational pillar of the dark ambient genre. Often cited as one of the darkest and most unsettling works in recorded music history, the album eschews traditional song structures in favor of expansive, cavernous soundscapes and infrasonic bass drones that elicit a profound sense of foreboding. Rather than relying on overt horror tropes, Williams employs meticulously layered sound design, incorporating processed Tibetan horns, distant industrial textures, and manipulated animalistic screeches to create an immersive, claustrophobic atmosphere.\\n\\nThe album is structured as a nearly gapless six-part suite, guiding the listener through a descent into a desolate, subterranean psychological space. Throughout the hour-long runtime, the meticulous production creates a visceral sensation of fear and awe, blurring the lines between ambient texture and industrial dread. \"Heresy\" solidified Lustmord's status as a pioneer, setting a benchmark for dark ambient music that has influenced countless artists in the noise, industrial, and avant-garde spheres. The haunting, volcanic-like artwork adorning the release—often associated with depictions of an apocalyptic landscape—complements the music's apocalyptic weight, reinforcing its reputation as a singular and challenging work of sound art that demands total immersion. It remains an essential artifact for listeners exploring the darker fringes of electronic sound.",
+  "citations": [
+    {
+      "url": "https://thedeathofcds.wordpress.com/2011/03/05/lustmord-heresy-1990-soleilmoon/",
+      "title": "Lustmord – Heresy (1990, Soleilmoon) – The Death of CDs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:26.114Z",
+  "type": "project",
+  "editorial_pitch": "A monolithic masterpiece of dark ambient, Lustmord's 1990 album 'Heresy' is a terrifying, hypnotic descent into soundscapes defined by infrasonic drones and oppressive, cavernous atmospheres.",
+  "artists": [],
+  "label": {
+    "slug": "label:soleilmoon-recordings",
+    "type": "label",
+    "name": "Soleilmoon Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord"
+    }
+  ],
+  "related_projects": []
+}

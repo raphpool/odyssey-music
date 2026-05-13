@@ -1,0 +1,128 @@
+{
+  "slug": "artist:monolake",
+  "name": "Monolake",
+  "editorial_article": "Monolake is a seminal German electronic music project, primarily synonymous with the evolution of Berlin's dub-techno sound in the mid-to-late 1990s. Founded in 1995 by Robert Henke and Gerhard Behles, the project emerged as a pivotal force associated with the legendary Chain Reaction label, where it helped define a sonic aesthetic characterized by cavernous, deep-space textures, precise rhythmic programming, and a meticulous, clinical approach to dub-influenced production. \\n\\nBeyond their musical output, both founding members played an instrumental role in shaping the modern music production landscape as co-founders of Ableton in 1999. Their deep involvement in software engineering, particularly through Robert Henke’s development of custom interfaces like the 'Monodeck' and his heavy use of Max/MSP, reflects the project's core philosophy: a relentless exploration of the intersection between technology and sound. Following Behles' shift in focus toward managing the growth of Ableton, and subsequent involvement from artists like Torsten Pröfrock, Monolake has continued to function as a vessel for Henke’s solo electronic investigations. Over decades, the project has evolved from the early, rhythmic explorations of albums like 'Hongkong' (1997) to more expansive, atmospheric, and technically complex works such as 'Silence' (2009) and 'VLSI' (2016), solidifying its reputation as a standard-bearer for sophisticated, intellectually rigorous electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Monolake",
+      "title": "Monolake - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/534-Monolake?srsltid=AfmBOor85NsqgIs4kzxb8az3Xj10QRGhWkgXl3FPnS921pMhO8LnYjbF",
+      "title": "Monolake Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:01.769Z",
+  "type": "artist",
+  "editorial_bio": "Pioneering German electronic project renowned for its influence on dub techno and its deep ties to music software innovation.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Monolake_2014.jpg/500px-Monolake_2014.jpg",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:monolake-imbalance-computer-music",
+      "type": "label",
+      "name": "Monolake / Imbalance Computer Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hongkong",
+      "type": "project",
+      "name": "Hongkong"
+    },
+    {
+      "slug": "project:interstate",
+      "type": "project",
+      "name": "Interstate"
+    },
+    {
+      "slug": "project:cinemascope",
+      "type": "project",
+      "name": "Cinemascope"
+    },
+    {
+      "slug": "project:gravity",
+      "type": "project",
+      "name": "Gravity"
+    },
+    {
+      "slug": "project:momentum",
+      "type": "project",
+      "name": "Momentum"
+    },
+    {
+      "slug": "project:polygon-cities",
+      "type": "project",
+      "name": "Polygon Cities"
+    },
+    {
+      "slug": "project:silence",
+      "type": "project",
+      "name": "Silence"
+    },
+    {
+      "slug": "project:ghosts",
+      "type": "project",
+      "name": "Ghosts"
+    },
+    {
+      "slug": "project:vlsi",
+      "type": "project",
+      "name": "VLSI"
+    },
+    {
+      "slug": "project:archaeopteryx",
+      "type": "project",
+      "name": "Archaeopteryx"
+    },
+    {
+      "slug": "project:studio",
+      "type": "project",
+      "name": "Studio"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:robert-henke",
+      "type": "artist",
+      "name": "Robert Henke"
+    },
+    {
+      "slug": "artist:gerhard-behles",
+      "type": "artist",
+      "name": "Gerhard Behles"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock"
+    }
+  ]
+}

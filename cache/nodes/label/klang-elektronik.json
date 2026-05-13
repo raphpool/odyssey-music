@@ -1,0 +1,71 @@
+{
+  "slug": "label:klang-elektronik",
+  "name": "Klang Elektronik",
+  "editorial_article": "Klang Elektronik is a seminal German record label founded in 1994, serving as the primary techno-focused imprint of the influential Ongaku Musik collective based in Frankfurt. While its sister label, Playhouse, became world-renowned for its idiosyncratic take on house music, Klang Elektronik established itself as a cornerstone of the German minimal techno movement. The label's catalog reflects the experimental, rhythm-driven aesthetic of the late 90s and early 2000s, helping to define the sound of the era alongside peers in the Frankfurt scene. Klang Elektronik provided a platform for crucial innovators such as Ricardo Villalobos, Roman Flügel, Johannes Heil, and Jan Jelinek, who pushed the boundaries of club music through sophisticated sound design, hypnotic minimalism, and genre-defying production. Throughout its active years, it remained a vital, uncompromising entity that bridged the gap between functional techno and cerebral, avant-garde electronic music. The label’s legacy is preserved in its extensive discography, which remains a touchstone for contemporary minimal producers worldwide. Its collaborative spirit, deeply entwined with the Ongaku and Playhouse labels, made it one of the most significant hubs for the evolution of German electronic music at the turn of the millennium.",
+  "citations": [
+    {
+      "url": "https://distribution.triplevision.nl/label/Klang+Elektronik/",
+      "title": "Klang Elektronik - Triple Vision Record Distribution"
+    },
+    {
+      "url": "https://ra.co/labels/531",
+      "title": "Klang Elektronik · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:18.024Z",
+  "type": "label",
+  "editorial_description": "The techno-focused heartbeat of the Frankfurt-based Ongaku Musik collective, Klang Elektronik was a defining force in the evolution of German minimal techno.",
+  "founded": "1994",
+  "location": "Frankfurt, Germany",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:roman-flugel",
+      "type": "artist",
+      "name": "Roman Flügel"
+    },
+    {
+      "slug": "artist:johannes-heil",
+      "type": "artist",
+      "name": "Johannes Heil"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:why-not",
+      "type": "project",
+      "name": "Why Not?!"
+    },
+    {
+      "slug": "project:remix-r-us",
+      "type": "project",
+      "name": "Remix R Us (Part 2)"
+    },
+    {
+      "slug": "project:saphir",
+      "type": "project",
+      "name": "Saphir"
+    }
+  ]
+}

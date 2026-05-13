@@ -1,0 +1,109 @@
+{
+  "slug": "artist:markus-popp",
+  "name": "Markus Popp",
+  "editorial_article": "Markus Popp is a German electronic musician, composer, and producer widely recognized as a foundational figure in the glitch music genre. Emerging in the early 1990s, Popp gained international acclaim for his primary project, Oval, which challenged conventional music-making by utilizing manipulated digital data, software-driven compositions, and experimental textures. His early albums, such as 'Systemisch' and '94Diskont.', were watershed moments that introduced the 'clicks & cuts' aesthetic, influencing generations of producers by turning digital errors and file manipulation into emotive, complex music. His approach was highly innovative, often reducing his own visible hand in the music by setting up complex, automated software processes.\\n\\nThroughout his career, Popp has demonstrated a restless approach to creativity, consistently reinventing his practice. While his 90s output focused on deep digital abstraction, his later work has transitioned toward more organic, hyper-real arrangements that incorporate traditional instruments alongside his signature digital processing. His discography spans various phases, including the band-like post-rock sensibilities of the 'O' and 'Oh' releases, his collaborative explorations in Brazil, and his more recent, rhythmic 'club' experiments. A highly sought-after collaborator and producer, Popp has worked with artists ranging from Björk and Ryuichi Sakamoto to Tortoise and Mouse on Mars. He is also known for his influential collaborative projects like Microstoria (a duo with Jan St. Werner) and SO (with Japanese songwriter Eriko Toyoda). Beyond his work as a performer, he is a dedicated innovator, often developing his own music software to push the boundaries of electronic composition and performance. He remains one of the most prolific, influential creative forces in contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://www.popppopppopp.com/copy-of-mey",
+      "title": "Oval | Markus Popp"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/markus-popp",
+      "title": "Markus Popp discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/markus-popp-mn0001808285",
+      "title": "Markus Popp Songs, Albums, Reviews, Bio & More... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:41.477Z",
+  "type": "artist",
+  "editorial_bio": "Markus Popp is a German electronic musician, composer, and producer widely recognized as a foundational figure in the glitch music genre, best known for his project Oval.",
+  "origin": "Germany",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:thrill-jockey",
+      "type": "label",
+      "name": "Thrill Jockey"
+    },
+    {
+      "slug": "label:mille-plateaux",
+      "type": "label",
+      "name": "Mille Plateaux"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:do-while",
+      "type": "track",
+      "name": "Do While"
+    },
+    {
+      "slug": "track:shop-in-store",
+      "type": "track",
+      "name": "Shop In Store"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    },
+    {
+      "slug": "artist:eriko-toyoda",
+      "type": "artist",
+      "name": "Eriko Toyoda"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval"
+    }
+  ]
+}

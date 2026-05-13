@@ -1,0 +1,115 @@
+{
+  "slug": "project:patashnik",
+  "name": "Patashnik",
+  "editorial_article": "Patashnik, released in 1994, is the sophomore studio album by the Norwegian electronic project Biosphere, masterminded by Geir Jenssen. Following the success of his debut, Microgravity, Patashnik refined the project's signature \"Arctic ambient\" sound, moving further into a blend of ambient techno and space-focused electronic music. The album is widely recognized for its crystalline production, utilizing layered synthesizers, rhythmic sequences, and carefully curated vocal samples that evoke a sense of deep-space isolation and futuristic melancholy.\\n\\nCritically, the record is noted for its cohesion as a sonic journey. Tracks like \"Novelty Waves\" and the title track, \"Patashnik,\" exemplify the era's sophisticated approach to ambient house, where atmospheric texture is balanced against functional, driving percussion. Jenssen’s work on this album avoids the density of contemporaries, opting instead for a spaciousness that would become a hallmark of his long career. The production features contributions from Karsten Brustad on \"Botanical Dimensions,\" but the project remains firmly rooted in Jenssen's singular vision of merging icy, desolate atmospheres with accessible electronic rhythms. For many listeners, Patashnik served as a gateway into ambient electronic music, standing alongside contemporaries like Global Communication as a definitive, formative release of the mid-90s intelligent dance music (IDM) scene. It continues to be celebrated for its enduring relevance and its ability to capture a specific, nocturnal, and cosmic mood that remains as potent today as it was upon its release.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/biosphere/patashnik/",
+      "title": "Patashnik by Biosphere (Album, Ambient Techno): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:45.524Z",
+  "type": "project",
+  "editorial_pitch": "Released in 1994, Patashnik stands as a foundational entry in the development of 1990s ambient techno, blending futuristic soundscapes with rhythmic precision and evocative, sparse vocal sampling. It remains a hallmark of Geir Jenssen's ability to synthesize cold, arctic atmospheres with the warm, pulsating machinery of the early electronic underground.",
+  "cover_url": "https://cdn.sonemic.net/i/600/w/1740dc139f3d2a54efc07771e07e94f4/2149169/biosphere-patashnik-Cover-Art.jpg",
+  "year": "1994",
+  "artists": [
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere"
+    }
+  ],
+  "label": {
+    "slug": "label:apollo",
+    "type": "label",
+    "name": "Apollo"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:phantasm",
+      "type": "track",
+      "name": "Phantasm"
+    },
+    {
+      "slug": "track:startoucher",
+      "type": "track",
+      "name": "Startoucher"
+    },
+    {
+      "slug": "track:decryption",
+      "type": "track",
+      "name": "Decryption"
+    },
+    {
+      "slug": "track:novelty-waves",
+      "type": "track",
+      "name": "Novelty Waves"
+    },
+    {
+      "slug": "track:patashnik",
+      "type": "track",
+      "name": "Patashnik"
+    },
+    {
+      "slug": "track:mir",
+      "type": "track",
+      "name": "Mir"
+    },
+    {
+      "slug": "track:the-shield",
+      "type": "track",
+      "name": "The Shield"
+    },
+    {
+      "slug": "track:seti-project",
+      "type": "track",
+      "name": "Seti Project"
+    },
+    {
+      "slug": "track:mestigoth",
+      "type": "track",
+      "name": "Mestigoth"
+    },
+    {
+      "slug": "track:botanical-dimensions",
+      "type": "track",
+      "name": "Botanical Dimensions"
+    },
+    {
+      "slug": "track:caboose",
+      "type": "track",
+      "name": "Caboose"
+    },
+    {
+      "slug": "track:en-trance",
+      "type": "track",
+      "name": "En Trance"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:geir-jenssen",
+      "type": "artist",
+      "name": "Geir Jenssen"
+    }
+  ],
+  "related_projects": []
+}

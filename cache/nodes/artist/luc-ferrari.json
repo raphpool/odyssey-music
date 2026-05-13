@@ -1,0 +1,46 @@
+{
+  "slug": "artist:luc-ferrari",
+  "name": "Luc Ferrari",
+  "editorial_article": "Luc Ferrari (1929–2005) was a seminal French composer and a foundational figure in the development of musique concrète, electroacoustic music, and radio art. Born in Paris, he studied under Arthur Honegger and Olivier Messiaen before joining the Groupe de Recherches Musicales (GRM) in 1956, working alongside Pierre Schaeffer. Ferrari is perhaps most famous for his innovative use of field recordings and his conceptual approach to sound, exemplified in his masterpiece \"Presque Rien n° 1 (Le lever du jour au bord de la mer).\" Unlike many of his contemporaries who focused on strict structural abstraction, Ferrari embraced the narrative potential of everyday life, blending environmental recordings with composed sound to create what he termed 'anecdotal' music. Throughout his long career, he founded influential institutions like La Muse en Circuit, collaborated extensively with media directors to bridge contemporary music and television, and remained a restless experimenter, later in life working with electronic and DJ subcultures. His legacy is one of opening the doors of 'high art' avant-garde music to the textures and sounds of the real world. Ferrari's influence persists today, as his \"anecdotal\" approach prefigured the practices of modern soundscape composers and field recording artists who seek to dissolve the barriers between life and composition. His work remains a critical bridge between the rigid academic traditions of the mid-20th century and the more fluid, eclectic possibilities of experimental sound art. Ferrari was never static, consistently challenging his own methods, whether through radio dramas that earned him multiple Karl Sczuka Prizes or his late-career explorations of live electronic performance alongside a new generation of experimental artists. His willingness to integrate humor, narrative, and the mundane into complex sound design continues to inspire creators exploring the boundaries of recorded sound.",
+  "citations": [
+    {
+      "url": "https://ressources.ircam.fr/en/luc-ferrari",
+      "title": "Biographie - Luc Ferrari | Ressources IRCAM"
+    },
+    {
+      "url": "https://www.berliner-kuenstlerprogramm.de/en/artist/luc-ferrari/",
+      "title": "Luc Ferrari - Berliner Künstlerprogramm des DAAD"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:03.231Z",
+  "type": "artist",
+  "editorial_bio": "Luc Ferrari (1929–2005) was a seminal French composer and a foundational figure in the development of musique concrète, electroacoustic music, and radio art.",
+  "photo_url": "https://storage.ressources.ircam.fr/ressources/persons/photos/56b2d1e9-74e6-42c7-ab8c-5d416133e91a-thumbnail.png",
+  "origin": "Paris, France",
+  "active_years": "1948–2005",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic Music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

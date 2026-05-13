@@ -1,0 +1,69 @@
+{
+  "slug": "genre:downtempo",
+  "name": "downtempo",
+  "editorial_article": "Downtempo is a versatile subgenre of electronic music defined by its relaxed pace, focus on atmospheric textures, and groove-oriented production. Typically residing in the 90–110 BPM range, the genre serves as an auditory bridge between the introspective, formless realms of ambient music and the rhythmic structure of trip-hop and instrumental hip-hop. Its sonic signature is characterized by warm, often jazz-influenced harmonies, intricate drum programming, and a spacious, \"plush\" production aesthetic that prioritizes mood over the relentless energy of traditional dance music. While its history is somewhat fluid, the genre gained significant traction in the mid-to-late 1990s, evolving alongside the Ibiza chillout culture and the broader \"electronica\" movement that began to dominate alternative electronic music spaces during that era. It is often described as having an element of mysticism, with many pioneering artists drawing deep inspiration from global sounds, including Asian and Middle-Eastern musical motifs, to create evocative, world-building soundscapes. Historically, downtempo functions both as a home-listening soundtrack for introspective moods and as essential late-night or early-morning curation for club environments, serving as a restorative sonic palate cleanser after high-intensity sets. Key figures like Bonobo, Thievery Corporation, Massive Attack, and Tycho have helped define the genre's enduring appeal, shaping a sound that remains as relevant in modern lo-fi and chillout playlists as it was in the late 90s underground. Its influence persists across various contemporary electronic niches, demonstrating the enduring power of slow-moving, melody-driven beats.",
+  "citations": [
+    {
+      "url": "https://www.stereofox.com/articles/downtempo-electronic-music-explained-genre-origins-best-artists-playlists-and-albums/",
+      "title": "Downtempo Electronic Music Explained - Genre Origins, Best Artists, Playlists, and Albums - Stereofox Music Blog"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/downtempo",
+      "title": "Downtempo - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:06.841Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of electronic music characterized by slower tempos (90–110 BPM), atmospheric textures, and a fusion of ambient mood with hip-hop or dub-influenced rhythmic grooves.",
+  "era": "Mid-1990s to present",
+  "origin": "Europe (UK and Ibiza) and North America (US)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho"
+    },
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:days-to-come",
+      "type": "project",
+      "name": "Days to Come"
+    },
+    {
+      "slug": "project:music-has-the-right-to-children",
+      "type": "project",
+      "name": "Music Has the Right to Children"
+    },
+    {
+      "slug": "project:mezzanine",
+      "type": "project",
+      "name": "Mezzanine"
+    }
+  ],
+  "landmark_tracks": []
+}

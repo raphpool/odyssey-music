@@ -1,0 +1,52 @@
+{
+  "slug": "artist:steve-reich",
+  "name": "Steve Reich",
+  "editorial_article": "Steve Reich, born in 1936 in New York City, is one of the most influential composers of the late 20th and early 21st centuries, widely credited as a foundational figure in the development of musical Minimalism. Rejecting the complexity and atonality that dominated mid-20th-century classical music, Reich pioneered a style rooted in repetition, phase shifting, and the gradual transformation of simple, accessible musical motifs. His early experiments with magnetic tape loops—most famously in works like 'It’s Gonna Rain' (1965) and 'Come Out' (1966)—allowed him to observe and eventually transcribe the interlocking rhythmic patterns that became a signature of his aesthetic. Reich’s curiosity extended beyond traditional Western classical forms, incorporating deep study of West African drumming, Balinese gamelan, and Middle Eastern chanting into his compositional framework. Throughout his career, he has explored the intersection of human performance and technology, often integrating pre-recorded voices and live instrumentation. Notable masterpieces such as 'Music for 18 Musicians' (1976), 'Different Trains' (1988), and the Pulitzer Prize-winning 'Double Sextet' (2007) demonstrate his ability to bridge the gap between rigorous structure and profound emotional resonance. His work continues to exert a massive influence across both classical and contemporary electronic music landscapes. He remains a pillar of the avant-garde, continually evolving through collaborations with artists and multimedia projects.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/biography/Steve-Reich",
+      "title": "Steve Reich | Biography, Music, Tehillim, Music for 18 Musicians, Clapping Music, Different Trains, & Facts | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:23.142Z",
+  "type": "artist",
+  "editorial_bio": "Steve Reich is a pioneering American composer and a central figure in the Minimalist movement, known for his work in phase music, tape composition, and rhythmic repetition.",
+  "origin": "New York, USA",
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:music-for-18-musicians",
+      "type": "project",
+      "name": "Music for 18 Musicians"
+    },
+    {
+      "slug": "project:drumming",
+      "type": "project",
+      "name": "Drumming"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:clapping-music",
+      "type": "track",
+      "name": "Clapping Music"
+    },
+    {
+      "slug": "track:it-s-gonna-rain",
+      "type": "track",
+      "name": "It's Gonna Rain"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

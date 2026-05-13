@@ -1,0 +1,78 @@
+{
+  "slug": "artist:millsart",
+  "name": "Millsart",
+  "editorial_article": "Millsart is one of the many creative aliases of Detroit techno pioneer Jeff Mills. Primarily serving as a vehicle for his more introspective, experimental, and eclectic compositions, the Millsart project allows Mills to diverge from the relentless, high-bpm functionalism of his classic Axis Records techno output. While heavily rooted in the sonic vocabulary of Detroit—featuring hypnotic, machine-driven rhythms and dense, atmospheric sound design—the Millsart moniker is characterized by a deeper sense of melodic exploration and avant-garde composition. The project gained significant prominence in the early 2000s with the 'Every Dog Has Its Day' series, a collection of transcendent tracks that showcases his versatility as a producer and conceptualist. Millsart remains an essential aspect of the vast Jeff Mills discography, demonstrating his ongoing commitment to evolving the techno aesthetic through a lens of artistic freedom and unconventional sound synthesis. The alias bridges the gap between dancefloor utility and deep-listening electronic artistry. Through the Axis imprint, this project continues to explore the boundaries of rhythm and texture, solidifying its place in the history of underground electronic music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/1362-Millsart?srsltid=AfmBOop0FWs1RlhTkielAmQ6bt7uG1seFQFp70KLvuf_kg6doGHbm9f6",
+      "title": "Millsart Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.forcedexposure.com/Artists/MILLSART.html",
+      "title": "MILLSART - Forced Exposure"
+    },
+    {
+      "url": "https://www.axisrecords.com/product/millsart-whatever-the-case-ep-vinyl-12/",
+      "title": "Millsart - Whatever The Case (EP) (Vinyl 12\") | Axis Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:18.490Z",
+  "type": "artist",
+  "editorial_bio": "An alias for Detroit techno producer Jeff Mills, used for more experimental and eclectic compositions.",
+  "origin": "Detroit, Michigan, USA",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:axis",
+      "type": "label",
+      "name": "Axis"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:every-dog-has-its-day",
+      "type": "project",
+      "name": "Every Dog Has Its Day"
+    },
+    {
+      "slug": "project:mecca-ep",
+      "type": "project",
+      "name": "Mecca EP"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:step-to-enchantment",
+      "type": "track",
+      "name": "Step to Enchantment"
+    },
+    {
+      "slug": "track:humana",
+      "type": "track",
+      "name": "Humana"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    }
+  ],
+  "members": []
+}

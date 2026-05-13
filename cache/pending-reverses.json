@@ -1,0 +1,3529 @@
+{
+  "artist:frank-metzger": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oval",
+        "type": "artist",
+        "name": "Oval"
+      }
+    }
+  ],
+  "artist:sebastian-oschatz": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oval",
+        "type": "artist",
+        "name": "Oval"
+      }
+    }
+  ],
+  "artist:mark-e-smith": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mouse-on-mars",
+        "type": "artist",
+        "name": "Mouse on Mars"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:von-sudenfed",
+        "type": "artist",
+        "name": "Von Südenfed"
+      }
+    }
+  ],
+  "artist:caustic-window": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aphex-twin",
+        "type": "artist",
+        "name": "Aphex Twin"
+      }
+    }
+  ],
+  "artist:ken-downie": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-black-dog",
+        "type": "artist",
+        "name": "The Black Dog"
+      }
+    }
+  ],
+  "artist:ed-handley": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-black-dog",
+        "type": "artist",
+        "name": "The Black Dog"
+      }
+    }
+  ],
+  "artist:kid-spatula": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ziq",
+        "type": "artist",
+        "name": "μ-Ziq"
+      }
+    },
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "artist:fatima-camara": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:deadbeat",
+        "type": "artist",
+        "name": "Deadbeat"
+      }
+    }
+  ],
+  "artist:steve-rutter": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:b12",
+        "type": "artist",
+        "name": "B12"
+      }
+    }
+  ],
+  "artist:hermann-von-helmholtz": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:harry-partch",
+        "type": "artist",
+        "name": "Harry Partch"
+      }
+    }
+  ],
+  "artist:maurizio": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:basic-channel",
+        "type": "artist",
+        "name": "Basic Channel"
+      }
+    }
+  ],
+  "artist:lou-reed": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-cale",
+        "type": "artist",
+        "name": "John Cale"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-velvet-underground",
+        "type": "artist",
+        "name": "The Velvet Underground"
+      }
+    }
+  ],
+  "artist:don-cherry": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:la-monte-young",
+        "type": "artist",
+        "name": "La Monte Young"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ornette-coleman",
+        "type": "artist",
+        "name": "Ornette Coleman"
+      }
+    }
+  ],
+  "artist:attila-csihar": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sunn-o",
+        "type": "artist",
+        "name": "Sunn O)))"
+      }
+    }
+  ],
+  "artist:merzbow": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sunn-o",
+        "type": "artist",
+        "name": "Sunn O)))"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hanin-elias",
+        "type": "artist",
+        "name": "Hanin Elias"
+      }
+    }
+  ],
+  "artist:lemon-interupt": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:underworld",
+        "type": "artist",
+        "name": "Underworld"
+      }
+    }
+  ],
+  "artist:steppin-razor": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:underworld",
+        "type": "artist",
+        "name": "Underworld"
+      }
+    }
+  ],
+  "artist:rick-smith": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:underworld",
+        "type": "artist",
+        "name": "Underworld"
+      }
+    }
+  ],
+  "artist:darren-emerson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:underworld",
+        "type": "artist",
+        "name": "Underworld"
+      }
+    }
+  ],
+  "artist:paul-thompson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roxy-music",
+        "type": "artist",
+        "name": "Roxy Music"
+      }
+    }
+  ],
+  "artist:jan-st-werner": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:markus-popp",
+        "type": "artist",
+        "name": "Markus Popp"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:von-sudenfed",
+        "type": "artist",
+        "name": "Von Südenfed"
+      }
+    }
+  ],
+  "artist:nintendo-teenage-robots": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:alec-empire",
+        "type": "artist",
+        "name": "Alec Empire"
+      }
+    }
+  ],
+  "artist:gas": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wolfgang-voigt",
+        "type": "artist",
+        "name": "Wolfgang Voigt"
+      }
+    }
+  ],
+  "artist:mike-ink": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wolfgang-voigt",
+        "type": "artist",
+        "name": "Wolfgang Voigt"
+      }
+    }
+  ],
+  "artist:wassermann": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wolfgang-voigt",
+        "type": "artist",
+        "name": "Wolfgang Voigt"
+      }
+    }
+  ],
+  "artist:love-inc": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wolfgang-voigt",
+        "type": "artist",
+        "name": "Wolfgang Voigt"
+      }
+    }
+  ],
+  "artist:richard-d-james": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:afx",
+        "type": "artist",
+        "name": "AFX"
+      }
+    }
+  ],
+  "artist:luca-mortellaro": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:speedy-j",
+        "type": "artist",
+        "name": "Speedy J"
+      }
+    }
+  ],
+  "artist:robert-henke": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:monolake",
+        "type": "artist",
+        "name": "Monolake"
+      }
+    }
+  ],
+  "artist:gerhard-behles": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:monolake",
+        "type": "artist",
+        "name": "Monolake"
+      }
+    }
+  ],
+  "artist:f-u-s-e": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:richie-hawtin",
+        "type": "artist",
+        "name": "Richie Hawtin"
+      }
+    }
+  ],
+  "artist:derrick-may": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kevin-saunderson",
+        "type": "artist",
+        "name": "Kevin Saunderson"
+      }
+    }
+  ],
+  "artist:e-dancer": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kevin-saunderson",
+        "type": "artist",
+        "name": "Kevin Saunderson"
+      }
+    }
+  ],
+  "artist:reese-project": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kevin-saunderson",
+        "type": "artist",
+        "name": "Kevin Saunderson"
+      }
+    }
+  ],
+  "artist:kreem": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kevin-saunderson",
+        "type": "artist",
+        "name": "Kevin Saunderson"
+      }
+    }
+  ],
+  "artist:psyche": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:carl-craig",
+        "type": "artist",
+        "name": "Carl Craig"
+      }
+    }
+  ],
+  "artist:innerzone-orchestra": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:carl-craig",
+        "type": "artist",
+        "name": "Carl Craig"
+      }
+    }
+  ],
+  "artist:jack-master-silk": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:steve-silk-hurley",
+        "type": "artist",
+        "name": "Steve \"Silk\" Hurley"
+      }
+    }
+  ],
+  "artist:mala": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:digital-mystikz",
+        "type": "artist",
+        "name": "Digital Mystikz"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:coki",
+        "type": "artist",
+        "name": "Coki"
+      }
+    }
+  ],
+  "artist:rufige-kru": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:goldie",
+        "type": "artist",
+        "name": "Goldie"
+      }
+    }
+  ],
+  "artist:metalheads": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:goldie",
+        "type": "artist",
+        "name": "Goldie"
+      }
+    }
+  ],
+  "artist:nasty-habits": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:doc-scott",
+        "type": "artist",
+        "name": "Doc Scott"
+      }
+    }
+  ],
+  "artist:ursula-rucker": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:terry-callier": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:tom-and-jerry": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:jacob-s-optical-stairway": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:marc-mac": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:dego": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:4hero",
+        "type": "artist",
+        "name": "4hero"
+      }
+    }
+  ],
+  "artist:fela-sowande": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:halim-el-dabh",
+        "type": "artist",
+        "name": "Halim El-Dabh"
+      }
+    }
+  ],
+  "artist:akin-euba": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:halim-el-dabh",
+        "type": "artist",
+        "name": "Halim El-Dabh"
+      }
+    }
+  ],
+  "artist:bruno-maderna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luigi-nono",
+        "type": "artist",
+        "name": "Luigi Nono"
+      }
+    }
+  ],
+  "artist:hermann-scherchen": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luigi-nono",
+        "type": "artist",
+        "name": "Luigi Nono"
+      }
+    }
+  ],
+  "artist:philip-oakey": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-human-league",
+        "type": "artist",
+        "name": "The Human League"
+      }
+    }
+  ],
+  "artist:joanne-catherall": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-human-league",
+        "type": "artist",
+        "name": "The Human League"
+      }
+    }
+  ],
+  "artist:susan-ann-sulley": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-human-league",
+        "type": "artist",
+        "name": "The Human League"
+      }
+    }
+  ],
+  "artist:martyn-ware": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-human-league",
+        "type": "artist",
+        "name": "The Human League"
+      }
+    }
+  ],
+  "artist:ian-craig-marsh": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-human-league",
+        "type": "artist",
+        "name": "The Human League"
+      }
+    }
+  ],
+  "artist:haruomi-hosono": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellow-magic-orchestra",
+        "type": "artist",
+        "name": "Yellow Magic Orchestra"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ryuichi-sakamoto",
+        "type": "artist",
+        "name": "Ryuichi Sakamoto"
+      }
+    }
+  ],
+  "artist:yukihiro-takahashi": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellow-magic-orchestra",
+        "type": "artist",
+        "name": "Yellow Magic Orchestra"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ryuichi-sakamoto",
+        "type": "artist",
+        "name": "Ryuichi Sakamoto"
+      }
+    }
+  ],
+  "artist:dave-gahan": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:depeche-mode",
+        "type": "artist",
+        "name": "Depeche Mode"
+      }
+    }
+  ],
+  "artist:martin-gore": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:depeche-mode",
+        "type": "artist",
+        "name": "Depeche Mode"
+      }
+    }
+  ],
+  "artist:andy-fletcher": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:depeche-mode",
+        "type": "artist",
+        "name": "Depeche Mode"
+      }
+    }
+  ],
+  "artist:alan-wilder": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:depeche-mode",
+        "type": "artist",
+        "name": "Depeche Mode"
+      }
+    }
+  ],
+  "artist:vince-clarke": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:depeche-mode",
+        "type": "artist",
+        "name": "Depeche Mode"
+      }
+    }
+  ],
+  "artist:jack-black": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tenacious-d",
+        "type": "artist",
+        "name": "Tenacious D"
+      }
+    }
+  ],
+  "artist:kyle-gass": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tenacious-d",
+        "type": "artist",
+        "name": "Tenacious D"
+      }
+    }
+  ],
+  "artist:tony-allen": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mark-ernestus",
+        "type": "artist",
+        "name": "Mark Ernestus"
+      }
+    }
+  ],
+  "artist:tetsu-inoue": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:bernd-friedmann": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:tobias-freund": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:atom-heart": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:senor-coconut": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:lassigue-bendthaus": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atom-tm",
+        "type": "artist",
+        "name": "Atom TM"
+      }
+    }
+  ],
+  "artist:kronos-quartet": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:terry-riley",
+        "type": "artist",
+        "name": "Terry Riley"
+      }
+    }
+  ],
+  "artist:michael-manring": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:michael-hedges",
+        "type": "artist",
+        "name": "Michael Hedges"
+      }
+    }
+  ],
+  "artist:tony-selvage": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:georgia-kelly",
+        "type": "artist",
+        "name": "Georgia Kelly"
+      }
+    }
+  ],
+  "artist:dusan-bogdanovic": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:georgia-kelly",
+        "type": "artist",
+        "name": "Georgia Kelly"
+      }
+    }
+  ],
+  "artist:john-cage": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:harold-budd",
+        "type": "artist",
+        "name": "Harold Budd"
+      }
+    }
+  ],
+  "artist:morton-feldman": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:harold-budd",
+        "type": "artist",
+        "name": "Harold Budd"
+      }
+    }
+  ],
+  "artist:charles-mingus": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chico-hamilton",
+        "type": "artist",
+        "name": "Chico Hamilton"
+      }
+    }
+  ],
+  "artist:gerry-mulligan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chico-hamilton",
+        "type": "artist",
+        "name": "Chico Hamilton"
+      }
+    }
+  ],
+  "artist:eric-dolphy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chico-hamilton",
+        "type": "artist",
+        "name": "Chico Hamilton"
+      }
+    }
+  ],
+  "artist:charles-lloyd": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chico-hamilton",
+        "type": "artist",
+        "name": "Chico Hamilton"
+      }
+    }
+  ],
+  "artist:buddy-collette": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chico-hamilton",
+        "type": "artist",
+        "name": "Chico Hamilton"
+      }
+    }
+  ],
+  "artist:william-eaton": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:r-carlos-nakai",
+        "type": "artist",
+        "name": "R. Carlos Nakai"
+      }
+    }
+  ],
+  "artist:james-demars": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:r-carlos-nakai",
+        "type": "artist",
+        "name": "R. Carlos Nakai"
+      }
+    }
+  ],
+  "artist:peter-kater": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:r-carlos-nakai",
+        "type": "artist",
+        "name": "R. Carlos Nakai"
+      }
+    }
+  ],
+  "artist:nawang-khechog": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:r-carlos-nakai",
+        "type": "artist",
+        "name": "R. Carlos Nakai"
+      }
+    }
+  ],
+  "artist:robert-rutman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:constance-demby",
+        "type": "artist",
+        "name": "Constance Demby"
+      }
+    }
+  ],
+  "artist:dorothy-carter": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:constance-demby",
+        "type": "artist",
+        "name": "Constance Demby"
+      }
+    }
+  ],
+  "artist:gescom": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sean-booth",
+        "type": "artist",
+        "name": "Sean Booth"
+      }
+    }
+  ],
+  "artist:lego-feet": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sean-booth",
+        "type": "artist",
+        "name": "Sean Booth"
+      }
+    }
+  ],
+  "artist:genesis-p-orridge": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:throbbing-gristle",
+        "type": "artist",
+        "name": "Throbbing Gristle"
+      }
+    }
+  ],
+  "artist:cosey-fanni-tutti": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:throbbing-gristle",
+        "type": "artist",
+        "name": "Throbbing Gristle"
+      }
+    }
+  ],
+  "artist:chris-carter": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:throbbing-gristle",
+        "type": "artist",
+        "name": "Throbbing Gristle"
+      }
+    }
+  ],
+  "artist:peter-christopherson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:throbbing-gristle",
+        "type": "artist",
+        "name": "Throbbing Gristle"
+      }
+    }
+  ],
+  "artist:ustad-abdul-wahid-khan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pandit-pran-nath",
+        "type": "artist",
+        "name": "Pandit Pran Nath"
+      }
+    }
+  ],
+  "artist:charlie-haden": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ornette-coleman",
+        "type": "artist",
+        "name": "Ornette Coleman"
+      }
+    }
+  ],
+  "artist:billy-higgins": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ornette-coleman",
+        "type": "artist",
+        "name": "Ornette Coleman"
+      }
+    }
+  ],
+  "artist:nina-simone": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:xiu-xiu",
+        "type": "artist",
+        "name": "Xiu Xiu"
+      }
+    }
+  ],
+  "artist:the-birthday-party": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:xiu-xiu",
+        "type": "artist",
+        "name": "Xiu Xiu"
+      }
+    }
+  ],
+  "artist:jamie-stewart": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:xiu-xiu",
+        "type": "artist",
+        "name": "Xiu Xiu"
+      }
+    }
+  ],
+  "artist:angela-seo": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:xiu-xiu",
+        "type": "artist",
+        "name": "Xiu Xiu"
+      }
+    }
+  ],
+  "artist:jad-fair": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daniel-johnston",
+        "type": "artist",
+        "name": "Daniel Johnston"
+      }
+    }
+  ],
+  "artist:kathy-mccarty": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daniel-johnston",
+        "type": "artist",
+        "name": "Daniel Johnston"
+      }
+    }
+  ],
+  "artist:michael-rother": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:neu",
+        "type": "artist",
+        "name": "Neu!"
+      }
+    }
+  ],
+  "artist:klaus-dinger": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:neu",
+        "type": "artist",
+        "name": "Neu!"
+      }
+    }
+  ],
+  "artist:ashra": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:manuel-gottsching",
+        "type": "artist",
+        "name": "Manuel Göttsching"
+      }
+    }
+  ],
+  "artist:ash-ra-tempel": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:manuel-gottsching",
+        "type": "artist",
+        "name": "Manuel Göttsching"
+      }
+    }
+  ],
+  "artist:joachim-eroc-ehrig": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:grobschnitt",
+        "type": "artist",
+        "name": "Grobschnitt"
+      }
+    }
+  ],
+  "artist:stefan-wildschwein-danielak": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:grobschnitt",
+        "type": "artist",
+        "name": "Grobschnitt"
+      }
+    }
+  ],
+  "artist:gerd-otto-lupo-kuhn": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:grobschnitt",
+        "type": "artist",
+        "name": "Grobschnitt"
+      }
+    }
+  ],
+  "artist:volker-mist-kahrs": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:grobschnitt",
+        "type": "artist",
+        "name": "Grobschnitt"
+      }
+    }
+  ],
+  "artist:wolfgang-popo-jager": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:grobschnitt",
+        "type": "artist",
+        "name": "Grobschnitt"
+      }
+    }
+  ],
+  "artist:shania-twain": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-john-mutt-lange",
+        "type": "artist",
+        "name": "Robert John \"Mutt\" Lange"
+      }
+    }
+  ],
+  "artist:ac-dc": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-john-mutt-lange",
+        "type": "artist",
+        "name": "Robert John \"Mutt\" Lange"
+      }
+    }
+  ],
+  "artist:def-leppard": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-john-mutt-lange",
+        "type": "artist",
+        "name": "Robert John \"Mutt\" Lange"
+      }
+    }
+  ],
+  "artist:david-laflamme": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mitchell-froom",
+        "type": "artist",
+        "name": "Mitchell Froom"
+      }
+    }
+  ],
+  "artist:tchad-blake": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mitchell-froom",
+        "type": "artist",
+        "name": "Mitchell Froom"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mitchell-froom",
+        "type": "artist",
+        "name": "Mitchell Froom"
+      }
+    }
+  ],
+  "artist:neil-finn": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mitchell-froom",
+        "type": "artist",
+        "name": "Mitchell Froom"
+      }
+    }
+  ],
+  "artist:suzanne-vega": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mitchell-froom",
+        "type": "artist",
+        "name": "Mitchell Froom"
+      }
+    }
+  ],
+  "artist:the-amorphous-androgynous": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:humanoid": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:mental-cube": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:smart-systems": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:yage": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:garry-cobain": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:brian-dougans": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-future-sound-of-london",
+        "type": "artist",
+        "name": "The Future Sound of London"
+      }
+    }
+  ],
+  "artist:bill-drummond": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-klf",
+        "type": "artist",
+        "name": "The KLF"
+      }
+    }
+  ],
+  "artist:jimmy-cauty": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-klf",
+        "type": "artist",
+        "name": "The KLF"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-orb",
+        "type": "artist",
+        "name": "The Orb"
+      }
+    }
+  ],
+  "artist:thomas-fehlmann": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-orb",
+        "type": "artist",
+        "name": "The Orb"
+      }
+    }
+  ],
+  "artist:king-crimson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bill-bruford",
+        "type": "artist",
+        "name": "Bill Bruford"
+      }
+    }
+  ],
+  "artist:yes": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bill-bruford",
+        "type": "artist",
+        "name": "Bill Bruford"
+      }
+    }
+  ],
+  "artist:bill-bruford-s-earthworks": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bill-bruford",
+        "type": "artist",
+        "name": "Bill Bruford"
+      }
+    }
+  ],
+  "artist:simon-jeffes": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:penguin-cafe-orchestra",
+        "type": "artist",
+        "name": "Penguin Cafe Orchestra"
+      }
+    }
+  ],
+  "artist:helen-liebmann": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:penguin-cafe-orchestra",
+        "type": "artist",
+        "name": "Penguin Cafe Orchestra"
+      }
+    }
+  ],
+  "artist:geoffrey-richardson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:penguin-cafe-orchestra",
+        "type": "artist",
+        "name": "Penguin Cafe Orchestra"
+      }
+    }
+  ],
+  "artist:sterling-morrison": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-velvet-underground",
+        "type": "artist",
+        "name": "The Velvet Underground"
+      }
+    }
+  ],
+  "artist:maureen-tucker": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-velvet-underground",
+        "type": "artist",
+        "name": "The Velvet Underground"
+      }
+    }
+  ],
+  "artist:doug-yule": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-velvet-underground",
+        "type": "artist",
+        "name": "The Velvet Underground"
+      }
+    }
+  ],
+  "artist:angus-maclise": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-velvet-underground",
+        "type": "artist",
+        "name": "The Velvet Underground"
+      }
+    }
+  ],
+  "artist:bob-marley": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bob-marley-and-the-wailers",
+        "type": "artist",
+        "name": "Bob Marley & The Wailers"
+      }
+    }
+  ],
+  "artist:peter-tosh": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bob-marley-and-the-wailers",
+        "type": "artist",
+        "name": "Bob Marley & The Wailers"
+      }
+    }
+  ],
+  "artist:bunny-wailer": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bob-marley-and-the-wailers",
+        "type": "artist",
+        "name": "Bob Marley & The Wailers"
+      }
+    }
+  ],
+  "artist:aston-family-man-barrett": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bob-marley-and-the-wailers",
+        "type": "artist",
+        "name": "Bob Marley & The Wailers"
+      }
+    }
+  ],
+  "artist:carlton-barrett": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bob-marley-and-the-wailers",
+        "type": "artist",
+        "name": "Bob Marley & The Wailers"
+      }
+    }
+  ],
+  "artist:tunde-nightingale": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:king-sunny-ade",
+        "type": "artist",
+        "name": "King Sunny Ade"
+      }
+    }
+  ],
+  "artist:mick-jagger": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:keith-richards": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:brian-jones": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:bill-wyman": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:charlie-watts": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:mick-taylor": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:ron-wood": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:darryl-jones": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-rolling-stones",
+        "type": "artist",
+        "name": "The Rolling Stones"
+      }
+    }
+  ],
+  "artist:chuck-berry": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:andy-mackay",
+        "type": "artist",
+        "name": "Andy Mackay"
+      }
+    }
+  ],
+  "artist:sam-prekop": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-sea-and-cake",
+        "type": "artist",
+        "name": "The Sea and Cake"
+      }
+    }
+  ],
+  "artist:archer-prewitt": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-sea-and-cake",
+        "type": "artist",
+        "name": "The Sea and Cake"
+      }
+    }
+  ],
+  "artist:john-mcentire": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-sea-and-cake",
+        "type": "artist",
+        "name": "The Sea and Cake"
+      }
+    }
+  ],
+  "artist:eric-claridge": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-sea-and-cake",
+        "type": "artist",
+        "name": "The Sea and Cake"
+      }
+    }
+  ],
+  "artist:tim-rutili": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:califone",
+        "type": "artist",
+        "name": "Califone"
+      }
+    }
+  ],
+  "artist:ben-massarella": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:califone",
+        "type": "artist",
+        "name": "Califone"
+      }
+    }
+  ],
+  "artist:rachel-blumberg": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:califone",
+        "type": "artist",
+        "name": "Califone"
+      }
+    }
+  ],
+  "artist:peter-hammill": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-anthony",
+        "type": "artist",
+        "name": "John Anthony"
+      }
+    }
+  ],
+  "artist:genesis": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-anthony",
+        "type": "artist",
+        "name": "John Anthony"
+      }
+    }
+  ],
+  "artist:van-der-graaf-generator": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-anthony",
+        "type": "artist",
+        "name": "John Anthony"
+      }
+    }
+  ],
+  "artist:carsten-nicolai": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ryuichi-sakamoto",
+        "type": "artist",
+        "name": "Ryuichi Sakamoto"
+      }
+    }
+  ],
+  "artist:fennesz": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ryuichi-sakamoto",
+        "type": "artist",
+        "name": "Ryuichi Sakamoto"
+      }
+    }
+  ],
+  "artist:david-sylvian": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ryuichi-sakamoto",
+        "type": "artist",
+        "name": "Ryuichi Sakamoto"
+      }
+    }
+  ],
+  "artist:nic-endo": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:atari-teenage-riot",
+        "type": "artist",
+        "name": "Atari Teenage Riot"
+      }
+    }
+  ],
+  "artist:thurston-moore": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hanin-elias",
+        "type": "artist",
+        "name": "Hanin Elias"
+      }
+    }
+  ],
+  "artist:sean-o-hagan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    }
+  ],
+  "artist:mary-hansen": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    }
+  ],
+  "artist:tim-gane": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    }
+  ],
+  "artist:l-titia-sadier": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    }
+  ],
+  "artist:andy-ramsay": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:stereolab",
+        "type": "artist",
+        "name": "Stereolab"
+      }
+    }
+  ],
+  "artist:avey-tare": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:animal-collective",
+        "type": "artist",
+        "name": "Animal Collective"
+      }
+    }
+  ],
+  "artist:panda-bear": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:animal-collective",
+        "type": "artist",
+        "name": "Animal Collective"
+      }
+    }
+  ],
+  "artist:deakin": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:animal-collective",
+        "type": "artist",
+        "name": "Animal Collective"
+      }
+    }
+  ],
+  "artist:geologist": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:animal-collective",
+        "type": "artist",
+        "name": "Animal Collective"
+      }
+    }
+  ],
+  "artist:charli-xcx": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sophie",
+        "type": "artist",
+        "name": "SOPHIE"
+      }
+    }
+  ],
+  "artist:a-g-cook": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sophie",
+        "type": "artist",
+        "name": "SOPHIE"
+      }
+    }
+  ],
+  "artist:noel-redding": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-jimi-hendrix-experience",
+        "type": "artist",
+        "name": "The Jimi Hendrix Experience"
+      }
+    }
+  ],
+  "artist:mitch-mitchell": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-jimi-hendrix-experience",
+        "type": "artist",
+        "name": "The Jimi Hendrix Experience"
+      }
+    }
+  ],
+  "artist:ellen-allien": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:apparat",
+        "type": "artist",
+        "name": "Apparat"
+      }
+    }
+  ],
+  "artist:gernot-bronsert": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:modeselektor",
+        "type": "artist",
+        "name": "Modeselektor"
+      }
+    }
+  ],
+  "artist:sebastian-szary": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:modeselektor",
+        "type": "artist",
+        "name": "Modeselektor"
+      }
+    }
+  ],
+  "artist:felix-wagner": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:fjaak",
+        "type": "artist",
+        "name": "FJAAK"
+      }
+    }
+  ],
+  "artist:aaron-robig": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:fjaak",
+        "type": "artist",
+        "name": "FJAAK"
+      }
+    }
+  ],
+  "artist:kevin-kozicki": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:fjaak",
+        "type": "artist",
+        "name": "FJAAK"
+      }
+    }
+  ],
+  "artist:michael-sandison": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-sandison",
+        "type": "artist",
+        "name": "Mike Sandison"
+      }
+    }
+  ],
+  "track:timeless": [
+    {
+      "field": "sampled_by",
+      "cardinality": "list",
+      "edge": {
+        "slug": "track:everything-you-do-is-a-balloon",
+        "type": "track",
+        "name": "Everything You Do Is a Balloon"
+      }
+    }
+  ],
+  "artist:last-step": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:venetian-snares",
+        "type": "artist",
+        "name": "Venetian Snares"
+      }
+    }
+  ],
+  "artist:speed-dealer-moms": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:venetian-snares",
+        "type": "artist",
+        "name": "Venetian Snares"
+      }
+    }
+  ],
+  "artist:snares-man": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:venetian-snares",
+        "type": "artist",
+        "name": "Venetian Snares"
+      }
+    }
+  ],
+  "artist:plug": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luke-vibert",
+        "type": "artist",
+        "name": "Luke Vibert"
+      }
+    }
+  ],
+  "artist:wagon-christ": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luke-vibert",
+        "type": "artist",
+        "name": "Luke Vibert"
+      }
+    }
+  ],
+  "artist:kerrier-district": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luke-vibert",
+        "type": "artist",
+        "name": "Luke Vibert"
+      }
+    }
+  ],
+  "artist:amen-andrews": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luke-vibert",
+        "type": "artist",
+        "name": "Luke Vibert"
+      }
+    }
+  ],
+  "artist:spac-hand-luke": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:luke-vibert",
+        "type": "artist",
+        "name": "Luke Vibert"
+      }
+    }
+  ],
+  "artist:thomas-melchior": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:melchior-productions-ltd",
+        "type": "artist",
+        "name": "Melchior Productions Ltd"
+      }
+    }
+  ],
+  "artist:mr-fingers": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:larry-heard",
+        "type": "artist",
+        "name": "Larry Heard"
+      }
+    }
+  ],
+  "artist:loosefingers": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:larry-heard",
+        "type": "artist",
+        "name": "Larry Heard"
+      }
+    }
+  ],
+  "artist:gherkin-jerks": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:larry-heard",
+        "type": "artist",
+        "name": "Larry Heard"
+      }
+    }
+  ],
+  "artist:trio-zero": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:larry-heard",
+        "type": "artist",
+        "name": "Larry Heard"
+      }
+    }
+  ],
+  "artist:regis": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:surgeon",
+        "type": "artist",
+        "name": "Surgeon"
+      }
+    }
+  ],
+  "artist:lara-rix-martin": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:michael-paradinas",
+        "type": "artist",
+        "name": "Michael Paradinas"
+      }
+    }
+  ],
+  "artist:francis-naughton": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "artist:lady-starlight": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:surgeon",
+        "type": "artist",
+        "name": "Surgeon"
+      }
+    }
+  ],
+  "artist:rude-ass-tinker": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "artist:gary-moscheles": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "artist:frost-jockey": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "artist:heterotic": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mike-paradinas",
+        "type": "artist",
+        "name": "Mike Paradinas"
+      }
+    }
+  ],
+  "track:goodbye-to-the-blues": [
+    {
+      "field": "sampled_by",
+      "cardinality": "list",
+      "edge": {
+        "slug": "track:giant-deflating-football--track-by-mike-and-rich",
+        "type": "track",
+        "name": "Giant Deflating Football"
+      }
+    }
+  ],
+  "artist:mark-pritchard": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:michael-paradinas",
+        "type": "artist",
+        "name": "Michael Paradinas"
+      }
+    }
+  ],
+  "artist:atomtm": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lisa-carbon",
+        "type": "artist",
+        "name": "Lisa Carbon"
+      }
+    }
+  ],
+  "artist:stereotyp": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:paul-st-hilaire",
+        "type": "artist",
+        "name": "Paul St. Hilaire"
+      }
+    }
+  ],
+  "artist:rene-lowe": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:paul-st-hilaire",
+        "type": "artist",
+        "name": "Paul St. Hilaire"
+      }
+    }
+  ],
+  "artist:mad-mike-banks": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-hood",
+        "type": "artist",
+        "name": "Robert Hood"
+      }
+    }
+  ],
+  "artist:lyric-hood": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-hood",
+        "type": "artist",
+        "name": "Robert Hood"
+      }
+    }
+  ],
+  "artist:jamie-lidell": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:cristian-vogel",
+        "type": "artist",
+        "name": "Cristian Vogel"
+      }
+    }
+  ],
+  "artist:neil-landstrumm": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:cristian-vogel",
+        "type": "artist",
+        "name": "Cristian Vogel"
+      }
+    }
+  ],
+  "artist:jam-el-mar": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:jam-and-spoon",
+        "type": "artist",
+        "name": "Jam & Spoon"
+      }
+    }
+  ],
+  "artist:mark-spoon": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:jam-and-spoon",
+        "type": "artist",
+        "name": "Jam & Spoon"
+      }
+    }
+  ],
+  "artist:rising-star": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:armin-van-buuren",
+        "type": "artist",
+        "name": "Armin van Buuren"
+      }
+    }
+  ],
+  "artist:perpetuous-dreamer": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:armin-van-buuren",
+        "type": "artist",
+        "name": "Armin van Buuren"
+      }
+    }
+  ],
+  "artist:ann-saunderson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-reese-project",
+        "type": "artist",
+        "name": "The Reese Project"
+      }
+    }
+  ],
+  "artist:nile-rodgers": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chic",
+        "type": "artist",
+        "name": "Chic"
+      }
+    }
+  ],
+  "artist:bernard-edwards": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chic",
+        "type": "artist",
+        "name": "Chic"
+      }
+    }
+  ],
+  "artist:tony-thompson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chic",
+        "type": "artist",
+        "name": "Chic"
+      }
+    }
+  ],
+  "artist:ron-hardy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-pierre",
+        "type": "artist",
+        "name": "DJ Pierre"
+      }
+    }
+  ],
+  "artist:barbara-tucker": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-pierre",
+        "type": "artist",
+        "name": "DJ Pierre"
+      }
+    }
+  ],
+  "artist:phuture": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-pierre",
+        "type": "artist",
+        "name": "DJ Pierre"
+      }
+    }
+  ],
+  "artist:pierre-s-pfantasy-club": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-pierre",
+        "type": "artist",
+        "name": "DJ Pierre"
+      }
+    }
+  ],
+  "artist:bernard-fowler": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-peech-boys",
+        "type": "artist",
+        "name": "The Peech Boys"
+      }
+    }
+  ],
+  "artist:sasha": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-digweed",
+        "type": "artist",
+        "name": "John Digweed"
+      }
+    }
+  ],
+  "artist:nick-muir": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:john-digweed",
+        "type": "artist",
+        "name": "John Digweed"
+      }
+    }
+  ],
+  "artist:simon-slater": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gat-decor",
+        "type": "artist",
+        "name": "Gat Decor"
+      }
+    }
+  ],
+  "artist:laurence-nelson-boudville": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gat-decor",
+        "type": "artist",
+        "name": "Gat Decor"
+      }
+    }
+  ],
+  "artist:simon-hanson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gat-decor",
+        "type": "artist",
+        "name": "Gat Decor"
+      }
+    }
+  ],
+  "artist:keith-nunnally": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:j-m-silk",
+        "type": "artist",
+        "name": "J. M. Silk"
+      }
+    }
+  ],
+  "artist:mariah-carey": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:david-morales",
+        "type": "artist",
+        "name": "David Morales"
+      }
+    }
+  ],
+  "artist:ultra-nate": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:david-morales",
+        "type": "artist",
+        "name": "David Morales"
+      }
+    }
+  ],
+  "artist:roisin-murphy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:david-morales",
+        "type": "artist",
+        "name": "David Morales"
+      }
+    }
+  ],
+  "artist:byron-walton": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:jamie-principle",
+        "type": "artist",
+        "name": "Jamie Principle"
+      }
+    }
+  ],
+  "artist:farley-jackmaster-funk": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vince-lawrence",
+        "type": "artist",
+        "name": "Vince Lawrence"
+      }
+    }
+  ],
+  "artist:darryl-pandy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vince-lawrence",
+        "type": "artist",
+        "name": "Vince Lawrence"
+      }
+    }
+  ],
+  "artist:sarah-rachel-thomas": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vince-lawrence",
+        "type": "artist",
+        "name": "Vince Lawrence"
+      }
+    }
+  ],
+  "artist:carl-cox": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chip-e",
+        "type": "artist",
+        "name": "Chip E."
+      }
+    }
+  ],
+  "artist:lidell-townsell": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chip-e",
+        "type": "artist",
+        "name": "Chip E."
+      }
+    }
+  ],
+  "artist:photek": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-owens",
+        "type": "artist",
+        "name": "Robert Owens"
+      }
+    }
+  ],
+  "artist:london-elektricity": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-owens",
+        "type": "artist",
+        "name": "Robert Owens"
+      }
+    }
+  ],
+  "artist:kris-menace": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:robert-owens",
+        "type": "artist",
+        "name": "Robert Owens"
+      }
+    }
+  ],
+  "artist:jj": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-luck-and-mc-neat",
+        "type": "artist",
+        "name": "DJ Luck & MC Neat"
+      }
+    }
+  ],
+  "artist:shy-cookie": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-luck-and-mc-neat",
+        "type": "artist",
+        "name": "DJ Luck & MC Neat"
+      }
+    }
+  ],
+  "artist:cypress-hill": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rusko",
+        "type": "artist",
+        "name": "Rusko"
+      }
+    }
+  ],
+  "artist:dutta": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rusko",
+        "type": "artist",
+        "name": "Rusko"
+      }
+    }
+  ],
+  "artist:rusko-banton": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rusko",
+        "type": "artist",
+        "name": "Rusko"
+      }
+    }
+  ],
+  "artist:kano": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ghetts",
+        "type": "artist",
+        "name": "Ghetts"
+      }
+    }
+  ],
+  "artist:stormzy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ghetts",
+        "type": "artist",
+        "name": "Ghetts"
+      }
+    }
+  ],
+  "artist:ed-sheeran": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ghetts",
+        "type": "artist",
+        "name": "Ghetts"
+      }
+    }
+  ],
+  "artist:giggs": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ghetts",
+        "type": "artist",
+        "name": "Ghetts"
+      }
+    }
+  ],
+  "artist:daft-punk": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:todd-edwards",
+        "type": "artist",
+        "name": "Todd Edwards"
+      }
+    }
+  ],
+  "artist:quiet-storm": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:caspa",
+        "type": "artist",
+        "name": "Caspa"
+      }
+    }
+  ],
+  "artist:doctor-p": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:flux-pavilion",
+        "type": "artist",
+        "name": "Flux Pavilion"
+      }
+    }
+  ],
+  "artist:excision": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:flux-pavilion",
+        "type": "artist",
+        "name": "Flux Pavilion"
+      }
+    }
+  ],
+  "artist:datsik": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:flux-pavilion",
+        "type": "artist",
+        "name": "Flux Pavilion"
+      }
+    }
+  ],
+  "artist:joshua-steele": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:flux-pavilion",
+        "type": "artist",
+        "name": "Flux Pavilion"
+      }
+    }
+  ],
+  "artist:benga": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:artwork": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:hatcha": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:oliver-dene-jones": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:oliver-jones": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:ollie-jones": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skream",
+        "type": "artist",
+        "name": "Skream"
+      }
+    }
+  ],
+  "artist:dan-treacy": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:television-personalities",
+        "type": "artist",
+        "name": "Television Personalities"
+      }
+    }
+  ],
+  "artist:jowe-head": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:television-personalities",
+        "type": "artist",
+        "name": "Television Personalities"
+      }
+    }
+  ],
+  "artist:ed-ball": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:television-personalities",
+        "type": "artist",
+        "name": "Television Personalities"
+      }
+    }
+  ],
+  "artist:edwyn-collins": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:james-kirk": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:david-mcclymont": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:steven-daly": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:malcolm-ross": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:zeke-manyika": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:orange-juice",
+        "type": "artist",
+        "name": "Orange Juice"
+      }
+    }
+  ],
+  "artist:charlie-parker": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:miles-davis",
+        "type": "artist",
+        "name": "Miles Davis"
+      }
+    }
+  ],
+  "artist:john-coltrane": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:miles-davis",
+        "type": "artist",
+        "name": "Miles Davis"
+      }
+    }
+  ],
+  "artist:gil-evans": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:miles-davis",
+        "type": "artist",
+        "name": "Miles Davis"
+      }
+    }
+  ],
+  "artist:herbie-hancock": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:miles-davis",
+        "type": "artist",
+        "name": "Miles Davis"
+      }
+    }
+  ],
+  "artist:tomasz-stanko": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tomasz-stanko-quartet",
+        "type": "artist",
+        "name": "Tomasz Stańko Quartet"
+      }
+    }
+  ],
+  "artist:marcin-wasilewski": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tomasz-stanko-quartet",
+        "type": "artist",
+        "name": "Tomasz Stańko Quartet"
+      }
+    }
+  ],
+  "artist:s-awomir-kurkiewicz": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tomasz-stanko-quartet",
+        "type": "artist",
+        "name": "Tomasz Stańko Quartet"
+      }
+    }
+  ],
+  "artist:micha-miskiewicz": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tomasz-stanko-quartet",
+        "type": "artist",
+        "name": "Tomasz Stańko Quartet"
+      }
+    }
+  ],
+  "artist:stephen-malkmus": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pavement",
+        "type": "artist",
+        "name": "Pavement"
+      }
+    }
+  ],
+  "artist:scott-kannberg": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pavement",
+        "type": "artist",
+        "name": "Pavement"
+      }
+    }
+  ],
+  "artist:bob-nastanovich": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pavement",
+        "type": "artist",
+        "name": "Pavement"
+      }
+    }
+  ],
+  "artist:mark-ibold": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pavement",
+        "type": "artist",
+        "name": "Pavement"
+      }
+    }
+  ],
+  "artist:steve-west": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pavement",
+        "type": "artist",
+        "name": "Pavement"
+      }
+    }
+  ],
+  "artist:calvin-harris": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ellie-goulding",
+        "type": "artist",
+        "name": "Ellie Goulding"
+      }
+    }
+  ],
+  "artist:diplo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ellie-goulding",
+        "type": "artist",
+        "name": "Ellie Goulding"
+      }
+    }
+  ],
+  "artist:kygo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ellie-goulding",
+        "type": "artist",
+        "name": "Ellie Goulding"
+      }
+    }
+  ],
+  "artist:ant-miles": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:andy-c",
+        "type": "artist",
+        "name": "Andy C"
+      }
+    }
+  ],
+  "artist:shimon": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:andy-c",
+        "type": "artist",
+        "name": "Andy C"
+      }
+    }
+  ],
+  "artist:fiora": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:andy-c",
+        "type": "artist",
+        "name": "Andy C"
+      }
+    }
+  ],
+  "artist:krust": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:dj-die": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:dynamite-mc": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:onallee": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:firefox": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:hokuspokus": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:mask": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:roni-size",
+        "type": "artist",
+        "name": "Roni Size"
+      }
+    }
+  ],
+  "artist:rebel-mc": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:congo-natty",
+        "type": "artist",
+        "name": "Congo Natty"
+      }
+    }
+  ]
+}

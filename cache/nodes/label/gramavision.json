@@ -1,0 +1,76 @@
+{
+  "slug": "label:gramavision",
+  "name": "Gramavision",
+  "editorial_article": "Gramavision Records is an influential American record label founded in 1979 by Jonathan F.P. Rose in Katonah, New York. Emerging from the vibrant and diverse downtown Manhattan scene of the era, the label carved out a unique space at the intersection of avant-garde jazz, fusion, and experimental music. During the 1980s and early 1990s, Gramavision became a critical home for artists pushing the boundaries of jazz, blues, and funk, fostering a diverse roster that included pioneering free jazz figures like Anthony Davis and John Carter alongside fusion virtuosos such as John Scofield and Bill Frisell. The label was particularly notable for its remarkably broad sonic palette, which extended from deep-groove, soul-inflected funk—most iconically captured in the early output of the trio Medeski Martin & Wood—to the minimalist and ambient experiments of figures like Kitaro and La Monte Young. Gramavision’s institutional willingness to cross-pollinate genres made it a vital bridge between the strict hierarchies of traditional jazz labels and the more exploratory, open-minded ethos of the independent record label landscape. Following its acquisition by Rykodisc in 1994, the label moved its operations to Salem, Massachusetts, and continued to curate an eclectic and highly regarded catalog that remains a persistent touchstone for listeners interested in the complex evolution of jazz and contemporary instrumental music. Throughout its independent history, Gramavision maintained a high standard of artistic integrity, consistently favoring avant-garde and progressive musicians who resisted simple commercial categorization and sought to redefine the possibilities of their respective instruments. Its legacy is one of boldness, diversity, and a deep, abiding commitment to the avant-garde spirit.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gramavision_Records",
+      "title": "Gramavision Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/12057-Gramavision?srsltid=AfmBOooUQPe3AEPTvRBPI7iNo_IUXV3SnBfNprkufZucaccasSnN1s0R",
+      "title": "Gramavision - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:02.297Z",
+  "type": "label",
+  "editorial_description": "A pioneering American jazz and experimental record label known for its diverse roster of avant-garde, fusion, and funk artists throughout the 1980s and 1990s.",
+  "founded": "1979",
+  "location": "Katonah, New York",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    },
+    {
+      "slug": "genre:free-jazz",
+      "type": "genre",
+      "name": "Free Jazz"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:medeski-martin-and-wood",
+      "type": "artist",
+      "name": "Medeski Martin & Wood"
+    },
+    {
+      "slug": "artist:john-scofield",
+      "type": "artist",
+      "name": "John Scofield"
+    },
+    {
+      "slug": "artist:bill-frisell",
+      "type": "artist",
+      "name": "Bill Frisell"
+    },
+    {
+      "slug": "artist:anthony-davis",
+      "type": "artist",
+      "name": "Anthony Davis"
+    },
+    {
+      "slug": "artist:john-carter",
+      "type": "artist",
+      "name": "John Carter"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-10th-anniversary-sampler",
+      "type": "project",
+      "name": "The 10th Anniversary Sampler"
+    }
+  ]
+}

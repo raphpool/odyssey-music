@@ -1,0 +1,73 @@
+{
+  "slug": "artist:vince-lawrence",
+  "name": "Vince Lawrence",
+  "editorial_article": "Vince Lawrence is a foundational architect of Chicago house music, a visionary producer, and a serial entrepreneur who helped define the early sonic identity of the genre. Emerging from the vibrant, high-energy environment of 1980s Chicago, Lawrence was a key participant in the city's burgeoning dance scene, most notably co-authoring \"On and On\" with Jesse Saunders—a track widely recognized in music history as one of the very first house records ever produced. His early career also saw him serve as a founding partner of Trax Records, the influential label that acted as a critical conduit for exporting the raw, drum-machine-heavy sound of Chicago house to global audiences. \n\nThroughout the mid-1980s, Lawrence continued to push the boundaries of the genre, playing a pivotal role in the production of Farley \"Jackmaster\" Funk's \"Love Can't Turn Around,\" which featured the legendary vocals of Darryl Pandy. This track achieved monumental success in the United Kingdom, becoming the first house record to cross over to the mainstream UK Singles Chart, effectively cementing Lawrence’s status as a global ambassador for dance music culture.\n\nBeyond his direct production credits, Lawrence has dedicated his career to the preservation and evolution of music culture through various ventures. He founded Slang Music Group, an umbrella for creative production, sync licensing, and brand partnerships, which continues to bridge the gap between underground artistry and modern industry needs. Throughout his career, Lawrence has remained an active advocate for the legacy of house music, curating initiatives like \"House Music 40\" and \"312 Soul,\" which document the history of Black music in Chicago. His current projects, including the duo \"Chronicle of St. Jude,\" demonstrate a continued commitment to blending soulful musical roots with contemporary experimentalism, ensuring that the legacy of the sound he helped pioneer remains relevant and vital to new generations of creators.",
+  "citations": [
+    {
+      "url": "https://www.vincelawrence.com/",
+      "title": "Vince Lawrence"
+    },
+    {
+      "url": "https://lbbonline.com/news/house-music-pioneer-vince-lawrence-on-helping-brands-connect-with-music-and-reclaiming-edm",
+      "title": "House Music Pioneer Vince Lawrence on Helping Brands Connect with Music and Reclaiming EDM | LBBOnline"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:11.243Z",
+  "type": "artist",
+  "editorial_bio": "Vince Lawrence is an internationally recognized house music pioneer, producer, and entrepreneur from Chicago, famously co-authoring \"On and On,\" often cited as the first house record. He is the founder of Slang Music Group and has been a central figure in the legacy and global expansion of the Chicago house sound for over four decades.",
+  "origin": "\"Chicago, USA\"",
+  "active_years": "\"1980s - Present\"",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:on-and-on",
+      "type": "track",
+      "name": "On and On"
+    },
+    {
+      "slug": "track:love-can-t-turn-around",
+      "type": "track",
+      "name": "Love Can't Turn Around"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk"
+    },
+    {
+      "slug": "artist:darryl-pandy",
+      "type": "artist",
+      "name": "Darryl Pandy"
+    },
+    {
+      "slug": "artist:sarah-rachel-thomas",
+      "type": "artist",
+      "name": "Sarah Rachel Thomas"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

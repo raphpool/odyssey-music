@@ -1,0 +1,61 @@
+{
+  "slug": "project:new-heaven",
+  "name": "New Heaven",
+  "editorial_article": "New Heaven, released in 2024 through the venerable extreme music label Relapse Records, stands as a sprawling, complex testament to the ongoing evolution of the Virginian band Inter Arma. Building upon the sonic foundations established in their previous work, such as the critically lauded Sulphur English, this record represents an ambitious synthesis of sludge, doom, black metal, and progressive sensibilities. Inter Arma has long been noted for their refusal to adhere strictly to genre conventions, and New Heaven is arguably their most adventurous exploration of this ethos to date. The album is marked by a deliberate tension, balancing moments of abrasive, dissonant technicality with stark, atmospheric acoustic passages that provide an essential emotional ballast. Critics and fans alike have highlighted the record's capacity to shift effortlessly from crushing, slow-burn heaviness to intricate, almost labyrinthine structures, demonstrating the musicians' technical prowess without sacrificing the raw, visceral impact that has defined their discography. By moving beyond traditional extreme metal templates, New Heaven captures a sense of current instability and urgency, further solidifying the band's reputation as one of the most compelling and idiosyncratic voices in contemporary heavy music. The release serves as both a challenging listen for traditionalists and a rewarding journey for listeners seeking a blend of high-concept composition and primal energy.",
+  "citations": [
+    {
+      "url": "https://interarma.bandcamp.com/album/new-heaven",
+      "title": "New Heaven | Inter Arma"
+    },
+    {
+      "url": "https://thesleepingshaman.com/reviews/inter-arma-new-heaven/",
+      "title": "Review: Inter Arma 'New Heaven' - The Sleeping Shaman"
+    },
+    {
+      "url": "https://www.relapse.com/collections/inter-arma-new-heaven?srsltid=AfmBOooD6KQaoebVF9aLQ2tTAlHjnnvhv_eX6KeQEId6wWOfAP2MzzKq",
+      "title": "INTER ARMA \\\"New Heaven\\\" - Relapse Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:34.467Z",
+  "type": "project",
+  "editorial_pitch": "Released in 2024 via Relapse Records, *New Heaven* is a ferocious, eclectic masterclass of extreme metal that showcases Inter Arma's peerless ability to merge sludge, doom, black, and progressive metal into a uniquely idiosyncratic, genre-defying sound.",
+  "cover_url": "https://f4.bcbits.com/img/a3822274295_10.jpg",
+  "year": "2024",
+  "artists": [
+    {
+      "slug": "artist:inter-arma",
+      "type": "artist",
+      "name": "Inter Arma"
+    }
+  ],
+  "label": {
+    "slug": "label:relapse-records",
+    "type": "label",
+    "name": "Relapse Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge Metal"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom Metal"
+    },
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal"
+    },
+    {
+      "slug": "genre:progressive-metal",
+      "type": "genre",
+      "name": "Progressive Metal"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

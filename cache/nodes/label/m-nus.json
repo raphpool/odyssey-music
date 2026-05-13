@@ -1,0 +1,76 @@
+{
+  "slug": "label:m-nus",
+  "name": "M_nus",
+  "editorial_article": "M_nus (often stylized as M-nus) is a seminal electronic music record label founded in 1998 by the influential DJ and producer Richie Hawtin. Emerging during a period when Hawtin’s earlier, foundational label Plus 8 was placed on hiatus, M_nus served as a focused, creative laboratory for the evolution of minimal techno and microhouse. Based across Berlin and Windsor, Ontario, the label became synonymous with a stripped-back, cerebral, and precise sonic aesthetic that redefined the possibilities of dance floor music in the late 1990s and 2000s. \n\nBeyond its catalog of influential releases, M_nus functioned as a close-knit collective, fostering a roster of artists who would go on to define the minimal scene, including Magda, Gaiser, Marc Houle, Troy Pierce, and Mathew Jonson. The label’s identity was deeply intertwined with Hawtin’s own commitment to technological innovation, bridging the gap between hardware-driven analog production and cutting-edge digital performance tools. This ethos was perhaps best exemplified by the label's experiments with software integration, such as the 'Remiix' app, which allowed fans to deconstruct and reassemble tracks from the label's output. By prioritizing artistic cohesion over commercial ubiquity, M_nus carved out a unique space in contemporary electronic music history as both a trendsetter and a durable institution of high-fidelity minimal sound design.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/487",
+      "title": "M-nus · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:39.995Z",
+  "type": "label",
+  "editorial_description": "A pioneering minimal techno label founded by Richie Hawtin, serving as a hub for innovation and the minimal sound.",
+  "founded": "1998",
+  "location": "Berlin, Germany / Windsor, Canada",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    },
+    {
+      "slug": "artist:magda",
+      "type": "artist",
+      "name": "Magda"
+    },
+    {
+      "slug": "artist:gaiser",
+      "type": "artist",
+      "name": "Gaiser"
+    },
+    {
+      "slug": "artist:marc-houle",
+      "type": "artist",
+      "name": "Marc Houle"
+    },
+    {
+      "slug": "artist:troy-pierce",
+      "type": "artist",
+      "name": "Troy Pierce"
+    },
+    {
+      "slug": "artist:mathew-jonson",
+      "type": "artist",
+      "name": "Mathew Jonson"
+    },
+    {
+      "slug": "artist:matthew-dear",
+      "type": "artist",
+      "name": "Matthew Dear"
+    },
+    {
+      "slug": "artist:loco-dice",
+      "type": "artist",
+      "name": "Loco Dice"
+    },
+    {
+      "slug": "artist:marco-carola",
+      "type": "artist",
+      "name": "Marco Carola"
+    }
+  ],
+  "notable_releases": []
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "project:kagayaki",
+  "name": "Kagayaki",
+  "editorial_article": "Released on October 15, 2014, via the label Felicity, Kagayaki stands as one of the most celebrated works in the discography of Japanese multi-instrumentalist and composer Masakatsu Takagi. Spanning two discs and twenty-three tracks, the project is a deeply intimate and evocative sonic diary. Takagi crafts an ethereal world that draws heavily from chamber folk, neoclassical new age, and ambient music, often weaving in field recordings and elements of traditional Japanese folk music and min'yō. The album's creation was influenced by the artist's return to nature and his observation of the simple, cyclical lives of children and rural communities. \\n\\nMusically, Kagayaki is characterized by a warm, pastoral, and often whimsical aesthetic. The instrumentation is varied and organic, featuring delicate piano work, strings, and subtle percussion, complemented by vocal contributions from various members of the community, including narration from Shiju-san and vocal performances by Hama-chan, among others. The tracks, which often bear titles related to natural phenomena and daily rural existence—such as \\\"Amamizu\\\" (Rainwater) and \\\"Semiyobi\\\" (Cicada Calling)—create a dense, atmospheric soundscape that feels both grounded in a physical space and transcendent in its spiritual resonance. The project represents a significant shift in Takagi’s work toward a more acoustic and community-centric mode of composition, distancing itself from his earlier, more electronic-forward compositions. As a suite, it invites listeners into a contemplative state, mimicking the flow of a forest or a changing season, making it a landmark of 2010s chamber-folk ambient.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/%E9%AB%98%E6%9C%A8%E6%AD%A3%E5%8B%9D/%E3%81%8B%E3%81%8C%E3%82%84%E3%81%8D/",
+      "title": "かがやき by 高木正勝 [Masakatsu Takagi] (Album, Chamber Folk): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    },
+    {
+      "url": "https://music.apple.com/us/album/%E3%81%8B%E3%81%8C%E3%82%84%E3%81%8D/1446000404",
+      "title": "Kagayaki - Album by Masakatsu Takagi"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:35.202Z",
+  "type": "project",
+  "editorial_pitch": "Kagayaki is a lush, expansive double-album by Japanese composer Masakatsu Takagi that serves as a meditative exploration of childhood, nature, and the cycle of the seasons through a tapestry of chamber folk and field recordings.",
+  "cover_url": "https://cdn.sonemic.net/i/600/w/a1077902a34f023e3ddd674526d5bf85/5392812/%E9%AB%98%E6%9C%A8%E6%AD%A3%E5%8B%9D-masakatsu-takagi-%E3%81%8B%E3%81%8C%E3%82%84%E3%81%8D-Cover-Art.jpg",
+  "year": "2014",
+  "artists": [],
+  "label": {
+    "slug": "label:felicity",
+    "type": "label",
+    "name": "Felicity"
+  },
+  "genres": [
+    {
+      "slug": "genre:chamber-folk",
+      "type": "genre",
+      "name": "Chamber Folk"
+    },
+    {
+      "slug": "genre:neoclassical-new-age",
+      "type": "genre",
+      "name": "Neoclassical New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:uru-te",
+      "type": "track",
+      "name": "Uru-te"
+    },
+    {
+      "slug": "track:ooharu",
+      "type": "track",
+      "name": "Ooharu"
+    },
+    {
+      "slug": "track:amamizu",
+      "type": "track",
+      "name": "Amamizu"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:masakatsu-takagi",
+      "type": "artist",
+      "name": "Masakatsu Takagi"
+    }
+  ],
+  "related_projects": []
+}

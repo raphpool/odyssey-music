@@ -1,0 +1,87 @@
+{
+  "slug": "label:too-pure",
+  "name": "Too Pure",
+  "editorial_article": "Too Pure Records was a pivotal independent label based in London, founded in 1990 by Richard Roberts and Paul Cox. Emerging from the North London 'Camden Lurch' scene—a community centered around the label's 'Sausage Machine' club night—Too Pure rapidly established itself as a critical tastemaker in the alternative music landscape. Its early reputation was solidified by the discovery and early development of PJ Harvey, whose debut album 'Dry' (1992) became a defining release for the label. While the subsequent industry frenzy surrounding Harvey led to her eventual departure for major-label partnerships, Too Pure leveraged that early momentum to cultivate a diverse and forward-thinking roster.\n\nThroughout the 1990s and early 2000s, the label became a home for experimental, post-rock, and uncompromising indie rock acts. It bridged the gap between underground aesthetics and broader critical acclaim through artists such as Stereolab, Mclusky, Electrelane, Laika, and Seefeel. The label’s identity was characterized by a willingness to sign artists that major labels typically overlooked, fostering a unique, often avant-garde sonic output. By the late 1990s, the label had aligned itself with the Beggars Group, a partnership that provided stability while allowing the founders to maintain their distinct curatorial voice. Although the main label entity ceased operations in 2008, with its roster transitioning to 4AD, the legacy of Too Pure continues through its influential singles club, which has introduced a new generation of artists to the scene. Its history remains a testament to the power of independent vision and the role of niche club cultures in shaping national musical movements. It proved that a small, focused label could exert profound influence on the wider indie ecosystem by backing challenging, original voices that refused to conform to mainstream trends.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Too_Pure",
+      "title": "Too Pure - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/1002-Too-Pure?srsltid=AfmBOoo6qxLDWIvmQb6fr9mAtG3R6wt0rlM66rnk6Fq3vbqcas9gfe_N",
+      "title": "Too Pure - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:07.298Z",
+  "type": "label",
+  "editorial_description": "A pioneering London-based independent label founded in 1990 that became a bastion for experimental, post-rock, and uncompromising indie talent like PJ Harvey, Stereolab, and Mclusky.",
+  "founded": "1990",
+  "location": "London, UK",
+  "active_years": "1990-2008",
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pj-harvey",
+      "type": "artist",
+      "name": "PJ Harvey"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    },
+    {
+      "slug": "artist:mclusky",
+      "type": "artist",
+      "name": "Mclusky"
+    },
+    {
+      "slug": "artist:electrelane",
+      "type": "artist",
+      "name": "Electrelane"
+    },
+    {
+      "slug": "artist:laika",
+      "type": "artist",
+      "name": "Laika"
+    },
+    {
+      "slug": "artist:seefeel",
+      "type": "artist",
+      "name": "Seefeel"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:dry",
+      "type": "project",
+      "name": "Dry"
+    },
+    {
+      "slug": "project:transient-random-noise-bursts-with-announcements",
+      "type": "project",
+      "name": "Transient Random-Noise Bursts with Announcements"
+    },
+    {
+      "slug": "project:mclusky-do-dallas",
+      "type": "project",
+      "name": "Mclusky Do Dallas"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "track:circlont14",
+  "name": "Circlont14 (Shrymoming Mix)",
+  "editorial_article": "\"Circlont14 [152.97][shrymoming mix]\" is a dense, intricate electronic composition by Aphex Twin, featured as the eighth track on his landmark 2014 album, \"Syro\". Marking Richard D. James’s first studio album under the Aphex Twin moniker in over a decade, \"Syro\" was a highly anticipated return that synthesized decades of his idiosyncratic sonic exploration. The \"Shrymoming mix\" of \"Circlont14\" perfectly encapsulates the album’s ethos: a frantic yet highly controlled collision of breakbeats, squelching analog synthesis, and complex, layered percussion patterns that shift with mercurial energy. \\n\\nThe track is characteristic of James’s mature style, where hyper-detailed rhythmic programming—often informed by his extensive collection of custom gear and vintage hardware—meets a playful, almost chaotic melodic sensibility. The bracketed numerical suffix [152.97] refers to the track’s tempo in beats per minute, a signature analytical detail James applied throughout the \"Syro\" tracklist, reflecting his precision-obsessed approach to composition. Musically, it functions as a masterclass in textures, balancing abrasive, drill-and-bass-adjacent percussion with shimmering, synth-pop-infused chords that evolve throughout its seven-minute duration. Within the context of the album, the track bridges the gap between his earlier, more aggressive \"Drukqs\"-era experimentalism and the polished, accessible production of his later work, serving as a pillar of contemporary IDM. It remains a fan favorite for its ability to balance overwhelming sonic density with a sense of buoyant, alien joy.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/circlont14-15297-shrymoming-mix",
+      "title": "CIRCLONT14 [152.97][shrymoming mix] | Aphex Twin"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/song/18005-circlont14-15297-shrymoming-mix/",
+      "title": "Aphex Twin - CIRCLONT14 [152.97] [shrymoming mix] - Song Ratings"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:18.129Z",
+  "type": "track",
+  "editorial_teaser": "A standout track from Aphex Twin’s 2014 comeback album 'Syro', this composition is a hyper-detailed, seven-minute masterclass in complex percussion and shimmering, alien-textured analog synthesis.",
+  "year": "2014",
+  "duration": "7:21",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:syro",
+    "type": "project",
+    "name": "Syro"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,75 @@
+{
+  "slug": "label:matador-records",
+  "name": "Matador Records",
+  "editorial_article": "Matador Records is a seminal American independent record label founded in 1989 by Chris Lombardi in his New York City apartment. Initially focused on releasing underground rock and experimental music, the label rapidly evolved into a definitive tastemaker for the nineties indie rock explosion. The label's aesthetic identity was further cemented in 1990 when Lombardi was joined by former Homestead Records manager Gerard Cosloy. Together, they curated a roster that defined the sonic landscape of American independent music, championing influential bands such as Pavement, Yo La Tengo, and Liz Phair.\n\nThroughout its history, Matador has demonstrated a keen ability to balance commercial success with artistic integrity. Early breakthroughs like Pavement's Slanted and Enchanted and Liz Phair's Exile in Guyville became touchstones of the era, while later signings like Interpol brought the label into the new millennium with international acclaim. Despite corporate partnerships—including a period with Capitol Records in the late nineties and its ongoing relationship with Beggars Group, which purchased 50% of the label in 2002—Matador has largely maintained its independent spirit and commitment to artistic development.\n\nThe label's influence extends far beyond its headquarters in New York and London. By cultivating an eclectic catalog that ranges from noise-rock and post-punk to experimental electronic and singer-songwriter projects, Matador has remained a consistent cultural force. From the lo-fi indie sensibilities of the early nineties to contemporary indie staples like Snail Mail and Car Seat Headrest, Matador Records remains one of the few institutions that has successfully navigated the changing tides of the music industry while consistently supporting innovative, guitar-driven music and beyond.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Matador_Records",
+      "title": "Matador Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/194-Matador?srsltid=AfmBOoo-RsnFqKowLzxTfKE-WbN9kISVbfx244m8YdclBmBuxoRsvFEd",
+      "title": "Matador - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:09.984Z",
+  "type": "label",
+  "editorial_description": "An influential American independent record label known for its foundational role in the nineties indie rock scene and its enduring commitment to artist-driven alternative music.",
+  "founded": "1989",
+  "location": "New York City; London",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement"
+    },
+    {
+      "slug": "artist:yo-la-tengo",
+      "type": "artist",
+      "name": "Yo La Tengo"
+    },
+    {
+      "slug": "artist:liz-phair",
+      "type": "artist",
+      "name": "Liz Phair"
+    },
+    {
+      "slug": "artist:interpol",
+      "type": "artist",
+      "name": "Interpol"
+    },
+    {
+      "slug": "artist:cat-power",
+      "type": "artist",
+      "name": "Cat Power"
+    },
+    {
+      "slug": "artist:car-seat-headrest",
+      "type": "artist",
+      "name": "Car Seat Headrest"
+    },
+    {
+      "slug": "artist:snail-mail",
+      "type": "artist",
+      "name": "Snail Mail"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:slanted-and-enchanted",
+      "type": "project",
+      "name": "Slanted and Enchanted"
+    },
+    {
+      "slug": "project:exile-in-guyville",
+      "type": "project",
+      "name": "Exile in Guyville"
+    },
+    {
+      "slug": "project:turn-on-the-bright-lights",
+      "type": "project",
+      "name": "Turn on the Bright Lights"
+    }
+  ]
+}

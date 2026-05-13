@@ -1,0 +1,104 @@
+{
+  "slug": "artist:frank-zappa",
+  "name": "Frank Zappa",
+  "editorial_article": "Frank Vincent Zappa (1940–1993) was an American composer, guitarist, satirist, and filmmaker whose work defied conventional genre boundaries for over three decades. Known for his staggering productivity and \"Project/Object\" conceptual continuity, Zappa integrated elements of rock, jazz, doo-wop, musique concrète, and 20th-century classical modernism. His career began in earnest with The Mothers of Invention, whose 1966 debut Freak Out! established his signature blend of biting social satire and experimental sound collage. Zappa’s approach to music was defined by intense rigor and nonconformity. As a self-taught composer, he was heavily influenced by avant-garde figures like Edgard Varèse and Igor Stravinsky, yet he remained deeply committed to the raw energy of rhythm and blues. This duality allowed him to oscillate between intricate orchestral scores and irreverent, comedy-driven rock songs. Beyond the studio, Zappa was a vocal advocate for free speech and a strident critic of censorship, organized religion, and mainstream political processes. His legacy is characterized by an uncompromising artistic independence, maintaining his own recording labels—such as Bizarre, DiscReet, and Barking Pumpkin—to preserve control over his vast, ever-evolving discography. He remains one of the most intellectually provocative and stylistically versatile figures in American music history. His impact continues to resonate through generations of musicians who draw from his eclectic technical mastery and satirical spirit. His work, which included the utilization of the Synclavier and constant live performance recording, ensures that his output remains a cornerstone of 20th-century American experimentalism. He remains one of the most accomplished composers of the rock idiom, possessing a wicked sense of humor that often challenged the listener to reconsider their cultural environment. Throughout his career, Zappa not only produced his own works but also mentored countless musicians who moved through his bands. His work remains a deep well of technical and cultural complexity that continues to inspire scholarly analysis and enthusiast fascination globally.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Frank_Zappa",
+      "title": "Frank Zappa - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/92623-Frank-Zappa?srsltid=AfmBOopKZSybToNt_qGSJABit6fzPaOkTtMSPNdwyyZDh2uMLdPQ_AXc",
+      "title": "Frank Zappa Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:11.910Z",
+  "type": "artist",
+  "editorial_bio": "Frank Vincent Zappa (1940–1993) was an American composer, guitarist, satirist, and filmmaker whose work defied conventional genre boundaries for over three decades. Known for his staggering productivity and \"Project/Object\" conceptual continuity, Zappa integrated elements of rock, jazz, doo-wop, musique concrète, and 20th-century classical modernism.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Zappa_16011977_01_300.jpg",
+  "origin": "Los Angeles, California, U.S.",
+  "active_years": "1955–1993",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:bizarre-records",
+      "type": "label",
+      "name": "Bizarre Records"
+    },
+    {
+      "slug": "label:barking-pumpkin-records",
+      "type": "label",
+      "name": "Barking Pumpkin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:freak-out",
+      "type": "project",
+      "name": "Freak Out!"
+    },
+    {
+      "slug": "project:hot-rats",
+      "type": "project",
+      "name": "Hot Rats"
+    },
+    {
+      "slug": "project:apostrophe",
+      "type": "project",
+      "name": "Apostrophe (')"
+    },
+    {
+      "slug": "project:joe-s-garage",
+      "type": "project",
+      "name": "Joe's Garage"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:peaches-en-regalia",
+      "type": "track",
+      "name": "Peaches en Regalia"
+    },
+    {
+      "slug": "track:don-t-eat-the-yellow-snow",
+      "type": "track",
+      "name": "Don't Eat the Yellow Snow"
+    },
+    {
+      "slug": "track:valley-girl",
+      "type": "track",
+      "name": "Valley Girl"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

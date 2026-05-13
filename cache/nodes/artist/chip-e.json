@@ -1,0 +1,84 @@
+{
+  "slug": "artist:chip-e",
+  "name": "Chip E.",
+  "editorial_article": "Irwin Larry Eberhart II, widely known as Chip E., is a cornerstone figure in the development of Chicago house music. Emerging from the city's fertile dance scene in the mid-1980s, he gained widespread recognition—including the title \"Godfather of House Music\" conferred by Street Mix magazine in 1986—for his foundational contributions to the genre's vocabulary and sonic identity. His seminal EP, 'Jack Trax', introduced the definitive terms \"house\" and \"jack\" to the lexicon, and featured pioneering production techniques that steered the sound away from contemporary disco influences toward a leaner, more percussive aesthetic that would go on to influence ghetto house and footwork. \\n\\nBeyond his role as a producer, Chip E. was a pivotal DJ in Chicago, becoming the first house artist to achieve regular radio rotation across the city's major stations in 1987, a feat that signaled the broader commercial acceptance of the underground sound. His influence extended to mentorship and collaboration, working with legends like Frankie Knuckles and helping to launch the careers of artists like Lidell Townsell. Although he stepped back from the studio in the mid-1990s to pursue multimedia and film, he returned to the scene in the late 2010s, reinvigorating his legacy through high-profile collaborations with peers like Carl Cox and continuing to perform at major international dance festivals. His career remains a vital bridge between the raw, inventive energy of the early Chicago club circuit and the global dance phenomenon it inspired.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chip_E.",
+      "title": "Chip E. - Wikipedia"
+    },
+    {
+      "url": "https://www.iamchipe.com/about",
+      "title": "ABOUT | iamchipe"
+    },
+    {
+      "url": "https://www.gridface.com/chip-e/",
+      "title": "If You Only Knew (Chip E.) - Gridface"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:11.661Z",
+  "type": "artist",
+  "editorial_bio": "Irwin Larry Eberhart II, widely known as Chip E., is a cornerstone figure in the development of Chicago house music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Chip_E._circa_2018.jpg/250px-Chip_E._circa_2018.jpg",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "1982-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dj-international-records",
+      "type": "label",
+      "name": "DJ International Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:jack-trax",
+      "type": "project",
+      "name": "Jack Trax"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:it-s-house",
+      "type": "track",
+      "name": "It's House"
+    },
+    {
+      "slug": "track:time-to-jack",
+      "type": "track",
+      "name": "Time to Jack"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:carl-cox",
+      "type": "artist",
+      "name": "Carl Cox"
+    },
+    {
+      "slug": "artist:lidell-townsell",
+      "type": "artist",
+      "name": "Lidell Townsell"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "artist:eriko-toyoda",
+  "name": "Eriko Toyoda",
+  "editorial_article": "Eriko Toyoda is a Berlin-based Japanese vocalist, composer, and sound artist whose work navigates the fragile intersections of ambient, glitch, and art-pop. Known for her delicate, intimate vocal delivery and intricate, process-driven soundscapes, Toyoda’s music often feels like a collection of sonic diary entries. She masterfully blends acoustic recordings with experimental electronic layering, resulting in tracks that are both raw and highly polished, reflecting the ambient noise of daily life and the emotional weight of interpersonal connection. Her discography, which largely debuted in the early 2010s, features a series of self-released EPs and albums that showcase her ability to build immersive, miniature worlds through field recordings and digital manipulation. Whether exploring the melancholic tones of a rainy day or the quiet, conversational textures of \"small talk,\" Toyoda maintains a distinctive, hushed aesthetic that invites the listener into a private, meditative space. Her work stands as an evocative example of contemporary bedroom-produced ambient pop, emphasizing texture, emotion, and the transformative power of everyday sounds. She remains a notable figure in the independent experimental scene for her DIY approach and commitment to a singular, evocative sonic signature. Her projects, often released independently, serve as a testament to the power of intimate digital composition in the modern era.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/760111-Eriko-Toyoda?srsltid=AfmBOopq6Kuy3wqIA2u8dHSVScaM3EB3v7P0ZxVLGShc-zcrE22ateI4",
+      "title": "Eriko Toyoda Discography: Vinyl, CDs, & More - Discogs"
+    },
+    {
+      "url": "https://music.apple.com/us/artist/eriko-toyoda/474852281",
+      "title": "Eriko Toyoda - Apple Music"
+    },
+    {
+      "url": "https://erikotoyoda.bandcamp.com/",
+      "title": "Eriko Toyoda: Music"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/eriko-toyoda",
+      "title": "Eriko Toyoda discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:00.862Z",
+  "type": "artist",
+  "editorial_bio": "Eriko Toyoda is a Berlin-based Japanese vocalist, composer, and sound artist whose work navigates the fragile intersections of ambient, glitch, and art-pop.",
+  "genres": [
+    {
+      "slug": "genre:ambient-pop",
+      "type": "genre",
+      "name": "Ambient Pop"
+    },
+    {
+      "slug": "genre:glitch-pop",
+      "type": "genre",
+      "name": "Glitch Pop"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:not-on-label",
+      "type": "label",
+      "name": "Not On Label"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:have-you-smiled-today",
+      "type": "project",
+      "name": "Have You Smiled Today?"
+    },
+    {
+      "slug": "project:small-talk",
+      "type": "project",
+      "name": "Small Talk"
+    },
+    {
+      "slug": "project:finding-sense-of-feeling",
+      "type": "project",
+      "name": "Finding Sense Of Feeling"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:seductive-eyes",
+      "type": "track",
+      "name": "Seductive Eyes"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

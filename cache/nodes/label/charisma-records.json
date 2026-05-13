@@ -1,0 +1,72 @@
+{
+  "slug": "label:charisma-records",
+  "name": "Charisma Records",
+  "editorial_article": "Charisma Records, frequently referred to as \"The Famous Charisma Label,\" stands as a pillar of the British progressive rock movement of the 1970s. Founded in 1969 by the visionary journalist and band manager Tony Stratton-Smith, the label quickly carved out a unique space in the music industry, balancing high-minded musical innovation with an eccentric, independent spirit. Stratton-Smith, who had previously managed influential acts like The Nice, the Bonzo Dog Band, and Van der Graaf Generator, used Charisma to provide a home for artists who refused to conform to the commercial pressures of the era. The label is perhaps most celebrated for fostering the early, experimental development of Genesis and Peter Gabriel, but its roster was eclectic, encompassing the surreal comedic brilliance of Monty Python and the poetic folk-rock of Lindisfarne.\n\nThe label’s aesthetic was as distinctive as its sound, marked early on by the iconic, collectable \"pink scroll\" design of its vinyl releases. During its prime in the 1970s, Charisma was instrumental in shaping the landscape of British art rock and progressive music. Despite various distribution struggles—as the label navigated partnerships with B&C, Buddah, and Atlantic to reach international markets—Charisma remained an indelible mark on music history. It eventually paved the way for more avant-garde explorations through its Pre Records subsidiary, which embraced new wave and reggae. Although the label was acquired by Virgin Records in 1983 and ceased operations in 1986, its legacy endures as a hallmark of artistic integrity and a testament to Stratton-Smith’s personal dedication to the artists he championed. Today, Charisma is recognized not just for the hits of Genesis or the cultural ubiquity of Monty Python, but for being a sanctuary for musical eccentricity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Charisma_Records",
+      "title": "Charisma Records - Wikipedia"
+    },
+    {
+      "url": "https://www.charismalabel.com/",
+      "title": "The Famous Charisma Label"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:58.828Z",
+  "type": "label",
+  "editorial_description": "A foundational British label of the progressive rock era, founded in 1969 by Tony Stratton-Smith and famous for its eclectic roster ranging from Genesis to Monty Python.",
+  "founded": "1969",
+  "location": "England",
+  "active_years": "1969–1986",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis"
+    },
+    {
+      "slug": "artist:peter-gabriel",
+      "type": "artist",
+      "name": "Peter Gabriel"
+    },
+    {
+      "slug": "artist:van-der-graaf-generator",
+      "type": "artist",
+      "name": "Van der Graaf Generator"
+    },
+    {
+      "slug": "artist:monty-python",
+      "type": "artist",
+      "name": "Monty Python"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:pawn-hearts",
+      "type": "project",
+      "name": "Pawn Hearts"
+    },
+    {
+      "slug": "project:foxtrot",
+      "type": "project",
+      "name": "Foxtrot"
+    },
+    {
+      "slug": "project:nursery-cryme",
+      "type": "project",
+      "name": "Nursery Cryme"
+    }
+  ]
+}

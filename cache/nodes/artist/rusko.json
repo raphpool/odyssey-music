@@ -1,0 +1,120 @@
+{
+  "slug": "artist:rusko",
+  "name": "Rusko",
+  "editorial_article": "Christopher William Mercer, known globally as Rusko, is a British DJ and producer whose work in the mid-to-late 2000s helped define the aggressive, bass-heavy evolution of dubstep. Emerging from Leeds, United Kingdom, in 2006, Rusko quickly became a pivotal figure in the genre's transition from its dark, atmospheric roots in South London to the more energetic, dance-floor-oriented sound often categorized as \"brostep.\" His early releases, including iconic tracks like \"Cockney Thug,\" were instrumental in bringing the visceral energy of the UK underground to a mainstream international audience. \\n\\nRusko’s production style is characterized by high-energy wobble basslines, intense metallic sound design, and an unapologetic, party-focused aesthetic that diverged from the more introspective, minimal stylings of early dubstep pioneers. His collaborations—most notably with Caspa on their highly influential \"Fabriclive.37\" mix—are widely considered landmark moments in bass music history, solidifying the subgenre's grip on the electronic dance scene. Beyond his solo work, he has maintained an active career involving collaborations with artists like Cypress Hill and Dutta, demonstrating his ability to pivot between different facets of bass music, including drum and bass and experimental production, while always maintaining a heavy, low-end focused signature. His influence remains a fundamental pillar in modern electronic dance music, bridging the gap between underground sound system culture and the global festival circuit. Throughout the 2010s and 2020s, he has continued to evolve his sound, embracing heavier elements of tearout and classic drum and bass, while his legendary live sets continue to draw large crowds worldwide. He is frequently cited as one of the key catalysts for the American explosion of bass music, having helped export the UK's high-energy sounds to a new generation of listeners who craved harder, faster, and more aggressive textures than the original dubstep scene provided. His technical approach, which often favors loud, distorted synthesizers over the subtle atmospherics of his predecessors, left an indelible mark on the landscape of electronic music as a whole.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/rusko",
+      "title": "Rusko Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://bassmusic.fandom.com/wiki/Rusko",
+      "title": "Rusko | Bass Music Wiki | Fandom"
+    },
+    {
+      "url": "https://ra.co/dj/rusko",
+      "title": "Rusko · Artist Profile - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:11.330Z",
+  "type": "artist",
+  "editorial_bio": "Christopher William Mercer, known globally as Rusko, is a British DJ and producer whose work in the mid-to-late 2000s helped define the aggressive, bass-heavy evolution of dubstep. Emerging from Leeds, United Kingdom, in 2006, Rusko quickly became a pivotal figure in the genre's transition from its dark, atmospheric roots in South London to the more energetic, dance-floor-oriented sound often categorized as \"brostep.\" His early releases, including iconic tracks like \"Cockney Thug,\" were instrumental in bringing the visceral energy of the UK underground to a mainstream international audience. \\n\\nRusko’s production style is characterized by high-energy wobble basslines, intense metallic sound design, and an unapologetic, party-focused aesthetic that diverged from the more introspective, minimal stylings of early dubstep pioneers. His collaborations—most notably with Caspa on their highly influential \"Fabriclive.37\" mix—are widely considered landmark moments in bass music history, solidifying the subgenre's grip on the electronic dance scene. Beyond his solo work, he has maintained an active career involving collaborations with artists like Cypress Hill and Dutta, demonstrating his ability to pivot between different facets of bass music, including drum and bass and experimental production, while always maintaining a heavy, low-end focused signature. His influence remains a fundamental pillar in modern electronic dance music, bridging the gap between underground sound system culture and the global festival circuit.",
+  "photo_url": "https://cdn.sonemic.net/i/fullres/w/7a69477db69c191ad9e5f259d67da78d/10142725",
+  "origin": "Leeds, United Kingdom",
+  "active_years": "2006-present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dub-police",
+      "type": "label",
+      "name": "Dub Police"
+    },
+    {
+      "slug": "label:sub-soldiers",
+      "type": "label",
+      "name": "Sub Soldiers"
+    },
+    {
+      "slug": "label:mad-decent",
+      "type": "label",
+      "name": "Mad Decent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:o-m-g",
+      "type": "project",
+      "name": "O.M.G.!"
+    },
+    {
+      "slug": "project:songs",
+      "type": "project",
+      "name": "Songs"
+    },
+    {
+      "slug": "project:babylon-volume-1",
+      "type": "project",
+      "name": "Babylon: Volume 1"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cockney-thug",
+      "type": "track",
+      "name": "Cockney Thug"
+    },
+    {
+      "slug": "track:snes-dub",
+      "type": "track",
+      "name": "SNES Dub"
+    },
+    {
+      "slug": "track:hold-on",
+      "type": "track",
+      "name": "Hold On"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa"
+    },
+    {
+      "slug": "artist:cypress-hill",
+      "type": "artist",
+      "name": "Cypress Hill"
+    },
+    {
+      "slug": "artist:dutta",
+      "type": "artist",
+      "name": "Dutta"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:rusko-banton",
+      "type": "artist",
+      "name": "Rusko Banton"
+    }
+  ],
+  "members": []
+}

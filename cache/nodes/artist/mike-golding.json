@@ -1,0 +1,82 @@
+{
+  "slug": "artist:mike-golding",
+  "name": "Mike Golding",
+  "editorial_article": "Mike Golding is an influential British electronic musician, best known as one-half of the pioneering IDM duo B12 alongside Steven Rutter. Emerging from the early 1990s UK electronic scene, Golding played a pivotal role in shaping the sophisticated, melodic, and atmospheric sound of intelligent dance music (IDM). His work, particularly through landmark releases on Warp Records and the B12 Records label, helped define a genre that bridged the gap between home listening and club environments. Influenced by early electro and techno, Golding and Rutter's output—notably the seminal album 'Electro-Soma'—remains a cornerstone of 90s electronic music, celebrated for its complex synth work and futuristic soundscapes. Beyond his work with B12, Golding has continued to explore electronic music through various solo projects and under the Bit Folder alias. He remains an active producer and sound designer, having transitioned into multimedia work as a photographer and videographer while continuing to issue material that explores the boundaries of electronic textures. His enduring influence persists in the modern ambient and techno scenes, as his early works continue to be cited as essential listening for anyone interested in the foundational years of the IDM movement. Based in Bordeaux, France, he maintains a connection to his roots while continuously evolving his artistic practice, proving to be a versatile and enduring figure in the electronic landscape. His professional dedication to sound design and electronic synthesis has solidified his position as a legend within the UK electronic history.",
+  "citations": [
+    {
+      "url": "https://mikegolding.bandcamp.com/",
+      "title": "Music | Mike Golding"
+    },
+    {
+      "url": "https://www.youtube.com/user/mikegolding",
+      "title": "Mike Golding - YouTube"
+    },
+    {
+      "url": "https://www.instagram.com/mikegolding/",
+      "title": "Mike Golding (@mikegolding) • Instagram photos and videos"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:41.290Z",
+  "type": "artist",
+  "editorial_bio": "Mike Golding is a foundational figure in the UK IDM scene, known for his work in the duo B12 and his solo output.",
+  "origin": "London, UK",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:b12-records",
+      "type": "label",
+      "name": "B12 Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:electro-soma",
+      "type": "project",
+      "name": "Electro-Soma"
+    },
+    {
+      "slug": "project:time-tourist",
+      "type": "project",
+      "name": "Time Tourist"
+    },
+    {
+      "slug": "project:nogbad-the-bad-ep",
+      "type": "project",
+      "name": "Nogbad The Bad EP"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    }
+  ]
+}

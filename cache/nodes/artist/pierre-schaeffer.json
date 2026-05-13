@@ -1,0 +1,82 @@
+{
+  "slug": "artist:pierre-schaeffer",
+  "name": "Pierre Schaeffer",
+  "editorial_article": "Pierre Schaeffer (1910–1995) was a seminal French composer, engineer, and musicologist who fundamentally altered the course of 20th-century music by inventing \"musique concrète.\" Born in Nancy, France, Schaeffer’s background as an engineer, combined with his work at the French national radio broadcaster (RTF), allowed him to bridge the gap between acoustic engineering and avant-garde composition in the post-WWII era. Instead of starting with musical notation or traditional performance, Schaeffer pioneered the concept of working directly with recorded \"concrete\" sounds—such as train whistles, spinning tops, and human voices—to build compositions. By manipulating these raw recordings through techniques like tape looping, speed variation, and reverse playback, he transformed found audio into autonomous musical objects.\\n\\nIn 1948, Schaeffer established the Groupe de Recherche de Musique Concrète (GRMC), which eventually evolved into the highly influential Groupe de Recherches Musicales (GRM). This laboratory became the intellectual and creative epicenter for electroacoustic music, fostering innovations that remain essential to modern sound design and electronic production. Beyond his creative output, Schaeffer was a prolific writer and theorist, most notably authoring the monumental \"Traité des objets musicaux\" (1966), which established the philosophical framework for acousmatic listening. His legacy persists not only in the avant-garde traditions he birthed but also in the foundational sampling techniques now ubiquitous in pop and electronic music, marking him as one of the most significant architectural figures in the history of sound.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/pierre-schaeffer-mn0000679092",
+      "title": "Pierre Schaeffer Songs, Albums, Reviews, Bio &... - AllMusic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pierre_Schaeffer",
+      "title": "Pierre Schaeffer - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Pierre-Schaeffer",
+      "title": "Pierre Schaeffer | Musique Concrète, Tape Music, Radiophonic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:02.626Z",
+  "type": "artist",
+  "editorial_bio": "Pierre Schaeffer (1910–1995) was a seminal French composer, engineer, and musicologist who fundamentally altered the course of 20th-century music by inventing \"musique concrète.\" Born in Nancy, France, Schaeffer’s background as an engineer, combined with his work at the French na",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/a/a4/Pierre_Schaeffer%2C_1973.jpeg",
+  "origin": "Nancy, France",
+  "active_years": "1942–1990",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic Music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental Music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grm",
+      "type": "label",
+      "name": "GRM"
+    },
+    {
+      "slug": "label:ina",
+      "type": "label",
+      "name": "INA"
+    },
+    {
+      "slug": "label:philips-records",
+      "type": "label",
+      "name": "Philips Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

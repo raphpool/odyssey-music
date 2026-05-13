@@ -1,0 +1,83 @@
+{
+  "slug": "artist:the-tuss",
+  "name": "The Tuss",
+  "editorial_article": "The Tuss is a brief but highly influential electronic music project conceived and produced by the legendary British producer Richard D. James, better known as Aphex Twin. Initially marketed in 2007 by James' own label, Rephlex Records, as a new duo consisting of Karen and Brian Tregaskin—allegedly discovered through MySpace—the project served as an exercise in anonymity and strategic obfuscation. The ruse eventually collapsed, and James later confirmed his authorship by reissuing the material on his official web store in 2017. Sonically, The Tuss acts as a vital bridge between the polished, warm analog aesthetic of James’ *Analord* series and the frantic, hyper-complex rhythms of his earlier *Drukqs* era. The project’s output—specifically the *Confederation Trough* EP and the full-length studio album *Rushup Edge*—is celebrated for its \"mangled machine funk,\" searing acid lines, and masterclass-level drum programming. Critics have often highlighted the project as a period of renewed creative vigor for James, blending malevolent, breakbeat-heavy tracks with surprisingly melodic, Human League-esque chord sequences. It stands as a cult-favorite artifact within the broader Aphex Twin discography, representing a specific point where James’ mastery of both digital and analog synthesis was at its most playful and uninhibited. The music remains a testament to his unique ability to command machine-led emotion, feeling both alien and deeply human in its execution.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/798219-The-Tuss?srsltid=AfmBOorzlP1ozecdONuYTK6C66qi9kNtY9LQnEeKwqAaXbj5xMHekngf",
+      "title": "The Tuss Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.last.fm/music/The+Tuss",
+      "title": "The Tuss music, videos, stats, and photos | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:59.755Z",
+  "type": "artist",
+  "editorial_bio": "The Tuss is a brief but highly influential electronic music project conceived and produced by the legendary British producer Richard D.",
+  "origin": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:drill-and-bass",
+      "type": "genre",
+      "name": "Drill and Bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:rushup-edge",
+      "type": "project",
+      "name": "Rushup Edge"
+    },
+    {
+      "slug": "project:confederation-trough",
+      "type": "project",
+      "name": "Confederation Trough"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:synthacon-9",
+      "type": "track",
+      "name": "Synthacon 9"
+    },
+    {
+      "slug": "track:rushup-i-bank-12",
+      "type": "track",
+      "name": "Rushup I Bank 12"
+    },
+    {
+      "slug": "track:death-fuck",
+      "type": "track",
+      "name": "Death Fuck"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "members": []
+}

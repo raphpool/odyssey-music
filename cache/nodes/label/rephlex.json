@@ -1,0 +1,88 @@
+{
+  "slug": "label:rephlex",
+  "name": "Rephlex",
+  "editorial_article": "Rephlex Records stands as one of the most influential and idiosyncratic independent labels in the history of electronic music. Founded in 1991 in Cornwall by Richard D. James (better known as Aphex Twin) and Grant Wilson-Claridge, the label emerged from a desire to share unique, innovative music that was otherwise inaccessible in their immediate geographical surroundings. What began as a local effort to press up James’s own experimental tapes soon blossomed into a global nexus for cutting-edge sound. The label is famously credited with coining the term \"braindance,\" an expansive, somewhat philosophical descriptor for the idiosyncratic, high-concept electronic music championed by the label’s inner circle, which went far beyond a mere genre label.\\n\\nOver its twenty-three-year lifespan, Rephlex fostered a community of like-minded electronic pioneers, releasing essential works from the likes of Squarepusher, Luke Vibert, DMX Krew, μ-Ziq, and Bogdan Raczynski. While the label was deeply rooted in the spirit of acid house—vowing to promote \"innovation in the dynamics of Acid\"—it remained relentlessly experimental, frequently pushing boundaries across IDM, ambient, drill 'n' bass, and avant-garde electronics. Rephlex was characterized by a distinct \"outsider\" ethos; it often operated with a mischievous, self-deprecating humor and a complete disregard for mainstream industry norms, which helped cultivate a cult-like devotion among listeners. Grant Wilson-Claridge notably described braindance as \"a way of life\" rather than a rigid style, capturing the label’s inclusive yet uncompromising artistic vision. After an incredibly prolific run, Richard D. James shuttered the label in 2014, citing a desire to preserve his long-term friendship with Wilson-Claridge by stepping away from the pressures of running a business together. Today, Rephlex remains a landmark institution, its legacy enshrined in the foundations of modern experimental electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rephlex_Records",
+      "title": "Rephlex Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:56.432Z",
+  "type": "label",
+  "editorial_description": "Rephlex Records was an influential UK-based electronic music label founded in 1991 by Aphex Twin and Grant Wilson-Claridge, known for coining 'braindance' and releasing seminal works by experimental artists like Squarepusher and Luke Vibert.",
+  "founded": "1991",
+  "location": "London, United Kingdom",
+  "active_years": "1991-2014",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    },
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:bogdan-raczynski",
+      "type": "artist",
+      "name": "Bogdan Raczynski"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85–92"
+    },
+    {
+      "slug": "project:hard-normal-daddy",
+      "type": "project",
+      "name": "Hard Normal Daddy"
+    },
+    {
+      "slug": "project:analord",
+      "type": "project",
+      "name": "Analord"
+    }
+  ]
+}

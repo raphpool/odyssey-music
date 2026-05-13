@@ -1,0 +1,63 @@
+{
+  "slug": "artist:jesse-saunders",
+  "name": "Jesse Saunders",
+  "editorial_article": "Jesse Saunders is a seminal American DJ, producer, and entrepreneur, widely recognized as a foundational figure in the development of Chicago house music. Born in 1962 in Chicago, Saunders was an early fixture of the city's nightlife, deeply influenced by the pioneering sets of Frankie Knuckles at The Warehouse. In 1984, working alongside Vince Lawrence, he released 'On & On' under his own label, Jes Say Records. This track, characterized by its reliance on the Roland TR-808 drum machine and repetitive electronic textures, is frequently cited as the first house music record to be commercially released on vinyl, effectively crystallizing the sound that would define an era of club music. Throughout the 1980s, Saunders continued to push the genre's boundaries as both a producer and a performer under the moniker Jesse's Gang, eventually signing with Geffen Records. His influence extends beyond the studio through his roles in label management, film production, and his long-running involvement in the Chosen Few House Music Reunion Picnic. Throughout his career, he has remained a persistent advocate for the Chicago house scene, working to preserve its legacy while continuing to innovate within the broader electronic music landscape. His contributions have helped shape the trajectory of dance music globally, cementng his status as one of the true pioneers of the Chicago house movement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jesse_Saunders",
+      "title": "Jesse Saunders - Wikipedia"
+    },
+    {
+      "url": "https://www.last.fm/music/Jesse+Saunders/+wiki",
+      "title": "Jesse Saunders age, hometown, biography | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:12.444Z",
+  "type": "artist",
+  "editorial_bio": "A foundational architect of Chicago house music, Jesse Saunders is credited with releasing one of the genre's first commercial records, the influential 'On & On'.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Promotional_photo%21_2013-08-09_00-25.jpeg/250px-Promotional_photo%21_2013-08-09_00-25.jpeg",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "1977–present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:geffen-records",
+      "type": "label",
+      "name": "Geffen Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:vince-lawrence",
+      "type": "artist",
+      "name": "Vince Lawrence"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:joe-smooth",
+      "type": "artist",
+      "name": "Joe Smooth"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

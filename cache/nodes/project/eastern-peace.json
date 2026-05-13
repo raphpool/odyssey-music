@@ -1,0 +1,81 @@
+{
+  "slug": "project:eastern-peace",
+  "name": "Eastern Peace",
+  "editorial_article": "Eastern Peace, released in 1980 by the pioneering New Age musician and sound healer Steven Halpern, represents a significant evolution in his work during the late 1970s and early 1980s. Recorded at the Music Annex in Menlo Park, California, the album serves as a definitive example of Halpern's ambient soundscapes, which were specifically engineered to induce states of deep relaxation, meditation, and healing. By utilizing minimal melodic structures, gentle synthesizer textures, and carefully considered tonal intervals, Halpern sought to bypass the traditional cognitive engagement of music, instead favoring a direct physiological effect on the listener. \n\nAt the time of its release, Eastern Peace stood out for its unpretentious, \"ethnic-inflected\" aesthetic, which distinguished it from some of his earlier, more technically experimental recordings. The tracks—such as \"August Moon,\" \"Kwan Yin,\" and the title track \"Eastern Peace\"—are characterized by their spaciousness and deliberate lack of dynamic contrast, common markers of the burgeoning New Age genre he helped define. The album is not merely a collection of songs, but a functional tool designed for personal well-being, meditation, and stress reduction. Its cultural impact lies in its early consolidation of the \"healing music\" subgenre, providing a blueprint for the commercial and therapeutic success of ambient music in the following decades. Through his work on this project and others, Halpern established himself as a central figure in the movement to utilize sound frequencies as a medium for psychological and spiritual grounding, a legacy that continues to influence contemporary ambient and wellness-oriented electronic music.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/eastern-peace-mw0000594080",
+      "title": "Eastern Peace - Steven Halpern | Album | AllMusic"
+    },
+    {
+      "url": "https://www.amazon.com/Eastern-Peace-Steven-Halpern/dp/B000008T6G",
+      "title": "Eastern Peace - Amazon.com Music"
+    },
+    {
+      "url": "https://www.discogs.com/master/325879-Steven-Halpern-Eastern-Peace?srsltid=AfmBOorqGMxIz3_fRc3W-sNLMoQAunyPQSrUuSlZUImjfJ21dwjD5_JB",
+      "title": "Steven Halpern – Eastern Peace | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:08.228Z",
+  "type": "project",
+  "editorial_pitch": "Released in 1980, Eastern Peace is a foundational entry in Steven Halpern’s discography, showcasing his pioneer approach to sound healing and ambient music through the lens of meditative, synth-driven compositions.",
+  "year": "1980",
+  "artists": [],
+  "label": {
+    "slug": "label:sound-rx",
+    "type": "label",
+    "name": "Sound Rx"
+  },
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:august-moon",
+      "type": "track",
+      "name": "August Moon (Part 1)"
+    },
+    {
+      "slug": "track:august-moon",
+      "type": "track",
+      "name": "August Moon (Part 2)"
+    },
+    {
+      "slug": "track:eastern-peace",
+      "type": "track",
+      "name": "Eastern Peace"
+    },
+    {
+      "slug": "track:on-a-slide-of-light",
+      "type": "track",
+      "name": "On A Slide Of Light"
+    },
+    {
+      "slug": "track:kwan-yin",
+      "type": "track",
+      "name": "Kwan Yin"
+    },
+    {
+      "slug": "track:song-of-the-lotus",
+      "type": "track",
+      "name": "Song Of The Lotus"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    }
+  ],
+  "related_projects": []
+}

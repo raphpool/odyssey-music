@@ -1,0 +1,75 @@
+{
+  "slug": "label:southern-lord-recordings",
+  "name": "Southern Lord Recordings",
+  "editorial_article": "Southern Lord Recordings is a foundational American independent record label based in Los Angeles, established in 1998 by Greg Anderson of the bands Goatsnake and Sunn O))). Originally founded to provide a platform for the experimental and extreme metal projects of Anderson and his frequent collaborator Stephen O'Malley, the label quickly evolved into a vital hub for the underground metal scene. Its aesthetic is deeply rooted in the heavy, slow-moving sounds of doom, drone, and sludge metal, though it has broadened its scope significantly over the decades to encompass black metal, crust punk, and various strains of hardcore punk.\n\nThe label's history is inextricably linked to the development of modern drone metal, serving as the home for seminal works by Sunn O))) and Earth. By championing slow, resonant, and often minimalist heavy music, Southern Lord helped bring these niche sounds to a wider audience, gaining critical recognition in mainstream music press while maintaining a staunchly DIY ethos. Beyond its focus on drone and doom, the label has been instrumental in supporting influential hardcore and crust bands, reflecting a diverse yet cohesive catalog that values intensity and artistic integrity. Today, Southern Lord remains an active and influential force in independent music, consistently pushing the boundaries of what is considered \"heavy.\" The label continues to be a standard-bearer for sonic experimentation, bridging the gap between extreme metal and avant-garde music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Southern_Lord_Records",
+      "title": "Southern Lord Records - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/30436-Southern-Lord?srsltid=AfmBOorHgn3OTuOJ1TbZmGW6BfDfkdB0U-vrvMU2XQktXxlQGo7bjuXQ",
+      "title": "Southern Lord - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:12.854Z",
+  "type": "label",
+  "editorial_description": "A premier American independent label specializing in doom, drone, sludge metal, and hardcore punk, founded by Greg Anderson.",
+  "founded": "1998",
+  "location": "Los Angeles, California",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth"
+    },
+    {
+      "slug": "artist:boris",
+      "type": "artist",
+      "name": "Boris"
+    },
+    {
+      "slug": "artist:goatsnake",
+      "type": "artist",
+      "name": "Goatsnake"
+    },
+    {
+      "slug": "artist:pelican",
+      "type": "artist",
+      "name": "Pelican"
+    },
+    {
+      "slug": "artist:power-trip",
+      "type": "artist",
+      "name": "Power Trip"
+    },
+    {
+      "slug": "artist:wolves-in-the-throne-room",
+      "type": "artist",
+      "name": "Wolves in the Throne Room"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:monoliths-and-dimensions",
+      "type": "project",
+      "name": "Monoliths & Dimensions"
+    },
+    {
+      "slug": "project:crippled-lucifer",
+      "type": "project",
+      "name": "Crippled Lucifer"
+    },
+    {
+      "slug": "project:dommedagsnatt",
+      "type": "project",
+      "name": "Dommedagsnatt"
+    }
+  ]
+}

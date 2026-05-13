@@ -1,0 +1,97 @@
+{
+  "slug": "genre:zeuhl",
+  "name": "Zeuhl",
+  "editorial_article": "Zeuhl is a highly specialized, intensely dramatic subgenre of progressive rock that emerged in France during the late 1960s and early 1970s. The term was coined by the legendary French band Magma, led by drummer and composer Christian Vander, and is derived from their self-invented language, Kobaïan, in which \"Zeuhl Ẁortz\" translates to \"Celestial Force.\" At its core, the genre represents a fusion of avant-garde jazz, modern western classical music—often compared to the compositions of Carl Orff—and heavy, hypnotic rock. The sonic landscape of Zeuhl is defined by its commanding, often repetitive rhythm sections, featuring driving electric bass lines and complex, dynamic percussion. Vocals occupy a central, often operatic role; they can span from haunting, polyphonic choral arrangements reminiscent of \"Carmina Burana\" to piercing, improvisational jazz solos delivered with an intensity that reflects the genre's dark, mythic narrative themes. Beyond the music itself, Zeuhl is often linked to the conceptual Kobaïan universe created by Vander, providing a comprehensive aesthetic experience that transcends traditional song structures. While originally confined to the French underground scene, Zeuhl eventually influenced a global movement of avant-progressive musicians, particularly in Japan with bands like Kōenjihyakkei, and remains a distinct, fiercely uncompromising corner of the progressive rock spectrum. Its longevity and influence are a testament to the power of artistic vision, turning a niche, self-mythologized concept into a respected and enduring musical subgenre that continues to challenge listeners with its technical finesse and visceral energy.",
+  "citations": [
+    {
+      "url": "https://progressiverockcentral.com/2023/11/11/the-wonders-of-zeuhl-frances-progressive-rock-subgenre/",
+      "title": "The Wonders of Zeuhl, France’s Progressive Rock Subgenre | Progressive Rock Central.com"
+    },
+    {
+      "url": "https://kboo.org/media/38892-zeuhl-music",
+      "title": "Zeuhl music | KBOO"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:46.181Z",
+  "type": "genre",
+  "editorial_definition": "Zeuhl is a distinct, avant-garde subgenre of progressive rock characterized by its operatic vocals, complex, repetitive rhythmic structures, and heavy fusion of jazz-rock and classical influences, originating from the conceptual work of the French band Magma.",
+  "era": "Late 1960s to Present",
+  "origin": "France",
+  "sonic_markers": "Hypnotic repetitive bass lines, operatic and polyphonic choral vocals, complex polyrhythms, dark mythic narrative themes, fusion of jazz improvisation and orchestral drama.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:jazz-rock-fusion",
+      "type": "genre",
+      "name": "Jazz-Rock Fusion"
+    },
+    {
+      "slug": "genre:avant-prog",
+      "type": "genre",
+      "name": "Avant-Prog"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:magma",
+      "type": "artist",
+      "name": "Magma"
+    },
+    {
+      "slug": "artist:art-zoyd",
+      "type": "artist",
+      "name": "Art Zoyd"
+    },
+    {
+      "slug": "artist:eskaton",
+      "type": "artist",
+      "name": "Eskaton"
+    },
+    {
+      "slug": "artist:koenjihyakkei",
+      "type": "artist",
+      "name": "Kōenjihyakkei"
+    },
+    {
+      "slug": "artist:univers-zero",
+      "type": "artist",
+      "name": "Univers Zero"
+    },
+    {
+      "slug": "artist:zao",
+      "type": "artist",
+      "name": "Zao"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:seventh-records",
+      "type": "label",
+      "name": "Seventh Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:mekanik-destruktiw-kommandoh",
+      "type": "project",
+      "name": "Mekanïk Destruktïw Kommandöh"
+    },
+    {
+      "slug": "project:z-7l",
+      "type": "project",
+      "name": "Z=7L"
+    },
+    {
+      "slug": "project:angherr-shisspa",
+      "type": "project",
+      "name": "Angherr Shisspa"
+    }
+  ],
+  "landmark_tracks": []
+}

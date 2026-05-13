@@ -1,0 +1,49 @@
+{
+  "slug": "artist:richard-seidel",
+  "name": "Richard Seidel",
+  "editorial_article": "Richard Seidel is a highly influential American music producer and A&R executive, recognized primarily for his monumental contributions to the preservation and promotion of jazz. After graduating from Rutgers University, where he worked at the Institute of Jazz Studies, and studying at Berklee College of Music and the New England Conservatory, Seidel immersed himself in the jazz industry. He served as the editor of the Schwann Catalog before transitioning into production with Contemporary Records in the late 1970s, where he worked with artists like George Cables and Chico Freeman. \n\nSeidel’s most defining tenure occurred during his two decades at Verve Records, where he served as a Senior Vice President of A&R. During this time, he was instrumental in shaping the careers of modern jazz luminaries such as Roy Hargrove, Joe Henderson, Shirley Horn, and Christian McBride. Beyond his work with active artists, Seidel became a critical figure in the curation of jazz history, overseeing definitive reissues and archival projects. His legacy is deeply tied to his work with Sony Legacy, where he has meticulously managed box sets and compilations for legends including Miles Davis, Nina Simone, and Herbie Hancock, effectively ensuring that the breadth of the jazz canon remains accessible and sonically preserved for new generations of listeners. Seidel's work bridges the gap between historical archival integrity and contemporary market relevance, making him a cornerstone figure in the jazz industry over the last forty years. His meticulous approach to A&R and reissuing has set a high standard for how jazz catalogs are treated, turning lost sessions into celebrated landmarks of the genre.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/339335-Richard-Seidel?srsltid=AfmBOorJnSAx6qJfuoHr5HAd13hTl1GNkVfEyosbKVogUSl4tlHBcMne",
+      "title": "Richard Seidel Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "http://dougpayne.blogspot.com/2011/02/reissuing-cti-richard-seidel-interview.html",
+      "title": "Reissuing CTI: The Richard Seidel Interview - SOUND INSIGHTS"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:23.348Z",
+  "type": "artist",
+  "editorial_bio": "Richard Seidel is a highly influential American music producer and A&R executive, recognized primarily for his monumental contributions to the preservation and promotion of jazz.",
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:contemporary-records",
+      "type": "label",
+      "name": "Contemporary Records"
+    },
+    {
+      "slug": "label:sony-legacy",
+      "type": "label",
+      "name": "Sony Legacy"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

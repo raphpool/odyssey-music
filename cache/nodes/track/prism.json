@@ -1,0 +1,29 @@
+{
+  "slug": "track:prism",
+  "name": "Prism",
+  "editorial_article": "\"Prism\" is the closing track of the 2023 studio album of the same name by the veteran English ambient house duo, The Orb. Clocking in at over nine minutes, the piece serves as the meditative anchor for a project that further explores the group's decades-long fusion of dub, ambient soundscapes, electronic experimentation, and whimsical science fiction themes. Throughout the track, listeners are guided through a series of lush, atmospheric layers and rhythmic motifs characteristic of the group's ongoing collaboration between founding member Alex Paterson and Michael Rendall. \\n\\nReleased on Cooking Vinyl, the album *Prism*—and by extension its titular closing composition—continues to highlight The Orb's ability to remain relevant within the electronic landscape by blending sophisticated production techniques with a sense of playful, psychedelic wonder. The track reflects the duo's signature \"dub doctor\" approach, balancing spacious arrangements with intricate, glitch-influenced textures that characterize much of their later work. For fans of downtempo and ambient house, \"Prism\" stands as a testament to the enduring creative energy of The Orb, encapsulating their penchant for long-form sonic journeys that invite introspection. Its release marked another milestone in the group's extensive discography, showcasing how they continue to manipulate space and sound to create immersive auditory environments that defy simple classification. The track exists within the established lineage of The Orb's discography, reinforcing their role as architects of modern ambient dub.",
+  "citations": [
+    {
+      "url": "https://theorb.bandcamp.com/album/prism",
+      "title": "Prism | The Orb"
+    },
+    {
+      "url": "https://www.discogs.com/master/3075896-Orb-Prism?srsltid=AfmBOop17Ci9Mb1JdKWRSS3Qely3e6ljw7sLhbIscLqiSRxEQvIf2m1Q",
+      "title": "Orb – Prism | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:26.325Z",
+  "type": "track",
+  "editorial_teaser": "\"Prism\" is the closing track of the 2023 studio album of the same name by the veteran English ambient house duo, The Orb.",
+  "artists": [],
+  "project": {
+    "slug": "project:prism",
+    "type": "project",
+    "name": "Prism"
+  },
+  "genres": [],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

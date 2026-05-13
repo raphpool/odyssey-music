@@ -1,0 +1,61 @@
+{
+  "slug": "label:tempa",
+  "name": "Tempa",
+  "editorial_article": "Tempa Recordings is a seminal British independent record label that played a foundational role in the genesis and evolution of dubstep. Founded in London in 2000 by Neil Jolliffe—the individual credited with coining the term \"dubstep\" in 2002—the label emerged from the bustling UK garage scene to champion a darker, more stripped-back aesthetic. Operating under the umbrella of Ammunition Promotions, Tempa became the primary vehicle for the sound that would define South London's underground music scene for much of the 2000s.\n\nThroughout its active years, Tempa served as the home for many of the genre's most influential figures, including Skream, Benga, Horsepower Productions, and the label's long-standing A&R lead, DJ Youngsta. The label was instrumental in bridging the gap between UK garage and the darker, sub-bass-heavy textures that characterized the early dubstep era. Its 2005 release of Skream’s \"Midnight Request Line\" stands as a landmark moment in the genre's history, signaling the transition from underground dubplate culture to broader electronic music recognition. Tempa’s influence is inextricably linked to the development of the \"dubstep\" sound, maintaining a commitment to bass-forward, experimental, and club-oriented production that solidified its status as one of the most important imprints in electronic music history. Beyond its massive historical impact, the label continues to be referenced as the definitive sonic blueprint for what the world came to know as dubstep. By curating a roster that pushed the boundaries of low-end frequencies, Tempa defined a movement and provided a critical platform for artists to experiment with rhythm and texture, forever altering the landscape of contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tempa_Recordings",
+      "title": "Tempa Recordings - Wikipedia"
+    },
+    {
+      "url": "https://daily.bandcamp.com/label-profile/tempa-dubstep-full-catalog",
+      "title": "Where to Start With Tempa, The Label That Invented Dubstep | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:38.109Z",
+  "type": "label",
+  "editorial_description": "Tempa is a pioneering London-based record label, widely recognized as one of the fundamental architects of the dubstep genre. Founded in 2000, it championed the dark, bass-heavy sounds emerging from the UK garage scene and served as the home for legendary artists like Skream, Benga, and Youngsta.",
+  "founded": "2000",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions"
+    },
+    {
+      "slug": "artist:youngsta",
+      "type": "artist",
+      "name": "Youngsta"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:midnight-request-line",
+      "type": "project",
+      "name": "Midnight Request Line"
+    }
+  ]
+}

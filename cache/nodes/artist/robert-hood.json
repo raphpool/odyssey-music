@@ -1,0 +1,110 @@
+{
+  "slug": "artist:robert-hood",
+  "name": "Robert Hood",
+  "editorial_article": "Robert Hood (born 1965) is a seminal American electronic music producer and DJ, widely recognized as a foundational figure in the development of minimal techno. Emerging from Detroit in the early 1990s, he became a core member of the legendary Underground Resistance collective alongside Jeff Mills and 'Mad' Mike Banks. His work with the group, characterized by a militant, revolutionary aesthetic, helped define the aggressive, hardware-driven sound of early Detroit techno. In 1994, Hood shifted the trajectory of electronic music by establishing his own label, M-Plant, and releasing the influential album 'Minimal Nation'. This record moved away from the density of his previous work, opting instead for a stark, skeletal, and hypnotic sound that became the blueprint for minimal techno worldwide. Throughout his career, Hood has explored diverse sonic landscapes under various aliases including Monobox, The Vision, and Floorplan. His later work as Floorplan, which expanded to include his daughter Lyric Hood, famously integrated gospel music with the driving rhythms of house and techno, reflecting his personal evolution and deepening spiritual interest. Hood remains an active and influential force, constantly reinventing his minimalist roots through new explorations of texture, soul, and rhythm. By stripping back the sonic complexity to its essential, repeating pulses, Hood provided the framework for a new generation of producers, making him one of the most important architects of the post-Detroit soundscape. His continued output, whether on M-Plant or through collaborative projects, maintains a standard of uncompromising artistic integrity that has cemented his legacy in the global electronic canon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Robert_Hood",
+      "title": "Robert Hood - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/robert-hood",
+      "title": "Robert Hood discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:54.202Z",
+  "type": "artist",
+  "editorial_bio": "Robert Hood (born 1965) is a seminal American electronic music producer and DJ, widely recognized as a foundational figure in the development of minimal techno.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Robert_Hood_Live_%40_Kennedys%2C_Dublin%2C_Ireland_2009.JPG/500px-Robert_Hood_Live_%40_Kennedys%2C_Dublin%2C_Ireland_2009.JPG",
+  "origin": "Detroit, Michigan, U.S.",
+  "active_years": "1990–present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:m-plant",
+      "type": "label",
+      "name": "M-Plant"
+    },
+    {
+      "slug": "label:axis",
+      "type": "label",
+      "name": "Axis"
+    },
+    {
+      "slug": "label:tresor",
+      "type": "label",
+      "name": "Tresor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:minimal-nation",
+      "type": "project",
+      "name": "Minimal Nation"
+    },
+    {
+      "slug": "project:internal-empire",
+      "type": "project",
+      "name": "Internal Empire"
+    },
+    {
+      "slug": "project:victorious",
+      "type": "project",
+      "name": "Victorious"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-pace",
+      "type": "track",
+      "name": "The Pace"
+    },
+    {
+      "slug": "track:we-magnify-his-name",
+      "type": "track",
+      "name": "We Magnify His Name"
+    },
+    {
+      "slug": "track:spectra",
+      "type": "track",
+      "name": "Spectra"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:mad-mike-banks",
+      "type": "artist",
+      "name": "Mad Mike Banks"
+    },
+    {
+      "slug": "artist:lyric-hood",
+      "type": "artist",
+      "name": "Lyric Hood"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

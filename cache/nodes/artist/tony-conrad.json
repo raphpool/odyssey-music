@@ -1,0 +1,59 @@
+{
+  "slug": "artist:tony-conrad",
+  "name": "Tony Conrad",
+  "editorial_article": "Tony Conrad (1940–2016) was an American avant-garde musician, composer, filmmaker, and writer, widely recognized as a pivotal figure in the development of minimalism, microtonal music, and deep listening practices. Based primarily in New York, Conrad began his career in the early 1960s as a vital collaborator in La Monte Young's \"Dream Music\" project, working alongside musicians such as John Cale and Angus MacLise. His practice was defined by a rigorous, ascetic approach to long-form drone compositions, often utilizing just intonation and repetitive bowed strings to explore the subtle, visceral boundary between pitch and rhythm. This aesthetic was perhaps most famously captured in his landmark work, 'Four Violins' (1964) and his drone-heavy collaboration with the German group Faust on the seminal 'Outside the Dream Syndicate' (1972). Beyond music, Conrad was a significant experimental filmmaker—notably creating the flicker film 'The Flicker' (1966)—and an influential academic. After a period of relative silence in the 1970s, his work was rediscovered in the 1990s through the Table of the Elements label, leading to a prolific late-career period of performances and collaborations with contemporary experimentalists like Jim O'Rourke and Charlemagne Palestine. Conrad’s work remains essential for its radical focus on the physical experience of sound, favoring endurance and sonic saturation over traditional melodic development. Throughout his multi-disciplinary career, he maintained a commitment to challenging institutional boundaries in art, music, and media. His legacy persists through his extensive discography and his influence on generations of drone and experimental musicians who have followed his path of sustained sound and harmonic precision.",
+  "citations": [
+    {
+      "url": "https://www.scaruffi.com/avant/conrad.html",
+      "title": "Avantgarde Music. Tony Conrad: biography, discography, reviews, ratings, best albums"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:51.957Z",
+  "type": "artist",
+  "editorial_bio": "Tony Conrad was a seminal figure in American minimalism and drone music, best known for his pioneering use of long-form, just-intonation violin compositions and his influential collaborations with figures like La Monte Young and the group Faust. His work profoundly reshaped concepts of duration and deep listening in contemporary experimental music.",
+  "origin": "United States",
+  "active_years": "1960–2016",
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:table-of-the-elements",
+      "type": "label",
+      "name": "Table of the Elements"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:four-violins",
+      "type": "track",
+      "name": "Four Violins"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

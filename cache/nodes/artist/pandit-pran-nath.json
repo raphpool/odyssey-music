@@ -1,0 +1,56 @@
+{
+  "slug": "artist:pandit-pran-nath",
+  "name": "Pandit Pran Nath",
+  "editorial_article": "Pandit Pran Nath (1918–1996) was a seminal Hindustani classical vocalist and a master of the Kirana gharana, a school of North Indian music renowned for its focus on minute tonal gradations and meditative exploration. Born in Lahore, Nath initially pursued a reclusive, ascetic life, spending years in deep study with his guru, Ustad Abdul Wahid Khan, and living as an ascetic in the caves near Tapkeshwar. His dedication to the austere, slow-paced tradition of alap placed him outside the mainstream of mid-20th-century Indian music, which was rapidly modernizing. However, his life took a transformative turn in 1970 when he relocated to the United States. \\n\\nUpon moving to New York, Nath became a crucial mentor to the American minimalist movement, exerting a profound influence on avant-garde composers including La Monte Young, Marian Zazeela, and Terry Riley. By establishing the Kirana Center for Indian Classical Music, he introduced a rigorous, spiritualized discipline of vocal practice to a generation of Western musicians who were seeking to expand the boundaries of structure, pitch, and duration. His legacy remains dual-fold: he is remembered as a staunch guardian of the ancient Kirana tradition and as a bridge who helped shape the vocabulary of contemporary Western minimalism, forever changing the way musicians thought about the physics and spirituality of sound. Nath's vocal technique, deeply rooted in the Kirana style of Ustad Abdul Wahid Khan, remains one of the most significant links between traditional Indian devotional music and the avant-garde. His influence persists through his students and the enduring presence of his archival recordings.",
+  "citations": [
+    {
+      "url": "https://www.last.fm/music/Pandit+Pran+Nath/+wiki",
+      "title": "Pandit Pran Nath age, hometown, biography | Last.fm"
+    },
+    {
+      "url": "https://prannath.wordpress.com/",
+      "title": "Faqir Pran Nath aka Pandit Pran Nath | Cyber Shrine to Guruji Faqir ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:47.128Z",
+  "type": "artist",
+  "editorial_bio": "Pandit Pran Nath (1918–1996) was a seminal Hindustani classical vocalist and a master of the Kirana gharana, a school of North Indian music renowned for its focus on minute tonal gradations and meditative exploration.",
+  "active_years": "1937-1996",
+  "genres": [
+    {
+      "slug": "genre:hindustani-classical",
+      "type": "genre",
+      "name": "Hindustani Classical"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:ustad-abdul-wahid-khan",
+      "type": "artist",
+      "name": "Ustad Abdul Wahid Khan"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,110 @@
+{
+  "slug": "artist:daniel-johnston",
+  "name": "Daniel Johnston",
+  "editorial_article": "Daniel Johnston (1961–2019) was an American singer-songwriter, musician, and visual artist whose profoundly personal and raw body of work made him a foundational figure in the outsider and lo-fi music scenes. Born in Sacramento and raised in West Virginia, Johnston moved to Austin, Texas, in the early 1980s, where he famously gained a cult following by handing out handmade cassette tapes to strangers at a McDonald's. His music—often recorded alone on a simple monaural boombox—was characterized by its stark vulnerability, childlike melodicism, and unvarnished emotional honesty. Instruments like the piano, guitar, and chord organ served as the backdrop for lyrics that navigated themes of unrequited love, comic book heroism, and the internal struggle with mental health, particularly his long-term battle with bipolar disorder.\n\nJohnston’s influence extended far beyond the DIY underground. His status was propelled to international attention in the early 1990s when Kurt Cobain of Nirvana was frequently photographed wearing a T-shirt featuring the artwork from Johnston’s 1983 album, 'Hi, How Are You'. This visibility brought a wider audience to his catalog, which included iconic self-released cassettes like 'Songs of Pain' and 'Yip/Jump Music'. Throughout his career, his work remained deeply authentic, resisting the polished sheen of major-label production even when he collaborated with figures like Mark Kramer or Jad Fair. His legacy continues to resonate through the myriad of artists he inspired, who drew from his willingness to expose his interior world, and his life remains a poignant testament to the intersection of artistic genius and the complex realities of mental health. His visual art, marked by distinct characters like 'Jeremiah the Innocent,' remains as synonymous with his cultural footprint as his songs.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Daniel_Johnston",
+      "title": "Daniel Johnston - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/daniel-johnston-mn0000674263",
+      "title": "Daniel Johnston Songs, Albums, Reviews, Bio & ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:03.854Z",
+  "type": "artist",
+  "editorial_bio": "Daniel Johnston was an influential American singer-songwriter and visual artist, widely regarded as a pioneer of the lo-fi and outsider music scenes. Known for his raw, intimate cassette recordings and deeply personal songwriting, his legacy reached global cult status in the 1990s, notably championed by artists like Kurt Cobain.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Daniel_Johnston_and_British_Sea_Power_%286935765808%29_%28cropped%29.jpg/500px-Daniel_Johnston_and_British_Sea_Power_%286935765808%29_%28cropped%29.jpg",
+  "origin": "New Cumberland, West Virginia, U.S.",
+  "active_years": "1978–2019",
+  "genres": [
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    },
+    {
+      "slug": "genre:outsider-music",
+      "type": "genre",
+      "name": "Outsider music"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:yip-eye-music",
+      "type": "label",
+      "name": "Yip Eye Music"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:stress-records",
+      "type": "label",
+      "name": "Stress Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:songs-of-pain",
+      "type": "project",
+      "name": "Songs of Pain"
+    },
+    {
+      "slug": "project:hi-how-are-you",
+      "type": "project",
+      "name": "Hi, How Are You"
+    },
+    {
+      "slug": "project:yip-jump-music",
+      "type": "project",
+      "name": "Yip/Jump Music"
+    },
+    {
+      "slug": "project:1990",
+      "type": "project",
+      "name": "1990"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:true-love-will-find-you-in-the-end",
+      "type": "track",
+      "name": "True Love Will Find You in the End"
+    },
+    {
+      "slug": "track:some-things-last-a-long-time",
+      "type": "track",
+      "name": "Some Things Last a Long Time"
+    },
+    {
+      "slug": "track:speeding-motorcycle",
+      "type": "track",
+      "name": "Speeding Motorcycle"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jad-fair",
+      "type": "artist",
+      "name": "Jad Fair"
+    },
+    {
+      "slug": "artist:kathy-mccarty",
+      "type": "artist",
+      "name": "Kathy McCarty"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

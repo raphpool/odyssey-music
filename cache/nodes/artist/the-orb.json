@@ -1,0 +1,93 @@
+{
+  "slug": "artist:the-orb",
+  "name": "The Orb",
+  "editorial_article": "The Orb, a pioneering force in British electronic music, emerged from London's late-1980s acid house scene as a distinct entity that redefined the possibilities of chill-out culture. Founded in 1988 by Alex Paterson and Jimmy Cauty, the group functioned initially as a sonic laboratory for ambient and dub experimentation, finding a dedicated following among clubbers seeking relief from the frantic intensity of high-energy dance floors. By masterfully blending 1970s psychedelic and progressive rock influences with the textures of dub, house, and sound collage, The Orb laid the groundwork for the ambient house movement. Their 1991 debut album, 'The Orb's Adventures Beyond the Ultraworld', remains a seminal work that demonstrated how electronic music could move beyond the club into contemplative, science-fiction-inspired soundscapes. Over the decades, the group has experienced numerous lineup changes—most notably the departure of Cauty and the long-term collaboration with Thomas Fehlmann—yet Alex Paterson has remained the constant creative anchor. Through their innovative use of sampling, dense layering, and live mixing techniques, The Orb evolved from underground DJs into a global influence, proving that electronic music could be both deeply immersive and creatively unpredictable. Their legacy is characterized by an enduring commitment to the 'E generation' chill-out aesthetic, constantly shifting between ambient tranquility and complex, beat-driven rhythmic structures.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Orb",
+      "title": "The Orb - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Orb_discography",
+      "title": "The Orb discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:55.612Z",
+  "type": "artist",
+  "editorial_bio": "The Orb, a pioneering force in British electronic music, emerged from London's late-1980s acid house scene as a distinct entity that redefined the possibilities of chill-out culture.",
+  "origin": "London, England",
+  "active_years": "1988–present",
+  "genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient house"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:big-life",
+      "type": "label",
+      "name": "Big Life"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:cooking-vinyl",
+      "type": "label",
+      "name": "Cooking Vinyl"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
+      "type": "project",
+      "name": "The Orb's Adventures Beyond the Ultraworld"
+    },
+    {
+      "slug": "project:u-f-orb",
+      "type": "project",
+      "name": "U.F.Orb"
+    },
+    {
+      "slug": "project:metallic-spheres",
+      "type": "project",
+      "name": "Metallic Spheres"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:alex-paterson",
+      "type": "artist",
+      "name": "Alex Paterson"
+    },
+    {
+      "slug": "artist:thomas-fehlmann",
+      "type": "artist",
+      "name": "Thomas Fehlmann"
+    },
+    {
+      "slug": "artist:jimmy-cauty",
+      "type": "artist",
+      "name": "Jimmy Cauty"
+    }
+  ]
+}

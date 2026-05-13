@@ -1,0 +1,98 @@
+{
+  "slug": "genre:microhouse",
+  "name": "Microhouse",
+  "editorial_article": "Microhouse is a sophisticated, detail-oriented subgenre of house music that emerged in the early 2000s, primarily centering around the electronic music scenes in Cologne and Montreal. Characterized by a stripped-back, minimalist aesthetic, the genre is defined by its use of \"digital debris\"—clicks, glitches, radio static, and highly processed found sounds—rearranged into intricate, propulsive house grooves. Often functioning at tempos between 118 and 126 BPM, microhouse prioritizes textural nuance and micro-editing over traditional melodic or percussive structures. By building dance music out of unexpected, microscopic audio fragments, producers were able to challenge conventional ideas of instrument usage in club music, effectively blurring the lines between house, minimal techno, and ambient sound design.\\n\\nCentral to the genre’s institutional growth were German labels like Kompakt and Perlon, which provided an infrastructure for this new, experimental sound. While artists like Isolée—whose track \"Wank\" is frequently cited as a foundational work—established a template for domestic-scale percussive music, others pushed the genre into different territories. Akufen, the moniker of Montreal-based artist Marc Leclair, brought the sound to international prominence with his use of hundreds of micro-sampled radio fragments, creating a \"channel-surfing\" aesthetic. Ricardo Villalobos further expanded the genre's horizons, introducing long-form compositions that allowed for the slow, hypnotic evolution of micro-textures. Although the term \"microhouse\" is used less frequently today, its legacy endures in modern minimal techno and the Romanian-led \"rominimal\" scene, where the core principles of granular processing, patience, and texture-focused groove production continue to thrive.",
+  "citations": [
+    {
+      "url": "https://rominimal.club/post/microhouse-music/",
+      "title": "Microhouse Music — Origins, Sound & Key Artists · ROminimal"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Microhouse",
+      "title": "Microhouse - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:19.836Z",
+  "type": "genre",
+  "editorial_definition": "A minimalist subgenre of house music characterized by its focus on micro-editing, glitchy textures, and found-sound percussion assembled into subtle, sophisticated dance floor rhythms.",
+  "era": "Early 2000s to mid-2010s",
+  "origin": "Germany and Canada",
+  "sonic_markers": "Clicks, glitches, micro-edits, found-sound percussion, minimalist 4/4 structures, granular synthesis, subtle timbral variations.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:akufen",
+      "type": "artist",
+      "name": "Akufen"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:perlon",
+      "type": "label",
+      "name": "Perlon"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    },
+    {
+      "slug": "label:playhouse",
+      "type": "label",
+      "name": "Playhouse"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:alcachofa",
+      "type": "project",
+      "name": "Alcachofa"
+    },
+    {
+      "slug": "project:my-way",
+      "type": "project",
+      "name": "My Way"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:wank",
+      "type": "track",
+      "name": "Wank"
+    }
+  ]
+}

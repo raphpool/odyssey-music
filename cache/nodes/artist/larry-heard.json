@@ -1,0 +1,121 @@
+{
+  "slug": "artist:larry-heard",
+  "name": "Larry Heard",
+  "editorial_article": "Larry Heard (born May 31, 1960) is an American musician, record producer, and DJ who stands as one of the most influential architects of Chicago house music. Emerging from the South Side of Chicago with a background in jazz and fusion, Heard brought a sophisticated, melodic sensibility to electronic music at a time when the genre was primarily defined by raw, repetitive, and functional club beats. In 1984, following frustration with the creative limitations of his role as a drummer in various local bands, Heard purchased a Roland synthesizer and TR-909 drum machine. Within days, he composed foundational works—including \"Can You Feel It,\" \"Mystery of Love,\" and \"Washing Machine\"—that essentially mapped out the deep house subgenre, blending the futurism of machine-driven rhythms with the soulful warmth of disco and jazz.\\n\\nHeard’s career is marked by a diverse range of aliases, most prominently Mr. Fingers, under which he released some of the most enduring anthems in dance music history. He also served as the leader of Fingers Inc., a collaborative project with vocalists Robert Owens and Ron Wilson, which produced 'Another Side' (1988), widely considered the first long-form house music album. Throughout the 1990s and beyond, Heard transitioned from his role as a club innovator to an auteur of downtempo and contemplative electronic compositions with albums like 'Sceneries Not Songs, Vol. 1.' His influence is immeasurable, as his production techniques, deep chord progressions, and emotional textures continue to define the modern sound of house music globally. Despite industry challenges and label disputes, Heard has maintained a prolific, multi-decade career, consistently pushing the boundaries of what electronic dance music can convey.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Larry_Heard",
+      "title": "Larry Heard - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:34.962Z",
+  "type": "artist",
+  "editorial_bio": "A pioneer of Chicago house and the father of deep house, Larry Heard redefined the landscape of dance music by infusing the rigid machinery of early house with deep, soulful, and jazz-influenced melodies. Working frequently under the alias Mr. Fingers, he has been a creative force since 1984, leaving an indelible mark on both club culture and ambient electronic soundscapes.",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "1983–present",
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    },
+    {
+      "slug": "label:d-j-international-records",
+      "type": "label",
+      "name": "D.J. International Records"
+    },
+    {
+      "slug": "label:allevated",
+      "type": "label",
+      "name": "Allevated"
+    },
+    {
+      "slug": "label:mca-records",
+      "type": "label",
+      "name": "MCA Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sceneries-not-songs-volume-one",
+      "type": "project",
+      "name": "Sceneries Not Songs Volume One"
+    },
+    {
+      "slug": "project:cerebral-hemispheres",
+      "type": "project",
+      "name": "Cerebral Hemispheres"
+    },
+    {
+      "slug": "project:another-side",
+      "type": "project",
+      "name": "Another Side"
+    },
+    {
+      "slug": "project:ammnesia",
+      "type": "project",
+      "name": "Ammnesia"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:can-you-feel-it",
+      "type": "track",
+      "name": "Can You Feel It"
+    },
+    {
+      "slug": "track:mystery-of-love",
+      "type": "track",
+      "name": "Mystery of Love"
+    },
+    {
+      "slug": "track:washing-machine",
+      "type": "track",
+      "name": "Washing Machine"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers"
+    },
+    {
+      "slug": "artist:loosefingers",
+      "type": "artist",
+      "name": "Loosefingers"
+    },
+    {
+      "slug": "artist:gherkin-jerks",
+      "type": "artist",
+      "name": "Gherkin Jerks"
+    },
+    {
+      "slug": "artist:trio-zero",
+      "type": "artist",
+      "name": "Trio Zero"
+    }
+  ],
+  "members": []
+}

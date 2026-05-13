@@ -1,0 +1,60 @@
+{
+  "slug": "track:intensive-snare",
+  "name": "Intensive Snare",
+  "editorial_article": "\"Intensive Snare\" is a seminal dubstep track by British producer Plastician, featuring vocals by grime icon Skepta. Released in 2008 as a standout cut on Plastician’s debut album \"Beg To Differ,\" the track serves as a pivotal artifact of the late-2000s UK electronic landscape, bridging the aggressive, angular sensibilities of early grime with the deep, bass-heavy weight of the dubstep sound.\n\nThe track is defined by its stark, minimal production—a signature of Plastician’s work at the time—centered around a crisp, snapping snare rhythm that gives the song its name. Skepta’s vocal delivery is taut and assertive, navigating the spacious mix with the precise, rhythmic flow that would go on to define the grime MC aesthetic. \"Intensive Snare\" is widely regarded as a classic of the Terrorhythm label era, capturing a specific moment in London's underground music culture where genres were fluidly cross-pollinating in cramped club spaces. Its influence remains audible in contemporary bass music, particularly in the emphasis on sound design and skeletal rhythmic structures that maintain maximum club impact. The release solidified Plastician’s status as a key architect of the melodic, darker side of dubstep and highlighted Skepta's versatility during the formative years of his ascent to international stardom.",
+  "citations": [
+    {
+      "url": "https://plastician.bandcamp.com/track/intensive-snare-featuring-skepta",
+      "title": "Intensive Snare (Featuring Skepta) - Plastician - Bandcamp"
+    },
+    {
+      "url": "https://www.beatport.com/track/intensive-snare-feat-skepta/1882255?srsltid=AfmBOoopQoQePQahY5MzVr-M85o-3Cr1ZoCUQt9Rw1-0NIdZFPIieBY4",
+      "title": "Intensive Snare feat. Skepta Original Mix - Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:37.355Z",
+  "type": "track",
+  "editorial_teaser": "A cornerstone of 2008 dubstep, this Plastician and Skepta collaboration blends crisp, minimalist rhythms with the raw, punchy intensity of early London grime.",
+  "cover_url": "https://f4.bcbits.com/img/a2136746218_2.jpg",
+  "year": "2008",
+  "duration": "3:44",
+  "artists": [
+    {
+      "slug": "artist:plastician",
+      "type": "artist",
+      "name": "Plastician"
+    },
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta"
+    }
+  ],
+  "project": {
+    "slug": "project:beg-to-differ",
+    "type": "project",
+    "name": "Beg To Differ"
+  },
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:plastician",
+      "type": "artist",
+      "name": "Plastician"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

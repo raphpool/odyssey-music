@@ -1,0 +1,110 @@
+{
+  "slug": "label:thrill-jockey",
+  "name": "Thrill Jockey",
+  "editorial_article": "Thrill Jockey is an American independent record label that has served as a cornerstone of the post-rock, experimental, and underground indie-rock scenes since its founding in 1992. Established by Bettina Richards, a former A&R representative at Atlantic Records, the label began in New York City before famously relocating to Chicago in 1995. This move placed it at the heart of the burgeoning Chicago post-rock scene, aligning it with pivotal artists like Tortoise and The Sea and Cake. From its inception, the label has been defined by an ethos of creative independence, championing musicians who operate outside the constraints of mainstream industry trends. \\n\\nMusically, the label’s catalog is incredibly broad, encompassing everything from the intricate, jazz-inflected instrumental rock of the mid-90s Chicago school to experimental electronic music, neo-folk, and noise rock. Labels like Thrill Jockey provided a necessary home for artists whose sonic experimentation—such as the sample-based deconstructions of Oval or the polyrhythmic, genre-blurring compositions of Mouse on Mars—would have been overlooked by larger labels. The label has maintained a reputation for longevity and artist loyalty, with many of its most influential acts remaining with the imprint for decades. Beyond the \"post-rock\" tag, Thrill Jockey has consistently supported adventurous creators, from the dark, noir-inflected Americana of Giant Sand to the avant-garde spirit of Yoshimi P-We’s OOIOO. Through its curation, Thrill Jockey helped bridge the gap between academic sound exploration and the visceral energy of underground rock, cementing its status as an enduring pillar of independent music.",
+  "citations": [
+    {
+      "url": "https://www.treblezine.com/thrill-jockey-20-years-20-albums/",
+      "title": "Thrill Jockey: 20 Years, 20 Albums - Treble"
+    },
+    {
+      "url": "https://peel.fandom.com/wiki/Thrill_Jockey",
+      "title": "Thrill Jockey | John Peel Wiki | Fandom"
+    },
+    {
+      "url": "https://ra.co/labels/2073",
+      "title": "Thrill Jockey · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:34.365Z",
+  "type": "label",
+  "editorial_description": "A pioneering independent record label founded by Bettina Richards in 1992, renowned for its vital role in the development of the Chicago post-rock scene and its long-standing commitment to experimental and avant-garde music.",
+  "founded": "1992",
+  "location": "Chicago, Illinois",
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:tortoise",
+      "type": "artist",
+      "name": "Tortoise"
+    },
+    {
+      "slug": "artist:the-sea-and-cake",
+      "type": "artist",
+      "name": "The Sea and Cake"
+    },
+    {
+      "slug": "artist:trans-am",
+      "type": "artist",
+      "name": "Trans Am"
+    },
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    },
+    {
+      "slug": "artist:califone",
+      "type": "artist",
+      "name": "Califone"
+    },
+    {
+      "slug": "artist:ooioo",
+      "type": "artist",
+      "name": "OOIOO"
+    },
+    {
+      "slug": "artist:freakwater",
+      "type": "artist",
+      "name": "Freakwater"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:tnt",
+      "type": "project",
+      "name": "TNT"
+    },
+    {
+      "slug": "project:the-fawn",
+      "type": "project",
+      "name": "The Fawn"
+    },
+    {
+      "slug": "project:94diskont",
+      "type": "project",
+      "name": "94diskont"
+    },
+    {
+      "slug": "project:autoditacker",
+      "type": "project",
+      "name": "Autoditacker"
+    }
+  ]
+}

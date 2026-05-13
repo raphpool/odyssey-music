@@ -1,0 +1,126 @@
+{
+  "slug": "genre:punk-rock",
+  "name": "Punk Rock",
+  "editorial_article": "Punk rock emerged in the mid-1970s as a reactionary force against the polished, complex, and high-budget nature of progressive rock and stadium rock that dominated the era's airwaves. Originating simultaneously in underground circuits in London and New York City, the genre was built upon a bedrock of raw energy, technical minimalism, and an aggressive, anti-establishment ethos. Unlike the professionalized virtuosity of the era's mainstream acts, punk rockers prioritized speed, short, punchy song structures, and a democratic \"do-it-yourself\" (DIY) ethic that effectively removed the barriers between the musician and the audience. This ethos allowed artists to bypass traditional label gatekeepers, relying on a network of independent labels, small club venues—such as the legendary CBGB in Manhattan—and underground radio to cultivate a burgeoning global movement.\\n\\nSonically, punk rock is characterized by shouted or sneered vocals, distorted and heavily strummed guitars, and driving, relentless rhythm sections. While rooted in the garage rock, rockabilly, and '60s rock traditions, the music stripped away excessive ornamentation, leaving behind a stark, confrontational sound. The movement provided a vital outlet for working-class frustration and suburban alienation, fostering a subculture that extended far beyond music into fashion, visual art, and political discourse. As the genre matured, it branched into a diverse spectrum of subgenres, from the high-velocity intensity of hardcore punk to the more structured and artistic explorations of post-punk, and the accessible, guitar-driven hooks of pop-punk. Even decades after its inception, punk remains a foundational influence on independent music, continuously evolving while maintaining its core commitment to creative freedom and nonconformity. By creating a template for decentralized, artist-driven production, punk rock fundamentally altered the trajectory of global popular music.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/punk-rock-music-guide",
+      "title": "Punk Rock Music Guide: History and Bands of Punk Rock - 2026 - MasterClass"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Punk_subculture",
+      "title": "Punk subculture - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:04.999Z",
+  "type": "genre",
+  "editorial_definition": "Punk rock is an aggressive, DIY-focused subgenre of rock that emerged in the mid-1970s, defined by its fast tempos, raw production, and a strong anti-establishment, nonconformist ethos.",
+  "era": "1970s - Present",
+  "origin": "London, England; New York City, USA",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore Punk"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk"
+    },
+    {
+      "slug": "genre:glam-punk",
+      "type": "genre",
+      "name": "Glam Punk"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore Punk"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk"
+    },
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage Rock"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ramones",
+      "type": "artist",
+      "name": "Ramones"
+    },
+    {
+      "slug": "artist:sex-pistols",
+      "type": "artist",
+      "name": "Sex Pistols"
+    },
+    {
+      "slug": "artist:the-clash",
+      "type": "artist",
+      "name": "The Clash"
+    },
+    {
+      "slug": "artist:black-flag",
+      "type": "artist",
+      "name": "Black Flag"
+    },
+    {
+      "slug": "artist:minor-threat",
+      "type": "artist",
+      "name": "Minor Threat"
+    },
+    {
+      "slug": "artist:the-stooges",
+      "type": "artist",
+      "name": "The Stooges"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sst-records",
+      "type": "label",
+      "name": "SST Records"
+    },
+    {
+      "slug": "label:dischord-records",
+      "type": "label",
+      "name": "Dischord Records"
+    },
+    {
+      "slug": "label:alternative-tentacles-records",
+      "type": "label",
+      "name": "Alternative Tentacles Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

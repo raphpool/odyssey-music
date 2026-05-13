@@ -1,0 +1,82 @@
+{
+  "slug": "project:neu--1972-debut-album-by-the-german-krautrock-duo-neu",
+  "name": "Neu!",
+  "editorial_article": "Neu! is the eponymous 1972 debut studio album by the German krautrock duo consisting of Michael Rother and Klaus Dinger. Released on Brain Records, the album serves as a foundational text of experimental music, famous for its introduction of the 'motorik' beat—a driving, persistent 4/4 rhythm that Dinger often referred to as a 'long straight.' Produced by the legendary Conny Plank, who acted as a mediator between the occasionally volatile duo, the album was recorded in Hamburg over four nights in December 1971. \\n\\nThe record is a landmark of minimalism and sonic texture. Rather than relying on traditional blues-rock song structures, the tracks often stretch out into hypnotic soundscapes, defined by Rother's fluid, treated guitar work and Dinger's machine-like percussion. The opening track 'Hallogallo' has become the quintessential example of the motorik style, while 'Negativland'—noted for its use of a Japanese taishōgoto—showcased the duo's interest in industrial-adjacent sound design and electronic noise. While initially a commercial niche in West Germany, selling approximately 35,000 copies, its reputation has grown immensely over the last five decades. It is now widely regarded as one of the most significant albums of the 1970s, exerting a profound influence on ambient, electronic, post-punk, and indie-rock musicians worldwide, from Brian Eno and David Bowie to the collective Negativland, who famously adopted their name from the second track on the album. The legacy of Neu! resides in its commitment to relentless, forward-moving sound, acting as a crucial bridge between the psychedelic experimentation of the late 1960s and the structured pulse of electronic music that followed.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/neu",
+      "title": "NEU! Albums: songs, discography, biography, and listening guide"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Neu!",
+      "title": "Neu! - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:38.174Z",
+  "type": "project",
+  "editorial_pitch": "Neu! is the 1972 debut studio album by the German krautrock duo of the same name, a revolutionary work that defined the minimalist 'motorik' rhythm and set a new trajectory for experimental, ambient, and post-punk music. Recorded over four intense nights in Hamburg with producer Conny Plank, the album stripped rock music to its foundational, repetitive essence, creating a sonic landscape that was as much about texture and endurance as it was about composition. Its influence has rippled through decades of alternative music, cited by artists ranging from David Bowie and Brian Eno to the band Negativland, who took their very name from the album's opening suite. Through its relentless 'endless straight' beat and radical sound design, Neu! remains one of the most vital documents of the 1970s experimental underground.",
+  "year": "1972",
+  "artists": [],
+  "label": {
+    "slug": "label:brain-records",
+    "type": "label",
+    "name": "Brain Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:hallogallo",
+      "type": "track",
+      "name": "Hallogallo"
+    },
+    {
+      "slug": "track:sonderangebot",
+      "type": "track",
+      "name": "Sonderangebot"
+    },
+    {
+      "slug": "track:weissensee",
+      "type": "track",
+      "name": "Weissensee"
+    },
+    {
+      "slug": "track:jahresubersicht",
+      "type": "track",
+      "name": "Jahresübersicht (Traum)"
+    },
+    {
+      "slug": "track:negativland",
+      "type": "track",
+      "name": "Negativland"
+    },
+    {
+      "slug": "track:lieber-honig",
+      "type": "track",
+      "name": "Lieber Honig"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!"
+    }
+  ],
+  "related_projects": []
+}

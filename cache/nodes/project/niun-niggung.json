@@ -1,0 +1,44 @@
+{
+  "slug": "project:niun-niggung",
+  "name": "Niun Niggung",
+  "editorial_article": "\"Niun Niggung,\" released in 1999, stands as a pivotal studio album in the discography of the German electronic duo Mouse on Mars. Comprised of Jan St. Werner and Andi Toma, the duo crafted a work that pushed the boundaries of IDM, glitch, and drill 'n' bass during a decade when electronic experimentalism was reaching a creative zenith. The album is widely recognized for its fluid, off-kilter approach to sound design, balancing abstract textures with surprisingly infectious, funk-inflected melodies that defy the sterile connotations often associated with late-90s digital production. \\n\\nMusically, \"Niun Niggung\" occupies a unique space between the rigorous, academic-leaning \"Instrumentals\" and the duo's more humorous, pop-deconstructivist tendencies. The production utilizes a sophisticated palette of digital sound processing, provided by F.X.Randomiz, alongside organic instrumentation like French horns, clarinets, and strings, which help anchor the synthetic complexity in a surprisingly warm, resonant environment. Tracks like \"Yippie\" and \"Diskdusk\" exemplify this synthesis, blending complex rhythmic patterns with unpredictable structural shifts. The album received immense critical acclaim upon its release, notably earning the \"Record of the Year\" honor from The Wire, and remains a definitive touchstone of the late-90s German electronic scene, cementing Mouse on Mars' reputation as pioneers who refused to choose between accessibility and avant-garde exploration. Its legacy is one of playful iconoclasm—a record that sounds as futuristic today as it did at the turn of the millennium. The album showcases the collaborative energy of its makers, Jan St. Werner and Andi Toma, who continue to be influential figures in the electronic community. Its impact on the landscape of experimental electronic music remains profound, influencing subsequent generations of producers who explore the intersection of acoustic textures and digital signal processing. It stands as a testament to the adventurous spirit of electronic music at the close of the 20th century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Niun_Niggung",
+      "title": "Niun Niggung - Wikipedia"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/5459-niun-niggung/",
+      "title": "Mouse on Mars: Niun Niggung Album Review | Pitchfork"
+    },
+    {
+      "url": "https://mouseonmars.bandcamp.com/album/niun-niggung",
+      "title": "Mouse on Mars - Niun Niggung - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:48.755Z",
+  "type": "project",
+  "editorial_pitch": "A high-water mark of late-90s IDM, Niun Niggung finds German duo Mouse on Mars blending glitchy, complex electronic programming with warm acoustic instrumentation to create one of the most adventurous records of its era.",
+  "year": "1999",
+  "artists": [],
+  "label": {
+    "slug": "label:thrill-jockey",
+    "type": "label",
+    "name": "Thrill Jockey"
+  },
+  "genres": [],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    }
+  ],
+  "related_projects": []
+}

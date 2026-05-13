@@ -1,0 +1,65 @@
+{
+  "slug": "label:columbia-records",
+  "name": "Columbia Records",
+  "editorial_article": "Columbia Records, founded on January 15, 1889, in Washington, D.C., stands as the oldest surviving brand name in the recorded sound business. Originally established as the Columbia Phonograph Company by Edward D. Easton, the label began as a regional distributor for Edison phonographs before pivoting to become a major manufacturer of both cylinder and disc records. Throughout the early 20th century, Columbia established itself as one of the \"big three\" of the American recording industry alongside Victor and Edison, driven by innovations such as the \"Double-Faced\" disc and the development of high-quality recording processes. \\n\\nOver the decades, Columbia evolved from a pioneer in early cylinder recording technology to a global powerhouse within the entertainment industry. Its narrative is inextricably linked to the history of popular music, having hosted a roster that reads like a chronicle of the American cultural experience. From legendary figures of the jazz and blues eras to the transformative singer-songwriters of the mid-20th century, Columbia provided the platform for transformative artists like Bob Dylan, Bruce Springsteen, and Miles Davis. Following various corporate shifts, including periods of ownership under CBS and eventually being acquired by Sony, the label has maintained its status as a flagship entity within the modern music ecosystem. It remains a hallmark of musical excellence, balancing deep archival prestige with a continuous output of influential contemporary artists across diverse genres.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Columbia_Records",
+      "title": "Columbia Records - Wikipedia"
+    },
+    {
+      "url": "https://www.sonymusic.co.uk/label/columbia-records/",
+      "title": "Sony Music UK - Columbia Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:21.926Z",
+  "type": "label",
+  "editorial_description": "The oldest surviving record label in the world, Columbia Records is a cornerstone of the global music industry, home to a legendary roster of artists and a history that spans the entire era of recorded sound.",
+  "founded": "1889",
+  "location": "New York City, USA",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:bruce-springsteen",
+      "type": "artist",
+      "name": "Bruce Springsteen"
+    },
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:adele",
+      "type": "artist",
+      "name": "Adele"
+    },
+    {
+      "slug": "artist:harry-styles",
+      "type": "artist",
+      "name": "Harry Styles"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:kind-of-blue",
+      "type": "project",
+      "name": "Kind of Blue"
+    },
+    {
+      "slug": "project:highway-61-revisited",
+      "type": "project",
+      "name": "Highway 61 Revisited"
+    },
+    {
+      "slug": "project:born-to-run",
+      "type": "project",
+      "name": "Born to Run"
+    }
+  ]
+}

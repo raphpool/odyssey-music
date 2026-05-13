@@ -1,0 +1,134 @@
+{
+  "slug": "artist:the-future-sound-of-london",
+  "name": "The Future Sound of London",
+  "editorial_article": "The Future Sound of London (FSOL) is a pioneering British electronic music duo composed of Garry Cobain and Brian Dougans. Formed in Manchester in the late 1980s, the pair became a foundational force in the global development of ambient techno, IDM, and experimental electronica during the 1990s. Initially known for their work in the rave and acid house scenes—most notably Dougans' work under the moniker Humanoid—the duo gained widespread acclaim as FSOL with the 1991 hit \"Papua New Guinea,\" a track that masterfully blended breakbeat rhythms with the haunting, ethereal vocals of Dead Can Dance's Lisa Gerrard.\\n\\nThroughout the 1990s, FSOL evolved beyond the rave scene into a sophisticated studio project characterized by intricate, layered soundscapes and a fascination with technology. Their 1994 masterpiece, Lifeforms, remains a landmark of the ambient-electronic genre, noted for its depth, atmospheric density, and progressive approach to production. The duo became synonymous with forward-thinking experimentation, often eschewing traditional touring in favor of avant-garde studio performances broadcast over ISDN lines to radio stations worldwide. Their career has been marked by a relentless pursuit of sonic texture, encompassing styles ranging from trip-hop and jungle to psychedelic rock and neo-classical. Alongside their work as FSOL, Cobain and Dougans have channeled their eclecticism into numerous aliases, most significantly The Amorphous Androgynous, which allowed them to delve deeply into lysergic, psychedelic rock soundscapes. Through the 2000s and beyond, the duo has remained prolific, curating an extensive archive of past work and continuing to push the limits of their ambient \"Environments\" series. Their enduring legacy lies in their ability to bridge the gap between the high-energy dancefloor and the introspective listening experience, influencing generations of producers in the process.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/the-future-sound-of-london-mn0000799348",
+      "title": "The Future Sound of London Songs, Albums, Revi... | AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/artist/2549-The-Future-Sound-Of-London?srsltid=AfmBOorp-scAOtieRTrLyM2ZiG8ZGFpkIDwJkS2ayGrmCXhdWnzrm5Su",
+      "title": "The Future Sound of London Discography - Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Future_Sound_of_London_discography",
+      "title": "The Future Sound of London - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:44.996Z",
+  "type": "artist",
+  "editorial_bio": "The Future Sound of London is a pioneering British electronic duo, consisting of Garry Cobain and Brian Dougans, instrumental in shaping the 1990s ambient techno and IDM scenes with their genre-defying soundscapes and technological experimentation.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000799348/400/3ydwTXz7ucF-iQblQYxIOIAf7E_1E-2MlBBPmPAXRBU=.jpg",
+  "origin": "Manchester, England",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:accelerator",
+      "type": "project",
+      "name": "Accelerator"
+    },
+    {
+      "slug": "project:lifeforms",
+      "type": "project",
+      "name": "Lifeforms"
+    },
+    {
+      "slug": "project:isdn",
+      "type": "project",
+      "name": "ISDN"
+    },
+    {
+      "slug": "project:dead-cities",
+      "type": "project",
+      "name": "Dead Cities"
+    },
+    {
+      "slug": "project:the-isness",
+      "type": "project",
+      "name": "The Isness"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:papua-new-guinea",
+      "type": "track",
+      "name": "Papua New Guinea"
+    },
+    {
+      "slug": "track:we-have-explosive",
+      "type": "track",
+      "name": "We Have Explosive"
+    },
+    {
+      "slug": "track:lifeforms",
+      "type": "track",
+      "name": "Lifeforms"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:the-amorphous-androgynous",
+      "type": "artist",
+      "name": "The Amorphous Androgynous"
+    },
+    {
+      "slug": "artist:humanoid",
+      "type": "artist",
+      "name": "Humanoid"
+    },
+    {
+      "slug": "artist:mental-cube",
+      "type": "artist",
+      "name": "Mental Cube"
+    },
+    {
+      "slug": "artist:smart-systems",
+      "type": "artist",
+      "name": "Smart Systems"
+    },
+    {
+      "slug": "artist:yage",
+      "type": "artist",
+      "name": "Yage"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:garry-cobain",
+      "type": "artist",
+      "name": "Garry Cobain"
+    },
+    {
+      "slug": "artist:brian-dougans",
+      "type": "artist",
+      "name": "Brian Dougans"
+    }
+  ]
+}

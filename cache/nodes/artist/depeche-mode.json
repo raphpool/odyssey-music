@@ -1,0 +1,103 @@
+{
+  "slug": "artist:depeche-mode",
+  "name": "Depeche Mode",
+  "editorial_article": "Depeche Mode is a pioneering English electronic music band formed in 1980 in Basildon, Essex, that evolved from their early synth-pop origins into international stadium-sized alternative rock icons. Initially noted for their reliance on synthesizers at a time when traditional rock instrumentation dominated, the group’s sound matured from the lighter, bouncy electro-pop of their 1981 debut, 'Speak & Spell,' into a much darker, industrial-tinged, and atmospheric aesthetic that characterized their landmark mid-to-late '80s and early '90s output, including albums like 'Black Celebration' and the critically acclaimed, multi-platinum 'Violator.'\\n\\nCentral to their evolution was the songwriting of Martin Gore, who shifted the lyrical focus toward themes of devotion, struggle, and religion, paired with the distinctive, emotive baritone of frontman Dave Gahan. Despite significant lineup changes—most notably the early departure of founder Vince Clarke and the eventual departure of longtime creative force Alan Wilder—the band has maintained a remarkable sense of consistency and influence, bridging the gap between underground electronic club culture and mainstream global popularity. Their music is characterized by its heavy use of sampling, melodic synth hooks, and a somber, emotional depth that has deeply influenced generations of alternative, goth, and industrial artists. With hits such as 'Enjoy the Silence,' 'Personal Jesus,' and 'Just Can't Get Enough,' Depeche Mode remains one of the most successful and resilient acts in electronic music history, consistently selling out global tours decades after their formation.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/depeche-mode-mn0000239921",
+      "title": "Depeche Mode Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/depeche-mode",
+      "title": "Depeche Mode discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:06.527Z",
+  "type": "artist",
+  "editorial_bio": "Depeche Mode is a pioneering English electronic music band formed in 1980 in Basildon, Essex, that evolved from their early synth-pop origins into international stadium-sized alternative rock icons.",
+  "origin": "Basildon, Essex, England",
+  "active_years": "1980-present",
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth Pop"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:speak-and-spell",
+      "type": "project",
+      "name": "Speak & Spell"
+    },
+    {
+      "slug": "project:violator",
+      "type": "project",
+      "name": "Violator"
+    },
+    {
+      "slug": "project:black-celebration",
+      "type": "project",
+      "name": "Black Celebration"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:enjoy-the-silence",
+      "type": "track",
+      "name": "Enjoy the Silence"
+    },
+    {
+      "slug": "track:personal-jesus",
+      "type": "track",
+      "name": "Personal Jesus"
+    },
+    {
+      "slug": "track:just-can-t-get-enough",
+      "type": "track",
+      "name": "Just Can't Get Enough"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:dave-gahan",
+      "type": "artist",
+      "name": "Dave Gahan"
+    },
+    {
+      "slug": "artist:martin-gore",
+      "type": "artist",
+      "name": "Martin Gore"
+    },
+    {
+      "slug": "artist:andy-fletcher",
+      "type": "artist",
+      "name": "Andy Fletcher"
+    },
+    {
+      "slug": "artist:alan-wilder",
+      "type": "artist",
+      "name": "Alan Wilder"
+    },
+    {
+      "slug": "artist:vince-clarke",
+      "type": "artist",
+      "name": "Vince Clarke"
+    }
+  ]
+}

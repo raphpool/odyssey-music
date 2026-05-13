@@ -1,0 +1,105 @@
+{
+  "slug": "genre:art-rock",
+  "name": "Art Rock",
+  "editorial_article": "Art rock is an eclectic and expansive branch of rock music that emerged in the late 1960s, defined by its ambition to push rock beyond simple verse-chorus structures through integration with art music, classical traditions, and avant-garde experimentation. Flourishing in the early to mid-1970s, the genre is often characterized by a \"high-art\" sensibility, utilizing complex arrangements, conceptual album structures, and a willingness to adopt instrumentation—such as the Mellotron, sophisticated synthesizers, and orchestral elements—that departed from the standard blues-rock foundation of the era. While often used interchangeably with progressive rock, the term \"art rock\" frequently captures a broader, more fluid collection of artists who pursued intellectual or experimental goals within the framework of popular song.\\n\\nThe development of art rock was heavily influenced by the compositional shifts initiated by artists like The Beatles, who introduced multitrack recording and orchestral textures into their work, and Frank Zappa, whose experimental foundations in the mid-1960s provided a template for others. Throughout the 1970s, groups like Genesis, King Crimson, Pink Floyd, and Yes transformed the genre into a vessel for ambitious, suite-like compositions and elaborate stage spectacles. Beyond the specifically \"progressive\" wing, the term also encompasses the avant-garde experiments of artists like David Bowie, Brian Eno, The Velvet Underground, and Kate Bush, who prioritized thematic exploration and genre-defying sonic textures over the technical virtuosity of their contemporaries. This fluidity, where musicians frequently moved between bands and explored varied academic influences, remains a hallmark of the genre, marking it as a defining pillar of rock's transition into a serious, intellectual art form.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/art-rock",
+      "title": "Art rock | Examples, Artists, Bands, Definition, Songs, Genre, Prog Rock, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Art_rock",
+      "title": "Art rock - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:47.851Z",
+  "type": "genre",
+  "editorial_definition": "An eclectic branch of rock music that incorporates elements of avant-garde, classical, and academic music, often utilizing complex production, conceptual themes, and expanded instrumentation to elevate the rock format.",
+  "era": "1960s-1970s",
+  "origin": "United Kingdom / United States",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam Rock"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis"
+    },
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars",
+      "type": "project",
+      "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moon",
+      "type": "project",
+      "name": "The Dark Side of the Moon"
+    },
+    {
+      "slug": "project:the-velvet-underground-and-nico",
+      "type": "project",
+      "name": "The Velvet Underground & Nico"
+    }
+  ],
+  "landmark_tracks": []
+}

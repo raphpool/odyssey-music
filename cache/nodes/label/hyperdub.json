@@ -1,0 +1,95 @@
+{
+  "slug": "label:hyperdub",
+  "name": "Hyperdub",
+  "editorial_article": "Hyperdub is a pioneering London-based record label founded in 2004 by producer and theorist Steve Goodman, better known as Kode9. Originally launched in 1999 as a webzine dedicated to forward-thinking electronic music and critical theory, the label evolved into a crucial engine for the evolution of the UK's bass and dubstep scenes. It is celebrated for its commitment to experimental sound design, atmospheric textures, and the bridging of underground dance floor cultures with intellectual inquiry. \\n\\nFrom the mid-2000s, Hyperdub became synonymous with the haunting, skeletal sounds of burial—whose debut self-titled album remains a landmark in modern electronic music—as well as the gritty, sub-heavy productions of Kode9 and The Spaceape. As the dubstep movement fractured and expanded, the label proved remarkably agile, championing styles such as UK funky, Chicago footwork, and a wide spectrum of avant-pop and experimental club music. This adaptive curatorial vision allowed the label to remain vital well beyond its foundational era, encompassing artists as diverse as DJ Rashad, Jessy Lanza, Fatima Al Qadiri, and Laurel Halo. Today, Hyperdub continues to operate as an influential entity that consistently challenges the boundaries of electronic music, maintaining its status as a critical tastemaker in global electronic culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hyperdub",
+      "title": "Hyperdub - Wikipedia"
+    },
+    {
+      "url": "https://www.dazeddigital.com/music/article/62258/1/hyperdub-at-20-an-oral-history-kode-9-jessy-lanza",
+      "title": "Hyperdub at 20: a history of the pioneering London label"
+    },
+    {
+      "url": "https://www.tailored-communication.com/record-labels/hyperdub",
+      "title": "Hyperdub - Record Labels"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:34.663Z",
+  "type": "label",
+  "editorial_description": "Hyperdub is a seminal London-based independent record label founded by Kode9, noted for its pivotal role in the development of the UK dubstep scene and its ongoing commitment to experimental electronic and bass music.",
+  "founded": "2004",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK Bass"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:kode9",
+      "type": "artist",
+      "name": "Kode9"
+    },
+    {
+      "slug": "artist:burial",
+      "type": "artist",
+      "name": "Burial"
+    },
+    {
+      "slug": "artist:dj-rashad",
+      "type": "artist",
+      "name": "DJ Rashad"
+    },
+    {
+      "slug": "artist:jessy-lanza",
+      "type": "artist",
+      "name": "Jessy Lanza"
+    },
+    {
+      "slug": "artist:laurel-halo",
+      "type": "artist",
+      "name": "Laurel Halo"
+    },
+    {
+      "slug": "artist:the-spaceape",
+      "type": "artist",
+      "name": "The Spaceape"
+    },
+    {
+      "slug": "artist:ikonika",
+      "type": "artist",
+      "name": "Ikonika"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:burial",
+      "type": "project",
+      "name": "Burial"
+    },
+    {
+      "slug": "project:untrue",
+      "type": "project",
+      "name": "Untrue"
+    },
+    {
+      "slug": "project:double-cup",
+      "type": "project",
+      "name": "Double Cup"
+    }
+  ]
+}

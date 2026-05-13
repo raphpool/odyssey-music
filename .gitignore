@@ -8,7 +8,9 @@ dist/
 # Local crawl outputs
 /tmp/
 out/
-cache/
+# The shared cache (./cache) IS committed — it's the project's persistent KB.
+# Sub-runs may write to ./cache/* and get checked in; the schema gate guarantees
+# every cached file is a real grounded node, never a stub.
 
 # Codex review artifacts (kept under .reviews/ but only the latest verdict is committed)
 .reviews/raw/

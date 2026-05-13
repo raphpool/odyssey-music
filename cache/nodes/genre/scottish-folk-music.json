@@ -1,0 +1,52 @@
+{
+  "slug": "genre:scottish-folk-music",
+  "name": "Scottish folk music",
+  "editorial_article": "Scottish folk music, also widely known as Scottish traditional music, is a profound and enduring genre rooted in the complex cultural tapestry of Scotland. It encompasses a vast array of forms, including Gaelic and Scots-language songs, narrative ballads, intricate instrumental pieces for fiddle and bagpipes, and energetic dance tunes like reels, jigs, and strathspeys. The genre’s history stretches back to the Middle Ages, with a flourishing tradition that managed to persist through periods of religious suppression, particularly in the Lowlands following the Reformation. Central to the tradition are the Highland bagpipes—most notably the Great Highland Bagpipe—and the fiddle, instruments that have shaped the rhythmic and melodic character of the music for centuries.\\n\\nThroughout the eighteenth and nineteenth centuries, an academic interest in collecting folk songs, exemplified by the efforts of Robert Burns and various revivalist collectors, helped preserve the oral tradition. This scholarly engagement, alongside the persistent, vibrant social practice of music at ceilidhs and community gatherings, ensured that the genre remained a living, evolving force rather than a static relic. The post-World War II period saw significant waves of interest, from the 1960s folk club revival led by figures like Ewan MacColl, to the innovative fusion of traditional elements with rock, psychedelic, and fingerstyle guitar techniques. Modern Scottish folk continues to flourish through bands like Runrig and Capercaillie, who navigate the space between deep-rooted heritage and contemporary performance, bridging the gap between local Scottish identity and a global Celtic diaspora that looks to these musical traditions as markers of cultural belonging. Its resilience is evidenced by its constant transformation, as each generation finds new ways to integrate ancient melodies into the modern sonic landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Scottish_folk_music",
+      "title": "Scottish folk music - Wikipedia"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/scottish-folk-music",
+      "title": "Scottish Folk Music - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:01.549Z",
+  "type": "genre",
+  "editorial_definition": "A diverse genre of traditional music from Scotland, characterized by Gaelic and Scots-language song, narrative ballads, and instrumental dance forms including reels, jigs, and strathspeys, primarily centered on fiddle and bagpipe repertoires.",
+  "origin": "Scotland",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:the-corries",
+      "type": "artist",
+      "name": "The Corries"
+    },
+    {
+      "slug": "artist:bert-jansch",
+      "type": "artist",
+      "name": "Bert Jansch"
+    },
+    {
+      "slug": "artist:capercaillie",
+      "type": "artist",
+      "name": "Capercaillie"
+    },
+    {
+      "slug": "artist:runrig",
+      "type": "artist",
+      "name": "Runrig"
+    },
+    {
+      "slug": "artist:niel-gow",
+      "type": "artist",
+      "name": "Niel Gow"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

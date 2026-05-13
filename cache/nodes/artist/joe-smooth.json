@@ -1,0 +1,56 @@
+{
+  "slug": "artist:joe-smooth",
+  "name": "Joe Smooth",
+  "editorial_article": "Joe Smooth is a foundational pillar of Chicago house music, a self-taught producer and DJ who helped define the sound of the late 1980s. Emerging from the vibrant, creative crucible of Chicago's club scene, he gained international recognition for crafting tracks that blended deep, soulful musicality with the relentless, machine-driven energy of early house. His work is characterized by a sophisticated approach to composition, often integrating gospel-inflected vocals and positive messages that resonated far beyond the underground warehouses. \\n\\nThroughout his career, Joe Smooth has remained a vital and active presence in global electronic music. Beyond his own solo productions, he has established himself as a versatile collaborator and engineer, working with diverse artists across the musical spectrum, including pop icons like Whitney Houston, Destiny's Child, and New Order. This extensive work behind the scenes and in the spotlight has solidified his reputation as a true veteran who bridges the gap between the raw, innovative spirit of original Chicago house and the wider global dance music culture. Even decades after his early hits, he continues to tour and release new music, proving his enduring relevance in the contemporary dance landscape. He is widely celebrated for his ability to craft anthems that combine dancefloor kineticism with profound, uplifting lyrical themes, ensuring his place in the pantheon of electronic music legends. His sustained creative output, including albums released well into the 2020s, demonstrates an artist whose commitment to the evolution of his sound has never wavered.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/joesmooth",
+      "title": "Joe Smooth · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://snschicago.com/joe-smooth/",
+      "title": "Joe Smooth - I Wish People Would Ask Me More About My History"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:17.066Z",
+  "type": "artist",
+  "editorial_bio": "Joe Smooth is a legendary Chicago-born house music producer and DJ who helped pioneer the genre in the late 1980s. He is globally celebrated for his sophisticated, soulful production style and remains an active, touring fixture in the electronic music community.",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:promised-land",
+      "type": "track",
+      "name": "Promised Land"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,116 @@
+{
+  "slug": "genre:dance-punk",
+  "name": "Dance-punk",
+  "editorial_article": "Dance-punk emerged in the late 1970s as a creative collision between the frenetic, confrontational spirit of punk rock and the infectious, syncopated rhythms of disco and funk. Often categorized as an offshoot of the broader post-punk movement, the genre sought to reclaim the dance floor for the alternative scene, moving away from the rock-centric limitations of earlier punk in favor of driving, repetitive basslines and angular, staccato guitar work. Pioneers in New York City, such as Liquid Liquid and Lizzy Mercier Descloux, were deeply intertwined with the No Wave and Mutant Disco scenes, while the United Kingdom produced acts like Gang of Four and A Certain Ratio, who utilized dub production techniques and tighter, more minimalist instrumentation to explore similar rhythmic territory.\\n\\nThe genre experienced a massive resurgence in the early 2000s, often referred to as the dance-punk revival or \"indie dance\" era. Bands like LCD Soundsystem, Death From Above 1979, and Franz Ferdinand brought these sounds back to prominence, integrating them with more contemporary electronic textures. This mid-2000s wave eventually evolved into the \"New Rave\" movement in the UK, which polished the dance-punk aesthetic with modern production values inspired by electro house and electroclash. Culturally, dance-punk remains a vital bridge between the worlds of underground rock and electronic dance music, celebrated for its ability to maintain a sharp, critical lyrical perspective while ensuring the audience never stops moving. Whether through the post-industrial grit of early post-punk or the clean, propulsive energy of the 2000s revival, the genre continues to stand as a testament to the versatility of rhythm as a primary instrument of rebellion.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/dance-punk/",
+      "title": "Dance-Punk - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://www.soundbridge.io/dance-punk",
+      "title": "Dance Punk - SoundBridge"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/dance-punk-music-guide",
+      "title": "Dance-Punk Music Guide: 5 Notable Dance-Punk Acts - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:54.011Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid subgenre originating in the late 1970s that fuses the abrasive energy and DIY ethos of punk rock with the rhythm-centric, groove-oriented sensibilities of disco and funk.",
+  "era": "1970s–present",
+  "origin": "New York City, United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dance-punk-revival",
+      "type": "genre",
+      "name": "Dance-punk revival"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave"
+    },
+    {
+      "slug": "genre:mutant-disco",
+      "type": "genre",
+      "name": "Mutant Disco"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:lcd-soundsystem",
+      "type": "artist",
+      "name": "LCD Soundsystem"
+    },
+    {
+      "slug": "artist:gang-of-four",
+      "type": "artist",
+      "name": "Gang of Four"
+    },
+    {
+      "slug": "artist:liquid-liquid",
+      "type": "artist",
+      "name": "Liquid Liquid"
+    },
+    {
+      "slug": "artist:death-from-above-1979",
+      "type": "artist",
+      "name": "Death From Above 1979"
+    },
+    {
+      "slug": "artist:a-certain-ratio",
+      "type": "artist",
+      "name": "A Certain Ratio"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:sound-of-silver",
+      "type": "project",
+      "name": "Sound of Silver"
+    },
+    {
+      "slug": "project:entertainment",
+      "type": "project",
+      "name": "Entertainment!"
+    },
+    {
+      "slug": "project:metal-box",
+      "type": "project",
+      "name": "Metal Box"
+    }
+  ],
+  "landmark_tracks": []
+}

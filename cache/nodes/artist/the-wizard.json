@@ -1,0 +1,79 @@
+{
+  "slug": "artist:the-wizard",
+  "name": "The Wizard",
+  "editorial_article": "The Wizard is a prolific independent artist based in San Antonio, Texas, known for an expansive and eclectic discography that defies easy categorization. Emerging from the local garage scene, the project creates a unique soundscape that often draws from rock, surf, experimental, and lo-fi textures. Characterized by a high-frequency release schedule, The Wizard has built an extensive catalog that spans full-length albums, thematic EPs, and various collaborative projects, reflecting a restless creative drive that is firmly rooted in the DIY ethos of San Antonio's music underground. His work—often self-produced and recorded in informal settings like home garages—captures a raw, immediate quality, frequently featuring reverb-heavy guitars, surf-inspired riffs, and a gritty, atmospheric aesthetic. Throughout his career, The Wizard has maintained an independent path, utilizing digital platforms to document his diverse musical explorations, from the \"Texas Heat\" series to more experimental offerings like \"Sonic Sewage III\" (with Rat Death). His presence in the San Antonio scene underscores the importance of the DIY garage rock aesthetic in maintaining regional creative communities, where the focus remains on constant experimentation, frequent output, and an uncompromising artistic voice that prioritizes the spirit of the session over polished commercial production. His output remains a significant document of the San Antonio DIY music community.",
+  "citations": [
+    {
+      "url": "https://thewizard.bandcamp.com/",
+      "title": "Music | The Wizard"
+    },
+    {
+      "url": "https://open.spotify.com/artist/3zOGAKjdi0ODbBw8egr1dG",
+      "title": "The Wizard | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:16.226Z",
+  "type": "artist",
+  "editorial_bio": "The Wizard is a prolific independent artist based in San Antonio, Texas, known for an expansive and eclectic discography that defies easy categorization.",
+  "photo_url": "https://f4.bcbits.com/img/0034592010_10.jpg",
+  "origin": "San Antonio, Texas",
+  "active_years": "2010s–present",
+  "genres": [
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage Rock"
+    },
+    {
+      "slug": "genre:surf-rock",
+      "type": "genre",
+      "name": "Surf Rock"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:the-grimoire",
+      "type": "project",
+      "name": "The Grimoire"
+    },
+    {
+      "slug": "project:wizard-of-the-east",
+      "type": "project",
+      "name": "Wizard of the East"
+    },
+    {
+      "slug": "project:window-seat",
+      "type": "project",
+      "name": "Window Seat"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:desert-queen",
+      "type": "track",
+      "name": "Desert Queen"
+    },
+    {
+      "slug": "track:time-dilation",
+      "type": "track",
+      "name": "Time Dilation"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    }
+  ],
+  "members": []
+}

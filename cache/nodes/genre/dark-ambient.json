@@ -1,0 +1,59 @@
+{
+  "slug": "genre:dark-ambient",
+  "name": "Dark ambient",
+  "editorial_article": "Dark ambient is a subgenre of post-industrial music characterized by its ominous, monumental, and often catacombal atmospheres. Emerging from the experimental industrial and ambient scenes of the 1970s and early 1980s, the genre deliberately subverts traditional musical structures, favoring sprawling, dissonant drones and deep, unsettling resonances over rhythm or melody. While early precursors can be traced back to experimental records by Tangerine Dream and the industrial pioneers Throbbing Gristle, the term was officially coined in the early 1990s by Roger Karmanik, the founder of the seminal Cold Meat Industry label, to classify the work of artists such as Raison d’être.\n\nSonically, dark ambient relies on the manipulation of texture and space. Artists frequently utilize processed field recordings, low-frequency oscillations, and treated samples of acoustic instruments—often mangled beyond recognition—to construct immersive, gloomy soundscapes. The genre is deeply rooted in themes of isolation, melancholy, and ritual. Its aesthetic overlap with occultism and magick is significant, particularly in the \"ambient industrial\" wing of the genre, where sound is used as a tool for creating intense, otherworldly psychological states. From the ritualistic noise of Lustmord and Zoviet France to the crushing, cinematic dissonance of modern producers like Thomas Köner, dark ambient serves as a vital sonic space for exploring the liminal and the uncomfortable. Its influence has rippled far beyond its post-industrial origins, finding a home in contemporary classical composition, black metal, and cinematic sound design.",
+  "citations": [
+    {
+      "url": "https://darkwaveradio.net/dark-ambient/",
+      "title": "Darkwaveradio.net® » Dark Ambient - Darkwaveradio.net®"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:44.002Z",
+  "type": "genre",
+  "editorial_definition": "A post-industrial subgenre defined by ominous, dissonant, and droning soundscapes that prioritize atmospheric depth, isolation, and psychological tension over melody or rhythm.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord"
+    },
+    {
+      "slug": "artist:raison-d-etre",
+      "type": "artist",
+      "name": "Raison d’être"
+    },
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
+    },
+    {
+      "slug": "artist:zoviet-france",
+      "type": "artist",
+      "name": "Zoviet France"
+    },
+    {
+      "slug": "artist:nocturnal-emissions",
+      "type": "artist",
+      "name": "Nocturnal Emissions"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:cold-meat-industry",
+      "type": "label",
+      "name": "Cold Meat Industry"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:zeit",
+      "type": "project",
+      "name": "Zeit"
+    }
+  ],
+  "landmark_tracks": []
+}

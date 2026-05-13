@@ -1,0 +1,42 @@
+{
+  "slug": "project:lunatic-harness",
+  "name": "Lunatic Harness",
+  "editorial_article": "Released in 1997, *Lunatic Harness* stands as the fourth studio album by the English electronic producer Mike Paradinas, recording under his most prominent alias, μ-Ziq. Arriving during the height of the mid-1990s IDM (Intelligent Dance Music) scene, the album is widely considered a cornerstone of the \"drill 'n' bass\" subgenre. Unlike the often abrasive or purely experimental works of contemporaries like Squarepusher or Aphex Twin, *Lunatic Harness* is distinguished by its intricate, rapid-fire percussion layered beneath deeply emotive, melodic textures. This unique balance between high-velocity technicality and accessible, atmospheric pop sensibility earned it critical acclaim, positioning it as one of the most significant releases in the history of the Planet Mu label, which Paradinas himself founded. The album’s enduring legacy is evidenced by its 25th-anniversary reissue in 2022 and its frequent inclusion in retrospective rankings of the best electronic albums of the 1990s. With tracks like \"Brace Yourself Jason\" and \"My Little Beautiful,\" the project effectively demonstrated that the complex, erratic rhythmic structures of breakbeat culture could be harmonized with refined, shifting harmonic landscapes. It remains a definitive statement of the era, capturing a moment where the boundaries of rave, jungle, and ambient music were being fundamentally reshaped. Over 70 minutes, the album explores a rich sonic palette that continues to influence electronic music producers today, solidifying its place as a classic of the genre. It is an essential listen for any student of electronic music, showcasing the peak of mid-90s innovation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lunatic_Harness",
+      "title": "Lunatic Harness - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:36.475Z",
+  "type": "project",
+  "editorial_pitch": "Released in 1997, *Lunatic Harness* stands as the fourth studio album by the English electronic producer Mike Paradinas, recording under his most prominent alias, μ-Ziq.",
+  "year": "1997",
+  "artists": [],
+  "label": {
+    "slug": "label:planet-mu",
+    "type": "label",
+    "name": "Planet Mu"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "drill 'n' bass"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "related_projects": []
+}

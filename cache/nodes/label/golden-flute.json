@@ -1,0 +1,67 @@
+{
+  "slug": "label:golden-flute",
+  "name": "Golden Flute",
+  "editorial_article": "Golden Flute Records was a boutique independent label established in 1982 by the renowned jazz flutist Paul Horn. Primarily serving as a vehicle for Horn’s own creative pursuits during the 1980s, the label became a key repository for his exploration of New Age, ambient, and world-fusion textures. Horn, who had already achieved significant success as a jazz performer and recording artist for major labels, founded Golden Flute to maintain greater artistic control over his projects, which often involved location recordings in spiritually or culturally significant sites.\n\nThe label’s catalog, marked by the \"GFC\" or \"GFR\" catalog prefixes, documents a period in Horn's career characterized by atmospheric, meditative, and cross-cultural collaborations. Releases such as 'China' (1982) and 'Inside The Magic Of Findhorn' (1983) exemplify the label’s sonic focus: a blend of flute-led improvisation, soft synthesis, and natural acoustics, often categorized within the burgeoning New Age movement of the early 1980s. Though small and focused, Golden Flute represents a notable example of a successful mid-career musician transitioning to independent production to pursue personal artistic themes without the pressures of mainstream commercial jazz expectations. The label operated in affiliation with Global Pacific Records, reflecting its integration into the wider New Age distribution networks of the era. By providing a home for these specialized recordings, the label allowed Horn to continue his artistic evolution while ensuring that his unique, globally-inspired compositions reached his audience, cementing his legacy not just as a jazz player but as a pioneer of meditative, cross-cultural soundscapes.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/94814-Golden-Flute-Records",
+      "title": "Golden Flute Records | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:35.561Z",
+  "type": "label",
+  "editorial_description": "Golden Flute Records was founded in 1982 by American jazz flutist Paul Horn to document his New Age and world-fusion experiments. Operating through the 1980s, the label released a series of meditative albums featuring Horn's iconic flute work in collaboration with various international musicians.",
+  "founded": "1982",
+  "location": "USA",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn"
+    },
+    {
+      "slug": "artist:david-friesen",
+      "type": "artist",
+      "name": "David Friesen"
+    },
+    {
+      "slug": "artist:christopher-hedge",
+      "type": "artist",
+      "name": "Christopher Hedge"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:china",
+      "type": "project",
+      "name": "China"
+    },
+    {
+      "slug": "project:inside-the-magic-of-findhorn",
+      "type": "project",
+      "name": "Inside The Magic Of Findhorn"
+    },
+    {
+      "slug": "project:heart-to-heart",
+      "type": "project",
+      "name": "Heart To Heart"
+    }
+  ]
+}

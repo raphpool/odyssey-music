@@ -1,0 +1,62 @@
+{
+  "slug": "track:the-model--song-by-kraftwerk",
+  "name": "The Model",
+  "editorial_article": "\"The Model\" (originally released as \"Das Model\" in German) is one of the most iconic tracks by the pioneering electronic group Kraftwerk. Originally released in 1978 on their influential studio album *The Man-Machine*, the song epitomizes the band's transition into a more accessible, melody-driven synth-pop sound while maintaining their signature mechanical, detached aesthetic. Written by band members Ralf Hütter and Karl Bartos with collaborator Emil Schult, the track serves as a cool, detached observation of the fashion world—a central theme of their *Man-Machine* era, which explored the intersection of humanity and technology. \\n\\nMusically, the song is built upon a deceptively simple, hypnotic keyboard hook that perfectly captures the \"robotic\" yet emotionally resonant style that would come to define electronic pop. Though it received moderate attention upon its initial 1978 release, it saw a massive resurgence in popularity when re-released as a single in 1981, eventually climbing to number one on the UK Singles Chart. This commercial success helped cement Kraftwerk’s influence on the burgeoning New Wave and synth-pop scenes of the early 1980s. A notable detail in the production includes a sampled snippet of a waiter from a Düsseldorf nightclub, whose exclamation of \"Korrekt!\" was captured and integrated into the song, highlighting the band's penchant for incorporating found-sound curiosities into their carefully calculated electronic compositions. The track remains a definitive anthem of 20th-century electronic music, frequently cited for its influence on generations of musicians across synth-pop, rock, and industrial genres.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Das_Model",
+      "title": "Das Model - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=GEnx9xS79Lc",
+      "title": "Kraftwerk - The Model (official video)"
+    },
+    {
+      "url": "https://open.spotify.com/track/7G3zERqh2d2tij0pVQfohU",
+      "title": "The Model - song and lyrics by Kraftwerk - Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:31.397Z",
+  "type": "track",
+  "editorial_teaser": "\"The Model\" (originally released as \"Das Model\" in German) is one of the most iconic tracks by the pioneering electronic group Kraftwerk.",
+  "year": "1978",
+  "artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "project": {
+    "slug": "project:the-man-machine",
+    "type": "project",
+    "name": "The Man-Machine"
+  },
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

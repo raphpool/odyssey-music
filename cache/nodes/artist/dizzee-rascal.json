@@ -1,0 +1,127 @@
+{
+  "slug": "artist:dizzee-rascal",
+  "name": "Dizzee Rascal",
+  "editorial_article": "Dizzee Rascal, born Dylan Kwabena Mills in 1984 in London, is a seminal figure in British music, widely credited as a pioneer of the grime genre and a transformative force in UK hip hop. Growing up in the council estates of Bow, East London, Mills navigated a turbulent youth before finding a vital creative outlet in music technology at school and local pirate radio stations. His early work defined the sound of 2000s London, blending the rapid-fire rhythms of UK garage and drum and bass with an aggressive, innovative vocal delivery that mirrored the urban reality of his surroundings.\\n\\nHis debut album, 'Boy in da Corner' (2003), released on XL Recordings, stands as a landmark of British music history. The project was critically lauded for its stark, kinetic production and sharp lyrical observation, earning the Mercury Prize and setting the template for the grime sound that would define an entire generation of UK artists. Throughout his career, Dizzee Rascal demonstrated an extraordinary ability to evolve, successfully transitioning from the underground grit of his early work to global pop prominence with his 2009 album 'Tongue n' Cheek', which yielded multiple UK number-one singles such as 'Bonkers' and 'Holiday'. Despite this commercial pivot, he has maintained his connection to his roots, returning to his signature grime style on later albums like 'Raskit' (2017) and 'E3 AF' (2020), solidifying his legacy as both an avant-garde innovator and a versatile mainstream performer who paved the way for the international recognition of UK urban music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dizzee_Rascal",
+      "title": "Dizzee Rascal - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/dizzee-rascal",
+      "title": "Dizzee Rascal Albums - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/dizzee-rascal-mn0000161773",
+      "title": "Dizzee Rascal Songs, Albums, Reviews, Bio & More - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:56.136Z",
+  "type": "artist",
+  "editorial_bio": "Dizzee Rascal, born Dylan Kwabena Mills in 1984 in London, is a seminal figure in British music, widely credited as a pioneer of the grime genre and a transformative force in UK hip hop.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/13-06-09_RaR_Dizzee_Rascal_10_%28cropped%29.jpg/500px-13-06-09_RaR_Dizzee_Rascal_10_%28cropped%29.jpg",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "grime"
+    },
+    {
+      "slug": "genre:british-hip-hop",
+      "type": "genre",
+      "name": "British hip hop"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:xl-recordings",
+      "type": "label",
+      "name": "XL Recordings"
+    },
+    {
+      "slug": "label:dirtee-stank",
+      "type": "label",
+      "name": "Dirtee Stank"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:boy-in-da-corner",
+      "type": "project",
+      "name": "Boy in da Corner"
+    },
+    {
+      "slug": "project:showtime",
+      "type": "project",
+      "name": "Showtime"
+    },
+    {
+      "slug": "project:maths-english",
+      "type": "project",
+      "name": "Maths + English"
+    },
+    {
+      "slug": "project:tongue-n-cheek",
+      "type": "project",
+      "name": "Tongue n' Cheek"
+    },
+    {
+      "slug": "project:the-fifth",
+      "type": "project",
+      "name": "The Fifth"
+    },
+    {
+      "slug": "project:raskit",
+      "type": "project",
+      "name": "Raskit"
+    },
+    {
+      "slug": "project:e3-af",
+      "type": "project",
+      "name": "E3 AF"
+    },
+    {
+      "slug": "project:don-t-take-it-personal",
+      "type": "project",
+      "name": "Don't Take It Personal"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-luv-u",
+      "type": "track",
+      "name": "I Luv U"
+    },
+    {
+      "slug": "track:bonkers",
+      "type": "track",
+      "name": "Bonkers"
+    },
+    {
+      "slug": "track:dance-wiv-me",
+      "type": "track",
+      "name": "Dance wiv Me"
+    },
+    {
+      "slug": "track:holiday",
+      "type": "track",
+      "name": "Holiday"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "artist:grobschnitt",
+  "name": "Grobschnitt",
+  "editorial_article": "Grobschnitt, a quintessential German progressive rock band formed in Hagen in 1970, stands as one of the most significant and popular acts to emerge from the 1970s German music scene. Often associated with the Krautrock movement due to their historical context, their sound was far more eclectic, drawing heavily from symphonic rock, space rock, and psychedelia. Their name, which translates to \"rough cut,\" belied a sophisticated, ambitious, and often theatrical approach to composition. The band's core members were known for their colorful pseudonyms—including Eroc, Mist, Wildschwein, Lupo, and Popo—which hinted at the group's penchant for absurd humor and high-energy performance art, setting them apart from many of their contemporaries.\\n\\nMusically, Grobschnitt was characterized by expansive, multi-part suites that allowed for complex arrangements, intermingled themes, and dramatic tempo changes. Their 1974 double album \"Ballermann\" solidified their reputation, balancing symphonic prog sensibilities with the cosmic, improvisational space rock of their famous \"Solar Music\" suite. The 1977 concept album \"Rockpommel's Land\" remains one of their most celebrated works, often compared to the symphonic richness of Yes or Genesis, complete with intricate dual lead guitars and whimsical, story-driven lyrics. Their live performances were legendary in Germany, often featuring elaborate stage shows and unconventional theatrics that cemented their status as a compelling, multifaceted live act. After disbanding in 1989, the group has reformed periodically since 2007, maintaining a legacy that blends technical prowess with an enduring, irreverent spirit. Their discography, spanning nearly two decades in their initial run, offers a rich exploration of the boundaries of progressive rock, merging melodic sensibility with experimental, atmospheric soundscapes.",
+  "citations": [
+    {
+      "url": "https://www.progarchives.com/artist.asp?id=585",
+      "title": "GROBSCHNITT discography and reviews - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:18.623Z",
+  "type": "artist",
+  "editorial_bio": "Grobschnitt, a quintessential German progressive rock band formed in Hagen in 1970, stands as one of the most significant and popular acts to emerge from the 1970s German music scene.",
+  "active_years": "1970–1989, 2007–present",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:symphonic-prog",
+      "type": "genre",
+      "name": "Symphonic Prog"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:solar-music",
+      "type": "track",
+      "name": "Solar Music"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:joachim-eroc-ehrig",
+      "type": "artist",
+      "name": "Joachim \"Eroc\" Ehrig"
+    },
+    {
+      "slug": "artist:stefan-wildschwein-danielak",
+      "type": "artist",
+      "name": "Stefan \"Wildschwein\" Danielak"
+    },
+    {
+      "slug": "artist:gerd-otto-lupo-kuhn",
+      "type": "artist",
+      "name": "Gerd-Otto \"Lupo\" Kühn"
+    },
+    {
+      "slug": "artist:volker-mist-kahrs",
+      "type": "artist",
+      "name": "Volker \"Mist\" Kahrs"
+    },
+    {
+      "slug": "artist:wolfgang-popo-jager",
+      "type": "artist",
+      "name": "Wolfgang \"Popo\" Jäger"
+    }
+  ]
+}

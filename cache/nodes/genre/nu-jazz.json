@@ -1,0 +1,96 @@
+{
+  "slug": "genre:nu-jazz",
+  "name": "Nu Jazz",
+  "editorial_article": "Nu jazz, also known as jazztronica or future jazz, represents a pivotal intersection where the improvisational spirit of 20th-century jazz meets the rhythmic and sound-design possibilities of late-90s electronic music. Emerging as a distinct movement during the mid-1990s, the genre differentiates itself from earlier forms of acid jazz by prioritizing electronic experimentation, intricate production, and atmosphere over the live, ensemble-focused dexterity typical of traditional jazz bands. It acts as a bridge between the analog soul of the past and the digital soundscapes of the future, frequently drawing from house, downtempo, techno, and hip-hop to craft its characteristic textures.\\n\\nThe history of nu jazz is deeply rooted in the electronics of the 1970s and 80s—particularly in the fusion experiments of Miles Davis and Herbie Hancock, whose work with Bill Laswell on 'Future Shock' set the stage for later rhythmic integrations. However, as a cohesive scene, it blossomed globally in the late 90s, with centers of gravity in Europe, Japan, and the United States. Artists like St Germain, Jazzanova, and Bugge Wesseltoft became archetypal figures, with St Germain’s 'Tourist' album achieving significant commercial success and popularizing the sound of jazzy house music worldwide. Today, nu jazz remains a fluid, experimental category, often venturing into ambient textures or harsh, jagged breakbeats, consistently pushing the boundaries of what constitutes 'jazz' in a modern, electronic-driven world. It is a genre defined less by a single sound and more by an attitude: the belief that the jazz tradition is not a museum piece, but a living, changing language that evolves alongside technology.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nu_jazz",
+      "title": "Nu jazz - Wikipedia"
+    },
+    {
+      "url": "https://pressureradio.com/nu-jazz/",
+      "title": "Nu Jazz music genre history and origins - Pressure Radio"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/nu-jazz",
+      "title": "Nu Jazz - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:25.390Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre that integrates traditional jazz improvisation, harmonic complexity, and instrumentation with contemporary electronic production, club rhythms, and sound design.",
+  "era": "1990s-present",
+  "origin": "United States, United Kingdom, Japan, France, Germany, Norway, Mexico, Brazil",
+  "sonic_markers": "Incorporation of electronic drum beats, ambient soundscapes, sampled jazz phrases, improvised jazz instrumental solos (trumpet, piano), deep basslines, and influence from downtempo and club music.",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-Funk"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:st-germain",
+      "type": "artist",
+      "name": "St Germain"
+    },
+    {
+      "slug": "artist:jazzanova",
+      "type": "artist",
+      "name": "Jazzanova"
+    },
+    {
+      "slug": "artist:bugge-wesseltoft",
+      "type": "artist",
+      "name": "Bugge Wesseltoft"
+    },
+    {
+      "slug": "artist:nils-petter-molv-r",
+      "type": "artist",
+      "name": "Nils Petter Molvær"
+    },
+    {
+      "slug": "artist:the-cinematic-orchestra",
+      "type": "artist",
+      "name": "The Cinematic Orchestra"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:tourist",
+      "type": "project",
+      "name": "Tourist"
+    }
+  ],
+  "landmark_tracks": []
+}

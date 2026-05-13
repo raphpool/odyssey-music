@@ -1,0 +1,70 @@
+{
+  "slug": "label:metroplex-records",
+  "name": "Metroplex Records",
+  "editorial_article": "Metroplex Records is a foundational pillar of electronic music history, established in 1985 in Detroit by the seminal producer Juan Atkins. As the primary platform for Atkins' own creative output under his iconic Model 500 alias, the label served as the crucible for the emergence of the techno sound. By merging the funk-driven cosmic rhythms of Parliament/Funkadelic with the rigid, mechanical precision of European electronic acts like Kraftwerk, Metroplex provided a home for the 'techno-futurism' that would define a new era of global club culture. \\n\\nThroughout the mid-to-late 1980s, Metroplex became the primary conduit for the sounds emanating from the Belleville Three—Atkins, Derrick May, and Kevin Saunderson—before they branched out into their own influential labels like Transmat and KMS. Its early releases, particularly the Model 500 classic 'No UFO's,' demonstrated the unique blend of synthesizers, drum machines, and futuristic, dystopian narratives that remain the genre's defining markers. Beyond its pivotal role in the birth of Detroit techno, Metroplex has maintained its influence over four decades, continuing to release music that navigates the intersection of machine intelligence and human soul. The label's existence is a testament to the radical, DIY spirit of the Detroit underground, providing a blueprint for independent electronic labels worldwide. By championing a sonic aesthetic that looked past the present toward a high-tech future, Metroplex not only archived the evolution of a genre but actively shaped the digital landscape of modern music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Juan_Atkins",
+      "title": "Juan Atkins - Wikipedia"
+    },
+    {
+      "url": "https://www.gridface.com/juan-atkins-20-years-metroplex-1985-2005/",
+      "title": "Juan Atkins: 20 Years Metroplex: 1985-2005 - Gridface"
+    },
+    {
+      "url": "https://yoyaku.io/label/metroplex/?srsltid=AfmBOorBlXuXu0SKupz4tyobDsF6qqU1D7S0r_Us6xjSbGpu9qNUNJw2",
+      "title": "Metroplex – Yoyaku Record Store"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:55.675Z",
+  "type": "label",
+  "editorial_description": "Founded in 1985 by Juan Atkins, Metroplex Records is a pioneering Detroit label that served as a fundamental catalyst for the birth and development of Detroit techno.",
+  "founded": "1985",
+  "location": "Detroit, Michigan, U.S.",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:juan-atkins",
+      "type": "artist",
+      "name": "Juan Atkins"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500"
+    },
+    {
+      "slug": "artist:infiniti",
+      "type": "artist",
+      "name": "Infiniti"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:no-ufo-s",
+      "type": "project",
+      "name": "No UFO's"
+    },
+    {
+      "slug": "project:classics",
+      "type": "project",
+      "name": "Classics"
+    }
+  ]
+}

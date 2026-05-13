@@ -1,0 +1,85 @@
+{
+  "slug": "genre:abstract-electronic",
+  "name": "Abstract Electronic",
+  "editorial_article": "Abstract Electronic is a broad, encompassing classification within the music landscape, used primarily to identify electronic compositions that defy traditional genre boundaries or conventional structural norms. Rather than being defined by a specific tempo, rhythmic pattern, or timbral palette, \"Abstract\" functions as an umbrella term for music that prioritizes sonic exploration, experimental synthesis, and unconventional arrangements. It acts as a nexus point for various forward-thinking subgenres, including IDM, glitch, drone, musique concrète, and leftfield electronics.\\n\\nHistorically, the roots of the style can be traced back to the mid-20th-century avant-garde and experimental electronic music movements, such as the works of John Cage and David Tudor, who pushed the limits of what constituted an instrument and a musical performance. As synthesis technology became more accessible, the genre evolved to encompass the textural, atmospheric, and often non-linear works of artists like Autechre, whose complex, algorithmic approaches represent the technical pinnacle of abstract electronic production. The genre is characterized by its willingness to abandon pop-structure in favor of \"sound-first\" composition. Whether through the fragmented, stuttering digital landscapes of glitch, or the dense, immersive drones of ambient experimentalism, Abstract Electronic music forces the listener to engage with the medium of sound as an object of investigation rather than merely a vehicle for melody or dance. In contemporary music, this \"abstract\" quality permeates diverse fields, from film scoring and sound design to experimental hip-hop and avant-pop, marking it as one of the most influential and fluid concepts in modern sound art.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/style/abstract?srsltid=AfmBOorJWMattJEX3Etvgroa4xuGXFLFkWdPAUxeIcZfMUkORnBSC0wO",
+      "title": "Abstract Music | Discogs"
+    },
+    {
+      "url": "https://www.berklee.edu/berklee-now/news/electronic-music-genres-a-guide-to-the-most-influential-styles",
+      "title": "Electronic Music Genres: A Guide to the Most Influential Styles"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:42.666Z",
+  "type": "genre",
+  "editorial_definition": "A wide-ranging descriptor for electronic music that prioritizes experimentation, complex sound design, and non-linear structures over conventional genre-specific tropes.",
+  "era": "1950s–present",
+  "origin": "Experimental electronic, Avant-garde music, Musique concrète",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    },
+    {
+      "slug": "artist:nurse-with-wound",
+      "type": "artist",
+      "name": "Nurse With Wound"
+    },
+    {
+      "slug": "artist:burial",
+      "type": "artist",
+      "name": "Burial"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:untrue",
+      "type": "project",
+      "name": "Untrue"
+    },
+    {
+      "slug": "project:vespertine",
+      "type": "project",
+      "name": "Vespertine"
+    },
+    {
+      "slug": "project:spirit-of-eden",
+      "type": "project",
+      "name": "Spirit Of Eden"
+    }
+  ],
+  "landmark_tracks": []
+}

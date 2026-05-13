@@ -1,0 +1,66 @@
+{
+  "slug": "project:94diskont",
+  "name": "94diskont.",
+  "editorial_article": "Released in 1995, '94diskont.' (stylized as 94diskont.) stands as a seminal milestone in the evolution of electronic music, marking the definitive moment where the German group Oval crystallized their pioneering glitch aesthetic. Emerging from the experimental scenes of Frankfurt, the project—composed at the time of Markus Popp, Sebastian Oschatz, and Frank Metzger—became famous for a radical methodology: literally damaging CDs with X-Acto knives, tape, and paint, then capturing the resulting physical skips and digital errors to build serene, layered soundscapes. This deconstructive process, far from creating abrasive noise, produced an unexpectedly aquatic and meditative beauty, bridging the gap between clinical digital manipulation and the immersive quality of ambient music.\\n\\nThe album's structural centerpiece, \"Do While,\" is a 24-minute masterpiece that originally served as the foundation for the group's 8-channel, 128-speaker installation 'Wohnton.' Its influence on the experimental electronic landscape is profound, with critics and historians often citing it as the foundational text for the 'glitch' genre that would dominate the late 90s. Beyond the technical novelty, '94diskont.' is deeply emotional; it transformed the sound of a failing, stuttering computer into a profound, crystalline experience. The record received immediate critical acclaim, appearing on influential year-end lists and cementing Oval’s reputation as architects of a 'new future' for ambient composition, while influencing countless artists across the IDM and experimental scenes for decades to come. Through its radical approach, the album proved that the most haunting human textures could be found in the failures of the machine.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/94_Diskont",
+      "title": "94 Diskont - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/94diskont-mw0000080753",
+      "title": "94diskont. - Oval | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:47.775Z",
+  "type": "project",
+  "editorial_pitch": "A foundational masterwork of the glitch genre, Oval’s 1995 album transforms digital damage into a haunting, aquatic, and deeply atmospheric ambient soundscape. It remains one of the most influential experiments in modern electronic music.",
+  "year": "1995",
+  "artists": [],
+  "label": {
+    "slug": "label:mille-plateaux",
+    "type": "label",
+    "name": "Mille Plateaux"
+  },
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:do-while",
+      "type": "track",
+      "name": "Do While"
+    },
+    {
+      "slug": "track:store-check",
+      "type": "track",
+      "name": "Store Check"
+    },
+    {
+      "slug": "track:line-extension",
+      "type": "track",
+      "name": "Line Extension"
+    },
+    {
+      "slug": "track:cross-selling",
+      "type": "track",
+      "name": "Cross Selling"
+    },
+    {
+      "slug": "track:do-while-x",
+      "type": "track",
+      "name": "Do While ⌘X"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

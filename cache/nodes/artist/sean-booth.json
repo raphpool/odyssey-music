@@ -1,0 +1,114 @@
+{
+  "slug": "artist:sean-booth",
+  "name": "Sean Booth",
+  "editorial_article": "Sean Booth is an influential English electronic musician, composer, and producer best known as one-half of the pioneering IDM duo Autechre. Born and raised in Rochdale, Greater Manchester, Booth met his creative partner Rob Brown in the late 1980s through the local graffiti scene. Together, they formed Autechre in 1987, eventually becoming one of the most significant acts on Warp Records. Throughout his career, Booth has been instrumental in shifting the boundaries of electronic music, moving from the melodic, club-oriented soundscapes of early 1990s IDM to the highly complex, generative, and abstract algorithmic compositions that define their modern work. \\n\\nBeyond Autechre, Booth has been a prolific participant in the wider electronic underground. He has released music under various aliases including Gescom and Lego Feet, often associated with the independent Skam Records label. His work is characterized by an obsession with intricate polyrhythms, unconventional sequencing techniques, and a rigorous, almost mathematical approach to sound design. Through both his collaborative work and his occasional solo endeavors, Booth remains a central figure in the evolution of avant-garde electronic music, constantly questioning the limits of hardware and software-driven creation. His influence extends far beyond his own recordings, having helped curate major events like All Tomorrow's Parties and consistently pushing for new sonic frontiers in digital production. The meticulousness of his production style has cemented his reputation as a primary architect of contemporary experimental electronic music.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/autechre/biography",
+      "title": "Autechre · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Autechre",
+      "title": "Autechre - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:49.854Z",
+  "type": "artist",
+  "editorial_bio": "Sean Booth is an influential English electronic musician and producer, best known as one-half of the pioneering IDM duo Autechre. His work is defined by complex polyrhythms, algorithmic sound design, and an unwavering commitment to sonic experimentation.",
+  "origin": "Rochdale, Greater Manchester, England",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:skam-records",
+      "type": "label",
+      "name": "Skam Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:incunabula",
+      "type": "project",
+      "name": "Incunabula"
+    },
+    {
+      "slug": "project:amber",
+      "type": "project",
+      "name": "Amber"
+    },
+    {
+      "slug": "project:tri-repetae",
+      "type": "project",
+      "name": "Tri Repetae"
+    },
+    {
+      "slug": "project:lp5",
+      "type": "project",
+      "name": "LP5"
+    },
+    {
+      "slug": "project:confield",
+      "type": "project",
+      "name": "Confield"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cichli",
+      "type": "track",
+      "name": "Cichli"
+    },
+    {
+      "slug": "track:gantz-graf",
+      "type": "track",
+      "name": "Gantz Graf"
+    },
+    {
+      "slug": "track:vose-vii",
+      "type": "track",
+      "name": "Vose Vii"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:gescom",
+      "type": "artist",
+      "name": "Gescom"
+    },
+    {
+      "slug": "artist:lego-feet",
+      "type": "artist",
+      "name": "Lego Feet"
+    }
+  ],
+  "members": []
+}

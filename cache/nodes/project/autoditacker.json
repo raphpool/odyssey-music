@@ -1,0 +1,61 @@
+{
+  "slug": "project:autoditacker",
+  "name": "Autoditacker",
+  "editorial_article": "Autoditacker, released in 1997, stands as the third studio effort by the pioneering German electronic duo Mouse on Mars, consisting of Jan St. Werner and Andi Toma. Arriving at the height of the mid-90s IDM and glitch movements, the album solidified the pair's reputation for crafting sonic landscapes that felt both highly intellectual and irreverently fun. Unlike many of their contemporaries who leaned heavily into cold, mechanical abstraction, Mouse on Mars infused their work with a distinct, warm, and often bizarre sense of rhythm that bridged the gap between cerebral sound design and danceable electronica.\\n\\nThe record is widely celebrated for its dense layering, where chirping synths, fragmented beats, and surreal sound effects collide in a structured yet chaotic mosaic. Tracks such as the breakneck opener \"Sui Shop\" and the krautrock-inflected \"Tamagnocchi\" exemplify the duo's ability to manipulate traditional instrumentation alongside sophisticated digital signal processing. The album also features notable collaborations, including work by F.X. Randomiz on digital sound processing and guest vocals from Lætitia Sadier on the track \"Schnick Schnack Meltmade.\"\\n\\nCulturally, Autoditacker remains a defining document of late 90s experimentation. By avoiding the self-seriousness that often plagued the IDM genre, Mouse on Mars created a timeless, adventurous project that rewards repeated listening. Decades after its release, it continues to be cited by critics and fans alike as a landmark release, ranking high on lists documenting the history of IDM for its innovative spirit and precise, yet playful, engineering. It captures a moment when digital music was rapidly evolving, offering a masterclass in texture, rhythm, and sonic curiosity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Autoditacker",
+      "title": "Autoditacker - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/autoditacker-mw0000029750",
+      "title": "Autoditacker - Mouse on Mars | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:51.730Z",
+  "type": "project",
+  "editorial_pitch": "Autoditacker is a seminal 1997 IDM album by Mouse on Mars that masterfully balances dense, abstract textures with infectious, playful grooves. It remains a high-water mark of the 90s experimental electronic scene, blending krautrock-inspired rhythms with complex digital processing.",
+  "year": "1997",
+  "artists": [],
+  "label": {
+    "slug": "label:too-pure",
+    "type": "label",
+    "name": "Too Pure"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:sui-shop",
+      "type": "track",
+      "name": "Sui Shop"
+    },
+    {
+      "slug": "track:juju",
+      "type": "track",
+      "name": "Juju"
+    },
+    {
+      "slug": "track:tamagnocchi",
+      "type": "track",
+      "name": "Tamagnocchi"
+    },
+    {
+      "slug": "track:schnick-schnack-meltmade",
+      "type": "track",
+      "name": "Schnick Schnack Meltmade"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    }
+  ],
+  "related_projects": []
+}

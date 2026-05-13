@@ -1,0 +1,85 @@
+{
+  "slug": "label:echocord",
+  "name": "Echocord",
+  "editorial_article": "Echocord is a Copenhagen-based record label founded in 2002 by Danish DJ and producer Kenneth Christiansen. Emerging at a time when the echoes of Basic Channel and the Berlin dub-techno scene were significantly shaping the landscape of underground electronic music, Echocord quickly established itself as a vital conduit for deep, atmospheric, and rhythmically textured sounds. The label's sonic identity is defined by a commitment to \"dubby\" aesthetics—characterized by expansive reverb, hypnotic delay lines, and organic, evolving techno arrangements. By fostering deep relationships with artists who mastered this nuanced space, such as Mikkel Metal, Fluxion, and Quantec, Christiansen created a platform that transcended simple club-functionality, instead offering immersive, space-filling sonic experiences. Over two decades, Echocord has remained remarkably consistent, serving as both a pillar for traditional dub techno and a space for experimentation within those parameters, cementing its legacy as one of the most respected imprints in the global dub-techno diaspora. Its catalog—spanning vinyl EPs, full-length LPs, and curated compilations—is widely regarded for its high production quality and its ability to maintain a distinct, immersive mood, even as it has traversed different eras of electronic music. Through its longevity and dedication to a specific, meditative sonic atmosphere, Echocord has become synonymous with the intelligent, soul-searching side of techno music. The label remains a cornerstone for listeners seeking the intersection of precision production and dub-influenced experimentation.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/8367-Echocord?srsltid=AfmBOoo_f-hhYWt4JfTA2ALgJ8v9n46Y5VEKbNBquJSpD8__9imr57nX",
+      "title": "Echocord | Discogs"
+    },
+    {
+      "url": "https://www.orbmag.com/features/label-showcase-echocord/",
+      "title": "Label Showcase: Echocord - Orb Mag"
+    },
+    {
+      "url": "https://www.roughtrade.com/label/echocord",
+      "title": "Echocord Vinyl & Exclusive Releases | Rough Trade"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:38.503Z",
+  "type": "label",
+  "editorial_description": "A Copenhagen-based pillar of the global dub-techno community, known for its deep, atmospheric sound and long-standing dedication to immersive electronic textures.",
+  "founded": "2002",
+  "location": "Copenhagen, Denmark",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:mikkel-metal",
+      "type": "artist",
+      "name": "Mikkel Metal"
+    },
+    {
+      "slug": "artist:fluxion",
+      "type": "artist",
+      "name": "Fluxion"
+    },
+    {
+      "slug": "artist:quantec",
+      "type": "artist",
+      "name": "Quantec"
+    },
+    {
+      "slug": "artist:silent-harbour",
+      "type": "artist",
+      "name": "Silent Harbour"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:unusual-signals",
+      "type": "project",
+      "name": "Unusual Signals"
+    },
+    {
+      "slug": "project:traces",
+      "type": "project",
+      "name": "Traces"
+    },
+    {
+      "slug": "project:inductance-elation",
+      "type": "project",
+      "name": "Inductance / Elation"
+    },
+    {
+      "slug": "project:just-enough-light",
+      "type": "project",
+      "name": "Just Enough Light"
+    }
+  ]
+}

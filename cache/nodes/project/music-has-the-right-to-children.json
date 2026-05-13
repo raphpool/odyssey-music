@@ -1,0 +1,99 @@
+{
+  "slug": "project:music-has-the-right-to-children",
+  "name": "Music Has the Right to Children",
+  "editorial_article": "Released on April 20, 1998, on the Warp label, 'Music Has the Right to Children' is the seminal debut studio album by the Scottish electronic duo Boards of Canada (Michael Sandison and Marcus Eoin). The project is widely regarded as a cornerstone of IDM (Intelligent Dance Music) and ambient techno, characterized by a distinctively nostalgic, \"worn\" sonic texture that evokes vintage educational films, mid-century childhood memories, and a sense of decaying warmth. The album deftly balances lush, synthesizer-heavy soundscapes with dusty, mid-tempo hip-hop influenced drum loops.\n\nStructurally, the album alternates between fully realized compositions and shorter, atmospheric vignettes. This intentional fragmentation gives the record a dreamlike, disorienting quality. Critics and listeners frequently note the \"machine soul\" of the production; the sounds feel lived-in, featuring degraded samples, tape hiss, and analog imperfections that contrast sharply with the sterile, polished aesthetic prevalent in much of 1990s electronica. With tracks like \"Telephasic Workshop\" and \"Turquoise Hexagon Sun,\" the duo established a unique sonic signature that would influence generations of electronic producers. It remains a landmark in the history of electronic music, not just for its technical production but for the profound, uncanny emotional depth it manages to extract from its hardware-based origins. Its legacy is cemented by its reputation as a \"pure machine soul\" record that sounds as if it were salvaged from a lost, eerie past.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/music-has-the-right-to-children-mw0000042674",
+      "title": "Music Has the Right to Children - Boards of Ca... | AllMusic"
+    },
+    {
+      "url": "https://www.popmatters.com/boards-canada-music-children-atr",
+      "title": "The Fragmented Quality of Boards of Canada's 'Music Has the Right to Children' » PopMatters"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:37.390Z",
+  "type": "project",
+  "editorial_pitch": "A definitive masterpiece of 1990s electronic music, 'Music Has the Right to Children' blends warm, nostalgic analog synthesis with crisp, mid-tempo hip-hop beats, creating a uniquely haunted and comforting atmosphere.",
+  "cover_url": "https://fastly-s3.allmusic.com/release/mr0001082136/front/400/XAYqssGoiuDccQsyVW3ueQ4Q1ghY8VaPylnm7PwcKNY=.jpg",
+  "year": "1998",
+  "artists": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "label": {
+    "slug": "label:warp",
+    "type": "label",
+    "name": "Warp"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:wildlife-analysis",
+      "type": "track",
+      "name": "Wildlife Analysis"
+    },
+    {
+      "slug": "track:an-eagle-in-your-mind",
+      "type": "track",
+      "name": "An Eagle in Your Mind"
+    },
+    {
+      "slug": "track:the-color-of-the-fire",
+      "type": "track",
+      "name": "The Color of the Fire"
+    },
+    {
+      "slug": "track:telephasic-workshop",
+      "type": "track",
+      "name": "Telephasic Workshop"
+    },
+    {
+      "slug": "track:triangles-and-rhombuses",
+      "type": "track",
+      "name": "Triangles & Rhombuses"
+    },
+    {
+      "slug": "track:sixtyten",
+      "type": "track",
+      "name": "Sixtyten"
+    },
+    {
+      "slug": "track:turquoise-hexagon-sun",
+      "type": "track",
+      "name": "Turquoise Hexagon Sun"
+    },
+    {
+      "slug": "track:kaini-industries",
+      "type": "track",
+      "name": "Kaini Industries"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "related_projects": []
+}

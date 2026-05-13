@@ -1,0 +1,81 @@
+{
+  "slug": "label:windham-hill-records",
+  "name": "Windham Hill Records",
+  "editorial_article": "Windham Hill Records, founded in 1976 in Palo Alto, California, was a quintessential independent record label that defined the sound of 1980s and 1990s acoustic and new age music. Started by guitarist William Ackerman and designer Anne Robinson with a mere $300, the label originated from a desire to release Ackerman's own instrumental acoustic guitar compositions. Through a unique business model that prioritized high-fidelity recording and distinctive, minimalist cover design, Windham Hill became a cultural phenomenon, successfully distributing its catalog through bookstores and health-food stores before capturing the attention of mainstream music retailers.\n\nThe label’s sonic identity was defined by \"mellow,\" largely instrumental, acoustic soundscapes that bridged the gap between folk, jazz, and classical music. This aesthetic was bolstered by the success of pivotal artists like George Winston, whose solo piano albums achieved massive commercial success, including multiple Gold and Platinum certifications. The label's strategy of utilizing sampler compilations, most notably the long-running *Winter Solstice* series, helped build a cohesive brand identity that resonated with listeners seeking meditative, accessible music.\n\nAt its peak in the early 1980s, Windham Hill’s rapid growth led to a lucrative distribution partnership with A&M Records. However, as the music industry consolidated, the label eventually became a target for acquisition. BMG purchased the label in phases between 1992 and 1996, later folding it into the Windham Hill Group. Although the label effectively ceased operations as an active creative imprint following its absorption into the Sony Music Entertainment corporate structure in 2007, its legacy remains deeply embedded in the development and popularization of new age music. Today, the Windham Hill catalog is primarily managed as part of the Legacy Recordings archives, serving as a landmark testament to the DIY spirit and acoustic virtuosity that defined a generation of atmospheric listening.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Windham_Hill_Records",
+      "title": "Windham Hill Records - Wikipedia"
+    },
+    {
+      "url": "https://www.bsnpubs.com/aandm/windhamhill.html",
+      "title": "Windham Hill Album Discography"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:32.551Z",
+  "type": "label",
+  "editorial_description": "A pioneering independent record label founded in 1976 that became the definitive home for acoustic, instrumental, and new age music through the 1980s and 1990s.",
+  "founded": "1976",
+  "location": "Palo Alto, California",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    },
+    {
+      "slug": "genre:acoustic",
+      "type": "genre",
+      "name": "Acoustic"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:william-ackerman",
+      "type": "artist",
+      "name": "William Ackerman"
+    },
+    {
+      "slug": "artist:george-winston",
+      "type": "artist",
+      "name": "George Winston"
+    },
+    {
+      "slug": "artist:alex-de-grassi",
+      "type": "artist",
+      "name": "Alex De Grassi"
+    },
+    {
+      "slug": "artist:michael-hedges",
+      "type": "artist",
+      "name": "Michael Hedges"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:autumn",
+      "type": "project",
+      "name": "Autumn"
+    },
+    {
+      "slug": "project:december",
+      "type": "project",
+      "name": "December"
+    },
+    {
+      "slug": "project:in-search-of-the-turtle-s-navel",
+      "type": "project",
+      "name": "In Search of the Turtle's Navel"
+    }
+  ]
+}

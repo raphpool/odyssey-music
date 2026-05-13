@@ -1,0 +1,88 @@
+{
+  "slug": "artist:lisa-carbon",
+  "name": "Lisa Carbon",
+  "editorial_article": "Lisa Carbon is a German electronic musician and producer, widely recognized for her contributions to the late 90s and early 2000s experimental electronic scene. She is best known for her creative partnership with the prolific artist Atom™ (Uwe Schmidt), a collaboration that resulted in highly innovative projects such as The Lisa Carbon Trio. Her work is characterized by a sophisticated, genre-blurring approach that fuses organic elements of jazz and bossa nova with the precise, often glitch-oriented, synthetic textures of modern electronic music production. \\n\\nThroughout her career, she has challenged the boundaries of electronic music, moving away from pure club aesthetics toward something more abstract and experimental. Releases like 'Polyester' and 'Trio De Janeiro' exemplify her style—meticulous, playful, and deeply rhythm-focused. By utilizing classic motifs and deconstructing them through an electronic lens, Lisa Carbon helped define a unique sound for the 'Rather Interesting' and 'Sub Rosa' labels, marking her as a central figure in the German experimental milieu that sought to reconcile traditional instrumental textures with the limitless potential of electronic sound design. Her music continues to be appreciated for its wit, precision, and enduring ability to blend the warmth of the past with the cold precision of future technologies. Her artistic legacy is intrinsically tied to her collaborations, where the synergy between traditional musicality and digital manipulation created a sound that was at once nostalgic and forward-looking, influencing a generation of producers interested in the 'nu-jazz' and experimental glitch genres.",
+  "citations": [
+    {
+      "url": "https://subrosalabel.bandcamp.com/album/trio-de-janeiro",
+      "title": "Trio De Janeiro | Lisa Carbon featuring Atom TM - Sub Rosa Label"
+    },
+    {
+      "url": "https://atomtm.bandcamp.com/album/the-lisa-carbon-trio-polyester",
+      "title": "The Lisa Carbon Trio/Polyester | Atom™"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:06.594Z",
+  "type": "artist",
+  "editorial_bio": "Lisa Carbon is a German electronic musician and producer, widely recognized for her contributions to the late 90s and early 2000s experimental electronic scene.",
+  "origin": "Germany",
+  "genres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sub-rosa",
+      "type": "label",
+      "name": "Sub Rosa"
+    },
+    {
+      "slug": "label:rather-interesting",
+      "type": "label",
+      "name": "Rather Interesting"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:polyester",
+      "type": "project",
+      "name": "Polyester"
+    },
+    {
+      "slug": "project:trio-de-janeiro",
+      "type": "project",
+      "name": "Trio De Janeiro"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hey-music",
+      "type": "track",
+      "name": "Hey! Music!"
+    },
+    {
+      "slug": "track:jazz-device",
+      "type": "track",
+      "name": "Jazz Device"
+    },
+    {
+      "slug": "track:corazon-loco",
+      "type": "track",
+      "name": "Corazón Loco"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:atomtm",
+      "type": "artist",
+      "name": "Atom™"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

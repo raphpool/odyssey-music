@@ -1,0 +1,72 @@
+{
+  "slug": "artist:boris",
+  "name": "Boris",
+  "editorial_article": "Boris is a seminal Japanese experimental rock band formed in Tokyo in 1992, renowned for their unparalleled versatility and mastery of heavy music forms. Comprising members Takeshi (bass, rhythm guitar, vocals), Wata (lead guitar, EBow, vocals), and Atsuo (drums, percussion, electronics, vocals), the band has transcended traditional genre boundaries by fluidly moving between drone metal, sludge, noise rock, post-rock, and ambient music throughout their prolific career. \\n\\nNamed after a song by The Melvins, Boris established their own imprint, Fangs Anal Satan, and gained international acclaim for their massive, monolithic sound. Albums like 'Amplifier Worship' (1998) and 'Flood' (2000) showcased their early penchant for drawn-out, immersive drone compositions, while 'Akuma no uta' (2003) and 'Pink' (2005) emphasized their ability to craft high-octane, fuzzy sludge and noise rock anthems. Their penchant for collaboration is legendary, resulting in critically lauded records with Japanese noise artist Merzbow, as well as ventures with Sunn O))) and Michio Kurihara. \\n\\nBeyond their reputation for sheer volume and earth-shattering performances, Boris is highly regarded for their intricate grasp of dynamics. They balance extreme distortion with ethereal, melancholic melodies, proving that their sonic palette is as varied as it is expansive. Their impact on contemporary heavy music is profound, solidifying them as one of the most vital experimental acts to emerge from the Japanese underground scene.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/boris",
+      "title": "Boris Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:01.292Z",
+  "type": "artist",
+  "editorial_bio": "Boris is a genre-defying Japanese experimental band from Tokyo, active since 1992 and known for their massive soundscapes that traverse drone, sludge, noise, and post-rock. Consisting of core members Takeshi, Wata, and Atsuo, the band has built a sprawling discography characterized by sonic extremes—from meditative ambient drone to crushing, fuzz-laden metal.",
+  "genres": [
+    {
+      "slug": "genre:drone-metal",
+      "type": "genre",
+      "name": "Drone Metal"
+    },
+    {
+      "slug": "genre:stoner-metal",
+      "type": "genre",
+      "name": "Stoner Metal"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fangs-anal-satan",
+      "type": "label",
+      "name": "Fangs Anal Satan"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:amplifier-worship",
+      "type": "project",
+      "name": "Amplifier Worship"
+    },
+    {
+      "slug": "project:flood",
+      "type": "project",
+      "name": "Flood"
+    },
+    {
+      "slug": "project:akuma-no-uta",
+      "type": "project",
+      "name": "Akuma no uta"
+    },
+    {
+      "slug": "project:pink",
+      "type": "project",
+      "name": "Pink"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

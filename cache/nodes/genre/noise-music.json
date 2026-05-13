@@ -1,0 +1,102 @@
+{
+  "slug": "genre:noise-music",
+  "name": "Noise music",
+  "editorial_article": "Noise music is an experimental genre defined by its rejection of conventional musical structure, tonality, and composition, prioritizing the expressive use of sound objects, feedback, distortion, and extreme sonic textures. Emerging from the radical early 20th-century Futurism movement, particularly Luigi Russolo's 1913 manifesto \"L'arte dei rumori\" (The Art of Noises), the genre seeks to dismantle the traditional distinction between musical and non-musical sound. Russolo's development of *intonarumori* (noise-making machines) laid the groundwork for future generations to explore the aesthetics of discordance, cacophony, and intensity.\\n\\nThroughout the mid-20th century, the genre evolved through the experiments of Musique concrète and avant-garde composers like John Cage and Edgard Varèse, who utilized electronic equipment and environmental recordings to push the boundaries of sound. By the 1970s and 1980s, noise transitioned from strictly academic or avant-garde circles into the underground cultural sphere. Pioneers like Throbbing Gristle infused industrial practices with abrasive, atonal noise, while Lou Reed's \"Metal Machine Music\" brought feedback-heavy experimentation to a wider audience. The rise of the Japanese underground—commonly referred to as \"Japanoise\"—further expanded the field, with artists like Merzbow, Incapacitants, and Hijokaidan cementing the genre’s reputation for extreme volume and harsh, improvisational sonic wall-building. Today, noise remains a vast, decentralized ecosystem, influencing diverse sub-styles from harsh noise walls to industrial crossovers, continuously challenging the listener's relationship with audio as an artistic medium.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/noise/",
+      "title": "Noise - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:47.011Z",
+  "type": "genre",
+  "editorial_definition": "A genre that rejects traditional musical structure and tonality in favor of intentionally abrasive, dissonant, and experimental sound, utilizing techniques like feedback, distortion, and sound manipulation.",
+  "era": "Early 20th century to present",
+  "origin": "International, rooted in European Futurism (early 20th c.)",
+  "parent_genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:harsh-noise",
+      "type": "genre",
+      "name": "Harsh Noise"
+    },
+    {
+      "slug": "genre:power-noise",
+      "type": "genre",
+      "name": "Power Noise"
+    },
+    {
+      "slug": "genre:harsh-noise-wall",
+      "type": "genre",
+      "name": "Harsh Noise Wall"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique concrète"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    },
+    {
+      "slug": "genre:power-electronics",
+      "type": "genre",
+      "name": "Power Electronics"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow"
+    },
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:luigi-russolo",
+      "type": "artist",
+      "name": "Luigi Russolo"
+    },
+    {
+      "slug": "artist:incapacitants",
+      "type": "artist",
+      "name": "Incapacitants"
+    },
+    {
+      "slug": "artist:keiji-haino",
+      "type": "artist",
+      "name": "Keiji Haino"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

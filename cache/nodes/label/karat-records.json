@@ -1,0 +1,82 @@
+{
+  "slug": "label:karat-records",
+  "name": "Karat Records",
+  "editorial_article": "Karat Records is a French electronic music label established in 1999 that has served as a cornerstone of the minimal, techno, house, and IDM scenes for over two decades. Operating with a distinct focus on the nuanced intersection of club-ready grooves and experimental textures, the label has cultivated a roster of artists who prioritize sound design and dancefloor functionality in equal measure. Its catalogue reads as a roadmap through the evolution of European underground electronic music, featuring essential releases from key figures such as Sonja Moonear, Losoul, Guillaume & The Coutu Dumonts, and Akufen. By maintaining a balance between established innovators and emerging talent, Karat Records has secured its place as a reliable and influential curator of left-field electronic dance music. The label's output is characterized by a sophisticated aesthetic—often utilizing crisp, glitch-influenced production and deep, rolling basslines—that has solidified its reputation among DJs and listeners who favor intricate, rhythmic explorations over traditional pop structures. Throughout its existence, Karat has remained an essential platform for artists to explore the fringes of the dancefloor, ensuring that its releases continue to resonate within contemporary minimal and experimental circles. The label’s legacy is defined by this consistent commitment to forward-thinking production, making it a critical reference point for anyone interested in the development of modern underground dance music. Its sustained activity over 25 years reflects a deep-seated connection to the French and European club scenes, where it has helped shape the sonic landscape of minimal techno and house.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/988",
+      "title": "Karat Records · Record label RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:05.708Z",
+  "type": "label",
+  "editorial_description": "Karat Records is a French electronic music label established in 1999 that has served as a cornerstone of the minimal, techno, house, and IDM scenes. Its output features essential releases from figures such as Sonja Moonear, Losoul, and Akufen.",
+  "founded": "1999",
+  "location": "France",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear"
+    },
+    {
+      "slug": "artist:losoul",
+      "type": "artist",
+      "name": "Losoul"
+    },
+    {
+      "slug": "artist:akufen",
+      "type": "artist",
+      "name": "Akufen"
+    },
+    {
+      "slug": "artist:guillaume-and-the-coutu-dumonts",
+      "type": "artist",
+      "name": "Guillaume & The Coutu Dumonts"
+    },
+    {
+      "slug": "artist:pit-spector",
+      "type": "artist",
+      "name": "Pit Spector"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:le-crew-normand-ep",
+      "type": "project",
+      "name": "Le Crew Normand EP"
+    },
+    {
+      "slug": "project:full-moon-cycle",
+      "type": "project",
+      "name": "Full Moon Cycle"
+    },
+    {
+      "slug": "project:freewheel",
+      "type": "project",
+      "name": "Freewheel"
+    }
+  ]
+}

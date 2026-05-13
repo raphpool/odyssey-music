@@ -1,0 +1,73 @@
+{
+  "slug": "genre:neoclassical-new-age-music",
+  "name": "Neoclassical new-age music",
+  "editorial_article": "Neoclassical new-age is a distinct and evocative subgenre of new-age music, characterized by its profound structural and aesthetic debt to early, Baroque, and Classical period Western art music. Unlike mainstream new-age, which often leans heavily into synthetic textures or ambient washes, neoclassical new-age typically centers on acoustic instrumentation—frequently featuring the piano, harp, or delicate chamber arrangements—to create an atmosphere of meditative, timeless grace. This genre bridges the technical formal traditions of the past with the tranquil, contemplative intent of contemporary new-age sensibilities, resulting in compositions that feel both ancient and immediate. \\n\\nHistorically, the foundations of the genre are deeply rooted in the experimental work of the early 1970s, where artists began merging progressive electronic tendencies with refined, pastoral classical influences. A primary catalyst in this evolution was the German group Popol Vuh, whose landmark album 'Hosianna Mantra' (1972) is frequently cited as a quintessential entry point. The album’s move away from the band’s previous synthesizer-heavy work toward a delicate, spiritual fusion of acoustic guitar, piano, and oboe signaled a shift toward what would become the neoclassical new-age aesthetic. As the genre matured, it expanded to include minimalist piano-focused works and expansive, ethereal soundscapes by artists such as Harold Budd, whose collaborations and solo output epitomize the genre’s capacity for beauty and introspection. In Japan, composers like Joe Hisaishi and Toshifumi Hinata later refined this style, integrating it with the emotive, narrative sensibilities of modern Japanese film score culture. Today, the genre serves as a sanctuary for listeners seeking complex yet soothing musical experiences that avoid the rhythmic drive of modern pop or the dissonant abstraction of avant-garde classical music, instead focusing on the resonance of the instrument and the silence between notes.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/neoclassical-new-age/",
+      "title": "Neoclassical New Age - Music genre - Rate Your Music"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/New-age_music",
+      "title": "New-age music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:36.808Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of new-age music heavily influenced by early, Baroque, and Classical music, typically characterized by acoustic instrumentation (like piano and harp), slow tempos, and a meditative, pastoral atmosphere.",
+  "parent_genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:popol-vuh",
+      "type": "artist",
+      "name": "Popol Vuh"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    },
+    {
+      "slug": "artist:joe-hisaishi",
+      "type": "artist",
+      "name": "Joe Hisaishi"
+    },
+    {
+      "slug": "artist:toshifumi-hinata",
+      "type": "artist",
+      "name": "Toshifumi Hinata"
+    },
+    {
+      "slug": "artist:masakatsu-takagi",
+      "type": "artist",
+      "name": "Masakatsu Takagi"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:hosianna-mantra",
+      "type": "project",
+      "name": "Hosianna Mantra"
+    },
+    {
+      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath",
+      "type": "project",
+      "name": "Avalon Sutra / As Long As I Can Hold My Breath"
+    },
+    {
+      "slug": "project:kagayaki",
+      "type": "project",
+      "name": "Kagayaki"
+    }
+  ],
+  "landmark_tracks": []
+}

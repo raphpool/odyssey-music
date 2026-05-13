@@ -1,0 +1,69 @@
+{
+  "slug": "artist:weird-al-yankovic",
+  "name": "\"Weird Al\" Yankovic",
+  "editorial_article": "Alfred Matthew \"Weird Al\" Yankovic is an American singer-songwriter, satirist, and accordionist who has solidified his status as the most commercially successful comedy recording artist in history. Rising to prominence in the early 1980s via the Dr. Demento Radio Show, Yankovic became famous for his meticulous, stylistic parodies of contemporary pop hits, accompanied by elaborate music videos that lampooned the source material's aesthetics. His career has spanned over four decades, during which he has released a series of Gold and Platinum albums and earned five Grammy Awards. Beyond his signature parodies—such as \"Eat It,\" \"Smells Like Nirvana,\" and \"White & Nerdy\"—Yankovic is a versatile musician and producer known for his original humorous compositions, polka medleys, and high-energy live performances. His 2014 album, 'Mandatory Fun,' made history as the first comedy album to debut at number one on the Billboard 200 chart. He has maintained a consistent cultural presence through film, television, voice acting, and children’s literature, becoming a beloved fixture of American pop culture. His longevity is highlighted by his rare accomplishment of charting Top 40 singles in four consecutive decades. Throughout his long tenure, Yankovic has demonstrated a rare ability to stay relevant by constantly satirizing the evolving landscape of popular music while maintaining a core identity centered on musical precision, satire, and the accordion. His musical output remains a testament to the cultural power of parody as a form of appreciation and critique.",
+  "citations": [
+    {
+      "url": "https://www.weirdal.com/archives/biography-2/",
+      "title": "Biography | \"Weird Al\" Yankovic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/%22Weird_Al%22_Yankovic_discography",
+      "title": "\"Weird Al\" Yankovic discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:53.244Z",
+  "type": "artist",
+  "editorial_bio": "Alfred Matthew \"Weird Al\" Yankovic is an American singer-songwriter, satirist, and accordionist who has solidified his status as the most commercially successful comedy recording artist in history. Rising to prominence in the early 1980s via the Dr. Demento Radio Show, Yankovic became famous for his meticulous, stylistic parodies of contemporary pop hits, accompanied by elaborate music videos that lampooned the source material's aesthetics. His career has spanned over four decades, during which he has released a series of Gold and Platinum albums and earned five Grammy Awards. Beyond his signature parodies—such as \"Eat It,\" \"Smells Like Nirvana,\" and \"White & Nerdy\"—Yankovic is a versatile musician and producer known for his original humorous compositions, polka medleys, and high-energy live performances. His 2014 album, 'Mandatory Fun,' made history as the first comedy album to debut at number one on the Billboard 200 chart. He has maintained a consistent cultural presence through film, television, voice acting, and children’s literature, becoming a beloved fixture of American pop culture. His longevity is highlighted by his rare accomplishment of charting Top 40 singles in four consecutive decades. Throughout his long tenure, Yankovic has demonstrated a rare ability to stay relevant by constantly satirizing the evolving landscape of popular music while maintaining a core identity centered on musical precision, satire, and the accordion. His musical output remains a testament to the cultural power of parody as a form of appreciation and critique.",
+  "photo_url": "https://weirdal.wpenginepowered.com/wp-content/uploads/2015/01/A_Yankovic_Publicity_009.jpg",
+  "origin": "Lynwood, California, U.S.",
+  "active_years": "1976-present",
+  "genres": [
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy Rock"
+    },
+    {
+      "slug": "genre:parody-music",
+      "type": "genre",
+      "name": "Parody Music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:legacy-recordings",
+      "type": "label",
+      "name": "Legacy Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mandatory-fun",
+      "type": "project",
+      "name": "Mandatory Fun"
+    },
+    {
+      "slug": "project:squeeze-box-the-complete-works-of-weird-al-yankovic",
+      "type": "project",
+      "name": "Squeeze Box: The Complete Works of “Weird Al” Yankovic"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:eat-it",
+      "type": "track",
+      "name": "Eat It"
+    },
+    {
+      "slug": "track:smells-like-nirvana",
+      "type": "track",
+      "name": "Smells Like Nirvana"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

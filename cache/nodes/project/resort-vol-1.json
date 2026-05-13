@@ -1,0 +1,67 @@
+{
+  "slug": "project:resort-vol-1",
+  "name": "RESORT Vol. 1",
+  "editorial_article": "RESORT Vol. 1 is the 2020 debut EP by the indie pop act known as RESORT. Released on March 27, 2020, through the label PLAIN PACK, the project captures a distinctively lo-fi, introspective, and bedroom-pop aesthetic that resonated within contemporary online music communities. Comprising seven tracks, the EP weaves together themes of emotional recovery, social anxiety, and the complicated nature of modern relationships. The project is marked by a raw, immediate production style—characterized by intimate, conversational vocals and minimalist instrumentals that prioritize melody and atmosphere over polished perfection. Tracks like \"Okay, Let's Try This Again\" and \"Fix Everything\" serve as cornerstones of the EP, grounding the listener in a relatable, melancholic narrative. The collaboration with h u e. on the track \"Do It Again\" further highlights the project's roots in collaborative, decentralized indie circles, positioning RESORT as a significant voice in the wave of DIY pop that flourished in the early 2020s. Beyond the musical output, the project also received a visual component via a behind-the-music commentary short film directed by Victor Yee, reinforcing the artist’s commitment to a holistic, narrative-driven creative vision. Throughout the project, the listener is invited to inhabit a space of quiet contemplation, where the songs act as diary entries navigating the complexities of human interaction. The EP stands as a definitive document of the artist's early work and remains a staple for followers of the niche-yet-influential indie bedroom-pop scene of the era.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/us/album/resort-vol-1/1607806030",
+      "title": "RESORT Vol. 1 - Album by RESORT - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:53.762Z",
+  "type": "project",
+  "editorial_pitch": "RESORT Vol. 1 is an intimate, DIY indie-pop EP that navigates themes of emotional turbulence and recovery through raw, lo-fi production and introspective songwriting.",
+  "year": "2020",
+  "artists": [],
+  "label": {
+    "slug": "label:plain-pack",
+    "type": "label",
+    "name": "PLAIN PACK"
+  },
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:intro",
+      "type": "track",
+      "name": "Intro (Being Hurt)"
+    },
+    {
+      "slug": "track:okay-let-s-try-this-again",
+      "type": "track",
+      "name": "Okay, Let's Try This Again"
+    },
+    {
+      "slug": "track:fix-everything",
+      "type": "track",
+      "name": "Fix Everything"
+    },
+    {
+      "slug": "track:terrible-conversations",
+      "type": "track",
+      "name": "Terrible Conversations"
+    },
+    {
+      "slug": "track:the-nights-are-the-hardest",
+      "type": "track",
+      "name": "The Nights Are The Hardest"
+    },
+    {
+      "slug": "track:do-it-again",
+      "type": "track",
+      "name": "Do It Again"
+    },
+    {
+      "slug": "track:right-after-sorries",
+      "type": "track",
+      "name": "Right After Sorries"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

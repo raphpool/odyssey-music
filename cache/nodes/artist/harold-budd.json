@@ -1,0 +1,109 @@
+{
+  "slug": "artist:harold-budd",
+  "name": "Harold Budd",
+  "editorial_article": "Harold Montgomery Budd (1936–2020) was an influential American composer, poet, and pianist who became a cornerstone of the ambient and minimalist traditions. Born in Los Angeles and raised in the Mojave Desert, Budd’s formative years were heavily impacted by the jazz and bebop scenes of South Central Los Angeles, where he played drums in his youth. His formal education in composition, which included tutelage under Arnold Schoenberg’s protégé Gerald Strang, initially grounded him in the avant-garde academic circles of Southern California. However, Budd eventually grew disenchanted with the rigorous academicism of the period, eventually finding a more resonant artistic home through his pivotal collaborations with figures like Brian Eno and the Cocteau Twins. \\n\\nBudd is widely celebrated for his singular \"soft pedal\" piano technique—a method defined by gentle touch, slow tempos, and a profound, atmospheric use of sustain. This approach, which he described as creating \"soft\" or \"gentle\" music, helped bridge the gap between classical minimalism and the burgeoning ambient genre of the 1970s and 80s. His landmark 1978 album, *The Pavilion of Dreams*, remains one of the most defining documents of ethereal, meditative composition. His ability to balance the structural rigor of his avant-garde training with an deeply intuitive, emotional vulnerability made him a revered figure for generations of experimental musicians, leaving behind a vast body of work that continues to define the landscape of modern ambient music. Throughout his long career, he maintained a distinct, painterly approach to sound, often citing the influence of visual artists like Mark Rothko, and he remained an essential voice in the development of modern atmospheric composition until his passing in 2020.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Harold_Budd",
+      "title": "Harold Budd - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/harold-budd",
+      "title": "Harold Budd discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.discogs.com/artist/37749-Harold-Budd?srsltid=AfmBOop2DyyQH-apVfbcklzwNDvx0hxElc7B7y2RKVvSMiYf9s98X_pf",
+      "title": "Harold Budd Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:22.231Z",
+  "type": "artist",
+  "editorial_bio": "Harold Montgomery Budd (1936–2020) was an influential American composer, poet, and pianist who became a cornerstone of the ambient and minimalist traditions.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Harold_Budd_%28cropped%29.jpg/500px-Harold_Budd_%28cropped%29.jpg",
+  "origin": "Los Angeles, California, U.S.",
+  "active_years": "1962–2020",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:4ad",
+      "type": "label",
+      "name": "4AD"
+    },
+    {
+      "slug": "label:eg-records",
+      "type": "label",
+      "name": "EG Records"
+    },
+    {
+      "slug": "label:opal",
+      "type": "label",
+      "name": "Opal"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-pavilion-of-dreams",
+      "type": "project",
+      "name": "The Pavilion of Dreams"
+    },
+    {
+      "slug": "project:the-serpent",
+      "type": "project",
+      "name": "The Serpent (In Quicksilver)"
+    },
+    {
+      "slug": "project:the-white-arcades",
+      "type": "project",
+      "name": "The White Arcades"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bismillahi-rrahmani-rrahim",
+      "type": "track",
+      "name": "Bismillahi 'Rrahmani 'Rrahim"
+    },
+    {
+      "slug": "track:the-white-arcades",
+      "type": "track",
+      "name": "The White Arcades"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:morton-feldman",
+      "type": "artist",
+      "name": "Morton Feldman"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

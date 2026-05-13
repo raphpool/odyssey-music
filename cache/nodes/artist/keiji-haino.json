@@ -1,0 +1,76 @@
+{
+  "slug": "artist:keiji-haino",
+  "name": "Keiji Haino",
+  "editorial_article": "Keiji Haino is a legendary Japanese avant-garde musician, singer, and songwriter whose career has profoundly shaped the global landscape of noise, free improvisation, and psychedelic rock. Emerging in the early 1970s with the experimental group Lost Aaraaff, Haino established himself as a singular artist defined by his uncompromising sonic explorations, ranging from delicate, haunting vocal and guitar performances to dense, apocalyptic avalanches of feedback and distortion. His work frequently channels an intense, ritualistic energy, often cited as a spiritual and sonic successor to figures like Jimi Hendrix, Blind Lemon Jefferson, and the exponents of German cosmic music, while simultaneously drawing inspiration from traditional Japanese music and the minimalism of LaMonte Young. \\n\\nPerhaps best known for his long-running project Fushitsusha, a vessel for his most visceral rock-based improvisations, Haino has maintained a prolific, if notoriously vast, output across countless albums. Whether performing solo—often utilizing self-made instruments, hurdy-gurdy, or his signature feedback-laden guitar—or in various ensembles such as Nijiumu, Vajra, or Purple Trap, his approach remains grounded in the philosophy of raw, unfiltered expression. Despite the often jarring density of his recordings, Haino's influence remains immense within the experimental music community, revered for his ability to translate inner states into cathartic, transcendent sonic maelstroms that challenge the boundaries of structure and sound. His career is a testament to the power of the improvisatory spirit, continuing to evolve decades after his initial entry into the underground scene.",
+  "citations": [
+    {
+      "url": "https://www.scaruffi.com/vol6/khaino.html",
+      "title": "The History of Rock Music. Keiji Haino: biography, discography, reviews, best albums, ratings"
+    },
+    {
+      "url": "https://www.metal-archives.com/artists/Keiji_Haino/294153",
+      "title": "Keiji Haino - Encyclopaedia Metallum"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:58.692Z",
+  "type": "artist",
+  "editorial_bio": "Keiji Haino is a legendary Japanese avant-garde musician, singer, and songwriter whose career has profoundly shaped the global landscape of noise, free improvisation, and psychedelic rock.",
+  "origin": "Japan",
+  "genres": [
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    },
+    {
+      "slug": "genre:free-improvisation",
+      "type": "genre",
+      "name": "Free Improvisation"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:psf-records",
+      "type": "label",
+      "name": "PSF Records"
+    },
+    {
+      "slug": "label:blast-first",
+      "type": "label",
+      "name": "Blast First"
+    },
+    {
+      "slug": "label:avant",
+      "type": "label",
+      "name": "Avant"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:fuwafuwa",
+      "type": "track",
+      "name": "Fuwafuwa"
+    },
+    {
+      "slug": "track:koko-lost-child",
+      "type": "track",
+      "name": "Koko/ Lost Child"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

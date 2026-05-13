@@ -1,0 +1,67 @@
+{
+  "slug": "artist:steve-silk-hurley",
+  "name": "Steve \"Silk\" Hurley",
+  "editorial_article": "Steve \"Silk\" Hurley is a seminal figure in the history of Chicago house music, renowned not only as a pioneering producer and DJ but also as one of the genre’s most influential remixers. Born in Chicago in 1962, Hurley rose to prominence in the mid-1980s through his work on the legendary WBMX radio show, \"Saturday Night Live Ain't No Jive Dance Party.\" Unlike many of his contemporaries who focused purely on the steady, four-on-the-floor beat of house, Hurley brought a virtuosic approach to his DJing, incorporating advanced turntablist techniques like scratching and beat-juggling—skills more typically associated with the hip-hop world. This unique technical flair defined his sound and helped bridge the gap between early dance music experimentation and club-ready polish.\\n\\nHis production career is anchored by the global success of \"Jack Your Body,\" a 1986 track that made history in 1987 as the first house music record to top the UK Singles Chart. Beyond his solo work, Hurley found significant success collaborating with vocalist Keith Nunnally under the project name J. M. Silk, scoring massive hits on the US Dance charts. As a highly sought-after remixer throughout the 1990s, he reimagined tracks for global superstars including Madonna, Michael Jackson, Janet Jackson, and New Order. His technical precision and ear for pop-crossover melodies earned him multiple Grammy Award nominations for his remixing contributions, cementing his legacy as one of the architects of the global house music explosion. Throughout his career, which began in earnest in 1983, he has remained a vital presence in the evolution of electronic music, balancing his role as a club innovator with the technical demands of a world-class producer. His work consistently highlights the sophisticated interplay between raw Chicago energy and refined production values, ensuring his status as a legendary figure in the house movement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Steve_%22Silk%22_Hurley",
+      "title": "Steve \"Silk\" Hurley - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/steve-silk-hurley",
+      "title": "Steve \"Silk\" Hurley discography"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:08.264Z",
+  "type": "artist",
+  "editorial_bio": "Steve \"Silk\" Hurley is a legendary Chicago house music producer, DJ, and remixer known for his technical turntablism and global chart success, including the first-ever UK house number one.",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:jack-your-body",
+      "type": "track",
+      "name": "Jack Your Body"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:j-m-silk",
+      "type": "artist",
+      "name": "J. M. Silk"
+    },
+    {
+      "slug": "artist:jack-master-silk",
+      "type": "artist",
+      "name": "Jack Master Silk"
+    },
+    {
+      "slug": "artist:voices-of-life",
+      "type": "artist",
+      "name": "Voices of Life"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:j-m-silk",
+      "type": "artist",
+      "name": "J. M. Silk"
+    }
+  ]
+}

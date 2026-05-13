@@ -1,0 +1,56 @@
+{
+  "slug": "label:halpern-sounds",
+  "name": "Halpern Sounds",
+  "editorial_article": "Halpern Sounds is an independent record label founded in California by the pioneering new age musician Steven Halpern. Established in the mid-1970s, the label served as the primary vehicle for Halpern’s vision of \"anti-frantic alternative\" music—a style characterized by minimalist, static compositions for electric piano that eschewed traditional Western tonality in favor of structures intended to induce deep relaxation and meditative states. By operating outside the conventional music industry, Halpern Sounds became a cornerstone of the burgeoning new age movement. The label’s marketing strategy was equally innovative for its time, as Halpern bypassed traditional record stores, choosing instead to sell his albums in venues such as health food stores, yoga retreats, and alternative retail spaces. This approach not only fostered a direct connection with his audience but also helped define the alternative distribution channels that would become synonymous with the new age genre. Throughout its most active decade, the label facilitated the sale of over one million albums, helping to cement Halpern’s reputation as one of the genre’s most influential architects. The label’s catalog, which includes foundational works like 'Spectrum Suite' and 'Starborn Suite,' remains a significant part of the new age canon, reflecting a period where sound was being actively re-evaluated for its therapeutic, holistic, and psychological applications. Although Halpern later signed with larger entities like Gramavision in 1985 to achieve broader distribution, Halpern Sounds persists as a symbol of the independent spirit that catalyzed the global new age phenomenon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Steven_Halpern",
+      "title": "Steven Halpern - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/label/11380-Halpern-Sounds?srsltid=AfmBOoq_9Q3TVGFZPSceZOrffDk8exKtPODJyqJPIUfs2bU24VkDmP7L",
+      "title": "Halpern Sounds | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:04.587Z",
+  "type": "label",
+  "editorial_description": "A seminal independent label established by Steven Halpern to release 'anti-frantic' and sound-healing-oriented new age music.",
+  "founded": "1975",
+  "location": "California, USA",
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    },
+    {
+      "slug": "artist:georgia-kelly",
+      "type": "artist",
+      "name": "Georgia Kelly"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:spectrum-suite",
+      "type": "project",
+      "name": "Spectrum Suite"
+    },
+    {
+      "slug": "project:starborn-suite",
+      "type": "project",
+      "name": "Starborn Suite"
+    },
+    {
+      "slug": "project:chakra-suite",
+      "type": "project",
+      "name": "Chakra Suite"
+    }
+  ]
+}

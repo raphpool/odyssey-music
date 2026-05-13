@@ -1,0 +1,48 @@
+{
+  "slug": "genre:highlife",
+  "name": "Highlife",
+  "editorial_article": "Highlife is a vibrant and foundational genre of West African music that emerged in the late 19th century along the coastal regions of what is now Ghana, then the British Gold Coast. The genre represents a unique synthesis of traditional Akan rhythms and folklore with the melodic structures of Western jazz, marching band music, and ballroom styles like the foxtrot and calypso. Historically, the term \"Highlife\" was coined in the 1920s as a social descriptor; it referred to the exclusive, high-class dance clubs in Accra and other urban centers where elite patrons, dressed in formal evening attire, would gather to listen to orchestras perform sophisticated, jazz-inflected renditions of indigenous Ghanaian music. Those who could not afford the high entrance fees or who were restricted from entry would listen from outside, describing the music as the sound of the \"high life.\"\\n\\nMusically, Highlife is defined by its infectious, danceable syncopation and the prominent role of brass sections and guitars. A signature technique is the two-finger guitar plucking style, which often mirrors the intricate, polyrhythmic patterns found in traditional West African drumming and percussion. Early pioneers such as E.T. Mensah—often celebrated as the \"King of Highlife\"—were instrumental in popularizing the genre across the continent, blending these traditional elements with the horns and arrangements of big-band jazz. As the genre spread beyond Ghana in the mid-20th century, it evolved into regional subgenres like the guitar-heavy styles of Nigeria, most notably Igbo Highlife. By the 21st century, Highlife’s DNA has profoundly influenced derivative forms including Afrobeat and the electronic, hip-hop-inflected Hiplife. In 2025, Highlife was officially recognized by UNESCO as intangible cultural heritage, underscoring its enduring significance as a pillar of African musical identity and global popular music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Highlife",
+      "title": "Highlife - Wikipedia"
+    },
+    {
+      "url": "https://www.africanmusiclibrary.org/genre/Highlife",
+      "title": "Highlife Music Genre History and Style Description | African Music Library"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:43.151Z",
+  "type": "genre",
+  "editorial_definition": "Highlife is a West African genre characterized by a fusion of traditional Akan rhythms and folklore with Western jazz, horn arrangements, and guitar-led melodies. It originated in Ghana in the early 20th century as a sophisticated, danceable style played in urban clubs and has since profoundly influenced modern African popular music.",
+  "era": "1920s–present",
+  "origin": "Ghana",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:e-t-mensah",
+      "type": "artist",
+      "name": "E.T. Mensah"
+    },
+    {
+      "slug": "artist:cardinal-rex-lawson",
+      "type": "artist",
+      "name": "Cardinal Rex Lawson"
+    },
+    {
+      "slug": "artist:victor-uwaifo",
+      "type": "artist",
+      "name": "Victor Uwaifo"
+    },
+    {
+      "slug": "artist:kwame-asare",
+      "type": "artist",
+      "name": "Kwame Asare"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "track:the-clan",
+  "name": "The Clan",
+  "editorial_article": "\"The Clan\" is a standout track by jazz trombonist Curtis Fuller, originally released on his 1961 album *Soul Trombone* via the Verve/Impulse! lineage. As a pillar of the hard-bop era, Fuller’s work in the early 1960s balanced technical virtuosity with deep, soulful arrangements. \"The Clan\" showcases Fuller’s mastery of the trombone, utilizing the instrument not just as a supporting voice, but as a dynamic lead capable of complex, swinging melodic lines that anchor the track's driving rhythm section.\n\nThe track itself is a quintessential example of the accessible yet sophisticated jazz of the early 1960s. Produced by George Douglas, it captures a session of high musical camaraderie, a hallmark of Fuller’s recordings. The composition demonstrates his ability to write for an ensemble, blending brass-heavy textures with fluid improvisation. The recording has remained a significant piece in Fuller's discography, reflecting the era's transition from traditional bebop to more groove-oriented hard bop styles that resonated with a broader audience. For listeners seeking to understand the mid-century jazz aesthetic, \"The Clan\" serves as a definitive, high-energy entry point. It captures a moment where jazz was simultaneously honoring its technical roots while pushing into a more polished, studio-refined future. The track highlights the synergy between the soloists and the production team during a fertile period for American jazz.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/watch?v=IvdHu6Lt1jY",
+      "title": "The Clan - YouTube (Curtis Fuller Topic)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:32.537Z",
+  "type": "track",
+  "editorial_teaser": "\"The Clan\" is a standout track by jazz trombonist Curtis Fuller, originally released on his 1961 album *Soul Trombone* via the Verve/Impulse!",
+  "artists": [],
+  "project": {
+    "slug": "project:soul-trombone",
+    "type": "project",
+    "name": "Soul Trombone"
+  },
+  "genres": [
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard Bop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:george-douglas",
+      "type": "artist",
+      "name": "George Douglas"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "artist:plastikman",
+  "name": "Plastikman",
+  "editorial_article": "Plastikman is the seminal electronic music alias of British-Canadian producer Richie Hawtin, serving as one of the most influential vessels for the development of minimal techno in the 1990s. Emerging from the vibrant Detroit scene, Hawtin launched the Plastikman project in 1993, moving away from the more aggressive, driving sounds of his earlier FUSE work toward a deeply atmospheric, stripped-back, and hypnotic sonic palette. His debut album, 'Sheet One' (1993), redefined dance music by focusing on cavernous reverb, complex acid-synth patterns, and an obsessive attention to microscopic sonic detail, creating a blueprint for the \"minimal\" movement that would define much of the decade's underground techno.\\n\\nThroughout the 1990s and 2000s, the Plastikman identity allowed Hawtin to explore deeper, more experimental territories than his club-oriented output under his own name or other aliases. Albums like 'Musik' (1994) and the dark, textured 'Consumed' (1998) pushed techno into avant-garde and ambient spaces, prioritizing mood and sonic architecture over traditional rhythmic bombast. Plastikman's influence remains vast; its emphasis on reductionism and textural depth continues to shape modern electronic production, from the deep-tech sounds of the 2000s to experimental club music today. Beyond his recordings, Hawtin's curation of the project—often paired with immersive, high-concept live performances—solidified Plastikman as a vanguard for techno as an art form rather than just a utility for the dancefloor.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/1030-Plastikman",
+      "title": "Plastikman Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:50.622Z",
+  "type": "artist",
+  "editorial_bio": "Plastikman is the seminal electronic music alias of British-Canadian producer Richie Hawtin, serving as one of the most influential vessels for the development of minimal techno in the 1990s.",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:plus-8-records",
+      "type": "label",
+      "name": "Plus 8 Records"
+    },
+    {
+      "slug": "label:novamute",
+      "type": "label",
+      "name": "NovaMute"
+    },
+    {
+      "slug": "label:m-nus",
+      "type": "label",
+      "name": "M_nus"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin"
+    }
+  ],
+  "members": []
+}

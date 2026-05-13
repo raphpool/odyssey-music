@@ -1,0 +1,78 @@
+{
+  "slug": "artist:digital-mystikz",
+  "name": "Digital Mystikz",
+  "editorial_article": "Digital Mystikz is a pioneering South London dubstep production duo comprised of Mark Lawrence (Mala) and Dean Harris (Coki). Emerging from the early 2000s UK dance music scene centered around Big Apple Records and their own influential DMZ label, they were fundamental in defining the \"South London sound\" of dubstep. Their productions are characterized by deep, sub-bass-heavy frequencies, skeletal percussion, and a cavernous, dark atmosphere that draws heavily from roots reggae, dub, and grime. Unlike the later \"brostep\" evolution of the genre, Digital Mystikz maintained a focus on minimalism, space, and spiritual resonance. Beyond their studio productions, their legendary 'DMZ' club nights held at the Mass venue in Brixton became a pilgrimage site for bass enthusiasts globally, helping to coalesce the nascent dubstep community into a global movement. Their catalog, including essential tracks like \"Anti War Dub\" and \"Haunted,\" remains some of the most critically revered material in the history of electronic music. Throughout the late 2000s, they helped shepherd the transition of dubstep from a niche, localized movement into a global phenomenon, influencing countless producers worldwide while retaining their artistic integrity and foundational ties to soundsystem culture. The duo's influence is cemented by their direct involvement in shaping the sonic signature of the genre, and their legacy continues to be felt in modern bass music, where the emphasis on physical weight and sound pressure remains paramount. By keeping their focus on the dancefloor experience, Digital Mystikz ensured that their music functioned as both a visceral, immediate sonic force and a deep, immersive listening experience that transcended the standard tropes of contemporary dance music. Their body of work acts as the primary archival pillar for the original, darker, and more meditative iteration of dubstep.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/203509-Digital-Mystikz?srsltid=AfmBOoqmM__Fw1bfA-gOXGtlN8CKmMYKFX5prPKwErzih3soh_3IHGBX",
+      "title": "Digital Mystikz Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/2c1583ab-3bfa-41b9-b849-4d4b5d891339",
+      "title": "Digital Mystikz - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:35.358Z",
+  "type": "artist",
+  "editorial_bio": "Digital Mystikz is a pioneering South London dubstep production duo comprised of Mark Lawrence (Mala) and Dean Harris (Coki).",
+  "origin": "South London, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dmz",
+      "type": "label",
+      "name": "DMZ"
+    },
+    {
+      "slug": "label:big-apple-records",
+      "type": "label",
+      "name": "Big Apple Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:return-ii-space",
+      "type": "project",
+      "name": "Return II Space"
+    },
+    {
+      "slug": "project:urban-ethics",
+      "type": "project",
+      "name": "Urban Ethics"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:anti-war-dub",
+      "type": "track",
+      "name": "Anti War Dub"
+    },
+    {
+      "slug": "track:haunted",
+      "type": "track",
+      "name": "Haunted"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki"
+    }
+  ]
+}

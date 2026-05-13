@@ -1,0 +1,74 @@
+{
+  "slug": "artist:application",
+  "name": "Application",
+  "editorial_article": "Application is an electronic music producer, notably recognized for their 2014 output released on the Dust Science Recordings label. During this period, Application established a focused, machine-driven sound that aligns with the label's signature blend of sophisticated techno and electro. Their primary body of work includes the 2014 album \"System Fork\" and accompanying EPs such as \"Applied Remixes\" and \"Manifesto 01 EP.\" These releases exhibit a rigorous approach to synthesis and rhythmic structure, characteristic of artists who emerged within the orbit of the Sheffield-based label. While their active recording career was centered around this 2014 emergence, the work remains a distinct contribution to the underground electronic scene of the mid-2010s, showcasing a disciplined mastery of digital production environments. The project is an excellent example of the highly polished, sequence-heavy aesthetics that were championed by the label, often bridging the gap between cold, mechanical precision and dynamic, dancefloor-ready energy. By utilizing complex sound design and modular-leaning sequences, Application successfully channeled the spirit of classic IDM and electro, grounding it in a contemporary production style that resonated within the UK electronic landscape of the time. This focus on structured, technical production continues to make their brief discography a point of interest for listeners who appreciate the depth and technical complexity of mid-2010s underground electronic music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/3887787-Application-2",
+      "title": "Application (2) Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:57.165Z",
+  "type": "artist",
+  "editorial_bio": "Application is an electronic music producer known for a sharp, machine-driven sound emerging from the Sheffield electronic scene in 2014. Their work is characterized by a high degree of technical precision, merging elements of techno and electro into cohesive, high-energy, and rhythmically dense compositions.",
+  "origin": "Sheffield, UK",
+  "active_years": "2014",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dust-science-recordings",
+      "type": "label",
+      "name": "Dust Science Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:system-fork",
+      "type": "project",
+      "name": "System Fork"
+    },
+    {
+      "slug": "project:applied-remixes",
+      "type": "project",
+      "name": "Applied Remixes"
+    },
+    {
+      "slug": "project:manifesto-01-ep",
+      "type": "project",
+      "name": "Manifesto 01 EP"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:system-fork",
+      "type": "track",
+      "name": "System Fork"
+    },
+    {
+      "slug": "track:manifesto-01-ep",
+      "type": "track",
+      "name": "Manifesto 01 EP"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

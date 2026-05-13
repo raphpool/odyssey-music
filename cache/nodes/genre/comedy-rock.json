@@ -1,0 +1,82 @@
+{
+  "slug": "genre:comedy-rock",
+  "name": "Comedy rock",
+  "editorial_article": "Comedy rock is a expansive, multifaceted genre that bridges the gap between the rebellious, high-energy structures of rock music and the subversive, observational nature of comedy. Emerging as a distinct cultural force in the mid-20th century, it thrives on the use of satire, irony, parody, and sheer absurdity to deconstruct rock tropes, lampoon celebrity culture, or simply provide a platform for musical playfulness. Far from being a monolithic movement, comedy rock encompasses everything from the pioneering, avant-garde experiments of Frank Zappa—often cited as the \"godfather\" of the style—to the chart-topping musical parodies of \"Weird Al\" Yankovic, who transformed the parody song into a sustained, multi-decade commercial juggernaut.\\n\\nThe genre’s roots can be traced back to the post-war era, where early American and British entertainers realized that rock 'n' roll’s growing cultural dominance made it a ripe target for ridicule. Whether through the direct spoofs of 1950s rock hits, the surrealist wordplay of groups like the Bonzo Dog Doo-Dah Band, or the character-driven narratives of modern acts like Tenacious D and Flight of the Conchords, comedy rock functions as a mirror held up to the music industry. It allows artists to utilize sophisticated musical technicality while simultaneously undermining the \"seriousness\" traditionally expected of rock performers. Whether it manifests as the theatrical glam-metal parodies of Steel Panther or the eccentric, genre-defying output of bands like Ween and They Might Be Giants, comedy rock remains an essential, albeit often irreverent, pillar of popular music history, challenging the idea that music must be earnest to be meaningful.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Comedy_rock",
+      "title": "Comedy rock - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:41.296Z",
+  "type": "genre",
+  "editorial_definition": "A genre of rock music that incorporates humor, satire, parody, and irony, often to lampoon the traditions and tropes of the music industry or wider society.",
+  "era": "1950s–present",
+  "origin": "United States/United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:rock-music",
+      "type": "genre",
+      "name": "Rock music"
+    },
+    {
+      "slug": "genre:comedy-music",
+      "type": "genre",
+      "name": "Comedy music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:parody-music",
+      "type": "genre",
+      "name": "Parody music"
+    },
+    {
+      "slug": "genre:satirical-music",
+      "type": "genre",
+      "name": "Satirical music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa"
+    },
+    {
+      "slug": "artist:weird-al-yankovic",
+      "type": "artist",
+      "name": "\"Weird Al\" Yankovic"
+    },
+    {
+      "slug": "artist:tenacious-d",
+      "type": "artist",
+      "name": "Tenacious D"
+    },
+    {
+      "slug": "artist:they-might-be-giants",
+      "type": "artist",
+      "name": "They Might Be Giants"
+    },
+    {
+      "slug": "artist:steel-panther",
+      "type": "artist",
+      "name": "Steel Panther"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:mandatory-fun",
+      "type": "project",
+      "name": "Mandatory Fun"
+    },
+    {
+      "slug": "project:the-turtles-present-the-battle-of-the-bands",
+      "type": "project",
+      "name": "The Turtles Present the Battle of the Bands"
+    }
+  ],
+  "landmark_tracks": []
+}

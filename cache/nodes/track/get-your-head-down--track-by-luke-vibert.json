@@ -1,0 +1,44 @@
+{
+  "slug": "track:get-your-head-down--track-by-luke-vibert",
+  "name": "Get Your Head Down",
+  "editorial_article": "\"Get Your Head Down\" is a quintessential piece of 1990s electronic experimentation by British producer Luke Vibert. Originally released in 1995 as part of the influential \"Ninjacuts - Flexistentialism\" compilation on the Ninja Tune label, the track captures the creative, genre-blurring atmosphere of the UK's burgeoning left-field electronic scene. Vibert, known for his prolific output under various aliases including Wagon Christ and Plug, employs his signature eclectic style here, weaving together intricate rhythms and sampled textures that defy simple categorization.\\n\\nThe track serves as an early example of the playful yet technically accomplished production that would become a hallmark of Vibert's career. At the time of its release, \"Get Your Head Down\" stood out within the Ninja Tune roster, reflecting the label's ethos of championing artists who pushed the boundaries of trip-hop, downtempo, and ambient-inflected electronica. By blending organic samples with sharp, processed beats, the track showcases Vibert's early mastery of sound design and his ability to construct immersive, shifting musical landscapes. It remains a notable deep cut in his extensive discography, highlighting the formative period when he was establishing himself as a foundational figure in British electronic music. Listeners looking to understand the sonic evolution of the nineties UK electronic underground will find in this track a clear window into the adventurous spirit of the era. Its appearance on the \"Flexistentialism\" compilation solidified its place as a staple of the mid-nineties Ninja Tune aesthetic.",
+  "citations": [
+    {
+      "url": "http://www.djouls.com/lukevibert/rarities.html",
+      "title": "ninja tune - luke vibert wagon christ plug - rarities"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:39.852Z",
+  "type": "track",
+  "editorial_teaser": "A quintessential piece of 1990s left-field electronica by Luke Vibert, originally featured on the classic Ninja Tune compilation 'Ninjacuts - Flexistentialism'.",
+  "year": "1995",
+  "artists": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip-Hop"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

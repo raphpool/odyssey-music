@@ -1,0 +1,49 @@
+{
+  "slug": "project:journeyman-s-annual",
+  "name": "Journeyman’s Annual",
+  "editorial_article": "Released in 2007 on Stefan Betke’s esteemed ~scape label, 'Journeyman’s Annual' represents a pivotal creative shift for Scott Monteith, the Montreal-based producer widely known as Deadbeat. As his fifth studio album, it demonstrates a move away from strictly conventional dub-techno toward a more expansive and stylistically adventurous sound. Monteith skillfully blends the foundational weight of Jamaican dub with the meticulous, glitch-informed textures that characterized the experimental electronic music laboratories of the mid-2000s. \\n\\nThe album is defined by its emotional resonance and rhythmic diversity. Tracks such as \"Refund Me,\" featuring MC Bubbz, showcase a gritty, dancehall-influenced energy characterized by insistent bass and percussive clatter, while \"Lost Luggage\" delves into the bleaker, darker atmospheres associated with the burgeoning dubstep scene of the era. Elsewhere, tracks like \"Loneliness and Revelry\" highlight Monteith’s ability to weave haunting, industrial-leaning oscillation with delicate, atmospheric detail. 'Journeyman’s Annual' stands as a document of a producer pushing the boundaries of his craft, successfully integrating disparate influences into a cohesive, deeply atmospheric, and emotionally charged listening experience that elevated Deadbeat’s stature within the international electronic music circuit.",
+  "citations": [
+    {
+      "url": "https://xlr8r.com/reviews/journeyman-s-annual/",
+      "title": "Deadbeat Journeyman's Annual"
+    },
+    {
+      "url": "https://open.spotify.com/album/69QS18YGw2PKthiNb7lSbT",
+      "title": "Journeyman's Annual - Album by Deadbeat"
+    },
+    {
+      "url": "https://blkrtz.bandcamp.com/album/journeymans-annual",
+      "title": "Journeyman's Annual | Deadbeat"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:35.944Z",
+  "type": "project",
+  "editorial_pitch": "'Journeyman’s Annual' is the fifth album from Canadian electronic producer Deadbeat, offering a masterclass in diverse digital dub that pushes the boundaries of rhythm and atmosphere. Combining heavy bass pressure with sharp, microscopic textures, the album remains a landmark release in the mid-2000s electronic underground.",
+  "year": "2007",
+  "artists": [],
+  "label": {
+    "slug": "label:scape",
+    "type": "label",
+    "name": "~scape"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:lost-luggage",
+      "type": "track",
+      "name": "Lost Luggage"
+    },
+    {
+      "slug": "track:melbourne-round-midnight",
+      "type": "track",
+      "name": "Melbourne Round Midnight"
+    },
+    {
+      "slug": "track:night-train-to-paris",
+      "type": "track",
+      "name": "Night Train To Paris"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

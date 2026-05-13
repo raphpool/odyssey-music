@@ -1,0 +1,115 @@
+{
+  "slug": "project:pink-moon",
+  "name": "Pink Moon",
+  "editorial_article": "Released in February 1972 on Island Records, *Pink Moon* stands as the third and final studio album by English singer-songwriter Nick Drake. Recorded over two nights in October 1971 at Sound Techniques studio in London, the project represents a profound shift in Drake’s artistic direction. Abandoning the lush, orchestral arrangements and ensemble backing that defined his previous records, *Five Leaves Left* and *Bryter Layter*, Drake opted for a stark, intimate aesthetic. The album features only his intricate acoustic guitar work and voice, with the sole exception of a piano overdub on the title track.\\n\\n*Pink Moon* was born from a desire for simplicity and artistic autonomy. Drake, feeling disillusioned by the poor commercial performance of his earlier work and his discomfort with the demands of promotion, arrived at the studio with producer John Wood to capture his songs in their most elemental form. While the album is frequently colored by the listener’s awareness of Drake’s subsequent struggles and premature death, many close to his inner circle—including those at his label and the recording sessions—recalled him being immensely proud of this work and not in a state of clinical depression during its creation. Despite its sparse, quiet nature, *Pink Moon* has endured as a masterwork of indie folk, its haunting, minimalist beauty gaining widespread recognition long after its initial release. Clocking in at just under 30 minutes, it remains one of the most concentrated and emotionally resonant statements in the singer-songwriter canon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pink_Moon",
+      "title": "Pink Moon - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:53.537Z",
+  "type": "project",
+  "editorial_pitch": "The final, starkly beautiful masterwork from Nick Drake, *Pink Moon* strips away all ornamentation to leave only a singular voice and guitar in a haunting, intimate landscape.",
+  "year": "1972",
+  "artists": [
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake"
+    }
+  ],
+  "label": {
+    "slug": "label:island-records",
+    "type": "label",
+    "name": "Island Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:pink-moon",
+      "type": "track",
+      "name": "Pink Moon"
+    },
+    {
+      "slug": "track:place-to-be",
+      "type": "track",
+      "name": "Place to Be"
+    },
+    {
+      "slug": "track:road",
+      "type": "track",
+      "name": "Road"
+    },
+    {
+      "slug": "track:which-will",
+      "type": "track",
+      "name": "Which Will"
+    },
+    {
+      "slug": "track:horn",
+      "type": "track",
+      "name": "Horn"
+    },
+    {
+      "slug": "track:things-behind-the-sun",
+      "type": "track",
+      "name": "Things Behind the Sun"
+    },
+    {
+      "slug": "track:know",
+      "type": "track",
+      "name": "Know"
+    },
+    {
+      "slug": "track:parasite",
+      "type": "track",
+      "name": "Parasite"
+    },
+    {
+      "slug": "track:free-ride",
+      "type": "track",
+      "name": "Free Ride"
+    },
+    {
+      "slug": "track:harvest-breed",
+      "type": "track",
+      "name": "Harvest Breed"
+    },
+    {
+      "slug": "track:from-the-morning",
+      "type": "track",
+      "name": "From the Morning"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:john-wood",
+      "type": "artist",
+      "name": "John Wood"
+    }
+  ],
+  "related_projects": [
+    {
+      "slug": "project:five-leaves-left",
+      "type": "project",
+      "name": "Five Leaves Left"
+    },
+    {
+      "slug": "project:bryter-layter",
+      "type": "project",
+      "name": "Bryter Layter"
+    }
+  ]
+}

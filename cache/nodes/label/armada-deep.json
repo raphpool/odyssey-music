@@ -1,0 +1,74 @@
+{
+  "slug": "label:armada-deep",
+  "name": "Armada Deep",
+  "editorial_article": "Armada Deep is a focused imprint operating under the expansive umbrella of the Dutch electronic dance music powerhouse, Armada Music. Launched in 2014, the label was established to explore the more atmospheric, melodic, and nuanced side of the house music spectrum, specifically targeting the deep house, tech-house, and melodic house sub-genres. As a satellite operation for Armada—a group historically synonymous with trance—the creation of Armada Deep signaled a strategic pivot to capture the surging interest in deeper, more introspective dance sounds that were dominating European clubs and festivals during the mid-2010s.\\n\\nThe label quickly built a reputation for high-frequency output, prioritizing digital singles and EPs that bridged the gap between underground aesthetic and main-stage accessibility. Its catalog features a range of producers and vocalists, focusing on tracks characterized by lush synths, grooving percussion, and polished production values. Throughout its most active period in the mid-to-late 2010s, Armada Deep served as a vital platform for both emerging talent and established house artists looking to deliver tracks that were better suited for the \"deep\" aesthetic than the label's parent or other trance-leaning sister labels. It was instrumental in maintaining the relevance of the Armada brand within the shifting tastes of the global dance music scene, showcasing the organization's capacity for genre diversification and its commitment to the evolving house landscape. While its output slowed as market trends shifted, the label remains a significant point of reference for the polished melodic and deep house sounds of that decade.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/732643-Armada-Deep?srsltid=AfmBOorA7lnVFNzEx9MPHMYc5yCGUCw_4AoNB84XSVXj7m60cnwpc9hz",
+      "title": "Armada Deep | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Armada_Music",
+      "title": "Armada Music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:55.463Z",
+  "type": "label",
+  "editorial_description": "A specialized sub-label of the Dutch Armada Music group, focusing primarily on deep house, tech-house, and melodic dance music releases.",
+  "genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:compact-grey",
+      "type": "artist",
+      "name": "Compact Grey"
+    },
+    {
+      "slug": "artist:karol-xvii-and-mb-valence",
+      "type": "artist",
+      "name": "Karol XVII & MB Valence"
+    },
+    {
+      "slug": "artist:planet-of-sound",
+      "type": "artist",
+      "name": "Planet Of Sound"
+    },
+    {
+      "slug": "artist:amba-shepherd",
+      "type": "artist",
+      "name": "Amba Shepherd"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:s-a-y",
+      "type": "project",
+      "name": "S.A.Y."
+    },
+    {
+      "slug": "project:together",
+      "type": "project",
+      "name": "Together"
+    },
+    {
+      "slug": "project:sweet-honey-drops",
+      "type": "project",
+      "name": "Sweet Honey Drops"
+    }
+  ]
+}

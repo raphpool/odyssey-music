@@ -1,0 +1,99 @@
+{
+  "slug": "artist:von-sudenfed",
+  "name": "Von Südenfed",
+  "editorial_article": "Von Südenfed was a short-lived but highly distinctive Anglo-German musical collaboration formed in the mid-2000s, bringing together the experimental electronic production duo Mouse on Mars—comprising Andi Toma and Jan St. Werner—with the iconic, caustic delivery of Mark E. Smith, frontman of the post-punk institution The Fall. The project emerged from a 2004 collaboration on a 12-inch single before formalizing their identity as Von Südenfed to release the 2007 album *Tromatic Reflexxions* on Domino Records. The group's sonic signature was defined by the jarring, idiosyncratic friction between Smith's stream-of-consciousness, abrasive vocal style and the intricate, playful, and glitch-heavy electronic textures provided by Toma and St. Werner. \\n\\nMusically, *Tromatic Reflexxions* served as a meeting point for dance-punk, neo-punk, and high-concept electronic music, characterized by sharp, angular synthesizer work and persistent, driving rhythms that provided an unlikely canvas for Smith's sardonic lyrics. Their sound was frequently compared to the contemporary dance-punk resurgence, though it retained a far more chaotic and uncompromising spirit typical of Smith's pedigree. The project remained a singular, volatile chapter in electronic music; while plans for a follow-up were occasionally suggested, the group was short-lived, with the members’ different geographic bases and the unpredictable nature of the collaboration ultimately defining its singular, non-repeatable output. It stands as a cult-favorite experiment that successfully wedded the avant-garde sensibilities of the German electronic scene with the gritty, suburban urgency of British post-punk.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Von_S%C3%BCdenfed",
+      "title": "Von Südenfed - Wikipedia"
+    },
+    {
+      "url": "https://www.dominomusic.com/artists/von-sudenfed",
+      "title": "Von Südenfed | Artists - Domino Recording Company"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/von-sudenfed",
+      "title": "Von Südenfed discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:29.751Z",
+  "type": "artist",
+  "editorial_bio": "Von Südenfed was a short-lived but highly distinctive Anglo-German musical collaboration bringing together Mouse on Mars with The Fall's Mark E. Smith. Their 2007 album 'Tromatic Reflexxions' remains a cult classic of experimental electronic post-punk.",
+  "origin": "Manchester, England / Düsseldorf, Germany",
+  "active_years": "2004-2007",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    },
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    },
+    {
+      "slug": "label:sonig",
+      "type": "label",
+      "name": "Sonig"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tromatic-reflexxions",
+      "type": "project",
+      "name": "Tromatic Reflexxions"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:fledermaus-can-t-get-it",
+      "type": "track",
+      "name": "Fledermaus Can't Get It"
+    },
+    {
+      "slug": "track:the-rhinohead",
+      "type": "track",
+      "name": "The Rhinohead"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:mark-e-smith",
+      "type": "artist",
+      "name": "Mark E. Smith"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    },
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    }
+  ]
+}

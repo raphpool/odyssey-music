@@ -1,0 +1,80 @@
+{
+  "slug": "label:deconstruction-records",
+  "name": "Deconstruction Records",
+  "editorial_article": "Deconstruction Records stands as a pivotal institution in British electronic and dance music history, serving as a critical bridge between underground club culture and mainstream pop success. Founded in London in 1987 by Pete Hadfield, Keith Blackhurst, and M People’s Mike Pickering, the label emerged during a transformative period when house music was exploding across the UK. Deconstruction was instrumental in defining the sound of the 1990s, masterfully balancing the credibility of underground dance floors with the commercial accessibility required for chart dominance. Their aesthetic was characterized by high-energy house, sophisticated dance-pop, and a forward-thinking approach that saw them nurture talent that would define the era. \n\nBeyond its foundational role in the UK house scene, the label achieved immense crossover success with artists like M People, Black Box, and Kylie Minogue, whose 1990s output showcased the label's ability to blend electronic production with polished songwriting. Their reach extended further with underground techno producers like Dave Clarke and eclectic acts like Death in Vegas through their Concrete Records subsidiary. Following an acquisition by BMG in 1993, the label continued to influence the landscape until its eventual wind-down in the early 2000s. A 2009 relaunch saw the label return under Pickering’s guidance, briefly embracing the evolving EDM landscape with signings like Axwell and Calvin Harris. Today, Deconstruction is remembered not just as a business, but as a cultural nexus that helped elevate British dance music to global prominence.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Deconstruction_Records",
+      "title": "Deconstruction Records - Wikipedia"
+    },
+    {
+      "url": "https://ra.co/labels/3349",
+      "title": "Deconstruction · Record label ⟋ RA"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:11.841Z",
+  "type": "label",
+  "editorial_description": "A highly influential British independent record label (later subsidiary) known for defining the 1990s UK house and dance-pop sound through artists like M People, Black Box, and Kylie Minogue.",
+  "founded": "1987",
+  "location": "London, England",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:m-people",
+      "type": "artist",
+      "name": "M People"
+    },
+    {
+      "slug": "artist:black-box",
+      "type": "artist",
+      "name": "Black Box"
+    },
+    {
+      "slug": "artist:kylie-minogue",
+      "type": "artist",
+      "name": "Kylie Minogue"
+    },
+    {
+      "slug": "artist:way-out-west",
+      "type": "artist",
+      "name": "Way Out West"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha"
+    },
+    {
+      "slug": "artist:death-in-vegas",
+      "type": "artist",
+      "name": "Death in Vegas"
+    },
+    {
+      "slug": "artist:republica",
+      "type": "artist",
+      "name": "Republica"
+    },
+    {
+      "slug": "artist:robert-miles",
+      "type": "artist",
+      "name": "Robert Miles"
+    }
+  ],
+  "notable_releases": []
+}

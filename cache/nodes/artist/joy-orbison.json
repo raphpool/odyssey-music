@@ -1,0 +1,84 @@
+{
+  "slug": "artist:joy-orbison",
+  "name": "Joy Orbison",
+  "editorial_article": "Peter O'Grady, professionally known as Joy Orbison (or Joy O), is a highly influential English electronic musician based in London. Emerging in the late 2000s, he garnered immediate acclaim for his 2009 debut single \"Hyph Mngo,\" which was widely celebrated as a transformative moment in post-dubstep and UK garage, characterized by its emotive, atmospheric textures and intricate rhythmic programming. O'Grady's sound is famously difficult to pin down, often described as a coalescence of house, dubstep, UK funky, jungle, and garage. His production approach is deeply informed by his early introduction to UK sound system culture by his uncle, the jungle producer Ray Keith, combined with his own experimental tendencies. Throughout his career, O'Grady has maintained a reputation for quality over quantity, often releasing music through his own label, Hinge Finger, and collaborating with artists like Boddika. His work remains a touchstone for the intersection of club music, emotional melody, and high-fidelity production. In recent years, his output has expanded to encompass more expansive, mixtape-oriented projects like 2021's 'Still Slipping Vol. 1', confirming his status as a restless, forward-thinking architect of modern electronic music. O'Grady's ability to seamlessly weave diverse historical influences into cutting-edge club music has made him one of the most respected figures in the contemporary British electronic landscape. He continues to push boundaries, balancing technical precision with a distinctly soulful, human approach to electronic production, cementing his legacy as a pioneer of the post-dubstep era. His label Hinge Finger, co-founded with Will Bankhead, became a crucial outlet for his and others' forward-thinking electronic works, while his residency at clubs like Just For You in London further solidified his impact on the UK club culture. By constantly evolving—from early grime-inspired loops made in Fruity Loops to the polished, eclectic soundscapes of his recent output—Joy Orbison has remained relevant for over a decade. His work is characterized by a unique balance: he is as comfortable making austere, floor-filling techno as he is crafting delicate, almost ambient textures. This versatility has allowed him to navigate the transition from the mid-2000s dubstep explosion to the more expansive, genre-fluid electronic scene of the 2020s. He remains a vital, albeit enigmatic, presence in dance music. His work has left an indelible mark on London's underground music scene and beyond.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Joy_Orbison",
+      "title": "Joy Orbison - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:41.202Z",
+  "type": "artist",
+  "editorial_bio": "Peter O'Grady, professionally known as Joy Orbison (or Joy O), is a highly influential English electronic musician based in London.",
+  "photo_url": "https://en.wikipedia.org/wiki/File:Joy_Orbison.jpg",
+  "origin": "Croydon, England",
+  "active_years": "2009–present",
+  "genres": [
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK Bass"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hotflush-recordings",
+      "type": "label",
+      "name": "Hotflush Recordings"
+    },
+    {
+      "slug": "label:hinge-finger",
+      "type": "label",
+      "name": "Hinge Finger"
+    },
+    {
+      "slug": "label:swamp81",
+      "type": "label",
+      "name": "Swamp81"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:hyph-mngo",
+      "type": "track",
+      "name": "Hyph Mngo"
+    },
+    {
+      "slug": "track:the-shrew-would-have-cushioned-the-blow",
+      "type": "track",
+      "name": "The Shrew Would Have Cushioned The Blow"
+    },
+    {
+      "slug": "track:flight-fm",
+      "type": "track",
+      "name": "Flight Fm"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

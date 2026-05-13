@@ -1,0 +1,76 @@
+{
+  "slug": "label:burial-mix",
+  "name": "Burial Mix",
+  "editorial_article": "Burial Mix is a seminal Berlin-based record label established in 1996, serving as the dedicated dub and reggae-inflected outlet for the influential Basic Channel project. Founded by Mark Ernestus and Moritz von Oswald—the duo behind the production outfit Rhythm & Sound—the label acted as a crucial bridge between German minimalist techno and the deep, spiritual lineage of Jamaican sound system culture. \\n\\nMusically, Burial Mix is defined by its austere, heavy-bass production style that stripped dub down to its essence, often pairing haunting, reverb-drenched instrumentation with vocal contributions from legends of the roots reggae and dancehall scenes, such as Tikiman (Paul St. Hilaire), Cornell Campbell, Willi Williams, and Jennifer Lara. Throughout its active years, the label maintained a distinctive, high-quality aesthetic, often releasing material on vinyl that emphasized the physical impact of low-frequency sound. It remains a cornerstone of the post-Basic Channel era, illustrating how European electronic producers could thoughtfully engage with and recontextualize reggae history without falling into pastiche. Its influence extends far beyond Berlin, impacting the development of dubstep and deep, experimental electronic music globally. The label’s catalog, marked by its iconic catalog numbering (BM-01, BM-02, etc.), provides a masterclass in atmospheric production and remains essential listening for anyone tracing the evolution of electronic music in the late 20th and early 21st centuries.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/256-Burial-Mix?srsltid=AfmBOorEwZnUElGex4w48YWJ7zq0D2jo0vk2g-erpgJRYOBdxkGvZxLV",
+      "title": "Burial Mix - Discogs"
+    },
+    {
+      "url": "https://www.forcedexposure.com/Labels/BURIAL.MIX.GERMANY.html",
+      "title": "BURIAL MIX - Forced Exposure"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:00.609Z",
+  "type": "label",
+  "editorial_description": "A seminal Berlin-based record label established in 1996, serving as the dedicated dub and reggae-inflected outlet for the influential Basic Channel project. Founded by Mark Ernestus and Moritz von Oswald, it bridged German minimalist techno and Jamaican sound system culture.",
+  "founded": "1996",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound"
+    },
+    {
+      "slug": "artist:tikiman",
+      "type": "artist",
+      "name": "Tikiman"
+    },
+    {
+      "slug": "artist:cornell-campbell",
+      "type": "artist",
+      "name": "Cornell Campbell"
+    },
+    {
+      "slug": "artist:willi-williams",
+      "type": "artist",
+      "name": "Willi Williams"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:never-tell-you",
+      "type": "project",
+      "name": "Never Tell You"
+    },
+    {
+      "slug": "project:king-in-my-empire",
+      "type": "project",
+      "name": "King In My Empire"
+    },
+    {
+      "slug": "project:see-mi-yah-dem-never-know",
+      "type": "project",
+      "name": "See Mi Yah / Dem Never Know"
+    }
+  ]
+}

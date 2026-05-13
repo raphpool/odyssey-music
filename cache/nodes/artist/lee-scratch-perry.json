@@ -1,0 +1,72 @@
+{
+  "slug": "artist:lee-scratch-perry",
+  "name": "Lee 'Scratch' Perry",
+  "editorial_article": "Lee \"Scratch\" Perry (1936–2021), born Rainford Hugh Perry in Kendal, Jamaica, stands as one of the most transformative and eccentric figures in the history of popular music. A producer, songwriter, and performer, Perry was instrumental in the evolution of reggae and the pioneering of dub music during the 1970s. Beginning his career in the late 1950s working for Clement \"Coxsone\" Dodd at the legendary Studio One, Perry rapidly developed a reputation for his idiosyncratic production style and his willingness to defy conventions. Following his time at Studio One and a period with Joe Gibbs, he established his own label, Upsetter Records, and his backing group, The Upsetters, which provided the engine for his early experiments in the genre.\\n\\nPerry's influence is perhaps best defined by his legendary Black Ark studio, which he built in his backyard in Kingston in 1973. Within these walls, he pushed the limits of the available basic recording equipment, utilizing sound manipulation, heavy tape delay, reverb, and inventive mixing techniques to create a dense, psychedelic sonic tapestry that became the bedrock of dub. This period birthed classic works for artists such as The Congos, Max Romeo, Junior Murvin, and Bob Marley and the Wailers. Perry’s \"sonic sleight-of-hand\" allowed him to treat the mixing desk as an instrument in its own right, a radical approach that prefigured modern remix culture and electronic music production. Throughout a career spanning over six decades, Perry's collaborations touched genres far beyond his Jamaican roots, working with artists as diverse as the Beastie Boys, The Clash, The Orb, and Adrian Sherwood, solidifying his status as a foundational architect of global sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lee_%22Scratch%22_Perry",
+      "title": "Lee 'Scratch' Perry - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:23.716Z",
+  "type": "artist",
+  "editorial_bio": "Lee \"Scratch\" Perry (1936–2021), born Rainford Hugh Perry in Kendal, Jamaica, stands as one of the most transformative and eccentric figures in the history of popular music.",
+  "origin": "Kingston, Jamaica",
+  "genres": [
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:upsetter-records",
+      "type": "label",
+      "name": "Upsetter Records"
+    },
+    {
+      "slug": "label:black-art",
+      "type": "label",
+      "name": "Black Art"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:people-funny-boy",
+      "type": "track",
+      "name": "People Funny Boy"
+    },
+    {
+      "slug": "track:the-return-of-django",
+      "type": "track",
+      "name": "The Return of Django"
+    },
+    {
+      "slug": "track:mr-brown",
+      "type": "track",
+      "name": "Mr. Brown"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "genre:speed-garage",
+  "name": "Speed garage",
+  "editorial_article": "Speed garage is a high-energy electronic music subgenre that emerged from the UK’s vibrant dance scene in the mid-1990s, acting as a crucial bridge between traditional American garage house and the percussive intensity of UK jungle and drum and bass. Characterized by its sped-up, syncopated drum patterns, heavily processed and time-stretched vocal samples, and—most importantly—prominent, rolling basslines, the sound redefined the British club landscape. It replaced the smoother, more polished textures of original New York house with a grittier, faster, and more aggressive aesthetic that felt uniquely suited to the late-night intensity of London’s pirate radio stations and underground venues like the Ministry of Sound.\\n\\nThe genre’s genesis was a direct result of producers and DJs experimenting with pitch-shifting soulful vocal samples while layering them over heavier, more complex rhythms. This innovation transformed garage into a harder, more rhythmic powerhouse. Pioneers such as DJ EZ, Tuff Jam, and Todd Edwards were instrumental in carving out this sound, with artists like Double 99 and Armand Van Helden further cementing its status in the global club consciousness. By the late 1990s, speed garage had exploded into the UK mainstream, with hits like Double 99's 'RipGroove' and the Artful Dodger’s chart-dominating tracks bringing the sound to a massive audience. Although the sound eventually fractured into 2-step and the bass-heavy subgenres that would lead to UK garage and dubstep, the influence of speed garage remains undeniable, having established the blueprint for decades of British bass-driven dance music.",
+  "citations": [
+    {
+      "url": "https://www.productionhut.co.uk/blogs/news/unveiling-the-timeless-beats-a-journey-through-the-history-of-speed-garage?srsltid=AfmBOorQJJH5RY25gTDht1ewmtgHz7cWqWPggfM-6OFmcpX_FdUXBPIc",
+      "title": "Unveiling the Timeless Beats: A Journey Through the History of Speed Garage - Production Hut"
+    },
+    {
+      "url": "https://www.toucanmusic.com/articles/speedgarage/",
+      "title": "A history of speed garage - Toucan Music"
+    },
+    {
+      "url": "https://www.soaverecords.com/post/speed-garage",
+      "title": "Speed Garage Explained: From UK Roots to TikTok-Fueled Club ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:43.851Z",
+  "type": "genre",
+  "editorial_definition": "A 1990s UK dance genre defined by sped-up garage house rhythms, chopped-up soulful vocal samples, and aggressive, prominent basslines.",
+  "era": "1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage"
+    },
+    {
+      "slug": "genre:bassline",
+      "type": "genre",
+      "name": "Bassline"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-ez",
+      "type": "artist",
+      "name": "DJ EZ"
+    },
+    {
+      "slug": "artist:todd-edwards",
+      "type": "artist",
+      "name": "Todd Edwards"
+    },
+    {
+      "slug": "artist:tuff-jam",
+      "type": "artist",
+      "name": "Tuff Jam"
+    },
+    {
+      "slug": "artist:double-99",
+      "type": "artist",
+      "name": "Double 99"
+    },
+    {
+      "slug": "artist:armand-van-helden",
+      "type": "artist",
+      "name": "Armand Van Helden"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,71 @@
+{
+  "slug": "label:vertigo-records",
+  "name": "Vertigo Records",
+  "editorial_article": "Vertigo Records was launched in 1969 by the Philips/Phonogram group in the United Kingdom, quickly establishing itself as one of the most culturally significant imprints of the era, particularly within the nascent progressive rock movement. Conceived by Olav Wyper, Gerry Bron, and Tony Reeves, the label was designed as an alternative, non-mainstream platform intended to rival established labels like Harvest and Deram. It became immediately synonymous with a unique aesthetic, most notably through the iconic 'Vertigo Swirl' logo—a mesmerizing, full-label graphic designed by the renowned artist Roger Dean. This visual identity, which adorned the A-sides of its early album releases, cemented the label's cult status among vinyl collectors.\\n\\nThe label’s early success was propelled by a roster of ambitious, experimental artists who defined the shifting landscape of British rock. Its debut release, Colosseum’s 'Valentyne Suite' (1969), set a high bar for quality and ambition. Throughout its 'Swirl' era (1969–1973), Vertigo cultivated a reputation for artistic freedom, providing a home to groundbreaking acts such as Black Sabbath, Gentle Giant, and Manfred Mann's Earth Band. Following the transition away from the 'Swirl' label to the subsequent 'Spaceship' or 'UFO' design in 1973, the label continued to evolve, remaining a vital part of the global music industry under the Phonogram banner. Today, the early 'swirl' era records remain among the most sought-after artifacts of 1970s progressive rock culture, serving as a testament to a time when labels were as much about curatorial vision and design excellence as they were about commercial success.",
+  "citations": [
+    {
+      "url": "https://www.cvinyl.com/labelguides/vertigo.php",
+      "title": "CVINYL.COM - Label Variations: Vertigo Records"
+    },
+    {
+      "url": "https://www.loudersound.com/features/the-labels-that-built-prog-a-brief-history-of-vertigo-records",
+      "title": "The Labels That Built Prog: A Brief History Of Vertigo Records | Louder"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:54.809Z",
+  "type": "label",
+  "editorial_description": "Founded in 1969 as a specialized imprint for progressive rock, Vertigo Records became an iconic label known for its experimental roster and the legendary 'Vertigo Swirl' logo.",
+  "founded": "1969",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:colosseum",
+      "type": "artist",
+      "name": "Colosseum"
+    },
+    {
+      "slug": "artist:black-sabbath",
+      "type": "artist",
+      "name": "Black Sabbath"
+    },
+    {
+      "slug": "artist:gentle-giant",
+      "type": "artist",
+      "name": "Gentle Giant"
+    },
+    {
+      "slug": "artist:manfred-mann-s-earth-band",
+      "type": "artist",
+      "name": "Manfred Mann's Earth Band"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:valentyne-suite",
+      "type": "project",
+      "name": "Valentyne Suite"
+    },
+    {
+      "slug": "project:black-sabbath",
+      "type": "project",
+      "name": "Black Sabbath"
+    },
+    {
+      "slug": "project:acquiring-the-taste",
+      "type": "project",
+      "name": "Acquiring The Taste"
+    }
+  ]
+}

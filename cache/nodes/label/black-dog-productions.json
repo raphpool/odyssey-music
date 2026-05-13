@@ -1,0 +1,52 @@
+{
+  "slug": "label:black-dog-productions",
+  "name": "Black Dog Productions",
+  "editorial_article": "Black Dog Productions originated as an independent imprint established in 1989 by Ken Downie, Ed Handley, and Andy Turner. Originally founded out of necessity because the trio could not find external labels willing to back their early experimental electronic explorations, the label served as the platform for the seminal work that would eventually help define the intelligent dance music (IDM) sound. During these formative years, the label operated in tandem with the \"Black Dog Towers\" bulletin board system, a digital meeting place that nurtured an early community of electronic music producers and enthusiasts. While the imprint is perhaps best remembered today for its association with the foundational 1993 album \"Bytes\"—which was released on Warp Records under the \"Black Dog Productions\" banner to catalog various aliases and collaborative side-projects of the founding members—the imprint's historical significance lies in its role as a precursor to the Warp era. By providing a home for their initial, pioneering EPs, the label allowed the members of The Black Dog to iterate on their sound, which blended techno, ambient, and complex breakbeat programming. The imprint effectively acted as the creative incubator for the trio before their individual projects, such as Plaid (formed by Handley and Turner), gained wider international recognition. The legacy of Black Dog Productions remains deeply intertwined with the early 90s UK experimental scene, serving as a vital link between the rave era and the emergence of more introspective, home-listening electronic music.",
+  "citations": [
+    {
+      "url": "https://warp.net/artists/black-dog-productions",
+      "title": "Black Dog Productions - Artists - WARP"
+    },
+    {
+      "url": "https://ra.co/labels/16870",
+      "title": "Black Dog Productions · Record label RA - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:23.409Z",
+  "type": "label",
+  "editorial_description": "A pioneering UK electronic imprint established in 1989 by Ken Downie, Ed Handley, and Andy Turner to self-release their early experimental techno and ambient works before their eventual collaboration with Warp Records.",
+  "founded": "1989",
+  "location": "United Kingdom",
+  "active_years": "1989-1993",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:bytes",
+      "type": "project",
+      "name": "Bytes"
+    }
+  ]
+}

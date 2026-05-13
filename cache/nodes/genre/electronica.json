@@ -1,0 +1,65 @@
+{
+  "slug": "genre:electronica",
+  "name": "Electronica",
+  "editorial_article": "Electronica is a broad, complex classification of electronic music that emerged in the late 20th century, serving as a catch-all term for electronic sounds intended more for home listening or ambient immersion than strictly for the dancefloor. While its roots can be traced to the experimentation of the 1970s and 1980s, the term gained widespread prominence in the 1990s in the United States, often used to bridge the gap between underground rave culture and mainstream accessibility. Stylistically, electronica acts as a synthesis of various electronic sub-genres; it frequently draws from the rhythms and production techniques of techno, house, and jungle, yet filters these influences through a more atmospheric, downtempo, or chill-out aesthetic. \\n\\nCulturally, the genre is often debated due to its expansive and amorphous nature. In many circles, it is used interchangeably with Intelligent Dance Music (IDM), though electronica generally carries a broader connotation. While artists like The Chemical Brothers and The Prodigy are often cited for bringing high-energy electronic soundscapes to a wider audience, modern iterations of the genre lean heavily into the ambient and downtempo space, exemplified by contemporary artists like Bonobo. Ultimately, electronica represents the democratization and diversification of electronic music, moving the synthesizer and drum machine away from the club's peak-time hours and into the listener's personal space. It remains a fluid spectrum rather than a rigid set of rules, continuously evolving alongside developments in production software and hardware.",
+  "citations": [
+    {
+      "url": "https://www.stereofox.com/genres/electronica/",
+      "title": "Electronica Genre | Stereofox Music Blog"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:29.589Z",
+  "type": "genre",
+  "editorial_definition": "A broad, flexible term for electronic music designed primarily for listening rather than peak-time dancing, often synthesizing elements from ambient, downtempo, and various club genres.",
+  "era": "1990s–Present",
+  "origin": "Global (primarily popularized in the United States/United Kingdom in the 1990s)",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

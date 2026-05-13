@@ -1,0 +1,39 @@
+{
+  "slug": "track:the-peak--2024-techno-track-by-dj-m-white",
+  "name": "The Peak",
+  "editorial_article": "\"The Peak\" is a 2024 electronic track produced by DJ M. White, released on the label iM Electronica. Positioned within the modern techno landscape, specifically the \"peak time/driving\" techno subgenre, the track exemplifies the contemporary push for high-energy, immersive electronic music. At 136 BPM and composed in the key of C Major, the track is characterized by a blend of melodic sensibilities and robust, spherical synthesizer work that creates a hypnotic yet powerful soundscape intended for high-intensity environments. \\n\\nReleased in June 2024, \"The Peak\" serves as a testament to the current output of iM Electronica, a label that frequently highlights driving, synthesis-heavy dance music. The track's production focuses on the interplay between deep, melodic motifs and the relentless rhythmic foundations synonymous with modern peak-time techno. It functions as both a functional dance floor weapon and a testament to the sonic architecture common in the modern digital-first techno circuit, where precision in sound design is as vital as the overall impact of the composition. By capturing a sense of continuous motion and melodic expansion, the track resonates with the aesthetic expectations of clubs and festivals where driving techno forms the core of the experience.",
+  "citations": [
+    {
+      "url": "https://www.beatport.com/release/the-peak/4574735?srsltid=AfmBOoqq2NYtENpF19KM34Jpjrr3bu-rLHGiulGUtYBqT88bNOUedyEF",
+      "title": "DJ M. White - The Peak [iM Electronica] | Music & Downloads on Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:39.749Z",
+  "type": "track",
+  "editorial_teaser": "A driving, high-energy 2024 techno track by DJ M. White characterized by its spherical synthesizer melodies and pulsating 136 BPM rhythm.",
+  "year": "2024",
+  "artists": [
+    {
+      "slug": "artist:dj-m-white",
+      "type": "artist",
+      "name": "DJ M. White"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:dj-m-white",
+      "type": "artist",
+      "name": "DJ M. White"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

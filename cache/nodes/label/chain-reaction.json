@@ -1,0 +1,85 @@
+{
+  "slug": "label:chain-reaction",
+  "name": "Chain Reaction",
+  "editorial_article": "Chain Reaction is a seminal Berlin-based record label founded in 1995 by the legendary duo Moritz von Oswald and Mark Ernestus. As a specialized sub-label of their primary imprint, Basic Channel, Chain Reaction was pivotal in defining the sound of \"dub techno,\" a genre characterized by its hypnotic, cavernous rhythms, heavy reliance on tape-delay echoes, and a stark, industrial atmosphere. While Basic Channel set the template for the genre's intersection of Jamaican dub sensibilities and Detroit techno, Chain Reaction provided a broader, arguably more experimental space for a tighter-knit group of producers to explore the boundaries of ambient and minimal electronic music.\\n\\nThe label became synonymous with a singular, deeply immersive aesthetic—often described as \"heroin house\" or \"glacial techno\"—that mirrored the grey, brutalist, and increasingly gentrifying urban landscape of 1990s Berlin. Operating out of the Hard Wax record shop environment, the label's output, frequently pressed on white-label vinyl with distinctive hand-stamped or minimalist artwork, felt like a secret transmission for the initiated. Key artists such as Porter Ricks (the collaboration of Thomas Köner and Andy Mellweg), Monolake (the project of Robert Henke and Gerhard Behles), Vainqueur, and Substance pushed the limits of sonic texture and repetitive architecture. Releases like Porter Ricks’ \"Biokinetics\" and Monolake’s \"Hongkong\" remain definitive artifacts of the era, showcasing the label's ability to turn electronic repetition into a profound, almost spiritual listening experience. Even decades later, the imprint's legacy persists, having laid the essential groundwork for nearly all modern iterations of deep, atmospheric, and dub-infused dance music globally.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/label/chain_reaction/",
+      "title": "Chain Reaction - Music label - Rate Your Music"
+    },
+    {
+      "url": "https://grokipedia.com/page/chain_reaction_record_label",
+      "title": "Chain Reaction (record label) — Grokipedia"
+    },
+    {
+      "url": "http://reynoldsretro.blogspot.com/2016/03/chain-reaction-basic-channel.html",
+      "title": "Chain Reaction / Basic Channel - ReynoldsRetro"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:11.658Z",
+  "type": "label",
+  "editorial_description": "An influential Berlin record label founded in 1995 by Moritz von Oswald and Mark Ernestus, serving as a critical pillar for the development of dub techno and minimalist electronic music.",
+  "founded": "1995",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake"
+    },
+    {
+      "slug": "artist:vainqueur",
+      "type": "artist",
+      "name": "Vainqueur"
+    },
+    {
+      "slug": "artist:substance",
+      "type": "artist",
+      "name": "Substance"
+    },
+    {
+      "slug": "artist:fluxion",
+      "type": "artist",
+      "name": "Fluxion"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:biokinetics",
+      "type": "project",
+      "name": "Biokinetics"
+    },
+    {
+      "slug": "project:hongkong",
+      "type": "project",
+      "name": "Hongkong"
+    },
+    {
+      "slug": "project:decay-product",
+      "type": "project",
+      "name": "Decay Product"
+    }
+  ]
+}

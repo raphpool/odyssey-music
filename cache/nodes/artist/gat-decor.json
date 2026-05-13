@@ -1,0 +1,63 @@
+{
+  "slug": "artist:gat-decor",
+  "name": "Gat Decor",
+  "editorial_article": "Gat Decor (often stylized as Gat Décor) was a seminal English electronic music act based in Hammersmith, London, that played a pivotal role in the development of the progressive house sound during the early 1990s. Comprising producers and DJs Simon Slater, Laurence Nelson-Boudville, and Simon Hanson, the group’s moniker was a cleverly crafted anagram of 'Tag Records,' the legendary Soho-based record shop that served as a central hub for the UK’s emerging dance music scene. While the group did not maintain a prolific release schedule, their impact on the club landscape of the era was immense, defined almost entirely by their defining anthem, \"Passion.\"\n\nReleased in 1992, \"Passion\" transcended the underground club charts to become a global touchstone of the house genre, noted for its infectious, driving melody and emotional vocal hooks. It is frequently cited as one of the quintessential tracks of the progressive house movement, bridging the gap between deep, hypnotic club cuts and more melodic, crossover-friendly dance music. Though they were active only until the mid-1990s, the enduring legacy of \"Passion\"—which saw a significant commercial resurgence following a 1996 remix—ensured Gat Decor's place in the history of electronic dance music. The group remains a singular example of a collective that achieved lasting cultural relevance through a focused, high-impact approach to production. The project was the brainchild of these three producers, whose work helped shape the sonic textures that would dominate UK dance floors for much of the decade. They are still recognized today for their singular contribution to the sound of progressive house. Their production work also extended into a variety of remixes, including interpretations for artists like Jean-Michel Jarre, which showcased their versatility and technical skill within the electronic sphere, cementing their status as influential figures in the evolution of house music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gat_Decor",
+      "title": "Gat Decor - Wikipedia"
+    },
+    {
+      "url": "https://www.last.fm/music/Gat+D%C3%A9cor/+wiki",
+      "title": "Gat Décor lineup, biography - Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:01.345Z",
+  "type": "artist",
+  "editorial_bio": "Gat Decor was a key English electronic group that defined the early progressive house era, primarily remembered for their monumental 1992 dance floor anthem, 'Passion'. Their work remains a cornerstone of 90s club culture, blending deep melodies with high-energy production that captured the spirit of London's vibrant scene.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/60px-Question_book-new.svg.png",
+  "origin": "Hammersmith, London, England",
+  "active_years": "1992-1997",
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive house"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:passion",
+      "type": "track",
+      "name": "Passion"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:simon-slater",
+      "type": "artist",
+      "name": "Simon Slater"
+    },
+    {
+      "slug": "artist:laurence-nelson-boudville",
+      "type": "artist",
+      "name": "Laurence Nelson-Boudville"
+    },
+    {
+      "slug": "artist:simon-hanson",
+      "type": "artist",
+      "name": "Simon Hanson"
+    }
+  ]
+}

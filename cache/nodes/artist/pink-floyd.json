@@ -1,0 +1,86 @@
+{
+  "slug": "artist:pink-floyd",
+  "name": "Pink Floyd",
+  "editorial_article": "Pink Floyd, one of the most influential and commercially successful bands in the history of rock, emerged from the mid-1960s London underground scene to redefine the sonic boundaries of popular music. Formed in 1966 by Syd Barrett, Roger Waters, Richard Wright, and Nick Mason, the band began as a vanguard of British psychedelia, known for their innovative use of electronic effects, experimental light shows, and long, improvisational compositions. Their debut album, 'The Piper at the Gates of Dawn' (1967), serves as the quintessential document of Syd Barrett's visionary, acid-influenced songwriting, blending melodic eccentricity with abstract, space-rock explorations that paved the way for progressive music. Following Barrett's departure, the band transitioned under the leadership of Roger Waters and David Gilmour, moving away from avant-garde freak-outs toward highly produced, conceptual masterpieces. Albums like 'The Dark Side of the Moon' (1973), 'Wish You Were Here' (1975), and 'The Wall' (1979) established a new musical language that married blues-based rock with sophisticated studio production, tape-loop experimentation, and biting social commentary. Through their focus on themes of madness, alienation, and the human condition, Pink Floyd transformed the rock album into a cohesive, immersive work of art, influencing generations of artists across progressive rock, ambient, and electronic genres. Their legacy remains deeply rooted in the juxtaposition of Waters’ existential angst and the lush, atmospheric soundscapes crafted by Gilmour, Wright, and Mason, cementing their status as architects of the classic rock canon.",
+  "citations": [
+    {
+      "url": "https://www.scaruffi.com/vol2/pinkfloy.html",
+      "title": "The History of Rock Music. Pink Floyd: biography, discography, reviews, ratings, best albums"
+    },
+    {
+      "url": "https://musicdatablog.com.ar/en/influences/pink-floyd-dark-side-moon-inspiration/",
+      "title": "Pink Floyd influences in The Dark Side of the Moon - Music Data Blog"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:08.065Z",
+  "type": "artist",
+  "editorial_bio": "Pink Floyd, one of the most influential and commercially successful bands in the history of rock, emerged from the mid-1960s London underground scene to redefine the sonic boundaries of popular music.",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:the-piper-at-the-gates-of-dawn",
+      "type": "project",
+      "name": "The Piper at the Gates of Dawn"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moon",
+      "type": "project",
+      "name": "The Dark Side of the Moon"
+    },
+    {
+      "slug": "project:wish-you-were-here",
+      "type": "project",
+      "name": "Wish You Were Here"
+    },
+    {
+      "slug": "project:the-wall",
+      "type": "project",
+      "name": "The Wall"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:echoes",
+      "type": "track",
+      "name": "Echoes"
+    },
+    {
+      "slug": "track:comfortably-numb",
+      "type": "track",
+      "name": "Comfortably Numb"
+    },
+    {
+      "slug": "track:money",
+      "type": "track",
+      "name": "Money"
+    },
+    {
+      "slug": "track:interstellar-overdrive",
+      "type": "track",
+      "name": "Interstellar Overdrive"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

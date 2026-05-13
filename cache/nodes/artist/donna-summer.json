@@ -1,0 +1,104 @@
+{
+  "slug": "artist:donna-summer",
+  "name": "Donna Summer",
+  "editorial_article": "Donna Summer, born LaDonna Adrian Gaines in Boston in 1948, was a pioneering American singer-songwriter who rose to international prominence during the 1970s as the defining \"Queen of Disco.\" After spending time in Germany during her early career, where she began working with influential producer Giorgio Moroder, she broke through globally with the hypnotic, extended eroticism of \"Love to Love You Baby\" (1975). Her work with Moroder and Pete Bellotte effectively bridge the gap between soulful R&B, European synthesized electronic music, and the burgeoning dance club scene, creating a sophisticated sonic template that would define the era. Over a career spanning more than four decades, Summer's impact extended well beyond disco; she explored synth-pop, new wave, and R&B, earning multiple Grammy Awards and selling over 100 million records worldwide. Despite enduring a tumultuous relationship with her primary 70s label, Casablanca Records, she continued to adapt, finding later success with hits like \"She Works Hard for the Money\" (1983). Her technical proficiency, vocal range, and pioneering use of synthesizers in popular dance music remain foundational to modern pop and electronic production, leaving an indelible mark on the landscape of global dance music. Throughout her legendary career, Summer collaborated with key industry figures who helped shape the sound of the 70s and 80s, including production masters like Moroder. Her influence on electronic dance music, specifically through tracks like \"I Feel Love,\" cannot be overstated, as that song became a cornerstone of modern electronic music development. Her legacy as an artist who seamlessly transitioned between the organic roots of gospel/R&B and the mechanical precision of studio-produced electronic disco defines her unique place in the canon of American popular music. Summer remains a pivotal figure whose genre-defying work opened doors for countless dance and pop artists who followed in her footsteps.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Donna_Summer_discography",
+      "title": "Donna Summer discography - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/donna-summer-mn0000661524",
+      "title": "Donna Summer Songs, Albums, Reviews, Bio & Mor... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:22.907Z",
+  "type": "artist",
+  "editorial_bio": "Donna Summer, born LaDonna Adrian Gaines in Boston in 1948, was a pioneering American singer-songwriter who rose to international prominence during the 1970s as the defining \"Queen of Disco.\" After spending time in Germany during her early career, where she began working with inf",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Nobel_Peace_Price_Concert_2009_Donna_Summer2.jpg/250px-Nobel_Peace_Price_Concert_2009_Donna_Summer2.jpg",
+  "origin": "Boston, Massachusetts, USA",
+  "active_years": "1968–2012",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:casablanca-records",
+      "type": "label",
+      "name": "Casablanca Records"
+    },
+    {
+      "slug": "label:geffen-records",
+      "type": "label",
+      "name": "Geffen Records"
+    },
+    {
+      "slug": "label:mercury-records",
+      "type": "label",
+      "name": "Mercury Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:lady-of-the-night",
+      "type": "project",
+      "name": "Lady of the Night"
+    },
+    {
+      "slug": "project:love-to-love-you-baby",
+      "type": "project",
+      "name": "Love to Love You Baby"
+    },
+    {
+      "slug": "project:bad-girls",
+      "type": "project",
+      "name": "Bad Girls"
+    },
+    {
+      "slug": "project:once-upon-a-time",
+      "type": "project",
+      "name": "Once Upon a Time..."
+    },
+    {
+      "slug": "project:she-works-hard-for-the-money",
+      "type": "project",
+      "name": "She Works Hard for the Money"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-to-love-you-baby",
+      "type": "track",
+      "name": "Love to Love You Baby"
+    },
+    {
+      "slug": "track:i-feel-love",
+      "type": "track",
+      "name": "I Feel Love"
+    },
+    {
+      "slug": "track:bad-girls",
+      "type": "track",
+      "name": "Bad Girls"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

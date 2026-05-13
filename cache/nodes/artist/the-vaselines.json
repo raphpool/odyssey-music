@@ -1,0 +1,107 @@
+{
+  "slug": "artist:the-vaselines",
+  "name": "The Vaselines",
+  "editorial_article": "The Vaselines are an iconic Scottish alternative rock duo formed in Glasgow in 1986 by songwriters Eugene Kelly and Frances McKee. Initially emerging as a scrappy, guitar-and-vocals duo backed by a drum machine, the band became a cornerstone of the late-80s indie pop and jangle pop scenes. Their aesthetic was characterized by sharp, melodic songwriting and a raw, charmingly amateurish simplicity that would influence a generation of indie and alternative artists. Despite releasing only one full-length album, \"Dum-Dum,\" during their initial three-year run, their influence was cemented by high-profile endorsements from Nirvana's Kurt Cobain, who famously identified Kelly and McKee as his favorite songwriters. This association, marked by Nirvana's iconic covers of \"Molly's Lips,\" \"Son of a Gun,\" and \"Jesus Wants Me for a Sunbeam,\" introduced The Vaselines to a global audience long after their initial breakup in 1989. The band’s legacy is rooted in the \"twee\" or \"noise pop\" tradition, emphasizing catchy, simple hooks and witty, often provocative lyricism. After years of dormancy, the pair reunited in 2008, embarking on a second act that included new studio albums and international touring, confirming their status as cult heroes who helped bridge the gap between British C86-era indie and the massive American alternative rock explosion of the early 1990s. Their catalog, periodically revisited and compiled by labels like Sub Pop, remains a blueprint for lo-fi, honest songwriting.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Vaselines",
+      "title": "The Vaselines - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/the-vaselines-mn0000575379",
+      "title": "The Vaselines Songs, Albums, Reviews, Bio & More - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:12.810Z",
+  "type": "artist",
+  "editorial_bio": "The Vaselines are a seminal Scottish indie pop band from Glasgow, known for their influential 1980s catalog and their profound impact on the 90s alternative rock movement. Primarily led by songwriters Eugene Kelly and Frances McKee, the band is celebrated for its simple, melodic, and charmingly raw approach to alternative rock.",
+  "origin": "Glasgow, Scotland",
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee pop"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:53rd-and-3rd",
+      "type": "label",
+      "name": "53rd & 3rd"
+    },
+    {
+      "slug": "label:k-records",
+      "type": "label",
+      "name": "K Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dum-dum",
+      "type": "project",
+      "name": "Dum-Dum"
+    },
+    {
+      "slug": "project:sex-with-an-x",
+      "type": "project",
+      "name": "Sex with an X"
+    },
+    {
+      "slug": "project:v-for-vaselines",
+      "type": "project",
+      "name": "V for Vaselines"
+    },
+    {
+      "slug": "project:son-of-a-gun-ep",
+      "type": "project",
+      "name": "Son of a Gun EP"
+    },
+    {
+      "slug": "project:dying-for-it-ep",
+      "type": "project",
+      "name": "Dying for It EP"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:molly-s-lips",
+      "type": "track",
+      "name": "Molly's Lips"
+    },
+    {
+      "slug": "track:son-of-a-gun",
+      "type": "track",
+      "name": "Son of a Gun"
+    },
+    {
+      "slug": "track:jesus-wants-me-for-a-sunbeam",
+      "type": "track",
+      "name": "Jesus Wants Me for a Sunbeam"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

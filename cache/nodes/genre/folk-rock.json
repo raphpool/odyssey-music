@@ -1,0 +1,109 @@
+{
+  "slug": "genre:folk-rock",
+  "name": "Folk Rock",
+  "editorial_article": "Folk rock is a defining hybrid genre that emerged in the United States and Britain during the mid-1960s, masterfully bridging the gap between the acoustic purity of traditional folk music and the high-energy, technology-driven sound of rock 'n' roll. As the folk music revival of the 1950s and early 60s reached a cultural crescendo, many artists felt constrained by the movement's adherence to acoustic instruments and its perceived separation from the commercial mainstream. The subsequent fusion catalyzed a seismic shift in popular music, bringing folk's self-conscious, poetic seriousness to the electric, amplified landscape of rock.\\n\\nThe genre's most iconic moment occurred at the 1965 Newport Folk Festival, when Bob Dylan famously “went electric,” a controversial act that heralded the death of folk purism and the birth of a new, electric-folk paradigm. Following this, bands like The Byrds helped define the genre’s aesthetic through the distinctive, jangling chime of 12-string Rickenbacker guitars and sophisticated, Beatles-inspired vocal harmonies. While the American scene quickly diversified, producing socially conscious “protest” anthems from acts like Simon & Garfunkel, The Mamas and the Papas, and Buffalo Springfield, the British scene—led by groups like Fairport Convention—often took a more preservationist approach, blending centuries-old Celtic and English ballads with contemporary rock instrumentation. This stylistic dichotomy between American social commentary and British traditionalism cemented folk rock as a versatile, enduring pillar of modern music.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/folk-rock",
+      "title": "Folk rock | Origins, Genres & Influences | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:27.921Z",
+  "type": "genre",
+  "editorial_definition": "A genre of popular music that fuses the lyrical depth, acoustic traditions, and social consciousness of folk music with the electric instrumentation, driving beat, and production techniques of rock music.",
+  "era": "Mid-1960s to 1970s (peak)",
+  "origin": "United States and United Kingdom",
+  "sonic_markers": "Emphasis on electric 12-string guitars, intricate vocal harmonies, acoustic-to-electric instrumentation hybrids, and narrative-driven lyrics.",
+  "parent_genres": [
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk music"
+    },
+    {
+      "slug": "genre:rock-music",
+      "type": "genre",
+      "name": "Rock music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:the-byrds",
+      "type": "artist",
+      "name": "The Byrds"
+    },
+    {
+      "slug": "artist:simon-and-garfunkel",
+      "type": "artist",
+      "name": "Simon & Garfunkel"
+    },
+    {
+      "slug": "artist:fairport-convention",
+      "type": "artist",
+      "name": "Fairport Convention"
+    },
+    {
+      "slug": "artist:buffalo-springfield",
+      "type": "artist",
+      "name": "Buffalo Springfield"
+    },
+    {
+      "slug": "artist:the-mamas-and-the-papas",
+      "type": "artist",
+      "name": "The Mamas and the Papas"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:bringing-it-all-back-home",
+      "type": "project",
+      "name": "Bringing It All Back Home"
+    },
+    {
+      "slug": "project:mr-tambourine-man",
+      "type": "project",
+      "name": "Mr. Tambourine Man"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:mr-tambourine-man",
+      "type": "track",
+      "name": "Mr. Tambourine Man"
+    },
+    {
+      "slug": "track:turn-turn-turn",
+      "type": "track",
+      "name": "Turn! Turn! Turn!"
+    },
+    {
+      "slug": "track:the-sounds-of-silence",
+      "type": "track",
+      "name": "The Sounds of Silence"
+    },
+    {
+      "slug": "track:eve-of-destruction",
+      "type": "track",
+      "name": "Eve of Destruction"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "slug": "project:i-am-sitting-in-a-room",
+  "name": "I Am Sitting in a Room",
+  "editorial_article": "\"I Am Sitting in a Room\" is a landmark sound art piece composed by the American composer Alvin Lucier in 1969. The work is a profound exploration of resonance, acoustic environment, and the degradation of sound through iterative recording. In the piece, Lucier narrates a short, self-reflexive text about the process of recording himself in a room. He then plays that recording back into the same room and re-records the output, repeating the process many times. With each iteration, the room’s specific acoustic properties—its dimensions, geometry, and materials—act as a filter, emphasizing certain frequencies while attenuating others. Over the course of the recording, the intelligibility of the speech vanishes, eventually leaving only the pure, resonant frequencies of the space itself.\\n\\nRegarded as a seminal work of minimal tape music and sound installation, the piece is celebrated for its ability to transform language into architecture. Edward Strickland, in his analysis of minimalism, noted that \"I Am Sitting in a Room\" unites the core principles of the movement by using extreme repetition and limited means to reveal a physical fact of nature. First performed at the Guggenheim Museum in 1970, the work has been revisited and restaged numerous times, including by Lucier himself throughout his long career. Its influence extends far beyond experimental music, serving as an foundational touchstone for artists interested in conceptual art, acoustics, and the digital manipulation of sound. The work captures the tension between the intent of the artist and the inescapable character of the environment, resulting in an haunting, meditative experience that remains one of the most significant achievements in the history of 20th-century avant-garde composition.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/I_Am_Sitting_in_a_Room",
+      "title": "I Am Sitting in a Room - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:49.267Z",
+  "type": "project",
+  "editorial_pitch": "A seminal sound art work from 1969, Alvin Lucier’s iterative recording project maps the physical resonance of a room through the progressive degradation of human speech.",
+  "year": "1969",
+  "artists": [
+    {
+      "slug": "artist:alvin-lucier",
+      "type": "artist",
+      "name": "Alvin Lucier"
+    }
+  ],
+  "label": {
+    "slug": "label:lovely-music",
+    "type": "label",
+    "name": "Lovely Music"
+  },
+  "genres": [
+    {
+      "slug": "genre:process-music",
+      "type": "genre",
+      "name": "Process music"
+    },
+    {
+      "slug": "genre:sound-art",
+      "type": "genre",
+      "name": "Sound art"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:i-am-sitting-in-a-room",
+      "type": "track",
+      "name": "I Am Sitting in a Room"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

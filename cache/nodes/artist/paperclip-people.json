@@ -1,0 +1,77 @@
+{
+  "slug": "artist:paperclip-people",
+  "name": "Paperclip People",
+  "editorial_article": "Paperclip People is one of the most significant and influential aliases of Detroit techno pioneer Carl Craig. Emerging in the early 1990s, this project represents a more dancefloor-focused and rhythmically driving facet of Craig's expansive musical vision. While Craig's work under his own name or as 69 often leaned into experimental, ambient, or deeply cerebral textures, Paperclip People became the vehicle for some of his most iconic club-oriented anthems. The project is perhaps best known for the seminal track \"Throw,\" a masterpiece of repetitive, funk-infused techno that remains a staple in global house and techno DJ sets decades after its initial release. \\n\\nMusically, Paperclip People tracks are defined by their infectious, high-energy, and often syncopated drum programming, punctuated by warm, analog-inspired synth lines that hint at the influence of disco and funk on the second wave of Detroit techno. Through this alias, Craig demonstrated his rare ability to bridge the gap between underground, uncompromising techno and accessible, soul-stirring dance music. Albums like 1996's *The Secret Tapes Of Dr. Eich* collected much of this output, showcasing a cohesive sound that remains highly regarded by both scholars and practitioners of electronic dance music. The project's connection to Craig's Planet E Communications label—the Detroit institution he founded—further solidified its importance in the history of techno as a self-sustaining and artist-driven movement.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/1706-Paperclip-People",
+      "title": "Paperclip People Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Carl_Craig",
+      "title": "Carl Craig - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/paperclip-people-mn0000010668",
+      "title": "Paperclip People Songs, Albums, Reviews, Bio & More | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:43.477Z",
+  "type": "artist",
+  "editorial_bio": "Paperclip People is a foundational Detroit techno project by visionary producer Carl Craig, celebrated for delivering some of the most iconic, rhythmically driving, and funk-inflected dancefloor classics in electronic music history.",
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:planet-e",
+      "type": "label",
+      "name": "Planet E"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-secret-tapes-of-dr-eich",
+      "type": "project",
+      "name": "The Secret Tapes Of Dr. Eich"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:throw",
+      "type": "track",
+      "name": "Throw"
+    },
+    {
+      "slug": "track:the-climax",
+      "type": "track",
+      "name": "The Climax"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    }
+  ]
+}

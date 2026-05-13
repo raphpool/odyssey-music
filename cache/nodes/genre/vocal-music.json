@@ -1,0 +1,57 @@
+{
+  "slug": "genre:vocal-music",
+  "name": "Vocal Music",
+  "editorial_article": "Vocal music stands as perhaps the most fundamental and intimate form of artistic expression in human culture, defined primarily by the use of the human voice as the primary instrument. It transcends simple categorization, encompassing everything from monophonic liturgical chants preserved in medieval manuscripts to complex polyphonic compositions and modern global pop traditions. Unlike instrumental music, where tone is produced by external mechanical means, vocal music relies on the biological apparatus of the singer, allowing for an incredibly direct conveyance of emotion, language, and narrative. Historically, the Western tradition of vocal music—documented extensively through staff notation since the 10th century—was deeply rooted in the church. The Gregorian chant, with its evolving complexity from syllabic prayer settings to ornate, melismatic liturgical celebrations, formed the foundational bedrock for much of Western polyphony. Beyond sacred contexts, the medieval period also saw the rise of secular monophonic songs by troubadours, trouvères, and minnesingers, who explored themes of chivalry and courtly love, gradually shifting music patronage from the nobility to the broader public. While the term 'vocal music' is often used to describe specific classical art song traditions or choirs, its essence is universal, existing in every culture as a vessel for storytelling, spiritual practice, and communal bonding. It continues to be defined by the delicate interplay between lyrical clarity and melodic elaboration, forever bridged by the unique timbre of the human voice.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/vocal-music",
+      "title": "Vocal music | Definition, History, Characteristics, Types, & Facts | Britannica"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Vocal_music",
+      "title": "Vocal music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:18:10.427Z",
+  "type": "genre",
+  "editorial_definition": "A broad category of music where the human voice is the primary instrument, ranging from solo singing and a cappella performance to large-scale choral works and vocal-led contemporary genres.",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:choral-music",
+      "type": "genre",
+      "name": "Choral Music"
+    },
+    {
+      "slug": "genre:opera",
+      "type": "genre",
+      "name": "Opera"
+    },
+    {
+      "slug": "genre:art-song",
+      "type": "genre",
+      "name": "Art Song"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:classical-music",
+      "type": "genre",
+      "name": "Classical Music"
+    },
+    {
+      "slug": "genre:choral-music",
+      "type": "genre",
+      "name": "Choral Music"
+    },
+    {
+      "slug": "genre:folk-music",
+      "type": "genre",
+      "name": "Folk Music"
+    }
+  ],
+  "key_artists": [],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

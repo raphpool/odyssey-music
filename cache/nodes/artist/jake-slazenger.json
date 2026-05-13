@@ -1,0 +1,108 @@
+{
+  "slug": "artist:jake-slazenger",
+  "name": "Jake Slazenger",
+  "editorial_article": "Jake Slazenger is the pseudonym of the prolific British electronic music producer Mike Paradinas, best known for his experimental and highly influential output within the IDM (Intelligent Dance Music) and breakcore scenes of the mid-1990s. Active primarily under this moniker between 1995 and 1996, with later sporadic releases, the project served as a playground for Paradinas to explore funk-infused, jazz-sampling, and fractured electronic rhythms. Unlike his more cerebral or abrasive work under the µ-Ziq alias, the Jake Slazenger material often leaned into a playful, sample-heavy aesthetic that blended quirky breakbeats with lush, lo-fi synthesizer textures. The project debuted in 1995 with the album 'Makesaracket' on the Clear label, a record that quickly marked him as a key figure in the thriving UK electronic underground. Following this, he signed to the prestigious Warp Records, releasing 'Das Ist Ein Groovybeat, Ja' (1996), which remains a landmark project for its eccentric blend of techno, electro, and avant-garde sampling. The name Jake Slazenger itself reflected the project's somewhat irreverent and self-aware persona, contrasting with the more serious atmosphere prevalent in some corners of contemporary electronica. After a long hiatus, Paradinas revisited the alias in 2020, self-releasing new material that reminded listeners of his enduring command over unconventional electronic rhythm-making. His influence persists through the label he co-founded, Planet Mu, which became a foundational hub for the experimental electronic music that followed his early creative peak.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/3491-Jake-Slazenger?srsltid=AfmBOoplQ5KYjWnOI-KahEgt9rASk-Lno3rsfcvjJvpBgLod4bEk4mP8",
+      "title": "Jake Slazenger Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/jake_slazenger",
+      "title": "Jake Slazenger discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:42.362Z",
+  "type": "artist",
+  "editorial_bio": "Jake Slazenger is an electronic alias of Mike Paradinas, active in the 1990s and known for quirky, sample-heavy IDM and breakcore explorations.",
+  "origin": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:planet-mu",
+      "type": "label",
+      "name": "Planet Mu"
+    },
+    {
+      "slug": "label:clear",
+      "type": "label",
+      "name": "Clear"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:makesaracket",
+      "type": "project",
+      "name": "Makesaracket"
+    },
+    {
+      "slug": "project:das-ist-ein-groovybeat-ja",
+      "type": "project",
+      "name": "Das Ist Ein Groovybeat, Ja"
+    },
+    {
+      "slug": "project:drops-a-deuce",
+      "type": "project",
+      "name": "Drops A Deuce"
+    },
+    {
+      "slug": "project:megaphonk",
+      "type": "project",
+      "name": "Megaphonk"
+    },
+    {
+      "slug": "project:nautilus",
+      "type": "project",
+      "name": "Nautilus"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:nautilus",
+      "type": "track",
+      "name": "Nautilus"
+    },
+    {
+      "slug": "track:pewter-dragon",
+      "type": "track",
+      "name": "Pewter Dragon"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "members": []
+}

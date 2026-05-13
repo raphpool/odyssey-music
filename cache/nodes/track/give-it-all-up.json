@@ -1,0 +1,68 @@
+{
+  "slug": "track:give-it-all-up",
+  "name": "Give It All Up",
+  "editorial_article": "\"Give It All Up\" is an emotive track by the Irish pop-rock quartet The Corrs, appearing on their third studio album, *In Blue* (2000). While the band built their global reputation on a signature fusion of Celtic traditional music and contemporary pop-rock, *In Blue* marked a significant pivot towards a more polished, radio-friendly sound, largely under the influence of producers like Mutt Lange and the band themselves. \"Give It All Up\" fits squarely into this transitional era, showcasing the band’s tight vocal harmonies and the pop sensibilities that defined the album. Though not released as a single, the track is a notable deep cut from a record that cemented their status as international pop stars, blending Andrea Corr's breathy, evocative vocals with the crisp, professional production standards that defined the turn-of-the-millennium pop sound. The song exemplifies the band's ability to maintain their Irish musical roots while adapting to the commercial demands of the global stage, characterized by the shimmering textures and emotive delivery that made *In Blue* one of their best-selling projects. Its inclusion on the Special Edition of the album ensured it reached a wide audience, securing its place within the broader discourse of the band's mid-career output. The track is recognized by fans for its melancholic undertones and serves as an example of the band's consistent thematic exploration of love and longing. The recording features prominent session work, including saxophone by Paul Duffy and trumpet by Ronan Dooney, which adds a layer of sophistication to the track's arrangement. It remains a fan-favored piece of the *In Blue* era, reflecting the culmination of the band's growth as both musicians and song-writers by the year 2000. For further information, one can look towards the band's extensive touring history and the specific producer credits that defined this era. The record remains a pivotal moment in the band's trajectory, establishing them firmly within the pop landscape of the early 2000s. The track itself stands as a testament to the meticulous production of the album. Throughout their career, The Corrs have successfully merged these diverse influences to create a sound that resonates deeply with audiences across the globe, and this track is a quintessential example of that artistic identity at work. It highlights the collaborative strength of the Corr siblings, Andrea, Sharon, Caroline, and Jim, whose collective talents continue to be a defining force in their discography. The song remains a cherished part of their musical catalog.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/4762495-The-Corrs-In-Blue?srsltid=AfmBOoqbQvN03Gbgy1aNL9EE2uJ3lbpQGcILS_2HV4TKbwjrgzmOOwd8",
+      "title": "The Corrs – In Blue – 2 x CD (Album, Special Edition ... - Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/In_Blue",
+      "title": "In Blue - Wikipedia"
+    },
+    {
+      "url": "https://napathon.net/AlbumID202.php",
+      "title": "Track List: The Corrs - In Blue Special Edition (Disc 1) on CD"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:12.276Z",
+  "type": "track",
+  "editorial_teaser": "A melancholic pop-rock track from The Corrs' 2000 album 'In Blue', highlighting the band's hallmark vocal harmonies and professional production.",
+  "year": "2000",
+  "duration": "3:29",
+  "artists": [
+    {
+      "slug": "artist:the-corrs",
+      "type": "artist",
+      "name": "The Corrs"
+    }
+  ],
+  "project": {
+    "slug": "project:in-blue",
+    "type": "project",
+    "name": "In Blue"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:celtic-fusion",
+      "type": "genre",
+      "name": "Celtic fusion"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:the-corrs",
+      "type": "artist",
+      "name": "The Corrs"
+    },
+    {
+      "slug": "artist:mutt-lange",
+      "type": "artist",
+      "name": "Mutt Lange"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

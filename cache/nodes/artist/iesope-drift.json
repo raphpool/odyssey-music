@@ -1,0 +1,75 @@
+{
+  "slug": "artist:iesope-drift",
+  "name": "Iesope Drift",
+  "editorial_article": "\"Iesope\" (often associated with the project Iesope Drift) stands as a testament to the distinct, claustrophobic, and mechanical aesthetic of late 90s industrial techno emerging from the German underground. While often confused as a track name due to the project's eponymous branding, the project Iesope Drift, founded in the mid-1990s, became a cult fixture on labels like Seico Corp Recordings. The moniker itself—and the output associated with it—is deeply rooted in a style that favored cyclical rhythms, cold synthesized textures, and a rhythmic tension that mirrored the decaying post-industrial landscapes of its origin. \n\nThe music of Iesope Drift is rarely about melodic accessibility; rather, it prioritizes a sense of \"drift\" and sonic isolation. Their releases, such as the *Tuljähn* EP or the *Sulkek* EP, reflect a period in German electronic music where techno was shedding its rave optimism in favor of darker, more introspective, and highly technical soundscapes. By utilizing repetitive motifs that slowly evolve or dissolve, the project created a signature sound that was precise yet unsettling. As a figure within this niche, Iesope Drift has remained a touchstone for those interested in the harder, more abstract fringes of techno, with their material being re-evaluated and re-issued in the 21st century by labels like Ownlife, which seek to preserve the legacy of these essential, albeit elusive, underground artifacts. For the dedicated listener, the work remains an exercise in atmospheric, driving, and uncompromising industrial composition.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/23225-Iesope-Drift?srsltid=AfmBOopoLXE4DOX_-pqmqsmFnWTcLruzfhrG4pHDr8sjVV",
+      "title": "Iesope Drift Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://ownlife.bandcamp.com/album/iesope-drift-ostia-only-vinyl",
+      "title": "Iesope Drift / Ostia (ONLY VINYL) | Iesope Drift / Ostia | Ownlife"
+    },
+    {
+      "url": "https://iesopedrift.bandcamp.com/",
+      "title": "Music | Iesope Drift"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:39.010Z",
+  "type": "artist",
+  "editorial_bio": "\"Iesope\" (often associated with the project Iesope Drift) stands as a testament to the distinct, claustrophobic, and mechanical aesthetic of late 90s industrial techno emerging from the German underground.",
+  "origin": "Germany",
+  "genres": [
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:seico-corp-recordings",
+      "type": "label",
+      "name": "Seico Corp Recordings"
+    },
+    {
+      "slug": "label:ownlife",
+      "type": "label",
+      "name": "Ownlife"
+    },
+    {
+      "slug": "label:element-com",
+      "type": "label",
+      "name": "Element Com"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:arlette",
+      "type": "track",
+      "name": "Arlette"
+    },
+    {
+      "slug": "track:tuljahn",
+      "type": "track",
+      "name": "Tuljähn"
+    },
+    {
+      "slug": "track:korot",
+      "type": "track",
+      "name": "Korot"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

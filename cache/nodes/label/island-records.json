@@ -1,0 +1,116 @@
+{
+  "slug": "label:island-records",
+  "name": "Island Records",
+  "editorial_article": "Founded in 1959 by Chris Blackwell, Island Records stands as one of the most influential and diverse independent record labels in music history. Initially established in Jamaica to release local jazz and calypso music, the label soon relocated to London in 1962, where it became a pivotal force in bridging the gap between Caribbean sounds and the burgeoning British rock scene. Island’s early identity was forged by its commitment to artistic integrity and its willingness to sign mavericks, ranging from the ska pioneers like Millie Small to the progressive and folk-rock icons of the late 1960s and 70s, including Traffic, Free, Jethro Tull, and Nick Drake. The label’s aesthetic was defined by a sense of creative freedom, often providing a home for artists who operated outside the mainstream, such as the enigmatic Tom Waits or the genre-defying Grace Jones. \\n\\nIsland’s cultural impact is perhaps most famously associated with its long-term partnership with Bob Marley & The Wailers, which introduced reggae to a global audience and transformed Marley into an international icon. This spirit of cultural exploration continued into the 1980s, when Island became a premier outlet for world music through its Mango imprint, championing artists like King Sunny Ade and Salif Keita. Simultaneously, the label nurtured U2 from their early post-punk days into one of the world's biggest stadium rock bands. Over its six-decade history, Island Records has maintained a distinct identity that balances commercial success with avant-garde experimentation, consistently evolving while staying true to its roots as a hub for game-changers in music. Today, it operates as a major label within the Universal Music Group, but its legacy as a bastion of independent-minded, culturally significant music remains central to its brand.",
+  "citations": [
+    {
+      "url": "https://www.islandrecords.co.uk/history/",
+      "title": "History - Island Records"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Island_Records",
+      "title": "Island Records - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:52.920Z",
+  "type": "label",
+  "editorial_description": "A historic, trend-setting record label founded by Chris Blackwell, renowned for its diverse roster ranging from reggae pioneers to progressive rock icons and game-changing alternative acts.",
+  "founded": "1959",
+  "location": "London, United Kingdom (relocated from Jamaica)",
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock"
+    },
+    {
+      "slug": "genre:world-music",
+      "type": "genre",
+      "name": "World Music"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2"
+    },
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake"
+    },
+    {
+      "slug": "artist:traffic",
+      "type": "artist",
+      "name": "Traffic"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:tom-waits",
+      "type": "artist",
+      "name": "Tom Waits"
+    },
+    {
+      "slug": "artist:king-sunny-ade",
+      "type": "artist",
+      "name": "King Sunny Ade"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:catch-a-fire",
+      "type": "project",
+      "name": "Catch a Fire"
+    },
+    {
+      "slug": "project:the-joshua-tree",
+      "type": "project",
+      "name": "The Joshua Tree"
+    },
+    {
+      "slug": "project:in-the-court-of-the-crimson-king",
+      "type": "project",
+      "name": "In the Court of the Crimson King"
+    },
+    {
+      "slug": "project:pink-moon",
+      "type": "project",
+      "name": "Pink Moon"
+    },
+    {
+      "slug": "project:liege-and-lief",
+      "type": "project",
+      "name": "Liege & Lief"
+    }
+  ]
+}

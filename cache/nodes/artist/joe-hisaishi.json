@@ -1,0 +1,82 @@
+{
+  "slug": "artist:joe-hisaishi",
+  "name": "Joe Hisaishi",
+  "editorial_article": "Joe Hisaishi, born Mamoru Fujisawa in 1950, is a legendary Japanese composer, pianist, and conductor whose work has defined the soundscape of contemporary Japanese cinema and animation. Rising to prominence in the late 1970s, he emerged from the world of minimalist music and experimental electronic production before finding his most enduring partnership with filmmaker Hayao Miyazaki in 1984. This collaboration, which spans nearly all of Miyazaki's Studio Ghibli masterpieces—including 'Nausicaä of the Valley of the Wind', 'My Neighbor Totoro', and 'Spirited Away'—has often been compared to the cinematic synergy of Steven Spielberg and John Williams. Hisaishi’s sonic signature is characterized by its emotional resonance, blending lush orchestral textures with minimalist piano motifs that evoke deep nostalgia and wonder. Beyond his work in animation, Hisaishi has maintained an prolific career as a soloist and a collaborator with filmmakers like Takeshi Kitano, contributing iconic scores to films such as 'Hana-bi' and 'Sonatine'. Trained at the Kunitachi College of Music, his deep roots in composition allow him to bridge the gap between traditional Japanese aesthetics and Western classical traditions, while never losing the experimental edge he honed in his early electronic days. His enduring influence continues to shape modern film scoring, while his solo piano works, such as the 'Piano Stories' series, remain staples of contemporary instrumental music. Throughout his decades-long career, Hisaishi has consistently demonstrated an ability to capture the complex emotional landscapes of film, cementing his status as one of the most prolific and celebrated composers in modern culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Joe_Hisaishi",
+      "title": "Joe Hisaishi - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Joe_Hisaishi_discography",
+      "title": "Joe Hisaishi discography - Wikipedia"
+    },
+    {
+      "url": "https://joehisaishi.com/discography/",
+      "title": "Joe Hisaishi Official Website"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:19.563Z",
+  "type": "artist",
+  "editorial_bio": "Joe Hisaishi is a prolific Japanese composer and pianist renowned for his long-standing collaboration with director Hayao Miyazaki and his seminal contributions to the soundtracks of Studio Ghibli films. His work blends minimalist, classical, and electronic elements, creating emotionally evocative scores that have earned him international acclaim.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Joe_Hisaishi_2011.jpg/250px-Joe_Hisaishi_2011.jpg",
+  "origin": "Nakano, Nagano, Japan",
+  "active_years": "1974–present",
+  "genres": [
+    {
+      "slug": "genre:film-score",
+      "type": "genre",
+      "name": "Film score"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism"
+    },
+    {
+      "slug": "genre:classical-music",
+      "type": "genre",
+      "name": "Classical music"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:deutsche-grammophon",
+      "type": "label",
+      "name": "Deutsche Grammophon"
+    },
+    {
+      "slug": "label:polydor-records",
+      "type": "label",
+      "name": "Polydor Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:one-summer-s-day",
+      "type": "track",
+      "name": "One Summer's Day"
+    },
+    {
+      "slug": "track:summer",
+      "type": "track",
+      "name": "Summer"
+    },
+    {
+      "slug": "track:my-neighbor-totoro",
+      "type": "track",
+      "name": "My Neighbor Totoro"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

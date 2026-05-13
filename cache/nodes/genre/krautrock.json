@@ -1,0 +1,132 @@
+{
+  "slug": "genre:krautrock",
+  "name": "Krautrock",
+  "editorial_article": "Krautrock—originally and more accurately known as *kosmische Musik* (cosmic music)—is an expansive and revolutionary genre of experimental rock that emerged from the West German cultural landscape in the late 1960s and early 1970s. Born from the socio-political crucible of post-war Germany, the movement was driven by a young generation eager to dismantle the remnants of their country’s Nazi history and reject the dominance of Anglo-American pop and blues-based rock. Instead, these musicians turned toward a radical, often avant-garde synthesis of psychedelic rock, electronic experimentation, minimalism, and musique concrète. The result was a sound entirely distinct from the era's mainstream, characterized by hypnotic, repetitive rhythms—most notably the \"motorik\" beat pioneered by bands like Neu!—extended improvisations, and the pioneering use of synthesizers and tape manipulation.\\n\\nThe term \"Krautrock\" itself was originally a pejorative umbrella label used by the British music press to group together an incredibly diverse set of bands that had little in common beyond their nationality. Despite its origins as a slight, the term eventually became a badge of honor for the experimental scene. The music profoundly reshaped the trajectory of rock and electronic music, laying the groundwork for ambient music, post-punk, techno, and even the \"kosmische\" school of electronic music that flourished in Berlin and Düsseldorf. Artists such as Can, Kraftwerk, Faust, and Tangerine Dream created soundscapes that transcended traditional song structures, moving instead into meditative, trance-inducing, and intellectually challenging spaces that continue to influence experimental electronic music today. It represents one of the most vital moments in 20th-century music, where the search for a new, post-national identity produced some of the most forward-thinking records of the era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Krautrock",
+      "title": "Krautrock - Wikipedia"
+    },
+    {
+      "url": "https://colorsberlin.com/what-is-krautrock/",
+      "title": "What is Krautrock? A Brief History and Characteristics - colorsberlin.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:04.216Z",
+  "type": "genre",
+  "editorial_definition": "A broad, experimental music movement originating in West Germany in the late 1960s, characterized by hypnotic rhythms, electronic experimentation, and a rejection of traditional Anglo-American rock song structures.",
+  "era": "Late 1960s to mid-1970s",
+  "origin": "West Germany",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    },
+    {
+      "slug": "genre:dusseldorf-school",
+      "type": "genre",
+      "name": "Düsseldorf School"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:kosmische-musik",
+      "type": "genre",
+      "name": "Kosmische Musik"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:can",
+      "type": "artist",
+      "name": "Can"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!"
+    },
+    {
+      "slug": "artist:faust",
+      "type": "artist",
+      "name": "Faust"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    },
+    {
+      "slug": "label:ohr",
+      "type": "label",
+      "name": "Ohr"
+    },
+    {
+      "slug": "label:sky-records",
+      "type": "label",
+      "name": "Sky Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:tago-mago",
+      "type": "project",
+      "name": "Tago Mago"
+    },
+    {
+      "slug": "project:ege-bamyasi",
+      "type": "project",
+      "name": "Ege Bamyasi"
+    },
+    {
+      "slug": "project:autobahn",
+      "type": "project",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "project:neu-75",
+      "type": "project",
+      "name": "Neu! 75"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,90 @@
+{
+  "slug": "label:die-stadt",
+  "name": "Die Stadt",
+  "editorial_article": "Die Stadt is a highly influential German independent record label that has served as a cornerstone for experimental, ambient, and industrial music since the 1990s. Based in Bremen, the label has cultivated a distinct, minimalist aesthetic, frequently focusing on long-form drone works, musique concrète, and avant-garde soundscapes. Die Stadt is particularly celebrated for its deep associations with key figures in the European experimental underground, including Asmus Tietchens, David Jackman (Organum), and Thomas Köner. The label's output is characterized by a commitment to physical media, often releasing limited-edition LPs, CDs, and box sets that emphasize the tactile nature of music consumption. Through its meticulous curation and long-term support of visionary composers, Die Stadt has helped document and shape the evolution of modern electronic sound, acting as a vital bridge between historical industrial pioneers and contemporary experimentalists. Its catalog serves as a rigorous archive of challenging, thought-provoking sonic art. By fostering collaborative projects like the renowned 'Kontakt der Jünglinge' series between Köner and Tietchens, Die Stadt has provided a platform for some of the most profound sonic dialogues in late 20th and early 21st-century music. The label remains a vital entity for those interested in the darker, more introspective corners of the electronic spectrum, consistently maintaining a high standard of quality in both content and presentation. Its legacy is one of unwavering dedication to the avant-garde, ensuring that complex, non-commercial music finds a dedicated audience and a permanent place in the canon of experimental sound.",
+  "citations": [
+    {
+      "url": "https://www.a-musik.com/label/die-stadt.html",
+      "title": "DIE STADT - a-musik"
+    },
+    {
+      "url": "https://www.soundohm.com/label/die-stadt?layout=big-grid",
+      "title": "Die Stadt - Soundohm"
+    },
+    {
+      "url": "https://www.forcedexposure.com/Labels/DIE.STADT.GERMANY.html",
+      "title": "DIE STADT - Forced Exposure"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:03.410Z",
+  "type": "label",
+  "editorial_description": "A Bremen-based independent label known for its rigorous curation of experimental, industrial, and ambient music, featuring key figures like Asmus Tietchens and David Jackman.",
+  "founded": "\"1990s\"",
+  "location": "Bremen, Germany",
+  "genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:asmus-tietchens",
+      "type": "artist",
+      "name": "Asmus Tietchens"
+    },
+    {
+      "slug": "artist:david-jackman",
+      "type": "artist",
+      "name": "David Jackman"
+    },
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
+    },
+    {
+      "slug": "artist:richard-h-kirk",
+      "type": "artist",
+      "name": "Richard H. Kirk"
+    },
+    {
+      "slug": "artist:michael-prime",
+      "type": "artist",
+      "name": "Michael Prime"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:kontakt-der-junglinge-fruhruin",
+      "type": "project",
+      "name": "Kontakt der Jünglinge: Frühruin"
+    },
+    {
+      "slug": "project:aural-illusions",
+      "type": "project",
+      "name": "Aural Illusions"
+    },
+    {
+      "slug": "project:steadfast",
+      "type": "project",
+      "name": "Steadfast"
+    }
+  ]
+}

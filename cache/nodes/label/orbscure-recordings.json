@@ -1,0 +1,61 @@
+{
+  "slug": "label:orbscure-recordings",
+  "name": "Orbscure Recordings",
+  "editorial_article": "Orbscure Recordings is an independent electronic music label established in 2021 by Alex Paterson, the co-founder and driving force behind the seminal ambient house group The Orb. Conceived as a creative vehicle to house Paterson’s expansive and varied collaborative musical output, the label functions as a platform for both his own projects and a global roster of artists. The label's name is a playful nod to Brian Eno’s legendary \"Obscure\" label, which was active on Editions EG in the 1970s—a connection Paterson has openly acknowledged, describing the name as a \"clever parrot\" play on the iconic predecessor. Musically, Orbscure focuses on immersive ambient, electronica, and experimental soundscapes, continuing the tradition of sonic exploration that defined Paterson’s career. The label's inaugural release was 'The Heavens' by Sedibus, a project reuniting Paterson with original Orb member Andy Falconer, signaling a commitment to both new collaborations and deep-rooted creative relationships. By design, the label provides an outlet for Paterson to explore musical avenues outside the immediate confines of The Orb, while also extending its reach to include a diverse array of international artists from regions as varied as Uganda, Kenya, Argentina, Japan, and the United States. Through its blend of legacy-conscious curation and a forward-looking, global perspective, Orbscure Recordings stands as a significant, focused node in the ongoing history of ambient and electronic music culture. Beyond just a music imprint, it represents a continuation of the DIY, experimental spirit that Paterson has championed for over five decades. By maintaining artistic independence and prioritizing sonic atmosphere over commercial trends, Orbscure carves out a niche for experimentalists and ambient pioneers alike, ensuring that Paterson's relentless creative output finds a home unencumbered by major label structures. It is a vital component of his artistic legacy.",
+  "citations": [
+    {
+      "url": "https://inverted-audio.com/alex-paterson-launches-orbscure-recordings-announces-biography-and-collaborative-sedibus-lp/",
+      "title": "Alex Paterson launches Orbscure Recordings, announces biography and collaborative Sedibus LP - Inverted Audio"
+    },
+    {
+      "url": "https://music.mxdwn.com/2021/03/17/news/the-orbs-alex-paterson-founds-new-label-orbscure-recordings-announces-new-project-with-andy-falconer-called-sedibus-and-announces-labels-first-release/",
+      "title": "The Orb's Alex Paterson Founds New Label Orbscure Recordings"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:32.286Z",
+  "type": "label",
+  "editorial_description": "Orbscure Recordings is a London-based electronic music label founded in 2021 by Alex Paterson, dedicated to ambient, electronica, and global collaborative projects. It serves as a creative platform for Paterson’s diverse output and an international roster of experimental artists.",
+  "founded": "2021",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:alex-paterson",
+      "type": "artist",
+      "name": "Alex Paterson"
+    },
+    {
+      "slug": "artist:sedibus",
+      "type": "artist",
+      "name": "Sedibus"
+    },
+    {
+      "slug": "artist:andy-falconer",
+      "type": "artist",
+      "name": "Andy Falconer"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-heavens",
+      "type": "project",
+      "name": "The Heavens"
+    }
+  ]
+}

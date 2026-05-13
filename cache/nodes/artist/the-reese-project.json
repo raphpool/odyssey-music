@@ -1,0 +1,97 @@
+{
+  "slug": "artist:the-reese-project",
+  "name": "The Reese Project",
+  "editorial_article": "The Reese Project was a pivotal US house and garage music project formed in the early 1990s, masterminded by the legendary Detroit techno pioneer Kevin Saunderson alongside vocalist Ann Saunderson. Serving as a vehicle for Saunderson's exploration of more soulful, vocal-driven house compared to his more abrasive techno work, the project became a staple of the international club scene during the early '90s. Their music bridged the gap between Detroit's industrial-leaning electronic roots and the sophisticated, gospel-inflected sounds of New York and New Jersey garage. Featuring powerful, emotive vocals from Ann Saunderson, tracks like \\\"The Colour of Love\\\" and \\\"Direct Me\\\" became quintessential anthems in the burgeoning rave and house scenes, particularly in the UK through their association with the influential Network Records. The Reese Project captured a specific moment in time where house music was transitioning from an underground club phenomenon to a global chart-topping sound, successfully balancing pop-sensibility, high-fidelity production, and deep club roots. Their influence remains significant in how they helped codify the \\\"classic house\\\" sound, blending synthetic, pulsing rhythm sections with human, transcendent vocal performances that would define much of the decade's dance music output. The collaboration highlighted the versatility of Detroit's creative output, moving beyond pure techno into the broader spectrum of electronic dance music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/7609-The-Reese-Project?srsltid=AfmBOopUudI85xV1miVoohMIgM0N4QaVBIEUpaB9TPSKfn-F30yrmndS",
+      "title": "The Reese Project Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://music.apple.com/us/artist/the-reese-project/1546098507",
+      "title": "The Reese Project - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:48.963Z",
+  "type": "artist",
+  "editorial_bio": "The Reese Project was a pivotal US house and garage music project formed in the early 1990s, masterminded by the legendary Detroit techno pioneer Kevin Saunderson alongside vocalist Ann Saunderson.",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:kms",
+      "type": "label",
+      "name": "KMS"
+    },
+    {
+      "slug": "label:network-records",
+      "type": "label",
+      "name": "Network Records"
+    },
+    {
+      "slug": "label:giant-records",
+      "type": "label",
+      "name": "Giant Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:faith-hope-and-clarity",
+      "type": "project",
+      "name": "Faith Hope & Clarity"
+    },
+    {
+      "slug": "project:faith-hope-and-clarity-remixed",
+      "type": "project",
+      "name": "Faith Hope & Clarity Remixed"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:direct-me",
+      "type": "track",
+      "name": "Direct Me"
+    },
+    {
+      "slug": "track:the-colour-of-love",
+      "type": "track",
+      "name": "The Colour Of Love"
+    },
+    {
+      "slug": "track:i-believe",
+      "type": "track",
+      "name": "I Believe"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    },
+    {
+      "slug": "artist:ann-saunderson",
+      "type": "artist",
+      "name": "Ann Saunderson"
+    }
+  ]
+}

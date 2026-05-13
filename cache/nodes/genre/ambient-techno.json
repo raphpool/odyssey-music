@@ -1,0 +1,138 @@
+{
+  "slug": "genre:ambient-techno",
+  "name": "Ambient techno",
+  "editorial_article": "Ambient techno is a subgenre of electronic music that emerged in the late 1980s and early 1990s as a thoughtful, home-listening alternative to the intensifying club-oriented techno of the era. By blending the mechanical, repetitive rhythmic structures characteristic of Detroit techno with the spacious, texture-heavy soundscapes pioneered by ambient artists like Brian Eno, the genre moved electronic music out of the sweaty rave environment and into a more introspective, cerebral space. Characterized by slower tempos, warmer analogue synthesizer pads, and subtle, understated percussion, ambient techno prioritized mood and atmosphere over peak-time danceability. \\n\\nThe genre found its intellectual home in the United Kingdom, where labels like Warp Records famously championed the movement through their landmark 'Artificial Intelligence' compilation series in 1992. This release helped define the 'intelligent techno' aesthetic, which sought to distance itself from the harder, faster hardcore sounds gaining traction in UK clubs. Early pioneers including Aphex Twin, The Black Dog, B12, and Autechre helped codify the sound, moving between emotive melodies and alien, complex textures. As the 1990s progressed, the genre’s influence spread to Germany, where producers like Pete Namlook and groups like Basic Channel utilized dub-informed production techniques and minimal aesthetics to evolve the sound into distinct styles like dub techno. From the lush synthesizer arrangements of 90s British classics to the stark, hypnotic loops of Berlin minimalists, ambient techno remains a vital, influential branch of electronic music that elevated the techno producer to the status of an auteur, proving that dance-derived music could be just as effective in a living room as it was on a strobe-lit dancefloor.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/ambient-techno/",
+      "title": "Ambient Techno - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:42.425Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid genre of electronic music that fuses the repetitive rhythmic foundations of techno with the ethereal, textural soundscapes of ambient, designed primarily for home listening rather than the dancefloor.",
+  "era": "1990s",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "artist:gas",
+      "type": "artist",
+      "name": "GAS"
+    },
+    {
+      "slug": "artist:skee-mask",
+      "type": "artist",
+      "name": "Skee Mask"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    },
+    {
+      "slug": "label:chain-reaction",
+      "type": "label",
+      "name": "Chain Reaction"
+    },
+    {
+      "slug": "label:apollo",
+      "type": "label",
+      "name": "Apollo"
+    },
+    {
+      "slug": "label:fax-49-69-450464",
+      "type": "label",
+      "name": "FAX +49-69/450464"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence"
+    },
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85-92"
+    },
+    {
+      "slug": "project:amber",
+      "type": "project",
+      "name": "Amber"
+    },
+    {
+      "slug": "project:zauberberg",
+      "type": "project",
+      "name": "Zauberberg"
+    },
+    {
+      "slug": "project:compro",
+      "type": "project",
+      "name": "Compro"
+    }
+  ],
+  "landmark_tracks": []
+}

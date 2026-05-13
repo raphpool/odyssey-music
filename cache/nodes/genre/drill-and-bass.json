@@ -1,0 +1,69 @@
+{
+  "slug": "genre:drill-and-bass",
+  "name": "Drill and Bass",
+  "editorial_article": "Drill and Bass, also widely known as Drill 'n' Bass, is an experimental subgenre of electronic music that emerged in the mid-1990s as a high-octane, rhythmically complex derivation of drum and bass. While the parent genre relied on established breakbeat conventions, drill and bass took these foundations and pushed them into a hyperkinetic, often parodic territory. Characterized by intricate, splintered, and frenzied drum programming, the sound often features rapidly spliced breakbeats, erratic snare rushes, and aggressive digital artifacts that mimic the repetitive, jarring noise of machinery—hence the \"drill\" moniker. Unlike the dancefloor-oriented ethos of its source material, drill and bass was primarily designed for home listening, becoming a cornerstone of the burgeoning IDM (Intelligent Dance Music) movement.\n\nThe genre’s aesthetic was defined by early innovators such as Aphex Twin (frequently under his AFX and other aliases), Squarepusher, and Plug, who began releasing seminal EPs in 1995 that challenged listeners with their density and frantic energy. Where drum and bass sought coherence and groove, drill and bass prioritized complexity, deconstruction, and technological maximalism. While it remained a niche sonic exploration for much of its lifespan, it gained significant cultural recognition as figures like Aphex Twin incorporated these sounds into more widely reaching, though still challenging, albums. Drill and bass is distinct from the related genre of breakcore, lacking the latter's prominent hardcore/punk sampling and intense focus on sonic aggression, though artists have often traversed the boundaries between the two. The legacy of the genre persists as a testament to the mid-90s fascination with digital manipulation, representing a pivotal moment where breakbeat rhythm was stripped of its dancefloor function to serve as an abstract, virtuosic sonic medium.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/drill-and-bass",
+      "title": "Drill And Bass - Melodigging"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/drill-and-bass/",
+      "title": "Drill and Bass - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:50.493Z",
+  "type": "genre",
+  "editorial_definition": "A frenzied, rhythmically complex subgenre of electronic music that emerged in the mid-1990s, characterized by highly manipulated, chopped-up breakbeats and an abstract, non-dancefloor approach to drum and bass rhythms.",
+  "era": "Mid-1990s to present",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher"
+    },
+    {
+      "slug": "artist:plug",
+      "type": "artist",
+      "name": "Plug"
+    },
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:drukqs",
+      "type": "project",
+      "name": "Drukqs"
+    },
+    {
+      "slug": "project:feed-me-weird-things",
+      "type": "project",
+      "name": "Feed Me Weird Things"
+    },
+    {
+      "slug": "project:hangable-auto-bulb-ep",
+      "type": "project",
+      "name": "Hangable Auto Bulb EP"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,139 @@
+{
+  "slug": "artist:the-velvet-underground",
+  "name": "The Velvet Underground",
+  "editorial_article": "The Velvet Underground stands as one of the most transformative forces in the history of rock music, acting as the bridge between the idealism of the 1960s and the raw, confrontational aesthetics that would define punk and alternative rock. Formed in New York City in 1964 by the songwriting partnership of Lou Reed and John Cale, the band was characterized by a synthesis of Reed's street-poetic lyrical sensibilities and Cale's avant-garde classical training. Under the patronage and management of artist Andy Warhol, they became the resident house band at his Factory, an environment that allowed them to experiment with dissonance, minimalism, and taboo subject matter ranging from drug addiction to urban alienation. Their 1967 debut, *The Velvet Underground & Nico*, is widely considered one of the most important albums in modern music, introducing a sound that combined the hypnotic pulse of drones with the structural simplicity of rock and roll. Though the band achieved little commercial success during their active years, their influence has been immense, cited by generations of artists including David Bowie, R.E.M., and Sonic Youth as a primary blueprint for creative independence. After several lineup changes and a shift in sound toward the more polished, pop-oriented *Loaded* in 1970, the original incarnation effectively disintegrated, but their legacy remains the cornerstone of underground and independent rock culture. Throughout their existence, they challenged what pop music could address, moving beyond simple love songs to explore the darkest corners of human experience, all while maintaining an aesthetic that was as visually iconic as it was sonically groundbreaking. Their influence is so pervasive that it is difficult to find a corner of the rock landscape that does not bear their fingerprints, from the noise experimentation of industrial music to the melodic sensibilities of indie pop. They were the original outsiders who forced their way into the center of the cultural conversation, and they continue to inspire artists who seek to find beauty in the unconventional and the overlooked.",
+  "citations": [
+    {
+      "url": "https://www.ebsco.com/research-starters/music/velvet-underground-music-group",
+      "title": "Velvet Underground (music group) | Music | Research Starters | EBSCO Research"
+    },
+    {
+      "url": "https://www.udiscovermusic.com/stories/tracing-the-influences-of-the-velvet-underground/",
+      "title": "Tracing The Influences Of The Velvet Underground | uDiscover"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:25.678Z",
+  "type": "artist",
+  "editorial_bio": "The Velvet Underground stands as one of the most transformative forces in the history of rock music, acting as the bridge between the idealism of the 1960s and the raw, confrontational aesthetics that would define punk and alternative rock.",
+  "origin": "New York City, USA",
+  "active_years": "1964–1973, 1990, 1993",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-Punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:mgm-records",
+      "type": "label",
+      "name": "MGM Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-velvet-underground-and-nico",
+      "type": "project",
+      "name": "The Velvet Underground & Nico"
+    },
+    {
+      "slug": "project:white-light-white-heat",
+      "type": "project",
+      "name": "White Light/White Heat"
+    },
+    {
+      "slug": "project:the-velvet-underground",
+      "type": "project",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "project:loaded",
+      "type": "project",
+      "name": "Loaded"
+    },
+    {
+      "slug": "project:squeeze",
+      "type": "project",
+      "name": "Squeeze"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:heroin",
+      "type": "track",
+      "name": "Heroin"
+    },
+    {
+      "slug": "track:venus-in-furs",
+      "type": "track",
+      "name": "Venus in Furs"
+    },
+    {
+      "slug": "track:sunday-morning",
+      "type": "track",
+      "name": "Sunday Morning"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:sterling-morrison",
+      "type": "artist",
+      "name": "Sterling Morrison"
+    },
+    {
+      "slug": "artist:maureen-tucker",
+      "type": "artist",
+      "name": "Maureen Tucker"
+    },
+    {
+      "slug": "artist:nico",
+      "type": "artist",
+      "name": "Nico"
+    },
+    {
+      "slug": "artist:doug-yule",
+      "type": "artist",
+      "name": "Doug Yule"
+    },
+    {
+      "slug": "artist:angus-maclise",
+      "type": "artist",
+      "name": "Angus MacLise"
+    }
+  ]
+}

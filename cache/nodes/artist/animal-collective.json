@@ -1,0 +1,127 @@
+{
+  "slug": "artist:animal-collective",
+  "name": "Animal Collective",
+  "editorial_article": "Animal Collective is an American experimental pop group that emerged from the Baltimore, Maryland music scene at the turn of the millennium. Composed of childhood friends Avey Tare (David Portner), Panda Bear (Noah Lennox), Deakin (Josh Dibb), and Geologist (Brian Weitz), the group has become synonymous with a highly fluid, texture-heavy approach to music-making that defies easy genre categorization. Over more than two decades, they have navigated through freak folk, noise rock, ambient, and complex indietronica, consistently utilizing studio experimentation, dense vocal harmonies, and idiosyncratic sound design. \\n\\nStarting with early, more opaque releases like 'Spirit They're Gone, Spirit They've Vanished' (2000) and 'Danse Manatee' (2001), the band built a reputation for live improvisation and unconventional song structures. Their breakthrough into wider critical acclaim arrived in the mid-2000s with 'Sung Tongs' (2004) and 'Feels' (2005), which bridged the gap between their experimental roots and accessible, lush pop sensibilities. This evolution culminated in the release of 'Merriweather Post Pavilion' (2009), a landmark electronic-pop record that pushed their signature dense layering and tribal-inflected rhythmic structures into a more polished, atmospheric space. Throughout their career, Animal Collective has maintained a staunch commitment to artistic autonomy, often releasing their own material through their label Paw Tracks, alongside collaborations with labels such as FatCat and Domino Recording Company. Their influence on the sound of 2000s and 2010s indie music is profound, having championed an aesthetic of 'outsider' pop that remains both deeply personal and sonically ambitious. The group continues to release music that experiments with their core sonic markers of loop-based composition, dream-like atmosphere, and collaborative performance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Animal_Collective_discography",
+      "title": "Animal Collective discography - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/animal-collective",
+      "title": "Animal Collective discography - Rate Your Music"
+    },
+    {
+      "url": "https://artist.degy.com/major-acts/animal-collective",
+      "title": "Animal Collective | Degy Entertainment"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:59:10.711Z",
+  "type": "artist",
+  "editorial_bio": "Animal Collective is an American experimental pop group that emerged from the Baltimore, Maryland music scene at the turn of the millennium.",
+  "origin": "Baltimore, Maryland, USA",
+  "genres": [
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental Pop"
+    },
+    {
+      "slug": "genre:psychedelic-pop",
+      "type": "genre",
+      "name": "Psychedelic Pop"
+    },
+    {
+      "slug": "genre:freak-folk",
+      "type": "genre",
+      "name": "Freak Folk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    },
+    {
+      "slug": "label:paw-tracks",
+      "type": "label",
+      "name": "Paw Tracks"
+    },
+    {
+      "slug": "label:fatcat-records",
+      "type": "label",
+      "name": "FatCat Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:merriweather-post-pavilion",
+      "type": "project",
+      "name": "Merriweather Post Pavilion"
+    },
+    {
+      "slug": "project:sung-tongs",
+      "type": "project",
+      "name": "Sung Tongs"
+    },
+    {
+      "slug": "project:strawberry-jam",
+      "type": "project",
+      "name": "Strawberry Jam"
+    },
+    {
+      "slug": "project:feels",
+      "type": "project",
+      "name": "Feels"
+    },
+    {
+      "slug": "project:centipede-hz",
+      "type": "project",
+      "name": "Centipede Hz"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-girls",
+      "type": "track",
+      "name": "My Girls"
+    },
+    {
+      "slug": "track:fireworks",
+      "type": "track",
+      "name": "Fireworks"
+    },
+    {
+      "slug": "track:brother-sport",
+      "type": "track",
+      "name": "Brother Sport"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:avey-tare",
+      "type": "artist",
+      "name": "Avey Tare"
+    },
+    {
+      "slug": "artist:panda-bear",
+      "type": "artist",
+      "name": "Panda Bear"
+    },
+    {
+      "slug": "artist:deakin",
+      "type": "artist",
+      "name": "Deakin"
+    },
+    {
+      "slug": "artist:geologist",
+      "type": "artist",
+      "name": "Geologist"
+    }
+  ]
+}

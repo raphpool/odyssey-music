@@ -1,0 +1,27 @@
+{
+  "slug": "project:amlux",
+  "name": "Amlux",
+  "editorial_article": "Amlux is a seminal experimental noise album by the Japanese artist Merzbow, originally released in 2002. Recorded in his home studio in Tokyo between 2000 and 2001, the project stands as a significant marker in the evolution of Masami Akita's sound, capturing a moment where his dense, abrasive power-electronics began to shift toward more structured, almost rhythmic compositions while retaining his signature wall-of-noise intensity. The album features four tracks, including the hauntingly titled \"Takemitsu\" and \"Luxurious Automobile,\" which exemplify his ability to manipulate feedback and signal processing into immersive, gargantuan sonic architectures. Unlike some of his more chaotic early works, Amlux demonstrates a sophisticated, layered approach to noise that invites deeper listening, solidifying Akita's status as a master of the genre.\\n\\nThe influence of Amlux extends far beyond its initial release; it famously became a central reference point for a diverse array of artists and producers who sought to reinterpret his harsh aesthetics. This impact is best immortalized in the compilation 'Ikebana: Merzbow's Amlux Rebuilt, Reused and Recycled,' which features a host of experimental musicians remixing and reimagining tracks from this specific album. By blending rigorous technological experimentation with a raw, visceral approach to production, Amlux bridged the gap between purely aggressive noise and the more modern, detailed explorations of sound art, making it an essential entry in the expansive Merzbow discography. It remains a masterclass in how to treat raw noise with a composer's sensibility, effectively balancing overwhelming volume with intentional, shifting textures that keep the listener engaged throughout its nearly 50-minute runtime.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/amlux-mw0000656458",
+      "title": "Amlux - Merzbow | Album | AllMusic"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/5246-ikebana-merzbows-amlux-rebuilt-reused-and-recycled/",
+      "title": "Ikebana: Merzbow's 'Amlux' Rebuilt, Reused and Recycled - Pitchfork"
+    },
+    {
+      "url": "https://music.apple.com/ie/album/amlux/732084533",
+      "title": "Amlux - Album by Merzbow - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:11.001Z",
+  "type": "project",
+  "editorial_pitch": "A seminal 2002 noise masterpiece from Merzbow, Amlux features four intense, structured explorations of experimental sound that redefined the potential for power-electronics as a complex, layered medium.",
+  "artists": [],
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

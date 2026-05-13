@@ -1,0 +1,62 @@
+{
+  "slug": "artist:scientist",
+  "name": "Scientist",
+  "editorial_article": "Scientist, born Hopeton Overton Brown in Kingston, Jamaica, is a pivotal figure in the history of dub reggae. Rising to prominence in the late 1970s and early 1980s, he began his career as a protege of the legendary King Tubby, who recognized his innate talent for electronics and audio engineering. As a teenager, Scientist quickly evolved from repairing sound equipment to becoming one of the most innovative mixers in Jamaica, distinguished by a bold, reckless, and highly creative approach to the mixing board. He became synonymous with the 'dub extravaganza' aesthetic, where heavy basslines, cavernous echo, and sharp, erratic signal processing were pushed to their creative limits.\n\nHis work during the early 1980s, particularly his legendary collaborative albums for Greensleeves Records, solidified his reputation. These projects are famous not only for their revolutionary soundscapes but also for their conceptual, often science-fiction-themed cover art and titles. Working frequently alongside producers like Prince Jammy, Scientist transformed the raw rhythm tracks of the era into immersive, space-age sound design that pushed dub out of its traditional roots and toward a more experimental, psychedelic future. He remains a highly influential figure, with his techniques directly informing decades of dance music, electronica, and remix culture. His ability to turn the mixing console into an instrument of pure imagination makes him a quintessential architect of modern dub. He continues to perform and produce, standing as a living legend of the Jamaican studio sound. This article serves to document his transition from a studio technician at King Tubby's to a globally recognized dub master. He was pivotal in defining the sound of the 1980s in Jamaica and remains active in the global reggae scene. He has frequently collaborated with other artists like Prince Jammy, and his legacy is deeply intertwined with the development of the dub genre.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/33468-Scientist",
+      "title": "Scientist Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://earth-agency.com/artist/scientist/",
+      "title": "The Scientist - Earth Agency"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:53.584Z",
+  "type": "artist",
+  "editorial_bio": "Scientist is a legendary Jamaican dub producer and engineer known for his innovative mixing style, heavy use of echo and reverb, and iconic science-fiction-themed album covers. Born Hopeton Brown, he was a key protege of King Tubby who helped define the sound of 1980s reggae and dub.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1970s–Present",
+  "genres": [
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:greensleeves-records",
+      "type": "label",
+      "name": "Greensleeves Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:big-showdown",
+      "type": "project",
+      "name": "Big Showdown"
+    },
+    {
+      "slug": "project:heavyweight-dub-champion",
+      "type": "project",
+      "name": "Heavyweight Dub Champion"
+    },
+    {
+      "slug": "project:scientist-meets-the-space-invaders",
+      "type": "project",
+      "name": "Scientist Meets The Space Invaders"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

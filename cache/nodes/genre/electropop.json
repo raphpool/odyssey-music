@@ -1,0 +1,81 @@
+{
+  "slug": "genre:electropop",
+  "name": "Electropop",
+  "editorial_article": "Electropop is a multifaceted musical genre that bridges the gap between the structured, hook-driven nature of pop music and the expansive, synthetic soundscapes of electronic production. Emerging in the early 1980s out of the United Kingdom, it began as an offshoot of the experimental electronic music pioneered by acts like Kraftwerk, Jean-Michel Jarre, and Yellow Magic Orchestra. While often confused with synth-pop, electropop distinguishes itself through a warmer, more dance-oriented production style that prioritizes a percussive, \"grit-filled\" edge alongside its pop-friendly melodies.\n\nThe genre's evolution is marked by distinct phases of mainstream dominance and underground experimentation. Following its initial breakthrough with hits like The Human League's \"Don’t You Want Me,\" electropop became a staple of the 1980s. After waning in popularity during the early 1990s as house and techno took hold, the genre underwent a massive resurgence in the late 2000s. This revival, fueled by the rise of electroclash and electro house, saw a new generation of artists—including Lady Gaga, Britney Spears (with her pivotal 'Blackout' album), and later acts like Dua Lipa and Chvrches—redefine the sound for the modern era. Electropop remains a dominant force in contemporary pop, constantly evolving by absorbing elements of R&B, indie, and hip-hop to maintain its pervasive presence in global music culture.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/electropop-music-guide",
+      "title": "Electropop Music History: 4 Notable Electropop Artists - 2026 - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:56.962Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid genre fusing synthesizer-driven electronic production with catchy, radio-friendly pop hooks and song structures.",
+  "era": "1980s–present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro house"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-human-league",
+      "type": "artist",
+      "name": "The Human League"
+    },
+    {
+      "slug": "artist:lady-gaga",
+      "type": "artist",
+      "name": "Lady Gaga"
+    },
+    {
+      "slug": "artist:calvin-harris",
+      "type": "artist",
+      "name": "Calvin Harris"
+    },
+    {
+      "slug": "artist:chvrches",
+      "type": "artist",
+      "name": "Chvrches"
+    },
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears"
+    },
+    {
+      "slug": "artist:dua-lipa",
+      "type": "artist",
+      "name": "Dua Lipa"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

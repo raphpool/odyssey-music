@@ -1,0 +1,83 @@
+{
+  "slug": "artist:david-bowie",
+  "name": "David Bowie",
+  "editorial_article": "David Bowie (born David Robert Jones) was an English singer, songwriter, musician, and actor whose career spanned over five decades, establishing him as one of the most influential figures in 20th-century music. Known as the 'chameleon of rock' for his relentless pursuit of artistic reinvention, Bowie navigated through numerous musical landscapes including glam rock, art rock, soul, electronic, and industrial. He burst onto the international stage with the 1969 hit 'Space Oddity', before solidifying his cult and commercial status in 1972 with the alien rock-star persona Ziggy Stardust. His subsequent work in the mid-1970s, particularly the 'Berlin Trilogy' recorded with Brian Eno, showcased a profound experimentation with ambient and electronic textures. Beyond his music, Bowie was a visual innovator, consistently challenging norms of gender and performance through elaborate stagecraft and fashion. His influence extended into film, where he cultivated a unique presence in cult classics such as 'The Man Who Fell to Earth' and 'Labyrinth'. Throughout his life, Bowie's ability to anticipate cultural shifts and evolve his sound, concluding with his haunting final masterpiece 'Blackstar', cemented his legacy as a restless creative force. His impact on fashion, pop culture, and the evolution of the rock genre remains peerless. His constant evolution across multiple personas, such as the Thin White Duke and Halloween Jack, redefined what it meant to be a modern pop artist, ensuring his music remains deeply embedded in the cultural consciousness.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/David_Bowie",
+      "title": "David Bowie - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/david-bowie-mn0000531986",
+      "title": "David Bowie - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:16.578Z",
+  "type": "artist",
+  "editorial_bio": "Regarded as one of the most influential musicians of the 20th century, David Bowie was a master of artistic reinvention who continuously redefined pop, rock, and electronic music over his five-decade career. Famous for his chameleonic persona shifts—most notably Ziggy Stardust—he fundamentally changed the landscape of music, performance, and fashion.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg/250px-David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg",
+  "origin": "London, England",
+  "active_years": "1962–2016",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:parlophone",
+      "type": "label",
+      "name": "Parlophone"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:space-oddity",
+      "type": "track",
+      "name": "Space Oddity"
+    },
+    {
+      "slug": "track:fame",
+      "type": "track",
+      "name": "Fame"
+    },
+    {
+      "slug": "track:ashes-to-ashes",
+      "type": "track",
+      "name": "Ashes to Ashes"
+    },
+    {
+      "slug": "track:under-pressure",
+      "type": "track",
+      "name": "Under Pressure"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

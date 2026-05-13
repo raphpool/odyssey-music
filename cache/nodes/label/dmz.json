@@ -1,0 +1,64 @@
+{
+  "slug": "label:dmz",
+  "name": "DMZ",
+  "editorial_article": "DMZ was a seminal London-based record label and event series that served as the epicenter for the evolution of dubstep during the 2000s. Founded by the production trio of Mala, Coki (collectively known as Digital Mystikz), and Loefah, the label emerged from the fertile ground of the South London underground garage and jungle scene. Initially operating out of a small space in a Brixton church, the DMZ club night became legendary for its massive soundsystem culture and a policy of \"meditating on bass weight,\" drawing a diverse audience that sought an alternative to the commercialized clubbing landscape of the era. The label itself functioned as a vital output for the trio and their peers, releasing definitive tracks that pushed the boundaries of bass-heavy, minimalist music.\\n\\nMusically, DMZ was instrumental in shifting dubstep from a niche UK garage mutation into a globally recognized genre. The label's catalog defined the \"South London sound\"—a blend of dub reggae aesthetics, crushing sub-bass, and syncopated, half-step rhythms. Tracks released on the imprint, such as those by Digital Mystikz and Loefah, became instant anthems, favored by DJs across the spectrum from grime to microhouse. By the mid-2000s, as dubstep exploded into the cultural mainstream, DMZ remained a touchstone of authenticity and artistic integrity. The label’s influence extended far beyond London, helping to legitimize the genre in the eyes of the broader musical establishment and paving the way for the sonic innovation that continues to define contemporary electronic music. The collective's DIY ethos, nurtured by years of underground struggle, proved that a dedicated vision and uncompromising commitment to sonic quality could reshape the global electronic landscape.",
+  "citations": [
+    {
+      "url": "https://zweikommasieben.ch/articles/interviews/mala-inside-the-dmz",
+      "title": "Mala—Inside the DMZ – zweikommasieben Magazin"
+    },
+    {
+      "url": "https://dmy.co/features/dmz",
+      "title": "DMZ: it changed dubstep forever | DMY"
+    },
+    {
+      "url": "https://www.discogs.com/label/30291-DMZ?srsltid=AfmBOopYjHrC8UjlH3r_XnSzKZ7jLgSUIyeDPcxGWbzEg_Q1lyEesRis",
+      "title": "DMZ - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:17.919Z",
+  "type": "label",
+  "editorial_description": "A foundational London record label and club night that pioneered the South London dubstep sound, renowned for its massive soundsystem events in Brixton and its role in defining the genre's minimalist, bass-heavy aesthetic.",
+  "founded": "2004",
+  "location": "London, UK",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah"
+    },
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz"
+    }
+  ],
+  "notable_releases": []
+}

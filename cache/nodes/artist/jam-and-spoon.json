@@ -1,0 +1,86 @@
+{
+  "slug": "artist:jam-and-spoon",
+  "name": "Jam & Spoon",
+  "editorial_article": "Jam & Spoon was a pioneering German electronic music duo based in Frankfurt, active between 1991 and 2006. Composed of producers Rolf Ellmer (Jam El Mar) and Markus Löffel (Mark Spoon), the project became a cornerstone of the 1990s trance and dance music scene. They are widely credited with helping to define the sound of commercial trance, particularly through their 1992 hit \"Stella,\" which bridged the gap between underground techno and radio-friendly electronic music. The duo achieved significant international commercial success in the mid-90s, notably through collaborations with vocalist Plavka Lonich on hits like \"Right in the Night\" and \"Find Me.\" Beyond their own productions, Jam & Spoon were highly sought-after remixers, providing definitive reworks for seminal tracks such as Age of Love's \"The Age of Love\" and Moby's \"Go.\" Their work often blended atmospheric, melodic trance textures with powerful, dance-floor-oriented rhythm sections. The partnership ended in 2006 following the untimely passing of Mark Spoon. The duo's legacy remains foundational to modern trance and European dance culture, noted for their ability to balance critical respect within the underground scene with massive mainstream chart appeal. Their work also extended into various aliases and projects that explored different facets of the electronic spectrum, cementing their status as influential architects of the rave and club era. Throughout their active years, they produced a string of essential records and helped set the trajectory for trance production globally.",
+  "citations": [
+    {
+      "url": "https://generation.dance/en/artists/jam-and-spoon/",
+      "title": "Jam and Spoon - Biography, discography | Generation Dance"
+    },
+    {
+      "url": "http://www.nts.live/artists/19723-jam-spoon",
+      "title": "Jam & Spoon | Discover music on NTS"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/jam-spoon-mn0000131029",
+      "title": "Jam & Spoon Songs, Albums, Reviews, Bio & More... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:10.190Z",
+  "type": "artist",
+  "editorial_bio": "Jam & Spoon was a pioneering German electronic music duo based in Frankfurt, active between 1991 and 2006.",
+  "active_years": "1991-2006",
+  "genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:tripomatic-fairytales-2001",
+      "type": "project",
+      "name": "Tripomatic Fairytales 2001"
+    },
+    {
+      "slug": "project:tripomatic-fairytales-2002",
+      "type": "project",
+      "name": "Tripomatic Fairytales 2002"
+    },
+    {
+      "slug": "project:kaleidoscope",
+      "type": "project",
+      "name": "Kaleidoscope"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:stella",
+      "type": "track",
+      "name": "Stella"
+    },
+    {
+      "slug": "track:right-in-the-night",
+      "type": "track",
+      "name": "Right In the Night"
+    },
+    {
+      "slug": "track:find-me",
+      "type": "track",
+      "name": "Find Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jam-el-mar",
+      "type": "artist",
+      "name": "Jam El Mar"
+    },
+    {
+      "slug": "artist:mark-spoon",
+      "type": "artist",
+      "name": "Mark Spoon"
+    }
+  ]
+}

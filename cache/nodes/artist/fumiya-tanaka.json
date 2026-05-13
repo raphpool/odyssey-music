@@ -1,0 +1,86 @@
+{
+  "slug": "artist:fumiya-tanaka",
+  "name": "Fumiya Tanaka",
+  "editorial_article": "Fumiya Tanaka is a pivotal figure in the global minimal techno and microhouse scenes, recognized as one of the pioneers of Japanese electronic music production and club culture. Born in Kyoto, Japan, in 1972, Tanaka began his career in the early 1990s, eventually establishing his influential Torema Records label in 1993. His work is characterized by a sophisticated, stripped-back sonic aesthetic—often blending complex, rhythmic textures with sparse, hypnotic melodies. Over a career spanning more than three decades, Tanaka has consistently pushed the boundaries of club-oriented music, moving from the driving techno of his early \"Unknown Possibility\" releases to the intricate, micro-groove explorations found on his later work for labels like Perlon and his own Sundance imprint. Tanaka’s influence extends beyond his prolific studio output; he is a highly respected DJ known for his technical precision and deep, immersive sets. His ability to craft long-form, evolving narratives through DJing has made him a fixture in underground clubs worldwide, including significant residencies in Berlin. By bridging the gap between the raw, percussive energy of early 90s techno and the refined, cerebral soundscapes of modern microhouse, Fumiya Tanaka has carved out a unique position in electronic music history, serving as an essential conduit between Japan’s underground scene and the European techno vanguard. His discography, marked by a commitment to analog textures and steady experimentation, remains a cornerstone for listeners exploring the technical nuances of minimal electronic music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/1166-Fumiya-Tanaka?srsltid=AfmBOoqC0C9zrWZwCUAeu9vNZsPQb1v963tQ0Sa-e_3AjzGtr2WT4GfV",
+      "title": "Fumiya Tanaka Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/fumiya-tanaka",
+      "title": "Fumiya Tanaka discography - Rate Your Music"
+    },
+    {
+      "url": "https://www.fumiyatanaka.com/discography/",
+      "title": "Fumiya Tanaka / DISCOGRAPHY"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:05:23.630Z",
+  "type": "artist",
+  "editorial_bio": "Fumiya Tanaka is a pivotal figure in the global minimal techno and microhouse scenes, recognized as one of the pioneers of Japanese electronic music production and club culture.",
+  "origin": "Kyoto, Japan",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:torema-records",
+      "type": "label",
+      "name": "Torema Records"
+    },
+    {
+      "slug": "label:sundance",
+      "type": "label",
+      "name": "Sundance"
+    },
+    {
+      "slug": "label:perlon",
+      "type": "label",
+      "name": "Perlon"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:unknown-possibility-vol-1",
+      "type": "project",
+      "name": "Unknown Possibility Vol. 1"
+    },
+    {
+      "slug": "project:unknown-possibility-vol-2",
+      "type": "project",
+      "name": "Unknown Possibility Vol. 2"
+    },
+    {
+      "slug": "project:unknown-3",
+      "type": "project",
+      "name": "Unknown 3"
+    },
+    {
+      "slug": "project:right-moment",
+      "type": "project",
+      "name": "Right Moment"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

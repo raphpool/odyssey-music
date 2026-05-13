@@ -1,0 +1,81 @@
+{
+  "slug": "label:playhouse-records",
+  "name": "Playhouse Records",
+  "editorial_article": "Playhouse Records is a seminal German electronic music label founded in September 1993 by Ata and Heiko Schäfer (often known as M/S/O). Based in Frankfurt, the label established itself as a crucial pillar of the German underground, functioning as a vital sister-label to Klang Elektronik. While Klang Elektronik tended towards a more cerebral, techno-orientated sonic palette, Playhouse became the home for more experimental, house-inflected, and abstract dance music. Over the decades, Playhouse became an essential incubator for some of the most influential figures in minimal techno and house, helping to define the sound of the 2000s club scene. Its catalog is marked by a distinctive blend of quirkiness, structural ingenuity, and emotional depth, exemplified by iconic releases from artists like Ricardo Villalobos, Isolée, and Losoul. By consistently pushing the boundaries of what 'house music' could entail, Playhouse earned a reputation as a platform where the unconventional was the norm, leaving an indelible mark on global dance floors. The label's aesthetic often straddled the line between functionality for the club and genuine musical experimentation, ensuring its releases remained relevant long after their initial impact. Through its long-standing influence and curation, Playhouse remains a benchmark for independent electronic labels, embodying the spirit of the Frankfurt electronic music community that flourished throughout the 1990s and 2000s.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/354",
+      "title": "Playhouse · Record label ⟋ RA"
+    },
+    {
+      "url": "https://www.discogs.com/label/361-Playhouse?srsltid=AfmBOormCNsDCPXDW5rUSwPzXJ1MUcvfjTDIss9Z1KCx9cSVMa1gFPL5",
+      "title": "Playhouse - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:02.958Z",
+  "type": "label",
+  "editorial_description": "A seminal Frankfurt-based electronic label founded by Ata and Heiko Schäfer in 1993, known for its experimental approach to house and minimal techno.",
+  "founded": "1993",
+  "location": "Frankfurt, Germany",
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée"
+    },
+    {
+      "slug": "artist:losoul",
+      "type": "artist",
+      "name": "Losoul"
+    },
+    {
+      "slug": "artist:ata",
+      "type": "artist",
+      "name": "Ata"
+    },
+    {
+      "slug": "artist:roman-flugel",
+      "type": "artist",
+      "name": "Roman Flügel"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:belong",
+      "type": "project",
+      "name": "Belong"
+    },
+    {
+      "slug": "project:fizheuer-zieheuer",
+      "type": "project",
+      "name": "Fizheuer Zieheuer"
+    },
+    {
+      "slug": "project:holz",
+      "type": "project",
+      "name": "Holz"
+    }
+  ]
+}

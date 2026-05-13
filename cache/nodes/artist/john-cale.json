@@ -1,0 +1,117 @@
+{
+  "slug": "artist:john-cale",
+  "name": "John Cale",
+  "editorial_article": "John Cale is a Welsh-born musician, composer, and producer whose sprawling career has bridged the gap between academic avant-garde minimalism and the raw intensity of underground rock. After classical training at Goldsmiths College and early experimentation with drone music as part of La Monte Young’s Theatre of Eternal Music, Cale moved to New York City in 1963. There, he became a pivotal force in the formation of the Velvet Underground, providing the avant-garde textures, viola drone, and sonic friction that helped define the band's revolutionary sound. His departure from the group in 1968 marked the beginning of a prolific and unpredictable solo career characterized by a restless creative spirit that refused to be categorized.\\n\\nThroughout the 1970s and 80s, Cale moved fluidly between brittle, piano-led chamber pop, aggressive hard rock, and sparse, unsettling electronic experimentation. Masterpieces like 1973's 'Paris 1919' showcased his sophisticated, melodic songwriting and orchestral arrangements, while records such as 'Music for a New Society' (1982) explored deep, introspective trauma and dissonance. Beyond his own discography, Cale established himself as a legendary producer, shaping the sound of seminal albums for artists like Nico, The Stooges, Patti Smith, and The Modern Lovers. An artist of immense range, Cale’s work remains essential to understanding the evolution of art rock, experimental music, and the artistic ethos of the downtown New York scene. Cale was inducted into the Rock and Roll Hall of Fame in 1996 for his work with the Velvet Underground, solidifying his status as a permanent fixture in the history of alternative rock music. Throughout the 2000s and 2010s, he continued to release challenging work, such as 'Shifty Adventures in Nookie Wood', proving his enduring relevance as an innovator.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/John_Cale",
+      "title": "John Cale - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/John_Cale_discography",
+      "title": "John Cale discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:51.951Z",
+  "type": "artist",
+  "editorial_bio": "John Cale is a Welsh-born musician, composer, and producer whose sprawling career has bridged the gap between academic avant-garde minimalism and the raw intensity of underground rock.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/John_Cale_%2849386834383%29.jpg/500px-John_Cale_%2849386834383%29.jpg",
+  "origin": "Garnant, Wales",
+  "active_years": "1957–present",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock"
+    },
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:domino-recording-company",
+      "type": "label",
+      "name": "Domino Recording Company"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:paris-1919",
+      "type": "project",
+      "name": "Paris 1919"
+    },
+    {
+      "slug": "project:music-for-a-new-society",
+      "type": "project",
+      "name": "Music for a New Society"
+    },
+    {
+      "slug": "project:songs-for-drella",
+      "type": "project",
+      "name": "Songs for Drella"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:paris-1919",
+      "type": "track",
+      "name": "Paris 1919"
+    },
+    {
+      "slug": "track:fear-is-a-man-s-best-friend",
+      "type": "track",
+      "name": "Fear Is a Man's Best Friend"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed"
+    },
+    {
+      "slug": "artist:nico",
+      "type": "artist",
+      "name": "Nico"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    }
+  ]
+}

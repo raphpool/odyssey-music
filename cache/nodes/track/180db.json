@@ -1,0 +1,53 @@
+{
+  "slug": "track:180db",
+  "name": "180db_",
+  "editorial_article": "\"180db_\" (also known as \"180db_ [130]\") is a track by the iconic electronic producer Aphex Twin, featured on his highly anticipated 2014 album, \"Syro.\" Released via Warp Records, the track exemplifies the intricate, high-energy, and technically precise production style that defined the album's sound. Upon its release, \"Syro\" was a major cultural moment for electronic music, marking Richard D. James's first studio album under the Aphex Twin moniker in over a decade. \"180db_\" serves as a quintessential example of the album's aesthetic, which balanced classic IDM sensibilities with the pristine, high-fidelity sound design of modern studio production.\n\nThe track is characterized by its driving, relentless tempo—noted by the bracketed \"[130]\" which likely refers to its BPM—and a frenetic, tightly sequenced drum pattern that is hallmarks of James's work. The track blends chaotic rhythms with surprisingly accessible, melodic textures, a tension that has remained central to the Aphex Twin sound since his early days in the Cornwall acid techno scene. The track gained notable attention for its skillful use of sampling, particularly the incorporation of vocal or rhythmic elements from Duke Williams and the Extremes' \"Chinese Chicken,\" a testament to James’s ability to recontextualize obscure source material into complex, new sonic environments. As part of \"Syro,\" \"180db_\" helped bridge the gap between early 90s experimentalism and the polished electronic landscape of the 2010s, reaffirming Aphex Twin's status as a foundational figure in contemporary electronic music. The release of the album and the track itself sparked extensive critical discourse on legacy, innovation, and the evolution of electronic music production.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/180db-130",
+      "title": "180db_ [130] | Aphex Twin"
+    },
+    {
+      "url": "https://www.whosampled.com/Aphex-Twin/180db-/",
+      "title": "180db_ by Aphex Twin - Samples, Covers and Remixes"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:13.088Z",
+  "type": "track",
+  "editorial_teaser": "A high-energy, technically complex IDM track from Aphex Twin's 2014 album 'Syro,' blending relentless rhythmic drive with sophisticated, multi-layered sound design.",
+  "year": "2014",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:syro",
+    "type": "project",
+    "name": "Syro"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

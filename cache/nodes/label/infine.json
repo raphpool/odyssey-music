@@ -1,0 +1,82 @@
+{
+  "slug": "label:infine",
+  "name": "InFiné",
+  "editorial_article": "InFiné is a prominent French independent record label, founded in 2006 by Alexandre Cazac and Yannick Matray, with the early involvement of producer Agoria. Based between Paris, Lyon, and Berlin, the label has established a unique cultural footprint by consistently bridging the gap between electronic music, contemporary classical, and experimental pop. Its motto, \"Easy music, for the hard to please,\" reflects a commitment to high-level artistry that avoids the pitfalls of genre-lock. The label's origin story is rooted in a pivotal 2005 concert where pianist Francesco Tristano performed a cover of the classic Detroit techno track \"Strings of Life,\" an event that crystallized the founders' vision of a label where electronic textures could be reimagined in philharmonic settings. \\n\\nThroughout its history, InFiné has acted as a laboratory for cross-disciplinary collaboration. The label is renowned for its \"Versus\" project, which brought together electronic luminaries like Carl Craig and Moritz Von Oswald with classical ensembles like Les Siècles, exploring the intersection of modern composition and electronic sequencing. Beyond standard releases, InFiné has embraced innovation, becoming the first label to produce a music session in virtual reality and maintaining long-term partnerships with research institutions like IRCAM. This spirit of exploration is matched by its diverse roster, which includes influential artists such as Rone, Murcof, Apparat, and Bruce Brubaker, whose works collectively define a sonic identity that is both rigorous and accessible. The label serves as a vital conduit between the heritage of dance music and the avant-garde, ensuring that its output remains at the forefront of European creative output.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/InFin%C3%A9",
+      "title": "InFiné - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:21.362Z",
+  "type": "label",
+  "editorial_description": "A pioneering French independent record label known for orchestrating sonic utopias that bridge electronic music, contemporary classical, and experimental pop.",
+  "founded": "2006",
+  "location": "Paris, France",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:contemporary-classical-music",
+      "type": "genre",
+      "name": "Contemporary classical music"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:francesco-tristano",
+      "type": "artist",
+      "name": "Francesco Tristano"
+    },
+    {
+      "slug": "artist:rone",
+      "type": "artist",
+      "name": "Rone"
+    },
+    {
+      "slug": "artist:murcof",
+      "type": "artist",
+      "name": "Murcof"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat"
+    },
+    {
+      "slug": "artist:bruce-brubaker",
+      "type": "artist",
+      "name": "Bruce Brubaker"
+    },
+    {
+      "slug": "artist:agoria",
+      "type": "artist",
+      "name": "Agoria"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:not-for-piano",
+      "type": "project",
+      "name": "Not For Piano"
+    },
+    {
+      "slug": "project:creatures",
+      "type": "project",
+      "name": "Creatures"
+    },
+    {
+      "slug": "project:tohu-bohu",
+      "type": "project",
+      "name": "Tohu Bohu"
+    }
+  ]
+}

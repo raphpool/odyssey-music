@@ -1,0 +1,50 @@
+{
+  "slug": "project:tromatic-reflexxions",
+  "name": "Tromatic Reflexxions",
+  "editorial_article": "Tromatic Reflexxions is the 2007 debut studio album by Von Südenfed, a collaborative project uniting the German electronic experimentalists Mouse on Mars and the legendary post-punk provocateur Mark E. Smith. Released via Domino Records, the album serves as a fascinating collision between the avant-garde, glitch-oriented electronic production of Andi Toma and Jan St. Werner and the acerbic, stream-of-consciousness lyrical delivery for which Smith is globally renowned as the frontman of The Fall. Recording took place in 2006, following Smith's 2005 guest appearance on a Mouse on Mars track, which sparked the creative chemistry leading to this full-length project. The resulting record is defined by its erratic, polyrhythmic electronic beats, abrasive synths, and Smith's distinctly cynical, non-sequitur verbal assaults. It is a work that occupies a singular space, simultaneously embodying the erratic energy of post-punk and the unpredictable, genre-warping aesthetics of 2000s IDM-adjacent electronics. Songs like \"Fledermaus Can't Get It\" and \"The Rhinohead\" exemplify this marriage, balancing the synthetic textures of the German duo with the singular, confrontational spirit of Smith. While it defies easy categorization, Tromatic Reflexxions remains a definitive document of one of the most adventurous collaborations of the era, standing as a testament to the willingness of both parties to dismantle their respective sonic legacies in favor of something aggressively new. It did not achieve massive chart success, but garnered largely positive critical acclaim for its sheer audacity and willingness to experiment.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tromatic_Reflexxions",
+      "title": "Tromatic Reflexxions - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/von-sudenfed/tromatic-reflexxions/",
+      "title": "Tromatic Reflexxions by Von Südenfed - Rate Your Music"
+    },
+    {
+      "url": "https://www.dominomusic.com/releases/von-sudenfed/tromatic-reflexxions/2xlp",
+      "title": "Von Südenfed - Tromatic Reflexxions (2xLP) | Domino Mart"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:46.768Z",
+  "type": "project",
+  "editorial_pitch": "A collision between German electronic avant-gardists Mouse on Mars and The Fall's Mark E. Smith, Tromatic Reflexxions is a bracing, glitch-heavy post-punk experiment that balances synthetic sonic abstraction with Smith's inimitable, abrasive wit.",
+  "year": "2007",
+  "artists": [
+    {
+      "slug": "artist:von-sudenfed",
+      "type": "artist",
+      "name": "Von Südenfed"
+    }
+  ],
+  "label": {
+    "slug": "label:domino",
+    "type": "label",
+    "name": "Domino"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

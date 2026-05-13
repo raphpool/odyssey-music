@@ -1,0 +1,82 @@
+{
+  "slug": "label:grm",
+  "name": "GRM",
+  "editorial_article": "GRM (Groupe de Recherches Musicales) is one of the most significant institutions in the history of electronic and experimental music. Founded in 1951 in Paris by the engineer and composer Pierre Schaeffer as the Groupe de Recherche de Musique Concrète, it became the birthplace of musique concrète—a radical approach to composition that treats recorded sounds, rather than musical notes, as the primary building blocks of music. By manipulating magnetic tape, using early synthesizers, and experimenting with spatialization via the 'Acousmonium' (an 80-speaker orchestra), GRM transformed the studio into an instrument. In 1975, it was incorporated into the Institut National de l’Audiovisuel (INA), becoming INA-GRM. Throughout its decades of operation, it has fostered a lineage of pioneering composers including Luc Ferrari, Bernard Parmegiani, Beatriz Ferreyra, and François Bayle. Beyond its archival and research function, GRM exerts a profound influence on contemporary sound art. In 2011, it launched the Recollection GRM label in collaboration with Editions Mego’s Peter Rehberg and current artistic director François Bonnet. This label has played a crucial role in bringing the studio's vast, previously obscure archive of electroacoustic masterworks to new generations of listeners, pressing them onto high-quality vinyl with updated aesthetic presentations. Today, the institution continues to bridge the gap between academic sound research and the experimental music underground, hosting events like the 'Présences électronique' festival where legacy composers are paired with modern artists like Autechre or Oren Ambarchi, proving the enduring relevance of their pioneering sonic explorations.",
+  "citations": [
+    {
+      "url": "https://daily.bandcamp.com/label-profile/recollection-grm-musique-concrete-computer-music-history",
+      "title": "Revisiting GRM, Which Was Ground Zero for Musique Concrète | Bandcamp Daily"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:25.839Z",
+  "type": "label",
+  "editorial_description": "A legendary Parisian research laboratory and institution at the heart of the development of musique concrète and electroacoustic music, now operating the acclaimed 'Recollection GRM' archival reissue label.",
+  "founded": "1951",
+  "location": "Paris, France",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:bernard-parmegiani",
+      "type": "artist",
+      "name": "Bernard Parmegiani"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari"
+    },
+    {
+      "slug": "artist:beatriz-ferreyra",
+      "type": "artist",
+      "name": "Beatriz Ferreyra"
+    },
+    {
+      "slug": "artist:francois-bayle",
+      "type": "artist",
+      "name": "François Bayle"
+    },
+    {
+      "slug": "artist:christian-zanesi",
+      "type": "artist",
+      "name": "Christian Zanési"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:de-natura-sonorum",
+      "type": "project",
+      "name": "De Natura Sonorum"
+    },
+    {
+      "slug": "project:presque-rien",
+      "type": "project",
+      "name": "Presque Rien"
+    },
+    {
+      "slug": "project:l-experience-acoustique",
+      "type": "project",
+      "name": "L'Expérience Acoustique"
+    }
+  ]
+}

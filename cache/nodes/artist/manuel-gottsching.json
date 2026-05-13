@@ -1,0 +1,113 @@
+{
+  "slug": "artist:manuel-gottsching",
+  "name": "Manuel Göttsching",
+  "editorial_article": "Manuel Göttsching (1952–2022) was a foundational German composer, guitarist, and multi-instrumentalist whose pioneering work in the 1970s and 1980s redefined the boundaries of electronic music and progressive rock. Born in Berlin, Göttsching emerged as a pivotal figure in the \"Krautrock\" scene, most notably as the founder of the influential band Ash Ra Tempel. Throughout his career, he bridged the gap between avant-garde improvisation, rock instrumentation, and early synthesizer-based minimalism. His refusal to conform to commercial rock norms—such as avoiding traditional lyrical structures—helped define the aesthetic of the Berlin electronic music movement, placing him alongside peers like Tangerine Dream and Klaus Schulze.\\n\\nWhile his extensive work with Ash Ra Tempel and later under the name Ashra cemented his status as a legendary guitarist, Göttsching achieved a profound, lasting impact with his 1981 solo masterpiece, *E2-E4*. A single, hour-long improvisation recorded in his home studio, *E2-E4* is widely considered a seminal bridge between the ambient/cosmic music of the 1970s and the development of electronic dance music, particularly techno and house, in the following decades. Throughout his life, Göttsching maintained a career characterized by a commitment to sonic exploration, frequently collaborating with artists across media, including fashion designers and visual artists, while remaining deeply rooted in his distinct, meditative, and precise musical style. His influence persists through the countless electronic artists who cite his minimalist sequencer work and innovative approach to the guitar as fundamental to the evolution of contemporary soundscapes.",
+  "citations": [
+    {
+      "url": "https://www.manuelgoettsching.com/bio/welcome.htm",
+      "title": "Manuel Göttsching - Biography"
+    },
+    {
+      "url": "https://www.discogs.com/artist/29855-Manuel-G%C3%B6ttsching?srsltid=AfmBOooRqF6MZ_9gudxdsBEIXs2k0NJiHPhqqvUbxSPRSas3daawXzCq",
+      "title": "Manuel Göttsching Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/manuel-gottsching",
+      "title": "Manuel Göttsching discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:03.708Z",
+  "type": "artist",
+  "editorial_bio": "Manuel Göttsching was a visionary German musician, guitarist, and producer who founded the iconic group Ash Ra Tempel and later explored ambient, experimental electronic music under his own name and as Ashra. Best known for his monumental 1981 album E2-E4, he was a pivotal force in the German electronic scene and a major influence on the development of modern techno and ambient music.",
+  "photo_url": "https://www.manuelgoettsching.com/icon/l_ashra2.jpg",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ohr",
+      "type": "label",
+      "name": "OHR"
+    },
+    {
+      "slug": "label:virgin",
+      "type": "label",
+      "name": "Virgin"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:ash-ra-tempel",
+      "type": "project",
+      "name": "Ash Ra Tempel"
+    },
+    {
+      "slug": "project:inventions-for-electric-guitar",
+      "type": "project",
+      "name": "Inventions for Electric Guitar"
+    },
+    {
+      "slug": "project:new-age-of-earth",
+      "type": "project",
+      "name": "New Age of Earth"
+    },
+    {
+      "slug": "project:e2-e4",
+      "type": "project",
+      "name": "E2-E4"
+    },
+    {
+      "slug": "project:blackouts",
+      "type": "project",
+      "name": "Blackouts"
+    },
+    {
+      "slug": "project:correlations",
+      "type": "project",
+      "name": "Correlations"
+    },
+    {
+      "slug": "project:belle-alliance",
+      "type": "project",
+      "name": "Belle Alliance"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:e2-e4",
+      "type": "track",
+      "name": "E2-E4"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra"
+    },
+    {
+      "slug": "artist:ash-ra-tempel",
+      "type": "artist",
+      "name": "Ash Ra Tempel"
+    }
+  ],
+  "members": []
+}

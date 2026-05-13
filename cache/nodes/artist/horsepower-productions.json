@@ -1,0 +1,67 @@
+{
+  "slug": "artist:horsepower-productions",
+  "name": "Horsepower Productions",
+  "editorial_article": "Horsepower Productions is an influential English electronic music collective and duo recognized as pivotal pioneers in the development of the dubstep genre. Initially operating as a larger collective in the early 2000s, the group emerged from the intersection of UK garage and the experimental underground soundscapes of London. Their early works, released on labels like Tempa and Turn U On, pushed the boundaries of 2-step garage by emphasizing instrumental B-sides that showcased a stripped-down, minimalist approach. By focusing on deep, sub-bass-heavy frequencies and intricate, shuffling percussion, they provided the essential blueprint that would evolve into what is now known as dubstep. Throughout their career, the project has primarily centered on core members Benny Ill (Ben Garner) and Jay King. Their seminal 2002 album, *In Fine Style*, is frequently cited by music critics and historians as a foundational text in the genre's history, predating the wider commercial explosion of the dubstep sound. Their later work, such as 2010's *Quest for the Sonic Bounty*, continued to explore moody, atmosphere-laden electronic compositions. Their stylistic influence—often compared to the aesthetic precision of early techno despite their roots in the garage scene—solidified their status as cult figures who fundamentally altered the trajectory of UK bass music. Their legacy remains deeply connected to the early days of the Big Apple Records hub in Croydon, cementing them as primary architects of a distinctively British electronic lineage. The duo's sound was characterized by the interplay of space and rhythm, often utilizing the dub technique of stripping tracks back to their essential core elements to create an immersive, sub-heavy environment that became the hallmark of the dubstep sound. Their contributions remain vital to the history of underground electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Horsepower_Productions",
+      "title": "Horsepower Productions - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/horsepower-productions",
+      "title": "Horsepower Productions discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:36.706Z",
+  "type": "artist",
+  "editorial_bio": "Horsepower Productions is an influential English electronic music collective and duo recognized as pivotal pioneers in the development of the dubstep genre.",
+  "origin": "London, England",
+  "active_years": "2000–present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage"
+    },
+    {
+      "slug": "genre:dub-music",
+      "type": "genre",
+      "name": "Dub music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tempa",
+      "type": "label",
+      "name": "Tempa"
+    },
+    {
+      "slug": "label:turn-u-on",
+      "type": "label",
+      "name": "Turn U On"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:fist-of-fury",
+      "type": "track",
+      "name": "Fist of Fury"
+    },
+    {
+      "slug": "track:gorgon-sound",
+      "type": "track",
+      "name": "Gorgon Sound"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

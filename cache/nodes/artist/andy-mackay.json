@@ -1,0 +1,91 @@
+{
+  "slug": "artist:andy-mackay",
+  "name": "Andy Mackay",
+  "editorial_article": "Andy Mackay (born 23 July 1946) is an English multi-instrumentalist, songwriter, and composer, best known as a foundational member of the legendary art rock ensemble Roxy Music. A classically trained woodwind player, Mackay brought a unique sonic palette to the band, integrating the saxophone and oboe into the avant-garde rock framework that defined Roxy Music's aesthetic. His contribution to the band went far beyond his instrumental proficiency; as a songwriter, he co-authored several key tracks, including hits such as \"Love Is the Drug\" and \"Angel Eyes.\" Mackay's stage persona—characterized by his distinctive quiff and a signature 'duckwalk' maneuver during saxophone solos—became a visual hallmark of the group's retro-futurist, glam-inflected style. Outside of Roxy Music, Mackay maintained a prolific solo career, releasing albums like \"In Search of Eddie Riff\" and \"Resolving Contradictions,\" the latter of which explored themes inspired by his travels in China. He also achieved significant acclaim for his television work, notably composing music for the cult series \"Rock Follies.\" Throughout his career, his work has bridged the gap between academic musical training and rock performance, demonstrating a rare versatility that spans classical, R&B, and experimental electronic music. Beyond his playing, he has served as a session musician for a diverse range of artists, including Brian Eno, John Cale, and Paul McCartney, cementing his status as a key figure in British music history. His work reflects a deep curiosity for both traditional instrumentation and the possibilities offered by electronic experimentation, solidified by his early collaboration with Brian Eno. As an educator and author, Mackay has further contributed to the music world, demonstrating a long-standing commitment to the craft of sound and composition that extends well beyond his tenure as a rock icon. His ongoing participation in reunions and solo projects continues to honor his legacy as a vital architect of the art rock genre.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Andy_Mackay",
+      "title": "Andy Mackay - Wikipedia"
+    },
+    {
+      "url": "https://www.andymackay.co.uk/discography",
+      "title": "Discography - Andy Mackay"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:12.759Z",
+  "type": "artist",
+  "editorial_bio": "Andy Mackay (born 23 July 1946) is an English multi-instrumentalist, songwriter, and composer, best known as a foundational member of the legendary art rock ensemble Roxy Music.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/RoxyMusicO2141022_%2843_of_68%29_%28cropped%29.jpg/500px-RoxyMusicO2141022_%2843_of_68%29_%28cropped%29.jpg",
+  "origin": "Lostwithiel, Cornwall, England",
+  "active_years": "1971–present",
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam Rock"
+    },
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:e-g-records",
+      "type": "label",
+      "name": "E.G. Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:in-search-of-eddie-riff",
+      "type": "project",
+      "name": "In Search of Eddie Riff"
+    },
+    {
+      "slug": "project:resolving-contradictions",
+      "type": "project",
+      "name": "Resolving Contradictions"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:editions-of-you",
+      "type": "track",
+      "name": "Editions of You"
+    },
+    {
+      "slug": "track:love-is-the-drug",
+      "type": "track",
+      "name": "Love Is the Drug"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ]
+}

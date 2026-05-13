@@ -1,0 +1,56 @@
+{
+  "slug": "genre:space-music",
+  "name": "Space music",
+  "editorial_article": "Space music, often referred to as \"space ambient\" or simply \"spacemusic,\" is a meditative and atmospheric subgenre rooted in the intersection of ambient, electronic, and new-age music. Emerging as a distinct aesthetic in the early 1970s—partially flourishing within the experimental scenes of Germany and Japan—the genre is defined less by rigid structural rules and more by its capacity to evoke a sense of contemplative spaciousness. At its core, space music aims to transport the listener, often inducing trance-like states associated with floating, gliding, or hovering. Sonically, it frequently utilizes expansive, reverb-heavy synthesizer textures, though it can also incorporate acoustic, ethnic, and classical elements. Its production is often characterized by a lack of traditional rhythmic or melodic focal points, favoring a seamless, immersive soundscape that promotes deep listening and introspection.\\n\\nThe cultural identity of space music is inextricably linked to the work of pioneers like Stephen Hill, whose long-running radio program *Hearts of Space* played a crucial role in popularizing and codifying the genre for a broad audience. As an eclectic, often independent-label-driven movement, it serves as a functional tool for relaxation, meditation, and creative visualization, frequently finding homes in planetariums, film soundtracks, and wellness settings. While it is often classified under the broader umbrella of New Age, space music distinguishes itself through its specific focus on cosmic imagery and the phenomenology of sound in space, acting as a bridge between high-art electronic experimentation and the more utilitarian needs of contemplative listeners. It is a music of the \"aether,\" designed to open the mind and allow the listener to navigate the boundaries of both outer space and the internal landscape of the psyche.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Space_music",
+      "title": "Space music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:22.875Z",
+  "type": "genre",
+  "editorial_definition": "A tranquil and hypnotic subgenre of ambient music designed to evoke feelings of vastness, weightlessness, and cosmic space, often used for meditation and introspective listening.",
+  "era": "1970s–present",
+  "origin": "Germany and Japan",
+  "parent_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:space-ambient",
+      "type": "genre",
+      "name": "Space ambient"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:berlin-school-of-electronic-music",
+      "type": "genre",
+      "name": "Berlin school of electronic music"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock"
+    }
+  ],
+  "key_artists": [],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

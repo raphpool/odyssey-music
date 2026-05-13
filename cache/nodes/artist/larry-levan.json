@@ -1,0 +1,74 @@
+{
+  "slug": "artist:larry-levan",
+  "name": "Larry Levan",
+  "editorial_article": "Larry Levan (1954–1992) was an American DJ and music producer who stands as perhaps the most foundational figure in the history of dance music culture. Best known for his decade-long residency at the Paradise Garage in New York City (1977–1987), Levan revolutionized the art of DJing by treating the mix as a narrative journey rather than just a sequence of records. His innovative use of EQ, remix techniques, and his intimate connection with his audience fostered a communal, transcendent environment that birthed the \"Garage\" sound. Levan was not merely a selector; he was a curator and sonic architect whose sets were marked by a high-fidelity sound system, a diverse range of genres—spanning disco, R&B, funk, and early house—and an uncompromising pursuit of musical perfection. Beyond the DJ booth, Levan was a prolific producer and remixer, working on landmark tracks that remain central to the dance music canon. His approach to the studio—often working with his childhood friend Frankie Knuckles or under the aegis of the West End Records label—helped define the aesthetic of post-disco and early house music. Despite his premature death in 1992, his influence remains ubiquitous. The \"Garage\" sound, named after his spiritual home, laid the groundwork for modern dance floor culture and house music, cementing his legacy as a visionary who transformed the night club into a site of profound human connection and spiritual expression. His impact is still felt in the DNA of contemporary electronic dance music. The spirit of the Paradise Garage, orchestrated by Levan, created an inclusive, queer-friendly, and racially diverse sanctuary that paved the way for modern nightlife, influencing generations of producers and DJs who look to his legacy as a masterclass in musical storytelling. The Paradise Garage was more than a club; it was a laboratory for the evolution of dance music, and Levan was its undisputed maestro, orchestrating shifts in energy that moved thousands of people in unison. His death was a significant loss, but his recorded output and the stories of those who experienced his legendary sets ensure that his vision remains a cornerstone of club culture history.",
+  "citations": [
+    {
+      "url": "https://musicorigins.org/item/the-paradise-garage-and-larry-levans-legacy/",
+      "title": "Larry Levan and Paradise Garage: The inception of Garage Music in NYC"
+    },
+    {
+      "url": "https://cshockart.com/2016/07/20/the-soul-of-paradise-garage-and-the-legacy-of-larry-levan/",
+      "title": "The Legacy of Larry Levan, the Soul of Paradise Garage"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:22.815Z",
+  "type": "artist",
+  "editorial_bio": "A visionary DJ and producer, Larry Levan’s decade-long residency at New York’s Paradise Garage turned the nightclub into a sacred space, essentially inventing the blueprint for modern house music.",
+  "origin": "New York City, USA",
+  "active_years": "1970s-1992",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House"
+    },
+    {
+      "slug": "genre:post-disco",
+      "type": "genre",
+      "name": "Post-disco"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:west-end-records",
+      "type": "label",
+      "name": "West End Records"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:live-at-the-paradise-garage",
+      "type": "project",
+      "name": "Live at the Paradise Garage"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-peech-boys",
+      "type": "artist",
+      "name": "The Peech Boys"
+    }
+  ]
+}

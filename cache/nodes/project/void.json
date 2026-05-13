@@ -1,0 +1,51 @@
+{
+  "slug": "project:void",
+  "name": "ØØ Void",
+  "editorial_article": "ØØ Void, released in 2000, stands as the landmark debut studio album by the influential American drone metal pioneers Sunn O))). Recorded at Grandmaster Studios in Hollywood, the album marked a significant escalation in the band's sonic ambition following the raw, lo-fi aesthetic of their earlier demo work, The Grimmrobe Demos. Core members Stephen O’Malley and Greg Anderson utilized a 24-track 2-inch tape format to capture the immense, tectonic layers of feedback and amplified distortion that would come to define the drone metal genre. \\n\\nThe album features four expansive, ritualistic tracks that explore the boundaries of volume and sustain, including an interpretation of an obscure Melvins song, 'Rabbits' Revenge'. The recording process also benefited from the contributions of guest musicians, including bassist Scott Reeder, vocalist Pete Stahl, and violinist Petra Haden, who helped add a nuanced, haunting texture to the monoliths of sound. While originally released via Hydra Head in the US and Rise Above in Europe, ØØ Void has seen various reissues, most notably a Japanese version by Daymare Recordings that paired it with a collaboration with the experimental/industrial outfit Nurse with Wound, titled 'The Iron Soul of Nothing'. The album remains a foundational text for heavy experimental music, demonstrating the duo's ability to manipulate amplifier physics into an immersive, transcendent experience. Its enduring legacy is cemented by its critical reappraisal and status as a definitive entry in the Sunn O))) discography, bridging the gap between raw early experimentation and the dense, orchestral drone compositions that would follow in their subsequent decade-plus of work.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/%C3%98%C3%98_Void",
+      "title": "ØØ Void - Wikipedia"
+    },
+    {
+      "url": "https://sunn.bandcamp.com/album/void",
+      "title": "ØØVOID | SUNN O))) - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:21.123Z",
+  "type": "project",
+  "editorial_pitch": "A seminal work of American drone metal, this 2000 debut established Sunn O)))'s signature landscape of slow-moving, feedback-drenched sonic weight.",
+  "year": "2000",
+  "artists": [],
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:richard",
+      "type": "track",
+      "name": "Richard"
+    },
+    {
+      "slug": "track:nn-o",
+      "type": "track",
+      "name": "NN O)))"
+    },
+    {
+      "slug": "track:rabbits-revenge",
+      "type": "track",
+      "name": "Rabbits' Revenge"
+    },
+    {
+      "slug": "track:ra-at-dusk",
+      "type": "track",
+      "name": "Ra at Dusk"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:scott-reeder",
+      "type": "artist",
+      "name": "Scott Reeder"
+    }
+  ],
+  "related_projects": []
+}

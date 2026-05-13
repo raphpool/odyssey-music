@@ -1,0 +1,82 @@
+{
+  "slug": "artist:mclusky",
+  "name": "Mclusky",
+  "editorial_article": "Mclusky was a seminal Welsh noise rock and post-hardcore band formed in Cardiff in 1996. Known for their abrasive, high-energy sound characterized by angular guitar riffs, punchy bass lines, and the distinctively biting, sarcastic vocal delivery of Andrew Falkous, the band cultivated a fiercely loyal cult following. Their music often blended humor with a visceral intensity, marking them as key figures in the early 2000s UK underground rock scene. The group’s second album, 'mclusky Do Dallas' (2002), is widely considered their masterpiece, featuring the fan-favorite track 'To Hell With Good Intentions.' After disbanding in 2005, the band’s influence continued to resonate, particularly through the work of Falkous’s subsequent outfit, Future of the Left. After years of dormancy, the band reformed in the 2010s for touring and subsequent recordings, continuing to deliver their signature brand of chaotic, intelligent rock. Their legacy is defined by a refusal to adhere to traditional rock tropes, favoring instead a spiky, confrontational style that prioritized sharp-witted songwriting and raw, unpolished performance. Despite their relatively short initial run, their sonic footprint—a frantic tension between melody and noise—has left a lasting impression on independent rock music. Throughout their history, the band underwent several lineup changes, yet maintained a consistent ethos of fierce independence. Their ability to balance rhythmic complexity with pop-inflected hooks allowed them to transcend the typical boundaries of the noise rock genre, making their discography a essential touchstone for fans of aggressive, thoughtful guitar music. Today, they remain celebrated as a benchmark for integrity and originality in the UK rock landscape.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/artist/mclusky",
+      "title": "mclusky Albums: songs, discography, biography, and listening guide - Rate Your Music"
+    },
+    {
+      "url": "https://www.scaruffi.com/vol7/mclusky.html",
+      "title": "The History of Rock Music. McLusky - Piero Scaruffi"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:59.952Z",
+  "type": "artist",
+  "editorial_bio": "Mclusky was a seminal Welsh noise rock and post-hardcore band formed in 1996, celebrated for their abrasive, sarcastic, and highly energetic music. Led by vocalist and guitarist Andrew Falkous, the band became a vital force in the UK underground, known for their sharp-witted lyrics and chaotic, riff-heavy sound.",
+  "origin": "Cardiff, Wales",
+  "genres": [
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock"
+    },
+    {
+      "slug": "genre:post-hardcore",
+      "type": "genre",
+      "name": "Post-Hardcore"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:too-pure",
+      "type": "label",
+      "name": "Too Pure"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:my-pain-and-sadness-is-more-sad-and-painful-than-yours",
+      "type": "project",
+      "name": "My Pain and Sadness Is More Sad and Painful Than Yours"
+    },
+    {
+      "slug": "project:mclusky-do-dallas",
+      "type": "project",
+      "name": "mclusky Do Dallas"
+    },
+    {
+      "slug": "project:the-difference-between-me-and-you-is-that-i-m-not-on-fire",
+      "type": "project",
+      "name": "The Difference Between Me and You Is That I'm Not on Fire"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:to-hell-with-good-intentions",
+      "type": "track",
+      "name": "To Hell With Good Intentions"
+    },
+    {
+      "slug": "track:lightsabre-cocksucking-blues",
+      "type": "track",
+      "name": "Lightsabre Cocksucking Blues"
+    },
+    {
+      "slug": "track:she-will-only-bring-you-happiness",
+      "type": "track",
+      "name": "She Will Only Bring You Happiness"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

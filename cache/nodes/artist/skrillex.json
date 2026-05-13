@@ -1,0 +1,82 @@
+{
+  "slug": "artist:skrillex",
+  "name": "Skrillex",
+  "editorial_article": "Skrillex, born Sonny John Moore in Los Angeles in 1988, is one of the most transformative figures in 21st-century electronic dance music. Originally rising to prominence as the frontman of the post-hardcore band From First to Last, Moore pivoted in the late 2000s toward electronic music production. Adopting the moniker Skrillex, he synthesized elements of electro-house, dubstep, dancehall, and heavy metal into a high-octane, bombastic sound that became colloquially known as 'brostep.' This aggressive, bass-heavy style fundamentally shifted the landscape of mainstream American EDM in the early 2010s.\\n\\nHis breakthrough EPs, including 'Scary Monsters & Nice Sprites' (2010) and 'Bangarang' (2011), earned multiple Grammy Awards and catapulted him to international stardom, marked by relentless touring and an unmistakable, jagged production aesthetic. Beyond his solo work, Skrillex has been an incredibly versatile collaborator and producer. He co-founded the influential label OWSLA and formed successful collaborative projects like Dog Blood with Boys Noize and Jack Ü with Diplo, the latter of which yielded the global smash \"Where Are Ü Now\" featuring Justin Bieber. His production work extends across the pop spectrum, working with icons ranging from Mariah Carey and Beyoncé to Lady Gaga and Justin Bieber. After a decade of shaping global club culture, he returned to prominence in 2023 with two back-to-back studio albums, 'Quest for Fire' and 'Don't Get Too Close', showcasing his ongoing evolution and technical mastery.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/skrillex-mn0002365087",
+      "title": "Skrillex Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Skrillex_discography",
+      "title": "Skrillex discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:09.679Z",
+  "type": "artist",
+  "editorial_bio": "Sonny John Moore, better known by his stage name Skrillex, is an American DJ, producer, and one of the most popular figures in modern EDM. Known for his aggressive, genre-bending bass music, he has also become a premier pop producer with multiple Grammy Awards to his name.",
+  "photo_url": "https://fastly-s3.allmusic.com/artist/mn0002365087/400/JbF10ZyHLqSEpeSR-Gr33FWnbEN5fCjifro6xhIBuB4=.jpg",
+  "origin": "Los Angeles, California",
+  "genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:trap",
+      "type": "genre",
+      "name": "Trap (EDM)"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:owsla",
+      "type": "label",
+      "name": "OWSLA"
+    },
+    {
+      "slug": "label:mau5trap",
+      "type": "label",
+      "name": "Mau5trap"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:scary-monsters-and-nice-sprites",
+      "type": "track",
+      "name": "Scary Monsters and Nice Sprites"
+    },
+    {
+      "slug": "track:bangarang",
+      "type": "track",
+      "name": "Bangarang"
+    },
+    {
+      "slug": "track:where-are-u-now",
+      "type": "track",
+      "name": "Where Are Ü Now"
+    },
+    {
+      "slug": "track:make-it-bun-dem",
+      "type": "track",
+      "name": "Make It Bun Dem"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

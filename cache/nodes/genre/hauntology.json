@@ -1,0 +1,113 @@
+{
+  "slug": "genre:hauntology",
+  "name": "hauntology",
+  "editorial_article": "Hauntology is an electronic music genre and cultural aesthetic rooted in the \"lost futures\" of the mid-20th century. While the term originated in Jacques Derrida’s 1993 philosophical work *Specters of Marx* to describe the persistence of ideas and social structures from the past, it was re-contextualized in the early 2000s by music critics like Mark Fisher, Simon Reynolds, and Adam Harper. Musically, hauntology is defined by its preoccupation with the textures of post-war broadcast media—specifically early television soundtracks, public information films, library music, and instructional recordings. Artists employ techniques such as heavy analog tape saturation, vinyl crackle, frequency filtering, and deliberate sound degradation to evoke a sense of uncanny, ghostly nostalgia. This aesthetic suggests a world where the future promised by mid-century technology failed to arrive, leaving behind only the \"haunted\" echoes of a discarded optimism.\\n\\nCentral to the genre’s development were British record labels like Ghost Box and Trunk Records, which curated a soundscape drawing inspiration from the BBC Radiophonic Workshop. The sonic palette relies on analog synthesizers, found sounds, and tape-loop manipulation to create immersive, often unsettling atmospheres. While often associated with a specific UK-centric cultural memory, the genre's influence is global, encompassing works by artists like The Caretaker, Boards of Canada, and William Basinski. These musicians utilize the \"grain\" of historical recordings to explore memory, dementia, and temporal displacement, making hauntology as much an exploration of sonic archaeology as it is a genre of electronic music. It remains a deeply intellectual pursuit, bridging the gap between sound art, academic cultural theory, and experimental ambient music.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/genre/hauntology/",
+      "title": "Hauntology - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:01:06.479Z",
+  "type": "genre",
+  "editorial_definition": "A genre of electronic and experimental music characterized by the use of degraded analog textures and found-sound collage to evoke a sense of haunted, lost mid-20th-century nostalgia.",
+  "era": "2000s–Present",
+  "origin": "United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hypnagogic-pop",
+      "type": "genre",
+      "name": "Hypnagogic Pop"
+    },
+    {
+      "slug": "genre:plunderphonics",
+      "type": "genre",
+      "name": "Plunderphonics"
+    },
+    {
+      "slug": "genre:vaporwave",
+      "type": "genre",
+      "name": "Vaporwave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-caretaker",
+      "type": "artist",
+      "name": "The Caretaker"
+    },
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    },
+    {
+      "slug": "artist:belbury-poly",
+      "type": "artist",
+      "name": "Belbury Poly"
+    },
+    {
+      "slug": "artist:the-focus-group",
+      "type": "artist",
+      "name": "The Focus Group"
+    },
+    {
+      "slug": "artist:william-basinski",
+      "type": "artist",
+      "name": "William Basinski"
+    },
+    {
+      "slug": "artist:broadcast",
+      "type": "artist",
+      "name": "Broadcast"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ghost-box",
+      "type": "label",
+      "name": "Ghost Box"
+    },
+    {
+      "slug": "label:trunk-records",
+      "type": "label",
+      "name": "Trunk Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:music-has-the-right-to-children",
+      "type": "project",
+      "name": "Music Has the Right to Children"
+    },
+    {
+      "slug": "project:everywhere-at-the-end-of-time",
+      "type": "project",
+      "name": "Everywhere at the End of Time"
+    },
+    {
+      "slug": "project:the-disintegration-loops",
+      "type": "project",
+      "name": "The Disintegration Loops"
+    }
+  ],
+  "landmark_tracks": []
+}

@@ -1,0 +1,93 @@
+{
+  "slug": "project:visa--1993-malaysian-pop-rock-album-by-the-band-visa",
+  "name": "Visa",
+  "editorial_article": "The self-titled 1993 album *Visa* by the Malaysian band Visa stands as a noteworthy entry in the Southeast Asian pop-rock landscape of the early 1990s. Released under the Happy label, the album encapsulates the melodic sensibilities and production aesthetics prevalent in the Malaysian music scene during that era. It blends elements of soft rock and pop, characterized by emotive vocals and accessible instrumentation that found a receptive audience in the local market.\\n\\nComprising ten tracks, the record includes notable songs such as \"Ilustrasi Mimpi,\" \"Untukmu Selamanya,\" and \"Alpa.\" The album’s structure follows the convention of cassette-era releases, which were the primary format for consuming music in the region at the time. The band’s sound on this project balances commercial appeal with a distinct melodic identity, contributing to a body of work that reflects the cultural and artistic trends of 1990s Malaysian music. Despite the passage of time, the project remains a documented artifact of a specific moment in local popular music history, highlighting the band's role in the vibrant music output of the early nineties in Malaysia. The inclusion of songs like \"Suata Masa\" and \"Sinar Suria\" further demonstrates the range and stylistic consistency that Visa aimed to cultivate across this ten-track collection, cementing its place in the discography of 1990s Malaysian rock.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/2670608-Visa-Visa?srsltid=AfmBOop-BrPybAsbYSLRY-z71lhKgiAQq-oalpHaANlJ3auxAhbe3yg6",
+      "title": "Visa – Visa | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:10.309Z",
+  "type": "project",
+  "editorial_pitch": "A 1993 self-titled rock album from the Malaysian band Visa, featuring tracks like \"Ilustrasi Mimpi\" and \"Untukmu Selamanya,\" that reflects the melodic soft-rock trends of its era.",
+  "year": "1993",
+  "artists": [
+    {
+      "slug": "artist:visa",
+      "type": "artist",
+      "name": "Visa (14)"
+    }
+  ],
+  "label": {
+    "slug": "label:happy",
+    "type": "label",
+    "name": "Happy (13)"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock"
+    },
+    {
+      "slug": "genre:soft-rock",
+      "type": "genre",
+      "name": "Soft rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:ilustrasi-mimpi",
+      "type": "track",
+      "name": "Ilustrasi Mimpi"
+    },
+    {
+      "slug": "track:untukmu-selamanya",
+      "type": "track",
+      "name": "Untukmu Selamanya"
+    },
+    {
+      "slug": "track:alpa",
+      "type": "track",
+      "name": "Alpa"
+    },
+    {
+      "slug": "track:tiada-lagi",
+      "type": "track",
+      "name": "Tiada Lagi"
+    },
+    {
+      "slug": "track:lalang",
+      "type": "track",
+      "name": "Lalang"
+    },
+    {
+      "slug": "track:anak-dunia",
+      "type": "track",
+      "name": "Anak Dunia"
+    },
+    {
+      "slug": "track:warna",
+      "type": "track",
+      "name": "Warna"
+    },
+    {
+      "slug": "track:suata-masa",
+      "type": "track",
+      "name": "Suata Masa"
+    },
+    {
+      "slug": "track:satu-dalam-seribu",
+      "type": "track",
+      "name": "Satu Dalam Seribu"
+    },
+    {
+      "slug": "track:sinar-suria",
+      "type": "track",
+      "name": "Sinar Suria"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

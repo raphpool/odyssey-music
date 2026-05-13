@@ -1,0 +1,75 @@
+{
+  "slug": "label:philips-records",
+  "name": "Philips Records",
+  "editorial_article": "Philips Records, a cornerstone of the 20th-century recording industry, originated as the record division of the Dutch electronics giant Philips. Founded in 1950, the label initially served to bolster the presence of Philips' audio hardware, yet it rapidly evolved into a formidable cultural force in its own right. Operating globally, Philips Records established a reputation for technical excellence and a sprawling, eclectic catalogue that bridged the gap between popular and classical music. By the mid-1950s, the label had expanded its footprint into international markets, moving its UK operations to London’s Stanhope House—a facility that included its own recording studio, enabling a more integrated approach to production.\n\nThroughout its peak decades, Philips Records became synonymous with high-fidelity sound, a reputation naturally aligned with its parent company’s innovations in magnetic tape and early digital formats. The label’s roster was remarkably diverse, documenting essential works of Western classical music through prestigious partnerships with ensembles such as the Academy of St. Martin-in-the-Fields and legendary performers like Henryk Szeryng and Clara Haskil. Beyond classical, the label operated significant subsidiaries like Fontana, which allowed it to explore and cultivate the burgeoning pop, jazz, and folk landscapes of the 1960s. In 1972, the label underwent a major structural transition, becoming part of the newly formed PolyGram group, which would eventually be integrated into the Universal Music Group, cementing its legacy as a foundational pillar of the recorded music industry.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/7704-Philips?srsltid=AfmBOooCfHq9OGiZf8kVbOOdvZcFMCOF2yXtinPcwHWc3YVboRKNSEhH",
+      "title": "Philips | Discogs"
+    },
+    {
+      "url": "https://www.artandpopularculture.com/Philips_Records",
+      "title": "Philips Records - The Art and Popular Culture Encyclopedia"
+    },
+    {
+      "url": "https://www.cvinyl.com/labelguides/philips.php",
+      "title": "Label Variations: Philips Records - CVINYL.COM - Collectible Vinyl"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:28.361Z",
+  "type": "label",
+  "editorial_description": "A monumental Dutch-founded record label, initially a division of the Philips electronics company, known for its significant contributions to classical and popular music catalogs throughout the late 20th century.",
+  "founded": "1950",
+  "location": "Eindhoven, Netherlands",
+  "genres": [
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:academy-of-st-martin-in-the-fields",
+      "type": "artist",
+      "name": "Academy of St. Martin-in-the-Fields"
+    },
+    {
+      "slug": "artist:henryk-szeryng",
+      "type": "artist",
+      "name": "Henryk Szeryng"
+    },
+    {
+      "slug": "artist:clara-haskil",
+      "type": "artist",
+      "name": "Clara Haskil"
+    },
+    {
+      "slug": "artist:neville-marriner",
+      "type": "artist",
+      "name": "Neville Marriner"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:famous-overtures-beruhmte-ouverturen",
+      "type": "project",
+      "name": "Famous Overtures • Berühmte Ouvertüren"
+    },
+    {
+      "slug": "project:complete-violin-concertos",
+      "type": "project",
+      "name": "Complete Violin Concertos"
+    }
+  ]
+}

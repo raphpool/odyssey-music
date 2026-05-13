@@ -1,0 +1,59 @@
+{
+  "slug": "track:amenida--track-by-ziq-from-tango-n-vectif",
+  "name": "Amenida",
+  "editorial_article": "\"Amenida\" is an early landmark track by the British electronic producer µ-Ziq (Mike Paradinas), originally released in 1993 as part of his seminal debut album, *Tango N'Vectif*. Emerging from the vibrant, experimental IDM scene of the early 90s, the track serves as a prime example of Paradinas's foundational approach to sound design: fusing intricate, jittery breakbeat programming with melodic, atmospheric synth textures. \n\nUnlike the more aggressive or \"drill 'n' bass\" directions he would later explore, \"Amenida\" captures a specific, hazy tension emblematic of the era's transition from rave aesthetics toward the more contemplative, headphone-oriented soundscapes of the Rephlex Records roster. The track is characterized by its complex rhythmic structures—which shift and stutter in ways that feel both organic and machine-engineered—layered underneath expansive, melancholic pads that evoke a sense of nostalgic longing. For many listeners of the time, the *Tango N'Vectif* album was a pivotal bridge between the visceral energy of UK dance culture and the abstract, avant-garde electronics that would eventually define the intelligent dance music (IDM) genre. \"Amenida\" persists as a testament to the adventurous spirit of early 90s electronic music, balancing technical complexity with a deeply emotive melodic sensibility that has made it a touchstone for experimental producers across generations. Its presence on the album helps cement the record's place in the history of electronic music as a masterclass in texture and rhythmic deconstruction.",
+  "citations": [
+    {
+      "url": "https://mikeparadinas.bandcamp.com/track/amenida",
+      "title": "Amenida | µ-Ziq - Mike Paradinas - Bandcamp"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/song/287263-amenida/",
+      "title": "µ-Ziq - Amenida - Song Ratings - Album of the Year"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:53.711Z",
+  "type": "track",
+  "editorial_teaser": "A quintessential piece of early 90s IDM, \"Amenida\" is an atmospheric, rhythmically complex track from µ-Ziq's debut album that perfectly balances breakbeat energy with melancholic melodic depth.",
+  "year": "1993",
+  "duration": "05:54",
+  "artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "project": {
+    "slug": "project:tango-n-vectif",
+    "type": "project",
+    "name": "Tango N'Vectif"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

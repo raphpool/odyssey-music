@@ -1,0 +1,89 @@
+{
+  "slug": "genre:micro-house",
+  "name": "Micro-house",
+  "editorial_article": "Microhouse is a distinctive, detail-oriented strain of electronic dance music that emerged at the turn of the millennium, characterized by a reductionist approach to house and techno production. The genre, which often leans into minimalism, prioritizes subtle textures, micro-edits, and rhythmic complexity over the explosive crescendos and large-scale drops found in mainstream dance music. It typically occupies a tempo range between 115 and 130 BPM, utilizing clean, punchy percussion—often referencing classic drum machine sounds like the Roland 909 or 707—layered with glitchy, choppy vocal samples, static, and synthetic strings. The sonic signature of microhouse is one of deep, hypnotic groove; it is music designed for trance-like states, relying on constant, subtle timbral shifts and repetitive, polyrhythmic patterns to pull the listener into a loop. \\n\\nThe term was coined by music journalist Philip Sherburne in a 2001 article for The Wire, aimed at describing a wave of producers who were reinterpreting Chicago house grooves through the lens of European minimal techno and experimental glitch aesthetics. The foundations of this sound can be traced back to the early 1990s experiments of German groups like Oval, who utilized early digital production techniques and resampling. By the late 1990s, the sound found a definitive home in the German electronic scene, pioneered by legendary labels such as Perlon, Kompakt, Playhouse, and Klang Elektronik. These labels provided a creative crucible where artists like Ricardo Villalobos and Zip (Thomas Franzmann) could develop the refined, stripped-back aesthetic that became the hallmark of the scene. Over the subsequent decades, the genre fostered a tight-knit global community of record diggers and DJs, with later hubs like Romania becoming essential to the continued evolution of the sound. It remains a genre prized for its craftsmanship, where the mastery lies not in grand gestures but in the precision of the mix and the artful arrangement of sparse elements.",
+  "citations": [
+    {
+      "url": "https://6amgroup.com/articles/all/microhouse-music-guide-history-artists-and-songs",
+      "title": "Microhouse Music Guide: History, Artists, and Songs | SIX AM"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/microhouse",
+      "title": "Microhouse - Melodigging"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Microhouse",
+      "title": "Microhouse | Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:19.713Z",
+  "type": "genre",
+  "editorial_definition": "Microhouse is a minimal, groove-focused subgenre of house and techno known for its sparse arrangements, repetitive hypnotic percussion, and heavy use of glitchy, micro-edited samples.",
+  "era": "Late 1990s to present",
+  "origin": "Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear"
+    },
+    {
+      "slug": "artist:raresh",
+      "type": "artist",
+      "name": "Raresh"
+    },
+    {
+      "slug": "artist:francesco-del-garda",
+      "type": "artist",
+      "name": "Francesco Del Garda"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:perlon",
+      "type": "label",
+      "name": "Perlon"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    },
+    {
+      "slug": "label:playhouse",
+      "type": "label",
+      "name": "Playhouse"
+    },
+    {
+      "slug": "label:klang-elektronik",
+      "type": "label",
+      "name": "Klang Elektronik"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

@@ -1,0 +1,79 @@
+{
+  "slug": "artist:tangerine-dream",
+  "name": "Tangerine Dream",
+  "editorial_article": "Tangerine Dream is a pioneering German electronic music group founded in 1967 by Edgar Froese in Berlin. They are widely recognized as the primary architects of the \"Berlin School\" of electronic music, a style defined by long-form, atmospheric compositions built on modular synthesizers, hypnotic sequencer loops, and otherworldly soundscapes. Emerging from the experimental Kosmische Musik scene, the band transitioned from avant-garde beginnings to international acclaim with their 1974 masterpiece, Phaedra. This release, and the subsequent \"Virgin Years,\" cemented their reputation as innovators who integrated sequencers into the mainstream, influencing countless ambient, techno, and trance artists. Throughout their long and shifting career, Tangerine Dream maintained a prolific output, releasing over 100 studio albums and composing more than 60 film scores for directors like William Friedkin and Michael Mann, including music for films such as Sorcerer, Thief, and Risky Business. While the group saw numerous lineup changes—with Edgar Froese remaining the only constant figure until his passing in 2015—their core methodology of combining intricate electronic programming with melodic, textured experimentation remains a hallmark of their legacy. Today, the ensemble continues under the direction of Thorsten Quaeschning, Hoshiko Yamane, and Paul Frick, honoring the foundations laid by Froese while exploring new sonic horizons.",
+  "citations": [
+    {
+      "url": "https://www.tangerinedreammusic.com/en/biography/index.asp",
+      "title": "Tangerine Dream - The Band's history"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tangerine_Dream",
+      "title": "Tangerine Dream - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:55.136Z",
+  "type": "artist",
+  "editorial_bio": "Tangerine Dream is a pioneering German electronic music group founded in 1967 by Edgar Froese in Berlin.",
+  "photo_url": "https://data.tangerinedreammusic.com/Data/BildArchiv/zuordnung/01081.jpg",
+  "origin": "Berlin, Germany",
+  "active_years": "1967–present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:phaedra",
+      "type": "project",
+      "name": "Phaedra"
+    },
+    {
+      "slug": "project:rubycon",
+      "type": "project",
+      "name": "Rubycon"
+    },
+    {
+      "slug": "project:stratosfear",
+      "type": "project",
+      "name": "Stratosfear"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:phaedra",
+      "type": "track",
+      "name": "Phaedra"
+    },
+    {
+      "slug": "track:rubycon",
+      "type": "track",
+      "name": "Rubycon"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

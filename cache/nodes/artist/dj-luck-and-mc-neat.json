@@ -1,0 +1,69 @@
+{
+  "slug": "artist:dj-luck-and-mc-neat",
+  "name": "DJ Luck & MC Neat",
+  "editorial_article": "DJ Luck & MC Neat are a foundational British duo who played a critical role in bringing UK garage into the mainstream consciousness at the turn of the millennium. Composed of DJ Luck (Joel Samuels) and MC Neat (Michael Rose), the London-based pair emerged in 1999, quickly establishing themselves as staples of the burgeoning garage scene. Their sound was a quintessential bridge between the raw, underground energy of pirate radio culture and the polished aesthetics of pop-chart success. They are perhaps best remembered for their 1999 breakthrough single \"A Little Bit of Luck,\" a record that evolved from a promotional dubplate into a nationwide anthem, peaking in the top ten and setting a blueprint for the energetic, vocal-heavy garage that would dominate British clubs for the next several years.\\n\\nThroughout 2000 and 2001, the duo achieved a string of hits, including \"Masterblaster 2000\" and \"Ain't No Stoppin' Us,\" which saw them frequently appearing on shows like Top of the Pops. These tracks often featured the distinctive vocal contributions of collaborator JJ. A key factor in their sustained relevance was their collaboration with underground producer Shy Cookie, whose influence helped them transition from reliance on readily available pop-culture samples toward more complex, original compositions. This shift allowed them to retain a degree of street-level credibility while simultaneously operating within the framework of major label visibility. Though their chart dominance was concentrated in the early 2000s, their legacy remains tethered to the 2-step garage sound that defined a generation of UK nightlife. Their work continues to be seen as a defining moment in UK dance music history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Luck_%26_MC_Neat",
+      "title": "DJ Luck & MC Neat - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:54.740Z",
+  "type": "artist",
+  "editorial_bio": "DJ Luck & MC Neat are a foundational British duo who played a critical role in bringing UK garage into the mainstream consciousness at the turn of the millennium. Composed of DJ Luck (Joel Samuels) and MC Neat (Michael Rose), the London-based pair emerged in 1999, quickly establishing themselves as staples of the burgeoning garage scene. Their sound was a quintessential bridge between the raw, underground energy of pirate radio culture and the polished aesthetics of pop-chart success. They are perhaps best remembered for their 1999 breakthrough single \"A Little Bit of Luck,\" a record that evolved from a promotional dubplate into a nationwide anthem, peaking in the top ten and setting a blueprint for the energetic, vocal-heavy garage that would dominate British clubs for the next several years.",
+  "origin": "London, England",
+  "active_years": "1999–present",
+  "genres": [
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage"
+    }
+  ],
+  "labels": [],
+  "discography": [
+    {
+      "slug": "project:a-little-bit-of-luck",
+      "type": "project",
+      "name": "A Little Bit of Luck"
+    },
+    {
+      "slug": "project:it-s-all-good",
+      "type": "project",
+      "name": "It's All Good"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:a-little-bit-of-luck",
+      "type": "track",
+      "name": "A Little Bit of Luck"
+    },
+    {
+      "slug": "track:masterblaster-2000",
+      "type": "track",
+      "name": "Masterblaster 2000"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jj",
+      "type": "artist",
+      "name": "JJ"
+    },
+    {
+      "slug": "artist:shy-cookie",
+      "type": "artist",
+      "name": "Shy Cookie"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

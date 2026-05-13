@@ -1,0 +1,76 @@
+{
+  "slug": "label:mfs",
+  "name": "MFS",
+  "editorial_article": "MFS (an acronym for Masterminded For Success) is an influential independent electronic music record label based in Berlin, Germany. Founded in December 1990 by Mancunian musician and producer Mark Reeder, it holds the historical distinction of being the first record label established in East Berlin following the fall of the Berlin Wall. The label's name was a provocative nod to the MfS (Ministerium für Staatssicherheit), the feared East German secret police—the Stasi—with Reeder intentionally subverting the acronym to give it a positive, creative connotation in the context of the burgeoning rave scene.\\n\\nIn its early years, MFS was instrumental in shaping the sound of the German electronic music landscape, providing a critical bridge between the raw, industrial textures of early Techno and the more melodic, hypnotic, and emotionally resonant sound that would eventually define Trance. Reeder, who had deep roots in the post-punk and industrial scenes of the 1980s, sought to create a platform that could fuse the drive of Techno with the experimental, atmospheric sensibilities of German pioneers like Kraftwerk and Klaus Schulze. The label’s early catalog—featuring artists such as Mijk van Dijk, Cosmic Baby, Humate, and Paul van Dyk—became a laboratory for this new, emotive dance music.\\n\\nBeyond its sonic output, MFS was a pivotal cultural force in a reunified Berlin. The label was the first to document the meeting of East and West German musical ideas, capturing the spirit of a city that was rapidly transforming into the world's techno capital. Its 1992 compilation, 'Tranceformed From Beyond,' is considered a landmark release that helped codify the trance subgenre. While the label later faced internal challenges and external shifts in the music industry—including the departure of major artists like Cosmic Baby and Paul van Dyk—MFS remains a vital piece of electronic music history, representing the convergence of political upheaval, post-industrial experimentation, and the birth of a global dance culture.",
+  "citations": [
+    {
+      "url": "https://mfsberlin.com/label-history/",
+      "title": "Label history • MFS Berlin"
+    },
+    {
+      "url": "https://www.discogs.com/label/36247-MFS?srsltid=AfmBOoocsOvi76ucSFfoc9x16PD8GVV_2MAjQABtAjLlP1tDhULiiLwO",
+      "title": "MFS - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:16.984Z",
+  "type": "label",
+  "editorial_description": "A foundational Berlin-based electronic music label established by Mark Reeder in 1990, pivotal in the development of the German trance and melodic techno sound.",
+  "founded": "1990",
+  "location": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk"
+    },
+    {
+      "slug": "artist:mijk-van-dijk",
+      "type": "artist",
+      "name": "Mijk van Dijk"
+    },
+    {
+      "slug": "artist:cosmic-baby",
+      "type": "artist",
+      "name": "Cosmic Baby"
+    },
+    {
+      "slug": "artist:humate",
+      "type": "artist",
+      "name": "Humate"
+    },
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:tranceformed-from-beyond",
+      "type": "project",
+      "name": "Tranceformed From Beyond"
+    },
+    {
+      "slug": "project:45-rpm",
+      "type": "project",
+      "name": "45 RPM"
+    },
+    {
+      "slug": "project:seven-ways",
+      "type": "project",
+      "name": "Seven Ways"
+    }
+  ]
+}

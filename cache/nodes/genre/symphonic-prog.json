@@ -1,0 +1,82 @@
+{
+  "slug": "genre:symphonic-prog",
+  "name": "Symphonic Prog",
+  "editorial_article": "Symphonic Prog is a sub-genre of progressive rock that emerged in the late 1960s, defined by its sophisticated integration of classical music structures and instrumentation into the framework of rock music. Often considered the quintessential \"classic\" progressive rock style, it is characterized by complex time signatures, lush synthesizer and keyboard textures—frequently invoking the spirit of Baroque or Romantic period composers—and long-form song structures. While the term \"Symphonic\" is not technically precise, as these bands rarely performed with full symphony orchestras, it accurately reflects the grand, expansive, and high-minded ambition of the music, which often draws thematic inspiration from fantasy literature, science fiction, and mythology.\n\nThe genre's golden age took place between 1969 and the mid-1970s, with seminal works like King Crimson’s \"In the Court of the Crimson King\" and Yes’s \"Close to the Edge\" establishing the blueprint. Bands like Genesis and Yes leaned into melodic, intricate arrangements reminiscent of Bach or Handel, while Emerson, Lake & Palmer (ELP) brought a more aggressive, virtuosic approach, often directly reinterpreting works by post-Romantic composers like Mussorgsky or Bartók. By the late 1970s, as mainstream tastes shifted, the genre's influence evolved into Neo-Progressive rock. However, Symphonic Prog experienced a notable revival in the 1990s, particularly within the Swedish progressive scene with bands such as Änglagård, ensuring that its legacy of virtuosic, non-commercial composition continued into the 21st century. It remains a cornerstone of the progressive rock canon, representing an era where musicians pushed the boundaries of rock’s potential through formal complexity and instrumental mastery.",
+  "citations": [
+    {
+      "url": "https://www.progarchives.com/subgenre.asp?style=4",
+      "title": "Symphonic Prog, a progressive rock music sub-genre - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:37.529Z",
+  "type": "genre",
+  "editorial_definition": "A sub-genre of progressive rock distinguished by its heavy use of classical music motifs, lush keyboard-driven arrangements, and complex, long-form compositions that push the boundaries of traditional rock structure.",
+  "era": "1969–1970s (primary peak), 1990s–present (revival)",
+  "origin": "United Kingdom, Europe",
+  "parent_genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:neo-prog",
+      "type": "genre",
+      "name": "Neo-Prog"
+    },
+    {
+      "slug": "genre:rock-progressivo-italiano",
+      "type": "genre",
+      "name": "Rock Progressivo Italiano"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:yes",
+      "type": "artist",
+      "name": "Yes"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis"
+    },
+    {
+      "slug": "artist:emerson-lake-and-palmer",
+      "type": "artist",
+      "name": "Emerson, Lake & Palmer"
+    },
+    {
+      "slug": "artist:camel",
+      "type": "artist",
+      "name": "Camel"
+    },
+    {
+      "slug": "artist:anglagard",
+      "type": "artist",
+      "name": "Änglagård"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:close-to-the-edge",
+      "type": "project",
+      "name": "Close to the Edge"
+    },
+    {
+      "slug": "project:selling-england-by-the-pound",
+      "type": "project",
+      "name": "Selling England by the Pound"
+    },
+    {
+      "slug": "project:in-the-court-of-the-crimson-king",
+      "type": "project",
+      "name": "In the Court of the Crimson King"
+    }
+  ],
+  "landmark_tracks": []
+}

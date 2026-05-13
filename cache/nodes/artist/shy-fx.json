@@ -1,0 +1,75 @@
+{
+  "slug": "artist:shy-fx",
+  "name": "Shy FX",
+  "editorial_article": "Shy FX is the professional pseudonym of London-born DJ and producer Andre Williams, a seminal figure in the development of jungle and drum and bass. Rising to prominence in the mid-1990s, Williams helped define the 'ragga-jungle' sound—a fusion of high-tempo, intricate breakbeats with heavy reggae, dancehall, and dub influences. He achieved mainstream success early in his career with the 1994 anthem \"Original Nuttah,\" a collaboration with UK Apache that became one of the first jungle tracks to break into the UK Top 40, effectively bridging the gap between underground rave culture and pop consciousness. Throughout the decades, Shy FX has maintained his influence through his own labels, most notably Ebony Recordings and the highly influential Digital Soundboy, the latter of which became a platform for diverse sounds including UK funky, dubstep, and drum and bass. His work consistently reflects his heritage as the grandson of sound system pioneer Count Shelly, blending electronic innovation with classic Jamaican musical aesthetics. Whether producing chart-topping collaborations with vocalists like Lily Allen or collaborating with peers like T-Power and Breakage, Shy FX remains a vital, evolving force in electronic music, known for both his technical prowess as a producer and his ability to honor the roots of the sounds he helped popularize. His recent output, including the 'Raggamuffin Soundtape' series, continues to demonstrate his mastery in merging legacy sound-system culture with contemporary production techniques.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/shy-fx-mn0000031249",
+      "title": "Shy FX Songs, Albums, Reviews, Bio & More | AllMusic"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/shy-fx",
+      "title": "Shy FX discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:55.195Z",
+  "type": "artist",
+  "editorial_bio": "Shy FX is the professional pseudonym of London-born DJ and producer Andre Williams, a seminal figure in the development of jungle and drum and bass.",
+  "genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    },
+    {
+      "slug": "genre:ragga",
+      "type": "genre",
+      "name": "Ragga"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sour",
+      "type": "label",
+      "name": "SOUR"
+    },
+    {
+      "slug": "label:ebony-recordings",
+      "type": "label",
+      "name": "Ebony Recordings"
+    },
+    {
+      "slug": "label:digital-soundboy",
+      "type": "label",
+      "name": "Digital Soundboy"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:original-nuttah",
+      "type": "track",
+      "name": "Original Nuttah"
+    },
+    {
+      "slug": "track:shake-ur-body",
+      "type": "track",
+      "name": "Shake Ur Body"
+    },
+    {
+      "slug": "track:bambaata",
+      "type": "track",
+      "name": "Bambaata"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,107 @@
+{
+  "slug": "genre:kosmische-musik",
+  "name": "Kosmische Musik",
+  "editorial_article": "Kosmische Musik, frequently synonymous with the umbrella term \"Krautrock,\" emerged in West Germany during the late 1960s and early 1970s as a radical departure from traditional song structures and Anglo-American pop sensibilities. Following the cultural devastation of World War II, a new generation of German musicians sought to forge an authentic, forward-looking identity, rejecting both the conservative \"Schlager\" music of their parents and the imitation of Western rock. By blending avant-garde electronic experimentation, jazz improvisation, psychedelic rock, and noise collages, these artists created a new sonic language defined by hypnotic rhythms, extended instrumental passages, and pioneering use of synthesizers and tape loops.\n\nThe movement was largely centered in hubs like Berlin and Düsseldorf, with institutions such as the Zodiak Free Arts Lab providing a breeding ground for experimentalists like Tangerine Dream and Ash Ra Tempel. The term \"Kosmische Musik\" (Cosmic Music) was famously applied by producer Rolf-Ulrich Kaiser to describe the spacey, ambient-leaning soundscapes of groups like Tangerine Dream, particularly around their 1971 album *Alpha Centauri*. This \"Cosmic\" branch diverged from the more motorik, percussive sound of the Düsseldorf scene—epitomized by Neu! and Kraftwerk—which eventually laid the foundation for modern electronica, synth-pop, and techno. Producers like Conny Plank were essential architects of this era, serving as the link between diverse artistic communities and defining the meticulous, studio-as-instrument ethos of the scene. Ultimately, Kosmische Musik represents an era of profound creative fearlessness, where musicians prioritized artistic exploration over commercial safety, directly influencing generations of ambient, industrial, and experimental artists worldwide.",
+  "citations": [
+    {
+      "url": "https://www.hiphopelectronic.com/kosmische-musik",
+      "title": "Kosmische Musik — Hip Hop Electronic"
+    },
+    {
+      "url": "https://lan-portal.uob.edu.ly/link/MD/619X6H9352/a__crack_in__the_cosmic-egg_encyclopedia_of_krautrock_kosmische__musik__and-other_progressive__experimental_and__electronic__musics_from__germany.pdf",
+      "title": "[PDF] A Crack In The Cosmic Egg Encyclopedia Of Krautrock Kosmische ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:32.991Z",
+  "type": "genre",
+  "editorial_definition": "A visionary genre of experimental rock and electronic music that emerged in West Germany in the late 1960s, characterized by spacey synthesizers, motorik beats, and a departure from conventional verse-chorus song structures.",
+  "era": "Late 1960s to late 1970s",
+  "origin": "West Germany",
+  "parent_genres": [
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental Rock"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:ash-ra-tempel",
+      "type": "artist",
+      "name": "Ash Ra Tempel"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster"
+    },
+    {
+      "slug": "artist:harmonia",
+      "type": "artist",
+      "name": "Harmonia"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ohr",
+      "type": "label",
+      "name": "Ohr"
+    },
+    {
+      "slug": "label:brain",
+      "type": "label",
+      "name": "Brain"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:alpha-centauri",
+      "type": "project",
+      "name": "Alpha Centauri"
+    },
+    {
+      "slug": "project:electronic-meditation",
+      "type": "project",
+      "name": "Electronic Meditation"
+    }
+  ],
+  "landmark_tracks": []
+}

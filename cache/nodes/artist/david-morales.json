@@ -1,0 +1,124 @@
+{
+  "slug": "artist:david-morales",
+  "name": "David Morales",
+  "editorial_article": "David Morales (born 1961, New York City) is a titan of American house music, recognized globally as one of the original superstar DJs and a master of the studio remix. Emerging from the foundational scenes of New York’s legendary Paradise Garage and The Loft, Morales shaped the sonic identity of the 1980s and 90s dance floor. Alongside contemporaries like Frankie Knuckles, he helped establish the Def Mix Productions collective, a powerhouse that became synonymous with the high-production-value remixing that bridged underground house with the mainstream pop charts. Morales’ influence is etched into over 500 remixes for superstars including Mariah Carey, Michael Jackson, Madonna, and Whitney Houston, showcasing a signature ability to transform vocal tracks into club-ready anthems. His 1998 hit 'Needin' U', released under his 'The Face' alias, remains an enduring staple of the genre. Beyond the studio, Morales gained international fame for his technical prowess and marathon DJ sets, most notably at venues like Pacha and Space in Ibiza, and a historic 9-year residency at Montreal’s Stereo. His career reflects the evolution of house music from local underground origins to a global cultural phenomenon, consistently pushing boundaries through his solo albums and his various labels, including Diridim and DMI Records. Morales is a Grammy Award winner, having been honored for his contributions as a remixer, solidifying his status as a foundational architect of modern dance music. His work continues to evolve, incorporating elements of Afro house while maintaining the soulful, percussive core that made him a central figure in the history of electronic dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/David_Morales",
+      "title": "David Morales - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/7624-David-Morales?srsltid=AfmBOoqu1xXFHREHfNb_7b8Sltr8-cWpiAMtm2SYW6YVWZDEJ0VfUkeS",
+      "title": "David Morales Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:07.137Z",
+  "type": "artist",
+  "editorial_bio": "A legendary American DJ and Grammy-winning producer, David Morales is an architect of house music who helped define the 90s dance floor through his iconic remix work and global club residencies.",
+  "origin": "New York City, USA",
+  "active_years": "1980s-present",
+  "genres": [
+    {
+      "slug": "genre:house-music",
+      "type": "genre",
+      "name": "House music"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage house"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-mix-music",
+      "type": "label",
+      "name": "Def Mix Music"
+    },
+    {
+      "slug": "label:dmi-records",
+      "type": "label",
+      "name": "DMI Records"
+    },
+    {
+      "slug": "label:diridim-records",
+      "type": "label",
+      "name": "Diridim Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-program",
+      "type": "project",
+      "name": "The Program"
+    },
+    {
+      "slug": "project:two-worlds-collide",
+      "type": "project",
+      "name": "Two Worlds Collide"
+    },
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:needin-u",
+      "type": "track",
+      "name": "Needin' U"
+    },
+    {
+      "slug": "track:how-would-you-feel",
+      "type": "track",
+      "name": "How Would You Feel"
+    },
+    {
+      "slug": "track:freedom",
+      "type": "track",
+      "name": "Freedom"
+    },
+    {
+      "slug": "track:there-must-be-love",
+      "type": "track",
+      "name": "There Must Be Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:ultra-nate",
+      "type": "artist",
+      "name": "Ultra Naté"
+    },
+    {
+      "slug": "artist:roisin-murphy",
+      "type": "artist",
+      "name": "Róisín Murphy"
+    },
+    {
+      "slug": "artist:satoshi-tomiie",
+      "type": "artist",
+      "name": "Satoshi Tomiie"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

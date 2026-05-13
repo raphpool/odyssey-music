@@ -1,0 +1,40 @@
+{
+  "slug": "project:symphonie-pour-un-homme-seul",
+  "name": "Symphonie pour un homme seul",
+  "editorial_article": "Symphonie pour un homme seul (Symphony for One Man Alone) is a foundational work of musique concrète, composed in Paris between 1949 and 1950 by the pioneers Pierre Schaeffer and Pierre Henry. Emerging from Schaeffer’s work at the RTF Studio d'Essai, the piece represents a radical departure from traditional composition, abandoning musical instruments and formal notation in favor of \"sound objects\" recorded onto magnetic tape and phonograph discs. Through the manipulation of everyday noises—trains, human breathing, footsteps, laughter, and vocal utterances—the creators constructed a complex soundscape that explored the internal world of the individual.\n\nThe composition initially debuted in 1950 as a twenty-two movement work, though its technical complexity made it notoriously difficult to perform live, as it required intricate synchronisation of multiple turntables and mixers. Over the following decades, the work underwent various revisions, eventually settling into a definitive twelve-movement structure under Pierre Henry's guidance. Schaeffer famously characterized the work as an \"opera for blind people,\" arguing that it allowed the listener to inhabit the internal sonic world of a solitary man. By elevating mundane, found sounds to the status of musical components, Symphonie pour un homme seul challenged the very definition of music in the post-war era, providing the theoretical and practical framework for modern electronic and acousmatic music. Its legacy persists as one of the most influential artifacts of early twentieth-century avant-garde audio, paving the way for everything from industrial music to contemporary sound design.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Symphonie_pour_un_homme_seul",
+      "title": "Symphonie pour un homme seul - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/topic/Symphonie-pour-un-homme-seul-by-Schaeffer-and-Henry",
+      "title": "Symphonie pour un homme seul | work by Schaeffer and Henry"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:00.814Z",
+  "type": "project",
+  "editorial_pitch": "A monumental, seminal work of musique concrète, Symphonie pour un homme seul is an experimental soundscape composed in 1949-1950 using found sounds and tape manipulation to explore the internal life of a \"lone man.\"",
+  "year": "1950",
+  "artists": [],
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "label:merck",
+  "name": "Merck",
+  "editorial_article": "Merck is not a track, but rather an influential American independent record label based in Miami, Florida, founded by Gabe Koch in 2000. It stands as a pivotal entity in the early 2000s experimental electronic landscape, specifically within the IDM (Intelligent Dance Music) and glitch-hop communities. Inspired by the sonic aesthetics of legendary UK labels such as Warp, Skam, and Rephlex, Merck curated a sound that balanced technical complexity with melodic accessibility, helping bridge the gap between abstract, glitch-oriented textures and more approachable, indie-influenced electronic music. The label’s roster was notably diverse, featuring significant contributions from artists such as Machinedrum, Tycho, Jimmy Edgar, Proem, Helios, Brothomstates, Deru, and Ilkae, attracting talent from Europe, the US, Australia, Russia, and Japan. Despite its considerable influence on the development of mid-2000s electronic music and its cult following, the label maintained a low profile, often eschewing traditional industry promotion in favor of a focus on the music itself. Merck ceased releasing new material in early 2007, having produced over 50 CD and vinyl releases that remain highly regarded within the electronic underground as a high-water mark for the US IDM scene. Today, it is recognized for its lasting legacy in shaping the sounds of experimental electronic producers worldwide.",
+  "citations": [
+    {
+      "url": "https://www.idmdiscovery.com/labels/merck",
+      "title": "Merck Records - IDM Discovery"
+    },
+    {
+      "url": "https://merckrecords.bandcamp.com/",
+      "title": "Merck Records Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:58.249Z",
+  "type": "label",
+  "editorial_description": "A highly influential Miami-based independent label active from 2000–2007, central to the development of the American IDM and glitch-hop scenes through its melodic, technically rigorous, and eclectic catalog.",
+  "founded": "2000",
+  "location": "Miami, Florida",
+  "active_years": "2000-2007",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:glitch-hop",
+      "type": "genre",
+      "name": "Glitch-hop"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:machinedrum",
+      "type": "artist",
+      "name": "Machinedrum"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho"
+    },
+    {
+      "slug": "artist:jimmy-edgar",
+      "type": "artist",
+      "name": "Jimmy Edgar"
+    },
+    {
+      "slug": "artist:proem",
+      "type": "artist",
+      "name": "Proem"
+    },
+    {
+      "slug": "artist:helios",
+      "type": "artist",
+      "name": "Helios"
+    },
+    {
+      "slug": "artist:deru",
+      "type": "artist",
+      "name": "Deru"
+    },
+    {
+      "slug": "artist:ilkae",
+      "type": "artist",
+      "name": "Ilkae"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:aurora",
+      "type": "project",
+      "name": "Aurora"
+    },
+    {
+      "slug": "project:squadron",
+      "type": "project",
+      "name": "Squadron"
+    },
+    {
+      "slug": "project:dosage",
+      "type": "project",
+      "name": "Dosage"
+    }
+  ]
+}

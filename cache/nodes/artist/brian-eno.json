@@ -1,0 +1,116 @@
+{
+  "slug": "artist:brian-eno",
+  "name": "Brian Eno",
+  "editorial_article": "Brian Peter George Eno (born 1948) is an English musician, composer, record producer, and visual artist, widely regarded as one of the most innovative and influential figures in contemporary music. Often identifying as a \"non-musician,\" Eno revolutionized sonic textures through his pioneering work in ambient music, electronics, and conceptual art-rock. He first gained prominence as a founding member of the glam rock outfit Roxy Music in the early 1970s before departing to launch a prolific and diverse solo career. His seminal mid-1970s recordings, such as 'Discreet Music' and 'Ambient 1: Music for Airports', not only defined the ambient genre—creating music designed to be as ignorable as it is interesting—but fundamentally shifted the focus of electronic composition toward atmosphere and texture. \\n\\nBeyond his solo output, Eno has served as a transformative collaborator and producer. His work with David Bowie on the 'Berlin Trilogy' is frequently cited as a turning point in rock history, and his production contributions have shaped the iconic sounds of artists including U2, Talking Heads, and Coldplay. A polymath by nature, Eno’s influence extends far beyond traditional recording: he co-developed the 'Oblique Strategies' creative cards to overcome artistic blocks, pioneered sound installations in public spaces, and remains a deeply involved cultural commentator and political activist. His philosophy, centered on curiosity, systems-thinking, and the democratization of experimental concepts, continues to echo through generations of electronic, pop, and avant-garde musicians. He has maintained a long-standing association with labels like Island Records and Warp Records, continuing to innovate well into the 21st century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Brian_Eno",
+      "title": "Brian Eno - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Brian_Eno_discography",
+      "title": "Brian Eno discography - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/brian-eno",
+      "title": "Brian Eno Albums: songs, discography, biography, and listening guide"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:50.568Z",
+  "type": "artist",
+  "editorial_bio": "A foundational architect of ambient music and a legendary producer, Brian Eno redefined the possibilities of sound by prioritizing atmosphere, texture, and conceptual innovation over traditional musicianship.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Brian_Eno_2015.png/250px-Brian_Eno_2015.png",
+  "origin": "Melton, Suffolk, England",
+  "active_years": "1970–present",
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:eg-records",
+      "type": "label",
+      "name": "EG Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:here-come-the-warm-jets",
+      "type": "project",
+      "name": "Here Come the Warm Jets"
+    },
+    {
+      "slug": "project:discreet-music",
+      "type": "project",
+      "name": "Discreet Music"
+    },
+    {
+      "slug": "project:ambient-1-music-for-airports",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports"
+    },
+    {
+      "slug": "project:another-green-world",
+      "type": "project",
+      "name": "Another Green World"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:baby-s-on-fire",
+      "type": "track",
+      "name": "Baby's on Fire"
+    },
+    {
+      "slug": "track:1-1",
+      "type": "track",
+      "name": "1/1"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ]
+}

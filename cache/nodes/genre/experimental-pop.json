@@ -1,0 +1,80 @@
+{
+  "slug": "genre:experimental-pop",
+  "name": "Experimental pop",
+  "editorial_article": "Experimental pop is a fluid, boundary-defying genre that occupies the liminal space between traditional pop sensibilities and avant-garde exploration. Rooted in the desire to reshape the common vernacular of music, it takes the foundational structures of pop—accessible hooks, verse-chorus forms, and emotive lyrical content—and subjects them to radical sonic reconstruction. This process often involves the integration of abrasive electronic textures, unconventional song structures, complex polyrhythms, and high-concept production techniques that prioritize artistic subversion over commercial safety.\n\nThe history of experimental pop is inextricably linked to pioneering visionaries who utilized the studio as an instrument to challenge the listener's expectations of what a 'pop song' could be. Artists such as Kate Bush in the 1980s and Björk in the 1990s and 2000s are quintessential examples, having consistently fused art-rock intensity, intricate electronic sound design, and deeply personal, often abstract narratives. In more recent decades, the genre has been further expanded by artists like Arca and SOPHIE, who pushed the aesthetic toward the extreme, frequently employing digital distortion, hyper-processed vocals, and industrial-tinged percussion to examine complex themes of identity, technology, and the nature of the artificial. Experimental pop does not simply exist as a static category; rather, it is a perpetually shifting landscape that serves as an incubator for the future of popular music, constantly absorbing influences from jazz, ambient, hip-hop, and noise to create sounds that are at once deeply challenging and strangely familiar. Its enduring importance lies in its capacity to democratize 'the experimental,' making inaccessible concepts tangible through the magnetic pull of a pop melody.",
+  "citations": [
+    {
+      "url": "https://volt.fm/genre/1670/experimental-pop",
+      "title": "Experimental Pop Artists, Songs, Albums, Playlists and Listeners – volt.fm"
+    },
+    {
+      "url": "https://www.udiscovermusic.com/artist/kate-bush/",
+      "title": "Kate Bush - British Experimental Pop Legend | uDiscover Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:10.133Z",
+  "type": "genre",
+  "editorial_definition": "Experimental pop is a genre that merges traditional pop structures with avant-garde production, unconventional instrumentation, and abstract artistic themes to subvert the conventions of popular music.",
+  "era": "1970s–present",
+  "origin": "Global (with significant roots in UK and US avant-pop scenes)",
+  "parent_genres": [
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    },
+    {
+      "slug": "genre:experimental-music",
+      "type": "genre",
+      "name": "Experimental music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    },
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-garde music"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush"
+    },
+    {
+      "slug": "artist:arca",
+      "type": "artist",
+      "name": "Arca"
+    },
+    {
+      "slug": "artist:sophie",
+      "type": "artist",
+      "name": "SOPHIE"
+    },
+    {
+      "slug": "artist:animal-collective",
+      "type": "artist",
+      "name": "Animal Collective"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

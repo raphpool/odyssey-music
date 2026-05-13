@@ -1,0 +1,28 @@
+{
+  "slug": "project:nunatak-gongamur-ram",
+  "name": "Nunatak... Gongamur... Ram‎",
+  "editorial_article": "Released in 1990 on the independent Barooni label, *Nunatak Gongamur* serves as the chilling, foundational entry in the discography of German electronic musician Thomas Köner. This debut studio album is a landmark in the evolution of dark ambient music, stripping sound down to its most elemental and haunting core. Throughout its nearly 50-minute duration, Köner creates an immersive, glacial sonic landscape using only a single electronically processed source: the gong. Through rigorous manipulation, delay, and re-processing, these metallic vibrations are transmuted into cavernous, low-frequency drones that evoke the desolate, frozen isolation suggested by the album’s title—a \"nunatak\" being a mountain peak that protrudes from an surrounding ice field.\\n\\nThe album’s aesthetic is stark and uncompromising, eschewing traditional melody and rhythm in favor of a monolithic, meditative experience. By isolating the gong’s resonant timbre and expanding it into vast, subterranean textures, Köner established a blueprint for \"deep listening\" and environmental sound design that would define much of his later work. Often cited for its profound influence on dark ambient and drone movements, *Nunatak Gongamur* remains a touchstone for listeners seeking minimalist intensity. The production, assisted by Roland Speckle, emphasizes the sheer physicality of sound, creating a space where the listener feels the weight of silence as much as the resonance of the processed gongs. It is an early masterpiece of minimalism, documenting the birth of a signature style that masterfully articulates the sublime nature of cold, atmospheric soundscapes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nunatak_Gongamur",
+      "title": "Nunatak Gongamur - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/thomas-koner/nunatak-gongamur/",
+      "title": "Nunatak Gongamur by Thomas Köner (Album, Dark Ambient)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:17.127Z",
+  "type": "project",
+  "editorial_pitch": "A groundbreaking debut in dark ambient music, Thomas Köner’s 1990 album *Nunatak Gongamur* is a masterclass in minimalist sound design, built entirely from the processed resonance of gongs to create an atmosphere of profound, frozen isolation.",
+  "artists": [],
+  "label": {
+    "slug": "label:barooni",
+    "type": "label",
+    "name": "Barooni"
+  },
+  "genres": [],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "artist:congo-natty",
+  "name": "Congo Natty",
+  "editorial_article": "Congo Natty, the influential alias of British producer and musician Michael West (also known as Rebel MC), is a central figure in the history and evolution of Jungle music. Born in London, West first gained prominence in the late 1980s with the pop-rap project Double Trouble, notably scoring a hit with \"Street Tuff.\" However, his most profound and enduring cultural impact lies in his transition to the burgeoning jungle scene in the early 1990s. As Congo Natty, he became a primary architect of the genre, effectively fusing the rapid, complex breakbeats of early hardcore with the spiritual weight and heavy sub-bass aesthetics of roots reggae and dub sound system culture. \\n\\nHis work as Congo Natty is deeply ideological, often framing Jungle as a modern, UK-born extension of Jamaican roots music—a \"re-boot\" for a new, diverse generation. His landmark 2013 album *Jungle Revolution*, released on Big Dada and mixed by legendary dub producer Adrian Sherwood, serves as a definitive statement of this philosophy. The project captures the essence of his sound: blood, fire, righteous anger, and intense religious fervor, all anchored by razor-sharp production. Throughout his career, West has remained a vital mentor and collaborator within British electronic music, consistently highlighting the interconnected lineage between jungle, dubstep, and grime. His contributions remain foundational to the understanding of jungle not just as a rhythmic evolution, but as a spiritual and social movement within the UK underground.",
+  "citations": [
+    {
+      "url": "https://ninjatune.net/artist/congo-natty",
+      "title": "Congo Natty / Artist / Ninja Tune"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/congo-natty",
+      "title": "Congo Natty discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:20:25.506Z",
+  "type": "artist",
+  "editorial_bio": "Congo Natty, a pioneering figure of British Jungle music, represents the fusion of sound system culture and rapid-fire breakbeats. Known for his deeply spiritual and ideological approach, he continues to bridge the gap between classic roots reggae and contemporary UK bass music.",
+  "photo_url": "https://ninjatune.net/images/artists/congo-natty-main.jpg",
+  "origin": "London, England",
+  "genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:ragga-jungle",
+      "type": "genre",
+      "name": "Ragga Jungle"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:big-dada",
+      "type": "label",
+      "name": "Big Dada"
+    },
+    {
+      "slug": "label:congo-natty-recordings",
+      "type": "label",
+      "name": "Congo Natty Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:jungle-revolution",
+      "type": "project",
+      "name": "Jungle Revolution"
+    },
+    {
+      "slug": "project:jungle-revolution-in-dub",
+      "type": "project",
+      "name": "Jungle Revolution in Dub"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:uk-allstars",
+      "type": "track",
+      "name": "UK Allstars"
+    },
+    {
+      "slug": "track:nu-beginningz",
+      "type": "track",
+      "name": "Nu Beginningz"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:rebel-mc",
+      "type": "artist",
+      "name": "Rebel MC"
+    }
+  ],
+  "members": []
+}

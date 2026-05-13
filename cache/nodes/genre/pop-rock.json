@@ -1,0 +1,85 @@
+{
+  "slug": "genre:pop-rock",
+  "name": "Pop rock",
+  "editorial_article": "Pop rock is a vibrant musical style that occupies the intersection between mainstream pop sensibilities and the energy of rock and roll. Historically emerging alongside the birth of rock and roll in the 1950s, pop rock functions as a bridge that brings the grit of electric guitars, bass, and drums into accessible, radio-friendly song structures. While traditional rock might prioritize instrumental experimentation or raw, abrasive aesthetics, pop rock is defined by a focus on concise song forms, memorable melodic hooks, and high-quality vocal performances. This focus on craftsmanship ensures that the genre remains a perennial fixture on global charts, evolving its sound across decades to reflect the technological and cultural shifts of the music industry.\\n\\nThroughout the 1960s and 1970s, acts like The Beatles and The Beach Boys laid the foundation for the genre, successfully blending artistic ambition with massive commercial appeal. The genre has since proven remarkably durable, successfully assimilating elements from diverse eras—ranging from the synthesizer-driven experiments of 1980s new wave to the alternative rock and pop-punk explosions of the 1990s. Even in the twenty-first century, as the hegemony of rock music has receded in favor of hip-hop and R&B, pop rock continues to exert influence through modern artists who selectively integrate rock idioms into contemporary production. Its enduring nature lies in this adaptability; by prioritizing the core tenets of the \"song,\" pop rock ensures that even as the instrumentation shifts from pure analog to hybrid electronic-organic, the essential emotional connection with the listener remains intact. Whether through the jangly guitars of 1980s indie outfits or the polished anthems of mainstream stadium bands, pop rock stands as the bedrock of popular music history, continuously reinventing itself while keeping its fundamental appeal as a bridge between the niche and the universal.",
+  "citations": [
+    {
+      "url": "https://www.masterclass.com/articles/pop-rock",
+      "title": "Pop Rock Music Guide: A Brief History of Pop Rock - 2026 - MasterClass"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/pop-rock/",
+      "title": "Pop Rock - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:18.808Z",
+  "type": "genre",
+  "editorial_definition": "Pop rock is a fusion genre that combines rock-based instrumentation—typically guitar, bass, and drums—with the accessible, melody-driven structures characteristic of mainstream pop music. It is defined by its focus on polished songwriting, concise hooks, and radio-friendly arrangements.",
+  "era": "1950s–present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    },
+    {
+      "slug": "genre:rock-music",
+      "type": "genre",
+      "name": "Rock music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys"
+    },
+    {
+      "slug": "artist:fleetwood-mac",
+      "type": "artist",
+      "name": "Fleetwood Mac"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    },
+    {
+      "slug": "artist:bruce-springsteen",
+      "type": "artist",
+      "name": "Bruce Springsteen"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:pet-sounds",
+      "type": "project",
+      "name": "Pet Sounds"
+    },
+    {
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
+      "type": "project",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band"
+    },
+    {
+      "slug": "project:rumours",
+      "type": "project",
+      "name": "Rumours"
+    },
+    {
+      "slug": "project:born-to-run",
+      "type": "project",
+      "name": "Born to Run"
+    }
+  ],
+  "landmark_tracks": []
+}

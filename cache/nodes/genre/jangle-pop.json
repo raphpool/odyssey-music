@@ -1,0 +1,95 @@
+{
+  "slug": "genre:jangle-pop",
+  "name": "Jangle pop",
+  "editorial_article": "Jangle pop is a subgenre of pop rock and alternative rock that emerged in the late 1970s and early 1980s, defined by its bright, chime-like guitar textures. The genre draws its name from the distinctive \"jangly\" sound produced by clean electric guitars, often utilizing single-coil pickups and 12-string guitars to create a crisp, shimmery tone. Musically, jangle pop marries the melodic sensibilities of 1960s pop and folk-rock—most notably the work of The Byrds—with a DIY, post-punk aesthetic that prioritized amateur-informed authenticity over studio polish. \\n\\nHistorically, the genre became a cornerstone of the American college rock scene in the 1980s, with R.E.M. serving as its most prominent popularizer. While centered in university towns, the movement was geographically diverse, manifesting in unique regional flavors such as the Paisley Underground in Los Angeles—which blended jangle with psychedelic rock—and the Dunedin sound in New Zealand, which brought a more lo-fi, angular sensibility to the aesthetic. Throughout its evolution, the genre maintained a focus on major-key melodies, intricate, arpeggiated guitar lines, and lyrics that frequently leaned into the cryptic or introspective. \\n\\nFar from a historical footnote, jangle pop has remained a vital thread in independent music. Its influence persists in contemporary indie pop and dream pop, kept alive by labels like Slumberland Records and artists who continue to mine the 60s revivalism that first defined the genre. The sonic vocabulary of jangle pop—relying on the organic, uncompressed resonance of guitars—serves as a perennial touchstone for musicians seeking to capture a sense of timeless, accessible melody through an independent, non-mainstream lens.",
+  "citations": [
+    {
+      "url": "https://wknc.org/2025/05/31/defining-genre-jangle-pop/",
+      "title": "Defining Genre: Jangle Pop - WKNC 88.1 FM"
+    },
+    {
+      "url": "https://playalonerecords.com/blogs/news/jangle-pop?srsltid=AfmBOooOu2hrB5IJ8nzl6IgM2BzqDGvHTb98fu01W_5hm0KgINrugU2c",
+      "title": "Jangle Pop, History of | Blog | Play Alone Records"
+    },
+    {
+      "url": "https://www.masterclass.com/articles/jangle-pop-music-guide",
+      "title": "Jangle Pop Music: History and Artists of Jangle Pop - MasterClass"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:13.721Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of rock music characterized by its focus on chiming, clean electric guitar tones, melodic 1960s-inspired songwriting, and a DIY independent sensibility.",
+  "era": "Late 1970s to present",
+  "origin": "United States and United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock"
+    },
+    {
+      "slug": "genre:paisley-underground",
+      "type": "genre",
+      "name": "Paisley Underground"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M."
+    },
+    {
+      "slug": "artist:the-byrds",
+      "type": "artist",
+      "name": "The Byrds"
+    },
+    {
+      "slug": "artist:the-db-s",
+      "type": "artist",
+      "name": "The dB's"
+    },
+    {
+      "slug": "artist:the-bangles",
+      "type": "artist",
+      "name": "The Bangles"
+    },
+    {
+      "slug": "artist:the-bats",
+      "type": "artist",
+      "name": "The Bats"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:slumberland-records",
+      "type": "label",
+      "name": "Slumberland Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:murmur",
+      "type": "project",
+      "name": "Murmur"
+    },
+    {
+      "slug": "project:chronic-town",
+      "type": "project",
+      "name": "Chronic Town"
+    }
+  ],
+  "landmark_tracks": []
+}

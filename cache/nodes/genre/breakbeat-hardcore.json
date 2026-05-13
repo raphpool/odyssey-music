@@ -1,0 +1,105 @@
+{
+  "slug": "genre:breakbeat-hardcore",
+  "name": "Breakbeat hardcore",
+  "editorial_article": "Breakbeat hardcore is an early-1990s UK rave style that synthesized the frenetic, high-tempo energy of early techno and acid house with the rhythmic versatility of hip hop-derived breakbeats. Often operating between 140 and 155 BPM, the genre became the quintessential sound of the UK's burgeoning rave culture, echoing through cavernous warehouse parties and across the airwaves of pirate radio stations. It is characterized by its heavy use of chopped and sampled drum breaks—most notably the \"Amen,\" \"Think,\" and \"Apache\" breaks—which were often layered, pitch-shifted, or time-stretched to create a dense, syncopated percussive foundation.\\n\\nBeyond its distinctive drum work, breakbeat hardcore is defined by a specific set of sonic textures that signal its era: the iconic \"hoover\" lead (derived from the Roland Alpha Juno), Korg M1 house pianos, orchestral hits, and short, anthemic vocal hooks. These elements were arranged into DJ-friendly structures featuring ecstatic, melodic breakdowns that pivoted into explosive, bass-heavy drops. This sound captured the hedonistic and communal spirit of the UK rave continuum. As the 1990s progressed, the genre’s DNA diverged: its darker, more aggressive explorations of bass and rhythm laid the foundation for the burgeoning jungle and drum and bass scenes, while its sunnier, melodic tendencies helped crystallize happy hardcore. Its legacy remains one of the most significant chapters in the evolution of electronic dance music, representing a pivotal moment where sampling culture and dancefloor mechanics collided to forge a distinct, high-intensity aesthetic.",
+  "citations": [
+    {
+      "url": "https://www.melodigging.com/genre/breakbeat-hardcore",
+      "title": "Breakbeat Hardcore - Melodigging"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Breakbeat_Hardcore",
+      "title": "Breakbeat Hardcore | Electronic Music Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:29.923Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy UK rave genre from the early 1990s that fuses intense breakbeat drum patterns with acid-house synths, hoover leads, and euphoric melodic breakdowns.",
+  "era": "1990s (Early)",
+  "origin": "United Kingdom",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House"
+    },
+    {
+      "slug": "genre:belgian-techno",
+      "type": "genre",
+      "name": "Belgian Techno"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy"
+    },
+    {
+      "slug": "artist:altern-8",
+      "type": "artist",
+      "name": "Altern-8"
+    },
+    {
+      "slug": "artist:sl2",
+      "type": "artist",
+      "name": "SL2"
+    },
+    {
+      "slug": "artist:shut-up-and-dance",
+      "type": "artist",
+      "name": "Shut Up and Dance"
+    },
+    {
+      "slug": "artist:2-bad-mice",
+      "type": "artist",
+      "name": "2 Bad Mice"
+    },
+    {
+      "slug": "artist:acen",
+      "type": "artist",
+      "name": "Acen"
+    },
+    {
+      "slug": "artist:sonz-of-a-loop-da-loop-era",
+      "type": "artist",
+      "name": "Sonz of a Loop Da Loop Era"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:moving-shadow",
+      "type": "label",
+      "name": "Moving Shadow"
+    },
+    {
+      "slug": "label:xl-recordings",
+      "type": "label",
+      "name": "XL Recordings"
+    },
+    {
+      "slug": "label:formation-records",
+      "type": "label",
+      "name": "Formation Records"
+    },
+    {
+      "slug": "label:suburban-base",
+      "type": "label",
+      "name": "Suburban Base"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

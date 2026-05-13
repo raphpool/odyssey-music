@@ -1,0 +1,66 @@
+{
+  "slug": "genre:experimental-electronic",
+  "name": "Experimental Electronic",
+  "editorial_article": "Experimental electronic music represents the oldest and perhaps most foundational branch of electronic composition, emerging in the late 1940s and early 1950s as a rigorous exploration of sound beyond the traditional constraints of musical theory. Born largely out of academic and avant-garde environments—most notably the work of Pierre Schaeffer and the Groupe de Recherches Musicales in France—the genre was originally characterized by musique concrète and early electroacoustic experiments. These pioneers treated sound as a raw material, manipulating recorded environmental noises, electromagnetic currents, and experimental circuitry to create sonic textures that were often disorienting, complex, and intentionally unconventional.\n\nThroughout the decades, the genre evolved from its academic, laboratory-based origins to encompass a vast, heterogeneous landscape. It serves as an umbrella for movements that prioritize exploration and the subversion of standard musical structures, ranging from the jagged, industrial textures of the late 20th century to the intricate, digital manipulation found in modern glitch and sampledelic works. By centering the relationship between the machine and the listener, experimental electronic music challenges notions of what constitutes 'musical' sound, frequently prioritizing the exploration of texture, timbre, and spatiality over melody or rhythm. It remains a vital catalyst for innovation, constantly reconfiguring how technology and human creativity intersect to redefine the limits of auditory experience.",
+  "citations": [
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/Experimental_Electronic_Music",
+      "title": "Experimental Electronic Music | Electronic Music Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:55.140Z",
+  "type": "genre",
+  "editorial_definition": "A broad, foundational category of electronic music that prioritizes non-traditional production techniques, the manipulation of raw sonic textures, and the subversion of standard musical structures over conventional melody or rhythm.",
+  "era": "1940s–present",
+  "origin": "France",
+  "parent_genres": [
+    {
+      "slug": "genre:avant-garde-music",
+      "type": "genre",
+      "name": "Avant-Garde Music"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic Music"
+    }
+  ],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

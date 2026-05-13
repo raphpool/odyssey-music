@@ -1,0 +1,96 @@
+{
+  "slug": "label:monkeytown-records",
+  "name": "Monkeytown Records",
+  "editorial_article": "Founded in 2009 by the influential Berlin-based electronic music duo Modeselektor (Gernot Bronsert and Sebastian Szary), Monkeytown Records has established itself as a quintessential hub for forward-thinking electronic music. Emerging from the vibrant, eclectic club culture of Berlin, the label reflects the city's unique position as a cross-pollination point for techno, glitch, bass music, and experimental pop. Unlike massive corporate entities, Monkeytown has built its reputation on a foundation of creative autonomy and a \"tightly knit crew\" ethos, serving as a dedicated home for both the founders' own projects—including the supergroup Moderat, a collaboration between Modeselektor and Apparat—and an expansive roster of artists who push the boundaries of sound design and genre conventions.\n\nThe label's discography captures the shifting landscapes of electronic music across the 2010s and into the 2020s. It has been instrumental in releasing acclaimed work by artists such as Siriusmo, Shed, Dark Sky, and FJAAK, fostering a sound that is as comfortable in the dark, heavy atmosphere of a Berlin basement club as it is on a home listening setup. Through its carefully curated \"Modeselektion\" compilation series, the label has consistently acted as a curator of the global electronic zeitgeist, highlighting both established heavyweights and emerging talent. Monkeytown functions not just as a business, but as a cultural vessel that prioritizes artistic integrity and long-term artist development, keeping the spirit of independent electronic music alive in an increasingly fragmented digital era. Its longevity and consistent output have made it a cornerstone of contemporary German electronic music, recognized globally for its ability to balance dancefloor intensity with deep, experimental ambition.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/2863",
+      "title": "Monkeytown Records · Record label ⟋ RA"
+    },
+    {
+      "url": "https://monkeytownrecords.bandcamp.com/",
+      "title": "Monkeytown Records: Music"
+    },
+    {
+      "url": "https://www.piasgroup.net/blog/five-fifteen-monkeytown-records-germany/",
+      "title": "FIVEUNDERFIFTEEN: Monkeytown Records (Germany) - [PIAS]"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:16.613Z",
+  "type": "label",
+  "editorial_description": "A prominent Berlin-based electronic music label founded by Modeselektor, known for cultivating a diverse and forward-thinking roster at the intersection of techno, experimental, and bass music.",
+  "founded": "2009",
+  "location": "Berlin, Germany",
+  "active_years": "2009-2026",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor"
+    },
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat"
+    },
+    {
+      "slug": "artist:siriusmo",
+      "type": "artist",
+      "name": "Siriusmo"
+    },
+    {
+      "slug": "artist:shed",
+      "type": "artist",
+      "name": "Shed"
+    },
+    {
+      "slug": "artist:fjaak",
+      "type": "artist",
+      "name": "FJAAK"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:ii",
+      "type": "project",
+      "name": "II"
+    },
+    {
+      "slug": "project:monkeytown",
+      "type": "project",
+      "name": "Monkeytown"
+    },
+    {
+      "slug": "project:enthusiast",
+      "type": "project",
+      "name": "Enthusiast"
+    }
+  ]
+}

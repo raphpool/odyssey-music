@@ -1,0 +1,109 @@
+{
+  "slug": "genre:psychedelic-rock",
+  "name": "Psychedelic rock",
+  "editorial_article": "Psychedelic rock is a transformative subgenre of rock music that emerged in the mid-1960s, serving as the sonic manifestation of the countercultural hippie movement and the era's widespread experimentation with hallucinogenic substances like LSD and marijuana. Characterized by its pursuit of \"mind-expanding\" experiences, the genre broke away from the standard structures of contemporary pop, favoring extended improvisations, unconventional song forms, and a rich, experimental palette of sounds. Sonic markers of the genre include the prominent use of feedback, heavy distortion, amplified volume, and the incorporation of non-Western musical elements—most notably the sitar—alongside early electronic effects and studio manipulation.\n\nThe genre found its early home on the West Coast of the United States, particularly within the San Francisco Bay Area, where bands like the Grateful Dead and Jefferson Airplane provided the soundtrack for Ken Kesey's \"Acid Test\" happenings. While the American scene leaned into raw, blues-inflected, and sometimes frenetic sounds—typified by the 13th Floor Elevators' \"acid rock\"—the British scene offered a more whimsical, surreal, and improvisational interpretation. Led by visionaries such as Syd Barrett of Pink Floyd, British psychedelia often drew upon Beat poetry and jazz influences, thriving in underground London venues like the UFO Club. Established acts like The Beatles and The Beach Boys also famously integrated these experimental textures into their own work, cementing the genre's influence on the broader trajectory of rock history. Although many psychedelic bands were short-lived, the movement's impact was monumental, paving the way for progressive rock, heavy metal, Krautrock, and a wide array of later experimental and alternative music styles. Its legacy remains etched in the evolution of fashion, performance art, and the very concept of the studio as an instrument.",
+  "citations": [
+    {
+      "url": "https://www.britannica.com/art/psychedelic-rock",
+      "title": "Psychedelic rock | Origins, Influences & Genre-Defining Artists | Britannica"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:52:01.161Z",
+  "type": "genre",
+  "editorial_definition": "A style of rock music popular in the late 1960s, heavily influenced by psychedelic drugs and counterculture, defined by its experimental use of studio effects, feedback, and extended improvisational structures.",
+  "era": "Late 1960s",
+  "origin": "United States and United Kingdom",
+  "sonic_markers": "Feedback, sitar, extended improvisation, studio effects, surreal lyrics, fuzz distortion, modal experimentation",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:grateful-dead",
+      "type": "artist",
+      "name": "Grateful Dead"
+    },
+    {
+      "slug": "artist:jefferson-airplane",
+      "type": "artist",
+      "name": "Jefferson Airplane"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    },
+    {
+      "slug": "label:apple-records",
+      "type": "label",
+      "name": "Apple Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:the-piper-at-the-gates-of-dawn",
+      "type": "project",
+      "name": "The Piper at the Gates of Dawn"
+    },
+    {
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
+      "type": "project",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band"
+    },
+    {
+      "slug": "project:surrealistic-pillow",
+      "type": "project",
+      "name": "Surrealistic Pillow"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:white-rabbit",
+      "type": "track",
+      "name": "White Rabbit"
+    },
+    {
+      "slug": "track:somebody-to-love",
+      "type": "track",
+      "name": "Somebody to Love"
+    },
+    {
+      "slug": "track:arnold-layne",
+      "type": "track",
+      "name": "Arnold Layne"
+    }
+  ]
+}

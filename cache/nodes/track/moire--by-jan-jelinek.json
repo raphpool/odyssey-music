@@ -1,0 +1,59 @@
+{
+  "slug": "track:moire--by-jan-jelinek",
+  "name": "Moiré (Piano & Organ)",
+  "editorial_article": "\"Moiré (Piano & Organ)\" is a seminal track from Jan Jelinek's influential 2001 album, *Loop-Finding-Jazz-Records*. Released on the ~scape label, this piece exemplifies Jelinek's signature \"glitch-jazz\" aesthetic—a masterful, hypnotic fusion of looped, processed micro-samples of acoustic jazz textures and steady, understated electronic rhythmic foundations. In \"Moiré (Piano & Organ),\" Jelinek takes fragments of traditional instrumentation—as the title suggests, piano and organ—and subjects them to dense, granular processing. The resulting soundscape is fluid, shimmering, and disorienting, feeling simultaneously organic and machine-made. \\n\\nThe track is deeply emblematic of the early 2000s Berlin electronica scene, where producers were increasingly moving away from the rigid, driving beats of techno towards more textured, ambient-leaning, and sample-heavy soundscapes. By manipulating the samples into overlapping, rhythmic cycles that drift in and out of phase, Jelinek creates a moiré-like effect of sound, where the listener experiences constant, subtle shifts in tone and timing. The track remains a landmark of the microhouse and glitch genres, influencing a generation of producers who sought to bridge the gap between warm, human improvisation and the cool, precise nature of computer-aided composition. *Loop-Finding-Jazz-Records* as a whole, and this track specifically, is widely cited as one of the most cohesive and innovative electronic works of its era.",
+  "citations": [
+    {
+      "url": "https://janjelinek.bandcamp.com/track/moir-piano-organ",
+      "title": "Moiré (Piano & Organ) | Jan Jelinek"
+    },
+    {
+      "url": "https://tunebat.com/Info/Moir-Piano-Organ-Jan-Jelinek/0R6sHxjN04nAgEW0jgqLbU",
+      "title": "Piano & Organ by Jan Jelinek - Key & BPM for Moiré"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:35.270Z",
+  "type": "track",
+  "editorial_teaser": "A landmark piece of early-2000s microhouse and glitch, \"Moiré (Piano & Organ)\" showcases Jan Jelinek’s masterful manipulation of sampled jazz textures into shimmering, hypnotic loops.",
+  "year": "2001",
+  "duration": "6:54",
+  "artists": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "project": {
+    "slug": "project:loop-finding-jazz-records",
+    "type": "project",
+    "name": "Loop-Finding-Jazz-Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

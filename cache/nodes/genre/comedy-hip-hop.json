@@ -1,0 +1,73 @@
+{
+  "slug": "genre:comedy-hip-hop",
+  "name": "Comedy hip hop",
+  "editorial_article": "Comedy hip-hop, often referred to as comedy rap, is a subgenre of hip-hop music defined by its primary intent to amuse, satirize, or parody the conventions of mainstream hip-hop culture. Emerging in the 1980s as a lighter alternative to the developing gangsta rap scene, the genre utilizes humor to challenge expectations, subvert tropes of hyper-masculinity, or provide commentary on popular music production. While purist hip-hop often prioritized street credibility and social gravity, comedy hip-hop embraced irony, sketch-comedy aesthetics, and high-concept parody. The genre spans a wide spectrum, from the radio-friendly, storytelling-based tracks of late-1980s artists like DJ Jazzy Jeff & The Fresh Prince, to the high-gloss, post-modern satire of The Lonely Island, whose rise during the digital video revolution of the mid-2000s cemented comedy hip-hop as a potent force in internet culture. \\n\\nBeyond simple amusement, comedy hip-hop has historically functioned as a vehicle for critical engagement. By adopting personas or creating \"fake rap\" tracks, artists can expose the absurdity of hip-hop's commercial posturing. This is evident in the work of satirical pioneers like De La Soul, whose early albums toyed with the industry's obsession with image and toughness. In the digital age, this evolved into \"meme rap\"—an ironic, often lo-fi style that thrives on virality and intentionally stereotypical lyrics. Despite its frequent marginalization due to the perceived risk that parodying the genre might jeopardize an artist's commercial viability, comedy hip-hop remains a persistent, influential pillar of the culture, bridging the gap between musical technicality and performative theater. It reminds listeners that, for all its posturing, hip-hop is a medium with the elasticity to encompass everything from hard-hitting social commentary to total, deadpan absurdity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Comedy_hip-hop",
+      "title": "Comedy hip-hop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:54.230Z",
+  "type": "genre",
+  "editorial_definition": "Comedy hip-hop is a subgenre of hip-hop music primarily characterized by the use of humor, satire, parody, or irony to amuse the audience or critique hip-hop culture itself.",
+  "era": "1980s–present",
+  "origin": "United States",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:satirical-music",
+      "type": "genre",
+      "name": "Satirical music"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-lonely-island",
+      "type": "artist",
+      "name": "The Lonely Island"
+    },
+    {
+      "slug": "artist:dj-jazzy-jeff-and-the-fresh-prince",
+      "type": "artist",
+      "name": "DJ Jazzy Jeff & The Fresh Prince"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul"
+    }
+  ],
+  "key_labels": [],
+  "landmark_projects": [
+    {
+      "slug": "project:3-feet-high-and-rising",
+      "type": "project",
+      "name": "3 Feet High and Rising"
+    },
+    {
+      "slug": "project:incredibad",
+      "type": "project",
+      "name": "Incredibad"
+    }
+  ],
+  "landmark_tracks": [
+    {
+      "slug": "track:parents-just-don-t-understand",
+      "type": "track",
+      "name": "Parents Just Don't Understand"
+    }
+  ]
+}

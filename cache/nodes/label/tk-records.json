@@ -1,0 +1,64 @@
+{
+  "slug": "label:tk-records",
+  "name": "TK Records",
+  "editorial_article": "TK Records, founded in 1973 in Miami, Florida, stands as one of the most defining labels of the 1970s disco era. Named after Terry Kane, the engineer who built founder Henry Stone’s recording studio, the label quickly became synonymous with \"the Miami Sound.\" Henry Stone, an industry veteran who began his career in the 1940s and had deep roots in R&B and soul distribution, launched TK Records at a critical juncture in the music business, following the restructuring of major labels into the WEA conglomerate. This shift provided Stone the motivation to transition from a powerhouse regional distributor to a major independent hitmaker. Working out of warehouses in Hialeah, Florida, Stone and his team—including Vice President Steve Alaimo—nurtured a distinct, rhythm-driven sound that dominated dance floors globally.\\n\\nThe label's explosive success was largely propelled by the accidental discovery of two warehouse employees, Harry Wayne \"KC\" Casey and Richard Finch. Their creative partnership formed the backbone of the label’s catalog, most famously as KC & the Sunshine Band. Through a series of crossover hits like \"Get Down Tonight,\" \"That’s The Way I Like It,\" and \"Shake Your Booty,\" the band brought a sunny, funk-inflected disco sound to the masses. TK Records was also an innovator in the industry, playing a pivotal role in the popularization of the 12-inch disco single, which allowed for longer, more danceable tracks that became the standard for the era. The TK empire was vast, encompassing a constellation of subsidiary labels such as Cat, Marlin, Dash, and Clouds, which showcased artists like George and Gwen McCrae, Bobby Caldwell, and Anita Ward. Despite its monumental influence on pop and R&B charts, the label’s reliance on the disco boom made it vulnerable when the genre faced a public backlash in the early 1980s. TK Records folded in 1981, leaving behind a legacy as a cornerstone of 1970s dance music. Its massive catalog eventually became part of the Warner Music Group, ensuring that the \"Sound of Sunshine\" continues to resonate with new generations of listeners.",
+  "citations": [
+    {
+      "url": "https://www.bsnpubs.com/florida/tk/tkstory.html",
+      "title": "TK Records Story - Both Sides Now Publications"
+    },
+    {
+      "url": "https://rateyourmusic.com/label/t_k-records/",
+      "title": "T.K. Records - Music label"
+    },
+    {
+      "url": "https://www.thediscoparadise.com/label.php?l=t-k--records",
+      "title": "T.K. Records Record Label - The Disco Paradise"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:25.191Z",
+  "type": "label",
+  "editorial_description": "A legendary Miami-based independent label that defined the sound of 1970s disco, known for the hit-making production of Henry Stone and the Sunshine sound of KC & the Sunshine Band.",
+  "founded": "1973",
+  "location": "Miami, Florida",
+  "genres": [],
+  "roster": [
+    {
+      "slug": "artist:kc-and-the-sunshine-band",
+      "type": "artist",
+      "name": "KC & the Sunshine Band"
+    },
+    {
+      "slug": "artist:george-mccrae",
+      "type": "artist",
+      "name": "George McCrae"
+    },
+    {
+      "slug": "artist:gwen-mccrae",
+      "type": "artist",
+      "name": "Gwen McCrae"
+    },
+    {
+      "slug": "artist:bobby-caldwell",
+      "type": "artist",
+      "name": "Bobby Caldwell"
+    },
+    {
+      "slug": "artist:anita-ward",
+      "type": "artist",
+      "name": "Anita Ward"
+    },
+    {
+      "slug": "artist:timmy-thomas",
+      "type": "artist",
+      "name": "Timmy Thomas"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:the-best-of-kc-and-the-sunshine-band",
+      "type": "project",
+      "name": "The Best of KC and the Sunshine Band"
+    }
+  ]
+}

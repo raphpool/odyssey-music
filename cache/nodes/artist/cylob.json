@@ -1,0 +1,99 @@
+{
+  "slug": "artist:cylob",
+  "name": "Cylob",
+  "editorial_article": "Cylob, the alias of British electronic musician Chris Jeffs, is a highly influential figure in the IDM and acid techno underground, active since the early 1990s. Emerging during the height of the UK's experimental electronic scene, Jeffs became closely associated with the seminal label Rephlex Records, founded by Richard D. James (Aphex Twin) and Grant Wilson-Claridge. His work is characterized by a playful, often subversively melodic approach to synthesized sounds, blending complex, machine-driven rhythms with a distinctive, sometimes absurd, sense of humor. Over a career spanning more than three decades, Cylob has continuously pushed the boundaries of electronic composition, releasing dozens of albums and EPs across labels including Rephlex, Breakin' Records, Power Vacuum, and his own imprint, Cylob Industries. Beyond his primary persona, he has also recorded under names like Ambient News and nonprivate, demonstrating his versatility across ambient, industrial, and club-oriented formats. Cylob's impact lies in his ability to maintain a strictly synthetic, futuristic aesthetic while imbuing his tracks with a tangible, human character that sets him apart from many of his contemporaries. His legacy is firmly cemented as an essential voice in the evolution of intelligent dance music and as an artist who helped define the eccentric, hardware-focused sound of the 1990s Rephlex era. Cylob remains an active participant in the electronic music community, having performed at numerous experimental sessions across Europe and continuing to release music that challenges genre conventions. His influence can be traced through the work of various label-mates and younger producers who share his commitment to the Rephlex philosophy of 'Innovation in the Dynamics of Music'—a ethos that emphasizes experimentalism, technical mastery, and a refusal to adhere to rigid genre constraints, ensuring his lasting relevance in the ever-evolving landscape of modern electronic music.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/cylob",
+      "title": "Cylob · Artist Profile - Resident Advisor"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/cylob",
+      "title": "Cylob Albums: songs, discography, biography ... - Rate Your Music"
+    },
+    {
+      "url": "https://www.discogs.com/artist/981-Cylob?srsltid=AfmBOooB3oGAZAu5895ttROkADQ4BZTBzksk9FblYUBYMLk4muvQBJiH",
+      "title": "Cylob Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:58.104Z",
+  "type": "artist",
+  "editorial_bio": "Cylob is an electronic music producer from the UK. Active since 1993, he has released 17 singles and 15 albums since then, on the labels Rephlex, Breakin' Records, Power Vacuum and his own Cylob Industries imprint.",
+  "origin": "UK",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rephlex",
+      "type": "label",
+      "name": "Rephlex"
+    },
+    {
+      "slug": "label:breakin-records",
+      "type": "label",
+      "name": "Breakin' Records"
+    },
+    {
+      "slug": "label:power-vacuum",
+      "type": "label",
+      "name": "Power Vacuum"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cylobian-sunset",
+      "type": "project",
+      "name": "Cylobian Sunset"
+    },
+    {
+      "slug": "project:a-wrenched-virile-lore",
+      "type": "project",
+      "name": "A Wrenched Virile Lore"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:rewind",
+      "type": "track",
+      "name": "Rewind"
+    },
+    {
+      "slug": "track:cylobian-sunset",
+      "type": "track",
+      "name": "Cylobian Sunset"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

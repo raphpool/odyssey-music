@@ -1,0 +1,106 @@
+{
+  "slug": "artist:randy-newman",
+  "name": "Randy Newman",
+  "editorial_article": "Randall Stuart Newman (born 1943) is an iconic American singer-songwriter, pianist, and composer whose career spans over six decades. Born in Los Angeles into a prolific family of Hollywood film composers, Newman emerged as a singular voice in American music, celebrated for his keen satirical wit, masterful piano arrangements, and frequent use of irony through the perspective of unreliable narrators. His early solo work in the late 1960s and 70s established him as a premier songwriter of the Americana tradition, blending elements of pop, R&B, and rock with deeply character-driven storytelling. Songs such as \"Short People\" and \"I Love L.A.\" highlight his ability to capture the complexities—and absurdities—of American life, often delivered with his distinctive, non-rhotic Southern-inflected vocals. While his recording career remains influential, Newman is equally esteemed for his profound contributions to film scoring, particularly his longstanding collaboration with Disney and Pixar. His work on scores for films like 'Toy Story', 'Monsters, Inc.', and 'The Princess and the Frog' has earned him numerous accolades, including Academy Awards and Grammy Awards, cementing his status as one of the most versatile and respected musical figures in popular culture. In 2013, he was inducted into the Rock and Roll Hall of Fame, a recognition of his enduring impact as both an auteur of the singer-songwriter movement and a maestro of the silver screen. Throughout his storied tenure, he has remained a vital presence in music, moving between his solo artistic output and complex orchestral composition with rare ease. His influence extends across generations of songwriters, leaving an indelible mark on the landscape of 20th and 21st-century music. In his decades of active work, he has shown an uncanny ability to balance commercial success with an artistic integrity that remains uniquely his own, ensuring his place in the history of American popular music for generations to come.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Randy_Newman",
+      "title": "Randy Newman - Wikipedia"
+    },
+    {
+      "url": "https://www.randynewman.com/2016/08/biography/",
+      "title": "Biography – Randy Newman"
+    },
+    {
+      "url": "https://www.songhall.org/profiles/randy-newman",
+      "title": "Randy Newman | Songwriters Hall of Fame"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:32.679Z",
+  "type": "artist",
+  "editorial_bio": "Randall Stuart Newman (born 1943) is an iconic American singer-songwriter, pianist, and composer whose career spans over six decades. Born in Los Angeles into a prolific family of Hollywood film composers, Newman emerged as a singular voice in American music, celebrated for his keen satirical wit, masterful piano arrangements, and frequent use of irony through the perspective of unreliable narrators. His early solo work in the late 1960s and 70s established him as a premier songwriter of the Americana tradition, blending elements of pop, R&B, and rock with deeply character-driven storytelling. Songs such as \"Short People\" and \"I Love L.A.\" highlight his ability to capture the complexities—and absurdities—of American life, often delivered with his distinctive, non-rhotic Southern-inflected vocals. While his recording career remains influential, Newman is equally esteemed for his profound contributions to film scoring, particularly his longstanding collaboration with Disney and Pixar. His work on scores for films like 'Toy Story', 'Monsters, Inc.', and 'The Princess and the Frog' has earned him numerous accolades, including Academy Awards and Grammy Awards, cementing his status as one of the most versatile and respected musical figures in popular culture. In 2013, he was inducted into the Rock and Roll Hall of Fame, a recognition of his enduring impact as both an auteur of the singer-songwriter movement and a maestro of the silver screen. Throughout his storied tenure, he has remained a vital presence in music, moving between his solo artistic output and complex orchestral composition with rare ease. His influence extends across generations of songwriters, leaving an indelible mark on the landscape of 20th and 21st-century music. In his decades of active work, he has shown an uncanny ability to balance commercial success with an artistic integrity that remains uniquely his own, ensuring his place in the history of American popular music for generations to come.",
+  "origin": "Los Angeles, California, U.S.",
+  "genres": [
+    {
+      "slug": "genre:americana",
+      "type": "genre",
+      "name": "Americana"
+    },
+    {
+      "slug": "genre:pop-music",
+      "type": "genre",
+      "name": "Pop music"
+    },
+    {
+      "slug": "genre:rock-music",
+      "type": "genre",
+      "name": "Rock music"
+    },
+    {
+      "slug": "genre:film-score",
+      "type": "genre",
+      "name": "Film score"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:reprise-records",
+      "type": "label",
+      "name": "Reprise Records"
+    },
+    {
+      "slug": "label:walt-disney-records",
+      "type": "label",
+      "name": "Walt Disney Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:randy-newman",
+      "type": "project",
+      "name": "Randy Newman"
+    },
+    {
+      "slug": "project:good-old-boys",
+      "type": "project",
+      "name": "Good Old Boys"
+    },
+    {
+      "slug": "project:little-criminals",
+      "type": "project",
+      "name": "Little Criminals"
+    },
+    {
+      "slug": "project:harps-and-angels",
+      "type": "project",
+      "name": "Harps and Angels"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:short-people",
+      "type": "track",
+      "name": "Short People"
+    },
+    {
+      "slug": "track:i-love-l-a",
+      "type": "track",
+      "name": "I Love L.A."
+    },
+    {
+      "slug": "track:you-ve-got-a-friend-in-me",
+      "type": "track",
+      "name": "You've Got a Friend in Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

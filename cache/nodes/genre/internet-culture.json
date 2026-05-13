@@ -1,0 +1,65 @@
+{
+  "slug": "genre:internet-culture",
+  "name": "Internet Culture",
+  "editorial_article": "Internet music, often termed \"Internet culture\" in a broader sense, refers to the expansive landscape of musical styles, scenes, and microgenres that have been fundamentally shaped, distributed, or birthed by the Internet. Unlike traditional genres defined by geography or lineage, this category is defined by its method of proliferation: the decentralized, forum-led, and platform-driven mechanisms of the digital age. From the pioneering days of the tracker music community and Usenet in the late 1980s and 90s, to the explosion of the blogosphere in the 2000s, and the meme-centric microgenres of the 2010s like vaporwave and seapunk, Internet culture in music has consistently dismantled traditional industry gatekeeping. \\n\\nThis sonic ecosystem thrives on the rapid exchange of ideas, ironic reinterpretations of pop-cultural detritus, and the collapsing of niche aesthetics into globally accessible sounds. The 2000s blog era brought forth movements such as bloghouse, blog rock, and blog rap, where platforms like MySpace, Tumblr, and DatPiff became the primary conduits for fan discovery and artist autonomy. By the 2010s, the \"Internet-native\" artist emerged—creators who didn't necessarily exist within a physical city-based scene but rather an online one, utilizing platforms like SoundCloud and YouTube to find global audiences. This genre acts as an umbrella for a history of digital acceleration, where the speed of online discourse continuously births and archives new musical movements before they even reach the mainstream. It remains a testament to the power of the network as both a medium for creation and a stage for consumption, where aesthetic, sound, and community identity are inextricably linked to the user experience of the World Wide Web.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Internet_music",
+      "title": "Internet music - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/list/internetbasedghosts/rym-ultimate-box-set-deep-internet/",
+      "title": "RYM Ultimate Box Set > Deep Internet - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:57.395Z",
+  "type": "genre",
+  "editorial_definition": "A broad category encompassing music genres, scenes, and aesthetics whose development, distribution, and cultural identity are primarily defined by the Internet.",
+  "era": "1990s–Present",
+  "origin": "Global / Digital Space",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [],
+  "key_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:todd-rundgren",
+      "type": "artist",
+      "name": "Todd Rundgren"
+    },
+    {
+      "slug": "artist:the-residents",
+      "type": "artist",
+      "name": "The Residents"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:soundcloud",
+      "type": "label",
+      "name": "SoundCloud"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:no-world-order",
+      "type": "project",
+      "name": "No World Order"
+    },
+    {
+      "slug": "project:www-thug-com",
+      "type": "project",
+      "name": "www.thug.com"
+    },
+    {
+      "slug": "project:j-tull-dot-com",
+      "type": "project",
+      "name": "J-Tull Dot Com"
+    }
+  ],
+  "landmark_tracks": []
+}

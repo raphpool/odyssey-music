@@ -1,0 +1,120 @@
+{
+  "slug": "label:hospital-productions",
+  "name": "Hospital Productions",
+  "editorial_article": "Hospital Productions is an American independent record label founded in 1997 by musician Dominick Fernow (best known for his harsh noise project Prurient). Initially manifesting as a clandestine brick-and-mortar retail space in Manhattan's East Village—accessible only via a ladder through a trap door—the label served as a vital, uncompromising hub for experimental music, noise, and power electronics. In its early years, Hospital Productions functioned as a distinct alternative to mainstream distribution, strictly curating releases through direct connections with artists and labels. \n\nAs the label evolved, it expanded its sonic footprint significantly, bridging the gap between extreme noise, industrial, and experimental techno. Under Fernow’s stewardship, it became the home for pivotal works by artists like Silent Servant, Alessandro Cortini, and his own collaborative projects like Vatican Shadow and Rainforest Spiritual Enslavement. The label is widely recognized for its consistent, distinct visual identity and its commitment to documenting the most obscure corners of underground music culture. It remains an essential platform that has influenced the trajectory of modern dark electronics, seamlessly integrating the visceral intensity of early noise with the structural rigors of contemporary techno. Beyond acting as a curator for noise, the label has nurtured a deep roster of electronic producers who operate at the intersection of club music and sound art, cementing its legacy as a cornerstone of New York's post-millennial underground and a globally respected institution for forward-thinking experimental sound.",
+  "citations": [
+    {
+      "url": "https://ra.co/labels/8535",
+      "title": "Hospital Productions · Record label ⟋ RA"
+    },
+    {
+      "url": "https://www.discogs.com/label/25823-Hospital-Productions?srsltid=AfmBOopWrYd6JvL30COAC9zc51fw-EDAP5qVkLyvOOt8qB206Il4w7T5",
+      "title": "Hospital Productions | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Hospital_Productions",
+      "title": "Hospital Productions - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:00.713Z",
+  "type": "label",
+  "editorial_description": "A legendary New York-based label founded by Dominick Fernow (Prurient) that serves as a cornerstone for extreme noise, industrial, and experimental techno.",
+  "founded": "1997",
+  "location": "New York City, NY, USA",
+  "genres": [
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:power-electronics",
+      "type": "genre",
+      "name": "Power Electronics"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:dominick-fernow",
+      "type": "artist",
+      "name": "Dominick Fernow"
+    },
+    {
+      "slug": "artist:prurient",
+      "type": "artist",
+      "name": "Prurient"
+    },
+    {
+      "slug": "artist:vatican-shadow",
+      "type": "artist",
+      "name": "Vatican Shadow"
+    },
+    {
+      "slug": "artist:silent-servant",
+      "type": "artist",
+      "name": "Silent Servant"
+    },
+    {
+      "slug": "artist:alessandro-cortini",
+      "type": "artist",
+      "name": "Alessandro Cortini"
+    },
+    {
+      "slug": "artist:rainforest-spiritual-enslavement",
+      "type": "artist",
+      "name": "Rainforest Spiritual Enslavement"
+    },
+    {
+      "slug": "artist:orphx",
+      "type": "artist",
+      "name": "Orphx"
+    },
+    {
+      "slug": "artist:phase-fatale",
+      "type": "artist",
+      "name": "Phase Fatale"
+    },
+    {
+      "slug": "artist:aaron-dilloway",
+      "type": "artist",
+      "name": "Aaron Dilloway"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:negative-fascination",
+      "type": "project",
+      "name": "Negative Fascination"
+    },
+    {
+      "slug": "project:games-have-rules",
+      "type": "project",
+      "name": "Games Have Rules"
+    },
+    {
+      "slug": "project:appropriation-stories",
+      "type": "project",
+      "name": "Appropriation Stories"
+    },
+    {
+      "slug": "project:ambient-black-magic",
+      "type": "project",
+      "name": "Ambient Black Magic"
+    }
+  ]
+}

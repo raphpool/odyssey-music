@@ -1,0 +1,78 @@
+{
+  "slug": "artist:boards-of-canada",
+  "name": "Boards of Canada",
+  "editorial_article": "Boards of Canada, a Scottish electronic music duo comprising brothers Mike Sandison and Marcus Eoin, are widely considered one of the most influential and enigmatic acts in modern electronic music. Originating from the Moray region of Scotland and later establishing their private studio, \"Hexagon Sun,\" in the Pentland Hills, the duo has spent decades crafting a distinct, nostalgic sonic landscape. Their work is characterized by the inventive use of analog synthesizers, tape machines, and manipulated samples that evoke a haunting, sun-drenched, and often surreal sense of childhood memory. By blending vintage media aesthetics with IDM-inflected beats and experimental textures, they have pioneered a soundscape often associated with the hauntology genre, delving into themes of nature, science, mathematics, and esoterica.\\n\\nRising to prominence with their 1998 debut album, *Music Has the Right to Children* (released on Warp Records), Boards of Canada achieved critical acclaim that established them as luminaries of the electronic scene. The album's warm, dusty textures and hip-hop-inspired rhythms became a blueprint for downtempo and intelligent dance music. Their subsequent studio albums—*Geogaddi* (2002), *The Campfire Headphase* (2005), and *Tomorrow's Harvest* (2013)—demonstrated a constant evolution, moving from the cult-influenced, darker atmospheres of *Geogaddi* to more organic, guitar-driven instrumentation on *The Campfire Headphase*, and finally to the stark, cinematic dread of *Tomorrow's Harvest*. Known for their reclusive nature and elaborate, cryptic promotional strategies, the duo has maintained a rare level of mystery, rarely granting interviews and avoiding live performances since the early 2000s, further cementing their legendary status in electronic music culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Boards_of_Canada",
+      "title": "Boards of Canada - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:23.426Z",
+  "type": "artist",
+  "editorial_bio": "A seminal Scottish electronic duo consisting of brothers Mike Sandison and Marcus Eoin, Boards of Canada are renowned for their evocative, nostalgic, and often uncanny soundscapes, pioneered through the use of analog synthesis and tape manipulation. Since the mid-1980s, they have established a unique aesthetic footprint that merges IDM, downtempo, and hauntology, creating a sonic legacy that deeply influences ambient and electronic music today.",
+  "origin": "Cullen, Scotland",
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "downtempo"
+    },
+    {
+      "slug": "genre:hauntology",
+      "type": "genre",
+      "name": "hauntology"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:skam-records",
+      "type": "label",
+      "name": "Skam Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:roygbiv",
+      "type": "track",
+      "name": "Roygbiv"
+    },
+    {
+      "slug": "track:dayvan-cowboy",
+      "type": "track",
+      "name": "Dayvan Cowboy"
+    },
+    {
+      "slug": "track:everything-you-do-is-a-balloon",
+      "type": "track",
+      "name": "Everything You Do Is a Balloon"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:mike-sandison",
+      "type": "artist",
+      "name": "Mike Sandison"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    }
+  ]
+}

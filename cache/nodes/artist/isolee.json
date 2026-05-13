@@ -1,0 +1,62 @@
+{
+  "slug": "artist:isolee",
+  "name": "Isolée",
+  "editorial_article": "Isolée, the recording alias of Frankfurt-born producer Rajko Müller, is a seminal figure in the development of the microhouse genre. Emerging in the late 1990s, his sound defined a distinct aesthetic within electronic music, characterized by a playful, minimalist approach that bridges the gap between deep house, techno, and the melodic sensibilities of indie electronic pop. His 2000 album, *Rest*, is widely cited by music historians and aficionados as one of the first and most influential full-length records of the microhouse movement. Müller’s path into electronic music began in his youth, with early experimentations in synthpop and EBM, eventually pivoting toward the house and techno scene of the early nineties. After submitting his early demos to his friend Andreas Baumecker, he found a creative home on the influential label Playhouse Records. Over the decades, Isolée has continued to push the boundaries of minimal dance music, earning widespread critical acclaim for his production technique, which often incorporates complex rhythmic textures with surprisingly organic, melodic hooks. Projects such as *We Are Monster* (2005) further cemented his reputation as an architect of the underground, proving that minimalist dance music could possess both emotional depth and pop-like accessibility. His enduring legacy lies in his ability to maintain a highly distinct, idiosyncratic style that has remained relevant to electronic connoisseurs for over twenty-five years. Throughout his career, he has maintained significant relationships with German labels such as Playhouse and Pampa, consistently delivering output that serves as a cornerstone for followers of minimal and deep house.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Isol%C3%A9e",
+      "title": "Isolée - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/isolee",
+      "title": "Isolée Albums: songs, discography, biography ... - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:22.254Z",
+  "type": "artist",
+  "editorial_bio": "Isolée, the recording alias of Frankfurt-born producer Rajko Müller, is a seminal figure in the development of the microhouse genre. Emerging in the late 1990s, his sound defined a distinct aesthetic within electronic music, characterized by a playful, minimalist approach that bridges the gap between deep house, techno, and the melodic sensibilities of indie electronic pop.",
+  "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Isolee1.jpg/250px-Isolee1.jpg",
+  "origin": "Frankfurt, Germany",
+  "genres": [
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:playhouse-records",
+      "type": "label",
+      "name": "Playhouse Records"
+    },
+    {
+      "slug": "label:pampa-records",
+      "type": "label",
+      "name": "Pampa Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:beau-mot-plage",
+      "type": "track",
+      "name": "Beau Mot Plage"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

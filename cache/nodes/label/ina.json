@@ -1,0 +1,70 @@
+{
+  "slug": "label:ina",
+  "name": "INA",
+  "editorial_article": "The Institut national de l'audiovisuel (INA), founded in 1975, is a French public entity that serves as the primary repository for the nation's television and radio archives. Within the framework of the music industry and academic research, it is most celebrated for its stewardship of the Groupe de Recherches Musicales (GRM). The GRM, originally established by the pioneering composer Pierre Schaeffer in 1951, is the birthplace of *musique concrète*—a revolutionary form of composition that treats recorded sounds as musical objects, independent of their original acoustic causes. When the GRM was incorporated into the INA in 1974, it ensured the continued development of electronic and acousmatic music as a formal department of innovation.\\n\\nThroughout the late 20th century, the INA-GRM acted as a vital incubator for experimental and avant-garde music, hosting legendary figures such as Pierre Henry, François Bayle, Luc Ferrari, and Bernard Parmegiani. Its influence extends far beyond the academic conservatory, providing the foundational techniques for sampling, looping, and sound manipulation that would eventually permeate everything from modern pop to techno. By preserving decades of pioneering research, the INA-GRM remains a critical historical link between early mid-century avant-garde experiments and the contemporary era of digital music production. Its archival and creative work continues to challenge how listeners perceive the relationship between technology, recording media, and artistic expression.",
+  "citations": [
+    {
+      "url": "https://www.furious.com/perfect/ohm/inagrm.html",
+      "title": "INA-GRM"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Institut_national_de_l%27audiovisuel",
+      "title": "Institut national de l'audiovisuel - Wikipedia"
+    },
+    {
+      "url": "http://www.inamediapro.com/eng/Editorial/The-National-Audiovisual-Institute-Ina",
+      "title": "The National Audiovisual Institute (Ina)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:45:23.588Z",
+  "type": "label",
+  "editorial_description": "A French public institution famous for housing the GRM (Groupe de Recherches Musicales), the legendary studio where musique concrète was pioneered and developed.",
+  "founded": "1975",
+  "location": "Paris, France",
+  "active_years": "1975-present",
+  "genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic Music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry"
+    },
+    {
+      "slug": "artist:francois-bayle",
+      "type": "artist",
+      "name": "François Bayle"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari"
+    },
+    {
+      "slug": "artist:bernard-parmegiani",
+      "type": "artist",
+      "name": "Bernard Parmegiani"
+    }
+  ],
+  "notable_releases": []
+}

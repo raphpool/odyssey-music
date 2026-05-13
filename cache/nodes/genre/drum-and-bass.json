@@ -1,0 +1,86 @@
+{
+  "slug": "genre:drum-and-bass",
+  "name": "Drum and bass",
+  "editorial_article": "Drum and bass (DnB) is an electronic dance music genre that emerged in the United Kingdom during the early 1990s, evolving out of the breakbeat hardcore and jungle scenes. Defining itself through high-tempo breakbeats—typically ranging between 165 and 185 beats per minute—and heavy, syncopated bass and sub-bass lines, the genre represents a significant intersection of Jamaican sound system culture, rave music, and experimental electronic production. Its sonic foundation is built upon complex drum programming, often utilizing sampled breakbeats, juxtaposed against synthetic textures and deep low-frequency weight.\\n\\nHistorically, the genre is deeply rooted in the multicultural landscape of the UK. It absorbed influence from reggae, dub, and hip-hop, blending these with the burgeoning techno and house scenes of the era. Early producers, such as 4hero, Goldie, Grooverider, and LTJ Bukem, were instrumental in stripping away the more pop-oriented elements of hardcore rave to focus on darker, more intricate arrangements. As the genre matured in the mid-1990s, it diverged into numerous subgenres, ranging from the atmospheric and melodic textures of \"liquid funk\" to the industrial, high-tension energy of \"techstep\" and \"neurofunk.\" By prioritizing technical innovation and rhythmic complexity, drum and bass has maintained a robust, persistent underground following while periodically influencing global mainstream music, including the foundations of later genres like dubstep and grime. Its culture, famously centered on the \"junglist\" ethos, remains a testament to the power of bass-heavy, rhythmically intense electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drum_and_bass",
+      "title": "Drum and bass - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/History_of_drum_and_bass",
+      "title": "History of drum and bass - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:41.807Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy electronic genre defined by fast breakbeat drum patterns and heavy, syncopated basslines originating in the 1990s UK rave scene.",
+  "era": "1990s–present",
+  "origin": "United Kingdom",
+  "sonic_markers": "165-185 BPM, fast breakbeats, complex syncopation, heavy sub-bass lines, synthetic textures, sampling culture",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie"
+    },
+    {
+      "slug": "artist:ltj-bukem",
+      "type": "artist",
+      "name": "LTJ Bukem"
+    },
+    {
+      "slug": "artist:grooverider",
+      "type": "artist",
+      "name": "Grooverider"
+    },
+    {
+      "slug": "artist:4hero",
+      "type": "artist",
+      "name": "4hero"
+    },
+    {
+      "slug": "artist:doc-scott",
+      "type": "artist",
+      "name": "Doc Scott"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ram-records",
+      "type": "label",
+      "name": "Ram Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": []
+}

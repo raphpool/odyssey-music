@@ -1,0 +1,92 @@
+{
+  "slug": "artist:yellow-magic-orchestra",
+  "name": "Yellow Magic Orchestra",
+  "editorial_article": "Yellow Magic Orchestra (YMO) stands as one of the most influential groups in the history of electronic music, pioneering the use of digital synthesis, sampling, and sequencing in the late 1970s from their base in Tokyo. Formed in 1978 by the visionary multi-instrumentalist Haruomi Hosono alongside the innovative composer Ryuichi Sakamoto and the versatile percussionist and vocalist Yukihiro Takahashi, the trio redefined the boundaries between traditional pop songcraft and futuristic experimental soundscapes. YMO effectively bridged the gap between Japanese technopop, disco, and ambient electronic music, creating a unique sonic lexicon that heavily influenced the development of techno, electro, hip-hop, and chiptune music globally. Their eponymous debut and the follow-up 'Solid State Survivor' (1979) established them as masters of the newly emerging computer-aided sound. By integrating drum machines like the Roland TR-808 and synthesizers such as the Moog and Jupiter series, they crafted infectious, cold, and meticulously produced melodies that challenged Western perceptions of Japanese popular music. Beyond their own discography, the group members pursued legendary individual careers that left an indelible mark on cinematic scoring and global avant-garde music. YMO's legacy is defined by their seamless blend of high-tech production and human warmth, solidifying their status as the godfathers of electronic pop. Their music remains a cornerstone of the electronic music canon, consistently cited as a primary influence by pioneers of early techno and beyond.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/22061-Yellow-Magic-Orchestra?srsltid=AfmBOoq5RF_bYpaJAtxwWST1nW3Tp0Kip_pmrZ6RLszz05HwOZO7yPL7",
+      "title": "Yellow Magic Orchestra Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/yellow-magic-orchestra",
+      "title": "Yellow Magic Orchestra Albums - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:04.094Z",
+  "type": "artist",
+  "editorial_bio": "Yellow Magic Orchestra (YMO) is a legendary Japanese electronic music group formed in Tokyo in 1978, consisting of members Haruomi Hosono, Ryuichi Sakamoto, and Yukihiro Takahashi. They were early pioneers of the synthpop and technopop genres, known for their influential use of synthesizers, sequencers, and computer technology in a popular music context.",
+  "origin": "Tokyo, Japan",
+  "genres": [
+    {
+      "slug": "genre:synthpop",
+      "type": "genre",
+      "name": "Synthpop"
+    },
+    {
+      "slug": "genre:technopop",
+      "type": "genre",
+      "name": "Technopop"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:alfa-records",
+      "type": "label",
+      "name": "Alfa Records"
+    },
+    {
+      "slug": "label:a-and-m-records",
+      "type": "label",
+      "name": "A&M Records"
+    }
+  ],
+  "discography": [],
+  "notable_tracks": [
+    {
+      "slug": "track:technopolis",
+      "type": "track",
+      "name": "Technopolis"
+    },
+    {
+      "slug": "track:rydeen",
+      "type": "track",
+      "name": "Rydeen"
+    },
+    {
+      "slug": "track:computer-game",
+      "type": "track",
+      "name": "Computer Game"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    },
+    {
+      "slug": "artist:yukihiro-takahashi",
+      "type": "artist",
+      "name": "Yukihiro Takahashi"
+    }
+  ]
+}
