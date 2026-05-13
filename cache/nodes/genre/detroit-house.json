@@ -1,0 +1,125 @@
+{
+  "slug": "genre:detroit-house",
+  "name": "Detroit House",
+  "editorial_article": "Detroit House is a subgenre of house music that emerged in parallel with the better-known Detroit Techno scene in the 1980s and 1990s. While often overshadowed by the high-profile techno pioneers—Juan Atkins, Derrick May, and Kevin Saunderson—the house sound originating from the Motor City developed its own distinct, introspective identity. Unlike the often overtly joyous and gospel-infused \"jack\" of Chicago house, Detroit house frequently incorporates a more restrained, space-age, and melancholic quality. It shares the same foundational palette of drum machines and synthesizers as its techno cousin, resulting in music that often feels functional, precise, and detached, yet deeply emotional.\n\nThe sound of Detroit house is frequently defined by its utilization of deep, lush synth pads, intricate Moog-style basslines, and rhythms that favor a rolling, relentless, production-line cadence over the swing-heavy percussion typical of the Chicago style. Producers like Moodymann, Theo Parrish, and Rick Wilhite became synonymous with a specific, soulful \"raw\" aesthetic in the 1990s, blending jazz, funk, and disco samples with an unmistakably dark, post-industrial Detroit sensibility. Other seminal artists, including Mike Huckaby, K-Hand, and Omar S, further refined this sound, creating a bridge between the functional rigidity of machine-driven music and the warm, improvisational textures of jazz and deep house. This movement remains a vital component of Detroit’s musical tapestry, representing a more intimate, dancefloor-focused counterpart to the city’s broader futuristic electronic canon. Unlike the instrumental, machine-worshipping nature of many Detroit techno tracks, Detroit house often creates a broader space for soulful expression, even if that expression is marked by the city's characteristic emotional restraint.",
+  "citations": [
+    {
+      "url": "https://theshfl.com/guide/Detroit-House",
+      "title": "Detroit House"
+    },
+    {
+      "url": "https://digitalcommons.wayne.edu/cgi/viewcontent.cgi?article=1932&context=oa_theses",
+      "title": "The House Detroit Built: House Music In Techno City"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:39.672Z",
+  "_metrics": {
+    "input_tokens": 19131,
+    "output_tokens": 1499,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007031,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 23753,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "genre",
+  "editorial_definition": "Detroit House is a regional evolution of house music characterized by an introspective, tech-influenced, and often soulful aesthetic that distinguishes it from the more explosive and gospel-driven Chicago house sound.",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:moodymann",
+      "type": "artist",
+      "name": "Moodymann"
+    },
+    {
+      "slug": "artist:theo-parrish",
+      "type": "artist",
+      "name": "Theo Parrish"
+    },
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    },
+    {
+      "slug": "artist:k-hand",
+      "type": "artist",
+      "name": "K-Hand"
+    },
+    {
+      "slug": "artist:omar-s",
+      "type": "artist",
+      "name": "Omar S"
+    },
+    {
+      "slug": "artist:rick-wilhite",
+      "type": "artist",
+      "name": "Rick Wilhite"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:kdj",
+      "type": "label",
+      "name": "KDJ"
+    },
+    {
+      "slug": "label:sound-signature",
+      "type": "label",
+      "name": "Sound Signature"
+    },
+    {
+      "slug": "label:fxhe-records",
+      "type": "label",
+      "name": "FXHE Records"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:silentintroduction",
+      "type": "project",
+      "name": "Silentintroduction"
+    },
+    {
+      "slug": "project:first-floor",
+      "type": "project",
+      "name": "First Floor"
+    },
+    {
+      "slug": "project:just-ask-the-lonely",
+      "type": "project",
+      "name": "Just Ask the Lonely"
+    }
+  ],
+  "landmark_tracks": []
+}

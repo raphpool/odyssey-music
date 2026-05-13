@@ -1,0 +1,81 @@
+{
+  "slug": "label:track-records",
+  "name": "Track Records",
+  "editorial_article": "Track Records was a seminal British independent record label founded in 1966 by Kit Lambert and Chris Stamp, the managers of The Who. Conceived as a vehicle to support their artists with greater creative and commercial autonomy, the label emerged during a transformative period in UK rock music. From its inception, the label made an indelible mark by signing Jimi Hendrix, releasing his debut single \"Purple Haze\" and the landmark album \"Are You Experienced\" in 1967. This early success, however, was quickly complicated by legal disputes with PPX Enterprises regarding Hendrix's prior contractual obligations, which caused significant financial strain early in the label's history. \\n\\nThroughout its lifespan, Track Records served as the home for The Who's most defining studio output, including seminal works such as \"The Who Sell Out,\" \"Tommy,\" and \"Who's Next.\" Beyond its flagship band, the label championed a distinctive roster of artists including The Crazy World of Arthur Brown, Thunderclap Newman, and Golden Earring, often under the production guidance of Pete Townshend. Track's distribution partnerships were international and varied, moving through relationships with Polydor in the UK, and Atlantic, Decca, and eventually MCA in the United States. As the music industry consolidated in the mid-1970s, the label's prominence waned; The Who moved to Polydor in 1974, and after a gradual thinning of its roster, Track Records concluded its operations in 1978, leaving behind a legacy as one of the most significant independent imprints of the classic rock era.",
+  "citations": [
+    {
+      "url": "http://www.cvinyl.com/labelguides/track.php",
+      "title": "CVINYL.COM - Label Variations: Track Records"
+    },
+    {
+      "url": "https://www.discogs.com/label/50693-Track-Record?srsltid=AfmBOooZcmmLSLgX7wPmfX1PA5HksZyvwazSagbihXmm218Qn7athZnQ",
+      "title": "Track Record | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:34.850Z",
+  "_metrics": {
+    "input_tokens": 14889,
+    "output_tokens": 1256,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005606,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 22406,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "label",
+  "editorial_description": "A pivotal UK independent label established by The Who's managers, Kit Lambert and Chris Stamp, defining the sound of British rock in the late 1960s and early 1970s.",
+  "founded": "1966",
+  "location": "United Kingdom",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who"
+    },
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix"
+    },
+    {
+      "slug": "artist:the-crazy-world-of-arthur-brown",
+      "type": "artist",
+      "name": "The Crazy World of Arthur Brown"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:are-you-experienced",
+      "type": "project",
+      "name": "Are You Experienced"
+    },
+    {
+      "slug": "project:tommy",
+      "type": "project",
+      "name": "Tommy"
+    },
+    {
+      "slug": "project:who-s-next",
+      "type": "project",
+      "name": "Who's Next"
+    }
+  ]
+}

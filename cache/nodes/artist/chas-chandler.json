@@ -1,0 +1,55 @@
+{
+  "slug": "artist:chas-chandler",
+  "name": "Chas Chandler",
+  "editorial_article": "Bryan James \"Chas\" Chandler (1938–1996) was a seminal figure in British rock history, moving from the stage as a foundational bassist for The Animals to the control room as a visionary producer and manager. Born in Heaton, Tyne and Wear, Chandler was a core member of The Animals from their inception in 1963, contributing a distinct, energetic bass style to era-defining hits like \"We've Gotta Get Out of This Place.\" \\n\\nChandler’s most enduring legacy, however, was his pivot to the music industry's business and production side. In 1966, he discovered Jimi Hendrix in a New York club and famously brought him to London, where he co-managed and produced the Jimi Hendrix Experience during their most creative period, including the seminal albums 'Are You Experienced?' and 'Axis: Bold as Love.' His production work, influenced by his own experience as a musician, was instrumental in shaping the psychedelic and hard rock sounds of the late 1960s. Later in his career, he achieved significant commercial success managing and producing the glam rock band Slade during their 1970s peak in the UK. Throughout his life, Chandler remained an articulate advocate for the artists he supported, eventually returning to studio management and local music initiatives before his passing in 1996. The depth of his impact is cemented by his ability to bridge the gap between technical musicianship and the commercial demands of the British Invasion and beyond. His transition from the rhythm section to a catalyst for genius reflects a rare, holistic understanding of the music business in its most formative decade. Beyond his direct musical output, Chandler was widely respected as a primary, articulate source for historical accounts of the Jimi Hendrix era, helping to preserve the legacy of one of music's greatest guitarists. His contributions as an organizer, financier, and producer ensured that the creative visions of icons like Hendrix and Slade were effectively brought to global audiences.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/artist/chas-chandler-mn0000100273",
+      "title": "Chas Chandler Songs, Albums, Reviews, Bio & Mo... | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:32.225Z",
+  "_metrics": {
+    "input_tokens": 27271,
+    "output_tokens": 1447,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008988,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 21136,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Bryan James \"Chas\" Chandler (1938–1996) was a seminal figure in British rock history, moving from the stage as a foundational bassist for The Animals to the control room as a visionary producer and manager.",
+  "origin": "Heaton, Tyne and Wear, England",
+  "genres": [
+    {
+      "slug": "genre:british-invasion",
+      "type": "genre",
+      "name": "British Invasion"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam Rock"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock"
+    }
+  ],
+  "labels": [],
+  "discography": [],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

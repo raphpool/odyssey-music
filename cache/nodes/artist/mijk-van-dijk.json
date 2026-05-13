@@ -1,0 +1,101 @@
+{
+  "slug": "artist:mijk-van-dijk",
+  "name": "Mijk van Dijk",
+  "editorial_article": "Mijk van Dijk (born Michael van den Nieuwendijk, 1963) is a prominent German DJ and electronic music producer based in Berlin, who has played a vital role in the evolution of the European techno and trance scenes since the early 1990s. Emerging from the vibrant, post-wall Berlin underground, van Dijk became a prolific architect of the \"Berlin sound,\" bridging the gap between early acid techno, atmospheric trance, and experimental house. His work is characterized by a high-energy, technically precise approach to synthesis and production, often incorporating complex, driving rhythms alongside melodic, ethereal textures. Beyond his solo career, he has been a tireless collaborator and founder of various creative projects, most notably under the \"Microglobe\" moniker, which showcased his ability to blend global influences with electronic dance structures. Throughout his career, he has maintained a deep commitment to the culture of electronic music, working as a DJ, label figurehead, and journalist, helping to document and shape the techno zeitgeist. He is famously referenced in Scooter's 1994 anthem \"Hyper Hyper,\" a nod to his stature among the German techno elite. With a discography spanning decades, his legacy is defined by an enduring dedication to the dancefloor and an exploration of the deeper, often psychedelic boundaries of trance and techno. He continues to perform, produce, and support the electronic music community from his base in Berlin.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mijk_van_Dijk",
+      "title": "Mijk van Dijk - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/3649-Mijk-Van-Dijk",
+      "title": "Mijk Van Dijk Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:41.902Z",
+  "_metrics": {
+    "input_tokens": 26651,
+    "output_tokens": 2146,
+    "cache_read_tokens": 24407,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010492,
+    "llm_calls": 6,
+    "search_calls": 1,
+    "fetch_calls": 2,
+    "turns": 6,
+    "emit_attempts": 3,
+    "agent_ms": 40403,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "artist",
+  "editorial_bio": "Mijk van Dijk (born Michael van den Nieuwendijk, 1963) is a prominent German DJ and electronic music producer based in Berlin, who has played a vital role in the evolution of the European techno and trance scenes since the early 1990s.",
+  "origin": "Berlin, Germany",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:superstition",
+      "type": "label",
+      "name": "Superstition"
+    },
+    {
+      "slug": "label:mfs",
+      "type": "label",
+      "name": "MFS"
+    },
+    {
+      "slug": "label:phuture-wax",
+      "type": "label",
+      "name": "Phuture Wax"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:afreuropamericasiaustralica",
+      "type": "project",
+      "name": "Afreuropamericasiaustralica"
+    },
+    {
+      "slug": "project:glow",
+      "type": "project",
+      "name": "Glow"
+    },
+    {
+      "slug": "project:teamwork",
+      "type": "project",
+      "name": "Teamwork"
+    },
+    {
+      "slug": "project:everyground",
+      "type": "project",
+      "name": "Everyground"
+    }
+  ],
+  "notable_tracks": [],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}
