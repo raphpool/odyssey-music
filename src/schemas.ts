@@ -37,6 +37,24 @@ const citationSchema = z.object({
 	title: z.string().optional(),
 });
 
+const metricsSchema = z
+	.object({
+		input_tokens: z.number().int().nonnegative(),
+		output_tokens: z.number().int().nonnegative(),
+		cache_read_tokens: z.number().int().nonnegative(),
+		cache_write_tokens: z.number().int().nonnegative(),
+		cost_usd: z.number().nonnegative(),
+		llm_calls: z.number().int().nonnegative(),
+		search_calls: z.number().int().nonnegative(),
+		fetch_calls: z.number().int().nonnegative(),
+		turns: z.number().int().nonnegative(),
+		emit_attempts: z.number().int().nonnegative(),
+		agent_ms: z.number().nonnegative(),
+		model_id: z.string(),
+		search_provider: z.enum(["tavily", "firecrawl"]),
+	})
+	.optional();
+
 // Tighter floors at the disk layer: even if a future caller skips runAgent's gate,
 // the persisted file must have a real article and a real citation.
 const baseFields = {
@@ -45,6 +63,8 @@ const baseFields = {
 	editorial_article: z.string().min(200),
 	citations: z.array(citationSchema).min(1),
 	materialized_at: z.string().datetime(),
+	_metrics: metricsSchema,
+	disambiguator: z.string().optional(),
 };
 
 const genreSchema = z.object({

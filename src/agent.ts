@@ -50,6 +50,7 @@ export interface AgentRunResult {
 	/** Slug computed by us (overrides whatever the agent emitted, ensures canonicalization). */
 	slug: Slug;
 	turns: number;
+	metrics: NodeMetrics;
 }
 
 /** Thrown when the agent explicitly decided no real entity exists. The crawler discards quietly. */
@@ -58,6 +59,32 @@ export class AbandonedNodeError extends Error {
 	constructor(reason: string) {
 		super(`abandoned: ${reason}`);
 	}
+}
+
+/** Subset of pi-ai's Usage we read off turn_end events. */
+interface PiUsage {
+	input?: number;
+	output?: number;
+	cacheRead?: number;
+	cacheWrite?: number;
+	cost?: { total?: number };
+}
+
+/** Resource metrics recorded per agent run. Persisted on the node payload as `_metrics`. */
+export interface NodeMetrics {
+	input_tokens: number;
+	output_tokens: number;
+	cache_read_tokens: number;
+	cache_write_tokens: number;
+	cost_usd: number;
+	llm_calls: number;
+	search_calls: number;
+	fetch_calls: number;
+	turns: number;
+	emit_attempts: number;
+	agent_ms: number;
+	model_id: string;
+	search_provider: "tavily" | "firecrawl";
 }
 
 const SYSTEM_PROMPT = buildSystemPrompt();
@@ -87,6 +114,13 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		lastRejectionReasons: [] as string[],
 		abandoned: false,
 		abandonReason: "",
+		inputTokens: 0,
+		outputTokens: 0,
+		cacheReadTokens: 0,
+		cacheWriteTokens: 0,
+		costUsd: 0,
+		llmCalls: 0,
+		startedAtMs: Date.now(),
 	};
 
 	const emitTool: AgentTool = {
@@ -207,7 +241,19 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 
 	let turns = 0;
 	const unsub = agent.subscribe((event) => {
-		if (event.type === "turn_end") turns++;
+		if (event.type === "turn_end") {
+			turns++;
+			// Accumulate LLM usage when an assistant message completes a turn.
+			const msg = (event as unknown as { message?: { usage?: PiUsage } }).message;
+			if (msg?.usage) {
+				state.llmCalls++;
+				state.inputTokens += msg.usage.input ?? 0;
+				state.outputTokens += msg.usage.output ?? 0;
+				state.cacheReadTokens += msg.usage.cacheRead ?? 0;
+				state.cacheWriteTokens += msg.usage.cacheWrite ?? 0;
+				state.costUsd += msg.usage.cost?.total ?? 0;
+			}
+		}
 		if (event.type === "tool_execution_end") {
 			const name = event.toolName;
 			if (name === "web_search") {
@@ -263,8 +309,24 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 	if (input.type) fbObj.fallbackType = input.type;
 	if (input.disambiguator) fbObj.disambiguator = input.disambiguator;
 	const node = canonicalize(state.captured, fbObj);
+	const metrics: NodeMetrics = {
+		input_tokens: state.inputTokens,
+		output_tokens: state.outputTokens,
+		cache_read_tokens: state.cacheReadTokens,
+		cache_write_tokens: state.cacheWriteTokens,
+		cost_usd: Math.round(state.costUsd * 1_000_000) / 1_000_000,
+		llm_calls: state.llmCalls,
+		search_calls: state.searchCalls,
+		fetch_calls: state.fetchCalls,
+		turns,
+		emit_attempts: state.emitAttempts,
+		agent_ms: Date.now() - state.startedAtMs,
+		model_id: modelId,
+		search_provider: searchProvider,
+	};
+	(node as Record<string, unknown>)._metrics = metrics;
 	const parsed = nodePayloadSchema.parse(node) as NodePayload;
-	return { node: parsed, slug: parsed.slug, turns };
+	return { node: parsed, slug: parsed.slug, turns, metrics };
 }
 
 interface ResearchProvenance {
