@@ -2,49 +2,73 @@
   "status": "FAIL",
   "blockers": [
     {
-      "file": "src/agent.ts",
-      "line": 543,
+      "file": "src/server.ts",
+      "line": 92,
       "severity": "blocker",
-      "issue": "Citation provenance is still not enforced on the final persisted citation set. validateForEmit checks only payload.citations, but canonicalize later calls normalizeCitations(next.citations, next.sources), so an emitted payload can pass with one grounded citation and still persist arbitrary ungrounded URLs supplied in sources/link/href-style entries. This bypasses the B3 guarantee that every saved citation URL came from fetchedUrls or searchResultUrls."
+      "issue": "POST /materialize is publicly reachable through the deployed /api/odyssey/ nginx proxy and has no auth, allowlist, rate limit, quota, CSRF protection, or per-request cost guard. Because it invokes runAgent and paid Tavily/LLM/fetch work on cache misses, anyone can burn API spend by POSTing uncached names or free-text inputs. The deployment script confirms a public proxy to 127.0.0.1:18792 and only smoke-tests the public origin; it does not add auth."
     },
     {
       "file": "src/agent.ts",
-      "line": 219,
+      "line": 640,
       "severity": "blocker",
-      "issue": "fetchedUrls is populated by extractUrlsFromToolResult(event.result), which recursively scans the entire fetch_page result including the untrusted page markdown. A URL merely mentioned or linked inside a fetched page is therefore treated as if it was itself fetched, so a malicious/low-quality page can smuggle arbitrary citation URLs through the provenance gate. fetchedUrls should be derived from the actual fetch_page request/result URL, not every URL in third-party content."
+      "issue": "Citation provenance is not enforced on the final persisted citation set. validateForEmit checks payload.citations only, but canonicalize later calls normalizeCitations(next.citations, next.sources), so an emitted payload can pass with one grounded citation while arbitrary ungrounded URLs in sources/link/href entries are persisted as citations."
+    },
+    {
+      "file": "src/agent.ts",
+      "line": 289,
+      "severity": "blocker",
+      "issue": "fetchedUrls is populated by recursively scanning the entire fetch_page tool result. That includes the untrusted page markdown, not just the actual fetched URL in details/url or the untrusted_page wrapper URL. A fetched page that merely mentions or links to another URL can therefore make that URL pass the 'actually fetched or search result' citation gate."
     },
     {
       "file": "src/cache.ts",
       "line": 86,
       "severity": "blocker",
-      "issue": "The loadPending shared-promise race is fixed, but pending reverse persistence is still not serialized. Multiple concurrent writes can mutate pendingReverses and set pendingDirty while another write is between atomicWriteJson and pendingDirty=false; the earlier flush can then clear the dirty flag for a later mutation that was not included in its serialized file, losing pending reverse updates on disk. B6 is therefore only partially addressed."
+      "issue": "The loadPending shared-promise and runLocked cleanup fixes are present, but pending reverse persistence is still not serialized. Concurrent cache.write calls can mutate pendingReverses and set pendingDirty while another flushPending is between atomicWriteJson and pendingDirty=false; the earlier flush can then clear the dirty flag for a later mutation that was not included in its serialized file, losing pending reverse updates on disk."
     },
     {
       "file": "src/crawler.ts",
-      "line": 221,
+      "line": 282,
       "severity": "blocker",
-      "issue": "Disambiguators are wired into makeSlug and current-node canonicalization, but edge frontier keys still use makeSlug(e.type, e.name) and enqueue AgentInput without a disambiguator. Two distinct same-name edge targets are de-duplicated in FrontierQueue before either agent run can emit a disambiguator, so the original B1 same-name collision class remains for graph-expanded nodes."
+      "issue": "Disambiguator support exists for makeSlug and the current node, but edge targets still cannot carry disambiguators through canonicalization or frontier expansion. normalizeEdge recomputes edge slugs from only type/name, and enqueueEdges queues AgentInput with only type/name, so two distinct same-name targets are still collapsed before either materialization can preserve identity."
     }
   ],
   "warnings": [
     {
-      "file": "src/agent.ts",
-      "line": 344,
+      "file": "src/server.ts",
+      "line": 101,
       "severity": "warning",
-      "issue": "normalizeForProvenance drops common tracking parameters but does not sort query parameters or handle tracking keys case-insensitively, so equivalent URLs with reordered query strings or uppercase UTM parameters can fail to match. This is a false-negative risk rather than a grounding bypass."
+      "issue": "The materialize validator accepts a body with a valid type but no name and no text, despite the API contract saying {type, name} or {text}. That sends a vague type-only prompt into runAgent and compounds the public cost-exhaustion risk."
+    },
+    {
+      "file": "src/server.ts",
+      "line": 134,
+      "severity": "warning",
+      "issue": "Same structured slug requests are coalesced, but free-text requests are not. Two different prompts can materialize to the same canonical slug, both pay the JIT cost, and cache.write is atomic at the file-rename level but not write-if-absent under the slug lock, so the last writer can win."
+    },
+    {
+      "file": "src/tools/local-fetcher.ts",
+      "line": 36,
+      "severity": "warning",
+      "issue": "The local fetcher is now the default and wraps output in untrusted_page, but JSDOM/Readability/Turndown errors are not caught with a fallback path. The 10s timeout is also cleared after response headers, before res.text(), and there is no max response-byte cap, so pathological HTML or slow/huge bodies can fail or stall a materialization until the outer agent timeout."
+    },
+    {
+      "file": "deploy/deploy-server.sh",
+      "line": 82,
+      "severity": "warning",
+      "issue": "The deploy path hardcodes nginx to port 18792 while src/server.ts defaults to 18791 unless PORT is present. /etc/odyssey-music.env is written chmod 600, which is good, but the service runs as root and the port coupling is fragile if the env file is missing or the service is launched outside systemd."
+    },
+    {
+      "file": "scripts/analytics.ts",
+      "line": 34,
+      "severity": "warning",
+      "issue": "npm run check exits successfully, but Biome reports nodesWithMetrics as an unused variable in scripts/analytics.ts."
     },
     {
       "file": "src/agent.ts",
       "line": 30,
       "severity": "warning",
-      "issue": "AgentDeps.maxEmitAttempts still has a stale comment saying the Nth attempt accepts best-effort payloads. The emit_node tool description and runtime implementation are now strict, but this public interface comment can mislead future maintainers."
-    },
-    {
-      "file": "src/crawler.ts",
-      "line": 133,
-      "severity": "warning",
-      "issue": "The claimed/inFlight budget invariant appears correct in code, but the comment still says the crawler may exceed maxNodes by concurrency - 1 writes. With the current pre-run reservation check it should not exceed maxNodes; the stale comment makes this harder to audit."
+      "issue": "AgentDeps.maxEmitAttempts still has a stale comment saying the Nth attempt accepts best-effort payloads. Runtime behavior now hard-aborts, but the public interface documentation is misleading."
     }
   ],
-  "summary": "FAIL: Round-3 fixes addressed many previous findings: separate search/fetch counters are present, untrusted_page and untrusted_search_results wrappers were added, schema edge target types and disk floors are stronger, the fallback emit escape hatch is removed, lock cleanup and webhook validation were improved, assert-cache now requires 100% citation coverage, Firecrawl /v2/search fallback exists, and typecheck plus the non-live test suite pass. Blockers remain around citation provenance after canonicalization, over-broad URL extraction from fetched page content, unsynchronized pending-reverse flushing, and frontier de-duplication that still drops same-name edge targets before disambiguation."
+  "summary": "FAIL: Many claimed fixes are present: slug.ts accepts a disambiguator for direct slug generation; validateForEmit splits search/fetch counters; abandon_node has guard rails; maxEmitAttempts now hard-aborts instead of accepting best effort; Firecrawl, Tavily, and local fetch output are wrapped in untrusted boundaries; local fetch is the default; crawler claimed reservation and release logic plus bfs/popularity/hybrid strategies are implemented; loadPending sharing and runLocked cleanup are implemented; schemas add per-edge target constraints and _metrics; server endpoints exist with in-flight coalescing for exact structured slugs; analytics/coverage scripts exist; and cache/ is tracked. Existing checks run: npm run check passed with one Biome warning, and scripts/assert-cache.ts cache 2000 passed. Blockers remain around the unauthenticated public JIT endpoint, citation provenance bypasses, pending reverse flush concurrency, and missing disambiguator propagation for edge/frontier targets."
 }
