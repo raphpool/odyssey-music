@@ -671,7 +671,12 @@ function normalizeEdge(e: unknown): EdgeRef | null {
 	if (typeof r.type !== "string" || !(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
 	const t = r.type as NodeType;
-	return { slug: makeSlug(t, r.name), type: t, name: r.name.trim() };
+	try {
+		return { slug: makeSlug(t, r.name), type: t, name: r.name.trim() };
+	} catch {
+		// Name normalized to empty body (e.g. pure non-Latin script). Drop silently.
+		return null;
+	}
 }
 
 function buildSystemPrompt(): string {
