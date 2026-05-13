@@ -24,6 +24,11 @@ program
 		"tavily",
 	)
 	.option(
+		"--fetcher <p>",
+		"Page fetcher: local (fetch + Mozilla Readability + Turndown, ~300ms, default) | firecrawl (1-8s, more robust on JS-rendered/anti-bot sites).",
+		"local",
+	)
+	.option(
 		"--strategy <s>",
 		"Frontier order: bfs | popularity | hybrid (default hybrid — BFS head then popularity).",
 		"hybrid",
@@ -50,6 +55,7 @@ program
 			concurrency: number;
 			reasoning: string;
 			searchProvider: string;
+			fetcher: string;
 			strategy: string;
 			bfsHead: number;
 			heartbeatMs: number;
@@ -75,6 +81,7 @@ program
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
 					reasoning: opts.reasoning as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
 					searchProvider: opts.searchProvider === "firecrawl" ? "firecrawl" : "tavily",
+					fetcher: opts.fetcher === "firecrawl" ? "firecrawl" : "local",
 				},
 			};
 			if (!opts.quiet) {

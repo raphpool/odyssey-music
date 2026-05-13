@@ -22,7 +22,15 @@ async function main(): Promise<void> {
 	const seeds = SEEDS.slice(0, Number.parseInt(process.argv[3] ?? "8", 10));
 	console.log(`[bench] ${seeds.length} seeds, concurrency=${concurrency}`);
 
-	const results: { slug: string; ms: number; turns: number; searches: number; fetches: number; cost: number; attempts: number }[] = [];
+	const results: {
+		slug: string;
+		ms: number;
+		turns: number;
+		searches: number;
+		fetches: number;
+		cost: number;
+		attempts: number;
+	}[] = [];
 	const queue = [...seeds];
 	const t0 = Date.now();
 	const workers = Array.from({ length: concurrency }, async () => {
@@ -50,7 +58,9 @@ async function main(): Promise<void> {
 				);
 			} catch (e) {
 				const ms = Date.now() - start;
-				console.log(`  FAIL ${seed.type}:${seed.name} ${ms}ms — ${e instanceof Error ? e.message.slice(0, 80) : ""}`);
+				console.log(
+					`  FAIL ${seed.type}:${seed.name} ${ms}ms — ${e instanceof Error ? e.message.slice(0, 80) : ""}`,
+				);
 			}
 		}
 	});
