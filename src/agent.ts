@@ -4,6 +4,7 @@ import { Type } from "typebox";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { makeFirecrawlTool } from "./tools/firecrawl.js";
+import { makeFirecrawlSearchTool } from "./tools/firecrawl-search.js";
 import { makeTavilyTool } from "./tools/tavily.js";
 import {
 	type EdgeRef,
@@ -16,6 +17,8 @@ import {
 } from "./types.js";
 
 export type ReasoningLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
+
+export type SearchProvider = "tavily" | "firecrawl";
 
 export interface AgentDeps {
 	tavilyApiKey: string;
@@ -30,6 +33,8 @@ export interface AgentDeps {
 	logger?: (line: string) => void;
 	/** Pi thinkingLevel passed to the LLM. Default "off". */
 	reasoning?: ReasoningLevel;
+	/** Which provider to use for web_search. Default "tavily"; "firecrawl" uses Firecrawl /v2/search. */
+	searchProvider?: SearchProvider;
 }
 
 export interface AgentInput {
@@ -178,12 +183,12 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		},
 	};
 
-	const tools: AgentTool[] = [
-		makeTavilyTool(deps.tavilyApiKey),
-		makeFirecrawlTool(deps.firecrawlApiKey),
-		emitTool,
-		abandonTool,
-	];
+	const searchProvider: SearchProvider = deps.searchProvider ?? "tavily";
+	const searchTool =
+		searchProvider === "firecrawl"
+			? makeFirecrawlSearchTool(deps.firecrawlApiKey)
+			: makeTavilyTool(deps.tavilyApiKey);
+	const tools: AgentTool[] = [searchTool, makeFirecrawlTool(deps.firecrawlApiKey), emitTool, abandonTool];
 
 	const modelId = deps.modelId ?? "gemini-3.1-flash-lite-preview";
 	// pi-ai 0.74.0 only ships the "preview" type id, so we widen the call to accept any string.

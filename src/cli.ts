@@ -18,6 +18,11 @@ program
 		"Pi thinkingLevel: off|minimal|low|medium|high|xhigh (default off)",
 		"off",
 	)
+	.option(
+		"--search-provider <p>",
+		"Web search backend: tavily | firecrawl (default tavily). Use firecrawl when Tavily quota is exhausted.",
+		"tavily",
+	)
 	.option("--heartbeat-ms <n>", "Heartbeat interval (ms)", (v) => Number.parseInt(v, 10), 90_000)
 	.option(
 		"--heartbeat-webhook <url>",
@@ -33,6 +38,7 @@ program
 			out: string;
 			concurrency: number;
 			reasoning: string;
+			searchProvider: string;
 			heartbeatMs: number;
 			heartbeatWebhook?: string;
 			heartbeatPayload?: string;
@@ -51,6 +57,7 @@ program
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
 					reasoning: opts.reasoning as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
+					searchProvider: opts.searchProvider === "firecrawl" ? "firecrawl" : "tavily",
 				},
 			};
 			if (!opts.quiet) {
