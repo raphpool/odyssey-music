@@ -1,31 +1,51 @@
 import { z } from "zod";
 import { isValidSlug } from "./slug.js";
-import { NODE_TYPES } from "./types.js";
+import { NODE_TYPES, type NodeType } from "./types.js";
 
 const slugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
 
 const nodeTypeSchema = z.enum(NODE_TYPES);
 
-const edgeRefSchema = z.object({
+const edgeRefBase = z.object({
 	slug: slugSchema,
 	type: nodeTypeSchema,
 	name: z.string().min(1),
 });
+
+/** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
+function typedEdge(...allowed: NodeType[]) {
+	const set = new Set(allowed);
+	return edgeRefBase.superRefine((val, ctx) => {
+		if (!set.has(val.type)) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: `edge.type must be one of ${[...set].join("|")}, got ${val.type}`,
+			});
+		}
+		const prefix = `${val.type}:`;
+		if (!val.slug.startsWith(prefix)) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				message: `edge.slug must start with "${prefix}" to match edge.type`,
+			});
+		}
+	});
+}
 
 const citationSchema = z.object({
 	url: z.string().url(),
 	title: z.string().optional(),
 });
 
+// Tighter floors at the disk layer: even if a future caller skips runAgent's gate,
+// the persisted file must have a real article and a real citation.
 const baseFields = {
 	slug: slugSchema,
 	name: z.string().min(1),
-	editorial_article: z.string().min(1),
-	citations: z.array(citationSchema),
+	editorial_article: z.string().min(200),
+	citations: z.array(citationSchema).min(1),
 	materialized_at: z.string().datetime(),
 };
-
-const edgeList = () => z.array(edgeRefSchema);
 
 const genreSchema = z.object({
 	...baseFields,
@@ -34,13 +54,13 @@ const genreSchema = z.object({
 	era: z.string().optional(),
 	origin: z.string().optional(),
 	sonic_markers: z.string().optional(),
-	parent_genres: edgeList(),
-	subgenres: edgeList(),
-	related_genres: edgeList(),
-	key_artists: edgeList(),
-	key_labels: edgeList(),
-	landmark_projects: edgeList(),
-	landmark_tracks: edgeList(),
+	parent_genres: z.array(typedEdge("genre")),
+	subgenres: z.array(typedEdge("genre")),
+	related_genres: z.array(typedEdge("genre")),
+	key_artists: z.array(typedEdge("artist")),
+	key_labels: z.array(typedEdge("label")),
+	landmark_projects: z.array(typedEdge("project")),
+	landmark_tracks: z.array(typedEdge("track")),
 });
 
 const labelSchema = z.object({
@@ -51,9 +71,9 @@ const labelSchema = z.object({
 	location: z.string().optional(),
 	founders: z.string().optional(),
 	active_years: z.string().optional(),
-	genres: edgeList(),
-	roster: edgeList(),
-	notable_releases: edgeList(),
+	genres: z.array(typedEdge("genre")),
+	roster: z.array(typedEdge("artist")),
+	notable_releases: z.array(typedEdge("project")),
 });
 
 const artistSchema = z.object({
@@ -63,15 +83,15 @@ const artistSchema = z.object({
 	photo_url: z.string().url().optional(),
 	origin: z.string().optional(),
 	active_years: z.string().optional(),
-	genres: edgeList(),
-	labels: edgeList(),
-	discography: edgeList(),
-	notable_tracks: edgeList(),
-	influences: edgeList(),
-	influenced: edgeList(),
-	collaborators: edgeList(),
-	aliases: edgeList(),
-	members: edgeList(),
+	genres: z.array(typedEdge("genre")),
+	labels: z.array(typedEdge("label")),
+	discography: z.array(typedEdge("project")),
+	notable_tracks: z.array(typedEdge("track")),
+	influences: z.array(typedEdge("artist")),
+	influenced: z.array(typedEdge("artist")),
+	collaborators: z.array(typedEdge("artist")),
+	aliases: z.array(typedEdge("artist")),
+	members: z.array(typedEdge("artist")),
 });
 
 const projectSchema = z.object({
@@ -80,12 +100,12 @@ const projectSchema = z.object({
 	editorial_pitch: z.string().min(1),
 	cover_url: z.string().url().optional(),
 	year: z.string().optional(),
-	artists: edgeList(),
-	label: edgeRefSchema.optional(),
-	genres: edgeList(),
-	tracklist: edgeList(),
-	producers: edgeList(),
-	related_projects: edgeList(),
+	artists: z.array(typedEdge("artist")),
+	label: typedEdge("label").optional(),
+	genres: z.array(typedEdge("genre")),
+	tracklist: z.array(typedEdge("track")),
+	producers: z.array(typedEdge("artist")),
+	related_projects: z.array(typedEdge("project")),
 });
 
 const trackSchema = z.object({
@@ -95,14 +115,14 @@ const trackSchema = z.object({
 	cover_url: z.string().url().optional(),
 	year: z.string().optional(),
 	duration: z.string().optional(),
-	artists: edgeList(),
-	project: edgeRefSchema.optional(),
-	genres: edgeList(),
-	producers: edgeList(),
-	samples: edgeList(),
-	sampled_by: edgeList(),
-	remix_of: edgeRefSchema.optional(),
-	remixed_by: edgeList(),
+	artists: z.array(typedEdge("artist")),
+	project: typedEdge("project").optional(),
+	genres: z.array(typedEdge("genre")),
+	producers: z.array(typedEdge("artist")),
+	samples: z.array(typedEdge("track")),
+	sampled_by: z.array(typedEdge("track")),
+	remix_of: typedEdge("track").optional(),
+	remixed_by: z.array(typedEdge("track")),
 });
 
 export const nodePayloadSchema = z.discriminatedUnion("type", [
@@ -113,6 +133,6 @@ export const nodePayloadSchema = z.discriminatedUnion("type", [
 	trackSchema,
 ]);
 
-export const edgeRefSchemaExport = edgeRefSchema;
+export const edgeRefSchemaExport = edgeRefBase;
 
 export type NodePayloadParsed = z.infer<typeof nodePayloadSchema>;

@@ -63,6 +63,11 @@ class FrontierQueue {
 		return this.items.shift();
 	}
 
+	/** Put an item back at the front of the queue (used when budget reservation fails). */
+	unshift(item: { slug: Slug; entry: FrontierEntry }): void {
+		this.items.unshift(item);
+	}
+
 	size(): number {
 		return this.items.length;
 	}
@@ -81,6 +86,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	frontier.push(seedKey, { input: seedInput, depth: 0 });
 
 	let inFlight = 0;
+	let claimed = 0; // atomic budget reservation: incremented before each agent run
 	let failed = 0;
 	let stopped = false;
 	let lastCompleted: string | undefined;
@@ -124,18 +130,33 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				stopped = true;
 				return;
 			}
-			if (cache.stats.written >= opts.maxNodes) {
+			// Atomic budget reservation. We claim a slot BEFORE running the agent so concurrent
+			// workers never collectively exceed maxNodes. If the claim would push the total over,
+			// the worker waits (or exits if no in-flight items remain).
+			const reservation = tryClaimSlot();
+			if (reservation === "full") {
 				stopped = true;
 				return;
 			}
 			const next = frontier.pop();
 			if (!next) {
-				if (inFlight === 0) return;
+				if (inFlight === 0) {
+					if (reservation === "claimed") claimed--;
+					return;
+				}
+				if (reservation === "claimed") claimed--;
+				await sleep(50);
+				continue;
+			}
+			if (reservation === "needs-await") {
+				// Frontier had work but the budget was momentarily full. Wait briefly and retry.
+				frontier.unshift(next);
 				await sleep(50);
 				continue;
 			}
 			inFlight++;
 			const t0 = Date.now();
+			let releaseClaim = true;
 			try {
 				if (next.slug.startsWith("track:__seed__") === false) {
 					if (await cache.has(next.slug)) {
@@ -147,16 +168,12 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					`[w${workerId}] materialize depth=${next.entry.depth} ${describeInput(next.entry.input, next.slug)}`,
 				);
 				const result = await runAgent(next.entry.input, opts.deps);
-				if (cache.stats.written >= opts.maxNodes) {
-					log(`[w${workerId}] discard ${result.slug} (budget reached during run)`);
-					stopped = true;
-					continue;
-				}
 				const alreadyCached = await cache.has(result.slug);
 				if (alreadyCached) {
 					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
 				} else {
 					await cache.write(result.node);
+					releaseClaim = false; // slot consumed by a real write
 					lastCompleted = result.slug;
 					const ms = Date.now() - t0;
 					log(
@@ -176,9 +193,18 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				}
 			} finally {
 				inFlight--;
+				if (releaseClaim) claimed--;
 			}
 		}
 	};
+
+	function tryClaimSlot(): "claimed" | "full" | "needs-await" {
+		const written = cache.stats.written;
+		if (written >= opts.maxNodes) return "full";
+		if (written + claimed >= opts.maxNodes) return "needs-await";
+		claimed++;
+		return "claimed";
+	}
 
 	const workers = Array.from({ length: Math.max(1, opts.concurrency) }, (_, i) => start(i + 1));
 	try {

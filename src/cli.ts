@@ -13,6 +13,11 @@ program
 	.requiredOption("-n, --max-nodes <n>", "Max total nodes to materialize", (v) => Number.parseInt(v, 10))
 	.requiredOption("-o, --out <dir>", "Output cache directory")
 	.option("-c, --concurrency <n>", "Parallel agent workers", (v) => Number.parseInt(v, 10), 4)
+	.option(
+		"-r, --reasoning <level>",
+		"Pi thinkingLevel: off|minimal|low|medium|high|xhigh (default off)",
+		"off",
+	)
 	.option("--heartbeat-ms <n>", "Heartbeat interval (ms)", (v) => Number.parseInt(v, 10), 90_000)
 	.option(
 		"--heartbeat-webhook <url>",
@@ -27,6 +32,7 @@ program
 			maxNodes: number;
 			out: string;
 			concurrency: number;
+			reasoning: string;
 			heartbeatMs: number;
 			heartbeatWebhook?: string;
 			heartbeatPayload?: string;
@@ -41,7 +47,11 @@ program
 				concurrency: opts.concurrency,
 				out: opts.out,
 				heartbeatMs: opts.heartbeatMs,
-				deps: { tavilyApiKey: env.TAVILY_API_KEY, firecrawlApiKey: env.FIRECRAWL_API_KEY },
+				deps: {
+					tavilyApiKey: env.TAVILY_API_KEY,
+					firecrawlApiKey: env.FIRECRAWL_API_KEY,
+					reasoning: opts.reasoning as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
+				},
 			};
 			if (!opts.quiet) {
 				base.logger = (line: string): void => {
@@ -51,6 +61,12 @@ program
 			const extraPayload = opts.heartbeatPayload
 				? (JSON.parse(opts.heartbeatPayload) as Record<string, unknown>)
 				: {};
+			if (opts.heartbeatWebhook && !isAllowedWebhookUrl(opts.heartbeatWebhook)) {
+				throw new Error(
+					`--heartbeat-webhook must be an http(s) URL targeting localhost or 127.0.0.1 (got: ${opts.heartbeatWebhook}). ` +
+						"Arbitrary internal URLs are blocked to prevent SSRF when the CLI is wrapped by a service.",
+				);
+			}
 			base.onHeartbeat = (snap: CrawlProgress): void => {
 				const line = formatHeartbeat(snap);
 				process.stderr.write(`HEARTBEAT ${line}\n`);
@@ -82,6 +98,24 @@ function formatHeartbeat(s: CrawlProgress): string {
 		`frontier=${s.frontierSize} inflight=${s.inFlight} ` +
 		`elapsed=${elapsedSec}s ${eta} (${s.nodesPerMin}/min)${last}`
 	);
+}
+
+function isAllowedWebhookUrl(s: string): boolean {
+	try {
+		const u = new URL(s);
+		if (u.protocol !== "http:" && u.protocol !== "https:") return false;
+		// Restrict to localhost by default. If you need to call out, set ODYSSEY_WEBHOOK_ALLOW
+		// to a comma-separated host allowlist (e.g. "example.com,api.example.com").
+		const allow = (process.env.ODYSSEY_WEBHOOK_ALLOW ?? "")
+			.split(",")
+			.map((h) => h.trim().toLowerCase())
+			.filter(Boolean);
+		const localhost = ["localhost", "127.0.0.1", "[::1]", "::1"];
+		const host = u.hostname.toLowerCase();
+		return localhost.includes(host) || allow.includes(host);
+	} catch {
+		return false;
+	}
 }
 
 async function postHeartbeat(

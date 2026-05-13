@@ -81,8 +81,10 @@ async function main(): Promise<void> {
 	}
 
 	const citationCoverage = articlesWithCitations / count;
-	if (citationCoverage < 0.6) {
-		fail(`only ${Math.round(citationCoverage * 100)}% of nodes have >=1 citation; need >=60%`);
+	// emit_node enforces >=1 citation; this is a sanity floor for the disk state, so we demand 100%.
+	if (citationCoverage < 1) {
+		const missing = count - articlesWithCitations;
+		fail(`${missing} cached nodes have zero citations; the harness requires 100% citation coverage`);
 	}
 
 	console.log(

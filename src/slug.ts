@@ -9,6 +9,13 @@ import type { NodeType, Slug } from "./types.js";
  *
  * The agent decides identity (is "AFX" the same entity as "Aphex Twin"?). This function
  * only flattens textual variation of whatever name the agent has chosen as canonical.
+ *
+ * For genuine same-name distinct entities (two tracks called "Tendency"; an artist
+ * "Bird" and a band "Bird"), the caller must pass a disambiguator (typically the
+ * primary edge: an artist name for a track/project, founding year for a label).
+ * The disambiguator is normalized the same way and appended to the slug body
+ * separated by `--`. Example: makeSlug("track", "Tendency", "Jan Jelinek") =
+ * track:tendency--jan-jelinek.
  */
 export function normalizeSlugBody(name: string): string {
 	let s = name.normalize("NFKD").replace(/[̀-ͯ]/g, "");
@@ -25,10 +32,14 @@ export function normalizeSlugBody(name: string): string {
 	return s;
 }
 
-export function makeSlug(type: NodeType, name: string): Slug {
+export function makeSlug(type: NodeType, name: string, disambiguator?: string): Slug {
 	const body = normalizeSlugBody(name);
 	if (!body) {
 		throw new Error(`Cannot slugify empty name for type ${type}`);
+	}
+	if (disambiguator) {
+		const d = normalizeSlugBody(disambiguator);
+		if (d) return `${type}:${body}--${d}` as Slug;
 	}
 	return `${type}:${body}` as Slug;
 }

@@ -30,6 +30,7 @@ export class NodeCache {
 	private readonly locks = new Map<string, Promise<unknown>>();
 	private pendingReverses: Record<string, PendingReverse[]> = {};
 	private pendingDirty = false;
+	private pendingLoading: Promise<void> | null = null;
 	private pendingLoaded = false;
 	public readonly stats: CacheStats = { written: 0, revUpdates: 0 };
 
@@ -39,15 +40,15 @@ export class NodeCache {
 
 	private async runLocked<T>(slug: Slug, fn: () => Promise<T>): Promise<T> {
 		const prev = this.locks.get(slug) ?? Promise.resolve();
+		// IMPORTANT: store the same swallowed-promise reference we use for the identity comparison
+		// in finally, so the lock entry gets cleaned up when the chain idles.
 		const next = prev.then(fn, fn);
-		this.locks.set(
-			slug,
-			next.catch(() => undefined),
-		);
+		const stored = next.catch(() => undefined);
+		this.locks.set(slug, stored);
 		try {
 			return await next;
 		} finally {
-			if (this.locks.get(slug) === (next as Promise<unknown>).catch(() => undefined)) {
+			if (this.locks.get(slug) === stored) {
 				this.locks.delete(slug);
 			}
 		}
@@ -64,14 +65,22 @@ export class NodeCache {
 
 	private async loadPending(): Promise<void> {
 		if (this.pendingLoaded) return;
-		this.pendingLoaded = true;
-		try {
-			const raw = await readFile(this.pendingFile(), "utf8");
-			this.pendingReverses = JSON.parse(raw) as Record<string, PendingReverse[]>;
-		} catch (e) {
-			if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
-			this.pendingReverses = {};
+		// Concurrent callers must all wait on the SAME promise, otherwise multiple readers can
+		// race and one can finish before the other has read, observing an empty map.
+		if (!this.pendingLoading) {
+			this.pendingLoading = (async () => {
+				try {
+					const raw = await readFile(this.pendingFile(), "utf8");
+					this.pendingReverses = JSON.parse(raw) as Record<string, PendingReverse[]>;
+				} catch (e) {
+					if ((e as NodeJS.ErrnoException).code !== "ENOENT") throw e;
+					this.pendingReverses = {};
+				} finally {
+					this.pendingLoaded = true;
+				}
+			})();
 		}
+		await this.pendingLoading;
 	}
 
 	private async flushPending(): Promise<void> {

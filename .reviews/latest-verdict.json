@@ -1,0 +1,86 @@
+{
+  "status": "FAIL",
+  "blockers": [
+    {
+      "file": "src/slug.ts",
+      "line": 28,
+      "severity": "blocker",
+      "issue": "Slugs are derived only from type plus normalized display name, while trailing disambiguators are stripped. Distinct same-type entities such as common track titles or artists/projects with the same name collapse to the same cache path, so the crawler can skip or overwrite the wrong node; AgentInput.disambiguator is not incorporated anywhere in canonicalization."
+    },
+    {
+      "file": "src/agent.ts",
+      "line": 239,
+      "severity": "blocker",
+      "issue": "validateForEmit receives a single researchToolCalls counter and only enforces total >= 2, so two web_search calls and zero fetch_page calls satisfy the gate even though the contract requires at least one search and one page fetch before emit_node."
+    },
+    {
+      "file": "src/agent.ts",
+      "line": 260,
+      "severity": "blocker",
+      "issue": "emit_node validates citation shape only by checking that at least one citation has a URL string; it does not verify that citations came from Tavily/Firecrawl results, were actually fetched, or match the facts used. A malicious or low-quality page can steer the model into emitting forged citations and still pass the disk path."
+    },
+    {
+      "file": "src/tools/firecrawl.ts",
+      "line": 68,
+      "severity": "blocker",
+      "issue": "fetch_page returns raw untrusted page markdown directly into the agent context without an injection boundary or instruction to treat page text as data. Prompt injection in a scraped page can target emit_node, and the downstream validator has no provenance checks to contain it."
+    },
+    {
+      "file": "src/crawler.ts",
+      "line": 150,
+      "severity": "blocker",
+      "issue": "maxNodes is checked without an atomic reservation around cache.write. With concurrent workers, multiple completed agent runs can all observe remaining budget and then write, causing the cache to exceed maxNodes."
+    },
+    {
+      "file": "src/cache.ts",
+      "line": 65,
+      "severity": "blocker",
+      "issue": "loadPending marks pendingLoaded before the async read completes and pendingReverses is otherwise mutated/flushed outside a global lock. Concurrent writes can proceed against an empty or stale pending map and later overwrite or lose pending reverse updates."
+    },
+    {
+      "file": "src/schemas.ts",
+      "line": 28,
+      "severity": "blocker",
+      "issue": "Edge fields use a generic EdgeRef schema with no field-specific target-type constraints. For example, track.samples can point to an artist and pass validation; reverse materialization then writes sampled_by onto a non-track target where schema parsing strips it, violating reverse-edge invariants."
+    },
+    {
+      "file": "src/agent.ts",
+      "line": 532,
+      "severity": "blocker",
+      "issue": "The system prompt explicitly tells the model to emit a best-guess node with a short limited-information article when it cannot resolve an entity, contradicting the abandon_node flow and creating a prompt-level escape hatch toward stub or hallucinated nodes."
+    }
+  ],
+  "warnings": [
+    {
+      "file": "src/cache.ts",
+      "line": 50,
+      "severity": "warning",
+      "issue": "runLocked stores next.catch(...) but compares against a newly-created catch promise in finally, so lock entries are never deleted. Serialization still chains, but long crawls leak one lock promise per touched slug."
+    },
+    {
+      "file": "src/cli.ts",
+      "line": 57,
+      "severity": "warning",
+      "issue": "--heartbeat-webhook accepts and fetches an arbitrary URL with no scheme, host, or allowlist validation. If this CLI is ever wrapped by a service or fed untrusted arguments, it becomes an SSRF/internal-callback primitive."
+    },
+    {
+      "file": "scripts/assert-cache.ts",
+      "line": 83,
+      "severity": "warning",
+      "issue": "The cache assertion allows up to 40% of materialized nodes to have no citations, so the post-run harness does not enforce the same citation floor as emit_node."
+    },
+    {
+      "file": "src/schemas.ts",
+      "line": 23,
+      "severity": "warning",
+      "issue": "The persisted schema accepts editorial_article with min length 1 and citations as an empty array. That makes NodeCache.write a weak final disk guard if any caller bypasses runAgent."
+    },
+    {
+      "file": "src/agent.ts",
+      "line": 88,
+      "severity": "warning",
+      "issue": "The emit_node tool description still says the third attempt accepts the best payload as-is, while the implementation is strict. This stale instruction can push the model toward behavior the code will reject."
+    }
+  ],
+  "summary": "FAIL: the current Phase 1 path has real correctness and strictness gaps despite passing typecheck and the non-live test suite. The most serious issues are slug collisions from type+name-only keys, insufficient research and citation provenance enforcement around emit_node, raw tool-output prompt injection exposure, non-atomic crawl budget enforcement, races in the pending reverse-edge cache state, and schema gaps that allow semantically invalid edge targets. The remaining warnings are mostly hardening issues around lock cleanup, webhook URL handling, and disk-level strictness."
+}
