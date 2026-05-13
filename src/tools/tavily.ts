@@ -52,15 +52,17 @@ export function makeTavilyTool(apiKey: string): AgentTool {
 		executionMode: "parallel",
 		execute: async (_id, params, signal) => {
 			const args = params as { query: string; max_results?: number };
+			// advanced returns richer snippets (~800-1200 chars vs 400) which often makes
+			// fetch_page unnecessary for popular entities — a real latency win.
 			const opts: { max_results?: number; search_depth?: "basic" | "advanced" } = {
-				search_depth: "basic",
+				search_depth: "advanced",
 			};
 			if (args.max_results !== undefined) opts.max_results = args.max_results;
 			const results = await tavilySearch(apiKey, args.query, opts, signal);
 			const trimmed = results.map((r) => ({
 				title: r.title,
 				url: r.url,
-				snippet: r.content.slice(0, 400),
+				snippet: r.content.slice(0, 1200),
 			}));
 			const wrapped =
 				'<untrusted_search_results query="' +
