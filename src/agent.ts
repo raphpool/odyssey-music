@@ -49,7 +49,7 @@ const SYSTEM_PROMPT = buildSystemPrompt();
  *   4. We capture, Zod-validate, canonicalize slugs, return.
  */
 export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<AgentRunResult> {
-	const captured: { value?: unknown } = {};
+	const state = { researchToolCalls: 0, captured: undefined as unknown };
 
 	const emitTool: AgentTool = {
 		name: "emit_node",
@@ -57,7 +57,9 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		description:
 			"Emit the final structured node payload. Call this exactly once at the end. " +
 			"The payload must follow the schema described in the system prompt. " +
-			"After this call, the run terminates.",
+			"This call will FAIL (and you must retry) if: you have not called web_search AND fetch_page at least once each before emitting; " +
+			"OR citations is empty; OR fewer than 3 edge references total across applicable fields; " +
+			"OR editorial_article is shorter than 400 characters.",
 		parameters: Type.Object({
 			payload: Type.Any({
 				description: "The full node payload object as described in the system prompt.",
@@ -66,7 +68,13 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		executionMode: "sequential",
 		execute: async (_id, params) => {
 			const args = params as { payload: unknown };
-			captured.value = args.payload;
+			const reasons = validateForEmit(args.payload, state.researchToolCalls);
+			if (reasons.length > 0) {
+				throw new Error(
+					`emit_node rejected. Fix and retry. Reasons:\n- ${reasons.join("\n- ")}`,
+				);
+			}
+			state.captured = args.payload;
 			return {
 				content: [{ type: "text", text: "Captured. Run will terminate." }],
 				details: { captured: true },
@@ -82,8 +90,7 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 	];
 
 	const modelId = deps.modelId ?? "gemini-3.1-flash-lite-preview";
-	// Cast is needed because pi-ai 0.74.0 currently only ships the "preview" type id.
-	// We default to the preview id and accept any string here.
+	// pi-ai 0.74.0 only ships the "preview" type id, so we widen the call to accept any string.
 	const model = getModel("google", modelId as "gemini-3.1-flash-lite-preview");
 
 	const userPrompt = formatUserPrompt(input);
@@ -98,6 +105,10 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 	let turns = 0;
 	const unsub = agent.subscribe((event) => {
 		if (event.type === "turn_end") turns++;
+		if (event.type === "tool_execution_end") {
+			const name = event.toolName;
+			if (name === "web_search" || name === "fetch_page") state.researchToolCalls++;
+		}
 	});
 
 	try {
@@ -106,14 +117,68 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		unsub();
 	}
 
-	if (captured.value === undefined) {
-		throw new Error("Agent finished without calling emit_node");
+	if (state.captured === undefined) {
+		throw new Error("Agent finished without producing an acceptable emit_node call");
 	}
 
-	const raw = captured.value;
-	const node = canonicalize(raw);
+	const node = canonicalize(state.captured);
 	const parsed = nodePayloadSchema.parse(node) as NodePayload;
 	return { node: parsed, slug: parsed.slug, turns };
+}
+
+function validateForEmit(payload: unknown, researchToolCalls: number): string[] {
+	const reasons: string[] = [];
+	if (researchToolCalls < 2) {
+		reasons.push(
+			`You have only made ${researchToolCalls} research tool calls so far. ` +
+				"Call web_search at least once AND fetch_page at least once on an authoritative result before emitting.",
+		);
+	}
+	if (!payload || typeof payload !== "object") {
+		reasons.push("payload must be an object");
+		return reasons;
+	}
+	const p = payload as Record<string, unknown>;
+	const article = p.editorial_article;
+	if (typeof article !== "string" || article.length < 400) {
+		reasons.push(
+			`editorial_article must be a string of at least 400 characters (got ${
+				typeof article === "string" ? article.length : "missing"
+			}).`,
+		);
+	}
+	const citations = p.citations;
+	if (!Array.isArray(citations) || citations.length < 1) {
+		reasons.push("citations must be a non-empty array of {url, title} objects.");
+	} else {
+		const hasUrl = citations.some(
+			(c) => c && typeof c === "object" && typeof (c as Record<string, unknown>).url === "string",
+		);
+		if (!hasUrl) reasons.push('At least one citation must have a "url" string field.');
+	}
+	const edgeCount = countPayloadEdges(p);
+	if (edgeCount < 3) {
+		reasons.push(
+			`Only ${edgeCount} edge references found. The README schema for type=${String(
+				p.type,
+			)} requires you to populate the obvious edges (artists/genres/labels/etc.). Aim for >=3.`,
+		);
+	}
+	return reasons;
+}
+
+function countPayloadEdges(p: Record<string, unknown>): number {
+	let n = 0;
+	for (const v of Object.values(p)) {
+		if (Array.isArray(v)) {
+			for (const item of v) {
+				if (item && typeof item === "object" && "type" in item && "name" in item) n++;
+			}
+		} else if (v && typeof v === "object" && "type" in v && "name" in v) {
+			n++;
+		}
+	}
+	return n;
 }
 
 function formatUserPrompt(input: AgentInput): string {
@@ -152,6 +217,22 @@ interface RawPayload {
  *   - default missing edge arrays to []
  *   - default citations/materialized_at if missing
  */
+const TYPE_TEASER_FIELD: Record<NodeType, string> = {
+	genre: "editorial_definition",
+	label: "editorial_description",
+	artist: "editorial_bio",
+	project: "editorial_pitch",
+	track: "editorial_teaser",
+};
+
+const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
+	genre: ["era", "origin", "sonic_markers"],
+	label: ["founded", "location", "founders", "active_years"],
+	artist: ["photo_url", "origin", "active_years"],
+	project: ["cover_url", "year"],
+	track: ["cover_url", "year", "duration"],
+};
+
 function canonicalize(raw: unknown): unknown {
 	if (!raw || typeof raw !== "object") {
 		throw new Error("Agent payload is not an object");
@@ -168,6 +249,24 @@ function canonicalize(raw: unknown): unknown {
 	}
 	const slug = makeSlug(nt, name);
 	const next: Record<string, unknown> = { ...p, type: nt, slug, name: name.trim() };
+
+	if (typeof next.editorial_article !== "string" && typeof next.article === "string") {
+		next.editorial_article = next.article;
+	}
+	if (typeof next.editorial_article !== "string") next.editorial_article = "";
+
+	const teaserField = TYPE_TEASER_FIELD[nt];
+	if (typeof next[teaserField] !== "string" || !(next[teaserField] as string).trim()) {
+		const article = String(next.editorial_article);
+		const firstSentence = article.split(/(?<=[.!?])\s/)[0] ?? article.slice(0, 200);
+		next[teaserField] = firstSentence.trim().slice(0, 280) || "(no teaser)";
+	}
+
+	for (const f of OPTIONAL_TEXT_FIELDS[nt]) {
+		const v = next[f];
+		if (typeof v === "number") next[f] = String(v);
+		else if (v != null && typeof v !== "string") delete next[f];
+	}
 
 	for (const field of LIST_EDGES_BY_TYPE[nt]) {
 		const v = next[field];
@@ -187,11 +286,41 @@ function canonicalize(raw: unknown): unknown {
 			delete next[field];
 		}
 	}
-	if (!Array.isArray(next.citations)) next.citations = [];
+	next.citations = normalizeCitations(next.citations, next.sources);
+	delete next.sources;
 	if (typeof next.materialized_at !== "string") {
 		next.materialized_at = new Date().toISOString();
 	}
 	return next;
+}
+
+function normalizeCitations(primary: unknown, secondary: unknown): { url: string; title?: string }[] {
+	const out: { url: string; title?: string }[] = [];
+	const seen = new Set<string>();
+	const push = (item: unknown): void => {
+		if (typeof item === "string") {
+			if (isHttpUrl(item) && !seen.has(item)) {
+				seen.add(item);
+				out.push({ url: item });
+			}
+			return;
+		}
+		if (!item || typeof item !== "object") return;
+		const obj = item as Record<string, unknown>;
+		const url = obj.url ?? obj.link ?? obj.href;
+		if (typeof url !== "string" || !isHttpUrl(url) || seen.has(url)) return;
+		seen.add(url);
+		const entry: { url: string; title?: string } = { url };
+		if (typeof obj.title === "string" && obj.title.trim()) entry.title = obj.title.trim();
+		out.push(entry);
+	};
+	if (Array.isArray(primary)) for (const x of primary) push(x);
+	if (Array.isArray(secondary)) for (const x of secondary) push(x);
+	return out;
+}
+
+function isHttpUrl(s: string): boolean {
+	return /^https?:\/\//i.test(s);
 }
 
 function normalizeEdge(e: unknown): EdgeRef | null {
@@ -216,8 +345,10 @@ GRAPH SCHEMA. There are five node types: genre, label, artist, project (= album 
   - type: one of {genre,label,artist,project,track}
   - name: the canonical display name of the entity
   - editorial_article: a long-form article about the entity (>= 400 chars, ideally 600-1500). Real article voice, not a listicle.
-  - citations: array of {url, title} objects pointing to the sources you actually consulted via fetch_page.
+  - citations: array of objects, each EXACTLY of shape {"url":"https://...", "title":"page title"}.
+    The url field is REQUIRED and must be a full http(s) URL — not an index, not a number.
   - typed edge fields linking to other nodes. Each edge is {type, name}: { "type":"artist", "name":"Aphex Twin" }.
+  - year / founded / active_years and other date-ish fields must be STRINGS, never numbers ("1999", not 1999).
 
 EDGE FIELDS PER TYPE:
   genre   -> ${genreEdges}
@@ -233,15 +364,20 @@ Plus type-specific text fields:
   project.editorial_pitch, project.cover_url, project.year
   track.editorial_teaser, track.cover_url, track.year, track.duration
 
-WORKFLOW:
+WORKFLOW (do NOT skip steps):
   1. Decide the node type and canonical name from the input. If a track title is ambiguous, prefer the artist+title interpretation.
-  2. Use web_search to find 2-4 authoritative pages (Discogs, Wikipedia, RYM, label site, music press, artist's own site).
-  3. Use fetch_page on the most authoritative 1-3 results to read content.
-  4. Build the payload from grounded facts. NEVER invent labels, years, samples, influences, or collaborators you cannot source.
-  5. Aim for >=3 total edge references across applicable fields. Each edge name must be the canonical name of a real entity.
-  6. Distinct personas/aliases stay as distinct edges (e.g., "Aphex Twin" and "AFX" are two artist nodes connected via aliases, not one).
-  7. Citations: include every URL you actually fetched, with the page title.
-  8. Call emit_node EXACTLY ONCE with the full payload object as the 'payload' parameter. After emit_node the run ends.
+  2. REQUIRED: call web_search at least once before emit_node. Find 2-4 authoritative pages (Discogs, Wikipedia, RYM, label site, music press, artist's own site, Bandcamp).
+  3. REQUIRED: call fetch_page on at least one authoritative page before emit_node. Read it for ground-truth facts.
+  4. Build the payload from grounded facts. NEVER invent labels, years, samples, influences, or collaborators you cannot source. Empty list > guess.
+  5. Fill OBVIOUS edges aggressively. For a track: artists, project, genres are almost always knowable from the search results — populate them. For an artist: genres, labels, notable_tracks, discography are core. For a label: roster, genres, notable_releases.
+  6. Aim for >=3 total edge references across applicable fields. Each edge name must be the canonical name of a real entity, never "Various" or "Unknown".
+  7. The 'name' field must be the CLEAN canonical name (e.g. "Tendency", not "Tendency (track)"). The type is already known from the 'type' field; do not also include it in the name.
+  8. Distinct personas/aliases stay as distinct edges (e.g., "Aphex Twin" and "AFX" are two artist nodes connected via aliases, not one).
+  9. Citations: include every URL you actually fetched, with the page title. Exact shape {url, title}.
+  10. Always include BOTH editorial_article (long) AND the per-type teaser field
+      (genre.editorial_definition, label.editorial_description, artist.editorial_bio,
+       project.editorial_pitch, track.editorial_teaser). The teaser is a distinct 1-2 sentence hook, not a copy of the article.
+  11. Call emit_node EXACTLY ONCE with the full payload object as the 'payload' parameter. After emit_node the run ends.
 
 QUALITY BAR:
   - editorial_article reads like a real article (history, context, why it matters), not boilerplate or filler.
