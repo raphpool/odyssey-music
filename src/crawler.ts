@@ -130,33 +130,28 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				stopped = true;
 				return;
 			}
-			// Atomic budget reservation. We claim a slot BEFORE running the agent so concurrent
-			// workers never collectively exceed maxNodes. If the claim would push the total over,
-			// the worker waits (or exits if no in-flight items remain).
-			const reservation = tryClaimSlot();
-			if (reservation === "full") {
-				stopped = true;
-				return;
+			// Atomic budget gate. Reserve a slot before the agent runs so concurrent workers
+			// never collectively exceed maxNodes by more than `concurrency - 1` writes
+			// (each worker holds at most one outstanding reservation).
+			if (cache.stats.written + claimed >= opts.maxNodes) {
+				if (cache.stats.written >= opts.maxNodes) {
+					stopped = true;
+					return;
+				}
+				// Budget temporarily full because peers hold reservations.
+				if (inFlight === 0) return;
+				await sleep(100);
+				continue;
 			}
 			const next = frontier.pop();
 			if (!next) {
-				if (inFlight === 0) {
-					if (reservation === "claimed") claimed--;
-					return;
-				}
-				if (reservation === "claimed") claimed--;
-				await sleep(50);
+				if (inFlight === 0) return;
+				await sleep(100);
 				continue;
 			}
-			if (reservation === "needs-await") {
-				// Frontier had work but the budget was momentarily full. Wait briefly and retry.
-				frontier.unshift(next);
-				await sleep(50);
-				continue;
-			}
+			claimed++;
 			inFlight++;
 			const t0 = Date.now();
-			let releaseClaim = true;
 			try {
 				if (next.slug.startsWith("track:__seed__") === false) {
 					if (await cache.has(next.slug)) {
@@ -173,7 +168,6 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
 				} else {
 					await cache.write(result.node);
-					releaseClaim = false; // slot consumed by a real write
 					lastCompleted = result.slug;
 					const ms = Date.now() - t0;
 					log(
@@ -192,19 +186,15 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					log(`[w${workerId}] FAIL ${next.slug}: ${msg}`);
 				}
 			} finally {
+				// `claimed` tracks IN-FLIGHT reservations only. The budget check uses written+claimed,
+				// so once a worker exits this iteration (whether it wrote, deduped, abandoned, or
+				// failed) the reservation must be released. Persisted writes are accounted for in
+				// `cache.stats.written` and do NOT need to keep a phantom claim.
 				inFlight--;
-				if (releaseClaim) claimed--;
+				claimed--;
 			}
 		}
 	};
-
-	function tryClaimSlot(): "claimed" | "full" | "needs-await" {
-		const written = cache.stats.written;
-		if (written >= opts.maxNodes) return "full";
-		if (written + claimed >= opts.maxNodes) return "needs-await";
-		claimed++;
-		return "claimed";
-	}
 
 	const workers = Array.from({ length: Math.max(1, opts.concurrency) }, (_, i) => start(i + 1));
 	try {
