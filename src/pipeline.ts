@@ -93,10 +93,11 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 	const baseProps: Record<string, Schema> = {
 		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)').", 1),
 		editorial_article: stringSchema(
-			"Real article prose, 600-1500 chars. Grounded in the sources. History, scene, why it matters. Not a listicle, not boilerplate.",
-			500,
+			// Tighter article keeps output tokens down and saves ~1s of LLM wall-clock per node.
+			"Real article prose, 400-900 chars. Grounded in the sources. History, scene, why it matters. Not a listicle.",
+			350,
 		),
-		citations: { type: GType.ARRAY, items: citationSchema, minItems: "2", maxItems: "6" },
+		citations: { type: GType.ARRAY, items: citationSchema, minItems: "2", maxItems: "4" },
 	};
 	const requiredBase = ["name", "editorial_article", "citations"];
 
@@ -291,9 +292,11 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 	}
 }
 
-const MAX_CORPUS_BYTES = 24_000;
+// Latency knobs. Each token shaved off the LLM call is ~free wall-clock time.
+const MAX_CORPUS_BYTES = 9_000; // was 24_000 — smaller prefill, ~30% faster LLM
+const PER_PAGE_BUDGET = 4_500; // cap one fetched page to this many chars before truncating
 const SEARCH_RESULTS = 5;
-const FETCH_TOP_K = 3;
+const FETCH_TOP_K = 2; // was 3 — one fewer parallel scrape + smaller corpus
 
 const SYSTEM_PROMPT = `You build one Culture Graph node from research material the system provides.
 
@@ -370,16 +373,35 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	for (const r of searchResults) allowedUrls.add(r.url);
 	for (const c of corpus) allowedUrls.add(c.url);
 
-	const resp = await ai.models.generateContent({
-		model,
-		contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-		config: {
-			systemInstruction: SYSTEM_PROMPT,
-			responseMimeType: "application/json",
-			responseSchema: schema,
-			temperature: 0.4,
-		},
-	});
+	async function generate() {
+		return ai.models.generateContent({
+			model,
+			contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+			config: {
+				systemInstruction: SYSTEM_PROMPT,
+				responseMimeType: "application/json",
+				responseSchema: schema,
+				temperature: 0.4,
+				// Disable thinking on Flash Lite — we don't need CoT for this constrained extraction
+				// task, and it adds 1-3s of latency for no measurable accuracy gain.
+				thinkingConfig: { thinkingBudget: 0 },
+			},
+		});
+	}
+	let resp: Awaited<ReturnType<typeof generate>>;
+	try {
+		resp = await generate();
+	} catch (e) {
+		// One quick retry on Gemini 503/UNAVAILABLE — transient infra blips shouldn't fail a node.
+		const msg = e instanceof Error ? e.message : String(e);
+		if (msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED")) {
+			log(`[pipeline] gemini transient (${msg.slice(0, 80)}), retrying in 600ms`);
+			await new Promise((r) => setTimeout(r, 600));
+			resp = await generate();
+		} else {
+			throw e;
+		}
+	}
 	const llmMs = Date.now() - tLlm;
 	const raw = resp.text;
 	if (!raw) throw new Error("Gemini returned no text");
@@ -438,7 +460,9 @@ function buildUserPrompt(
 
 	let budget = MAX_CORPUS_BYTES;
 	for (const c of corpus) {
-		const slice = c.markdown.length > budget ? `${c.markdown.slice(0, budget)}\n[truncated]` : c.markdown;
+		// Per-page cap so a single huge Wikipedia page can't monopolize the budget.
+		const cap = Math.min(PER_PAGE_BUDGET, budget);
+		const slice = c.markdown.length > cap ? `${c.markdown.slice(0, cap)}\n[truncated]` : c.markdown;
 		budget -= slice.length;
 		prompt += `<page url="${c.url}" title="${(c.title ?? "").replace(/"/g, "'")}">\n${slice}\n</page>\n\n`;
 		if (budget <= 0) break;
