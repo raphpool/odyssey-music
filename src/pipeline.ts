@@ -16,7 +16,7 @@
  *   - All research happens deterministically up front → no path where the agent skips fetches.
  *   - Failures are real (search returned nothing, JSON unparseable) — not retry storms.
  */
-import { GoogleGenAI, type Schema, Type as GType } from "@google/genai";
+import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
@@ -136,7 +136,12 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 							minItems: "2",
 							maxItems: "6",
 						},
-						key_artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "3", maxItems: "8" },
+						key_artists: {
+							type: GType.ARRAY,
+							items: edgeRefSchema(["artist"]),
+							minItems: "3",
+							maxItems: "8",
+						},
 						key_labels: { type: GType.ARRAY, items: edgeRefSchema(["label"]), minItems: "1", maxItems: "5" },
 						landmark_projects: {
 							type: GType.ARRAY,
@@ -223,7 +228,12 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						},
 						influences: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
 						influenced: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
-						collaborators: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
+						collaborators: {
+							type: GType.ARRAY,
+							items: edgeRefSchema(["artist"]),
+							minItems: "0",
+							maxItems: "8",
+						},
 						aliases: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
 						members: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "10" },
 					},
@@ -334,7 +344,11 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const corpus: { url: string; title?: string; markdown: string }[] = [];
 	for (const r of fetched) {
 		if (r.status === "fulfilled" && r.value.markdown) {
-			corpus.push({ url: r.value.url, ...(r.value.title ? { title: r.value.title } : {}), markdown: r.value.markdown });
+			corpus.push({
+				url: r.value.url,
+				...(r.value.title ? { title: r.value.title } : {}),
+				markdown: r.value.markdown,
+			});
 		}
 	}
 	if (!corpus.length) {
@@ -375,8 +389,9 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const node = canonicalize(parsedRaw, input, corpus, allowedUrls);
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
 	const totalBytes = corpus.reduce((a, c) => a + c.markdown.length, 0);
-	const usage = (resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } })
-		.usageMetadata;
+	const usage = (
+		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
+	).usageMetadata;
 	const inputTokens = usage?.promptTokenCount ?? 0;
 	const outputTokens = usage?.candidatesTokenCount ?? 0;
 	// Gemini 3.1 Flash Lite preview pricing (approx): $0.075 / 1M input, $0.30 / 1M output.
@@ -502,7 +517,14 @@ function canonicalize(
 	// Recompute edge slugs.
 	for (const k of Object.keys(next)) {
 		const v = next[k];
-		if (Array.isArray(v) && v.length && v[0] && typeof v[0] === "object" && "type" in (v[0] as object) && "name" in (v[0] as object)) {
+		if (
+			Array.isArray(v) &&
+			v.length &&
+			v[0] &&
+			typeof v[0] === "object" &&
+			"type" in (v[0] as object) &&
+			"name" in (v[0] as object)
+		) {
 			next[k] = (v as unknown[]).flatMap((e) => normalizeEdge(e) ?? []);
 		} else if (v && typeof v === "object" && !Array.isArray(v) && "type" in v && "name" in v) {
 			const single = normalizeEdge(v);

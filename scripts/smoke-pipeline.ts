@@ -1,5 +1,5 @@
 import { loadEnv } from "../src/env.js";
-import { runPipeline, type PipelineInput } from "../src/pipeline.js";
+import { type PipelineInput, runPipeline } from "../src/pipeline.js";
 
 const SEEDS: PipelineInput[] = [
 	{ type: "track", name: "Tendency", disambiguator: "Jan Jelinek" },
@@ -17,7 +17,15 @@ async function main(): Promise<void> {
 	const concurrency = Number.parseInt(process.argv[2] ?? "4", 10);
 	const seeds = SEEDS.slice(0, Number.parseInt(process.argv[3] ?? "8", 10));
 	console.log(`[pipeline-bench] ${seeds.length} seeds, concurrency=${concurrency}`);
-	const results: { slug: string; ms: number; search: number; fetch: number; llm: number; cost: number; tokens: number }[] = [];
+	const results: {
+		slug: string;
+		ms: number;
+		search: number;
+		fetch: number;
+		llm: number;
+		cost: number;
+		tokens: number;
+	}[] = [];
 	const fails: { input: string; ms: number; err: string }[] = [];
 	const queue = [...seeds];
 	const t0 = Date.now();
@@ -57,13 +65,17 @@ async function main(): Promise<void> {
 	const mss = results.map((r) => r.ms).sort((a, b) => a - b);
 	const pct = (p: number): number => mss[Math.min(mss.length - 1, Math.floor(mss.length * p))] ?? 0;
 	const avg = mss.length ? mss.reduce((a, b) => a + b, 0) / mss.length : 0;
-	console.log(`\n[pipeline-bench] ${results.length}/${seeds.length} OK · wall=${wall}ms · concurrency=${concurrency}`);
+	console.log(
+		`\n[pipeline-bench] ${results.length}/${seeds.length} OK · wall=${wall}ms · concurrency=${concurrency}`,
+	);
 	console.log(
 		`[pipeline-bench] per-node ms: avg=${Math.round(avg)} p50=${pct(0.5)} p90=${pct(0.9)} max=${mss[mss.length - 1] ?? 0}`,
 	);
 	if (results.length) {
 		const totalCost = results.reduce((a, r) => a + r.cost, 0);
-		console.log(`[pipeline-bench] total cost: $${totalCost.toFixed(4)} (avg $${(totalCost / results.length).toFixed(5)}/node)`);
+		console.log(
+			`[pipeline-bench] total cost: $${totalCost.toFixed(4)} (avg $${(totalCost / results.length).toFixed(5)}/node)`,
+		);
 	}
 	if (fails.length) {
 		console.log("\nFails:");

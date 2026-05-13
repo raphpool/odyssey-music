@@ -14,11 +14,11 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { join } from "node:path";
-import { type AgentInput, runAgent } from "./agent.js";
 import { NodeCache } from "./cache.js";
 import { loadEnv } from "./env.js";
+import { runPipeline } from "./pipeline.js";
 import { makeSlug, parseSlug } from "./slug.js";
-import type { EdgeRef, NodePayload, Slug } from "./types.js";
+import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { LIST_EDGES_BY_TYPE, NODE_TYPES, SINGULAR_EDGES_BY_TYPE } from "./types.js";
 
 const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
@@ -137,15 +137,17 @@ async function handleMaterialize(body: MaterializeRequest): Promise<MaterializeR
 }
 
 async function runJit(body: MaterializeRequest): Promise<NodePayload> {
-	const input: AgentInput = {};
-	if (body.text) input.text = body.text;
-	if (body.type) input.type = body.type as NodePayload["type"];
-	if (body.name) input.name = body.name;
-	if (body.disambiguator) input.disambiguator = body.disambiguator;
-	const r = await runAgent(input, {
+	if (!body.type || !body.name) {
+		throw new Error("Pipeline JIT requires both 'type' and 'name'. Free-text seeds are not supported here.");
+	}
+	const pipelineInput: { type: NodeType; name: string; disambiguator?: string } = {
+		type: body.type as NodeType,
+		name: body.name,
+	};
+	if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
+	const r = await runPipeline(pipelineInput, {
 		tavilyApiKey: env.TAVILY_API_KEY,
 		firecrawlApiKey: env.FIRECRAWL_API_KEY,
-		fetcher: "local",
 	});
 	// Re-check then write atomically through cache (handles parallel JIT for the same slug).
 	const existing = await cache.get(r.slug).catch(() => null);
