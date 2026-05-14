@@ -1,0 +1,46 @@
+{
+  "slug": "track:universal-band-silhouette",
+  "name": "Universal Band Silhouette",
+  "editorial_article": "Universal Band Silhouette is a musical entity associated with the broader context of the Silhouette label and various artist groups operating under the name Silhouette. While the name appears in various contexts across the Discogs database, it is often linked to the legacy of labels such as the Brooklyn-based Silhouette Music or the Norwegian pop group known as Silhouette (13). The name reflects a recurring motif in music production and label branding that has persisted across different regions and genres, spanning from the pop sensibilities of Oslo-based collectives to the specific cataloging of independent record labels. The term remains a point of interest for collectors exploring the diverse discographies associated with the Silhouette moniker, which encompasses both individual artist projects and institutional label identities that have shaped specific niche markets over the years.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/229382-Silhouette?srsltid=AfmBOooc-T5quaxfKrii-rBmSETpVnJ_I7FYxztVx3lW6riGhX67-a8P",
+      "title": "Silhouette Discography | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/artist/2224590-Silhouette-13?srsltid=AfmBOoo1QBUmlSNJY_nDj0Qh1_RIXD_2YvMZ21QJfQJY13fOLdpYs4Jn",
+      "title": "Silhouette (13)"
+    },
+    {
+      "url": "https://www.discogs.com/fr/label/115510-Silhouette-Music?srsltid=AfmBOorsaiE38oTAUuUxH8LKovw4OUm5RId8TL_P9WC79_q2ebnKqBwb",
+      "title": "Silhouette Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:12.802Z",
+  "type": "track",
+  "editorial_teaser": "Universal Band Silhouette represents a multifaceted intersection of artist collectives and record labels operating under the Silhouette name.",
+  "year": "2024",
+  "artists": [
+    {
+      "slug": "artist:silhouette",
+      "type": "artist",
+      "name": "Silhouette"
+    }
+  ],
+  "project": {
+    "slug": "project:silhouette",
+    "type": "project",
+    "name": "Silhouette"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

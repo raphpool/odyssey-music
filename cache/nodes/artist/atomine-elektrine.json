@@ -1,0 +1,91 @@
+{
+  "slug": "artist:atomine-elektrine",
+  "name": "Atomine Elektrine",
+  "editorial_article": "Atomine Elektrine is the electronic music project of Swedish musician Peter Andersson, known for exploring atmospheric and experimental soundscapes. Active since the 1990s, the project serves as one of many creative outlets for Andersson, who is widely recognized for his work in dark ambient and industrial music under his primary alias, raison d'être. Atomine Elektrine distinguishes itself through a focus on electronic textures, often blending rhythmic elements with deep, immersive sonic environments that reflect Andersson's broader interest in experimental sound design. Throughout his extensive career, Andersson has maintained a prolific output, utilizing various monikers to explore distinct stylistic territories ranging from ambient soundscapes to more rhythmic, genre-defying electronic compositions. His work under the Atomine Elektrine name remains a significant component of his diverse discography, showcasing his ability to craft expansive, cinematic audio experiences that resonate within the underground electronic scene.",
+  "citations": [
+    {
+      "url": "https://www.essence-music.com/releases/binomial-fusion/",
+      "title": "Atomine Elektrine - Binomial Fusion - Essence Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:11:00.310Z",
+  "type": "artist",
+  "editorial_bio": "Atomine Elektrine is an experimental electronic project by Swedish musician Peter Andersson, known for his prolific work in dark ambient and industrial music.",
+  "origin": "Sweden",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:essence-music",
+      "type": "label",
+      "name": "Essence Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:binomial-fusion",
+      "type": "project",
+      "name": "Binomial Fusion"
+    },
+    {
+      "slug": "project:leftfield",
+      "type": "project",
+      "name": "Leftfield"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-dream",
+      "type": "track",
+      "name": "The dream"
+    },
+    {
+      "slug": "track:elektrokinetic",
+      "type": "track",
+      "name": "Elektrokinetic"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:raison-d-etre",
+      "type": "artist",
+      "name": "raison d'être"
+    },
+    {
+      "slug": "artist:necrophorus",
+      "type": "artist",
+      "name": "Necrophorus"
+    },
+    {
+      "slug": "artist:svasti-ayanam",
+      "type": "artist",
+      "name": "Svasti-ayanam"
+    },
+    {
+      "slug": "artist:panzar",
+      "type": "artist",
+      "name": "Panzar"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:peter-andersson",
+      "type": "artist",
+      "name": "Peter Andersson"
+    }
+  ]
+}

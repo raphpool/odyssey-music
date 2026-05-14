@@ -1,0 +1,82 @@
+{
+  "slug": "genre:minimal",
+  "name": "Minimal",
+  "editorial_article": "Minimalism in music is defined by the aesthetic principle that \"less is more,\" prioritizing an empty, stripped-back soundscape over complex layers. While the term is often used as an adjective to sharpen descriptions of specific electronic subgenres—such as minimal house or minimal techno—it also describes a broader approach to composition that frequently eschews vocals and relies on singular, focused instrumentation. This stylistic ethos draws parallels to the cold-wave movement of the 1980s, which similarly sought to reduce music to its most essential, atmospheric components.\n\nIn practice, the genre encompasses a wide range of output, from the repetitive, hypnotic structures found in electronic dance music to the sparse, avant-garde compositions of artists like Steve Reich and Terry Riley. Because the term is broad, it is frequently applied to diverse works that share a commitment to sonic economy. Whether manifested in the clinical, rhythmic precision of minimal techno or the stark, singular arrangements of experimental artists, the genre remains a foundational influence on contemporary electronic production, constantly shifting as producers find new ways to explore the space between sounds.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/style/minimal?srsltid=AfmBOop4vcVDwMqsy7D9Gjj-aKZXc-B96Ib8pz1v09FzOAiKmrnJz4WS",
+      "title": "Minimal Music | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/group/thread/531001?srsltid=AfmBOor-TC5FWZVm1SF0nMRDduc61x1o4J533_DE2PL9TuIzQsFET2BJ",
+      "title": "Discogs List #1: Top 100 Minimal Techno Tracks"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:11.968Z",
+  "type": "genre",
+  "editorial_definition": "A musical aesthetic defined by the principle of 'less is more,' focusing on sparse, stripped-back arrangements and the removal of complex layers.",
+  "era": "1980s to present",
+  "origin": "Global electronic and experimental music scenes",
+  "sonic_markers": "Sparse instrumentation, lack of complex layering, minimal or no vocals, repetitive structures.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal House"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno"
+    },
+    {
+      "slug": "genre:cold-wave",
+      "type": "genre",
+      "name": "Cold-wave"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:steve-bug",
+      "type": "artist",
+      "name": "Steve Bug"
+    },
+    {
+      "slug": "artist:thomas-brinkmann",
+      "type": "artist",
+      "name": "Thomas Brinkmann"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:sascha-muller",
+      "type": "artist",
+      "name": "Sascha Müller"
+    },
+    {
+      "slug": "artist:celer",
+      "type": "artist",
+      "name": "Celer"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:zyx-music",
+      "type": "label",
+      "name": "ZYX Music"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:eisb-r",
+      "type": "track",
+      "name": "Eisbær"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "track:vibraphonspulen",
+  "name": "Vibraphonspulen",
+  "editorial_article": "Vibraphonspulen is a track featured on the self-titled debut album by the acid jazz project Vibraphonic, released in 1993. The album, which was issued on the Acid Jazz label, represents a significant entry in the early 1990s UK acid jazz scene. It was produced and arranged by Richard Marcangelo and Roger Beaujolais, who were instrumental in defining the group's sound. The album is characterized by its blend of electronic elements and jazz instrumentation, a hallmark of the era's club-oriented music production. Vibraphonic's debut remains a notable release within the genre, reflecting the creative output of the production team during this period.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/256810-Vibraphonic-Vibraphonic?srsltid=AfmBOopQ9oM10GT0l7ODD4-InSsrLx4YnRQiJahUSLj2yIxB7OJ7yy6I",
+      "title": "Vibraphonic - Vibraphonic"
+    },
+    {
+      "url": "https://www.discogs.com/label/10403-Vibraphone-Records?srsltid=AfmBOop8avRMXFoPpkP1dyLhBo0a9EGa6wmdapePaNsMNFUahYj4WJX3",
+      "title": "Vibraphone Records Discography | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:17.901Z",
+  "type": "track",
+  "editorial_teaser": "Vibraphonspulen is a track from the 1993 self-titled debut album by the acid jazz group Vibraphonic.",
+  "year": "1993",
+  "artists": [
+    {
+      "slug": "artist:vibraphonic",
+      "type": "artist",
+      "name": "Vibraphonic"
+    }
+  ],
+  "project": {
+    "slug": "project:vibraphonic",
+    "type": "project",
+    "name": "Vibraphonic"
+  },
+  "genres": [
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:richard-marcangelo",
+      "type": "artist",
+      "name": "Richard Marcangelo"
+    },
+    {
+      "slug": "artist:roger-beaujolais",
+      "type": "artist",
+      "name": "Roger Beaujolais"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

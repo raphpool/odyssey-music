@@ -279,19 +279,28 @@ function enqueueEdges(
 	frontier: FrontierQueue,
 	log: (s: string) => void,
 ): void {
-	const collect = (e: EdgeRef): void => {
+	// Build a parent-context disambiguator so the child node's agent run
+	// receives full identifying context instead of just a bare name. Without
+	// this, an ambiguous name like a track "Tendency" or an artist "Bird"
+	// would lock onto the wrong entity. Henry called this out 2026-05-14.
+	const parentDisambig = `${node.type} "${node.name}"`;
+	const collect = (e: EdgeRef, kind: string): void => {
 		const slug = makeSlug(e.type, e.name);
-		const added = frontier.push(slug, { input: { type: e.type, name: e.name }, depth });
-		if (added) log(`  + frontier ${slug} (depth=${depth})`);
+		const disambiguator = `${kind.replace(/_/g, " ")} of ${parentDisambig}`;
+		const added = frontier.push(slug, {
+			input: { type: e.type, name: e.name, disambiguator },
+			depth,
+		});
+		if (added) log(`  + frontier ${slug} (depth=${depth}) disambig=${disambiguator}`);
 	};
 	const obj = node as unknown as Record<string, unknown>;
 	for (const field of LIST_EDGES_BY_TYPE[node.type]) {
 		const v = obj[field];
-		if (Array.isArray(v)) for (const e of v as EdgeRef[]) collect(e);
+		if (Array.isArray(v)) for (const e of v as EdgeRef[]) collect(e, field);
 	}
 	for (const field of SINGULAR_EDGES_BY_TYPE[node.type]) {
 		const v = obj[field];
-		if (v && typeof v === "object") collect(v as EdgeRef);
+		if (v && typeof v === "object") collect(v as EdgeRef, field);
 	}
 }
 

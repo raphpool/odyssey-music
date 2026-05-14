@@ -1,0 +1,104 @@
+{
+  "slug": "artist:keith-richards",
+  "name": "Keith Richards",
+  "editorial_article": "Keith Richards is an English musician, songwriter, and record producer who rose to global prominence as an original member, guitarist, and co-principal songwriter of the Rolling Stones. Born in Dartford, Kent, in 1943, Richards has been a central figure in rock music for over six decades, renowned for his influential guitar style and his enduring songwriting partnership with Mick Jagger. Beyond his work with the Rolling Stones, Richards has maintained a solo career since 1978, often collaborating with his backing band, the X-Pensive Winos, which features drummer Steve Jordan, keyboardist Ivan Neville, and guitarist Waddy Wachtel. His solo discography includes studio albums such as Talk Is Cheap and Main Offender, showcasing his deep roots in rock and blues traditions. Throughout his career, Richards has also been a prolific session musician and producer, contributing to numerous recordings across the industry.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Keith_Richards",
+      "title": "Keith Richards - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Keith_Richards_discography",
+      "title": "Keith Richards discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:13:55.116Z",
+  "type": "artist",
+  "editorial_bio": "Keith Richards is an iconic English guitarist, songwriter, and founding member of the Rolling Stones, celebrated for his legendary riffs and long-standing creative partnership with Mick Jagger.",
+  "origin": "Dartford, Kent, England",
+  "active_years": "1962-present",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:decca",
+      "type": "label",
+      "name": "Decca"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:talk-is-cheap",
+      "type": "project",
+      "name": "Talk Is Cheap"
+    },
+    {
+      "slug": "project:main-offender",
+      "type": "project",
+      "name": "Main Offender"
+    },
+    {
+      "slug": "project:crosseyed-heart",
+      "type": "project",
+      "name": "Crosseyed Heart"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:run-rudolph-run",
+      "type": "track",
+      "name": "Run Rudolph Run"
+    },
+    {
+      "slug": "track:take-it-so-hard",
+      "type": "track",
+      "name": "Take It So Hard"
+    },
+    {
+      "slug": "track:wicked-as-it-seems",
+      "type": "track",
+      "name": "Wicked as It Seems"
+    },
+    {
+      "slug": "track:trouble",
+      "type": "track",
+      "name": "Trouble"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:steve-jordan",
+      "type": "artist",
+      "name": "Steve Jordan"
+    },
+    {
+      "slug": "artist:ivan-neville",
+      "type": "artist",
+      "name": "Ivan Neville"
+    },
+    {
+      "slug": "artist:waddy-wachtel",
+      "type": "artist",
+      "name": "Waddy Wachtel"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    }
+  ]
+}

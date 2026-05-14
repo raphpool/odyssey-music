@@ -1,0 +1,93 @@
+{
+  "slug": "artist:raison-d-etre",
+  "name": "Raison d’être",
+  "editorial_article": "Raison d’être is a seminal Swedish ambient industrial project formed by Peter Andersson in 1991. Over the course of more than three decades, the project has become a cornerstone of the dark ambient scene, known for its ability to construct vast, immersive soundscapes that feel both organic and ethereal. Andersson’s work often explores deep psychological and philosophical themes, frequently incorporating Jungian concepts into his creative process to craft music that is as intellectually rigorous as it is atmospheric. Albums like 'Enthraled By The Wind Of Lonelienes' and 'Alchymeia' exemplify his mastery of texture, where individual tracks blend into cohesive, haunting sonic journeys. By bridging the gap between harsh industrial foundations and meditative, ambient textures, Raison d’être has maintained a significant influence on experimental electronic music, consistently delivering soundscapes that evoke profound isolation and introspection.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/358878-raison-d%C3%AAtre?srsltid=AfmBOoqm1c91fzdFWOhYMmMV3yQAQ15yb5PdQDffLNNnf_Hw0r5G8XwD"
+    },
+    {
+      "url": "https://www.discogs.com/label/1081389-raison-d%C3%AAtre?srsltid=AfmBOor9spvHP1R4pD4O6H6GthTqll_Rl9QtvMUHAQSeWo-UXpttJxVR"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:10:36.882Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Swedish ambient industrial project founded by Peter Andersson in 1991, renowned for its atmospheric and psychologically-themed soundscapes.",
+  "origin": "Sweden",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:b-o-c-a-tapes",
+      "type": "label",
+      "name": "B.o.C.a. Tapes"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:enthraled-by-the-wind-of-lonelienes",
+      "type": "project",
+      "name": "Enthraled By The Wind Of Lonelienes"
+    },
+    {
+      "slug": "project:alchymeia",
+      "type": "project",
+      "name": "Alchymeia"
+    },
+    {
+      "slug": "project:residuality",
+      "type": "project",
+      "name": "Residuality"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:enthraled-by-the-wind-of-lonelienes",
+      "type": "track",
+      "name": "Enthraled By The Wind Of Lonelienes"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:atomine-elektrine",
+      "type": "artist",
+      "name": "Atomine Elektrine"
+    },
+    {
+      "slug": "artist:necrophorus",
+      "type": "artist",
+      "name": "Necrophorus"
+    },
+    {
+      "slug": "artist:svasti-ayanam",
+      "type": "artist",
+      "name": "Svasti-ayanam"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:peter-andersson",
+      "type": "artist",
+      "name": "Peter Andersson"
+    }
+  ]
+}

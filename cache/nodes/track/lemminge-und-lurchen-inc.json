@@ -1,0 +1,37 @@
+{
+  "slug": "track:lemminge-und-lurchen-inc",
+  "name": "Lemminge Und Lurchen Inc.",
+  "editorial_article": "Lemminge Und Lurchen Inc. is a track associated with the broader cultural and musical landscape, though distinct from the Dutch glam rock band Lemming. While the band Lemming, originating from the Netherlands, is well-documented for their glam rock contributions featuring members like Wally Slot and Martin van Wijk, the specific title 'Lemminge Und Lurchen Inc.' appears in contexts that deviate from the band's primary discography. The name itself reflects a playful, perhaps absurdist nomenclature common in certain experimental or niche music scenes, though it lacks a direct lineage to the established Dutch ensemble. The band Lemming, active in the 1970s, remains a noted entity in Dutch music history, but this specific track title does not appear in their official releases listed in major archives. Instead, the name exists as a curious artifact within the broader, often fragmented history of independent music and cultural references.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/291296-Lemming?srsltid=AfmBOorlF7-XS1JrQAEyblXT8UFqAMmbB0UQs405hWAde5aJvE2XSm8X"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:11.249Z",
+  "type": "track",
+  "editorial_teaser": "A track title that evokes the playful and experimental spirit of independent music, distinct from the Dutch glam rock outfit of the same name.",
+  "year": "1970",
+  "artists": [
+    {
+      "slug": "artist:lemming",
+      "type": "artist",
+      "name": "Lemming"
+    }
+  ],
+  "project": {
+    "slug": "project:lemming",
+    "type": "project",
+    "name": "Lemming"
+  },
+  "genres": [
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam Rock"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}
