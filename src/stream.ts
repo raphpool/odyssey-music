@@ -1,23 +1,30 @@
 /**
  * Stream a YouTube videoId as audio (m4a) to the browser.
  *
- * First request for a videoId: spawn yt-dlp to download bestaudio to
- * {streamCacheDir}/{videoId}.m4a (~3-8s for a 3-min track).
- * Subsequent requests: serve the cached file with HTTP Range support so
- * the <audio> element can seek.
+ * First request for a videoId: fetch bestaudio bytes from the local yt-dlp
+ * bridge (http://127.0.0.1:YTDLP_BRIDGE_PORT/download/:videoId) and write
+ * them to {streamCacheDir}/{videoId}.m4a (~2-5s for a 3-min track). The
+ * bridge runs on Henry's laptop and is reached through an SSH reverse
+ * tunnel — yt-dlp executes on a residential IP, sidestepping YouTube's
+ * "Sign in to confirm you're not a bot" anti-bot wall that blocks the
+ * droplet's datacenter IP.
+ *
+ * Subsequent requests: serve the cached file with HTTP Range support so the
+ * <audio> element can seek.
  *
  * Cache eviction: LRU by mtime, total size capped at MAX_STREAM_CACHE_BYTES.
  */
-import { spawn } from "node:child_process";
-import { createReadStream } from "node:fs";
+import { createReadStream, createWriteStream } from "node:fs";
 import { mkdir, readdir, rename, stat, unlink } from "node:fs/promises";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { join } from "node:path";
+import { pipeline } from "node:stream/promises";
 
 const MAX_STREAM_CACHE_BYTES = Number.parseInt(
 	process.env.STREAM_CACHE_MAX_BYTES ?? `${5 * 1024 * 1024 * 1024}`,
 	10,
 );
+const BRIDGE_URL = process.env.YTDLP_BRIDGE_URL ?? "http://127.0.0.1:18889";
 const VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
 
 const inflight = new Map<string, Promise<string>>();
@@ -34,34 +41,14 @@ async function downloadAudio(streamCacheDir: string, videoId: string): Promise<s
 	await mkdir(streamCacheDir, { recursive: true });
 	const finalPath = fileFor(streamCacheDir, videoId);
 	const tmpPath = `${finalPath}.${process.pid}.${Date.now()}.tmp`;
-	const url = `https://www.youtube.com/watch?v=${videoId}`;
-	// -f bestaudio[ext=m4a]/bestaudio: prefer m4a (browsers love it); fallback bestaudio.
-	// --no-playlist: never expand to a playlist.
-	// --no-progress / --quiet: keep logs clean.
-	// -o: explicit output path.
-	const args = [
-		"-f",
-		"bestaudio[ext=m4a]/bestaudio",
-		"--no-playlist",
-		"--no-progress",
-		"--quiet",
-		"-o",
-		tmpPath,
-		url,
-	];
-	await new Promise<void>((resolve, reject) => {
-		const child = spawn("yt-dlp", args, { stdio: ["ignore", "ignore", "pipe"] });
-		const errChunks: Buffer[] = [];
-		child.stderr.on("data", (c: Buffer) => errChunks.push(c));
-		child.on("error", reject);
-		child.on("close", (code) => {
-			if (code === 0) resolve();
-			else
-				reject(
-					new Error(`yt-dlp exited ${code}: ${Buffer.concat(errChunks).toString("utf8").slice(0, 500)}`),
-				);
-		});
-	});
+	const bridge = `${BRIDGE_URL}/download/${encodeURIComponent(videoId)}`;
+	const res = await fetch(bridge);
+	if (!res.ok || !res.body) {
+		const detail = await res.text().catch(() => "");
+		throw new Error(`bridge ${res.status}: ${detail.slice(0, 500)}`);
+	}
+	// Stream the response body into the tmp file, then atomic-rename.
+	await pipeline(res.body as unknown as NodeJS.ReadableStream, createWriteStream(tmpPath));
 	await rename(tmpPath, finalPath);
 	void evict(streamCacheDir);
 	return finalPath;
