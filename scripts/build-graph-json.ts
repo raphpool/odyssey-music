@@ -7,6 +7,7 @@
  */
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { backfillGenreReverses } from "../src/reverse-edges.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { type EdgeRef, LIST_EDGES_BY_TYPE, type NodePayload, SINGULAR_EDGES_BY_TYPE } from "../src/types.js";
 
@@ -73,6 +74,8 @@ async function main(): Promise<void> {
 		}
 	}
 
+	backfillGenreReverses(nodes);
+
 	const edges: VizEdge[] = [];
 	const dedup = new Set<string>();
 	for (const n of nodes) {
@@ -88,18 +91,45 @@ async function main(): Promise<void> {
 		}
 	}
 
+	// Quarantine: drop genre nodes that have zero genre↔genre connections
+	// (parent_genres, subgenres, related_genres). These are scraper failures —
+	// they appear as floating islands in the graph. Front-end will JIT-reload
+	// them on demand via /api/odyssey/materialize.
+	const GENRE_LINK_KINDS = new Set(["parent_genres", "subgenres", "related_genres"]);
+	const genreLinkCount = new Map<string, number>();
+	for (const e of edges) {
+		if (e.source.startsWith("genre:") && e.target.startsWith("genre:") && GENRE_LINK_KINDS.has(e.kind)) {
+			genreLinkCount.set(e.source, (genreLinkCount.get(e.source) ?? 0) + 1);
+			genreLinkCount.set(e.target, (genreLinkCount.get(e.target) ?? 0) + 1);
+		}
+	}
+	const quarantine: { id: string; name: string; reason: string }[] = [];
+	const quarantineIds = new Set<string>();
+	for (const n of nodes) {
+		if (n.type !== "genre") continue;
+		if ((genreLinkCount.get(n.id) ?? 0) === 0) {
+			quarantine.push({ id: n.id, name: n.name, reason: "no genre-genre edges" });
+			quarantineIds.add(n.id);
+		}
+	}
+	const keptNodes = nodes.filter((n) => !quarantineIds.has(n.id));
+	const keptEdges = edges.filter((e) => !quarantineIds.has(e.source) && !quarantineIds.has(e.target));
+
 	const types: Record<string, number> = {};
-	for (const n of nodes) types[n.type] = (types[n.type] ?? 0) + 1;
+	for (const n of keptNodes) types[n.type] = (types[n.type] ?? 0) + 1;
 
 	const out = {
 		generated_at: new Date().toISOString(),
-		total: nodes.length,
+		total: keptNodes.length,
 		types,
-		nodes,
-		edges,
+		nodes: keptNodes,
+		edges: keptEdges,
+		quarantine,
 	};
 	await writeFile(outFile, JSON.stringify(out, null, 2));
-	console.log(`wrote ${outFile}: ${nodes.length} nodes, ${edges.length} edges`);
+	console.log(
+		`wrote ${outFile}: ${keptNodes.length} nodes, ${keptEdges.length} edges (quarantined ${quarantine.length} orphan genres)`,
+	);
 }
 
 main().catch((e: unknown) => {

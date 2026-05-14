@@ -36,12 +36,25 @@ const ARTIST_REVERSES: Record<string, ReverseEdgeSpec | null> = {
 	notable_tracks: null,
 };
 
+// Genre↔genre reverses. Without these, the scraper produced partial nodes:
+// e.g. `micro-house` lists `minimal-techno` as a parent, but `minimal-techno`
+// never learned it had `micro-house` as a subgenre. Henry caught this 2026-05-14.
+const GENRE_REVERSES: Record<string, ReverseEdgeSpec | null> = {
+	parent_genres: { field: "subgenres", cardinality: "list" },
+	subgenres: { field: "parent_genres", cardinality: "list" },
+	related_genres: { field: "related_genres", cardinality: "list" },
+	key_artists: null,
+	key_labels: null,
+	landmark_projects: null,
+	landmark_tracks: null,
+};
+
 const REVERSES_BY_TYPE: Record<NodeType, Record<string, ReverseEdgeSpec | null>> = {
 	track: TRACK_REVERSES,
 	artist: ARTIST_REVERSES,
 	project: {},
 	label: {},
-	genre: {},
+	genre: GENRE_REVERSES,
 };
 
 export function reverseFor(sourceType: NodeType, sourceField: string): ReverseEdgeSpec | null {
@@ -57,3 +70,64 @@ export function reversibleFields(type: NodeType): string[] {
 }
 
 export type AnyNode = NodePayload;
+
+/**
+ * Viz-output node shape (matches build-graph-json.ts + server.ts buildGraph).
+ * Inline here to avoid a circular import.
+ */
+interface VizNodeLike {
+	id: string;
+	type: NodeType;
+	name: string;
+	edges: Record<string, EdgeRefLike[] | EdgeRefLike>;
+}
+interface EdgeRefLike {
+	slug: string;
+	type: string;
+	name: string;
+}
+
+/**
+ * Back-fill missing reverse genre↔genre edges directly on the viz nodes.
+ *
+ * Many genre nodes were scraped before genre reverses were configured, so
+ * e.g. `minimal-techno` has 8 incoming references from other genres but its
+ * own parent_genres / subgenres / related_genres are empty — the lab page
+ * displays it as isolated. This mutates the passed nodes to add the missing
+ * back-pointers using the forward edges declared on other genre nodes.
+ *
+ * Safe to call on already-correct graphs: duplicates are skipped.
+ */
+export function backfillGenreReverses(nodes: VizNodeLike[]): void {
+	const byId = new Map<string, VizNodeLike>();
+	for (const n of nodes) byId.set(n.id, n);
+	const ensureList = (n: VizNodeLike, field: string): EdgeRefLike[] => {
+		const existing = n.edges[field];
+		if (Array.isArray(existing)) return existing;
+		const fresh: EdgeRefLike[] = [];
+		n.edges[field] = fresh;
+		return fresh;
+	};
+	const addRefIfMissing = (list: EdgeRefLike[], ref: EdgeRefLike): void => {
+		if (!list.some((r) => r.slug === ref.slug)) list.push(ref);
+	};
+	for (const n of nodes) {
+		if (n.type !== "genre") continue;
+		const self: EdgeRefLike = { slug: n.id, type: "genre", name: n.name };
+		const parents = (n.edges.parent_genres as EdgeRefLike[] | undefined) ?? [];
+		const subs = (n.edges.subgenres as EdgeRefLike[] | undefined) ?? [];
+		const related = (n.edges.related_genres as EdgeRefLike[] | undefined) ?? [];
+		for (const p of parents) {
+			const t = byId.get(p.slug);
+			if (t?.type === "genre") addRefIfMissing(ensureList(t, "subgenres"), self);
+		}
+		for (const s of subs) {
+			const t = byId.get(s.slug);
+			if (t?.type === "genre") addRefIfMissing(ensureList(t, "parent_genres"), self);
+		}
+		for (const r of related) {
+			const t = byId.get(r.slug);
+			if (t?.type === "genre") addRefIfMissing(ensureList(t, "related_genres"), self);
+		}
+	}
+}

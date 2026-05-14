@@ -1,0 +1,97 @@
+{
+  "slug": "artist:shackleton",
+  "name": "Shackleton",
+  "editorial_article": "Sam Shackleton is an English electronic producer known for his distinctively atmospheric, rhythmically complex, and bass-heavy sound. Originally emerging during the early development of the dubstep scene, he gained significant recognition as a co-founder of the influential label Skull Disco, which he operated alongside Appleblim from 2005 to 2008. His music is characterized by intricate, snakelike percussion, deep basslines, and a penchant for abstract melodies and clever sampling that move beyond traditional genre constraints. Based in Berlin, Shackleton has continued to evolve his sound through his own label, Woe to the Septic Heart!, established in 2010. His work, such as the expansive 'Music For The Quiet Hour / The Drawbar Organ EPs', is often cited for its immersive, trippy, and sonically satisfying qualities, cementing his reputation as a singular figure in contemporary electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Shackleton_(musician)",
+      "title": "Shackleton (musician) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T14:52:38.525Z",
+  "type": "artist",
+  "editorial_bio": "An English electronic producer and label founder known for his complex, bass-driven, and atmospheric soundscapes.",
+  "origin": "Lancashire, England",
+  "active_years": "2005-present",
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:skull-disco",
+      "type": "label",
+      "name": "Skull Disco"
+    },
+    {
+      "slug": "label:woe-to-the-septic-heart",
+      "type": "label",
+      "name": "Woe to the Septic Heart!"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:music-for-the-quiet-hour-the-drawbar-organ-eps",
+      "type": "project",
+      "name": "Music For The Quiet Hour / The Drawbar Organ EPs"
+    },
+    {
+      "slug": "project:three-eps",
+      "type": "project",
+      "name": "Three EPs"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:katyusha",
+      "type": "track",
+      "name": "Katyusha"
+    },
+    {
+      "slug": "track:powerplant",
+      "type": "track",
+      "name": "Powerplant"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:appleblim",
+      "type": "artist",
+      "name": "Appleblim"
+    },
+    {
+      "slug": "artist:jackson-del-rey",
+      "type": "artist",
+      "name": "Jackson Del Rey"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:reiner-zufall",
+      "type": "artist",
+      "name": "Reiner Zufall"
+    },
+    {
+      "slug": "artist:tunes-of-negation",
+      "type": "artist",
+      "name": "Tunes Of Negation"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:sam-shackleton",
+      "type": "artist",
+      "name": "Sam Shackleton"
+    }
+  ]
+}

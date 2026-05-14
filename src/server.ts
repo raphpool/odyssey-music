@@ -17,6 +17,7 @@ import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { loadEnv } from "./env.js";
 import { runPipeline } from "./pipeline.js";
+import { backfillGenreReverses } from "./reverse-edges.js";
 import { makeSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { LIST_EDGES_BY_TYPE, NODE_TYPES, SINGULAR_EDGES_BY_TYPE } from "./types.js";
@@ -202,11 +203,17 @@ async function buildGraph(): Promise<{
 			citations: n.citations,
 			edges: nodeEdges,
 		});
-		for (const [kind, value] of Object.entries(nodeEdges)) {
+	}
+	// Back-fill missing reverse genre↔genre fields BEFORE computing edges, so
+	// e.g. minimal-techno inherits subgenres / parent_genres / related_genres
+	// from the forward edges declared on other genre nodes.
+	backfillGenreReverses(vizNodes as unknown as Parameters<typeof backfillGenreReverses>[0]);
+	for (const vn of vizNodes as unknown as { id: string; edges: Record<string, EdgeRef[] | EdgeRef> }[]) {
+		for (const [kind, value] of Object.entries(vn.edges)) {
 			const refs = Array.isArray(value) ? value : [value];
 			for (const ref of refs) {
 				if (!cachedSet.has(ref.slug)) continue;
-				edges.push({ source: n.slug, target: ref.slug, kind });
+				edges.push({ source: vn.id, target: ref.slug, kind });
 			}
 		}
 	}

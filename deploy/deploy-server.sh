@@ -86,31 +86,14 @@ systemctl restart odyssey-server.service
 sleep 3
 systemctl is-active odyssey-server.service || (journalctl -u odyssey-server --no-pager -n 50; exit 1)
 
-NGINX_CONF=/etc/nginx/sites-enabled/dropcliffs
-if ! grep -q "location /api/odyssey" "$NGINX_CONF"; then
-  echo "  -> patching nginx"
-  python3 - <<'PY'
-import re
-p = "/etc/nginx/sites-enabled/dropcliffs"
-s = open(p).read()
-block = """    location /api/odyssey/ {
-        proxy_pass http://127.0.0.1:18792/;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_read_timeout 120s;
-        proxy_connect_timeout 10s;
-    }
-
-"""
-new = re.sub(r'(    location /api \{)', block + r'\1', s, count=1)
-if new == s:
-    raise SystemExit("could not find /api block")
-open(p, 'w').write(new)
-PY
-  cp "$NGINX_CONF" /etc/nginx/sites-available/dropcliffs
-  nginx -t
-  systemctl reload nginx
+# Nginx routing for /api/odyssey/ is owned by the dropcliffs deploy template
+# (projects/dropcliffs/deploy/nginx.conf). Do NOT patch nginx in place here —
+# dropcliffs deploys overwrite the file and silently wiped this route on
+# 2026-05-14. Verify route is live; fail loud if it isn't.
+if ! grep -q "location /api/odyssey" /etc/nginx/sites-enabled/dropcliffs; then
+  echo "ERROR: /api/odyssey route missing from live nginx config." >&2
+  echo "Add it to projects/dropcliffs/deploy/nginx.conf and deploy dropcliffs." >&2
+  exit 1
 fi
 
 curl -fsS http://127.0.0.1:18792/health
