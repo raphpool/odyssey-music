@@ -1,0 +1,111 @@
+{
+  "slug": "artist:kool-shen",
+  "name": "Kool Shen",
+  "editorial_article": "Kool Shen, born Bruno Lopes in Saint-Denis, France, is a foundational figure in the evolution of French hip-hop. Emerging in the late 1980s, he gained widespread recognition as a co-founder of the influential rap group Suprême NTM. Beyond his contributions to rap, Lopes has established a multifaceted career as a producer, actor, and artist with roots in breakdancing and graffiti. His work is characterized by a persistent presence in the French cultural landscape, spanning decades of musical output and various film appearances. In 2009, he achieved a unique cultural milestone when his name was featured on the Olympique Lyonnais football shirt, marking the first time a musical artist's album was promoted in such a capacity during a high-profile match against Olympique de Marseille. His solo discography, including albums like Dernier Round and Crise de conscience, reflects a career that bridges the gap between underground roots and mainstream recognition in France.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kool_Shen",
+      "title": "Kool Shen - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:32:12.783Z",
+  "type": "artist",
+  "editorial_bio": "Kool Shen is a pioneering French rapper, producer, and actor, best known as a co-founder of the legendary hip-hop group Suprême NTM.",
+  "origin": "Saint-Denis, France",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:universal-music",
+      "type": "label",
+      "name": "Universal Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dernier-round",
+      "type": "project",
+      "name": "Dernier Round"
+    },
+    {
+      "slug": "project:crise-de-conscience",
+      "type": "project",
+      "name": "Crise de conscience"
+    },
+    {
+      "slug": "project:sur-le-fil-du-rasoir",
+      "type": "project",
+      "name": "Sur le fil du rasoir"
+    },
+    {
+      "slug": "project:qui-suis-je",
+      "type": "project",
+      "name": "Qui Suis-Je?"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:that-s-my-people",
+      "type": "track",
+      "name": "That's my people"
+    },
+    {
+      "slug": "track:qui-suis-je",
+      "type": "track",
+      "name": "Qui suis-je?"
+    },
+    {
+      "slug": "track:un-ange-dans-le-ciel",
+      "type": "track",
+      "name": "Un ange dans le ciel"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:joeystarr",
+      "type": "artist",
+      "name": "JoeyStarr"
+    },
+    {
+      "slug": "artist:rohff",
+      "type": "artist",
+      "name": "Rohff"
+    },
+    {
+      "slug": "artist:kery-james",
+      "type": "artist",
+      "name": "Kery James"
+    },
+    {
+      "slug": "artist:sinik",
+      "type": "artist",
+      "name": "Sinik"
+    },
+    {
+      "slug": "artist:big-ali",
+      "type": "artist",
+      "name": "Big Ali"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:kool-shen",
+      "type": "artist",
+      "name": "Kool Shen"
+    },
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "slug": "label:ed-banger-records",
+  "name": "Ed Banger Records",
+  "editorial_article": "Ed Banger Records, often referred to as Ed Rec, is a prominent French electronic music label founded in 2003 by Pedro Winter. Operating as a division of Headbangers Entertainment, the label became a cornerstone of the mid-2000s electronic scene, known for its distinctively edgy, high-energy sound that bridged the gap between club music and indie-rock aesthetics. Its roster helped define the era of French electro, characterized by heavy compression, distorted synthesizers, and a playful, rebellious attitude that resonated globally.\n\nThe label's rapid rise to fame was fueled by iconic releases from artists like Justice, whose debut album Cross became a genre-defining landmark. Throughout its history, Ed Banger has maintained a tight-knit family of producers, including SebastiAn, Mr. Oizo, and DJ Mehdi, fostering a collaborative environment that prioritized artistic identity. By consistently blending dancefloor sensibilities with experimental pop structures, the label has remained an influential force in electronic music, continuously shaping the evolution of the French touch sound and its subsequent iterations.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ed_Banger_Records",
+      "title": "Ed Banger Records - Wikipedia"
+    },
+    {
+      "url": "https://edm.fandom.com/wiki/Ed_Banger_Records",
+      "title": "Ed Banger Records | EDM Wiki - Fandom"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ed_Banger_Records_discography",
+      "title": "Ed Banger Records discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:24:51.522Z",
+  "type": "label",
+  "editorial_description": "A seminal French electronic music label founded by Pedro Winter, known for defining the high-energy electro sound of the 2000s.",
+  "founded": "2003",
+  "location": "Paris, France",
+  "founders": "Pedro Winter",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    },
+    {
+      "slug": "genre:dance",
+      "type": "genre",
+      "name": "Dance"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:justice",
+      "type": "artist",
+      "name": "Justice"
+    },
+    {
+      "slug": "artist:sebastian",
+      "type": "artist",
+      "name": "SebastiAn"
+    },
+    {
+      "slug": "artist:mr-oizo",
+      "type": "artist",
+      "name": "Mr. Oizo"
+    },
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi"
+    },
+    {
+      "slug": "artist:uffie",
+      "type": "artist",
+      "name": "Uffie"
+    },
+    {
+      "slug": "artist:breakbot",
+      "type": "artist",
+      "name": "Breakbot"
+    },
+    {
+      "slug": "artist:cassius",
+      "type": "artist",
+      "name": "Cassius"
+    },
+    {
+      "slug": "artist:krazy-baldhead",
+      "type": "artist",
+      "name": "Krazy Baldhead"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:cross",
+      "type": "project",
+      "name": "Cross"
+    },
+    {
+      "slug": "project:lambs-anger",
+      "type": "project",
+      "name": "Lambs Anger"
+    },
+    {
+      "slug": "project:total",
+      "type": "project",
+      "name": "Total"
+    },
+    {
+      "slug": "project:sex-dreams-and-denim-jeans",
+      "type": "project",
+      "name": "Sex Dreams and Denim Jeans"
+    },
+    {
+      "slug": "project:lucky-boy",
+      "type": "project",
+      "name": "Lucky Boy"
+    }
+  ]
+}

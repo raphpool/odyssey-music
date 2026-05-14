@@ -1,0 +1,79 @@
+{
+  "slug": "artist:mafia-k-1-fry",
+  "name": "Mafia K'1 Fry",
+  "editorial_article": "Mafia K'1 Fry is a prominent French hip-hop collective originating from the Val-de-Marne department, specifically the city of Orly, active since 1995. Known for their gritty, socially conscious approach to rap, the group became a cornerstone of the French urban music scene, representing the harsh realities of suburban life. Their influence helped define the sound of French rap during the late 1990s and early 2000s, characterized by a collaborative spirit that brought together various artists and crews from the Parisian suburbs.\n\nThe collective gained significant recognition with the release of their studio albums, including 'La Cerise sur le ghetto' in 2003 and 'Jusqu'à la mort' in 2007. These projects solidified their status as legends within the genre, featuring a revolving door of talented members who contributed to their distinct, hard-hitting aesthetic. Through their discography, which also includes compilations like 'Légendaire', Mafia K'1 Fry remains a vital entity in the history of French hip-hop culture.",
+  "citations": [
+    {
+      "url": "https://www.wikidata.org/wiki/Q1568465",
+      "title": "Mafia K-1 Fry - Wikidata"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/e8565ebf-bbed-4b5a-9014-20fe7e55b110",
+      "title": "Mafia K'1 Fry - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:25:37.546Z",
+  "type": "artist",
+  "editorial_bio": "Mafia K'1 Fry is an influential French hip-hop collective from Orly, established in 1995, known for their gritty and socially charged contributions to the French rap scene.",
+  "origin": "Orly, France",
+  "active_years": "1995-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:small",
+      "type": "label",
+      "name": "Small"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:la-cerise-sur-le-ghetto",
+      "type": "project",
+      "name": "La Cerise sur le ghetto"
+    },
+    {
+      "slug": "project:jusqu-a-la-mort",
+      "type": "project",
+      "name": "Jusqu'à la mort"
+    },
+    {
+      "slug": "project:legendaire",
+      "type": "project",
+      "name": "Légendaire"
+    },
+    {
+      "slug": "project:guerre",
+      "type": "project",
+      "name": "Guerre"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pour-ceux",
+      "type": "track",
+      "name": "Pour ceux"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi"
+    },
+    {
+      "slug": "artist:rim-k",
+      "type": "artist",
+      "name": "Rim'K"
+    }
+  ]
+}

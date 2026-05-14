@@ -1,0 +1,65 @@
+{
+  "slug": "artist:iam",
+  "name": "IAM",
+  "editorial_article": "IAM is a pioneering French hip hop group hailing from Marseille, formed in 1989. Known for their distinct lyrical themes, the group frequently incorporates allusions to Africa and ancient Egypt into their music. They gained significant recognition in the early 1990s as part of the burgeoning French rap scene, distinguishing themselves through socially conscious tracks like 1991's 'Les tam-tam de l'Afrique,' which addressed the history of slavery and the plantation system in the Americas. Throughout their career, the collective has maintained a notable international presence, including a long-standing history of collaborations with the American hip hop group Wu-Tang Clan. Their influence helped establish rap as a prominent cultural force in France, setting a precedent for subsequent generations of French artists.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/IAM_(band)",
+      "title": "IAM (band) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:31:33.116Z",
+  "type": "artist",
+  "editorial_bio": "IAM is a seminal French hip hop group from Marseille, recognized as one of the pioneers of the genre in France.",
+  "origin": "Marseille, France",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:delabel",
+      "type": "label",
+      "name": "Delabel"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:de-la-planete-mars",
+      "type": "project",
+      "name": "De la planète Mars"
+    },
+    {
+      "slug": "project:ombre-est-lumiere",
+      "type": "project",
+      "name": "Ombre est lumière"
+    },
+    {
+      "slug": "project:l-ecole-du-micro-d-argent",
+      "type": "project",
+      "name": "L'École du micro d'argent"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:les-tam-tam-de-l-afrique",
+      "type": "track",
+      "name": "Les tam-tam de l'Afrique"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:wu-tang-clan",
+      "type": "artist",
+      "name": "Wu-Tang Clan"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

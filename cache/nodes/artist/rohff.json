@@ -1,0 +1,94 @@
+{
+  "slug": "artist:rohff",
+  "name": "Rohff",
+  "editorial_article": "Rohff, born Housni Mkoubol, is a prominent French rapper and MC who emerged from Vitry-sur-Seine to become a central figure in the French hip-hop scene. Born in Madagascar in 1977 and immigrating to France in 1985, he established himself as a formidable lyricist with the release of his debut studio album, Le Code de l'honneur, in 1999. Over the following decades, Rohff solidified his reputation through a prolific discography that includes eleven studio albums, characterized by his gritty storytelling and technical prowess. His work, notably albums like La Vie avant la mort and La Fierté des nôtres, helped define the sound of French rap in the early 2000s. Throughout his career, he has remained a significant influence, balancing commercial success with a consistent output of mixtapes, singles, and collaborations that continue to resonate within the genre.",
+  "citations": [
+    {
+      "url": "https://fr.wikipedia.org/wiki/Discographie_de_Rohff",
+      "title": "Discographie de Rohff - Wikipédia"
+    },
+    {
+      "url": "https://www.nrj.fr/artistes/rohff/albums",
+      "title": "Albums Rohff Toute sa discographie - NRJ"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:32:24.978Z",
+  "type": "artist",
+  "editorial_bio": "A seminal French rapper from Vitry-sur-Seine known for his influential contributions to the rap français scene since the late 1990s.",
+  "origin": "Vitry-sur-Seine, France",
+  "active_years": "1999-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hostile-records",
+      "type": "label",
+      "name": "Hostile Records"
+    },
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    },
+    {
+      "slug": "label:foolek-records",
+      "type": "label",
+      "name": "Foolek Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:le-code-de-l-honneur",
+      "type": "project",
+      "name": "Le Code de l'honneur"
+    },
+    {
+      "slug": "project:la-vie-avant-la-mort",
+      "type": "project",
+      "name": "La Vie avant la mort"
+    },
+    {
+      "slug": "project:la-fierte-des-notres",
+      "type": "project",
+      "name": "La Fierté des nôtres"
+    },
+    {
+      "slug": "project:au-dela-de-mes-limites",
+      "type": "project",
+      "name": "Au-delà de mes limites"
+    },
+    {
+      "slug": "project:grand-monsieur",
+      "type": "project",
+      "name": "Grand Monsieur"
+    },
+    {
+      "slug": "project:fitna",
+      "type": "project",
+      "name": "Fitna"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:fitna",
+      "type": "track",
+      "name": "Fitna"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kool-shen",
+      "type": "artist",
+      "name": "Kool Shen"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

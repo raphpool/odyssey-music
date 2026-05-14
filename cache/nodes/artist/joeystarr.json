@@ -1,0 +1,86 @@
+{
+  "slug": "artist:joeystarr",
+  "name": "JoeyStarr",
+  "editorial_article": "JoeyStarr, born Didier Morville in 1967 in Paris, is a seminal figure in French hip-hop, widely recognized for his raw, aggressive delivery and his foundational role in the rap scene. Rising to prominence as one-half of the influential duo Suprême NTM alongside Kool Shen, he helped define the sound of French hardcore and conscious rap throughout the 1990s. His career is marked by a distinctive blend of social commentary and confrontational energy, which he channeled both through his music and his later endeavors in film, production, and stage direction. Beyond his work with NTM, he established the B.O.S.S. label and collective, further cementing his influence on the urban music landscape in France. His artistic trajectory has spanned decades, evolving from the gritty streets of Saint-Denis to becoming a recognized actor and cultural personality. His legacy remains deeply tied to the development of the French hip-hop movement, serving as a bridge between the underground origins of the genre and its mainstream integration.",
+  "citations": [
+    {
+      "url": "https://fr.wikipedia.org/wiki/JoeyStarr",
+      "title": "JoeyStarr — Wikipédia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:30:29.508Z",
+  "type": "artist",
+  "editorial_bio": "JoeyStarr is a legendary French rapper and actor, best known as a co-founder of the iconic hip-hop group Suprême NTM.",
+  "origin": "Saint-Denis, France",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:rap-hardcore",
+      "type": "genre",
+      "name": "Rap hardcore"
+    },
+    {
+      "slug": "genre:hip-hop-francais",
+      "type": "genre",
+      "name": "Hip-hop français"
+    },
+    {
+      "slug": "genre:rap-conscient",
+      "type": "genre",
+      "name": "Rap conscient"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jive-epic",
+      "type": "label",
+      "name": "Jive Epic"
+    },
+    {
+      "slug": "label:b-o-s-s",
+      "type": "label",
+      "name": "B.O.S.S."
+    },
+    {
+      "slug": "label:naive-urban",
+      "type": "label",
+      "name": "Naïve Urban"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gare-au-jaguarr",
+      "type": "project",
+      "name": "Gare au Jaguarr"
+    },
+    {
+      "slug": "project:supreme-ntm",
+      "type": "project",
+      "name": "Suprême NTM"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:gare-au-jaguarr",
+      "type": "track",
+      "name": "Gare au Jaguarr"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kool-shen",
+      "type": "artist",
+      "name": "Kool Shen"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "label:foolek-music",
+  "name": "Foolek Music",
+  "editorial_article": "Foolek Music is a record label documented in industry databases such as Discogs. While information regarding its specific founding date, location, and roster is limited in public records, it maintains a presence within the cataloging systems used by collectors and music enthusiasts. The label serves as an imprint for various musical releases, contributing to the broader landscape of independent music distribution. As a niche entity, its primary function remains the facilitation of music availability for listeners and collectors who track specific label catalogs. The label continues to be a point of interest for those exploring discographies and seeking to complete their collections through secondary market platforms.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/191278-Foolek-Music?srsltid=AfmBOoq5swemc7x26RSnaFidQQ40ueDhs49v6wktdmwhHyAsFJf4GVIi",
+      "title": "Foolek Music | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/3415826-Foo-Fighters-Foo-Fighters?srsltid=AfmBOopGTx-dJWUTZwpMfC5xHyl8i6x1qBDsUhenKEQ-N18kZxdpBfXS",
+      "title": "Foo Fighters - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:33:02.399Z",
+  "type": "label",
+  "editorial_description": "Foolek Music is an independent record label cataloged on Discogs that facilitates the distribution and collection of various musical releases.",
+  "founded": "2000",
+  "location": "Unknown, Unknown",
+  "founders": "Unknown",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:foolek",
+      "type": "artist",
+      "name": "Foolek"
+    },
+    {
+      "slug": "artist:various-artists",
+      "type": "artist",
+      "name": "Various Artists"
+    },
+    {
+      "slug": "artist:unknown-artist",
+      "type": "artist",
+      "name": "Unknown Artist"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:foolek-music-vol-1",
+      "type": "project",
+      "name": "Foolek Music Vol 1"
+    },
+    {
+      "slug": "project:foolek-music-vol-2",
+      "type": "project",
+      "name": "Foolek Music Vol 2"
+    }
+  ]
+}

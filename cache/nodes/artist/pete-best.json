@@ -1,0 +1,72 @@
+{
+  "slug": "artist:pete-best",
+  "name": "Pete Best",
+  "editorial_article": "Randolph Peter Best, born in Madras, India, in 1941, is a British musician best known as the original drummer for The Beatles. His tenure with the band predated their global superstardom, and he remained a central figure in the early Liverpool music scene. Following his departure from the group, Best continued his musical career through various projects, including the formation of the Pete Best Band and collaborations with groups such as Lee Curtis & The All-Stars and The Pete Best Four. His legacy remains deeply intertwined with the foundational history of the most famous band in rock music history, and he has continued to perform and record throughout his long career.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/337031-Pete-Best?srsltid=AfmBOooLsTVcAk14fBHxTj9boq0VbQeNTQ5lGQN0hPb5a_Pvu9eo4AgP"
+    },
+    {
+      "url": "https://www.discogs.com/artist/1944231-Pete-Best-Band?srsltid=AfmBOoo0zs2G8leF_8EvsU6OxtiFGbxsJsRgJ5S-tPSj5eQGSTKw1aLL"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:04.360Z",
+  "type": "artist",
+  "editorial_bio": "British drummer best known as the original drummer for The Beatles.",
+  "origin": "Madras, India",
+  "active_years": "1960-present",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:decca",
+      "type": "label",
+      "name": "Decca"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-beatles",
+      "type": "project",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "project:pete-best-band",
+      "type": "project",
+      "name": "Pete Best Band"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-bonnie",
+      "type": "track",
+      "name": "My Bonnie"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:kenny-parry",
+      "type": "artist",
+      "name": "Kenny Parry"
+    },
+    {
+      "slug": "artist:vince-hagen",
+      "type": "artist",
+      "name": "Vince Hagen"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

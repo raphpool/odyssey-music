@@ -1,0 +1,77 @@
+{
+  "slug": "artist:tiesto",
+  "name": "Tiësto",
+  "editorial_article": "Tiësto, born Tijs Michiel Verwest in the Netherlands, is a globally recognized DJ and producer who defined the trance genre before evolving into a dominant force in dance-pop and house music. Rising to prominence in the late 1990s, he co-founded the influential label Black Hole Recordings in 1997 alongside Arny Bink. Through this platform, he released iconic mix series such as Magik and In Search of Sunrise, which were instrumental in shaping the electronic dance music landscape of the era. His impact on the industry was formally recognized in 2013 when readers of DJ Mag voted him the best DJ of the last 20 years. While his early career was defined by his pioneering work in trance, Tiësto has demonstrated significant artistic evolution. His later work, exemplified by albums like Drive, reflects a shift toward more accessible dance-pop and house sounds, proving his versatility and enduring relevance in the commercial music market.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ti%C3%ABsto",
+      "title": "Tiësto - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/6197-DJ-Ti%C3%ABsto?srsltid=AfmBOopz5Qbci7JzyhymRY_vm_Y_tB_SNF3YLj-K1rm6SFBT1oHXs9HW",
+      "title": "DJ Tiësto Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/master/3069464-Ti%C3%ABsto-Drive?srsltid=AfmBOoqZtZ6zfWeCeVby8wUSfyxCAdX8ctapKXY1hADBZqSWyZ26nEIx",
+      "title": "Tiësto – Drive | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:23:32.940Z",
+  "type": "artist",
+  "editorial_bio": "Tiësto is a Dutch DJ and producer who transitioned from a pioneering figure in trance to a global icon of dance-pop and house music.",
+  "origin": "Netherlands",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:black-hole-recordings",
+      "type": "label",
+      "name": "Black Hole Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:magik",
+      "type": "project",
+      "name": "Magik"
+    },
+    {
+      "slug": "project:in-search-of-sunrise",
+      "type": "project",
+      "name": "In Search of Sunrise"
+    },
+    {
+      "slug": "project:drive",
+      "type": "project",
+      "name": "Drive"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:magik",
+      "type": "track",
+      "name": "Magik"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

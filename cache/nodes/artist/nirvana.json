@@ -1,0 +1,95 @@
+{
+  "slug": "artist:nirvana",
+  "name": "Nirvana",
+  "editorial_article": "Nirvana was an American rock band formed in Aberdeen, Washington, in 1987 that became the definitive voice of the Seattle grunge movement. Founded by vocalist and guitarist Kurt Cobain and bassist Krist Novoselic, the band underwent several drummer changes before solidifying their lineup with Dave Grohl in 1990. Their debut album, Bleach, was released in 1989 on the independent label Sub Pop, but it was their 1991 major-label debut, Nevermind, that catapulted them into global superstardom. The album's massive commercial success brought alternative rock into the mainstream, defining the cultural landscape of the early 1990s.\n\nThe band's final studio album, In Utero, continued their critical and commercial success, showcasing a more raw and abrasive sound. Following the death of Kurt Cobain in April 1994, the band disbanded, leaving behind a legacy that has sold over 75 million records worldwide. Despite their short tenure, Nirvana remains one of the most influential bands in rock history, with their music continuing to resonate with new generations through various posthumous releases and catalog reissues.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nirvana_discography",
+      "title": "Nirvana discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:12:42.148Z",
+  "type": "artist",
+  "editorial_bio": "Nirvana was an influential American rock band that defined the 1990s grunge movement and brought alternative music to the global mainstream.",
+  "origin": "Aberdeen, Washington, USA",
+  "active_years": "1987-1994",
+  "genres": [
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:dgc-records",
+      "type": "label",
+      "name": "DGC Records"
+    },
+    {
+      "slug": "label:geffen-records",
+      "type": "label",
+      "name": "Geffen Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bleach",
+      "type": "project",
+      "name": "Bleach"
+    },
+    {
+      "slug": "project:nevermind",
+      "type": "project",
+      "name": "Nevermind"
+    },
+    {
+      "slug": "project:in-utero",
+      "type": "project",
+      "name": "In Utero"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:you-know-you-re-right",
+      "type": "track",
+      "name": "You Know You're Right"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:kurt-cobain",
+      "type": "artist",
+      "name": "Kurt Cobain"
+    },
+    {
+      "slug": "artist:krist-novoselic",
+      "type": "artist",
+      "name": "Krist Novoselic"
+    },
+    {
+      "slug": "artist:dave-grohl",
+      "type": "artist",
+      "name": "Dave Grohl"
+    },
+    {
+      "slug": "artist:pat-smear",
+      "type": "artist",
+      "name": "Pat Smear"
+    }
+  ]
+}

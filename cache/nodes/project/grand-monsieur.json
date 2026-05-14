@@ -1,0 +1,48 @@
+{
+  "slug": "project:grand-monsieur",
+  "name": "Grand Monsieur",
+  "editorial_article": "Grand Monsieur is a 2018 studio album by the French duo Madame Monsieur, consisting of vocalist Émilie Satt and producer Jean-Karl Lucas. The project gained significant international recognition when the duo represented France at the Eurovision Song Contest in 2018 with the track Mercy. The album reflects their signature blend of modern French pop, characterized by thoughtful lyricism and polished electronic production. As a pivotal release in their discography, Grand Monsieur solidified the duo's presence in the contemporary French music scene, showcasing their ability to craft emotionally resonant songs that bridge the gap between intimate storytelling and mainstream pop accessibility. The album remains a definitive document of their creative partnership and their rise to prominence during the late 2010s.",
+  "citations": [
+    {
+      "url": "https://musicbrainz.org/artist/74c60035-4869-4a93-8eec-9ed3ba6d2b27",
+      "title": "Madame Monsieur - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:34:45.177Z",
+  "type": "project",
+  "editorial_pitch": "Grand Monsieur is the acclaimed 2018 studio album by the French duo Madame Monsieur, featuring their Eurovision entry Mercy.",
+  "year": "2018",
+  "artists": [
+    {
+      "slug": "artist:madame-monsieur",
+      "type": "artist",
+      "name": "Madame Monsieur"
+    }
+  ],
+  "label": {
+    "slug": "label:low-wood",
+    "type": "label",
+    "name": "Low Wood"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:mercy",
+      "type": "track",
+      "name": "Mercy"
+    },
+    {
+      "slug": "track:comme-une-reine",
+      "type": "track",
+      "name": "Comme une reine"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

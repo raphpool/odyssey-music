@@ -1,0 +1,101 @@
+{
+  "slug": "genre:conscious-hip-hop",
+  "name": "Conscious hip-hop",
+  "editorial_article": "Conscious hip-hop, often referred to as socially conscious hip-hop or conscious rap, is a distinct subgenre of hip-hop that prioritizes lyrical content centered on social, political, and philosophical commentary. Emerging as a powerful medium for expression, the genre challenges dominant cultural and economic structures, using the platform of rap music to address systemic issues and advocate for awareness. Unlike mainstream hip-hop that may prioritize escapism or commercial themes, conscious hip-hop is defined by its commitment to social critique and the exploration of the human condition within complex societal frameworks.\n\nThe genre maintains a strong lineage of artists who utilize their music as a tool for education and activism. By focusing on themes like poverty, racial inequality, and institutional corruption, conscious hip-hop artists often bridge the gap between entertainment and social advocacy. The style is deeply rooted in the broader hip-hop tradition but distinguishes itself through its intentionality and the weight of its message, influencing generations of listeners and artists to engage more critically with the world around them.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/style/conscious?srsltid=AfmBOoodHUoONOoYi5YKiqoIJvnYtWNBbaWloUPpgMb6677rvQ2gDbz0",
+      "title": "Conscious Music | Discogs"
+    },
+    {
+      "url": "https://rap.fandom.com/wiki/Conscious_hip_hop",
+      "title": "Conscious hip hop - Rap Wiki - Fandom"
+    },
+    {
+      "url": "https://www.chosic.com/genre-chart/conscious-hip-hop/",
+      "title": "Conscious Hip Hop Music Genre - Chosic"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:21:05.755Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by lyrics that focus on social, political, and economic issues to challenge dominant cultural narratives.",
+  "era": "late 1980s to present",
+  "origin": "United States",
+  "sonic_markers": "Variable BPM, sample-heavy production, emphasis on lyrical clarity and storytelling.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:political-hip-hop",
+      "type": "genre",
+      "name": "Political hip-hop"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    },
+    {
+      "slug": "artist:public-enemy",
+      "type": "artist",
+      "name": "Public Enemy"
+    },
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Mos Def"
+    },
+    {
+      "slug": "artist:talib-kweli",
+      "type": "artist",
+      "name": "Talib Kweli"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    },
+    {
+      "slug": "label:rawkus-records",
+      "type": "label",
+      "name": "Rawkus Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:the-message",
+      "type": "track",
+      "name": "The Message"
+    },
+    {
+      "slug": "track:fight-the-power",
+      "type": "track",
+      "name": "Fight the Power"
+    },
+    {
+      "slug": "track:alright",
+      "type": "track",
+      "name": "Alright"
+    }
+  ]
+}

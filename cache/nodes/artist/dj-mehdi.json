@@ -1,0 +1,115 @@
+{
+  "slug": "artist:dj-mehdi",
+  "name": "DJ Mehdi",
+  "editorial_article": "DJ Mehdi, born Mehdi Favéris-Essadi, was a pioneering French-Tunisian DJ and producer who became a central figure in bridging the gap between the French underground hip-hop scene and electronic dance music. Emerging in the 1990s as a key member of the collective Mafia K'1 Fry and the group Idéal J, he established himself as a premier hip-hop producer before transitioning into the electronic sphere. His work was defined by a unique ability to blend rhythmic hip-hop sensibilities with the textures of house and disco, a sound that became synonymous with the influential Ed Banger Records label.\n\nAs a foundational artist for Ed Banger, Mehdi played a crucial role in shaping the label's identity alongside founder Pedro Winter. His 2006 album, Lucky Boy, served as the label's debut, marking a significant moment in the evolution of the French Touch movement. Beyond his solo productions, Mehdi was a prolific collaborator, working with artists ranging from Daft Punk and Cassius to MC Solaar. His career, which spanned from 1996 until his untimely death in 2011, left an indelible mark on the global electronic music landscape, remembered for both his technical prowess and his infectious, genre-defying energy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Mehdi",
+      "title": "DJ Mehdi - Wikipedia"
+    },
+    {
+      "url": "https://www.edbangerrecords.com/artist/237092-dj-mehdi",
+      "title": "DJ MEHDI - Ed Banger records"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:25:02.810Z",
+  "type": "artist",
+  "editorial_bio": "A legendary French-Tunisian producer and DJ who masterfully bridged the worlds of hip-hop and house music as a key figure of the Ed Banger Records roster.",
+  "origin": "Asnières-sur-Seine, France",
+  "active_years": "1996-2011",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House"
+    },
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ed-banger-records",
+      "type": "label",
+      "name": "Ed Banger Records"
+    },
+    {
+      "slug": "label:because-music",
+      "type": "label",
+      "name": "Because Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-story-of-espion",
+      "type": "project",
+      "name": "The Story of Espion"
+    },
+    {
+      "slug": "project:lucky-boy",
+      "type": "project",
+      "name": "Lucky Boy"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lucky-boy",
+      "type": "track",
+      "name": "Lucky Boy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:pedro-winter",
+      "type": "artist",
+      "name": "Pedro Winter"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk"
+    },
+    {
+      "slug": "artist:cassius",
+      "type": "artist",
+      "name": "Cassius"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar"
+    },
+    {
+      "slug": "artist:chromeo",
+      "type": "artist",
+      "name": "Chromeo"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:ideal-j",
+      "type": "artist",
+      "name": "Idéal J"
+    },
+    {
+      "slug": "artist:mafia-k-1-fry",
+      "type": "artist",
+      "name": "Mafia K'1 Fry"
+    },
+    {
+      "slug": "artist:113",
+      "type": "artist",
+      "name": "113"
+    }
+  ]
+}

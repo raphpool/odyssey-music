@@ -1,0 +1,69 @@
+{
+  "slug": "label:capitol-records",
+  "name": "Capitol Records",
+  "editorial_article": "Capitol Records is a legendary American record label based in Los Angeles, California, that has played a central role in the global music industry since its founding in 1942. Known for its iconic tower headquarters, the label has been home to an expansive roster of artists across virtually every genre, cementing its status as a cornerstone of popular music history. Over the decades, Capitol Records has evolved through various corporate structures, including its integration into the EMI Group and its eventual role within the Capitol Music Group, which was formed in 2007 through a merger with Virgin Records. Despite these organizational shifts, the label remains a vital force in the music industry, maintaining a vast catalog that spans generations of influential recordings.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/654-Capitol-Records?srsltid=AfmBOorxqrmGhjhjWfXq7pqUYYM3cr1C3zQsrORLnPHaKqMfIaXQhrks"
+    },
+    {
+      "url": "https://www.discogs.com/label/126439-Capitol-Music-Group?srsltid=AfmBOooL7DjGQGSrNdlmUgUWBfhl1-xQS6Sv_5_EGX-RBHRfTxVLodwz"
+    },
+    {
+      "url": "https://www.discogs.com/label/376342-Capitol-Records-LLC?srsltid=AfmBOoqGXibs0Cu-6xSHShFs2tdz-DYMSTMaBzuUJCrRZC9JFw_DWyO0"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:32.135Z",
+  "type": "label",
+  "editorial_description": "Capitol Records is a historic American record label and a foundational pillar of the music industry, now operating as part of the Capitol Music Group.",
+  "founded": "1942",
+  "location": "Los Angeles, USA",
+  "founders": "Johnny Mercer, Buddy DeSylva, Glenn Wallichs",
+  "active_years": "1942-present",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
+      "type": "project",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band"
+    },
+    {
+      "slug": "project:pet-sounds",
+      "type": "project",
+      "name": "Pet Sounds"
+    }
+  ]
+}

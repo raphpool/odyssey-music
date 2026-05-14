@@ -1,0 +1,42 @@
+{
+  "slug": "track:mercy",
+  "name": "Mercy",
+  "editorial_article": "Mercy is a prominent track featured on the 1987 solo studio album of the same name by Steve Jones, the former guitarist of the Sex Pistols. Released during Jones's post-punk and hard rock career phase, the album showcases his transition into a polished, guitar-driven rock sound that defined his late 1980s output. The track serves as a centerpiece for the record, which also includes notable songs such as 'Give Me Up' and 'Pleasure and Pain.' The album was released on vinyl and represents a significant moment in Jones's discography, highlighting his ability to craft anthemic rock music independent of his earlier punk roots. The project remains a notable entry in the rock landscape of the late 1980s, reflecting the era's production styles and Jones's enduring influence as a songwriter and performer.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/432777-Steve-Jones-Mercy?srsltid=AfmBOopCDevTNTqnzY0OuZbyp6F__J9cBuIoHtpiz0k-j_bff9JZtYFW",
+      "title": "Steve Jones – Mercy | Releases - Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/2874732-Steve-Jones-Mercy?srsltid=AfmBOoqDZxTEPkqGTZYJPWK_H2DQxv9YwT3Q4xKqGc_Ud2B8WsIJuYph",
+      "title": "Steve Jones – Mercy – Vinyl (LP, Album), 1987 [r2874732] - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:34:53.686Z",
+  "type": "track",
+  "editorial_teaser": "Mercy is a standout track from Steve Jones's 1987 solo album, capturing the guitarist's transition into the hard rock sound of the late eighties.",
+  "year": "1987",
+  "artists": [
+    {
+      "slug": "artist:steve-jones",
+      "type": "artist",
+      "name": "Steve Jones"
+    }
+  ],
+  "project": {
+    "slug": "project:mercy",
+    "type": "project",
+    "name": "Mercy"
+  },
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

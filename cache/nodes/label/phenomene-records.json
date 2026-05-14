@@ -1,0 +1,59 @@
+{
+  "slug": "label:phenomene-records",
+  "name": "Phénomène Records",
+  "editorial_article": "Phénomène Records is a music label documented in the Discogs database. While the label shares a name with several musical acts, such as the project Phenomena and the artist Fénomène, Phénomène Records operates as a distinct entity within the recorded music landscape. The label's presence is primarily cataloged through its releases and contributions to the broader music industry, serving as a platform for various artists and projects. Despite the potential for confusion with similarly named artists, Phénomène Records maintains its own identity within the context of independent music distribution and discography documentation. The label remains a point of interest for collectors and researchers exploring niche musical outputs and the diverse landscape of international record labels.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/107345-Ph%C3%A9nom%C3%A8ne-Records?srsltid=AfmBOoor-feBgV8__UeywwLbrklmAjpXqcRaCayYIpDVz4ekNOWZpoNP"
+    },
+    {
+      "url": "https://www.discogs.com/artist/181492-Phenomena?srsltid=AfmBOorr3KWb0v2JvrjBQ-czwWeHXqh4IUSfCIuVxHEH3b5Il63-wgNN"
+    },
+    {
+      "url": "https://www.discogs.com/artist/379906-Phenomena-4?srsltid=AfmBOopKXLlot1uznv3-e1v_OyA4xD921lTLkEVOKvXCa3UoyMMC-56H"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:37:53.612Z",
+  "type": "label",
+  "editorial_description": "Phénomène Records is a music label documented within the Discogs database, serving as a platform for various musical releases.",
+  "founded": "2000",
+  "location": "France",
+  "founders": "Unknown",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:phenomena",
+      "type": "artist",
+      "name": "Phenomena"
+    },
+    {
+      "slug": "artist:fenomene",
+      "type": "artist",
+      "name": "Fénomène"
+    },
+    {
+      "slug": "artist:phenomena",
+      "type": "artist",
+      "name": "Phenomena (4)"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:phenomena",
+      "type": "project",
+      "name": "Phenomena"
+    },
+    {
+      "slug": "project:fenomene",
+      "type": "project",
+      "name": "Fénomène"
+    }
+  ]
+}

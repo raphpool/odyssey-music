@@ -1,0 +1,94 @@
+{
+  "slug": "artist:booba",
+  "name": "Booba",
+  "editorial_article": "Booba, born Élie Thitia Yaffa on December 9, 1976, in Boulogne-Billancourt, is a highly influential French rapper and singer who has played a central role in shaping the modern French hip-hop landscape. Known for his technical prowess and longevity, he has achieved significant commercial success, selling over 10 million album-equivalent units as of 2021. Throughout his career, he has consistently topped French charts, with seminal albums like 'Lunatic' and 'Trône' cementing his status as a titan of the genre. Beyond his music, Booba founded his own record label, Tallac Records, allowing him to maintain creative control and influence the industry from within. His discography spans over two decades, characterized by a transition from early underground roots to a polished, dominant mainstream presence. He remains a polarizing yet essential figure in French culture, often referred to by aliases such as B2OBA, B2O, and Le Duc de Boulogne, reflecting his enduring stature in the rap scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Booba_discography",
+      "title": "Booba discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:29:03.697Z",
+  "type": "artist",
+  "editorial_bio": "Booba is a seminal French rapper and label founder known for his massive commercial success and long-standing dominance in the French hip-hop scene.",
+  "origin": "Boulogne-Billancourt, France",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tallac-records",
+      "type": "label",
+      "name": "Tallac Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:temps-mort",
+      "type": "project",
+      "name": "Temps mort"
+    },
+    {
+      "slug": "project:pantheon",
+      "type": "project",
+      "name": "Panthéon"
+    },
+    {
+      "slug": "project:ouest-side",
+      "type": "project",
+      "name": "Ouest Side"
+    },
+    {
+      "slug": "project:0-9",
+      "type": "project",
+      "name": "0.9"
+    },
+    {
+      "slug": "project:lunatic",
+      "type": "project",
+      "name": "Lunatic"
+    },
+    {
+      "slug": "project:futur",
+      "type": "project",
+      "name": "Futur"
+    },
+    {
+      "slug": "project:d-u-c",
+      "type": "project",
+      "name": "D.U.C"
+    },
+    {
+      "slug": "project:nero-nemesis",
+      "type": "project",
+      "name": "Nero Nemesis"
+    },
+    {
+      "slug": "project:trone",
+      "type": "project",
+      "name": "Trône"
+    },
+    {
+      "slug": "project:ultra",
+      "type": "project",
+      "name": "Ultra"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:destinee",
+      "type": "track",
+      "name": "Destinée"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

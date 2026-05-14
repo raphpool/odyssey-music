@@ -1,0 +1,87 @@
+{
+  "slug": "genre:garage-punk",
+  "name": "Garage punk",
+  "editorial_article": "Garage punk is a rock music fusion genre that emerged within the indie rock underground during the late 1980s and early 1990s. It represents a stylistic synthesis of 1960s garage rock, stripped-down 1970s punk rock, and the raw energy of Detroit proto-punk. Unlike the more strictly retro-focused garage rock revival scene, garage punk bands often incorporated a diverse array of influences, including power pop, 1960s girl groups, hardcore punk, blues, early R&B, and surf rock. This eclectic approach allowed the genre to serve as a bridge between traditional garage sounds and more aggressive or experimental styles, eventually contributing to the development of stoner rock.\n\nWhile the term is frequently used to categorize this 1980s-90s hybrid, it has a complex etymological history. The phrase 'garage punk' was used as early as 1972 by Lenny Kaye in his liner notes for the compilation 'Nuggets' to describe the sound of 1960s bands like The Shadows of Knight. Consequently, the term is sometimes used interchangeably with 1960s garage rock, though in contemporary music discourse, it most specifically identifies the gritty, punk-infused indie rock movement that followed the initial wave of punk.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Garage_punk_(fusion_genre)",
+      "title": "Garage punk (fusion genre)"
+    },
+    {
+      "url": "https://ultimatepopculture.fandom.com/wiki/Garage_punk_(fusion_genre)",
+      "title": "Garage punk (fusion genre) | Ultimate Pop Culture Wiki"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:17:38.193Z",
+  "type": "genre",
+  "editorial_definition": "A fusion genre that emerged in the late 1980s, blending the raw aesthetic of 1960s garage rock with the intensity of 1970s punk and indie rock.",
+  "era": "late 1980s to early 1990s",
+  "origin": "United States, indie rock underground",
+  "sonic_markers": "High energy, distorted guitars, stripped-down production, raw vocals, aggressive tempo.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage rock"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock"
+    },
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-punk"
+    },
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner rock"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk"
+    },
+    {
+      "slug": "genre:power-pop",
+      "type": "genre",
+      "name": "Power pop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-shadows-of-knight",
+      "type": "artist",
+      "name": "The Shadows of Knight"
+    },
+    {
+      "slug": "artist:the-ardels",
+      "type": "artist",
+      "name": "The Ardels"
+    },
+    {
+      "slug": "artist:lenny-kaye",
+      "type": "artist",
+      "name": "Lenny Kaye"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:elektra-records",
+      "type": "label",
+      "name": "Elektra Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:piece-of",
+      "type": "track",
+      "name": "Piece Of"
+    }
+  ]
+}

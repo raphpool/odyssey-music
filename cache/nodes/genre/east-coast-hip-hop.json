@@ -1,0 +1,111 @@
+{
+  "slug": "genre:east-coast-hip-hop",
+  "name": "East Coast hip-hop",
+  "editorial_article": "East Coast hip-hop is a foundational regional subgenre of hip-hop music that emerged in New York City during the early 1970s. Widely recognized as the birthplace of the culture, the Bronx served as the epicenter where the genre first evolved from a blend of funk, disco, R&B, jazz, and blues influences. Unlike other regional styles that often emphasized dance-oriented production, East Coast hip-hop is historically distinguished by its focus on complex, intricate lyricism intended for attentive listening. This emphasis on wordplay and narrative depth became a hallmark of the genre, particularly during its golden age. Over the decades, the style expanded across the Northeastern United States, fostering diverse derivative forms such as boom bap, jazz rap, and hardcore hip-hop. The genre's cultural impact remains profound, having established the technical and thematic blueprints for hip-hop globally while maintaining a distinct identity defined by its urban roots and lyrical density.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/East_Coast_hip-hop",
+      "title": "East Coast hip-hop - Wikipedia"
+    },
+    {
+      "url": "https://hiphopdatabase.fandom.com/wiki/East_Coast_hip-hop",
+      "title": "East Coast hip-hop | Hip-Hop Database Wiki | Fandom"
+    },
+    {
+      "url": "https://hip-hop-music.fandom.com/wiki/East_Coast_hip_hop",
+      "title": "East Coast hip hop | Hip Hop Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:37:42.939Z",
+  "type": "genre",
+  "editorial_definition": "A foundational regional subgenre of hip-hop originating in 1970s New York City, characterized by a primary focus on complex lyricism and narrative depth.",
+  "era": "1970s to present",
+  "origin": "New York City, USA",
+  "sonic_markers": "Complex lyricism, boom bap percussion, jazz and soul sampling, emphasis on rhythmic flow over danceability.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast hip-hop"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom bap"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz rap"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore hip-hop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G."
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:wu-tang-clan",
+      "type": "artist",
+      "name": "Wu-Tang Clan"
+    },
+    {
+      "slug": "artist:rakim",
+      "type": "artist",
+      "name": "Rakim"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "Jay-Z"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    },
+    {
+      "slug": "label:bad-boy-records",
+      "type": "label",
+      "name": "Bad Boy Records"
+    },
+    {
+      "slug": "label:roc-a-fella-records",
+      "type": "label",
+      "name": "Roc-A-Fella Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:the-message",
+      "type": "track",
+      "name": "The Message"
+    },
+    {
+      "slug": "track:juicy",
+      "type": "track",
+      "name": "Juicy"
+    },
+    {
+      "slug": "track:n-y-state-of-mind",
+      "type": "track",
+      "name": "N.Y. State of Mind"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "slug": "genre:rap-francais",
+  "name": "Rap français",
+  "editorial_article": "Rap français, also known as French hip-hop, represents the distinct style of hip-hop music developed within French-speaking nations. Emerging as a significant cultural force, France has established itself as the second-largest hip-hop market globally, trailing only the United States. The genre is deeply rooted in the importation of American hip-hop culture, drawing heavy inspiration from the sounds, fashion, music videos, and aesthetics pioneered by New York artists. However, it has evolved into a unique artistic expression, with many observers noting that the French language is particularly well-suited for the rhythmic demands of rapping. Some artists have also cited the influence of French singer Renaud as a foundational element in the development of the local style. The growth and sustained prominence of the genre were further bolstered in the early 21st century by French ministry of culture regulations, which mandated that domestic radio stations broadcast a minimum of 40 percent French-language music, providing a vital platform for local talent to reach a wider audience.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/French_hip-hop",
+      "title": "French hip-hop - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/release/19891780-DJ-First-Mike-100-Rap-Fran%C3%A7ais?srsltid=AfmBOorCe54StK__lGDLNdehvJzvUU1fx8O9Pd7F8V9F8toO2mwYcxvK",
+      "title": "DJ First Mike – 100% Rap Français - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:26:37.242Z",
+  "type": "genre",
+  "editorial_definition": "A prominent style of hip-hop music originating in French-speaking countries, heavily influenced by American hip-hop culture while uniquely adapted to the French language.",
+  "era": "1980s to present",
+  "origin": "France and French-speaking countries",
+  "sonic_markers": "Varied BPM, often incorporating American production techniques with French lyrical delivery.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:thug-rap",
+      "type": "genre",
+      "name": "Thug Rap"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-first-mike",
+      "type": "artist",
+      "name": "DJ First Mike"
+    },
+    {
+      "slug": "artist:dj-krooger",
+      "type": "artist",
+      "name": "DJ Krooger"
+    },
+    {
+      "slug": "artist:renaud",
+      "type": "artist",
+      "name": "Renaud"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:wagram-music",
+      "type": "label",
+      "name": "Wagram Music"
+    },
+    {
+      "slug": "label:station-12-records",
+      "type": "label",
+      "name": "Station 12 Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:100-rap-francais",
+      "type": "track",
+      "name": "100% Rap Français"
+    }
+  ]
+}

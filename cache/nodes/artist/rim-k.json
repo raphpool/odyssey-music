@@ -1,0 +1,75 @@
+{
+  "slug": "artist:rim-k",
+  "name": "Rim'K",
+  "editorial_article": "Rim'K, born Abdelkrim Brahmi-Benalla on June 21, 1978, is a prominent French rapper of Algerio-Kabyle descent, raised in the Parisian suburb of Vitry-sur-Seine. He is widely recognized for his foundational role in the French hip-hop scene as a member of the influential group 113 and the collective Mafia K'1 Fry. His work frequently draws upon his cultural heritage, with his family's roots in the village of Barbacha, Algeria, serving as a recurring theme in his lyrical content. Throughout his career, Rim'K has maintained a significant presence in the industry, balancing his work within these iconic groups with a prolific solo career that has solidified his status as a key figure in French rap. His contributions to the genre have helped bridge the gap between traditional French hip-hop and North African musical influences, particularly through projects like the compilation Rim'k Presente Maghreb United. His discography includes notable solo albums such as Clandestino and Fantôme, showcasing his evolution as an artist while maintaining the gritty, authentic storytelling that characterized his early work in the Parisian suburbs.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/4713164-RimK?srsltid=AfmBOopddZ6en4GIHsXAKkmF9TtbpqLsZ1DaDe99QMgqj29RPPxl2znv"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:27:58.082Z",
+  "type": "artist",
+  "editorial_bio": "Rim'K is a celebrated French rapper and member of the groups 113 and Mafia K'1 Fry, known for blending his Algerio-Kabyle heritage with the sound of Parisian hip-hop.",
+  "origin": "Vitry-sur-Seine, France",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:small",
+      "type": "label",
+      "name": "Small"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:clandestino",
+      "type": "project",
+      "name": "Clandestino"
+    },
+    {
+      "slug": "project:fantome",
+      "type": "project",
+      "name": "Fantôme"
+    },
+    {
+      "slug": "project:rim-k-presente-maghreb-united",
+      "type": "project",
+      "name": "Rim'k Presente Maghreb United"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:clandestino",
+      "type": "track",
+      "name": "Clandestino"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:abdelkrim-brahmi",
+      "type": "artist",
+      "name": "Abdelkrim Brahmi"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:113",
+      "type": "artist",
+      "name": "113"
+    },
+    {
+      "slug": "artist:mafia-k-1-fry",
+      "type": "artist",
+      "name": "Mafia K'1 Fry"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "track:comme-une-reine",
+  "name": "Comme une reine",
+  "editorial_article": "Comme une reine is a notable musical composition associated with the rich legacy of Haitian bandleader Issa El-Saieh and his orchestra. Operating primarily between 1947 and 1956, El-Saieh established the La Belle Créole label to capture the vibrant sounds of the era, recording in diverse locations ranging from Port-au-Prince to New York and Havana. His work often blended local Haitian rhythms like Meringue and Congo with broader jazz-influenced orchestral arrangements, featuring prominent vocalists such as Joseph Trouillot. The production of these tracks was meticulously supervised by El-Saieh, who frequently collaborated with various musicians to form distinct ensembles under his direction. These recordings, originally issued on 78 rpm discs, remain a significant document of the mid-century Caribbean music scene, reflecting the cross-cultural exchanges that defined the period's artistic output.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Issa_El-Saieh_%26_His_Orchestra_discography",
+      "title": "Issa El-Saieh & His Orchestra discography"
+    },
+    {
+      "url": "https://www.discogs.com/fr/forum/thread/833056?srsltid=AfmBOopI6rUP7vSi4Xnd_CElZmReC6hs1HCAi6DN-qvYFmZC8rzEN-rc",
+      "title": "Le forum Discogs - Pierre Henry - Messe Pour Le Temps Présent"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:34:59.319Z",
+  "type": "track",
+  "editorial_teaser": "A classic composition from the mid-century era of Haitian music, recorded under the direction of the influential bandleader Issa El-Saieh.",
+  "year": "1947",
+  "artists": [
+    {
+      "slug": "artist:issa-el-saieh-and-his-orchestra",
+      "type": "artist",
+      "name": "Issa El-Saieh & His Orchestra"
+    }
+  ],
+  "project": {
+    "slug": "project:la-belle-creole",
+    "type": "project",
+    "name": "La Belle Créole"
+  },
+  "genres": [
+    {
+      "slug": "genre:meringue",
+      "type": "genre",
+      "name": "Meringue"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

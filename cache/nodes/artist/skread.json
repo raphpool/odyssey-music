@@ -1,0 +1,83 @@
+{
+  "slug": "artist:skread",
+  "name": "Skread",
+  "editorial_article": "Skread, born Matthieu Le Carpentier on September 22, 1981, in Hérouville-Saint-Clair, France, is a prominent French hip-hop record producer, composer, and musician. He has become a central figure in the French rap scene, known for his extensive production work for some of the country's most significant artists. In 2006, he co-founded the record label 7th Magnitude, which has served as a platform for his creative output and collaborations. His production style is deeply embedded in the evolution of French hip-hop throughout the 2000s, contributing to landmark projects for artists like Booba, Diam's, and Nessbeal. His work is characterized by a versatile approach to beat-making that has helped define the sound of urban music in France. Beyond his individual production credits, his influence is felt through his consistent output across numerous compilations and studio albums, cementing his reputation as a foundational architect of the modern French rap sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Skread",
+      "title": "Skread - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Skread_production_discography",
+      "title": "Skread production discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:28:29.597Z",
+  "type": "artist",
+  "editorial_bio": "Matthieu Le Carpentier, known as Skread, is a highly influential French hip-hop producer and co-founder of the record label 7th Magnitude.",
+  "origin": "Hérouville-Saint-Clair, France",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:7th-magnitude",
+      "type": "label",
+      "name": "7th Magnitude"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:autopsie-vol-1",
+      "type": "project",
+      "name": "Autopsie, Vol. 1"
+    },
+    {
+      "slug": "project:dans-ma-bulle",
+      "type": "project",
+      "name": "Dans ma bulle"
+    },
+    {
+      "slug": "project:la-melodie-des-briques",
+      "type": "project",
+      "name": "La Mélodie des briques"
+    },
+    {
+      "slug": "project:starting-blocks",
+      "type": "project",
+      "name": "Starting Blocks"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:la-hass",
+      "type": "track",
+      "name": "La Hass"
+    },
+    {
+      "slug": "track:en-mode-2",
+      "type": "track",
+      "name": "En mode 2"
+    },
+    {
+      "slug": "track:tallac",
+      "type": "track",
+      "name": "Tallac"
+    },
+    {
+      "slug": "track:petite-banlieusarde",
+      "type": "track",
+      "name": "Petite banlieusarde"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

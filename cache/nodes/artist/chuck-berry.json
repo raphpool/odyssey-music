@@ -1,0 +1,100 @@
+{
+  "slug": "artist:chuck-berry",
+  "name": "Chuck Berry",
+  "editorial_article": "Chuck Berry was a foundational American rock and roll musician whose career spanned over six decades, beginning with his breakthrough in 1955. Recording primarily for Chess Records during his most prolific era in the 1950s and early 1960s, he crafted the blueprint for rock music with iconic hits such as Maybellene, Roll Over Beethoven, Sweet Little Sixteen, and Johnny B. Goode. His influence was so profound that the British Invasion of the 1960s helped rejuvenate his career, cementing his status as a central figure in the development of the genre. Despite legal challenges that interrupted his output in the early 1960s, Berry remained a persistent force in music, eventually achieving his only number-one single, My Ding-a-Ling, while signed to Chess in the 1970s. His recording life concluded with the posthumous release of his final studio album, Chuck, in 2017.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chuck_Berry_discography",
+      "title": "Chuck Berry discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:13.142Z",
+  "type": "artist",
+  "editorial_bio": "Chuck Berry was an iconic American musician who defined the foundations of rock and roll through his prolific songwriting and guitar performance.",
+  "origin": "United States",
+  "active_years": "1955-2017",
+  "genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:chess-records",
+      "type": "label",
+      "name": "Chess Records"
+    },
+    {
+      "slug": "label:mercury-records",
+      "type": "label",
+      "name": "Mercury Records"
+    },
+    {
+      "slug": "label:atco-records",
+      "type": "label",
+      "name": "Atco Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-london-chuck-berry-sessions",
+      "type": "project",
+      "name": "The London Chuck Berry Sessions"
+    },
+    {
+      "slug": "project:rockit",
+      "type": "project",
+      "name": "Rockit"
+    },
+    {
+      "slug": "project:chuck",
+      "type": "project",
+      "name": "Chuck"
+    },
+    {
+      "slug": "project:chuck-berry-on-stage",
+      "type": "project",
+      "name": "Chuck Berry On Stage"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:maybellene",
+      "type": "track",
+      "name": "Maybellene"
+    },
+    {
+      "slug": "track:roll-over-beethoven",
+      "type": "track",
+      "name": "Roll Over Beethoven"
+    },
+    {
+      "slug": "track:sweet-little-sixteen",
+      "type": "track",
+      "name": "Sweet Little Sixteen"
+    },
+    {
+      "slug": "track:johnny-b-goode",
+      "type": "track",
+      "name": "Johnny B. Goode"
+    },
+    {
+      "slug": "track:my-ding-a-ling",
+      "type": "track",
+      "name": "My Ding-a-Ling"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

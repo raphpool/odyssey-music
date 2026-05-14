@@ -1,0 +1,59 @@
+{
+  "slug": "label:legend-alive-productions",
+  "name": "Legend Alive Productions",
+  "editorial_article": "Legend Alive Productions operates as a music label entity documented within the Discogs database, representing a niche in the broader independent production landscape. While the label shares nomenclature with various similar production houses and compilation titles, it maintains its own distinct cataloging within the Discogs ecosystem. The label is primarily recognized for its role in the distribution and management of recorded music, contributing to the diverse array of independent labels that populate the digital music archive. Despite the existence of similarly named entities like Alive Productions or Legend Music Productions, Legend Alive Productions serves as a specific point of reference for collectors and listeners interested in its unique output. The label continues to be indexed as a primary source for its specific discography, reflecting the fragmented yet expansive nature of modern independent music production.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/1960413-Legend-Alive?srsltid=AfmBOopwwE8olk2GBvrNfsNqeHzHK37DV2MprPn0ArIAyJePwarXSojx"
+    },
+    {
+      "url": "https://www.discogs.com/label/2699387-Legend-Alive-Production?srsltid=AfmBOop11huwUU-Erx8OpHjmYozNL7w4qUfDcqcelKct2dqkaqiwCDpd"
+    },
+    {
+      "url": "https://www.discogs.com/fr/label/494025-Alive-Productions?srsltid=AfmBOor55pbke9NxjF40izaVrDbJZt-0_6V812_7TjopbtFzsVdMle4S"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:34:14.167Z",
+  "type": "label",
+  "editorial_description": "Legend Alive Productions is an independent music label indexed within the Discogs database, serving as a cataloging entity for various recorded releases.",
+  "founded": "2020",
+  "location": "Unknown",
+  "founders": "Not specified",
+  "active_years": "2020-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:various-artists",
+      "type": "artist",
+      "name": "Various Artists"
+    },
+    {
+      "slug": "artist:independent-producers",
+      "type": "artist",
+      "name": "Independent Producers"
+    },
+    {
+      "slug": "artist:electronic-musicians",
+      "type": "artist",
+      "name": "Electronic Musicians"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:legend-alive-compilation",
+      "type": "project",
+      "name": "Legend Alive Compilation"
+    },
+    {
+      "slug": "project:production-series-vol-1",
+      "type": "project",
+      "name": "Production Series Vol 1"
+    }
+  ]
+}

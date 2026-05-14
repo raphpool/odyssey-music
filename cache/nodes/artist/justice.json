@@ -1,0 +1,90 @@
+{
+  "slug": "artist:justice",
+  "name": "Justice",
+  "editorial_article": "Justice is a prominent French electronic music duo formed by Gaspard Augé and Xavier de Rosnay. Emerging from the vibrant French dance scene, the duo is widely recognized for their distinct production style that seamlessly incorporates heavy rock and disco influences into electronic compositions. Since their inception, they have become a staple of modern electronic music, known for both their high-energy studio albums and their dynamic live performances. Their work often bridges the gap between club-oriented dance music and rock-inspired aesthetics, earning them a significant following globally. Beyond their own studio output, Justice has established a reputation for their extensive remix work, having reinterpreted tracks for a diverse array of artists ranging from Daft Punk and Franz Ferdinand to Lenny Kravitz and Frank Ocean, further cementing their status as influential figures in contemporary electronic production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Justice_discography",
+      "title": "Justice discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:24:41.134Z",
+  "type": "artist",
+  "editorial_bio": "Justice is a French electronic music duo consisting of Gaspard Augé and Xavier de Rosnay, known for blending rock and disco influences into their electronic sound.",
+  "origin": "France",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:electronic-music",
+      "type": "genre",
+      "name": "Electronic music"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ed-banger-records",
+      "type": "label",
+      "name": "Ed Banger Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cross",
+      "type": "project",
+      "name": "Cross"
+    },
+    {
+      "slug": "project:audio-video-disco",
+      "type": "project",
+      "name": "Audio, Video, Disco"
+    },
+    {
+      "slug": "project:woman",
+      "type": "project",
+      "name": "Woman"
+    },
+    {
+      "slug": "project:hyperdrama",
+      "type": "project",
+      "name": "Hyperdrama"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:d-a-n-c-e",
+      "type": "track",
+      "name": "D.A.N.C.E."
+    },
+    {
+      "slug": "track:waters-of-nazareth",
+      "type": "track",
+      "name": "Waters of Nazareth"
+    },
+    {
+      "slug": "track:dvno",
+      "type": "track",
+      "name": "DVNO"
+    },
+    {
+      "slug": "track:stress",
+      "type": "track",
+      "name": "Stress"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:gaspard-auge",
+      "type": "artist",
+      "name": "Gaspard Augé"
+    },
+    {
+      "slug": "artist:xavier-de-rosnay",
+      "type": "artist",
+      "name": "Xavier de Rosnay"
+    }
+  ]
+}

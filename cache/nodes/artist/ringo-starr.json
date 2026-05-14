@@ -1,0 +1,91 @@
+{
+  "slug": "artist:ringo-starr",
+  "name": "Ringo Starr",
+  "editorial_article": "Sir Richard Starkey, professionally known as Ringo Starr, is an iconic English musician and songwriter who rose to global prominence as the drummer for The Beatles. Born in Liverpool in 1940, Starr's rhythmic contributions and distinctive personality became integral to the band's sound and cultural impact during the 1960s. Beyond his tenure with the Fab Four, he has maintained a prolific solo career, exploring rock, pop, and country influences while fronting his long-running touring ensemble, Ringo Starr & His All-Starr Band. Known for his steady drumming style and occasional lead vocal turns on tracks like 'Yellow Submarine', Starr remains a vital figure in popular music history, continuing to record and perform into the 21st century. His career spans over six decades, encompassing significant work as a solo artist and collaborator with various high-profile musicians.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ringo_Starr",
+      "title": "Ringo Starr - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:01.194Z",
+  "type": "artist",
+  "editorial_bio": "Ringo Starr is a legendary English musician and drummer who achieved international fame as a member of The Beatles before embarking on a successful solo career.",
+  "origin": "Liverpool, England",
+  "active_years": "1957-present",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:country",
+      "type": "genre",
+      "name": "Country"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:parlophone",
+      "type": "label",
+      "name": "Parlophone"
+    },
+    {
+      "slug": "label:apple",
+      "type": "label",
+      "name": "Apple"
+    },
+    {
+      "slug": "label:capitol",
+      "type": "label",
+      "name": "Capitol"
+    },
+    {
+      "slug": "label:atlantic",
+      "type": "label",
+      "name": "Atlantic"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:ringo",
+      "type": "project",
+      "name": "Ringo"
+    },
+    {
+      "slug": "project:ringo-s-rotogravure",
+      "type": "project",
+      "name": "Ringo's Rotogravure"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:yellow-submarine",
+      "type": "track",
+      "name": "Yellow Submarine"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:george-harrison",
+      "type": "artist",
+      "name": "George Harrison"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

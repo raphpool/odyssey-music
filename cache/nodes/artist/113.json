@@ -1,0 +1,90 @@
+{
+  "slug": "artist:113",
+  "name": "113",
+  "editorial_article": "113, often referred to as \"The One Thirteen,\" is a post-punk band based in Leeds, England. Formed in 2022, the group quickly gained a reputation within the local music scene for their high-energy live performances. The band is fronted by lead singer and guitarist Jack Grant, who leads a lineup that emphasizes a raw, guitar-driven sound characteristic of the contemporary post-punk revival. After establishing their presence through a series of digital single releases, the band expanded their discography in March 2025 with the release of their debut EP, titled To Combat Regret. The group has maintained a steady trajectory since their formation, utilizing platforms like Bandcamp to distribute their music to a growing audience while continuing to perform live.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/15800784-The-113?srsltid=AfmBOophLFWOx3jMdC8o-voUcLFei0J0o2IRDjHLK7MaDsTxuHwD9KN_",
+      "title": "The 113"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:25:39.720Z",
+  "type": "artist",
+  "editorial_bio": "A Leeds-based post-punk band formed in 2022, known for their energetic live performances and their 2025 debut EP, To Combat Regret.",
+  "origin": "Leeds, England",
+  "active_years": "2022-present",
+  "genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:independent",
+      "type": "label",
+      "name": "Independent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:to-combat-regret",
+      "type": "project",
+      "name": "To Combat Regret"
+    },
+    {
+      "slug": "project:digital-singles",
+      "type": "project",
+      "name": "Digital Singles"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:to-combat-regret",
+      "type": "track",
+      "name": "To Combat Regret"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jack-grant",
+      "type": "artist",
+      "name": "Jack Grant"
+    },
+    {
+      "slug": "artist:josh-matthias",
+      "type": "artist",
+      "name": "Josh Matthias"
+    },
+    {
+      "slug": "artist:jack-picton",
+      "type": "artist",
+      "name": "Jack Picton"
+    },
+    {
+      "slug": "artist:louis-mcloughlin",
+      "type": "artist",
+      "name": "Louis McLoughlin"
+    },
+    {
+      "slug": "artist:tom-mayor",
+      "type": "artist",
+      "name": "Tom Mayor"
+    },
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi"
+    },
+    {
+      "slug": "artist:rim-k",
+      "type": "artist",
+      "name": "Rim'K"
+    }
+  ]
+}

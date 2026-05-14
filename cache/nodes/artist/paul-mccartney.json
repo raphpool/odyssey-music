@@ -1,0 +1,145 @@
+{
+  "slug": "artist:paul-mccartney",
+  "name": "Paul McCartney",
+  "editorial_article": "Paul McCartney is an English singer, songwriter, and multi-instrumentalist who achieved global fame as a founding member of the Beatles before embarking on a highly successful solo career. Following the dissolution of the Beatles, he released his debut solo album, McCartney, in 1970. Shortly thereafter, he formed the band Wings alongside his first wife, Linda McCartney, and guitarist Denny Laine. Under his leadership, Wings became one of the most prominent musical acts of the 1970s, producing numerous chart-topping hits such as Band on the Run, Silly Love Songs, and Mull of Kintyre. McCartney resumed his solo career in 1980 and has remained an active touring and recording artist for decades, maintaining a prolific output that spans studio albums, classical compositions, and electronica projects. He holds the distinction of being the first artist to reach number one on Billboard charts under five different names, including his work with the Beatles, Wings, and various collaborations with artists like Stevie Wonder and Michael Jackson.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Paul_McCartney_discography",
+      "title": "Paul McCartney discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/McCartney_(album)",
+      "title": "McCartney (album) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:57.208Z",
+  "type": "artist",
+  "editorial_bio": "Paul McCartney is a legendary singer-songwriter and former member of the Beatles who achieved immense success as a solo artist and leader of the band Wings.",
+  "origin": "United Kingdom",
+  "active_years": "1970-present",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:apple-records",
+      "type": "label",
+      "name": "Apple Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mccartney",
+      "type": "project",
+      "name": "McCartney"
+    },
+    {
+      "slug": "project:band-on-the-run",
+      "type": "project",
+      "name": "Band on the Run"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-love",
+      "type": "track",
+      "name": "My Love"
+    },
+    {
+      "slug": "track:band-on-the-run",
+      "type": "track",
+      "name": "Band on the Run"
+    },
+    {
+      "slug": "track:listen-to-what-the-man-said",
+      "type": "track",
+      "name": "Listen to What the Man Said"
+    },
+    {
+      "slug": "track:silly-love-songs",
+      "type": "track",
+      "name": "Silly Love Songs"
+    },
+    {
+      "slug": "track:mull-of-kintyre",
+      "type": "track",
+      "name": "Mull of Kintyre"
+    },
+    {
+      "slug": "track:ebony-and-ivory",
+      "type": "track",
+      "name": "Ebony and Ivory"
+    },
+    {
+      "slug": "track:say-say-say",
+      "type": "track",
+      "name": "Say Say Say"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:linda-mccartney",
+      "type": "artist",
+      "name": "Linda McCartney"
+    },
+    {
+      "slug": "artist:denny-laine",
+      "type": "artist",
+      "name": "Denny Laine"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney"
+    },
+    {
+      "slug": "artist:linda-mccartney",
+      "type": "artist",
+      "name": "Linda McCartney"
+    },
+    {
+      "slug": "artist:denny-laine",
+      "type": "artist",
+      "name": "Denny Laine"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

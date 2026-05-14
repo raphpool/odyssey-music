@@ -1,0 +1,100 @@
+{
+  "slug": "artist:buddy-holly",
+  "name": "Buddy Holly",
+  "editorial_article": "Buddy Holly was an influential American singer-songwriter and a pioneer of rock and roll who rose to prominence in the late 1950s. Known for his distinctive vocal style and innovative use of the studio, he recorded extensively with his backing band, The Crickets, before his life was tragically cut short in a 1959 plane crash. His work helped define the rock and roll sound of the era, blending elements of rockabilly, country, and pop into a cohesive and enduring musical legacy. During his short career, Holly released three studio albums, including his self-titled 1958 debut, and a string of successful singles that continue to influence musicians across generations. Following his death, his producer Norman Petty oversaw the release of numerous archival recordings, often utilizing overdubbing techniques to complete unfinished demos and alternate takes. While these posthumous releases varied in quality, they ensured that Holly's music remained in the public consciousness for decades, eventually leading to comprehensive collections like the 2009 box set, The Complete Studio Recordings.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Buddy_Holly_discography",
+      "title": "Buddy Holly discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:08.801Z",
+  "type": "artist",
+  "editorial_bio": "Buddy Holly was a pivotal rock and roll pioneer whose brief but prolific career in the late 1950s left an indelible mark on popular music.",
+  "origin": "United States",
+  "active_years": "1954-1959",
+  "genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    },
+    {
+      "slug": "genre:rockabilly",
+      "type": "genre",
+      "name": "Rockabilly"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:coral-records",
+      "type": "label",
+      "name": "Coral Records"
+    },
+    {
+      "slug": "label:brunswick-records",
+      "type": "label",
+      "name": "Brunswick Records"
+    },
+    {
+      "slug": "label:decca-records",
+      "type": "label",
+      "name": "Decca Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:buddy-holly",
+      "type": "project",
+      "name": "Buddy Holly"
+    },
+    {
+      "slug": "project:the-chirping-crickets",
+      "type": "project",
+      "name": "The Chirping Crickets"
+    },
+    {
+      "slug": "project:that-ll-be-the-day",
+      "type": "project",
+      "name": "That'll Be the Day"
+    },
+    {
+      "slug": "project:giant",
+      "type": "project",
+      "name": "Giant"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:peggy-sue-got-married",
+      "type": "track",
+      "name": "Peggy Sue Got Married"
+    },
+    {
+      "slug": "track:crying-waiting-hoping",
+      "type": "track",
+      "name": "Crying, Waiting, Hoping"
+    },
+    {
+      "slug": "track:love-is-strange",
+      "type": "track",
+      "name": "Love Is Strange"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-crickets",
+      "type": "artist",
+      "name": "The Crickets"
+    }
+  ]
+}

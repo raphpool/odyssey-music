@@ -1,0 +1,73 @@
+{
+  "slug": "artist:jay-z",
+  "name": "Jay-Z",
+  "editorial_article": "Jay-Z is an influential American rapper, songwriter, producer, and businessman born in Brooklyn, New York, on December 4, 1969. Rising to prominence as a central figure in hip-hop, he established himself as both a prolific artist and a significant entrepreneur in the music industry. In 1994, he co-founded Roc-A-Fella Records, a label that became instrumental in shaping his career and the trajectory of East Coast rap. Throughout his career, Jay-Z has maintained a consistent output, releasing thirteen solo studio albums alongside various collaborative projects, live recordings, and compilations. His work is characterized by intricate lyricism and a keen sense of commercial viability, cementing his status as one of the most successful artists in modern music history. Beyond his artistic contributions, his role as a label executive and business mogul has had a lasting impact on the industry, bridging the gap between hip-hop culture and global corporate enterprise.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jay-Z_albums_discography",
+      "title": "Jay-Z albums discography - Wikipedia"
+    },
+    {
+      "url": "https://jayz.fandom.com/wiki/Discography",
+      "title": "Discography | Jay-Z Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:19:50.744Z",
+  "type": "artist",
+  "editorial_bio": "Jay-Z is an iconic American rapper, songwriter, and producer from Brooklyn who co-founded Roc-A-Fella Records in 1994.",
+  "origin": "Brooklyn, New York",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:roc-a-fella-records",
+      "type": "label",
+      "name": "Roc-A-Fella Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:reasonable-doubt",
+      "type": "project",
+      "name": "Reasonable Doubt"
+    },
+    {
+      "slug": "project:the-blueprint",
+      "type": "project",
+      "name": "The Blueprint"
+    },
+    {
+      "slug": "project:the-black-album",
+      "type": "project",
+      "name": "The Black Album"
+    },
+    {
+      "slug": "project:watch-the-throne",
+      "type": "project",
+      "name": "Watch the Throne"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:empire-state-of-mind",
+      "type": "track",
+      "name": "Empire State of Mind"
+    },
+    {
+      "slug": "track:99-problems",
+      "type": "track",
+      "name": "99 Problems"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

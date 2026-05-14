@@ -1,0 +1,114 @@
+{
+  "slug": "artist:a-tribe-called-quest",
+  "name": "A Tribe Called Quest",
+  "editorial_article": "A Tribe Called Quest was an influential American hip-hop group formed in Queens, New York City, in 1985. Comprising Q-Tip, Phife Dawg, Ali Shaheed Muhammad, and Jarobi White, the group became central figures in the Native Tongues collective. They are widely recognized as pioneers of alternative hip-hop and jazz rap, blending sophisticated, jazz-infused production with intelligent, rhythmic lyricism. Critics have frequently cited them as one of the most artistic and significant acts in the history of hip-hop, with their 1990 debut, People's Instinctive Travels and the Paths of Rhythm, earning the first five-mic rating in The Source magazine.\n\nThe group's evolution throughout the 1990s helped define the sound of East Coast hip-hop. Albums like The Low End Theory and Midnight Marauders are considered landmark releases that bridged the gap between jazz and rap, achieving platinum status and critical acclaim. After a period of inactivity, the group reunited for their final studio album, We Got It from Here... Thank You 4 Your Service, released in 2016. Featuring posthumous contributions from Phife Dawg, the project served as a poignant conclusion to their storied career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/A_Tribe_Called_Quest",
+      "title": "A Tribe Called Quest - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_Tribe_Called_Quest_discography",
+      "title": "A Tribe Called Quest discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:23:26.358Z",
+  "type": "artist",
+  "editorial_bio": "A seminal American hip-hop group from Queens, New York, known for pioneering the jazz rap and alternative hip-hop movements.",
+  "origin": "Queens, New York City",
+  "active_years": "1985-1998, 2006-2013, 2015-2017",
+  "genres": [
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast hip-hop"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "jazz rap"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "alternative hip-hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jive-records",
+      "type": "label",
+      "name": "Jive Records"
+    },
+    {
+      "slug": "label:epic-records",
+      "type": "label",
+      "name": "Epic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:people-s-instinctive-travels-and-the-paths-of-rhythm",
+      "type": "project",
+      "name": "People's Instinctive Travels and the Paths of Rhythm"
+    },
+    {
+      "slug": "project:the-low-end-theory",
+      "type": "project",
+      "name": "The Low End Theory"
+    },
+    {
+      "slug": "project:midnight-marauders",
+      "type": "project",
+      "name": "Midnight Marauders"
+    },
+    {
+      "slug": "project:beats-rhymes-and-life",
+      "type": "project",
+      "name": "Beats, Rhymes and Life"
+    },
+    {
+      "slug": "project:the-love-movement",
+      "type": "project",
+      "name": "The Love Movement"
+    },
+    {
+      "slug": "project:we-got-it-from-here-thank-you-4-your-service",
+      "type": "project",
+      "name": "We Got It from Here... Thank You 4 Your Service"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:find-a-way",
+      "type": "track",
+      "name": "Find A Way"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:q-tip",
+      "type": "artist",
+      "name": "Q-Tip"
+    },
+    {
+      "slug": "artist:phife-dawg",
+      "type": "artist",
+      "name": "Phife Dawg"
+    },
+    {
+      "slug": "artist:ali-shaheed-muhammad",
+      "type": "artist",
+      "name": "Ali Shaheed Muhammad"
+    },
+    {
+      "slug": "artist:jarobi-white",
+      "type": "artist",
+      "name": "Jarobi White"
+    }
+  ]
+}

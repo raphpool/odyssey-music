@@ -1,0 +1,80 @@
+{
+  "slug": "artist:talib-kweli",
+  "name": "Talib Kweli",
+  "editorial_article": "Talib Kweli is a prominent American hip hop artist known for his contributions to the conscious hip hop movement. Emerging from the underground scene, he has built a career defined by lyrical depth and social commentary. His solo work, most notably the 2002 album Quality, cemented his reputation as a skilled lyricist capable of balancing technical prowess with meaningful thematic content. Throughout his career, he has maintained a consistent presence in the industry, collaborating with a diverse range of producers and artists to push the boundaries of the genre.\n\nBeyond his solo efforts, Kweli is recognized for his collaborative projects, including the notable release Liberation with producer Madlib. His work often explores the intersection of personal narrative and broader societal issues, reflecting his commitment to the craft of hip hop as a medium for expression. As a fixture of the scene, he continues to influence the landscape of independent rap, maintaining a legacy built on artistic integrity and consistent output.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/39908-Talib-Kweli?srsltid=AfmBOoo_EZeX5gype7I9hfjSlGKBr-6JLanP8qnDzRZFse42-h-LfqiW"
+    },
+    {
+      "url": "https://www.discogs.com/artist/1132771-Talib-Kweli-Greene?srsltid=AfmBOoryU2uZLA8nUJHBcgdnxhQDSavpxNvzcGlI33KHtq5XE6CphQhN"
+    },
+    {
+      "url": "https://www.discogs.com/release/15985514-Talib-Kweli-Quality?srsltid=AfmBOook4fWab-b69Z-58aeZwZVQVaGZQkCSsi9OokOuHOdesJ7CiwCu"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:21:26.309Z",
+  "type": "artist",
+  "editorial_bio": "Talib Kweli is an influential American hip hop artist celebrated for his conscious lyrical style and significant contributions to the underground rap scene.",
+  "origin": "United States",
+  "active_years": "1997-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious Hip Hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rawkus-records",
+      "type": "label",
+      "name": "Rawkus Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:quality",
+      "type": "project",
+      "name": "Quality"
+    },
+    {
+      "slug": "project:liberation",
+      "type": "project",
+      "name": "Liberation"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:get-by",
+      "type": "track",
+      "name": "Get By"
+    },
+    {
+      "slug": "track:rush",
+      "type": "track",
+      "name": "Rush"
+    },
+    {
+      "slug": "track:gun-music",
+      "type": "track",
+      "name": "Gun Music"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:madlib",
+      "type": "artist",
+      "name": "Madlib"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

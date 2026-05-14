@@ -1,0 +1,76 @@
+{
+  "slug": "genre:hip-hop-francais",
+  "name": "Hip-hop français",
+  "editorial_article": "Hip-hop français, commonly referred to as rap français, emerged as a vibrant and influential cultural movement in France during the late 1980s. Rooted in the broader global hip-hop phenomenon, the genre quickly developed a distinct identity characterized by its lyrical complexity, social commentary, and unique linguistic fusion. Throughout the 1990s and into the 2000s, it evolved from an underground subculture into a dominant force in the French music industry, capturing the realities of urban life and the diverse experiences of the French population. The genre is noted for its ability to blend traditional hip-hop production techniques with French poetic traditions and multicultural influences, creating a soundscape that is both rhythmically driving and intellectually engaging. Over the decades, it has solidified its place as a cornerstone of modern French music, continuously evolving through various regional scenes and artistic innovations.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/938225-Various-LHip-Hop-Francais?srsltid=AfmBOopI6XU7ekE8EomlSKLKFsQFopUc_5VDWpPJfxGOCrhIf6nu9DLk",
+      "title": "L'Hip-Hop Francais – CD (Compilation), 2006 [r938225]"
+    },
+    {
+      "url": "https://www.discogs.com/release/11985187-Various-Le-Flow-The-Definitive-French-Hip-Hop-Compilation?srsltid=AfmBOoryuB4ZZ7kJJA3xAaPzRJUgh-88EpLjzVXA__LYHlquGYO9mv3O",
+      "title": "Le Flow - The Definitive French Hip Hop Compilation"
+    },
+    {
+      "url": "https://www.discogs.com/release/5809036-Various-LHip-Hop%C3%A9e-La-Grande-%C3%89pop%C3%A9e-Du-Rap-Fran%C3%A7ais-Vol1?srsltid=AfmBOorP38xvx6WFx1fnMNJQk7Dkx4dLUl1gq_Zi8_ykP4rjXT_duVgJ",
+      "title": "L'Hip-Hopée (La Grande Épopée Du Rap Français Vol.1)"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:30:47.780Z",
+  "type": "genre",
+  "editorial_definition": "A distinct and influential genre of hip-hop music originating in France, characterized by its lyrical depth and significant role in contemporary French culture.",
+  "era": "late 1980s to present",
+  "origin": "France, urban centers",
+  "sonic_markers": "Varied tempos, heavy use of sampling, lyrical focus on social commentary, and rhythmic wordplay.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop"
+    },
+    {
+      "slug": "genre:rap",
+      "type": "genre",
+      "name": "Rap"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM"
+    },
+    {
+      "slug": "artist:ntm",
+      "type": "artist",
+      "name": "NTM"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:delabel",
+      "type": "label",
+      "name": "Delabel"
+    },
+    {
+      "slug": "label:polydor",
+      "type": "label",
+      "name": "Polydor"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:bouge-de-la",
+      "type": "track",
+      "name": "Bouge de là"
+    }
+  ]
+}

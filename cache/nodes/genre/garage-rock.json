@@ -1,0 +1,86 @@
+{
+  "slug": "genre:garage-rock",
+  "name": "Garage rock",
+  "editorial_article": "Garage rock is a raw and energetic style of rock music that emerged as a prominent cultural force during the mid-1960s, primarily within the United States and Canada. Characterized by its unpolished, aggressive delivery and unsophisticated lyrical approach, the genre is defined by the use of distorted guitars and a DIY aesthetic that captured the spirit of amateur musicians playing in their garages. This stripped-back sound served as a vital precursor to the development of psychedelic rock and later punk movements, emphasizing immediacy and raw power over technical precision. While its initial peak occurred in the 1960s, the genre's influence saw a significant resurgence in the early 2000s, proving the enduring appeal of its visceral, guitar-driven sound. The style remains a foundational element of rock history, celebrated for its directness and its role in democratizing rock and roll performance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Garage_rock",
+      "title": "Garage rock - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/garage+rock?srsltid=AfmBOoovoc4teQsQ54rTcU6X5R8Ki3iuUO6MuPigwQjGCqYFskIHXZe6",
+      "title": "Garage Rock Music | Discogs"
+    },
+    {
+      "url": "https://simple.wikipedia.org/wiki/Garage_rock",
+      "title": "Garage rock - Simple English Wikipedia, the free encyclopedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:16:05.842Z",
+  "type": "genre",
+  "editorial_definition": "A raw and energetic style of rock music characterized by distorted guitars, aggressive delivery, and a DIY aesthetic that gained popularity in the mid-1960s.",
+  "era": "mid-1960s to early 2000s",
+  "origin": "United States and Canada",
+  "sonic_markers": "Distorted guitars, raw vocal delivery, mid-tempo, amateur production.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock"
+    },
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-sonics",
+      "type": "artist",
+      "name": "The Sonics"
+    },
+    {
+      "slug": "artist:the-standells",
+      "type": "artist",
+      "name": "The Standells"
+    },
+    {
+      "slug": "artist:the-kingsmen",
+      "type": "artist",
+      "name": "The Kingsmen"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:norton-records",
+      "type": "label",
+      "name": "Norton Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:louie-louie",
+      "type": "track",
+      "name": "Louie Louie"
+    },
+    {
+      "slug": "track:dirty-water",
+      "type": "track",
+      "name": "Dirty Water"
+    }
+  ]
+}

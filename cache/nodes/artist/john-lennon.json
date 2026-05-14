@@ -1,0 +1,90 @@
+{
+  "slug": "artist:john-lennon",
+  "name": "John Lennon",
+  "editorial_article": "John Lennon was an English singer, songwriter, and peace activist who achieved global recognition as a founding member, co-lead vocalist, and rhythm guitarist of The Beatles. Following the band's dissolution in 1970, Lennon embarked on a prolific solo career, initially exploring avant-garde soundscapes and experimental techniques alongside Yoko Ono before transitioning into more traditional songcraft. His solo work is characterized by raw emotional honesty and political commentary, most notably on his seminal 1971 album, Imagine. After a period of self-imposed retirement in the mid-1970s to focus on his family, Lennon returned to the studio for the 1980 release Double Fantasy, only to be tragically murdered shortly thereafter. His legacy as a cultural icon and songwriter remains foundational to the history of popular music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/John_Lennon_discography",
+      "title": "John Lennon discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:48.879Z",
+  "type": "artist",
+  "editorial_bio": "John Lennon was a legendary English musician and songwriter who rose to fame as a co-founder of The Beatles before establishing a profound solo career.",
+  "origin": "England",
+  "active_years": "1968-1980",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:apple",
+      "type": "label",
+      "name": "Apple"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:john-lennon-plastic-ono-band",
+      "type": "project",
+      "name": "John Lennon/Plastic Ono Band"
+    },
+    {
+      "slug": "project:imagine",
+      "type": "project",
+      "name": "Imagine"
+    },
+    {
+      "slug": "project:some-time-in-new-york-city",
+      "type": "project",
+      "name": "Some Time in New York City"
+    },
+    {
+      "slug": "project:mind-games",
+      "type": "project",
+      "name": "Mind Games"
+    },
+    {
+      "slug": "project:walls-and-bridges",
+      "type": "project",
+      "name": "Walls and Bridges"
+    },
+    {
+      "slug": "project:double-fantasy",
+      "type": "project",
+      "name": "Double Fantasy"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:give-peace-a-chance",
+      "type": "track",
+      "name": "Give Peace a Chance"
+    },
+    {
+      "slug": "track:cold-turkey",
+      "type": "track",
+      "name": "Cold Turkey"
+    },
+    {
+      "slug": "track:instant-karma",
+      "type": "track",
+      "name": "Instant Karma!"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

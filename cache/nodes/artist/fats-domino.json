@@ -1,0 +1,94 @@
+{
+  "slug": "artist:fats-domino",
+  "name": "Fats Domino",
+  "editorial_article": "Fats Domino was an American pianist and singer-songwriter who emerged as one of the definitive pioneers of rock and roll music. Born in New Orleans, he helped define the sound of the era with a musical style rooted in traditional rhythm and blues, characterized by his signature use of saxophones, bass, piano, electric guitar, and drums. Throughout his prolific career, Domino sold more than 65 million records and achieved 35 entries on the U.S. Billboard Top 40, including eleven Top 10 hits between 1955 and 1960. His 1949 track 'The Fat Man' is widely recognized as one of the first million-selling records in the history of rock and roll, cementing his status as a foundational figure in American popular music. His influence extended globally, and he remained a consistent presence on international charts from 1950 through 1965, leaving an indelible mark on the development of modern music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fats_Domino_discography",
+      "title": "Fats Domino discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:19.319Z",
+  "type": "artist",
+  "editorial_bio": "A legendary American pianist and singer-songwriter, Fats Domino was a primary architect of rock and roll who sold over 65 million records worldwide.",
+  "origin": "New Orleans, USA",
+  "active_years": "1949-1990s",
+  "genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and blues"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mercury",
+      "type": "label",
+      "name": "Mercury"
+    },
+    {
+      "slug": "label:atlantic",
+      "type": "label",
+      "name": "Atlantic"
+    },
+    {
+      "slug": "label:mca-records",
+      "type": "label",
+      "name": "MCA Records"
+    },
+    {
+      "slug": "label:tomato",
+      "type": "label",
+      "name": "Tomato"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:fats-domino-65",
+      "type": "project",
+      "name": "Fats Domino '65"
+    },
+    {
+      "slug": "project:in-concert",
+      "type": "project",
+      "name": "In Concert!"
+    },
+    {
+      "slug": "project:live-in-europe",
+      "type": "project",
+      "name": "Live in Europe"
+    },
+    {
+      "slug": "project:his-greatest-hits",
+      "type": "project",
+      "name": "His Greatest Hits"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-fat-man",
+      "type": "track",
+      "name": "The Fat Man"
+    },
+    {
+      "slug": "track:ain-t-that-a-shame",
+      "type": "track",
+      "name": "Ain't That a Shame"
+    },
+    {
+      "slug": "track:blueberry-hill",
+      "type": "track",
+      "name": "Blueberry Hill"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

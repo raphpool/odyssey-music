@@ -1,0 +1,57 @@
+{
+  "slug": "track:the-beatles",
+  "name": "The Beatles",
+  "editorial_article": "The Beatles were a seminal English rock band that fundamentally reshaped the landscape of popular music during their active years from 1962 to 1970. Emerging from Liverpool, the group released 12 studio albums in the United Kingdom and 63 singles worldwide, transitioning from the early pop sensibilities of their Parlophone releases to the experimental and complex compositions of their later work on the Apple label. Their influence extended far beyond their native UK, with their North American releases often reconfigured by Capitol Records before the band eventually achieved a standardized international catalog.\n\nThroughout their career, the Beatles maintained a prolific output that included live albums, compilations, and EPs, alongside their core studio albums. The band's evolution is marked by significant milestones such as the 1967 release of Sgt. Pepper's Lonely Hearts Club Band and the 1968 double album The Beatles, commonly known as the White Album. Following their dissolution, their recorded legacy has been preserved and remastered, with the core catalog of 217 tracks remaining a cornerstone of rock history.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Beatles_singles_discography",
+      "title": "The Beatles singles discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Beatles_albums_discography",
+      "title": "The Beatles albums discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:43.459Z",
+  "type": "track",
+  "editorial_teaser": "The Beatles were an iconic English rock band whose innovative studio albums and singles between 1962 and 1970 revolutionized the global music industry.",
+  "year": "1962",
+  "artists": [
+    {
+      "slug": "artist:john-lennon",
+      "type": "artist",
+      "name": "John Lennon"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney"
+    },
+    {
+      "slug": "artist:george-harrison",
+      "type": "artist",
+      "name": "George Harrison"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr"
+    }
+  ],
+  "project": {
+    "slug": "project:the-beatles",
+    "type": "project",
+    "name": "The Beatles"
+  },
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

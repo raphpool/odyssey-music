@@ -1,0 +1,65 @@
+{
+  "slug": "artist:supreme-ntm",
+  "name": "Suprême NTM",
+  "editorial_article": "Suprême NTM, also known simply as NTM, is a seminal French hip hop group formed in 1989 in Saint-Denis, Seine-Saint-Denis. The duo, consisting of rappers JoeyStarr and Kool Shen, emerged as one of the most influential acts in the French rap scene, known for their raw energy and socially conscious lyrics. Throughout their active career, they released six studio albums, all of which were distributed through the label Epic. Their work helped define the sound of French hip hop during the 1990s, blending aggressive delivery with sharp commentary on life in the Parisian suburbs.\n\nBy 1998, the group began to shift their focus toward independent ventures, with both members establishing their own record labels and exploring interests in the fashion industry, such as Kool Shen's brand 2High and JoeyStarr's brand Com-8. While the group officially remained intact and occasionally reunited for projects, including a 2001 compilation pitting their respective label rosters against one another, Kool Shen noted in 2004 that the group's primary creative era concluded in 1998.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Supr%C3%AAme_NTM",
+      "title": "Suprême NTM - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:30:11.932Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering French hip hop duo from Saint-Denis, Suprême NTM became an iconic force in the 1990s rap scene through their aggressive style and social commentary.",
+  "origin": "Saint-Denis, France",
+  "active_years": "1989-1998",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:epic",
+      "type": "label",
+      "name": "Epic"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:supreme-ntm",
+      "type": "project",
+      "name": "Suprême NTM"
+    },
+    {
+      "slug": "project:anthologie",
+      "type": "project",
+      "name": "Anthologie"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:supreme-ntm",
+      "type": "track",
+      "name": "Suprême NTM"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:joeystarr",
+      "type": "artist",
+      "name": "JoeyStarr"
+    },
+    {
+      "slug": "artist:kool-shen",
+      "type": "artist",
+      "name": "Kool Shen"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "artist:stuart-sutcliffe",
+  "name": "Stuart Sutcliffe",
+  "editorial_article": "Stuart Fergusson Victor Sutcliffe (1940–1962) was a Scottish artist and musician who is best remembered as the original bass guitarist for the English rock band The Beatles. Born in Edinburgh, Scotland, Sutcliffe was a talented painter whose involvement with the band occurred during their formative years in Hamburg, Germany. His time with the group was brief, as he eventually chose to leave the band to focus on his burgeoning career as a visual artist. Despite his short tenure, he remains a significant figure in the early history of the Beatles. Sutcliffe passed away in 1962 at the age of 21, leaving behind a legacy that bridges the worlds of early rock and roll and fine art.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/459513-Stuart-Sutcliffe?srsltid=AfmBOorZO1Q5JEOPscGneajevl4sf96KSxhMh4Xj4Ym5jcqWnu9432Ld",
+      "title": "Stuart Sutcliffe Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://beatles.fandom.com/wiki/Stuart_Sutcliffe",
+      "title": "Stuart Sutcliffe | The Beatles Wiki - Fandom"
+    },
+    {
+      "url": "https://simple.wikipedia.org/wiki/Stuart_Sutcliffe",
+      "title": "Stuart Sutcliffe - Simple English Wikipedia, the free encyclopedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:01.236Z",
+  "type": "artist",
+  "editorial_bio": "Stuart Sutcliffe was a Scottish painter and the original bass guitarist for The Beatles during their early years.",
+  "origin": "Scotland",
+  "active_years": "1960-1961",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:polydor",
+      "type": "label",
+      "name": "Polydor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:anthology-1",
+      "type": "project",
+      "name": "Anthology 1"
+    },
+    {
+      "slug": "project:live-at-the-star-club-in-hamburg-germany-1962",
+      "type": "project",
+      "name": "Live! at the Star-Club in Hamburg, Germany; 1962"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-me-tender",
+      "type": "track",
+      "name": "Love Me Tender"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

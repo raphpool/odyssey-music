@@ -1,0 +1,71 @@
+{
+  "slug": "project:the-beatles",
+  "name": "The Beatles",
+  "editorial_article": "The Beatles were an English rock band whose influence on global music remains unparalleled. Active throughout the 1960s, the group fundamentally changed the landscape of popular music, evolving from their early pop hits into a sophisticated studio-based act. Their core catalogue, standardized in the late 1980s, encompasses 12 original UK studio albums, the US version of Magical Mystery Tour, and the comprehensive Past Masters compilations. These releases capture the band's progression from 1962 to 1970, documenting their transition from live performance-focused recordings to the experimental studio techniques showcased on landmark albums like The Beatles (the White Album). Initially signed to Parlophone in the UK, the band later established their own Apple Records label in 1968. Their discography is famously complex due to early differences between UK and US releases, which were eventually harmonized during the digital era to ensure a consistent global legacy for their 217 core tracks.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Beatles_albums_discography",
+      "title": "The Beatles albums discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Beatles_(album)",
+      "title": "The Beatles (album)"
+    },
+    {
+      "url": "https://www.discogs.com/release/1113362-The-Beatles-The-Beatles?srsltid=AfmBOor4grFPPyyMuW9oaEU5Griyn7S3hkLIUsKiPhWbw46Cyk_qbj4t",
+      "title": "The Beatles - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:35.632Z",
+  "type": "project",
+  "editorial_pitch": "The Beatles redefined the boundaries of rock music through a prolific decade of studio innovation and global cultural impact.",
+  "year": "1960",
+  "artists": [
+    {
+      "slug": "artist:john-lennon",
+      "type": "artist",
+      "name": "John Lennon"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney"
+    },
+    {
+      "slug": "artist:george-harrison",
+      "type": "artist",
+      "name": "George Harrison"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr"
+    }
+  ],
+  "label": {
+    "slug": "label:apple-records",
+    "type": "label",
+    "name": "Apple Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:hey-jude",
+      "type": "track",
+      "name": "Hey Jude"
+    },
+    {
+      "slug": "track:magical-mystery-tour",
+      "type": "track",
+      "name": "Magical Mystery Tour"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

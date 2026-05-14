@@ -1,0 +1,124 @@
+{
+  "slug": "artist:little-richard",
+  "name": "Little Richard",
+  "editorial_article": "Little Richard, born Richard Wayne Penniman, was an American singer-songwriter and pianist who is widely regarded as the architect of rock and roll. Emerging from the American South in the early 1950s, he pioneered a high-energy performance style that fused rhythm and blues with gospel influences, fundamentally shaping the trajectory of popular music. His explosive vocal delivery and flamboyant stage presence helped define the sound and attitude of the rock and roll era, influencing generations of musicians across multiple genres.\n\nAfter beginning his recording career with RCA Victor in 1951, Little Richard achieved international stardom following his signing to Specialty Records in 1955. Throughout his career, he navigated various musical landscapes, including soul and gospel, while maintaining a legacy as a transformative figure in music history. Although his primary studio album output spanned several decades, he remained an active touring artist well into the 21st century, cementing his status as an enduring icon until his death in 2020.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Little_Richard",
+      "title": "Little Richard - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Little_Richard_discography",
+      "title": "Little Richard discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:15:13.152Z",
+  "type": "artist",
+  "editorial_bio": "An American singer-songwriter and pianist widely considered the architect of rock and roll for his pioneering fusion of rhythm and blues and gospel.",
+  "origin": "United States",
+  "active_years": "1951-2020",
+  "genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and blues"
+    },
+    {
+      "slug": "genre:gospel",
+      "type": "genre",
+      "name": "Gospel"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca-victor",
+      "type": "label",
+      "name": "RCA Victor"
+    },
+    {
+      "slug": "label:specialty-records",
+      "type": "label",
+      "name": "Specialty Records"
+    },
+    {
+      "slug": "label:roulette",
+      "type": "label",
+      "name": "Roulette"
+    },
+    {
+      "slug": "label:rhino",
+      "type": "label",
+      "name": "Rhino"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:here-s-little-richard",
+      "type": "project",
+      "name": "Here's Little Richard"
+    },
+    {
+      "slug": "project:little-richard",
+      "type": "project",
+      "name": "Little Richard"
+    },
+    {
+      "slug": "project:the-wild-and-frantic-little-richard",
+      "type": "project",
+      "name": "The Wild and Frantic Little Richard"
+    },
+    {
+      "slug": "project:mr-big",
+      "type": "project",
+      "name": "Mr. Big"
+    },
+    {
+      "slug": "project:friends-from-the-beginning-little-richard-and-jimi-hendrix",
+      "type": "project",
+      "name": "Friends from the Beginning – Little Richard and Jimi Hendrix"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:good-golly-miss-molly",
+      "type": "track",
+      "name": "Good Golly Miss Molly"
+    },
+    {
+      "slug": "track:lucille",
+      "type": "track",
+      "name": "Lucille"
+    },
+    {
+      "slug": "track:keep-a-knockin",
+      "type": "track",
+      "name": "Keep a Knockin'"
+    },
+    {
+      "slug": "track:rip-it-up",
+      "type": "track",
+      "name": "Rip It Up"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,64 @@
+{
+  "slug": "label:parlophone",
+  "name": "Parlophone",
+  "editorial_article": "Parlophone is a historic British record label that has played a central role in the global music industry for decades. Originally founded in 1896, the label became synonymous with some of the most influential artists in popular music history, most notably The Beatles. Throughout its long tenure, Parlophone has navigated various corporate transitions, eventually becoming a subsidiary of Warner Music International. The label's legacy is defined by its ability to bridge the gap between niche recordings and massive commercial success, maintaining a significant catalog that continues to be a cornerstone of modern music distribution. Today, the label operates under the corporate structure of Parlophone Records Ltd., which was formerly known as EMI Records Ltd. Its evolution reflects the broader consolidation of the music industry, moving from an independent entity to a key component of a major global music conglomerate while preserving its distinct identity in the market.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/label/606382-Parlophone-Music-Sweden-AB?srsltid=AfmBOopNWzTH9bSFndUrOc6zHS5m29tmMcTHCTwfxRrIZSs1LzkqmkbW"
+    },
+    {
+      "url": "https://www.discogs.com/label/563997-Parlophone-Records-Ltd?srsltid=AfmBOoq19nfRK9tZ0deDSzM1Thtx-YRrCGnmMSSPfRBDVhbe_cm3DKns"
+    },
+    {
+      "url": "https://www.discogs.com/label/106196-Parlophone-Records?srsltid=AfmBOoqgmvgUgz8kU78l7EqGa2nI6sa3zmLWcNHQfha1O1QRvk6X0omN"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:32.158Z",
+  "type": "label",
+  "editorial_description": "A legendary British record label famously associated with The Beatles, now operating as a subsidiary of Warner Music International.",
+  "founded": "1896",
+  "location": "London, United Kingdom",
+  "founders": "Carl Lindström",
+  "active_years": "1896-present",
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "roster": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay"
+    },
+    {
+      "slug": "artist:blur",
+      "type": "artist",
+      "name": "Blur"
+    }
+  ],
+  "notable_releases": [
+    {
+      "slug": "project:please-please-me",
+      "type": "project",
+      "name": "Please Please Me"
+    },
+    {
+      "slug": "project:parachutes",
+      "type": "project",
+      "name": "Parachutes"
+    }
+  ]
+}

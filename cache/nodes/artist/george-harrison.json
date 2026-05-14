@@ -1,0 +1,121 @@
+{
+  "slug": "artist:george-harrison",
+  "name": "George Harrison",
+  "editorial_article": "George Harrison was an English singer-songwriter and musician who rose to global prominence as a member of the Beatles before establishing a highly successful solo career. Known for his spiritual depth and interest in Indian culture, Harrison was a pioneer in blending Eastern musical influences with Western rock. His solo work began while the Beatles were still active, with the release of the instrumental soundtracks Wonderwall Music (1968) and Electronic Sound (1969). Following the band's break-up in 1970, he released the acclaimed triple album All Things Must Pass, which became the most successful album by an ex-Beatle. Throughout his career, Harrison was a dedicated collaborator, working with artists such as Ravi Shankar, Bob Dylan, and Eric Clapton, and he famously organized the Concert for Bangladesh in 1971, which set a precedent for the modern charity concert.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/George_Harrison_discography",
+      "title": "George Harrison discography"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:57.185Z",
+  "type": "artist",
+  "editorial_bio": "An iconic English singer-songwriter and former Beatle, George Harrison was a prolific solo artist celebrated for his spiritual songwriting and pioneering efforts in charity music.",
+  "origin": "England",
+  "active_years": "1968-2001",
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:apple-records",
+      "type": "label",
+      "name": "Apple Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:wonderwall-music",
+      "type": "project",
+      "name": "Wonderwall Music"
+    },
+    {
+      "slug": "project:electronic-sound",
+      "type": "project",
+      "name": "Electronic Sound"
+    },
+    {
+      "slug": "project:all-things-must-pass",
+      "type": "project",
+      "name": "All Things Must Pass"
+    },
+    {
+      "slug": "project:living-in-the-material-world",
+      "type": "project",
+      "name": "Living in the Material World"
+    },
+    {
+      "slug": "project:dark-horse",
+      "type": "project",
+      "name": "Dark Horse"
+    },
+    {
+      "slug": "project:thirty-three-and-1-3",
+      "type": "project",
+      "name": "Thirty Three & 1/3"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-sweet-lord",
+      "type": "track",
+      "name": "My Sweet Lord"
+    },
+    {
+      "slug": "track:isn-t-it-a-pity",
+      "type": "track",
+      "name": "Isn't It a Pity"
+    },
+    {
+      "slug": "track:bangla-desh",
+      "type": "track",
+      "name": "Bangla Desh"
+    },
+    {
+      "slug": "track:give-me-love",
+      "type": "track",
+      "name": "Give Me Love (Give Me Peace on Earth)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ravi-shankar",
+      "type": "artist",
+      "name": "Ravi Shankar"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan"
+    },
+    {
+      "slug": "artist:eric-clapton",
+      "type": "artist",
+      "name": "Eric Clapton"
+    },
+    {
+      "slug": "artist:gary-wright",
+      "type": "artist",
+      "name": "Gary Wright"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "slug": "genre:boom-bap",
+  "name": "Boom bap",
+  "editorial_article": "Boom bap is a seminal subgenre and production style of hip-hop that emerged from the Northeastern United States during the late 1980s. Defined by its raw, rhythmic intensity, the term is an onomatopoeia for the characteristic kick-snare drum pattern that anchors the music. The style is distinguished by a hard-hitting acoustic bass drum sample on the downbeats and a snappy acoustic snare on the upbeats, often mixed to be \"in your face\" to emphasize the loop. This production philosophy became the hallmark of the East Coast hip-hop sound during the golden age of the genre.\n\nThe term was first popularized in a recorded context by T La Rock in his 1984 track \"It's Yours,\" where he used the phrase to mimic the rhythm of the beat. While it began as a descriptive term for the percussion, it evolved into a broader label for the specific aesthetic of East Coast hip-hop. The sound gained significant cultural traction through the work of legendary producers like DJ Premier, Pete Rock, and Diamond D, and was cemented in the public consciousness by landmark releases such as KRS-One's \"Return of the Boom Bap.\"",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Boom_bap",
+      "title": "Boom bap - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/genre/boom-bap/",
+      "title": "Boom Bap - Music genre - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:20:44.878Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by a prominent, hard-hitting kick-and-snare drum loop that originated in the Northeastern United States.",
+  "era": "late 1980s to early 1990s",
+  "origin": "Northeastern United States, East Coast hip-hop scene",
+  "sonic_markers": "Hard-hitting acoustic kick drum samples, snappy acoustic snare samples, prominent drum loops, and direct, punchy audio mixing.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast hip-hop"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore hip-hop"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz rap"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-premier",
+      "type": "artist",
+      "name": "DJ Premier"
+    },
+    {
+      "slug": "artist:pete-rock",
+      "type": "artist",
+      "name": "Pete Rock"
+    },
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One"
+    },
+    {
+      "slug": "artist:gang-starr",
+      "type": "artist",
+      "name": "Gang Starr"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G."
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:griselda-records",
+      "type": "label",
+      "name": "Griselda Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:it-s-yours",
+      "type": "track",
+      "name": "It's Yours"
+    }
+  ]
+}

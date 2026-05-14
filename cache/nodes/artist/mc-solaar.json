@@ -1,0 +1,78 @@
+{
+  "slug": "artist:mc-solaar",
+  "name": "MC Solaar",
+  "editorial_article": "MC Solaar is a seminal French hip hop artist who emerged in the early 1990s as a leading figure in the Francophone conscious rap movement. Known for his poetic lyricism and sophisticated flow, he helped bridge the gap between traditional French chanson and contemporary hip hop, often incorporating elements of acid jazz into his production. His work is frequently characterized by introspective, socially conscious themes and intricate wordplay, setting him apart in the European music scene. Throughout his career, he has collaborated with notable producers such as Mehdi and utilized diverse musical influences, including samples from legendary composers like Ennio Morricone. With a prolific career spanning over three decades, MC Solaar remains a foundational influence on the development of French rap, consistently evolving his sound while maintaining the literary quality that defined his early success. His discography, which includes over 20 albums, reflects a sustained commitment to artistic innovation and cultural commentary.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/16412-MC-Solaar?srsltid=AfmBOoppdCGieHo3AJxrrQ45SMWCbDPRdz6aRZqG94H06eP-XpepWsVM",
+      "title": "MC Solaar Discography: Vinyl, CDs, & More - Discogs"
+    },
+    {
+      "url": "https://genius.com/artists/Mc-solaar/albums",
+      "title": "MC Solaar Albums and Discography - Genius"
+    },
+    {
+      "url": "https://www.discogs.com/release/6207622-MC-Solaar-MC-Solaar?srsltid=AfmBOooFiWwofLpo6IXtmyUq0kk6mhNPF2lIXQa-pakaq9hNuATUOZsh",
+      "title": "MC Solaar – CD (Album, Reissue), [r6207622] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:25:17.036Z",
+  "type": "artist",
+  "editorial_bio": "MC Solaar is a pioneering French hip hop artist celebrated for his poetic, conscious lyrics and his role in establishing rap as a respected literary force in France.",
+  "origin": "France",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz"
+    },
+    {
+      "slug": "genre:conscious",
+      "type": "genre",
+      "name": "Conscious"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:polydor",
+      "type": "label",
+      "name": "Polydor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mc-solaar",
+      "type": "project",
+      "name": "MC Solaar"
+    },
+    {
+      "slug": "project:triptyque-balade-astrale",
+      "type": "project",
+      "name": "Triptyque : Balade astrale"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bouge-de-la",
+      "type": "track",
+      "name": "Bouge de là"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

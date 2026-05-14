@@ -1,0 +1,77 @@
+{
+  "slug": "genre:rockabilly",
+  "name": "Rockabilly",
+  "editorial_article": "Rockabilly emerged in the United States during the early 1950s as one of the earliest forms of rock and roll music. It is defined by a distinct synthesis of country music influences and rhythm and blues, characterized by a driving energy that set it apart from the mainstream sounds of the era. Unlike the standard 4/4 time signature common in later rock music, rockabilly is often noted for its use of a swingbeat, which provides a rhythmic bounce essential to the genre's signature sound. The style gained significant traction in the American South, particularly in Memphis, where artists blended traditional hillbilly instrumentation with the raw, electrified intensity of early rock. While the initial movement peaked in the mid-1950s, it left an indelible mark on music history, influencing generations of musicians who sought to capture its blend of grit and swing. The genre remains a foundational pillar of rock music, celebrated for its historical significance and its role in bridging the gap between country and rock and roll.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/style/rockabilly?srsltid=AfmBOorldTj6eJuKzZ-cb1q_I2M2Any7X7-uLbPQJBLG2A6edSPQWxZW",
+      "title": "Rockabilly Music | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/search/?style_exact=Rockabilly&country=US&srsltid=AfmBOoon8czlpHf2L54NaKHsiI7YRF617kAxn9j20-4Vljh-m4fa9wbd",
+      "title": "Rockabilly Musik - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:16:50.270Z",
+  "type": "genre",
+  "editorial_definition": "An early form of rock and roll music originating in the United States, defined by a heavy influence from country music and a signature swingbeat rhythm.",
+  "era": "early 1950s",
+  "origin": "United States, particularly Memphis",
+  "sonic_markers": "Swingbeat rhythm, country-influenced instrumentation, early rock and roll energy",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and Roll"
+    },
+    {
+      "slug": "genre:country",
+      "type": "genre",
+      "name": "Country"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash"
+    },
+    {
+      "slug": "artist:stray-cats",
+      "type": "artist",
+      "name": "Stray Cats"
+    },
+    {
+      "slug": "artist:roy-orbison",
+      "type": "artist",
+      "name": "Roy Orbison"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sun-records",
+      "type": "label",
+      "name": "Sun Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-was-a-fool",
+      "type": "track",
+      "name": "I Was A Fool"
+    },
+    {
+      "slug": "track:rockabilly-gal",
+      "type": "track",
+      "name": "Rockabilly Gal"
+    }
+  ]
+}

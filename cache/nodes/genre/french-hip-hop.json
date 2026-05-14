@@ -1,0 +1,93 @@
+{
+  "slug": "genre:french-hip-hop",
+  "name": "French hip hop",
+  "editorial_article": "French hip hop, also known as rap français, represents the distinct style of hip hop music developed within French-speaking countries, with France standing as the second-largest market for the genre globally. Emerging in the early 1980s through radio shows like 'Rapper Dapper' and 'Funk à Billy,' the scene was bolstered by the 1982 New York City Rap Tour. The genre solidified its cultural presence in the 1990s, with MC Solaar becoming its first major star and the first to achieve platinum status with his 1991 debut album. The French language has proven to be particularly well-suited for the rhythmic complexities of rapping, allowing for a unique lyrical evolution that balances poetic expression with social commentary.\n\nAs the genre matured, it diverged into two primary aesthetic paths. One faction, led by figures like MC Solaar, Dee Nasty, and Lionel D, favored a more mellow and sanguine sound. Conversely, groups such as Suprême NTM and Assassin pioneered a harder, more aggressive style that frequently courted controversy. This hardcore aesthetic often mirrored the themes found in American gangsta rap, addressing issues of systemic oppression, racism, and life in marginalized communities. Despite these local developments, the genre remains deeply connected to its American roots, which continue to provide a framework for the rebellious and counter-cultural identity expressed by many French hip hop artists.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/French_hip-hop",
+      "title": "French hip-hop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:29:52.125Z",
+  "type": "genre",
+  "editorial_definition": "A prominent style of hip hop music developed in French-speaking countries, characterized by a diverse range of lyrical approaches from poetic storytelling to aggressive social critique.",
+  "era": "early 1980s to present",
+  "origin": "France, French-speaking countries",
+  "sonic_markers": "Diverse production ranging from jazz-influenced boom-bap to aggressive, heavy-hitting beats and lyrical focus on French-language wordplay.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta rap"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar"
+    },
+    {
+      "slug": "artist:dee-nasty",
+      "type": "artist",
+      "name": "Dee Nasty"
+    },
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM"
+    },
+    {
+      "slug": "artist:assassin",
+      "type": "artist",
+      "name": "Assassin"
+    },
+    {
+      "slug": "artist:lionel-d",
+      "type": "artist",
+      "name": "Lionel D"
+    },
+    {
+      "slug": "artist:ministere-amer",
+      "type": "artist",
+      "name": "Ministère AMER"
+    },
+    {
+      "slug": "artist:lunatic",
+      "type": "artist",
+      "name": "Lunatic"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:polydor",
+      "type": "label",
+      "name": "Polydor"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:sacrifice-de-poulet",
+      "type": "track",
+      "name": "Sacrifice de poulet"
+    },
+    {
+      "slug": "track:police",
+      "type": "track",
+      "name": "Police"
+    },
+    {
+      "slug": "track:le-crime-paie",
+      "type": "track",
+      "name": "Le crime paie"
+    }
+  ]
+}
