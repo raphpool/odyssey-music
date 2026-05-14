@@ -45,12 +45,27 @@ ssh "$SERVER" \
 set -euo pipefail
 cd /opt/odyssey-music
 
+# yt-dlp + ffmpeg are required by the /stream endpoint (audio player on track pages).
+# yt-dlp downloads bestaudio (usually m4a); ffmpeg is its remuxing dependency.
+if ! command -v yt-dlp >/dev/null 2>&1; then
+  echo "  -> installing yt-dlp"
+  curl -fsSL https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+  chmod +x /usr/local/bin/yt-dlp
+fi
+if ! command -v ffmpeg >/dev/null 2>&1; then
+  echo "  -> installing ffmpeg"
+  apt-get update -qq && apt-get install -y -qq ffmpeg
+fi
+
+mkdir -p /opt/odyssey-music/stream-cache
+
 umask 077
 cat > /etc/odyssey-music.env <<EOF
 GEMINI_API_KEY=$GEMINI_API_KEY
 TAVILY_API_KEY=$TAVILY_API_KEY
 FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY
 ODYSSEY_CACHE_DIR=/opt/odyssey-music/cache
+STREAM_CACHE_DIR=/opt/odyssey-music/stream-cache
 PORT=18792
 EOF
 chmod 600 /etc/odyssey-music.env

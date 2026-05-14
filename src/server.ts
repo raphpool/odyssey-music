@@ -19,11 +19,14 @@ import { loadEnv } from "./env.js";
 import { runPipeline } from "./pipeline.js";
 import { backfillGenreReverses } from "./reverse-edges.js";
 import { makeSlug, parseSlug } from "./slug.js";
+import { handleStream } from "./stream.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { LIST_EDGES_BY_TYPE, NODE_TYPES, SINGULAR_EDGES_BY_TYPE } from "./types.js";
+import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.js";
 
 const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
 const CACHE_DIR = process.env.ODYSSEY_CACHE_DIR ?? join(process.cwd(), "cache");
+const STREAM_CACHE_DIR = process.env.STREAM_CACHE_DIR ?? join(CACHE_DIR, "..", "stream-cache");
 
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
@@ -96,7 +99,51 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		json(res, 200, result);
 		return;
 	}
+	// GET /resolve/:trackSlug → returns {videoId, url, title, resolvedAt}, cached
+	// in a sidecar file. Slug is the bare slug ("track:foo") or just the name part.
+	if (req.method === "GET" && path.startsWith("/resolve/")) {
+		const raw = decodeURIComponent(path.slice("/resolve/".length));
+		await handleResolve(res, raw);
+		return;
+	}
+	// GET /stream/:videoId → pipes audio (m4a) with HTTP Range support.
+	if (req.method === "GET" && path.startsWith("/stream/")) {
+		const videoId = decodeURIComponent(path.slice("/stream/".length));
+		await handleStream(req, res, { videoId, streamCacheDir: STREAM_CACHE_DIR });
+		return;
+	}
 	json(res, 404, { error: "not found", path });
+}
+
+async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void> {
+	const slug = (rawSlug.startsWith("track:") ? rawSlug : `track:${rawSlug}`) as Slug;
+	const cached = await readSidecar(CACHE_DIR, slug);
+	if (cached) {
+		res.setHeader("Cache-Control", "public, max-age=86400");
+		json(res, 200, { source: "cache", ...cached });
+		return;
+	}
+	const node = await cache.get(slug).catch(() => null);
+	if (!node || node.type !== "track") {
+		json(res, 404, { error: "track not cached", slug });
+		return;
+	}
+	// Pick an artist name from the track's artists list, if any.
+	const artistsField = (node as unknown as { artists?: EdgeRef[] }).artists;
+	const artistName = Array.isArray(artistsField) && artistsField[0] ? artistsField[0].name : undefined;
+	try {
+		const r: YouTubeResolution = await resolveYouTube({
+			trackSlug: slug,
+			trackName: node.name,
+			...(artistName ? { artistName } : {}),
+			cacheDir: CACHE_DIR,
+			tavilyApiKey: env.TAVILY_API_KEY,
+		});
+		json(res, 200, { source: "resolved", ...r });
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		json(res, 502, { error: "resolve failed", detail: msg });
+	}
 }
 
 async function handleMaterialize(body: MaterializeRequest): Promise<MaterializeResponse> {
