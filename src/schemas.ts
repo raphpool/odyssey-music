@@ -65,6 +65,7 @@ const baseFields = {
 	materialized_at: z.string().datetime(),
 	_metrics: metricsSchema,
 	disambiguator: z.string().optional(),
+	mbid: z.string().uuid().optional(),
 };
 
 const genreSchema = z.object({

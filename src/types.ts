@@ -21,6 +21,7 @@ export interface BaseNode {
 	editorial_article: string;
 	citations: Citation[];
 	materialized_at: string;
+	mbid?: string;
 }
 
 export interface GenreNode extends BaseNode {

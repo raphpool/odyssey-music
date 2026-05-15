@@ -14,8 +14,10 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { join } from "node:path";
+import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { NodeCache } from "./cache.js";
 import { loadEnv } from "./env.js";
+import { openCatalogIndex, type CatalogIndex, type CatalogResult } from "./musicbrainz.js";
 import { runPipeline } from "./pipeline.js";
 import { backfillGenreReverses } from "./reverse-edges.js";
 import { makeSlug, parseSlug } from "./slug.js";
@@ -27,9 +29,17 @@ import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.j
 const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
 const CACHE_DIR = process.env.ODYSSEY_CACHE_DIR ?? join(process.cwd(), "cache");
 const STREAM_CACHE_DIR = process.env.STREAM_CACHE_DIR ?? join(CACHE_DIR, "..", "stream-cache");
+const MB_DB_PATH = process.env.MB_DB_PATH ?? join(process.cwd(), "data", "musicbrainz.sqlite");
 
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
+const catalogIndex: CatalogIndex = openCatalogIndex(MB_DB_PATH);
+let cacheIndex: CacheIndex | null = null;
+// Built lazily on first /search hit so the server can boot even before the cache is warm.
+async function getCacheIndex(): Promise<CacheIndex> {
+	if (!cacheIndex) cacheIndex = await buildCacheIndex(CACHE_DIR);
+	return cacheIndex;
+}
 
 // Coalesce concurrent JIT requests on the same slug.
 const inflight = new Map<string, Promise<NodePayload>>();
@@ -93,6 +103,15 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		json(res, 200, { source: "cache", node });
 		return;
 	}
+	if (req.method === "GET" && path === "/search") {
+		const q = (url.searchParams.get("q") ?? "").trim();
+		const typeFilter = url.searchParams.get("type") as NodeType | null;
+		const limit = clampLimit(url.searchParams.get("limit"));
+		const result = await handleSearch(q, typeFilter, limit);
+		res.setHeader("Cache-Control", "public, max-age=30");
+		json(res, 200, result);
+		return;
+	}
 	if (req.method === "POST" && path === "/materialize") {
 		const body = await readJson<MaterializeRequest>(req);
 		const result = await handleMaterialize(body);
@@ -113,6 +132,88 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	json(res, 404, { error: "not found", path });
+}
+
+function clampLimit(raw: string | null): number {
+	const n = raw ? Number.parseInt(raw, 10) : Number.NaN;
+	if (!Number.isFinite(n) || n <= 0) return 8;
+	return Math.min(n, 25);
+}
+
+/**
+ * Search result returned to the frontend. Two flavors:
+ *
+ *  - Cache hit (`source: "cache"`): a node already exists in the JIT cache. Clicking
+ *    this result navigates straight to `/node/<slug>` with zero latency.
+ *  - Catalog hit (`source: "catalog"`): an entry from MusicBrainz with an MBID but no
+ *    materialized page yet. Clicking triggers `/materialize` with the MBID as
+ *    disambiguator, then redirects to the resulting node.
+ *
+ * Reconciliation: when a catalog hit's MBID matches a cache node, we collapse them
+ * into a single result of type `cache` (the catalog entry is dropped). When a cache
+ * hit has no MBID we still surface it (covers Bandcamp-only / non-MB entities).
+ */
+interface SearchHit {
+	source: "cache" | "catalog";
+	type: NodeType;
+	name: string;
+	subtitle?: string;
+	extra?: string;
+	mbid?: string;
+	slug?: Slug; // present iff source === "cache"
+}
+
+async function handleSearch(q: string, typeFilter: NodeType | null, limit: number): Promise<{
+	q: string;
+	hits: SearchHit[];
+	sources: { cache: number; catalog: number };
+}> {
+	if (!q || q.length < 2) {
+		return { q, hits: [], sources: { cache: 0, catalog: 0 } };
+	}
+	const idx = await getCacheIndex();
+	const cacheHits = typeFilter ? idx.prefixByType(typeFilter, q, limit) : idx.prefix(q, limit);
+	const mbidsSeen = new Set<string>();
+	const out: SearchHit[] = [];
+	for (const h of cacheHits) {
+		out.push({ source: "cache", type: h.type, name: h.name, slug: h.slug, mbid: h.mbid });
+		if (h.mbid) mbidsSeen.add(h.mbid);
+	}
+
+	// Catalog rail: only fetch for types that MB covers (artist/project/track).
+	if (!typeFilter || typeFilter === "artist" || typeFilter === "project" || typeFilter === "track") {
+		const catRaw: CatalogResult[] = typeFilter
+			? await catalogIndex.searchByType(typeFilter, q, limit)
+			: await catalogIndex.search(q, Math.max(2, Math.floor(limit / 2)));
+		for (const c of catRaw) {
+			if (mbidsSeen.has(c.mbid)) continue; // already surfaced via cache
+			// Also try the reverse: if a cache node has this MBID, swap the catalog hit for the cache one.
+			const slug = idx.byMbid(c.mbid);
+			if (slug) {
+				out.push({ source: "cache", type: c.type, name: c.name, subtitle: c.subtitle, slug, mbid: c.mbid });
+				mbidsSeen.add(c.mbid);
+				continue;
+			}
+			out.push({
+				source: "catalog",
+				type: c.type,
+				name: c.name,
+				subtitle: c.subtitle,
+				extra: c.extra,
+				mbid: c.mbid,
+			});
+		}
+	}
+
+	const trimmed = out.slice(0, limit);
+	return {
+		q,
+		hits: trimmed,
+		sources: {
+			cache: trimmed.filter((h) => h.source === "cache").length,
+			catalog: trimmed.filter((h) => h.source === "catalog").length,
+		},
+	};
 }
 
 async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void> {
