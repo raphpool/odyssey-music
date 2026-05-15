@@ -49,6 +49,11 @@ interface MaterializeRequest {
 	name?: string;
 	text?: string;
 	disambiguator?: string;
+	// MusicBrainz id hint from /search catalog hits. Stored on the resulting node
+	// payload (NodePayload.mbid) so future searches can dedup via cache-index.byMbid.
+	// NOT used as a slug disambiguator — that would fragment the graph by producing
+	// slugs like `artist:drake--9fff…` while parent edges still point at `artist:drake`.
+	mbid?: string;
 }
 
 interface MaterializeResponse {
@@ -301,8 +306,12 @@ async function runJit(body: MaterializeRequest): Promise<NodePayload> {
 	// Re-check then write atomically through cache (handles parallel JIT for the same slug).
 	const existing = await cache.get(r.slug).catch(() => null);
 	if (existing) return existing;
-	await cache.write(r.node);
-	return r.node;
+	// Stamp the MBID hint (if any) onto the node payload before persisting. Subsequent
+	// /search calls reconcile via cache-index.byMbid so the catalog rail collapses with
+	// this node rather than offering it again as "+ generate".
+	const enriched = body.mbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
+	await cache.write(enriched);
+	return enriched;
 }
 
 async function buildGraph(): Promise<{

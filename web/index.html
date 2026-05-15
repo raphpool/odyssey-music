@@ -701,8 +701,13 @@ async function pingApi() {
     showJitOverlay(hit);
     jitAbortCtrl = new AbortController();
     try {
+      // Don't pass mbid as `disambiguator` — that becomes part of the slug body
+      // (artist:drake--9fff2f8a-...) and the resulting node never reconciles with
+      // parent edges pointing at the bare slug `artist:drake`. We pass an `mbid`
+      // hint instead which the server stamps onto the materialized node payload;
+      // /search uses cache-index.byMbid for dedup, no slug fragmentation needed.
       const reqBody = { type: hit.type, name: hit.name };
-      if (hit.mbid) reqBody.disambiguator = hit.mbid;
+      if (hit.mbid) reqBody.mbid = hit.mbid;
       const r = await fetch(`${API_BASE}/materialize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
