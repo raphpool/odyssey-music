@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Odyssey">
+<meta name="theme-color" content="#050505">
+<title>Odyssey · Culture Graph / Crab Labs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #050505;
+  --fg: #f0ede8;
+  --muted: #8a8780;
+  --dim: #3a3935;
+  --accent: #c8c2b8;
+  --card-bg: #0e0e0d;
+  --card-bg-2: #161614;
+  --card-border: #25241f;
+  --genre: #c084fc;
+  --label: #fb923c;
+  --artist: #60a5fa;
+  --project: #34d399;
+  --track: #f472b6;
+}
+html, body { background: var(--bg); color: var(--fg); }
+html {
+  /* Prevent iOS auto-zoom on landscape and overscroll bounce that exposes the white viewport bg. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 300;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  /* Stop horizontal rubber-band scroll and the resulting page-wiggle when a child overflows */
+  overflow-x: hidden;
+  overscroll-behavior-x: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 1rem 1rem 0; }
+
+/* Header */
+.head {
+  display: flex; align-items: baseline; gap: 0.8rem;
+  padding-bottom: 0.8rem; border-bottom: 1px solid var(--card-border);
+  margin-bottom: 1rem;
+}
+.head a.back {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  color: var(--muted); text-decoration: none; flex-shrink: 0;
+}
+.head a.back:hover { color: var(--fg); }
+.head .title {
+  font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-weight: 400;
+}
+.head .sub {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-left: auto;
+}
+
+/* Top controls */
+.controls {
+  display: flex; flex-direction: column; gap: 0.55rem;
+  margin-bottom: 1.2rem;
+}
+.controls .search {
+  display: flex; gap: 0.5rem;
+}
+.controls input {
+  flex: 1; min-width: 0;
+  background: var(--card-bg); color: var(--fg);
+  border: 1px solid var(--card-border); border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  font-family: 'Inter', sans-serif;
+  /* 16px is the iOS no-zoom threshold for input focus. Any value < 16px triggers the
+     auto-zoom-to-fit-content behavior that pushes the viewport sideways and produces
+     the horizontal scroll Henry hit. Keep at >=16px even though the rest of the UI
+     uses 0.95rem for visual rhythm. */
+  font-size: 16px;
+  outline: none;
+  /* Disable iOS double-tap-zoom on the input itself. */
+  touch-action: manipulation;
+  -webkit-appearance: none; appearance: none;
+}
+.controls input:focus { border-color: var(--accent); }
+.controls button {
+  background: var(--card-bg); color: var(--fg);
+  border: 1px solid var(--card-border); border-radius: 4px;
+  padding: 0.55rem 0.9rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  cursor: pointer; white-space: nowrap;
+}
+.controls button:hover { border-color: var(--accent); color: var(--accent); }
+
+.search-results {
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 4px;
+  max-height: 260px; overflow-y: auto;
+}
+.search-results .row {
+  padding: 0.5rem 0.8rem; cursor: pointer;
+  border-bottom: 1px solid var(--card-border);
+  display: flex; gap: 0.6rem; align-items: baseline;
+  font-size: 0.9rem;
+}
+.search-results .row:last-child { border-bottom: none; }
+.search-results .row:hover { background: var(--card-bg-2); }
+.search-results .row .t {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); text-transform: uppercase;
+  min-width: 56px;
+}
+/* Full-screen JIT loading overlay shown after picking a "+ generate" catalog hit.
+   We close the search dropdown immediately, blur the search input, and take over
+   the page with a centered card that names the entity, runs an optimistic progress
+   bar over the expected wall time, and animates the entity type pill. Whole flow
+   feels like a deliberate "we're generating a page for you" beat instead of a
+   silent 5-second freeze. */
+.jit-overlay {
+  position: fixed; inset: 0; z-index: 50;
+  background: rgba(5, 5, 5, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.18s ease;
+}
+.jit-overlay.show { opacity: 1; pointer-events: auto; }
+.jit-overlay .card {
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
+  padding: 1.6rem 1.8rem; max-width: 460px; width: calc(100% - 2rem);
+  text-align: center; box-shadow: 0 16px 60px rgba(0,0,0,0.5);
+}
+.jit-overlay .card .pill {
+  display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  padding: 0.18rem 0.55rem; border-radius: 999px;
+  background: rgba(255,255,255,0.05); margin-bottom: 0.9rem;
+}
+.jit-overlay .card .pill.artist { color: var(--artist); }
+.jit-overlay .card .pill.project { color: var(--project); }
+.jit-overlay .card .pill.track { color: var(--track); }
+.jit-overlay .card .pill.genre { color: var(--genre); }
+.jit-overlay .card .pill.label { color: var(--label); }
+.jit-overlay .card .title {
+  font-family: 'Instrument Serif', serif; font-size: 1.5rem; line-height: 1.25;
+  margin-bottom: 0.3rem; color: var(--fg);
+}
+.jit-overlay .card .subtitle {
+  font-size: 0.78rem; color: var(--muted); margin-bottom: 1.2rem;
+}
+.jit-overlay .card .status {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  color: var(--muted); margin-top: 0.9rem; letter-spacing: 0.04em;
+  min-height: 1em;
+}
+.jit-overlay .card .bar {
+  height: 3px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden;
+  margin-top: 0.4rem;
+}
+.jit-overlay .card .bar > i {
+  display: block; height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--fg));
+  /* Phase 1 (set in JS): linear over the median expected wall time, target ~85%.
+     Phase 2 (also JS): slow crawl from 85→95% over 3× expected, models the long tail
+     so the bar keeps creeping rather than stalling at a single number. Final snap-to-100%
+     on response uses the .done override below.
+     Both phases use `linear` because the bar represents *elapsed time vs estimate*, not
+     an easing curve — easing makes the rate look uneven for a uniform underlying process. */
+  transition: width var(--progress-ms, 6000ms) linear;
+}
+.jit-overlay .card.done .bar > i { transition: width 200ms ease-out; }
+.jit-overlay .card .cancel {
+  margin-top: 1.1rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  color: var(--muted); background: transparent; border: 1px solid var(--dim);
+  padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer;
+  letter-spacing: 0.04em; text-transform: uppercase;
+}
+.jit-overlay .card .cancel:hover { color: var(--fg); border-color: var(--muted); }
+
+.search-results .row .t.genre { color: var(--genre); }
+.search-results .row .t.label { color: var(--label); }
+.search-results .row .t.artist { color: var(--artist); }
+.search-results .row .t.project { color: var(--project); }
+.search-results .row .t.track { color: var(--track); }
+
+.stat {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
+  color: var(--muted); margin-bottom: 1rem;
+}
+
+/* Breadcrumb */
+.crumbs {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  color: var(--muted); margin-bottom: 0.9rem;
+  display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center;
+}
+.crumbs a {
+  color: var(--accent); text-decoration: none;
+  border-bottom: 1px dotted var(--dim);
+}
+.crumbs a:hover { color: var(--fg); }
+.crumbs .sep { color: var(--dim); }
+
+/* Focused node */
+.node {
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px;
+  padding: 1.4rem 1.2rem;
+  margin-bottom: 1rem;
+  position: relative; overflow: hidden;
+}
+.node .stripe {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+}
+.node.stripe-genre .stripe { background: var(--genre); }
+.node.stripe-label .stripe { background: var(--label); }
+.node.stripe-artist .stripe { background: var(--artist); }
+.node.stripe-project .stripe { background: var(--project); }
+.node.stripe-track .stripe { background: var(--track); }
+.node .badge {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 0.35rem; color: var(--muted);
+}
+.node .badge.genre { color: var(--genre); }
+.node .badge.label { color: var(--label); }
+.node .badge.artist { color: var(--artist); }
+.node .badge.project { color: var(--project); }
+.node .badge.track { color: var(--track); }
+.node h1 {
+  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-size: 2.1rem; line-height: 1.08; letter-spacing: -0.01em;
+  margin-bottom: 0.4rem;
+}
+.node .teaser {
+  font-family: 'Instrument Serif', serif; font-style: italic;
+  color: var(--accent); font-size: 1.05rem; line-height: 1.45;
+  margin-bottom: 1rem;
+}
+.node .article {
+  font-size: 0.95rem; line-height: 1.7;
+  white-space: pre-wrap;
+  margin-bottom: 1rem;
+}
+
+.facts {
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem;
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--muted);
+}
+.facts b { color: var(--fg); font-weight: 500; margin-left: 0.3rem; }
+
+.section {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em;
+  margin: 1.3rem 0 0.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--card-border);
+}
+
+.edge-group { margin-bottom: 0.7rem; }
+.edge-group .kind {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); margin-bottom: 0.35rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  background: var(--card-bg-2);
+  border: 1px solid var(--card-border); border-radius: 4px;
+  padding: 0.35rem 0.65rem;
+  font-family: 'Inter', sans-serif; font-size: 0.85rem;
+  cursor: pointer; color: var(--fg); display: inline-flex; align-items: center; gap: 0.4rem;
+  text-decoration: none;
+}
+.chip:hover, .chip:active { border-color: var(--accent); color: var(--accent); background: var(--card-bg); }
+.chip.dangling { color: var(--muted); opacity: 0.7; border-style: dashed; cursor: pointer; }
+.chip.dangling:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
+.chip.dangling::before { content: "↻ "; font-size: 0.7rem; }
+.chip.loading {
+  color: var(--fg); border-color: var(--accent); border-style: solid; opacity: 1; pointer-events: none;
+  position: relative; overflow: hidden; isolation: isolate;
+  background: var(--card-bg);
+}
+.chip.loading::before { content: "" !important; }
+/* Animated progress fill — high-contrast colored gradient so it reads on small chips. */
+.chip.loading::after {
+  content: "";
+  position: absolute; inset: 0; right: auto;
+  background: linear-gradient(90deg, rgba(200,194,184,0.45), rgba(200,194,184,0.85));
+  width: var(--progress, 6%);
+  transition: width var(--progress-ms, 6000ms) cubic-bezier(0.05, 0.6, 0.2, 1);
+  pointer-events: none;
+  z-index: -1;
+  box-shadow: 2px 0 6px rgba(200,194,184,0.5);
+}
+.chip.loading.done::after { width: 100% !important; transition: width 200ms ease-out; }
+.chip.dead { color: #f87171; border-color: #7f1d1d; border-style: dashed; background: rgba(248, 113, 113, 0.06); pointer-events: none; }
+.chip.dead::before { content: "✕ "; }
+.jit-banner { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent); padding: 0.4rem 0.6rem; background: rgba(200,194,184,0.06); border: 1px dashed var(--accent); border-radius: 3px; margin-bottom: 0.8rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
+.jit-banner button { margin-left: auto; background: var(--accent); color: var(--bg); border: none; padding: 0.3rem 0.7rem; font-family: inherit; font-size: inherit; cursor: pointer; border-radius: 2px; }
+.jit-banner button:disabled { opacity: 0.5; cursor: wait; }
+.chip .etype {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.chip.t-genre .etype { color: var(--genre); }
+.chip.t-label .etype { color: var(--label); }
+.chip.t-artist .etype { color: var(--artist); }
+.chip.t-project .etype { color: var(--project); }
+.chip.t-track .etype { color: var(--track); }
+
+.citations {
+  display: flex; flex-direction: column; gap: 0.3rem;
+}
+.citations a {
+  color: var(--accent); font-size: 0.85rem; text-decoration: none;
+  word-break: break-word; padding: 0.2rem 0;
+}
+.citations a:hover { color: var(--fg); text-decoration: underline; }
+.citations a .num {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); margin-right: 0.4rem;
+}
+
+/* Random pick */
+.random-link {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
+  color: var(--muted); margin-left: auto; cursor: pointer; text-decoration: none;
+}
+.random-link:hover { color: var(--accent); }
+
+.foot {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); text-align: center;
+  padding: 1rem; line-height: 1.5;
+}
+.foot a { color: var(--accent); text-decoration: none; }
+
+@media (max-width: 600px) {
+  .wrap { padding: 0.7rem 0.7rem 0; }
+  .node { padding: 1.1rem 1rem; }
+  .node h1 { font-size: 1.7rem; }
+  .node .teaser { font-size: 0.95rem; }
+  .node .article { font-size: 0.9rem; }
+  .controls .search { flex-direction: column; gap: 0.4rem; }
+  .controls button { width: 100%; }
+}
+
+/* Track play button (in track node header) */
+.play-btn {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  margin-top: 0.7rem; padding: 0.4rem 0.85rem;
+  background: var(--track); color: #0a0a0a;
+  border: 0; border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.02em; cursor: pointer;
+}
+.play-btn:hover { filter: brightness(1.08); }
+.play-btn:disabled { opacity: 0.55; cursor: progress; }
+
+/* Sticky bottom player. Mounted once at boot — survives all nav. */
+#player {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: rgba(14, 14, 13, 0.94);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--card-border);
+  color: var(--fg);
+  z-index: 50;
+  transform: translateY(110%);
+  transition: transform 0.25s ease;
+}
+#player.open { transform: translateY(0); }
+.player-row {
+  max-width: 760px; margin: 0 auto;
+  display: flex; align-items: center; gap: 0.9rem;
+  padding: 0.6rem 1rem;
+}
+.player-info {
+  flex: 1; min-width: 0;
+  font-size: 0.82rem; line-height: 1.3;
+}
+.player-info .pt { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.player-info .pa { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; }
+.player-btn {
+  background: var(--fg); color: #0a0a0a;
+  border: 0; border-radius: 999px;
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  font-size: 0.95rem;
+}
+.player-btn:disabled { opacity: 0.5; cursor: progress; }
+.player-close {
+  background: transparent; color: var(--muted);
+  border: 0; cursor: pointer;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
+  padding: 0.2rem 0.4rem;
+}
+.player-close:hover { color: var(--fg); }
+.player-bar {
+  flex: 2; height: 4px; background: var(--card-border); border-radius: 2px;
+  position: relative; cursor: pointer;
+}
+.player-bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--track); border-radius: 2px; width: 0; }
+body.player-open .wrap { padding-bottom: 6rem; }
+@media (max-width: 600px) {
+  .player-row { padding: 0.55rem 0.7rem; gap: 0.55rem; }
+  .player-bar { display: none; }
+  .player-info { font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <a class="back" href="/">← back</a>
+    <div class="title">Odyssey</div>
+    <span class="sub">Culture Graph · Phase 1</span>
+  </div>
+
+  <div class="controls">
+    <div class="search">
+      <input id="search" type="search" placeholder="search an artist…" autocomplete="off" inputmode="search" />
+      <button id="focus-seed">Focus seed</button>
+      <button id="random">Random</button>
+    </div>
+    <div id="search-results" class="search-results" style="display:none;"></div>
+  </div>
+
+  <div class="stat" id="stat">…</div>
+
+  <div class="crumbs" id="crumbs" style="display:none;"></div>
+
+  <div id="content"></div>
+
+  <div class="foot">
+    Crawler at <a href="https://github.com/raphpool/odyssey-music">github.com/raphpool/odyssey-music</a> ·
+    Agent powered by Gemini 3.1 Flash Lite + Tavily + Firecrawl via
+    <a href="https://github.com/earendil-works/pi">pi</a>
+  </div>
+</div>
+
+<!-- Persistent audio player. Mounted ONCE at page load, lives outside the view
+     content so navigation (which only rewrites #content) never resets the <audio>
+     element's playback state. -->
+<div id="player">
+  <div class="player-row">
+    <button class="player-btn" id="player-toggle" aria-label="play/pause">▶</button>
+    <div class="player-info">
+      <div class="pt" id="player-title">—</div>
+      <div class="pa" id="player-artist"></div>
+    </div>
+    <div class="player-bar" id="player-bar"><div class="fill" id="player-fill"></div></div>
+    <button class="player-close" id="player-close" aria-label="close player">×</button>
+  </div>
+  <audio id="player-audio" preload="none"></audio>
+</div>
+
+<script>
+const TYPE_ORDER = ["genre", "label", "artist", "project", "track"];
+const TEASER_FIELD = {
+  genre: "editorial_definition", label: "editorial_description",
+  artist: "editorial_bio", project: "editorial_pitch", track: "editorial_teaser",
+};
+const FACT_FIELDS = {
+  genre: ["era", "origin", "sonic_markers"],
+  label: ["founded", "location", "founders", "active_years"],
+  artist: ["origin", "active_years"],
+  project: ["year"],
+  track: ["year", "duration"],
+};
+
+let DATA = null;
+let byId = new Map();
+let SEED_ID = null;
+let crumbs = []; // node ids forming the back-trail
+
+const contentEl = document.getElementById("content");
+const statEl = document.getElementById("stat");
+const searchEl = document.getElementById("search");
+const searchResults = document.getElementById("search-results");
+const crumbsEl = document.getElementById("crumbs");
+
+// JIT scrape endpoint. ?api=http://localhost:18791 overrides for local-dev; default uses
+// the deployed odyssey-server when available. If the API is unreachable we silently disable JIT.
+const API_BASE = (new URLSearchParams(location.search).get("api") || "/api/odyssey").replace(/\/$/, "");
+let JIT_ENABLED = false;
+const deadCache = new Set();
+
+async function pingApi() {
+  try {
+    const r = await fetch(`${API_BASE}/health`);
+    JIT_ENABLED = r.ok;
+  } catch { JIT_ENABLED = false; }
+}
+
+(async function init() {
+  await pingApi();
+  const res = await fetch(JIT_ENABLED ? `${API_BASE}/data.json` : "./data.json", { cache: "no-cache" });
+  DATA = await res.json();
+  for (const n of DATA.nodes) byId.set(n.id, n);
+  SEED_ID = DATA.nodes.find((n) => /tendency/.test(n.id))?.id || DATA.nodes[0].id;
+  statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${SEED_ID}</span>`;
+
+  document.getElementById("focus-seed").addEventListener("click", () => { crumbs = []; show(SEED_ID); });
+  document.getElementById("random").addEventListener("click", () => {
+    crumbs = [];
+    const n = DATA.nodes[Math.floor(Math.random() * DATA.nodes.length)];
+    show(n.id);
+  });
+
+  // Rotating placeholder: cycles through entity types so the user understands the search scope.
+  // Pauses while the input has focus or content so we don't fight the typing.
+  const placeholderRotation = ["search an artist…", "search a track…", "search a genre…", "search an album…"];
+  let placeholderIdx = 0;
+  setInterval(() => {
+    if (document.activeElement === searchEl || searchEl.value) return;
+    placeholderIdx = (placeholderIdx + 1) % placeholderRotation.length;
+    searchEl.placeholder = placeholderRotation[placeholderIdx];
+  }, 2200);
+
+  // Server-backed unified autocomplete. Hits cache nodes (zero-latency redirect) and the
+  // MusicBrainz catalog rail (click to JIT-materialize, dedup by MBID). Falls back to the
+  // in-memory graph filter if the API is offline so the page still works on the static export.
+  let searchAbort = null;
+  let searchDebounce = null;
+  function localFallback(q) {
+    const needle = q.toLowerCase();
+    return DATA.nodes
+      .filter((n) => n.name.toLowerCase().includes(needle) || n.id.toLowerCase().includes(needle))
+      .slice(0, 10)
+      .map((n) => ({ source: "cache", type: n.type, name: n.name, slug: n.id }));
+  }
+  async function runSearch(q) {
+    if (!JIT_ENABLED) {
+      renderSearchHits(localFallback(q), q);
+      return;
+    }
+    if (searchAbort) searchAbort.abort();
+    searchAbort = new AbortController();
+    try {
+      const r = await fetch(`${API_BASE}/search?q=${encodeURIComponent(q)}&limit=10`, {
+        signal: searchAbort.signal,
+      });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const body = await r.json();
+      renderSearchHits(body.hits || [], q);
+    } catch (e) {
+      if (e.name === "AbortError") return;
+      renderSearchHits(localFallback(q), q);
+    }
+  }
+  function renderSearchHits(hits, q) {
+    if (!hits.length) {
+      searchResults.innerHTML = '<div class="row" style="cursor:default;color:var(--muted);"><span>no match for "' + escapeHtml(q) + '"</span></div>';
+      searchResults.style.display = "block";
+      return;
+    }
+    searchResults.innerHTML = hits
+      .map((h, i) => {
+        const subtitle = h.subtitle ? ` <span style="color:var(--muted);font-weight:300;">— ${escapeHtml(h.subtitle)}</span>` : "";
+        const badge = h.source === "catalog"
+          ? '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>'
+          : '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>';
+        return `<div class="row" data-idx="${i}" style="display:flex;align-items:center;gap:0.6rem;"><span class="t ${h.type}">${h.type}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(h.name)}${subtitle}</span>${badge}</div>`;
+      })
+      .join("");
+    searchResults.style.display = "block";
+    searchResults.querySelectorAll(".row[data-idx]").forEach((rowEl) => {
+      const hit = hits[Number(rowEl.dataset.idx)];
+      rowEl.addEventListener("click", () => onSearchHitClick(hit, rowEl));
+    });
+  }
+  async function onSearchHitClick(hit, rowEl) {
+    crumbs = [];
+    searchEl.value = "";
+    if (hit.source === "cache" && hit.slug && byId.has(hit.slug)) {
+      searchResults.style.display = "none";
+      show(hit.slug);
+      return;
+    }
+    if (hit.source === "cache" && hit.slug && !byId.has(hit.slug)) {
+      // Cache result whose viz-shape we don't have loaded yet (e.g. brand-new node since boot).
+      // Pull it via the API and slot it in.
+      rowEl.style.opacity = "0.6";
+      try {
+        const r = await fetch(`${API_BASE}/node/${encodeURIComponent(hit.slug)}`);
+        if (r.ok) {
+          const body = await r.json();
+          insertNodeIntoData(body.node);
+          searchResults.style.display = "none";
+          show(hit.slug);
+          return;
+        }
+      } catch {}
+      rowEl.style.opacity = "1";
+    }
+    if (hit.source === "catalog" && JIT_ENABLED && hit.type && hit.name) {
+      searchResults.style.display = "none";
+      searchEl.blur();
+      await runJitWithOverlay(hit);
+    }
+  }
+  // Optimistic progress for the catalog-hit JIT overlay. Numbers from pipeline benchmarks
+  // (p50 ~5s, p90 ~7s). The bar animates to 95% over EXPECTED_MS_BY_TYPE, then snaps to
+  // 100% on response. Tracks/projects are quicker than artists/genres because the agent
+  // has less surface area to enrich.
+  const EXPECTED_MS_BY_TYPE = { genre: 6500, label: 5200, artist: 6500, project: 5200, track: 5000 };
+  let jitOverlayEl = null;
+  let jitAbortCtrl = null;
+  function buildJitOverlay() {
+    const el = document.createElement("div");
+    el.className = "jit-overlay";
+    el.innerHTML = `
+      <div class="card">
+        <div class="pill"></div>
+        <div class="title"></div>
+        <div class="subtitle"></div>
+        <div class="bar"><i></i></div>
+        <div class="status">Generating page · the agent is materializing this entity from scratch.</div>
+        <button class="cancel" type="button">Cancel</button>
+      </div>`;
+    document.body.appendChild(el);
+    el.querySelector(".cancel").addEventListener("click", () => {
+      if (jitAbortCtrl) jitAbortCtrl.abort();
+      hideJitOverlay();
+    });
+    // Click on the backdrop (outside the card) also cancels.
+    el.addEventListener("click", (e) => {
+      if (e.target === el) {
+        if (jitAbortCtrl) jitAbortCtrl.abort();
+        hideJitOverlay();
+      }
+    });
+    return el;
+  }
+  function showJitOverlay(hit) {
+    if (!jitOverlayEl) jitOverlayEl = buildJitOverlay();
+    const card = jitOverlayEl.querySelector(".card");
+    card.classList.remove("done");
+    const pill = jitOverlayEl.querySelector(".pill");
+    pill.className = `pill ${hit.type}`;
+    pill.textContent = hit.type;
+    jitOverlayEl.querySelector(".title").textContent = hit.name;
+    jitOverlayEl.querySelector(".subtitle").textContent = hit.subtitle || "";
+    jitOverlayEl.querySelector(".status").textContent =
+      "Generating page · the agent is materializing this entity from scratch.";
+    const bar = jitOverlayEl.querySelector(".bar > i");
+    bar.style.width = "0%";
+    const expected = EXPECTED_MS_BY_TYPE[hit.type] || 6000;
+    // Phase 1: linear from 0 → 85% over the median expected wall time (p50). Most JIT runs
+    // finish before this completes, so the bar feels honest. Phase 2 kicks in if we're
+    // still waiting at phase-1 end and crawls 85 → 95% over 3× expected (covers the p99
+    // long tail without ever pretending we're at 99% and stalling).
+    card.style.setProperty("--progress-ms", `${expected}ms`);
+    jitOverlayEl.classList.add("show");
+    void bar.offsetWidth;
+    requestAnimationFrame(() => { bar.style.width = "85%"; });
+    // Schedule the slower phase-2 crawl. If finishJitOverlay fires first, .done overrides
+    // the transition and snaps to 100%; otherwise this kicks in right as phase-1 ends.
+    if (jitOverlayPhase2) clearTimeout(jitOverlayPhase2);
+    jitOverlayPhase2 = setTimeout(() => {
+      if (!jitOverlayEl || card.classList.contains("done")) return;
+      card.style.setProperty("--progress-ms", `${expected * 3}ms`);
+      void bar.offsetWidth;
+      bar.style.width = "95%";
+    }, expected);
+  }
+  let jitOverlayPhase2 = null;
+  function hideJitOverlay() {
+    if (!jitOverlayEl) return;
+    jitOverlayEl.classList.remove("show");
+  }
+  function finishJitOverlay({ ok, message }) {
+    if (!jitOverlayEl) return;
+    if (jitOverlayPhase2) { clearTimeout(jitOverlayPhase2); jitOverlayPhase2 = null; }
+    const card = jitOverlayEl.querySelector(".card");
+    const bar = jitOverlayEl.querySelector(".bar > i");
+    card.classList.add("done");
+    bar.style.width = "100%";
+    jitOverlayEl.querySelector(".status").textContent = ok
+      ? "Done · loading page…"
+      : `Failed: ${message || "unknown error"}`;
+    if (!ok) return;
+    // Auto-hide after a brief moment so the user feels the snap-to-100% before nav.
+    setTimeout(() => hideJitOverlay(), 220);
+  }
+  async function runJitWithOverlay(hit) {
+    showJitOverlay(hit);
+    jitAbortCtrl = new AbortController();
+    try {
+      const reqBody = { type: hit.type, name: hit.name };
+      if (hit.mbid) reqBody.disambiguator = hit.mbid;
+      const r = await fetch(`${API_BASE}/materialize`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(reqBody),
+        signal: jitAbortCtrl.signal,
+      });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok || !body.node) throw new Error(body.error || `HTTP ${r.status}`);
+      insertNodeIntoData(body.node);
+      finishJitOverlay({ ok: true });
+      show(body.node.slug);
+    } catch (e) {
+      if (e.name === "AbortError") {
+        hideJitOverlay();
+        return;
+      }
+      finishJitOverlay({ ok: false, message: e.message });
+    } finally {
+      jitAbortCtrl = null;
+    }
+  }
+  function insertNodeIntoData(node) {
+    const TEASER = { genre: "editorial_definition", label: "editorial_description", artist: "editorial_bio", project: "editorial_pitch", track: "editorial_teaser" };
+    const teaserVal = node[TEASER[node.type]] || "";
+    const edges = {};
+    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","related_projects"], track:["artists","genres","producers","samples","sampled_by","remixed_by"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","remix_of"] };
+    for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
+    for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
+    const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
+    byId.set(vizNode.id, vizNode);
+    DATA.nodes.push(vizNode);
+    DATA.total = DATA.nodes.length;
+  }
+  searchEl.addEventListener("input", () => {
+    const q = searchEl.value.trim();
+    if (!q || q.length < 2) {
+      searchResults.style.display = "none";
+      return;
+    }
+    if (searchDebounce) clearTimeout(searchDebounce);
+    searchDebounce = setTimeout(() => runSearch(q), 150);
+  });
+  document.addEventListener("click", (e) => {
+    if (e.target !== searchEl && !searchResults.contains(e.target)) searchResults.style.display = "none";
+  });
+
+  window.addEventListener("popstate", (e) => {
+    const id = (e.state && e.state.id) || SEED_ID;
+    show(id, { fromHistory: true });
+  });
+
+  const initial = new URLSearchParams(window.location.search).get("node");
+  show(initial && byId.has(initial) ? initial : SEED_ID, { replaceHistory: true });
+})();
+
+function show(id, { fromHistory = false, replaceHistory = false } = {}) {
+  const node = byId.get(id);
+  if (!node) return;
+
+  if (!fromHistory) {
+    const newUrl = `?node=${encodeURIComponent(id)}`;
+    if (replaceHistory) history.replaceState({ id }, "", newUrl);
+    else history.pushState({ id }, "", newUrl);
+  }
+
+  // Crumbs: append unless already last
+  if (!fromHistory && crumbs[crumbs.length - 1] !== id) {
+    if (crumbs.length >= 12) crumbs.shift();
+    crumbs.push(id);
+  }
+  renderCrumbs();
+
+  const teaser = node.teaser || "";
+  const factParts = (FACT_FIELDS[node.type] || []).map((f) => {
+    const v = node[f];
+    if (!v || typeof v !== "string") return null;
+    return `<span>${f.replace(/_/g, " ")}<b>${escapeHtml(v)}</b></span>`;
+  }).filter(Boolean).join("");
+
+  const KIND_LABEL = {
+    project: node.type === "track" ? "album / ep" : "project",
+    artists: "artist(s)",
+    tracklist: "tracks",
+    discography: "discography",
+    notable_tracks: "notable tracks",
+    notable_releases: "notable releases",
+    related_projects: "related albums",
+    key_artists: "key artists",
+    key_labels: "key labels",
+    landmark_tracks: "landmark tracks",
+    landmark_projects: "landmark albums",
+    parent_genres: "parent genres",
+    related_genres: "related genres",
+    sampled_by: "sampled by",
+    remix_of: "remix of",
+    remixed_by: "remixed by",
+  };
+  const edgeHtml = Object.entries(node.edges || {}).map(([kind, val]) => {
+    const refs = Array.isArray(val) ? val : [val];
+    if (!refs.length) return "";
+    const label = KIND_LABEL[kind] || kind.replace(/_/g, " ");
+    // Pass parent context so JIT materialization can disambiguate ambiguous names
+    // (e.g. track "Tendency" → which artist? The chip carries the parent node it
+    // was referenced from + the edge kind, used as the disambiguator string).
+    const parentCtx = { type: node.type, name: node.name, year: node.year, kind };
+    const chips = refs.map((r) => chipHtml(r, parentCtx)).join("");
+    return `<div class="edge-group"><div class="kind">${label}</div><div class="chips">${chips}</div></div>`;
+  }).join("");
+
+  const cits = (node.citations || []).map((c, i) => `<a href="${c.url}" target="_blank" rel="noopener"><span class="num">[${i+1}]</span>${escapeHtml(c.title || c.url)}</a>`).join("");
+
+  const danglingCount = countDangling(node);
+  const showPrecache = JIT_ENABLED && danglingCount > 0;
+  const banner = showPrecache
+    ? `<div class="jit-banner">⚡ JIT active · this node has <b style="color:var(--fg);">${danglingCount}</b> unmaterialized connections. Click any "↻" chip below to load on-demand, or <button id="precache-all">pre-cache all edges</button></div>`
+    : "";
+
+  const playBtnHtml = node.type === "track"
+    ? `<button class="play-btn" id="track-play-btn" data-track-id="${escapeHtml(id)}">▶ play</button>`
+    : "";
+
+  contentEl.innerHTML = `
+    <div class="node stripe-${node.type}">
+      <div class="stripe"></div>
+      <div class="badge ${node.type}">${node.type}${id === SEED_ID ? " · seed" : ""} · <span style="color:var(--muted);text-transform:none;letter-spacing:0;">${escapeHtml(id)}</span></div>
+      <h1>${escapeHtml(node.name)}</h1>
+      <div class="teaser">${escapeHtml(teaser)}</div>
+      ${factParts ? `<div class="facts">${factParts}</div>` : ""}
+      ${playBtnHtml}
+      ${banner}
+      <div class="article">${escapeHtml(node.article || "")}</div>
+      ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
+      <div class="section">Sources</div>
+      <div class="citations">${cits || '<div style="color:var(--muted);font-size:0.85rem;font-style:italic;">No citations.</div>'}</div>
+    </div>
+  `;
+
+  contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      show(el.dataset.id);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+  const playBtn = contentEl.querySelector("#track-play-btn");
+  if (playBtn) {
+    // If this track is the currently-loaded one, reflect that on the button.
+    if (Player.currentTrackId === playBtn.dataset.trackId) {
+      playBtn.textContent = Player.isPlaying() ? "❚❚ pause" : "▶ resume";
+    }
+    playBtn.addEventListener("click", () => Player.playTrack(node));
+  }
+  contentEl.querySelectorAll(".chip.dangling[data-jit-type]").forEach((el) => {
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitDisambig || "");
+    });
+  });
+  const precacheBtn = contentEl.querySelector("#precache-all");
+  if (precacheBtn) precacheBtn.addEventListener("click", () => precacheAllDangling(node, precacheBtn));
+
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function countDangling(node) {
+  let n = 0;
+  for (const v of Object.values(node.edges || {})) {
+    const refs = Array.isArray(v) ? v : [v];
+    for (const r of refs) if (!byId.has(r.slug) && !deadCache.has(r.slug)) n++;
+  }
+  return n;
+}
+
+async function precacheAllDangling(node, btn) {
+  btn.disabled = true;
+  btn.textContent = "loading…";
+  const targets = [];
+  // Carry parent context (kind, parent node) alongside each target so the
+  // bulk materialize call disambiguates ambiguous names the same way the
+  // single-chip JIT path does.
+  for (const [kind, v] of Object.entries(node.edges || {})) {
+    const refs = Array.isArray(v) ? v : [v];
+    for (const r of refs) {
+      if (byId.has(r.slug) || deadCache.has(r.slug)) continue;
+      targets.push({ ref: r, kind });
+    }
+  }
+  let done = 0;
+  // Run 4 at a time
+  const workers = Array.from({ length: 4 }, async () => {
+    while (targets.length) {
+      const t = targets.shift();
+      if (!t) return;
+      const { ref, kind } = t;
+      const disambiguator = buildDisambiguator({ type: node.type, name: node.name, year: node.year, kind });
+      const reqBody = { type: ref.type, name: ref.name };
+      if (disambiguator) reqBody.disambiguator = disambiguator;
+      try {
+        await fetch(`${API_BASE}/materialize`, {
+          method: "POST", headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(reqBody),
+        });
+      } catch {}
+      done++;
+      btn.textContent = `loading ${done}/${done + targets.length}…`;
+    }
+  });
+  await Promise.all(workers);
+  // Reload data + redisplay
+  const res = await fetch(`${API_BASE}/data.json`, { cache: "no-cache" });
+  DATA = await res.json();
+  byId.clear();
+  for (const n of DATA.nodes) byId.set(n.id, n);
+  show(node.id);
+}
+
+// Build a disambiguator string from the parent node + edge kind. The
+// scraping agent receives this verbatim and uses it to lock onto the right
+// entity when the bare name is ambiguous (multiple "Tendency" tracks, several
+// artists called "Bird", etc.).
+function buildDisambiguator(parentCtx) {
+  if (!parentCtx || !parentCtx.name) return "";
+  const kindLabel = (parentCtx.kind || "").replace(/_/g, " ");
+  const yearPart = parentCtx.year ? `, ${parentCtx.year}` : "";
+  // e.g. "appears as discography of artist Burial" / "subgenre of genre Techno"
+  return `${kindLabel} of ${parentCtx.type} "${parentCtx.name}"${yearPart}`.trim();
+}
+
+function chipHtml(ref, parentCtx) {
+  const inCache = byId.has(ref.slug);
+  if (inCache) {
+    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}</a>`;
+  }
+  if (deadCache.has(ref.slug)) {
+    return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}</span>`;
+  }
+  const action = JIT_ENABLED ? "JIT" : "";
+  const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
+  const disambig = buildDisambiguator(parentCtx);
+  const disambigAttr = disambig ? ` data-jit-disambig="${escapeHtml(disambig)}"` : "";
+  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${disambigAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
+}
+
+// Expected wall time per node type, based on the pipeline benchmarks
+// (p50 around 5s, p90 around 7s). Used to drive the optimistic progress bar.
+const EXPECTED_MS_BY_TYPE = { genre: 6500, label: 5200, artist: 6500, project: 5200, track: 5000 };
+async function jitMaterialize(type, name, chipEl, disambiguator) {
+  if (!JIT_ENABLED) return;
+  chipEl.classList.remove("dangling");
+  chipEl.classList.add("loading");
+  // Optimistic progress: target 95% over the expected duration, then snap on response.
+  const expected = EXPECTED_MS_BY_TYPE[type] || 6000;
+  chipEl.style.setProperty("--progress-ms", `${expected}ms`);
+  // Force a layout flush so the transition picks up before we set the target width.
+  void chipEl.offsetWidth;
+  requestAnimationFrame(() => chipEl.style.setProperty("--progress", "95%"));
+  const t0 = performance.now();
+  try {
+    const reqBody = { type, name };
+    if (disambiguator) reqBody.disambiguator = disambiguator;
+    const r = await fetch(`${API_BASE}/materialize`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reqBody),
+    });
+    const body = await r.json().catch(() => ({}));
+    if (!r.ok || !body.node) {
+      throw new Error(body.error || `HTTP ${r.status}`);
+    }
+    const node = body.node;
+    // Convert server payload → viz shape and slot it into DATA + byId.
+    const TEASER = { genre: "editorial_definition", label: "editorial_description", artist: "editorial_bio", project: "editorial_pitch", track: "editorial_teaser" };
+    const teaserVal = node[TEASER[node.type]] || "";
+    const edges = {};
+    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","related_projects"], track:["artists","genres","producers","samples","sampled_by","remixed_by"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","remix_of"] };
+    for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
+    for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
+    const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
+    byId.set(vizNode.id, vizNode);
+    DATA.nodes.push(vizNode);
+    DATA.total = DATA.nodes.length;
+    // Snap the progress bar to 100% then jump straight to the new node.
+    chipEl.classList.add("done");
+    chipEl.style.setProperty("--progress", "100%");
+    await new Promise((r) => setTimeout(r, 200));
+    show(vizNode.id);
+  } catch (e) {
+    deadCache.add(chipEl.dataset.jitSlug);
+    chipEl.classList.remove("loading");
+    chipEl.classList.add("dead");
+    chipEl.title = `dead: ${e.message}`;
+  }
+}
+
+function renderCrumbs() {
+  if (crumbs.length <= 1) { crumbsEl.style.display = "none"; return; }
+  const items = crumbs.slice(0, -1).map((id) => {
+    const n = byId.get(id);
+    if (!n) return "";
+    return `<a href="?node=${encodeURIComponent(id)}" data-id="${id}">${escapeHtml(n.name)}</a>`;
+  });
+  items.push(`<span style="color:var(--fg);">${escapeHtml(byId.get(crumbs[crumbs.length - 1]).name)}</span>`);
+  crumbsEl.innerHTML = items.join(' <span class="sep">›</span> ');
+  crumbsEl.style.display = "flex";
+  crumbsEl.querySelectorAll("a[data-id]").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      const idx = crumbs.indexOf(a.dataset.id);
+      if (idx >= 0) crumbs = crumbs.slice(0, idx);
+      show(a.dataset.id);
+    });
+  });
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// Sticky audio player. State + behavior live on this singleton, declared after
+// DOM mount; the player <div> itself is in markup so it survives every #content
+// re-render. `playTrack(node)` is idempotent: clicking play on the already-loaded
+// track toggles pause/resume instead of re-resolving.
+const Player = (() => {
+  const root = document.getElementById("player");
+  const audio = document.getElementById("player-audio");
+  const toggleBtn = document.getElementById("player-toggle");
+  const titleEl = document.getElementById("player-title");
+  const artistEl = document.getElementById("player-artist");
+  const bar = document.getElementById("player-bar");
+  const fill = document.getElementById("player-fill");
+  const closeBtn = document.getElementById("player-close");
+  let currentTrackId = null;
+  let resolving = false;
+
+  function open() { root.classList.add("open"); document.body.classList.add("player-open"); }
+  function close() {
+    audio.pause(); audio.removeAttribute("src"); audio.load();
+    root.classList.remove("open"); document.body.classList.remove("player-open");
+    currentTrackId = null;
+    refreshTrackBtn();
+  }
+  function isPlaying() { return !audio.paused && !audio.ended && audio.currentTime > 0; }
+
+  function refreshTrackBtn() {
+    const btn = document.getElementById("track-play-btn");
+    if (!btn) return;
+    if (btn.dataset.trackId === currentTrackId) {
+      btn.textContent = isPlaying() ? "❚❚ pause" : "▶ resume";
+      btn.disabled = false;
+    } else {
+      btn.textContent = "▶ play";
+      btn.disabled = false;
+    }
+  }
+
+  async function playTrack(node) {
+    if (!node || node.type !== "track") return;
+    // Same track: toggle pause/resume, no re-resolve.
+    if (currentTrackId === node.id) {
+      if (audio.paused) audio.play().catch(() => {});
+      else audio.pause();
+      refreshTrackBtn();
+      return;
+    }
+    if (resolving) return;
+    resolving = true;
+    const trackBtn = document.getElementById("track-play-btn");
+    if (trackBtn) { trackBtn.disabled = true; trackBtn.textContent = "resolving…"; }
+    toggleBtn.disabled = true;
+    titleEl.textContent = node.name;
+    const artistEdge = (node.edges && (node.edges.artists || []))[0];
+    artistEl.textContent = artistEdge ? artistEdge.name : "";
+    open();
+    try {
+      const r = await fetch(`${API_BASE}/resolve/${encodeURIComponent(node.id)}`);
+      if (!r.ok) throw new Error(`resolve http ${r.status}`);
+      const data = await r.json();
+      currentTrackId = node.id;
+      audio.src = `${API_BASE}/stream/${encodeURIComponent(data.videoId)}`;
+      await audio.play();
+    } catch (e) {
+      titleEl.textContent = node.name + " — playback unavailable";
+      artistEl.textContent = String(e.message || e);
+    } finally {
+      resolving = false;
+      toggleBtn.disabled = false;
+      refreshTrackBtn();
+    }
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    if (audio.paused) audio.play().catch(() => {});
+    else audio.pause();
+  });
+  closeBtn.addEventListener("click", close);
+  audio.addEventListener("play", () => { toggleBtn.textContent = "❚❚"; refreshTrackBtn(); });
+  audio.addEventListener("pause", () => { toggleBtn.textContent = "▶"; refreshTrackBtn(); });
+  audio.addEventListener("ended", () => { toggleBtn.textContent = "▶"; refreshTrackBtn(); });
+  audio.addEventListener("timeupdate", () => {
+    if (!audio.duration) return;
+    fill.style.width = `${(audio.currentTime / audio.duration) * 100}%`;
+  });
+  bar.addEventListener("click", (e) => {
+    if (!audio.duration) return;
+    const rect = bar.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = Math.max(0, Math.min(audio.duration, pct * audio.duration));
+  });
+
+  return {
+    playTrack,
+    isPlaying,
+    get currentTrackId() { return currentTrackId; },
+  };
+})();
+</script>
+</body>
+</html>
