@@ -113,7 +113,12 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		const typeFilter = url.searchParams.get("type") as NodeType | null;
 		const limit = clampLimit(url.searchParams.get("limit"));
 		const result = await handleSearch(q, typeFilter, limit);
-		res.setHeader("Cache-Control", "public, max-age=30");
+		// IMPORTANT: do NOT public-cache /search responses. CloudFlare was caching empty
+		// hit lists at the edge when MB was momentarily 503-throttled, which then served
+		// "no results for tame impala" for the next 30s+ to everyone. Browser-private cache
+		// is fine and cuts repeated keystroke spam, but never let intermediaries store it.
+		const cc = result.hits.length === 0 ? "no-store" : "private, max-age=15";
+		res.setHeader("Cache-Control", cc);
 		json(res, 200, result);
 		return;
 	}
