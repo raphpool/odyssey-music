@@ -64,42 +64,87 @@ function fmtLength(ms: number | undefined): string | undefined {
 }
 
 /**
- * Build an MB Lucene query for prefix-style autocomplete. We escape Lucene metachars
- * and append `*` to the last token. MB's search is Lucene under the hood, so this
- * behaves like our previous FTS5 prefix-match.
+ * Build an MB Lucene query for the search-server endpoint. The earlier version wrapped
+ * every token in double quotes then suffixed `*` to the last, producing `"central" "cee"*`
+ * which is invalid Lucene (you can't wildcard a phrase) — MB silently returned 0 hits for
+ * "central cee", "drake", and most multi-word real-world queries.
+ *
+ * Current shape: strip Lucene metachars, lowercase, then return the raw whitespace-joined
+ * tokens. MB's Lucene already does its own fuzzy + relevance scoring against the artist/
+ * release-group/recording default field; we don't need (and shouldn't try) to out-clever
+ * it with prefix wildcards.
  */
 function buildMbQuery(q: string): string {
-	const cleaned = q.replace(/[+\-!(){}\[\]^"~*?:\\/]/g, " ").trim();
-	if (!cleaned) return "";
-	const tokens = cleaned.split(/\s+/);
-	return tokens
-		.map((t, i) => (i === tokens.length - 1 ? `${t}*` : t))
-		.join(" ");
+	return q.replace(/[+\-!(){}\[\]^"~*?:\\/]/g, " ").replace(/\s+/g, " ").trim();
 }
 
+// "[unknown]" / "[no artist]" etc are MB's SpecialPurpose Artist entries used as
+// placeholders for releases without a real credit. Drop them from autocomplete.
+const SPECIAL_PURPOSE_MBIDS = new Set([
+	"125ec42a-7229-4250-afc5-e057484327fe", // [unknown]
+	"f731ccc4-e22a-43af-a747-64213329e088", // [anonymous]
+	"33cf029c-63b0-41a0-9855-be2a3665fb3b", // [data]
+	"314e1c25-dde7-4e4d-b2f4-0a7b9f7c56dc", // [dialogue]
+	"eec63d3c-3b81-4ad4-b1e4-7c147d4d2b61", // [no artist]
+	"9be7f096-97ec-4615-8957-8d40b5dcbc41", // [traditional]
+	"f0a0a6bf-da0a-4dc2-aa50-fe4d97ce7748", // [theatre]
+	"89ad4ac3-39f7-470e-963a-56509c546377", // Various Artists
+]);
+
+// In-memory result cache keyed by `${path}?${sorted-params}`. TTL is 5 min — long enough
+// that a user typing+correcting their query re-hits the cache, short enough that a fresh
+// release shows up within the same session. Capped at 500 entries with FIFO eviction.
+const mbCache = new Map<string, { at: number; data: unknown }>();
+const MB_CACHE_TTL_MS = 5 * 60 * 1000;
+const MB_CACHE_MAX = 500;
+
 async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
+	const key = `${path}?${Object.entries(params).sort().map(([k, v]) => `${k}=${v}`).join("&")}`;
+	const hit = mbCache.get(key);
+	if (hit && Date.now() - hit.at < MB_CACHE_TTL_MS) {
+		return hit.data as T;
+	}
+
 	const url = new URL(`${MB_BASE}${path}`);
 	for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
 	url.searchParams.set("fmt", "json");
-	const ctrl = new AbortController();
-	const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
-	try {
-		const r = await fetch(url, {
-			headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
-			signal: ctrl.signal,
-		});
-		if (!r.ok) {
-			console.warn(`[mb] ${r.status} ${url.pathname}`);
-			return null;
+
+	// Retry on 503 with backoff. MB throttles aggressively during burst traffic; a short
+	// retry with jitter usually clears it. We cap at 2 retries (3 total attempts) so we
+	// don't pile on if MB is genuinely down.
+	for (let attempt = 0; attempt < 3; attempt++) {
+		const ctrl = new AbortController();
+		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
+		try {
+			const r = await fetch(url, {
+				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+				signal: ctrl.signal,
+			});
+			if (r.status === 503 && attempt < 2) {
+				const wait = 250 * 2 ** attempt + Math.random() * 100;
+				await new Promise((res) => setTimeout(res, wait));
+				continue;
+			}
+			if (!r.ok) {
+				console.warn(`[mb] ${r.status} ${url.pathname}`);
+				return null;
+			}
+			const data = (await r.json()) as T;
+			// Cache successful responses only — don't poison the cache with throttled empties.
+			if (mbCache.size >= MB_CACHE_MAX) {
+				const firstKey = mbCache.keys().next().value;
+				if (firstKey) mbCache.delete(firstKey);
+			}
+			mbCache.set(key, { at: Date.now(), data });
+			return data;
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			if (attempt === 2) console.warn(`[mb] fetch failed ${url.pathname}: ${msg}`);
+		} finally {
+			clearTimeout(timer);
 		}
-		return (await r.json()) as T;
-	} catch (e) {
-		const msg = e instanceof Error ? e.message : String(e);
-		console.warn(`[mb] fetch failed ${url.pathname}: ${msg}`);
-		return null;
-	} finally {
-		clearTimeout(timer);
 	}
+	return null;
 }
 
 async function searchArtists(q: string, limit: number): Promise<CatalogResult[]> {
@@ -107,17 +152,19 @@ async function searchArtists(q: string, limit: number): Promise<CatalogResult[]>
 	if (!query) return [];
 	const body = await mbFetch<{ artists: MbArtist[] }>("/artist", { query, limit: String(limit) });
 	if (!body?.artists) return [];
-	return body.artists.map((a) => {
-		const r: CatalogResult = {
-			type: "artist",
-			mbid: a.id,
-			name: a.name,
-			subtitle: a["sort-name"] ?? "",
-		};
-		const extra = a.country || a.disambiguation;
-		if (extra) r.extra = extra;
-		return r;
-	});
+	return body.artists
+		.filter((a) => !SPECIAL_PURPOSE_MBIDS.has(a.id) && a.name !== "[unknown]")
+		.map((a) => {
+			const r: CatalogResult = {
+				type: "artist",
+				mbid: a.id,
+				name: a.name,
+				subtitle: a["sort-name"] ?? "",
+			};
+			const extra = a.country || a.disambiguation;
+			if (extra) r.extra = extra;
+			return r;
+		});
 }
 
 async function searchReleaseGroups(q: string, limit: number): Promise<CatalogResult[]> {
