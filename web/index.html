@@ -903,7 +903,13 @@ async function precacheAllDangling(node, btn) {
       const t = targets.shift();
       if (!t) return;
       const { ref, kind } = t;
-      const disambiguator = buildDisambiguator({ type: node.type, name: node.name, year: node.year, kind });
+      // Don't pass parent context as disambiguator — it gets folded into the slug body
+      // (artist:pupajim--roster-of-label-stand-high-records) and the resulting node never
+      // reconciles with parent edges pointing at the bare slug. The agent has enough
+      // surface area to identify the right entity from the name alone; if it ever
+      // mis-routes, we can re-introduce context as a separate "context" field that's NOT
+      // used in slug computation. For now: bare slug, always.
+      const disambiguator = "";
       const reqBody = { type: ref.type, name: ref.name };
       if (disambiguator) reqBody.disambiguator = disambiguator;
       try {
@@ -947,9 +953,10 @@ function chipHtml(ref, parentCtx) {
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
-  const disambig = buildDisambiguator(parentCtx);
-  const disambigAttr = disambig ? ` data-jit-disambig="${escapeHtml(disambig)}"` : "";
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${disambigAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
+  // No more data-jit-disambig: the parent context used to be passed to /materialize as
+  // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
+  // reconciled with the bare-slug edges. Slug-from-name only now.
+  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}" title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
