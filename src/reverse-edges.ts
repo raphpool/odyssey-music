@@ -18,6 +18,8 @@ const TRACK_REVERSES: Record<string, ReverseEdgeSpec | null> = {
 	sampled_by: { field: "samples", cardinality: "list" },
 	remix_of: { field: "remixed_by", cardinality: "list" },
 	remixed_by: { field: "remix_of", cardinality: "single" },
+	personnel: { field: "collaborators", cardinality: "list" },
+	label: { field: "notable_releases", cardinality: "list" },
 	artists: null,
 	genres: null,
 	producers: null,
@@ -49,10 +51,20 @@ const GENRE_REVERSES: Record<string, ReverseEdgeSpec | null> = {
 	landmark_tracks: null,
 };
 
+const PROJECT_REVERSES: Record<string, ReverseEdgeSpec | null> = {
+	personnel: { field: "collaborators", cardinality: "list" },
+	artists: null,
+	genres: null,
+	tracklist: null,
+	producers: null,
+	label: null,
+	related_projects: null,
+};
+
 const REVERSES_BY_TYPE: Record<NodeType, Record<string, ReverseEdgeSpec | null>> = {
 	track: TRACK_REVERSES,
 	artist: ARTIST_REVERSES,
-	project: {},
+	project: PROJECT_REVERSES,
 	label: {},
 	genre: GENRE_REVERSES,
 };

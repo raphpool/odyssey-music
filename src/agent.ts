@@ -13,6 +13,7 @@ import {
 	NODE_TYPES,
 	type NodePayload,
 	type NodeType,
+	OPTIONAL_TEXT_FIELDS,
 	SINGULAR_EDGES_BY_TYPE,
 	type Slug,
 } from "./types.js";
@@ -140,7 +141,7 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 			"This call FAILS unless ALL of: >=1 web_search call AND >=1 fetch_page call have happened; " +
 			"citations is a non-empty array of {url,title}; EVERY citation URL was actually fetched via fetch_page " +
 			"or appeared in a web_search result this run; >=3 edge references total across applicable fields; " +
-			"editorial_article is >=400 characters. There is no best-effort acceptance — fix every reason and retry, or call abandon_node.",
+			"editorial_article is >=80 characters of GROUNDED, non-padded prose (database-style filler like 'documented within international music databases' is FORBIDDEN and counts as 0 chars). There is no best-effort acceptance — fix every reason and retry, or call abandon_node if you genuinely lack source material.",
 		parameters: Type.Object({
 			payload: Type.Any({
 				description: "The full node payload object as described in the system prompt.",
@@ -376,11 +377,11 @@ function validateForEmit(payload: unknown, provenance: ResearchProvenance): stri
 	}
 	const p = payload as Record<string, unknown>;
 	const article = p.editorial_article;
-	if (typeof article !== "string" || article.length < 400) {
+	if (typeof article !== "string" || article.length < 80) {
 		reasons.push(
-			`editorial_article must be a string of at least 400 characters (got ${
+			`editorial_article must be a string of at least 80 characters of grounded prose (got ${
 				typeof article === "string" ? article.length : "missing"
-			}).`,
+			}). Padding with database-style filler is FORBIDDEN — abandon_node instead.`,
 		);
 	}
 	const citations = p.citations;
@@ -529,14 +530,6 @@ const TYPE_TEASER_FIELD: Record<NodeType, string> = {
 	track: "editorial_teaser",
 };
 
-const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
-	genre: ["era", "origin", "sonic_markers"],
-	label: ["founded", "location", "founders", "active_years"],
-	artist: ["photo_url", "origin", "active_years"],
-	project: ["cover_url", "year"],
-	track: ["cover_url", "year", "duration"],
-};
-
 interface CanonicalizeFallbacks {
 	fallbackName: string;
 	fallbackType?: NodeType;
@@ -589,7 +582,7 @@ function canonicalize(rawInput: unknown, fb: CanonicalizeFallbacks): unknown {
 	if (typeof next.editorial_article !== "string" && typeof next.article === "string") {
 		next.editorial_article = next.article;
 	}
-	if (typeof next.editorial_article !== "string" || (next.editorial_article as string).length < 200) {
+	if (typeof next.editorial_article !== "string" || (next.editorial_article as string).length < 80) {
 		throw new Error(
 			`editorial_article missing or too short (${
 				typeof next.editorial_article === "string" ? (next.editorial_article as string).length : "missing"
@@ -691,7 +684,7 @@ function buildSystemPrompt(): string {
 GRAPH SCHEMA. There are five node types: genre, label, artist, project (= album or EP), track. Every node has:
   - type: one of {genre,label,artist,project,track}
   - name: the canonical display name of the entity
-  - editorial_article: a long-form article about the entity (>= 400 chars, ideally 600-1500). Real article voice, not a listicle.
+  - editorial_article: a grounded article about the entity (>= 80 chars; 400-1500 chars when sources support it). Real article voice, not a listicle. Short is acceptable when sources are thin; padding with filler is not.
   - citations: array of objects, each EXACTLY of shape {"url":"https://...", "title":"page title"}.
     The url field is REQUIRED and must be a full http(s) URL — not an index, not a number.
   - typed edge fields linking to other nodes. Each edge is {type, name}: { "type":"artist", "name":"Aphex Twin" }.
@@ -708,19 +701,19 @@ Plus type-specific text fields:
   genre.editorial_definition, genre.era, genre.origin, genre.sonic_markers
   label.editorial_description, label.founded, label.location, label.founders, label.active_years
   artist.editorial_bio, artist.photo_url, artist.origin, artist.active_years
-  project.editorial_pitch, project.cover_url, project.year
-  track.editorial_teaser, track.cover_url, track.year, track.duration
+  project.editorial_pitch, project.cover_url, project.year, project.bpm, project.musical_key, project.vocals, project.samples_notes, project.inspirations
+  track.editorial_teaser, track.cover_url, track.year, track.duration, track.bpm, track.musical_key, track.vocals, track.samples_notes, track.inspirations
 
 WORKFLOW (do NOT skip steps):
   1. Decide the node type and canonical name from the input. If a track title is ambiguous, prefer the artist+title interpretation.
-  2. REQUIRED: call web_search at least once before emit_node. Find 2-4 authoritative pages (Discogs, Wikipedia, RYM, label site, music press, artist's own site, Bandcamp).
+  2. REQUIRED: call web_search at least once before emit_node. Find 2-4 authoritative pages (Discogs, Wikipedia, RYM, label site, music press, artist's own site, Bandcamp). For tracks and projects (albums/EPs): you MUST attempt to fetch the Wikipedia page when one exists in the search results — it is the primary source for the 'Personnel' and 'Composition' sections that feed 'personnel', 'bpm', 'musical_key', 'vocals', 'samples_notes', 'inspirations'. Discogs is the primary source for 'label'. Fandom wikis and Reddit are LAST-RESORT sources, never first-choice for personnel/composition.
   3. REQUIRED: call fetch_page on at least one authoritative page before emit_node. Read it for ground-truth facts.
   4. Build the payload from grounded facts. NEVER invent labels, years, samples, influences, or collaborators you cannot source. Empty list > guess.
   5. Fill OBVIOUS edges aggressively.
-     - For a Track: ALWAYS fill 'artists', 'project' (the album/EP it appears on — singular, MANDATORY when known), 'genres', and 'producers'. If the track has no album (single, compilation-only), include a disambiguator and leave project absent.
+     - For a Track: ALWAYS fill 'artists', 'project' (the album/EP it appears on — singular, MANDATORY when known), 'label' (the record label the track/release came out on — singular, MANDATORY when listed on Wikipedia/Discogs), 'genres', and 'producers'. ALSO fill 'personnel' with every named collaborator the source explicitly credits on the recording (session musicians, featured vocalists, instrumentalists, engineers credited as co-creators) — e.g. for "Lose Yourself to Dance" personnel = [Nile Rodgers, Nathan East, Pharrell Williams, ...]. ONLY include people the source actually names; never invent. Fill the composition fields when the source states them: bpm (e.g. "104 BPM"), musical_key (e.g. "C minor"), vocals (e.g. "lead: Pharrell Williams; backing: Nile Rodgers"), samples_notes (e.g. "interpolates the bassline of X"), inspirations (e.g. "Chic-style disco guitar, late-70s Philadelphia soul"). If the track has no album (single, compilation-only), include a disambiguator and leave project absent.
      - For an Artist: 'genres', 'labels', 'notable_tracks', 'discography' are core.
      - For a Label: 'roster', 'genres', 'notable_releases' are core.
-     - For a Project (album/EP): 'artists', 'label', 'genres', 'tracklist' are core.
+     - For a Project (album/EP): 'artists', 'label', 'genres', 'tracklist' are core. ALSO fill 'personnel' with credited session musicians / collaborators on the record, and the composition fields (bpm, musical_key, vocals, samples_notes, inspirations) when the source states them at album scope.
      - For a Genre: 'key_artists', 'key_labels', 'landmark_tracks' or 'landmark_projects' are core.
      The 'project' edge on a Track is the album it appears on (e.g. "Loop-Finding-Jazz-Records" for Jan Jelinek's "Tendency"). NEVER omit this if you find it in your research.
   6. Aim for >=3 total edge references across applicable fields. Each edge name must be the canonical name of a real entity, never "Various" or "Unknown".
@@ -733,11 +726,15 @@ WORKFLOW (do NOT skip steps):
   11. Call emit_node EXACTLY ONCE with the full payload object as the 'payload' parameter. After emit_node the run ends.
 
 EDITORIAL ARTICLE (MUST READ — this is the most common failure mode):
-  - 600-1500 chars of REAL prose written for a curious listener. Not a Wikipedia-style listicle. Not a one-liner bio.
-  - Must be GROUNDED in the pages you fetched. Quote-paraphrase concrete facts: year, label, scene, collaborators, sonic signature, why it matters culturally.
-  - Open with a strong sentence (entity + place + era + what they're known for). Then 2-3 paragraphs of context.
-  - NEVER produce a placeholder like "X is a Y in the Culture Graph." or "Insufficient public information available." The validator will discard the node entirely if the article is short or boilerplate.
-  - If the article is short because you didn't fetch enough, fetch more pages, don't shorten the article.
+  - Write for a curious LISTENER who wants to decide whether to press play. Every sentence must teach them something concrete about the music.
+  - Target 400-1500 chars when the sources support it. Be GROUNDED in the pages you fetched. Quote-paraphrase concrete facts: year, label, scene, named collaborators, instrumentation, sonic signature, why it matters culturally.
+  - Open with a strong sentence (entity + place + era + what they sound like). Then context: who they worked with, what records define them, how they fit a scene.
+  - NEVER produce a placeholder like "X is a Y in the Culture Graph." or "Insufficient public information available."
+  - HARD ANTI-SLOP RULES — these patterns are FORBIDDEN, and a short truthful article beats a long padded one:
+    a) Database meta-talk. Banned phrases include: "documented within", "documented in international music databases", "cataloged on Discogs", "tracks their vinyl and CD releases", "maintained a presence in the underground music scene", "diverse naming conventions", "numerical suffixes", "point of interest for collectors", "active entity", "continues to be", "musical project and artist entity".
+    b) Self-referential filler. Don't describe the database, describe the MUSIC.
+    c) Padding to hit a word count. If you only have 2 concrete grounded sentences, write 2 sentences. Better a 180-char honest teaser than a 600-char generic one.
+  - THIN-INFO PROTOCOL: if after your searches and fetches you have <2 concrete musical facts (a real song name, a real collaborator, a real venue/scene, a real release date with label, a described sonic trait grounded in a source), DO NOT pad. Either (a) emit a short, factual article naming exactly what the source says and leaving non-grounded edges empty, or (b) call abandon_node. Abandoning a node Jim cannot legitimately describe is a CORRECT outcome.
 
 ABANDONMENT (when to use abandon_node):
   - If after 1-2 searches and 1 fetch you have ZERO authoritative info and the entity might not be a real music entity OR is so obscure no public source exists, call abandon_node with a one-sentence reason. The crawler discards the node cleanly — that is the CORRECT outcome.
@@ -760,7 +757,7 @@ LATENCY (we are optimizing for sub-5s runs):
 
 FIRST-ATTEMPT-RIGHT (avoiding retries — each rejected emit costs ~3s):
   - Build the payload object in your head BEFORE you call emit_node. Mentally check:
-    (a) editorial_article >=400 chars  (b) >=1 citation with {url, title}
+    (a) editorial_article >=80 chars AND every sentence carries a concrete grounded fact (no database filler)  (b) >=1 citation with {url, title}
     (c) >=3 edges total                (d) every citation URL was in your tool results
     (e) every edge {type, name} is a real entity (no "Various", no "Unknown")
   - Citations: copy-paste the exact URL from your tool output. Don't shorten, don't reformat. The

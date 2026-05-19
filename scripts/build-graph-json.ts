@@ -9,7 +9,13 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { backfillGenreReverses } from "../src/reverse-edges.js";
 import { nodePayloadSchema } from "../src/schemas.js";
-import { type EdgeRef, LIST_EDGES_BY_TYPE, type NodePayload, SINGULAR_EDGES_BY_TYPE } from "../src/types.js";
+import {
+	type EdgeRef,
+	LIST_EDGES_BY_TYPE,
+	type NodePayload,
+	OPTIONAL_TEXT_FIELDS,
+	SINGULAR_EDGES_BY_TYPE,
+} from "../src/types.js";
 
 interface VizNode {
 	id: string;
@@ -19,6 +25,7 @@ interface VizNode {
 	article: string;
 	citations: { url: string; title?: string }[];
 	edges: Record<string, EdgeRef[] | EdgeRef>;
+	facts: Record<string, string>;
 }
 
 interface VizEdge {
@@ -53,6 +60,11 @@ async function main(): Promise<void> {
 			if (seen.has(parsed.slug)) continue;
 			seen.add(parsed.slug);
 			const teaserVal = (parsed as unknown as Record<string, unknown>)[teaserField[parsed.type]];
+			const facts: Record<string, string> = {};
+			for (const field of OPTIONAL_TEXT_FIELDS[parsed.type]) {
+				const v = (parsed as unknown as Record<string, unknown>)[field];
+				if (typeof v === "string" && v.trim()) facts[field] = v;
+			}
 			const node: VizNode = {
 				id: parsed.slug,
 				type: parsed.type,
@@ -61,6 +73,7 @@ async function main(): Promise<void> {
 				article: parsed.editorial_article,
 				citations: parsed.citations,
 				edges: {},
+				facts,
 			};
 			for (const field of LIST_EDGES_BY_TYPE[parsed.type]) {
 				const v = (parsed as unknown as Record<string, unknown>)[field];

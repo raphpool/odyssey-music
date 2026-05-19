@@ -73,11 +73,17 @@ export interface ProjectNode extends BaseNode {
 	editorial_pitch: string;
 	cover_url?: string;
 	year?: string;
+	bpm?: string;
+	musical_key?: string;
+	vocals?: string;
+	samples_notes?: string;
+	inspirations?: string;
 	artists: EdgeRef[];
 	label?: EdgeRef;
 	genres: EdgeRef[];
 	tracklist: EdgeRef[];
 	producers: EdgeRef[];
+	personnel: EdgeRef[];
 	related_projects: EdgeRef[];
 }
 
@@ -87,10 +93,17 @@ export interface TrackNode extends BaseNode {
 	cover_url?: string;
 	year?: string;
 	duration?: string;
+	bpm?: string;
+	musical_key?: string;
+	vocals?: string;
+	samples_notes?: string;
+	inspirations?: string;
 	artists: EdgeRef[];
 	project?: EdgeRef;
+	label?: EdgeRef;
 	genres: EdgeRef[];
 	producers: EdgeRef[];
+	personnel: EdgeRef[];
 	samples: EdgeRef[];
 	sampled_by: EdgeRef[];
 	remix_of?: EdgeRef;
@@ -125,8 +138,21 @@ export const LIST_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
 		"aliases",
 		"members",
 	],
-	project: ["artists", "genres", "tracklist", "producers", "related_projects"],
-	track: ["artists", "genres", "producers", "samples", "sampled_by", "remixed_by"],
+	project: ["artists", "genres", "tracklist", "producers", "personnel", "related_projects"],
+	track: ["artists", "genres", "producers", "personnel", "samples", "sampled_by", "remixed_by"],
+};
+
+/**
+ * Optional text/scalar fields per node type that should be threaded through
+ * the viz layer (build-graph-json + server.buildGraph) into VizNode.facts so
+ * the frontend can render them as fact pills.
+ */
+export const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
+	genre: ["era", "origin", "sonic_markers"],
+	label: ["founded", "location", "founders", "active_years"],
+	artist: ["photo_url", "origin", "active_years"],
+	project: ["cover_url", "year", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
+	track: ["cover_url", "year", "duration", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
 };
 
 export const SINGULAR_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
@@ -134,5 +160,5 @@ export const SINGULAR_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
 	label: [],
 	artist: [],
 	project: ["label"],
-	track: ["project", "remix_of"],
+	track: ["project", "label", "remix_of"],
 };

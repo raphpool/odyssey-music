@@ -14,16 +14,16 @@
  */
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { join } from "node:path";
-import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { NodeCache } from "./cache.js";
+import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { loadEnv } from "./env.js";
-import { openCatalogIndex, type CatalogIndex, type CatalogResult } from "./musicbrainz.js";
+import { type CatalogIndex, type CatalogResult, openCatalogIndex } from "./musicbrainz.js";
 import { runPipeline } from "./pipeline.js";
 import { backfillGenreReverses } from "./reverse-edges.js";
 import { makeSlug, parseSlug } from "./slug.js";
 import { handleStream } from "./stream.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
-import { LIST_EDGES_BY_TYPE, NODE_TYPES, SINGULAR_EDGES_BY_TYPE } from "./types.js";
+import { LIST_EDGES_BY_TYPE, NODE_TYPES, OPTIONAL_TEXT_FIELDS, SINGULAR_EDGES_BY_TYPE } from "./types.js";
 import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.js";
 
 const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
@@ -173,7 +173,11 @@ interface SearchHit {
 	slug?: Slug; // present iff source === "cache"
 }
 
-async function handleSearch(q: string, typeFilter: NodeType | null, limit: number): Promise<{
+async function handleSearch(
+	q: string,
+	typeFilter: NodeType | null,
+	limit: number,
+): Promise<{
 	q: string;
 	hits: SearchHit[];
 	sources: { cache: number; catalog: number };
@@ -356,6 +360,11 @@ async function buildGraph(): Promise<{
 			const v = obj[field];
 			if (v && typeof v === "object") nodeEdges[field] = v as EdgeRef;
 		}
+		const facts: Record<string, string> = {};
+		for (const field of OPTIONAL_TEXT_FIELDS[n.type]) {
+			const v = obj[field];
+			if (typeof v === "string" && v.trim()) facts[field] = v;
+		}
 		vizNodes.push({
 			id: n.slug,
 			type: n.type,
@@ -364,6 +373,7 @@ async function buildGraph(): Promise<{
 			article: n.editorial_article,
 			citations: n.citations,
 			edges: nodeEdges,
+			facts,
 		});
 	}
 	// Back-fill missing reverse genre↔genre fields BEFORE computing edges, so
