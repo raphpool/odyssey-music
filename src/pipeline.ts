@@ -16,6 +16,9 @@
  *   - All research happens deterministically up front → no path where the agent skips fetches.
  *   - Failures are real (search returned nothing, JSON unparseable) — not retry storms.
  */
+import { readFile } from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { nodePayloadSchema } from "./schemas.js";
@@ -36,6 +39,25 @@ import {
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
 function genreDisplayName(s: string): string {
 	return s.replace(/(^|[\s&\-])([a-z])/g, (_m, sep, ch: string) => `${sep}${ch.toUpperCase()}`);
+}
+
+interface WikidataGenreEntry {
+	slug: string;
+	name: string;
+	wikidata_qid: string;
+	parents?: string[];
+}
+let GENRE_CATALOG: Map<string, WikidataGenreEntry> | null = null;
+async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
+	if (GENRE_CATALOG) return GENRE_CATALOG;
+	const here = dirname(fileURLToPath(import.meta.url));
+	const path = join(here, "..", "data", "genre-catalog.json");
+	const raw = await readFile(path, "utf8");
+	const parsed = JSON.parse(raw) as { genres: WikidataGenreEntry[] };
+	const map = new Map<string, WikidataGenreEntry>();
+	for (const g of parsed.genres) map.set(g.slug, g);
+	GENRE_CATALOG = map;
+	return map;
 }
 import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
@@ -722,6 +744,31 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
 			log(`[pipeline] MB project enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
+	// Genres: backfill parent_genres from the Wikidata catalog when the LLM
+	// returned none. This rescues orphan genres (e.g. "bass-music", "acoustic")
+	// that otherwise get quarantined by build-graph-json for having zero genre↔genre edges.
+	if (input.type === "genre") {
+		try {
+			const obj = node as Record<string, unknown>;
+			const current = Array.isArray(obj.parent_genres) ? (obj.parent_genres as unknown[]) : [];
+			if (current.length === 0) {
+				const catalog = await loadGenreCatalog();
+				const body = (obj.slug as string).split(":")[1] ?? "";
+				const entry = catalog.get(body);
+				if (entry?.parents?.length) {
+					obj.parent_genres = entry.parents.map((p) => ({
+						type: "genre",
+						name: genreDisplayName(p.replace(/-/g, " ")),
+						slug: `genre:${p}`,
+					}));
+					log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
+				}
+			}
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] Wikidata genre enrich skipped: ${msg.slice(0, 100)}`);
 		}
 	}
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
