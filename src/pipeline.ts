@@ -23,6 +23,7 @@ import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 import {
 	fetchArtistDiscographyMb,
+	fetchEntityGenresMb,
 	fetchLabelMetaMb,
 	fetchProjectMetaMb,
 	fetchTrackMetaMb,
@@ -31,6 +32,11 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
+
+/** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
+function genreDisplayName(s: string): string {
+	return s.replace(/(^|[\s&\-])([a-z])/g, (_m, sep, ch: string) => `${sep}${ch.toUpperCase()}`);
+}
 import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
@@ -502,6 +508,17 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			let mbid = input.mbid;
 			if (!mbid) mbid = (await findArtistMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
+				// MB tags are more granular than the Wikipedia infobox genre — Raph caught
+				// 2026-05-19 ("Drake": MB has 9 vote-weighted tags, Wiki has 'hip hop, R&B, pop').
+				const genres = await fetchEntityGenresMb("artist", mbid, { minCount: 2, max: 8 });
+				if (genres.length > 0) {
+					const obj = node as Record<string, unknown>;
+					obj.genres = genres.map((g) => ({
+						type: "genre",
+						name: genreDisplayName(g),
+						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+					}));
+				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
 				// Studio albums first (no secondary types). Cap at 25 to keep the edge list usable.
 				const studio = releases.filter((r) => r.secondaryTypes.length === 0);
@@ -560,6 +577,15 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			let mbid = input.mbid;
 			if (!mbid) mbid = (await findRecordingMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
+				const genres = await fetchEntityGenresMb("recording", mbid, { minCount: 2, max: 8 });
+				if (genres.length > 0) {
+					const obj = node as Record<string, unknown>;
+					obj.genres = genres.map((g) => ({
+						type: "genre",
+						name: genreDisplayName(g),
+						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+					}));
+				}
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				const toSlug = (kind: string, n: string): string =>
@@ -598,6 +624,15 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			if (!mbid)
 				mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
+				const genres = await fetchEntityGenresMb("release-group", mbid, { minCount: 2, max: 8 });
+				if (genres.length > 0) {
+					const obj = node as Record<string, unknown>;
+					obj.genres = genres.map((g) => ({
+						type: "genre",
+						name: genreDisplayName(g),
+						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+					}));
+				}
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				const toSlug = (kind: string, n: string): string =>

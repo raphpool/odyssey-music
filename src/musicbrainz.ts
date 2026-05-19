@@ -299,6 +299,49 @@ function disambigTokens(disambig: string | undefined): string[] {
  * user-supplied disambiguator (which is the most reliable signal we have). If no candidate
  * matches, return null rather than overriding with a cover.
  */
+/**
+ * Fetch the genre tags for an entity (artist/release-group/recording) from MB.
+ * MB exposes both "genres" (a curated subset of tags promoted to genre status) and "tags"
+ * (free-text user submissions). Both carry a `count` of upvotes. We prefer genres when
+ * present, fall back to tags filtered by count >= minCount. Returns lowercased names.
+ *
+ * 2026-05-19 Raph caught: the infobox-derived Wikipedia genre is much coarser than what
+ * MB users actually tag. For Drake, MB has 9 distinct genres with vote counts; Wiki
+ * usually surfaces 2-3 broad ones.
+ */
+export type MbGenreEntity = "artist" | "release-group" | "recording";
+
+export async function fetchEntityGenresMb(
+	entity: MbGenreEntity,
+	mbid: string,
+	opts: { minCount?: number; max?: number } = {},
+): Promise<string[]> {
+	const minCount = opts.minCount ?? 2;
+	const max = opts.max ?? 8;
+	interface Resp {
+		genres?: { name: string; count?: number }[];
+		tags?: { name: string; count?: number }[];
+	}
+	const data = await mbFetch<Resp>(`/${entity}/${mbid}`, { inc: "genres+tags" });
+	if (!data) return [];
+	const source = data.genres && data.genres.length > 0 ? data.genres : data.tags ?? [];
+	const filtered = source
+		.filter((t) => (t.count ?? 0) >= minCount)
+		.sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
+		.map((t) => t.name.toLowerCase().trim())
+		.filter((n) => n.length > 0);
+	// De-dup while preserving order.
+	const seen = new Set<string>();
+	const out: string[] = [];
+	for (const n of filtered) {
+		if (seen.has(n)) continue;
+		seen.add(n);
+		out.push(n);
+		if (out.length >= max) break;
+	}
+	return out;
+}
+
 /** Resolve a label name to its MBID via MB label search. */
 export async function findLabelMbidByName(name: string, disambig?: string): Promise<string | null> {
 	interface LabelHit {
