@@ -105,6 +105,27 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			json(res, 404, { error: "not cached", slug: raw });
 			return;
 		}
+		// Freshness TTL (2026-05-19 goal-2): a node older than 12h is stale. Re-materialize
+		// synchronously so the GET response carries the fresh payload (Henry/Raph want JIT
+		// feel — "tu refresh la page t'auras pas la meme chose").
+		const TTL_MS = 12 * 3600 * 1000;
+		const matAt = new Date(node.materialized_at).getTime();
+		if (Number.isFinite(matAt) && Date.now() - matAt > TTL_MS) {
+			try {
+				const req2: MaterializeRequest = { type: node.type, name: node.name };
+				const dis = (node as unknown as Record<string, unknown>).disambiguator;
+				if (typeof dis === "string" && dis) req2.disambiguator = dis;
+				const fresh = await runJit(req2, { fresh: true });
+				json(res, 200, { source: "jit-refreshed", node: fresh });
+				return;
+			} catch (e) {
+				// If re-materialization fails (transient Gemini/Tavily blip), serve the stale node
+				// rather than 500 — better UX than nothing.
+				const msg = e instanceof Error ? e.message : String(e);
+				json(res, 200, { source: "cache-stale-refresh-failed", node, refresh_error: msg.slice(0, 200) });
+				return;
+			}
+		}
 		json(res, 200, { source: "cache", node });
 		return;
 	}
@@ -124,7 +145,8 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	}
 	if (req.method === "POST" && path === "/materialize") {
 		const body = await readJson<MaterializeRequest>(req);
-		const result = await handleMaterialize(body);
+		const fresh = url.searchParams.get("fresh") === "1" || url.searchParams.get("fresh") === "true";
+		const result = await handleMaterialize(body, { fresh });
 		json(res, 200, result);
 		return;
 	}
@@ -261,7 +283,10 @@ async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void
 	}
 }
 
-async function handleMaterialize(body: MaterializeRequest): Promise<MaterializeResponse> {
+async function handleMaterialize(
+	body: MaterializeRequest,
+	opts: { fresh?: boolean } = {},
+): Promise<MaterializeResponse> {
 	if (
 		(!body.type || typeof body.type !== "string" || !(NODE_TYPES as readonly string[]).includes(body.type)) &&
 		!body.text
@@ -269,20 +294,34 @@ async function handleMaterialize(body: MaterializeRequest): Promise<MaterializeR
 		throw new Error("Provide {type, name} or {text}");
 	}
 	const t0 = Date.now();
-	// Fast path: if we can canonicalize a target slug right now, check cache first.
+	const fresh = opts.fresh === true;
+	// Fast path: if we can canonicalize a target slug right now, check cache first
+	// (unless ?fresh=1 was requested — Henry/Raph want a "ctrl+R always re-explores" mode).
 	if (body.type && body.name) {
 		const slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
-		const cached = await cache.get(slug).catch(() => null);
-		if (cached) {
-			return { node: cached, source: "cache", wallMs: Date.now() - t0 };
+		let effectiveFresh = fresh;
+		if (!fresh) {
+			const cached = await cache.get(slug).catch(() => null);
+			if (cached) {
+				// 12h TTL — same as GET /node/:slug. Goal-2 adversarial caught the bypass on
+				// 2026-05-19: a cache hit on /materialize was returning a stale node forever.
+				const TTL_MS = 12 * 3600 * 1000;
+				const matAt = new Date(cached.materialized_at).getTime();
+				const stale = Number.isFinite(matAt) && Date.now() - matAt > TTL_MS;
+				if (!stale) {
+					return { node: cached, source: "cache", wallMs: Date.now() - t0 };
+				}
+				// Stale: force a fresh materialize through the JIT path so the cache write overwrites.
+				effectiveFresh = true;
+			}
 		}
-		const key = `${slug}|${body.disambiguator ?? ""}`;
+		const key = `${slug}|${body.disambiguator ?? ""}|fresh=${effectiveFresh}`;
 		const existing = inflight.get(key);
 		if (existing) {
 			const node = await existing;
 			return { node, source: "jit", wallMs: Date.now() - t0 };
 		}
-		const p = runJit(body);
+		const p = runJit(body, { fresh: effectiveFresh });
 		inflight.set(key, p);
 		try {
 			const node = await p;
@@ -295,11 +334,11 @@ async function handleMaterialize(body: MaterializeRequest): Promise<MaterializeR
 		}
 	}
 	// Free-text path: just run the agent.
-	const node = await runJit(body);
+	const node = await runJit(body, { fresh });
 	return { node, source: "jit", wallMs: Date.now() - t0 };
 }
 
-async function runJit(body: MaterializeRequest): Promise<NodePayload> {
+async function runJit(body: MaterializeRequest, opts: { fresh?: boolean } = {}): Promise<NodePayload> {
 	if (!body.type || !body.name) {
 		throw new Error("Pipeline JIT requires both 'type' and 'name'. Free-text seeds are not supported here.");
 	}
@@ -313,8 +352,12 @@ async function runJit(body: MaterializeRequest): Promise<NodePayload> {
 		firecrawlApiKey: env.FIRECRAWL_API_KEY,
 	});
 	// Re-check then write atomically through cache (handles parallel JIT for the same slug).
-	const existing = await cache.get(r.slug).catch(() => null);
-	if (existing) return existing;
+	// When fresh=true the caller explicitly asked for re-materialization (TTL refresh or
+	// ?fresh=1 query) — overwrite the cached node with the new payload.
+	if (!opts.fresh) {
+		const existing = await cache.get(r.slug).catch(() => null);
+		if (existing) return existing;
+	}
 	// Stamp the MBID hint (if any) onto the node payload before persisting. Subsequent
 	// /search calls reconcile via cache-index.byMbid so the catalog rail collapses with
 	// this node rather than offering it again as "+ generate".
@@ -374,6 +417,7 @@ async function buildGraph(): Promise<{
 			citations: n.citations,
 			edges: nodeEdges,
 			facts,
+			materialized_at: n.materialized_at,
 		});
 	}
 	// Back-fill missing reverse genre↔genre fields BEFORE computing edges, so

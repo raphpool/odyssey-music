@@ -313,7 +313,10 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 const MAX_CORPUS_BYTES = 24_000;
 const PER_PAGE_BUDGET = 14_000;
 const SEARCH_RESULTS = 5;
-const FETCH_TOP_K = 2; // was 3 — one fewer parallel scrape + smaller corpus
+// 2026-05-19 goal-2 perf: drop to 1 fetch. Source ranking puts wikipedia first when present
+// (the canonical source for music facts), so a single fetch usually gives us what we need and
+// halves both the fetch wall-time and the LLM prefill tokens. Trades breadth for latency.
+const FETCH_TOP_K = 1;
 
 const SYSTEM_PROMPT = `You build one Culture Graph node from research material the system provides.
 
@@ -428,7 +431,11 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const ai = new GoogleGenAI({ apiKey });
 	const model = deps.model ?? "gemini-3.1-flash-lite-preview";
 
-	const userPrompt = buildUserPrompt(input, searchResults, corpus);
+	// Variability nonce (goal-2): each call carries a unique session id so that two fresh
+	// re-materializations of the same entity produce visibly different prose. The agent is
+	// instructed to use this as a writing-angle hint, not to invent facts.
+	const sessionNonce = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+	const userPrompt = `${buildUserPrompt(input, searchResults, corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
 	const allowedUrls = new Set<string>();
 	for (const r of searchResults) allowedUrls.add(r.url);
 	for (const c of corpus) allowedUrls.add(c.url);
@@ -441,7 +448,9 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				systemInstruction: SYSTEM_PROMPT,
 				responseMimeType: "application/json",
 				responseSchema: schema,
-				temperature: 0.4,
+				// Higher temperature (goal-2 variability rubric): two fresh materializations of
+				// the same entity must produce substantially different prose. 0.4 was too tight.
+				temperature: 0.95,
 				// Disable thinking on Flash Lite — we don't need CoT for this constrained extraction
 				// task, and it adds 1-3s of latency for no measurable accuracy gain.
 				thinkingConfig: { thinkingBudget: 0 },
