@@ -24,7 +24,9 @@ import { localFetch } from "./tools/local-fetcher.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchProjectMetaMb,
+	fetchTrackMetaMb,
 	findArtistMbidByName,
+	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
 import { rankResults, tavilySearch } from "./tools/tavily.js";
@@ -519,6 +521,43 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// Same pattern for project nodes: MB knows the canonical tracklist; the LLM tends to
 	// confabulate or hallucinate B-side names. We resolve the release-group MBID, take the
 	// earliest release in the group, and replace `tracklist` with the actual recordings.
+	if (input.type === "track") {
+		try {
+			let mbid = input.mbid;
+			if (!mbid) mbid = (await findRecordingMbidByName(input.name, input.disambiguator)) ?? undefined;
+			if (mbid) {
+				const meta = await fetchTrackMetaMb(mbid);
+				const obj = node as Record<string, unknown>;
+				const toSlug = (kind: string, n: string): string =>
+					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+				if (meta.project) {
+					obj.project = {
+						type: "project",
+						name: meta.project.name,
+						slug: toSlug("project", meta.project.name),
+					};
+				}
+				if (meta.label) {
+					obj.label = { type: "label", name: meta.label.name, slug: toSlug("label", meta.label.name) };
+				}
+				if (meta.artists.length > 0) {
+					obj.artists = meta.artists.slice(0, 10).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+					}));
+				}
+				if (meta.year) obj.year = meta.year;
+				if (meta.duration) obj.duration = meta.duration;
+				log(
+					`[pipeline] track meta overridden: project=${meta.project?.name ?? "-"} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} year=${meta.year ?? "-"} duration=${meta.duration ?? "-"}`,
+				);
+			}
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] MB track enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
 	if (input.type === "project") {
 		try {
 			let mbid = input.mbid;

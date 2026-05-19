@@ -282,14 +282,57 @@ export async function findArtistMbidByName(name: string, disambig?: string): Pro
 	return results[0]?.mbid ?? null;
 }
 
-/** Resolve a project (album/EP) name to its MBID via MB release-group search. */
+/** Extract candidate artist-name tokens (>=3 chars) from a disambiguator string. */
+function disambigTokens(disambig: string | undefined): string[] {
+	if (!disambig) return [];
+	return disambig
+		.toLowerCase()
+		.split(/\s+/)
+		.filter((t) => t.length >= 3 && !/^(20\d{2}|19\d{2})$/.test(t));
+}
+
+/**
+ * Resolve a recording (track) name to its MBID via MB recording search.
+ * MB's free-text search loves to surface covers and metal-tribute albums for common track
+ * names (caught 2026-05-19 on "Get Lucky" → returned Walt Ribeiro + Charlie Parra covers).
+ * Require the matched recording's artist-credit subtitle to contain >=1 token from the
+ * user-supplied disambiguator (which is the most reliable signal we have). If no candidate
+ * matches, return null rather than overriding with a cover.
+ */
+export async function findRecordingMbidByName(
+	name: string,
+	disambig?: string,
+): Promise<string | null> {
+	const q = disambig ? `${name} ${disambig}` : name;
+	const results = await searchRecordings(q, 8);
+	if (results.length === 0) return null;
+	const tokens = disambigTokens(disambig);
+	if (tokens.length === 0) return results[0]?.mbid ?? null;
+	const matched = results.find((r) => {
+		const sub = (r.subtitle ?? "").toLowerCase();
+		return tokens.some((t) => sub.includes(t));
+	});
+	return matched?.mbid ?? null;
+}
+
+/**
+ * Resolve a project (album/EP) name to its MBID via MB release-group search.
+ * Same disambiguator-token guard as findRecordingMbidByName.
+ */
 export async function findReleaseGroupMbidByName(
 	name: string,
 	disambig?: string,
 ): Promise<string | null> {
 	const q = disambig ? `${name} ${disambig}` : name;
-	const results = await searchReleaseGroups(q, 3);
-	return results[0]?.mbid ?? null;
+	const results = await searchReleaseGroups(q, 8);
+	if (results.length === 0) return null;
+	const tokens = disambigTokens(disambig);
+	if (tokens.length === 0) return results[0]?.mbid ?? null;
+	const matched = results.find((r) => {
+		const sub = (r.subtitle ?? "").toLowerCase();
+		return tokens.some((t) => sub.includes(t));
+	});
+	return matched?.mbid ?? null;
 }
 
 /**
@@ -301,6 +344,101 @@ export interface MbTrackSummary {
 	mbid: string;
 	title: string;
 	length?: number;
+}
+
+export interface MbTrackMeta {
+	project: { mbid: string; name: string } | null;
+	label: { mbid: string; name: string } | null;
+	artists: { mbid: string; name: string }[];
+	year: string | null;
+	duration: string | null;
+}
+
+/**
+ * Score a release-group for "is this the canonical album home for this track?".
+ * Lower = better. Album with no secondary-types is the gold standard; Single is last resort.
+ */
+function rgScore(rg: { "primary-type"?: string; "secondary-types"?: string[] } | undefined): number {
+	if (!rg) return 99;
+	const sec = rg["secondary-types"] ?? [];
+	if (sec.length > 0) return 50; // compilation/live/mixtape — deprioritize
+	const primary = (rg["primary-type"] ?? "").toLowerCase();
+	if (primary === "album") return 0;
+	if (primary === "ep") return 10;
+	if (primary === "single") return 20;
+	if (primary === "broadcast") return 30;
+	return 40;
+}
+
+/**
+ * Fetch track-level metadata via MB. Given a recording MBID, find the earliest release-
+ * group it appears on (canonical "original" album), pull that release's label + artists.
+ */
+export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMeta> {
+	const empty: MbTrackMeta = { project: null, label: null, artists: [], year: null, duration: null };
+	interface RecordingResp {
+		length?: number;
+		"artist-credit"?: { artist?: { id: string; name: string } }[];
+		releases?: {
+			id: string;
+			date?: string;
+			"release-events"?: { date?: string }[];
+			"release-group"?: {
+				id: string;
+				title: string;
+				"first-release-date"?: string;
+				"primary-type"?: string;
+				"secondary-types"?: string[];
+			};
+		}[];
+	}
+	const rec = await mbFetch<RecordingResp>(`/recording/${recordingMbid}`, {
+		inc: "releases+release-groups+artist-credits",
+	});
+	if (!rec) return empty;
+	const out: MbTrackMeta = { project: null, label: null, artists: [], year: null, duration: null };
+	if (typeof rec.length === "number") {
+		const totalSec = Math.round(rec.length / 1000);
+		const m = Math.floor(totalSec / 60);
+		const s = String(totalSec % 60).padStart(2, "0");
+		out.duration = `${m}:${s}`;
+	}
+	const seenArtist = new Set<string>();
+	for (const ac of rec["artist-credit"] ?? []) {
+		const a = ac.artist;
+		if (!a || !a.id || seenArtist.has(a.id)) continue;
+		seenArtist.add(a.id);
+		out.artists.push({ mbid: a.id, name: a.name });
+	}
+	// Prefer the earliest release whose release-group is an Album with no secondary-types
+	// (i.e. the canonical studio album), then EP, then Single. This avoids picking a
+	// "Get Lucky" single release-group when the canonical project is Random Access Memories.
+	const releases = (rec.releases ?? []).slice().sort((a, b) => {
+		const rgA = a["release-group"];
+		const rgB = b["release-group"];
+		const scoreA = rgScore(rgA);
+		const scoreB = rgScore(rgB);
+		if (scoreA !== scoreB) return scoreA - scoreB; // lower is better
+		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
+		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		return ad.localeCompare(bd);
+	});
+	const earliest = releases[0];
+	if (earliest?.["release-group"]) {
+		out.project = { mbid: earliest["release-group"].id, name: earliest["release-group"].title };
+		const d = earliest["release-group"]["first-release-date"] ?? earliest.date;
+		if (typeof d === "string" && /^\d{4}/.test(d)) out.year = d.slice(0, 4);
+	}
+	// Fetch label info from the earliest release.
+	if (earliest) {
+		interface ReleaseLabelResp {
+			"label-info"?: { label?: { id: string; name: string } | null }[];
+		}
+		const rel = await mbFetch<ReleaseLabelResp>(`/release/${earliest.id}`, { inc: "labels" });
+		const firstLabel = (rel?.["label-info"] ?? []).find((li) => li.label && li.label.name)?.label;
+		if (firstLabel) out.label = { mbid: firstLabel.id, name: firstLabel.name };
+	}
+	return out;
 }
 
 export interface MbProjectMeta {
