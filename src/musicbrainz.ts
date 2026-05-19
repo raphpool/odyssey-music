@@ -282,6 +282,65 @@ export async function findArtistMbidByName(name: string, disambig?: string): Pro
 	return results[0]?.mbid ?? null;
 }
 
+/** Resolve a project (album/EP) name to its MBID via MB release-group search. */
+export async function findReleaseGroupMbidByName(
+	name: string,
+	disambig?: string,
+): Promise<string | null> {
+	const q = disambig ? `${name} ${disambig}` : name;
+	const results = await searchReleaseGroups(q, 3);
+	return results[0]?.mbid ?? null;
+}
+
+/**
+ * Fetch the canonical tracklist for a release-group. Picks the first release in the
+ * release-group, walks its media[].tracks[] and returns just the recording titles
+ * (which we use as track edge names). Returns [] on any error.
+ */
+export interface MbTrackSummary {
+	mbid: string;
+	title: string;
+	length?: number;
+}
+
+export async function fetchProjectTracklistMb(rgMbid: string): Promise<MbTrackSummary[]> {
+	interface ReleaseGroupResp {
+		releases?: { id: string; "release-events"?: { date?: string }[]; date?: string }[];
+	}
+	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, { inc: "releases" });
+	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return [];
+	// Prefer the earliest dated release in the release-group (canonical "original" tracklist).
+	const releases = [...rg.releases].sort((a, b) => {
+		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
+		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		return ad.localeCompare(bd);
+	});
+	const releaseId = releases[0]?.id;
+	if (!releaseId) return [];
+	interface ReleaseResp {
+		media?: {
+			tracks?: { id: string; recording?: { id: string; title: string; length?: number } }[];
+		}[];
+	}
+	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, { inc: "recordings" });
+	if (!rel || !Array.isArray(rel.media)) return [];
+	const out: MbTrackSummary[] = [];
+	const seen = new Set<string>();
+	for (const m of rel.media) {
+		for (const t of m.tracks ?? []) {
+			const r = t.recording;
+			if (!r || typeof r.title !== "string") continue;
+			const key = r.title.toLowerCase().trim();
+			if (seen.has(key)) continue;
+			seen.add(key);
+			const entry: MbTrackSummary = { mbid: r.id, title: r.title };
+			if (typeof r.length === "number") entry.length = r.length;
+			out.push(entry);
+		}
+	}
+	return out;
+}
+
 export function openCatalogIndex(_unused?: string): CatalogIndex {
 	return {
 		async search(query, limit = 5) {

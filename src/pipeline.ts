@@ -21,7 +21,12 @@ import { z } from "zod";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
-import { fetchArtistDiscographyMb, findArtistMbidByName } from "./musicbrainz.js";
+import {
+	fetchArtistDiscographyMb,
+	fetchProjectTracklistMb,
+	findArtistMbidByName,
+	findReleaseGroupMbidByName,
+} from "./musicbrainz.js";
 import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
@@ -506,6 +511,31 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
 			log(`[pipeline] MB discography enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
+	// Same pattern for project nodes: MB knows the canonical tracklist; the LLM tends to
+	// confabulate or hallucinate B-side names. We resolve the release-group MBID, take the
+	// earliest release in the group, and replace `tracklist` with the actual recordings.
+	if (input.type === "project") {
+		try {
+			let mbid = input.mbid;
+			if (!mbid)
+				mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
+			if (mbid) {
+				const tracks = await fetchProjectTracklistMb(mbid);
+				if (tracks.length > 0) {
+					const obj = node as Record<string, unknown>;
+					obj.tracklist = tracks.slice(0, 30).map((t) => ({
+						type: "track",
+						name: t.title,
+						slug: `track:${t.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+					}));
+					log(`[pipeline] project tracklist overridden with ${tracks.length} MB recordings`);
+				}
+			}
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] MB tracklist enrich skipped: ${msg.slice(0, 100)}`);
 		}
 	}
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
