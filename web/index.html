@@ -874,7 +874,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   contentEl.querySelectorAll(".chip.dangling[data-jit-type]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitDisambig || "");
+      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitDisambig || "", el.dataset.jitMbid || "");
     });
   });
   const precacheBtn = contentEl.querySelector("#precache-all");
@@ -922,6 +922,7 @@ async function precacheAllDangling(node, btn) {
       const disambiguator = "";
       const reqBody = { type: ref.type, name: ref.name };
       if (disambiguator) reqBody.disambiguator = disambiguator;
+      if (ref.mbid) reqBody.mbid = ref.mbid;
       try {
         await fetch(`${API_BASE}/materialize`, {
           method: "POST", headers: { "Content-Type": "application/json" },
@@ -966,13 +967,14 @@ function chipHtml(ref, parentCtx) {
   // No more data-jit-disambig: the parent context used to be passed to /materialize as
   // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
   // reconciled with the bare-slug edges. Slug-from-name only now.
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}" title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
+  const mbidAttr = ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : "";
+  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
 // (p50 around 5s, p90 around 7s). Used to drive the optimistic progress bar.
 const EXPECTED_MS_BY_TYPE = { genre: 6500, label: 5200, artist: 6500, project: 5200, track: 5000 };
-async function jitMaterialize(type, name, chipEl, disambiguator) {
+async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
   if (!JIT_ENABLED) return;
   chipEl.classList.remove("dangling");
   chipEl.classList.add("loading");
@@ -986,6 +988,9 @@ async function jitMaterialize(type, name, chipEl, disambiguator) {
   try {
     const reqBody = { type, name };
     if (disambiguator) reqBody.disambiguator = disambiguator;
+    // MBID pinned at emit time (artist.discography, project.tracklist, etc.) — passing it
+    // here avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN" (Raph 2026-05-19).
+    if (mbid) reqBody.mbid = mbid;
     const r = await fetch(`${API_BASE}/materialize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

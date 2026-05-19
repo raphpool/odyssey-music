@@ -10,6 +10,11 @@ const edgeRefBase = z.object({
 	slug: slugSchema,
 	type: nodeTypeSchema,
 	name: z.string().min(1),
+	// Optional MBID stamped when the edge was emitted from a MusicBrainz lookup. If present,
+	// the JIT chip-click on this edge passes it back as ?mbid= so the downstream materialize
+	// uses the exact entity (avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN"
+	// — Raph 2026-05-19).
+	mbid: z.string().uuid().optional(),
 });
 
 /** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */

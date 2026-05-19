@@ -528,6 +528,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 						type: "project",
 						name: r.title,
 						slug: `project:${r.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						mbid: r.mbid,
 					}));
 					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
 				}
@@ -554,6 +555,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 						type: "artist",
 						name: a.name,
 						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
 					}));
 				}
 				if (meta.notableReleases.length > 0) {
@@ -561,6 +563,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 						type: "project",
 						name: r.title,
 						slug: toSlug("project", r.title),
+						mbid: r.mbid,
 					}));
 				}
 				log(
@@ -595,16 +598,23 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 						type: "project",
 						name: meta.project.name,
 						slug: toSlug("project", meta.project.name),
+						mbid: meta.project.mbid,
 					};
 				}
 				if (meta.label) {
-					obj.label = { type: "label", name: meta.label.name, slug: toSlug("label", meta.label.name) };
+					obj.label = {
+						type: "label",
+						name: meta.label.name,
+						slug: toSlug("label", meta.label.name),
+						mbid: meta.label.mbid,
+					};
 				}
 				if (meta.artists.length > 0) {
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
 						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
 					}));
 				}
 				if (meta.year) obj.year = meta.year;
@@ -642,16 +652,23 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 						type: "track",
 						name: t.title,
 						slug: toSlug("track", t.title),
+						mbid: t.mbid,
 					}));
 				}
 				if (meta.label) {
-					obj.label = { type: "label", name: meta.label.name, slug: toSlug("label", meta.label.name) };
+					obj.label = {
+						type: "label",
+						name: meta.label.name,
+						slug: toSlug("label", meta.label.name),
+						mbid: meta.label.mbid,
+					};
 				}
 				if (meta.artists.length > 0) {
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
 						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
 					}));
 				}
 				if (meta.year) obj.year = meta.year;
@@ -858,16 +875,26 @@ function canonicalize(
 	return next;
 }
 
-function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string } | null {
+function normalizeEdge(
+	e: unknown,
+): { slug: string; type: NodeType; name: string; mbid?: string } | null {
 	if (!e || typeof e !== "object") return null;
-	const r = e as { type?: unknown; name?: unknown };
+	const r = e as { type?: unknown; name?: unknown; mbid?: unknown };
 	if (typeof r.type !== "string") return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
 	const valid = ["genre", "label", "artist", "project", "track"] as const;
 	if (!(valid as readonly string[]).includes(r.type)) return null;
 	try {
 		const t = r.type as NodeType;
-		return { slug: makeSlug(t, r.name), type: t, name: r.name.trim() };
+		const out: { slug: string; type: NodeType; name: string; mbid?: string } = {
+			slug: makeSlug(t, r.name),
+			type: t,
+			name: r.name.trim(),
+		};
+		if (typeof r.mbid === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r.mbid)) {
+			out.mbid = r.mbid;
+		}
+		return out;
 	} catch {
 		return null;
 	}

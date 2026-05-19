@@ -7,6 +7,7 @@ export interface EdgeRef {
 	slug: Slug;
 	type: NodeType;
 	name: string;
+	mbid?: string;
 }
 
 export interface Citation {
