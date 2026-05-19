@@ -28,7 +28,8 @@ export interface CatalogIndex {
 
 const MB_BASE = "https://musicbrainz.org/ws/2";
 const USER_AGENT =
-	process.env.MB_USER_AGENT ?? "odyssey-music/0.1 (hfontanier@gmail.com; https://dropcliffs.com/labs/odyssey)";
+	process.env.MB_USER_AGENT ??
+	"odyssey-music/0.1 (hfontanier@gmail.com; https://dropcliffs.com/labs/odyssey)";
 const FETCH_TIMEOUT_MS = 4000;
 
 interface MbArtist {
@@ -54,7 +55,10 @@ interface MbRecording {
 
 function joinArtistCredit(ac: MbReleaseGroup["artist-credit"]): string {
 	if (!ac || !ac.length) return "";
-	return ac.map((c) => c.name ?? c.artist?.name ?? "").filter(Boolean).join(", ");
+	return ac
+		.map((c) => c.name ?? c.artist?.name ?? "")
+		.filter(Boolean)
+		.join(", ");
 }
 
 function fmtLength(ms: number | undefined): string | undefined {
@@ -75,7 +79,10 @@ function fmtLength(ms: number | undefined): string | undefined {
  * it with prefix wildcards.
  */
 function buildMbQuery(q: string): string {
-	return q.replace(/[+\-!(){}\[\]^"~*?:\\/]/g, " ").replace(/\s+/g, " ").trim();
+	return q
+		.replace(/[+\-!(){}[\]^"~*?:\\/]/g, " ")
+		.replace(/\s+/g, " ")
+		.trim();
 }
 
 // "[unknown]" / "[no artist]" etc are MB's SpecialPurpose Artist entries used as
@@ -99,7 +106,10 @@ const MB_CACHE_TTL_MS = 5 * 60 * 1000;
 const MB_CACHE_MAX = 500;
 
 async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
-	const key = `${path}?${Object.entries(params).sort().map(([k, v]) => `${k}=${v}`).join("&")}`;
+	const key = `${path}?${Object.entries(params)
+		.sort()
+		.map(([k, v]) => `${k}=${v}`)
+		.join("&")}`;
 	const hit = mbCache.get(key);
 	if (hit && Date.now() - hit.at < MB_CACHE_TTL_MS) {
 		return hit.data as T;
@@ -222,6 +232,56 @@ function interleave<T>(lists: T[][]): T[] {
  * close over the fetch helpers. The same shape as the old SQLite-backed wrapper so the
  * /search handler doesn't need to change.
  */
+/**
+ * MusicBrainz-backed discography for an artist (2026-05-19 Raph feedback): Wikipedia
+ * extraction misses recent releases, MB has them within hours of announcement. We use
+ * this to OVERRIDE the LLM's discography edge with canonical MB data.
+ */
+export interface MbReleaseGroupSummary {
+	mbid: string;
+	title: string;
+	firstReleaseDate: string;
+	secondaryTypes: string[];
+}
+
+export async function fetchArtistDiscographyMb(
+	artistMbid: string,
+	opts: { limit?: number } = {},
+): Promise<MbReleaseGroupSummary[]> {
+	const limit = opts.limit ?? 100;
+	interface RGResp {
+		"release-group-count"?: number;
+		"release-groups"?: {
+			id: string;
+			title: string;
+			"first-release-date"?: string;
+			"secondary-types"?: string[];
+		}[];
+	}
+	const data = await mbFetch<RGResp>(`/release-group`, {
+		artist: artistMbid,
+		type: "album",
+		limit: String(limit),
+	});
+	if (!data || !Array.isArray(data["release-groups"])) return [];
+	const out: MbReleaseGroupSummary[] = data["release-groups"].map((g) => ({
+		mbid: g.id,
+		title: g.title,
+		firstReleaseDate: g["first-release-date"] ?? "",
+		secondaryTypes: g["secondary-types"] ?? [],
+	}));
+	// Newest first.
+	out.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""));
+	return out;
+}
+
+/** Resolve an artist name to its MBID via MB search. Returns the best match or null. */
+export async function findArtistMbidByName(name: string, disambig?: string): Promise<string | null> {
+	const q = disambig ? `${name} ${disambig}` : name;
+	const results = await searchArtists(q, 3);
+	return results[0]?.mbid ?? null;
+}
+
 export function openCatalogIndex(_unused?: string): CatalogIndex {
 	return {
 		async search(query, limit = 5) {

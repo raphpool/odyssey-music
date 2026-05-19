@@ -21,6 +21,7 @@ import { z } from "zod";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
+import { fetchArtistDiscographyMb, findArtistMbidByName } from "./musicbrainz.js";
 import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
@@ -36,6 +37,7 @@ export interface PipelineInput {
 	type: NodeType;
 	name: string;
 	disambiguator?: string;
+	mbid?: string;
 }
 
 export interface PipelineResult {
@@ -478,6 +480,34 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 
 	// Step 3: canonicalize + Zod validate
 	const node = canonicalize(parsedRaw, input, corpus, allowedUrls);
+	// Post-LLM enrichment (2026-05-19 Raph): for artist nodes, override the LLM's
+	// discography edge with MusicBrainz release-groups. MB is the canonical source
+	// for "what has this artist released" and updates within hours of announcement,
+	// while Wikipedia lags by weeks. Drake's MAID OF HONOUR / HABIBTI / ICEMAN dropped
+	// today (2026-05-15) and weren't on the Wiki page yet.
+	if (input.type === "artist") {
+		try {
+			let mbid = input.mbid;
+			if (!mbid) mbid = (await findArtistMbidByName(input.name, input.disambiguator)) ?? undefined;
+			if (mbid) {
+				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
+				// Studio albums first (no secondary types). Cap at 25 to keep the edge list usable.
+				const studio = releases.filter((r) => r.secondaryTypes.length === 0);
+				if (studio.length > 0) {
+					const obj = node as Record<string, unknown>;
+					obj.discography = studio.slice(0, 25).map((r) => ({
+						type: "project",
+						name: r.title,
+						slug: `project:${r.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+					}));
+					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
+				}
+			}
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] MB discography enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
 	const totalBytes = corpus.reduce((a, c) => a + c.markdown.length, 0);
 	const usage = (

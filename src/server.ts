@@ -342,11 +342,12 @@ async function runJit(body: MaterializeRequest, opts: { fresh?: boolean } = {}):
 	if (!body.type || !body.name) {
 		throw new Error("Pipeline JIT requires both 'type' and 'name'. Free-text seeds are not supported here.");
 	}
-	const pipelineInput: { type: NodeType; name: string; disambiguator?: string } = {
+	const pipelineInput: { type: NodeType; name: string; disambiguator?: string; mbid?: string } = {
 		type: body.type as NodeType,
 		name: body.name,
 	};
 	if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
+	if (body.mbid) pipelineInput.mbid = body.mbid;
 	const r = await runPipeline(pipelineInput, {
 		tavilyApiKey: env.TAVILY_API_KEY,
 		firecrawlApiKey: env.FIRECRAWL_API_KEY,
