@@ -303,30 +303,48 @@ export interface MbTrackSummary {
 	length?: number;
 }
 
-export async function fetchProjectTracklistMb(rgMbid: string): Promise<MbTrackSummary[]> {
+export interface MbProjectMeta {
+	tracks: MbTrackSummary[];
+	label: { mbid: string; name: string } | null;
+	artists: { mbid: string; name: string }[];
+	year: string | null;
+}
+
+/**
+ * Fetch tracklist + label + artist-credit + release year for a release-group. Uses the
+ * earliest release in the group (canonical "original" pressing) so the data matches what
+ * fans recognize as "the album" rather than a deluxe reissue.
+ */
+export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta> {
+	const empty: MbProjectMeta = { tracks: [], label: null, artists: [], year: null };
 	interface ReleaseGroupResp {
+		"first-release-date"?: string;
 		releases?: { id: string; "release-events"?: { date?: string }[]; date?: string }[];
 	}
 	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, { inc: "releases" });
-	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return [];
-	// Prefer the earliest dated release in the release-group (canonical "original" tracklist).
+	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return empty;
 	const releases = [...rg.releases].sort((a, b) => {
 		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
 		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
 		return ad.localeCompare(bd);
 	});
 	const releaseId = releases[0]?.id;
-	if (!releaseId) return [];
+	if (!releaseId) return empty;
 	interface ReleaseResp {
+		date?: string;
+		"label-info"?: { label?: { id: string; name: string } | null }[];
+		"artist-credit"?: { name?: string; artist?: { id: string; name: string } }[];
 		media?: {
 			tracks?: { id: string; recording?: { id: string; title: string; length?: number } }[];
 		}[];
 	}
-	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, { inc: "recordings" });
-	if (!rel || !Array.isArray(rel.media)) return [];
-	const out: MbTrackSummary[] = [];
+	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, {
+		inc: "recordings+labels+artist-credits",
+	});
+	if (!rel) return empty;
+	const out: MbProjectMeta = { tracks: [], label: null, artists: [], year: null };
 	const seen = new Set<string>();
-	for (const m of rel.media) {
+	for (const m of rel.media ?? []) {
 		for (const t of m.tracks ?? []) {
 			const r = t.recording;
 			if (!r || typeof r.title !== "string") continue;
@@ -335,9 +353,20 @@ export async function fetchProjectTracklistMb(rgMbid: string): Promise<MbTrackSu
 			seen.add(key);
 			const entry: MbTrackSummary = { mbid: r.id, title: r.title };
 			if (typeof r.length === "number") entry.length = r.length;
-			out.push(entry);
+			out.tracks.push(entry);
 		}
 	}
+	const firstLabel = (rel["label-info"] ?? []).find((li) => li.label && li.label.name)?.label;
+	if (firstLabel) out.label = { mbid: firstLabel.id, name: firstLabel.name };
+	const seenArtist = new Set<string>();
+	for (const ac of rel["artist-credit"] ?? []) {
+		const a = ac.artist;
+		if (!a || !a.id || seenArtist.has(a.id)) continue;
+		seenArtist.add(a.id);
+		out.artists.push({ mbid: a.id, name: a.name });
+	}
+	const dateStr = rel.date ?? rg["first-release-date"];
+	if (typeof dateStr === "string" && /^\d{4}/.test(dateStr)) out.year = dateStr.slice(0, 4);
 	return out;
 }
 

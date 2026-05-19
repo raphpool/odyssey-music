@@ -23,7 +23,7 @@ import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 import {
 	fetchArtistDiscographyMb,
-	fetchProjectTracklistMb,
+	fetchProjectMetaMb,
 	findArtistMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
@@ -313,12 +313,15 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 }
 
 // Latency knobs. Each token shaved off the LLM call is ~free wall-clock time.
-// Bumped back up (2026-05-19): 4500/page truncated Wikipedia BEFORE the "Personnel" section
-// on long pages like Lose Yourself to Dance, so the agent never saw the structured credits.
-// Mathieu's feedback (personnel/label/composition extraction) requires we keep enough page
-// to reach those sections. Latency hit is ~0.5s — acceptable for the data quality lift.
-const MAX_CORPUS_BYTES = 24_000;
-const PER_PAGE_BUDGET = 14_000;
+// Wikipedia pages on popular artists/albums run 100-300KB of markdown. 14k truncated way
+// before the relevant sections — Drake's discography never reached the LLM (Raph caught
+// 2026-05-19). MB now overrides the structured edges (discography, tracklist, label,
+// artists, year) so those don't depend on the slice. But editorial_article + genres +
+// samples + influences still rely on the LLM reading enough of the page, so we keep a
+// large budget. Latency cost: +1-2s on cold materialize; Gemini Flash Lite prefill is
+// cheap (~$0.075/M tokens) so dollar cost is negligible.
+const MAX_CORPUS_BYTES = 80_000;
+const PER_PAGE_BUDGET = 60_000;
 const SEARCH_RESULTS = 5;
 // 2026-05-19 goal-2 perf: drop to 1 fetch. Source ranking puts wikipedia first when present
 // (the canonical source for music facts), so a single fetch usually gives us what we need and
@@ -522,20 +525,35 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			if (!mbid)
 				mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
-				const tracks = await fetchProjectTracklistMb(mbid);
-				if (tracks.length > 0) {
-					const obj = node as Record<string, unknown>;
-					obj.tracklist = tracks.slice(0, 30).map((t) => ({
+				const meta = await fetchProjectMetaMb(mbid);
+				const obj = node as Record<string, unknown>;
+				const toSlug = (kind: string, n: string): string =>
+					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+				if (meta.tracks.length > 0) {
+					obj.tracklist = meta.tracks.slice(0, 30).map((t) => ({
 						type: "track",
 						name: t.title,
-						slug: `track:${t.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: toSlug("track", t.title),
 					}));
-					log(`[pipeline] project tracklist overridden with ${tracks.length} MB recordings`);
 				}
+				if (meta.label) {
+					obj.label = { type: "label", name: meta.label.name, slug: toSlug("label", meta.label.name) };
+				}
+				if (meta.artists.length > 0) {
+					obj.artists = meta.artists.slice(0, 10).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+					}));
+				}
+				if (meta.year) obj.year = meta.year;
+				log(
+					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} year=${meta.year ?? "-"}`,
+				);
 			}
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
-			log(`[pipeline] MB tracklist enrich skipped: ${msg.slice(0, 100)}`);
+			log(`[pipeline] MB project enrich skipped: ${msg.slice(0, 100)}`);
 		}
 	}
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
