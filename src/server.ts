@@ -308,10 +308,18 @@ async function handleMaterialize(
 				const TTL_MS = 12 * 3600 * 1000;
 				const matAt = new Date(cached.materialized_at).getTime();
 				const stale = Number.isFinite(matAt) && Date.now() - matAt > TTL_MS;
-				if (!stale) {
+				// Also re-mat when the caller pinned an MBID and the cached node either has no
+				// MBID or a different one — the cached node was materialized via a name-only
+				// search and may be the wrong entity (Raph caught 2026-05-19 on Janice STFU:
+				// cached pre-fix node had AI-slop article; new click carried mbid but was
+				// short-circuited by the cache).
+				const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
+				const mbidMismatch = !!body.mbid && cachedMbid !== body.mbid;
+				if (!stale && !mbidMismatch) {
 					return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 				}
-				// Stale: force a fresh materialize through the JIT path so the cache write overwrites.
+				// Stale or wrong-entity: force a fresh materialize through the JIT path so the
+				// cache write overwrites with the corrected entity.
 				effectiveFresh = true;
 			}
 		}

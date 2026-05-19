@@ -430,9 +430,25 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const apiKey = deps.geminiApiKey ?? process.env.GEMINI_API_KEY ?? "";
 	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
 
-	// Step 1: research
+	// Step 1: research.
+	// When the caller pinned an MBID for a track/project, pre-resolve the MB metadata so we
+	// can enrich the Tavily search query with artist + album context. Without this, a chip
+	// click on "Janice STFU" (mbid set, no disambig) searches Tavily for "Janice STFU track
+	// music wiki discogs" and Tavily returns only YouTube/Spotify → empty corpus → LLM slop.
+	let queryHint = "";
+	if (input.mbid && input.type === "track") {
+		try {
+			const meta = await fetchTrackMetaMb(input.mbid);
+			const parts: string[] = [];
+			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
+			if (meta.project) parts.push(meta.project.name);
+			if (parts.length > 0) queryHint = ` ${parts.join(" ")}`;
+		} catch {
+			// non-fatal
+		}
+	}
 	const tSearch = Date.now();
-	const searchQuery = buildSearchQuery(input);
+	const searchQuery = buildSearchQuery(input) + queryHint;
 	const searchResultsRaw = await tavilySearch(deps.tavilyApiKey, searchQuery, {
 		max_results: SEARCH_RESULTS,
 		search_depth: "basic",
