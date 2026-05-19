@@ -133,7 +133,9 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)').", 1),
 		editorial_article: stringSchema(
 			// Tighter article keeps output tokens down and saves ~1s of LLM wall-clock per node.
-			"Real article prose, 400-900 chars. Grounded in the sources. History, scene, why it matters. Not a listicle.",
+			// Hard caps + first-sentence rule + slop ban embedded in the schema description because
+			// Gemini Flash Lite honors schema descriptions more reliably than narrative system prompts.
+			"Real article prose, 350-700 chars. FIRST SENTENCE must contain at least 2 concrete sourced facts (year/date + place/scene + named collaborator OR label OR sample). NEVER open with marketing voice ('emerged as', 'serves as', 'stands as', 'pivots on a foundation of', 'released under the X banner'). Each sentence teaches the reader ONE concrete thing from the corpus (named producer, named sample, real venue, real chart fact, real critic). FORBIDDEN phrases (these are AI tells, instant fail): 'stylistic trajectory', 'sonic identity', 'sonic palette', 'signature blend', 'creative pivot', 'polished production values', 'major label output', 'atmospheric tension', 'high-stakes', 'continues to', 'showcases', 'reinforces', 'standout moment', 'definitive anchor'. SHORTER honest prose beats longer padded prose. If the corpus gives <2 hard musical facts, write 1-2 short sentences only.",
 			350,
 		),
 		citations: { type: GType.ARRAY, items: citationSchema, minItems: "2", maxItems: "4" },
@@ -830,7 +832,12 @@ function buildUserPrompt(
 		if (budget <= 0) break;
 	}
 	prompt +=
-		"Produce a single JSON object that satisfies the schema. Use ONLY information from the pages above for facts.";
+		"Produce a single JSON object that satisfies the schema. Use ONLY information from the pages above for facts.\n\n" +
+		"editorial_article quality bar — failure modes to avoid (RECENT REGRESSIONS):\n" +
+		"  BAD: \"Released in 2026 under the OVO and Republic Records banners, 'X' serves as a standout inclusion on Drake's project ICEMAN. The track emphasizes the artist's current stylistic trajectory and showcases the polished production values expected of a major label output.\"\n" +
+		"  GOOD: \"Released 15 May 2026 on Drake's surprise ICEMAN mixtape (OVO/Republic). Built around a chopped Lykke Li 'I Follow Rivers' sample over a sub-bass loop produced by Boi-1da. Lyric topic is a feud with manager Janice — first Drake song to name her directly.\"\n" +
+		"  The GOOD version has 6 concrete sourced facts (date, label, sample source, producer, lyric topic, biographical first). The BAD version has 0 — every clause is filler. Match the GOOD pattern.\n" +
+		"  If the corpus does not support 4+ concrete facts, write fewer sentences. NEVER pad.";
 	return prompt;
 }
 
