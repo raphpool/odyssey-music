@@ -299,6 +299,78 @@ function disambigTokens(disambig: string | undefined): string[] {
  * user-supplied disambiguator (which is the most reliable signal we have). If no candidate
  * matches, return null rather than overriding with a cover.
  */
+/** Resolve a label name to its MBID via MB label search. */
+export async function findLabelMbidByName(name: string, disambig?: string): Promise<string | null> {
+	interface LabelHit {
+		id: string;
+		name: string;
+		country?: string;
+		disambiguation?: string;
+	}
+	const q = disambig ? `${name} ${disambig}` : name;
+	const query = buildMbQuery(q);
+	if (!query) return null;
+	const body = await mbFetch<{ labels?: LabelHit[] }>("/label", { query, limit: "5" });
+	if (!body?.labels?.length) return null;
+	const tokens = disambigTokens(disambig);
+	if (tokens.length === 0) return body.labels[0]?.id ?? null;
+	const matched = body.labels.find((l) => {
+		const blob = `${l.name} ${l.country ?? ""} ${l.disambiguation ?? ""}`.toLowerCase();
+		return tokens.some((t) => blob.includes(t));
+	});
+	return matched?.id ?? body.labels[0]?.id ?? null;
+}
+
+export interface MbLabelMeta {
+	roster: { mbid: string; name: string }[];
+	notableReleases: { mbid: string; title: string; firstReleaseDate: string }[];
+}
+
+/**
+ * Browse artists released on a label and release-groups under that label.
+ * /artist?label= and /release-group?label= each paginate at limit=100.
+ */
+export async function fetchLabelMetaMb(labelMbid: string): Promise<MbLabelMeta> {
+	const out: MbLabelMeta = { roster: [], notableReleases: [] };
+	interface ArtistBrowseResp {
+		artists?: { id: string; name: string }[];
+	}
+	interface RGBrowseResp {
+		"release-groups"?: {
+			id: string;
+			title: string;
+			"first-release-date"?: string;
+			"primary-type"?: string;
+			"secondary-types"?: string[];
+		}[];
+	}
+	const [artistResp, rgResp] = await Promise.all([
+		mbFetch<ArtistBrowseResp>("/artist", { label: labelMbid, limit: "100" }),
+		mbFetch<RGBrowseResp>("/release-group", { label: labelMbid, limit: "100" }),
+	]);
+	const seen = new Set<string>();
+	for (const a of artistResp?.artists ?? []) {
+		if (!a.id || seen.has(a.id)) continue;
+		seen.add(a.id);
+		out.roster.push({ mbid: a.id, name: a.name });
+	}
+	const rgs = (rgResp?.["release-groups"] ?? []).filter(
+		(rg) => (rg["secondary-types"] ?? []).length === 0,
+	);
+	rgs.sort((a, b) => (b["first-release-date"] ?? "").localeCompare(a["first-release-date"] ?? ""));
+	const seenRg = new Set<string>();
+	for (const rg of rgs) {
+		if (!rg.id || seenRg.has(rg.id)) continue;
+		seenRg.add(rg.id);
+		out.notableReleases.push({
+			mbid: rg.id,
+			title: rg.title,
+			firstReleaseDate: rg["first-release-date"] ?? "",
+		});
+	}
+	return out;
+}
+
 export async function findRecordingMbidByName(
 	name: string,
 	disambig?: string,

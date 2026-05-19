@@ -23,9 +23,11 @@ import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 import {
 	fetchArtistDiscographyMb,
+	fetchLabelMetaMb,
 	fetchProjectMetaMb,
 	fetchTrackMetaMb,
 	findArtistMbidByName,
+	findLabelMbidByName,
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
@@ -521,6 +523,38 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// Same pattern for project nodes: MB knows the canonical tracklist; the LLM tends to
 	// confabulate or hallucinate B-side names. We resolve the release-group MBID, take the
 	// earliest release in the group, and replace `tracklist` with the actual recordings.
+	if (input.type === "label") {
+		try {
+			let mbid = input.mbid;
+			if (!mbid) mbid = (await findLabelMbidByName(input.name, input.disambiguator)) ?? undefined;
+			if (mbid) {
+				const meta = await fetchLabelMetaMb(mbid);
+				const obj = node as Record<string, unknown>;
+				const toSlug = (kind: string, n: string): string =>
+					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+				if (meta.roster.length > 0) {
+					obj.roster = meta.roster.slice(0, 30).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+					}));
+				}
+				if (meta.notableReleases.length > 0) {
+					obj.notable_releases = meta.notableReleases.slice(0, 30).map((r) => ({
+						type: "project",
+						name: r.title,
+						slug: toSlug("project", r.title),
+					}));
+				}
+				log(
+					`[pipeline] label meta overridden: roster=${meta.roster.length} releases=${meta.notableReleases.length}`,
+				);
+			}
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] MB label enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
 	if (input.type === "track") {
 		try {
 			let mbid = input.mbid;
