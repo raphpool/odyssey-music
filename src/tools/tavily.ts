@@ -19,12 +19,26 @@ const SOURCE_RANK: { test: (h: string) => boolean; rank: number }[] = [
 	{ test: (h) => /(^|\.)discogs\.com$/i.test(h), rank: 1 },
 	{ test: (h) => /(^|\.)rateyourmusic\.com$/i.test(h), rank: 1 },
 	{ test: (h) => /(^|\.)allmusic\.com$/i.test(h), rank: 1 },
+	{ test: (h) => /(^|\.)genius\.com$/i.test(h), rank: 2 },
 	{ test: (h) => /(^|\.)pitchfork\.com$/i.test(h), rank: 2 },
 	{ test: (h) => /(^|\.)theguardian\.com$/i.test(h), rank: 2 },
 	{ test: (h) => /(^|\.)nytimes\.com$/i.test(h), rank: 2 },
-	{ test: (h) => /(^|\.)bandcamp\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)rollingstone\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)complex\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)hiphopdx\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)nme\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)stereogum\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)thefader\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)bandcamp\.com$/i.test(h), rank: 3 },
 	{ test: (h) => /(^|\.)fandom\.com$/i.test(h), rank: 8 },
 	{ test: (h) => /(^|\.)reddit\.com$/i.test(h), rank: 9 },
+	// Streaming platforms have no useful article body — push to the back.
+	{ test: (h) => /(^|\.)youtube\.com$/i.test(h), rank: 11 },
+	{ test: (h) => /(^|\.)spotify\.com$/i.test(h), rank: 11 },
+	{ test: (h) => /(^|\.)apple\.com$/i.test(h), rank: 11 },
+	{ test: (h) => /(^|\.)tidal\.com$/i.test(h), rank: 11 },
+	{ test: (h) => /(^|\.)deezer\.com$/i.test(h), rank: 11 },
+	{ test: (h) => /(^|\.)music\.amazon\.com$/i.test(h), rank: 11 },
 ];
 
 export function rankUrl(url: string): number {

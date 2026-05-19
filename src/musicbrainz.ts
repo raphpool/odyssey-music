@@ -418,16 +418,78 @@ export async function findRecordingMbidByName(
 	name: string,
 	disambig?: string,
 ): Promise<string | null> {
-	const q = disambig ? `${name} ${disambig}` : name;
-	const results = await searchRecordings(q, 8);
+	// Phrase-quoted recording: field bypasses buildMbQuery (which strips quotes) and goes
+	// straight to mbFetch. Without this MB ranks "Get Lucky (Daft Punk remix)" and various
+	// covers above the canonical recording for common track names (Raph 2026-05-19).
+	const safeName = name.replace(/["\\]/g, "");
+	const safeDisambig = (disambig ?? "").replace(/["\\]/g, "");
+	const query = safeDisambig
+		? `recording:"${safeName}" AND ${safeDisambig}`
+		: `recording:"${safeName}"`;
+	interface RecRespHit {
+		id: string;
+		title: string;
+		length?: number;
+		"artist-credit"?: { artist?: { id: string; name: string } }[];
+	}
+	const body = await mbFetch<{ recordings?: RecRespHit[] }>("/recording", {
+		query,
+		limit: "10",
+	});
+	const results = (body?.recordings ?? []).map((rec) => ({
+		mbid: rec.id,
+		name: rec.title,
+		type: "track" as const,
+		subtitle: (rec["artist-credit"] ?? [])
+			.map((a) => a.artist?.name ?? "")
+			.filter(Boolean)
+			.join(" "),
+		extra: undefined as string | undefined,
+	}));
 	if (results.length === 0) return null;
 	const tokens = disambigTokens(disambig);
 	if (tokens.length === 0) return results[0]?.mbid ?? null;
-	const matched = results.find((r) => {
+	const wantedTitle = name.toLowerCase().trim();
+	// First pass: match disambig tokens against the artist-credit subtitle.
+	let candidates = results.filter((r) => {
 		const sub = (r.subtitle ?? "").toLowerCase();
 		return tokens.some((t) => sub.includes(t));
 	});
-	return matched?.mbid ?? null;
+	if (candidates.length === 0) return null;
+	// Prefer recordings whose TITLE exactly equals the input name. Without this, "Get Lucky"
+	// matched the 10:33 "Get Lucky (Daft Punk remix)" recording on Random Access Memories
+	// instead of the 4:08 album version (Raph caught 2026-05-19).
+	const exactTitleMatches = candidates.filter((r) => r.name.toLowerCase().trim() === wantedTitle);
+	if (exactTitleMatches.length > 0) candidates = exactTitleMatches;
+	// Second pass (canonical-album fit): walk each candidate's releases and prefer the
+	// recording whose earliest release sits on an Album-primary release-group with no
+	// secondary-types. Avoids the "Get Lucky → 10:33 long-mix single" trap (Raph 2026-05-19).
+	let bestMbid: string | null = null;
+	let bestScore = 99;
+	for (const c of candidates.slice(0, 5)) {
+		interface RecResp {
+			releases?: {
+				date?: string;
+				"release-events"?: { date?: string }[];
+				"release-group"?: { "primary-type"?: string; "secondary-types"?: string[] };
+			}[];
+		}
+		const r = await mbFetch<RecResp>(`/recording/${c.mbid}`, { inc: "releases+release-groups" });
+		const rels = (r?.releases ?? []).slice().sort((a, b) => {
+			const sa = rgScore(a["release-group"]);
+			const sb = rgScore(b["release-group"]);
+			if (sa !== sb) return sa - sb;
+			const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
+			const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+			return ad.localeCompare(bd);
+		});
+		const score = rgScore(rels[0]?.["release-group"]);
+		if (score < bestScore) {
+			bestScore = score;
+			bestMbid = c.mbid;
+		}
+	}
+	return bestMbid ?? candidates[0]?.mbid ?? null;
 }
 
 /**

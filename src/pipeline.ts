@@ -332,11 +332,23 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 // cheap (~$0.075/M tokens) so dollar cost is negligible.
 const MAX_CORPUS_BYTES = 80_000;
 const PER_PAGE_BUDGET = 60_000;
-const SEARCH_RESULTS = 5;
-// 2026-05-19 goal-2 perf: drop to 1 fetch. Source ranking puts wikipedia first when present
-// (the canonical source for music facts), so a single fetch usually gives us what we need and
-// halves both the fetch wall-time and the LLM prefill tokens. Trades breadth for latency.
-const FETCH_TOP_K = 1;
+const SEARCH_RESULTS = 7;
+// FETCH_TOP_K is now dynamic (see below). When a wikipedia-ranked result is present in the
+// top of search, one fetch is enough (Wikipedia is the canonical music source). Without it
+// — e.g. for just-dropped tracks where the Wiki article doesn't exist yet (Raph caught
+// 2026-05-19 on "Janice STFU" from Drake's ICEMAN) — we need to compile from multiple music
+// outlets (Pitchfork, Genius, Rolling Stone, Complex, HipHopDX, ...) to get real article
+// context instead of LLM-confabulated slop.
+const FETCH_TOP_K_WITH_WIKI = 1;
+const FETCH_TOP_K_NO_WIKI = 3;
+
+function safeHost(u: string): string {
+	try {
+		return new URL(u).hostname;
+	} catch {
+		return "";
+	}
+}
 
 const SYSTEM_PROMPT = `You build one Culture Graph node from research material the system provides.
 
@@ -349,14 +361,24 @@ GENERAL RULES:
     press play. Every sentence must teach them something concrete about the music. Target
     400-1500 chars when sources support it; SHORTER is acceptable when info is genuinely thin.
     Open with a strong sentence (entity + place + era + what they sound like). NEVER hallucinate.
-  - HARD ANTI-SLOP BAN (these phrases are FORBIDDEN — they signal database-meta filler, not music
-    information): "documented within", "documented in international music databases",
-    "cataloged on Discogs", "tracks their vinyl and CD releases", "maintained a presence in the
-    underground music scene", "diverse naming conventions", "numerical suffixes",
-    "point of interest for collectors", "active entity", "continues to be",
-    "musical project and artist entity". A SHORT honest article (down to ~80 chars) beats a long
-    padded one. If you have <2 concrete musical facts (real song name, real collaborator, real
-    venue/scene, real release date with label, sourced sonic trait), keep the article SHORT.
+  - HARD ANTI-SLOP BAN. Phrases FORBIDDEN — they're AI tells, not music information:
+    "documented within", "documented in international music databases", "cataloged on Discogs",
+    "tracks their vinyl and CD releases", "maintained a presence in the underground music scene",
+    "diverse naming conventions", "numerical suffixes", "point of interest for collectors",
+    "active entity", "continues to be", "musical project and artist entity",
+    "high-stakes atmospheric tension", "creative pivot", "signature blend", "sonic identity",
+    "polished production values", "stylistic trajectory", "atmospheric tension", "expected of a
+    major label output", "showcases the polished", "underscores a continued collaboration",
+    "captures the high-stakes", "reinforcing the distinct sonic", "mid-2010s", "mid-2020s",
+    "mid-2030s" (when used as a generic era marker without a concrete date or scene).
+    A SHORT honest article (~80 chars) beats a long padded one. If you have <2 concrete
+    musical facts (real collaborator, real venue/scene, real release date with label, sourced
+    sonic trait), keep the article SHORT.
+  - WHEN MULTIPLE NON-WIKIPEDIA SOURCES ARE PROVIDED (corpus has 2-3 articles from Pitchfork /
+    Genius / Rolling Stone / Complex / HipHopDX / NME etc), SYNTHESIZE them: cite a specific
+    quote or detail from each. Name producers, samples, guest vocalists, lyric themes,
+    production techniques, scene context, critic reception — ground every sentence in something
+    one of the articles actually says. Vague generic prose is worse than nothing.
   - Every fact mentioned (year, label, sample, personnel name) must appear in the corpus. If it
     isn't there, leave the field empty rather than guess.
   - Citations: 2-6 URLs you actually used FROM THE SUPPLIED CORPUS. Each has a real http(s) url
@@ -423,7 +445,12 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	}
 	log(`[pipeline] search ${searchMs}ms results=${searchResults.length}`);
 
-	const topUrls = searchResults.slice(0, FETCH_TOP_K).map((r) => r.url);
+	const hasWiki = searchResults
+		.slice(0, 4)
+		.some((r) => /(^|\.)wikipedia\.org/i.test(safeHost(r.url)));
+	const fetchK = hasWiki ? FETCH_TOP_K_WITH_WIKI : FETCH_TOP_K_NO_WIKI;
+	const topUrls = searchResults.slice(0, fetchK).map((r) => r.url);
+	log(`[pipeline] fetch_k=${fetchK} wiki=${hasWiki}`);
 	const tFetch = Date.now();
 	const fetched = await Promise.allSettled(topUrls.map((u) => localFetch(u)));
 	const fetchMs = Date.now() - tFetch;
