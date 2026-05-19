@@ -8,6 +8,40 @@ export interface TavilyResult {
 	score?: number;
 }
 
+/**
+ * Source priority for music research. Henry/Mathieu rule (2026-05-19):
+ * Wikipedia is the canonical source for personnel/composition; Discogs/RYM/AllMusic
+ * for labels and catalog facts; Fandom/Reddit only as last resort.
+ * Lower rank = higher priority.
+ */
+const SOURCE_RANK: { test: (h: string) => boolean; rank: number }[] = [
+	{ test: (h) => /(^|\.)wikipedia\.org$/i.test(h), rank: 0 },
+	{ test: (h) => /(^|\.)discogs\.com$/i.test(h), rank: 1 },
+	{ test: (h) => /(^|\.)rateyourmusic\.com$/i.test(h), rank: 1 },
+	{ test: (h) => /(^|\.)allmusic\.com$/i.test(h), rank: 1 },
+	{ test: (h) => /(^|\.)pitchfork\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)theguardian\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)nytimes\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)bandcamp\.com$/i.test(h), rank: 2 },
+	{ test: (h) => /(^|\.)fandom\.com$/i.test(h), rank: 8 },
+	{ test: (h) => /(^|\.)reddit\.com$/i.test(h), rank: 9 },
+];
+
+export function rankUrl(url: string): number {
+	try {
+		const h = new URL(url).hostname;
+		for (const r of SOURCE_RANK) if (r.test(h)) return r.rank;
+	} catch {}
+	return 5;
+}
+
+export function rankResults<T extends { url: string }>(results: readonly T[]): T[] {
+	return [...results]
+		.map((r, i) => ({ r, i, rank: rankUrl(r.url) }))
+		.sort((a, b) => a.rank - b.rank || a.i - b.i)
+		.map(({ r }) => r);
+}
+
 export async function tavilySearch(
 	apiKey: string,
 	query: string,
@@ -59,33 +93,7 @@ export function makeTavilyTool(apiKey: string): AgentTool {
 			};
 			if (args.max_results !== undefined) opts.max_results = args.max_results;
 			const results = await tavilySearch(apiKey, args.query, opts, signal);
-			// Source priority: Wikipedia first (highest signal for personnel/composition/label),
-			// then mainstream music press / Discogs / RYM / artist sites, then community sources
-			// (Fandom, Reddit) as last resort. This is Henry's & Mathieu's explicit ranking —
-			// 2026-05-19, after the agent kept fetching daftpunk.fandom over en.wikipedia.
-			const SOURCE_RANK: { test: (h: string) => boolean; rank: number }[] = [
-				{ test: (h) => /(^|\.)wikipedia\.org$/i.test(h), rank: 0 },
-				{ test: (h) => /(^|\.)discogs\.com$/i.test(h), rank: 1 },
-				{ test: (h) => /(^|\.)rateyourmusic\.com$/i.test(h), rank: 1 },
-				{ test: (h) => /(^|\.)allmusic\.com$/i.test(h), rank: 1 },
-				{ test: (h) => /(^|\.)pitchfork\.com$/i.test(h), rank: 2 },
-				{ test: (h) => /(^|\.)theguardian\.com$/i.test(h), rank: 2 },
-				{ test: (h) => /(^|\.)nytimes\.com$/i.test(h), rank: 2 },
-				{ test: (h) => /(^|\.)bandcamp\.com$/i.test(h), rank: 2 },
-				{ test: (h) => /(^|\.)fandom\.com$/i.test(h), rank: 8 },
-				{ test: (h) => /(^|\.)reddit\.com$/i.test(h), rank: 9 },
-			];
-			const rankOf = (url: string): number => {
-				try {
-					const h = new URL(url).hostname;
-					for (const r of SOURCE_RANK) if (r.test(h)) return r.rank;
-				} catch {}
-				return 5;
-			};
-			const ranked = results
-				.map((r, i) => ({ r, originalIdx: i, rank: rankOf(r.url) }))
-				.sort((a, b) => a.rank - b.rank || a.originalIdx - b.originalIdx);
-			const trimmed = ranked.map(({ r }) => ({
+			const trimmed = rankResults(results).map((r) => ({
 				title: r.title,
 				url: r.url,
 				snippet: r.content.slice(0, 1200),

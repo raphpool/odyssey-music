@@ -427,6 +427,37 @@ function validateForEmit(payload: unknown, provenance: ResearchProvenance): stri
 			)} requires you to populate the obvious edges (artists/genres/labels/etc.). Aim for >=3.`,
 		);
 	}
+	// Track + project hardening (2026-05-19, goal-mode rubric): if the agent
+	// fetched Wikipedia for a track/project, it MUST extract personnel + label +
+	// composition. Empty personnel + missing label = filled prose but skipped
+	// structured fields, which is the exact failure Mathieu flagged.
+	if (p.type === "track" || p.type === "project") {
+		const cits = Array.isArray(p.citations) ? p.citations : [];
+		const hasWiki = cits.some((c) => {
+			if (!c || typeof c !== "object") return false;
+			const urlField = (c as Record<string, unknown>).url;
+			if (typeof urlField !== "string") return false;
+			return /(?:^|\.)wikipedia\.org/i.test(urlField);
+		});
+		if (hasWiki) {
+			const personnel = Array.isArray(p.personnel) ? (p.personnel as unknown[]) : [];
+			const label = p.label;
+			const missing: string[] = [];
+			if (personnel.length === 0) missing.push("personnel");
+			if (p.type === "track" && (!label || typeof label !== "object")) missing.push("label");
+			const compFields = ["bpm", "musical_key", "vocals", "samples_notes", "inspirations"];
+			const compPopulated = compFields.filter((k) => {
+				const v = p[k];
+				return typeof v === "string" && v.trim().length > 0;
+			});
+			if (compPopulated.length === 0) missing.push("composition (need >=1 of bpm/musical_key/vocals/samples_notes/inspirations)");
+			if (missing.length > 0) {
+				reasons.push(
+					`You fetched Wikipedia for this ${p.type} but skipped the structured extraction: missing [${missing.join(", ")}]. Re-read the Wikipedia "Personnel" section (lists EVERY credited collaborator with their instrument/role — copy them into the 'personnel' edge array as {type:"artist", name:"..."}), the "Composition" section (extract any bpm, key signature, vocal credits, samples, or stated inspirations into the matching string fields), and the infobox/sidebar (the record label belongs in the singular 'label' edge as {type:"label", name:"..."}). If a field is genuinely absent from Wikipedia, leave that ONE field empty — but you cannot leave ALL of them empty after having fetched the page. Emit again with the structured fields filled.`,
+				);
+			}
+		}
+	}
 	return reasons;
 }
 
@@ -746,6 +777,27 @@ QUALITY BAR:
   - Do not include "I", "you", or meta talk in the article.
   - If you genuinely cannot find authoritative info on a field, leave its list empty rather than guessing.
   - If you cannot resolve the entity (genuinely obscure, ambiguous, not a music entity), call abandon_node with a reason. NEVER stub out a node to avoid abandoning — the validator throws on short articles and missing edges, so stubs fail anyway.
+
+WORKED EXAMPLE — TRACK EXTRACTION FROM WIKIPEDIA (study before emitting a track):
+  Input: type=track, name="Lose Yourself to Dance", disambiguator="Daft Punk Random Access Memories".
+  After fetching https://en.wikipedia.org/wiki/Lose_Yourself_to_Dance you'd read the "Personnel" section that names: Daft Punk (production), Pharrell Williams (lead vocals), Nile Rodgers (guitar), Nathan East (bass), Paul Jackson Jr. (guitar), Chris Caswell (Wurlitzer), Omar Hakim (drums). The infobox/sidebar lists Label = "Daft Life / Columbia". The "Composition" / "Music" section may state BPM, key, vocal arrangement, samples. Correct payload structured fields:
+    "artists": [{"type":"artist","name":"Daft Punk"}, {"type":"artist","name":"Pharrell Williams"}],
+    "project": {"type":"project","name":"Random Access Memories"},
+    "label":   {"type":"label","name":"Daft Life / Columbia"},
+    "producers": [{"type":"artist","name":"Daft Punk"}],
+    "personnel": [
+      {"type":"artist","name":"Pharrell Williams"},
+      {"type":"artist","name":"Nile Rodgers"},
+      {"type":"artist","name":"Nathan East"},
+      {"type":"artist","name":"Paul Jackson Jr."},
+      {"type":"artist","name":"Chris Caswell"},
+      {"type":"artist","name":"Omar Hakim"}
+    ],
+    "bpm": "100 BPM",
+    "musical_key": "D major",
+    "vocals": "lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers",
+    "inspirations": "late-70s disco, Chic-style rhythm guitar"
+  The agent that returns the right article PROSE but leaves personnel/label/composition EMPTY will be rejected by the validator and forced to retry. Filling these is not optional — it is the whole purpose of fetching Wikipedia.
 
 DISAMBIGUATION:
   - For common names ("Tendency" track, multiple artists named "Bird"), include a 'disambiguator' field in your payload with the most-discriminating fact: artist name for a track/project, founding year for a label, "Brooklyn band" vs "London producer" for an artist. The cache uses it to keep distinct entities separate.

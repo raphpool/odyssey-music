@@ -18,8 +18,12 @@ const TRACK_REVERSES: Record<string, ReverseEdgeSpec | null> = {
 	sampled_by: { field: "samples", cardinality: "list" },
 	remix_of: { field: "remixed_by", cardinality: "list" },
 	remixed_by: { field: "remix_of", cardinality: "single" },
-	personnel: { field: "collaborators", cardinality: "list" },
-	label: { field: "notable_releases", cardinality: "list" },
+	// personnel / label have no clean reverse: the source is a track but artist.collaborators
+	// is artist[] only, and label.notable_releases is project[] only. Pushing a track ref into
+	// either fails zod validation (caught in production 2026-05-19). Leave reverses null —
+	// graph still connects via the forward edges.
+	personnel: null,
+	label: null,
 	artists: null,
 	genres: null,
 	producers: null,
@@ -52,7 +56,9 @@ const GENRE_REVERSES: Record<string, ReverseEdgeSpec | null> = {
 };
 
 const PROJECT_REVERSES: Record<string, ReverseEdgeSpec | null> = {
-	personnel: { field: "collaborators", cardinality: "list" },
+	// project.personnel has no clean reverse on artist (artist.collaborators wants artist refs,
+	// not project refs). Leave null.
+	personnel: null,
 	artists: null,
 	genres: null,
 	tracklist: null,

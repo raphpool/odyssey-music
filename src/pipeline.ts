@@ -21,7 +21,7 @@ import { z } from "zod";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
-import { tavilySearch } from "./tools/tavily.js";
+import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
 export interface PipelineDeps {
@@ -251,11 +251,17 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						...baseProps,
 						editorial_pitch: stringSchema("1-2 sentence teaser.", 30),
 						year: stringSchema("Year string e.g. '2001'.", 4),
+						bpm: stringSchema("BPM at album scope, e.g. '110 BPM' or '95-120 BPM'. Only if stated in the corpus.", 0),
+						musical_key: stringSchema("Key signature at album scope, e.g. 'C minor'. Only if stated.", 0),
+						vocals: stringSchema("Lead/backing vocal credits as free text, e.g. 'lead: Pharrell Williams; backing: Nile Rodgers'.", 0),
+						samples_notes: stringSchema("Notes about samples or interpolations on the record.", 0),
+						inspirations: stringSchema("Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.", 0),
 						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
 						label: edgeRefSchema(["label"]),
 						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
 						tracklist: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "2", maxItems: "20" },
 						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "6" },
+						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
 						related_projects: {
 							type: GType.ARRAY,
 							items: edgeRefSchema(["project"]),
@@ -277,10 +283,17 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						editorial_teaser: stringSchema("1-2 sentence teaser.", 30),
 						year: stringSchema("Year string e.g. '1999'.", 4),
 						duration: stringSchema("e.g. '5:47'.", 0),
+						bpm: stringSchema("BPM if stated, e.g. '100 BPM'.", 0),
+						musical_key: stringSchema("Key signature if stated, e.g. 'D major'.", 0),
+						vocals: stringSchema("Vocal credits as free text, e.g. 'lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers'.", 0),
+						samples_notes: stringSchema("Notes about samples or interpolations.", 0),
+						inspirations: stringSchema("Stated stylistic inspirations.", 0),
 						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
 						project: edgeRefSchema(["project"]),
+						label: edgeRefSchema(["label"]),
 						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
 						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
+						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
 						samples: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
 						sampled_by: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
 						remix_of: edgeRefSchema(["track"]),
@@ -293,8 +306,12 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 }
 
 // Latency knobs. Each token shaved off the LLM call is ~free wall-clock time.
-const MAX_CORPUS_BYTES = 9_000; // was 24_000 — smaller prefill, ~30% faster LLM
-const PER_PAGE_BUDGET = 4_500; // cap one fetched page to this many chars before truncating
+// Bumped back up (2026-05-19): 4500/page truncated Wikipedia BEFORE the "Personnel" section
+// on long pages like Lose Yourself to Dance, so the agent never saw the structured credits.
+// Mathieu's feedback (personnel/label/composition extraction) requires we keep enough page
+// to reach those sections. Latency hit is ~0.5s — acceptable for the data quality lift.
+const MAX_CORPUS_BYTES = 24_000;
+const PER_PAGE_BUDGET = 14_000;
 const SEARCH_RESULTS = 5;
 const FETCH_TOP_K = 2; // was 3 — one fewer parallel scrape + smaller corpus
 
@@ -304,20 +321,61 @@ You receive: a target {type, name, disambiguator?} and a corpus of 1-3 web pages
 for that entity, plus the search snippets. Your job is to output a SINGLE JSON object that
 conforms to the response schema. Do not call tools — the system handled retrieval.
 
-RULES:
-  - editorial_article: real prose grounded in the corpus. 600-1500 chars. Open with a strong
-    sentence (entity + place + era + what they're known for). 2-3 paragraphs of context. NOT
-    a listicle. NOT generic. NOT a placeholder. If the corpus is thin, write what you can
-    verify and stop — never hallucinate.
-  - Every fact mentioned (year, label, sample) must appear in the corpus. If it isn't, leave
-    the field empty rather than guess.
-  - Citations: 2-6 URLs that you actually used from the supplied corpus. Each citation MUST
-    have a real http(s) url and a title.
+GENERAL RULES:
+  - editorial_article: real prose written for a curious LISTENER who wants to decide whether to
+    press play. Every sentence must teach them something concrete about the music. Target
+    400-1500 chars when sources support it; SHORTER is acceptable when info is genuinely thin.
+    Open with a strong sentence (entity + place + era + what they sound like). NEVER hallucinate.
+  - HARD ANTI-SLOP BAN (these phrases are FORBIDDEN — they signal database-meta filler, not music
+    information): "documented within", "documented in international music databases",
+    "cataloged on Discogs", "tracks their vinyl and CD releases", "maintained a presence in the
+    underground music scene", "diverse naming conventions", "numerical suffixes",
+    "point of interest for collectors", "active entity", "continues to be",
+    "musical project and artist entity". A SHORT honest article (down to ~80 chars) beats a long
+    padded one. If you have <2 concrete musical facts (real song name, real collaborator, real
+    venue/scene, real release date with label, sourced sonic trait), keep the article SHORT.
+  - Every fact mentioned (year, label, sample, personnel name) must appear in the corpus. If it
+    isn't there, leave the field empty rather than guess.
+  - Citations: 2-6 URLs you actually used FROM THE SUPPLIED CORPUS. Each has a real http(s) url
+    and a title.
   - Edges: each {type, name} pair must be a real entity, never 'Various'/'Unknown'/'TBC'.
     Use the canonical name (e.g. 'Aphex Twin', not 'Aphex Twin (musician)').
   - Aliases and side-projects stay as distinct edges (AFX != Aphex Twin).
   - Year/founded/active_years are STRINGS, never numbers.
   - The 'name' field on your output must be the canonical name (no '(track)', no '(album)').
+
+TRACK / PROJECT STRUCTURED FIELDS (CRITICAL — this is the most common failure mode):
+  When the corpus contains a Wikipedia page for a track or album, it almost always has a
+  "Personnel" / "Credits" section and an infobox with the record label. You MUST extract these
+  into the STRUCTURED fields, not merely mention them in the prose article. Specifically:
+    - personnel: array of {type:"artist", name:"..."} for EVERY credited session musician,
+      featured vocalist, instrumentalist, or engineer the corpus names. Include lead vocalist
+      AND backing vocalists AND each named instrumentalist.
+    - label: singular {type:"label", name:"..."} for the record label that released the track or
+      project (from the infobox / "Released by" / "Label" line).
+    - bpm, musical_key, vocals, samples_notes, inspirations: free-text strings extracted from
+      the "Composition" / "Music" / "Production" sections when the corpus states them.
+  Returning a polished prose article but leaving personnel/label/composition empty when the
+  Wikipedia page lists them is a HARD FAILURE.
+
+WORKED EXAMPLE — Track "Lose Yourself to Dance" (Daft Punk, Random Access Memories):
+  Wikipedia's "Personnel" section lists: Pharrell Williams (lead vocals, backing harmonies),
+  Nile Rodgers (rhythm guitar), Nathan East (bass guitar), Paul Jackson Jr. (rhythm guitar),
+  Omar Hakim (drums), Chris Caswell (Wurlitzer electric piano). Label (infobox) = Daft Life /
+  Columbia. The right output therefore includes:
+    "personnel": [
+      {"type":"artist","name":"Pharrell Williams"},
+      {"type":"artist","name":"Nile Rodgers"},
+      {"type":"artist","name":"Nathan East"},
+      {"type":"artist","name":"Paul Jackson Jr."},
+      {"type":"artist","name":"Omar Hakim"},
+      {"type":"artist","name":"Chris Caswell"}
+    ],
+    "label": {"type":"label","name":"Daft Life / Columbia"},
+    "vocals": "lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers",
+    "inspirations": "late-70s disco, Chic-style rhythm guitar"
+  Adjust to whatever the actual corpus says for the entity in question — never copy these names
+  verbatim onto unrelated tracks.
 
 OUTPUT: a single JSON object. Nothing before or after. No markdown fences.`;
 
@@ -330,10 +388,12 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// Step 1: research
 	const tSearch = Date.now();
 	const searchQuery = buildSearchQuery(input);
-	const searchResults = await tavilySearch(deps.tavilyApiKey, searchQuery, {
+	const searchResultsRaw = await tavilySearch(deps.tavilyApiKey, searchQuery, {
 		max_results: SEARCH_RESULTS,
 		search_depth: "basic",
 	});
+	// Source priority: wikipedia first, fandom/reddit last (Henry/Mathieu rule 2026-05-19).
+	const searchResults = rankResults(searchResultsRaw);
 	const searchMs = Date.now() - tSearch;
 	if (!searchResults.length) {
 		throw new Error(`No search results for ${input.type}:${input.name}`);
@@ -475,7 +535,7 @@ function buildUserPrompt(
 function canonicalize(
 	raw: Record<string, unknown>,
 	input: PipelineInput,
-	corpus: { url: string }[],
+	corpus: { url: string; markdown?: string }[],
 	allowedUrls: Set<string>,
 ): unknown {
 	const nameStr = typeof raw.name === "string" && raw.name.trim() ? raw.name.trim() : input.name;
@@ -508,11 +568,55 @@ function canonicalize(
 			"aliases",
 			"members",
 		],
-		project: ["artists", "genres", "tracklist", "producers", "related_projects"],
-		track: ["artists", "genres", "producers", "samples", "sampled_by", "remixed_by"],
+		project: ["artists", "genres", "tracklist", "producers", "personnel", "related_projects"],
+		track: ["artists", "genres", "producers", "personnel", "samples", "sampled_by", "remixed_by"],
 	};
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
+	}
+	// Groundedness check (2026-05-19 goal-mode adversarial). When sources are thin the LLM
+	// happily confabulates: it folded the disambiguator into label.name, invented tracks, etc.
+	// Drop scalar/edge values that don't appear ANYWHERE in the corpus markdown, and never let
+	// the disambiguator leak into an edge name.
+	const corpusBlob = (corpus as { markdown?: string }[])
+		.map((c) => (typeof c.markdown === "string" ? c.markdown : ""))
+		.join("\n")
+		.toLowerCase();
+	const disambigTokens = input.disambiguator
+		? input.disambiguator
+				.toLowerCase()
+				.split(/\s+/)
+				.filter((t) => t.length >= 3)
+		: [];
+	const isGroundedName = (name: string): boolean => {
+		const n = name.toLowerCase().trim();
+		if (n.length < 2) return false;
+		if (disambigTokens.length && disambigTokens.some((t) => n === t || n.includes(t))) return false;
+		return corpusBlob.includes(n);
+	};
+	if (input.type === "project" || input.type === "track") {
+		// Singular label: drop if not grounded.
+		if (next.label && typeof next.label === "object" && !Array.isArray(next.label)) {
+			const lbl = next.label as Record<string, unknown>;
+			const nm = typeof lbl.name === "string" ? lbl.name : "";
+			if (!nm || !isGroundedName(nm)) delete next.label;
+		}
+		// Tracklist on project: drop entries whose name isn't in the corpus AND looks suspiciously
+		// like the project's own name with a parenthetical suffix (a common confab pattern).
+		if (Array.isArray(next.tracklist)) {
+			const projName = (typeof next.name === "string" ? next.name : "").toLowerCase();
+			next.tracklist = (next.tracklist as unknown[]).filter((t) => {
+				if (!t || typeof t !== "object") return false;
+				const tn = (t as Record<string, unknown>).name;
+				if (typeof tn !== "string") return false;
+				const tnl = tn.toLowerCase();
+				// Reject suspicious parenthetical reuse of the project's own name when not in corpus.
+				const looksLikeReuse =
+					projName && tnl.startsWith(projName) && /\([^)]+\)\s*$/.test(tn) && !corpusBlob.includes(tnl);
+				if (looksLikeReuse) return false;
+				return true;
+			});
+		}
 	}
 	// Citations: filter to corpus-grounded URLs only.
 	const cits: Citation[] = [];
