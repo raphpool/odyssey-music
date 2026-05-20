@@ -523,12 +523,65 @@ export interface MbTrackSummary {
 	length?: number;
 }
 
+export interface MbCredit {
+	mbid: string;
+	name: string;
+}
+
 export interface MbTrackMeta {
 	project: { mbid: string; name: string } | null;
 	label: { mbid: string; name: string } | null;
 	artists: { mbid: string; name: string }[];
 	year: string | null;
 	duration: string | null;
+	producers: MbCredit[];
+	personnel: MbCredit[];
+}
+
+/**
+ * Bucket an MB artist-relation type into producer | personnel | skip.
+ * Producer-ish: any rel whose type matches /producer/i (producer, co-producer, executive
+ * producer, additional producer, vocal producer). Skip remixer (separate concept), composer,
+ * lyricist, arranger (we don't surface songwriting credits here). Everything else artist-
+ * targeted → personnel (engineer, mix, mastering, recording, vocal, instrument, performance,
+ * featured, programming, etc.).
+ *
+ * Why: the LLM emits producer/personnel by raw name ("40", "Boi-1da") which `artist:<slug>`
+ * then resolves via MB free-text search; short or ambiguous tokens land on the wrong artist
+ * (E-40 instead of Noah "40" Shebib — Raph 2026-05-20). MB relations are MBID-canonical, so
+ * stamping the MBID at edge-emit time pins the click target via the existing JIT mbid path.
+ */
+function bucketArtistRel(relType: string): "producer" | "personnel" | "skip" {
+	const t = relType.toLowerCase();
+	if (/producer/.test(t)) return "producer";
+	if (t === "remixer" || t === "composer" || t === "lyricist" || t === "arranger" || t === "writer") {
+		return "skip";
+	}
+	return "personnel";
+}
+
+interface MbArtistRel {
+	type?: string;
+	"target-type"?: string;
+	direction?: string;
+	artist?: { id: string; name: string };
+}
+
+function collectArtistRels(
+	rels: MbArtistRel[] | undefined,
+	producers: Map<string, MbCredit>,
+	personnel: Map<string, MbCredit>,
+): void {
+	if (!Array.isArray(rels)) return;
+	for (const r of rels) {
+		if (r["target-type"] && r["target-type"] !== "artist") continue;
+		const a = r.artist;
+		if (!a?.id || !a.name) continue;
+		const bucket = bucketArtistRel(r.type ?? "");
+		if (bucket === "skip") continue;
+		const map = bucket === "producer" ? producers : personnel;
+		if (!map.has(a.id)) map.set(a.id, { mbid: a.id, name: a.name });
+	}
 }
 
 /**
@@ -552,10 +605,19 @@ function rgScore(rg: { "primary-type"?: string; "secondary-types"?: string[] } |
  * group it appears on (canonical "original" album), pull that release's label + artists.
  */
 export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMeta> {
-	const empty: MbTrackMeta = { project: null, label: null, artists: [], year: null, duration: null };
+	const empty: MbTrackMeta = {
+		project: null,
+		label: null,
+		artists: [],
+		year: null,
+		duration: null,
+		producers: [],
+		personnel: [],
+	};
 	interface RecordingResp {
 		length?: number;
 		"artist-credit"?: { artist?: { id: string; name: string } }[];
+		relations?: MbArtistRel[];
 		releases?: {
 			id: string;
 			date?: string;
@@ -570,10 +632,21 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 		}[];
 	}
 	const rec = await mbFetch<RecordingResp>(`/recording/${recordingMbid}`, {
-		inc: "releases+release-groups+artist-credits",
+		inc: "releases+release-groups+artist-credits+artist-rels",
 	});
 	if (!rec) return empty;
-	const out: MbTrackMeta = { project: null, label: null, artists: [], year: null, duration: null };
+	const out: MbTrackMeta = {
+		project: null,
+		label: null,
+		artists: [],
+		year: null,
+		duration: null,
+		producers: [],
+		personnel: [],
+	};
+	const producersMap = new Map<string, MbCredit>();
+	const personnelMap = new Map<string, MbCredit>();
+	collectArtistRels(rec.relations, producersMap, personnelMap);
 	if (typeof rec.length === "number") {
 		const totalSec = Math.round(rec.length / 1000);
 		const m = Math.floor(totalSec / 60);
@@ -615,6 +688,9 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 		const firstLabel = (rel?.["label-info"] ?? []).find((li) => li.label && li.label.name)?.label;
 		if (firstLabel) out.label = { mbid: firstLabel.id, name: firstLabel.name };
 	}
+	out.producers = [...producersMap.values()];
+	const prodIdsT = new Set(out.producers.map((p) => p.mbid));
+	out.personnel = [...personnelMap.values()].filter((p) => !prodIdsT.has(p.mbid));
 	return out;
 }
 
@@ -623,6 +699,8 @@ export interface MbProjectMeta {
 	label: { mbid: string; name: string } | null;
 	artists: { mbid: string; name: string }[];
 	year: string | null;
+	producers: MbCredit[];
+	personnel: MbCredit[];
 }
 
 /**
@@ -631,12 +709,22 @@ export interface MbProjectMeta {
  * fans recognize as "the album" rather than a deluxe reissue.
  */
 export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta> {
-	const empty: MbProjectMeta = { tracks: [], label: null, artists: [], year: null };
+	const empty: MbProjectMeta = {
+		tracks: [],
+		label: null,
+		artists: [],
+		year: null,
+		producers: [],
+		personnel: [],
+	};
 	interface ReleaseGroupResp {
 		"first-release-date"?: string;
+		relations?: MbArtistRel[];
 		releases?: { id: string; "release-events"?: { date?: string }[]; date?: string }[];
 	}
-	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, { inc: "releases" });
+	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, {
+		inc: "releases+artist-rels",
+	});
 	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return empty;
 	const releases = [...rg.releases].sort((a, b) => {
 		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
@@ -649,15 +737,35 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 		date?: string;
 		"label-info"?: { label?: { id: string; name: string } | null }[];
 		"artist-credit"?: { name?: string; artist?: { id: string; name: string } }[];
+		relations?: MbArtistRel[];
 		media?: {
-			tracks?: { id: string; recording?: { id: string; title: string; length?: number } }[];
+			tracks?: {
+				id: string;
+				recording?: {
+					id: string;
+					title: string;
+					length?: number;
+					relations?: MbArtistRel[];
+				};
+			}[];
 		}[];
 	}
 	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, {
-		inc: "recordings+labels+artist-credits",
+		inc: "recordings+labels+artist-credits+artist-rels+recording-level-rels",
 	});
 	if (!rel) return empty;
-	const out: MbProjectMeta = { tracks: [], label: null, artists: [], year: null };
+	const out: MbProjectMeta = {
+		tracks: [],
+		label: null,
+		artists: [],
+		year: null,
+		producers: [],
+		personnel: [],
+	};
+	const producersMap = new Map<string, MbCredit>();
+	const personnelMap = new Map<string, MbCredit>();
+	collectArtistRels(rg.relations, producersMap, personnelMap);
+	collectArtistRels(rel.relations, producersMap, personnelMap);
 	const seen = new Set<string>();
 	for (const m of rel.media ?? []) {
 		for (const t of m.tracks ?? []) {
@@ -669,8 +777,14 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 			const entry: MbTrackSummary = { mbid: r.id, title: r.title };
 			if (typeof r.length === "number") entry.length = r.length;
 			out.tracks.push(entry);
+			collectArtistRels(r.relations, producersMap, personnelMap);
 		}
 	}
+	out.producers = [...producersMap.values()];
+	// Personnel should not duplicate the producer chip (Noah "40" Shebib is often listed in
+	// both buckets via separate MB rels). Drop any personnel MBID that's already a producer.
+	const prodIds = new Set(out.producers.map((p) => p.mbid));
+	out.personnel = [...personnelMap.values()].filter((p) => !prodIds.has(p.mbid));
 	const firstLabel = (rel["label-info"] ?? []).find((li) => li.label && li.label.name)?.label;
 	if (firstLabel) out.label = { mbid: firstLabel.id, name: firstLabel.name };
 	const seenArtist = new Set<string>();

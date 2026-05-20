@@ -801,6 +801,7 @@ WORKED EXAMPLE — TRACK EXTRACTION FROM WIKIPEDIA (study before emitting a trac
 
 DISAMBIGUATION:
   - For common names ("Tendency" track, multiple artists named "Bird"), include a 'disambiguator' field in your payload with the most-discriminating fact: artist name for a track/project, founding year for a label, "Brooklyn band" vs "London producer" for an artist. The cache uses it to keep distinct entities separate.
+  - CRITICAL — short mononym credits ("40", "Ye", "XL", "Jay", any 1-3 char stage name) MUST be emitted under the artist's canonical full name (e.g. "Noah '40' Shebib", "Kanye West"). The bare mononym collides with unrelated artists in MusicBrainz search and routes the chip click to the wrong page (Raph 2026-05-20: clicking "40" on Drake's HABIBTI? landed on E-40 the rapper instead of Noah Shebib).
 
 LATENCY (we are optimizing for sub-5s runs):
   - In a single assistant message you can call MULTIPLE tools in parallel. After web_search, call fetch_page on 2-3 promising URLs IN THE SAME MESSAGE — pi will run them simultaneously instead of serially.

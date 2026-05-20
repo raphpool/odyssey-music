@@ -409,6 +409,11 @@ GENERAL RULES:
     and a title.
   - Edges: each {type, name} pair must be a real entity, never 'Various'/'Unknown'/'TBC'.
     Use the canonical name (e.g. 'Aphex Twin', not 'Aphex Twin (musician)').
+  - CRITICAL — for short mononym aliases (e.g. '40', 'XL', 'Mike', 'Jay', 'Ye', any 1-3
+    char stage name), use the canonical full name as the edge name (e.g. "Noah '40' Shebib"
+    not '40'; "Kanye West" not 'Ye'). Short names collide with unrelated artists in MB
+    search and route the click to the wrong page (Raph 2026-05-20: '40' producer on Drake's
+    HABIBTI? landed on E-40 rapper).
   - Aliases and side-projects stay as distinct edges (AFX != Aphex Twin).
   - Year/founded/active_years are STRINGS, never numbers.
   - The 'name' field on your output must be the canonical name (no '(track)', no '(album)').
@@ -686,8 +691,24 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				}
 				if (meta.year) obj.year = meta.year;
 				if (meta.duration) obj.duration = meta.duration;
+				if (meta.producers.length > 0) {
+					obj.producers = meta.producers.slice(0, 6).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
+					}));
+				}
+				if (meta.personnel.length > 0) {
+					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
+					}));
+				}
 				log(
-					`[pipeline] track meta overridden: project=${meta.project?.name ?? "-"} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} year=${meta.year ?? "-"} duration=${meta.duration ?? "-"}`,
+					`[pipeline] track meta overridden: project=${meta.project?.name ?? "-"} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} duration=${meta.duration ?? "-"}`,
 				);
 			}
 		} catch (e) {
@@ -739,8 +760,24 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					}));
 				}
 				if (meta.year) obj.year = meta.year;
+				if (meta.producers.length > 0) {
+					obj.producers = meta.producers.slice(0, 6).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
+					}));
+				}
+				if (meta.personnel.length > 0) {
+					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
+						type: "artist",
+						name: a.name,
+						slug: toSlug("artist", a.name),
+						mbid: a.mbid,
+					}));
+				}
 				log(
-					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} year=${meta.year ?? "-"}`,
+					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"}`,
 				);
 			}
 		} catch (e) {
@@ -771,6 +808,21 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
 			log(`[pipeline] Wikidata genre enrich skipped: ${msg.slice(0, 100)}`);
+		}
+	}
+	// Dedup personnel against producers for project + track nodes. The LLM frequently lists
+	// the same person in both buckets, and MB merge can do the same when relations differ
+	// across release-group vs recording level. Producers wins — anyone in producers is dropped
+	// from personnel. Raph asked for this 2026-05-20.
+	if (input.type === "project" || input.type === "track") {
+		const obj = node as Record<string, unknown>;
+		const prods = Array.isArray(obj.producers) ? (obj.producers as Array<Record<string, unknown>>) : [];
+		const pers = Array.isArray(obj.personnel) ? (obj.personnel as Array<Record<string, unknown>>) : [];
+		if (prods.length > 0 && pers.length > 0) {
+			const key = (e: Record<string, unknown>): string =>
+				typeof e.mbid === "string" ? `mb:${e.mbid}` : `slug:${String(e.slug ?? "")}`;
+			const prodKeys = new Set(prods.map(key));
+			obj.personnel = pers.filter((p) => !prodKeys.has(key(p)));
 		}
 	}
 	const validated = nodePayloadSchema.parse(node) as NodePayload;
