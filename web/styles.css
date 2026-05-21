@@ -204,6 +204,31 @@ body {
   padding: 0;
   margin-bottom: 1rem;
   position: relative; overflow: hidden;
+  isolation: isolate;
+}
+
+/* Tint layer — blurred + saturated copy of the hero image, used as a card-wide
+   backdrop (à la YouTube Music's album page). Sits BEHIND all card content. */
+.node-tint {
+  position: absolute; inset: -60px;          /* expand so blur edges aren't visible */
+  background-size: cover; background-position: center;
+  filter: blur(60px) saturate(1.35);
+  opacity: 0.55;
+  z-index: -2;
+  pointer-events: none;
+}
+/* Dark gradient over the tint, fading toward the card base color at the bottom
+   so the body stays readable. */
+.node-tint-fade {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(5,5,5,0.35) 0%,
+    rgba(5,5,5,0.65) 45%,
+    var(--card-bg) 92%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 /* Legacy full-height stripe — kept for back-compat; the new design replaces it
    with a short stripe beside the teaser block. The old element is hidden. */
