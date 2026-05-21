@@ -92,6 +92,7 @@
     <a href="#node-artist">node · artist</a>
     <a href="#node-project">node · project</a>
     <a href="#node-track">node · track</a>
+    <a href="#no-image">no-image fallback</a>
     <a href="#chips">chips</a>
     <a href="#jit-banner">jit banner</a>
     <a href="#jit-overlay">jit overlay</a>
@@ -286,27 +287,6 @@ What followed was a decade-long flowering of experimental electronic music that 
         </div>
       </div>
     </div>
-    <div class="dp-label">Variant — no image available (gradient placeholder using type color)</div>
-    <div class="dp-stage" data-label=".hero.no-image">
-      <div class="node stripe-genre">
-        <div class="node-header">
-          <div class="badge genre">Genre</div>
-          <div class="node-ref">GNR · SHO-001</div>
-        </div>
-        <div class="hero no-image">
-          <div class="hero-title-wrap">
-            <h1>Shoegaze</h1>
-            <div class="hero-meta">Late 1980s · United Kingdom</div>
-          </div>
-        </div>
-        <div class="node-body">
-          <div class="teaser-row">
-            <div class="teaser-stripe"></div>
-            <div class="teaser">A wall of distorted guitars and softly buried vocals — named for performers who stared at their pedals.</div>
-          </div>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- ─── NODE · LABEL ──────────────────────────────────────── -->
@@ -368,13 +348,13 @@ What followed was a decade-long flowering of experimental electronic music that 
     <h2>Node · Artist (focused)</h2>
     <div class="dp-stage" data-label=".node.stripe-artist">
       <div class="node stripe-artist">
-        <div class="node-tint" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Brian_Eno_2015.png');"></div>
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/1500x1500bb.jpg');"></div>
         <div class="node-tint-fade"></div>
         <div class="node-header">
           <div class="badge artist">Artist</div>
           <div class="node-ref">ART · ENO-001</div>
         </div>
-        <div class="hero" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Brian_Eno_2015.png'); background-size: cover; background-position: center 20%;">
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/1500x1500bb.jpg');">
           <div class="hero-title-wrap">
             <h1>Brian Eno</h1>
             <div class="hero-meta">Woodbridge, Suffolk, UK · 1971 — present</div>
@@ -517,6 +497,52 @@ The record's reputation has grown in the decades since: where Cale's 1970s art-r
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NO-IMAGE FALLBACKS ─────────────────────────────────── -->
+  <section class="dp-section" id="no-image">
+    <h2>Fallback — no image, all 5 types</h2>
+    <div class="dp-label">When the image-resolution step can't find a cover, the hero falls back to a type-colored gradient so the card still has identity.</div>
+
+    <div class="dp-stage" data-label=".hero.no-image (genre)">
+      <div class="node stripe-genre">
+        <div class="node-header"><div class="badge genre">Genre</div><div class="node-ref">GNR · SHO-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Shoegaze</h1><div class="hero-meta">Late 1980s · United Kingdom</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">A wall of distorted guitars and softly buried vocals — named for performers who stared at their pedals.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (label)" style="margin-top: 1rem;">
+      <div class="node stripe-label">
+        <div class="node-header"><div class="badge label">Label</div><div class="node-ref">LBL · KMP-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Kompakt</h1><div class="hero-meta">Köln · 1998 — present</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">The Cologne house imprint that mainstreamed minimal techno's pop sensibility through the 2000s.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (artist)" style="margin-top: 1rem;">
+      <div class="node stripe-artist">
+        <div class="node-header"><div class="badge artist">Artist</div><div class="node-ref">ART · BFR-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Burnt Friedman</h1><div class="hero-meta">Köln, Germany · 1991 — present</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">German producer working at the seam between dub, jazz, and digital abstraction — most recognisable for his long collaboration with Jaki Liebezeit.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (project)" style="margin-top: 1rem;">
+      <div class="node stripe-project">
+        <div class="node-header"><div class="badge project">Project</div><div class="node-ref">PRJ · SCT-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Secret Rhythms</h1><div class="hero-meta">Burnt Friedman &amp; Jaki Liebezeit · 2002</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">The first volume of the Friedman/Liebezeit collaborations — Can's drummer in conversation with a laptop.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (track)" style="margin-top: 1rem;">
+      <div class="node stripe-track">
+        <div class="node-header"><div class="badge track">Track</div><div class="node-ref">TRK · SCT-01</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Hum 1</h1><div class="hero-meta">Burnt Friedman &amp; Jaki Liebezeit · Secret Rhythms · 2002</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">Opening track of Secret Rhythms — Liebezeit's loose-limbed drum kit looped against Friedman's circular bass pulse.</div></div></div>
       </div>
     </div>
   </section>
