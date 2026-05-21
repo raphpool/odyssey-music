@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Odyssey · Design system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Design-page-only chrome. Namespaced .dp- to avoid colliding with the app's
+   component classes — which is the point: every class outside this block
+   belongs to the real app and must render exactly as it does in index.html. */
+.dp-wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.2rem 6rem; }
+.dp-h1 {
+  font-family: 'Instrument Serif', serif; font-size: 2.4rem; font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+.dp-lede {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--muted); margin-bottom: 2rem; line-height: 1.6;
+}
+.dp-toc {
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px;
+  padding: 0.9rem 1.1rem; margin-bottom: 2.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+}
+.dp-toc a { color: var(--accent); text-decoration: none; }
+.dp-toc a:hover { color: var(--fg); }
+.dp-section {
+  padding-top: 2.5rem; margin-top: 2.5rem;
+  border-top: 1px solid var(--card-border);
+}
+.dp-section > h2 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.16em;
+  margin-bottom: 1.2rem;
+}
+.dp-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+  margin: 1.3rem 0 0.4rem;
+}
+.dp-row {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.dp-swatch {
+  width: 96px; height: 64px; border-radius: 4px;
+  border: 1px solid var(--card-border);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0.35rem 0.45rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+  color: var(--bg); font-weight: 500;
+}
+.dp-swatch.dark { color: var(--fg); }
+.dp-stage {
+  background: rgba(255,255,255,0.015);
+  border: 1px dashed var(--dim); border-radius: 4px;
+  padding: 1rem;
+  position: relative;
+}
+.dp-stage::before {
+  content: attr(data-label);
+  position: absolute; top: -0.55rem; left: 0.8rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--dim); background: var(--bg); padding: 0 0.4rem;
+}
+</style>
+</head>
+<body>
+<div class="dp-wrap">
+
+  <div class="dp-h1">Odyssey · Design system</div>
+  <div class="dp-lede">
+    Every UI surface currently shipping in <code>web/index.html</code>, rendered statically here so
+    you can iterate on the look without touching the real app. Edit <code>web/styles.css</code>
+    → reload this page → see every component update at once.
+  </div>
+
+  <div class="dp-toc">
+    <a href="#tokens">tokens</a>
+    <a href="#typography">typography</a>
+    <a href="#header">header</a>
+    <a href="#controls">controls</a>
+    <a href="#search">search</a>
+    <a href="#stat-crumbs">stat & crumbs</a>
+    <a href="#node-genre">node · genre</a>
+    <a href="#node-label">node · label</a>
+    <a href="#node-artist">node · artist</a>
+    <a href="#node-project">node · project</a>
+    <a href="#node-track">node · track</a>
+    <a href="#chips">chips</a>
+    <a href="#jit-banner">jit banner</a>
+    <a href="#jit-overlay">jit overlay</a>
+    <a href="#citations">citations</a>
+    <a href="#player">player</a>
+    <a href="#foot">foot</a>
+  </div>
+
+  <!-- ─── TOKENS ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="tokens">
+    <h2>Color tokens</h2>
+    <div class="dp-row">
+      <div class="dp-swatch dark" style="background: var(--bg);">--bg</div>
+      <div class="dp-swatch" style="background: var(--fg);">--fg</div>
+      <div class="dp-swatch" style="background: var(--accent);">--accent</div>
+      <div class="dp-swatch dark" style="background: var(--muted);">--muted</div>
+      <div class="dp-swatch dark" style="background: var(--dim);">--dim</div>
+      <div class="dp-swatch dark" style="background: var(--card-bg);">--card-bg</div>
+      <div class="dp-swatch dark" style="background: var(--card-bg-2);">--card-bg-2</div>
+      <div class="dp-swatch dark" style="background: var(--card-border);">--card-border</div>
+    </div>
+    <div class="dp-label">Per-type accents</div>
+    <div class="dp-row">
+      <div class="dp-swatch" style="background: var(--genre);">--genre</div>
+      <div class="dp-swatch" style="background: var(--label);">--label</div>
+      <div class="dp-swatch" style="background: var(--artist);">--artist</div>
+      <div class="dp-swatch" style="background: var(--project);">--project</div>
+      <div class="dp-swatch" style="background: var(--track);">--track</div>
+    </div>
+  </section>
+
+  <!-- ─── TYPOGRAPHY ──────────────────────────────────────────── -->
+  <section class="dp-section" id="typography">
+    <h2>Typography</h2>
+    <div class="dp-stage" data-label="serif display (Instrument Serif)">
+      <div style="font-family: 'Instrument Serif', serif; font-size: 2.1rem; line-height: 1.08; letter-spacing: -0.01em;">Loveless</div>
+      <div style="font-family: 'Instrument Serif', serif; font-style: italic; color: var(--accent); font-size: 1.05rem; line-height: 1.45; margin-top: 0.4rem;">A wall of distorted guitars dissolving into pop — the record that defined a decade of dream-pop.</div>
+    </div>
+    <div class="dp-stage" data-label="body (Inter 300)" style="margin-top: 1rem;">
+      <p style="font-size: 0.95rem; line-height: 1.7;">My Bloody Valentine's <em>Loveless</em> (1991) stands as one of the most influential records of the alternative rock canon. Kevin Shields buried hooks under sheets of detuned, bent-string guitar, processed beyond recognition.</p>
+    </div>
+    <div class="dp-stage" data-label="mono (JetBrains Mono)" style="margin-top: 1rem;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted);">1,404 nodes · 7,329 edges · seed: <span style="color: var(--accent);">jan-jelinek-tendency</span></div>
+    </div>
+  </section>
+
+  <!-- ─── HEADER ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="header">
+    <h2>Header</h2>
+    <div class="dp-stage" data-label=".head">
+      <div class="head">
+        <a class="back" href="/">← back</a>
+        <div class="title">Odyssey</div>
+        <span class="sub">Culture Graph · Phase 1</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTROLS ───────────────────────────────────────────── -->
+  <section class="dp-section" id="controls">
+    <h2>Controls</h2>
+    <div class="dp-stage" data-label=".controls">
+      <div class="controls">
+        <div class="search">
+          <input type="search" placeholder="search an artist…" autocomplete="off" inputmode="search" />
+          <button>Focus seed</button>
+          <button>Random</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SEARCH ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="search">
+    <h2>Search results</h2>
+    <div class="dp-label">One row per node type (cache hits + catalog "+ generate")</div>
+    <div class="dp-stage" data-label=".search-results">
+      <div class="search-results" style="display:block;">
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t artist">artist</span>
+          <span style="flex:1;min-width:0;">My Bloody Valentine <span style="color:var(--muted);font-weight:300;">— Dublin, 1983–present</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t project">project</span>
+          <span style="flex:1;min-width:0;">Loveless <span style="color:var(--muted);font-weight:300;">— My Bloody Valentine, 1991</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t track">track</span>
+          <span style="flex:1;min-width:0;">Only Shallow <span style="color:var(--muted);font-weight:300;">— Loveless</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t genre">genre</span>
+          <span style="flex:1;min-width:0;">Shoegaze</span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t label">label</span>
+          <span style="flex:1;min-width:0;">Creation Records <span style="color:var(--muted);font-weight:300;">— London, 1983–1999</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>
+        </div>
+      </div>
+    </div>
+    <div class="dp-label">Empty state</div>
+    <div class="dp-stage" data-label=".search-results (no match)">
+      <div class="search-results" style="display:block;">
+        <div class="row" style="cursor:default;color:var(--muted);"><span>no match for "kjasdhf"</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STAT + CRUMBS ─────────────────────────────────────── -->
+  <section class="dp-section" id="stat-crumbs">
+    <h2>Stat &amp; breadcrumbs</h2>
+    <div class="dp-stage" data-label=".stat">
+      <div class="stat"><b style="color:var(--fg);font-weight:500;">1,404</b> nodes · <b style="color:var(--fg);font-weight:500;">7,329</b> edges · seed: <span style="color:var(--accent);">jan-jelinek-tendency</span></div>
+    </div>
+    <div class="dp-stage" data-label=".crumbs" style="margin-top: 1rem;">
+      <div class="crumbs" style="display:flex;">
+        <a href="#">Jan Jelinek</a>
+        <span class="sep">›</span>
+        <a href="#">Loop-finding-jazz-records</a>
+        <span class="sep">›</span>
+        <a href="#">~scape</a>
+        <span class="sep">›</span>
+        <span>Pole</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · GENRE ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-genre">
+    <h2>Node · Genre (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-genre">
+      <div class="node stripe-genre">
+        <div class="stripe"></div>
+        <div class="badge genre">Genre</div>
+        <h1>Shoegaze</h1>
+        <div class="teaser">A subgenre of alternative rock defined by layers of distorted, effects-laden guitars and softly buried vocals — named for performers who stared down at their effects pedals on stage.</div>
+        <div class="article">Shoegaze emerged in the United Kingdom in the late 1980s, crystallized by a generation of bands obsessed with the textural possibilities of the electric guitar. Where earlier post-punk sought clarity and edge, shoegaze sought immersion: walls of detuned chords, vibrato bars worked in real time, and vocals mixed flush with the instrumentation rather than above it.
+
+The genre's defining gestures — Kevin Shields' "glide guitar," the wash of reverb and tremolo, the indifference to traditional song structure — were a deliberate inversion of rock-star theatrics. The performers literally looked down at their pedalboards, hence the journalistic shorthand that stuck.</div>
+
+        <div class="facts">
+          <span>era<b>late 1980s – mid 1990s</b></span>
+          <span>origin<b>United Kingdom</b></span>
+          <span>sonic markers<b>walls of distortion · buried vocals · tremolo · reverb</b></span>
+        </div>
+
+        <div class="section">Key artists</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>My Bloody Valentine</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Slowdive</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Ride</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Lush</a>
+          </div>
+        </div>
+
+        <div class="section">Landmark projects</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-project" href="#"><span class="etype">project</span>Loveless</a>
+            <a class="chip t-project" href="#"><span class="etype">project</span>Souvlaki</a>
+            <a class="chip t-project" href="#"><span class="etype">project</span>Nowhere</a>
+          </div>
+        </div>
+
+        <div class="section">Related genres</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-genre" href="#"><span class="etype">genre</span>Dream pop</a>
+            <a class="chip t-genre" href="#"><span class="etype">genre</span>Noise pop</a>
+            <a class="chip dangling t-genre" href="#"><span class="etype">genre</span>Post-rock</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · LABEL ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-label">
+    <h2>Node · Label (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-label">
+      <div class="node stripe-label">
+        <div class="stripe"></div>
+        <div class="badge label">Label</div>
+        <h1>~scape</h1>
+        <div class="teaser">Stefan Betke's Berlin imprint, a hub for the post-techno minimalism that filtered dub through laptops at the turn of the millennium.</div>
+        <div class="article">Founded in 2000 by Stefan Betke — better known as Pole — ~scape became the connective tissue between Germany's post-techno avant-garde and the international laptop-music scene. Where parent label Kompakt foregrounded melody and pop sensibility, ~scape pursued texture, weight, and the long decay tails of dub.
+
+The roster — Jan Jelinek, Bus, Burnt Friedman, Andrew Pekler — shared an obsession with sampled-but-dissolved source material: jazz records reduced to their grain, dub plates abstracted into pulse.</div>
+
+        <div class="facts">
+          <span>founded<b>2000</b></span>
+          <span>location<b>Berlin</b></span>
+          <span>founders<b>Stefan Betke</b></span>
+          <span>active<b>2000–present</b></span>
+        </div>
+
+        <div class="section">Roster</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Pole</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Jan Jelinek</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Burnt Friedman</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Andrew Pekler</a>
+          </div>
+        </div>
+
+        <div class="section">Notable releases</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-project" href="#"><span class="etype">project</span>Loop-finding-jazz-records</a>
+            <a class="chip t-project" href="#"><span class="etype">project</span>R</a>
+            <a class="chip t-project" href="#"><span class="etype">project</span>Con Ritmo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · ARTIST ─────────────────────────────────────── -->
+  <section class="dp-section" id="node-artist">
+    <h2>Node · Artist (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-artist">
+      <div class="node stripe-artist">
+        <div class="stripe"></div>
+        <div class="badge artist">Artist</div>
+        <h1>Jan Jelinek</h1>
+        <div class="teaser">Berlin producer whose grain-fine sampling of jazz records redefined what a beat could be made of.</div>
+        <div class="article">Jan Jelinek emerged from the Frankfurt techno scene in the late 1990s but found his signature voice in Berlin, where 2001's <em>Loop-finding-jazz-records</em> dissolved the entire jazz canon into a series of softly clicking, breath-textured loops. The record became a touchstone for an entire micro-generation of producers learning to hear the surface noise of an LP as a compositional element in its own right.
+
+Across subsequent releases — under his own name and as Farben, Gramm, and Ursula Bogner — Jelinek has continued to interrogate the boundary between sampling and abstraction, treating found sound less as material than as atmosphere.</div>
+
+        <div class="facts">
+          <span>origin<b>Frankfurt, Germany</b></span>
+          <span>active<b>1998–present</b></span>
+        </div>
+
+        <div class="section">Labels</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-label" href="#"><span class="etype">label</span>~scape</a>
+            <a class="chip t-label" href="#"><span class="etype">label</span>Faitiche</a>
+          </div>
+        </div>
+
+        <div class="section">Discography</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-project" href="#"><span class="etype">project</span>Loop-finding-jazz-records</a>
+            <a class="chip t-project" href="#"><span class="etype">project</span>Tierbeobachtungen</a>
+            <a class="chip dangling t-project" href="#"><span class="etype">project</span>Kosmischer Pitch</a>
+          </div>
+        </div>
+
+        <div class="section">Aliases</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Farben</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Gramm</a>
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Ursula Bogner</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · PROJECT ────────────────────────────────────── -->
+  <section class="dp-section" id="node-project">
+    <h2>Node · Project (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-project">
+      <div class="node stripe-project">
+        <div class="stripe"></div>
+        <div class="badge project">Project</div>
+        <h1>Loop-finding-jazz-records</h1>
+        <div class="teaser">The record that taught a generation of producers to hear the dust of an LP as composition.</div>
+        <div class="article">Released on Stefan Betke's ~scape in 2001, <em>Loop-finding-jazz-records</em> is built almost entirely from short loops cut out of obscure 1960s and 70s jazz records — the kind of three-second fragments most producers would discard for being too inert. Jelinek heard otherwise: by stripping out the recognizable hooks and keeping only the surface noise and the harmonic shadow, he produced a record that feels less sampled than dreamed.</div>
+
+        <div class="facts">
+          <span>year<b>2001</b></span>
+          <span>bpm<b>90–105</b></span>
+          <span>vocals<b>none</b></span>
+          <span>samples<b>obscure 1960s–70s jazz LPs, processed to the point of disintegration</b></span>
+        </div>
+
+        <div class="section">Tracklist</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-track" href="#"><span class="etype">track</span>Them, Their</a>
+            <a class="chip t-track" href="#"><span class="etype">track</span>Rock in the Video Age</a>
+            <a class="chip t-track" href="#"><span class="etype">track</span>Moiré (Strings)</a>
+            <a class="chip t-track" href="#"><span class="etype">track</span>Tendency</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · TRACK ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-track">
+    <h2>Node · Track (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-track">
+      <div class="node stripe-track">
+        <div class="stripe"></div>
+        <div class="badge track">Track</div>
+        <h1>Tendency</h1>
+        <div class="teaser">The closing track of <em>Loop-finding-jazz-records</em> — a single dissolving loop stretched into a quiet manifesto.</div>
+        <div class="article">"Tendency" closes the record with one of Jelinek's purest gestures: a brief lift from an unnamed jazz LP, slowed almost to stasis, looped until its harmonic content becomes a kind of breathing. Where the record's earlier tracks build small architectures around their loops, "Tendency" lets the source breathe alone.</div>
+
+        <button class="play-btn">▶ Play preview</button>
+
+        <div class="facts" style="margin-top: 1rem;">
+          <span>year<b>2001</b></span>
+          <span>duration<b>4:32</b></span>
+          <span>bpm<b>96</b></span>
+          <span>key<b>F minor</b></span>
+        </div>
+
+        <div class="section">Project</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-project" href="#"><span class="etype">project</span>Loop-finding-jazz-records</a>
+          </div>
+        </div>
+
+        <div class="section">Artist</div>
+        <div class="edge-group">
+          <div class="chips">
+            <a class="chip t-artist" href="#"><span class="etype">artist</span>Jan Jelinek</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CHIPS ──────────────────────────────────────────────── -->
+  <section class="dp-section" id="chips">
+    <h2>Chips — all variants</h2>
+    <div class="dp-label">Default (cached) · one per type</div>
+    <div class="dp-stage" data-label=".chip">
+      <div class="chips">
+        <a class="chip t-genre" href="#"><span class="etype">genre</span>Shoegaze</a>
+        <a class="chip t-label" href="#"><span class="etype">label</span>~scape</a>
+        <a class="chip t-artist" href="#"><span class="etype">artist</span>Jan Jelinek</a>
+        <a class="chip t-project" href="#"><span class="etype">project</span>Loveless</a>
+        <a class="chip t-track" href="#"><span class="etype">track</span>Tendency</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Dangling (not yet materialized — click to JIT-load)</div>
+    <div class="dp-stage" data-label=".chip.dangling">
+      <div class="chips">
+        <a class="chip dangling t-artist" href="#"><span class="etype">artist</span>Burnt Friedman</a>
+        <a class="chip dangling t-project" href="#"><span class="etype">project</span>Kosmischer Pitch</a>
+        <a class="chip dangling t-label" href="#"><span class="etype">label</span>Faitiche</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Loading (progress fill animating)</div>
+    <div class="dp-stage" data-label=".chip.loading">
+      <div class="chips">
+        <a class="chip loading t-artist" href="#" style="--progress: 62%;"><span class="etype">artist</span>Pole</a>
+        <a class="chip loading done t-project" href="#"><span class="etype">project</span>R</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Dead (materialization failed)</div>
+    <div class="dp-stage" data-label=".chip.dead">
+      <div class="chips">
+        <a class="chip dead t-artist" href="#"><span class="etype">artist</span>Unknown Artist 42</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── JIT BANNER ─────────────────────────────────────────── -->
+  <section class="dp-section" id="jit-banner">
+    <h2>JIT banner</h2>
+    <div class="dp-stage" data-label=".jit-banner">
+      <div class="jit-banner">⚡ JIT active · this node has <b style="color:var(--fg);">12</b> unmaterialized connections. Click any "↻" chip below to load on-demand, or <button>pre-cache all edges</button></div>
+    </div>
+  </section>
+
+  <!-- ─── JIT OVERLAY ────────────────────────────────────────── -->
+  <section class="dp-section" id="jit-overlay">
+    <h2>JIT overlay (full-screen loading)</h2>
+    <div class="dp-label">Forced into the .show state so it renders inline here (in the real app it covers the viewport)</div>
+    <div class="dp-stage" data-label=".jit-overlay" style="min-height: 260px; padding: 2rem;">
+      <div class="jit-overlay show" style="position: relative; inset: auto; background: transparent; backdrop-filter: none;">
+        <div class="card">
+          <div class="pill artist">Artist</div>
+          <div class="title">Burnt Friedman</div>
+          <div class="subtitle">materializing from MusicBrainz · Tavily · Firecrawl</div>
+          <div class="bar"><i style="width: 64%; transition: none;"></i></div>
+          <div class="status">Resolving discography…</div>
+          <button class="cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CITATIONS ──────────────────────────────────────────── -->
+  <section class="dp-section" id="citations">
+    <h2>Citations</h2>
+    <div class="dp-stage" data-label=".citations">
+      <div class="citations">
+        <a href="#"><span class="num">[1]</span>~scape — discogs.com/label/3142-scape</a>
+        <a href="#"><span class="num">[2]</span>Jan Jelinek interview — The Wire, October 2002</a>
+        <a href="#"><span class="num">[3]</span>Loop-finding-jazz-records review — Pitchfork, 2001</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PLAYER ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="player">
+    <h2>Sticky player</h2>
+    <div class="dp-label">In production this is fixed to the viewport bottom — shown inline here for inspection.</div>
+    <div class="dp-stage" data-label="#player.open" style="padding: 0; overflow: hidden;">
+      <div id="player-demo" style="position: relative; background: rgba(14, 14, 13, 0.94); backdrop-filter: blur(10px); border-top: 1px solid var(--card-border);">
+        <div class="player-row">
+          <button class="player-btn" aria-label="play/pause">▶</button>
+          <div class="player-info">
+            <div class="pt">Tendency</div>
+            <div class="pa">Jan Jelinek · Loop-finding-jazz-records</div>
+          </div>
+          <div class="player-bar"><div class="fill" style="width: 38%;"></div></div>
+          <button class="player-close" aria-label="close player">×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOT ───────────────────────────────────────────────── -->
+  <section class="dp-section" id="foot">
+    <h2>Footer</h2>
+    <div class="dp-stage" data-label=".foot">
+      <div class="foot">
+        Crawler at <a href="https://github.com/raphpool/odyssey-music">github.com/raphpool/odyssey-music</a> ·
+        Agent powered by Gemini 3.1 Flash Lite + Tavily + Firecrawl via
+        <a href="https://github.com/earendil-works/pi">pi</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
