@@ -49,7 +49,7 @@ body {
 }
 .head a.back:hover { color: var(--fg); }
 .head .title {
-  font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-weight: 400;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 400;
 }
 .head .sub {
   font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
@@ -138,7 +138,7 @@ body {
 .jit-overlay .card .pill.genre { color: var(--genre); }
 .jit-overlay .card .pill.label { color: var(--label); }
 .jit-overlay .card .title {
-  font-family: 'Instrument Serif', serif; font-size: 1.5rem; line-height: 1.25;
+  font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; line-height: 1.25;
   margin-bottom: 0.3rem; color: var(--fg);
 }
 .jit-overlay .card .subtitle {
@@ -224,12 +224,12 @@ body {
 .node .badge.project { color: var(--project); }
 .node .badge.track { color: var(--track); }
 .node h1 {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 400;
   font-size: 2.1rem; line-height: 1.08; letter-spacing: -0.01em;
   margin-bottom: 0.4rem;
 }
 .node .teaser {
-  font-family: 'Instrument Serif', serif; font-style: italic;
+  font-family: 'Space Grotesk', sans-serif; font-style: italic;
   color: var(--accent); font-size: 1.05rem; line-height: 1.45;
   margin-bottom: 1rem;
 }
