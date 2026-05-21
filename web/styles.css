@@ -276,7 +276,10 @@ body {
   height: 240px;
   border-radius: 8px;
   overflow: hidden;
-  background: var(--card-bg-2) center / cover no-repeat;
+  background-color: var(--card-bg-2);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   isolation: isolate;
 }
 /* Gradient overlay for legibility — sits under the title */
