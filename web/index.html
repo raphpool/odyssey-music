@@ -79,6 +79,77 @@ const FACT_LABEL = {
   sonic_markers: "sonic markers",
 };
 
+// ─── Hero image resolution ──────────────────────────────────────────────
+// Each node type sources its hero image differently:
+//   project           — own cover_url
+//   track             — own cover_url, else parent project's
+//   artist            — own photo_url, else any of their projects' covers
+//   genre             — landmark project's cover, else landmark track's project
+//   label             — notable release's cover
+// Returns null when nothing is resolvable; the template renders the
+// `.hero.no-image` gradient placeholder in that case.
+function resolveHeroImage(node) {
+  if (node.image_url) return node.image_url;
+  const edges = node.edges || {};
+  const pick = (refs) => {
+    if (!refs) return null;
+    const list = Array.isArray(refs) ? refs : [refs];
+    for (const r of list) {
+      const target = byId.get(r.slug);
+      if (target && target.image_url) return target.image_url;
+    }
+    return null;
+  };
+  switch (node.type) {
+    case "track":   return pick(edges.project);
+    case "artist":  return pick(edges.discography) || pick(edges.notable_tracks);
+    case "genre":   return pick(edges.landmark_projects) || pick(edges.landmark_tracks);
+    case "label":   return pick(edges.notable_releases);
+    default:        return null;
+  }
+}
+
+// Short meta line shown under the hero title (e.g. "Radiohead · Kid A · 2000").
+function buildHeroMeta(node) {
+  const facts = node.facts || node;
+  const parts = [];
+  const artists = (node.edges && Array.isArray(node.edges.artists))
+    ? node.edges.artists.map((a) => a.name).join(" · ") : "";
+  switch (node.type) {
+    case "genre":
+      if (facts.era) parts.push(facts.era);
+      if (facts.origin) parts.push(facts.origin);
+      break;
+    case "label":
+      if (facts.location) parts.push(facts.location);
+      if (facts.active_years) parts.push(facts.active_years);
+      else if (facts.founded) parts.push(facts.founded);
+      break;
+    case "artist":
+      if (facts.origin) parts.push(facts.origin);
+      if (facts.active_years) parts.push(facts.active_years);
+      break;
+    case "project":
+      if (artists) parts.push(artists);
+      if (facts.year) parts.push(facts.year);
+      break;
+    case "track": {
+      if (artists) parts.push(artists);
+      const proj = node.edges && node.edges.project;
+      if (proj && proj.name) parts.push(proj.name);
+      if (facts.year) parts.push(facts.year);
+      break;
+    }
+  }
+  return parts.join(" · ");
+}
+
+// Sanitize a URL for use inside `style="background-image: url('...')"`.
+// Single quotes would break out of the CSS url() literal; we percent-encode.
+function safeCssUrl(u) {
+  return String(u || "").replace(/'/g, "%27").replace(/[\s]/g, "%20");
+}
+
 let DATA = null;
 let byId = new Map();
 let SEED_ID = null;
@@ -431,19 +502,43 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     ? `<button class="play-btn" id="track-play-btn" data-track-id="${escapeHtml(id)}">▶ play</button>`
     : "";
 
+  const heroUrl = resolveHeroImage(node);
+  const heroMeta = buildHeroMeta(node);
+  const heroBg = heroUrl ? ` style="background-image: url('${safeCssUrl(heroUrl)}');"` : "";
+  const heroClass = heroUrl ? "" : " no-image";
+  const tintHtml = heroUrl
+    ? `<div class="node-tint" style="background-image: url('${safeCssUrl(heroUrl)}');"></div><div class="node-tint-fade"></div>`
+    : "";
+  // Show slug (without `type:` prefix) on the right side of the header as a ref code.
+  const slugRef = id.includes(":") ? id.split(":")[1] : id;
+  const seedTag = id === SEED_ID ? ' · seed' : '';
+
   contentEl.innerHTML = `
     <div class="node stripe-${node.type}">
-      <div class="stripe"></div>
-      <div class="badge ${node.type}">${node.type}${id === SEED_ID ? " · seed" : ""} · <span style="color:var(--muted);text-transform:none;letter-spacing:0;">${escapeHtml(id)}</span></div>
-      <h1>${escapeHtml(node.name)}</h1>
-      <div class="teaser">${escapeHtml(teaser)}</div>
-      ${factParts ? `<div class="facts">${factParts}</div>` : ""}
-      ${playBtnHtml}
-      ${banner}
-      <div class="article">${escapeHtml(node.article || "")}</div>
-      ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
-      <div class="section">Sources</div>
-      <div class="citations">${cits || '<div style="color:var(--muted);font-size:0.85rem;font-style:italic;">No citations.</div>'}</div>
+      ${tintHtml}
+      <div class="node-header">
+        <div class="badge ${node.type}">${node.type}${seedTag}</div>
+        <div class="node-ref">${escapeHtml(slugRef)}</div>
+      </div>
+      <div class="hero${heroClass}"${heroBg}>
+        <div class="hero-title-wrap">
+          <h1>${escapeHtml(node.name)}</h1>
+          ${heroMeta ? `<div class="hero-meta">${escapeHtml(heroMeta)}</div>` : ""}
+        </div>
+      </div>
+      <div class="node-body">
+        <div class="teaser-row">
+          <div class="teaser-stripe"></div>
+          <div class="teaser">${escapeHtml(teaser)}</div>
+        </div>
+        ${factParts ? `<div class="facts">${factParts}</div>` : ""}
+        ${playBtnHtml}
+        ${banner}
+        <div class="article">${escapeHtml(node.article || "")}</div>
+        ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
+        <div class="section">Sources</div>
+        <div class="citations">${cits || '<div style="color:var(--muted);font-size:0.85rem;font-style:italic;">No citations.</div>'}</div>
+      </div>
     </div>
   `;
 
