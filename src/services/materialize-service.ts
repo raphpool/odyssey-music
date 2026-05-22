@@ -1,7 +1,7 @@
 import type { NodeCache } from "../cache.js";
 import { pipelineConfig } from "../config.js";
 import type { ApiEnv } from "../env.js";
-import { isNotFoundError } from "../errors.js";
+import { BadRequestError, isNotFoundError } from "../errors.js";
 import { runPipeline } from "../pipeline.js";
 import { makeSlug } from "../slug.js";
 import type { NodePayload, NodeType } from "../types.js";
@@ -10,7 +10,6 @@ import { NODE_TYPES } from "../types.js";
 export interface MaterializeRequest {
 	type?: string;
 	name?: string;
-	text?: string;
 	disambiguator?: string;
 	mbid?: string;
 }
@@ -30,61 +29,57 @@ export function createMaterializeService(deps: { cache: NodeCache; env: ApiEnv }
 		opts: { fresh?: boolean } = {},
 	): Promise<MaterializeResponse> {
 		if (
-			(!body.type ||
-				typeof body.type !== "string" ||
-				!(NODE_TYPES as readonly string[]).includes(body.type)) &&
-			!body.text
+			!body.type ||
+			typeof body.type !== "string" ||
+			!(NODE_TYPES as readonly string[]).includes(body.type)
 		) {
-			throw new Error("Provide {type, name} or {text}");
+			throw new BadRequestError("Provide {type, name}");
+		}
+		if (!body.name || typeof body.name !== "string") {
+			throw new BadRequestError("Provide {type, name}");
 		}
 		const t0 = Date.now();
 		const fresh = opts.fresh === true;
-		if (body.type && body.name) {
-			const slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
-			let effectiveFresh = fresh;
-			if (!fresh) {
-				const cached = await deps.cache.get(slug).catch((e: unknown) => {
-					if (isNotFoundError(e)) return null;
-					throw e;
-				});
-				if (cached) {
-					const matAt = new Date(cached.materialized_at).getTime();
-					const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
-					const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
-					const mbidMismatch = !!body.mbid && cachedMbid !== body.mbid;
-					if (!stale && !mbidMismatch) {
-						return { node: cached, source: "cache", wallMs: Date.now() - t0 };
-					}
-					effectiveFresh = true;
+		const slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
+		let effectiveFresh = fresh;
+		if (!fresh) {
+			const cached = await deps.cache.get(slug).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
+			if (cached) {
+				const matAt = new Date(cached.materialized_at).getTime();
+				const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
+				const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
+				const mbidMismatch = !!body.mbid && cachedMbid !== body.mbid;
+				if (!stale && !mbidMismatch) {
+					return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 				}
-			}
-			const key = `${slug}|${body.disambiguator ?? ""}|fresh=${effectiveFresh}`;
-			const existing = inflight.get(key);
-			if (existing) {
-				const node = await existing;
-				return { node, source: "jit", wallMs: Date.now() - t0 };
-			}
-			const p = runJit(body, { fresh: effectiveFresh });
-			inflight.set(key, p);
-			try {
-				const node = await p;
-				const out: MaterializeResponse = { node, source: "jit", wallMs: Date.now() - t0 };
-				const m = (node as unknown as { _metrics?: { cost_usd: number } })._metrics;
-				if (m) out.metricsCostUsd = m.cost_usd;
-				return out;
-			} finally {
-				inflight.delete(key);
+				effectiveFresh = true;
 			}
 		}
-		const node = await runJit(body, { fresh });
-		return { node, source: "jit", wallMs: Date.now() - t0 };
+		const key = `${slug}|${body.disambiguator ?? ""}|fresh=${effectiveFresh}`;
+		const existing = inflight.get(key);
+		if (existing) {
+			const node = await existing;
+			return { node, source: "jit", wallMs: Date.now() - t0 };
+		}
+		const p = runJit(body, { fresh: effectiveFresh });
+		inflight.set(key, p);
+		try {
+			const node = await p;
+			const out: MaterializeResponse = { node, source: "jit", wallMs: Date.now() - t0 };
+			const m = (node as unknown as { _metrics?: { cost_usd: number } })._metrics;
+			if (m) out.metricsCostUsd = m.cost_usd;
+			return out;
+		} finally {
+			inflight.delete(key);
+		}
 	}
 
 	async function runJit(body: MaterializeRequest, opts: { fresh?: boolean } = {}): Promise<NodePayload> {
 		if (!body.type || !body.name) {
-			throw new Error(
-				"Pipeline JIT requires both 'type' and 'name'. Free-text seeds are not supported here.",
-			);
+			throw new BadRequestError("Pipeline JIT requires both 'type' and 'name'.");
 		}
 		const pipelineInput: { type: NodeType; name: string; disambiguator?: string; mbid?: string } = {
 			type: body.type as NodeType,
