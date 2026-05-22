@@ -324,7 +324,7 @@ export async function fetchEntityGenresMb(
 	}
 	const data = await mbFetch<Resp>(`/${entity}/${mbid}`, { inc: "genres+tags" });
 	if (!data) return [];
-	const source = data.genres && data.genres.length > 0 ? data.genres : data.tags ?? [];
+	const source = data.genres && data.genres.length > 0 ? data.genres : (data.tags ?? []);
 	const filtered = source
 		.filter((t) => (t.count ?? 0) >= minCount)
 		.sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
@@ -397,9 +397,7 @@ export async function fetchLabelMetaMb(labelMbid: string): Promise<MbLabelMeta> 
 		seen.add(a.id);
 		out.roster.push({ mbid: a.id, name: a.name });
 	}
-	const rgs = (rgResp?.["release-groups"] ?? []).filter(
-		(rg) => (rg["secondary-types"] ?? []).length === 0,
-	);
+	const rgs = (rgResp?.["release-groups"] ?? []).filter((rg) => (rg["secondary-types"] ?? []).length === 0);
 	rgs.sort((a, b) => (b["first-release-date"] ?? "").localeCompare(a["first-release-date"] ?? ""));
 	const seenRg = new Set<string>();
 	for (const rg of rgs) {
@@ -414,18 +412,13 @@ export async function fetchLabelMetaMb(labelMbid: string): Promise<MbLabelMeta> 
 	return out;
 }
 
-export async function findRecordingMbidByName(
-	name: string,
-	disambig?: string,
-): Promise<string | null> {
+export async function findRecordingMbidByName(name: string, disambig?: string): Promise<string | null> {
 	// Phrase-quoted recording: field bypasses buildMbQuery (which strips quotes) and goes
 	// straight to mbFetch. Without this MB ranks "Get Lucky (Daft Punk remix)" and various
 	// covers above the canonical recording for common track names (Raph 2026-05-19).
 	const safeName = name.replace(/["\\]/g, "");
 	const safeDisambig = (disambig ?? "").replace(/["\\]/g, "");
-	const query = safeDisambig
-		? `recording:"${safeName}" AND ${safeDisambig}`
-		: `recording:"${safeName}"`;
+	const query = safeDisambig ? `recording:"${safeName}" AND ${safeDisambig}` : `recording:"${safeName}"`;
 	interface RecRespHit {
 		id: string;
 		title: string;
@@ -496,10 +489,7 @@ export async function findRecordingMbidByName(
  * Resolve a project (album/EP) name to its MBID via MB release-group search.
  * Same disambiguator-token guard as findRecordingMbidByName.
  */
-export async function findReleaseGroupMbidByName(
-	name: string,
-	disambig?: string,
-): Promise<string | null> {
+export async function findReleaseGroupMbidByName(name: string, disambig?: string): Promise<string | null> {
 	const q = disambig ? `${name} ${disambig}` : name;
 	const results = await searchReleaseGroups(q, 8);
 	if (results.length === 0) return null;

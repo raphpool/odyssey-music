@@ -21,9 +21,6 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
-import { nodePayloadSchema } from "./schemas.js";
-import { makeSlug } from "./slug.js";
-import { localFetch } from "./tools/local-fetcher.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
@@ -35,10 +32,13 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
+import { nodePayloadSchema } from "./schemas.js";
+import { makeSlug } from "./slug.js";
+import { localFetch } from "./tools/local-fetcher.js";
 
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
 function genreDisplayName(s: string): string {
-	return s.replace(/(^|[\s&\-])([a-z])/g, (_m, sep, ch: string) => `${sep}${ch.toUpperCase()}`);
+	return s.replace(/(^|[\s&-])([a-z])/g, (_m, sep, ch: string) => `${sep}${ch.toUpperCase()}`);
 }
 
 interface WikidataGenreEntry {
@@ -59,6 +59,7 @@ async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
 	GENRE_CATALOG = map;
 	return map;
 }
+
 import { rankResults, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
@@ -292,11 +293,20 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						...baseProps,
 						editorial_pitch: stringSchema("1-2 sentence teaser.", 30),
 						year: stringSchema("Year string e.g. '2001'.", 4),
-						bpm: stringSchema("BPM at album scope, e.g. '110 BPM' or '95-120 BPM'. Only if stated in the corpus.", 0),
+						bpm: stringSchema(
+							"BPM at album scope, e.g. '110 BPM' or '95-120 BPM'. Only if stated in the corpus.",
+							0,
+						),
 						musical_key: stringSchema("Key signature at album scope, e.g. 'C minor'. Only if stated.", 0),
-						vocals: stringSchema("Lead/backing vocal credits as free text, e.g. 'lead: Pharrell Williams; backing: Nile Rodgers'.", 0),
+						vocals: stringSchema(
+							"Lead/backing vocal credits as free text, e.g. 'lead: Pharrell Williams; backing: Nile Rodgers'.",
+							0,
+						),
 						samples_notes: stringSchema("Notes about samples or interpolations on the record.", 0),
-						inspirations: stringSchema("Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.", 0),
+						inspirations: stringSchema(
+							"Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.",
+							0,
+						),
 						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
 						label: edgeRefSchema(["label"]),
 						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
@@ -326,7 +336,10 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						duration: stringSchema("e.g. '5:47'.", 0),
 						bpm: stringSchema("BPM if stated, e.g. '100 BPM'.", 0),
 						musical_key: stringSchema("Key signature if stated, e.g. 'D major'.", 0),
-						vocals: stringSchema("Vocal credits as free text, e.g. 'lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers'.", 0),
+						vocals: stringSchema(
+							"Vocal credits as free text, e.g. 'lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers'.",
+							0,
+						),
 						samples_notes: stringSchema("Notes about samples or interpolations.", 0),
 						inspirations: stringSchema("Stated stylistic inspirations.", 0),
 						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
@@ -485,9 +498,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	}
 	log(`[pipeline] search ${searchMs}ms results=${searchResults.length}`);
 
-	const hasWiki = searchResults
-		.slice(0, 4)
-		.some((r) => /(^|\.)wikipedia\.org/i.test(safeHost(r.url)));
+	const hasWiki = searchResults.slice(0, 4).some((r) => /(^|\.)wikipedia\.org/i.test(safeHost(r.url)));
 	const fetchK = hasWiki ? FETCH_TOP_K_WITH_WIKI : FETCH_TOP_K_NO_WIKI;
 	const topUrls = searchResults.slice(0, fetchK).map((r) => r.url);
 	log(`[pipeline] fetch_k=${fetchK} wiki=${hasWiki}`);
@@ -594,7 +605,10 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.discography = studio.slice(0, 25).map((r) => ({
 						type: "project",
 						name: r.title,
-						slug: `project:${r.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: `project:${r.title
+							.toLowerCase()
+							.replace(/[^a-z0-9]+/g, "-")
+							.replace(/^-|-$/g, "")}`,
 						mbid: r.mbid,
 					}));
 					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
@@ -616,7 +630,10 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				const meta = await fetchLabelMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+					`${kind}:${n
+						.toLowerCase()
+						.replace(/[^a-z0-9]+/g, "-")
+						.replace(/^-|-$/g, "")}`;
 				if (meta.roster.length > 0) {
 					obj.roster = meta.roster.slice(0, 30).map((a) => ({
 						type: "artist",
@@ -659,7 +676,10 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+					`${kind}:${n
+						.toLowerCase()
+						.replace(/[^a-z0-9]+/g, "-")
+						.replace(/^-|-$/g, "")}`;
 				if (meta.project) {
 					obj.project = {
 						type: "project",
@@ -698,8 +718,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	if (input.type === "project") {
 		try {
 			let mbid = input.mbid;
-			if (!mbid)
-				mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
+			if (!mbid) mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
 				const genres = await fetchEntityGenresMb("release-group", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
@@ -713,7 +732,10 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+					`${kind}:${n
+						.toLowerCase()
+						.replace(/[^a-z0-9]+/g, "-")
+						.replace(/^-|-$/g, "")}`;
 				if (meta.tracks.length > 0) {
 					obj.tracklist = meta.tracks.slice(0, 30).map((t) => ({
 						type: "track",
@@ -972,9 +994,7 @@ function canonicalize(
 	return next;
 }
 
-function normalizeEdge(
-	e: unknown,
-): { slug: string; type: NodeType; name: string; mbid?: string } | null {
+function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string; mbid?: string } | null {
 	if (!e || typeof e !== "object") return null;
 	const r = e as { type?: unknown; name?: unknown; mbid?: unknown };
 	if (typeof r.type !== "string") return null;
@@ -988,7 +1008,10 @@ function normalizeEdge(
 			type: t,
 			name: r.name.trim(),
 		};
-		if (typeof r.mbid === "string" && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r.mbid)) {
+		if (
+			typeof r.mbid === "string" &&
+			/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r.mbid)
+		) {
 			out.mbid = r.mbid;
 		}
 		return out;

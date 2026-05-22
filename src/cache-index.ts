@@ -11,7 +11,7 @@
  * Rebuilds are cheap (~1ms per 100 nodes via stat-only listing), but we also rebuild
  * incrementally when NodeCache.write fires. For v1 we just full-rescan on demand.
  */
-import { readFile, readdir } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import type { NodePayload, NodeType, Slug } from "./types.js";
 
