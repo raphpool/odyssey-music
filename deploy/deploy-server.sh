@@ -1,9 +1,52 @@
 #!/usr/bin/env bash
 set -euo pipefail
 # Deploy odyssey-server to the dropcliffs droplet.
+#
+# Writes a .deployed-sha JSON marker into /opt/odyssey-music/ so /api/odyssey/version
+# can report what commit is live.
+#
+# Usage:
+#   bash deploy/deploy-server.sh
+#   bash deploy/deploy-server.sh --allow-non-main  # deploy a branch other than main
+#   bash deploy/deploy-server.sh --dirty           # deploy with uncommitted changes (NOT recommended)
 
 SERVER="${SERVER:-root@46.101.167.241}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+
+ALLOW_NON_MAIN=0
+ALLOW_DIRTY=0
+for arg in "$@"; do
+  case "$arg" in
+    --allow-non-main)  ALLOW_NON_MAIN=1 ;;
+    --dirty)           ALLOW_DIRTY=1 ;;
+  esac
+done
+
+cd "$REPO_ROOT"
+BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)"
+SHA="$(git rev-parse HEAD 2>/dev/null || echo unknown)"
+SHA_SHORT="$(git rev-parse --short HEAD 2>/dev/null || echo unknown)"
+DIRTY=0
+if ! git diff --quiet || ! git diff --cached --quiet; then
+  DIRTY=1
+fi
+
+if [[ "$BRANCH" != "main" && $ALLOW_NON_MAIN -eq 0 ]]; then
+  echo "ERROR: refusing to deploy from branch '$BRANCH' (expected main)." >&2
+  echo "       Either merge to main first, or pass --allow-non-main." >&2
+  exit 1
+fi
+if [[ $DIRTY -eq 1 && $ALLOW_DIRTY -eq 0 ]]; then
+  echo "ERROR: working tree is dirty. Commit/stash first, or pass --dirty." >&2
+  git status --short >&2
+  exit 1
+fi
+if [[ "$BRANCH" != "main" ]]; then
+  echo "WARN: deploying from non-main branch '$BRANCH' ($SHA_SHORT)."
+fi
+if [[ $DIRTY -eq 1 ]]; then
+  echo "WARN: deploying with uncommitted changes (sha $SHA_SHORT does not reflect what's on disk)."
+fi
 
 if [[ ! -f "$REPO_ROOT/.env" ]]; then
   echo "ERROR: missing $REPO_ROOT/.env" >&2
@@ -14,7 +57,19 @@ set -a
 . "$REPO_ROOT/.env"
 set +a
 
-echo "==> Rsyncing source to $SERVER:/opt/odyssey-music"
+cat > "$REPO_ROOT/.deployed-sha" <<EOF
+{
+  "sha": "$SHA",
+  "sha_short": "$SHA_SHORT",
+  "branch": "$BRANCH",
+  "dirty": $DIRTY,
+  "deployer": "$(whoami)@$(hostname)",
+  "deployed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "kind": "server"
+}
+EOF
+
+echo "==> Rsyncing source to $SERVER:/opt/odyssey-music  (branch=$BRANCH sha=$SHA_SHORT)"
 # IMPORTANT: --exclude='cache' so we don't delete nodes the server has materialized
 # via JIT since the last deploy. The repo `cache/` and the server `cache/` evolve
 # independently; both write atomically and share the same schema.

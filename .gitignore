@@ -15,3 +15,8 @@ out/
 # Codex review artifacts (kept under .reviews/ but only the latest verdict is committed)
 .reviews/raw/
 .reviews/*.log
+
+# Deploy provenance markers, written by scripts/deploy-web.sh + deploy/deploy-server.sh.
+# Server reads .deployed-sha to serve /version; never committed.
+.deployed-sha
+web/.deployed-sha
