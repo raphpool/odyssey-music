@@ -10,417 +10,8 @@
 <meta name="theme-color" content="#050505">
 <title>Odyssey · Culture Graph / Crab Labs</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #050505;
-  --fg: #f0ede8;
-  --muted: #8a8780;
-  --dim: #3a3935;
-  --accent: #c8c2b8;
-  --card-bg: #0e0e0d;
-  --card-bg-2: #161614;
-  --card-border: #25241f;
-  --genre: #c084fc;
-  --label: #fb923c;
-  --artist: #60a5fa;
-  --project: #34d399;
-  --track: #f472b6;
-}
-html, body { background: var(--bg); color: var(--fg); }
-html {
-  /* Prevent iOS auto-zoom on landscape and overscroll bounce that exposes the white viewport bg. */
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-body {
-  font-family: 'Inter', -apple-system, sans-serif;
-  font-weight: 300;
-  line-height: 1.55;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100dvh;
-  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-  padding-left: env(safe-area-inset-left);
-  padding-right: env(safe-area-inset-right);
-  /* Stop horizontal rubber-band scroll and the resulting page-wiggle when a child overflows */
-  overflow-x: hidden;
-  overscroll-behavior-x: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.wrap { max-width: 760px; margin: 0 auto; padding: 1rem 1rem 0; }
-
-/* Header */
-.head {
-  display: flex; align-items: baseline; gap: 0.8rem;
-  padding-bottom: 0.8rem; border-bottom: 1px solid var(--card-border);
-  margin-bottom: 1rem;
-}
-.head a.back {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-  color: var(--muted); text-decoration: none; flex-shrink: 0;
-}
-.head a.back:hover { color: var(--fg); }
-.head .title {
-  font-family: 'Instrument Serif', serif; font-size: 1.4rem; font-weight: 400;
-}
-.head .sub {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
-  margin-left: auto;
-}
-
-/* Top controls */
-.controls {
-  display: flex; flex-direction: column; gap: 0.55rem;
-  margin-bottom: 1.2rem;
-}
-.controls .search {
-  display: flex; gap: 0.5rem;
-}
-.controls input {
-  flex: 1; min-width: 0;
-  background: var(--card-bg); color: var(--fg);
-  border: 1px solid var(--card-border); border-radius: 4px;
-  padding: 0.6rem 0.8rem;
-  font-family: 'Inter', sans-serif;
-  /* 16px is the iOS no-zoom threshold for input focus. Any value < 16px triggers the
-     auto-zoom-to-fit-content behavior that pushes the viewport sideways and produces
-     the horizontal scroll Henry hit. Keep at >=16px even though the rest of the UI
-     uses 0.95rem for visual rhythm. */
-  font-size: 16px;
-  outline: none;
-  /* Disable iOS double-tap-zoom on the input itself. */
-  touch-action: manipulation;
-  -webkit-appearance: none; appearance: none;
-}
-.controls input:focus { border-color: var(--accent); }
-.controls button {
-  background: var(--card-bg); color: var(--fg);
-  border: 1px solid var(--card-border); border-radius: 4px;
-  padding: 0.55rem 0.9rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
-  cursor: pointer; white-space: nowrap;
-}
-.controls button:hover { border-color: var(--accent); color: var(--accent); }
-
-.search-results {
-  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 4px;
-  max-height: 260px; overflow-y: auto;
-}
-.search-results .row {
-  padding: 0.5rem 0.8rem; cursor: pointer;
-  border-bottom: 1px solid var(--card-border);
-  display: flex; gap: 0.6rem; align-items: baseline;
-  font-size: 0.9rem;
-}
-.search-results .row:last-child { border-bottom: none; }
-.search-results .row:hover { background: var(--card-bg-2); }
-.search-results .row .t {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  color: var(--muted); text-transform: uppercase;
-  min-width: 56px;
-}
-/* Full-screen JIT loading overlay shown after picking a "+ generate" catalog hit.
-   We close the search dropdown immediately, blur the search input, and take over
-   the page with a centered card that names the entity, runs an optimistic progress
-   bar over the expected wall time, and animates the entity type pill. Whole flow
-   feels like a deliberate "we're generating a page for you" beat instead of a
-   silent 5-second freeze. */
-.jit-overlay {
-  position: fixed; inset: 0; z-index: 50;
-  background: rgba(5, 5, 5, 0.78); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; pointer-events: none; transition: opacity 0.18s ease;
-}
-.jit-overlay.show { opacity: 1; pointer-events: auto; }
-.jit-overlay .card {
-  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px;
-  padding: 1.6rem 1.8rem; max-width: 460px; width: calc(100% - 2rem);
-  text-align: center; box-shadow: 0 16px 60px rgba(0,0,0,0.5);
-}
-.jit-overlay .card .pill {
-  display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  padding: 0.18rem 0.55rem; border-radius: 999px;
-  background: rgba(255,255,255,0.05); margin-bottom: 0.9rem;
-}
-.jit-overlay .card .pill.artist { color: var(--artist); }
-.jit-overlay .card .pill.project { color: var(--project); }
-.jit-overlay .card .pill.track { color: var(--track); }
-.jit-overlay .card .pill.genre { color: var(--genre); }
-.jit-overlay .card .pill.label { color: var(--label); }
-.jit-overlay .card .title {
-  font-family: 'Instrument Serif', serif; font-size: 1.5rem; line-height: 1.25;
-  margin-bottom: 0.3rem; color: var(--fg);
-}
-.jit-overlay .card .subtitle {
-  font-size: 0.78rem; color: var(--muted); margin-bottom: 1.2rem;
-}
-.jit-overlay .card .status {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-  color: var(--muted); margin-top: 0.9rem; letter-spacing: 0.04em;
-  min-height: 1em;
-}
-.jit-overlay .card .bar {
-  height: 3px; background: var(--card-bg-2); border-radius: 999px; overflow: hidden;
-  margin-top: 0.4rem;
-}
-.jit-overlay .card .bar > i {
-  display: block; height: 100%; width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--fg));
-  /* Phase 1 (set in JS): linear over the median expected wall time, target ~85%.
-     Phase 2 (also JS): slow crawl from 85→95% over 3× expected, models the long tail
-     so the bar keeps creeping rather than stalling at a single number. Final snap-to-100%
-     on response uses the .done override below.
-     Both phases use `linear` because the bar represents *elapsed time vs estimate*, not
-     an easing curve — easing makes the rate look uneven for a uniform underlying process. */
-  transition: width var(--progress-ms, 6000ms) linear;
-}
-.jit-overlay .card.done .bar > i { transition: width 200ms ease-out; }
-.jit-overlay .card .cancel {
-  margin-top: 1.1rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-  color: var(--muted); background: transparent; border: 1px solid var(--dim);
-  padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer;
-  letter-spacing: 0.04em; text-transform: uppercase;
-}
-.jit-overlay .card .cancel:hover { color: var(--fg); border-color: var(--muted); }
-
-.search-results .row .t.genre { color: var(--genre); }
-.search-results .row .t.label { color: var(--label); }
-.search-results .row .t.artist { color: var(--artist); }
-.search-results .row .t.project { color: var(--project); }
-.search-results .row .t.track { color: var(--track); }
-
-.stat {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.66rem;
-  color: var(--muted); margin-bottom: 1rem;
-}
-
-/* Breadcrumb */
-.crumbs {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-  color: var(--muted); margin-bottom: 0.9rem;
-  display: flex; flex-wrap: wrap; gap: 0.3rem; align-items: center;
-}
-.crumbs a {
-  color: var(--accent); text-decoration: none;
-  border-bottom: 1px dotted var(--dim);
-}
-.crumbs a:hover { color: var(--fg); }
-.crumbs .sep { color: var(--dim); }
-
-/* Focused node */
-.node {
-  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px;
-  padding: 1.4rem 1.2rem;
-  margin-bottom: 1rem;
-  position: relative; overflow: hidden;
-}
-.node .stripe {
-  position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
-}
-.node.stripe-genre .stripe { background: var(--genre); }
-.node.stripe-label .stripe { background: var(--label); }
-.node.stripe-artist .stripe { background: var(--artist); }
-.node.stripe-project .stripe { background: var(--project); }
-.node.stripe-track .stripe { background: var(--track); }
-.node .badge {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  text-transform: uppercase; letter-spacing: 0.12em;
-  margin-bottom: 0.35rem; color: var(--muted);
-}
-.node .badge.genre { color: var(--genre); }
-.node .badge.label { color: var(--label); }
-.node .badge.artist { color: var(--artist); }
-.node .badge.project { color: var(--project); }
-.node .badge.track { color: var(--track); }
-.node h1 {
-  font-family: 'Instrument Serif', serif; font-weight: 400;
-  font-size: 2.1rem; line-height: 1.08; letter-spacing: -0.01em;
-  margin-bottom: 0.4rem;
-}
-.node .teaser {
-  font-family: 'Instrument Serif', serif; font-style: italic;
-  color: var(--accent); font-size: 1.05rem; line-height: 1.45;
-  margin-bottom: 1rem;
-}
-.node .article {
-  font-size: 0.95rem; line-height: 1.7;
-  white-space: pre-wrap;
-  margin-bottom: 1rem;
-}
-
-.facts {
-  display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem;
-  margin-bottom: 1rem;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
-  color: var(--muted);
-}
-.facts b { color: var(--fg); font-weight: 500; margin-left: 0.3rem; }
-
-.section {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
-  color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em;
-  margin: 1.3rem 0 0.5rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid var(--card-border);
-}
-
-.edge-group { margin-bottom: 0.7rem; }
-.edge-group .kind {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  color: var(--muted); margin-bottom: 0.35rem;
-  text-transform: uppercase; letter-spacing: 0.08em;
-}
-.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.chip {
-  background: var(--card-bg-2);
-  border: 1px solid var(--card-border); border-radius: 4px;
-  padding: 0.35rem 0.65rem;
-  font-family: 'Inter', sans-serif; font-size: 0.85rem;
-  cursor: pointer; color: var(--fg); display: inline-flex; align-items: center; gap: 0.4rem;
-  text-decoration: none;
-}
-.chip:hover, .chip:active { border-color: var(--accent); color: var(--accent); background: var(--card-bg); }
-.chip.dangling { color: var(--muted); opacity: 0.7; border-style: dashed; cursor: pointer; }
-.chip.dangling:hover { border-color: var(--accent); color: var(--accent); opacity: 1; }
-.chip.dangling::before { content: "↻ "; font-size: 0.7rem; }
-.chip.loading {
-  color: var(--fg); border-color: var(--accent); border-style: solid; opacity: 1; pointer-events: none;
-  position: relative; overflow: hidden; isolation: isolate;
-  background: var(--card-bg);
-}
-.chip.loading::before { content: "" !important; }
-/* Animated progress fill — high-contrast colored gradient so it reads on small chips. */
-.chip.loading::after {
-  content: "";
-  position: absolute; inset: 0; right: auto;
-  background: linear-gradient(90deg, rgba(200,194,184,0.45), rgba(200,194,184,0.85));
-  width: var(--progress, 6%);
-  transition: width var(--progress-ms, 6000ms) cubic-bezier(0.05, 0.6, 0.2, 1);
-  pointer-events: none;
-  z-index: -1;
-  box-shadow: 2px 0 6px rgba(200,194,184,0.5);
-}
-.chip.loading.done::after { width: 100% !important; transition: width 200ms ease-out; }
-.chip.dead { color: #f87171; border-color: #7f1d1d; border-style: dashed; background: rgba(248, 113, 113, 0.06); pointer-events: none; }
-.chip.dead::before { content: "✕ "; }
-.jit-banner { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent); padding: 0.4rem 0.6rem; background: rgba(200,194,184,0.06); border: 1px dashed var(--accent); border-radius: 3px; margin-bottom: 0.8rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-.jit-banner button { margin-left: auto; background: var(--accent); color: var(--bg); border: none; padding: 0.3rem 0.7rem; font-family: inherit; font-size: inherit; cursor: pointer; border-radius: 2px; }
-.jit-banner button:disabled { opacity: 0.5; cursor: wait; }
-.chip .etype {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.58rem; color: var(--muted);
-  text-transform: uppercase; letter-spacing: 0.06em;
-}
-.chip.t-genre .etype { color: var(--genre); }
-.chip.t-label .etype { color: var(--label); }
-.chip.t-artist .etype { color: var(--artist); }
-.chip.t-project .etype { color: var(--project); }
-.chip.t-track .etype { color: var(--track); }
-
-.citations {
-  display: flex; flex-direction: column; gap: 0.3rem;
-}
-.citations a {
-  color: var(--accent); font-size: 0.85rem; text-decoration: none;
-  word-break: break-word; padding: 0.2rem 0;
-}
-.citations a:hover { color: var(--fg); text-decoration: underline; }
-.citations a .num {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  color: var(--muted); margin-right: 0.4rem;
-}
-
-/* Random pick */
-.random-link {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
-  color: var(--muted); margin-left: auto; cursor: pointer; text-decoration: none;
-}
-.random-link:hover { color: var(--accent); }
-
-.foot {
-  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
-  color: var(--muted); text-align: center;
-  padding: 1rem; line-height: 1.5;
-}
-.foot a { color: var(--accent); text-decoration: none; }
-
-@media (max-width: 600px) {
-  .wrap { padding: 0.7rem 0.7rem 0; }
-  .node { padding: 1.1rem 1rem; }
-  .node h1 { font-size: 1.7rem; }
-  .node .teaser { font-size: 0.95rem; }
-  .node .article { font-size: 0.9rem; }
-  .controls .search { flex-direction: column; gap: 0.4rem; }
-  .controls button { width: 100%; }
-}
-
-/* Track play button (in track node header) */
-.play-btn {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  margin-top: 0.7rem; padding: 0.4rem 0.85rem;
-  background: var(--track); color: #0a0a0a;
-  border: 0; border-radius: 999px;
-  font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
-  letter-spacing: 0.02em; cursor: pointer;
-}
-.play-btn:hover { filter: brightness(1.08); }
-.play-btn:disabled { opacity: 0.55; cursor: progress; }
-
-/* Sticky bottom player. Mounted once at boot — survives all nav. */
-#player {
-  position: fixed; left: 0; right: 0; bottom: 0;
-  background: rgba(14, 14, 13, 0.94);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid var(--card-border);
-  color: var(--fg);
-  z-index: 50;
-  transform: translateY(110%);
-  transition: transform 0.25s ease;
-}
-#player.open { transform: translateY(0); }
-.player-row {
-  max-width: 760px; margin: 0 auto;
-  display: flex; align-items: center; gap: 0.9rem;
-  padding: 0.6rem 1rem;
-}
-.player-info {
-  flex: 1; min-width: 0;
-  font-size: 0.82rem; line-height: 1.3;
-}
-.player-info .pt { color: var(--fg); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.player-info .pa { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; }
-.player-btn {
-  background: var(--fg); color: #0a0a0a;
-  border: 0; border-radius: 999px;
-  width: 36px; height: 36px;
-  display: inline-flex; align-items: center; justify-content: center;
-  cursor: pointer; flex-shrink: 0;
-  font-size: 0.95rem;
-}
-.player-btn:disabled { opacity: 0.5; cursor: progress; }
-.player-close {
-  background: transparent; color: var(--muted);
-  border: 0; cursor: pointer;
-  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem;
-  padding: 0.2rem 0.4rem;
-}
-.player-close:hover { color: var(--fg); }
-.player-bar {
-  flex: 2; height: 4px; background: var(--card-border); border-radius: 2px;
-  position: relative; cursor: pointer;
-}
-.player-bar .fill { position: absolute; top: 0; left: 0; bottom: 0; background: var(--track); border-radius: 2px; width: 0; }
-body.player-open .wrap { padding-bottom: 6rem; }
-@media (max-width: 600px) {
-  .player-row { padding: 0.55rem 0.7rem; gap: 0.55rem; }
-  .player-bar { display: none; }
-  .player-info { font-size: 0.78rem; }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="wrap">
@@ -487,6 +78,124 @@ const FACT_LABEL = {
   active_years: "active",
   sonic_markers: "sonic markers",
 };
+
+// ─── Hero image resolution ──────────────────────────────────────────────
+// Each node type sources its hero image differently:
+//   project           — own cover_url
+//   track             — own cover_url, else parent project's
+//   artist            — own photo_url, else any of their projects' covers
+//   genre             — landmark project's cover, else landmark track's project
+//   label             — notable release's cover
+// Returns null when nothing is resolvable; the template renders the
+// `.hero.no-image` gradient placeholder in that case.
+function resolveHeroImage(node) {
+  if (node.image_url) return node.image_url;
+  const edges = node.edges || {};
+  const pick = (refs) => {
+    if (!refs) return null;
+    const list = Array.isArray(refs) ? refs : [refs];
+    for (const r of list) {
+      const target = byId.get(r.slug);
+      if (target && target.image_url) return target.image_url;
+    }
+    return null;
+  };
+  switch (node.type) {
+    case "track":   return pick(edges.project);
+    case "artist":  return pick(edges.discography) || pick(edges.notable_tracks);
+    case "genre":   return pick(edges.landmark_projects) || pick(edges.landmark_tracks);
+    case "label":   return pick(edges.notable_releases);
+    default:        return null;
+  }
+}
+
+// Short meta line shown under the hero title (e.g. "Radiohead · Kid A · 2000").
+function buildHeroMeta(node) {
+  const facts = node.facts || node;
+  const parts = [];
+  const artists = (node.edges && Array.isArray(node.edges.artists))
+    ? node.edges.artists.map((a) => a.name).join(" · ") : "";
+  switch (node.type) {
+    case "genre":
+      if (facts.era) parts.push(facts.era);
+      if (facts.origin) parts.push(facts.origin);
+      break;
+    case "label":
+      if (facts.location) parts.push(facts.location);
+      if (facts.active_years) parts.push(facts.active_years);
+      else if (facts.founded) parts.push(facts.founded);
+      break;
+    case "artist":
+      if (facts.origin) parts.push(facts.origin);
+      if (facts.active_years) parts.push(facts.active_years);
+      break;
+    case "project":
+      if (artists) parts.push(artists);
+      if (facts.year) parts.push(facts.year);
+      break;
+    case "track": {
+      if (artists) parts.push(artists);
+      const proj = node.edges && node.edges.project;
+      if (proj && proj.name) parts.push(proj.name);
+      if (facts.year) parts.push(facts.year);
+      break;
+    }
+  }
+  return parts.join(" · ");
+}
+
+// Sanitize a URL for use inside `style="background-image: url('...')"`.
+// Single quotes would break out of the CSS url() literal; we percent-encode.
+function safeCssUrl(u) {
+  return String(u || "").replace(/'/g, "%27").replace(/[\s]/g, "%20");
+}
+
+// In-flight + completed JIT image lookups, keyed by node id. Prevents duplicate
+// requests when the user rapidly clicks back to a node whose hero is still resolving.
+const imageJitPromises = new Map();
+
+/**
+ * Fire `GET /image/:slug`, then mutate the currently-focused .node DOM to
+ * paint in the resolved image. Idempotent — second calls for the same slug
+ * share the original promise; if the user has navigated away by the time
+ * the call returns, we just update `byId` (for future visits) and exit.
+ */
+async function jitResolveHero(slug) {
+  if (!imageJitPromises.has(slug)) {
+    imageJitPromises.set(slug, fetch(`${API_BASE}/image/${encodeURIComponent(slug)}`).then((r) => r.ok ? r.json() : null).catch(() => null));
+  }
+  const result = await imageJitPromises.get(slug);
+  if (!result || !result.image_url) return;
+  // Cache on the in-memory graph so revisits and edge-walks see it immediately.
+  const cached = byId.get(slug);
+  if (cached) cached.image_url = result.image_url;
+  // Only paint if this slug is still the focused node (user might've clicked away).
+  const currentId = crumbs[crumbs.length - 1];
+  if (currentId !== slug) return;
+  paintHero(result.image_url);
+}
+
+function paintHero(url) {
+  const node = contentEl.querySelector(".node");
+  if (!node) return;
+  const hero = node.querySelector(".hero");
+  if (!hero) return;
+  const safe = safeCssUrl(url);
+  hero.style.backgroundImage = `url('${safe}')`;
+  hero.classList.remove("no-image");
+  // Insert (or update) the tint backdrop. Inserted at the very start of .node so
+  // it sits beneath everything via z-index: -2 / -1 in the stylesheet.
+  let tint = node.querySelector(":scope > .node-tint");
+  if (!tint) {
+    tint = document.createElement("div");
+    tint.className = "node-tint";
+    const fade = document.createElement("div");
+    fade.className = "node-tint-fade";
+    node.prepend(fade);
+    node.prepend(tint);
+  }
+  tint.style.backgroundImage = `url('${safe}')`;
+}
 
 let DATA = null;
 let byId = new Map();
@@ -841,21 +550,52 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     ? `<button class="play-btn" id="track-play-btn" data-track-id="${escapeHtml(id)}">▶ play</button>`
     : "";
 
+  const heroUrl = resolveHeroImage(node);
+  const heroMeta = buildHeroMeta(node);
+  const heroBg = heroUrl ? ` style="background-image: url('${safeCssUrl(heroUrl)}');"` : "";
+  const heroClass = heroUrl ? "" : " no-image";
+  const tintHtml = heroUrl
+    ? `<div class="node-tint" style="background-image: url('${safeCssUrl(heroUrl)}');"></div><div class="node-tint-fade"></div>`
+    : "";
+  // Show slug (without `type:` prefix) on the right side of the header as a ref code.
+  const slugRef = id.includes(":") ? id.split(":")[1] : id;
+  const seedTag = id === SEED_ID ? ' · seed' : '';
+
   contentEl.innerHTML = `
     <div class="node stripe-${node.type}">
-      <div class="stripe"></div>
-      <div class="badge ${node.type}">${node.type}${id === SEED_ID ? " · seed" : ""} · <span style="color:var(--muted);text-transform:none;letter-spacing:0;">${escapeHtml(id)}</span></div>
-      <h1>${escapeHtml(node.name)}</h1>
-      <div class="teaser">${escapeHtml(teaser)}</div>
-      ${factParts ? `<div class="facts">${factParts}</div>` : ""}
-      ${playBtnHtml}
-      ${banner}
-      <div class="article">${escapeHtml(node.article || "")}</div>
-      ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
-      <div class="section">Sources</div>
-      <div class="citations">${cits || '<div style="color:var(--muted);font-size:0.85rem;font-style:italic;">No citations.</div>'}</div>
+      ${tintHtml}
+      <div class="node-header">
+        <div class="badge ${node.type}">${node.type}${seedTag}</div>
+        <div class="node-ref">${escapeHtml(slugRef)}</div>
+      </div>
+      <div class="hero${heroClass}"${heroBg}>
+        <div class="hero-title-wrap">
+          <h1>${escapeHtml(node.name)}</h1>
+          ${heroMeta ? `<div class="hero-meta">${escapeHtml(heroMeta)}</div>` : ""}
+        </div>
+      </div>
+      <div class="node-body">
+        <div class="teaser-row">
+          <div class="teaser-stripe"></div>
+          <div class="teaser">${escapeHtml(teaser)}</div>
+        </div>
+        ${factParts ? `<div class="facts">${factParts}</div>` : ""}
+        ${playBtnHtml}
+        ${banner}
+        <div class="article">${escapeHtml(node.article || "")}</div>
+        ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
+        <div class="section">Sources</div>
+        <div class="citations">${cits || '<div style="color:var(--muted);font-size:0.85rem;font-style:italic;">No citations.</div>'}</div>
+      </div>
     </div>
   `;
+
+  // JIT hero-image resolution: if no image is available from the static bundle
+  // (or from related nodes), ask the server. The server hits iTunes Search for
+  // projects/tracks, walks edges for genres/labels/artists, and persists any hit
+  // to the cache so subsequent loads are instant. Render happens immediately
+  // with the gradient placeholder; we swap in the image when the call returns.
+  if (!heroUrl && JIT_ENABLED) jitResolveHero(id);
 
   contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
     el.addEventListener("click", (e) => {

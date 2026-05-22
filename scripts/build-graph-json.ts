@@ -26,6 +26,12 @@ interface VizNode {
 	citations: { url: string; title?: string }[];
 	edges: Record<string, EdgeRef[] | EdgeRef>;
 	facts: Record<string, string>;
+	/** Direct image attached to this node:
+	 *  - artist: photo_url
+	 *  - project/track: cover_url
+	 *  Genres and labels have no direct image — the client derives one from
+	 *  a related node (landmark project, notable release, etc). */
+	image_url?: string;
 }
 
 interface VizEdge {
@@ -65,6 +71,15 @@ async function main(): Promise<void> {
 				const v = (parsed as unknown as Record<string, unknown>)[field];
 				if (typeof v === "string" && v.trim()) facts[field] = v;
 			}
+			const rawNode = parsed as unknown as Record<string, unknown>;
+			const imageField =
+				parsed.type === "artist"
+					? "photo_url"
+					: parsed.type === "project" || parsed.type === "track"
+						? "cover_url"
+						: null;
+			const imageUrl =
+				imageField && typeof rawNode[imageField] === "string" ? (rawNode[imageField] as string) : undefined;
 			const node: VizNode = {
 				id: parsed.slug,
 				type: parsed.type,
@@ -74,6 +89,7 @@ async function main(): Promise<void> {
 				citations: parsed.citations,
 				edges: {},
 				facts,
+				...(imageUrl ? { image_url: imageUrl } : {}),
 			};
 			for (const field of LIST_EDGES_BY_TYPE[parsed.type]) {
 				const v = (parsed as unknown as Record<string, unknown>)[field];

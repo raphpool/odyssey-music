@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Odyssey · Design system</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Design-page-only chrome. Namespaced .dp- to avoid colliding with the app's
+   component classes — which is the point: every class outside this block
+   belongs to the real app and must render exactly as it does in index.html. */
+.dp-wrap { max-width: 920px; margin: 0 auto; padding: 2rem 1.2rem 6rem; }
+.dp-h1 {
+  font-family: 'Space Grotesk', sans-serif; font-size: 2.4rem; font-weight: 400;
+  margin-bottom: 0.4rem;
+}
+.dp-lede {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  color: var(--muted); margin-bottom: 2rem; line-height: 1.6;
+}
+.dp-toc {
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px;
+  padding: 0.9rem 1.1rem; margin-bottom: 2.5rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+}
+.dp-toc a { color: var(--accent); text-decoration: none; }
+.dp-toc a:hover { color: var(--fg); }
+.dp-section {
+  padding-top: 2.5rem; margin-top: 2.5rem;
+  border-top: 1px solid var(--card-border);
+}
+.dp-section > h2 {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+  color: var(--accent); text-transform: uppercase; letter-spacing: 0.16em;
+  margin-bottom: 1.2rem;
+}
+.dp-label {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+  margin: 1.3rem 0 0.4rem;
+}
+.dp-row {
+  display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.dp-swatch {
+  width: 96px; height: 64px; border-radius: 4px;
+  border: 1px solid var(--card-border);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0.35rem 0.45rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+  color: var(--bg); font-weight: 500;
+}
+.dp-swatch.dark { color: var(--fg); }
+.dp-stage {
+  background: rgba(255,255,255,0.015);
+  border: 1px dashed var(--dim); border-radius: 4px;
+  padding: 1rem;
+  position: relative;
+}
+.dp-stage::before {
+  content: attr(data-label);
+  position: absolute; top: -0.55rem; left: 0.8rem;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--dim); background: var(--bg); padding: 0 0.4rem;
+}
+</style>
+</head>
+<body>
+<div class="dp-wrap">
+
+  <div class="dp-h1">Odyssey · Design system</div>
+  <div class="dp-lede">
+    Every UI surface currently shipping in <code>web/index.html</code>, rendered statically here so
+    you can iterate on the look without touching the real app. Edit <code>web/styles.css</code>
+    → reload this page → see every component update at once.
+  </div>
+
+  <div class="dp-toc">
+    <a href="#tokens">tokens</a>
+    <a href="#typography">typography</a>
+    <a href="#header">header</a>
+    <a href="#controls">controls</a>
+    <a href="#search">search</a>
+    <a href="#stat-crumbs">stat & crumbs</a>
+    <a href="#node-genre">node · genre</a>
+    <a href="#node-label">node · label</a>
+    <a href="#node-artist">node · artist</a>
+    <a href="#node-project">node · project</a>
+    <a href="#node-track">node · track</a>
+    <a href="#no-image">no-image fallback</a>
+    <a href="#chips">chips</a>
+    <a href="#jit-banner">jit banner</a>
+    <a href="#jit-overlay">jit overlay</a>
+    <a href="#citations">citations</a>
+    <a href="#player">player</a>
+    <a href="#foot">foot</a>
+  </div>
+
+  <!-- ─── TOKENS ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="tokens">
+    <h2>Color tokens</h2>
+    <div class="dp-row">
+      <div class="dp-swatch dark" style="background: var(--bg);">--bg</div>
+      <div class="dp-swatch" style="background: var(--fg);">--fg</div>
+      <div class="dp-swatch" style="background: var(--accent);">--accent</div>
+      <div class="dp-swatch dark" style="background: var(--muted);">--muted</div>
+      <div class="dp-swatch dark" style="background: var(--dim);">--dim</div>
+      <div class="dp-swatch dark" style="background: var(--card-bg);">--card-bg</div>
+      <div class="dp-swatch dark" style="background: var(--card-bg-2);">--card-bg-2</div>
+      <div class="dp-swatch dark" style="background: var(--card-border);">--card-border</div>
+    </div>
+    <div class="dp-label">Per-type accents</div>
+    <div class="dp-row">
+      <div class="dp-swatch" style="background: var(--genre);">--genre</div>
+      <div class="dp-swatch" style="background: var(--label);">--label</div>
+      <div class="dp-swatch" style="background: var(--artist);">--artist</div>
+      <div class="dp-swatch" style="background: var(--project);">--project</div>
+      <div class="dp-swatch" style="background: var(--track);">--track</div>
+    </div>
+  </section>
+
+  <!-- ─── TYPOGRAPHY ──────────────────────────────────────────── -->
+  <section class="dp-section" id="typography">
+    <h2>Typography</h2>
+    <div class="dp-stage" data-label="display (Space Grotesk)">
+      <div style="font-family: 'Space Grotesk', sans-serif; font-size: 2.1rem; line-height: 1.08; letter-spacing: -0.01em;">Loveless</div>
+      <div style="font-family: 'Space Grotesk', sans-serif; font-weight: 300; color: var(--accent); font-size: 1.05rem; line-height: 1.45; margin-top: 0.4rem;">A wall of distorted guitars dissolving into pop — the record that defined a decade of dream-pop.</div>
+    </div>
+    <div class="dp-stage" data-label="body (Inter 300)" style="margin-top: 1rem;">
+      <p style="font-size: 0.95rem; line-height: 1.7;">My Bloody Valentine's <em>Loveless</em> (1991) stands as one of the most influential records of the alternative rock canon. Kevin Shields buried hooks under sheets of detuned, bent-string guitar, processed beyond recognition.</p>
+    </div>
+    <div class="dp-stage" data-label="mono (JetBrains Mono)" style="margin-top: 1rem;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--muted);">1,404 nodes · 7,329 edges · seed: <span style="color: var(--accent);">jan-jelinek-tendency</span></div>
+    </div>
+  </section>
+
+  <!-- ─── HEADER ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="header">
+    <h2>Header</h2>
+    <div class="dp-stage" data-label=".head">
+      <div class="head">
+        <a class="back" href="/">← back</a>
+        <div class="title">Odyssey</div>
+        <span class="sub">Culture Graph · Phase 1</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTROLS ───────────────────────────────────────────── -->
+  <section class="dp-section" id="controls">
+    <h2>Controls</h2>
+    <div class="dp-stage" data-label=".controls">
+      <div class="controls">
+        <div class="search">
+          <input type="search" placeholder="search an artist…" autocomplete="off" inputmode="search" />
+          <button>Focus seed</button>
+          <button>Random</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SEARCH ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="search">
+    <h2>Search results</h2>
+    <div class="dp-label">One row per node type (cache hits + catalog "+ generate")</div>
+    <div class="dp-stage" data-label=".search-results">
+      <div class="search-results" style="display:block;">
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t artist">artist</span>
+          <span style="flex:1;min-width:0;">My Bloody Valentine <span style="color:var(--muted);font-weight:300;">— Dublin, 1983–present</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t project">project</span>
+          <span style="flex:1;min-width:0;">Loveless <span style="color:var(--muted);font-weight:300;">— My Bloody Valentine, 1991</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t track">track</span>
+          <span style="flex:1;min-width:0;">Only Shallow <span style="color:var(--muted);font-weight:300;">— Loveless</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t genre">genre</span>
+          <span style="flex:1;min-width:0;">Shoegaze</span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>
+        </div>
+        <div class="row" style="display:flex;align-items:center;gap:0.6rem;">
+          <span class="t label">label</span>
+          <span style="flex:1;min-width:0;">Creation Records <span style="color:var(--muted);font-weight:300;">— London, 1983–1999</span></span>
+          <span style="font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>
+        </div>
+      </div>
+    </div>
+    <div class="dp-label">Empty state</div>
+    <div class="dp-stage" data-label=".search-results (no match)">
+      <div class="search-results" style="display:block;">
+        <div class="row" style="cursor:default;color:var(--muted);"><span>no match for "kjasdhf"</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STAT + CRUMBS ─────────────────────────────────────── -->
+  <section class="dp-section" id="stat-crumbs">
+    <h2>Stat &amp; breadcrumbs</h2>
+    <div class="dp-stage" data-label=".stat">
+      <div class="stat"><b style="color:var(--fg);font-weight:500;">1,404</b> nodes · <b style="color:var(--fg);font-weight:500;">7,329</b> edges · seed: <span style="color:var(--accent);">jan-jelinek-tendency</span></div>
+    </div>
+    <div class="dp-stage" data-label=".crumbs" style="margin-top: 1rem;">
+      <div class="crumbs" style="display:flex;">
+        <a href="#">Jan Jelinek</a>
+        <span class="sep">›</span>
+        <a href="#">Loop-finding-jazz-records</a>
+        <span class="sep">›</span>
+        <a href="#">~scape</a>
+        <span class="sep">›</span>
+        <span>Pole</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · GENRE ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-genre">
+    <h2>Node · Genre (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-genre">
+      <div class="node stripe-genre">
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/b5/4c/c2/b54cc20d-03f5-f2c4-4a0d-9b51ad65af89/dj.txuslqgv.jpg/1500x1500bb.jpg');"></div>
+        <div class="node-tint-fade"></div>
+        <div class="node-header">
+          <div class="badge genre">Genre</div>
+          <div class="node-ref">GNR · IDM-001</div>
+        </div>
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Features125/v4/b5/4c/c2/b54cc20d-03f5-f2c4-4a0d-9b51ad65af89/dj.txuslqgv.jpg/1500x1500bb.jpg');">
+          <div class="hero-title-wrap">
+            <h1>IDM</h1>
+            <div class="hero-meta">Early 1990s · United Kingdom</div>
+          </div>
+        </div>
+        <div class="node-body">
+          <div class="teaser-row">
+            <div class="teaser-stripe"></div>
+            <div class="teaser">Intelligent Dance Music — the post-rave laboratory where Warp and Rephlex turned the dance floor's grammar into headphone abstraction.</div>
+          </div>
+          <div class="article">IDM emerged in the early 1990s, after the first wave of UK rave culture, as a generation of producers turned the dance floor's grammar inward — toward the headphone, the studio, the home listening room. The label Warp Records' 1992 compilation Artificial Intelligence acted as a manifesto: ambient, melodic, often beatless tracks by Aphex Twin, B12, Speedy J, and others that signaled a deliberate break from the functionalism of the club.
+
+What followed was a decade-long flowering of experimental electronic music that could be danced to but didn't need to be: Boards of Canada's hazy childhood-tape nostalgia, Autechre's algorithmic abstraction, Squarepusher's drum-and-bass deconstructions.</div>
+
+          <div class="facts">
+            <span>era<b>late 1980s – present</b></span>
+            <span>origin<b>United Kingdom</b></span>
+            <span>sonic markers<b>broken beats · ambient pads · headphone-first</b></span>
+          </div>
+
+          <div class="section">Key artists</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Aphex Twin</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Boards of Canada</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Autechre</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Squarepusher</a>
+            </div>
+          </div>
+
+          <div class="section">Landmark projects</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-project" href="#"><span class="etype">project</span>Music Has the Right to Children</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>Selected Ambient Works 85–92</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>Tri Repetae</a>
+            </div>
+          </div>
+
+          <div class="section">Related genres</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-genre" href="#"><span class="etype">genre</span>Ambient techno</a>
+              <a class="chip t-genre" href="#"><span class="etype">genre</span>Glitch</a>
+              <a class="chip dangling t-genre" href="#"><span class="etype">genre</span>Drill 'n' bass</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · LABEL ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-label">
+    <h2>Node · Label (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-label">
+      <div class="node stripe-label">
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/d9/b3/a8d9b3bd-f56b-ebfe-dc8f-7177c6c302ae/880319823817_cover.jpg/1500x1500bb.jpg');"></div>
+        <div class="node-tint-fade"></div>
+        <div class="node-header">
+          <div class="badge label">Label</div>
+          <div class="node-ref">LBL · SCP-001</div>
+        </div>
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/a8/d9/b3/a8d9b3bd-f56b-ebfe-dc8f-7177c6c302ae/880319823817_cover.jpg/1500x1500bb.jpg');">
+          <div class="hero-title-wrap">
+            <h1>~scape</h1>
+            <div class="hero-meta">Berlin · 2000 — present</div>
+          </div>
+        </div>
+        <div class="node-body">
+          <div class="teaser-row">
+            <div class="teaser-stripe"></div>
+            <div class="teaser">Stefan Betke's Berlin imprint, a hub for the post-techno minimalism that filtered dub through laptops at the turn of the millennium.</div>
+          </div>
+          <div class="article">Founded in 2000 by Stefan Betke — better known as Pole — ~scape became the connective tissue between Germany's post-techno avant-garde and the international laptop-music scene. Where parent label Kompakt foregrounded melody and pop sensibility, ~scape pursued texture, weight, and the long decay tails of dub.</div>
+
+          <div class="facts">
+            <span>founded<b>2000</b></span>
+            <span>location<b>Berlin</b></span>
+            <span>founders<b>Stefan Betke</b></span>
+            <span>active<b>2000–present</b></span>
+          </div>
+
+          <div class="section">Roster</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Pole</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Jan Jelinek</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Burnt Friedman</a>
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Andrew Pekler</a>
+            </div>
+          </div>
+
+          <div class="section">Notable releases</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-project" href="#"><span class="etype">project</span>Loop-finding-jazz-records</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>R</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>Con Ritmo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · ARTIST ─────────────────────────────────────── -->
+  <section class="dp-section" id="node-artist">
+    <h2>Node · Artist (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-artist">
+      <div class="node stripe-artist">
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/1500x1500bb.jpg');"></div>
+        <div class="node-tint-fade"></div>
+        <div class="node-header">
+          <div class="badge artist">Artist</div>
+          <div class="node-ref">ART · ENO-001</div>
+        </div>
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/ee/71/42/ee71425d-6bc9-3df8-c90b-8539f59144ab/00724386649553.rgb.jpg/1500x1500bb.jpg');">
+          <div class="hero-title-wrap">
+            <h1>Brian Eno</h1>
+            <div class="hero-meta">Woodbridge, Suffolk, UK · 1971 — present</div>
+          </div>
+        </div>
+        <div class="node-body">
+          <div class="teaser-row">
+            <div class="teaser-stripe"></div>
+            <div class="teaser">The patient saint of ambient. Trained as a non-musician at Ipswich Art School, theorised music as a place rather than an event, then quietly midwifed half the catalogue around him.</div>
+          </div>
+          <div class="article">Brian Eno started as the synthesist and theatrical foil in Roxy Music, but his solo career — beginning with 1973's Here Come the Warm Jets — quickly outgrew the band. Across a series of records in the mid-1970s he built a recognizable approach: pop structures dissolved into texture, treatments applied to other musicians' performances, and the deliberate cultivation of "happy accidents" as a working method.
+
+By 1978 he had coined the term "ambient music" with Ambient 1: Music for Airports — not the first quiet record, but the first to argue, in a liner note, that music could be a place rather than an event. The series that followed (Music for Films, On Land, Thursday Afternoon) became foundational texts for several subsequent genres.</div>
+
+          <div class="facts">
+            <span>origin<b>Woodbridge, Suffolk, UK</b></span>
+            <span>active<b>1971–present</b></span>
+          </div>
+
+          <div class="section">Labels</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-label" href="#"><span class="etype">label</span>EG Records</a>
+              <a class="chip t-label" href="#"><span class="etype">label</span>Warp</a>
+            </div>
+          </div>
+
+          <div class="section">Discography</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-project" href="#"><span class="etype">project</span>Here Come the Warm Jets</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>Another Green World</a>
+              <a class="chip t-project" href="#"><span class="etype">project</span>Ambient 1: Music for Airports</a>
+              <a class="chip dangling t-project" href="#"><span class="etype">project</span>Apollo</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · PROJECT ────────────────────────────────────── -->
+  <section class="dp-section" id="node-project">
+    <h2>Node · Project (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-project">
+      <div class="node stripe-project">
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music22/v4/26/03/70/260370cc-99c9-463c-4b66-0193dd6c8a0c/mzm.glkaztud.png/1500x1500bb.jpg');"></div>
+        <div class="node-tint-fade"></div>
+        <div class="node-header">
+          <div class="badge project">Project</div>
+          <div class="node-ref">PRJ · MFA-001</div>
+        </div>
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music22/v4/26/03/70/260370cc-99c9-463c-4b66-0193dd6c8a0c/mzm.glkaztud.png/1500x1500bb.jpg');">
+          <div class="hero-title-wrap">
+            <h1>Music for a New Society</h1>
+            <div class="hero-meta">John Cale · 1982</div>
+          </div>
+        </div>
+        <div class="node-body">
+          <div class="teaser-row">
+            <div class="teaser-stripe"></div>
+            <div class="teaser">John Cale's most desolate record — keyboards, voice, and silence used as compositional weapons.</div>
+          </div>
+          <div class="article">Recorded in two weeks in late 1981, Music for a New Society found John Cale stripping his arrangements down to their barest possible state: keyboards, voice, and silence used as compositional weapons. Cale would later describe the sessions as some of the most painful of his life.
+
+The record's reputation has grown in the decades since: where Cale's 1970s art-rock records (Paris 1919, Fear) sit comfortably in the canon, Music for a New Society took longer to assimilate. It now reads as a touchstone for an entire generation of austere singer-songwriters from Nick Cave's Tender Prey to Cat Power's Moon Pix.</div>
+
+          <div class="facts">
+            <span>year<b>1982</b></span>
+            <span>vocals<b>Cale, lead</b></span>
+            <span>samples<b>none</b></span>
+            <span>inspirations<b>Velvet Underground · La Monte Young</b></span>
+          </div>
+
+          <div class="section">Artist</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>John Cale</a>
+            </div>
+          </div>
+
+          <div class="section">Tracklist</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-track" href="#"><span class="etype">track</span>Taking Your Life in Your Hands</a>
+              <a class="chip t-track" href="#"><span class="etype">track</span>Thoughtless Kind</a>
+              <a class="chip t-track" href="#"><span class="etype">track</span>Sanities</a>
+              <a class="chip t-track" href="#"><span class="etype">track</span>Close Watch</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NODE · TRACK ──────────────────────────────────────── -->
+  <section class="dp-section" id="node-track">
+    <h2>Node · Track (focused)</h2>
+    <div class="dp-stage" data-label=".node.stripe-track">
+      <div class="node stripe-track">
+        <div class="node-tint" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/8e/13/bd8e1358-b367-a689-cb84-cebd0b067dc4/634904078263.png/1500x1500bb.jpg');"></div>
+        <div class="node-tint-fade"></div>
+        <div class="node-header">
+          <div class="badge track">Track</div>
+          <div class="node-ref">TRK · KIDA-08</div>
+        </div>
+        <div class="hero" style="background-image: url('https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bd/8e/13/bd8e1358-b367-a689-cb84-cebd0b067dc4/634904078263.png/1500x1500bb.jpg');">
+          <div class="hero-title-wrap">
+            <h1>Idioteque</h1>
+            <div class="hero-meta">Radiohead · Kid A · 2000</div>
+          </div>
+        </div>
+        <div class="node-body">
+          <div class="teaser-row">
+            <div class="teaser-stripe"></div>
+            <div class="teaser">The track where Radiohead stopped being a rock band — a Paul Lansky sample, an Aphex Twin–shaped beat, and a cold, prescient panic.</div>
+          </div>
+          <div class="article">"Idioteque" was the moment Radiohead made it impossible to call them a rock band. Built around a four-bar sample from Paul Lansky's 1973 computer-music piece <em>Mild und Leise</em>, the track lurches between glassy chords and a stiff, snare-led pulse that owed more to Warp than to anything in their previous discography. Thom Yorke's lyric — fragments about ice ages, women and children, women and children first — reads now like a brittle premonition of the next two decades.</div>
+
+          <button class="play-btn">▶ Play preview</button>
+
+          <div class="facts" style="margin-top: 1rem;">
+            <span>year<b>2000</b></span>
+            <span>duration<b>5:09</b></span>
+            <span>bpm<b>104</b></span>
+            <span>key<b>E♭ minor</b></span>
+          </div>
+
+          <div class="section">Project</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-project" href="#"><span class="etype">project</span>Kid A</a>
+            </div>
+          </div>
+
+          <div class="section">Artist</div>
+          <div class="edge-group">
+            <div class="chips">
+              <a class="chip t-artist" href="#"><span class="etype">artist</span>Radiohead</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── NO-IMAGE FALLBACKS ─────────────────────────────────── -->
+  <section class="dp-section" id="no-image">
+    <h2>Fallback — no image, all 5 types</h2>
+    <div class="dp-label">When the image-resolution step can't find a cover, the hero falls back to a type-colored gradient so the card still has identity.</div>
+
+    <div class="dp-stage" data-label=".hero.no-image (genre)">
+      <div class="node stripe-genre">
+        <div class="node-header"><div class="badge genre">Genre</div><div class="node-ref">GNR · SHO-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Shoegaze</h1><div class="hero-meta">Late 1980s · United Kingdom</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">A wall of distorted guitars and softly buried vocals — named for performers who stared at their pedals.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (label)" style="margin-top: 1rem;">
+      <div class="node stripe-label">
+        <div class="node-header"><div class="badge label">Label</div><div class="node-ref">LBL · KMP-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Kompakt</h1><div class="hero-meta">Köln · 1998 — present</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">The Cologne house imprint that mainstreamed minimal techno's pop sensibility through the 2000s.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (artist)" style="margin-top: 1rem;">
+      <div class="node stripe-artist">
+        <div class="node-header"><div class="badge artist">Artist</div><div class="node-ref">ART · BFR-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Burnt Friedman</h1><div class="hero-meta">Köln, Germany · 1991 — present</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">German producer working at the seam between dub, jazz, and digital abstraction — most recognisable for his long collaboration with Jaki Liebezeit.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (project)" style="margin-top: 1rem;">
+      <div class="node stripe-project">
+        <div class="node-header"><div class="badge project">Project</div><div class="node-ref">PRJ · SCT-001</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Secret Rhythms</h1><div class="hero-meta">Burnt Friedman &amp; Jaki Liebezeit · 2002</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">The first volume of the Friedman/Liebezeit collaborations — Can's drummer in conversation with a laptop.</div></div></div>
+      </div>
+    </div>
+
+    <div class="dp-stage" data-label=".hero.no-image (track)" style="margin-top: 1rem;">
+      <div class="node stripe-track">
+        <div class="node-header"><div class="badge track">Track</div><div class="node-ref">TRK · SCT-01</div></div>
+        <div class="hero no-image"><div class="hero-title-wrap"><h1>Hum 1</h1><div class="hero-meta">Burnt Friedman &amp; Jaki Liebezeit · Secret Rhythms · 2002</div></div></div>
+        <div class="node-body"><div class="teaser-row"><div class="teaser-stripe"></div><div class="teaser">Opening track of Secret Rhythms — Liebezeit's loose-limbed drum kit looped against Friedman's circular bass pulse.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CHIPS ──────────────────────────────────────────────── -->
+  <section class="dp-section" id="chips">
+    <h2>Chips — all variants</h2>
+    <div class="dp-label">Default (cached) · one per type</div>
+    <div class="dp-stage" data-label=".chip">
+      <div class="chips">
+        <a class="chip t-genre" href="#"><span class="etype">genre</span>Shoegaze</a>
+        <a class="chip t-label" href="#"><span class="etype">label</span>~scape</a>
+        <a class="chip t-artist" href="#"><span class="etype">artist</span>Jan Jelinek</a>
+        <a class="chip t-project" href="#"><span class="etype">project</span>Loveless</a>
+        <a class="chip t-track" href="#"><span class="etype">track</span>Tendency</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Dangling (not yet materialized — click to JIT-load)</div>
+    <div class="dp-stage" data-label=".chip.dangling">
+      <div class="chips">
+        <a class="chip dangling t-artist" href="#"><span class="etype">artist</span>Burnt Friedman</a>
+        <a class="chip dangling t-project" href="#"><span class="etype">project</span>Kosmischer Pitch</a>
+        <a class="chip dangling t-label" href="#"><span class="etype">label</span>Faitiche</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Loading (progress fill animating)</div>
+    <div class="dp-stage" data-label=".chip.loading">
+      <div class="chips">
+        <a class="chip loading t-artist" href="#" style="--progress: 62%;"><span class="etype">artist</span>Pole</a>
+        <a class="chip loading done t-project" href="#"><span class="etype">project</span>R</a>
+      </div>
+    </div>
+
+    <div class="dp-label">Dead (materialization failed)</div>
+    <div class="dp-stage" data-label=".chip.dead">
+      <div class="chips">
+        <a class="chip dead t-artist" href="#"><span class="etype">artist</span>Unknown Artist 42</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── JIT BANNER ─────────────────────────────────────────── -->
+  <section class="dp-section" id="jit-banner">
+    <h2>JIT banner</h2>
+    <div class="dp-stage" data-label=".jit-banner">
+      <div class="jit-banner">⚡ JIT active · this node has <b style="color:var(--fg);">12</b> unmaterialized connections. Click any "↻" chip below to load on-demand, or <button>pre-cache all edges</button></div>
+    </div>
+  </section>
+
+  <!-- ─── JIT OVERLAY ────────────────────────────────────────── -->
+  <section class="dp-section" id="jit-overlay">
+    <h2>JIT overlay (full-screen loading)</h2>
+    <div class="dp-label">Forced into the .show state so it renders inline here (in the real app it covers the viewport)</div>
+    <div class="dp-stage" data-label=".jit-overlay" style="min-height: 260px; padding: 2rem;">
+      <div class="jit-overlay show" style="position: relative; inset: auto; background: transparent; backdrop-filter: none;">
+        <div class="card">
+          <div class="pill artist">Artist</div>
+          <div class="title">Burnt Friedman</div>
+          <div class="subtitle">materializing from MusicBrainz · Tavily · Firecrawl</div>
+          <div class="bar"><i style="width: 64%; transition: none;"></i></div>
+          <div class="status">Resolving discography…</div>
+          <button class="cancel" type="button">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CITATIONS ──────────────────────────────────────────── -->
+  <section class="dp-section" id="citations">
+    <h2>Citations</h2>
+    <div class="dp-stage" data-label=".citations">
+      <div class="citations">
+        <a href="#"><span class="num">[1]</span>~scape — discogs.com/label/3142-scape</a>
+        <a href="#"><span class="num">[2]</span>Jan Jelinek interview — The Wire, October 2002</a>
+        <a href="#"><span class="num">[3]</span>Loop-finding-jazz-records review — Pitchfork, 2001</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PLAYER ─────────────────────────────────────────────── -->
+  <section class="dp-section" id="player">
+    <h2>Sticky player</h2>
+    <div class="dp-label">In production this is fixed to the viewport bottom — shown inline here for inspection.</div>
+    <div class="dp-stage" data-label="#player.open" style="padding: 0; overflow: hidden;">
+      <div id="player-demo" style="position: relative; background: rgba(14, 14, 13, 0.94); backdrop-filter: blur(10px); border-top: 1px solid var(--card-border);">
+        <div class="player-row">
+          <button class="player-btn" aria-label="play/pause">▶</button>
+          <div class="player-info">
+            <div class="pt">Tendency</div>
+            <div class="pa">Jan Jelinek · Loop-finding-jazz-records</div>
+          </div>
+          <div class="player-bar"><div class="fill" style="width: 38%;"></div></div>
+          <button class="player-close" aria-label="close player">×</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOT ───────────────────────────────────────────────── -->
+  <section class="dp-section" id="foot">
+    <h2>Footer</h2>
+    <div class="dp-stage" data-label=".foot">
+      <div class="foot">
+        Crawler at <a href="https://github.com/raphpool/odyssey-music">github.com/raphpool/odyssey-music</a> ·
+        Agent powered by Gemini 3.1 Flash Lite + Tavily + Firecrawl via
+        <a href="https://github.com/earendil-works/pi">pi</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

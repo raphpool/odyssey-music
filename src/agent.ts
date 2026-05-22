@@ -450,7 +450,8 @@ function validateForEmit(payload: unknown, provenance: ResearchProvenance): stri
 				const v = p[k];
 				return typeof v === "string" && v.trim().length > 0;
 			});
-			if (compPopulated.length === 0) missing.push("composition (need >=1 of bpm/musical_key/vocals/samples_notes/inspirations)");
+			if (compPopulated.length === 0)
+				missing.push("composition (need >=1 of bpm/musical_key/vocals/samples_notes/inspirations)");
 			if (missing.length > 0) {
 				reasons.push(
 					`You fetched Wikipedia for this ${p.type} but skipped the structured extraction: missing [${missing.join(", ")}]. Re-read the Wikipedia "Personnel" section (lists EVERY credited collaborator with their instrument/role — copy them into the 'personnel' edge array as {type:"artist", name:"..."}), the "Composition" section (extract any bpm, key signature, vocal credits, samples, or stated inspirations into the matching string fields), and the infobox/sidebar (the record label belongs in the singular 'label' edge as {type:"label", name:"..."}). If a field is genuinely absent from Wikipedia, leave that ONE field empty — but you cannot leave ALL of them empty after having fetched the page. Emit again with the structured fields filled.`,
