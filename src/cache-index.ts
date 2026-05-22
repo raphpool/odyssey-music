@@ -67,12 +67,9 @@ export async function buildCacheIndex(cacheRoot: string): Promise<CacheIndex> {
 				try {
 					const raw = await readFile(join(nodesDir, t, f), "utf8");
 					const node = JSON.parse(raw) as NodePayload & { mbid?: string };
-					hits.push({
-						slug,
-						type: node.type,
-						name: node.name,
-						mbid: node.mbid,
-					});
+					const hit: CacheHit = { slug, type: node.type, name: node.name };
+					if (node.mbid) hit.mbid = node.mbid;
+					hits.push(hit);
 					if (node.mbid) mbidToSlug.set(node.mbid, slug);
 				} catch {
 					// skip unreadable / unparseable nodes silently

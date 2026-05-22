@@ -237,7 +237,9 @@ async function handleSearch(
 	const mbidsSeen = new Set<string>();
 	const out: SearchHit[] = [];
 	for (const h of cacheHits) {
-		out.push({ source: "cache", type: h.type, name: h.name, slug: h.slug, mbid: h.mbid });
+		const hit: SearchHit = { source: "cache", type: h.type, name: h.name, slug: h.slug };
+		if (h.mbid) hit.mbid = h.mbid;
+		out.push(hit);
 		if (h.mbid) mbidsSeen.add(h.mbid);
 	}
 
@@ -255,14 +257,15 @@ async function handleSearch(
 				mbidsSeen.add(c.mbid);
 				continue;
 			}
-			out.push({
+			const hit: SearchHit = {
 				source: "catalog",
 				type: c.type,
 				name: c.name,
-				subtitle: c.subtitle,
-				extra: c.extra,
 				mbid: c.mbid,
-			});
+			};
+			if (c.subtitle) hit.subtitle = c.subtitle;
+			if (c.extra) hit.extra = c.extra;
+			out.push(hit);
 		}
 	}
 

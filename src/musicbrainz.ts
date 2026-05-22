@@ -223,7 +223,12 @@ async function searchRecordings(q: string, limit: number): Promise<CatalogResult
 function interleave<T>(lists: T[][]): T[] {
 	const out: T[] = [];
 	const max = Math.max(...lists.map((l) => l.length));
-	for (let i = 0; i < max; i++) for (const l of lists) if (l[i]) out.push(l[i]);
+	for (let i = 0; i < max; i++) {
+		for (const l of lists) {
+			const item = l[i];
+			if (item !== undefined) out.push(item);
+		}
+	}
 	return out;
 }
 
