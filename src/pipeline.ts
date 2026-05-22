@@ -33,7 +33,7 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
-import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE } from "./node-spec.js";
+import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -1159,8 +1159,7 @@ function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string
 	const r = e as { type?: unknown; name?: unknown; mbid?: unknown };
 	if (typeof r.type !== "string") return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
-	const valid = ["genre", "label", "artist", "project", "track"] as const;
-	if (!(valid as readonly string[]).includes(r.type)) return null;
+	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	try {
 		const t = r.type as NodeType;
 		const out: { slug: string; type: NodeType; name: string; mbid?: string } = {

@@ -1,3 +1,4 @@
+import { NODE_TYPES } from "./node-spec.js";
 import type { NodeType, Slug } from "./types.js";
 
 /**
@@ -61,7 +62,7 @@ export function parseSlug(slug: string): { type: NodeType; body: string } {
 }
 
 function isNodeType(s: string): s is NodeType {
-	return s === "genre" || s === "label" || s === "artist" || s === "project" || s === "track";
+	return (NODE_TYPES as readonly string[]).includes(s);
 }
 
 export function isValidSlug(s: string): s is Slug {

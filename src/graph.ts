@@ -3,6 +3,7 @@ import { isNotFoundError } from "./errors.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
+	REVERSE_EDGE_PAIRS,
 	SINGULAR_EDGES_BY_TYPE,
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
@@ -154,7 +155,9 @@ function collectEdges(nodes: VizNode[], cachedSet: Set<string>): VizEdge[] {
 }
 
 function findOrphanGenreIds(nodes: VizNode[], edges: VizEdge[]): Set<string> {
-	const genreLinkKinds = new Set(["parent_genres", "subgenres", "related_genres"]);
+	const genreLinkKinds = new Set(
+		REVERSE_EDGE_PAIRS.filter((p) => p.sourceType === "genre" && p.reverse.field).map((p) => p.sourceField),
+	);
 	const genreLinkCount = new Map<string, number>();
 	for (const edge of edges) {
 		if (
@@ -200,23 +203,17 @@ function backfillGenreReverses(nodes: VizNode[]): void {
 	const addRefIfMissing = (list: EdgeRef[], ref: EdgeRef): void => {
 		if (!list.some((edge) => edge.slug === ref.slug)) list.push(ref);
 	};
+	const genrePairs = REVERSE_EDGE_PAIRS.filter((p) => p.sourceType === "genre");
 	for (const node of nodes) {
 		if (node.type !== "genre") continue;
 		const self: EdgeRef = { slug: node.id as EdgeRef["slug"], type: "genre", name: node.name };
-		const parents = Array.isArray(node.edges.parent_genres) ? node.edges.parent_genres : [];
-		const subs = Array.isArray(node.edges.subgenres) ? node.edges.subgenres : [];
-		const related = Array.isArray(node.edges.related_genres) ? node.edges.related_genres : [];
-		for (const parent of parents) {
-			const target = byId.get(parent.slug);
-			if (target?.type === "genre") addRefIfMissing(ensureList(target, "subgenres"), self);
-		}
-		for (const sub of subs) {
-			const target = byId.get(sub.slug);
-			if (target?.type === "genre") addRefIfMissing(ensureList(target, "parent_genres"), self);
-		}
-		for (const ref of related) {
-			const target = byId.get(ref.slug);
-			if (target?.type === "genre") addRefIfMissing(ensureList(target, "related_genres"), self);
+		for (const pair of genrePairs) {
+			const refs = node.edges[pair.sourceField];
+			const list = Array.isArray(refs) ? refs : [];
+			for (const ref of list) {
+				const target = byId.get(ref.slug);
+				if (target?.type === "genre") addRefIfMissing(ensureList(target, pair.reverse.field), self);
+			}
 		}
 	}
 }
