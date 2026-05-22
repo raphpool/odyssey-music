@@ -1,74 +1,54 @@
-# Implementation notes (Phase 1)
+# Implementation
 
-This package implements the **agent + crawler** half of the Culture Graph spec described in
-`README.md`. The display algorithm and UI are out of scope here.
+This repository implements the Odyssey Music server, cache, materialization pipeline, crawler, operational scripts, and tests.
 
-## Architecture
+## Main Flow
 
+```text
+HTTP request / CLI / script
+  -> service layer
+  -> runPipeline()
+  -> MusicBrainz HTTP enrichment
+  -> Zod validation
+  -> NodeCache write/read
+  -> graph projection or node response
 ```
-seed text ──┐
-            v
-        crawler.ts  ──┐  pops from frontier (BFS, deduped by canonical slug)
-                      │
-                      v
-                 agent.ts  ──▶  pi-agent-core + Gemini 3.1 Flash Lite
-                      │              ├─ web_search   (Tavily)
-                      │              ├─ fetch_page   (Firecrawl)
-                      │              └─ emit_node    (terminates the run)
-                      v
-                  cache.ts  ──▶  slug-keyed JSON on disk
-                      │           reverse-edge materialization
-                      │           pending-reverse queue for not-yet-cached targets
-                      v
-                 frontier ◀── enqueue every edge ref the agent emitted
-```
+
+`runPipeline()` is the current materializer. The old agent loop is kept only under `src/legacy/` for reference.
 
 ## Modules
 
-| File | What |
+| Path | Role |
 |---|---|
-| `src/types.ts` | TypeScript types for nodes + per-type edge field lists. |
-| `src/schemas.ts` | Zod schemas, discriminated union over the 5 node types. |
-| `src/slug.ts` | Canonical slug normalization (collapses spelling variants; keeps personas distinct). |
-| `src/reverse-edges.ts` | Forward edge → reverse edge mapping (samples↔sampled_by, etc.). |
-| `src/cache.ts` | Slug-keyed on-disk JSON cache with per-slug locks and reverse-edge merging. |
-| `src/tools/tavily.ts` | Web search tool wrapper for pi-agent-core. |
-| `src/tools/firecrawl.ts` | URL → markdown fetcher tool wrapper for pi-agent-core. |
-| `src/agent.ts` | The single-node materialization agent. |
-| `src/crawler.ts` | BFS crawler with concurrent workers, budget enforcement, frontier dedup. |
-| `src/cli.ts` | `odyssey-crawl` CLI entry. |
+| `src/node-spec.ts` | Single source of truth for node types, edge fields, target constraints, teaser fields, optional text fields, and reverse edge pairs. |
+| `src/types.ts` | Node TypeScript interfaces and re-exports from the node spec. |
+| `src/schemas.ts` | Zod validation derived from node-spec edge target constraints. |
+| `src/pipeline.ts` | Deterministic research, Gemini structured generation, canonicalization, MusicBrainz enrichment, validation, and metrics. |
+| `src/services/` | Search, materialize, image, graph, and node services used by HTTP routes. |
+| `src/server.ts` | Stdlib HTTP bootstrap, route parsing, response status/header handling. |
+| `src/cache.ts` | Slug-keyed JSON cache, validation, locks, reverse-edge writes, pending reverses. |
+| `src/cache-index.ts` | In-memory cache search and MBID reconciliation index. |
+| `src/graph.ts` | Shared cache-to-graph projection for `/data.json` and build scripts. |
+| `src/musicbrainz.ts` | MusicBrainz HTTP catalog and enrichment adapter. |
+| `src/stream.ts` | yt-dlp bridge download cache and Range streaming. |
+| `src/config.ts` | Centralized env/config groups and policy constants. |
+| `src/logger.ts` | Shared structured logger. |
 
-## Running
+## Materialization
 
-```bash
-export GEMINI_API_KEY=...
-export TAVILY_API_KEY=...
-export FIRECRAWL_API_KEY=...
+The server performs just-in-time materialization through `POST /materialize` and stale-node refresh through `GET /node/:slug`. Both paths use `runPipeline()` and write through `NodeCache`.
 
-npm install
-npm run check         # lint + typecheck + unit tests
+The crawler also uses `runPipeline()` when expanding graph frontiers. It expects structured seeds such as `track:Tendency`; untyped seeds are treated as track names for compatibility with the CLI shape.
 
-# Crawl
-npm run crawl -- --seed "jan jelinek tendency" \
-  --max-depth 3 --max-nodes 100 --out /tmp/og1 --concurrency 4
-```
+## MusicBrainz
+
+MusicBrainz is accessed over HTTP at runtime for search and enrichment. The adapter has no SQLite dependency and no database path configuration.
 
 ## Tests
 
-- `test/slug.test.ts` — spelling variants collapse, personas stay distinct.
-- `test/schemas.test.ts` — Zod schemas accept/reject the right things.
-- `test/cache.test.ts` — write/read, reverse-edge materialization (cached + pending paths).
-- `test/agent.live.test.ts` — **live** test against Tavily/Firecrawl/Gemini, gated on env vars.
-  Skipped by default (`npm run test` excludes it). Run with `npm run test:live`.
+- `npm test -- --run` runs unit tests and excludes live tests.
+- `npm run test:live` runs `test/pipeline.live.test.ts` against Tavily, Firecrawl/local fetching, Gemini, and MusicBrainz when keys are present.
 
-## E2E verifier
+## Operational Scripts
 
-`scripts/verify-e2e.sh` runs the CLI against `"jan jelinek tendency"` with `--max-depth 3
---max-nodes 100` and then `scripts/assert-cache.ts` validates the resulting cache:
-
-- every JSON file passes Zod
-- no duplicate slugs
-- node count between `min(25, maxNodes)` and `maxNodes`
-- reverse-edge invariants hold across all in-cache pairs
-- ≥60% of nodes have at least one citation
-- average editorial article length sane
+Supported aliases are listed in `package.json`: `build:graph`, `analyze:coverage`, `topup:dangling`, `smoke:pipeline`, `deploy:web`, and `deploy:server`.
