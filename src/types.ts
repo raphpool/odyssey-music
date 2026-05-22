@@ -1,5 +1,18 @@
-export const NODE_TYPES = ["genre", "label", "artist", "project", "track"] as const;
-export type NodeType = (typeof NODE_TYPES)[number];
+import type { NodeType } from "./node-spec.js";
+
+export {
+	EDGE_FIELDS_BY_TYPE,
+	EDGE_TARGET_TYPES_BY_TYPE,
+	LIST_EDGES_BY_TYPE,
+	NODE_SPEC_JSON,
+	NODE_TYPES,
+	OPTIONAL_TEXT_FIELDS,
+	REVERSE_EDGE_PAIRS,
+	SINGULAR_EDGES_BY_TYPE,
+	TEASER_FIELD_BY_TYPE,
+} from "./node-spec.js";
+
+export type { NodeType };
 
 export type Slug = `${NodeType}:${string}`;
 
@@ -117,54 +130,3 @@ export interface TrackNode extends BaseNode {
 }
 
 export type NodePayload = GenreNode | LabelNode | ArtistNode | ProjectNode | TrackNode;
-
-/**
- * The set of edge field names on each node type that hold lists of EdgeRefs.
- * Singular-edge fields (project, label, remix_of) are handled separately.
- */
-export const LIST_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
-	genre: [
-		"parent_genres",
-		"subgenres",
-		"related_genres",
-		"key_artists",
-		"key_labels",
-		"landmark_projects",
-		"landmark_tracks",
-	],
-	label: ["genres", "roster", "notable_releases"],
-	artist: [
-		"genres",
-		"labels",
-		"discography",
-		"notable_tracks",
-		"influences",
-		"influenced",
-		"collaborators",
-		"aliases",
-		"members",
-	],
-	project: ["artists", "genres", "tracklist", "producers", "personnel", "related_projects"],
-	track: ["artists", "genres", "producers", "personnel", "samples", "sampled_by", "remixed_by"],
-};
-
-/**
- * Optional text/scalar fields per node type that should be threaded through
- * the viz layer (build-graph-json + server.buildGraph) into VizNode.facts so
- * the frontend can render them as fact pills.
- */
-export const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
-	genre: ["era", "origin", "sonic_markers"],
-	label: ["founded", "location", "founders", "active_years"],
-	artist: ["photo_url", "origin", "active_years"],
-	project: ["cover_url", "year", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
-	track: ["cover_url", "year", "duration", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
-};
-
-export const SINGULAR_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
-	genre: [],
-	label: [],
-	artist: [],
-	project: ["label"],
-	track: ["project", "label", "remix_of"],
-};

@@ -32,6 +32,7 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
+import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -104,15 +105,21 @@ const stringSchema = (description: string, minLength?: number): Schema => {
 	return s;
 };
 
-const edgeRefSchema = (allowedTypes: NodeType[]): Schema => ({
+const edgeRefSchema = (allowedTypes: readonly NodeType[]): Schema => ({
 	type: GType.OBJECT,
 	properties: {
-		type: { type: GType.STRING, enum: allowedTypes, description: "Target node type." },
+		type: { type: GType.STRING, enum: [...allowedTypes], description: "Target node type." },
 		name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'.", 1),
 	},
 	required: ["type", "name"],
 	propertyOrdering: ["type", "name"],
 });
+
+const edgeRefSchemaFor = (type: NodeType, field: string): Schema => {
+	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
+	if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
+	return edgeRefSchema(allowed);
+};
 
 const citationSchema: Schema = {
 	type: GType.OBJECT,
@@ -168,33 +175,43 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						sonic_markers: stringSchema("BPM range, instrumentation, signature production traits.", 10),
 						parent_genres: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["genre"]),
+							items: edgeRefSchemaFor("genre", "parent_genres"),
 							minItems: "0",
 							maxItems: "4",
 						},
-						subgenres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "0", maxItems: "6" },
+						subgenres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("genre", "subgenres"),
+							minItems: "0",
+							maxItems: "6",
+						},
 						related_genres: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["genre"]),
+							items: edgeRefSchemaFor("genre", "related_genres"),
 							minItems: "2",
 							maxItems: "6",
 						},
 						key_artists: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["artist"]),
+							items: edgeRefSchemaFor("genre", "key_artists"),
 							minItems: "3",
 							maxItems: "8",
 						},
-						key_labels: { type: GType.ARRAY, items: edgeRefSchema(["label"]), minItems: "1", maxItems: "5" },
+						key_labels: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("genre", "key_labels"),
+							minItems: "1",
+							maxItems: "5",
+						},
 						landmark_projects: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("genre", "landmark_projects"),
 							minItems: "0",
 							maxItems: "5",
 						},
 						landmark_tracks: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["track"]),
+							items: edgeRefSchemaFor("genre", "landmark_tracks"),
 							minItems: "1",
 							maxItems: "5",
 						},
@@ -223,11 +240,21 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						location: stringSchema("City + country.", 3),
 						founders: stringSchema("Founder names (text).", 0),
 						active_years: stringSchema("e.g. '1995-present'.", 0),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						roster: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "3", maxItems: "10" },
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("label", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						roster: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("label", "roster"),
+							minItems: "3",
+							maxItems: "10",
+						},
 						notable_releases: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("label", "notable_releases"),
 							minItems: "2",
 							maxItems: "8",
 						},
@@ -255,30 +282,60 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						editorial_bio: stringSchema("1-2 sentence teaser.", 30),
 						origin: stringSchema("Where they're from.", 3),
 						active_years: stringSchema("e.g. '1991-present'.", 4),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						labels: { type: GType.ARRAY, items: edgeRefSchema(["label"]), minItems: "1", maxItems: "5" },
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						labels: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "labels"),
+							minItems: "1",
+							maxItems: "5",
+						},
 						discography: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("artist", "discography"),
 							minItems: "2",
 							maxItems: "10",
 						},
 						notable_tracks: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["track"]),
+							items: edgeRefSchemaFor("artist", "notable_tracks"),
 							minItems: "1",
 							maxItems: "8",
 						},
-						influences: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
-						influenced: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
-						collaborators: {
+						influences: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["artist"]),
+							items: edgeRefSchemaFor("artist", "influences"),
 							minItems: "0",
 							maxItems: "8",
 						},
-						aliases: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
-						members: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "10" },
+						influenced: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "influenced"),
+							minItems: "0",
+							maxItems: "8",
+						},
+						collaborators: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "collaborators"),
+							minItems: "0",
+							maxItems: "8",
+						},
+						aliases: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "aliases"),
+							minItems: "0",
+							maxItems: "5",
+						},
+						members: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "members"),
+							minItems: "0",
+							maxItems: "10",
+						},
 					},
 				},
 			};
@@ -307,15 +364,40 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 							"Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.",
 							0,
 						),
-						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
-						label: edgeRefSchema(["label"]),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						tracklist: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "2", maxItems: "20" },
-						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "6" },
-						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
+						artists: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "artists"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						label: edgeRefSchemaFor("project", "label"),
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						tracklist: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "tracklist"),
+							minItems: "2",
+							maxItems: "20",
+						},
+						producers: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "producers"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						personnel: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "personnel"),
+							minItems: "0",
+							maxItems: "20",
+						},
 						related_projects: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("project", "related_projects"),
 							minItems: "0",
 							maxItems: "6",
 						},
@@ -342,16 +424,51 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						),
 						samples_notes: stringSchema("Notes about samples or interpolations.", 0),
 						inspirations: stringSchema("Stated stylistic inspirations.", 0),
-						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
-						project: edgeRefSchema(["project"]),
-						label: edgeRefSchema(["label"]),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
-						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
-						samples: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
-						sampled_by: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
-						remix_of: edgeRefSchema(["track"]),
-						remixed_by: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
+						artists: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "artists"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						project: edgeRefSchemaFor("track", "project"),
+						label: edgeRefSchemaFor("track", "label"),
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						producers: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "producers"),
+							minItems: "0",
+							maxItems: "5",
+						},
+						personnel: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "personnel"),
+							minItems: "0",
+							maxItems: "20",
+						},
+						samples: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "samples"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						sampled_by: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "sampled_by"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						remix_of: edgeRefSchemaFor("track", "remix_of"),
+						remixed_by: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "remixed_by"),
+							minItems: "0",
+							maxItems: "6",
+						},
 					},
 				},
 			};
@@ -926,34 +1043,8 @@ function canonicalize(
 	const next: Record<string, unknown> = { ...raw, type: input.type, slug, name: nameStr };
 	if (input.disambiguator) next.disambiguator = input.disambiguator;
 
-	// Ensure every list-edge field on this node type exists as at least an empty array.
 	// Gemini's structured output sometimes omits keys that have 0 minItems; the Zod schema
-	// still requires the field, so we default to [] here.
-	const LIST_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
-		genre: [
-			"parent_genres",
-			"subgenres",
-			"related_genres",
-			"key_artists",
-			"key_labels",
-			"landmark_projects",
-			"landmark_tracks",
-		],
-		label: ["genres", "roster", "notable_releases"],
-		artist: [
-			"genres",
-			"labels",
-			"discography",
-			"notable_tracks",
-			"influences",
-			"influenced",
-			"collaborators",
-			"aliases",
-			"members",
-		],
-		project: ["artists", "genres", "tracklist", "producers", "personnel", "related_projects"],
-		track: ["artists", "genres", "producers", "personnel", "samples", "sampled_by", "remixed_by"],
-	};
+	// still requires list-edge fields, so default them to [] here.
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
 	}

@@ -1,4 +1,5 @@
-import type { NodePayload, NodeType } from "./types.js";
+import { NODE_TYPES, REVERSE_EDGE_PAIRS } from "./node-spec.js";
+import type { NodeType } from "./types.js";
 
 /**
  * For a forward edge field on a given node type, return the reverse edge to apply on the *target* node.
@@ -13,81 +14,23 @@ export interface ReverseEdgeSpec {
 	cardinality: "list" | "single";
 }
 
-const TRACK_REVERSES: Record<string, ReverseEdgeSpec | null> = {
-	samples: { field: "sampled_by", cardinality: "list" },
-	sampled_by: { field: "samples", cardinality: "list" },
-	remix_of: { field: "remixed_by", cardinality: "list" },
-	remixed_by: { field: "remix_of", cardinality: "single" },
-	// personnel / label have no clean reverse: the source is a track but artist.collaborators
-	// is artist[] only, and label.notable_releases is project[] only. Pushing a track ref into
-	// either fails zod validation (caught in production 2026-05-19). Leave reverses null —
-	// graph still connects via the forward edges.
-	personnel: null,
-	label: null,
-	artists: null,
-	genres: null,
-	producers: null,
-	project: null,
-};
+const REVERSES_BY_TYPE: Record<NodeType, Record<string, ReverseEdgeSpec>> = Object.fromEntries(
+	NODE_TYPES.map((type) => [type, {}]),
+) as Record<NodeType, Record<string, ReverseEdgeSpec>>;
 
-const ARTIST_REVERSES: Record<string, ReverseEdgeSpec | null> = {
-	influences: { field: "influenced", cardinality: "list" },
-	influenced: { field: "influences", cardinality: "list" },
-	collaborators: { field: "collaborators", cardinality: "list" },
-	aliases: { field: "aliases", cardinality: "list" },
-	members: { field: "members", cardinality: "list" },
-	genres: null,
-	labels: null,
-	discography: null,
-	notable_tracks: null,
-};
-
-// Genre↔genre reverses. Without these, the scraper produced partial nodes:
-// e.g. `micro-house` lists `minimal-techno` as a parent, but `minimal-techno`
-// never learned it had `micro-house` as a subgenre. Henry caught this 2026-05-14.
-const GENRE_REVERSES: Record<string, ReverseEdgeSpec | null> = {
-	parent_genres: { field: "subgenres", cardinality: "list" },
-	subgenres: { field: "parent_genres", cardinality: "list" },
-	related_genres: { field: "related_genres", cardinality: "list" },
-	key_artists: null,
-	key_labels: null,
-	landmark_projects: null,
-	landmark_tracks: null,
-};
-
-const PROJECT_REVERSES: Record<string, ReverseEdgeSpec | null> = {
-	// project.personnel has no clean reverse on artist (artist.collaborators wants artist refs,
-	// not project refs). Leave null.
-	personnel: null,
-	artists: null,
-	genres: null,
-	tracklist: null,
-	producers: null,
-	label: null,
-	related_projects: null,
-};
-
-const REVERSES_BY_TYPE: Record<NodeType, Record<string, ReverseEdgeSpec | null>> = {
-	track: TRACK_REVERSES,
-	artist: ARTIST_REVERSES,
-	project: PROJECT_REVERSES,
-	label: {},
-	genre: GENRE_REVERSES,
-};
+for (const pair of REVERSE_EDGE_PAIRS) {
+	REVERSES_BY_TYPE[pair.sourceType][pair.sourceField] = pair.reverse;
+}
 
 export function reverseFor(sourceType: NodeType, sourceField: string): ReverseEdgeSpec | null {
 	const map = REVERSES_BY_TYPE[sourceType];
-	if (!(sourceField in map)) return null;
 	return map[sourceField] ?? null;
 }
 
 /** All forward edge field names that participate in automatic reverse materialization. */
 export function reversibleFields(type: NodeType): string[] {
-	const map = REVERSES_BY_TYPE[type];
-	return Object.keys(map).filter((k) => map[k] !== null);
+	return Object.keys(REVERSES_BY_TYPE[type]);
 }
-
-export type AnyNode = NodePayload;
 
 /**
  * Viz-output node shape (matches build-graph-json.ts + server.ts buildGraph).

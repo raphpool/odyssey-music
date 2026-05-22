@@ -22,30 +22,25 @@ Idempotent: re-running on a clean cache is a no-op.
 from __future__ import annotations
 import json
 import re
+import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else "/opt/odyssey-music/cache/nodes")
 
-LIST_EDGES = {
-    "genre": [
-        "parent_genres", "subgenres", "related_genres",
-        "key_artists", "key_labels", "landmark_projects", "landmark_tracks",
-    ],
-    "label": ["genres", "roster", "notable_releases"],
-    "artist": [
-        "genres", "labels", "discography", "notable_tracks",
-        "influences", "influenced", "collaborators", "aliases", "members",
-    ],
-    "project": ["artists", "genres", "tracklist", "producers", "related_projects"],
-    "track": ["artists", "genres", "producers", "samples", "sampled_by", "remixed_by"],
-}
-SINGULAR_EDGES = {
-    "genre": [], "label": [], "artist": [],
-    "project": ["label"],
-    "track": ["project", "remix_of"],
-}
+def load_node_spec() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
+    repo = Path(__file__).resolve().parents[1]
+    raw = subprocess.check_output(
+        ["npx", "tsx", "scripts/dump-node-spec.ts"],
+        cwd=repo,
+        text=True,
+    )
+    spec = json.loads(raw)
+    return spec["listEdgesByType"], spec["singularEdgesByType"]
+
+
+LIST_EDGES, SINGULAR_EDGES = load_node_spec()
 DISAMBIG_RE = re.compile(r"^(.+?)--.+$")
 
 

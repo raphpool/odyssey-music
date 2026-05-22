@@ -12,7 +12,7 @@
     "format": "biome format --write .",
     "lint:fix": "biome check --write .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest --run --exclude 'test/**/*.live.test.ts'",
+    "test": "vitest --exclude 'test/**/*.live.test.ts'",
     "test:live": "vitest --run test/agent.live.test.ts",
     "check": "npm run lint && npm run typecheck && npm run test",
     "crawl": "tsx src/cli.ts",
