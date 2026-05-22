@@ -2,8 +2,10 @@ import { Command } from "commander";
 import { cliConfig } from "./config.js";
 import { type CrawlOptions, type CrawlProgress, crawl } from "./crawler.js";
 import { loadEnv } from "./env.js";
+import { logger } from "./logger.js";
 
 const program = new Command();
+const log = logger.child({ module: "cli" });
 
 program.name("odyssey-crawl").description("Culture Graph background crawler (Phase 1)").version("0.1.0");
 
@@ -87,7 +89,7 @@ program
 			};
 			if (!opts.quiet) {
 				base.logger = (line: string): void => {
-					process.stderr.write(`${line}\n`);
+					log.info(line);
 				};
 			}
 			const extraPayload = opts.heartbeatPayload
@@ -101,7 +103,7 @@ program
 			}
 			base.onHeartbeat = (snap: CrawlProgress): void => {
 				const line = formatHeartbeat(snap);
-				process.stderr.write(`HEARTBEAT ${line}\n`);
+				log.info(`HEARTBEAT ${line}`);
 				if (opts.heartbeatWebhook) {
 					void postHeartbeat(opts.heartbeatWebhook, snap, line, extraPayload);
 				}
@@ -160,12 +162,12 @@ async function postHeartbeat(
 			body,
 		});
 	} catch (e) {
-		process.stderr.write(`heartbeat POST error: ${e instanceof Error ? e.message : String(e)}\n`);
+		log.warn("heartbeat POST error", { error: e instanceof Error ? e.message : String(e) });
 	}
 }
 
 program.parseAsync().catch((e: unknown) => {
 	const msg = e instanceof Error ? e.message : String(e);
-	process.stderr.write(`error: ${msg}\n`);
+	log.error("command failed", { error: msg });
 	process.exit(1);
 });

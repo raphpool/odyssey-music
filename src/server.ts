@@ -28,6 +28,7 @@ import { pipelineConfig, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { buildGraphFromCache } from "./graph.js";
 import { lookupAlbumArt } from "./itunes.js";
+import { logger } from "./logger.js";
 import { type CatalogIndex, type CatalogResult, openCatalogIndex } from "./musicbrainz.js";
 import { runPipeline } from "./pipeline.js";
 import { makeSlug, parseSlug } from "./slug.js";
@@ -43,6 +44,7 @@ const STREAM_CACHE_DIR = streamConfig.cacheDir;
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
 const catalogIndex: CatalogIndex = openCatalogIndex();
+const log = logger.child({ module: "server" });
 let cacheIndex: CacheIndex | null = null;
 // Built lazily on first /search hit so the server can boot even before the cache is warm.
 async function getCacheIndex(): Promise<CacheIndex> {
@@ -85,7 +87,7 @@ const server = createServer(async (req, res) => {
 		await route(req, res);
 	} catch (e) {
 		const msg = e instanceof Error ? e.message : String(e);
-		console.error(`[server] error ${req.method} ${req.url}: ${msg}`);
+		log.error("request failed", { method: req.method, url: req.url, error: msg });
 		json(res, 500, { error: msg });
 	}
 });
@@ -345,9 +347,7 @@ async function resolveDisplayImage(
 				await cache.write(updated);
 			} catch (e) {
 				// Cache write failures shouldn't break the response — the URL still works.
-				process.stderr.write(
-					`[image] persist failed for ${slug}: ${e instanceof Error ? e.message : String(e)}\n`,
-				);
+				log.warn("image persist failed", { slug, error: e instanceof Error ? e.message : String(e) });
 			}
 			return { slug, image_url: itunes, source: "itunes" };
 		}
@@ -526,7 +526,7 @@ function json(res: ServerResponse, status: number, body: unknown): void {
 }
 
 server.listen(PORT, () => {
-	console.log(`[odyssey-server] listening on :${PORT} cache=${CACHE_DIR}`);
+	log.info("listening", { port: PORT, cacheDir: CACHE_DIR });
 });
 
 // Coalesce slug helper not needed here — parseSlug is imported in case future endpoints want it.

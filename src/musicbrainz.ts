@@ -11,6 +11,7 @@
  * for properly-UA'd clients.
  */
 import { musicBrainzConfig } from "./config.js";
+import { logger } from "./logger.js";
 import type { NodeType } from "./types.js";
 
 export interface CatalogResult {
@@ -30,6 +31,7 @@ export interface CatalogIndex {
 const MB_BASE = musicBrainzConfig.baseUrl;
 const USER_AGENT = musicBrainzConfig.userAgent;
 const FETCH_TIMEOUT_MS = musicBrainzConfig.fetchTimeoutMs;
+const log = logger.child({ module: "musicbrainz" });
 
 interface MbArtist {
 	id: string;
@@ -135,7 +137,7 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 				continue;
 			}
 			if (!r.ok) {
-				console.warn(`[mb] ${r.status} ${url.pathname}`);
+				log.warn("request failed", { status: r.status, path: url.pathname });
 				return null;
 			}
 			const data = (await r.json()) as T;
@@ -148,7 +150,7 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 			return data;
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
-			if (attempt === 2) console.warn(`[mb] fetch failed ${url.pathname}: ${msg}`);
+			if (attempt === 2) log.warn("fetch failed", { path: url.pathname, error: msg });
 		} finally {
 			clearTimeout(timer);
 		}
