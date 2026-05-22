@@ -4,10 +4,7 @@
  * First request for a videoId: fetch bestaudio bytes from the local yt-dlp
  * bridge (http://127.0.0.1:YTDLP_BRIDGE_PORT/download/:videoId) and write
  * them to {streamCacheDir}/{videoId}.m4a (~2-5s for a 3-min track). The
- * bridge runs on Henry's laptop and is reached through an SSH reverse
- * tunnel — yt-dlp executes on a residential IP, sidestepping YouTube's
- * "Sign in to confirm you're not a bot" anti-bot wall that blocks the
- * droplet's datacenter IP.
+ * bridge runs behind deployment-specific networking (ADR 2026-05-19 stream-bridge).
  *
  * Subsequent requests: serve the cached file with HTTP Range support so the
  * <audio> element can seek.

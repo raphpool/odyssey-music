@@ -478,22 +478,13 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 }
 
 // Latency knobs. Each token shaved off the LLM call is ~free wall-clock time.
-// Wikipedia pages on popular artists/albums run 100-300KB of markdown. 14k truncated way
-// before the relevant sections — Drake's discography never reached the LLM (Raph caught
-// 2026-05-19). MB now overrides the structured edges (discography, tracklist, label,
-// artists, year) so those don't depend on the slice. But editorial_article + genres +
-// samples + influences still rely on the LLM reading enough of the page, so we keep a
-// large budget. Latency cost: +1-2s on cold materialize; Gemini Flash Lite prefill is
-// cheap (~$0.075/M tokens) so dollar cost is negligible.
+// Keep enough source text for editorial fields; MB enrichment owns structured release data.
+// See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
 const MAX_CORPUS_BYTES = pipelineConfig.maxCorpusBytes;
 const PER_PAGE_BUDGET = pipelineConfig.perPageBudgetBytes;
 const SEARCH_RESULTS = pipelineConfig.searchResults;
-// FETCH_TOP_K is now dynamic (see below). When a wikipedia-ranked result is present in the
-// top of search, one fetch is enough (Wikipedia is the canonical music source). Without it
-// — e.g. for just-dropped tracks where the Wiki article doesn't exist yet (Raph caught
-// 2026-05-19 on "Janice STFU" from Drake's ICEMAN) — we need to compile from multiple music
-// outlets (Pitchfork, Genius, Rolling Stone, Complex, HipHopDX, ...) to get real article
-// context instead of LLM-confabulated slop.
+// Fetch one strong Wikipedia result, or multiple music outlets when no Wiki result is present.
+// See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
 const FETCH_TOP_K_WITH_WIKI = pipelineConfig.fetchTopKWithWiki;
 const FETCH_TOP_K_NO_WIKI = pipelineConfig.fetchTopKNoWiki;
 
@@ -543,8 +534,7 @@ GENERAL RULES:
   - CRITICAL — for short mononym aliases (e.g. '40', 'XL', 'Mike', 'Jay', 'Ye', any 1-3
     char stage name), use the canonical full name as the edge name (e.g. "Noah '40' Shebib"
     not '40'; "Kanye West" not 'Ye'). Short names collide with unrelated artists in MB
-    search and route the click to the wrong page (Raph 2026-05-20: '40' producer on Drake's
-    HABIBTI? landed on E-40 rapper).
+    search and route the click to the wrong page (ADR 2026-05-20 credit-slug-normalization).
   - Aliases and side-projects stay as distinct edges (AFX != Aphex Twin).
   - Year/founded/active_years are STRINGS, never numbers.
   - The 'name' field on your output must be the canonical name (no '(track)', no '(album)').
@@ -613,7 +603,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		max_results: SEARCH_RESULTS,
 		search_depth: "basic",
 	});
-	// Source priority: wikipedia first, fandom/reddit last (Henry/Mathieu rule 2026-05-19).
+	// Source priority: Wikipedia first, fandom/reddit last.
 	const searchResults = rankResults(searchResultsRaw);
 	const searchMs = Date.now() - tSearch;
 	if (!searchResults.length) {
@@ -699,18 +689,13 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 
 	// Step 3: canonicalize + Zod validate
 	const node = canonicalize(parsedRaw, input, corpus, allowedUrls);
-	// Post-LLM enrichment (2026-05-19 Raph): for artist nodes, override the LLM's
-	// discography edge with MusicBrainz release-groups. MB is the canonical source
-	// for "what has this artist released" and updates within hours of announcement,
-	// while Wikipedia lags by weeks. Drake's MAID OF HONOUR / HABIBTI / ICEMAN dropped
-	// today (2026-05-15) and weren't on the Wiki page yet.
+	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	if (input.type === "artist") {
 		try {
 			let mbid = input.mbid;
 			if (!mbid) mbid = (await findArtistMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
-				// MB tags are more granular than the Wikipedia infobox genre — Raph caught
-				// 2026-05-19 ("Drake": MB has 9 vote-weighted tags, Wiki has 'hip hop, R&B, pop').
+				// MB tags are more granular than editorial infobox genres.
 				const genres = await fetchEntityGenresMb("artist", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
 					const obj = node as Record<string, unknown>;
@@ -933,9 +918,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		}
 	}
 	// Dedup personnel against producers for project + track nodes. The LLM frequently lists
-	// the same person in both buckets, and MB merge can do the same when relations differ
-	// across release-group vs recording level. Producers wins — anyone in producers is dropped
-	// from personnel. Raph asked for this 2026-05-20.
+	// Producers win over personnel duplicates (ADR 2026-05-20 personnel-dedup).
 	if (input.type === "project" || input.type === "track") {
 		const obj = node as Record<string, unknown>;
 		const prods = Array.isArray(obj.producers) ? (obj.producers as Array<Record<string, unknown>>) : [];
@@ -1034,10 +1017,7 @@ function canonicalize(
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
 	}
-	// Groundedness check (2026-05-19 goal-mode adversarial). When sources are thin the LLM
-	// happily confabulates: it folded the disambiguator into label.name, invented tracks, etc.
-	// Drop scalar/edge values that don't appear ANYWHERE in the corpus markdown, and never let
-	// the disambiguator leak into an edge name.
+	// Drop ungrounded scalar/edge values before validation (ADR 2026-05-19 groundedness).
 	const corpusBlob = (corpus as { markdown?: string }[])
 		.map((c) => (typeof c.markdown === "string" ? c.markdown : ""))
 		.join("\n")
