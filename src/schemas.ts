@@ -178,7 +178,3 @@ export const nodePayloadSchema = z.discriminatedUnion("type", [
 	projectSchema,
 	trackSchema,
 ]);
-
-export const edgeRefSchemaExport = edgeRefBase;
-
-export type NodePayloadParsed = z.infer<typeof nodePayloadSchema>;
