@@ -19,6 +19,7 @@
  * No framework — stdlib http, hand-rolled routing. Auth is none (the deployment
  * sits behind nginx which can add basic auth or an allowlist if needed).
  */
+import { readFile } from "node:fs/promises";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { join } from "node:path";
 import { NodeCache } from "./cache.js";
@@ -94,6 +95,20 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	const path = url.pathname;
 	if (req.method === "GET" && path === "/health") {
 		json(res, 200, { ok: true, cacheDir: CACHE_DIR });
+		return;
+	}
+	if (req.method === "GET" && path === "/version") {
+		// Provenance marker written by deploy/deploy-server.sh. Tells us at any time
+		// what commit is actually running, so we can compare against main.
+		try {
+			const raw = await readFile(join(process.cwd(), ".deployed-sha"), "utf8");
+			res.setHeader("Cache-Control", "no-store");
+			res.statusCode = 200;
+			res.setHeader("Content-Type", "application/json");
+			res.end(raw);
+		} catch {
+			json(res, 200, { sha: "unknown", note: "no .deployed-sha marker on disk" });
+		}
 		return;
 	}
 	if (req.method === "GET" && path === "/data.json") {
