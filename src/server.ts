@@ -313,12 +313,18 @@ async function resolveDisplayImage(
 	}
 
 	// 2) For project/track, try iTunes — and persist any hit to the cache.
+	// Artists are intentionally skipped: iTunes' artworkUrl100 is unreliable for
+	// artist entities (see src/itunes.ts header note), so we go straight to the
+	// edge walk and borrow a cover from one of their projects.
 	if (node.type === "project" || node.type === "track") {
 		const artistRef = (raw.artists as EdgeRef[] | undefined)?.[0];
 		const itunes = await lookupAlbumArt(node.name, artistRef?.name);
 		if (itunes) {
 			try {
-				const updated = { ...node, cover_url: itunes } as NodePayload;
+				// Tag with image_source so a future batch job can invalidate iTunes-
+				// resolved covers if we discover they're systematically wrong (e.g.
+				// ambiguous names like "Untitled" / "Home" picking the wrong release).
+				const updated = { ...node, cover_url: itunes, image_source: "itunes-jit" } as NodePayload;
 				await cache.write(updated);
 			} catch (e) {
 				// Cache write failures shouldn't break the response — the URL still works.

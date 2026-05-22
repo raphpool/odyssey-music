@@ -23,6 +23,11 @@ export interface BaseNode {
 	citations: Citation[];
 	materialized_at: string;
 	mbid?: string;
+	// Provenance of the resolved image (cover_url / photo_url) when not part of
+	// the materialization output. "itunes-jit" = resolved on-demand via the
+	// iTunes Search fallback in GET /image/:slug. Unset = came from the
+	// editorial pipeline itself. Lets us invalidate JIT picks in batch later.
+	image_source?: "itunes-jit";
 }
 
 export interface GenreNode extends BaseNode {
