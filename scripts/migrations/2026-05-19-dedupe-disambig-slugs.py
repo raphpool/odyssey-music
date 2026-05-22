@@ -2,6 +2,10 @@
 """
 One-shot cleanup of cache files whose slug body ends in `--<disambiguator>`.
 
+WARNING: this rewrites and deletes cache files. Do not run it blindly against
+production-shaped data. Take a backup first, inspect the rewrite plan, and pass
+the intended nodes directory explicitly with --cache-dir.
+
 Background: the chip-JIT path was passing a parent-context string as
 `disambiguator`, which makeSlug() folds into the slug body. The result was
 that the agent stored e.g. `artist:pupajim--roster-of-label-stand-high-records`
@@ -24,13 +28,12 @@ import json
 import re
 import subprocess
 import sys
+import argparse
 from collections import defaultdict
 from pathlib import Path
 
-ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else "/opt/odyssey-music/cache/nodes")
-
 def load_node_spec() -> tuple[dict[str, list[str]], dict[str, list[str]]]:
-    repo = Path(__file__).resolve().parents[1]
+    repo = Path(__file__).resolve().parents[2]
     raw = subprocess.check_output(
         ["npx", "tsx", "scripts/dump-node-spec.ts"],
         cwd=repo,
@@ -74,14 +77,19 @@ def rewrite_edges(node: dict, type_name: str, rewrite_map: dict[str, str]) -> di
 
 
 def main() -> None:
-    if not ROOT.exists():
-        print(f"missing {ROOT}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cache-dir", required=True, help="Path to cache/nodes directory to rewrite")
+    args = parser.parse_args()
+    root = Path(args.cache_dir)
+
+    if not root.exists():
+        print(f"missing {root}")
         sys.exit(1)
 
     # === PASS 1: build rewrite map ===
     rewrite_map: dict[str, str] = {}
     disambig_files: list[tuple[str, str, Path]] = []  # (type, bare_slug, path)
-    type_dirs = sorted(p for p in ROOT.iterdir() if p.is_dir())
+    type_dirs = sorted(p for p in root.iterdir() if p.is_dir())
     for type_dir in type_dirs:
         t = type_dir.name
         if t not in LIST_EDGES:
@@ -126,13 +134,13 @@ def main() -> None:
     # Also include any existing bare file at that target
     for (t, bare), paths in list(groups.items()):
         bare_body = bare.split(":", 1)[1]
-        bare_path = ROOT / t / f"{bare_body}.json"
+        bare_path = root / t / f"{bare_body}.json"
         if bare_path.exists() and bare_path not in paths:
             paths.insert(0, bare_path)
 
     for (t, bare), paths in sorted(groups.items()):
         bare_body = bare.split(":", 1)[1]
-        target = ROOT / t / f"{bare_body}.json"
+        target = root / t / f"{bare_body}.json"
         nodes: list[tuple[Path, dict]] = []
         for p in paths:
             try:
