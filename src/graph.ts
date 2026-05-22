@@ -1,4 +1,5 @@
 import { NodeCache } from "./cache.js";
+import { isNotFoundError } from "./errors.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
@@ -50,7 +51,10 @@ export async function buildGraphFromCache(
 	const payloads: NodePayload[] = [];
 	const seen = new Set<string>();
 	for (const slug of slugs) {
-		const node = await cache.get(slug);
+		const node = await cache.get(slug).catch((e: unknown) => {
+			if (isNotFoundError(e)) return null;
+			throw e;
+		});
 		if (!node || seen.has(node.slug)) continue;
 		payloads.push(node);
 		seen.add(node.slug);

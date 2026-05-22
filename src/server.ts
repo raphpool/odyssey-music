@@ -26,6 +26,7 @@ import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { pipelineConfig, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
+import { AppError, isNotFoundError } from "./errors.js";
 import { buildGraphFromCache } from "./graph.js";
 import { lookupAlbumArt } from "./itunes.js";
 import { logger } from "./logger.js";
@@ -88,7 +89,7 @@ const server = createServer(async (req, res) => {
 	} catch (e) {
 		const msg = e instanceof Error ? e.message : String(e);
 		log.error("request failed", { method: req.method, url: req.url, error: msg });
-		json(res, 500, { error: msg });
+		json(res, e instanceof AppError && e.status ? e.status : 500, { error: msg });
 	}
 });
 
@@ -125,7 +126,10 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			json(res, 400, { error: "missing slug" });
 			return;
 		}
-		const node = await cache.get(raw as Slug).catch(() => null);
+		const node = await cache.get(raw as Slug).catch((e: unknown) => {
+			if (isNotFoundError(e)) return null;
+			throw e;
+		});
 		if (!node) {
 			json(res, 404, { error: "not cached", slug: raw });
 			return;
@@ -320,7 +324,10 @@ async function resolveDisplayImage(
 	if (visited.has(slug)) return { slug, image_url: null, source: "cycle" };
 	visited.add(slug);
 
-	const node = await cache.get(slug).catch(() => null);
+	const node = await cache.get(slug).catch((e: unknown) => {
+		if (isNotFoundError(e)) return null;
+		throw e;
+	});
 	if (!node) return { slug, image_url: null, source: "not-cached" };
 
 	// 1) Direct image on the node itself.
@@ -397,7 +404,10 @@ async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void
 		json(res, 200, { source: "cache", ...cached });
 		return;
 	}
-	const node = await cache.get(slug).catch(() => null);
+	const node = await cache.get(slug).catch((e: unknown) => {
+		if (isNotFoundError(e)) return null;
+		throw e;
+	});
 	if (!node || node.type !== "track") {
 		json(res, 404, { error: "track not cached", slug });
 		return;
@@ -438,7 +448,10 @@ async function handleMaterialize(
 		const slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
 		let effectiveFresh = fresh;
 		if (!fresh) {
-			const cached = await cache.get(slug).catch(() => null);
+			const cached = await cache.get(slug).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
 			if (cached) {
 				// 12h TTL — same as GET /node/:slug. Goal-2 adversarial caught the bypass on
 				// 2026-05-19: a cache hit on /materialize was returning a stale node forever.
@@ -500,7 +513,10 @@ async function runJit(body: MaterializeRequest, opts: { fresh?: boolean } = {}):
 	// When fresh=true the caller explicitly asked for re-materialization (TTL refresh or
 	// ?fresh=1 query) — overwrite the cached node with the new payload.
 	if (!opts.fresh) {
-		const existing = await cache.get(r.slug).catch(() => null);
+		const existing = await cache.get(r.slug).catch((e: unknown) => {
+			if (isNotFoundError(e)) return null;
+			throw e;
+		});
 		if (existing) return existing;
 	}
 	// Stamp the MBID hint (if any) onto the node payload before persisting. Subsequent

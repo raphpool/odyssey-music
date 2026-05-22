@@ -1,5 +1,6 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { reverseFor, reversibleFields } from "./reverse-edges.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { parseSlug } from "./slug.js";
@@ -101,14 +102,19 @@ export class NodeCache {
 		}
 	}
 
-	async get(slug: Slug): Promise<NodePayload | null> {
+	async get(slug: Slug): Promise<NodePayload> {
 		try {
 			const raw = await readFile(this.pathFor(slug), "utf8");
 			const obj = JSON.parse(raw) as unknown;
 			return nodePayloadSchema.parse(obj) as NodePayload;
 		} catch (e) {
-			if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
-			throw e;
+			if (isNotFoundError(e)) throw new NotFoundError(`Node not found: ${slug}`, { cause: e });
+			throw new ValidationError(
+				`Invalid cached node ${slug}: ${e instanceof Error ? e.message : String(e)}`,
+				{
+					cause: e,
+				},
+			);
 		}
 	}
 
@@ -191,7 +197,10 @@ export class NodeCache {
 		sourceEdge: EdgeRef,
 	): Promise<void> {
 		await this.runLocked(target, async () => {
-			const existing = await this.get(target);
+			const existing = await this.get(target).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
 			if (existing) {
 				const updated = applySingleReverse(existing, { field, cardinality, edge: sourceEdge });
 				const validated = nodePayloadSchema.parse(updated) as NodePayload;
