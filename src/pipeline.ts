@@ -62,7 +62,7 @@ async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
 	return map;
 }
 
-import { rankResults, tavilySearch } from "./tools/tavily.js";
+import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
 export interface PipelineDeps {
@@ -96,6 +96,29 @@ export interface PipelineResult {
 		outputTokens: number;
 		costUsd: number;
 	};
+}
+
+type PipelineLog = (line: string) => void;
+
+interface CorpusPage {
+	url: string;
+	title?: string;
+	markdown: string;
+}
+
+interface ResearchResult {
+	searchResults: TavilyResult[];
+	corpus: CorpusPage[];
+	allowedUrls: Set<string>;
+	searchMs: number;
+	fetchMs: number;
+}
+
+interface DraftResult {
+	raw: Record<string, unknown>;
+	llmMs: number;
+	inputTokens: number;
+	outputTokens: number;
 }
 
 // --- Gemini schema builders ---
@@ -577,14 +600,24 @@ OUTPUT: a single JSON object. Nothing before or after. No markdown fences.`;
 export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Promise<PipelineResult> {
 	const log = deps.logger ?? ((): void => undefined);
 	const t0 = Date.now();
-	const apiKey = deps.geminiApiKey ?? pipelineConfig.geminiApiKey;
-	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
+	const research = await researchTarget(input, deps, log);
+	const draft = await generateNodeDraft(input, deps, research, log);
+	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
+	await enrichFromMusicBrainz(node, input, log);
+	const validated = validateNode(node);
 
-	// Step 1: research.
-	// When the caller pinned an MBID for a track/project, pre-resolve the MB metadata so we
-	// can enrich the Tavily search query with artist + album context. Without this, a chip
-	// click on "Janice STFU" (mbid set, no disambig) searches Tavily for "Janice STFU track
-	// music wiki discogs" and Tavily returns only YouTube/Spotify → empty corpus → LLM slop.
+	return {
+		node: validated,
+		slug: validated.slug,
+		metrics: buildMetrics(t0, research, draft),
+	};
+}
+
+async function researchTarget(
+	input: PipelineInput,
+	deps: PipelineDeps,
+	log: PipelineLog,
+): Promise<ResearchResult> {
 	let queryHint = "";
 	if (input.mbid && input.type === "track") {
 		try {
@@ -636,7 +669,21 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	}
 	log(`[pipeline] fetch ${fetchMs}ms ok=${corpus.length}/${topUrls.length}`);
 
-	// Step 2: single LLM call with structured output
+	const allowedUrls = new Set<string>();
+	for (const r of searchResults) allowedUrls.add(r.url);
+	for (const c of corpus) allowedUrls.add(c.url);
+
+	return { searchResults, corpus, allowedUrls, searchMs, fetchMs };
+}
+
+async function generateNodeDraft(
+	input: PipelineInput,
+	deps: PipelineDeps,
+	research: ResearchResult,
+	log: PipelineLog,
+): Promise<DraftResult> {
+	const apiKey = deps.geminiApiKey ?? pipelineConfig.geminiApiKey;
+	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
 	const tLlm = Date.now();
 	const { schema } = makeNodeSchema(input.type);
 	const ai = new GoogleGenAI({ apiKey });
@@ -646,10 +693,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// re-materializations of the same entity produce visibly different prose. The agent is
 	// instructed to use this as a writing-angle hint, not to invent facts.
 	const sessionNonce = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-	const userPrompt = `${buildUserPrompt(input, searchResults, corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
-	const allowedUrls = new Set<string>();
-	for (const r of searchResults) allowedUrls.add(r.url);
-	for (const c of corpus) allowedUrls.add(c.url);
+	const userPrompt = `${buildUserPrompt(input, research.searchResults, research.corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
 
 	async function generate() {
 		return ai.models.generateContent({
@@ -686,9 +730,19 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const raw = resp.text;
 	if (!raw) throw new Error("Gemini returned no text");
 	const parsedRaw = JSON.parse(raw) as Record<string, unknown>;
+	const usage = (
+		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
+	).usageMetadata;
 
-	// Step 3: canonicalize + Zod validate
-	const node = canonicalize(parsedRaw, input, corpus, allowedUrls);
+	return {
+		raw: parsedRaw,
+		llmMs,
+		inputTokens: usage?.promptTokenCount ?? 0,
+		outputTokens: usage?.candidatesTokenCount ?? 0,
+	};
+}
+
+async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: PipelineLog): Promise<void> {
 	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	if (input.type === "artist") {
 		try {
@@ -930,35 +984,28 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			obj.personnel = pers.filter((p) => !prodKeys.has(key(p)));
 		}
 	}
-	const validated = nodePayloadSchema.parse(node) as NodePayload;
-	const totalBytes = corpus.reduce((a, c) => a + c.markdown.length, 0);
-	const usage = (
-		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
-	).usageMetadata;
-	const inputTokens = usage?.promptTokenCount ?? 0;
-	const outputTokens = usage?.candidatesTokenCount ?? 0;
+}
+
+function buildMetrics(t0: number, research: ResearchResult, draft: DraftResult): PipelineResult["metrics"] {
+	const totalBytes = research.corpus.reduce((a, c) => a + c.markdown.length, 0);
 	// Gemini 3.1 Flash Lite preview pricing (approx): $0.075 / 1M input, $0.30 / 1M output.
 	const costUsd =
-		(inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
-			outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
+		(draft.inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
+			draft.outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
 		1_000_000;
 
 	return {
-		node: validated,
-		slug: validated.slug,
-		metrics: {
-			searchMs,
-			fetchMs,
-			llmMs,
-			totalMs: Date.now() - t0,
-			searchCount: 1,
-			fetchCount: corpus.length,
-			urlsFetched: corpus.map((c) => c.url),
-			corpusBytes: totalBytes,
-			inputTokens,
-			outputTokens,
-			costUsd,
-		},
+		searchMs: research.searchMs,
+		fetchMs: research.fetchMs,
+		llmMs: draft.llmMs,
+		totalMs: Date.now() - t0,
+		searchCount: 1,
+		fetchCount: research.corpus.length,
+		urlsFetched: research.corpus.map((c) => c.url),
+		corpusBytes: totalBytes,
+		inputTokens: draft.inputTokens,
+		outputTokens: draft.outputTokens,
+		costUsd,
 	};
 }
 
@@ -1001,7 +1048,7 @@ function buildUserPrompt(
 	return prompt;
 }
 
-function canonicalize(
+function canonicalizeDraft(
 	raw: Record<string, unknown>,
 	input: PipelineInput,
 	corpus: { url: string; markdown?: string }[],
@@ -1101,6 +1148,10 @@ function canonicalize(
 		}
 	}
 	return next;
+}
+
+function validateNode(node: unknown): NodePayload {
+	return nodePayloadSchema.parse(node) as NodePayload;
 }
 
 function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string; mbid?: string } | null {
