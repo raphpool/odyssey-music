@@ -21,6 +21,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
+import { pipelineConfig, pricingConfig } from "./config.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
@@ -484,17 +485,17 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 // samples + influences still rely on the LLM reading enough of the page, so we keep a
 // large budget. Latency cost: +1-2s on cold materialize; Gemini Flash Lite prefill is
 // cheap (~$0.075/M tokens) so dollar cost is negligible.
-const MAX_CORPUS_BYTES = 80_000;
-const PER_PAGE_BUDGET = 60_000;
-const SEARCH_RESULTS = 7;
+const MAX_CORPUS_BYTES = pipelineConfig.maxCorpusBytes;
+const PER_PAGE_BUDGET = pipelineConfig.perPageBudgetBytes;
+const SEARCH_RESULTS = pipelineConfig.searchResults;
 // FETCH_TOP_K is now dynamic (see below). When a wikipedia-ranked result is present in the
 // top of search, one fetch is enough (Wikipedia is the canonical music source). Without it
 // — e.g. for just-dropped tracks where the Wiki article doesn't exist yet (Raph caught
 // 2026-05-19 on "Janice STFU" from Drake's ICEMAN) — we need to compile from multiple music
 // outlets (Pitchfork, Genius, Rolling Stone, Complex, HipHopDX, ...) to get real article
 // context instead of LLM-confabulated slop.
-const FETCH_TOP_K_WITH_WIKI = 1;
-const FETCH_TOP_K_NO_WIKI = 3;
+const FETCH_TOP_K_WITH_WIKI = pipelineConfig.fetchTopKWithWiki;
+const FETCH_TOP_K_NO_WIKI = pipelineConfig.fetchTopKNoWiki;
 
 function safeHost(u: string): string {
 	try {
@@ -586,7 +587,7 @@ OUTPUT: a single JSON object. Nothing before or after. No markdown fences.`;
 export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Promise<PipelineResult> {
 	const log = deps.logger ?? ((): void => undefined);
 	const t0 = Date.now();
-	const apiKey = deps.geminiApiKey ?? process.env.GEMINI_API_KEY ?? "";
+	const apiKey = deps.geminiApiKey ?? pipelineConfig.geminiApiKey;
 	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
 
 	// Step 1: research.
@@ -649,7 +650,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const tLlm = Date.now();
 	const { schema } = makeNodeSchema(input.type);
 	const ai = new GoogleGenAI({ apiKey });
-	const model = deps.model ?? "gemini-3.1-flash-lite-preview";
+	const model = deps.model ?? pipelineConfig.defaultModel;
 
 	// Variability nonce (goal-2): each call carries a unique session id so that two fresh
 	// re-materializations of the same entity produce visibly different prose. The agent is
@@ -670,7 +671,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				responseSchema: schema,
 				// Higher temperature (goal-2 variability rubric): two fresh materializations of
 				// the same entity must produce substantially different prose. 0.4 was too tight.
-				temperature: 0.95,
+				temperature: pipelineConfig.temperature,
 				// Disable thinking on Flash Lite — we don't need CoT for this constrained extraction
 				// task, and it adds 1-3s of latency for no measurable accuracy gain.
 				thinkingConfig: { thinkingBudget: 0 },
@@ -685,7 +686,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		const msg = e instanceof Error ? e.message : String(e);
 		if (msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED")) {
 			log(`[pipeline] gemini transient (${msg.slice(0, 80)}), retrying in 600ms`);
-			await new Promise((r) => setTimeout(r, 600));
+			await new Promise((r) => setTimeout(r, pipelineConfig.retryDelayMs));
 			resp = await generate();
 		} else {
 			throw e;
@@ -954,7 +955,10 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const inputTokens = usage?.promptTokenCount ?? 0;
 	const outputTokens = usage?.candidatesTokenCount ?? 0;
 	// Gemini 3.1 Flash Lite preview pricing (approx): $0.075 / 1M input, $0.30 / 1M output.
-	const costUsd = (inputTokens * 0.075 + outputTokens * 0.3) / 1_000_000;
+	const costUsd =
+		(inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
+			outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
+		1_000_000;
 
 	return {
 		node: validated,

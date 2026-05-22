@@ -24,6 +24,7 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
+import { pipelineConfig, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { buildGraphFromCache } from "./graph.js";
 import { lookupAlbumArt } from "./itunes.js";
@@ -35,14 +36,13 @@ import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { NODE_TYPES } from "./types.js";
 import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.js";
 
-const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
-const CACHE_DIR = process.env.ODYSSEY_CACHE_DIR ?? join(process.cwd(), "cache");
-const STREAM_CACHE_DIR = process.env.STREAM_CACHE_DIR ?? join(CACHE_DIR, "..", "stream-cache");
-const MB_DB_PATH = process.env.MB_DB_PATH ?? join(process.cwd(), "data", "musicbrainz.sqlite");
+const PORT = serverConfig.port;
+const CACHE_DIR = serverConfig.cacheDir;
+const STREAM_CACHE_DIR = streamConfig.cacheDir;
 
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
-const catalogIndex: CatalogIndex = openCatalogIndex(MB_DB_PATH);
+const catalogIndex: CatalogIndex = openCatalogIndex();
 let cacheIndex: CacheIndex | null = null;
 // Built lazily on first /search hit so the server can boot even before the cache is warm.
 async function getCacheIndex(): Promise<CacheIndex> {
@@ -131,9 +131,8 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		// Freshness TTL (2026-05-19 goal-2): a node older than 12h is stale. Re-materialize
 		// synchronously so the GET response carries the fresh payload (Henry/Raph want JIT
 		// feel — "tu refresh la page t'auras pas la meme chose").
-		const TTL_MS = 12 * 3600 * 1000;
 		const matAt = new Date(node.materialized_at).getTime();
-		if (Number.isFinite(matAt) && Date.now() - matAt > TTL_MS) {
+		if (Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs) {
 			try {
 				const req2: MaterializeRequest = { type: node.type, name: node.name };
 				const dis = (node as unknown as Record<string, unknown>).disambiguator;
@@ -443,9 +442,8 @@ async function handleMaterialize(
 			if (cached) {
 				// 12h TTL — same as GET /node/:slug. Goal-2 adversarial caught the bypass on
 				// 2026-05-19: a cache hit on /materialize was returning a stale node forever.
-				const TTL_MS = 12 * 3600 * 1000;
 				const matAt = new Date(cached.materialized_at).getTime();
-				const stale = Number.isFinite(matAt) && Date.now() - matAt > TTL_MS;
+				const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
 				// Also re-mat when the caller pinned an MBID and the cached node either has no
 				// MBID or a different one — the cached node was materialized via a name-only
 				// search and may be the wrong entity (Raph caught 2026-05-19 on Janice STFU:

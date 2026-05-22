@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { cliConfig } from "./config.js";
 import { type CrawlOptions, type CrawlProgress, crawl } from "./crawler.js";
 import { loadEnv } from "./env.js";
 
@@ -137,13 +138,9 @@ function isAllowedWebhookUrl(s: string): boolean {
 		if (u.protocol !== "http:" && u.protocol !== "https:") return false;
 		// Restrict to localhost by default. If you need to call out, set ODYSSEY_WEBHOOK_ALLOW
 		// to a comma-separated host allowlist (e.g. "example.com,api.example.com").
-		const allow = (process.env.ODYSSEY_WEBHOOK_ALLOW ?? "")
-			.split(",")
-			.map((h) => h.trim().toLowerCase())
-			.filter(Boolean);
 		const localhost = ["localhost", "127.0.0.1", "[::1]", "::1"];
 		const host = u.hostname.toLowerCase();
-		return localhost.includes(host) || allow.includes(host);
+		return localhost.includes(host) || cliConfig.webhookAllowlist.includes(host);
 	} catch {
 		return false;
 	}

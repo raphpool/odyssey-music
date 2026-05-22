@@ -10,6 +10,7 @@
  * (150ms) plus the natural typing cadence keeps us well under the published 50 req/s ceiling
  * for properly-UA'd clients.
  */
+import { musicBrainzConfig } from "./config.js";
 import type { NodeType } from "./types.js";
 
 export interface CatalogResult {
@@ -26,11 +27,9 @@ export interface CatalogIndex {
 	close(): void;
 }
 
-const MB_BASE = "https://musicbrainz.org/ws/2";
-const USER_AGENT =
-	process.env.MB_USER_AGENT ??
-	"odyssey-music/0.1 (hfontanier@gmail.com; https://dropcliffs.com/labs/odyssey)";
-const FETCH_TIMEOUT_MS = 4000;
+const MB_BASE = musicBrainzConfig.baseUrl;
+const USER_AGENT = musicBrainzConfig.userAgent;
+const FETCH_TIMEOUT_MS = musicBrainzConfig.fetchTimeoutMs;
 
 interface MbArtist {
 	id: string;
@@ -102,8 +101,8 @@ const SPECIAL_PURPOSE_MBIDS = new Set([
 // that a user typing+correcting their query re-hits the cache, short enough that a fresh
 // release shows up within the same session. Capped at 500 entries with FIFO eviction.
 const mbCache = new Map<string, { at: number; data: unknown }>();
-const MB_CACHE_TTL_MS = 5 * 60 * 1000;
-const MB_CACHE_MAX = 500;
+const MB_CACHE_TTL_MS = musicBrainzConfig.cacheTtlMs;
+const MB_CACHE_MAX = musicBrainzConfig.cacheMaxEntries;
 
 async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
 	const key = `${path}?${Object.entries(params)
