@@ -73,8 +73,13 @@ async function main(): Promise<void> {
 			}
 			const rawNode = parsed as unknown as Record<string, unknown>;
 			const imageField =
-				parsed.type === "artist" ? "photo_url" : parsed.type === "project" || parsed.type === "track" ? "cover_url" : null;
-			const imageUrl = imageField && typeof rawNode[imageField] === "string" ? (rawNode[imageField] as string) : undefined;
+				parsed.type === "artist"
+					? "photo_url"
+					: parsed.type === "project" || parsed.type === "track"
+						? "cover_url"
+						: null;
+			const imageUrl =
+				imageField && typeof rawNode[imageField] === "string" ? (rawNode[imageField] as string) : undefined;
 			const node: VizNode = {
 				id: parsed.slug,
 				type: parsed.type,

@@ -5,6 +5,13 @@
  *   GET  /health             → 'ok'
  *   GET  /data.json          → full graph JSON, computed live from cache
  *   GET  /node/:slug         → one node payload (404 if not cached)
+ *   GET  /image/:slug        → resolves the best display image for the node,
+ *                              hitting iTunes Search for projects/tracks without
+ *                              a cover, walking edges (genre→landmark project,
+ *                              label→notable release, artist→discography) when
+ *                              the node has no direct cover of its own. Any
+ *                              iTunes hit is persisted to the cached JSON so
+ *                              subsequent calls return instantly.
  *   POST /materialize        → body {type, name, disambiguator?} → runs agent,
  *                              writes to cache, returns the node + metrics.
  *                              Same-slug concurrent requests share one in-flight run.
@@ -17,6 +24,7 @@ import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { loadEnv } from "./env.js";
+import { lookupAlbumArt } from "./itunes.js";
 import { type CatalogIndex, type CatalogResult, openCatalogIndex } from "./musicbrainz.js";
 import { runPipeline } from "./pipeline.js";
 import { backfillGenreReverses } from "./reverse-edges.js";
@@ -127,6 +135,23 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			}
 		}
 		json(res, 200, { source: "cache", node });
+		return;
+	}
+	if (req.method === "GET" && path.startsWith("/image/")) {
+		const raw = decodeURIComponent(path.slice("/image/".length));
+		if (!raw) {
+			json(res, 400, { error: "missing slug" });
+			return;
+		}
+		try {
+			const result = await resolveDisplayImage(raw as Slug, new Set());
+			// 24h public cache — the image URL itself never changes once resolved, and
+			// iTunes' rate limit makes re-asking expensive. Stale OK for an hour past expiry.
+			res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=3600");
+			json(res, 200, result);
+		} catch (e) {
+			json(res, 500, { error: e instanceof Error ? e.message : String(e) });
+		}
 		return;
 	}
 	if (req.method === "GET" && path === "/search") {
@@ -250,6 +275,95 @@ async function handleSearch(
 			catalog: trimmed.filter((h) => h.source === "catalog").length,
 		},
 	};
+}
+
+/**
+ * Resolve the best "hero" image for a given node, walking edges when needed.
+ *
+ * Strategy by type:
+ *   - project / track: if the node already has cover_url, return it. Otherwise
+ *     query iTunes Search with name + first artist's name; on a hit, persist
+ *     the 1500×1500 URL into the cache so subsequent calls are instant.
+ *   - track: if iTunes misses, fall back to the parent project's image.
+ *   - artist: if photo_url is present, return it. Otherwise borrow from one of
+ *     their projects (discography → notable_tracks→project).
+ *   - genre: borrow from a landmark project / track.
+ *   - label: borrow from a notable release.
+ *
+ * `visited` guards against pathological cycles in the edge graph (e.g. a track
+ * pointing back to itself through a "remix_of" loop). Returns null when no
+ * image can be resolved through any path.
+ */
+async function resolveDisplayImage(
+	slug: Slug,
+	visited: Set<string>,
+): Promise<{ slug: Slug; image_url: string | null; source: string }> {
+	if (visited.has(slug)) return { slug, image_url: null, source: "cycle" };
+	visited.add(slug);
+
+	const node = await cache.get(slug).catch(() => null);
+	if (!node) return { slug, image_url: null, source: "not-cached" };
+
+	// 1) Direct image on the node itself.
+	const raw = node as unknown as Record<string, unknown>;
+	const directField = node.type === "artist" ? "photo_url" : "cover_url";
+	const direct = raw[directField];
+	if (typeof direct === "string" && direct) {
+		return { slug, image_url: direct, source: "self" };
+	}
+
+	// 2) For project/track, try iTunes — and persist any hit to the cache.
+	if (node.type === "project" || node.type === "track") {
+		const artistRef = (raw.artists as EdgeRef[] | undefined)?.[0];
+		const itunes = await lookupAlbumArt(node.name, artistRef?.name);
+		if (itunes) {
+			try {
+				const updated = { ...node, cover_url: itunes } as NodePayload;
+				await cache.write(updated);
+			} catch (e) {
+				// Cache write failures shouldn't break the response — the URL still works.
+				process.stderr.write(
+					`[image] persist failed for ${slug}: ${e instanceof Error ? e.message : String(e)}\n`,
+				);
+			}
+			return { slug, image_url: itunes, source: "itunes" };
+		}
+	}
+
+	// 3) Walk edges to borrow an image from a related node.
+	const tryEdges = async (
+		refs: EdgeRef | EdgeRef[] | undefined,
+	): Promise<{ url: string; via: Slug } | null> => {
+		if (!refs) return null;
+		const list = Array.isArray(refs) ? refs : [refs];
+		for (const r of list) {
+			const recurse = await resolveDisplayImage(r.slug, visited);
+			if (recurse.image_url) return { url: recurse.image_url, via: r.slug };
+		}
+		return null;
+	};
+
+	const edges: Array<EdgeRef | EdgeRef[] | undefined> = (() => {
+		switch (node.type) {
+			case "track":
+				return [raw.project as EdgeRef | undefined];
+			case "artist":
+				return [raw.discography as EdgeRef[] | undefined, raw.notable_tracks as EdgeRef[] | undefined];
+			case "genre":
+				return [raw.landmark_projects as EdgeRef[] | undefined, raw.landmark_tracks as EdgeRef[] | undefined];
+			case "label":
+				return [raw.notable_releases as EdgeRef[] | undefined];
+			default:
+				return [];
+		}
+	})();
+
+	for (const e of edges) {
+		const hit = await tryEdges(e);
+		if (hit) return { slug, image_url: hit.url, source: `related:${hit.via}` };
+	}
+
+	return { slug, image_url: null, source: "no-match" };
 }
 
 async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void> {

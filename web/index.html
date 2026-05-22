@@ -150,6 +150,53 @@ function safeCssUrl(u) {
   return String(u || "").replace(/'/g, "%27").replace(/[\s]/g, "%20");
 }
 
+// In-flight + completed JIT image lookups, keyed by node id. Prevents duplicate
+// requests when the user rapidly clicks back to a node whose hero is still resolving.
+const imageJitPromises = new Map();
+
+/**
+ * Fire `GET /image/:slug`, then mutate the currently-focused .node DOM to
+ * paint in the resolved image. Idempotent — second calls for the same slug
+ * share the original promise; if the user has navigated away by the time
+ * the call returns, we just update `byId` (for future visits) and exit.
+ */
+async function jitResolveHero(slug) {
+  if (!imageJitPromises.has(slug)) {
+    imageJitPromises.set(slug, fetch(`${API_BASE}/image/${encodeURIComponent(slug)}`).then((r) => r.ok ? r.json() : null).catch(() => null));
+  }
+  const result = await imageJitPromises.get(slug);
+  if (!result || !result.image_url) return;
+  // Cache on the in-memory graph so revisits and edge-walks see it immediately.
+  const cached = byId.get(slug);
+  if (cached) cached.image_url = result.image_url;
+  // Only paint if this slug is still the focused node (user might've clicked away).
+  const currentId = crumbs[crumbs.length - 1];
+  if (currentId !== slug) return;
+  paintHero(result.image_url);
+}
+
+function paintHero(url) {
+  const node = contentEl.querySelector(".node");
+  if (!node) return;
+  const hero = node.querySelector(".hero");
+  if (!hero) return;
+  const safe = safeCssUrl(url);
+  hero.style.backgroundImage = `url('${safe}')`;
+  hero.classList.remove("no-image");
+  // Insert (or update) the tint backdrop. Inserted at the very start of .node so
+  // it sits beneath everything via z-index: -2 / -1 in the stylesheet.
+  let tint = node.querySelector(":scope > .node-tint");
+  if (!tint) {
+    tint = document.createElement("div");
+    tint.className = "node-tint";
+    const fade = document.createElement("div");
+    fade.className = "node-tint-fade";
+    node.prepend(fade);
+    node.prepend(tint);
+  }
+  tint.style.backgroundImage = `url('${safe}')`;
+}
+
 let DATA = null;
 let byId = new Map();
 let SEED_ID = null;
@@ -541,6 +588,13 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
       </div>
     </div>
   `;
+
+  // JIT hero-image resolution: if no image is available from the static bundle
+  // (or from related nodes), ask the server. The server hits iTunes Search for
+  // projects/tracks, walks edges for genres/labels/artists, and persists any hit
+  // to the cache so subsequent loads are instant. Render happens immediately
+  // with the gradient placeholder; we swap in the image when the call returns.
+  if (!heroUrl && JIT_ENABLED) jitResolveHero(id);
 
   contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
     el.addEventListener("click", (e) => {
