@@ -16,7 +16,13 @@
     "test:live": "vitest --run test/pipeline.live.test.ts",
     "check": "npm run lint && npm run typecheck && npm run test",
     "crawl": "tsx src/cli.ts",
-    "server": "tsx src/server.ts"
+    "server": "tsx src/server.ts",
+    "build:graph": "tsx scripts/build-graph-json.ts cache web/data.json",
+    "analyze:coverage": "tsx scripts/analyze-coverage.ts",
+    "topup:dangling": "tsx scripts/top-up-dangling.ts",
+    "smoke:pipeline": "tsx scripts/smoke-pipeline.ts",
+    "deploy:web": "bash scripts/deploy-web.sh",
+    "deploy:server": "bash deploy/deploy-server.sh"
   },
   "bin": {
     "odyssey-crawl": "./bin/odyssey-crawl.mjs"
