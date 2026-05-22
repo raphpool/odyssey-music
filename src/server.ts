@@ -25,14 +25,14 @@ import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { loadEnv } from "./env.js";
+import { buildGraphFromCache } from "./graph.js";
 import { lookupAlbumArt } from "./itunes.js";
 import { type CatalogIndex, type CatalogResult, openCatalogIndex } from "./musicbrainz.js";
 import { runPipeline } from "./pipeline.js";
-import { backfillGenreReverses } from "./reverse-edges.js";
 import { makeSlug, parseSlug } from "./slug.js";
 import { handleStream } from "./stream.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
-import { LIST_EDGES_BY_TYPE, NODE_TYPES, OPTIONAL_TEXT_FIELDS, SINGULAR_EDGES_BY_TYPE } from "./types.js";
+import { NODE_TYPES } from "./types.js";
 import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.js";
 
 const PORT = Number.parseInt(process.env.PORT ?? "18791", 10);
@@ -112,7 +112,7 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	if (req.method === "GET" && path === "/data.json") {
-		const graph = await buildGraph();
+		const graph = await buildGraphFromCache(CACHE_DIR);
 		res.setHeader("Cache-Control", "public, max-age=10");
 		json(res, 200, graph);
 		return;
@@ -511,82 +511,6 @@ async function runJit(body: MaterializeRequest, opts: { fresh?: boolean } = {}):
 	const enriched = body.mbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
 	await cache.write(enriched);
 	return enriched;
-}
-
-async function buildGraph(): Promise<{
-	generated_at: string;
-	total: number;
-	types: Record<string, number>;
-	nodes: unknown[];
-	edges: { source: string; target: string; kind: string }[];
-}> {
-	const slugs = await cache.listSlugs();
-	const nodes: NodePayload[] = [];
-	for (const slug of slugs) {
-		const n = await cache.get(slug).catch(() => null);
-		if (n) nodes.push(n);
-	}
-	const types: Record<string, number> = {};
-	const vizNodes: unknown[] = [];
-	const edges: { source: string; target: string; kind: string }[] = [];
-	const cachedSet = new Set(nodes.map((n) => n.slug));
-	const teaserField: Record<NodePayload["type"], string> = {
-		genre: "editorial_definition",
-		label: "editorial_description",
-		artist: "editorial_bio",
-		project: "editorial_pitch",
-		track: "editorial_teaser",
-	};
-	for (const n of nodes) {
-		types[n.type] = (types[n.type] ?? 0) + 1;
-		const obj = n as unknown as Record<string, unknown>;
-		const teaserVal = obj[teaserField[n.type]];
-		const nodeEdges: Record<string, EdgeRef[] | EdgeRef> = {};
-		for (const field of LIST_EDGES_BY_TYPE[n.type]) {
-			const v = obj[field];
-			if (Array.isArray(v) && v.length) nodeEdges[field] = v as EdgeRef[];
-		}
-		for (const field of SINGULAR_EDGES_BY_TYPE[n.type]) {
-			const v = obj[field];
-			if (v && typeof v === "object") nodeEdges[field] = v as EdgeRef;
-		}
-		const facts: Record<string, string> = {};
-		for (const field of OPTIONAL_TEXT_FIELDS[n.type]) {
-			const v = obj[field];
-			if (typeof v === "string" && v.trim()) facts[field] = v;
-		}
-		vizNodes.push({
-			id: n.slug,
-			type: n.type,
-			name: n.name,
-			teaser: typeof teaserVal === "string" ? teaserVal : "",
-			article: n.editorial_article,
-			citations: n.citations,
-			edges: nodeEdges,
-			facts,
-			materialized_at: n.materialized_at,
-		});
-	}
-	// Back-fill missing reverse genre↔genre fields BEFORE computing edges, so
-	// e.g. minimal-techno inherits subgenres / parent_genres / related_genres
-	// from the forward edges declared on other genre nodes.
-	backfillGenreReverses(vizNodes as unknown as Parameters<typeof backfillGenreReverses>[0]);
-	for (const vn of vizNodes as unknown as { id: string; edges: Record<string, EdgeRef[] | EdgeRef> }[]) {
-		for (const [kind, value] of Object.entries(vn.edges)) {
-			const refs = Array.isArray(value) ? value : [value];
-			for (const ref of refs) {
-				if (!cachedSet.has(ref.slug)) continue;
-				edges.push({ source: vn.id, target: ref.slug, kind });
-			}
-		}
-	}
-	return {
-		generated_at: new Date().toISOString(),
-		total: nodes.length,
-		types,
-		nodes: vizNodes,
-		edges,
-	};
 }
 
 async function readJson<T>(req: IncomingMessage): Promise<T> {
