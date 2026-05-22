@@ -28,7 +28,7 @@ import { serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { logger } from "./logger.js";
-import { type CatalogIndex, openCatalogIndex } from "./musicbrainz.js";
+import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
 import { createImageService } from "./services/image-service.js";
 import { createMaterializeService, type MaterializeRequest } from "./services/materialize-service.js";
@@ -44,7 +44,7 @@ const STREAM_CACHE_DIR = streamConfig.cacheDir;
 
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
-const catalogIndex: CatalogIndex = openCatalogIndex();
+const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
 const log = logger.child({ module: "server" });
 let cacheIndex: CacheIndex | null = null;
 // Built lazily on first /search hit so the server can boot even before the cache is warm.

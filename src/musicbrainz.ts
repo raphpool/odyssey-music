@@ -795,7 +795,7 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	return out;
 }
 
-export function openCatalogIndex(_unused?: string): CatalogIndex {
+export function createMusicBrainzCatalog(): CatalogIndex {
 	return {
 		async search(query, limit = 5) {
 			const per = Math.max(2, Math.ceil(limit / 2));
