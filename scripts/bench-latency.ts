@@ -1,9 +1,9 @@
 /**
- * Latency benchmark: run the agent on N fresh seeds in parallel and report
+ * Latency benchmark: run the pipeline on N fresh seeds in parallel and report
  * p50/p90/p99 wall-clock + tool-call breakdown.
  */
-import { runAgent } from "../src/agent.js";
 import { loadEnv } from "../src/env.js";
+import { runPipeline } from "../src/pipeline.js";
 
 const SEEDS = [
 	{ type: "track" as const, name: "Windowlicker" },
@@ -39,7 +39,7 @@ async function main(): Promise<void> {
 			if (!seed) return;
 			const start = Date.now();
 			try {
-				const r = await runAgent(seed, {
+				const r = await runPipeline(seed, {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
 				});
@@ -47,14 +47,14 @@ async function main(): Promise<void> {
 				results.push({
 					slug: r.slug,
 					ms,
-					turns: r.metrics.turns,
-					searches: r.metrics.search_calls,
-					fetches: r.metrics.fetch_calls,
-					cost: r.metrics.cost_usd,
-					attempts: r.metrics.emit_attempts,
+					turns: 1,
+					searches: r.metrics.searchCount,
+					fetches: r.metrics.fetchCount,
+					cost: r.metrics.costUsd,
+					attempts: 1,
 				});
 				console.log(
-					`  ${r.slug} ${ms}ms turns=${r.metrics.turns} search=${r.metrics.search_calls} fetch=${r.metrics.fetch_calls} attempts=${r.metrics.emit_attempts} cost=$${r.metrics.cost_usd.toFixed(5)}`,
+					`  ${r.slug} ${ms}ms search=${r.metrics.searchCount} fetch=${r.metrics.fetchCount} cost=$${r.metrics.costUsd.toFixed(5)}`,
 				);
 			} catch (e) {
 				const ms = Date.now() - start;

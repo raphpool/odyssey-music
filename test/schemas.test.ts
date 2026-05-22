@@ -20,6 +20,22 @@ const baseArtist = {
 	members: [],
 };
 
+const baseTrack = {
+	type: "track" as const,
+	slug: "track:tendency",
+	name: "Tendency",
+	editorial_teaser: "A Jan Jelinek track.",
+	editorial_article: "A real prose body about the track Tendency. ".repeat(8),
+	citations: [{ url: "https://example.com/tendency", title: "Tendency" }],
+	materialized_at: new Date().toISOString(),
+	artists: [{ type: "artist", slug: "artist:jan-jelinek", name: "Jan Jelinek" }],
+	genres: [],
+	producers: [],
+	samples: [],
+	sampled_by: [],
+	remixed_by: [],
+};
+
 describe("nodePayloadSchema", () => {
 	it("accepts a well-formed artist node", () => {
 		const parsed = nodePayloadSchema.parse(baseArtist);
@@ -37,45 +53,30 @@ describe("nodePayloadSchema", () => {
 		expect(() => nodePayloadSchema.parse(bad)).toThrow();
 	});
 
+	it("rejects a track with a too-short article", () => {
+		const track = { ...baseTrack, editorial_article: "A real article body." };
+		expect(() => nodePayloadSchema.parse(track)).toThrow();
+	});
+
+	it("rejects a track with empty citations", () => {
+		const track = { ...baseTrack, citations: [] };
+		expect(() => nodePayloadSchema.parse(track)).toThrow();
+	});
+
 	it("rejects a track with bogus edge type", () => {
-		const track = {
-			type: "track",
-			slug: "track:tendency",
-			name: "Tendency",
-			editorial_teaser: "A Jan Jelinek track.",
-			editorial_article: "A real article body.",
-			citations: [],
-			materialized_at: new Date().toISOString(),
-			artists: [{ type: "not-a-type", slug: "x:y", name: "x" }],
-			genres: [],
-			producers: [],
-			samples: [],
-			sampled_by: [],
-			remixed_by: [],
-		};
+		const track = { ...baseTrack, artists: [{ type: "not-a-type", slug: "x:y", name: "x" }] };
 		expect(() => nodePayloadSchema.parse(track)).toThrow();
 	});
 
 	it("accepts an optional singular edge (track.project) when present", () => {
 		const track = {
-			type: "track" as const,
-			slug: "track:tendency",
-			name: "Tendency",
+			...baseTrack,
 			editorial_teaser: "Teaser.",
-			editorial_article: "A real prose body about the track Tendency. ".repeat(8),
-			citations: [{ url: "https://example.com/tendency", title: "Tendency" }],
-			materialized_at: new Date().toISOString(),
-			artists: [{ type: "artist", slug: "artist:jan-jelinek", name: "Jan Jelinek" }],
 			project: {
 				type: "project",
 				slug: "project:loop-finding-jazz-records",
 				name: "Loop-Finding-Jazz-Records",
 			},
-			genres: [],
-			producers: [],
-			samples: [],
-			sampled_by: [],
-			remixed_by: [],
 		};
 		expect(() => nodePayloadSchema.parse(track)).not.toThrow();
 	});

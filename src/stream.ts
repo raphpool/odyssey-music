@@ -4,10 +4,7 @@
  * First request for a videoId: fetch bestaudio bytes from the local yt-dlp
  * bridge (http://127.0.0.1:YTDLP_BRIDGE_PORT/download/:videoId) and write
  * them to {streamCacheDir}/{videoId}.m4a (~2-5s for a 3-min track). The
- * bridge runs on Henry's laptop and is reached through an SSH reverse
- * tunnel — yt-dlp executes on a residential IP, sidestepping YouTube's
- * "Sign in to confirm you're not a bot" anti-bot wall that blocks the
- * droplet's datacenter IP.
+ * bridge runs behind deployment-specific networking (ADR 2026-05-19 stream-bridge).
  *
  * Subsequent requests: serve the cached file with HTTP Range support so the
  * <audio> element can seek.
@@ -19,12 +16,8 @@ import { mkdir, readdir, rename, stat, unlink } from "node:fs/promises";
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { join } from "node:path";
 import { pipeline } from "node:stream/promises";
+import { streamConfig } from "./config.js";
 
-const MAX_STREAM_CACHE_BYTES = Number.parseInt(
-	process.env.STREAM_CACHE_MAX_BYTES ?? `${5 * 1024 * 1024 * 1024}`,
-	10,
-);
-const BRIDGE_URL = process.env.YTDLP_BRIDGE_URL ?? "http://127.0.0.1:18889";
 const VIDEO_ID_RE = /^[A-Za-z0-9_-]{11}$/;
 
 const inflight = new Map<string, Promise<string>>();
@@ -41,7 +34,7 @@ async function downloadAudio(streamCacheDir: string, videoId: string): Promise<s
 	await mkdir(streamCacheDir, { recursive: true });
 	const finalPath = fileFor(streamCacheDir, videoId);
 	const tmpPath = `${finalPath}.${process.pid}.${Date.now()}.tmp`;
-	const bridge = `${BRIDGE_URL}/download/${encodeURIComponent(videoId)}`;
+	const bridge = `${streamConfig.ytdlpBridgeUrl}/download/${encodeURIComponent(videoId)}`;
 	const res = await fetch(bridge);
 	if (!res.ok || !res.body) {
 		const detail = await res.text().catch(() => "");
@@ -82,10 +75,10 @@ async function evict(streamCacheDir: string): Promise<void> {
 			files.push({ path: p, size: s.size, mtime: s.mtimeMs });
 			total += s.size;
 		}
-		if (total <= MAX_STREAM_CACHE_BYTES) return;
+		if (total <= streamConfig.maxCacheBytes) return;
 		files.sort((a, b) => a.mtime - b.mtime); // oldest first
 		for (const f of files) {
-			if (total <= MAX_STREAM_CACHE_BYTES) break;
+			if (total <= streamConfig.maxCacheBytes) break;
 			await unlink(f.path).catch(() => {});
 			total -= f.size;
 		}

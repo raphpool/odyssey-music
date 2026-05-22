@@ -26,8 +26,6 @@ export interface CacheIndex {
 	byMbid(mbid: string): Slug | null;
 	prefix(query: string, limit?: number): CacheHit[];
 	prefixByType(type: NodeType, query: string, limit?: number): CacheHit[];
-	rebuild(): Promise<void>;
-	size(): number;
 }
 
 function normalize(s: string): string {
@@ -112,7 +110,5 @@ export async function buildCacheIndex(cacheRoot: string): Promise<CacheIndex> {
 			}
 			return matches;
 		},
-		rebuild,
-		size: () => hits.length,
 	};
 }

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { EDGE_TARGET_TYPES_BY_TYPE } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
 import { NODE_TYPES, type NodeType } from "./types.js";
 
@@ -18,7 +19,7 @@ const edgeRefBase = z.object({
 });
 
 /** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
-function typedEdge(...allowed: NodeType[]) {
+function typedEdge(allowed: readonly NodeType[]) {
 	const set = new Set(allowed);
 	return edgeRefBase.superRefine((val, ctx) => {
 		if (!set.has(val.type)) {
@@ -35,6 +36,12 @@ function typedEdge(...allowed: NodeType[]) {
 			});
 		}
 	});
+}
+
+function typedEdgeFor(type: NodeType, field: string) {
+	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
+	if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
+	return typedEdge(allowed);
 }
 
 const citationSchema = z.object({
@@ -60,7 +67,7 @@ const metricsSchema = z
 	})
 	.optional();
 
-// Tighter floors at the disk layer: even if a future caller skips runAgent's gate,
+// Tighter floors at the disk layer: even if a future caller skips pipeline validation,
 // the persisted file must have a real article and a real citation.
 const baseFields = {
 	slug: slugSchema,
@@ -80,13 +87,13 @@ const genreSchema = z.object({
 	era: z.string().optional(),
 	origin: z.string().optional(),
 	sonic_markers: z.string().optional(),
-	parent_genres: z.array(typedEdge("genre")),
-	subgenres: z.array(typedEdge("genre")),
-	related_genres: z.array(typedEdge("genre")),
-	key_artists: z.array(typedEdge("artist")),
-	key_labels: z.array(typedEdge("label")),
-	landmark_projects: z.array(typedEdge("project")),
-	landmark_tracks: z.array(typedEdge("track")),
+	parent_genres: z.array(typedEdgeFor("genre", "parent_genres")),
+	subgenres: z.array(typedEdgeFor("genre", "subgenres")),
+	related_genres: z.array(typedEdgeFor("genre", "related_genres")),
+	key_artists: z.array(typedEdgeFor("genre", "key_artists")),
+	key_labels: z.array(typedEdgeFor("genre", "key_labels")),
+	landmark_projects: z.array(typedEdgeFor("genre", "landmark_projects")),
+	landmark_tracks: z.array(typedEdgeFor("genre", "landmark_tracks")),
 });
 
 const labelSchema = z.object({
@@ -97,9 +104,9 @@ const labelSchema = z.object({
 	location: z.string().optional(),
 	founders: z.string().optional(),
 	active_years: z.string().optional(),
-	genres: z.array(typedEdge("genre")),
-	roster: z.array(typedEdge("artist")),
-	notable_releases: z.array(typedEdge("project")),
+	genres: z.array(typedEdgeFor("label", "genres")),
+	roster: z.array(typedEdgeFor("label", "roster")),
+	notable_releases: z.array(typedEdgeFor("label", "notable_releases")),
 });
 
 const artistSchema = z.object({
@@ -109,15 +116,15 @@ const artistSchema = z.object({
 	photo_url: z.string().url().optional(),
 	origin: z.string().optional(),
 	active_years: z.string().optional(),
-	genres: z.array(typedEdge("genre")),
-	labels: z.array(typedEdge("label")),
-	discography: z.array(typedEdge("project")),
-	notable_tracks: z.array(typedEdge("track")),
-	influences: z.array(typedEdge("artist")),
-	influenced: z.array(typedEdge("artist")),
-	collaborators: z.array(typedEdge("artist")),
-	aliases: z.array(typedEdge("artist")),
-	members: z.array(typedEdge("artist")),
+	genres: z.array(typedEdgeFor("artist", "genres")),
+	labels: z.array(typedEdgeFor("artist", "labels")),
+	discography: z.array(typedEdgeFor("artist", "discography")),
+	notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
+	influences: z.array(typedEdgeFor("artist", "influences")),
+	influenced: z.array(typedEdgeFor("artist", "influenced")),
+	collaborators: z.array(typedEdgeFor("artist", "collaborators")),
+	aliases: z.array(typedEdgeFor("artist", "aliases")),
+	members: z.array(typedEdgeFor("artist", "members")),
 });
 
 const projectSchema = z.object({
@@ -131,13 +138,13 @@ const projectSchema = z.object({
 	vocals: z.string().optional(),
 	samples_notes: z.string().optional(),
 	inspirations: z.string().optional(),
-	artists: z.array(typedEdge("artist")),
-	label: typedEdge("label").optional(),
-	genres: z.array(typedEdge("genre")),
-	tracklist: z.array(typedEdge("track")),
-	producers: z.array(typedEdge("artist")),
-	personnel: z.array(typedEdge("artist")).default([]),
-	related_projects: z.array(typedEdge("project")),
+	artists: z.array(typedEdgeFor("project", "artists")),
+	label: typedEdgeFor("project", "label").optional(),
+	genres: z.array(typedEdgeFor("project", "genres")),
+	tracklist: z.array(typedEdgeFor("project", "tracklist")),
+	producers: z.array(typedEdgeFor("project", "producers")),
+	personnel: z.array(typedEdgeFor("project", "personnel")).default([]),
+	related_projects: z.array(typedEdgeFor("project", "related_projects")),
 });
 
 const trackSchema = z.object({
@@ -152,16 +159,16 @@ const trackSchema = z.object({
 	vocals: z.string().optional(),
 	samples_notes: z.string().optional(),
 	inspirations: z.string().optional(),
-	artists: z.array(typedEdge("artist")),
-	project: typedEdge("project").optional(),
-	label: typedEdge("label").optional(),
-	genres: z.array(typedEdge("genre")),
-	producers: z.array(typedEdge("artist")),
-	personnel: z.array(typedEdge("artist")).default([]),
-	samples: z.array(typedEdge("track")),
-	sampled_by: z.array(typedEdge("track")),
-	remix_of: typedEdge("track").optional(),
-	remixed_by: z.array(typedEdge("track")),
+	artists: z.array(typedEdgeFor("track", "artists")),
+	project: typedEdgeFor("track", "project").optional(),
+	label: typedEdgeFor("track", "label").optional(),
+	genres: z.array(typedEdgeFor("track", "genres")),
+	producers: z.array(typedEdgeFor("track", "producers")),
+	personnel: z.array(typedEdgeFor("track", "personnel")).default([]),
+	samples: z.array(typedEdgeFor("track", "samples")),
+	sampled_by: z.array(typedEdgeFor("track", "sampled_by")),
+	remix_of: typedEdgeFor("track", "remix_of").optional(),
+	remixed_by: z.array(typedEdgeFor("track", "remixed_by")),
 });
 
 export const nodePayloadSchema = z.discriminatedUnion("type", [
@@ -171,7 +178,3 @@ export const nodePayloadSchema = z.discriminatedUnion("type", [
 	projectSchema,
 	trackSchema,
 ]);
-
-export const edgeRefSchemaExport = edgeRefBase;
-
-export type NodePayloadParsed = z.infer<typeof nodePayloadSchema>;

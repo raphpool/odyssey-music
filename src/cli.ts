@@ -1,8 +1,11 @@
 import { Command } from "commander";
+import { cliConfig } from "./config.js";
 import { type CrawlOptions, type CrawlProgress, crawl } from "./crawler.js";
 import { loadEnv } from "./env.js";
+import { logger } from "./logger.js";
 
 const program = new Command();
+const log = logger.child({ module: "cli" });
 
 program.name("odyssey-crawl").description("Culture Graph background crawler (Phase 1)").version("0.1.0");
 
@@ -79,14 +82,11 @@ program
 				deps: {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
-					reasoning: opts.reasoning as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
-					searchProvider: opts.searchProvider === "firecrawl" ? "firecrawl" : "tavily",
-					fetcher: opts.fetcher === "firecrawl" ? "firecrawl" : "local",
 				},
 			};
 			if (!opts.quiet) {
 				base.logger = (line: string): void => {
-					process.stderr.write(`${line}\n`);
+					log.info(line);
 				};
 			}
 			const extraPayload = opts.heartbeatPayload
@@ -100,7 +100,7 @@ program
 			}
 			base.onHeartbeat = (snap: CrawlProgress): void => {
 				const line = formatHeartbeat(snap);
-				process.stderr.write(`HEARTBEAT ${line}\n`);
+				log.info(`HEARTBEAT ${line}`);
 				if (opts.heartbeatWebhook) {
 					void postHeartbeat(opts.heartbeatWebhook, snap, line, extraPayload);
 				}
@@ -137,13 +137,9 @@ function isAllowedWebhookUrl(s: string): boolean {
 		if (u.protocol !== "http:" && u.protocol !== "https:") return false;
 		// Restrict to localhost by default. If you need to call out, set ODYSSEY_WEBHOOK_ALLOW
 		// to a comma-separated host allowlist (e.g. "example.com,api.example.com").
-		const allow = (process.env.ODYSSEY_WEBHOOK_ALLOW ?? "")
-			.split(",")
-			.map((h) => h.trim().toLowerCase())
-			.filter(Boolean);
 		const localhost = ["localhost", "127.0.0.1", "[::1]", "::1"];
 		const host = u.hostname.toLowerCase();
-		return localhost.includes(host) || allow.includes(host);
+		return localhost.includes(host) || cliConfig.webhookAllowlist.includes(host);
 	} catch {
 		return false;
 	}
@@ -163,12 +159,12 @@ async function postHeartbeat(
 			body,
 		});
 	} catch (e) {
-		process.stderr.write(`heartbeat POST error: ${e instanceof Error ? e.message : String(e)}\n`);
+		log.warn("heartbeat POST error", { error: e instanceof Error ? e.message : String(e) });
 	}
 }
 
 program.parseAsync().catch((e: unknown) => {
 	const msg = e instanceof Error ? e.message : String(e);
-	process.stderr.write(`error: ${msg}\n`);
+	log.error("command failed", { error: msg });
 	process.exit(1);
 });

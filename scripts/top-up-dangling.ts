@@ -11,9 +11,9 @@
  */
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { type AgentInput, runAgent } from "../src/agent.js";
 import { NodeCache } from "../src/cache.js";
 import { loadEnv } from "../src/env.js";
+import { type PipelineInput, runPipeline } from "../src/pipeline.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "../src/types.js";
@@ -91,9 +91,9 @@ async function main(): Promise<void> {
 					continue;
 				}
 				const parsed = parseSlug(t.slug);
-				const input: AgentInput = { type: parsed.type, name: t.name };
+				const input: PipelineInput = { type: parsed.type, name: t.name };
 				const t0 = Date.now();
-				const result = await runAgent(input, {
+				const result = await runPipeline(input, {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
 				});
@@ -105,7 +105,7 @@ async function main(): Promise<void> {
 				await cache.write(result.node);
 				okCount++;
 				console.log(
-					`[w${i + 1}] OK ${result.slug} cost=$${result.metrics.cost_usd.toFixed(5)} tok=${result.metrics.input_tokens + result.metrics.output_tokens} ${Date.now() - t0}ms (${okCount}/${targets.length})`,
+					`[w${i + 1}] OK ${result.slug} cost=$${result.metrics.costUsd.toFixed(5)} tok=${result.metrics.inputTokens + result.metrics.outputTokens} ${Date.now() - t0}ms (${okCount}/${targets.length})`,
 				);
 			} catch (e) {
 				const msg = e instanceof Error ? e.message : String(e);

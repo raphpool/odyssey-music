@@ -21,6 +21,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
+import { pipelineConfig, pricingConfig } from "./config.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
@@ -32,6 +33,7 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "./musicbrainz.js";
+import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -60,7 +62,7 @@ async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
 	return map;
 }
 
-import { rankResults, tavilySearch } from "./tools/tavily.js";
+import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 
 export interface PipelineDeps {
@@ -96,6 +98,29 @@ export interface PipelineResult {
 	};
 }
 
+type PipelineLog = (line: string) => void;
+
+interface CorpusPage {
+	url: string;
+	title?: string;
+	markdown: string;
+}
+
+interface ResearchResult {
+	searchResults: TavilyResult[];
+	corpus: CorpusPage[];
+	allowedUrls: Set<string>;
+	searchMs: number;
+	fetchMs: number;
+}
+
+interface DraftResult {
+	raw: Record<string, unknown>;
+	llmMs: number;
+	inputTokens: number;
+	outputTokens: number;
+}
+
 // --- Gemini schema builders ---
 
 const stringSchema = (description: string, minLength?: number): Schema => {
@@ -104,15 +129,21 @@ const stringSchema = (description: string, minLength?: number): Schema => {
 	return s;
 };
 
-const edgeRefSchema = (allowedTypes: NodeType[]): Schema => ({
+const edgeRefSchema = (allowedTypes: readonly NodeType[]): Schema => ({
 	type: GType.OBJECT,
 	properties: {
-		type: { type: GType.STRING, enum: allowedTypes, description: "Target node type." },
+		type: { type: GType.STRING, enum: [...allowedTypes], description: "Target node type." },
 		name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'.", 1),
 	},
 	required: ["type", "name"],
 	propertyOrdering: ["type", "name"],
 });
+
+const edgeRefSchemaFor = (type: NodeType, field: string): Schema => {
+	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
+	if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
+	return edgeRefSchema(allowed);
+};
 
 const citationSchema: Schema = {
 	type: GType.OBJECT,
@@ -168,33 +199,43 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						sonic_markers: stringSchema("BPM range, instrumentation, signature production traits.", 10),
 						parent_genres: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["genre"]),
+							items: edgeRefSchemaFor("genre", "parent_genres"),
 							minItems: "0",
 							maxItems: "4",
 						},
-						subgenres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "0", maxItems: "6" },
+						subgenres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("genre", "subgenres"),
+							minItems: "0",
+							maxItems: "6",
+						},
 						related_genres: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["genre"]),
+							items: edgeRefSchemaFor("genre", "related_genres"),
 							minItems: "2",
 							maxItems: "6",
 						},
 						key_artists: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["artist"]),
+							items: edgeRefSchemaFor("genre", "key_artists"),
 							minItems: "3",
 							maxItems: "8",
 						},
-						key_labels: { type: GType.ARRAY, items: edgeRefSchema(["label"]), minItems: "1", maxItems: "5" },
+						key_labels: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("genre", "key_labels"),
+							minItems: "1",
+							maxItems: "5",
+						},
 						landmark_projects: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("genre", "landmark_projects"),
 							minItems: "0",
 							maxItems: "5",
 						},
 						landmark_tracks: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["track"]),
+							items: edgeRefSchemaFor("genre", "landmark_tracks"),
 							minItems: "1",
 							maxItems: "5",
 						},
@@ -223,11 +264,21 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						location: stringSchema("City + country.", 3),
 						founders: stringSchema("Founder names (text).", 0),
 						active_years: stringSchema("e.g. '1995-present'.", 0),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						roster: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "3", maxItems: "10" },
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("label", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						roster: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("label", "roster"),
+							minItems: "3",
+							maxItems: "10",
+						},
 						notable_releases: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("label", "notable_releases"),
 							minItems: "2",
 							maxItems: "8",
 						},
@@ -255,30 +306,60 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						editorial_bio: stringSchema("1-2 sentence teaser.", 30),
 						origin: stringSchema("Where they're from.", 3),
 						active_years: stringSchema("e.g. '1991-present'.", 4),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						labels: { type: GType.ARRAY, items: edgeRefSchema(["label"]), minItems: "1", maxItems: "5" },
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						labels: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "labels"),
+							minItems: "1",
+							maxItems: "5",
+						},
 						discography: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("artist", "discography"),
 							minItems: "2",
 							maxItems: "10",
 						},
 						notable_tracks: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["track"]),
+							items: edgeRefSchemaFor("artist", "notable_tracks"),
 							minItems: "1",
 							maxItems: "8",
 						},
-						influences: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
-						influenced: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "8" },
-						collaborators: {
+						influences: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["artist"]),
+							items: edgeRefSchemaFor("artist", "influences"),
 							minItems: "0",
 							maxItems: "8",
 						},
-						aliases: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
-						members: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "10" },
+						influenced: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "influenced"),
+							minItems: "0",
+							maxItems: "8",
+						},
+						collaborators: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "collaborators"),
+							minItems: "0",
+							maxItems: "8",
+						},
+						aliases: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "aliases"),
+							minItems: "0",
+							maxItems: "5",
+						},
+						members: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("artist", "members"),
+							minItems: "0",
+							maxItems: "10",
+						},
 					},
 				},
 			};
@@ -307,15 +388,40 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 							"Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.",
 							0,
 						),
-						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
-						label: edgeRefSchema(["label"]),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						tracklist: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "2", maxItems: "20" },
-						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "6" },
-						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
+						artists: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "artists"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						label: edgeRefSchemaFor("project", "label"),
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						tracklist: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "tracklist"),
+							minItems: "2",
+							maxItems: "20",
+						},
+						producers: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "producers"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						personnel: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("project", "personnel"),
+							minItems: "0",
+							maxItems: "20",
+						},
 						related_projects: {
 							type: GType.ARRAY,
-							items: edgeRefSchema(["project"]),
+							items: edgeRefSchemaFor("project", "related_projects"),
 							minItems: "0",
 							maxItems: "6",
 						},
@@ -342,16 +448,51 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						),
 						samples_notes: stringSchema("Notes about samples or interpolations.", 0),
 						inspirations: stringSchema("Stated stylistic inspirations.", 0),
-						artists: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "1", maxItems: "5" },
-						project: edgeRefSchema(["project"]),
-						label: edgeRefSchema(["label"]),
-						genres: { type: GType.ARRAY, items: edgeRefSchema(["genre"]), minItems: "1", maxItems: "5" },
-						producers: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "5" },
-						personnel: { type: GType.ARRAY, items: edgeRefSchema(["artist"]), minItems: "0", maxItems: "20" },
-						samples: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
-						sampled_by: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
-						remix_of: edgeRefSchema(["track"]),
-						remixed_by: { type: GType.ARRAY, items: edgeRefSchema(["track"]), minItems: "0", maxItems: "6" },
+						artists: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "artists"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						project: edgeRefSchemaFor("track", "project"),
+						label: edgeRefSchemaFor("track", "label"),
+						genres: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "genres"),
+							minItems: "1",
+							maxItems: "5",
+						},
+						producers: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "producers"),
+							minItems: "0",
+							maxItems: "5",
+						},
+						personnel: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "personnel"),
+							minItems: "0",
+							maxItems: "20",
+						},
+						samples: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "samples"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						sampled_by: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "sampled_by"),
+							minItems: "0",
+							maxItems: "6",
+						},
+						remix_of: edgeRefSchemaFor("track", "remix_of"),
+						remixed_by: {
+							type: GType.ARRAY,
+							items: edgeRefSchemaFor("track", "remixed_by"),
+							minItems: "0",
+							maxItems: "6",
+						},
 					},
 				},
 			};
@@ -360,24 +501,15 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 }
 
 // Latency knobs. Each token shaved off the LLM call is ~free wall-clock time.
-// Wikipedia pages on popular artists/albums run 100-300KB of markdown. 14k truncated way
-// before the relevant sections — Drake's discography never reached the LLM (Raph caught
-// 2026-05-19). MB now overrides the structured edges (discography, tracklist, label,
-// artists, year) so those don't depend on the slice. But editorial_article + genres +
-// samples + influences still rely on the LLM reading enough of the page, so we keep a
-// large budget. Latency cost: +1-2s on cold materialize; Gemini Flash Lite prefill is
-// cheap (~$0.075/M tokens) so dollar cost is negligible.
-const MAX_CORPUS_BYTES = 80_000;
-const PER_PAGE_BUDGET = 60_000;
-const SEARCH_RESULTS = 7;
-// FETCH_TOP_K is now dynamic (see below). When a wikipedia-ranked result is present in the
-// top of search, one fetch is enough (Wikipedia is the canonical music source). Without it
-// — e.g. for just-dropped tracks where the Wiki article doesn't exist yet (Raph caught
-// 2026-05-19 on "Janice STFU" from Drake's ICEMAN) — we need to compile from multiple music
-// outlets (Pitchfork, Genius, Rolling Stone, Complex, HipHopDX, ...) to get real article
-// context instead of LLM-confabulated slop.
-const FETCH_TOP_K_WITH_WIKI = 1;
-const FETCH_TOP_K_NO_WIKI = 3;
+// Keep enough source text for editorial fields; MB enrichment owns structured release data.
+// See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
+const MAX_CORPUS_BYTES = pipelineConfig.maxCorpusBytes;
+const PER_PAGE_BUDGET = pipelineConfig.perPageBudgetBytes;
+const SEARCH_RESULTS = pipelineConfig.searchResults;
+// Fetch one strong Wikipedia result, or multiple music outlets when no Wiki result is present.
+// See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
+const FETCH_TOP_K_WITH_WIKI = pipelineConfig.fetchTopKWithWiki;
+const FETCH_TOP_K_NO_WIKI = pipelineConfig.fetchTopKNoWiki;
 
 function safeHost(u: string): string {
 	try {
@@ -425,8 +557,7 @@ GENERAL RULES:
   - CRITICAL — for short mononym aliases (e.g. '40', 'XL', 'Mike', 'Jay', 'Ye', any 1-3
     char stage name), use the canonical full name as the edge name (e.g. "Noah '40' Shebib"
     not '40'; "Kanye West" not 'Ye'). Short names collide with unrelated artists in MB
-    search and route the click to the wrong page (Raph 2026-05-20: '40' producer on Drake's
-    HABIBTI? landed on E-40 rapper).
+    search and route the click to the wrong page (ADR 2026-05-20 credit-slug-normalization).
   - Aliases and side-projects stay as distinct edges (AFX != Aphex Twin).
   - Year/founded/active_years are STRINGS, never numbers.
   - The 'name' field on your output must be the canonical name (no '(track)', no '(album)').
@@ -469,14 +600,24 @@ OUTPUT: a single JSON object. Nothing before or after. No markdown fences.`;
 export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Promise<PipelineResult> {
 	const log = deps.logger ?? ((): void => undefined);
 	const t0 = Date.now();
-	const apiKey = deps.geminiApiKey ?? process.env.GEMINI_API_KEY ?? "";
-	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
+	const research = await researchTarget(input, deps, log);
+	const draft = await generateNodeDraft(input, deps, research, log);
+	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
+	await enrichFromMusicBrainz(node, input, log);
+	const validated = validateNode(node);
 
-	// Step 1: research.
-	// When the caller pinned an MBID for a track/project, pre-resolve the MB metadata so we
-	// can enrich the Tavily search query with artist + album context. Without this, a chip
-	// click on "Janice STFU" (mbid set, no disambig) searches Tavily for "Janice STFU track
-	// music wiki discogs" and Tavily returns only YouTube/Spotify → empty corpus → LLM slop.
+	return {
+		node: validated,
+		slug: validated.slug,
+		metrics: buildMetrics(t0, research, draft),
+	};
+}
+
+async function researchTarget(
+	input: PipelineInput,
+	deps: PipelineDeps,
+	log: PipelineLog,
+): Promise<ResearchResult> {
 	let queryHint = "";
 	if (input.mbid && input.type === "track") {
 		try {
@@ -495,7 +636,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		max_results: SEARCH_RESULTS,
 		search_depth: "basic",
 	});
-	// Source priority: wikipedia first, fandom/reddit last (Henry/Mathieu rule 2026-05-19).
+	// Source priority: Wikipedia first, fandom/reddit last.
 	const searchResults = rankResults(searchResultsRaw);
 	const searchMs = Date.now() - tSearch;
 	if (!searchResults.length) {
@@ -528,20 +669,31 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	}
 	log(`[pipeline] fetch ${fetchMs}ms ok=${corpus.length}/${topUrls.length}`);
 
-	// Step 2: single LLM call with structured output
+	const allowedUrls = new Set<string>();
+	for (const r of searchResults) allowedUrls.add(r.url);
+	for (const c of corpus) allowedUrls.add(c.url);
+
+	return { searchResults, corpus, allowedUrls, searchMs, fetchMs };
+}
+
+async function generateNodeDraft(
+	input: PipelineInput,
+	deps: PipelineDeps,
+	research: ResearchResult,
+	log: PipelineLog,
+): Promise<DraftResult> {
+	const apiKey = deps.geminiApiKey ?? pipelineConfig.geminiApiKey;
+	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
 	const tLlm = Date.now();
 	const { schema } = makeNodeSchema(input.type);
 	const ai = new GoogleGenAI({ apiKey });
-	const model = deps.model ?? "gemini-3.1-flash-lite-preview";
+	const model = deps.model ?? pipelineConfig.defaultModel;
 
 	// Variability nonce (goal-2): each call carries a unique session id so that two fresh
 	// re-materializations of the same entity produce visibly different prose. The agent is
 	// instructed to use this as a writing-angle hint, not to invent facts.
 	const sessionNonce = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
-	const userPrompt = `${buildUserPrompt(input, searchResults, corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
-	const allowedUrls = new Set<string>();
-	for (const r of searchResults) allowedUrls.add(r.url);
-	for (const c of corpus) allowedUrls.add(c.url);
+	const userPrompt = `${buildUserPrompt(input, research.searchResults, research.corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
 
 	async function generate() {
 		return ai.models.generateContent({
@@ -553,7 +705,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 				responseSchema: schema,
 				// Higher temperature (goal-2 variability rubric): two fresh materializations of
 				// the same entity must produce substantially different prose. 0.4 was too tight.
-				temperature: 0.95,
+				temperature: pipelineConfig.temperature,
 				// Disable thinking on Flash Lite — we don't need CoT for this constrained extraction
 				// task, and it adds 1-3s of latency for no measurable accuracy gain.
 				thinkingConfig: { thinkingBudget: 0 },
@@ -568,7 +720,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		const msg = e instanceof Error ? e.message : String(e);
 		if (msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED")) {
 			log(`[pipeline] gemini transient (${msg.slice(0, 80)}), retrying in 600ms`);
-			await new Promise((r) => setTimeout(r, 600));
+			await new Promise((r) => setTimeout(r, pipelineConfig.retryDelayMs));
 			resp = await generate();
 		} else {
 			throw e;
@@ -578,28 +730,33 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const raw = resp.text;
 	if (!raw) throw new Error("Gemini returned no text");
 	const parsedRaw = JSON.parse(raw) as Record<string, unknown>;
+	const usage = (
+		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
+	).usageMetadata;
 
-	// Step 3: canonicalize + Zod validate
-	const node = canonicalize(parsedRaw, input, corpus, allowedUrls);
-	// Post-LLM enrichment (2026-05-19 Raph): for artist nodes, override the LLM's
-	// discography edge with MusicBrainz release-groups. MB is the canonical source
-	// for "what has this artist released" and updates within hours of announcement,
-	// while Wikipedia lags by weeks. Drake's MAID OF HONOUR / HABIBTI / ICEMAN dropped
-	// today (2026-05-15) and weren't on the Wiki page yet.
+	return {
+		raw: parsedRaw,
+		llmMs,
+		inputTokens: usage?.promptTokenCount ?? 0,
+		outputTokens: usage?.candidatesTokenCount ?? 0,
+	};
+}
+
+async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: PipelineLog): Promise<void> {
+	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	if (input.type === "artist") {
 		try {
 			let mbid = input.mbid;
 			if (!mbid) mbid = (await findArtistMbidByName(input.name, input.disambiguator)) ?? undefined;
 			if (mbid) {
-				// MB tags are more granular than the Wikipedia infobox genre — Raph caught
-				// 2026-05-19 ("Drake": MB has 9 vote-weighted tags, Wiki has 'hip hop, R&B, pop').
+				// MB tags are more granular than editorial infobox genres.
 				const genres = await fetchEntityGenresMb("artist", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
 					const obj = node as Record<string, unknown>;
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
@@ -610,10 +767,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.discography = studio.slice(0, 25).map((r) => ({
 						type: "project",
 						name: r.title,
-						slug: `project:${r.title
-							.toLowerCase()
-							.replace(/[^a-z0-9]+/g, "-")
-							.replace(/^-|-$/g, "")}`,
+						slug: makeSlug("project", r.title),
 						mbid: r.mbid,
 					}));
 					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
@@ -634,16 +788,11 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			if (mbid) {
 				const meta = await fetchLabelMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.roster.length > 0) {
 					obj.roster = meta.roster.slice(0, 30).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -651,7 +800,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.notable_releases = meta.notableReleases.slice(0, 30).map((r) => ({
 						type: "project",
 						name: r.title,
-						slug: toSlug("project", r.title),
+						slug: makeSlug("project", r.title),
 						mbid: r.mbid,
 					}));
 				}
@@ -675,21 +824,16 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.project) {
 					obj.project = {
 						type: "project",
 						name: meta.project.name,
-						slug: toSlug("project", meta.project.name),
+						slug: makeSlug("project", meta.project.name),
 						mbid: meta.project.mbid,
 					};
 				}
@@ -697,7 +841,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.label = {
 						type: "label",
 						name: meta.label.name,
-						slug: toSlug("label", meta.label.name),
+						slug: makeSlug("label", meta.label.name),
 						mbid: meta.label.mbid,
 					};
 				}
@@ -705,7 +849,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -715,7 +859,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.producers = meta.producers.slice(0, 6).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -723,7 +867,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -747,21 +891,16 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.tracks.length > 0) {
 					obj.tracklist = meta.tracks.slice(0, 30).map((t) => ({
 						type: "track",
 						name: t.title,
-						slug: toSlug("track", t.title),
+						slug: makeSlug("track", t.title),
 						mbid: t.mbid,
 					}));
 				}
@@ -769,7 +908,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.label = {
 						type: "label",
 						name: meta.label.name,
-						slug: toSlug("label", meta.label.name),
+						slug: makeSlug("label", meta.label.name),
 						mbid: meta.label.mbid,
 					};
 				}
@@ -777,7 +916,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -786,7 +925,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.producers = meta.producers.slice(0, 6).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -794,7 +933,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -822,7 +961,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.parent_genres = entry.parents.map((p) => ({
 						type: "genre",
 						name: genreDisplayName(p.replace(/-/g, " ")),
-						slug: `genre:${p}`,
+						slug: makeSlug("genre", genreDisplayName(p.replace(/-/g, " "))),
 					}));
 					log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
 				}
@@ -833,9 +972,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		}
 	}
 	// Dedup personnel against producers for project + track nodes. The LLM frequently lists
-	// the same person in both buckets, and MB merge can do the same when relations differ
-	// across release-group vs recording level. Producers wins — anyone in producers is dropped
-	// from personnel. Raph asked for this 2026-05-20.
+	// Producers win over personnel duplicates (ADR 2026-05-20 personnel-dedup).
 	if (input.type === "project" || input.type === "track") {
 		const obj = node as Record<string, unknown>;
 		const prods = Array.isArray(obj.producers) ? (obj.producers as Array<Record<string, unknown>>) : [];
@@ -847,32 +984,28 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			obj.personnel = pers.filter((p) => !prodKeys.has(key(p)));
 		}
 	}
-	const validated = nodePayloadSchema.parse(node) as NodePayload;
-	const totalBytes = corpus.reduce((a, c) => a + c.markdown.length, 0);
-	const usage = (
-		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
-	).usageMetadata;
-	const inputTokens = usage?.promptTokenCount ?? 0;
-	const outputTokens = usage?.candidatesTokenCount ?? 0;
+}
+
+function buildMetrics(t0: number, research: ResearchResult, draft: DraftResult): PipelineResult["metrics"] {
+	const totalBytes = research.corpus.reduce((a, c) => a + c.markdown.length, 0);
 	// Gemini 3.1 Flash Lite preview pricing (approx): $0.075 / 1M input, $0.30 / 1M output.
-	const costUsd = (inputTokens * 0.075 + outputTokens * 0.3) / 1_000_000;
+	const costUsd =
+		(draft.inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
+			draft.outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
+		1_000_000;
 
 	return {
-		node: validated,
-		slug: validated.slug,
-		metrics: {
-			searchMs,
-			fetchMs,
-			llmMs,
-			totalMs: Date.now() - t0,
-			searchCount: 1,
-			fetchCount: corpus.length,
-			urlsFetched: corpus.map((c) => c.url),
-			corpusBytes: totalBytes,
-			inputTokens,
-			outputTokens,
-			costUsd,
-		},
+		searchMs: research.searchMs,
+		fetchMs: research.fetchMs,
+		llmMs: draft.llmMs,
+		totalMs: Date.now() - t0,
+		searchCount: 1,
+		fetchCount: research.corpus.length,
+		urlsFetched: research.corpus.map((c) => c.url),
+		corpusBytes: totalBytes,
+		inputTokens: draft.inputTokens,
+		outputTokens: draft.outputTokens,
+		costUsd,
 	};
 }
 
@@ -915,7 +1048,7 @@ function buildUserPrompt(
 	return prompt;
 }
 
-function canonicalize(
+function canonicalizeDraft(
 	raw: Record<string, unknown>,
 	input: PipelineInput,
 	corpus: { url: string; markdown?: string }[],
@@ -926,41 +1059,12 @@ function canonicalize(
 	const next: Record<string, unknown> = { ...raw, type: input.type, slug, name: nameStr };
 	if (input.disambiguator) next.disambiguator = input.disambiguator;
 
-	// Ensure every list-edge field on this node type exists as at least an empty array.
 	// Gemini's structured output sometimes omits keys that have 0 minItems; the Zod schema
-	// still requires the field, so we default to [] here.
-	const LIST_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = {
-		genre: [
-			"parent_genres",
-			"subgenres",
-			"related_genres",
-			"key_artists",
-			"key_labels",
-			"landmark_projects",
-			"landmark_tracks",
-		],
-		label: ["genres", "roster", "notable_releases"],
-		artist: [
-			"genres",
-			"labels",
-			"discography",
-			"notable_tracks",
-			"influences",
-			"influenced",
-			"collaborators",
-			"aliases",
-			"members",
-		],
-		project: ["artists", "genres", "tracklist", "producers", "personnel", "related_projects"],
-		track: ["artists", "genres", "producers", "personnel", "samples", "sampled_by", "remixed_by"],
-	};
+	// still requires list-edge fields, so default them to [] here.
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
 	}
-	// Groundedness check (2026-05-19 goal-mode adversarial). When sources are thin the LLM
-	// happily confabulates: it folded the disambiguator into label.name, invented tracks, etc.
-	// Drop scalar/edge values that don't appear ANYWHERE in the corpus markdown, and never let
-	// the disambiguator leak into an edge name.
+	// Drop ungrounded scalar/edge values before validation (ADR 2026-05-19 groundedness).
 	const corpusBlob = (corpus as { markdown?: string }[])
 		.map((c) => (typeof c.markdown === "string" ? c.markdown : ""))
 		.join("\n")
@@ -1046,13 +1150,16 @@ function canonicalize(
 	return next;
 }
 
+function validateNode(node: unknown): NodePayload {
+	return nodePayloadSchema.parse(node) as NodePayload;
+}
+
 function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string; mbid?: string } | null {
 	if (!e || typeof e !== "object") return null;
 	const r = e as { type?: unknown; name?: unknown; mbid?: unknown };
 	if (typeof r.type !== "string") return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
-	const valid = ["genre", "label", "artist", "project", "track"] as const;
-	if (!(valid as readonly string[]).includes(r.type)) return null;
+	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	try {
 		const t = r.type as NodeType;
 		const out: { slug: string; type: NodeType; name: string; mbid?: string } = {

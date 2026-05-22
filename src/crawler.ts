@@ -1,5 +1,5 @@
-import { AbandonedNodeError, type AgentDeps, type AgentInput, runAgent } from "./agent.js";
 import { NodeCache } from "./cache.js";
+import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { makeSlug } from "./slug.js";
 import {
 	type EdgeRef,
@@ -15,7 +15,7 @@ export interface CrawlOptions {
 	maxNodes: number;
 	concurrency: number;
 	out: string;
-	deps: AgentDeps;
+	deps: PipelineDeps;
 	logger?: (line: string) => void;
 	signal?: AbortSignal;
 	/** Called approximately every `heartbeatMs` ms with a live progress snapshot. */
@@ -48,7 +48,7 @@ export interface CrawlResult {
 }
 
 interface FrontierEntry {
-	input: AgentInput;
+	input: PipelineInput;
 	depth: number;
 	/** How many already-materialized nodes have referenced this target. */
 	refCount: number;
@@ -137,7 +137,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	const strategy: FrontierStrategy = opts.strategy ?? "hybrid";
 	const frontier = new FrontierQueue(strategy, opts.bfsHead ?? 40);
 
-	const seedInput: AgentInput = { text: opts.seed };
+	const seedInput: PipelineInput = parseSeed(opts.seed);
 	// We don't know the seed's slug yet — the agent decides type. So the seed is enqueued
 	// under a synthetic slug derived from the raw text. After materialization, the cache
 	// is keyed by the canonical slug the agent produces.
@@ -224,7 +224,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				log(
 					`[w${workerId}] materialize depth=${next.entry.depth} ${describeInput(next.entry.input, next.slug)}`,
 				);
-				const result = await runAgent(next.entry.input, opts.deps);
+				const result = await runPipeline(next.entry.input, opts.deps);
 				const alreadyCached = await cache.has(result.slug);
 				if (alreadyCached) {
 					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
@@ -233,7 +233,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					lastCompleted = result.slug;
 					const ms = Date.now() - t0;
 					log(
-						`[w${workerId}] OK ${result.slug} turns=${result.turns} ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
+						`[w${workerId}] OK ${result.slug} pipeline=${result.metrics.totalMs}ms ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
 					);
 				}
 				if (next.entry.depth + 1 <= opts.maxDepth) {
@@ -241,12 +241,8 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				}
 			} catch (e) {
 				const msg = e instanceof Error ? e.message : String(e);
-				if (e instanceof AbandonedNodeError) {
-					log(`[w${workerId}] ABANDON ${next.slug}: ${msg}`);
-				} else {
-					failed++;
-					log(`[w${workerId}] FAIL ${next.slug}: ${msg}`);
-				}
+				failed++;
+				log(`[w${workerId}] FAIL ${next.slug}: ${msg}`);
 			} finally {
 				// `claimed` tracks IN-FLIGHT reservations only. The budget check uses written+claimed,
 				// so once a worker exits this iteration (whether it wrote, deduped, abandoned, or
@@ -304,10 +300,17 @@ function enqueueEdges(
 	}
 }
 
-function describeInput(input: AgentInput, fallbackSlug: Slug): string {
+function describeInput(input: PipelineInput, fallbackSlug: Slug): string {
 	if (input.type && input.name) return `${input.type}:${input.name}`;
-	if (input.text) return `seed("${input.text}")`;
 	return fallbackSlug;
+}
+
+function parseSeed(seed: string): PipelineInput {
+	const match = /^(genre|label|artist|project|track)\s*:\s*(.+)$/i.exec(seed.trim());
+	if (match?.[1] && match[2]) {
+		return { type: match[1].toLowerCase() as PipelineInput["type"], name: match[2].trim() };
+	}
+	return { type: "track", name: seed };
 }
 
 function sleep(ms: number): Promise<void> {
