@@ -13,7 +13,7 @@
     "lint:fix": "biome check --write .",
     "typecheck": "tsc --noEmit",
     "test": "vitest --exclude 'test/**/*.live.test.ts'",
-    "test:live": "vitest --run test/agent.live.test.ts",
+    "test:live": "vitest --run test/pipeline.live.test.ts",
     "check": "npm run lint && npm run typecheck && npm run test",
     "crawl": "tsx src/cli.ts",
     "server": "tsx src/server.ts"

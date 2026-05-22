@@ -1,5 +1,5 @@
-import { runAgent } from "../src/agent.js";
-import { loadEnv } from "../src/env.js";
+import { loadEnv } from "../../src/env.js";
+import { runAgent } from "../../src/legacy/agent.js";
 
 async function main(): Promise<void> {
 	const env = loadEnv();

@@ -67,7 +67,7 @@ const metricsSchema = z
 	})
 	.optional();
 
-// Tighter floors at the disk layer: even if a future caller skips runAgent's gate,
+// Tighter floors at the disk layer: even if a future caller skips pipeline validation,
 // the persisted file must have a real article and a real citation.
 const baseFields = {
 	slug: slugSchema,

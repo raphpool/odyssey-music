@@ -82,9 +82,6 @@ program
 				deps: {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
-					reasoning: opts.reasoning as "off" | "minimal" | "low" | "medium" | "high" | "xhigh",
-					searchProvider: opts.searchProvider === "firecrawl" ? "firecrawl" : "tavily",
-					fetcher: opts.fetcher === "firecrawl" ? "firecrawl" : "local",
 				},
 			};
 			if (!opts.quiet) {

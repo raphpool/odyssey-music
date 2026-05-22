@@ -1,12 +1,12 @@
 import { Agent, type AgentTool } from "@earendil-works/pi-agent-core";
 import { getModel } from "@earendil-works/pi-ai";
 import { Type } from "typebox";
-import { nodePayloadSchema } from "./schemas.js";
-import { makeSlug } from "./slug.js";
-import { makeFirecrawlTool } from "./tools/firecrawl.js";
-import { makeFirecrawlSearchTool } from "./tools/firecrawl-search.js";
-import { makeLocalFetchTool } from "./tools/local-fetcher.js";
-import { makeTavilyTool } from "./tools/tavily.js";
+import { nodePayloadSchema } from "../schemas.js";
+import { makeSlug } from "../slug.js";
+import { makeFirecrawlTool } from "../tools/firecrawl.js";
+import { makeFirecrawlSearchTool } from "../tools/firecrawl-search.js";
+import { makeLocalFetchTool } from "../tools/local-fetcher.js";
+import { makeTavilyTool } from "../tools/tavily.js";
 import {
 	type EdgeRef,
 	LIST_EDGES_BY_TYPE,
@@ -16,7 +16,7 @@ import {
 	OPTIONAL_TEXT_FIELDS,
 	SINGULAR_EDGES_BY_TYPE,
 	type Slug,
-} from "./types.js";
+} from "../types.js";
 
 export type ReasoningLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh";
 

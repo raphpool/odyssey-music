@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { runAgent } from "../src/agent.js";
+import { runPipeline } from "../src/pipeline.js";
 import type { NodePayload } from "../src/types.js";
 
 const HAVE_KEYS =
@@ -12,20 +12,15 @@ const deps = (): { tavilyApiKey: string; firecrawlApiKey: string } => ({
 	firecrawlApiKey: process.env.FIRECRAWL_API_KEY ?? "",
 });
 
-describe.skipIf(!HAVE_KEYS)("agent (live network)", () => {
-	it("materializes a track node from free text", async () => {
-		const r = await runAgent({ text: "jan jelinek tendency" }, deps());
+describe.skipIf(!HAVE_KEYS)("pipeline (live network)", () => {
+	it("materializes a track node from structured input", async () => {
+		const r = await runPipeline({ type: "track", name: "Tendency", disambiguator: "Jan Jelinek" }, deps());
 		assertNode(r.node, "track");
 	}, 180_000);
 
 	it("materializes an artist node from a structured input", async () => {
-		const r = await runAgent({ type: "artist", name: "Aphex Twin" }, deps());
+		const r = await runPipeline({ type: "artist", name: "Aphex Twin" }, deps());
 		assertNode(r.node, "artist");
-	}, 180_000);
-
-	it("materializes a label node from a free-text query", async () => {
-		const r = await runAgent({ text: "Warp Records label" }, deps());
-		assertNode(r.node, "label");
 	}, 180_000);
 });
 
