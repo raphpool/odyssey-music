@@ -716,7 +716,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
@@ -727,10 +727,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.discography = studio.slice(0, 25).map((r) => ({
 						type: "project",
 						name: r.title,
-						slug: `project:${r.title
-							.toLowerCase()
-							.replace(/[^a-z0-9]+/g, "-")
-							.replace(/^-|-$/g, "")}`,
+						slug: makeSlug("project", r.title),
 						mbid: r.mbid,
 					}));
 					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
@@ -751,16 +748,11 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 			if (mbid) {
 				const meta = await fetchLabelMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.roster.length > 0) {
 					obj.roster = meta.roster.slice(0, 30).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -768,7 +760,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.notable_releases = meta.notableReleases.slice(0, 30).map((r) => ({
 						type: "project",
 						name: r.title,
-						slug: toSlug("project", r.title),
+						slug: makeSlug("project", r.title),
 						mbid: r.mbid,
 					}));
 				}
@@ -792,21 +784,16 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.project) {
 					obj.project = {
 						type: "project",
 						name: meta.project.name,
-						slug: toSlug("project", meta.project.name),
+						slug: makeSlug("project", meta.project.name),
 						mbid: meta.project.mbid,
 					};
 				}
@@ -814,7 +801,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.label = {
 						type: "label",
 						name: meta.label.name,
-						slug: toSlug("label", meta.label.name),
+						slug: makeSlug("label", meta.label.name),
 						mbid: meta.label.mbid,
 					};
 				}
@@ -822,7 +809,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -832,7 +819,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.producers = meta.producers.slice(0, 6).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -840,7 +827,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -864,21 +851,16 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.genres = genres.map((g) => ({
 						type: "genre",
 						name: genreDisplayName(g),
-						slug: `genre:${g.replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
+						slug: makeSlug("genre", genreDisplayName(g)),
 					}));
 				}
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				const toSlug = (kind: string, n: string): string =>
-					`${kind}:${n
-						.toLowerCase()
-						.replace(/[^a-z0-9]+/g, "-")
-						.replace(/^-|-$/g, "")}`;
 				if (meta.tracks.length > 0) {
 					obj.tracklist = meta.tracks.slice(0, 30).map((t) => ({
 						type: "track",
 						name: t.title,
-						slug: toSlug("track", t.title),
+						slug: makeSlug("track", t.title),
 						mbid: t.mbid,
 					}));
 				}
@@ -886,7 +868,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.label = {
 						type: "label",
 						name: meta.label.name,
-						slug: toSlug("label", meta.label.name),
+						slug: makeSlug("label", meta.label.name),
 						mbid: meta.label.mbid,
 					};
 				}
@@ -894,7 +876,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.artists = meta.artists.slice(0, 10).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -903,7 +885,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.producers = meta.producers.slice(0, 6).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -911,7 +893,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
 						type: "artist",
 						name: a.name,
-						slug: toSlug("artist", a.name),
+						slug: makeSlug("artist", a.name),
 						mbid: a.mbid,
 					}));
 				}
@@ -939,7 +921,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 					obj.parent_genres = entry.parents.map((p) => ({
 						type: "genre",
 						name: genreDisplayName(p.replace(/-/g, " ")),
-						slug: `genre:${p}`,
+						slug: makeSlug("genre", genreDisplayName(p.replace(/-/g, " "))),
 					}));
 					log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
 				}
