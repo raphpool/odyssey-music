@@ -696,12 +696,19 @@ function buildDisambiguator(parentCtx) {
 }
 
 function chipHtml(ref, parentCtx) {
+  // Year + releaseType suffix on discography chips (Raph 2026-05-24): "Sticky Fingers · 1971"
+  // and "· EP" / "· single" badges for non-album releases so the chip list is scannable
+  // without clicking through.
+  const yearSuffix = ref.year ? ` <span class="meta">· ${escapeHtml(ref.year)}</span>` : "";
+  const rt = ref.releaseType;
+  const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${rt}">${rt}</span>` : "";
+  const extras = `${rtBadge}${yearSuffix}`;
   const inCache = byId.has(ref.slug);
   if (inCache) {
-    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}</a>`;
+    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
-    return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}</span>`;
+    return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
@@ -709,7 +716,7 @@ function chipHtml(ref, parentCtx) {
   // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
   // reconciled with the bare-slug edges. Slug-from-name only now.
   const mbidAttr = ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : "";
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${action ? " " : ""}</span>`;
+  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks

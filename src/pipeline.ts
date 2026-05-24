@@ -760,17 +760,25 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					}));
 				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
-				// Studio albums first (no secondary types). Cap at 25 to keep the edge list usable.
-				const studio = releases.filter((r) => r.secondaryTypes.length === 0);
-				if (studio.length > 0) {
+				// Keep Album/EP/Single primary types, drop anything with secondary types
+				// (Live, Compilation, Soundtrack, Remix, …). Raph 2026-05-24: include EPs and
+				// singles in the discography chip list, not just LPs. "In the Stars" (Stones,
+				// 2026) ships as Single on MB so it was previously filtered out.
+				const PRIMARY_OK = new Set(["Album", "EP", "Single"]);
+				const clean = releases.filter(
+					(r) => PRIMARY_OK.has(r.primaryType) && r.secondaryTypes.length === 0,
+				);
+				if (clean.length > 0) {
 					const obj = node as Record<string, unknown>;
-					obj.discography = studio.slice(0, 25).map((r) => ({
+					obj.discography = clean.slice(0, 60).map((r) => ({
 						type: "project",
 						name: r.title,
 						slug: makeSlug("project", r.title),
 						mbid: r.mbid,
+						year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
+						releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
 					}));
-					log(`[pipeline] artist discography overridden with ${studio.length} MB releases`);
+					log(`[pipeline] artist discography overridden with ${clean.length} MB releases (album+ep+single)`);
 				}
 			}
 		} catch (e) {

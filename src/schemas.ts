@@ -16,6 +16,10 @@ const edgeRefBase = z.object({
 	// uses the exact entity (avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN"
 	// — Raph 2026-05-19).
 	mbid: z.string().uuid().optional(),
+	// Stamped on artist.discography edges (2026-05-24 Raph): year shows on chip; releaseType
+	// lets the frontend tag EPs/singles distinctly from full albums.
+	year: z.string().optional(),
+	releaseType: z.enum(["album", "ep", "single"]).optional(),
 });
 
 /** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */

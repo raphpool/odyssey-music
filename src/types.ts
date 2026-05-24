@@ -21,6 +21,8 @@ export interface EdgeRef {
 	type: NodeType;
 	name: string;
 	mbid?: string;
+	year?: string;
+	releaseType?: "album" | "ep" | "single";
 }
 
 export interface Citation {

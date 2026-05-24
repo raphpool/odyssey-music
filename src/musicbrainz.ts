@@ -247,6 +247,7 @@ export interface MbReleaseGroupSummary {
 	mbid: string;
 	title: string;
 	firstReleaseDate: string;
+	primaryType: string;
 	secondaryTypes: string[];
 }
 
@@ -261,12 +262,15 @@ export async function fetchArtistDiscographyMb(
 			id: string;
 			title: string;
 			"first-release-date"?: string;
+			"primary-type"?: string;
 			"secondary-types"?: string[];
 		}[];
 	}
+	// No `type=` filter (was `album` only — Raph 2026-05-24 asked for EPs + singles too).
+	// Filtering happens client-side in pipeline.ts where we can keep primary in
+	// [Album, EP, Single] and drop anything with secondary types (Live, Compilation, ...).
 	const data = await mbFetch<RGResp>(`/release-group`, {
 		artist: artistMbid,
-		type: "album",
 		limit: String(limit),
 	});
 	if (!data || !Array.isArray(data["release-groups"])) return [];
@@ -274,6 +278,7 @@ export async function fetchArtistDiscographyMb(
 		mbid: g.id,
 		title: g.title,
 		firstReleaseDate: g["first-release-date"] ?? "",
+		primaryType: g["primary-type"] ?? "",
 		secondaryTypes: g["secondary-types"] ?? [],
 	}));
 	// Newest first.
