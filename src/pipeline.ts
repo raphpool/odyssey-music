@@ -630,6 +630,23 @@ async function researchTarget(
 			// non-fatal
 		}
 	}
+	// Same enrichment for project nodes (Raph 2026-05-24: clicked "In the Stars" from
+	// Rolling Stones page → landed on a 1970 various-artists compilation because Tavily
+	// got "in the stars album wiki discogs" with no artist/year context and surfaced the
+	// wrong release). With MBID we can pull artist credit + year from MB and pin the
+	// search to the exact release-group the user clicked. mbFetch memoizes so the later
+	// fetchProjectMetaMb call in the enrichment step costs nothing extra.
+	if (input.mbid && input.type === "project") {
+		try {
+			const meta = await fetchProjectMetaMb(input.mbid);
+			const parts: string[] = [];
+			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
+			if (meta.year) parts.push(meta.year);
+			if (parts.length > 0) queryHint = ` ${parts.join(" ")}`;
+		} catch {
+			// non-fatal
+		}
+	}
 	const tSearch = Date.now();
 	const searchQuery = buildSearchQuery(input) + queryHint;
 	const searchResultsRaw = await tavilySearch(deps.tavilyApiKey, searchQuery, {
