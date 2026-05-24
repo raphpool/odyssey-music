@@ -769,8 +769,22 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					(r) => PRIMARY_OK.has(r.primaryType) && r.secondaryTypes.length === 0,
 				);
 				if (clean.length > 0) {
+					// Keep ALL studio albums, then top up with newest EPs/singles up to 80.
+					// For canon artists (Stones: ~30 LPs) we keep every album AND get recent
+					// EPs/singles like "Sweet Sounds of Heaven" alongside.
+					const albums = clean.filter((r) => r.primaryType === "Album");
+					const eps = clean.filter((r) => r.primaryType === "EP");
+					const singles = clean.filter((r) => r.primaryType === "Single");
+					const TARGET = 80;
+					const epSingleSlots = Math.max(0, TARGET - albums.length);
+					const epSingleBudget = [...eps, ...singles]
+						.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""))
+						.slice(0, epSingleSlots);
+					const merged = [...albums, ...epSingleBudget].sort((a, b) =>
+						(b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""),
+					);
 					const obj = node as Record<string, unknown>;
-					obj.discography = clean.slice(0, 60).map((r) => ({
+					obj.discography = merged.map((r) => ({
 						type: "project",
 						name: r.title,
 						slug: makeSlug("project", r.title),
@@ -778,7 +792,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 						year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
 						releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
 					}));
-					log(`[pipeline] artist discography overridden with ${clean.length} MB releases (album+ep+single)`);
+					log(`[pipeline] artist discography overridden with ${merged.length} MB releases (${albums.length} album, ${epSingleBudget.length} ep+single, out of ${clean.length} clean)`);
 				}
 			}
 		} catch (e) {

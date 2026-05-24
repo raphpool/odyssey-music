@@ -266,24 +266,39 @@ export async function fetchArtistDiscographyMb(
 			"secondary-types"?: string[];
 		}[];
 	}
-	// No `type=` filter (was `album` only — Raph 2026-05-24 asked for EPs + singles too).
-	// Filtering happens client-side in pipeline.ts where we can keep primary in
-	// [Album, EP, Single] and drop anything with secondary types (Live, Compilation, ...).
-	const data = await mbFetch<RGResp>(`/release-group`, {
-		artist: artistMbid,
-		limit: String(limit),
-	});
-	if (!data || !Array.isArray(data["release-groups"])) return [];
-	const out: MbReleaseGroupSummary[] = data["release-groups"].map((g) => ({
-		mbid: g.id,
-		title: g.title,
-		firstReleaseDate: g["first-release-date"] ?? "",
-		primaryType: g["primary-type"] ?? "",
-		secondaryTypes: g["secondary-types"] ?? [],
-	}));
+	// Raph 2026-05-24: pull Albums + EPs + Singles. MB browse caps at 100 per call and
+	// returns release-groups in id order, so for prolific artists (Stones: 1898 RGs) a
+	// single un-filtered call returns nothing but the oldest 100 Albums. Issue one call
+	// per primary type in parallel, then merge.
+	const TYPES = ["album", "ep", "single"] as const;
+	const results = await Promise.all(
+		TYPES.map((t) =>
+			mbFetch<RGResp>(`/release-group`, {
+				artist: artistMbid,
+				type: t,
+				limit: String(limit),
+			}).catch(() => null),
+		),
+	);
+	const merged: MbReleaseGroupSummary[] = [];
+	const seen = new Set<string>();
+	for (const data of results) {
+		if (!data || !Array.isArray(data["release-groups"])) continue;
+		for (const g of data["release-groups"]) {
+			if (seen.has(g.id)) continue;
+			seen.add(g.id);
+			merged.push({
+				mbid: g.id,
+				title: g.title,
+				firstReleaseDate: g["first-release-date"] ?? "",
+				primaryType: g["primary-type"] ?? "",
+				secondaryTypes: g["secondary-types"] ?? [],
+			});
+		}
+	}
 	// Newest first.
-	out.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""));
-	return out;
+	merged.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""));
+	return merged;
 }
 
 /** Resolve an artist name to its MBID via MB search. Returns the best match or null. */
