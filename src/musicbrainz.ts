@@ -420,6 +420,38 @@ export interface MbLabelMeta {
 }
 
 /**
+ * Fetch the label entity itself — name, country, founded year, disambiguation. Used by
+ * the JIT pipeline to pin Tavily searches to the exact label MB resolved (the chip
+ * ships an MBID; without context the LLM picks the wrong "Decca" / "Columbia" / etc.).
+ * Returns null on lookup failure — caller treats as soft (non-fatal).
+ */
+export interface MbLabelEntity {
+	mbid: string;
+	name: string;
+	country: string | null;
+	founded: string | null; // ISO date or year
+	disambiguation: string | null;
+}
+export async function fetchLabelEntityMb(labelMbid: string): Promise<MbLabelEntity | null> {
+	interface LabelResp {
+		id: string;
+		name: string;
+		country?: string;
+		"life-span"?: { begin?: string };
+		disambiguation?: string;
+	}
+	const data = await mbFetch<LabelResp>(`/label/${labelMbid}`, {});
+	if (!data?.id) return null;
+	return {
+		mbid: data.id,
+		name: data.name,
+		country: data.country ?? null,
+		founded: data["life-span"]?.begin ?? null,
+		disambiguation: data.disambiguation ?? null,
+	};
+}
+
+/**
  * Browse artists released on a label and release-groups under that label.
  * /artist?label= and /release-group?label= each paginate at limit=100.
  */

@@ -25,6 +25,7 @@ import { pipelineConfig, pricingConfig } from "./config.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
+	fetchLabelEntityMb,
 	fetchLabelMetaMb,
 	fetchProjectMetaMb,
 	fetchTrackMetaMb,
@@ -643,6 +644,27 @@ async function researchTarget(
 			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
 			if (meta.year) parts.push(meta.year);
 			if (parts.length > 0) queryHint = ` ${parts.join(" ")}`;
+		} catch {
+			// non-fatal
+		}
+	}
+	// Same disambiguation for label nodes (Raph 2026-05-24 prevention pass): "Decca",
+	// "Columbia", "Virgin" etc. collide across decades and continents in MB. With the
+	// MBID stamped on the chip we can pin Tavily to the canonical entity by appending
+	// country + founded-year + MB disambiguation text. Country alone disambiguates the
+	// US/UK Columbia pair; founded-year separates Virgin Records (1972) from later
+	// imprints; the disambig string is MB editors' free-text qualifier ("major label
+	// founded 1888" etc.) and is usually the highest-signal token.
+	if (input.mbid && input.type === "label") {
+		try {
+			const ent = await fetchLabelEntityMb(input.mbid);
+			if (ent) {
+				const parts: string[] = [];
+				if (ent.country) parts.push(ent.country);
+				if (ent.founded) parts.push(ent.founded.slice(0, 4));
+				if (ent.disambiguation) parts.push(ent.disambiguation);
+				if (parts.length > 0) queryHint = ` ${parts.join(" ")}`;
+			}
 		} catch {
 			// non-fatal
 		}
