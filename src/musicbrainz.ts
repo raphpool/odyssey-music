@@ -267,24 +267,48 @@ export async function fetchArtistDiscographyMb(
 		}[];
 	}
 	// Raph 2026-05-24: pull Albums + EPs + Singles. MB browse caps at 100 per call and
-	// returns release-groups in id order, so for prolific artists (Stones: 1898 RGs) a
-	// single un-filtered call returns nothing but the oldest 100 Albums. Issue one call
-	// per primary type in parallel, then merge.
+	// returns release-groups in id (UUID) order, so for prolific artists (Stones: 318
+	// singles incl. "In the Stars" 2026-05-05) a single call misses the most recent
+	// releases. Strategy: one call per primary type, paginate via offset up to MAX_PAGES
+	// pages when the total count exceeds 100. All pagination calls per type run in
+	// parallel, all types run in parallel. Newest items are then surfaced via client-side
+	// date sort downstream in pipeline.ts.
 	const TYPES = ["album", "ep", "single"] as const;
-	const results = await Promise.all(
-		TYPES.map((t) =>
-			mbFetch<RGResp>(`/release-group`, {
-				artist: artistMbid,
-				type: t,
-				limit: String(limit),
-			}).catch(() => null),
-		),
-	);
+	const MAX_PAGES = 4; // 4 × 100 = up to 400 RGs per type — covers Stones-scale catalogs
+	async function fetchTypePaged(t: string): Promise<RGResp["release-groups"]> {
+		const first = await mbFetch<RGResp>(`/release-group`, {
+			artist: artistMbid,
+			type: t,
+			limit: String(limit),
+			offset: "0",
+		}).catch(() => null);
+		if (!first) return [];
+		const all = [...(first["release-groups"] ?? [])];
+		const total = first["release-group-count"] ?? all.length;
+		if (total > limit && limit > 0) {
+			const pages = Math.min(MAX_PAGES, Math.ceil(total / limit));
+			const more = await Promise.all(
+				Array.from({ length: pages - 1 }, (_, i) =>
+					mbFetch<RGResp>(`/release-group`, {
+						artist: artistMbid,
+						type: t,
+						limit: String(limit),
+						offset: String(limit * (i + 1)),
+					}).catch(() => null),
+				),
+			);
+			for (const page of more) {
+				if (page?.["release-groups"]) all.push(...page["release-groups"]);
+			}
+		}
+		return all;
+	}
+	const perType = await Promise.all(TYPES.map((t) => fetchTypePaged(t)));
 	const merged: MbReleaseGroupSummary[] = [];
 	const seen = new Set<string>();
-	for (const data of results) {
-		if (!data || !Array.isArray(data["release-groups"])) continue;
-		for (const g of data["release-groups"]) {
+	for (const list of perType) {
+		if (!list) continue;
+		for (const g of list) {
 			if (seen.has(g.id)) continue;
 			seen.add(g.id);
 			merged.push({
