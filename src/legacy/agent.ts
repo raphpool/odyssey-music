@@ -251,8 +251,8 @@ export async function runAgent(input: AgentInput, deps: AgentDeps): Promise<Agen
 		fetcherKind === "firecrawl" ? makeFirecrawlTool(deps.firecrawlApiKey) : makeLocalFetchTool();
 	const tools: AgentTool[] = [searchTool, fetchTool, emitTool, abandonTool];
 
-	const modelId = deps.modelId ?? "gemini-3.1-flash-lite-preview";
-	// pi-ai 0.74.0 only ships the "preview" type id, so we widen the call to accept any string.
+	const modelId = deps.modelId ?? "gemini-2.5-flash-lite";
+	// pi-ai 0.74.0 only ships specific model type ids, so we widen the call to accept any string.
 	const model = getModel("google", modelId as "gemini-3.1-flash-lite-preview");
 
 	const userPrompt = formatUserPrompt(input);
