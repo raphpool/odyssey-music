@@ -37,7 +37,7 @@ export const musicBrainzConfig = {
 
 export const pipelineConfig = {
 	geminiApiKey: process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY ?? "",
-	defaultModel: envString("GEMINI_MODEL", "gemini-3.1-flash-lite-preview"),
+	defaultModel: envString("GEMINI_MODEL", "gemini-2.5-flash-lite"),
 	temperature: Number.parseFloat(envString("GEMINI_TEMPERATURE", "0.95")),
 	retryDelayMs: envInt("GEMINI_RETRY_DELAY_MS", 600),
 	maxCorpusBytes: envInt("PIPELINE_MAX_CORPUS_BYTES", 80_000),
