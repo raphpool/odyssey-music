@@ -36,19 +36,6 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 46.101.167.241 >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Write .env from secrets
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
-        run: |
-          umask 077
-          cat > .env <<EOF
-          GEMINI_API_KEY=$GEMINI_API_KEY
-          TAVILY_API_KEY=$TAVILY_API_KEY
-          FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY
-          EOF
-
       - name: Deploy server
         run: bash deploy/deploy-server.sh
 
