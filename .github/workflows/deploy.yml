@@ -1,0 +1,63 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test
+
+      - name: Set up SSH
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 46.101.167.241 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Write .env from secrets
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+        run: |
+          umask 077
+          cat > .env <<EOF
+          GEMINI_API_KEY=$GEMINI_API_KEY
+          TAVILY_API_KEY=$TAVILY_API_KEY
+          FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY
+          EOF
+
+      - name: Deploy server
+        run: bash deploy/deploy-server.sh
+
+      - name: Deploy web
+        run: bash scripts/deploy-web.sh
+
+      - name: Smoke
+        run: |
+          set -e
+          curl -fsS https://dropcliffs.com/api/odyssey/health; echo
+          curl -fsS https://dropcliffs.com/api/odyssey/version; echo
+          curl -fsS -o /dev/null -w "labs/odyssey HTTP %{http_code}\n" https://dropcliffs.com/labs/odyssey/
