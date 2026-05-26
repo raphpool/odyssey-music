@@ -36,7 +36,12 @@ import { createNodeService } from "./services/node-service.js";
 import { createSearchService } from "./services/search-service.js";
 import { handleStream } from "./stream.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
-import { readSidecar, resolveYouTube, type YouTubeResolution } from "./youtube.js";
+import {
+	invalidateSidecar,
+	readValidatedSidecar,
+	resolveYouTube,
+	type YouTubeResolution,
+} from "./youtube.js";
 
 const PORT = serverConfig.port;
 const CACHE_DIR = serverConfig.cacheDir;
@@ -160,7 +165,8 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	// in a sidecar file. Slug is the bare slug ("track:foo") or just the name part.
 	if (req.method === "GET" && path.startsWith("/resolve/")) {
 		const raw = decodeURIComponent(path.slice("/resolve/".length));
-		await handleResolve(res, raw);
+		const force = url.searchParams.get("force") === "1";
+		await handleResolve(res, raw, force);
 		return;
 	}
 	// GET /stream/:videoId → pipes audio (m4a) with HTTP Range support.
@@ -178,14 +184,11 @@ function clampLimit(raw: string | null): number {
 	return Math.min(n, 25);
 }
 
-async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void> {
+async function handleResolve(res: ServerResponse, rawSlug: string, force = false): Promise<void> {
 	const slug = (rawSlug.startsWith("track:") ? rawSlug : `track:${rawSlug}`) as Slug;
-	const cached = await readSidecar(CACHE_DIR, slug);
-	if (cached) {
-		res.setHeader("Cache-Control", "public, max-age=86400");
-		json(res, 200, { source: "cache", ...cached });
-		return;
-	}
+	// Load node first so we can validate the cached sidecar against the current
+	// artist/track names. A poisoned sidecar (right slug, wrong videoId) is
+	// dropped here and re-resolved transparently.
 	const node = await cache.get(slug).catch((e: unknown) => {
 		if (isNotFoundError(e)) return null;
 		throw e;
@@ -194,9 +197,20 @@ async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void
 		json(res, 404, { error: "track not cached", slug });
 		return;
 	}
-	// Pick an artist name from the track's artists list, if any.
 	const artistsField = (node as unknown as { artists?: EdgeRef[] }).artists;
 	const artistName = Array.isArray(artistsField) && artistsField[0] ? artistsField[0].name : undefined;
+
+	if (force) {
+		await invalidateSidecar(CACHE_DIR, slug);
+	} else {
+		const cached = await readValidatedSidecar(CACHE_DIR, slug, node.name, artistName);
+		if (cached) {
+			res.setHeader("Cache-Control", "public, max-age=86400");
+			json(res, 200, { source: "cache", ...cached });
+			return;
+		}
+	}
+
 	try {
 		const r: YouTubeResolution = await resolveYouTube({
 			trackSlug: slug,
@@ -204,6 +218,7 @@ async function handleResolve(res: ServerResponse, rawSlug: string): Promise<void
 			...(artistName ? { artistName } : {}),
 			cacheDir: CACHE_DIR,
 			tavilyApiKey: env.TAVILY_API_KEY,
+			force,
 		});
 		json(res, 200, { source: "resolved", ...r });
 	} catch (e) {
