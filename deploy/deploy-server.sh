@@ -48,15 +48,9 @@ if [[ $DIRTY -eq 1 ]]; then
   echo "WARN: deploying with uncommitted changes (sha $SHA_SHORT does not reflect what's on disk)."
 fi
 
-if [[ ! -f "$REPO_ROOT/.env" ]]; then
-  echo "ERROR: missing $REPO_ROOT/.env" >&2
-  exit 1
-fi
-
-set -a
-. "$REPO_ROOT/.env"
-set +a
-
+# /etc/odyssey-music.env is owned by the droplet (manual bootstrap, see
+# deploy/bootstrap-env.sh). This deploy script does NOT rewrite it — that
+# way API keys live on one host only and never round-trip through CI.
 cat > "$REPO_ROOT/.deployed-sha" <<EOF
 {
   "sha": "$SHA",
@@ -91,14 +85,19 @@ ssh "$SERVER" 'test -d /opt/odyssey-music/cache/nodes && echo "cache exists, kee
 echo "==> Pulling server-only JIT nodes back into repo"
 rsync -az --ignore-existing "$SERVER:/opt/odyssey-music/cache/" "$REPO_ROOT/cache/" || true
 
-echo "==> Installing on server + writing env + unit + nginx"
-ssh "$SERVER" \
-  GEMINI_API_KEY="$GEMINI_API_KEY" \
-  TAVILY_API_KEY="$TAVILY_API_KEY" \
-  FIRECRAWL_API_KEY="$FIRECRAWL_API_KEY" \
-  bash -s <<'REMOTE'
+echo "==> Installing on server + unit + nginx (env is NOT touched)"
+ssh "$SERVER" bash -s <<'REMOTE'
 set -euo pipefail
 cd /opt/odyssey-music
+
+# /etc/odyssey-music.env is the source of truth for API keys and must exist
+# before any deploy. Bootstrapped once via deploy/bootstrap-env.sh; never
+# rewritten from CI or laptop. Fail loud if missing.
+if [[ ! -s /etc/odyssey-music.env ]]; then
+  echo "ERROR: /etc/odyssey-music.env missing or empty on droplet." >&2
+  echo "Run deploy/bootstrap-env.sh once from a trusted host to seed it." >&2
+  exit 1
+fi
 
 # yt-dlp + ffmpeg are required by the /stream endpoint (audio player on track pages).
 # yt-dlp downloads bestaudio (usually m4a); ffmpeg is its remuxing dependency.
@@ -113,18 +112,6 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 mkdir -p /opt/odyssey-music/stream-cache
-
-umask 077
-cat > /etc/odyssey-music.env <<EOF
-GEMINI_API_KEY=$GEMINI_API_KEY
-TAVILY_API_KEY=$TAVILY_API_KEY
-FIRECRAWL_API_KEY=$FIRECRAWL_API_KEY
-ODYSSEY_CACHE_DIR=/opt/odyssey-music/cache
-STREAM_CACHE_DIR=/opt/odyssey-music/stream-cache
-PORT=18792
-EOF
-chmod 600 /etc/odyssey-music.env
-umask 022
 
 echo "  -> npm install"
 rm -rf node_modules
