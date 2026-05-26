@@ -804,9 +804,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 				// singles in the discography chip list, not just LPs. "In the Stars" (Stones,
 				// 2026) ships as Single on MB so it was previously filtered out.
 				const PRIMARY_OK = new Set(["Album", "EP", "Single"]);
-				const clean = releases.filter(
-					(r) => PRIMARY_OK.has(r.primaryType) && r.secondaryTypes.length === 0,
-				);
+				const clean = releases.filter((r) => PRIMARY_OK.has(r.primaryType) && r.secondaryTypes.length === 0);
 				if (clean.length > 0) {
 					// Keep ALL studio albums, then top up with newest EPs/singles up to 80.
 					// For canon artists (Stones: ~30 LPs) we keep every album AND get recent
@@ -831,7 +829,9 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 						year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
 						releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
 					}));
-					log(`[pipeline] artist discography overridden with ${merged.length} MB releases (${albums.length} album, ${epSingleBudget.length} ep+single, out of ${clean.length} clean)`);
+					log(
+						`[pipeline] artist discography overridden with ${merged.length} MB releases (${albums.length} album, ${epSingleBudget.length} ep+single, out of ${clean.length} clean)`,
+					);
 				}
 			}
 		} catch (e) {
