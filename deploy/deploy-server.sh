@@ -153,8 +153,20 @@ if ! grep -q "location /api/odyssey" /etc/nginx/sites-enabled/dropcliffs; then
   exit 1
 fi
 
-curl -fsS http://127.0.0.1:18792/health
-echo
+# tsx warm-up can take 5-10s after restart; retry the health check instead of
+# a single shot. Fail after ~30s.
+for i in 1 2 3 4 5 6 7 8 9 10; do
+  if curl -fsS http://127.0.0.1:18792/health; then
+    echo
+    break
+  fi
+  if [ "$i" -eq 10 ]; then
+    echo "ERROR: server did not respond on :18792 after 30s" >&2
+    journalctl -u odyssey-server --no-pager -n 50 >&2
+    exit 1
+  fi
+  sleep 3
+done
 echo "==> odyssey-server deployed."
 REMOTE
 
