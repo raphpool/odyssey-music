@@ -982,6 +982,16 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					}));
 				}
 				if (meta.year) obj.year = meta.year;
+				// MB release-group primary-type → narrow to the schema enum so chips
+				// (EdgeRef.releaseType) and node payloads (ProjectNode.release_type) agree.
+				// MB values outside album/ep/single (e.g. "Compilation", "Soundtrack") are
+				// intentionally dropped — extending the enum is a separate change.
+				if (meta.primaryType) {
+					const normalized = meta.primaryType.toLowerCase();
+					if (normalized === "album" || normalized === "ep" || normalized === "single") {
+						obj.release_type = normalized;
+					}
+				}
 				if (meta.producers.length > 0) {
 					obj.producers = meta.producers.slice(0, 6).map((a) => ({
 						type: "artist",
@@ -999,7 +1009,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					}));
 				}
 				log(
-					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"}`,
+					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} release_type=${(node as Record<string, unknown>).release_type ?? "-"}`,
 				);
 			}
 		} catch (e) {

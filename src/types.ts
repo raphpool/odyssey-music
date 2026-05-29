@@ -94,6 +94,11 @@ export interface ProjectNode extends BaseNode {
 	editorial_pitch: string;
 	cover_url?: string;
 	year?: string;
+	/** Release format. Sourced from MusicBrainz release-group primary-type
+	 * during materialization (kept narrow to match EdgeRef.releaseType so chips
+	 * and node payloads agree). Falls back to undefined when MB doesn't return
+	 * a primary-type or returns a non-album/ep/single value. */
+	release_type?: "album" | "ep" | "single";
 	bpm?: string;
 	musical_key?: string;
 	vocals?: string;

@@ -137,6 +137,9 @@ const projectSchema = z.object({
 	editorial_pitch: z.string().min(1),
 	cover_url: z.string().url().optional(),
 	year: z.string().optional(),
+	// MusicBrainz release-group primary-type, narrowed to album/ep/single.
+	// See ProjectNode in types.ts for rationale on the narrow set.
+	release_type: z.enum(["album", "ep", "single"]).optional(),
 	bpm: z.string().optional(),
 	musical_key: z.string().optional(),
 	vocals: z.string().optional(),

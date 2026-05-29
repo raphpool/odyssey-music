@@ -773,6 +773,10 @@ export interface MbProjectMeta {
 	year: string | null;
 	producers: MbCredit[];
 	personnel: MbCredit[];
+	/** Release-group primary-type from MusicBrainz (e.g. "Album", "EP", "Single",
+	 * "Compilation"). The pipeline narrows this to album/ep/single before
+	 * persisting to the project node — values outside that set become undefined. */
+	primaryType: string | null;
 }
 
 /**
@@ -788,9 +792,11 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 		year: null,
 		producers: [],
 		personnel: [],
+		primaryType: null,
 	};
 	interface ReleaseGroupResp {
 		"first-release-date"?: string;
+		"primary-type"?: string;
 		relations?: MbArtistRel[];
 		releases?: { id: string; "release-events"?: { date?: string }[]; date?: string }[];
 	}
@@ -833,6 +839,7 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 		year: null,
 		producers: [],
 		personnel: [],
+		primaryType: null,
 	};
 	const producersMap = new Map<string, MbCredit>();
 	const personnelMap = new Map<string, MbCredit>();
@@ -868,6 +875,7 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	}
 	const dateStr = rel.date ?? rg["first-release-date"];
 	if (typeof dateStr === "string" && /^\d{4}/.test(dateStr)) out.year = dateStr.slice(0, 4);
+	if (typeof rg["primary-type"] === "string") out.primaryType = rg["primary-type"];
 	return out;
 }
 

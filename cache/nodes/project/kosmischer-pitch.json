@@ -10,6 +10,7 @@
   "materialized_at": "2026-05-13T15:07:55.075Z",
   "type": "project",
   "editorial_pitch": "A definitive work of minimal and glitch electronica, Kosmischer Pitch showcases Jan Jelinek's mastery of loop-based soundscapes and atmospheric production.",
+  "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/57/a6/a3/57a6a33b-91b1-b5b4-7ce1-82a27b738515/880918269221.jpg/1500x1500bb.jpg",
   "year": "2005",
   "artists": [
     {
@@ -88,5 +89,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }
