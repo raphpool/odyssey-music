@@ -541,8 +541,10 @@ body {
   .project-card { flex-basis: 140px; }
 }
 
-/* Track play button (in track node header) */
-.play-btn {
+/* Track play button (in track node header) AND radio button on every other
+   focused card type. They share the pill shape; the colour follows the type
+   stripe so the button reads as "play this node's stuff" at a glance. */
+.play-btn, .radio-btn {
   display: inline-flex; align-items: center; gap: 0.45rem;
   margin-top: 0.7rem; padding: 0.4rem 0.85rem;
   background: var(--track); color: #0a0a0a;
@@ -550,8 +552,13 @@ body {
   font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500;
   letter-spacing: 0.02em; cursor: pointer;
 }
-.play-btn:hover { filter: brightness(1.08); }
-.play-btn:disabled { opacity: 0.55; cursor: progress; }
+.play-btn:hover, .radio-btn:hover { filter: brightness(1.08); }
+.play-btn:disabled, .radio-btn:disabled { opacity: 0.55; cursor: progress; }
+/* Per-type colour for the radio button — matches the card's stripe colour. */
+.node.stripe-artist .radio-btn { background: var(--artist); }
+.node.stripe-project .radio-btn { background: var(--project); }
+.node.stripe-label .radio-btn { background: var(--label); }
+.node.stripe-genre .radio-btn { background: var(--genre); }
 
 /* Sticky bottom player. Mounted once at boot — survives all nav. */
 #player {
@@ -585,6 +592,15 @@ body {
   font-size: 0.95rem;
 }
 .player-btn:disabled { opacity: 0.5; cursor: progress; }
+/* Next-track button: smaller, secondary styling so the main play/pause stays
+   the obvious primary control. Hidden when there's no queue. */
+.player-next {
+  background: transparent; color: var(--muted);
+  width: 30px; height: 30px;
+  border: 1px solid var(--card-border);
+}
+.player-next:not(:disabled):hover { color: var(--fg); border-color: var(--accent); }
+.player-next:disabled { opacity: 0.35; cursor: not-allowed; }
 .player-close {
   background: transparent; color: var(--muted);
   border: 0; cursor: pointer;
