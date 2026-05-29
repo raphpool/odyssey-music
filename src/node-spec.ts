@@ -84,7 +84,16 @@ export const OPTIONAL_TEXT_FIELDS: Record<NodeType, readonly string[]> = {
 	genre: ["era", "origin", "sonic_markers"],
 	label: ["founded", "location", "founders", "active_years"],
 	artist: ["photo_url", "origin", "active_years"],
-	project: ["cover_url", "year", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
+	project: [
+		"cover_url",
+		"year",
+		"release_type",
+		"bpm",
+		"musical_key",
+		"vocals",
+		"samples_notes",
+		"inspirations",
+	],
 	track: ["cover_url", "year", "duration", "bpm", "musical_key", "vocals", "samples_notes", "inspirations"],
 };
 
