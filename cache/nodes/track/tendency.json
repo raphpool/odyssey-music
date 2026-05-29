@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:34:09.753Z",
   "type": "track",
   "editorial_teaser": "A landmark piece of minimal glitch music, \"Tendency\" uses micro-samples of jazz to create a warm, hypnotic, and uniquely textured soundscape.",
+  "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music/10/ee/9a/mzi.zlcwfgyb.jpg/1500x1500bb.jpg",
   "artists": [
     {
       "slug": "artist:jan-jelinek",
@@ -49,6 +50,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []
