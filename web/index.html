@@ -155,24 +155,51 @@ function safeCssUrl(u) {
 const imageJitPromises = new Map();
 
 /**
- * Fire `GET /image/:slug`, then mutate the currently-focused .node DOM to
- * paint in the resolved image. Idempotent — second calls for the same slug
- * share the original promise; if the user has navigated away by the time
- * the call returns, we just update `byId` (for future visits) and exit.
+ * Fire `GET /image/:slug` (idempotent per slug), persist the resolved URL into
+ * the in-memory byId graph for instant reuse, and return the URL or null.
+ * Used by both jitResolveHero (focused hero) and the project-card carousel.
  */
-async function jitResolveHero(slug) {
+async function jitResolveImage(slug) {
+  if (!JIT_ENABLED) return null;
   if (!imageJitPromises.has(slug)) {
     imageJitPromises.set(slug, fetch(`${API_BASE}/image/${encodeURIComponent(slug)}`).then((r) => r.ok ? r.json() : null).catch(() => null));
   }
   const result = await imageJitPromises.get(slug);
-  if (!result || !result.image_url) return;
-  // Cache on the in-memory graph so revisits and edge-walks see it immediately.
+  if (!result || !result.image_url) return null;
   const cached = byId.get(slug);
   if (cached) cached.image_url = result.image_url;
-  // Only paint if this slug is still the focused node (user might've clicked away).
+  return result.image_url;
+}
+
+/**
+ * Resolve the focused card's hero image via JIT, then paint .hero + .node-tint.
+ * No-op if the user has navigated away by the time the call returns.
+ */
+async function jitResolveHero(slug) {
+  const url = await jitResolveImage(slug);
+  if (!url) return;
   const currentId = crumbs[crumbs.length - 1];
   if (currentId !== slug) return;
-  paintHero(result.image_url);
+  paintHero(url);
+}
+
+/**
+ * For a .project-card with data-id="<slug>" data-needs-image="1": fire JIT
+ * image resolution and paint the .cover background when the URL arrives.
+ * Safe to call after the card has scrolled off (the URL still lands in byId
+ * for the next visit; we just skip painting the detached element).
+ */
+async function paintCardWhenReady(cardEl) {
+  const slug = cardEl.dataset.id;
+  if (!slug) return;
+  const url = await jitResolveImage(slug);
+  if (!url) return;
+  if (!cardEl.isConnected) return;
+  const cover = cardEl.querySelector(".cover");
+  if (!cover) return;
+  cover.style.backgroundImage = `url('${safeCssUrl(url)}')`;
+  cardEl.classList.remove("no-image");
+  cardEl.dataset.needsImage = "0";
 }
 
 function paintHero(url) {
@@ -526,7 +553,20 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     remix_of: "remix of",
     remixed_by: "remixed by",
   };
+  // Pull out the project-carousel edge (per node type) — it renders as a
+  // visual carousel above the article, not as chips below.
+  const carouselEdgeKey = PROJECT_CAROUSEL_EDGE[node.type];
+  let carouselHtml = "";
+  if (carouselEdgeKey) {
+    const refs = node.edges && node.edges[carouselEdgeKey];
+    if (Array.isArray(refs) && refs.length) {
+      const carouselLabel = KIND_LABEL[carouselEdgeKey] || carouselEdgeKey.replace(/_/g, " ");
+      carouselHtml = projectCarouselHtml(refs, carouselLabel);
+    }
+  }
+
   const edgeHtml = Object.entries(node.edges || {}).map(([kind, val]) => {
+    if (kind === carouselEdgeKey) return ""; // rendered as carousel above
     const refs = Array.isArray(val) ? val : [val];
     if (!refs.length) return "";
     const label = KIND_LABEL[kind] || kind.replace(/_/g, " ");
@@ -582,6 +622,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
         ${factParts ? `<div class="facts">${factParts}</div>` : ""}
         ${playBtnHtml}
         ${banner}
+        ${carouselHtml}
         <div class="article">${escapeHtml(node.article || "")}</div>
         ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
         <div class="section">Sources</div>
@@ -597,7 +638,26 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   // with the gradient placeholder; we swap in the image when the call returns.
   if (!heroUrl && JIT_ENABLED) jitResolveHero(id);
 
-  contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
+  // Same idea for the project-card carousel: each card whose target project has
+  // no image_url in the bundle fires a /image/:slug request, then paints its own
+  // .cover when the URL arrives. Limited to the first 6 missing cards to avoid
+  // hammering the server when the user lands on an artist with 40 releases —
+  // the rest fill in lazily as the user scrolls into view via IntersectionObserver below.
+  const carouselCards = Array.from(contentEl.querySelectorAll('.project-card[data-needs-image="1"]'));
+  carouselCards.slice(0, 6).forEach((el) => paintCardWhenReady(el));
+  if (carouselCards.length > 6) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          paintCardWhenReady(e.target);
+          io.unobserve(e.target);
+        }
+      }
+    }, { rootMargin: "200px" });
+    carouselCards.slice(6).forEach((el) => io.observe(el));
+  }
+
+  contentEl.querySelectorAll(".chip[data-id], .project-card[data-id]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
       show(el.dataset.id);
@@ -693,6 +753,51 @@ function buildDisambiguator(parentCtx) {
   const yearPart = parentCtx.year ? `, ${parentCtx.year}` : "";
   // e.g. "appears as discography of artist Burial" / "subgenre of genre Techno"
   return `${kindLabel} of ${parentCtx.type} "${parentCtx.name}"${yearPart}`.trim();
+}
+
+// For these (focused-node-type, edge-key) pairs the project edge list renders
+// as a horizontal carousel of cover-art cards instead of flat chips, since
+// covers are the primary visual entry point. Chips for the same edge are
+// suppressed below so we don't repeat the same content twice on the card.
+const PROJECT_CAROUSEL_EDGE = {
+  artist: "discography",
+  label: "notable_releases",
+  genre: "landmark_projects",
+  project: "related_projects",
+};
+
+/**
+ * Render an array of project edge refs as a horizontal swipable carousel.
+ * Each card shows cover + year + EP/Single/Album badge. Missing covers fall back
+ * to the type-colored gradient placeholder; a follow-up jitResolveImage() call
+ * (kicked off after the DOM is in place) fills in the image when the iTunes
+ * lookup returns. Cards link to the project via data-id (handled by the same
+ * delegated click listener as chips).
+ */
+function projectCarouselHtml(refs, kindLabel) {
+  if (!Array.isArray(refs) || !refs.length) return "";
+  const cards = refs.map((ref) => {
+    const cached = byId.get(ref.slug);
+    const facts = (cached && cached.facts) || {};
+    const imageUrl = (cached && cached.image_url) || "";
+    const year = facts.year || ref.year || "";
+    // Prefer the focused node's own release_type; otherwise the edge hint.
+    const releaseType = facts.release_type || ref.releaseType || "";
+    const noImage = imageUrl ? "" : " no-image";
+    const dangling = cached ? "" : " dangling";
+    const bg = imageUrl ? ` style="background-image: url('${safeCssUrl(imageUrl)}');"` : "";
+    const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
+    const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
+    return `<a class="project-card${noImage}${dangling}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}" data-needs-image="${imageUrl ? "0" : "1"}">
+      <div class="cover"${bg}></div>
+      <div class="name">${escapeHtml(ref.name)}</div>
+      <div class="meta">${yearHtml}${rtHtml}</div>
+    </a>`;
+  }).join("");
+  return `<div class="project-carousel-section">
+    <div class="kind">${escapeHtml(kindLabel)}</div>
+    <div class="project-carousel">${cards}</div>
+  </div>`;
 }
 
 function chipHtml(ref, parentCtx) {
