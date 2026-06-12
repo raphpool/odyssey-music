@@ -535,6 +535,11 @@ body {
 }
 .project-card.dangling { opacity: 0.6; border-style: dashed; }
 .project-card.dangling .meta::before { content: "↻ "; color: var(--muted); }
+/* Same red-ish styling as .chip.dead — materialization failed. Pointer
+   events stay enabled (the user can still navigate to the slug) but the
+   visual signals 'don't bother clicking, this won't load'. */
+.project-card.dead { opacity: 0.55; border-color: #7f1d1d; border-style: dashed; background: rgba(248,113,113,0.06); }
+.project-card.dead .meta::before { content: "✕ "; color: #f87171; }
 @media (max-width: 600px) {
   .project-carousel-section { margin-left: -1rem; margin-right: -1rem; }
   .project-carousel { padding-left: 1rem; padding-right: 1rem; scroll-padding-left: 1rem; }

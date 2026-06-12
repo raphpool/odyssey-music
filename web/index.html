@@ -687,7 +687,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
       Player.playQueue(refs, label);
     });
   }
-  contentEl.querySelectorAll(".chip.dangling[data-jit-type]").forEach((el) => {
+  contentEl.querySelectorAll(".chip.dangling[data-jit-type], .project-card.dangling[data-jit-type]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
       jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitDisambig || "", el.dataset.jitMbid || "");
@@ -788,6 +788,12 @@ function buildRadioQueue(node) {
   const push = (r) => {
     if (!r || !r.slug || r.type !== "track") return;
     if (seen.has(r.slug)) return;
+    // /resolve refuses tracks that aren't materialized in the cache
+    // ({"error":"track not cached"}). Without this filter the radio dies on
+    // the first dangling track, leaving the user staring at a frozen player.
+    // The trade-off is a smaller queue; the right long-term fix is to allow
+    // /resolve to take name+artist when the slug isn't cached.
+    if (!byId.has(r.slug)) return;
     seen.add(r.slug);
     refs.push({ slug: r.slug, type: "track", name: r.name });
   };
@@ -857,14 +863,22 @@ function projectCarouselHtml(refs, kindLabel) {
     const facts = (cached && cached.facts) || {};
     const imageUrl = (cached && cached.image_url) || "";
     const year = facts.year || ref.year || "";
-    // Prefer the focused node's own release_type; otherwise the edge hint.
     const releaseType = facts.release_type || ref.releaseType || "";
     const noImage = imageUrl ? "" : " no-image";
-    const dangling = cached ? "" : " dangling";
     const bg = imageUrl ? ` style="background-image: url('${safeCssUrl(imageUrl)}');"` : "";
     const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
     const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
-    return `<a class="project-card${noImage}${dangling}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}" data-needs-image="${imageUrl ? "0" : "1"}">
+    // Cached projects navigate via show() (same as chips). Dangling ones carry
+    // jit-* attrs so the click triggers materialize → navigate, like dangling
+    // chips do. Without this branch, clicking a dangling card called show(slug)
+    // which silently returns and feels broken (Raph 2026-05-30 report).
+    const inCache = !!cached;
+    const dead = deadCache.has(ref.slug);
+    const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
+    const navAttrs = inCache
+      ? `data-id="${ref.slug}"`
+      : `data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : ""}`;
+    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(ref.slug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
       <div class="cover"${bg}></div>
       <div class="name">${escapeHtml(ref.name)}</div>
       <div class="meta">${yearHtml}${rtHtml}</div>
@@ -1070,6 +1084,11 @@ const Player = (() => {
     } catch (e) {
       titleEl.textContent = node.name + " — playback unavailable";
       setArtistLine(String(e.message || e));
+      // In radio mode, /resolve failures shouldn't freeze the queue. Wait a
+      // beat so the user sees what was skipped, then auto-advance.
+      if (queue.length > 0 && queueIdx >= 0 && queueIdx + 1 < queue.length) {
+        setTimeout(() => { playNext(); }, 800);
+      }
     } finally {
       resolving = false;
       toggleBtn.disabled = false;
