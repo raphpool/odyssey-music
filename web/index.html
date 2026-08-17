@@ -19,11 +19,13 @@
     <a class="back" href="/">← back</a>
     <div class="title">Odyssey</div>
     <span class="sub">Culture Graph · Phase 1</span>
+    <button class="profile-chip" id="profile-chip" hidden></button>
   </div>
 
   <div class="controls">
     <div class="search">
       <input id="search" type="search" placeholder="search an artist…" autocomplete="off" inputmode="search" />
+      <button id="home-btn">⌂ home</button>
       <button id="focus-seed">Focus seed</button>
       <button id="random">Random</button>
     </div>
@@ -40,6 +42,47 @@
     Crawler at <a href="https://github.com/raphpool/odyssey-music">github.com/raphpool/odyssey-music</a> ·
     Agent powered by Gemini 3.1 Flash Lite + Tavily + Firecrawl via
     <a href="https://github.com/earendil-works/pi">pi</a>
+  </div>
+</div>
+
+<!-- Onboarding. Shown on first visit (no profile in localStorage): pick a display
+     name, then the genres you want to explore. Step 2 is reused standalone when
+     the user edits their genres from the header profile chip. The profile is
+     client-side only — no password, no server, no network call. -->
+<div class="onb" id="onb" hidden>
+  <div class="onb-card">
+    <div class="onb-dots"><i class="on" data-dot="1"></i><i data-dot="2"></i></div>
+
+    <section class="onb-step" data-step="1">
+      <div class="onb-kicker">Bienvenue</div>
+      <h2>Crée ton compte</h2>
+      <p class="onb-lede">Ton profil reste sur cet appareil — pas de mot de passe, pas de serveur.</p>
+      <label class="onb-field">
+        <span>Pseudo</span>
+        <input id="onb-name" type="text" maxlength="32" placeholder="ex. raph" autocomplete="nickname" />
+      </label>
+      <label class="onb-field">
+        <span>Email <i>optionnel</i></span>
+        <input id="onb-email" type="email" maxlength="120" placeholder="toi@exemple.com" autocomplete="email" />
+      </label>
+      <div class="onb-err" id="onb-err" hidden></div>
+      <div class="onb-actions">
+        <button class="onb-ghost" id="onb-skip" type="button">plus tard</button>
+        <button class="onb-cta" id="onb-to-genres" type="button">Continuer →</button>
+      </div>
+    </section>
+
+    <section class="onb-step" data-step="2" hidden>
+      <div class="onb-kicker" id="onb-step2-kicker">Étape 2 / 2</div>
+      <h2>Tes genres</h2>
+      <p class="onb-lede">Choisis au moins 3 genres à explorer. Ils alimentent la reco du jour.</p>
+      <div class="genre-grid" id="onb-genres"></div>
+      <div class="onb-actions">
+        <button class="onb-ghost" id="onb-back" type="button">← retour</button>
+        <span class="onb-count" id="onb-count">0 sélectionné</span>
+        <button class="onb-cta" id="onb-done" type="button" disabled>Terminer</button>
+      </div>
+    </section>
   </div>
 </div>
 
@@ -499,13 +542,465 @@ async function pingApi() {
   });
 
   window.addEventListener("popstate", (e) => {
+    if (e.state && e.state.view === "home") {
+      showHome({ fromHistory: true });
+      return;
+    }
     const id = (e.state && e.state.id) || SEED_ID;
     show(id, { fromHistory: true });
   });
 
-  const initial = new URLSearchParams(window.location.search).get("node");
-  show(initial && byId.has(initial) ? initial : SEED_ID, { replaceHistory: true });
+  wireOnboarding();
+  renderProfileChip();
+  document.getElementById("home-btn").addEventListener("click", () => showHome());
+
+  // Routing. An explicit ?node= deep link always wins (shared links must keep
+  // working). Otherwise: home for a signed-in user, seed node for everyone else.
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get("node");
+  if (initial && byId.has(initial)) show(initial, { replaceHistory: true });
+  else if (params.get("view") === "home" || Profile.data) showHome({ replaceHistory: true });
+  else show(SEED_ID, { replaceHistory: true });
+
+  // First visit: open the account creation flow over whatever we just rendered.
+  if (!Profile.data && !Profile.skipped()) openOnboarding({ mode: "signup" });
 })();
+
+// ─── Profile (client-side account) ────────────────────────────────────────
+// The "account" is a localStorage record: display name, optional email, and the
+// genres the user wants to explore. No password, no server round-trip — the
+// onboarding exists to collect the taste signal that drives the home page
+// recommendation. Swapping this for a server-backed session later only means
+// changing load()/save(); nothing else reads localStorage directly.
+const PROFILE_KEY = "odyssey.profile.v1";
+const SKIP_KEY = "odyssey.onboarding.skipped.v1";
+const RECO_KEY = "odyssey.reco.v1";
+
+const Profile = {
+  data: null,
+  load() {
+    try {
+      const raw = localStorage.getItem(PROFILE_KEY);
+      const p = raw ? JSON.parse(raw) : null;
+      this.data = p && p.name && Array.isArray(p.genres) ? p : null;
+    } catch { this.data = null; }
+    return this.data;
+  },
+  save(patch) {
+    const next = { createdAt: new Date().toISOString(), ...(this.data || {}), ...patch };
+    this.data = next;
+    try { localStorage.setItem(PROFILE_KEY, JSON.stringify(next)); } catch {}
+    try { localStorage.removeItem(SKIP_KEY); } catch {}
+    return next;
+  },
+  clear() {
+    this.data = null;
+    try { localStorage.removeItem(PROFILE_KEY); localStorage.removeItem(RECO_KEY); } catch {}
+  },
+  skipped() {
+    try { return localStorage.getItem(SKIP_KEY) === "1"; } catch { return false; }
+  },
+  skip() {
+    try { localStorage.setItem(SKIP_KEY, "1"); } catch {}
+  },
+};
+Profile.load();
+
+function renderProfileChip() {
+  const chip = document.getElementById("profile-chip");
+  if (!Profile.data) {
+    chip.hidden = false;
+    chip.textContent = "créer un compte";
+    chip.onclick = () => openOnboarding({ mode: "signup" });
+    return;
+  }
+  chip.hidden = false;
+  chip.textContent = `${Profile.data.name} · ${Profile.data.genres.length} genres`;
+  chip.onclick = () => openOnboarding({ mode: "edit" });
+}
+
+// ─── Onboarding ───────────────────────────────────────────────────────────
+// Curated shortlist for the genre picker. The graph holds 260+ genre nodes,
+// most of them long-tail subgenres — showing them all would be a wall. These
+// are the well-connected families; any slug missing from the loaded bundle is
+// dropped, and we top up from the most-referenced genres so the grid is never
+// thin on a partial export.
+const ONBOARDING_GENRES = [
+  "genre:techno", "genre:house", "genre:ambient", "genre:idm", "genre:drum-and-bass",
+  "genre:dubstep", "genre:uk-garage", "genre:jungle", "genre:disco", "genre:electronic",
+  "genre:synth-pop", "genre:krautrock", "genre:post-punk", "genre:new-wave", "genre:shoegaze",
+  "genre:indie-rock", "genre:psychedelic-rock", "genre:progressive-rock", "genre:punk-rock", "genre:rock",
+  "genre:hip-hop", "genre:trip-hop", "genre:jazz", "genre:funk", "genre:soul",
+  "genre:r-and-b", "genre:reggae", "genre:dub", "genre:pop", "genre:soundtrack",
+  "genre:minimalism", "genre:musique-concrete", "genre:experimental", "genre:glitch",
+];
+const MIN_GENRES = 3;
+
+function genrePickList() {
+  const picks = ONBOARDING_GENRES.filter((s) => byId.has(s));
+  if (picks.length >= 12) return picks;
+  const seen = new Set(picks);
+  for (const [slug] of genresByPopularity()) {
+    if (picks.length >= 24) break;
+    if (!seen.has(slug)) { picks.push(slug); seen.add(slug); }
+  }
+  return picks;
+}
+
+// Genre slugs ordered by how many nodes reference them, most-referenced first.
+let popularityCache = null;
+function genresByPopularity() {
+  if (popularityCache) return popularityCache;
+  const deg = new Map();
+  for (const n of byId.values()) {
+    for (const val of Object.values(n.edges || {})) {
+      const refs = Array.isArray(val) ? val : [val];
+      for (const r of refs) {
+        if (r && r.slug && byId.has(r.slug) && r.slug.startsWith("genre:")) {
+          deg.set(r.slug, (deg.get(r.slug) || 0) + 1);
+        }
+      }
+    }
+  }
+  popularityCache = [...deg.entries()].sort((a, b) => b[1] - a[1]);
+  return popularityCache;
+}
+
+let onbSelection = new Set();
+let onbMode = "signup";
+
+function wireOnboarding() {
+  const onb = document.getElementById("onb");
+  const nameEl = document.getElementById("onb-name");
+  const emailEl = document.getElementById("onb-email");
+  const errEl = document.getElementById("onb-err");
+
+  document.getElementById("onb-to-genres").addEventListener("click", () => {
+    const name = nameEl.value.trim();
+    if (name.length < 2) {
+      errEl.textContent = "Choisis un pseudo d'au moins 2 caractères.";
+      errEl.hidden = false;
+      nameEl.focus();
+      return;
+    }
+    errEl.hidden = true;
+    onbStep(2);
+  });
+  nameEl.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") document.getElementById("onb-to-genres").click();
+  });
+  document.getElementById("onb-back").addEventListener("click", () => {
+    if (onbMode === "edit") { closeOnboarding(); return; }
+    onbStep(1);
+  });
+  document.getElementById("onb-skip").addEventListener("click", () => {
+    Profile.skip();
+    closeOnboarding();
+  });
+  document.getElementById("onb-done").addEventListener("click", () => {
+    if (onbSelection.size < MIN_GENRES) return;
+    Profile.save({
+      name: nameEl.value.trim() || (Profile.data && Profile.data.name) || "toi",
+      email: emailEl.value.trim(),
+      genres: [...onbSelection],
+    });
+    clearReco(); // taste changed → today's pick is recomputed against the new genres
+    renderProfileChip();
+    closeOnboarding();
+    showHome();
+  });
+  onb.addEventListener("click", (e) => {
+    // Backdrop click closes only when there is something to go back to.
+    if (e.target === onb && Profile.data) closeOnboarding();
+  });
+}
+
+function onbStep(n) {
+  document.querySelectorAll("#onb .onb-step").forEach((el) => {
+    el.hidden = Number(el.dataset.step) !== n;
+  });
+  document.querySelectorAll("#onb .onb-dots i").forEach((el) => {
+    el.classList.toggle("on", Number(el.dataset.dot) <= n);
+  });
+  if (n === 2) renderGenreGrid();
+}
+
+function openOnboarding({ mode = "signup" } = {}) {
+  onbMode = mode;
+  const onb = document.getElementById("onb");
+  const nameEl = document.getElementById("onb-name");
+  const emailEl = document.getElementById("onb-email");
+  nameEl.value = (Profile.data && Profile.data.name) || "";
+  emailEl.value = (Profile.data && Profile.data.email) || "";
+  onbSelection = new Set((Profile.data && Profile.data.genres) || []);
+  document.getElementById("onb-err").hidden = true;
+  document.getElementById("onb-step2-kicker").textContent = mode === "edit" ? "Ton profil" : "Étape 2 / 2";
+  document.getElementById("onb-back").textContent = mode === "edit" ? "annuler" : "← retour";
+  document.querySelector("#onb .onb-dots").hidden = mode === "edit";
+  onb.hidden = false;
+  document.body.classList.add("onb-open");
+  onbStep(mode === "edit" ? 2 : 1);
+  if (mode === "signup") setTimeout(() => nameEl.focus(), 60);
+}
+
+function closeOnboarding() {
+  document.getElementById("onb").hidden = true;
+  document.body.classList.remove("onb-open");
+}
+
+function renderGenreGrid() {
+  const grid = document.getElementById("onb-genres");
+  grid.innerHTML = genrePickList().map((slug) => {
+    const n = byId.get(slug);
+    const on = onbSelection.has(slug) ? " on" : "";
+    return `<button type="button" class="genre-pick${on}" data-slug="${escapeHtml(slug)}">${escapeHtml(n.name)}</button>`;
+  }).join("");
+  grid.querySelectorAll(".genre-pick").forEach((el) => {
+    el.addEventListener("click", () => {
+      const slug = el.dataset.slug;
+      if (onbSelection.has(slug)) onbSelection.delete(slug);
+      else onbSelection.add(slug);
+      el.classList.toggle("on", onbSelection.has(slug));
+      refreshGenreCount();
+    });
+  });
+  refreshGenreCount();
+}
+
+function refreshGenreCount() {
+  const n = onbSelection.size;
+  const countEl = document.getElementById("onb-count");
+  countEl.textContent = n < MIN_GENRES ? `${n}/${MIN_GENRES} minimum` : `${n} sélectionné${n > 1 ? "s" : ""}`;
+  countEl.classList.toggle("low", n < MIN_GENRES);
+  document.getElementById("onb-done").disabled = n < MIN_GENRES;
+}
+
+// ─── Reco du jour ─────────────────────────────────────────────────────────
+// Scores every non-genre node against the user's selected genres: a direct tag
+// match is worth 3, a match on a subgenre / related genre of a selection is
+// worth 1. The genre node's own curated edges (key artists, landmark releases)
+// get a bonus so hand-picked entries surface ahead of incidentally-tagged ones.
+function scoreAffinity(genreSlugs) {
+  const direct = new Set(genreSlugs.filter((s) => byId.has(s)));
+  const near = new Set();
+  for (const g of direct) {
+    const gn = byId.get(g);
+    for (const kind of ["subgenres", "related_genres"]) {
+      for (const r of (gn.edges && gn.edges[kind]) || []) if (!direct.has(r.slug)) near.add(r.slug);
+    }
+  }
+  const scores = new Map();
+  const bump = (slug, by) => {
+    if (!byId.has(slug)) return;
+    const n = byId.get(slug);
+    if (n.type === "genre" || n.type === "label") return; // labels make poor "listen to this" picks
+    scores.set(slug, (scores.get(slug) || 0) + by);
+  };
+  for (const g of direct) {
+    const edges = byId.get(g).edges || {};
+    for (const r of edges.landmark_projects || []) bump(r.slug, 4);
+    for (const r of edges.landmark_tracks || []) bump(r.slug, 4);
+    for (const r of edges.key_artists || []) bump(r.slug, 3);
+  }
+  for (const n of byId.values()) {
+    if (n.type === "genre" || n.type === "label") continue;
+    for (const r of (n.edges && n.edges.genres) || []) {
+      if (direct.has(r.slug)) bump(n.id, 3);
+      else if (near.has(r.slug)) bump(n.id, 1);
+    }
+  }
+  return [...scores.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).map(([id]) => id);
+}
+
+function todayKey() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+// FNV-1a — we only need a stable spread, not cryptographic quality.
+function hashStr(s) {
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+function readReco() {
+  try {
+    const r = JSON.parse(localStorage.getItem(RECO_KEY) || "{}");
+    return { date: r.date || "", id: r.id || "", history: Array.isArray(r.history) ? r.history : [] };
+  } catch { return { date: "", id: "", history: [] }; }
+}
+function writeReco(state) {
+  try { localStorage.setItem(RECO_KEY, JSON.stringify(state)); } catch {}
+}
+function clearReco() {
+  try { localStorage.removeItem(RECO_KEY); } catch {}
+}
+
+/**
+ * The pick of the day. Stable across reloads (stored under today's date) and
+ * seeded by name+date so two users with the same genres don't get the same card.
+ * `reroll` forces the next unseen candidate and overwrites today's pick.
+ */
+function pickDailyReco({ reroll = false } = {}) {
+  if (!Profile.data || !Profile.data.genres.length) return null;
+  const state = readReco();
+  const today = todayKey();
+  if (!reroll && state.date === today && byId.has(state.id)) return byId.get(state.id);
+
+  const ranked = scoreAffinity(Profile.data.genres);
+  if (!ranked.length) return null;
+  // Only the top slice is eligible, so the daily card stays a strong match
+  // rather than drifting into the long tail of one-edge nodes.
+  const pool = ranked.slice(0, 60);
+  const seen = new Set(state.history);
+  if (reroll && state.id) seen.add(state.id);
+  const start = hashStr(`${Profile.data.name}|${today}|${state.history.length}`) % pool.length;
+  let picked = null;
+  for (let i = 0; i < pool.length; i++) {
+    const cand = pool[(start + i) % pool.length];
+    if (!seen.has(cand)) { picked = cand; break; }
+  }
+  if (!picked) picked = pool[start]; // everything seen — start recycling
+  writeReco({ date: today, id: picked, history: [...state.history, picked].slice(-40) });
+  return byId.get(picked);
+}
+
+// Which of the user's genres this node actually matches — powers the "why" line.
+function recoReasons(node) {
+  if (!Profile.data) return [];
+  const mine = new Set(Profile.data.genres);
+  const hits = [];
+  for (const r of (node.edges && node.edges.genres) || []) {
+    if (mine.has(r.slug) && !hits.some((h) => h.slug === r.slug)) hits.push(r);
+  }
+  if (hits.length) return hits.slice(0, 3);
+  // Curated pick (landmark / key artist): find which selected genre pointed at it.
+  for (const g of Profile.data.genres) {
+    const gn = byId.get(g);
+    if (!gn) continue;
+    for (const kind of ["landmark_projects", "landmark_tracks", "key_artists"]) {
+      for (const r of (gn.edges && gn.edges[kind]) || []) {
+        if (r.slug === node.id) return [{ slug: g, name: gn.name }];
+      }
+    }
+  }
+  return [];
+}
+
+// ─── Home view ────────────────────────────────────────────────────────────
+function showHome({ fromHistory = false, replaceHistory = false } = {}) {
+  crumbs = [];
+  renderCrumbs();
+  if (!fromHistory) {
+    if (replaceHistory) history.replaceState({ view: "home" }, "", "?view=home");
+    else history.pushState({ view: "home" }, "", "?view=home");
+  }
+
+  if (!Profile.data) {
+    contentEl.innerHTML = `
+      <div class="home">
+        <div class="home-hello">Bienvenue sur Odyssey</div>
+        <div class="reco-empty">
+          <p>Crée ton compte et choisis tes genres pour débloquer la reco du jour.</p>
+          <button class="reco-cta" id="home-signup">Créer mon compte</button>
+        </div>
+      </div>`;
+    contentEl.querySelector("#home-signup").addEventListener("click", () => openOnboarding({ mode: "signup" }));
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return;
+  }
+
+  const node = pickDailyReco();
+  const genreChips = Profile.data.genres
+    .filter((s) => byId.has(s))
+    .map((s) => `<a class="chip t-genre" href="?node=${encodeURIComponent(s)}" data-id="${escapeHtml(s)}">${escapeHtml(byId.get(s).name)}</a>`)
+    .join("");
+
+  const recoHtml = node ? renderRecoCard(node) : `
+    <div class="reco-empty">
+      <p>Rien à recommander pour ces genres dans le graphe pour l'instant.</p>
+      <button class="reco-cta" id="home-edit-genres">Modifier mes genres</button>
+    </div>`;
+
+  contentEl.innerHTML = `
+    <div class="home">
+      <div class="home-hello">Salut ${escapeHtml(Profile.data.name)} 👋</div>
+      ${recoHtml}
+      <div class="home-genres">
+        <div class="section">Tes genres</div>
+        <div class="chips">${genreChips}</div>
+        <button class="home-edit" id="home-edit">modifier ma sélection</button>
+      </div>
+    </div>`;
+
+  contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
+    el.addEventListener("click", (e) => { e.preventDefault(); show(el.dataset.id); });
+  });
+  const editBtn = contentEl.querySelector("#home-edit") || contentEl.querySelector("#home-edit-genres");
+  if (editBtn) editBtn.addEventListener("click", () => openOnboarding({ mode: "edit" }));
+
+  if (node) wireRecoCard(node);
+  window.scrollTo({ top: 0, behavior: "instant" });
+}
+
+function renderRecoCard(node) {
+  const img = resolveHeroImage(node);
+  const bg = img ? ` style="background-image: url('${safeCssUrl(img)}');"` : "";
+  const meta = buildHeroMeta(node);
+  const reasons = recoReasons(node);
+  const why = reasons.length
+    ? `parce que tu explores ${reasons.map((r) => escapeHtml(r.name)).join(" · ")}`
+    : "sélectionné dans ton univers";
+  const playLabel = node.type === "track" ? "▶ play" : "▶ Radio";
+  return `
+    <div class="reco stripe-${node.type}" data-reco-id="${escapeHtml(node.id)}">
+      <div class="reco-kicker">La reco du jour</div>
+      <div class="reco-cover${img ? "" : " no-image"}"${bg}></div>
+      <div class="reco-body">
+        <div class="badge ${node.type}">${node.type}</div>
+        <h2>${escapeHtml(node.name)}</h2>
+        ${meta ? `<div class="reco-meta">${escapeHtml(meta)}</div>` : ""}
+        <div class="reco-why">${why}</div>
+        <div class="reco-teaser">${escapeHtml(node.teaser || "")}</div>
+        <div class="reco-actions">
+          <button class="reco-cta" id="reco-open">Découvrir</button>
+          <button class="reco-play" id="reco-play">${playLabel}</button>
+          <button class="reco-another" id="reco-another">↻ une autre</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function wireRecoCard(node) {
+  contentEl.querySelector("#reco-open").addEventListener("click", () => show(node.id));
+  contentEl.querySelector("#reco-another").addEventListener("click", () => {
+    pickDailyReco({ reroll: true });
+    showHome({ fromHistory: true });
+  });
+  const playBtn = contentEl.querySelector("#reco-play");
+  playBtn.addEventListener("click", () => {
+    if (node.type === "track") { Player.playTrack(node); return; }
+    const { refs, label } = buildRadioQueue(node);
+    if (!refs.length) {
+      playBtn.textContent = "no tracks to play";
+      playBtn.disabled = true;
+      return;
+    }
+    Player.playQueue(refs, label);
+  });
+  // Same JIT image fill-in as the focused node hero.
+  if (!resolveHeroImage(node) && JIT_ENABLED) {
+    jitResolveImage(node.id).then((url) => {
+      if (!url) return;
+      const card = contentEl.querySelector(".reco");
+      // The user may have rerolled (or navigated away) while the lookup was in flight.
+      if (!card || card.dataset.recoId !== node.id) return;
+      const cover = card.querySelector(".reco-cover");
+      if (!cover) return;
+      cover.style.backgroundImage = `url('${safeCssUrl(url)}')`;
+      cover.classList.remove("no-image");
+    });
+  }
+}
 
 function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   const node = byId.get(id);
