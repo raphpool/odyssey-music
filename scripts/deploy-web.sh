@@ -85,8 +85,27 @@ cat > "$REPO_ROOT/web/.deployed-sha" <<EOF
 }
 EOF
 
-echo "==> Rsyncing $REPO_ROOT/web/ -> $SERVER:$TARGET/  (branch=$BRANCH sha=$SHA_SHORT)"
-rsync -az --delete "$REPO_ROOT/web/" "$SERVER:$TARGET/"
+# --- Cache busting -------------------------------------------------------------
+# CloudFlare serves index.html fresh (cf-cache-status: DYNAMIC) but caches
+# styles.css for 4h (cache-control: max-age=14400), and browsers hold it for the
+# same window. A deploy therefore pairs brand-new markup with whatever stylesheet
+# the visitor already had — which is exactly what shipped a broken onboarding
+# modal and unstyled buttons on 2026-08-17 (new HTML, pre-deploy CSS).
+#
+# Stamping the commit SHA onto the asset URL makes every deploy a distinct URL,
+# so the always-fresh HTML can never request a stale stylesheet. Done on a
+# staging copy: the working tree stays untouched (the dirty gate above would
+# otherwise trip on the next run).
+STAGE="$(mktemp -d)"
+trap 'rm -rf "$STAGE"' EXIT
+cp -R "$REPO_ROOT/web/." "$STAGE/"
+# `sed -i.bak` (suffix required) is the form that works on both BSD/macOS and GNU sed.
+sed -i.bak "s|href=\"styles.css\"|href=\"styles.css?v=$SHA_SHORT\"|g" "$STAGE/index.html" "$STAGE/design.html"
+rm -f "$STAGE"/*.bak
+echo "==> Cache-busted stylesheet URL: styles.css?v=$SHA_SHORT"
+
+echo "==> Rsyncing $STAGE/ -> $SERVER:$TARGET/  (branch=$BRANCH sha=$SHA_SHORT)"
+rsync -az --delete "$STAGE/" "$SERVER:$TARGET/"
 
 echo "==> Smoke test"
 curl -fsS -o /dev/null -w "HTTP %{http_code}\n" "https://dropcliffs.com/labs/odyssey/"
