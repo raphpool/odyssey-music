@@ -99,6 +99,12 @@ EOF
 STAGE="$(mktemp -d)"
 trap 'rm -rf "$STAGE"' EXIT
 cp -R "$REPO_ROOT/web/." "$STAGE/"
+# mktemp -d creates the staging dir 0700, and `rsync -a src/ dst/` copies the
+# SOURCE DIRECTORY's own mode onto the target — which took /labs/odyssey/ down
+# to 0700 and made nginx serve 403 on the first run of this script. Force the
+# modes nginx needs (dirs traversable, files readable) before syncing.
+chmod 755 "$STAGE"
+chmod -R a+rX "$STAGE"
 # `sed -i.bak` (suffix required) is the form that works on both BSD/macOS and GNU sed.
 sed -i.bak "s|href=\"styles.css\"|href=\"styles.css?v=$SHA_SHORT\"|g" "$STAGE/index.html" "$STAGE/design.html"
 rm -f "$STAGE"/*.bak
