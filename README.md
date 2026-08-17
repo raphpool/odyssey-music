@@ -36,6 +36,7 @@ The legacy multi-turn agent loop is isolated under `src/legacy/`. Active server,
 - `GET /image/:slug`
 - `GET /search?q=...&type=...`
 - `POST /materialize` with `{ "type": "...", "name": "...", "disambiguator"?: "...", "mbid"?: "..." }`
+- `GET /links/:slug`
 - `GET /resolve/:trackSlug`
 - `GET /stream/:videoId`
 

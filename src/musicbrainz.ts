@@ -332,6 +332,34 @@ export async function findArtistMbidByName(name: string, disambig?: string): Pro
 	return results[0]?.mbid ?? null;
 }
 
+interface MbUrlRelation {
+	type?: string;
+	url?: { resource?: string };
+}
+
+export interface MbStreamingLinks {
+	spotify: string | null;
+	apple: string | null;
+}
+
+/**
+ * Read an artist's streaming-service links from MusicBrainz url-rels.
+ *
+ * MB curates "streaming"/"free streaming" relationships on ARTIST entities, which
+ * is the one place we can get an exact Spotify entity URL without Spotify API
+ * credentials (measured 2026-08-17: 9/12 sampled cache artists had one). The
+ * same relationships do NOT exist on release-groups or recordings — albums and
+ * tracks have to go through iTunes/Apple or fall back to a search link.
+ */
+export async function fetchArtistStreamingLinksMb(artistMbid: string): Promise<MbStreamingLinks> {
+	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(`/artist/${artistMbid}`, {
+		inc: "url-rels",
+	});
+	const resources = (data?.relations ?? []).map((r) => r.url?.resource).filter((u): u is string => !!u);
+	const find = (host: string): string | null => resources.find((u) => u.includes(host)) ?? null;
+	return { spotify: find("open.spotify.com"), apple: find("music.apple.com") };
+}
+
 /** Extract candidate artist-name tokens (>=3 chars) from a disambiguator string. */
 function disambigTokens(disambig: string | undefined): string[] {
 	if (!disambig) return [];

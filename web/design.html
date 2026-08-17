@@ -95,7 +95,7 @@
     <a href="#no-image">no-image fallback</a>
     <a href="#carousel">project carousel</a>
     <a href="#chips">chips</a>
-    <a href="#play-buttons">play / radio</a>
+    <a href="#play-buttons">play / streaming</a>
     <a href="#jit-banner">jit banner</a>
     <a href="#jit-overlay">jit overlay</a>
     <a href="#citations">citations</a>
@@ -664,20 +664,27 @@ The record's reputation has grown in the decades since: where Cale's 1970s art-r
     </div>
   </section>
 
-  <!-- ─── PLAY / RADIO BUTTONS ───────────────────────────────── -->
+  <!-- ─── PLAY / STREAMING BUTTONS ───────────────────────────── -->
   <section class="dp-section" id="play-buttons">
-    <h2>Play &amp; Radio buttons</h2>
-    <div class="dp-label">Track keeps the original .play-btn (pink). Every other focused card type gets a .radio-btn that inherits the type accent.</div>
-    <div class="dp-stage" data-label=".play-btn (track)">
+    <h2>Play &amp; streaming buttons</h2>
+    <div class="dp-label">Tracks keep .play-btn (pink) for the in-app preview. Artists, albums and tracks also get .stream-links — outlined pills carrying the service colour on the leading dot only, so they never fight the type stripe. Genres and labels get neither.</div>
+    <div class="dp-stage" data-label=".play-btn (track only)">
       <div class="node stripe-track" style="display:inline-block;padding:0.5rem 1rem;">
         <button class="play-btn">▶ play</button>
       </div>
     </div>
-    <div class="dp-stage" data-label=".radio-btn (per type)" style="margin-top: 1rem; display: flex; gap: 0.6rem; flex-wrap: wrap;">
-      <div class="node stripe-artist" style="display:inline-block;padding:0.5rem 1rem;"><button class="radio-btn">▶ Radio</button></div>
-      <div class="node stripe-project" style="display:inline-block;padding:0.5rem 1rem;"><button class="radio-btn">▶ Radio</button></div>
-      <div class="node stripe-label" style="display:inline-block;padding:0.5rem 1rem;"><button class="radio-btn">▶ Radio</button></div>
-      <div class="node stripe-genre" style="display:inline-block;padding:0.5rem 1rem;"><button class="radio-btn">▶ Radio</button></div>
+    <div class="dp-stage" data-label=".stream-links · exact entity urls" style="margin-top: 1rem;">
+      <div class="stream-links">
+        <a class="stream-btn spotify" href="#" data-svc="spotify" data-exact="1"><i></i>Spotify</a>
+        <a class="stream-btn apple" href="#" data-svc="apple" data-exact="1"><i></i>Apple Music</a>
+      </div>
+    </div>
+    <div class="dp-label" style="margin-top: 1rem;">Before /links resolves — and permanently for Spotify on albums/tracks, which has no credential-free exact source — the button falls back to a prefilled search and is marked with a ↗.</div>
+    <div class="dp-stage" data-label=".stream-links · search fallback">
+      <div class="stream-links">
+        <a class="stream-btn spotify" href="#" data-svc="spotify" data-exact="0"><i></i>Spotify</a>
+        <a class="stream-btn apple" href="#" data-svc="apple" data-exact="0"><i></i>Apple Music</a>
+      </div>
     </div>
   </section>
 
@@ -689,7 +696,6 @@ The record's reputation has grown in the decades since: where Cale's 1970s art-r
       <div style="position: relative; background: rgba(14, 14, 13, 0.94); backdrop-filter: blur(10px); border-top: 1px solid var(--card-border);">
         <div class="player-row">
           <button class="player-btn" aria-label="play/pause">▶</button>
-          <button class="player-btn player-next" aria-label="next track" disabled>⏭</button>
           <div class="player-info">
             <div class="pt">Tendency</div>
             <div class="pa">Jan Jelinek · Loop-finding-jazz-records</div>
@@ -699,15 +705,14 @@ The record's reputation has grown in the decades since: where Cale's 1970s art-r
         </div>
       </div>
     </div>
-    <div class="dp-label">Radio active — artist suffix shows the queue context.</div>
-    <div class="dp-stage" data-label="#player.open · radio queue">
+    <div class="dp-label">Playing — the artist line carries the track's credit, nothing else.</div>
+    <div class="dp-stage" data-label="#player.open · playing">
       <div style="position: relative; background: rgba(14, 14, 13, 0.94); backdrop-filter: blur(10px); border-top: 1px solid var(--card-border);">
         <div class="player-row">
           <button class="player-btn" aria-label="play/pause">❚❚</button>
-          <button class="player-btn player-next" aria-label="next track">⏭</button>
           <div class="player-info">
             <div class="pt">Idioteque</div>
-            <div class="pa">Radiohead · Radiohead · radio · 3/24</div>
+            <div class="pa">Radiohead</div>
           </div>
           <div class="player-bar"><div class="fill" style="width: 64%;"></div></div>
           <button class="player-close" aria-label="close player">×</button>

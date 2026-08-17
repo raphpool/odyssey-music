@@ -92,7 +92,6 @@
 <div id="player">
   <div class="player-row">
     <button class="player-btn" id="player-toggle" aria-label="play/pause">▶</button>
-    <button class="player-btn player-next" id="player-next" aria-label="next track" disabled>⏭</button>
     <div class="player-info">
       <div class="pt" id="player-title">—</div>
       <div class="pa" id="player-artist"></div>
@@ -950,7 +949,9 @@ function renderRecoCard(node) {
   const why = reasons.length
     ? `parce que tu explores ${reasons.map((r) => escapeHtml(r.name)).join(" · ")}`
     : "sélectionné dans ton univers";
-  const playLabel = node.type === "track" ? "▶ play" : "▶ Radio";
+  const playBtnHtml = node.type === "track"
+    ? `<button class="reco-play" id="reco-play">▶ play</button>`
+    : "";
   return `
     <div class="reco stripe-${node.type}" data-reco-id="${escapeHtml(node.id)}">
       <div class="reco-kicker">La reco du jour</div>
@@ -961,9 +962,10 @@ function renderRecoCard(node) {
         ${meta ? `<div class="reco-meta">${escapeHtml(meta)}</div>` : ""}
         <div class="reco-why">${why}</div>
         <div class="reco-teaser">${escapeHtml(node.teaser || "")}</div>
+        ${streamingLinksHtml(node)}
         <div class="reco-actions">
           <button class="reco-cta" id="reco-open">Découvrir</button>
-          <button class="reco-play" id="reco-play">${playLabel}</button>
+          ${playBtnHtml}
           <button class="reco-another" id="reco-another">↻ une autre</button>
         </div>
       </div>
@@ -977,16 +979,8 @@ function wireRecoCard(node) {
     showHome({ fromHistory: true });
   });
   const playBtn = contentEl.querySelector("#reco-play");
-  playBtn.addEventListener("click", () => {
-    if (node.type === "track") { Player.playTrack(node); return; }
-    const { refs, label } = buildRadioQueue(node);
-    if (!refs.length) {
-      playBtn.textContent = "no tracks to play";
-      playBtn.disabled = true;
-      return;
-    }
-    Player.playQueue(refs, label);
-  });
+  if (playBtn) playBtn.addEventListener("click", () => Player.playTrack(node));
+  upgradeStreamingLinks(node);
   // Same JIT image fill-in as the focused node hero.
   if (!resolveHeroImage(node) && JIT_ENABLED) {
     jitResolveImage(node.id).then((url) => {
@@ -1082,11 +1076,12 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     ? `<div class="jit-banner">⚡ JIT active · this node has <b style="color:var(--fg);">${danglingCount}</b> unmaterialized connections. Click any "↻" chip below to load on-demand, or <button id="precache-all">pre-cache all edges</button></div>`
     : "";
 
-  // Track keeps its single-track play button. Every other focused card type gets
-  // a "radio" button that builds a queue from this node's edges (see buildRadioQueue).
+  // Tracks keep the in-app play button (YouTube-backed preview). Artists,
+  // albums and tracks additionally get the streaming-service buttons.
   const playBtnHtml = node.type === "track"
     ? `<button class="play-btn" id="track-play-btn" data-track-id="${escapeHtml(id)}">▶ play</button>`
-    : `<button class="radio-btn" id="node-radio-btn" data-radio-slug="${escapeHtml(id)}">▶ Radio</button>`;
+    : "";
+  const streamHtml = streamingLinksHtml(node);
 
   const heroUrl = resolveHeroImage(node);
   const heroMeta = buildHeroMeta(node);
@@ -1119,6 +1114,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
         </div>
         ${factParts ? `<div class="facts">${factParts}</div>` : ""}
         ${playBtnHtml}
+        ${streamHtml}
         ${banner}
         ${carouselHtml}
         <div class="article">${escapeHtml(node.article || "")}</div>
@@ -1170,18 +1166,8 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     }
     playBtn.addEventListener("click", () => Player.playTrack(node));
   }
-  const radioBtn = contentEl.querySelector("#node-radio-btn");
-  if (radioBtn) {
-    radioBtn.addEventListener("click", () => {
-      const { refs, label } = buildRadioQueue(node);
-      if (refs.length === 0) {
-        radioBtn.textContent = "no tracks to play";
-        radioBtn.disabled = true;
-        return;
-      }
-      Player.playQueue(refs, label);
-    });
-  }
+  // Swap the prefilled search urls for exact entity urls when the server has them.
+  upgradeStreamingLinks(node);
   contentEl.querySelectorAll(".chip.dangling[data-jit-type], .project-card.dangling[data-jit-type]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -1265,71 +1251,105 @@ function buildDisambiguator(parentCtx) {
   return `${kindLabel} of ${parentCtx.type} "${parentCtx.name}"${yearPart}`.trim();
 }
 
-// ─── Radio queue ─────────────────────────────────────────────────────────
-// Build an ordered play queue for a focused non-track node ("radio mode").
-// Each item is a track-shaped ref (slug + name + type). The queue privileges
-// editor-curated/landmark picks first so the first few tracks feel like a hand-
-// picked intro to the entity; the rest follows in (roughly) discography order.
+// ─── Streaming links ─────────────────────────────────────────────────────
+// Artists, albums and tracks get "open in Spotify / Apple Music" buttons.
+// Genres and labels get none — they have no counterpart on either service.
 //
-// Limits today:
-//  - We only see tracks whose parent project (or genre tag) is materialized in
-//    the bundle. Dangling tracklist refs make it into the queue; the player's
-//    /resolve call will materialize/find them at play time.
-//  - No popularity signal (no Spotify play counts). notable/landmark fields are
-//    the proxy for "what fans recognise first".
-function buildRadioQueue(node) {
-  const refs = [];
-  const seen = new Set();
-  const push = (r) => {
-    if (!r || !r.slug || r.type !== "track") return;
-    if (seen.has(r.slug)) return;
-    // /resolve refuses tracks that aren't materialized in the cache
-    // ({"error":"track not cached"}). Without this filter the radio dies on
-    // the first dangling track, leaving the user staring at a frozen player.
-    // The trade-off is a smaller queue; the right long-term fix is to allow
-    // /resolve to take name+artist when the slug isn't cached.
-    if (!byId.has(r.slug)) return;
-    seen.add(r.slug);
-    refs.push({ slug: r.slug, type: "track", name: r.name });
-  };
-  const tracklistOf = (projectRef) => {
-    const proj = byId.get(projectRef.slug);
-    return (proj && proj.edges && proj.edges.tracklist) || [];
-  };
-  const edges = node.edges || {};
-  switch (node.type) {
-    case "project":
-      for (const t of edges.tracklist || []) push(t);
-      break;
-    case "artist":
-      for (const t of edges.notable_tracks || []) push(t);
-      for (const p of edges.discography || []) for (const t of tracklistOf(p)) push(t);
-      break;
-    case "label":
-      // Pass 1: opener track from each notable_release (best built-in proxy for
-      // "the recognisable track"). Pass 2: rest of every tracklist.
-      for (const p of edges.notable_releases || []) {
-        const first = tracklistOf(p)[0];
-        if (first) push(first);
-      }
-      for (const p of edges.notable_releases || []) {
-        for (const t of tracklistOf(p).slice(1)) push(t);
-      }
-      break;
-    case "genre":
-      for (const t of edges.landmark_tracks || []) push(t);
-      // Any other track tagged with this genre, in load order. Iterating byId
-      // is O(N) but N is in the low thousands — well under a frame.
-      for (const candidate of byId.values()) {
-        if (candidate.type !== "track") continue;
-        const tg = (candidate.edges && candidate.edges.genres) || [];
-        if (tg.some((g) => g.slug === node.id)) {
-          push({ slug: candidate.id, type: "track", name: candidate.name });
-        }
-      }
-      break;
+// Two-stage rendering, so a button is never dead and never blocks paint:
+//   1. Render immediately with a prefilled SEARCH url, built client-side from
+//      the node name + first credited artist. Always available, works on the
+//      static export where there is no API.
+//   2. Ask GET /links/:slug in the background and swap in the exact entity url
+//      when the server has one (MusicBrainz for artist Spotify, iTunes for
+//      Apple Music). Albums and tracks keep the Spotify search url until we
+//      have Spotify API credentials — MusicBrainz carries no streaming
+//      relation for release-groups or recordings.
+const STREAMABLE_TYPES = new Set(["artist", "project", "track"]);
+
+function nodeArtistName(node) {
+  const artists = (node.edges && node.edges.artists) || [];
+  return artists[0] ? artists[0].name : "";
+}
+
+function spotifySearchUrl(name, artistName) {
+  return `https://open.spotify.com/search/${encodeURIComponent([artistName, name].filter(Boolean).join(" "))}`;
+}
+
+function appleSearchUrl(name, artistName) {
+  return `https://music.apple.com/search?term=${encodeURIComponent([artistName, name].filter(Boolean).join(" "))}`;
+}
+
+function streamingLinksHtml(node) {
+  if (!STREAMABLE_TYPES.has(node.type)) return "";
+  const artist = nodeArtistName(node);
+  const svc = (key, label, href) =>
+    `<a class="stream-btn ${key}" href="${escapeHtml(href)}" target="_blank" rel="noopener"
+        data-svc="${key}" data-exact="0" title="Chercher sur ${label}"><i></i>${label}</a>`;
+  return `<div class="stream-links" data-links-for="${escapeHtml(node.id)}">
+    ${svc("spotify", "Spotify", spotifySearchUrl(node.name, artist))}
+    ${svc("apple", "Apple Music", appleSearchUrl(node.name, artist))}
+  </div>`;
+}
+
+// In-flight + completed /links lookups, keyed by node id (same dedupe approach
+// as the JIT image path).
+const linksJitPromises = new Map();
+
+async function jitResolveLinks(slug) {
+  if (!JIT_ENABLED) return null;
+  if (!linksJitPromises.has(slug)) {
+    linksJitPromises.set(
+      slug,
+      fetch(`${API_BASE}/links/${encodeURIComponent(slug)}`).then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    );
   }
-  return { refs, label: `${node.name} · radio` };
+  return linksJitPromises.get(slug);
+}
+
+/**
+ * Upgrade a rendered .stream-links row from search urls to exact entity urls.
+ * No-op when the API is offline, the node has no links row, or the user has
+ * navigated away (the row carries the node id it was rendered for).
+ */
+async function upgradeStreamingLinks(node) {
+  if (!JIT_ENABLED || !STREAMABLE_TYPES.has(node.type)) return;
+  const links = await jitResolveLinks(node.id);
+  if (!links) return;
+  const row = contentEl.querySelector(`.stream-links[data-links-for="${cssAttr(node.id)}"]`);
+  if (!row) return;
+  for (const [key, url] of [["spotify", links.spotify], ["apple", links.apple]]) {
+    const safe = safeServiceUrl(url, key);
+    if (!safe) continue;
+    const el = row.querySelector(`.stream-btn[data-svc="${key}"]`);
+    if (!el) continue;
+    el.href = safe;
+    el.dataset.exact = "1";
+    el.title = `Ouvrir dans ${key === "spotify" ? "Spotify" : "Apple Music"}`;
+  }
+}
+
+// The API is an ?api= query param away from being someone else's server, and the
+// links it serves originate in third-party, user-editable catalogs. Never assign
+// an unvalidated url to href — `javascript:` there executes on this origin, which
+// is where the user's profile lives. Same check the server applies.
+const SERVICE_HOSTS = { spotify: "open.spotify.com", apple: "music.apple.com" };
+
+function safeServiceUrl(raw, service) {
+  if (!raw) return null;
+  try {
+    const u = new URL(raw, location.href);
+    if (u.protocol !== "https:") return null;
+    return u.hostname === SERVICE_HOSTS[service] ? u.toString() : null;
+  } catch {
+    return null;
+  }
+}
+
+// Escape a value for use inside a [attr="..."] selector. Node ids contain ':'
+// (e.g. "artist:aphex-twin"), which is a valid string char but must not be
+// left unescaped when interpolated.
+function cssAttr(v) {
+  return String(v).replace(/["\\]/g, "\\$&");
 }
 
 // For these (focused-node-type, edge-key) pairs the project edge list renders
@@ -1496,7 +1516,6 @@ const Player = (() => {
   const root = document.getElementById("player");
   const audio = document.getElementById("player-audio");
   const toggleBtn = document.getElementById("player-toggle");
-  const nextBtn = document.getElementById("player-next");
   const titleEl = document.getElementById("player-title");
   const artistEl = document.getElementById("player-artist");
   const bar = document.getElementById("player-bar");
@@ -1505,18 +1524,11 @@ const Player = (() => {
   let currentTrackId = null;
   let resolving = false;
 
-  // Radio queue state — when populated, the player auto-advances on track end
-  // and the player UI shows a "<entity> · radio · n/N" suffix on the artist line.
-  let queue = [];        // [{ slug, type, name }, ...]
-  let queueIdx = -1;
-  let queueLabel = "";   // e.g. "Brian Eno · radio"
-
   function open() { root.classList.add("open"); document.body.classList.add("player-open"); }
   function close() {
     audio.pause(); audio.removeAttribute("src"); audio.load();
     root.classList.remove("open"); document.body.classList.remove("player-open");
     currentTrackId = null;
-    clearQueue();
     refreshTrackBtn();
   }
   function isPlaying() { return !audio.paused && !audio.ended && audio.currentTime > 0; }
@@ -1533,22 +1545,8 @@ const Player = (() => {
     }
   }
 
-  function refreshNextBtn() {
-    nextBtn.disabled = !(queue.length > 0 && queueIdx + 1 < queue.length);
-  }
-
   function setArtistLine(baseArtist) {
-    if (queue.length > 0 && queueIdx >= 0) {
-      const suffix = `${queueLabel} · ${queueIdx + 1}/${queue.length}`;
-      artistEl.textContent = baseArtist ? `${baseArtist} · ${suffix}` : suffix;
-    } else {
-      artistEl.textContent = baseArtist || "";
-    }
-  }
-
-  function clearQueue() {
-    queue = []; queueIdx = -1; queueLabel = "";
-    refreshNextBtn();
+    artistEl.textContent = baseArtist || "";
   }
 
   async function playTrack(node) {
@@ -1579,62 +1577,23 @@ const Player = (() => {
     } catch (e) {
       titleEl.textContent = node.name + " — playback unavailable";
       setArtistLine(String(e.message || e));
-      // In radio mode, /resolve failures shouldn't freeze the queue. Wait a
-      // beat so the user sees what was skipped, then auto-advance.
-      if (queue.length > 0 && queueIdx >= 0 && queueIdx + 1 < queue.length) {
-        setTimeout(() => { playNext(); }, 800);
-      }
     } finally {
       resolving = false;
       toggleBtn.disabled = false;
       refreshTrackBtn();
-      refreshNextBtn();
     }
-  }
-
-  /**
-   * Start a radio queue. `refs` are track refs as built by buildRadioQueue();
-   * `label` is the short context string shown next to the artist name in the
-   * player ("Brian Eno · radio").
-   */
-  async function playQueue(refs, label) {
-    if (!Array.isArray(refs) || refs.length === 0) return;
-    queue = refs.slice();
-    queueIdx = -1;
-    queueLabel = label || "";
-    refreshNextBtn();
-    await advance(0);
-  }
-
-  // Look up the full node in byId so playTrack gets artist + image edges;
-  // fall back to a synthetic node when the ref isn't materialized (yet).
-  async function advance(toIdx) {
-    if (toIdx < 0 || toIdx >= queue.length) return;
-    queueIdx = toIdx;
-    const ref = queue[queueIdx];
-    const full = byId.get(ref.slug);
-    const node = full || { id: ref.slug, type: "track", name: ref.name, edges: {} };
-    await playTrack(node);
-  }
-
-  async function playNext() {
-    if (queue.length === 0 || queueIdx + 1 >= queue.length) return;
-    await advance(queueIdx + 1);
   }
 
   toggleBtn.addEventListener("click", () => {
     if (audio.paused) audio.play().catch(() => {});
     else audio.pause();
   });
-  nextBtn.addEventListener("click", () => { playNext(); });
   closeBtn.addEventListener("click", close);
   audio.addEventListener("play", () => { toggleBtn.textContent = "❚❚"; refreshTrackBtn(); });
   audio.addEventListener("pause", () => { toggleBtn.textContent = "▶"; refreshTrackBtn(); });
   audio.addEventListener("ended", () => {
     toggleBtn.textContent = "▶";
     refreshTrackBtn();
-    // Auto-advance if there's more in the queue. End of queue = leave player as is.
-    if (queue.length > 0 && queueIdx + 1 < queue.length) playNext();
   });
   audio.addEventListener("timeupdate", () => {
     if (!audio.duration) return;
@@ -1649,8 +1608,6 @@ const Player = (() => {
 
   return {
     playTrack,
-    playQueue,
-    playNext,
     isPlaying,
     get currentTrackId() { return currentTrackId; },
   };

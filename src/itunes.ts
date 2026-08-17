@@ -22,11 +22,105 @@ interface ITunesResult {
 	artworkUrl100?: string;
 	collectionName?: string;
 	artistName?: string;
+	trackName?: string;
+	artistId?: number;
+	collectionId?: number;
+	trackId?: number;
+	artistLinkUrl?: string;
+	collectionViewUrl?: string;
+	trackViewUrl?: string;
 }
 
 interface ITunesResponse {
 	resultCount?: number;
 	results?: ITunesResult[];
+}
+
+/** iTunes `entity` values we ask for, one per Odyssey node type we can link. */
+export type AppleEntity = "musicArtist" | "album" | "song";
+
+export interface AppleCandidate {
+	/** music.apple.com page for the entity, tracking params stripped. */
+	url: string;
+	id: number;
+	/** Artist name / album title / song title, depending on the entity. */
+	title: string;
+	/** Credited artist. Absent for the musicArtist entity, where title IS the artist. */
+	artistName?: string;
+}
+
+// Query params iTunes appends for attribution/analytics. Everything else is
+// meaningful and must survive — in particular `i`, which is what makes a song
+// URL a song URL: trackViewUrl is `…/album/windowlicker/281953326?i=281953327`,
+// and dropping the query turns it into a link to the parent album instead.
+const APPLE_TRACKING_PARAMS = ["uo", "at", "app", "ls", "itscg", "itsct", "ct"];
+
+/**
+ * Strip iTunes' affiliate/tracking params so the stored URL is the canonical
+ * Apple Music page, while preserving the song selector.
+ */
+export function cleanAppleUrl(raw: string): string | null {
+	try {
+		const u = new URL(raw);
+		if (u.protocol !== "https:" || u.hostname !== "music.apple.com") return null;
+		for (const p of APPLE_TRACKING_PARAMS) u.searchParams.delete(p);
+		return u.toString();
+	} catch {
+		return null;
+	}
+}
+
+/**
+ * Search the iTunes catalog and return Apple Music page candidates.
+ *
+ * Unlike lookupAlbumArt this asks for several results and hands them back
+ * unranked — the caller scores them against the expected name/artist, because
+ * iTunes will confidently return "Volume II" for a query about the first
+ * volume, and a wrong entity link is worse than no link at all.
+ */
+export async function searchAppleEntities(
+	entity: AppleEntity,
+	term: string,
+	limit = 5,
+): Promise<AppleCandidate[]> {
+	if (!term.trim()) return [];
+	const url = `${SEARCH_URL}?term=${encodeURIComponent(term)}&entity=${entity}&limit=${limit}`;
+	try {
+		const controller = new AbortController();
+		const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+		const r = await fetch(url, { signal: controller.signal });
+		clearTimeout(timer);
+		if (!r.ok) return [];
+		const body = (await r.json()) as ITunesResponse;
+		const out: AppleCandidate[] = [];
+		for (const res of body.results ?? []) {
+			const mapped = toCandidate(entity, res);
+			if (mapped) out.push(mapped);
+		}
+		return out;
+	} catch {
+		return [];
+	}
+}
+
+function toCandidate(entity: AppleEntity, res: ITunesResult): AppleCandidate | null {
+	if (entity === "musicArtist") {
+		const url = res.artistLinkUrl ? cleanAppleUrl(res.artistLinkUrl) : null;
+		if (!url || !res.artistId || !res.artistName) return null;
+		return { url, id: res.artistId, title: res.artistName };
+	}
+	if (entity === "album") {
+		const url = res.collectionViewUrl ? cleanAppleUrl(res.collectionViewUrl) : null;
+		if (!url || !res.collectionId || !res.collectionName) return null;
+		const c: AppleCandidate = { url, id: res.collectionId, title: res.collectionName };
+		if (res.artistName) c.artistName = res.artistName;
+		return c;
+	}
+	const url = res.trackViewUrl ? cleanAppleUrl(res.trackViewUrl) : null;
+	if (!url || !res.trackId || !res.trackName) return null;
+	const c: AppleCandidate = { url, id: res.trackId, title: res.trackName };
+	if (res.artistName) c.artistName = res.artistName;
+	return c;
 }
 
 /**

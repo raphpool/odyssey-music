@@ -12,6 +12,12 @@
  *                              the node has no direct cover of its own. Any
  *                              iTunes hit is persisted to the cached JSON so
  *                              subsequent calls return instantly.
+ *   GET  /links/:slug        → {spotify, apple, sources} for artist/project/track.
+ *                              Spotify comes from MusicBrainz url-rels (artists
+ *                              only — MB has no streaming rels on release-groups
+ *                              or recordings), Apple Music from iTunes Search.
+ *                              Cached in a sidecar, misses included. Genres and
+ *                              labels answer 200 with null links.
  *   POST /materialize        → body {type, name, disambiguator?} → runs agent,
  *                              writes to cache, returns the node + metrics.
  *                              Same-slug concurrent requests share one in-flight run.
@@ -35,6 +41,7 @@ import { createMaterializeService, type MaterializeRequest } from "./services/ma
 import { createNodeService } from "./services/node-service.js";
 import { createSearchService } from "./services/search-service.js";
 import { handleStream } from "./stream.js";
+import { LINKABLE_TYPES, resolveStreamingLinks } from "./streaming-links.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
 import {
 	invalidateSidecar,
@@ -140,6 +147,28 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		}
 		return;
 	}
+	// GET /links/:slug → {spotify, apple, sources} for artist/project/track.
+	// Resolved on demand (MusicBrainz url-rels for artist Spotify, iTunes for
+	// Apple Music) and cached in a sidecar, misses included.
+	if (req.method === "GET" && path.startsWith("/links/")) {
+		let raw: string;
+		try {
+			raw = decodeURIComponent(path.slice("/links/".length));
+		} catch {
+			// Percent-decoding failure is a client error, not ours. Without this the
+			// URIError escapes to the 500 handler and fills the error log with
+			// scanner traffic.
+			json(res, 400, { error: "malformed slug" });
+			return;
+		}
+		if (!raw.includes(":")) {
+			json(res, 400, { error: "slug must be '<type>:<name>'", slug: raw });
+			return;
+		}
+		const force = url.searchParams.get("force") === "1";
+		await handleLinks(res, raw as Slug, force);
+		return;
+	}
 	if (req.method === "GET" && path === "/search") {
 		const q = (url.searchParams.get("q") ?? "").trim();
 		const typeFilter = url.searchParams.get("type") as NodeType | null;
@@ -182,6 +211,42 @@ function clampLimit(raw: string | null): number {
 	const n = raw ? Number.parseInt(raw, 10) : Number.NaN;
 	if (!Number.isFinite(n) || n <= 0) return 8;
 	return Math.min(n, 25);
+}
+
+async function handleLinks(res: ServerResponse, slug: Slug, force: boolean): Promise<void> {
+	const node = await cache.get(slug).catch((e: unknown) => {
+		if (isNotFoundError(e)) return null;
+		throw e;
+	});
+	if (!node) {
+		json(res, 404, { error: "not cached", slug });
+		return;
+	}
+	if (!LINKABLE_TYPES.has(node.type)) {
+		// Genres and labels have no streaming counterpart. Answer 200 with empty
+		// links rather than 404 so the client can treat "no links" uniformly.
+		json(res, 200, { slug, spotify: null, apple: null, sources: {} });
+		return;
+	}
+	const artistsField = (node as unknown as { artists?: EdgeRef[] }).artists;
+	const artistName = Array.isArray(artistsField) && artistsField[0] ? artistsField[0].name : undefined;
+	const links = await resolveStreamingLinks({
+		slug,
+		type: node.type,
+		name: node.name,
+		...(artistName ? { artistName } : {}),
+		cacheDir: CACHE_DIR,
+		force,
+	});
+	// A resolved page URL is stable, so cache it hard. A miss is not evidence of
+	// absence — it can be an iTunes 429 or a MusicBrainz 503 — so give it a short
+	// TTL, otherwise a transient outage is frozen at the edge for a day.
+	const resolved = links.spotify || links.apple;
+	res.setHeader(
+		"Cache-Control",
+		resolved ? "public, max-age=86400, stale-while-revalidate=3600" : "public, max-age=600",
+	);
+	json(res, 200, { slug, ...links });
 }
 
 async function handleResolve(res: ServerResponse, rawSlug: string, force = false): Promise<void> {
