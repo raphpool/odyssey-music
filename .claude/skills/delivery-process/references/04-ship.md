@@ -11,10 +11,12 @@ le moins cher.
 | tier/2 | CI + `ai-review` verts | auto-merge, Raphael notifié |
 | tier/3 | CI + `ai-review` + `/code-review ultra` + OK humain | `gh pr merge --squash` manuel |
 
-Branch protection sur `main` (à configurer une fois) :
-checks requis `ci / typecheck`, `ci / lint`, `ci / test`, `ci / build`,
-`ci / diff-size`, `ai-review`. Linear historique, pas de merge commit,
-suppression de branche automatique.
+Branch protection sur `main` (déjà configurée) : checks requis `typecheck`,
+`lint`, `test`, `diff-size` — GitHub publie les contextes sous le nom du job,
+sans préfixe `ci /`. Pas de `build` : ce repo n'a rien à compiler. `review`
+(le job de `ai-review`) s'ajoute aux checks requis une fois le secret
+`CLAUDE_CODE_OAUTH_TOKEN` posé, sinon il échoue et bloque toutes les PR.
+Historique linéaire, pas de merge commit, suppression de branche automatique.
 
 ## Après la merge
 1. Linear passe l'issue en *Done* tout seul (magic word `Fixes TRA-123`
