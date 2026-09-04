@@ -1,21 +1,97 @@
 name: ci
-
 on:
+  pull_request:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Adapté à ce repo : npm (package-lock.json), Node 20 comme deploy.yml.
+# Pas de job `build` : le projet n'a rien à compiler — tsc tourne en --noEmit
+# dans `typecheck`, et l'exécution passe par tsx. Ajouter un `build` bidon
+# n'apporterait qu'un check vert qui ne teste rien.
 
 jobs:
-  check:
+  typecheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - run: npm run typecheck
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
       - run: npm ci
       - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run test
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      # `test` exclut déjà les *.live.test.ts, qui tapent les vraies API.
+      # Pas de --coverage : @vitest/coverage-v8 n'est pas installé.
+      - run: npm run test -- --run
+
+  diff-size:
+    # Une PR trop grosse coûte plus cher à reviewer qu'à redécouper.
+    # Exclusions propres à ce repo : le lockfile, le bundle généré
+    # web/data.json et le cache de connaissance cache/** ne sont pas de la
+    # surface de review — un ticket de crawl ajouterait des milliers de lignes.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 0 }
+      - name: Mesurer le diff
+        run: |
+          BASE="origin/${{ github.event.pull_request.base.ref }}"
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          EXCL=(':(exclude)package-lock.json' ':(exclude)web/data.json' ':(exclude)cache/**' ':(exclude)**/*.snap')
+          STATS=$(git diff --shortstat "$BASE"...HEAD -- . "${EXCL[@]}")
+          FILES=$(git diff --name-only "$BASE"...HEAD -- . "${EXCL[@]}" | wc -l)
+          LINES=$(git diff --numstat "$BASE"...HEAD -- . "${EXCL[@]}" \
+                  | awk '{a+=$1; d+=$2} END {print a+d+0}')
+          echo "$STATS ($FILES fichiers, $LINES lignes)"
+          if [ "$LINES" -gt 600 ] || [ "$FILES" -gt 20 ]; then
+            echo "::error::PR trop grosse ($LINES lignes, $FILES fichiers). Découpe le ticket."
+            exit 1
+          fi
+          if [ "$LINES" -gt 400 ]; then
+            echo "::warning::PR volumineuse ($LINES lignes) — vérifie qu'elle ne contient qu'un ticket."
+          fi
+
+  tier-guard:
+    # Escalade automatique en tier/3 sur les chemins sensibles.
+    # `deploy/` et `scripts/deploy-web.sh` sont ajoutés : ils poussent en prod.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions: { contents: read, pull-requests: write }
+    steps:
+      - uses: actions/checkout@v6
+        with: { fetch-depth: 0 }
+      - name: Détecter les chemins sensibles
+        env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: |
+          BASE="origin/${{ github.event.pull_request.base.ref }}"
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          CHANGED=$(git diff --name-only "$BASE"...HEAD)
+          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/deploy-|\.sql$|secrets'; then
+            echo "Chemin sensible touché → tier/3"
+            gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
+            gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true
+            gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/2" || true
+            gh pr merge "${{ github.event.pull_request.number }}" --disable-auto || true
+            gh pr comment "${{ github.event.pull_request.number }}" \
+              --body "Escalade automatique en **tier/3** : chemin sensible modifié. Auto-merge désactivé, review humaine du diff requise."
+          fi

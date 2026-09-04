@@ -27,3 +27,6 @@ cache/links/
 # Server reads .deployed-sha to serve /version; never committed.
 .deployed-sha
 web/.deployed-sha
+
+# Permissions locales de Claude Code — personnelles, jamais versionnées
+.claude/settings.local.json
