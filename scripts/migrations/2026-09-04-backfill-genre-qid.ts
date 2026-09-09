@@ -1,19 +1,30 @@
 /**
- * Pure planning/reporting logic for backfilling the `qid` field onto every genre edge
- * and genre node already in the cache.
+ * Backfill the `qid` field onto every genre edge and genre node already in the cache.
  *
  * Background: since TRA-18, nodes materialized from now on carry a Wikidata `qid` on
  * their genre edges and on genre nodes themselves, resolved via the genre-identity
  * resolver (TRA-11/TRA-17). The corpus already on disk predates that change and has
- * none. This migration will close that gap offline: no LLM call, no network request,
+ * none. This migration closes that gap offline: no LLM call, no network request,
  * everything resolves from the committed data/genre-catalog.json, data/genre-qid-map.json
- * and data/genre-aliases.json tables.
+ * and data/genre-aliases.json tables (TRA-20's planBackfill/formatReport below, untouched
+ * here).
  *
- * This file holds only the pure planning step and its report formatter — no CLI, no
- * disk I/O. Reading the cache, writing via atomicWriteJson, and the invariant checks
- * (pending-reverses.json byte-identical, idempotence) land in TRA-21, in this same file.
+ * This file adds (TRA-21): the CLI entry point, real disk I/O (reading node files
+ * directly, writing via atomicWriteJson, never through NodeCache.write which would also
+ * rewrite the shared pending-reverses.json for every node touched), and the invariant
+ * checks the migration verifies on itself: pending-reverses.json stays byte-identical,
+ * the node file count is unchanged, and any node that fails to reparse via
+ * nodePayloadSchema before being written is skipped (signaled, left intact) rather than
+ * aborting the whole run.
+ *
+ * Usage: tsx scripts/migrations/2026-09-04-backfill-genre-qid.ts <cache-dir> [--apply]
  */
-import type { GenreMatchStrategy, GenreResolver } from "../../src/genre-identity.js";
+import { createHash } from "node:crypto";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { pathToFileURL } from "node:url";
+import { atomicWriteJson, NodeCache } from "../../src/cache.js";
+import { type GenreMatchStrategy, type GenreResolver, loadGenreResolver } from "../../src/genre-identity.js";
 import {
 	EDGE_TARGET_TYPES_BY_TYPE,
 	LIST_EDGES_BY_TYPE,
@@ -21,6 +32,8 @@ import {
 	type NodeType,
 	SINGULAR_EDGES_BY_TYPE,
 } from "../../src/node-spec.js";
+import { nodePayloadSchema } from "../../src/schemas.js";
+import { parseSlug } from "../../src/slug.js";
 
 export interface BackfillStats {
 	nodeFilesScanned: number;
@@ -265,4 +278,143 @@ export function formatReport(plan: BackfillPlan, dryRun: boolean): string {
 	}
 
 	return lines.join("\n");
+}
+
+// --- Disk I/O (TRA-21): kept separate from planBackfill so the planning logic stays pure ---
+
+export interface CacheNodeFile {
+	path: string;
+	node: unknown;
+}
+
+export interface UnreadableNodeFile {
+	path: string;
+	error: string;
+}
+
+/**
+ * Reads every node file under `<root>/nodes/<type>/*.json` directly (readFile +
+ * JSON.parse), never through NodeCache.get -- that parses via Zod and strips undeclared
+ * fields, which would lose the literal on-disk content this migration must preserve.
+ * Enumerated via NodeCache.listSlugs() so the on-disk layout stays defined in one place
+ * (src/cache.ts). A file that isn't valid JSON is reported in `invalid` and excluded from
+ * `nodes`; the migration continues for everything else.
+ */
+export async function readCacheNodes(
+	root: string,
+): Promise<{ nodes: CacheNodeFile[]; invalid: UnreadableNodeFile[] }> {
+	const slugs = [...(await new NodeCache(root).listSlugs())].sort();
+	const nodes: CacheNodeFile[] = [];
+	const invalid: UnreadableNodeFile[] = [];
+	for (const slug of slugs) {
+		const { type, body } = parseSlug(slug);
+		const path = join(root, "nodes", type, `${body}.json`);
+		try {
+			const raw = await readFile(path, "utf8");
+			nodes.push({ path, node: JSON.parse(raw) as unknown });
+		} catch (e) {
+			invalid.push({ path, error: e instanceof Error ? e.message : String(e) });
+		}
+	}
+	return { nodes, invalid };
+}
+
+async function fingerprintFile(path: string): Promise<string | null> {
+	try {
+		return createHash("sha256")
+			.update(await readFile(path))
+			.digest("hex");
+	} catch (e) {
+		if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
+		throw e;
+	}
+}
+
+export interface MigrationResult {
+	plan: BackfillPlan;
+	report: string;
+	/** Files planBackfill wanted to rewrite but were skipped because they failed to reparse. */
+	skippedWrites: { path: string; error: string }[];
+	/** 0 = success (including a clean dry-run); 1 = an invariant broke. */
+	exitCode: 0 | 1;
+}
+
+/**
+ * Runs the full migration against `cacheDir`: plans, and -- only with `apply` -- writes,
+ * then verifies the invariants. Exit-code semantics only; never calls process.exit itself,
+ * so it's directly callable from tests. `resolver` is injectable for tests; production
+ * code relies on the default (the real committed genre tables via loadGenreResolver).
+ */
+export async function runMigration(
+	cacheDir: string,
+	apply: boolean,
+	resolver?: GenreResolver,
+): Promise<MigrationResult> {
+	const pendingReversesPath = join(cacheDir, "pending-reverses.json");
+	const beforeFingerprint = await fingerprintFile(pendingReversesPath);
+
+	const { nodes, invalid: unreadable } = await readCacheNodes(cacheDir);
+	for (const { path, error } of unreadable) {
+		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
+	}
+
+	const plan = planBackfill(nodes, resolver ?? (await loadGenreResolver()));
+
+	if (!apply) {
+		return { plan, report: formatReport(plan, true), skippedWrites: [], exitCode: 0 };
+	}
+
+	const skippedWrites: { path: string; error: string }[] = [];
+	for (const [path, node] of plan.writes) {
+		// Reparse before every write -- a node that doesn't parse is signaled and left
+		// intact, it must not fail the migration for every other file.
+		const reparsed = nodePayloadSchema.safeParse(node);
+		if (!reparsed.success) {
+			process.stderr.write(`warning: refusing to write invalid node at ${path}: ${reparsed.error.message}\n`);
+			skippedWrites.push({ path, error: reparsed.error.message });
+			continue;
+		}
+		await atomicWriteJson(path, node);
+	}
+
+	const afterFingerprint = await fingerprintFile(pendingReversesPath);
+	if (beforeFingerprint !== afterFingerprint) {
+		process.stderr.write(
+			`error: pending-reverses.json changed during migration -- before=${beforeFingerprint ?? "(absent)"} after=${afterFingerprint ?? "(absent)"}\n`,
+		);
+		return { plan, report: formatReport(plan, false), skippedWrites, exitCode: 1 };
+	}
+
+	const beforeCount = nodes.length + unreadable.length;
+	const { nodes: afterNodes, invalid: afterUnreadable } = await readCacheNodes(cacheDir);
+	const afterCount = afterNodes.length + afterUnreadable.length;
+	if (afterCount !== beforeCount) {
+		process.stderr.write(
+			`error: node file count changed during migration -- before=${beforeCount} after=${afterCount}\n`,
+		);
+		return { plan, report: formatReport(plan, false), skippedWrites, exitCode: 1 };
+	}
+
+	return { plan, report: formatReport(plan, false), skippedWrites, exitCode: 0 };
+}
+
+async function main(): Promise<void> {
+	const cacheDir = process.argv[2];
+	if (!cacheDir) {
+		process.stderr.write("usage: 2026-09-04-backfill-genre-qid.ts <cache-dir> [--apply]\n");
+		process.exit(2);
+	}
+	const apply = process.argv.includes("--apply");
+	const result = await runMigration(cacheDir, apply);
+	console.log(result.report);
+	process.exit(result.exitCode);
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+	// Guarded like scripts/build-genre-qid-map.ts, so importing this module from a test
+	// doesn't trigger the migration.
+	main().catch((e: unknown) => {
+		process.stderr.write(`error: ${e instanceof Error ? e.message : String(e)}\n`);
+		process.exit(1);
+	});
 }
