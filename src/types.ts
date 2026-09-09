@@ -16,11 +16,16 @@ export type { NodeType };
 
 export type Slug = `${NodeType}:${string}`;
 
+// Wikidata entity id format (e.g. "Q170611"). Shared by schemas.ts (edgeRefBase/genreSchema
+// validation) and pipeline.ts (normalizeEdge's pre-filter) so the two never drift apart (TRA-17).
+export const QID_PATTERN = /^Q[1-9]\d*$/;
+
 export interface EdgeRef {
 	slug: Slug;
 	type: NodeType;
 	name: string;
 	mbid?: string;
+	qid?: string; // Wikidata entity id, genre edges only.
 	year?: string;
 	releaseType?: "album" | "ep" | "single";
 }
@@ -48,6 +53,9 @@ export interface BaseNode {
 export interface GenreNode extends BaseNode {
 	type: "genre";
 	editorial_definition: string;
+	// Wikidata entity id for this genre itself, from the catalog. Plumbing only — kept out of
+	// node-spec's OPTIONAL_TEXT_FIELDS so it never surfaces in facts/UI (TRA-17).
+	qid?: string;
 	era?: string;
 	origin?: string;
 	sonic_markers?: string;

@@ -65,6 +65,7 @@ async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
 
 import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
+import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
 	tavilyApiKey: string;
@@ -1225,15 +1226,17 @@ function validateNode(node: unknown): NodePayload {
 	return nodePayloadSchema.parse(node) as NodePayload;
 }
 
-function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string; mbid?: string } | null {
+export function normalizeEdge(
+	e: unknown,
+): { slug: string; type: NodeType; name: string; mbid?: string; qid?: string } | null {
 	if (!e || typeof e !== "object") return null;
-	const r = e as { type?: unknown; name?: unknown; mbid?: unknown };
+	const r = e as { type?: unknown; name?: unknown; mbid?: unknown; qid?: unknown };
 	if (typeof r.type !== "string") return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
 	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	try {
 		const t = r.type as NodeType;
-		const out: { slug: string; type: NodeType; name: string; mbid?: string } = {
+		const out: { slug: string; type: NodeType; name: string; mbid?: string; qid?: string } = {
 			slug: makeSlug(t, r.name),
 			type: t,
 			name: r.name.trim(),
@@ -1243,6 +1246,13 @@ function normalizeEdge(e: unknown): { slug: string; type: NodeType; name: string
 			/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r.mbid)
 		) {
 			out.mbid = r.mbid;
+		}
+		// Symmetric with mbid above (TRA-17): normalizeEdge rebuilds the object from scratch, so
+		// any unlisted field is silently dropped. The MusicBrainz genre path never reaches this
+		// function today (canonicalizeDraft runs before enrichFromMusicBrainz), but a future
+		// upstream producer stamping qid before canonicalization must not lose it here.
+		if (typeof r.qid === "string" && QID_PATTERN.test(r.qid)) {
+			out.qid = r.qid;
 		}
 		return out;
 	} catch {

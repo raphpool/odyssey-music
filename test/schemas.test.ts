@@ -85,4 +85,48 @@ describe("nodePayloadSchema", () => {
 		const types = ["genre", "label", "artist", "project", "track"];
 		expect(types).toHaveLength(5);
 	});
+
+	// TRA-17: qid on edges and on the genre node itself.
+	it("accepts a legacy node with no qid anywhere (non-regression on the existing cache)", () => {
+		expect(() => nodePayloadSchema.parse(baseArtist)).not.toThrow();
+	});
+
+	it("keeps a valid qid on an edge after a parse round-trip", () => {
+		const artist = {
+			...baseArtist,
+			genres: [{ type: "genre", slug: "genre:idm", name: "IDM", qid: "Q170611" }],
+		};
+		const parsed = nodePayloadSchema.parse(artist);
+		expect((parsed as typeof artist).genres[0]?.qid).toBe("Q170611");
+	});
+
+	it.each(["Q0", "170611", "", 170611])("rejects a malformed edge qid (%p)", (badQid) => {
+		const artist = {
+			...baseArtist,
+			genres: [{ type: "genre", slug: "genre:idm", name: "IDM", qid: badQid }],
+		};
+		expect(() => nodePayloadSchema.parse(artist)).toThrow();
+	});
+
+	it("keeps a valid qid on a genre node after a parse round-trip", () => {
+		const genre = {
+			type: "genre" as const,
+			slug: "genre:techno",
+			name: "Techno",
+			qid: "Q170611",
+			editorial_definition: "A genre of electronic dance music.",
+			editorial_article: "A long piece about techno and its cultural significance. ".repeat(8),
+			citations: [{ url: "https://en.wikipedia.org/wiki/Techno", title: "Wikipedia" }],
+			materialized_at: new Date().toISOString(),
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+		};
+		const parsed = nodePayloadSchema.parse(genre);
+		expect((parsed as typeof genre).qid).toBe("Q170611");
+	});
 });
