@@ -33,17 +33,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:space-music",
       "type": "genre",
-      "name": "Space Music"
+      "name": "Space Music",
+      "qid": "Q2342263"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "tracklist": [

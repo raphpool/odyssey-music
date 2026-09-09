@@ -23,17 +23,20 @@
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic music"
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
     },
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:acousmatic-music",
       "type": "genre",
-      "name": "Acousmatic music"
+      "name": "Acousmatic music",
+      "qid": "Q423918"
     }
   ],
   "key_artists": [
@@ -71,5 +74,6 @@
       "name": "Études de bruits"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q823560"
 }

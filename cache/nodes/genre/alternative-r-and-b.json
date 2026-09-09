@@ -40,22 +40,26 @@
     {
       "slug": "genre:neo-soul",
       "type": "genre",
-      "name": "Neo soul"
+      "name": "Neo soul",
+      "qid": "Q268253"
     },
     {
       "slug": "genre:progressive-soul",
       "type": "genre",
-      "name": "Progressive soul"
+      "name": "Progressive soul",
+      "qid": "Q105334717"
     },
     {
       "slug": "genre:contemporary-r-and-b",
       "type": "genre",
-      "name": "Contemporary R&B"
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "key_artists": [
@@ -103,5 +107,6 @@
       "name": "Nostalgia, Ultra"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q7118426"
 }

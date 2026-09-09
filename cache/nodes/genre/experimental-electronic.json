@@ -17,34 +17,40 @@
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-Garde Music"
+      "name": "Avant-Garde Music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic Music"
+      "name": "Electroacoustic Music",
+      "qid": "Q1326777"
     }
   ],
   "related_genres": [],
@@ -62,5 +68,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q105763581"
 }

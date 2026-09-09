@@ -21,7 +21,8 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [],
@@ -29,17 +30,20 @@
     {
       "slug": "genre:synthpop",
       "type": "genre",
-      "name": "Synthpop"
+      "name": "Synthpop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:chillwave",
       "type": "genre",
-      "name": "Chillwave"
+      "name": "Chillwave",
+      "qid": "Q2626684"
     },
     {
       "slug": "genre:vaporwave",
       "type": "genre",
-      "name": "Vaporwave"
+      "name": "Vaporwave",
+      "qid": "Q15733887"
     }
   ],
   "key_artists": [
@@ -93,5 +97,6 @@
       "name": "The Uncanny Valley"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q19938910"
 }

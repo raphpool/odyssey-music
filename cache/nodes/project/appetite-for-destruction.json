@@ -51,12 +51,14 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy Metal"
+      "name": "Heavy Metal",
+      "qid": "Q38848"
     }
   ],
   "tracklist": [

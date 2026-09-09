@@ -23,17 +23,20 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "key_artists": [
@@ -97,5 +100,6 @@
       "name": "Techno! The New Dance Sound of Detroit"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q526463"
 }

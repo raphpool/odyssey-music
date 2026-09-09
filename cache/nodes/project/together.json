@@ -43,12 +43,14 @@
     {
       "slug": "genre:country",
       "type": "genre",
-      "name": "Country"
+      "name": "Country",
+      "qid": "Q83440"
     },
     {
       "slug": "genre:country-pop",
       "type": "genre",
-      "name": "Country Pop"
+      "name": "Country Pop",
+      "qid": "Q2280497"
     }
   ],
   "tracklist": [

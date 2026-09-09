@@ -35,12 +35,14 @@
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub techno"
+      "name": "Dub techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     }
   ],
   "producers": [

@@ -22,12 +22,14 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and bass"
+      "name": "Drum and bass",
+      "qid": "Q188994"
     }
   ],
   "subgenres": [],
@@ -35,12 +37,14 @@
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     }
   ],
   "key_artists": [

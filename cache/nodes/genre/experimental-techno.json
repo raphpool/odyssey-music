@@ -34,17 +34,20 @@
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:deconstructed-club",
       "type": "genre",
-      "name": "Deconstructed Club"
+      "name": "Deconstructed Club",
+      "qid": "Q96376113"
     }
   ],
   "key_artists": [
@@ -82,5 +85,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q105636937"
 }

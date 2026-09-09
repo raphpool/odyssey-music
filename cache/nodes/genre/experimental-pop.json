@@ -21,12 +21,14 @@
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "subgenres": [],
@@ -34,17 +36,20 @@
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     }
   ],
   "key_artists": [
@@ -76,5 +81,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q25094591"
 }

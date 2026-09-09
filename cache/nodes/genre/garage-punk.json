@@ -24,32 +24,38 @@
     {
       "slug": "genre:garage-rock",
       "type": "genre",
-      "name": "Garage rock"
+      "name": "Garage rock",
+      "qid": "Q211573"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:proto-punk",
       "type": "genre",
-      "name": "Proto-punk"
+      "name": "Proto-punk",
+      "qid": "Q27190"
     },
     {
       "slug": "genre:stoner-rock",
       "type": "genre",
-      "name": "Stoner rock"
+      "name": "Stoner rock",
+      "qid": "Q617240"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore punk"
+      "name": "Hardcore punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:power-pop",
       "type": "genre",
-      "name": "Power pop"
+      "name": "Power pop",
+      "qid": "Q837837"
     }
   ],
   "key_artists": [
@@ -83,5 +89,6 @@
       "type": "track",
       "name": "Piece Of"
     }
-  ]
+  ],
+  "qid": "Q2296495"
 }

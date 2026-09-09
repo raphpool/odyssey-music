@@ -33,17 +33,20 @@
     {
       "slug": "genre:groove-metal",
       "type": "genre",
-      "name": "Groove Metal"
+      "name": "Groove Metal",
+      "qid": "Q241662"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:industrial-metal",
       "type": "genre",
-      "name": "Industrial Metal"
+      "name": "Industrial Metal",
+      "qid": "Q208494"
     }
   ],
   "tracklist": [],

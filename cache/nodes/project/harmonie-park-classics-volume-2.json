@@ -32,12 +32,14 @@
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:detroit-house",
       "type": "genre",
-      "name": "Detroit House"
+      "name": "Detroit House",
+      "qid": "Q108610706"
     }
   ],
   "tracklist": [],

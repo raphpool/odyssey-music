@@ -25,17 +25,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:dance-punk",
       "type": "genre",
-      "name": "Dance-punk"
+      "name": "Dance-punk",
+      "qid": "Q1643549"
     }
   ],
   "labels": [

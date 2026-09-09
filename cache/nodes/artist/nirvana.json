@@ -17,12 +17,14 @@
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     }
   ],
   "labels": [

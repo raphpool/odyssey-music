@@ -21,27 +21,32 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "roster": [

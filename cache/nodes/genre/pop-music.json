@@ -22,44 +22,52 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:dance-pop",
       "type": "genre",
-      "name": "Dance-pop"
+      "name": "Dance-pop",
+      "qid": "Q211756"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:teen-pop",
       "type": "genre",
-      "name": "Teen pop"
+      "name": "Teen pop",
+      "qid": "Q739138"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip hop"
+      "name": "Hip hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:dance-music",
       "type": "genre",
-      "name": "Dance music"
+      "name": "Dance music",
+      "qid": "Q316930"
     },
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "key_artists": [
@@ -102,5 +110,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q37073"
 }

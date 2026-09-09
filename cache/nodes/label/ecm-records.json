@@ -41,17 +41,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary Classical"
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:fusion",

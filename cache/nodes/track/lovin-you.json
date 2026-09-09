@@ -32,12 +32,14 @@
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "producers": [

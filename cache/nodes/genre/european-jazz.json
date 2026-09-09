@@ -23,22 +23,26 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:avant-garde-jazz",
       "type": "genre",
-      "name": "Avant-Garde Jazz"
+      "name": "Avant-Garde Jazz",
+      "qid": "Q790188"
     },
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free Jazz"
+      "name": "Free Jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:gypsy-jazz",
       "type": "genre",
-      "name": "Gypsy Jazz"
+      "name": "Gypsy Jazz",
+      "qid": "Q844245"
     }
   ],
   "key_artists": [
@@ -92,5 +96,6 @@
       "name": "The Köln Concert"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2579417"
 }

@@ -34,17 +34,20 @@
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub Techno"
+      "name": "Dub Techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "labels": [

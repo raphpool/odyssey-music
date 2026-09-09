@@ -23,27 +23,32 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     }
   ],
   "key_artists": [
@@ -81,5 +86,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1165777"
 }

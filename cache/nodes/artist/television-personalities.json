@@ -26,17 +26,20 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie pop"
+      "name": "Indie pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:neo-psychedelia",
       "type": "genre",
-      "name": "Neo-psychedelia"
+      "name": "Neo-psychedelia",
+      "qid": "Q703778"
     }
   ],
   "labels": [

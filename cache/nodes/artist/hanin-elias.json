@@ -20,17 +20,20 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital Hardcore"
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:punk",
       "type": "genre",
-      "name": "Punk"
+      "name": "Punk",
+      "qid": "Q25554481"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [

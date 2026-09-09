@@ -30,12 +30,14 @@
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     }
   ],
   "labels": [

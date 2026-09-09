@@ -17,12 +17,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-Hop"
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [],
@@ -30,17 +32,20 @@
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:chill-out",
       "type": "genre",
-      "name": "Chill-out"
+      "name": "Chill-out",
+      "qid": "Q757143"
     },
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "Jazz Rap"
+      "name": "Jazz Rap",
+      "qid": "Q255406"
     }
   ],
   "key_artists": [
@@ -73,5 +78,6 @@
       "name": "Madvillainy"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q97265899"
 }

@@ -25,12 +25,14 @@
     {
       "slug": "genre:contemporary-r-and-b",
       "type": "genre",
-      "name": "Contemporary R&B"
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     }
   ],
   "labels": [

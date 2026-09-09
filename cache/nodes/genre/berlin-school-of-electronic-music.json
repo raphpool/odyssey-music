@@ -25,12 +25,14 @@
     {
       "slug": "genre:progressive-electronic",
       "type": "genre",
-      "name": "Progressive Electronic"
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     }
   ],
   "subgenres": [],
@@ -38,7 +40,8 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "key_artists": [
@@ -86,5 +89,6 @@
       "name": "Timewind"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q530750"
 }

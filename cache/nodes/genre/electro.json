@@ -17,51 +17,60 @@
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:electro-house",
       "type": "genre",
-      "name": "Electro house"
+      "name": "Electro house",
+      "qid": "Q627906"
     },
     {
       "slug": "genre:electroclash",
       "type": "genre",
-      "name": "Electroclash"
+      "name": "Electroclash",
+      "qid": "Q861823"
     },
     {
       "slug": "genre:miami-bass",
       "type": "genre",
-      "name": "Miami bass"
+      "name": "Miami bass",
+      "qid": "Q546206"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip hop"
+      "name": "Hip hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "key_artists": [
@@ -120,5 +129,6 @@
       "type": "track",
       "name": "Nunk"
     }
-  ]
+  ],
+  "qid": "Q217597"
 }

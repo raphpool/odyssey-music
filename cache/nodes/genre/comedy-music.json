@@ -16,7 +16,8 @@
     {
       "slug": "genre:parody-music",
       "type": "genre",
-      "name": "Parody music"
+      "name": "Parody music",
+      "qid": "Q2746731"
     },
     {
       "slug": "genre:novelty-song",
@@ -26,12 +27,14 @@
     {
       "slug": "genre:comedy-rock",
       "type": "genre",
-      "name": "Comedy rock"
+      "name": "Comedy rock",
+      "qid": "Q1391336"
     },
     {
       "slug": "genre:comedy-hip-hop",
       "type": "genre",
-      "name": "Comedy hip hop"
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
     }
   ],
   "related_genres": [],
@@ -69,5 +72,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q5151495"
 }

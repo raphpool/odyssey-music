@@ -19,7 +19,8 @@
     {
       "slug": "genre:stoner-rock",
       "type": "genre",
-      "name": "Stoner Rock"
+      "name": "Stoner Rock",
+      "qid": "Q617240"
     },
     {
       "slug": "genre:desert-rock",

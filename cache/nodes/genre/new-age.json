@@ -17,41 +17,48 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:space-music",
       "type": "genre",
-      "name": "Space music"
+      "name": "Space music",
+      "qid": "Q2342263"
     },
     {
       "slug": "genre:neoclassical-new-age-music",
       "type": "genre",
-      "name": "Neoclassical new-age music"
+      "name": "Neoclassical new-age music",
+      "qid": "Q613874"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:world-music",
       "type": "genre",
-      "name": "World music"
+      "name": "World music",
+      "qid": "Q205049"
     },
     {
       "slug": "genre:space-music",
       "type": "genre",
-      "name": "Space music"
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "key_artists": [
@@ -100,5 +107,6 @@
       "name": "Music for Zen Meditation"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q213121"
 }

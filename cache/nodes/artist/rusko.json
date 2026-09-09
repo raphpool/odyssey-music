@@ -26,17 +26,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     }
   ],
   "labels": [

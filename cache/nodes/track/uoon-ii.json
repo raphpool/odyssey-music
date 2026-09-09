@@ -42,7 +42,8 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "producers": [

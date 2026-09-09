@@ -23,17 +23,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:kosmische-musik",
       "type": "genre",
-      "name": "Kosmische Musik"
+      "name": "Kosmische Musik",
+      "qid": "Q121494463"
     },
     {
       "slug": "genre:modular-synth",

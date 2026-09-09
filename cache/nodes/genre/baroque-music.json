@@ -36,7 +36,8 @@
     {
       "slug": "genre:classical-music",
       "type": "genre",
-      "name": "Classical music"
+      "name": "Classical music",
+      "qid": "Q9730"
     }
   ],
   "subgenres": [],
@@ -44,12 +45,14 @@
     {
       "slug": "genre:renaissance-music",
       "type": "genre",
-      "name": "Renaissance music"
+      "name": "Renaissance music",
+      "qid": "Q201405"
     },
     {
       "slug": "genre:classical-period-music",
       "type": "genre",
-      "name": "Classical period music"
+      "name": "Classical period music",
+      "qid": "Q17723"
     }
   ],
   "key_artists": [
@@ -76,5 +79,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q8361"
 }

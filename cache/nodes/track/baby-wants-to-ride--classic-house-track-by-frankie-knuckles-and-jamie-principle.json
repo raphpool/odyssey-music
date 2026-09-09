@@ -36,12 +36,14 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago House"
+      "name": "Chicago House",
+      "qid": "Q1071961"
     }
   ],
   "producers": [

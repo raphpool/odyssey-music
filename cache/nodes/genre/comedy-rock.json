@@ -17,12 +17,14 @@
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy music"
+      "name": "Comedy music",
+      "qid": "Q5151495"
     }
   ],
   "subgenres": [],
@@ -30,12 +32,14 @@
     {
       "slug": "genre:parody-music",
       "type": "genre",
-      "name": "Parody music"
+      "name": "Parody music",
+      "qid": "Q2746731"
     },
     {
       "slug": "genre:satirical-music",
       "type": "genre",
-      "name": "Satirical music"
+      "name": "Satirical music",
+      "qid": "Q104842028"
     }
   ],
   "key_artists": [
@@ -78,5 +82,6 @@
       "name": "The Turtles Present the Battle of the Bands"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1391336"
 }

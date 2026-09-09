@@ -28,17 +28,20 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard rock"
+      "name": "Hard rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     }
   ],
   "tracklist": [],

@@ -37,22 +37,26 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-hop"
+      "name": "Hip-hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "key_artists": [
@@ -74,5 +78,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1507298"
 }

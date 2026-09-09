@@ -43,12 +43,14 @@
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk music"
+      "name": "Folk music",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:chamber-folk",
       "type": "genre",
-      "name": "Chamber folk"
+      "name": "Chamber folk",
+      "qid": "Q98528178"
     }
   ],
   "tracklist": [],

@@ -40,22 +40,26 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     }
   ],
   "roster": [

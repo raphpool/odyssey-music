@@ -28,22 +28,26 @@
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and roll"
+      "name": "Rock and roll",
+      "qid": "Q7749"
     },
     {
       "slug": "genre:blues",
       "type": "genre",
-      "name": "Blues"
+      "name": "Blues",
+      "qid": "Q9759"
     },
     {
       "slug": "genre:garage-punk",
       "type": "genre",
-      "name": "Garage punk"
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [
@@ -82,5 +86,6 @@
       "type": "track",
       "name": "Dirty Water"
     }
-  ]
+  ],
+  "qid": "Q211573"
 }

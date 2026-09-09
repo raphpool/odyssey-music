@@ -22,12 +22,14 @@
     {
       "slug": "genre:dark-wave",
       "type": "genre",
-      "name": "Dark Wave"
+      "name": "Dark Wave",
+      "qid": "Q3840596"
     },
     {
       "slug": "genre:cold-wave",
       "type": "genre",
-      "name": "Cold Wave"
+      "name": "Cold Wave",
+      "qid": "Q2343562"
     }
   ],
   "tracklist": [],

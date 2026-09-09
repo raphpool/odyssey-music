@@ -25,22 +25,26 @@
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:drone",
       "type": "genre",
-      "name": "Drone"
+      "name": "Drone",
+      "qid": "Q650316"
     }
   ],
   "roster": [

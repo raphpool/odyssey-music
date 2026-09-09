@@ -36,7 +36,8 @@
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy music"
+      "name": "Comedy music",
+      "qid": "Q5151495"
     }
   ],
   "subgenres": [],
@@ -44,12 +45,14 @@
     {
       "slug": "genre:cabaret",
       "type": "genre",
-      "name": "Cabaret"
+      "name": "Cabaret",
+      "qid": "Q111535905"
     },
     {
       "slug": "genre:music-hall",
       "type": "genre",
-      "name": "Music hall"
+      "name": "Music hall",
+      "qid": "Q940462"
     }
   ],
   "key_artists": [
@@ -92,5 +95,6 @@
       "name": "Good Old Boys"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q104842028"
 }

@@ -25,12 +25,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     },
     {
       "slug": "genre:conscious",

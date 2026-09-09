@@ -21,22 +21,26 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free Jazz"
+      "name": "Free Jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     }
   ],
   "roster": [

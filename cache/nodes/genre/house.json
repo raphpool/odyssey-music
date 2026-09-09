@@ -22,61 +22,72 @@
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic Dance Music"
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech House"
+      "name": "Tech House",
+      "qid": "Q598593"
     },
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage House"
+      "name": "Garage House",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage House"
+      "name": "Garage House",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "key_artists": [
@@ -124,5 +135,6 @@
       "type": "track",
       "name": "Acid Tracks"
     }
-  ]
+  ],
+  "qid": "Q20502"
 }

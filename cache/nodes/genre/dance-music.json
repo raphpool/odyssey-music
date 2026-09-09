@@ -37,44 +37,52 @@
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     }
   ],
   "key_artists": [],
@@ -96,5 +104,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q316930"
 }

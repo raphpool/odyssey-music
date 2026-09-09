@@ -26,17 +26,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:neoclassical",
       "type": "genre",
-      "name": "Neoclassical"
+      "name": "Neoclassical",
+      "qid": "Q106576145"
     }
   ],
   "labels": [

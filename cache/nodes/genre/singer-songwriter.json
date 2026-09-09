@@ -34,17 +34,20 @@
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk music"
+      "name": "Folk music",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:country-music",
       "type": "genre",
-      "name": "Country music"
+      "name": "Country music",
+      "qid": "Q83440"
     }
   ],
   "key_artists": [
@@ -81,5 +84,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q89363113"
 }

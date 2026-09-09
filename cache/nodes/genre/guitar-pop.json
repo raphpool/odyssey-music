@@ -22,34 +22,40 @@
     {
       "slug": "genre:jangle-pop",
       "type": "genre",
-      "name": "Jangle Pop"
+      "name": "Jangle Pop",
+      "qid": "Q1190565"
     },
     {
       "slug": "genre:power-pop",
       "type": "genre",
-      "name": "Power Pop"
+      "name": "Power Pop",
+      "qid": "Q837837"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:power-pop",
       "type": "genre",
-      "name": "Power Pop"
+      "name": "Power Pop",
+      "qid": "Q837837"
     },
     {
       "slug": "genre:jangle-pop",
       "type": "genre",
-      "name": "Jangle Pop"
+      "name": "Jangle Pop",
+      "qid": "Q1190565"
     },
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and Roll"
+      "name": "Rock and Roll",
+      "qid": "Q7749"
     }
   ],
   "key_artists": [

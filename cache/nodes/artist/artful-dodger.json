@@ -37,12 +37,14 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:2-step-garage",
       "type": "genre",
-      "name": "2-step garage"
+      "name": "2-step garage",
+      "qid": "Q1751409"
     }
   ],
   "labels": [],

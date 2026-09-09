@@ -21,12 +21,14 @@
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     }
   ],
   "labels": [

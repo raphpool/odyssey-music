@@ -36,12 +36,14 @@
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "tracklist": [],

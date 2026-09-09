@@ -34,17 +34,20 @@
     {
       "slug": "genre:doom-metal",
       "type": "genre",
-      "name": "Doom metal"
+      "name": "Doom metal",
+      "qid": "Q186170"
     },
     {
       "slug": "genre:minimalist-music",
       "type": "genre",
-      "name": "Minimalist music"
+      "name": "Minimalist music",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:post-metal",
       "type": "genre",
-      "name": "Post-metal"
+      "name": "Post-metal",
+      "qid": "Q41343"
     },
     {
       "slug": "genre:experimental-metal",
@@ -113,5 +116,6 @@
       "name": "Feedbacker"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1433387"
 }

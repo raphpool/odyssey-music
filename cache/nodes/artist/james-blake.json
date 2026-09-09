@@ -21,22 +21,26 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:alternative-r-and-b",
       "type": "genre",
-      "name": "Alternative R&B"
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     }
   ],
   "labels": [

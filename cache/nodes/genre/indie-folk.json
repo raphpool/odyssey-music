@@ -32,34 +32,40 @@
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk music"
+      "name": "Folk music",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:folk-pop",
       "type": "genre",
-      "name": "Folk pop"
+      "name": "Folk pop",
+      "qid": "Q11700058"
     },
     {
       "slug": "genre:folk-punk",
       "type": "genre",
-      "name": "Folk punk"
+      "name": "Folk punk",
+      "qid": "Q1425661"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk rock"
+      "name": "Folk rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:neofolk",
       "type": "genre",
-      "name": "Neofolk"
+      "name": "Neofolk",
+      "qid": "Q775614"
     }
   ],
   "related_genres": [],
@@ -129,5 +135,6 @@
       "name": "Sprained Ankle"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1317816"
 }

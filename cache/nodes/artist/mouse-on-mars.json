@@ -22,17 +22,20 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:experimental-pop",
       "type": "genre",
-      "name": "Experimental pop"
+      "name": "Experimental pop",
+      "qid": "Q25094591"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "labels": [

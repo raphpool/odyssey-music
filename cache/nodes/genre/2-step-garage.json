@@ -25,7 +25,8 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     }
   ],
   "subgenres": [],
@@ -33,27 +34,32 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "dubstep"
+      "name": "dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "grime"
+      "name": "grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "jungle"
+      "name": "jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "drum and bass"
+      "name": "drum and bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:breakstep",
       "type": "genre",
-      "name": "breakstep"
+      "name": "breakstep",
+      "qid": "Q1987980"
     }
   ],
   "key_artists": [
@@ -107,5 +113,6 @@
       "type": "track",
       "name": "Destiny"
     }
-  ]
+  ],
+  "qid": "Q1751409"
 }

@@ -42,7 +42,8 @@
     {
       "slug": "genre:pop-rap",
       "type": "genre",
-      "name": "Pop Rap"
+      "name": "Pop Rap",
+      "qid": "Q2572585"
     }
   ],
   "labels": [

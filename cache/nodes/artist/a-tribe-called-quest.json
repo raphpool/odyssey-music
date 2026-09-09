@@ -21,17 +21,20 @@
     {
       "slug": "genre:east-coast-hip-hop",
       "type": "genre",
-      "name": "East Coast hip-hop"
+      "name": "East Coast hip-hop",
+      "qid": "Q876171"
     },
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "jazz rap"
+      "name": "jazz rap",
+      "qid": "Q255406"
     },
     {
       "slug": "genre:alternative-hip-hop",
       "type": "genre",
-      "name": "alternative hip-hop"
+      "name": "alternative hip-hop",
+      "qid": "Q438503"
     }
   ],
   "labels": [

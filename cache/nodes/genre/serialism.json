@@ -22,17 +22,20 @@
     {
       "slug": "genre:atonality",
       "type": "genre",
-      "name": "Atonality"
+      "name": "Atonality",
+      "qid": "Q211745"
     },
     {
       "slug": "genre:modern-classical",
       "type": "genre",
-      "name": "Modern Classical"
+      "name": "Modern Classical",
+      "qid": "Q65937946"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     }
   ],
   "key_artists": [
@@ -64,5 +67,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q507246"
 }

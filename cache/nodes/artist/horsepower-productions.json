@@ -21,17 +21,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:dub-music",
       "type": "genre",
-      "name": "Dub music"
+      "name": "Dub music",
+      "qid": "Q212688"
     }
   ],
   "labels": [

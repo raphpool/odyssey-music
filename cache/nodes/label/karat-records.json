@@ -17,22 +17,26 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "roster": [

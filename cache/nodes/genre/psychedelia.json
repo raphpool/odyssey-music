@@ -24,12 +24,14 @@
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:classic-rock",
       "type": "genre",
-      "name": "Classic Rock"
+      "name": "Classic Rock",
+      "qid": "Q56351111"
     }
   ],
   "key_artists": [

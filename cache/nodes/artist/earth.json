@@ -33,17 +33,20 @@
     {
       "slug": "genre:drone-metal",
       "type": "genre",
-      "name": "Drone metal"
+      "name": "Drone metal",
+      "qid": "Q1433387"
     },
     {
       "slug": "genre:doom-metal",
       "type": "genre",
-      "name": "Doom metal"
+      "name": "Doom metal",
+      "qid": "Q186170"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     }
   ],
   "labels": [

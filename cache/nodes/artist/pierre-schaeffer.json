@@ -26,17 +26,20 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic Music"
+      "name": "Electroacoustic Music",
+      "qid": "Q1326777"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental Music"
+      "name": "Experimental Music",
+      "qid": "Q1640319"
     }
   ],
   "labels": [

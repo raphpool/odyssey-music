@@ -37,22 +37,26 @@
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:nu-jazz",
       "type": "genre",
-      "name": "Nu Jazz"
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     },
     {
       "slug": "genre:psychedelic-hip-hop",
       "type": "genre",
-      "name": "Psychedelic hip hop"
+      "name": "Psychedelic hip hop",
+      "qid": "Q2106887"
     }
   ],
   "tracklist": [

@@ -22,17 +22,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:electronic-rock",
       "type": "genre",
-      "name": "Electronic Rock"
+      "name": "Electronic Rock",
+      "qid": "Q325504"
     }
   ],
   "labels": [

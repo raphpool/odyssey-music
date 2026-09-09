@@ -19,17 +19,20 @@
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark Ambient"
+      "name": "Dark Ambient",
+      "qid": "Q756956"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [

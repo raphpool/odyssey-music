@@ -40,7 +40,8 @@
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:traditional-irish-music",

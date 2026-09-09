@@ -31,17 +31,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:nu-jazz",
       "type": "genre",
-      "name": "Nu Jazz"
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     }
   ],
   "tracklist": [

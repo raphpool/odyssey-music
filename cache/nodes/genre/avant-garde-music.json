@@ -38,17 +38,20 @@
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free jazz"
+      "name": "Free jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:noise-music",
       "type": "genre",
-      "name": "Noise music"
+      "name": "Noise music",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     }
   ],
   "key_artists": [
@@ -76,5 +79,6 @@
       "name": "4'33\""
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2332751"
 }

@@ -28,22 +28,26 @@
     {
       "slug": "genre:west-coast-hip-hop",
       "type": "genre",
-      "name": "West Coast hip-hop"
+      "name": "West Coast hip-hop",
+      "qid": "Q429264"
     },
     {
       "slug": "genre:boom-bap",
       "type": "genre",
-      "name": "Boom bap"
+      "name": "Boom bap",
+      "qid": "Q529742"
     },
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "Jazz rap"
+      "name": "Jazz rap",
+      "qid": "Q255406"
     },
     {
       "slug": "genre:hardcore-hip-hop",
       "type": "genre",
-      "name": "Hardcore hip-hop"
+      "name": "Hardcore hip-hop",
+      "qid": "Q966564"
     }
   ],
   "key_artists": [
@@ -107,5 +111,6 @@
       "type": "track",
       "name": "N.Y. State of Mind"
     }
-  ]
+  ],
+  "qid": "Q876171"
 }

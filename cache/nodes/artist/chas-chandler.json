@@ -31,17 +31,20 @@
     {
       "slug": "genre:british-invasion",
       "type": "genre",
-      "name": "British Invasion"
+      "name": "British Invasion",
+      "qid": "Q211418"
     },
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam Rock"
+      "name": "Glam Rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     }
   ],
   "labels": [],

@@ -28,12 +28,14 @@
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:soft-rock",
       "type": "genre",
-      "name": "Soft rock"
+      "name": "Soft rock",
+      "qid": "Q217191"
     }
   ],
   "tracklist": [

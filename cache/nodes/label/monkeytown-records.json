@@ -26,22 +26,26 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:bass-music",
       "type": "genre",
-      "name": "Bass Music"
+      "name": "Bass Music",
+      "qid": "Q96740854"
     },
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     }
   ],
   "roster": [

@@ -25,17 +25,20 @@
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "roster": [

@@ -33,17 +33,20 @@
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:dance-rock",
       "type": "genre",
-      "name": "Dance-rock"
+      "name": "Dance-rock",
+      "qid": "Q2281409"
     }
   ],
   "producers": [

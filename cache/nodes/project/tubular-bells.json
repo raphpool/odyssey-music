@@ -48,17 +48,20 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:instrumental-rock",
       "type": "genre",
-      "name": "Instrumental rock"
+      "name": "Instrumental rock",
+      "qid": "Q1650296"
     },
     {
       "slug": "genre:new-age-music",
       "type": "genre",
-      "name": "New-age music"
+      "name": "New-age music",
+      "qid": "Q213121"
     }
   ],
   "tracklist": [],

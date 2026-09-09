@@ -15,17 +15,20 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     }
   ],
   "labels": [

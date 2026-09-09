@@ -32,31 +32,36 @@
     {
       "slug": "genre:garage-rock",
       "type": "genre",
-      "name": "Garage rock"
+      "name": "Garage rock",
+      "qid": "Q211573"
     },
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and roll"
+      "name": "Rock and roll",
+      "qid": "Q7749"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:garage-punk",
       "type": "genre",
-      "name": "Garage punk"
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:pub-rock",
       "type": "genre",
-      "name": "Pub rock"
+      "name": "Pub rock",
+      "qid": "Q1431327"
     }
   ],
   "key_artists": [
@@ -105,5 +110,6 @@
       "name": "The Velvet Underground & Nico"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q27190"
 }

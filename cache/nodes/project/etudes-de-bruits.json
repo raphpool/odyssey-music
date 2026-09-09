@@ -21,12 +21,14 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic music"
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
     }
   ],
   "tracklist": [

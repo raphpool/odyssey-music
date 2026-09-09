@@ -22,17 +22,20 @@
     {
       "slug": "genre:country-music",
       "type": "genre",
-      "name": "Country music"
+      "name": "Country music",
+      "qid": "Q83440"
     },
     {
       "slug": "genre:country-rock",
       "type": "genre",
-      "name": "Country rock"
+      "name": "Country rock",
+      "qid": "Q613408"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard rock"
+      "name": "Hard rock",
+      "qid": "Q83270"
     }
   ],
   "labels": [

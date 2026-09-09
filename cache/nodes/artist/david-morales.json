@@ -21,17 +21,20 @@
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage house"
+      "name": "Garage house",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:dance-music",
       "type": "genre",
-      "name": "Dance music"
+      "name": "Dance music",
+      "qid": "Q316930"
     }
   ],
   "labels": [

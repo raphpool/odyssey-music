@@ -23,27 +23,32 @@
     {
       "slug": "genre:jungle-music",
       "type": "genre",
-      "name": "Jungle music"
+      "name": "Jungle music",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and bass"
+      "name": "Drum and bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:breakbeat-hardcore",
       "type": "genre",
-      "name": "Breakbeat hardcore"
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
     },
     {
       "slug": "genre:dancehall",
       "type": "genre",
-      "name": "Dancehall"
+      "name": "Dancehall",
+      "qid": "Q474027"
     },
     {
       "slug": "genre:dub-music",
       "type": "genre",
-      "name": "Dub music"
+      "name": "Dub music",
+      "qid": "Q212688"
     }
   ],
   "key_artists": [
@@ -118,5 +123,6 @@
       "type": "track",
       "name": "Burial (Leviticus song)"
     }
-  ]
+  ],
+  "qid": "Q2710523"
 }

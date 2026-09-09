@@ -21,17 +21,20 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital hardcore"
+      "name": "Digital hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     }
   ],
   "roster": [

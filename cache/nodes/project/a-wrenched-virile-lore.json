@@ -32,12 +32,14 @@
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "tracklist": [],

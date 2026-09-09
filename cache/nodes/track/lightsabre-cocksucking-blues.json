@@ -52,12 +52,14 @@
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     },
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-Hardcore"
+      "name": "Post-Hardcore",
+      "qid": "Q377910"
     }
   ],
   "producers": [

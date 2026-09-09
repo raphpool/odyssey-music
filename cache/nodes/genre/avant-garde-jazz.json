@@ -41,19 +41,22 @@
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free jazz"
+      "name": "Free jazz",
+      "qid": "Q211781"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free jazz"
+      "name": "Free jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:post-bop",
       "type": "genre",
-      "name": "Post-bop"
+      "name": "Post-bop",
+      "qid": "Q1092837"
     }
   ],
   "key_artists": [
@@ -102,5 +105,6 @@
       "name": "The Shape of Jazz to Come"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q790188"
 }

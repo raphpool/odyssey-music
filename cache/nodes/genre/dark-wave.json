@@ -38,32 +38,38 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:gothic-rock",
       "type": "genre",
-      "name": "Gothic rock"
+      "name": "Gothic rock",
+      "qid": "Q485395"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New wave"
+      "name": "New wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:cold-wave",
       "type": "genre",
-      "name": "Cold wave"
+      "name": "Cold wave",
+      "qid": "Q2343562"
     },
     {
       "slug": "genre:ethereal-wave",
       "type": "genre",
-      "name": "Ethereal wave"
+      "name": "Ethereal wave",
+      "qid": "Q284543"
     },
     {
       "slug": "genre:industrial-music",
       "type": "genre",
-      "name": "Industrial music"
+      "name": "Industrial music",
+      "qid": "Q487965"
     }
   ],
   "key_artists": [
@@ -136,5 +142,6 @@
       "name": "Black Celebration"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q3840596"
 }

@@ -21,12 +21,14 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "roster": [

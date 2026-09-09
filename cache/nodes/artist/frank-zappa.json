@@ -22,22 +22,26 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     }
   ],
   "labels": [

@@ -33,12 +33,14 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     }
   ],
   "producers": [

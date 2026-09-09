@@ -21,17 +21,20 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     }
   ],
   "tracklist": [],

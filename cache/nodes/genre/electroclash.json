@@ -36,32 +36,38 @@
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:synth-punk",
       "type": "genre",
-      "name": "Synth-punk"
+      "name": "Synth-punk",
+      "qid": "Q476983"
     },
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "key_artists": [
@@ -105,5 +111,6 @@
       "type": "track",
       "name": "Emerge"
     }
-  ]
+  ],
+  "qid": "Q861823"
 }

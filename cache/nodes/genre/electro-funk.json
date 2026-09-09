@@ -42,22 +42,26 @@
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit Techno"
+      "name": "Detroit Techno",
+      "qid": "Q526463"
     }
   ],
   "key_artists": [
@@ -94,5 +98,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1325963"
 }

@@ -36,17 +36,20 @@
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub Techno"
+      "name": "Dub Techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "tracklist": [],

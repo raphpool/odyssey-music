@@ -37,17 +37,20 @@
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-Rock"
+      "name": "Post-Rock",
+      "qid": "Q209137"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [],

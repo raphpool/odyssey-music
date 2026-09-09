@@ -28,12 +28,14 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "producers": [

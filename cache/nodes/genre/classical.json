@@ -22,39 +22,46 @@
     {
       "slug": "genre:baroque-music",
       "type": "genre",
-      "name": "Baroque music"
+      "name": "Baroque music",
+      "qid": "Q8361"
     },
     {
       "slug": "genre:romantic-music",
       "type": "genre",
-      "name": "Romantic music"
+      "name": "Romantic music",
+      "qid": "Q207591"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:baroque-music",
       "type": "genre",
-      "name": "Baroque music"
+      "name": "Baroque music",
+      "qid": "Q8361"
     },
     {
       "slug": "genre:romantic-music",
       "type": "genre",
-      "name": "Romantic music"
+      "name": "Romantic music",
+      "qid": "Q207591"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:modernism",
       "type": "genre",
-      "name": "Modernism"
+      "name": "Modernism",
+      "qid": "Q2426218"
     }
   ],
   "key_artists": [
@@ -81,5 +88,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q9730"
 }

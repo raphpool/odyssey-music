@@ -32,17 +32,20 @@
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-Hardcore"
+      "name": "Post-Hardcore",
+      "qid": "Q377910"
     }
   ],
   "roster": [

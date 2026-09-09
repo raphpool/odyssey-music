@@ -36,22 +36,26 @@
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     }
   ],
   "labels": [

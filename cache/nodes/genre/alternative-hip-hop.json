@@ -20,22 +20,26 @@
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "Jazz rap"
+      "name": "Jazz rap",
+      "qid": "Q255406"
     },
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip-hop"
+      "name": "Trip-hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:conscious-hip-hop",
       "type": "genre",
-      "name": "Conscious hip-hop"
+      "name": "Conscious hip-hop",
+      "qid": "Q141459"
     },
     {
       "slug": "genre:boom-bap",
       "type": "genre",
-      "name": "Boom bap"
+      "name": "Boom bap",
+      "qid": "Q529742"
     }
   ],
   "key_artists": [
@@ -84,5 +88,6 @@
       "type": "track",
       "name": "Tragic Epilogue"
     }
-  ]
+  ],
+  "qid": "Q438503"
 }

@@ -22,17 +22,20 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art Rock"
+      "name": "Art Rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:avant-folk",
       "type": "genre",
-      "name": "Avant-folk"
+      "name": "Avant-folk",
+      "qid": "Q108297184"
     },
     {
       "slug": "genre:gothic-rock",
       "type": "genre",
-      "name": "Gothic Rock"
+      "name": "Gothic Rock",
+      "qid": "Q485395"
     }
   ],
   "labels": [

@@ -21,7 +21,8 @@
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "subgenres": [],
@@ -29,7 +30,8 @@
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free Jazz"
+      "name": "Free Jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:atonal-music",
@@ -39,7 +41,8 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     }
   ],
   "key_artists": [
@@ -67,5 +70,6 @@
       "type": "track",
       "name": "4'33\""
     }
-  ]
+  ],
+  "qid": "Q2332751"
 }

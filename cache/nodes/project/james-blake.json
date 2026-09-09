@@ -29,17 +29,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-dubstep"
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "tracklist": [

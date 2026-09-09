@@ -23,17 +23,20 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:noise-music",
       "type": "genre",
-      "name": "Noise music"
+      "name": "Noise music",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:computer-music",
@@ -87,5 +90,6 @@
       "name": "I Am Sitting in a Room"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1326777"
 }

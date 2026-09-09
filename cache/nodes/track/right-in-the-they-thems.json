@@ -24,7 +24,8 @@
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy Music"
+      "name": "Comedy Music",
+      "qid": "Q5151495"
     },
     {
       "slug": "genre:satire",

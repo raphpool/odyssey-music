@@ -25,12 +25,14 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital Hardcore"
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     },
     {
       "slug": "genre:hardcore-techno",
@@ -40,7 +42,8 @@
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     }
   ],
   "labels": [

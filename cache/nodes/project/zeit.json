@@ -32,22 +32,26 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:space-music",
       "type": "genre",
-      "name": "Space music"
+      "name": "Space music",
+      "qid": "Q2342263"
     },
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark ambient"
+      "name": "Dark ambient",
+      "qid": "Q756956"
     }
   ],
   "tracklist": [],

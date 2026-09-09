@@ -20,17 +20,20 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art Rock"
+      "name": "Art Rock",
+      "qid": "Q217467"
     }
   ],
   "labels": [],

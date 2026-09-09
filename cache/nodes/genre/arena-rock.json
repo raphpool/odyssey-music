@@ -32,12 +32,14 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop Rock"
+      "name": "Pop Rock",
+      "qid": "Q484641"
     }
   ],
   "subgenres": [],
@@ -97,5 +99,6 @@
       "name": "Alive!"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q379033"
 }

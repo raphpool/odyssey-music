@@ -27,7 +27,8 @@
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     }
   ],
   "tracklist": [

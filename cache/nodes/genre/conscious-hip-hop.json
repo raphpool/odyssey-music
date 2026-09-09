@@ -28,17 +28,20 @@
     {
       "slug": "genre:political-hip-hop",
       "type": "genre",
-      "name": "Political hip-hop"
+      "name": "Political hip-hop",
+      "qid": "Q969663"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-hop"
+      "name": "Hip-hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:alternative-hip-hop",
       "type": "genre",
-      "name": "Alternative hip-hop"
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
     }
   ],
   "key_artists": [
@@ -97,5 +100,6 @@
       "type": "track",
       "name": "Alright"
     }
-  ]
+  ],
+  "qid": "Q141459"
 }

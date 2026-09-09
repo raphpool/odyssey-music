@@ -17,12 +17,14 @@
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free Jazz"
+      "name": "Free Jazz",
+      "qid": "Q211781"
     },
     {
       "slug": "genre:avant-garde-jazz",
       "type": "genre",
-      "name": "Avant-Garde Jazz"
+      "name": "Avant-Garde Jazz",
+      "qid": "Q790188"
     }
   ],
   "labels": [],

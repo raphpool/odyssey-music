@@ -21,22 +21,26 @@
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise rock"
+      "name": "Noise rock",
+      "qid": "Q181861"
     },
     {
       "slug": "genre:indie-folk",
       "type": "genre",
-      "name": "Indie folk"
+      "name": "Indie folk",
+      "qid": "Q1317816"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "roster": [

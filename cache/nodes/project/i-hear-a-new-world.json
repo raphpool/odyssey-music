@@ -53,17 +53,20 @@
     {
       "slug": "genre:experimental-pop",
       "type": "genre",
-      "name": "Experimental Pop"
+      "name": "Experimental Pop",
+      "qid": "Q25094591"
     },
     {
       "slug": "genre:space-age-pop",
       "type": "genre",
-      "name": "Space-age pop"
+      "name": "Space-age pop",
+      "qid": "Q1779294"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "tracklist": [

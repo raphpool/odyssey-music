@@ -25,17 +25,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:progressive-electronic",
       "type": "genre",
-      "name": "Progressive Electronic"
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "labels": [

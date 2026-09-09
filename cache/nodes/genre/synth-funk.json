@@ -34,24 +34,28 @@
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:minneapolis-sound",
       "type": "genre",
-      "name": "Minneapolis Sound"
+      "name": "Minneapolis Sound",
+      "qid": "Q6868046"
     },
     {
       "slug": "genre:electro-funk",
       "type": "genre",
-      "name": "Electro-funk"
+      "name": "Electro-funk",
+      "qid": "Q1325963"
     }
   ],
   "related_genres": [],
@@ -95,5 +99,6 @@
       "name": "Street Songs"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q30632022"
 }

@@ -32,12 +32,14 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "subgenres": [],
@@ -45,17 +47,20 @@
     {
       "slug": "genre:shoegaze",
       "type": "genre",
-      "name": "Shoegaze"
+      "name": "Shoegaze",
+      "qid": "Q272167"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise rock"
+      "name": "Noise rock",
+      "qid": "Q181861"
     },
     {
       "slug": "genre:dream-pop",
       "type": "genre",
-      "name": "Dream pop"
+      "name": "Dream pop",
+      "qid": "Q592330"
     }
   ],
   "key_artists": [
@@ -98,5 +103,6 @@
       "name": "Psychocandy"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2545135"
 }

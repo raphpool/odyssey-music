@@ -26,22 +26,26 @@
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     },
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient House"
+      "name": "Ambient House",
+      "qid": "Q2465085"
     }
   ],
   "labels": [],

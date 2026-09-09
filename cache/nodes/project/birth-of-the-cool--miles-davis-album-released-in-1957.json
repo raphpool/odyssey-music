@@ -49,12 +49,14 @@
     {
       "slug": "genre:cool-jazz",
       "type": "genre",
-      "name": "Cool Jazz"
+      "name": "Cool Jazz",
+      "qid": "Q327547"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "tracklist": [

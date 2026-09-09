@@ -37,12 +37,14 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:minimalist-music",
       "type": "genre",
-      "name": "Minimalist music"
+      "name": "Minimalist music",
+      "qid": "Q572901"
     }
   ],
   "tracklist": [],

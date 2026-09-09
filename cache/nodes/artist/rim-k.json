@@ -16,7 +16,8 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     }
   ],
   "labels": [

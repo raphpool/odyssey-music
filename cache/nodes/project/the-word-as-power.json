@@ -32,12 +32,14 @@
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark Ambient"
+      "name": "Dark Ambient",
+      "qid": "Q756956"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     }
   ],
   "tracklist": [

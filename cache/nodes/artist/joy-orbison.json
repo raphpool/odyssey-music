@@ -18,27 +18,32 @@
     {
       "slug": "genre:uk-bass",
       "type": "genre",
-      "name": "UK Bass"
+      "name": "UK Bass",
+      "qid": "Q2346991"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     }
   ],
   "labels": [

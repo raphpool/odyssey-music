@@ -23,22 +23,26 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:rhythm-and-blues",
       "type": "genre",
-      "name": "Rhythm and Blues"
+      "name": "Rhythm and Blues",
+      "qid": "Q45981"
     },
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and Roll"
+      "name": "Rock and Roll",
+      "qid": "Q7749"
     },
     {
       "slug": "genre:country-music",
       "type": "genre",
-      "name": "Country music"
+      "name": "Country music",
+      "qid": "Q83440"
     }
   ],
   "key_artists": [
@@ -70,5 +74,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q9759"
 }

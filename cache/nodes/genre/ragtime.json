@@ -21,7 +21,8 @@
     {
       "slug": "genre:popular-music",
       "type": "genre",
-      "name": "Popular Music"
+      "name": "Popular Music",
+      "qid": "Q373342"
     }
   ],
   "subgenres": [],
@@ -29,7 +30,8 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "key_artists": [
@@ -62,5 +64,6 @@
       "type": "track",
       "name": "The Entertainer"
     }
-  ]
+  ],
+  "qid": "Q185652"
 }

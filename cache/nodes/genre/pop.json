@@ -22,49 +22,58 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:dance-pop",
       "type": "genre",
-      "name": "Dance-pop"
+      "name": "Dance-pop",
+      "qid": "Q211756"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:teen-pop",
       "type": "genre",
-      "name": "Teen pop"
+      "name": "Teen pop",
+      "qid": "Q739138"
     },
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie pop"
+      "name": "Indie pop",
+      "qid": "Q842324"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and roll"
+      "name": "Rock and roll",
+      "qid": "Q7749"
     },
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip hop"
+      "name": "Hip hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "key_artists": [
@@ -96,5 +105,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q37073"
 }

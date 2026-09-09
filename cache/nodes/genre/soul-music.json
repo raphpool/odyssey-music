@@ -26,17 +26,20 @@
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:philadelphia-soul",
       "type": "genre",
-      "name": "Philadelphia soul"
+      "name": "Philadelphia soul",
+      "qid": "Q1546028"
     },
     {
       "slug": "genre:southern-soul",
       "type": "genre",
-      "name": "Southern soul"
+      "name": "Southern soul",
+      "qid": "Q1567032"
     }
   ],
   "related_genres": [],
@@ -101,5 +104,6 @@
       "name": "I Never Loved a Man the Way I Love You"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q131272"
 }

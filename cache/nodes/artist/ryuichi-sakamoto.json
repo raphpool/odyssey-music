@@ -22,27 +22,32 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "electronic"
+      "name": "electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "ambient"
+      "name": "ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "experimental"
+      "name": "experimental",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "classical"
+      "name": "classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "synth-pop"
+      "name": "synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "labels": [

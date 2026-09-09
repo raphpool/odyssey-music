@@ -32,7 +32,8 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:rock-ballad",

@@ -21,17 +21,20 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit Techno"
+      "name": "Detroit Techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "labels": [

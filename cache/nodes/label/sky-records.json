@@ -17,27 +17,32 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     }
   ],
   "roster": [

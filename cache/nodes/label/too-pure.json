@@ -22,17 +22,20 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     }
   ],
   "roster": [

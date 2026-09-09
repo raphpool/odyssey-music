@@ -25,17 +25,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "labels": [

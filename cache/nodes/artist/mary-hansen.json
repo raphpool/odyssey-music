@@ -35,17 +35,20 @@
     {
       "slug": "genre:indietronica",
       "type": "genre",
-      "name": "Indietronica"
+      "name": "Indietronica",
+      "qid": "Q325397"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie Rock"
+      "name": "Indie Rock",
+      "qid": "Q183504"
     }
   ],
   "labels": [

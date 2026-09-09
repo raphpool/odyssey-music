@@ -22,17 +22,20 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital hardcore"
+      "name": "Digital hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:industrial-music",
       "type": "genre",
-      "name": "Industrial music"
+      "name": "Industrial music",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore punk"
+      "name": "Hardcore punk",
+      "qid": "Q10922"
     }
   ],
   "labels": [

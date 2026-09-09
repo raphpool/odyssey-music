@@ -37,17 +37,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit Techno"
+      "name": "Detroit Techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "labels": [

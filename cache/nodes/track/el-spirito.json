@@ -34,17 +34,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub-techno"
+      "name": "Dub-techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     }
   ],
   "producers": [

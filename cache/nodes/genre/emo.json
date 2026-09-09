@@ -32,56 +32,66 @@
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-hardcore"
+      "name": "Post-hardcore",
+      "qid": "Q377910"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore punk"
+      "name": "Hardcore punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:midwest-emo",
       "type": "genre",
-      "name": "Midwest emo"
+      "name": "Midwest emo",
+      "qid": "Q39052425"
     },
     {
       "slug": "genre:screamo",
       "type": "genre",
-      "name": "Screamo"
+      "name": "Screamo",
+      "qid": "Q11363"
     },
     {
       "slug": "genre:emo-pop",
       "type": "genre",
-      "name": "Emo pop"
+      "name": "Emo pop",
+      "qid": "Q3724735"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:pop-punk",
       "type": "genre",
-      "name": "Pop-punk"
+      "name": "Pop-punk",
+      "qid": "Q487914"
     },
     {
       "slug": "genre:screamo",
       "type": "genre",
-      "name": "Screamo"
+      "name": "Screamo",
+      "qid": "Q11363"
     },
     {
       "slug": "genre:emo-pop",
       "type": "genre",
-      "name": "Emo pop"
+      "name": "Emo pop",
+      "qid": "Q3724735"
     },
     {
       "slug": "genre:emo-rap",
       "type": "genre",
-      "name": "Emo rap"
+      "name": "Emo rap",
+      "qid": "Q12362064"
     }
   ],
   "key_artists": [
@@ -150,5 +160,6 @@
       "name": "American Football"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q10926"
 }

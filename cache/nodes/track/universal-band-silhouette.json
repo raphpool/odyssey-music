@@ -36,7 +36,8 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "producers": [],

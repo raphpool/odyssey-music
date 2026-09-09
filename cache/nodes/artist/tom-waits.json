@@ -17,17 +17,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:blues",
       "type": "genre",
-      "name": "Blues"
+      "name": "Blues",
+      "qid": "Q9759"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     }
   ],
   "labels": [

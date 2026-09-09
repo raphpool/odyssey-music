@@ -19,22 +19,26 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:minimal-house",
       "type": "genre",
-      "name": "Minimal House"
+      "name": "Minimal House",
+      "qid": "Q750811"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "key_artists": [
@@ -99,5 +103,6 @@
       "type": "track",
       "name": "Can You Feel It"
     }
-  ]
+  ],
+  "qid": "Q874038"
 }

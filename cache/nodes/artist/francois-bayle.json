@@ -37,17 +37,20 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:acousmatic-music",
       "type": "genre",
-      "name": "Acousmatic Music"
+      "name": "Acousmatic Music",
+      "qid": "Q423918"
     },
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic Music"
+      "name": "Electroacoustic Music",
+      "qid": "Q1326777"
     }
   ],
   "labels": [

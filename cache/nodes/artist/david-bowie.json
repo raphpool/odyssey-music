@@ -22,17 +22,20 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "labels": [

@@ -33,12 +33,14 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "producers": [

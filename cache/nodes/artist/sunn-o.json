@@ -18,7 +18,8 @@
     {
       "slug": "genre:drone-metal",
       "type": "genre",
-      "name": "Drone metal"
+      "name": "Drone metal",
+      "qid": "Q1433387"
     },
     {
       "slug": "genre:experimental-metal",

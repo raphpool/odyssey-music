@@ -30,12 +30,14 @@
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark ambient"
+      "name": "Dark ambient",
+      "qid": "Q756956"
     }
   ],
   "tracklist": [],

@@ -32,12 +32,14 @@
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "roster": [

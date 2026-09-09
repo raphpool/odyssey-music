@@ -17,17 +17,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     }
   ],
   "roster": [

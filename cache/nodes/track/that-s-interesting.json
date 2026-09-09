@@ -36,7 +36,8 @@
     {
       "slug": "genre:afrobeats",
       "type": "genre",
-      "name": "Afrobeats"
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "producers": [

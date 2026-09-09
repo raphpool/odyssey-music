@@ -24,22 +24,26 @@
     {
       "slug": "genre:east-coast-hip-hop",
       "type": "genre",
-      "name": "East Coast hip-hop"
+      "name": "East Coast hip-hop",
+      "qid": "Q876171"
     },
     {
       "slug": "genre:hardcore-hip-hop",
       "type": "genre",
-      "name": "Hardcore hip-hop"
+      "name": "Hardcore hip-hop",
+      "qid": "Q966564"
     },
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "Jazz rap"
+      "name": "Jazz rap",
+      "qid": "Q255406"
     },
     {
       "slug": "genre:alternative-hip-hop",
       "type": "genre",
-      "name": "Alternative hip-hop"
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
     }
   ],
   "key_artists": [
@@ -88,5 +92,6 @@
       "type": "track",
       "name": "It's Yours"
     }
-  ]
+  ],
+  "qid": "Q529742"
 }

@@ -19,17 +19,20 @@
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:ragga",
       "type": "genre",
-      "name": "Ragga"
+      "name": "Ragga",
+      "qid": "Q740911"
     }
   ],
   "labels": [

@@ -19,17 +19,20 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage House"
+      "name": "Garage House",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit Techno"
+      "name": "Detroit Techno",
+      "qid": "Q526463"
     }
   ],
   "labels": [

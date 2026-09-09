@@ -50,7 +50,8 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "producers": [

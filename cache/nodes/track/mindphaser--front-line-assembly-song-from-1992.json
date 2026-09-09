@@ -36,12 +36,14 @@
     {
       "slug": "genre:electro-industrial",
       "type": "genre",
-      "name": "Electro-industrial"
+      "name": "Electro-industrial",
+      "qid": "Q1403744"
     },
     {
       "slug": "genre:industrial-dance",
       "type": "genre",
-      "name": "Industrial dance"
+      "name": "Industrial dance",
+      "qid": "Q1661924"
     }
   ],
   "producers": [

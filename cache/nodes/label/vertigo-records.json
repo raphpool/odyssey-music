@@ -21,12 +21,14 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     }
   ],
   "roster": [

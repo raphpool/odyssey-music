@@ -37,22 +37,26 @@
     {
       "slug": "genre:sludge-metal",
       "type": "genre",
-      "name": "Sludge Metal"
+      "name": "Sludge Metal",
+      "qid": "Q720959"
     },
     {
       "slug": "genre:doom-metal",
       "type": "genre",
-      "name": "Doom Metal"
+      "name": "Doom Metal",
+      "qid": "Q186170"
     },
     {
       "slug": "genre:black-metal",
       "type": "genre",
-      "name": "Black Metal"
+      "name": "Black Metal",
+      "qid": "Q132438"
     },
     {
       "slug": "genre:progressive-metal",
       "type": "genre",
-      "name": "Progressive Metal"
+      "name": "Progressive Metal",
+      "qid": "Q484344"
     }
   ],
   "tracklist": [],

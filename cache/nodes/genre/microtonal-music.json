@@ -21,12 +21,14 @@
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde Music"
+      "name": "Avant-garde Music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "key_artists": [
@@ -48,5 +50,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1045756"
 }

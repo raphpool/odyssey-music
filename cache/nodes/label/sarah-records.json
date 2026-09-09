@@ -36,12 +36,14 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:twee-pop",
       "type": "genre",
-      "name": "Twee Pop"
+      "name": "Twee Pop",
+      "qid": "Q370778"
     }
   ],
   "roster": [

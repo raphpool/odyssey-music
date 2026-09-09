@@ -47,17 +47,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     }
   ],
   "producers": [

@@ -27,17 +27,20 @@
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary classical"
+      "name": "Contemporary classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:drone-music",
       "type": "genre",
-      "name": "Drone music"
+      "name": "Drone music",
+      "qid": "Q650316"
     }
   ],
   "tracklist": [],

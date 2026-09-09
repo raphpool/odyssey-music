@@ -36,7 +36,8 @@
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     }
   ],
   "tracklist": [

@@ -22,17 +22,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "labels": [

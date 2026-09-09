@@ -47,12 +47,14 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:chamber-pop",
       "type": "genre",
-      "name": "Chamber Pop"
+      "name": "Chamber Pop",
+      "qid": "Q22991878"
     }
   ],
   "tracklist": [

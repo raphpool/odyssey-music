@@ -19,7 +19,8 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "labels": [],

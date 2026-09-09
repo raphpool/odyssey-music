@@ -34,17 +34,20 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:space-music",
       "type": "genre",
-      "name": "Space music"
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "tracklist": [

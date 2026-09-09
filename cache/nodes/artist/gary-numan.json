@@ -26,22 +26,26 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New wave"
+      "name": "New wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:industrial-rock",
       "type": "genre",
-      "name": "Industrial rock"
+      "name": "Industrial rock",
+      "qid": "Q968730"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "labels": [

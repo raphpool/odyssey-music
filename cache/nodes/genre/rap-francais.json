@@ -24,12 +24,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:thug-rap",
       "type": "genre",
-      "name": "Thug Rap"
+      "name": "Thug Rap",
+      "qid": "Q106634977"
     }
   ],
   "key_artists": [

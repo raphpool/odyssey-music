@@ -25,17 +25,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:wave",
       "type": "genre",
-      "name": "Wave"
+      "name": "Wave",
+      "qid": "Q106369996"
     }
   ],
   "labels": [

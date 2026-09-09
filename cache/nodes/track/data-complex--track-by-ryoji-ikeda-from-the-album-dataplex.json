@@ -31,17 +31,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "producers": [

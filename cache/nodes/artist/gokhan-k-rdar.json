@@ -21,17 +21,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip Hop"
+      "name": "Trip Hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:turkish-pop",
       "type": "genre",
-      "name": "Turkish Pop"
+      "name": "Turkish Pop",
+      "qid": "Q7855391"
     }
   ],
   "labels": [

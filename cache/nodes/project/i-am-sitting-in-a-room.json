@@ -28,17 +28,20 @@
     {
       "slug": "genre:process-music",
       "type": "genre",
-      "name": "Process music"
+      "name": "Process music",
+      "qid": "Q3512282"
     },
     {
       "slug": "genre:sound-art",
       "type": "genre",
-      "name": "Sound art"
+      "name": "Sound art",
+      "qid": "Q1744327"
     },
     {
       "slug": "genre:minimal-music",
       "type": "genre",
-      "name": "Minimal music"
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "tracklist": [

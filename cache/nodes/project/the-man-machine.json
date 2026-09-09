@@ -28,17 +28,20 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New wave"
+      "name": "New wave",
+      "qid": "Q187760"
     }
   ],
   "tracklist": [

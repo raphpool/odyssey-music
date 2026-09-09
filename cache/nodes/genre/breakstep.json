@@ -22,12 +22,14 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:breakbeat",
       "type": "genre",
-      "name": "breakbeat"
+      "name": "breakbeat",
+      "qid": "Q663519"
     }
   ],
   "subgenres": [],
@@ -35,17 +37,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "dubstep"
+      "name": "dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "drum and bass"
+      "name": "drum and bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:2-step-garage",
       "type": "genre",
-      "name": "2-step garage"
+      "name": "2-step garage",
+      "qid": "Q1751409"
     }
   ],
   "key_artists": [
@@ -78,5 +83,6 @@
       "type": "track",
       "name": "I Don't Smoke"
     }
-  ]
+  ],
+  "qid": "Q1987980"
 }

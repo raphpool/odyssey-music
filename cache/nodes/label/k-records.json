@@ -21,17 +21,20 @@
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie Rock"
+      "name": "Indie Rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:twee-pop",
       "type": "genre",
-      "name": "Twee Pop"
+      "name": "Twee Pop",
+      "qid": "Q370778"
     },
     {
       "slug": "genre:lo-fi",
       "type": "genre",
-      "name": "Lo-fi"
+      "name": "Lo-fi",
+      "qid": "Q1507298"
     }
   ],
   "roster": [

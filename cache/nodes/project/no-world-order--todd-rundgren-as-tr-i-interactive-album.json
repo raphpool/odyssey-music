@@ -28,17 +28,20 @@
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     },
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     }
   ],
   "tracklist": [],

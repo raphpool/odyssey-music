@@ -15,17 +15,20 @@
     {
       "slug": "genre:drone-metal",
       "type": "genre",
-      "name": "Drone Metal"
+      "name": "Drone Metal",
+      "qid": "Q1433387"
     },
     {
       "slug": "genre:stoner-metal",
       "type": "genre",
-      "name": "Stoner Metal"
+      "name": "Stoner Metal",
+      "qid": "Q1772422"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     }
   ],
   "labels": [

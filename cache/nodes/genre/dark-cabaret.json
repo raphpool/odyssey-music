@@ -39,17 +39,20 @@
     {
       "slug": "genre:cabaret",
       "type": "genre",
-      "name": "Cabaret"
+      "name": "Cabaret",
+      "qid": "Q111535905"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "key_artists": [
@@ -102,5 +105,6 @@
       "name": "Les fleurs du mal"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1166158"
 }

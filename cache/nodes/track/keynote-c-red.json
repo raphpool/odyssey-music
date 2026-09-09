@@ -25,12 +25,14 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:sound-healing",

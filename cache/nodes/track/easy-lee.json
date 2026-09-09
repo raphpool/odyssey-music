@@ -35,12 +35,14 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech House"
+      "name": "Tech House",
+      "qid": "Q598593"
     }
   ],
   "producers": [

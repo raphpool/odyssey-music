@@ -23,27 +23,32 @@
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     }
   ],
   "key_artists": [

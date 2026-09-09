@@ -20,12 +20,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip hop"
+      "name": "Hip hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:gangsta-rap",
       "type": "genre",
-      "name": "Gangsta rap"
+      "name": "Gangsta rap",
+      "qid": "Q753679"
     }
   ],
   "key_artists": [
@@ -89,5 +91,6 @@
       "type": "track",
       "name": "Le crime paie"
     }
-  ]
+  ],
+  "qid": "Q138020"
 }

@@ -21,27 +21,32 @@
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:broken-beat",
       "type": "genre",
-      "name": "Broken Beat"
+      "name": "Broken Beat",
+      "qid": "Q2406633"
     },
     {
       "slug": "genre:nu-jazz",
       "type": "genre",
-      "name": "Nu Jazz"
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     },
     {
       "slug": "genre:breakbeat-hardcore",
       "type": "genre",
-      "name": "Breakbeat Hardcore"
+      "name": "Breakbeat Hardcore",
+      "qid": "Q1585075"
     }
   ],
   "labels": [

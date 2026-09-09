@@ -17,17 +17,20 @@
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:drone",
       "type": "genre",
-      "name": "Drone"
+      "name": "Drone",
+      "qid": "Q650316"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     }
   ],
   "labels": [],

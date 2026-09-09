@@ -39,17 +39,20 @@
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop/Rock"
+      "name": "Pop/Rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:roots-rock",
       "type": "genre",
-      "name": "Roots Rock"
+      "name": "Roots Rock",
+      "qid": "Q1929352"
     }
   ],
   "labels": [],

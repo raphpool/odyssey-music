@@ -32,17 +32,20 @@
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip hop"
+      "name": "Trip hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     }
   ],
   "producers": [

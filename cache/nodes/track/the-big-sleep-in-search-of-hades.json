@@ -40,12 +40,14 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:progressive-electronic",
       "type": "genre",
-      "name": "Progressive Electronic"
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
     }
   ],
   "producers": [

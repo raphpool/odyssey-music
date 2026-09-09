@@ -31,17 +31,20 @@
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:20th-century-classical",
       "type": "genre",
-      "name": "20th-Century Classical"
+      "name": "20th-Century Classical",
+      "qid": "Q1338153"
     }
   ],
   "tracklist": [],

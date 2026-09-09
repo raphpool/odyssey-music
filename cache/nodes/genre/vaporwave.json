@@ -37,17 +37,20 @@
     {
       "slug": "genre:mallsoft",
       "type": "genre",
-      "name": "Mallsoft"
+      "name": "Mallsoft",
+      "qid": "Q80725067"
     },
     {
       "slug": "genre:future-funk",
       "type": "genre",
-      "name": "Future funk"
+      "name": "Future funk",
+      "qid": "Q80725127"
     },
     {
       "slug": "genre:vaportrap",
       "type": "genre",
-      "name": "Vaportrap"
+      "name": "Vaportrap",
+      "qid": "Q80724932"
     },
     {
       "slug": "genre:signalwave",
@@ -57,29 +60,34 @@
     {
       "slug": "genre:hardvapour",
       "type": "genre",
-      "name": "Hardvapour"
+      "name": "Hardvapour",
+      "qid": "Q30594541"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:chillwave",
       "type": "genre",
-      "name": "Chillwave"
+      "name": "Chillwave",
+      "qid": "Q2626684"
     },
     {
       "slug": "genre:hypnagogic-pop",
       "type": "genre",
-      "name": "Hypnagogic pop"
+      "name": "Hypnagogic pop",
+      "qid": "Q25345818"
     },
     {
       "slug": "genre:city-pop",
       "type": "genre",
-      "name": "City pop"
+      "name": "City pop",
+      "qid": "Q11307326"
     },
     {
       "slug": "genre:plunderphonics",
       "type": "genre",
-      "name": "Plunderphonics"
+      "name": "Plunderphonics",
+      "qid": "Q7205507"
     }
   ],
   "key_artists": [
@@ -133,5 +141,6 @@
       "name": "Floral Shoppe"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q15733887"
 }

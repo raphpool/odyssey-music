@@ -22,17 +22,20 @@
     {
       "slug": "genre:choral-music",
       "type": "genre",
-      "name": "Choral music"
+      "name": "Choral music",
+      "qid": "Q1076513"
     },
     {
       "slug": "genre:gospel-music",
       "type": "genre",
-      "name": "Gospel music"
+      "name": "Gospel music",
+      "qid": "Q180268"
     },
     {
       "slug": "genre:contemporary-christian-music",
       "type": "genre",
-      "name": "Contemporary Christian music"
+      "name": "Contemporary Christian music",
+      "qid": "Q1379958"
     }
   ],
   "labels": [],

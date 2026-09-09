@@ -22,49 +22,58 @@
     {
       "slug": "genre:big-room-house",
       "type": "genre",
-      "name": "Big room house"
+      "name": "Big room house",
+      "qid": "Q15300817"
     },
     {
       "slug": "genre:complextro",
       "type": "genre",
-      "name": "Complextro"
+      "name": "Complextro",
+      "qid": "Q11691380"
     },
     {
       "slug": "genre:dutch-house",
       "type": "genre",
-      "name": "Dutch house"
+      "name": "Dutch house",
+      "qid": "Q1228230"
     },
     {
       "slug": "genre:fidget-house",
       "type": "genre",
-      "name": "Fidget house"
+      "name": "Fidget house",
+      "qid": "Q2365784"
     },
     {
       "slug": "genre:melbourne-bounce",
       "type": "genre",
-      "name": "Melbourne bounce"
+      "name": "Melbourne bounce",
+      "qid": "Q20047305"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech house"
+      "name": "Tech house",
+      "qid": "Q598593"
     },
     {
       "slug": "genre:electroclash",
       "type": "genre",
-      "name": "Electroclash"
+      "name": "Electroclash",
+      "qid": "Q861823"
     }
   ],
   "key_artists": [
@@ -112,5 +121,6 @@
       "name": "Cross"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q627906"
 }

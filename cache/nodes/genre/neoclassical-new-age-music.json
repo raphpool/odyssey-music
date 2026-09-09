@@ -19,7 +19,8 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     }
   ],
   "subgenres": [],
@@ -69,5 +70,6 @@
       "name": "Kagayaki"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q613874"
 }

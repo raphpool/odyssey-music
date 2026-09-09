@@ -21,17 +21,20 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "labels": [

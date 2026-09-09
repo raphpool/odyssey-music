@@ -17,22 +17,26 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:melodic-dubstep",
       "type": "genre",
-      "name": "Melodic dubstep"
+      "name": "Melodic dubstep",
+      "qid": "Q106404229"
     },
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive house"
+      "name": "Progressive house",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:future-bass",
       "type": "genre",
-      "name": "Future bass"
+      "name": "Future bass",
+      "qid": "Q22908553"
     }
   ],
   "labels": [

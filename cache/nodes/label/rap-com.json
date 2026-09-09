@@ -23,7 +23,8 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-hop"
+      "name": "Hip-hop",
+      "qid": "Q11401"
     }
   ],
   "roster": [

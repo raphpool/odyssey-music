@@ -28,7 +28,8 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "tracklist": [],

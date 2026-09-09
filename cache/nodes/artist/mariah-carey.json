@@ -36,17 +36,20 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "labels": [

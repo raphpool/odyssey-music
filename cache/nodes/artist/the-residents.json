@@ -22,17 +22,20 @@
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental rock"
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "labels": [

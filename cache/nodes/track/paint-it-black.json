@@ -36,7 +36,8 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     }
   ],
   "producers": [],

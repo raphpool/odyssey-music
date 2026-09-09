@@ -25,17 +25,20 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit techno"
+      "name": "Detroit techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "roster": [

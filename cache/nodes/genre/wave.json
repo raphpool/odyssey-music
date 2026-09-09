@@ -25,56 +25,66 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:dark-wave",
       "type": "genre",
-      "name": "Dark wave"
+      "name": "Dark wave",
+      "qid": "Q3840596"
     },
     {
       "slug": "genre:minimal-wave",
       "type": "genre",
-      "name": "Minimal wave"
+      "name": "Minimal wave",
+      "qid": "Q6865341"
     },
     {
       "slug": "genre:cold-wave",
       "type": "genre",
-      "name": "Cold wave"
+      "name": "Cold wave",
+      "qid": "Q2343562"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     }
   ],
   "key_artists": [
@@ -117,5 +127,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q106369996"
 }

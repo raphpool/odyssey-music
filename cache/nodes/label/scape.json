@@ -25,17 +25,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub techno"
+      "name": "Dub techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "roster": [

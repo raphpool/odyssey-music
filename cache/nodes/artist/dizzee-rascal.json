@@ -25,7 +25,8 @@
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "grime"
+      "name": "grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:british-hip-hop",
@@ -35,7 +36,8 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     }
   ],
   "labels": [

@@ -21,22 +21,26 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "Classical"
+      "name": "Classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     }
   ],
   "labels": [

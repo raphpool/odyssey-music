@@ -32,12 +32,14 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:pop-reggae",
       "type": "genre",
-      "name": "Pop Reggae"
+      "name": "Pop Reggae",
+      "qid": "Q98528253"
     }
   ],
   "tracklist": [

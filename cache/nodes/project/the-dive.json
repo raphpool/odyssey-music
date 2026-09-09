@@ -22,12 +22,14 @@
     {
       "slug": "genre:soundtrack",
       "type": "genre",
-      "name": "Soundtrack"
+      "name": "Soundtrack",
+      "qid": "Q107736421"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "tracklist": [],

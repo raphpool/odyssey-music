@@ -21,12 +21,14 @@
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic Dance Music"
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
     }
   ],
   "subgenres": [],
@@ -34,17 +36,20 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:eurodance",
       "type": "genre",
-      "name": "Eurodance"
+      "name": "Eurodance",
+      "qid": "Q216961"
     }
   ],
   "key_artists": [

@@ -18,44 +18,52 @@
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid house"
+      "name": "Acid house",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep house"
+      "name": "Deep house",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:ghetto-house",
       "type": "genre",
-      "name": "Ghetto house"
+      "name": "Ghetto house",
+      "qid": "Q2748817"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:italo-disco",
       "type": "genre",
-      "name": "Italo disco"
+      "name": "Italo disco",
+      "qid": "Q744417"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid house"
+      "name": "Acid house",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit techno"
+      "name": "Detroit techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep house"
+      "name": "Deep house",
+      "qid": "Q874038"
     }
   ],
   "key_artists": [
@@ -119,5 +127,6 @@
       "type": "track",
       "name": "Acid Tracks"
     }
-  ]
+  ],
+  "qid": "Q1071961"
 }

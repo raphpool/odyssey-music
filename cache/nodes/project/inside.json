@@ -51,12 +51,14 @@
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy music"
+      "name": "Comedy music",
+      "qid": "Q5151495"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:musical-theatre",

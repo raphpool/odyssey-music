@@ -25,22 +25,26 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     }
   ],
   "subgenres": [],
@@ -48,17 +52,20 @@
     {
       "slug": "genre:nu-jazz",
       "type": "genre",
-      "name": "Nu Jazz"
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     },
     {
       "slug": "genre:jazz-rap",
       "type": "genre",
-      "name": "Jazz Rap"
+      "name": "Jazz Rap",
+      "qid": "Q255406"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     }
   ],
   "key_artists": [
@@ -112,5 +119,6 @@
       "name": "Totally Wired"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q221772"
 }

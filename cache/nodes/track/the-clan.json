@@ -21,12 +21,14 @@
     {
       "slug": "genre:hard-bop",
       "type": "genre",
-      "name": "Hard Bop"
+      "name": "Hard Bop",
+      "qid": "Q181010"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "producers": [

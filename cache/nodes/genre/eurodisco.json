@@ -19,27 +19,32 @@
     {
       "slug": "genre:italo-disco",
       "type": "genre",
-      "name": "Italo disco"
+      "name": "Italo disco",
+      "qid": "Q744417"
     },
     {
       "slug": "genre:space-disco",
       "type": "genre",
-      "name": "Space disco"
+      "name": "Space disco",
+      "qid": "Q2608506"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:hi-nrg",
       "type": "genre",
-      "name": "Hi-NRG"
+      "name": "Hi-NRG",
+      "qid": "Q606393"
     },
     {
       "slug": "genre:europop",
       "type": "genre",
-      "name": "Europop"
+      "name": "Europop",
+      "qid": "Q517415"
     }
   ],
   "key_artists": [
@@ -93,5 +98,6 @@
       "name": "Take the Heat off Me"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1374731"
 }

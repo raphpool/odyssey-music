@@ -36,17 +36,20 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard rock"
+      "name": "Hard rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy metal"
+      "name": "Heavy metal",
+      "qid": "Q38848"
     },
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     }
   ],
   "labels": [

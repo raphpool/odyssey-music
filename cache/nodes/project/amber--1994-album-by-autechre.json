@@ -33,12 +33,14 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:ambient-music",
       "type": "genre",
-      "name": "Ambient music"
+      "name": "Ambient music",
+      "qid": "Q193207"
     }
   ],
   "tracklist": [

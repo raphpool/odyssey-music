@@ -24,17 +24,20 @@
     {
       "slug": "genre:celtic-rock",
       "type": "genre",
-      "name": "Celtic rock"
+      "name": "Celtic rock",
+      "qid": "Q2662148"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk rock"
+      "name": "Folk rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:scottish-folk-music",
       "type": "genre",
-      "name": "Scottish folk music"
+      "name": "Scottish folk music",
+      "qid": "Q17018487"
     }
   ],
   "tracklist": [],

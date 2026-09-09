@@ -23,12 +23,14 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "producers": [],

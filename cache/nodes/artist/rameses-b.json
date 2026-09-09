@@ -21,17 +21,20 @@
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:chill-out",
       "type": "genre",
-      "name": "Chill-out"
+      "name": "Chill-out",
+      "qid": "Q757143"
     }
   ],
   "labels": [

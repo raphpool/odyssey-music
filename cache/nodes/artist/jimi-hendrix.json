@@ -21,17 +21,20 @@
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:blues-rock",
       "type": "genre",
-      "name": "Blues Rock"
+      "name": "Blues Rock",
+      "qid": "Q193355"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     }
   ],
   "labels": [],

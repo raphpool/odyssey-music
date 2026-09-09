@@ -34,22 +34,26 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:thrash-metal",
       "type": "genre",
-      "name": "Thrash metal"
+      "name": "Thrash metal",
+      "qid": "Q483352"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:straight-edge",
       "type": "genre",
-      "name": "Straight edge"
+      "name": "Straight edge",
+      "qid": "Q108865641"
     }
   ],
   "key_artists": [
@@ -119,5 +123,6 @@
       "type": "track",
       "name": "Straight Edge"
     }
-  ]
+  ],
+  "qid": "Q10922"
 }

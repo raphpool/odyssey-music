@@ -19,12 +19,14 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:algorithmic-composition",
@@ -34,7 +36,8 @@
     {
       "slug": "genre:sound-art",
       "type": "genre",
-      "name": "Sound art"
+      "name": "Sound art",
+      "qid": "Q1744327"
     }
   ],
   "key_artists": [

@@ -26,12 +26,14 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [],
@@ -39,22 +41,26 @@
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:jazz-funk",
       "type": "genre",
-      "name": "Jazz-Funk"
+      "name": "Jazz-Funk",
+      "qid": "Q38656"
     },
     {
       "slug": "genre:broken-beat",
       "type": "genre",
-      "name": "Broken Beat"
+      "name": "Broken Beat",
+      "qid": "Q2406633"
     }
   ],
   "key_artists": [
@@ -92,5 +98,6 @@
       "name": "Tourist"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1136331"
 }

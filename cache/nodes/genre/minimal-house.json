@@ -22,17 +22,20 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal techno"
+      "name": "Minimal techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:microhouse",
       "type": "genre",
-      "name": "Microhouse"
+      "name": "Microhouse",
+      "qid": "Q1931555"
     }
   ],
   "key_artists": [
@@ -59,5 +62,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q750811"
 }

@@ -32,17 +32,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "roster": [

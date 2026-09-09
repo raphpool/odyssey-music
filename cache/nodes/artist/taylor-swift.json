@@ -37,17 +37,20 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:country",
       "type": "genre",
-      "name": "Country"
+      "name": "Country",
+      "qid": "Q83440"
     },
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     }
   ],
   "labels": [

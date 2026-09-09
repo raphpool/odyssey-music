@@ -36,12 +36,14 @@
     {
       "slug": "genre:breakbeat",
       "type": "genre",
-      "name": "Breakbeat"
+      "name": "Breakbeat",
+      "qid": "Q663519"
     },
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     }
   ],
   "subgenres": [],
@@ -49,17 +51,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-Hop"
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     }
   ],
   "key_artists": [
@@ -123,5 +128,6 @@
       "name": "You've Come a Long Way, Baby"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q858579"
 }

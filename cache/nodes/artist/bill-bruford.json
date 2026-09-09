@@ -20,22 +20,26 @@
     {
       "slug": "genre:prog-rock",
       "type": "genre",
-      "name": "Prog-Rock"
+      "name": "Prog-Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz-Fusion"
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:canterbury-scene",
       "type": "genre",
-      "name": "Canterbury Scene"
+      "name": "Canterbury Scene",
+      "qid": "Q727803"
     }
   ],
   "labels": [],

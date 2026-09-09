@@ -35,7 +35,8 @@
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     }
   ],
   "labels": [],

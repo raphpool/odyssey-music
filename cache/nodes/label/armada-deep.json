@@ -19,17 +19,20 @@
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech House"
+      "name": "Tech House",
+      "qid": "Q598593"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "roster": [

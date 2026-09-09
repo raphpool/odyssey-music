@@ -36,12 +36,14 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "subgenres": [],
@@ -49,12 +51,14 @@
     {
       "slug": "genre:vaporwave",
       "type": "genre",
-      "name": "Vaporwave"
+      "name": "Vaporwave",
+      "qid": "Q15733887"
     },
     {
       "slug": "genre:synthwave",
       "type": "genre",
-      "name": "Synthwave"
+      "name": "Synthwave",
+      "qid": "Q19938910"
     }
   ],
   "key_artists": [
@@ -108,5 +112,6 @@
       "name": "Causers Of This"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2626684"
 }

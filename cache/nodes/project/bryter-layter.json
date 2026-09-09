@@ -42,17 +42,20 @@
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:baroque-pop",
       "type": "genre",
-      "name": "Baroque Pop"
+      "name": "Baroque Pop",
+      "qid": "Q46046"
     },
     {
       "slug": "genre:british-folk",
       "type": "genre",
-      "name": "British Folk"
+      "name": "British Folk",
+      "qid": "Q109916244"
     }
   ],
   "tracklist": [

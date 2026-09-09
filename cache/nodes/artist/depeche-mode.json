@@ -21,17 +21,20 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth Pop"
+      "name": "Synth Pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:alternative-dance",
       "type": "genre",
-      "name": "Alternative Dance"
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     }
   ],
   "labels": [],

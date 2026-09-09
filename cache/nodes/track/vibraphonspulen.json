@@ -32,12 +32,14 @@
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "producers": [

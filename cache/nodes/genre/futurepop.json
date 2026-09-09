@@ -19,22 +19,26 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:electronic-body-music",
       "type": "genre",
-      "name": "Electronic Body Music"
+      "name": "Electronic Body Music",
+      "qid": "Q372103"
     },
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:electro-industrial",
       "type": "genre",
-      "name": "Electro-industrial"
+      "name": "Electro-industrial",
+      "qid": "Q1403744"
     }
   ],
   "key_artists": [
@@ -71,5 +75,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q828243"
 }

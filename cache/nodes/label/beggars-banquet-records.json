@@ -32,22 +32,26 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New wave"
+      "name": "New wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     }
   ],
   "roster": [

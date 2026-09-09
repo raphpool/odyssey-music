@@ -19,17 +19,20 @@
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "key_artists": [
@@ -77,5 +80,6 @@
       "name": "Lifeforms"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2465085"
 }

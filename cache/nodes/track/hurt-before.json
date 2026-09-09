@@ -21,12 +21,14 @@
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:celtic-pop",
       "type": "genre",
-      "name": "Celtic pop"
+      "name": "Celtic pop",
+      "qid": "Q3664327"
     }
   ],
   "producers": [

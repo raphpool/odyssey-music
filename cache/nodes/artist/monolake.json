@@ -21,17 +21,20 @@
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub techno"
+      "name": "Dub techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal techno"
+      "name": "Minimal techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "labels": [

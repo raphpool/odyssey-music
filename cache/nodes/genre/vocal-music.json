@@ -20,38 +20,45 @@
     {
       "slug": "genre:choral-music",
       "type": "genre",
-      "name": "Choral Music"
+      "name": "Choral Music",
+      "qid": "Q1076513"
     },
     {
       "slug": "genre:opera",
       "type": "genre",
-      "name": "Opera"
+      "name": "Opera",
+      "qid": "Q1344"
     },
     {
       "slug": "genre:art-song",
       "type": "genre",
-      "name": "Art Song"
+      "name": "Art Song",
+      "qid": "Q4797274"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:classical-music",
       "type": "genre",
-      "name": "Classical Music"
+      "name": "Classical Music",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:choral-music",
       "type": "genre",
-      "name": "Choral Music"
+      "name": "Choral Music",
+      "qid": "Q1076513"
     },
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk Music"
+      "name": "Folk Music",
+      "qid": "Q43343"
     }
   ],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q685884"
 }

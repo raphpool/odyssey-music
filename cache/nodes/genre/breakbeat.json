@@ -18,61 +18,72 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-hop"
+      "name": "Hip-hop",
+      "qid": "Q11401"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:big-beat",
       "type": "genre",
-      "name": "Big Beat"
+      "name": "Big Beat",
+      "qid": "Q858579"
     },
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:florida-breaks",
       "type": "genre",
-      "name": "Florida Breaks"
+      "name": "Florida Breaks",
+      "qid": "Q2396639"
     },
     {
       "slug": "genre:nu-skool-breaks",
       "type": "genre",
-      "name": "Nu Skool Breaks"
+      "name": "Nu Skool Breaks",
+      "qid": "Q1756101"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:big-beat",
       "type": "genre",
-      "name": "Big Beat"
+      "name": "Big Beat",
+      "qid": "Q858579"
     },
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     }
   ],
   "key_artists": [
@@ -127,5 +138,6 @@
       "type": "track",
       "name": "Funky Drummer"
     }
-  ]
+  ],
+  "qid": "Q663519"
 }

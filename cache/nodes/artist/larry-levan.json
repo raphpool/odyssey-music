@@ -21,17 +21,20 @@
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage House"
+      "name": "Garage House",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:post-disco",
       "type": "genre",
-      "name": "Post-disco"
+      "name": "Post-disco",
+      "qid": "Q1190485"
     }
   ],
   "labels": [

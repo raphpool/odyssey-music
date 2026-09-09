@@ -34,12 +34,14 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:nyabinghi",
@@ -49,7 +51,8 @@
     {
       "slug": "genre:rocksteady",
       "type": "genre",
-      "name": "Rocksteady"
+      "name": "Rocksteady",
+      "qid": "Q573484"
     }
   ],
   "key_artists": [
@@ -134,5 +137,6 @@
       "type": "track",
       "name": "Conquering Lion"
     }
-  ]
+  ],
+  "qid": "Q1299260"
 }

@@ -22,12 +22,14 @@
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-dubstep"
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     },
     {
       "slug": "genre:indie-electronic",

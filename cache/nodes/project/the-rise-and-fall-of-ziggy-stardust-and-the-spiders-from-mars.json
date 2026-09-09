@@ -28,12 +28,14 @@
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:proto-punk",
       "type": "genre",
-      "name": "Proto-punk"
+      "name": "Proto-punk",
+      "qid": "Q27190"
     }
   ],
   "tracklist": [],

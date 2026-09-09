@@ -21,22 +21,26 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     }
   ],
   "key_artists": [

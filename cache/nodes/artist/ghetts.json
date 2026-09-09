@@ -22,7 +22,8 @@
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:uk-hip-hop",

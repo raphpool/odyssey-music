@@ -19,22 +19,26 @@
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient House"
+      "name": "Ambient House",
+      "qid": "Q2465085"
     }
   ],
   "key_artists": [
@@ -109,5 +113,6 @@
       "type": "track",
       "name": "Passion"
     }
-  ]
+  ],
+  "qid": "Q915152"
 }

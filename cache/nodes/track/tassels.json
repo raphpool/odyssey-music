@@ -28,17 +28,20 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:alternative-pop",
       "type": "genre",
-      "name": "Alternative Pop"
+      "name": "Alternative Pop",
+      "qid": "Q95469495"
     }
   ],
   "producers": [

@@ -21,17 +21,20 @@
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "roster": [

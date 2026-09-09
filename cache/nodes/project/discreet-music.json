@@ -36,12 +36,14 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:minimalist",
       "type": "genre",
-      "name": "Minimalist"
+      "name": "Minimalist",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:generative-music",
@@ -51,7 +53,8 @@
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     }
   ],
   "tracklist": [],

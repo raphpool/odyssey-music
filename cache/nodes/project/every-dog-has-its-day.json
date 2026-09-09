@@ -37,12 +37,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:trap",
       "type": "genre",
-      "name": "Trap"
+      "name": "Trap",
+      "qid": "Q2913982"
     }
   ],
   "tracklist": [],

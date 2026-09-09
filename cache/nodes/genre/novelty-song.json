@@ -19,12 +19,14 @@
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy music"
+      "name": "Comedy music",
+      "qid": "Q5151495"
     },
     {
       "slug": "genre:parody-music",
       "type": "genre",
-      "name": "Parody music"
+      "name": "Parody music",
+      "qid": "Q2746731"
     }
   ],
   "key_artists": [

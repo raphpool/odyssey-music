@@ -32,17 +32,20 @@
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     },
     {
       "slug": "genre:experimental-pop",
       "type": "genre",
-      "name": "Experimental Pop"
+      "name": "Experimental Pop",
+      "qid": "Q25094591"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "roster": [

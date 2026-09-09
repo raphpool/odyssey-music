@@ -32,12 +32,14 @@
     {
       "slug": "genre:microtonal-music",
       "type": "genre",
-      "name": "Microtonal music"
+      "name": "Microtonal music",
+      "qid": "Q1045756"
     },
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     }
   ],
   "tracklist": [],

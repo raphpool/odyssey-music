@@ -39,17 +39,20 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie pop"
+      "name": "Indie pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:lo-fi",
       "type": "genre",
-      "name": "Lo-fi"
+      "name": "Lo-fi",
+      "qid": "Q1507298"
     },
     {
       "slug": "genre:twee-pop",
       "type": "genre",
-      "name": "Twee pop"
+      "name": "Twee pop",
+      "qid": "Q370778"
     }
   ],
   "labels": [

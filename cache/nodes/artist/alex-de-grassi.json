@@ -26,12 +26,14 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:contemporary-folk",
       "type": "genre",
-      "name": "Contemporary Folk"
+      "name": "Contemporary Folk",
+      "qid": "Q106298881"
     }
   ],
   "labels": [

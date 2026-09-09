@@ -29,17 +29,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     }
   ],
   "tracklist": [

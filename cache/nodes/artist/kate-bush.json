@@ -21,17 +21,20 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     }
   ],
   "labels": [

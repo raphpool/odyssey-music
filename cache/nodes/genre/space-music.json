@@ -17,40 +17,47 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:space-ambient",
       "type": "genre",
-      "name": "Space ambient"
+      "name": "Space ambient",
+      "qid": "Q16625659"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:berlin-school-of-electronic-music",
       "type": "genre",
-      "name": "Berlin school of electronic music"
+      "name": "Berlin school of electronic music",
+      "qid": "Q530750"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:space-rock",
       "type": "genre",
-      "name": "Space rock"
+      "name": "Space rock",
+      "qid": "Q236913"
     }
   ],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2342263"
 }

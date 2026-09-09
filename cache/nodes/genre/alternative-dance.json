@@ -35,12 +35,14 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic Dance Music"
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
     }
   ],
   "subgenres": [
@@ -52,19 +54,22 @@
     {
       "slug": "genre:electroclash",
       "type": "genre",
-      "name": "Electroclash"
+      "name": "Electroclash",
+      "qid": "Q861823"
     },
     {
       "slug": "genre:new-rave",
       "type": "genre",
-      "name": "New Rave"
+      "name": "New Rave",
+      "qid": "Q1995980"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:madchester",
@@ -74,12 +79,14 @@
     {
       "slug": "genre:big-beat",
       "type": "genre",
-      "name": "Big Beat"
+      "name": "Big Beat",
+      "qid": "Q858579"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "key_artists": [
@@ -128,5 +135,6 @@
       "name": "Power, Corruption & Lies"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2187392"
 }

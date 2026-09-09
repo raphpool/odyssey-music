@@ -22,17 +22,20 @@
     {
       "slug": "genre:death-metal",
       "type": "genre",
-      "name": "Death Metal"
+      "name": "Death Metal",
+      "qid": "Q483251"
     },
     {
       "slug": "genre:thrash-metal",
       "type": "genre",
-      "name": "Thrash Metal"
+      "name": "Thrash Metal",
+      "qid": "Q483352"
     },
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy Metal"
+      "name": "Heavy Metal",
+      "qid": "Q38848"
     }
   ],
   "producers": [],

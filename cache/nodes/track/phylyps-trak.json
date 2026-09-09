@@ -29,12 +29,14 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub Techno"
+      "name": "Dub Techno",
+      "qid": "Q1262781"
     }
   ],
   "producers": [

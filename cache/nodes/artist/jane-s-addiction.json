@@ -36,22 +36,26 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:alternative-metal",
       "type": "genre",
-      "name": "Alternative metal"
+      "name": "Alternative metal",
+      "qid": "Q20378"
     },
     {
       "slug": "genre:funk-metal",
       "type": "genre",
-      "name": "Funk metal"
+      "name": "Funk metal",
+      "qid": "Q667659"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     }
   ],
   "labels": [

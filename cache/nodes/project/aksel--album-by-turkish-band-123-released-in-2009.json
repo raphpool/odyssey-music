@@ -28,12 +28,14 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "tracklist": [

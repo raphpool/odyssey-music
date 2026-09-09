@@ -27,22 +27,26 @@
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:gothic-rock",
       "type": "genre",
-      "name": "Gothic Rock"
+      "name": "Gothic Rock",
+      "qid": "Q485395"
     },
     {
       "slug": "genre:no-wave",
       "type": "genre",
-      "name": "No Wave"
+      "name": "No Wave",
+      "qid": "Q823080"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     }
   ],
   "key_artists": [
@@ -112,5 +116,6 @@
       "type": "track",
       "name": "Damaged Goods"
     }
-  ]
+  ],
+  "qid": "Q598929"
 }

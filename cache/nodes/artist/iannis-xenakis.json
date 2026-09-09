@@ -26,17 +26,20 @@
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary Classical"
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "labels": [],

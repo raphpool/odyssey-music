@@ -18,22 +18,26 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:bass-music",
       "type": "genre",
-      "name": "Bass Music"
+      "name": "Bass Music",
+      "qid": "Q96740854"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:trap",
       "type": "genre",
-      "name": "Trap"
+      "name": "Trap",
+      "qid": "Q2913982"
     }
   ],
   "roster": [],

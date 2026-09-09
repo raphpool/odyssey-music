@@ -22,17 +22,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:breakbeat-hardcore",
       "type": "genre",
-      "name": "Breakbeat Hardcore"
+      "name": "Breakbeat Hardcore",
+      "qid": "Q1585075"
     }
   ],
   "labels": [

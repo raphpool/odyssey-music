@@ -19,17 +19,20 @@
     {
       "slug": "genre:arena-rock",
       "type": "genre",
-      "name": "Arena Rock"
+      "name": "Arena Rock",
+      "qid": "Q379033"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:country-pop",
       "type": "genre",
-      "name": "Country Pop"
+      "name": "Country Pop",
+      "qid": "Q2280497"
     }
   ],
   "labels": [],

@@ -38,17 +38,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient House"
+      "name": "Ambient House",
+      "qid": "Q2465085"
     },
     {
       "slug": "genre:microhouse",
       "type": "genre",
-      "name": "Microhouse"
+      "name": "Microhouse",
+      "qid": "Q1931555"
     }
   ],
   "producers": [

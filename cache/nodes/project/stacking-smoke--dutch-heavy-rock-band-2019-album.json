@@ -33,7 +33,8 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     }
   ],
   "tracklist": [

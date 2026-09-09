@@ -21,17 +21,20 @@
     {
       "slug": "genre:microtonal-music",
       "type": "genre",
-      "name": "Microtonal Music"
+      "name": "Microtonal Music",
+      "qid": "Q1045756"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental Music"
+      "name": "Experimental Music",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     }
   ],
   "labels": [],

@@ -25,17 +25,20 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:melodic-techno",
       "type": "genre",
-      "name": "Melodic Techno"
+      "name": "Melodic Techno",
+      "qid": "Q110185782"
     }
   ],
   "roster": [

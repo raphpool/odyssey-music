@@ -20,22 +20,26 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art pop"
+      "name": "Art pop",
+      "qid": "Q25094849"
     }
   ],
   "labels": [],

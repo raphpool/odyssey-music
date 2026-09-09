@@ -40,12 +40,14 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     }
   ],
   "producers": [

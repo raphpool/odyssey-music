@@ -22,7 +22,8 @@
     {
       "slug": "genre:juju",
       "type": "genre",
-      "name": "Jùjú"
+      "name": "Jùjú",
+      "qid": "Q1715700"
     },
     {
       "slug": "genre:african-pop",
@@ -32,7 +33,8 @@
     {
       "slug": "genre:highlife",
       "type": "genre",
-      "name": "Highlife"
+      "name": "Highlife",
+      "qid": "Q963061"
     }
   ],
   "labels": [

@@ -36,46 +36,54 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:post-grunge",
       "type": "genre",
-      "name": "Post-grunge"
+      "name": "Post-grunge",
+      "qid": "Q379671"
     },
     {
       "slug": "genre:bubblegrunge",
       "type": "genre",
-      "name": "Bubblegrunge"
+      "name": "Bubblegrunge",
+      "qid": "Q123923529"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard rock"
+      "name": "Hard rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy metal"
+      "name": "Heavy metal",
+      "qid": "Q38848"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise rock"
+      "name": "Noise rock",
+      "qid": "Q181861"
     }
   ],
   "key_artists": [
@@ -139,5 +147,6 @@
       "name": "Dirt"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q11365"
 }

@@ -25,12 +25,14 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     }
   ],
   "subgenres": [],
@@ -38,12 +40,14 @@
     {
       "slug": "genre:rock-in-opposition",
       "type": "genre",
-      "name": "Rock in Opposition"
+      "name": "Rock in Opposition",
+      "qid": "Q1752801"
     },
     {
       "slug": "genre:avant-prog",
       "type": "genre",
-      "name": "Avant-prog"
+      "name": "Avant-prog",
+      "qid": "Q3630966"
     }
   ],
   "key_artists": [
@@ -107,5 +111,6 @@
       "name": "Flying Teapot"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q727803"
 }

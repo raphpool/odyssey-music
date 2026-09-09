@@ -36,46 +36,54 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop Music"
+      "name": "Pop Music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:power-pop",
       "type": "genre",
-      "name": "Power Pop"
+      "name": "Power Pop",
+      "qid": "Q837837"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:emo-pop",
       "type": "genre",
-      "name": "Emo Pop"
+      "name": "Emo Pop",
+      "qid": "Q3724735"
     },
     {
       "slug": "genre:neon-pop-punk",
       "type": "genre",
-      "name": "Neon Pop Punk"
+      "name": "Neon Pop Punk",
+      "qid": "Q25099691"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:emo",
       "type": "genre",
-      "name": "Emo"
+      "name": "Emo",
+      "qid": "Q10926"
     },
     {
       "slug": "genre:skate-punk",
       "type": "genre",
-      "name": "Skate Punk"
+      "name": "Skate Punk",
+      "qid": "Q828305"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     }
   ],
   "key_artists": [
@@ -134,5 +142,6 @@
       "name": "All Killer No Filler"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q487914"
 }

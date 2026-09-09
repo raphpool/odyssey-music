@@ -44,17 +44,20 @@
     {
       "slug": "genre:melodic-hardcore",
       "type": "genre",
-      "name": "Melodic hardcore"
+      "name": "Melodic hardcore",
+      "qid": "Q542703"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore punk"
+      "name": "Hardcore punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:krishnacore",
       "type": "genre",
-      "name": "Krishnacore"
+      "name": "Krishnacore",
+      "qid": "Q18126969"
     }
   ],
   "tracklist": [

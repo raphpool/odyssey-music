@@ -25,17 +25,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:ambient-dub",
       "type": "genre",
-      "name": "Ambient Dub"
+      "name": "Ambient Dub",
+      "qid": "Q3613770"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     }
   ],
   "labels": [

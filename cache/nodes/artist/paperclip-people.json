@@ -23,12 +23,14 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit Techno"
+      "name": "Detroit Techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech House"
+      "name": "Tech House",
+      "qid": "Q598593"
     }
   ],
   "labels": [

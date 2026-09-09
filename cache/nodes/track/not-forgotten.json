@@ -23,12 +23,14 @@
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:breakbeat-hardcore",
       "type": "genre",
-      "name": "Breakbeat Hardcore"
+      "name": "Breakbeat Hardcore",
+      "qid": "Q1585075"
     }
   ],
   "producers": [

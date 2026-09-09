@@ -34,7 +34,8 @@
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago house"
+      "name": "Chicago house",
+      "qid": "Q1071961"
     }
   ],
   "producers": [

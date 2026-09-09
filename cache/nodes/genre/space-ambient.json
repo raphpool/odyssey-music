@@ -21,12 +21,14 @@
     {
       "slug": "genre:ambient-music",
       "type": "genre",
-      "name": "Ambient music"
+      "name": "Ambient music",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:new-age-music",
       "type": "genre",
-      "name": "New-age music"
+      "name": "New-age music",
+      "qid": "Q213121"
     }
   ],
   "subgenres": [],
@@ -76,5 +78,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q16625659"
 }

@@ -22,22 +22,26 @@
     {
       "slug": "genre:cool-jazz",
       "type": "genre",
-      "name": "Cool jazz"
+      "name": "Cool jazz",
+      "qid": "Q327547"
     },
     {
       "slug": "genre:west-coast-jazz",
       "type": "genre",
-      "name": "West Coast jazz"
+      "name": "West Coast jazz",
+      "qid": "Q1548603"
     },
     {
       "slug": "genre:hard-bop",
       "type": "genre",
-      "name": "Hard bop"
+      "name": "Hard bop",
+      "qid": "Q181010"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz fusion"
+      "name": "Jazz fusion",
+      "qid": "Q105527"
     }
   ],
   "labels": [

@@ -36,12 +36,14 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     }
   ],
   "roster": [

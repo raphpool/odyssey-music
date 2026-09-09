@@ -37,27 +37,32 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:exotica",
       "type": "genre",
-      "name": "Exotica"
+      "name": "Exotica",
+      "qid": "Q916387"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "labels": [

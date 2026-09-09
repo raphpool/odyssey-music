@@ -30,17 +30,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid techno"
+      "name": "Acid techno",
+      "qid": "Q341395"
     }
   ],
   "tracklist": [

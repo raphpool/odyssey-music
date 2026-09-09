@@ -22,12 +22,14 @@
     {
       "slug": "genre:comedy-rock",
       "type": "genre",
-      "name": "Comedy Rock"
+      "name": "Comedy Rock",
+      "qid": "Q1391336"
     },
     {
       "slug": "genre:parody-music",
       "type": "genre",
-      "name": "Parody Music"
+      "name": "Parody Music",
+      "qid": "Q2746731"
     }
   ],
   "labels": [

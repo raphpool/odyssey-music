@@ -25,17 +25,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:bossa-nova",
       "type": "genre",
-      "name": "Bossa Nova"
+      "name": "Bossa Nova",
+      "qid": "Q486263"
     },
     {
       "slug": "genre:vocal-jazz",
       "type": "genre",
-      "name": "Vocal Jazz"
+      "name": "Vocal Jazz",
+      "qid": "Q1530455"
     }
   ],
   "roster": [

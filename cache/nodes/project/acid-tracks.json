@@ -26,7 +26,8 @@
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid house"
+      "name": "Acid house",
+      "qid": "Q341364"
     }
   ],
   "tracklist": [

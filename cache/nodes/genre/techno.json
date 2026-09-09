@@ -18,7 +18,8 @@
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic Dance Music"
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
     }
   ],
   "subgenres": [],
@@ -26,17 +27,20 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "key_artists": [
@@ -90,5 +94,6 @@
       "type": "track",
       "name": "Good Life"
     }
-  ]
+  ],
+  "qid": "Q170611"
 }

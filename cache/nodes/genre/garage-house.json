@@ -17,41 +17,48 @@
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:speed-garage",
       "type": "genre",
-      "name": "Speed garage"
+      "name": "Speed garage",
+      "qid": "Q780517"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago house"
+      "name": "Chicago house",
+      "qid": "Q1071961"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:soul-music",
       "type": "genre",
-      "name": "Soul music"
+      "name": "Soul music",
+      "qid": "Q131272"
     }
   ],
   "key_artists": [
@@ -79,5 +86,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q928825"
 }

@@ -21,27 +21,32 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:world-music",
       "type": "genre",
-      "name": "World Music"
+      "name": "World Music",
+      "qid": "Q205049"
     },
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     }
   ],
   "roster": [

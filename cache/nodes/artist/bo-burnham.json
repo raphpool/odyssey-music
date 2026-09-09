@@ -20,7 +20,8 @@
     {
       "slug": "genre:comedy-music",
       "type": "genre",
-      "name": "Comedy music"
+      "name": "Comedy music",
+      "qid": "Q5151495"
     },
     {
       "slug": "genre:satire",
@@ -30,7 +31,8 @@
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     }
   ],
   "labels": [

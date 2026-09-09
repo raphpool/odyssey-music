@@ -16,12 +16,14 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:contemporary-instrumental",
       "type": "genre",
-      "name": "Contemporary Instrumental"
+      "name": "Contemporary Instrumental",
+      "qid": "Q127471482"
     }
   ],
   "labels": [

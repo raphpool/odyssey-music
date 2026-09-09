@@ -37,7 +37,8 @@
     {
       "slug": "genre:appalachian-folk",
       "type": "genre",
-      "name": "Appalachian folk"
+      "name": "Appalachian folk",
+      "qid": "Q108616106"
     },
     {
       "slug": "genre:traditional-irish-music",
@@ -49,17 +50,20 @@
     {
       "slug": "genre:country-music",
       "type": "genre",
-      "name": "Country music"
+      "name": "Country music",
+      "qid": "Q83440"
     },
     {
       "slug": "genre:blues",
       "type": "genre",
-      "name": "Blues"
+      "name": "Blues",
+      "qid": "Q9759"
     },
     {
       "slug": "genre:americana",
       "type": "genre",
-      "name": "Americana"
+      "name": "Americana",
+      "qid": "Q2407862"
     }
   ],
   "key_artists": [
@@ -81,5 +85,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q43343"
 }
