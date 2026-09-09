@@ -170,7 +170,13 @@ async function fetchMbGenrePage(url: URL, offset: number): Promise<unknown> {
 	return res.json();
 }
 
-async function fetchAllMbGenres(): Promise<MbGenre[]> {
+/**
+ * Paginate the full MB genre vocabulary. `fetchPage` is injectable so this can be tested
+ * without a real network call — production code relies on the default (`fetchMbGenrePage`).
+ */
+export async function fetchAllMbGenres(
+	fetchPage: (url: URL, offset: number) => Promise<unknown> = fetchMbGenrePage,
+): Promise<MbGenre[]> {
 	const genres: MbGenre[] = [];
 	let offset = 0;
 	let total = Number.POSITIVE_INFINITY;
@@ -184,13 +190,24 @@ async function fetchAllMbGenres(): Promise<MbGenre[]> {
 		url.searchParams.set("limit", String(MB_PAGE_LIMIT));
 		url.searchParams.set("offset", String(offset));
 
-		const page = mbGenreAllResponseSchema.parse(await fetchMbGenrePage(url, offset));
+		const page = mbGenreAllResponseSchema.parse(await fetchPage(url, offset));
 		if (page.genres.length === 0) break;
 
 		genres.push(...page.genres);
 		total = page["genre-count"];
 		offset += page.genres.length;
 	}
+
+	// MusicBrainz can serve a premature empty page under throttling (HTTP 200, not the 503
+	// fetchWithRetry already handles) — the `break` above stops the loop without an error, so
+	// without this check a truncated vocabulary would be joined and written silently instead
+	// of failing loudly, exactly the "no partial table" acceptance criterion this violates.
+	if (Number.isFinite(total) && genres.length !== total) {
+		throw new Error(
+			`MusicBrainz genre pagination ended early: expected ${total} genres (genre-count), got ${genres.length} at offset ${offset}`,
+		);
+	}
+
 	return genres;
 }
 

@@ -1,8 +1,9 @@
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+	fetchAllMbGenres,
 	type GenreQidMap,
 	joinGenreQidMap,
 	type MbGenre,
@@ -89,6 +90,52 @@ describe("joinGenreQidMap", () => {
 		for (const id of unmappedIds) {
 			expect(entryIds.has(id)).toBe(false);
 		}
+	});
+});
+
+describe("fetchAllMbGenres", () => {
+	beforeEach(() => {
+		vi.useFakeTimers();
+	});
+
+	afterEach(() => {
+		vi.useRealTimers();
+	});
+
+	it("throws instead of silently writing a truncated table when MB serves a premature empty page", async () => {
+		const g1: MbGenre = { id: "44444444-4444-4444-4444-444444444444", name: "a genre" };
+		const g2: MbGenre = { id: "55555555-5555-5555-5555-555555555555", name: "b genre" };
+
+		let call = 0;
+		const fetchPage = vi.fn(async () => {
+			call += 1;
+			if (call === 1) {
+				return { "genre-count": 5, genres: [g1, g2] };
+			}
+			// MusicBrainz claims 5 genres total (genre-count) but stops serving them after
+			// page 1 — a real, observed HTTP 200 throttling behavior, not a 503.
+			return { "genre-count": 5, genres: [] };
+		});
+
+		// Attach the rejection assertion before advancing timers so the promise is never
+		// unhandled between the moment it rejects and the moment we await it.
+		const assertion = expect(fetchAllMbGenres(fetchPage)).rejects.toThrow(/ended early/);
+		await vi.runAllTimersAsync();
+		await assertion;
+
+		expect(fetchPage).toHaveBeenCalledTimes(2);
+	});
+
+	it("resolves normally when the last page's genre count matches genre-count", async () => {
+		const g1: MbGenre = { id: "66666666-6666-6666-6666-666666666666", name: "a genre" };
+		const g2: MbGenre = { id: "77777777-7777-7777-7777-777777777777", name: "b genre" };
+
+		const fetchPage = vi.fn(async () => ({ "genre-count": 2, genres: [g1, g2] }));
+
+		const result = fetchAllMbGenres(fetchPage);
+		await vi.runAllTimersAsync();
+
+		await expect(result).resolves.toEqual([g1, g2]);
 	});
 });
 
