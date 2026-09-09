@@ -279,6 +279,50 @@ describe("NodeCache — findGenreSlugByQid (TRA-24)", () => {
 			await rm(qidDir2, { recursive: true, force: true });
 		}
 	});
+
+	it("still runs the second invalidation when write() throws after the source node landed (regression, review round 2)", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			// A genre file that exists on disk but fails schema validation: in production this
+			// is exactly what happens when emitReverses tries to materialize a reverse edge onto
+			// a corrupt target and get() throws ValidationError (not NotFoundError) in
+			// applyReverseToTarget, so write() fails AFTER the source node has already landed.
+			const genreDir = join(qidDir, "nodes", "genre");
+			await mkdir(genreDir, { recursive: true });
+			await writeFile(join(genreDir, "target.json"), JSON.stringify({ type: "genre" }), "utf8");
+
+			// Pin the interleaving explicitly instead of racing real fs timing: freeze the
+			// directory listing a build would see to the pre-write state (no genre:c yet), so
+			// the lookup below is guaranteed to build and memoize a stale (Q2-less) index —
+			// deterministically simulating a build that started in the window before genre:c
+			// landed, regardless of how fast the write below actually completes on disk.
+			const staleListing = await qidCache.listSlugs();
+			const listSlugsSpy = vi.spyOn(qidCache, "listSlugs").mockImplementation(async () => staleListing);
+
+			const w = qidCache.write(
+				genreNode({
+					slug: "genre:c",
+					name: "C",
+					qid: "Q2",
+					parent_genres: [{ type: "genre", slug: "genre:target", name: "Target" }],
+				}),
+			); // not awaited: its entry invalidation has already run synchronously by this point
+
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined(); // built off the stale listing, now memoized
+			listSlugsSpy.mockRestore();
+
+			await expect(w).rejects.toThrow(); // genre:c is on disk, but emitReverses fails on the corrupt target
+			expect(await qidCache.has("genre:c")).toBe(true);
+
+			// The second invalidation (in write()'s finally) must have busted the stale memo
+			// above even though write() threw, so this rebuilds from the real, current disk.
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBe("genre:c");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
 });
 
 describe("NodeCache — genre qid propagation on reverse edges (TRA-18)", () => {

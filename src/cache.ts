@@ -46,9 +46,14 @@ export class NodeCache {
 	// node file was actually on disk (loadPending -> runLocked -> mkdir -> atomicWriteJson ->
 	// rename all still had to happen). A build that started after that bump but before the
 	// rename landed would read a disk that didn't have the new node yet, then commit that
-	// stale snapshot as the memo forever (the version had already moved, so the build's own
-	// guard saw no further invalidation to defer to). write() now invalidates a second time
-	// after the node has actually landed on disk, so no build window can miss it.
+	// stale snapshot as the memo forever. write() now invalidates a second time after the node
+	// has actually landed on disk (in a finally, so a throw from emitReverses/flushPending
+	// can't skip it either), so no build window can miss it -- PROVIDED the commit guard checks
+	// the live genreQidIndexVersion (not a frozen copy on the build's own tracker object): a
+	// build still in flight when either invalidation fires keeps its tracker object untouched
+	// (write() only ever touches genreQidIndex/genreQidIndexVersion), so a guard compared
+	// against that stale tracker would trivially match itself and commit anyway, overwriting
+	// the null the invalidation had just set. See getOrBuildGenreQidIndex's commit closure.
 	private genreQidIndex: Map<string, Slug> | null = null;
 	private genreQidIndexBuild: { version: number; promise: Promise<Map<string, Slug>> } | null = null;
 	private genreQidIndexVersion = 0;
@@ -192,22 +197,34 @@ export class NodeCache {
 	private async getOrBuildGenreQidIndex(): Promise<Map<string, Slug>> {
 		if (this.genreQidIndex) return this.genreQidIndex;
 		const startedAtVersion = this.genreQidIndexVersion;
-		// A build already in flight for an older version is stale: a genre write() landed
-		// mid-build and bumped the version. Start a fresh build instead of awaiting a result
-		// that won't reflect that write.
+		// A build already in flight, tagged with the version in effect when IT started, is
+		// stale to share if a genre write() has landed since (bumping the version): start a
+		// fresh build instead of awaiting a result that won't reflect that write.
 		if (!this.genreQidIndexBuild || this.genreQidIndexBuild.version !== startedAtVersion) {
 			const promise = this.buildGenreQidIndex().then(
 				(index) => {
-					// Only commit if nothing invalidated the index again while we were building.
-					if (this.genreQidIndexBuild?.version === startedAtVersion) {
+					// 2026-09-09: this used to gate the commit on `genreQidIndexBuild.version`
+					// instead of the live `genreQidIndexVersion`. write()'s invalidations (entry
+					// and exit) only ever touch genreQidIndex/genreQidIndexVersion, never this
+					// build's own tracker object -- so a build still in flight when a write
+					// invalidated survived with its tracker untouched, and its guard trivially
+					// matched itself, committing a stale snapshot straight over the fresh null a
+					// write had *just* set. Comparing against the live version instead means ANY
+					// invalidation that happened anywhere during this build's lifetime -- not
+					// just a newer build replacing the tracker -- correctly vetoes the commit.
+					if (this.genreQidIndexVersion === startedAtVersion) {
 						this.genreQidIndex = index;
+					}
+					// Only clear the tracker if it's still ours to clear -- a newer build may
+					// have already replaced it with its own.
+					if (this.genreQidIndexBuild?.version === startedAtVersion) {
 						this.genreQidIndexBuild = null;
 					}
 					return index;
 				},
 				(err: unknown) => {
-					// Don't let a failed build (e.g. one bad cache file) permanently poison the
-					// memo: clear it so the next call retries instead of re-throwing forever.
+					// Don't let a failed build (e.g. a transient read error) permanently poison
+					// the memo: clear it so the next call retries instead of re-throwing forever.
 					if (this.genreQidIndexBuild?.version === startedAtVersion) {
 						this.genreQidIndexBuild = null;
 					}
@@ -271,31 +288,41 @@ export class NodeCache {
 			this.genreQidIndex = null;
 			this.genreQidIndexVersion++;
 		}
-		await this.loadPending();
-		await this.runLocked(parsed.slug, async () => {
-			const pending = this.pendingReverses[parsed.slug] ?? [];
-			const merged = applyReverses(parsed, pending);
-			const validated = nodePayloadSchema.parse(merged) as NodePayload;
-			const file = this.pathFor(validated.slug);
-			await mkdir(dirname(file), { recursive: true });
-			await atomicWriteJson(file, validated);
-			this.stats.written++;
-			if (pending.length) {
-				delete this.pendingReverses[parsed.slug];
-				this.pendingDirty = true;
+		try {
+			await this.loadPending();
+			await this.runLocked(parsed.slug, async () => {
+				const pending = this.pendingReverses[parsed.slug] ?? [];
+				const merged = applyReverses(parsed, pending);
+				const validated = nodePayloadSchema.parse(merged) as NodePayload;
+				const file = this.pathFor(validated.slug);
+				await mkdir(dirname(file), { recursive: true });
+				await atomicWriteJson(file, validated);
+				this.stats.written++;
+				if (pending.length) {
+					delete this.pendingReverses[parsed.slug];
+					this.pendingDirty = true;
+				}
+			});
+			// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
+			await this.emitReverses(parsed);
+			await this.flushPending();
+		} finally {
+			// 2026-09-09: emitReverses/flushPending can throw after the source node itself is
+			// already on disk (e.g. a target of a reverse edge fails to validate on read). The
+			// second invalidation must still run on that path — it was previously a plain
+			// statement after the try body, so a throw here skipped it and left a build that
+			// raced this write memoized on a stale, pre-write snapshot forever.
+			if (parsed.type === "genre") {
+				// Second invalidation, after the node has actually landed on disk: a build that
+				// started between the first invalidation above and this point could have read a
+				// disk snapshot still missing this node. Bumping the version here — checked
+				// against the live genreQidIndexVersion in getOrBuildGenreQidIndex's commit
+				// guard, not a frozen copy — vetoes that build's commit even if it resolves
+				// after this line runs, and guarantees the next lookup rebuilds from a disk that
+				// has the write applied.
+				this.genreQidIndex = null;
+				this.genreQidIndexVersion++;
 			}
-		});
-		// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
-		await this.emitReverses(parsed);
-		await this.flushPending();
-		if (parsed.type === "genre") {
-			// Second invalidation, after the node has actually landed on disk: a build that
-			// started between the first invalidation above and this point could have read a
-			// disk snapshot still missing this node, then committed that stale result as the
-			// memo (the version guard only defers to invalidations it can still observe). This
-			// bump guarantees the next lookup rebuilds from a disk that has the write applied.
-			this.genreQidIndex = null;
-			this.genreQidIndexVersion++;
 		}
 	}
 
