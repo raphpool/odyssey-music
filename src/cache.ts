@@ -33,6 +33,14 @@ export class NodeCache {
 	private pendingDirty = false;
 	private pendingLoading: Promise<void> | null = null;
 	private pendingLoaded = false;
+	// Memoized qid -> slug index for genre nodes, built lazily and thrown away on any genre
+	// write (see write()). Null means "not built yet". genreQidIndexBuild tracks a build in
+	// progress, tagged with the version it started at, so concurrent callers share one
+	// promise (no double build) while a write that lands mid-build (bumping the version)
+	// makes the NEXT caller start a fresh build instead of awaiting the now-stale one.
+	private genreQidIndex: Map<string, Slug> | null = null;
+	private genreQidIndexBuild: { version: number; promise: Promise<Map<string, Slug>> } | null = null;
+	private genreQidIndexVersion = 0;
 	public readonly stats: CacheStats = { written: 0, revUpdates: 0 };
 
 	constructor(root: string) {
@@ -145,6 +153,80 @@ export class NodeCache {
 	}
 
 	/**
+	 * Find the slug of the existing genre node carrying a given Wikidata QID, if any.
+	 *
+	 * 2026-09-09: the slug of a genre node has always been a pure function of its *name*
+	 * (makeSlug), never of its resolved identity — nothing could answer "does a genre node
+	 * for this QID already exist?" This caused 20 groups of duplicate genre nodes sharing a
+	 * QID (e.g. "Electronic" / "Electronic music", "idm" / "intelligent-dance-music"). This
+	 * index is the first brick of duplicate prevention: pure read, no consumer yet.
+	 *
+	 * Built lazily on first call by scanning every `genre:` slug via get() (so qid is
+	 * Zod-validated), then memoized until the next genre write() invalidates it. Freshness
+	 * beyond that isn't tracked: the file's presence on disk is what counts as existence.
+	 */
+	async findGenreSlugByQid(qid: string): Promise<Slug | undefined> {
+		if (!qid) return undefined;
+		const index = await this.getOrBuildGenreQidIndex();
+		return index.get(qid);
+	}
+
+	private async getOrBuildGenreQidIndex(): Promise<Map<string, Slug>> {
+		if (this.genreQidIndex) return this.genreQidIndex;
+		const startedAtVersion = this.genreQidIndexVersion;
+		// A build already in flight for an older version is stale: a genre write() landed
+		// mid-build and bumped the version. Start a fresh build instead of awaiting a result
+		// that won't reflect that write.
+		if (!this.genreQidIndexBuild || this.genreQidIndexBuild.version !== startedAtVersion) {
+			const promise = this.buildGenreQidIndex().then(
+				(index) => {
+					// Only commit if nothing invalidated the index again while we were building.
+					if (this.genreQidIndexBuild?.version === startedAtVersion) {
+						this.genreQidIndex = index;
+						this.genreQidIndexBuild = null;
+					}
+					return index;
+				},
+				(err: unknown) => {
+					// Don't let a failed build (e.g. one bad cache file) permanently poison the
+					// memo: clear it so the next call retries instead of re-throwing forever.
+					if (this.genreQidIndexBuild?.version === startedAtVersion) {
+						this.genreQidIndexBuild = null;
+					}
+					throw err;
+				},
+			);
+			this.genreQidIndexBuild = { version: startedAtVersion, promise };
+		}
+		return this.genreQidIndexBuild.promise;
+	}
+
+	private async buildGenreQidIndex(): Promise<Map<string, Slug>> {
+		const slugs = (await this.listSlugs()).filter((s) => s.startsWith("genre:"));
+		// Collect every candidate per qid first so collisions (multiple genre nodes sharing a
+		// qid, a transient pre-merge state) can be resolved deterministically below.
+		const candidates = new Map<string, Slug[]>();
+		for (const slug of slugs) {
+			const node = await this.get(slug);
+			// Narrow on the validated type discriminant (not a cast) so a node misfiled under
+			// nodes/genre/ with a different type can't leak a same-shaped field into the index.
+			if (node.type !== "genre" || !node.qid) continue;
+			const list = candidates.get(node.qid) ?? [];
+			list.push(slug);
+			candidates.set(node.qid, list);
+		}
+		const index = new Map<string, Slug>();
+		for (const [nodeQid, list] of candidates) {
+			// Deterministic collision pick: shortest slug, then lexicographic. Matches the
+			// most-used member in 18 of the 20 current duplicate groups; the merge redirects
+			// the others.
+			const winner = [...list].sort((a, b) => a.length - b.length || (a < b ? -1 : a > b ? 1 : 0))[0];
+			if (winner) index.set(nodeQid, winner);
+		}
+		return index;
+	}
+
+	/**
 	 * Write a node payload. Validates against the schema, merges any pending reverse edges
 	 * that were enqueued for this slug before it was materialized, then emits forward
 	 * edges as reverse updates on the target nodes (materializing them if cached, or
@@ -152,6 +234,11 @@ export class NodeCache {
 	 */
 	async write(node: NodePayload): Promise<void> {
 		const parsed = nodePayloadSchema.parse(node) as NodePayload;
+		if (parsed.type === "genre") {
+			// Invalidate the memoized qid index: a genre write can add, change, or dedupe a qid.
+			this.genreQidIndex = null;
+			this.genreQidIndexVersion++;
+		}
 		await this.loadPending();
 		await this.runLocked(parsed.slug, async () => {
 			const pending = this.pendingReverses[parsed.slug] ?? [];

@@ -1,4 +1,4 @@
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -150,6 +150,98 @@ describe("NodeCache", () => {
 		const slugs = await cache.listSlugs();
 		expect(slugs.length).toBeGreaterThanOrEqual(3);
 		expect(slugs).toContain("track:windowlicker" as NodePayload["slug"]);
+	});
+});
+
+describe("NodeCache — findGenreSlugByQid (TRA-24)", () => {
+	it("resolves a slug by qid, ignores nodes without a qid, and returns undefined for unknown/empty qids", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			await qidCache.write(genreNode({ slug: "genre:b", name: "B" }));
+
+			expect(await qidCache.findGenreSlugByQid("Q1")).toBe("genre:a");
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined();
+			expect(await qidCache.findGenreSlugByQid("")).toBeUndefined();
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("invalidates the memo on a genre write so a later lookup sees the new node", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			// Prime the memo before the node we're looking for even exists.
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined();
+
+			await qidCache.write(genreNode({ slug: "genre:c", name: "C", qid: "Q2" }));
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBe("genre:c");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("resolves a qid collision deterministically: shortest slug, then lexicographic, order-independent", async () => {
+		const qidDir1 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache1 = new NodeCache(qidDir1);
+		const qidDir2 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache2 = new NodeCache(qidDir2);
+		try {
+			await cache1.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q9778" }));
+			await cache1.write(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q9778" }),
+			);
+			expect(await cache1.findGenreSlugByQid("Q9778")).toBe("genre:electronic");
+
+			// Reversed creation order must resolve to the same winner.
+			await cache2.write(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q9778" }),
+			);
+			await cache2.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q9778" }));
+			expect(await cache2.findGenreSlugByQid("Q9778")).toBe("genre:electronic");
+		} finally {
+			await rm(qidDir1, { recursive: true, force: true });
+			await rm(qidDir2, { recursive: true, force: true });
+		}
+	});
+
+	it("retries the build on a later call after a corrupt cache file failed the first one", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:good", name: "Good", qid: "Q1" }));
+			// Sneak in a genre file that fails schema validation without going through write().
+			const genreDir = join(qidDir, "nodes", "genre");
+			await mkdir(genreDir, { recursive: true });
+			await writeFile(join(genreDir, "broken.json"), JSON.stringify({ type: "genre" }), "utf8");
+
+			await expect(qidCache.findGenreSlugByQid("Q1")).rejects.toThrow();
+
+			// Fix the corrupt file, then the memo must retry rather than stay poisoned.
+			await rm(join(genreDir, "broken.json"));
+			expect(await qidCache.findGenreSlugByQid("Q1")).toBe("genre:good");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("resolves concurrent lookups racing the first build to the same result without error", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:concurrent", name: "Concurrent", qid: "Q42" }));
+			const [a, b] = await Promise.all([
+				qidCache.findGenreSlugByQid("Q42"),
+				qidCache.findGenreSlugByQid("Q42"),
+			]);
+			expect(a).toBe("genre:concurrent");
+			expect(b).toBe("genre:concurrent");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
 	});
 });
 
