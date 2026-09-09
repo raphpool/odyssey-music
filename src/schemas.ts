@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { EDGE_TARGET_TYPES_BY_TYPE } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
-import { NODE_TYPES, type NodeType } from "./types.js";
+import { NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
 
 const slugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
 
@@ -16,6 +16,8 @@ const edgeRefBase = z.object({
 	// uses the exact entity (avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN"
 	// — Raph 2026-05-19).
 	mbid: z.string().uuid().optional(),
+	// Wikidata entity id, genre edges only (TRA-17). Resolved server-side, never emitted by the LLM.
+	qid: z.string().regex(QID_PATTERN).optional(),
 	// Stamped on artist.discography edges (2026-05-24 Raph): year shows on chip; releaseType
 	// lets the frontend tag EPs/singles distinctly from full albums.
 	year: z.string().optional(),
@@ -88,6 +90,8 @@ const genreSchema = z.object({
 	...baseFields,
 	type: z.literal("genre"),
 	editorial_definition: z.string().min(1),
+	// Wikidata entity id for this genre itself (TRA-17). See EdgeRef.qid comment for context.
+	qid: z.string().regex(QID_PATTERN).optional(),
 	era: z.string().optional(),
 	origin: z.string().optional(),
 	sonic_markers: z.string().optional(),
