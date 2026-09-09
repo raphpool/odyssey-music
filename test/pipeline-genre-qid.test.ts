@@ -60,3 +60,43 @@ describe("enrichFromMusicBrainz — genre node qid + parent_genres backfill from
 		expect(bySlug.get("genre:techno")?.qid).toBe("Q170611");
 	});
 });
+
+describe("enrichFromMusicBrainz — genre node stamped via the resolver, not a slug-exact lookup (TRA-26)", () => {
+	it("resolves genre:electronic via the resolver's 'music' suffix heuristic (catalog only has electronic-music)", async () => {
+		const node: Record<string, unknown> = { slug: "genre:electronic", name: "Electronic" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Electronic" }, () => undefined);
+		expect(node.qid).toBe("Q9778");
+		// The catalog's "electronic-music" entry has no parents, so the backfill guard never
+		// fires; parent_genres is simply left as-is (contains all zero of the entry's parents).
+		expect(node.parent_genres).toBeUndefined();
+	});
+
+	it("resolves a node whose slug already matches the catalog slug, same as before the resolver (genre:techno)", async () => {
+		const node: Record<string, unknown> = { slug: "genre:techno", parent_genres: [] };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Techno" }, () => undefined);
+		expect(node.qid).toBe("Q170611");
+	});
+
+	it("leaves an unresolvable genre name without qid or parent_genres (architecture decision 5)", async () => {
+		const node: Record<string, unknown> = { slug: "genre:braindance", parent_genres: [] };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Braindance" }, () => undefined);
+		expect(node.qid).toBeUndefined();
+		expect(node.parent_genres).toEqual([]);
+	});
+
+	it("resolves genre:idm via the hand-curated alias table", async () => {
+		const node: Record<string, unknown> = { slug: "genre:idm", name: "IDM" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "IDM" }, () => undefined);
+		expect(node.qid).toBe("Q660984");
+	});
+
+	it("resolves on the node's own materialized name (obj.name), not the original input.name", async () => {
+		// canonicalizeDraft runs before enrichFromMusicBrainz and can let the LLM draft's name
+		// override the requested one, so by the time we get here obj.name (not input.name) is
+		// the node's real, persisted name. input.name is deliberately unresolvable here to prove
+		// obj.name — not the request — drives resolution.
+		const node: Record<string, unknown> = { slug: "genre:idm", name: "IDM" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Braindance" }, () => undefined);
+		expect(node.qid).toBe("Q660984");
+	});
+});
