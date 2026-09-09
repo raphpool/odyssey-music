@@ -794,8 +794,8 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					const obj = node as Record<string, unknown>;
 					obj.genres = genres.map((g) => ({
 						type: "genre",
-						name: genreDisplayName(g),
-						slug: makeSlug("genre", genreDisplayName(g)),
+						name: genreDisplayName(g.name),
+						slug: makeSlug("genre", genreDisplayName(g.name)),
 					}));
 				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
@@ -884,8 +884,8 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					const obj = node as Record<string, unknown>;
 					obj.genres = genres.map((g) => ({
 						type: "genre",
-						name: genreDisplayName(g),
-						slug: makeSlug("genre", genreDisplayName(g)),
+						name: genreDisplayName(g.name),
+						slug: makeSlug("genre", genreDisplayName(g.name)),
 					}));
 				}
 				const meta = await fetchTrackMetaMb(mbid);
@@ -951,8 +951,8 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					const obj = node as Record<string, unknown>;
 					obj.genres = genres.map((g) => ({
 						type: "genre",
-						name: genreDisplayName(g),
-						slug: makeSlug("genre", genreDisplayName(g)),
+						name: genreDisplayName(g.name),
+						slug: makeSlug("genre", genreDisplayName(g.name)),
 					}));
 				}
 				const meta = await fetchProjectMetaMb(mbid);

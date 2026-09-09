@@ -389,16 +389,23 @@ function disambigTokens(disambig: string | undefined): string[] {
  */
 export type MbGenreEntity = "artist" | "release-group" | "recording";
 
+export interface MbGenreTag {
+	/** Lowercased, trimmed genre name — identical to what the function returned before. */
+	name: string;
+	/** MusicBrainz genre MBID. Absent for entries coming from the `data.tags` fallback. */
+	mbid?: string;
+}
+
 export async function fetchEntityGenresMb(
 	entity: MbGenreEntity,
 	mbid: string,
 	opts: { minCount?: number; max?: number } = {},
-): Promise<string[]> {
+): Promise<MbGenreTag[]> {
 	const minCount = opts.minCount ?? 2;
 	const max = opts.max ?? 8;
 	interface Resp {
-		genres?: { name: string; count?: number }[];
-		tags?: { name: string; count?: number }[];
+		genres?: { name: string; count?: number; id?: string }[];
+		tags?: { name: string; count?: number; id?: string }[];
 	}
 	const data = await mbFetch<Resp>(`/${entity}/${mbid}`, { inc: "genres+tags" });
 	if (!data) return [];
@@ -406,15 +413,16 @@ export async function fetchEntityGenresMb(
 	const filtered = source
 		.filter((t) => (t.count ?? 0) >= minCount)
 		.sort((a, b) => (b.count ?? 0) - (a.count ?? 0))
-		.map((t) => t.name.toLowerCase().trim())
-		.filter((n) => n.length > 0);
-	// De-dup while preserving order.
+		.map((t) => ({ name: t.name.toLowerCase().trim(), id: t.id }))
+		.filter((t) => t.name.length > 0);
+	// De-dup on name (not mbid), preserving order. First occurrence wins.
 	const seen = new Set<string>();
-	const out: string[] = [];
-	for (const n of filtered) {
-		if (seen.has(n)) continue;
-		seen.add(n);
-		out.push(n);
+	const out: MbGenreTag[] = [];
+	for (const t of filtered) {
+		if (seen.has(t.name)) continue;
+		seen.add(t.name);
+		// exactOptionalPropertyTypes: only set mbid when it's a non-empty string, never `undefined`.
+		out.push(t.id ? { name: t.name, mbid: t.id } : { name: t.name });
 		if (out.length >= max) break;
 	}
 	return out;
