@@ -3,7 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
-import type { ArtistNode, NodePayload, TrackNode } from "../src/types.js";
+import type { ArtistNode, GenreNode, NodePayload, TrackNode } from "../src/types.js";
 
 let dir: string;
 let cache: NodeCache;
@@ -75,6 +75,25 @@ function artistA(): ArtistNode {
 	};
 }
 
+// Shared minimal-genre-node fixture (TRA-18); callers override only what varies per test.
+function genreNode(overrides: Partial<GenreNode> & Pick<GenreNode, "slug" | "name">): GenreNode {
+	return {
+		type: "genre",
+		editorial_definition: `Test fixture definition for ${overrides.name}.`,
+		editorial_article: `A real long article about ${overrides.name} for reverse-edge coverage. `.repeat(4),
+		citations: [{ url: `https://example.com/${overrides.slug.split(":")[1]}` }],
+		materialized_at: new Date().toISOString(),
+		parent_genres: [],
+		subgenres: [],
+		related_genres: [],
+		key_artists: [],
+		key_labels: [],
+		landmark_projects: [],
+		landmark_tracks: [],
+		...overrides,
+	};
+}
+
 describe("NodeCache", () => {
 	it("writes a node and reads it back", async () => {
 		await cache.write(trackB());
@@ -131,5 +150,36 @@ describe("NodeCache", () => {
 		const slugs = await cache.listSlugs();
 		expect(slugs.length).toBeGreaterThanOrEqual(3);
 		expect(slugs).toContain("track:windowlicker" as NodePayload["slug"]);
+	});
+});
+
+describe("NodeCache — genre qid propagation on reverse edges (TRA-18)", () => {
+	it("stamps the source genre's qid onto the reverse edge it emits on the target", async () => {
+		await cache.write(genreNode({ slug: "genre:acid", name: "Acid" }));
+		await cache.write(
+			genreNode({
+				slug: "genre:acid-techno",
+				name: "Acid Techno",
+				qid: "Q341395",
+				parent_genres: [{ type: "genre", slug: "genre:acid", name: "Acid" }],
+			}),
+		);
+		const acid = (await cache.get("genre:acid")) as GenreNode;
+		const reverse = acid.subgenres.find((e) => e.slug === "genre:acid-techno");
+		expect(reverse?.qid).toBe("Q341395");
+	});
+
+	it("omits the qid key on the reverse edge when the source genre has none", async () => {
+		await cache.write(
+			genreNode({
+				slug: "genre:dub-techno",
+				name: "Dub Techno",
+				parent_genres: [{ type: "genre", slug: "genre:acid", name: "Acid" }],
+			}),
+		);
+		const acid = (await cache.get("genre:acid")) as GenreNode;
+		const reverse = acid.subgenres.find((e) => e.slug === "genre:dub-techno");
+		expect(reverse).toBeDefined();
+		expect(reverse && "qid" in reverse).toBe(false);
 	});
 });
