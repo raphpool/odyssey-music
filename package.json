@@ -21,6 +21,7 @@
     "build:genre-qid-map": "tsx scripts/build-genre-qid-map.ts",
     "migrate:genre-qid": "tsx scripts/migrations/2026-09-04-backfill-genre-qid.ts",
     "analyze:coverage": "tsx scripts/analyze-coverage.ts",
+    "report:genre-dupes": "tsx scripts/report-genre-duplicates.ts",
     "topup:dangling": "tsx scripts/top-up-dangling.ts",
     "smoke:pipeline": "tsx scripts/smoke-pipeline.ts",
     "deploy:web": "bash scripts/deploy-web.sh",
