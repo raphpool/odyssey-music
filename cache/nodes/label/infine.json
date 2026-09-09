@@ -17,17 +17,20 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:contemporary-classical-music",
       "type": "genre",
-      "name": "Contemporary classical music"
+      "name": "Contemporary classical music",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "roster": [

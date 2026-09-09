@@ -24,17 +24,20 @@
     {
       "slug": "genre:experimental-pop",
       "type": "genre",
-      "name": "Experimental Pop"
+      "name": "Experimental Pop",
+      "qid": "Q25094591"
     },
     {
       "slug": "genre:psychedelic-pop",
       "type": "genre",
-      "name": "Psychedelic Pop"
+      "name": "Psychedelic Pop",
+      "qid": "Q383982"
     },
     {
       "slug": "genre:freak-folk",
       "type": "genre",
-      "name": "Freak Folk"
+      "name": "Freak Folk",
+      "qid": "Q2404568"
     }
   ],
   "labels": [

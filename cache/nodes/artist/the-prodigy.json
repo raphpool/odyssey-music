@@ -41,22 +41,26 @@
     {
       "slug": "genre:big-beat",
       "type": "genre",
-      "name": "Big beat"
+      "name": "Big beat",
+      "qid": "Q858579"
     },
     {
       "slug": "genre:breakbeat-hardcore",
       "type": "genre",
-      "name": "Breakbeat hardcore"
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
     },
     {
       "slug": "genre:electronic-rock",
       "type": "genre",
-      "name": "Electronic rock"
+      "name": "Electronic rock",
+      "qid": "Q325504"
     },
     {
       "slug": "genre:alternative-dance",
       "type": "genre",
-      "name": "Alternative dance"
+      "name": "Alternative dance",
+      "qid": "Q2187392"
     }
   ],
   "labels": [],

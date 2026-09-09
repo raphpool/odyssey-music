@@ -32,7 +32,8 @@
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     }
   ],
   "producers": [

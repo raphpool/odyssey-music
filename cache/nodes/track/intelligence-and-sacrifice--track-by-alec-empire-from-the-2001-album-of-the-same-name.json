@@ -31,12 +31,14 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital Hardcore"
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:industrial-music",
       "type": "genre",
-      "name": "Industrial music"
+      "name": "Industrial music",
+      "qid": "Q487965"
     }
   ],
   "producers": [

@@ -24,7 +24,8 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:braindance",
@@ -34,7 +35,8 @@
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental electronic"
+      "name": "Experimental electronic",
+      "qid": "Q105763581"
     }
   ],
   "labels": [

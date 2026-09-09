@@ -16,17 +16,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental rock"
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:acid-rock",
       "type": "genre",
-      "name": "Acid rock"
+      "name": "Acid rock",
+      "qid": "Q236932"
     }
   ],
   "labels": [],

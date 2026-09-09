@@ -36,17 +36,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:blues",
       "type": "genre",
-      "name": "Blues"
+      "name": "Blues",
+      "qid": "Q9759"
     },
     {
       "slug": "genre:classical-music",
       "type": "genre",
-      "name": "Classical music"
+      "name": "Classical music",
+      "qid": "Q9730"
     }
   ],
   "roster": [

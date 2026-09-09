@@ -31,17 +31,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:kosmische-musik",
       "type": "genre",
-      "name": "Kosmische Musik"
+      "name": "Kosmische Musik",
+      "qid": "Q121494463"
     },
     {
       "slug": "genre:berlin-school",

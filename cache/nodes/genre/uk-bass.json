@@ -17,56 +17,66 @@
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic Dance Music"
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:hard-drum",
       "type": "genre",
-      "name": "Hard Drum"
+      "name": "Hard Drum",
+      "qid": "Q107697201"
     },
     {
       "slug": "genre:bubblegum-bass",
       "type": "genre",
-      "name": "Bubblegum Bass"
+      "name": "Bubblegum Bass",
+      "qid": "Q106591506"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-funky",
       "type": "genre",
-      "name": "UK Funky"
+      "name": "UK Funky",
+      "qid": "Q9364028"
     },
     {
       "slug": "genre:juke",
       "type": "genre",
-      "name": "Juke"
+      "name": "Juke",
+      "qid": "Q24885387"
     },
     {
       "slug": "genre:footwork",
       "type": "genre",
-      "name": "Footwork"
+      "name": "Footwork",
+      "qid": "Q5466607"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-Dubstep"
+      "name": "Post-Dubstep",
+      "qid": "Q106130091"
     },
     {
       "slug": "genre:deconstructed-club",
       "type": "genre",
-      "name": "Deconstructed Club"
+      "name": "Deconstructed Club",
+      "qid": "Q96376113"
     }
   ],
   "key_artists": [
@@ -155,5 +165,6 @@
       "name": "Take Me Apart"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2346991"
 }

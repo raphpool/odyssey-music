@@ -36,17 +36,20 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-Punk"
+      "name": "Post-Punk",
+      "qid": "Q598929"
     }
   ],
   "roster": [

@@ -21,17 +21,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:contemporary-jazz",
       "type": "genre",
-      "name": "Contemporary Jazz"
+      "name": "Contemporary Jazz",
+      "qid": "Q5928480"
     },
     {
       "slug": "genre:european-jazz",
       "type": "genre",
-      "name": "European Jazz"
+      "name": "European Jazz",
+      "qid": "Q2579417"
     }
   ],
   "labels": [

@@ -21,17 +21,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:soundcloud-rap",
       "type": "genre",
-      "name": "SoundCloud Rap"
+      "name": "SoundCloud Rap",
+      "qid": "Q47074428"
     }
   ],
   "roster": [],

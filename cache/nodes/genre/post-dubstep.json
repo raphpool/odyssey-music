@@ -19,22 +19,26 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:uk-bass",
       "type": "genre",
-      "name": "UK bass"
+      "name": "UK bass",
+      "qid": "Q2346991"
     }
   ],
   "key_artists": [
@@ -94,5 +98,6 @@
       "type": "track",
       "name": "Hyph Mngo"
     }
-  ]
+  ],
+  "qid": "Q106130091"
 }

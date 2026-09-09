@@ -34,12 +34,14 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:dub-music",
       "type": "genre",
-      "name": "Dub music"
+      "name": "Dub music",
+      "qid": "Q212688"
     }
   ],
   "labels": [

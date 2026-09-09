@@ -41,17 +41,20 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:ska",
       "type": "genre",
-      "name": "Ska"
+      "name": "Ska",
+      "qid": "Q54365"
     },
     {
       "slug": "genre:rocksteady",
       "type": "genre",
-      "name": "Rocksteady"
+      "name": "Rocksteady",
+      "qid": "Q573484"
     }
   ],
   "labels": [

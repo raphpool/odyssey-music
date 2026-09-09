@@ -36,22 +36,26 @@
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     },
     {
       "slug": "genre:jazz-funk",
       "type": "genre",
-      "name": "Jazz-Funk"
+      "name": "Jazz-Funk",
+      "qid": "Q38656"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-Hop"
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     }
   ],
   "roster": [

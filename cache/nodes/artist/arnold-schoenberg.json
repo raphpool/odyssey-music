@@ -37,7 +37,8 @@
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "Classical"
+      "name": "Classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:atonal-music",
@@ -47,7 +48,8 @@
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     }
   ],
   "labels": [],

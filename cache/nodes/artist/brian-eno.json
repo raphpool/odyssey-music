@@ -26,17 +26,20 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art Rock"
+      "name": "Art Rock",
+      "qid": "Q217467"
     }
   ],
   "labels": [

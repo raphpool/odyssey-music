@@ -24,22 +24,26 @@
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:shoegaze",
       "type": "genre",
-      "name": "Shoegaze"
+      "name": "Shoegaze",
+      "qid": "Q272167"
     }
   ],
   "key_artists": [
@@ -82,5 +86,6 @@
       "name": "I Hear a New World"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q236913"
 }

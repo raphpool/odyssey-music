@@ -32,12 +32,14 @@
     {
       "slug": "genre:electro-house",
       "type": "genre",
-      "name": "Electro House"
+      "name": "Electro House",
+      "qid": "Q627906"
     },
     {
       "slug": "genre:indie-dance",
       "type": "genre",
-      "name": "Indie Dance"
+      "name": "Indie Dance",
+      "qid": "Q109469638"
     }
   ],
   "producers": [],

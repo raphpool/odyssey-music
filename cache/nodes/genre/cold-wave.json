@@ -20,22 +20,26 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:dark-wave",
       "type": "genre",
-      "name": "Dark wave"
+      "name": "Dark wave",
+      "qid": "Q3840596"
     },
     {
       "slug": "genre:minimal-wave",
       "type": "genre",
-      "name": "Minimal wave"
+      "name": "Minimal wave",
+      "qid": "Q6865341"
     },
     {
       "slug": "genre:electronic-body-music",
       "type": "genre",
-      "name": "Electronic body music"
+      "name": "Electronic body music",
+      "qid": "Q372103"
     }
   ],
   "key_artists": [
@@ -84,5 +88,6 @@
       "type": "track",
       "name": "Seventeen Seconds"
     }
-  ]
+  ],
+  "qid": "Q2343562"
 }

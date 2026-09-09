@@ -28,17 +28,20 @@
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     },
     {
       "slug": "genre:post-metal",
       "type": "genre",
-      "name": "Post-metal"
+      "name": "Post-metal",
+      "qid": "Q41343"
     },
     {
       "slug": "genre:instrumental-rock",
       "type": "genre",
-      "name": "Instrumental rock"
+      "name": "Instrumental rock",
+      "qid": "Q1650296"
     }
   ],
   "tracklist": [

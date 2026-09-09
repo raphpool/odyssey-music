@@ -25,7 +25,8 @@
     {
       "slug": "genre:bolero",
       "type": "genre",
-      "name": "Bolero"
+      "name": "Bolero",
+      "qid": "Q489913"
     },
     {
       "slug": "genre:cuban-music",

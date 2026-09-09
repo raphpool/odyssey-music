@@ -28,17 +28,20 @@
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:electronic-dance-music",
       "type": "genre",
-      "name": "Electronic dance music"
+      "name": "Electronic dance music",
+      "qid": "Q851213"
     }
   ],
   "tracklist": [],

@@ -23,22 +23,26 @@
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:death-metal",
       "type": "genre",
-      "name": "Death Metal"
+      "name": "Death Metal",
+      "qid": "Q483251"
     },
     {
       "slug": "genre:riddim",
       "type": "genre",
-      "name": "Riddim"
+      "name": "Riddim",
+      "qid": "Q65065491"
     }
   ],
   "key_artists": [
@@ -81,5 +85,6 @@
       "name": "Hope Floats"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q106528420"
 }

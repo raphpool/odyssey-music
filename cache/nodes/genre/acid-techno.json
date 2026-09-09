@@ -32,12 +32,14 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "subgenres": [],
@@ -71,5 +73,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q341395"
 }

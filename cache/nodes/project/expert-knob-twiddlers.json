@@ -37,17 +37,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:electro-funk",
       "type": "genre",
-      "name": "Electro-funk"
+      "name": "Electro-funk",
+      "qid": "Q1325963"
     },
     {
       "slug": "genre:easy-listening",
       "type": "genre",
-      "name": "Easy listening"
+      "name": "Easy listening",
+      "qid": "Q848399"
     }
   ],
   "tracklist": [

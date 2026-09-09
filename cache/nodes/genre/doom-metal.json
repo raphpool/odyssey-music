@@ -36,7 +36,8 @@
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy metal"
+      "name": "Heavy metal",
+      "qid": "Q38848"
     }
   ],
   "subgenres": [
@@ -48,19 +49,22 @@
     {
       "slug": "genre:stoner-metal",
       "type": "genre",
-      "name": "Stoner metal"
+      "name": "Stoner metal",
+      "qid": "Q1772422"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:sludge-metal",
       "type": "genre",
-      "name": "Sludge metal"
+      "name": "Sludge metal",
+      "qid": "Q720959"
     },
     {
       "slug": "genre:stoner-metal",
       "type": "genre",
-      "name": "Stoner metal"
+      "name": "Stoner metal",
+      "qid": "Q1772422"
     }
   ],
   "key_artists": [
@@ -93,5 +97,6 @@
       "name": "Epicus Doomicus Metallicus"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q186170"
 }

@@ -34,22 +34,26 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:rocksteady",
       "type": "genre",
-      "name": "Rocksteady"
+      "name": "Rocksteady",
+      "qid": "Q573484"
     },
     {
       "slug": "genre:2-tone",
       "type": "genre",
-      "name": "2 Tone"
+      "name": "2 Tone",
+      "qid": "Q209498"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     }
   ],
   "key_artists": [
@@ -108,5 +112,6 @@
       "type": "track",
       "name": "Guns of Navarone"
     }
-  ]
+  ],
+  "qid": "Q54365"
 }

@@ -17,17 +17,20 @@
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:minimal-music",
       "type": "genre",
-      "name": "Minimal music"
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "roster": [

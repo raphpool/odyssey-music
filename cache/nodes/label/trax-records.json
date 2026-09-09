@@ -36,12 +36,14 @@
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago house"
+      "name": "Chicago house",
+      "qid": "Q1071961"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid house"
+      "name": "Acid house",
+      "qid": "Q341364"
     }
   ],
   "roster": [

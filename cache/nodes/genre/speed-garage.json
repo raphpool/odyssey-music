@@ -25,12 +25,14 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "subgenres": [],
@@ -38,17 +40,20 @@
     {
       "slug": "genre:jungle",
       "type": "genre",
-      "name": "Jungle"
+      "name": "Jungle",
+      "qid": "Q1102161"
     },
     {
       "slug": "genre:2-step-garage",
       "type": "genre",
-      "name": "2-step garage"
+      "name": "2-step garage",
+      "qid": "Q1751409"
     },
     {
       "slug": "genre:bassline",
       "type": "genre",
-      "name": "Bassline"
+      "name": "Bassline",
+      "qid": "Q4846346"
     }
   ],
   "key_artists": [
@@ -80,5 +85,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q780517"
 }

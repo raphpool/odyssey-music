@@ -21,36 +21,42 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:west-coast-jazz",
       "type": "genre",
-      "name": "West Coast jazz"
+      "name": "West Coast jazz",
+      "qid": "Q1548603"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:bebop",
       "type": "genre",
-      "name": "Bebop"
+      "name": "Bebop",
+      "qid": "Q105513"
     },
     {
       "slug": "genre:third-stream",
       "type": "genre",
-      "name": "Third Stream"
+      "name": "Third Stream",
+      "qid": "Q539089"
     },
     {
       "slug": "genre:modal-jazz",
       "type": "genre",
-      "name": "Modal jazz"
+      "name": "Modal jazz",
+      "qid": "Q1127530"
     },
     {
       "slug": "genre:west-coast-jazz",
       "type": "genre",
-      "name": "West Coast jazz"
+      "name": "West Coast jazz",
+      "qid": "Q1548603"
     }
   ],
   "key_artists": [
@@ -98,5 +104,6 @@
       "name": "Birth of the Cool"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q327547"
 }

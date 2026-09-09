@@ -19,22 +19,26 @@
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:drone-metal",
       "type": "genre",
-      "name": "Drone metal"
+      "name": "Drone metal",
+      "qid": "Q1433387"
     }
   ],
   "key_artists": [
@@ -82,5 +86,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q650316"
 }

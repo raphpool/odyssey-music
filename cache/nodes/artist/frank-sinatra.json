@@ -36,17 +36,20 @@
     {
       "slug": "genre:traditional-pop",
       "type": "genre",
-      "name": "Traditional pop"
+      "name": "Traditional pop",
+      "qid": "Q1196752"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:swing",
       "type": "genre",
-      "name": "Swing"
+      "name": "Swing",
+      "qid": "Q203775"
     }
   ],
   "labels": [

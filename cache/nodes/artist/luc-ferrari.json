@@ -22,17 +22,20 @@
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:electroacoustic-music",
       "type": "genre",
-      "name": "Electroacoustic Music"
+      "name": "Electroacoustic Music",
+      "qid": "Q1326777"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     }
   ],
   "labels": [],

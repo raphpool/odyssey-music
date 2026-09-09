@@ -21,17 +21,20 @@
     {
       "slug": "genre:avant-pop",
       "type": "genre",
-      "name": "Avant-pop"
+      "name": "Avant-pop",
+      "qid": "Q9162904"
     },
     {
       "slug": "genre:chamber-music",
       "type": "genre",
-      "name": "Chamber music"
+      "name": "Chamber music",
+      "qid": "Q189201"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "labels": [

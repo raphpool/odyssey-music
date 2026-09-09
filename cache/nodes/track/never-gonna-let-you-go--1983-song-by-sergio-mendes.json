@@ -38,17 +38,20 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:soft-rock",
       "type": "genre",
-      "name": "Soft rock"
+      "name": "Soft rock",
+      "qid": "Q217191"
     },
     {
       "slug": "genre:adult-contemporary",
       "type": "genre",
-      "name": "Adult contemporary"
+      "name": "Adult contemporary",
+      "qid": "Q378988"
     }
   ],
   "producers": [

@@ -23,22 +23,26 @@
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal techno"
+      "name": "Minimal techno",
+      "qid": "Q1430587"
     }
   ],
   "key_artists": [
@@ -102,5 +106,6 @@
       "name": "Phylyps Trak"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1262781"
 }

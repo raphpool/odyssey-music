@@ -26,22 +26,26 @@
     {
       "slug": "genre:film-score",
       "type": "genre",
-      "name": "Film score"
+      "name": "Film score",
+      "qid": "Q492264"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:classical-music",
       "type": "genre",
-      "name": "Classical music"
+      "name": "Classical music",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     }
   ],
   "labels": [

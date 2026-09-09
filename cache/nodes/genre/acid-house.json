@@ -17,36 +17,42 @@
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:acid-trance",
       "type": "genre",
-      "name": "Acid Trance"
+      "name": "Acid Trance",
+      "qid": "Q481900"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     },
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     }
   ],
   "key_artists": [
@@ -80,5 +86,6 @@
       "name": "Acid Tracks"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q341364"
 }

@@ -24,17 +24,20 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep House"
+      "name": "Deep House",
+      "qid": "Q874038"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     }
   ],
   "key_artists": [
@@ -94,5 +97,6 @@
       "type": "track",
       "name": "Wank"
     }
-  ]
+  ],
+  "qid": "Q1931555"
 }

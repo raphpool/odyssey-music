@@ -32,12 +32,14 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:industrial-music",
       "type": "genre",
-      "name": "Industrial music"
+      "name": "Industrial music",
+      "qid": "Q487965"
     }
   ],
   "subgenres": [
@@ -61,12 +63,14 @@
     {
       "slug": "genre:hard-techno",
       "type": "genre",
-      "name": "Hard Techno"
+      "name": "Hard Techno",
+      "qid": "Q3084222"
     },
     {
       "slug": "genre:power-noise",
       "type": "genre",
-      "name": "Power Noise"
+      "name": "Power Noise",
+      "qid": "Q1913888"
     }
   ],
   "key_artists": [
@@ -126,5 +130,6 @@
       "type": "track",
       "name": "Birth of a Devil"
     }
-  ]
+  ],
+  "qid": "Q29480448"
 }

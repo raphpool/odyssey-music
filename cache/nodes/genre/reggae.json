@@ -25,41 +25,48 @@
     {
       "slug": "genre:ska",
       "type": "genre",
-      "name": "Ska"
+      "name": "Ska",
+      "qid": "Q54365"
     },
     {
       "slug": "genre:rocksteady",
       "type": "genre",
-      "name": "Rocksteady"
+      "name": "Rocksteady",
+      "qid": "Q573484"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:roots-reggae",
       "type": "genre",
-      "name": "Roots reggae"
+      "name": "Roots reggae",
+      "qid": "Q1299260"
     },
     {
       "slug": "genre:lovers-rock",
       "type": "genre",
-      "name": "Lovers rock"
+      "name": "Lovers rock",
+      "qid": "Q1872505"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:dancehall",
       "type": "genre",
-      "name": "Dancehall"
+      "name": "Dancehall",
+      "qid": "Q474027"
     },
     {
       "slug": "genre:lovers-rock",
       "type": "genre",
-      "name": "Lovers Rock"
+      "name": "Lovers Rock",
+      "qid": "Q1872505"
     }
   ],
   "key_artists": [
@@ -113,5 +120,6 @@
       "name": "The Harder They Come"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q9794"
 }

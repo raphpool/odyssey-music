@@ -19,17 +19,20 @@
     {
       "slug": "genre:celtic-rock",
       "type": "genre",
-      "name": "Celtic rock"
+      "name": "Celtic rock",
+      "qid": "Q2662148"
     },
     {
       "slug": "genre:celtic-punk",
       "type": "genre",
-      "name": "Celtic punk"
+      "name": "Celtic punk",
+      "qid": "Q1990122"
     },
     {
       "slug": "genre:world-music",
       "type": "genre",
-      "name": "World music"
+      "name": "World music",
+      "qid": "Q205049"
     }
   ],
   "key_artists": [
@@ -67,5 +70,6 @@
       "name": "Faerie Stories"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1092553"
 }

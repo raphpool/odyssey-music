@@ -33,27 +33,32 @@
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk rock"
+      "name": "Folk rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:blues",
       "type": "genre",
-      "name": "Blues"
+      "name": "Blues",
+      "qid": "Q9759"
     },
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:country-music",
       "type": "genre",
-      "name": "Country music"
+      "name": "Country music",
+      "qid": "Q83440"
     }
   ],
   "labels": [

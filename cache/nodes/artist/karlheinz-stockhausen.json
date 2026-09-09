@@ -22,22 +22,26 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique Concrète"
+      "name": "Musique Concrète",
+      "qid": "Q823560"
     }
   ],
   "labels": [

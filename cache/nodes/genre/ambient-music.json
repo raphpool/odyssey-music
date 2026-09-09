@@ -20,41 +20,48 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark ambient"
+      "name": "Dark ambient",
+      "qid": "Q756956"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:ambient-dub",
       "type": "genre",
-      "name": "Ambient dub"
+      "name": "Ambient dub",
+      "qid": "Q3613770"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New age"
+      "name": "New age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:drone",
       "type": "genre",
-      "name": "Drone"
+      "name": "Drone",
+      "qid": "Q650316"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "key_artists": [
@@ -87,5 +94,6 @@
       "name": "Ambient 1: Music for Airports"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q193207"
 }

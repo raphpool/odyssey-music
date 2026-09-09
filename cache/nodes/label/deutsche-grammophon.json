@@ -25,17 +25,20 @@
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "Classical"
+      "name": "Classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:opera",
       "type": "genre",
-      "name": "Opera"
+      "name": "Opera",
+      "qid": "Q1344"
     },
     {
       "slug": "genre:early-music",
       "type": "genre",
-      "name": "Early Music"
+      "name": "Early Music",
+      "qid": "Q436016"
     }
   ],
   "roster": [

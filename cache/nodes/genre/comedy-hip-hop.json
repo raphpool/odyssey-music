@@ -17,7 +17,8 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-hop"
+      "name": "Hip-hop",
+      "qid": "Q11401"
     }
   ],
   "subgenres": [],
@@ -25,12 +26,14 @@
     {
       "slug": "genre:satirical-music",
       "type": "genre",
-      "name": "Satirical music"
+      "name": "Satirical music",
+      "qid": "Q104842028"
     },
     {
       "slug": "genre:alternative-hip-hop",
       "type": "genre",
-      "name": "Alternative hip-hop"
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
     }
   ],
   "key_artists": [
@@ -69,5 +72,6 @@
       "type": "track",
       "name": "Parents Just Don't Understand"
     }
-  ]
+  ],
+  "qid": "Q602646"
 }

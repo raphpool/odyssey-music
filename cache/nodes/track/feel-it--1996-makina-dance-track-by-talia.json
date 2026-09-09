@@ -28,12 +28,14 @@
     {
       "slug": "genre:makina",
       "type": "genre",
-      "name": "Makina"
+      "name": "Makina",
+      "qid": "Q3048168"
     },
     {
       "slug": "genre:eurodance",
       "type": "genre",
-      "name": "Eurodance"
+      "name": "Eurodance",
+      "qid": "Q216961"
     }
   ],
   "producers": [

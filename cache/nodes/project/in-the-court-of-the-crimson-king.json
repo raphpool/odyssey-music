@@ -33,12 +33,14 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:symphonic-rock",
       "type": "genre",
-      "name": "Symphonic Rock"
+      "name": "Symphonic Rock",
+      "qid": "Q719927"
     }
   ],
   "tracklist": [

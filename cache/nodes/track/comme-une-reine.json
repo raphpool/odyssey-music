@@ -32,7 +32,8 @@
     {
       "slug": "genre:meringue",
       "type": "genre",
-      "name": "Meringue"
+      "name": "Meringue",
+      "qid": "Q3333303"
     }
   ],
   "producers": [],

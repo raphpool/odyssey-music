@@ -40,7 +40,8 @@
     {
       "slug": "genre:stoner-rock",
       "type": "genre",
-      "name": "Stoner rock"
+      "name": "Stoner rock",
+      "qid": "Q617240"
     },
     {
       "slug": "genre:desert-rock",
@@ -50,7 +51,8 @@
     {
       "slug": "genre:stoner-metal",
       "type": "genre",
-      "name": "Stoner metal"
+      "name": "Stoner metal",
+      "qid": "Q1772422"
     }
   ],
   "tracklist": [

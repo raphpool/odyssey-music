@@ -77,12 +77,14 @@
     {
       "slug": "genre:modal-jazz",
       "type": "genre",
-      "name": "Modal jazz"
+      "name": "Modal jazz",
+      "qid": "Q1127530"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "tracklist": [

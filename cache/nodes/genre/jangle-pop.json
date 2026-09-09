@@ -27,22 +27,26 @@
     {
       "slug": "genre:college-rock",
       "type": "genre",
-      "name": "College rock"
+      "name": "College rock",
+      "qid": "Q783097"
     },
     {
       "slug": "genre:paisley-underground",
       "type": "genre",
-      "name": "Paisley Underground"
+      "name": "Paisley Underground",
+      "qid": "Q1432934"
     },
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie pop"
+      "name": "Indie pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "key_artists": [
@@ -91,5 +95,6 @@
       "name": "Chronic Town"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1190565"
 }

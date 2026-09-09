@@ -37,17 +37,20 @@
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     },
     {
       "slug": "genre:sophisti-pop",
       "type": "genre",
-      "name": "Sophisti-pop"
+      "name": "Sophisti-pop",
+      "qid": "Q264289"
     },
     {
       "slug": "genre:quiet-storm",
       "type": "genre",
-      "name": "Quiet Storm"
+      "name": "Quiet Storm",
+      "qid": "Q2746831"
     }
   ],
   "labels": [

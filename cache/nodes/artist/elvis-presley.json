@@ -21,17 +21,20 @@
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and roll"
+      "name": "Rock and roll",
+      "qid": "Q7749"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:country",
       "type": "genre",
-      "name": "Country"
+      "name": "Country",
+      "qid": "Q83440"
     }
   ],
   "labels": [

@@ -23,12 +23,14 @@
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "Classical"
+      "name": "Classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:vocal-music",
       "type": "genre",
-      "name": "Vocal Music"
+      "name": "Vocal Music",
+      "qid": "Q685884"
     }
   ],
   "producers": [],

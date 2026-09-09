@@ -17,41 +17,48 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:deathstep",
       "type": "genre",
-      "name": "Deathstep"
+      "name": "Deathstep",
+      "qid": "Q106528420"
     },
     {
       "slug": "genre:briddim",
       "type": "genre",
-      "name": "Briddim"
+      "name": "Briddim",
+      "qid": "Q123421084"
     },
     {
       "slug": "genre:drumstep",
       "type": "genre",
-      "name": "Drumstep"
+      "name": "Drumstep",
+      "qid": "Q24876318"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:drumstep",
       "type": "genre",
-      "name": "Drumstep"
+      "name": "Drumstep",
+      "qid": "Q24876318"
     },
     {
       "slug": "genre:electro-house",
       "type": "genre",
-      "name": "Electro House"
+      "name": "Electro House",
+      "qid": "Q627906"
     },
     {
       "slug": "genre:riddim",
       "type": "genre",
-      "name": "Riddim"
+      "name": "Riddim",
+      "qid": "Q65065491"
     }
   ],
   "key_artists": [
@@ -100,5 +107,6 @@
       "name": "Fabriclive.37"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q20903"
 }

@@ -40,17 +40,20 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:avant-garde-music",
       "type": "genre",
-      "name": "Avant-garde music"
+      "name": "Avant-garde music",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental rock"
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     }
   ],
   "subgenres": [],
@@ -58,17 +61,20 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise rock"
+      "name": "Noise rock",
+      "qid": "Q181861"
     },
     {
       "slug": "genre:mutant-disco",
       "type": "genre",
-      "name": "Mutant disco"
+      "name": "Mutant disco",
+      "qid": "Q112972994"
     },
     {
       "slug": "genre:no-wave-cinema",
@@ -127,5 +133,6 @@
       "name": "No New York"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q823080"
 }

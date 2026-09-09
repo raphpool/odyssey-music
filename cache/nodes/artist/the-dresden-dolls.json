@@ -20,17 +20,20 @@
     {
       "slug": "genre:dark-cabaret",
       "type": "genre",
-      "name": "Dark cabaret"
+      "name": "Dark cabaret",
+      "qid": "Q1166158"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative rock"
+      "name": "Alternative rock",
+      "qid": "Q11366"
     }
   ],
   "labels": [

@@ -36,24 +36,28 @@
     {
       "slug": "genre:post-industrial-music",
       "type": "genre",
-      "name": "Post-industrial music"
+      "name": "Post-industrial music",
+      "qid": "Q936942"
     },
     {
       "slug": "genre:electronic-body-music",
       "type": "genre",
-      "name": "Electronic Body Music"
+      "name": "Electronic Body Music",
+      "qid": "Q372103"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:dark-electro",
       "type": "genre",
-      "name": "Dark electro"
+      "name": "Dark electro",
+      "qid": "Q4155078"
     },
     {
       "slug": "genre:aggrotech",
       "type": "genre",
-      "name": "Aggrotech"
+      "name": "Aggrotech",
+      "qid": "Q1091450"
     }
   ],
   "related_genres": [],
@@ -102,5 +106,6 @@
       "name": "Mind: The Perpetual Intercourse"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1403744"
 }

@@ -24,44 +24,52 @@
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:microtonal-classical",
       "type": "genre",
-      "name": "Microtonal Classical"
+      "name": "Microtonal Classical",
+      "qid": "Q109678435"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:electroacoustic",
       "type": "genre",
-      "name": "Electroacoustic"
+      "name": "Electroacoustic",
+      "qid": "Q1326777"
     },
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     }
   ],
   "key_artists": [
@@ -114,5 +122,6 @@
       "name": "Glassworks"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q65937946"
 }

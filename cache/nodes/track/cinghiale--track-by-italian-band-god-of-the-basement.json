@@ -23,12 +23,14 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:desert-rock",

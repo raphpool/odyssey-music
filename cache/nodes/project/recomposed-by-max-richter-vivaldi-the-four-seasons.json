@@ -37,17 +37,20 @@
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary classical"
+      "name": "Contemporary classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:post-minimalism",
       "type": "genre",
-      "name": "Post-minimalism"
+      "name": "Post-minimalism",
+      "qid": "Q98528143"
     },
     {
       "slug": "genre:baroque",
       "type": "genre",
-      "name": "Baroque"
+      "name": "Baroque",
+      "qid": "Q8361"
     }
   ],
   "tracklist": [],

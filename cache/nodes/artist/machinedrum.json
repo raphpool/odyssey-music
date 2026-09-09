@@ -36,22 +36,26 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:glitch-hop",
       "type": "genre",
-      "name": "Glitch Hop"
+      "name": "Glitch Hop",
+      "qid": "Q3108920"
     },
     {
       "slug": "genre:footwork",
       "type": "genre",
-      "name": "Footwork"
+      "name": "Footwork",
+      "qid": "Q5466607"
     }
   ],
   "labels": [

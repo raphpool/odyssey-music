@@ -33,29 +33,34 @@
     {
       "slug": "genre:film-score",
       "type": "genre",
-      "name": "Film Score"
+      "name": "Film Score",
+      "qid": "Q492264"
     },
     {
       "slug": "genre:video-game-music",
       "type": "genre",
-      "name": "Video Game Music"
+      "name": "Video Game Music",
+      "qid": "Q1062702"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:classical",
       "type": "genre",
-      "name": "Classical"
+      "name": "Classical",
+      "qid": "Q9730"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "key_artists": [
@@ -77,5 +82,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q107736421"
 }

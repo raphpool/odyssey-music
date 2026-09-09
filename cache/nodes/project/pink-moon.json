@@ -28,12 +28,14 @@
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:indie-folk",
       "type": "genre",
-      "name": "Indie folk"
+      "name": "Indie folk",
+      "qid": "Q1317816"
     }
   ],
   "tracklist": [

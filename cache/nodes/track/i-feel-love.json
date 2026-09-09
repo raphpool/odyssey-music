@@ -27,17 +27,20 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:eurodisco",
       "type": "genre",
-      "name": "Eurodisco"
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     },
     {
       "slug": "genre:dance",
       "type": "genre",
-      "name": "Dance"
+      "name": "Dance",
+      "qid": "Q8195422"
     }
   ],
   "producers": [

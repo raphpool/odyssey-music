@@ -36,7 +36,8 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     }
   ],
   "tracklist": [],

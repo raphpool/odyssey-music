@@ -40,17 +40,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:uk-bass",
       "type": "genre",
-      "name": "UK Bass"
+      "name": "UK Bass",
+      "qid": "Q2346991"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-Dubstep"
+      "name": "Post-Dubstep",
+      "qid": "Q106130091"
     }
   ],
   "labels": [

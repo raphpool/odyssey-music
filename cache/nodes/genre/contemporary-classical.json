@@ -37,22 +37,26 @@
     {
       "slug": "genre:modernism",
       "type": "genre",
-      "name": "Modernism"
+      "name": "Modernism",
+      "qid": "Q2426218"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental Music"
+      "name": "Experimental Music",
+      "qid": "Q1640319"
     }
   ],
   "key_artists": [
@@ -89,5 +93,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q612024"
 }

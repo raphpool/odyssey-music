@@ -32,12 +32,14 @@
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago House"
+      "name": "Chicago House",
+      "qid": "Q1071961"
     }
   ],
   "producers": [

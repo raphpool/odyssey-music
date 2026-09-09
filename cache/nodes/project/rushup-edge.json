@@ -26,17 +26,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:acid-techno",
       "type": "genre",
-      "name": "Acid Techno"
+      "name": "Acid Techno",
+      "qid": "Q341395"
     },
     {
       "slug": "genre:drill-and-bass",
       "type": "genre",
-      "name": "Drill and Bass"
+      "name": "Drill and Bass",
+      "qid": "Q1259016"
     }
   ],
   "tracklist": [

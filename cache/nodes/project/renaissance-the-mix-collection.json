@@ -26,17 +26,20 @@
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     }
   ],
   "tracklist": [

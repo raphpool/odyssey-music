@@ -36,12 +36,14 @@
     {
       "slug": "genre:uk-bass",
       "type": "genre",
-      "name": "UK Bass"
+      "name": "UK Bass",
+      "qid": "Q2346991"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:garage",
@@ -51,7 +53,8 @@
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     }
   ],
   "roster": [

@@ -18,39 +18,46 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New wave"
+      "name": "New wave",
+      "qid": "Q187760"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     },
     {
       "slug": "genre:synthwave",
       "type": "genre",
-      "name": "Synthwave"
+      "name": "Synthwave",
+      "qid": "Q19938910"
     },
     {
       "slug": "genre:electroclash",
       "type": "genre",
-      "name": "Electroclash"
+      "name": "Electroclash",
+      "qid": "Q861823"
     },
     {
       "slug": "genre:futurepop",
       "type": "genre",
-      "name": "Futurepop"
+      "name": "Futurepop",
+      "qid": "Q828243"
     }
   ],
   "related_genres": [],
@@ -83,5 +90,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1298934"
 }

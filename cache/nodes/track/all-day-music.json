@@ -32,12 +32,14 @@
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:progressive-soul",
       "type": "genre",
-      "name": "Progressive soul"
+      "name": "Progressive soul",
+      "qid": "Q105334717"
     }
   ],
   "producers": [

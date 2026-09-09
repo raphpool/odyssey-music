@@ -28,17 +28,20 @@
     {
       "slug": "genre:garage-rock",
       "type": "genre",
-      "name": "Garage Rock"
+      "name": "Garage Rock",
+      "qid": "Q211573"
     },
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-hardcore"
+      "name": "Post-hardcore",
+      "qid": "Q377910"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "tracklist": [],

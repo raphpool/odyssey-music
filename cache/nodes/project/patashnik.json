@@ -29,17 +29,20 @@
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient House"
+      "name": "Ambient House",
+      "qid": "Q2465085"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "tracklist": [

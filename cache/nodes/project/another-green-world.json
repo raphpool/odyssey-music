@@ -32,17 +32,20 @@
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:experimental-pop",
       "type": "genre",
-      "name": "Experimental Pop"
+      "name": "Experimental Pop",
+      "qid": "Q25094591"
     }
   ],
   "tracklist": [],

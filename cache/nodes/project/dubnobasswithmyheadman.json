@@ -33,17 +33,20 @@
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid House"
+      "name": "Acid House",
+      "qid": "Q341364"
     },
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "tracklist": [

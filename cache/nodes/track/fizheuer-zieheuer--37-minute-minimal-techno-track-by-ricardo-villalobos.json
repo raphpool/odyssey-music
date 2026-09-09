@@ -49,7 +49,8 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal techno"
+      "name": "Minimal techno",
+      "qid": "Q1430587"
     }
   ],
   "producers": [

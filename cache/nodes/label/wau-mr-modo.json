@@ -21,17 +21,20 @@
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient house"
+      "name": "Ambient house",
+      "qid": "Q2465085"
     },
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "roster": [

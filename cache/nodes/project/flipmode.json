@@ -33,22 +33,26 @@
     {
       "slug": "genre:bass-music",
       "type": "genre",
-      "name": "Bass Music"
+      "name": "Bass Music",
+      "qid": "Q96740854"
     },
     {
       "slug": "genre:footwork",
       "type": "genre",
-      "name": "Footwork"
+      "name": "Footwork",
+      "qid": "Q5466607"
     },
     {
       "slug": "genre:afro-house",
       "type": "genre",
-      "name": "Afro House"
+      "name": "Afro House",
+      "qid": "Q388100"
     },
     {
       "slug": "genre:funky-house",
       "type": "genre",
-      "name": "Funky House"
+      "name": "Funky House",
+      "qid": "Q949369"
     }
   ],
   "tracklist": [

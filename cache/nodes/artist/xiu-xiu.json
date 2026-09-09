@@ -18,17 +18,20 @@
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental rock"
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "labels": [

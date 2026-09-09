@@ -29,17 +29,20 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:experimental-techno",
       "type": "genre",
-      "name": "Experimental Techno"
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
     },
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient Techno"
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
     }
   ],
   "tracklist": [

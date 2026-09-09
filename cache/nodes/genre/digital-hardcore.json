@@ -23,17 +23,20 @@
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     }
   ],
   "key_artists": [
@@ -77,5 +80,6 @@
       "name": "60 Second Wipe Out"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q56580"
 }

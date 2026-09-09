@@ -37,12 +37,14 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     }
   ],
   "producers": [

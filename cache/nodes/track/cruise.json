@@ -32,12 +32,14 @@
     {
       "slug": "genre:country-pop",
       "type": "genre",
-      "name": "Country pop"
+      "name": "Country pop",
+      "qid": "Q2280497"
     },
     {
       "slug": "genre:bro-country",
       "type": "genre",
-      "name": "Bro-country"
+      "name": "Bro-country",
+      "qid": "Q16954055"
     }
   ],
   "producers": [],

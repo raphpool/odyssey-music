@@ -27,17 +27,20 @@
     {
       "slug": "genre:chamber-folk",
       "type": "genre",
-      "name": "Chamber Folk"
+      "name": "Chamber Folk",
+      "qid": "Q98528178"
     },
     {
       "slug": "genre:neoclassical-new-age",
       "type": "genre",
-      "name": "Neoclassical New Age"
+      "name": "Neoclassical New Age",
+      "qid": "Q613874"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "tracklist": [

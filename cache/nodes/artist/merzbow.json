@@ -31,17 +31,20 @@
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:harsh-noise",
       "type": "genre",
-      "name": "Harsh Noise"
+      "name": "Harsh Noise",
+      "qid": "Q16562829"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     }
   ],
   "labels": [],

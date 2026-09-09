@@ -37,17 +37,20 @@
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk-Rock"
+      "name": "Folk-Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:country-rock",
       "type": "genre",
-      "name": "Country-Rock"
+      "name": "Country-Rock",
+      "qid": "Q613408"
     }
   ],
   "labels": [],

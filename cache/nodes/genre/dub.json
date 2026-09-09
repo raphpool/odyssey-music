@@ -21,26 +21,30 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:dub-poetry",
       "type": "genre",
-      "name": "Dub poetry"
+      "name": "Dub poetry",
+      "qid": "Q1113204"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub Techno"
+      "name": "Dub Techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     }
   ],
   "key_artists": [
@@ -84,5 +88,6 @@
       "name": "Super Ape"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q212688"
 }

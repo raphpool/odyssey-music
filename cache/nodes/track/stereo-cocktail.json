@@ -27,17 +27,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:chillwave",
       "type": "genre",
-      "name": "Chillwave"
+      "name": "Chillwave",
+      "qid": "Q2626684"
     },
     {
       "slug": "genre:chiptune",
       "type": "genre",
-      "name": "Chiptune"
+      "name": "Chiptune",
+      "qid": "Q135637"
     }
   ],
   "producers": [],

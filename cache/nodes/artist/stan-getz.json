@@ -37,22 +37,26 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:cool-jazz",
       "type": "genre",
-      "name": "Cool Jazz"
+      "name": "Cool Jazz",
+      "qid": "Q327547"
     },
     {
       "slug": "genre:bossa-nova",
       "type": "genre",
-      "name": "Bossa Nova"
+      "name": "Bossa Nova",
+      "qid": "Q486263"
     },
     {
       "slug": "genre:bebop",
       "type": "genre",
-      "name": "Bebop"
+      "name": "Bebop",
+      "qid": "Q105513"
     }
   ],
   "labels": [

@@ -21,7 +21,8 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "subgenres": [],
@@ -29,12 +30,14 @@
     {
       "slug": "genre:hard-bop",
       "type": "genre",
-      "name": "Hard Bop"
+      "name": "Hard Bop",
+      "qid": "Q181010"
     },
     {
       "slug": "genre:swing",
       "type": "genre",
-      "name": "Swing"
+      "name": "Swing",
+      "qid": "Q203775"
     }
   ],
   "key_artists": [
@@ -98,5 +101,6 @@
       "type": "track",
       "name": "Ornithology"
     }
-  ]
+  ],
+  "qid": "Q105513"
 }

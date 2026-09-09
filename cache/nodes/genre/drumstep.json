@@ -22,12 +22,14 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and Bass"
+      "name": "Drum and Bass",
+      "qid": "Q188994"
     }
   ],
   "subgenres": [
@@ -46,17 +48,20 @@
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     },
     {
       "slug": "genre:jump-up",
       "type": "genre",
-      "name": "Jump-Up"
+      "name": "Jump-Up",
+      "qid": "Q46649"
     },
     {
       "slug": "genre:neurofunk",
       "type": "genre",
-      "name": "Neurofunk"
+      "name": "Neurofunk",
+      "qid": "Q967654"
     }
   ],
   "key_artists": [
@@ -94,5 +99,6 @@
       "type": "track",
       "name": "Lost in Sound"
     }
-  ]
+  ],
+  "qid": "Q24876318"
 }

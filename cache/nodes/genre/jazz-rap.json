@@ -36,46 +36,54 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-Hop"
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:lofi-hip-hop",
       "type": "genre",
-      "name": "Lofi Hip-Hop"
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
     },
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:boom-bap",
       "type": "genre",
-      "name": "Boom Bap"
+      "name": "Boom Bap",
+      "qid": "Q529742"
     },
     {
       "slug": "genre:alternative-hip-hop",
       "type": "genre",
-      "name": "Alternative Hip-Hop"
+      "name": "Alternative Hip-Hop",
+      "qid": "Q438503"
     },
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip Hop"
+      "name": "Trip Hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:acid-jazz",
       "type": "genre",
-      "name": "Acid Jazz"
+      "name": "Acid Jazz",
+      "qid": "Q221772"
     }
   ],
   "key_artists": [
@@ -155,5 +163,6 @@
       "type": "track",
       "name": "Cantaloop (Flip Fantasia)"
     }
-  ]
+  ],
+  "qid": "Q255406"
 }

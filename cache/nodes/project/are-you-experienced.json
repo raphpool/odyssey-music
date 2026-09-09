@@ -32,17 +32,20 @@
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard rock"
+      "name": "Hard rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:blues-rock",
       "type": "genre",
-      "name": "Blues rock"
+      "name": "Blues rock",
+      "qid": "Q193355"
     }
   ],
   "tracklist": [

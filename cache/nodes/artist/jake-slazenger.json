@@ -20,17 +20,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     },
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     }
   ],
   "labels": [

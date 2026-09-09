@@ -23,17 +23,20 @@
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:soundtrack",
       "type": "genre",
-      "name": "Soundtrack"
+      "name": "Soundtrack",
+      "qid": "Q107736421"
     }
   ],
   "tracklist": [

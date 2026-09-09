@@ -17,12 +17,14 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     }
   ],
   "subgenres": [],
@@ -30,22 +32,26 @@
     {
       "slug": "genre:math-rock",
       "type": "genre",
-      "name": "Math Rock"
+      "name": "Math Rock",
+      "qid": "Q1132152"
     },
     {
       "slug": "genre:shoegaze",
       "type": "genre",
-      "name": "Shoegaze"
+      "name": "Shoegaze",
+      "qid": "Q272167"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "key_artists": [
@@ -104,5 +110,6 @@
       "name": "Young Team"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q209137"
 }

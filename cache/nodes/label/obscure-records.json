@@ -21,17 +21,20 @@
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:modern-classical",
       "type": "genre",
-      "name": "Modern Classical"
+      "name": "Modern Classical",
+      "qid": "Q65937946"
     }
   ],
   "roster": [

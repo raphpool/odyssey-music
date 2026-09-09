@@ -17,12 +17,14 @@
     {
       "slug": "genre:chicago-house",
       "type": "genre",
-      "name": "Chicago house"
+      "name": "Chicago house",
+      "qid": "Q1071961"
     },
     {
       "slug": "genre:deep-house",
       "type": "genre",
-      "name": "Deep house"
+      "name": "Deep house",
+      "qid": "Q874038"
     }
   ],
   "labels": [

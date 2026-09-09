@@ -21,12 +21,14 @@
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     }
   ],
   "subgenres": [],
@@ -81,5 +83,6 @@
       "name": "Born to Run"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q484641"
 }

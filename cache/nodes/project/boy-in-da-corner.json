@@ -32,17 +32,20 @@
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip-Hop"
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     }
   ],
   "tracklist": [],

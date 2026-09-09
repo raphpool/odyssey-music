@@ -20,17 +20,20 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital Hardcore"
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:breakbeat",
       "type": "genre",
-      "name": "Breakbeat"
+      "name": "Breakbeat",
+      "qid": "Q663519"
     },
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     }
   ],
   "labels": [

@@ -32,17 +32,20 @@
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip Hop"
+      "name": "Trip Hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:abstract-hip-hop",
       "type": "genre",
-      "name": "Abstract Hip Hop"
+      "name": "Abstract Hip Hop",
+      "qid": "Q98528482"
     }
   ],
   "producers": [

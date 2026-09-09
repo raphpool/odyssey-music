@@ -17,17 +17,20 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     }
   ],
   "subgenres": [],
@@ -35,17 +38,20 @@
     {
       "slug": "genre:hypnagogic-pop",
       "type": "genre",
-      "name": "Hypnagogic Pop"
+      "name": "Hypnagogic Pop",
+      "qid": "Q25345818"
     },
     {
       "slug": "genre:plunderphonics",
       "type": "genre",
-      "name": "Plunderphonics"
+      "name": "Plunderphonics",
+      "qid": "Q7205507"
     },
     {
       "slug": "genre:vaporwave",
       "type": "genre",
-      "name": "Vaporwave"
+      "name": "Vaporwave",
+      "qid": "Q15733887"
     }
   ],
   "key_artists": [
@@ -109,5 +115,6 @@
       "name": "The Disintegration Loops"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q85765918"
 }

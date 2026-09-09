@@ -37,17 +37,20 @@
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:college-rock",
       "type": "genre",
-      "name": "College Rock"
+      "name": "College Rock",
+      "qid": "Q783097"
     },
     {
       "slug": "genre:jangle-pop",
       "type": "genre",
-      "name": "Jangle Pop"
+      "name": "Jangle Pop",
+      "qid": "Q1190565"
     }
   ],
   "labels": [

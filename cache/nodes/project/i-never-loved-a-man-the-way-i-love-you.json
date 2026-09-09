@@ -47,12 +47,14 @@
     {
       "slug": "genre:southern-soul",
       "type": "genre",
-      "name": "Southern soul"
+      "name": "Southern soul",
+      "qid": "Q1567032"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "tracklist": [

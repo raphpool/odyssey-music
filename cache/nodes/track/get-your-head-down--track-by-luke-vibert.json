@@ -23,12 +23,14 @@
     {
       "slug": "genre:electronica",
       "type": "genre",
-      "name": "Electronica"
+      "name": "Electronica",
+      "qid": "Q817138"
     },
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip-Hop"
+      "name": "Trip-Hop",
+      "qid": "Q205560"
     }
   ],
   "producers": [

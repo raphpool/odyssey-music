@@ -20,17 +20,20 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk music"
+      "name": "Folk music",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:ambient-music",
       "type": "genre",
-      "name": "Ambient music"
+      "name": "Ambient music",
+      "qid": "Q193207"
     }
   ],
   "labels": [

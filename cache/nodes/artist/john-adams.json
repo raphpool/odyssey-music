@@ -21,12 +21,14 @@
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary Classical"
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "labels": [

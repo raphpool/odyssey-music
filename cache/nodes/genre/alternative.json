@@ -22,54 +22,64 @@
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:britpop",
       "type": "genre",
-      "name": "Britpop"
+      "name": "Britpop",
+      "qid": "Q189045"
     },
     {
       "slug": "genre:shoegaze",
       "type": "genre",
-      "name": "Shoegaze"
+      "name": "Shoegaze",
+      "qid": "Q272167"
     },
     {
       "slug": "genre:emo",
       "type": "genre",
-      "name": "Emo"
+      "name": "Emo",
+      "qid": "Q10926"
     },
     {
       "slug": "genre:college-rock",
       "type": "genre",
-      "name": "College rock"
+      "name": "College rock",
+      "qid": "Q783097"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:shoegaze",
       "type": "genre",
-      "name": "Shoegaze"
+      "name": "Shoegaze",
+      "qid": "Q272167"
     }
   ],
   "key_artists": [
@@ -123,5 +133,6 @@
       "name": "Murmur"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1695023"
 }

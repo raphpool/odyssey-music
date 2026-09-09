@@ -36,22 +36,26 @@
     {
       "slug": "genre:dance-punk-revival",
       "type": "genre",
-      "name": "Dance-punk revival"
+      "name": "Dance-punk revival",
+      "qid": "Q133501932"
     },
     {
       "slug": "genre:dance-rock",
       "type": "genre",
-      "name": "Dance-rock"
+      "name": "Dance-rock",
+      "qid": "Q2281409"
     },
     {
       "slug": "genre:electronic-rock",
       "type": "genre",
-      "name": "Electronic rock"
+      "name": "Electronic rock",
+      "qid": "Q325504"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     }
   ],
   "labels": [

@@ -36,17 +36,20 @@
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip-hop"
+      "name": "Trip-hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "Downtempo"
+      "name": "Downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [

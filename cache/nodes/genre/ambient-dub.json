@@ -21,12 +21,14 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     }
   ],
   "subgenres": [],
@@ -34,17 +36,20 @@
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient House"
+      "name": "Ambient House",
+      "qid": "Q2465085"
     },
     {
       "slug": "genre:dub-techno",
       "type": "genre",
-      "name": "Dub Techno"
+      "name": "Dub Techno",
+      "qid": "Q1262781"
     },
     {
       "slug": "genre:illbient",
       "type": "genre",
-      "name": "Illbient"
+      "name": "Illbient",
+      "qid": "Q1658757"
     }
   ],
   "key_artists": [
@@ -97,5 +102,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q3613770"
 }

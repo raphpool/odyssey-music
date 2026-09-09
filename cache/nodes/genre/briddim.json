@@ -21,17 +21,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     },
     {
       "slug": "genre:riddim",
       "type": "genre",
-      "name": "Riddim"
+      "name": "Riddim",
+      "qid": "Q65065491"
     }
   ],
   "subgenres": [],
@@ -81,5 +84,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q123421084"
 }

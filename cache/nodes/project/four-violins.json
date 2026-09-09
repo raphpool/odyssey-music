@@ -32,17 +32,20 @@
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:drone-music",
       "type": "genre",
-      "name": "Drone music"
+      "name": "Drone music",
+      "qid": "Q650316"
     }
   ],
   "tracklist": [

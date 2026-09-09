@@ -36,12 +36,14 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:bass-music",
       "type": "genre",
-      "name": "Bass Music"
+      "name": "Bass Music",
+      "qid": "Q96740854"
     }
   ],
   "roster": [

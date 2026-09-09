@@ -33,17 +33,20 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:spiritual-jazz",
       "type": "genre",
-      "name": "Spiritual Jazz"
+      "name": "Spiritual Jazz",
+      "qid": "Q98528204"
     }
   ],
   "tracklist": [

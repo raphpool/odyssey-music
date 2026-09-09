@@ -32,7 +32,8 @@
     {
       "slug": "genre:alternative-r-and-b",
       "type": "genre",
-      "name": "Alternative R&B"
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
     },
     {
       "slug": "genre:dark-r-and-b",

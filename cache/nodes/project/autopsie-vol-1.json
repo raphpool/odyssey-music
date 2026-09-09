@@ -48,12 +48,14 @@
     {
       "slug": "genre:hip-hop",
       "type": "genre",
-      "name": "Hip Hop"
+      "name": "Hip Hop",
+      "qid": "Q11401"
     },
     {
       "slug": "genre:hardcore-hip-hop",
       "type": "genre",
-      "name": "Hardcore Hip-Hop"
+      "name": "Hardcore Hip-Hop",
+      "qid": "Q966564"
     }
   ],
   "tracklist": [

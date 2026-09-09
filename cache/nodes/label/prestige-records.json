@@ -21,17 +21,20 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:bebop",
       "type": "genre",
-      "name": "Bebop"
+      "name": "Bebop",
+      "qid": "Q105513"
     },
     {
       "slug": "genre:soul-jazz",
       "type": "genre",
-      "name": "Soul Jazz"
+      "name": "Soul Jazz",
+      "qid": "Q1615483"
     }
   ],
   "roster": [

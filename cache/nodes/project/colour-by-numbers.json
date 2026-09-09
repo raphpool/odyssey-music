@@ -33,17 +33,20 @@
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:blue-eyed-soul",
       "type": "genre",
-      "name": "Blue-eyed soul"
+      "name": "Blue-eyed soul",
+      "qid": "Q885561"
     },
     {
       "slug": "genre:pop",
       "type": "genre",
-      "name": "Pop"
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "tracklist": [

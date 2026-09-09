@@ -18,17 +18,20 @@
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     }
   ],
   "labels": [

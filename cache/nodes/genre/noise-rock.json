@@ -34,17 +34,20 @@
     {
       "slug": "genre:no-wave",
       "type": "genre",
-      "name": "No Wave"
+      "name": "No Wave",
+      "qid": "Q823080"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-Punk"
+      "name": "Post-Punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-Hardcore"
+      "name": "Post-Hardcore",
+      "qid": "Q377910"
     }
   ],
   "key_artists": [
@@ -103,5 +106,6 @@
       "name": "You Won't Get What You Want"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q181861"
 }

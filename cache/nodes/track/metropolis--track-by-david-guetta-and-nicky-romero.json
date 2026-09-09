@@ -54,7 +54,8 @@
     {
       "slug": "genre:electro-house",
       "type": "genre",
-      "name": "Electro House"
+      "name": "Electro House",
+      "qid": "Q627906"
     },
     {
       "slug": "genre:edm",

@@ -25,46 +25,54 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-Punk"
+      "name": "Post-Punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:dance-punk-revival",
       "type": "genre",
-      "name": "Dance-punk revival"
+      "name": "Dance-punk revival",
+      "qid": "Q133501932"
     },
     {
       "slug": "genre:new-rave",
       "type": "genre",
-      "name": "New Rave"
+      "name": "New Rave",
+      "qid": "Q1995980"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:no-wave",
       "type": "genre",
-      "name": "No Wave"
+      "name": "No Wave",
+      "qid": "Q823080"
     },
     {
       "slug": "genre:mutant-disco",
       "type": "genre",
-      "name": "Mutant Disco"
+      "name": "Mutant Disco",
+      "qid": "Q112972994"
     },
     {
       "slug": "genre:new-rave",
       "type": "genre",
-      "name": "New Rave"
+      "name": "New Rave",
+      "qid": "Q1995980"
     },
     {
       "slug": "genre:alternative-dance",
       "type": "genre",
-      "name": "Alternative Dance"
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
     }
   ],
   "key_artists": [
@@ -112,5 +120,6 @@
       "name": "Metal Box"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1643549"
 }

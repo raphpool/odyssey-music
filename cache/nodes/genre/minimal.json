@@ -24,17 +24,20 @@
     {
       "slug": "genre:minimal-house",
       "type": "genre",
-      "name": "Minimal House"
+      "name": "Minimal House",
+      "qid": "Q750811"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:cold-wave",
       "type": "genre",
-      "name": "Cold-wave"
+      "name": "Cold-wave",
+      "qid": "Q2343562"
     }
   ],
   "key_artists": [
@@ -78,5 +81,6 @@
       "type": "track",
       "name": "Eisbær"
     }
-  ]
+  ],
+  "qid": "Q12183214"
 }

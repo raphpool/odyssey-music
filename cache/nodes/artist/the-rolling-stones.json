@@ -20,12 +20,14 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:blues-rock",
       "type": "genre",
-      "name": "Blues Rock"
+      "name": "Blues Rock",
+      "qid": "Q193355"
     }
   ],
   "labels": [],

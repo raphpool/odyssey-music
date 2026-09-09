@@ -37,12 +37,14 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "subgenres": [
@@ -56,12 +58,14 @@
     {
       "slug": "genre:rocksteady",
       "type": "genre",
-      "name": "Rocksteady"
+      "name": "Rocksteady",
+      "qid": "Q573484"
     },
     {
       "slug": "genre:reggae-fusion",
       "type": "genre",
-      "name": "Reggae fusion"
+      "name": "Reggae fusion",
+      "qid": "Q1606591"
     }
   ],
   "key_artists": [
@@ -120,5 +124,6 @@
       "type": "track",
       "name": "Caught You in a Lie"
     }
-  ]
+  ],
+  "qid": "Q1872505"
 }

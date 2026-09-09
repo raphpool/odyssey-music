@@ -36,17 +36,20 @@
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy metal"
+      "name": "Heavy metal",
+      "qid": "Q38848"
     },
     {
       "slug": "genre:doom-metal",
       "type": "genre",
-      "name": "Doom metal"
+      "name": "Doom metal",
+      "qid": "Q186170"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore punk"
+      "name": "Hardcore punk",
+      "qid": "Q10922"
     }
   ],
   "subgenres": [
@@ -60,17 +63,20 @@
     {
       "slug": "genre:post-metal",
       "type": "genre",
-      "name": "Post-metal"
+      "name": "Post-metal",
+      "qid": "Q41343"
     },
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:stoner-rock",
       "type": "genre",
-      "name": "Stoner rock"
+      "name": "Stoner rock",
+      "qid": "Q617240"
     }
   ],
   "key_artists": [
@@ -119,5 +125,6 @@
       "name": "Through Silver in Blood"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q720959"
 }

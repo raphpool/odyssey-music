@@ -61,7 +61,8 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit techno"
+      "name": "Detroit techno",
+      "qid": "Q526463"
     }
   ],
   "tracklist": [],

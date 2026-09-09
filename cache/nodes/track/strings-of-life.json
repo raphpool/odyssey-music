@@ -35,12 +35,14 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit techno"
+      "name": "Detroit techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "techno"
+      "name": "techno",
+      "qid": "Q170611"
     }
   ],
   "producers": [

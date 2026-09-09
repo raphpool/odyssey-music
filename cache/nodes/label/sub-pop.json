@@ -40,22 +40,26 @@
     {
       "slug": "genre:grunge",
       "type": "genre",
-      "name": "Grunge"
+      "name": "Grunge",
+      "qid": "Q11365"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie Rock"
+      "name": "Indie Rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "roster": [

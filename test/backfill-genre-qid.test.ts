@@ -1,6 +1,16 @@
-import { describe, expect, it } from "vitest";
-import { formatReport, planBackfill } from "../scripts/migrations/2026-09-04-backfill-genre-qid.js";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import {
+	formatReport,
+	parseCliArgs,
+	planBackfill,
+	readCacheNodes,
+	runMigration,
+} from "../scripts/migrations/2026-09-04-backfill-genre-qid.js";
 import { createGenreResolver, type GenreResolver } from "../src/genre-identity.js";
+import { parseSlug } from "../src/slug.js";
 import type { ArtistNode, EdgeRef, GenreNode, Slug } from "../src/types.js";
 
 function fakeResolver(): GenreResolver {
@@ -243,5 +253,142 @@ describe("formatReport", () => {
 		const report = formatReport(plan, true);
 		expect(report).toContain("=== Unresolved genres by frequency ===\n  (none)");
 		expect(report).toContain("=== Conflicts ===\n  (none)");
+	});
+});
+
+describe("runMigration (disk integration)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-backfill-"));
+	});
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	async function writeNodeFile(node: ArtistNode | GenreNode): Promise<string> {
+		const { type, body } = parseSlug(node.slug);
+		const path = join(dir, "nodes", type, `${body}.json`);
+		await mkdir(dirname(path), { recursive: true });
+		await writeFile(path, `${JSON.stringify(node, null, 2)}\n`, "utf8");
+		return path;
+	}
+
+	async function writePendingReverses(content: Record<string, unknown>): Promise<string> {
+		const path = join(dir, "pending-reverses.json");
+		await writeFile(path, `${JSON.stringify(content, null, 2)}\n`, "utf8");
+		return path;
+	}
+
+	it("dry-run computes the report but leaves every file byte-identical", async () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		const artistPath = await writeNodeFile(artistNode({ genres: [edge] }));
+		const genrePath = await writeNodeFile(genreNode({ slug: "genre:techno", name: "Techno" }));
+		const pendingPath = await writePendingReverses({ "artist:someone-else": [] });
+		const before = {
+			artist: await readFile(artistPath, "utf8"),
+			genre: await readFile(genrePath, "utf8"),
+			pending: await readFile(pendingPath, "utf8"),
+		};
+
+		const result = await runMigration(dir, false, fakeResolver());
+
+		expect(result.exitCode).toBe(0);
+		expect(result.report).toContain("DRY RUN");
+		expect(result.plan.stats.newlyResolved).toBeGreaterThan(0);
+		expect(await readFile(artistPath, "utf8")).toBe(before.artist);
+		expect(await readFile(genrePath, "utf8")).toBe(before.genre);
+		expect(await readFile(pendingPath, "utf8")).toBe(before.pending);
+	});
+
+	it("--apply stamps qids in the exact atomicWriteJson format, and a second --apply writes nothing", async () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		const artistPath = await writeNodeFile(artistNode({ genres: [edge] }));
+
+		const first = await runMigration(dir, true, fakeResolver());
+		expect(first.exitCode).toBe(0);
+		expect(first.report).not.toContain("DRY RUN");
+		expect(first.plan.writes.size).toBe(1);
+
+		const raw = await readFile(artistPath, "utf8");
+		const written = JSON.parse(raw) as ArtistNode;
+		expect(written.genres[0]).toEqual({ ...edge, qid: "Q170611" });
+		expect(raw).toBe(`${JSON.stringify(written, null, 2)}\n`);
+
+		const second = await runMigration(dir, true, fakeResolver());
+		expect(second.exitCode).toBe(0);
+		expect(second.plan.writes.size).toBe(0);
+		expect(await readFile(artistPath, "utf8")).toBe(raw);
+	});
+
+	it("keeps pending-reverses.json byte-identical across --apply", async () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		await writeNodeFile(artistNode({ genres: [edge] }));
+		const pendingPath = await writePendingReverses({ "artist:someone-else": [{ field: "x" }] });
+		const before = await readFile(pendingPath, "utf8");
+
+		const result = await runMigration(dir, true, fakeResolver());
+
+		expect(result.exitCode).toBe(0);
+		expect(await readFile(pendingPath, "utf8")).toBe(before);
+	});
+
+	it("signals an invalid node file (broken JSON or failed schema), leaves it intact, and keeps migrating", async () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		const goodPath = await writeNodeFile(artistNode({ slug: "artist:good", genres: [edge] }));
+
+		const brokenPath = join(dir, "nodes", "artist", "broken.json");
+		await mkdir(dirname(brokenPath), { recursive: true });
+		await writeFile(brokenPath, "{not json", "utf8");
+
+		// Valid JSON, resolvable genre edge (so planBackfill wants to rewrite it), but missing
+		// every other required ArtistNode field -- fails nodePayloadSchema at write time.
+		const invalidSchemaPath = join(dir, "nodes", "artist", "invalid-schema.json");
+		const invalidSchemaContent = `${JSON.stringify(
+			{ type: "artist", slug: "artist:invalid-schema", genres: [edge] },
+			null,
+			2,
+		)}\n`;
+		await writeFile(invalidSchemaPath, invalidSchemaContent, "utf8");
+
+		const result = await runMigration(dir, true, fakeResolver());
+
+		expect(result.exitCode).toBe(0);
+		expect(await readFile(brokenPath, "utf8")).toBe("{not json");
+		expect(await readFile(invalidSchemaPath, "utf8")).toBe(invalidSchemaContent);
+		expect(result.skippedWrites.some((s) => s.path === invalidSchemaPath)).toBe(true);
+
+		const goodRaw = await readFile(goodPath, "utf8");
+		expect((JSON.parse(goodRaw) as ArtistNode).genres[0]).toEqual({ ...edge, qid: "Q170611" });
+	});
+
+	it("reports a stray non-type directory under nodes/ as invalid instead of throwing", async () => {
+		const strayPath = join(dir, "nodes", "bak", "leftover.json");
+		await mkdir(dirname(strayPath), { recursive: true });
+		await writeFile(strayPath, "{}", "utf8");
+
+		const { nodes, invalid } = await readCacheNodes(dir);
+
+		expect(nodes).toHaveLength(0);
+		expect(invalid).toHaveLength(1);
+		expect(invalid[0]?.error).toMatch(/Invalid slug type/);
+	});
+});
+
+describe("parseCliArgs", () => {
+	it("rejects a missing cache-dir instead of defaulting", () => {
+		expect(parseCliArgs([])).toBeNull();
+	});
+
+	it("rejects a flag standing in for the positional cache-dir", () => {
+		// Regression: `tsx ...backfill-genre-qid.ts --apply` (forgetting the cache-dir) used to
+		// be accepted with cacheDir = "--apply", silently no-op-migrating a nonexistent
+		// directory and exiting 0 instead of failing the required usage check.
+		expect(parseCliArgs(["--apply"])).toBeNull();
+	});
+
+	it("parses the positional cache-dir and the --apply flag", () => {
+		expect(parseCliArgs(["cache"])).toEqual({ cacheDir: "cache", apply: false });
+		expect(parseCliArgs(["cache", "--apply"])).toEqual({ cacheDir: "cache", apply: true });
 	});
 });

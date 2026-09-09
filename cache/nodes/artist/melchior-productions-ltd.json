@@ -20,12 +20,14 @@
     {
       "slug": "genre:minimal-house",
       "type": "genre",
-      "name": "Minimal House"
+      "name": "Minimal House",
+      "qid": "Q750811"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "labels": [

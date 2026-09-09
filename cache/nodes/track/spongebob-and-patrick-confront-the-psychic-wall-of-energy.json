@@ -40,12 +40,14 @@
     {
       "slug": "genre:neo-psychedelia",
       "type": "genre",
-      "name": "Neo-Psychedelia"
+      "name": "Neo-Psychedelia",
+      "qid": "Q703778"
     },
     {
       "slug": "genre:alternative-rock",
       "type": "genre",
-      "name": "Alternative Rock"
+      "name": "Alternative Rock",
+      "qid": "Q11366"
     }
   ],
   "producers": [

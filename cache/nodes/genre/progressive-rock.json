@@ -23,34 +23,40 @@
     {
       "slug": "genre:symphonic-prog",
       "type": "genre",
-      "name": "Symphonic Prog"
+      "name": "Symphonic Prog",
+      "qid": "Q106621063"
     },
     {
       "slug": "genre:canterbury-scene",
       "type": "genre",
-      "name": "Canterbury Scene"
+      "name": "Canterbury Scene",
+      "qid": "Q727803"
     },
     {
       "slug": "genre:zeuhl",
       "type": "genre",
-      "name": "Zeuhl"
+      "name": "Zeuhl",
+      "qid": "Q196999"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art Rock"
+      "name": "Art Rock",
+      "qid": "Q217467"
     }
   ],
   "key_artists": [
@@ -109,5 +115,6 @@
       "name": "The Dark Side of the Moon"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q49451"
 }

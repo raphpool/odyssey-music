@@ -37,12 +37,14 @@
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:microtonal-music",
       "type": "genre",
-      "name": "Microtonal music"
+      "name": "Microtonal music",
+      "qid": "Q1045756"
     }
   ],
   "producers": [

@@ -16,17 +16,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:downtempo",
       "type": "genre",
-      "name": "downtempo"
+      "name": "downtempo",
+      "qid": "Q251192"
     },
     {
       "slug": "genre:hauntology",
       "type": "genre",
-      "name": "hauntology"
+      "name": "hauntology",
+      "qid": "Q85765918"
     }
   ],
   "labels": [

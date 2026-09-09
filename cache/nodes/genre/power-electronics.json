@@ -34,22 +34,26 @@
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:noise",
       "type": "genre",
-      "name": "Noise"
+      "name": "Noise",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:death-industrial",
       "type": "genre",
-      "name": "Death Industrial"
+      "name": "Death Industrial",
+      "qid": "Q3487358"
     },
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark Ambient"
+      "name": "Dark Ambient",
+      "qid": "Q756956"
     }
   ],
   "key_artists": [
@@ -113,5 +117,6 @@
       "name": "Birthdeath Experience"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2687544"
 }

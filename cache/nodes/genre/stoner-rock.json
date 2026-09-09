@@ -17,12 +17,14 @@
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:doom-metal",
       "type": "genre",
-      "name": "Doom metal"
+      "name": "Doom metal",
+      "qid": "Q186170"
     }
   ],
   "subgenres": [
@@ -41,17 +43,20 @@
     {
       "slug": "genre:acid-rock",
       "type": "genre",
-      "name": "Acid rock"
+      "name": "Acid rock",
+      "qid": "Q236932"
     },
     {
       "slug": "genre:sludge-metal",
       "type": "genre",
-      "name": "Sludge metal"
+      "name": "Sludge metal",
+      "qid": "Q720959"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     }
   ],
   "key_artists": [
@@ -110,5 +115,6 @@
       "name": "Welcome to MeteorCity"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q617240"
 }

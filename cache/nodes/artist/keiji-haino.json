@@ -20,22 +20,26 @@
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     },
     {
       "slug": "genre:free-improvisation",
       "type": "genre",
-      "name": "Free Improvisation"
+      "name": "Free Improvisation",
+      "qid": "Q592060"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-garde"
+      "name": "Avant-garde",
+      "qid": "Q2332751"
     }
   ],
   "labels": [

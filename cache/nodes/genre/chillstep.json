@@ -21,12 +21,14 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "subgenres": [],
@@ -34,17 +36,20 @@
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-dubstep"
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     },
     {
       "slug": "genre:lofi-hip-hop",
       "type": "genre",
-      "name": "Lofi Hip-Hop"
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
     },
     {
       "slug": "genre:future-garage",
       "type": "genre",
-      "name": "Future Garage"
+      "name": "Future Garage",
+      "qid": "Q5510816"
     }
   ],
   "key_artists": [
@@ -76,5 +81,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2963621"
 }

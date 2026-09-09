@@ -41,17 +41,20 @@
     {
       "slug": "genre:trance",
       "type": "genre",
-      "name": "Trance"
+      "name": "Trance",
+      "qid": "Q170435"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:progressive-trance",
       "type": "genre",
-      "name": "Progressive Trance"
+      "name": "Progressive Trance",
+      "qid": "Q2260696"
     }
   ],
   "labels": [

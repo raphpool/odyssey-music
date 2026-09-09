@@ -36,12 +36,14 @@
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:british-folk-rock",
       "type": "genre",
-      "name": "British Folk Rock"
+      "name": "British Folk Rock",
+      "qid": "Q2614533"
     }
   ],
   "tracklist": [

@@ -23,17 +23,20 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:future-garage",
       "type": "genre",
-      "name": "Future garage"
+      "name": "Future garage",
+      "qid": "Q5510816"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     }
   ],
   "labels": [

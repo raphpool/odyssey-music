@@ -18,27 +18,32 @@
     {
       "slug": "genre:avant-pop",
       "type": "genre",
-      "name": "Avant-pop"
+      "name": "Avant-pop",
+      "qid": "Q9162904"
     },
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie pop"
+      "name": "Indie pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:indietronica",
       "type": "genre",
-      "name": "Indietronica"
+      "name": "Indietronica",
+      "qid": "Q325397"
     },
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     }
   ],
   "labels": [

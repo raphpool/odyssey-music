@@ -48,17 +48,20 @@
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:glitch-pop",
       "type": "genre",
-      "name": "Glitch Pop"
+      "name": "Glitch Pop",
+      "qid": "Q106528422"
     }
   ],
   "tracklist": [

@@ -21,12 +21,14 @@
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk rock"
+      "name": "Folk rock",
+      "qid": "Q186472"
     }
   ],
   "labels": [

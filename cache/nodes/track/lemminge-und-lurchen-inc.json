@@ -27,7 +27,8 @@
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam Rock"
+      "name": "Glam Rock",
+      "qid": "Q76092"
     }
   ],
   "producers": [],

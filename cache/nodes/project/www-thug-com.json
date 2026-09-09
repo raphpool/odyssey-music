@@ -32,17 +32,20 @@
     {
       "slug": "genre:southern-hip-hop",
       "type": "genre",
-      "name": "Southern Hip-Hop"
+      "name": "Southern Hip-Hop",
+      "qid": "Q1253172"
     },
     {
       "slug": "genre:dirty-south",
       "type": "genre",
-      "name": "Dirty South"
+      "name": "Dirty South",
+      "qid": "Q8560269"
     },
     {
       "slug": "genre:gangsta-rap",
       "type": "genre",
-      "name": "Gangsta Rap"
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
     }
   ],
   "tracklist": [

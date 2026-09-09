@@ -21,32 +21,38 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk Rock"
+      "name": "Punk Rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:trip-hop",
       "type": "genre",
-      "name": "Trip Hop"
+      "name": "Trip Hop",
+      "qid": "Q205560"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop Music"
+      "name": "Pop Music",
+      "qid": "Q37073"
     }
   ],
   "roster": [

@@ -20,17 +20,20 @@
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental Electronic"
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     },
     {
       "slug": "genre:nu-jazz",
       "type": "genre",
-      "name": "Nu Jazz"
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     },
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     }
   ],
   "labels": [

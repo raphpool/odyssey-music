@@ -41,7 +41,8 @@
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and bass"
+      "name": "Drum and bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:drill-n-bass",
@@ -51,7 +52,8 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "labels": [

@@ -19,17 +19,20 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark Ambient"
+      "name": "Dark Ambient",
+      "qid": "Q756956"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "labels": [

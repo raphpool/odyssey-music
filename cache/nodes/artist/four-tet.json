@@ -22,17 +22,20 @@
     {
       "slug": "genre:folktronica",
       "type": "genre",
-      "name": "Folktronica"
+      "name": "Folktronica",
+      "qid": "Q1435509"
     },
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "labels": [

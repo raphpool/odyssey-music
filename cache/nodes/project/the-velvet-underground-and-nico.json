@@ -52,17 +52,20 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art Rock"
+      "name": "Art Rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:proto-punk",
       "type": "genre",
-      "name": "Proto-Punk"
+      "name": "Proto-Punk",
+      "qid": "Q27190"
     }
   ],
   "tracklist": [

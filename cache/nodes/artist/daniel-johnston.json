@@ -22,17 +22,20 @@
     {
       "slug": "genre:lo-fi",
       "type": "genre",
-      "name": "Lo-fi"
+      "name": "Lo-fi",
+      "qid": "Q1507298"
     },
     {
       "slug": "genre:outsider-music",
       "type": "genre",
-      "name": "Outsider music"
+      "name": "Outsider music",
+      "qid": "Q2416307"
     },
     {
       "slug": "genre:indie-folk",
       "type": "genre",
-      "name": "Indie folk"
+      "name": "Indie folk",
+      "qid": "Q1317816"
     }
   ],
   "labels": [

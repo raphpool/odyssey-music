@@ -21,39 +21,46 @@
     {
       "slug": "genre:punk-rock",
       "type": "genre",
-      "name": "Punk rock"
+      "name": "Punk rock",
+      "qid": "Q3071"
     },
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:dark-wave",
       "type": "genre",
-      "name": "Dark wave"
+      "name": "Dark wave",
+      "qid": "Q3840596"
     },
     {
       "slug": "genre:new-romantic",
       "type": "genre",
-      "name": "New Romantic"
+      "name": "New Romantic",
+      "qid": "Q597240"
     }
   ],
   "related_genres": [],
@@ -102,5 +109,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q187760"
 }

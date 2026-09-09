@@ -37,17 +37,20 @@
     {
       "slug": "genre:new-wave",
       "type": "genre",
-      "name": "New Wave"
+      "name": "New Wave",
+      "qid": "Q187760"
     },
     {
       "slug": "genre:power-pop",
       "type": "genre",
-      "name": "Power Pop"
+      "name": "Power Pop",
+      "qid": "Q837837"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "labels": [

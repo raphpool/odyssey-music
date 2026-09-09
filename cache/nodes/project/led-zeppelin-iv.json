@@ -52,17 +52,20 @@
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     },
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk Rock"
+      "name": "Folk Rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:blues-rock",
       "type": "genre",
-      "name": "Blues Rock"
+      "name": "Blues Rock",
+      "qid": "Q193355"
     }
   ],
   "tracklist": [

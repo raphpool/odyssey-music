@@ -36,12 +36,14 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     }
   ],
   "subgenres": [],
@@ -49,17 +51,20 @@
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:soul-jazz",
       "type": "genre",
-      "name": "Soul Jazz"
+      "name": "Soul Jazz",
+      "qid": "Q1615483"
     },
     {
       "slug": "genre:spiritual-jazz",
       "type": "genre",
-      "name": "Spiritual Jazz"
+      "name": "Spiritual Jazz",
+      "qid": "Q98528204"
     }
   ],
   "key_artists": [
@@ -123,5 +128,6 @@
       "name": "Troupeau bleu"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q38656"
 }

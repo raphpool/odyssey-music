@@ -20,22 +20,26 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive rock"
+      "name": "Progressive rock",
+      "qid": "Q49451"
     },
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy metal"
+      "name": "Heavy metal",
+      "qid": "Q38848"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:acid-rock",
       "type": "genre",
-      "name": "Acid rock"
+      "name": "Acid rock",
+      "qid": "Q236932"
     }
   ],
   "key_artists": [
@@ -105,5 +109,6 @@
       "type": "track",
       "name": "Arnold Layne"
     }
-  ]
+  ],
+  "qid": "Q206159"
 }

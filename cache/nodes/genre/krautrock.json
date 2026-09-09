@@ -27,34 +27,40 @@
     {
       "slug": "genre:dusseldorf-school",
       "type": "genre",
-      "name": "Düsseldorf School"
+      "name": "Düsseldorf School",
+      "qid": "Q5320459"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental rock"
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:kosmische-musik",
       "type": "genre",
-      "name": "Kosmische Musik"
+      "name": "Kosmische Musik",
+      "qid": "Q121494463"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     }
   ],
   "key_artists": [
@@ -128,5 +134,6 @@
       "name": "Neu! 75"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q320592"
 }

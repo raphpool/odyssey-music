@@ -21,27 +21,32 @@
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     },
     {
       "slug": "genre:drone-music",
       "type": "genre",
-      "name": "Drone music"
+      "name": "Drone music",
+      "qid": "Q650316"
     },
     {
       "slug": "genre:noise-music",
       "type": "genre",
-      "name": "Noise music"
+      "name": "Noise music",
+      "qid": "Q726239"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary classical"
+      "name": "Contemporary classical",
+      "qid": "Q612024"
     }
   ],
   "roster": [

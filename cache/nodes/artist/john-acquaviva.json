@@ -15,17 +15,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech house"
+      "name": "Tech house",
+      "qid": "Q598593"
     },
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     }
   ],
   "labels": [

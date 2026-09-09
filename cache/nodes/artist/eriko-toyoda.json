@@ -27,17 +27,20 @@
     {
       "slug": "genre:ambient-pop",
       "type": "genre",
-      "name": "Ambient Pop"
+      "name": "Ambient Pop",
+      "qid": "Q33160145"
     },
     {
       "slug": "genre:glitch-pop",
       "type": "genre",
-      "name": "Glitch Pop"
+      "name": "Glitch Pop",
+      "qid": "Q106528422"
     },
     {
       "slug": "genre:art-pop",
       "type": "genre",
-      "name": "Art Pop"
+      "name": "Art Pop",
+      "qid": "Q25094849"
     }
   ],
   "labels": [

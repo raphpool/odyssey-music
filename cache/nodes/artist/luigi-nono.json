@@ -25,12 +25,14 @@
     {
       "slug": "genre:contemporary-classical",
       "type": "genre",
-      "name": "Contemporary Classical"
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
     },
     {
       "slug": "genre:serialism",
       "type": "genre",
-      "name": "Serialism"
+      "name": "Serialism",
+      "qid": "Q507246"
     }
   ],
   "labels": [

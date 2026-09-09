@@ -18,17 +18,20 @@
     {
       "slug": "genre:breakcore",
       "type": "genre",
-      "name": "Breakcore"
+      "name": "Breakcore",
+      "qid": "Q903735"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:experimental-electronic-music",
       "type": "genre",
-      "name": "Experimental electronic music"
+      "name": "Experimental electronic music",
+      "qid": "Q105763581"
     }
   ],
   "labels": [

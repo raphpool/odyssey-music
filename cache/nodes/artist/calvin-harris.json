@@ -36,22 +36,26 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:dance-pop",
       "type": "genre",
-      "name": "Dance-Pop"
+      "name": "Dance-Pop",
+      "qid": "Q211756"
     },
     {
       "slug": "genre:electro-house",
       "type": "genre",
-      "name": "Electro House"
+      "name": "Electro House",
+      "qid": "Q627906"
     },
     {
       "slug": "genre:electropop",
       "type": "genre",
-      "name": "Electropop"
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "labels": [

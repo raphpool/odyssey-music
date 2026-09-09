@@ -20,27 +20,32 @@
     {
       "slug": "genre:world-beat",
       "type": "genre",
-      "name": "World beat"
+      "name": "World beat",
+      "qid": "Q2064394"
     },
     {
       "slug": "genre:highlife",
       "type": "genre",
-      "name": "Highlife"
+      "name": "Highlife",
+      "qid": "Q963061"
     },
     {
       "slug": "genre:klezmer",
       "type": "genre",
-      "name": "Klezmer"
+      "name": "Klezmer",
+      "qid": "Q212944"
     },
     {
       "slug": "genre:celtic-music",
       "type": "genre",
-      "name": "Celtic music"
+      "name": "Celtic music",
+      "qid": "Q854451"
     }
   ],
   "related_genres": [],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q205049"
 }

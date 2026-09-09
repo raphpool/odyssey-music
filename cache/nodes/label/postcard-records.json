@@ -36,12 +36,14 @@
     {
       "slug": "genre:indie-pop",
       "type": "genre",
-      "name": "Indie Pop"
+      "name": "Indie Pop",
+      "qid": "Q842324"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-Punk"
+      "name": "Post-Punk",
+      "qid": "Q598929"
     }
   ],
   "roster": [

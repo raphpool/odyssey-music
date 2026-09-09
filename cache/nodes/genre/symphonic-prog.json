@@ -17,7 +17,8 @@
     {
       "slug": "genre:progressive-rock",
       "type": "genre",
-      "name": "Progressive Rock"
+      "name": "Progressive Rock",
+      "qid": "Q49451"
     }
   ],
   "subgenres": [],
@@ -25,7 +26,8 @@
     {
       "slug": "genre:neo-prog",
       "type": "genre",
-      "name": "Neo-Prog"
+      "name": "Neo-Prog",
+      "qid": "Q1051843"
     },
     {
       "slug": "genre:rock-progressivo-italiano",
@@ -78,5 +80,6 @@
       "name": "In the Court of the Crimson King"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q106621063"
 }

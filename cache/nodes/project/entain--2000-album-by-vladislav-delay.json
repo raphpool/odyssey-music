@@ -29,17 +29,20 @@
     {
       "slug": "genre:glitch",
       "type": "genre",
-      "name": "Glitch"
+      "name": "Glitch",
+      "qid": "Q1100989"
     },
     {
       "slug": "genre:experimental-ambient",
       "type": "genre",
-      "name": "Experimental Ambient"
+      "name": "Experimental Ambient",
+      "qid": "Q109500753"
     },
     {
       "slug": "genre:microhouse",
       "type": "genre",
-      "name": "Microhouse"
+      "name": "Microhouse",
+      "qid": "Q1931555"
     }
   ],
   "tracklist": [],

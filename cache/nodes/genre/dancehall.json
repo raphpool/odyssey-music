@@ -32,31 +32,36 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:ragga",
       "type": "genre",
-      "name": "Ragga"
+      "name": "Ragga",
+      "qid": "Q740911"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:ragga",
       "type": "genre",
-      "name": "Ragga"
+      "name": "Ragga",
+      "qid": "Q740911"
     },
     {
       "slug": "genre:reggae-fusion",
       "type": "genre",
-      "name": "Reggae Fusion"
+      "name": "Reggae Fusion",
+      "qid": "Q1606591"
     },
     {
       "slug": "genre:dancehall-pop",
       "type": "genre",
-      "name": "Dancehall Pop"
+      "name": "Dancehall Pop",
+      "qid": "Q85755605"
     }
   ],
   "key_artists": [
@@ -141,5 +146,6 @@
       "type": "track",
       "name": "Clarks"
     }
-  ]
+  ],
+  "qid": "Q474027"
 }

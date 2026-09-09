@@ -32,12 +32,14 @@
     {
       "slug": "genre:post-hardcore",
       "type": "genre",
-      "name": "Post-hardcore"
+      "name": "Post-hardcore",
+      "qid": "Q377910"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise rock"
+      "name": "Noise rock",
+      "qid": "Q181861"
     }
   ],
   "tracklist": [

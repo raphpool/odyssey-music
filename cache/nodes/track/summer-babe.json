@@ -51,17 +51,20 @@
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     },
     {
       "slug": "genre:jangle-pop",
       "type": "genre",
-      "name": "Jangle pop"
+      "name": "Jangle pop",
+      "qid": "Q1190565"
     },
     {
       "slug": "genre:noise-pop",
       "type": "genre",
-      "name": "Noise pop"
+      "name": "Noise pop",
+      "qid": "Q2545135"
     }
   ],
   "producers": [

@@ -35,17 +35,20 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and bass"
+      "name": "Drum and bass",
+      "qid": "Q188994"
     },
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz fusion"
+      "name": "Jazz fusion",
+      "qid": "Q105527"
     }
   ],
   "labels": [

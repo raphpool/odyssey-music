@@ -34,12 +34,14 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:alternative",
       "type": "genre",
-      "name": "Alternative"
+      "name": "Alternative",
+      "qid": "Q1695023"
     }
   ],
   "producers": [],

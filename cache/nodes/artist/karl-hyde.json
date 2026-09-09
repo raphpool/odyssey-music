@@ -20,17 +20,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive house"
+      "name": "Progressive house",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:synthpop",
       "type": "genre",
-      "name": "Synthpop"
+      "name": "Synthpop",
+      "qid": "Q1298934"
     }
   ],
   "labels": [

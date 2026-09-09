@@ -16,17 +16,20 @@
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:roots-reggae",
       "type": "genre",
-      "name": "Roots Reggae"
+      "name": "Roots Reggae",
+      "qid": "Q1299260"
     }
   ],
   "labels": [

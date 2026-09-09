@@ -21,17 +21,20 @@
     {
       "slug": "genre:microhouse",
       "type": "genre",
-      "name": "Microhouse"
+      "name": "Microhouse",
+      "qid": "Q1931555"
     },
     {
       "slug": "genre:tech-house",
       "type": "genre",
-      "name": "Tech House"
+      "name": "Tech House",
+      "qid": "Q598593"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     }
   ],
   "labels": [

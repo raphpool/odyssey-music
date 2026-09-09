@@ -26,17 +26,20 @@
     {
       "slug": "genre:detroit-techno",
       "type": "genre",
-      "name": "Detroit techno"
+      "name": "Detroit techno",
+      "qid": "Q526463"
     },
     {
       "slug": "genre:house-music",
       "type": "genre",
-      "name": "House music"
+      "name": "House music",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:acid-house",
       "type": "genre",
-      "name": "Acid house"
+      "name": "Acid house",
+      "qid": "Q341364"
     }
   ],
   "labels": [

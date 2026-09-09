@@ -23,22 +23,26 @@
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:post-rock",
       "type": "genre",
-      "name": "Post-rock"
+      "name": "Post-rock",
+      "qid": "Q209137"
     },
     {
       "slug": "genre:avant-garde-jazz",
       "type": "genre",
-      "name": "Avant-garde jazz"
+      "name": "Avant-garde jazz",
+      "qid": "Q790188"
     }
   ],
   "key_artists": [
@@ -112,5 +116,6 @@
       "type": "track",
       "name": "Mushroom"
     }
-  ]
+  ],
+  "qid": "Q1641839"
 }

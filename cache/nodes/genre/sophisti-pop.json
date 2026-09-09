@@ -23,17 +23,20 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:quiet-storm",
       "type": "genre",
-      "name": "Quiet storm"
+      "name": "Quiet storm",
+      "qid": "Q2746831"
     },
     {
       "slug": "genre:jazz-pop",
       "type": "genre",
-      "name": "Jazz-pop"
+      "name": "Jazz-pop",
+      "qid": "Q2104067"
     }
   ],
   "key_artists": [
@@ -81,5 +84,6 @@
       "name": "Steve McQueen"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q264289"
 }

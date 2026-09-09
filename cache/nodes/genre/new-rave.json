@@ -36,22 +36,26 @@
     {
       "slug": "genre:dance-punk",
       "type": "genre",
-      "name": "Dance-punk"
+      "name": "Dance-punk",
+      "qid": "Q1643549"
     },
     {
       "slug": "genre:alternative-dance",
       "type": "genre",
-      "name": "Alternative dance"
+      "name": "Alternative dance",
+      "qid": "Q2187392"
     },
     {
       "slug": "genre:post-punk-revival",
       "type": "genre",
-      "name": "Post-punk revival"
+      "name": "Post-punk revival",
+      "qid": "Q1899347"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "key_artists": [
@@ -83,5 +87,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1995980"
 }

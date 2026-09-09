@@ -48,17 +48,20 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:dance-punk",
       "type": "genre",
-      "name": "Dance-punk"
+      "name": "Dance-punk",
+      "qid": "Q1643549"
     },
     {
       "slug": "genre:art-punk",
       "type": "genre",
-      "name": "Art punk"
+      "name": "Art punk",
+      "qid": "Q659599"
     },
     {
       "slug": "genre:funk-punk",

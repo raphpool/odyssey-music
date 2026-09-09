@@ -26,12 +26,14 @@
     {
       "slug": "genre:jazz-fusion",
       "type": "genre",
-      "name": "Jazz Fusion"
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
     },
     {
       "slug": "genre:avant-garde-jazz",
       "type": "genre",
-      "name": "Avant-Garde Jazz"
+      "name": "Avant-Garde Jazz",
+      "qid": "Q790188"
     }
   ],
   "labels": [],

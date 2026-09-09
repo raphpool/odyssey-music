@@ -21,17 +21,20 @@
     {
       "slug": "genre:avant-garde",
       "type": "genre",
-      "name": "Avant-Garde"
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
     },
     {
       "slug": "genre:modern-classical",
       "type": "genre",
-      "name": "Modern Classical"
+      "name": "Modern Classical",
+      "qid": "Q65937946"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "roster": [

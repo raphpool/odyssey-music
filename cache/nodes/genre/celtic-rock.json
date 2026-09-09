@@ -38,7 +38,8 @@
     {
       "slug": "genre:folk-rock",
       "type": "genre",
-      "name": "Folk rock"
+      "name": "Folk rock",
+      "qid": "Q186472"
     },
     {
       "slug": "genre:traditional-irish-music",
@@ -71,5 +72,6 @@
       "name": "The Táin"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2662148"
 }

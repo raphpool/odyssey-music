@@ -32,17 +32,20 @@
     {
       "slug": "genre:microsound",
       "type": "genre",
-      "name": "Microsound"
+      "name": "Microsound",
+      "qid": "Q3503814"
     },
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal techno"
+      "name": "Minimal techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:experimental-electronic",
       "type": "genre",
-      "name": "Experimental electronic"
+      "name": "Experimental electronic",
+      "qid": "Q105763581"
     }
   ],
   "producers": [

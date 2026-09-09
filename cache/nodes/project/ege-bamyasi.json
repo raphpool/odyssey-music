@@ -33,17 +33,20 @@
     {
       "slug": "genre:krautrock",
       "type": "genre",
-      "name": "Krautrock"
+      "name": "Krautrock",
+      "qid": "Q320592"
     },
     {
       "slug": "genre:experimental-rock",
       "type": "genre",
-      "name": "Experimental Rock"
+      "name": "Experimental Rock",
+      "qid": "Q1641839"
     },
     {
       "slug": "genre:avant-funk",
       "type": "genre",
-      "name": "Avant-funk"
+      "name": "Avant-funk",
+      "qid": "Q30593639"
     }
   ],
   "tracklist": [

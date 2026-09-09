@@ -22,54 +22,64 @@
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:pop-punk",
       "type": "genre",
-      "name": "Pop Punk"
+      "name": "Pop Punk",
+      "qid": "Q487914"
     },
     {
       "slug": "genre:glam-punk",
       "type": "genre",
-      "name": "Glam Punk"
+      "name": "Glam Punk",
+      "qid": "Q1123745"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:pop-punk",
       "type": "genre",
-      "name": "Pop Punk"
+      "name": "Pop Punk",
+      "qid": "Q487914"
     },
     {
       "slug": "genre:garage-rock",
       "type": "genre",
-      "name": "Garage Rock"
+      "name": "Garage Rock",
+      "qid": "Q211573"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     }
   ],
   "key_artists": [
@@ -122,5 +132,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q3071"
 }

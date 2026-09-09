@@ -22,22 +22,26 @@
     {
       "slug": "genre:pop-rock",
       "type": "genre",
-      "name": "Pop rock"
+      "name": "Pop rock",
+      "qid": "Q484641"
     },
     {
       "slug": "genre:glam-rock",
       "type": "genre",
-      "name": "Glam rock"
+      "name": "Glam rock",
+      "qid": "Q76092"
     },
     {
       "slug": "genre:art-rock",
       "type": "genre",
-      "name": "Art rock"
+      "name": "Art rock",
+      "qid": "Q217467"
     },
     {
       "slug": "genre:sophisti-pop",
       "type": "genre",
-      "name": "Sophisti-pop"
+      "name": "Sophisti-pop",
+      "qid": "Q264289"
     }
   ],
   "labels": [

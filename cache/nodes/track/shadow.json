@@ -32,12 +32,14 @@
     {
       "slug": "genre:dream-pop",
       "type": "genre",
-      "name": "Dream Pop"
+      "name": "Dream Pop",
+      "qid": "Q592330"
     },
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "producers": [

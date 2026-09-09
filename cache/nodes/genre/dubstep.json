@@ -25,61 +25,72 @@
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK Garage"
+      "name": "UK Garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:2-step-garage",
       "type": "genre",
-      "name": "2-step garage"
+      "name": "2-step garage",
+      "qid": "Q1751409"
     },
     {
       "slug": "genre:dub",
       "type": "genre",
-      "name": "Dub"
+      "name": "Dub",
+      "qid": "Q212688"
     },
     {
       "slug": "genre:drum-and-bass",
       "type": "genre",
-      "name": "Drum and bass"
+      "name": "Drum and bass",
+      "qid": "Q188994"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     },
     {
       "slug": "genre:future-garage",
       "type": "genre",
-      "name": "Future garage"
+      "name": "Future garage",
+      "qid": "Q5510816"
     },
     {
       "slug": "genre:chillstep",
       "type": "genre",
-      "name": "Chillstep"
+      "name": "Chillstep",
+      "qid": "Q2963621"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-dubstep"
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:grime",
       "type": "genre",
-      "name": "Grime"
+      "name": "Grime",
+      "qid": "Q1166726"
     },
     {
       "slug": "genre:post-dubstep",
       "type": "genre",
-      "name": "Post-dubstep"
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     },
     {
       "slug": "genre:brostep",
       "type": "genre",
-      "name": "Brostep"
+      "name": "Brostep",
+      "qid": "Q20903"
     }
   ],
   "key_artists": [
@@ -122,5 +133,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q20474"
 }

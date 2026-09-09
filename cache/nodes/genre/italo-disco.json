@@ -19,17 +19,20 @@
     {
       "slug": "genre:synth-pop",
       "type": "genre",
-      "name": "Synth-pop"
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     },
     {
       "slug": "genre:hi-nrg",
       "type": "genre",
-      "name": "Hi-NRG"
+      "name": "Hi-NRG",
+      "qid": "Q606393"
     },
     {
       "slug": "genre:italo-house",
       "type": "genre",
-      "name": "Italo house"
+      "name": "Italo house",
+      "qid": "Q2702280"
     }
   ],
   "key_artists": [
@@ -83,5 +86,6 @@
       "type": "track",
       "name": "Call Me"
     }
-  ]
+  ],
+  "qid": "Q744417"
 }

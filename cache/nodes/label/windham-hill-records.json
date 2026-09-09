@@ -21,22 +21,26 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:acoustic",
       "type": "genre",
-      "name": "Acoustic"
+      "name": "Acoustic",
+      "qid": "Q286080"
     },
     {
       "slug": "genre:folk",
       "type": "genre",
-      "name": "Folk"
+      "name": "Folk",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "roster": [

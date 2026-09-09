@@ -22,12 +22,14 @@
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     },
     {
       "slug": "genre:experimental-techno",
       "type": "genre",
-      "name": "Experimental Techno"
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
     },
     {
       "slug": "genre:indie-electronic",

@@ -22,12 +22,14 @@
     {
       "slug": "genre:minimalism",
       "type": "genre",
-      "name": "Minimalism"
+      "name": "Minimalism",
+      "qid": "Q572901"
     },
     {
       "slug": "genre:drone-music",
       "type": "genre",
-      "name": "Drone music"
+      "name": "Drone music",
+      "qid": "Q650316"
     }
   ],
   "producers": [],

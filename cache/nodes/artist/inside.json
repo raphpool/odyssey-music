@@ -19,12 +19,14 @@
     {
       "slug": "genre:emo",
       "type": "genre",
-      "name": "Emo"
+      "name": "Emo",
+      "qid": "Q10926"
     },
     {
       "slug": "genre:hardcore-punk",
       "type": "genre",
-      "name": "Hardcore Punk"
+      "name": "Hardcore Punk",
+      "qid": "Q10922"
     }
   ],
   "labels": [

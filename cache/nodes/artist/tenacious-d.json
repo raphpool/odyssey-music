@@ -22,17 +22,20 @@
     {
       "slug": "genre:comedy-rock",
       "type": "genre",
-      "name": "Comedy Rock"
+      "name": "Comedy Rock",
+      "qid": "Q1391336"
     },
     {
       "slug": "genre:acoustic-rock",
       "type": "genre",
-      "name": "Acoustic Rock"
+      "name": "Acoustic Rock",
+      "qid": "Q65936391"
     },
     {
       "slug": "genre:hard-rock",
       "type": "genre",
-      "name": "Hard Rock"
+      "name": "Hard Rock",
+      "qid": "Q83270"
     }
   ],
   "labels": [

@@ -17,51 +17,60 @@
     {
       "slug": "genre:experimental",
       "type": "genre",
-      "name": "Experimental"
+      "name": "Experimental",
+      "qid": "Q1640319"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:harsh-noise",
       "type": "genre",
-      "name": "Harsh Noise"
+      "name": "Harsh Noise",
+      "qid": "Q16562829"
     },
     {
       "slug": "genre:power-noise",
       "type": "genre",
-      "name": "Power Noise"
+      "name": "Power Noise",
+      "qid": "Q1913888"
     },
     {
       "slug": "genre:harsh-noise-wall",
       "type": "genre",
-      "name": "Harsh Noise Wall"
+      "name": "Harsh Noise Wall",
+      "qid": "Q39046859"
     },
     {
       "slug": "genre:noise-rock",
       "type": "genre",
-      "name": "Noise Rock"
+      "name": "Noise Rock",
+      "qid": "Q181861"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:industrial",
       "type": "genre",
-      "name": "Industrial"
+      "name": "Industrial",
+      "qid": "Q487965"
     },
     {
       "slug": "genre:musique-concrete",
       "type": "genre",
-      "name": "Musique concrète"
+      "name": "Musique concrète",
+      "qid": "Q823560"
     },
     {
       "slug": "genre:drone",
       "type": "genre",
-      "name": "Drone"
+      "name": "Drone",
+      "qid": "Q650316"
     },
     {
       "slug": "genre:power-electronics",
       "type": "genre",
-      "name": "Power Electronics"
+      "name": "Power Electronics",
+      "qid": "Q2687544"
     }
   ],
   "key_artists": [
@@ -98,5 +107,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q726239"
 }

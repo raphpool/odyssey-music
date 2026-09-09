@@ -18,12 +18,14 @@
     {
       "slug": "genre:folk-music",
       "type": "genre",
-      "name": "Folk music"
+      "name": "Folk music",
+      "qid": "Q43343"
     },
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     }
   ],
   "subgenres": [],
@@ -31,12 +33,14 @@
     {
       "slug": "genre:singer-songwriter",
       "type": "genre",
-      "name": "Singer-songwriter"
+      "name": "Singer-songwriter",
+      "qid": "Q89363113"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic rock"
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
     }
   ],
   "key_artists": [
@@ -105,5 +109,6 @@
       "type": "track",
       "name": "Eve of Destruction"
     }
-  ]
+  ],
+  "qid": "Q186472"
 }

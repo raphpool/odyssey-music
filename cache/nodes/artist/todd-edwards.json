@@ -22,17 +22,20 @@
     {
       "slug": "genre:garage-house",
       "type": "genre",
-      "name": "Garage house"
+      "name": "Garage house",
+      "qid": "Q928825"
     },
     {
       "slug": "genre:uk-garage",
       "type": "genre",
-      "name": "UK garage"
+      "name": "UK garage",
+      "qid": "Q1165777"
     },
     {
       "slug": "genre:speed-garage",
       "type": "genre",
-      "name": "Speed garage"
+      "name": "Speed garage",
+      "qid": "Q780517"
     }
   ],
   "labels": [

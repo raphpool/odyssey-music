@@ -32,17 +32,20 @@
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:hi-nrg",
       "type": "genre",
-      "name": "Hi-NRG"
+      "name": "Hi-NRG",
+      "qid": "Q606393"
     },
     {
       "slug": "genre:r-and-b",
       "type": "genre",
-      "name": "R&B"
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "labels": [

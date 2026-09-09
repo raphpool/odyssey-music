@@ -40,12 +40,14 @@
     {
       "slug": "genre:disco",
       "type": "genre",
-      "name": "Disco"
+      "name": "Disco",
+      "qid": "Q58339"
     },
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic Music"
+      "name": "Electronic Music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [],
@@ -53,22 +55,26 @@
     {
       "slug": "genre:italo-disco",
       "type": "genre",
-      "name": "Italo Disco"
+      "name": "Italo Disco",
+      "qid": "Q744417"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:eurodance",
       "type": "genre",
-      "name": "Eurodance"
+      "name": "Eurodance",
+      "qid": "Q216961"
     }
   ],
   "key_artists": [
@@ -132,5 +138,6 @@
       "type": "track",
       "name": "Dance (Disco Heat)"
     }
-  ]
+  ],
+  "qid": "Q606393"
 }

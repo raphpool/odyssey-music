@@ -32,12 +32,14 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:hard-bop",
       "type": "genre",
-      "name": "Hard bop"
+      "name": "Hard bop",
+      "qid": "Q181010"
     }
   ],
   "labels": [

@@ -25,36 +25,42 @@
     {
       "slug": "genre:electronic-music",
       "type": "genre",
-      "name": "Electronic music"
+      "name": "Electronic music",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:experimental-music",
       "type": "genre",
-      "name": "Experimental music"
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:ambient-techno",
       "type": "genre",
-      "name": "Ambient techno"
+      "name": "Ambient techno",
+      "qid": "Q9149801"
     },
     {
       "slug": "genre:dark-ambient",
       "type": "genre",
-      "name": "Dark ambient"
+      "name": "Dark ambient",
+      "qid": "Q756956"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New age"
+      "name": "New age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:drone",
       "type": "genre",
-      "name": "Drone"
+      "name": "Drone",
+      "qid": "Q650316"
     }
   ],
   "key_artists": [
@@ -98,5 +104,6 @@
       "name": "Selected Ambient Works 85–92"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q193207"
 }

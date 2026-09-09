@@ -40,12 +40,14 @@
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "subgenres": [],
@@ -53,12 +55,14 @@
     {
       "slug": "genre:minimal-techno",
       "type": "genre",
-      "name": "Minimal Techno"
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     },
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive House"
+      "name": "Progressive House",
+      "qid": "Q915152"
     }
   ],
   "key_artists": [
@@ -117,5 +121,6 @@
       "type": "track",
       "name": "Hungry For The Power (Jamie Jones Ridge Street Mix)"
     }
-  ]
+  ],
+  "qid": "Q598593"
 }

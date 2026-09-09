@@ -33,22 +33,26 @@
     {
       "slug": "genre:bluegrass",
       "type": "genre",
-      "name": "Bluegrass"
+      "name": "Bluegrass",
+      "qid": "Q213714"
     },
     {
       "slug": "genre:honky-tonk",
       "type": "genre",
-      "name": "Honky-tonk"
+      "name": "Honky-tonk",
+      "qid": "Q3140141"
     },
     {
       "slug": "genre:outlaw-country",
       "type": "genre",
-      "name": "Outlaw country"
+      "name": "Outlaw country",
+      "qid": "Q964658"
     },
     {
       "slug": "genre:country-rock",
       "type": "genre",
-      "name": "Country rock"
+      "name": "Country rock",
+      "qid": "Q613408"
     }
   ],
   "related_genres": [],
@@ -92,5 +96,6 @@
       "name": "Red Headed Stranger"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q83440"
 }

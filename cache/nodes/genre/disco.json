@@ -26,44 +26,52 @@
     {
       "slug": "genre:italo-disco",
       "type": "genre",
-      "name": "Italo disco"
+      "name": "Italo disco",
+      "qid": "Q744417"
     },
     {
       "slug": "genre:eurodisco",
       "type": "genre",
-      "name": "Eurodisco"
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     },
     {
       "slug": "genre:hi-nrg",
       "type": "genre",
-      "name": "Hi-NRG"
+      "name": "Hi-NRG",
+      "qid": "Q606393"
     },
     {
       "slug": "genre:nu-disco",
       "type": "genre",
-      "name": "Nu-disco"
+      "name": "Nu-disco",
+      "qid": "Q4045538"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:funk",
       "type": "genre",
-      "name": "Funk"
+      "name": "Funk",
+      "qid": "Q164444"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     },
     {
       "slug": "genre:house",
       "type": "genre",
-      "name": "House"
+      "name": "House",
+      "qid": "Q20502"
     },
     {
       "slug": "genre:eurodisco",
       "type": "genre",
-      "name": "Eurodisco"
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     }
   ],
   "key_artists": [
@@ -122,5 +130,6 @@
       "name": "C'est Chic"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q58339"
 }

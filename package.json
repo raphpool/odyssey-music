@@ -19,6 +19,7 @@
     "server": "tsx src/server.ts",
     "build:graph": "tsx scripts/build-graph-json.ts cache web/data.json",
     "build:genre-qid-map": "tsx scripts/build-genre-qid-map.ts",
+    "migrate:genre-qid": "tsx scripts/migrations/2026-09-04-backfill-genre-qid.ts",
     "analyze:coverage": "tsx scripts/analyze-coverage.ts",
     "topup:dangling": "tsx scripts/top-up-dangling.ts",
     "smoke:pipeline": "tsx scripts/smoke-pipeline.ts",

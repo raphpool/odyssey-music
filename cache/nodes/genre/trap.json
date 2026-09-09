@@ -38,7 +38,8 @@
     {
       "slug": "genre:dubstep",
       "type": "genre",
-      "name": "Dubstep"
+      "name": "Dubstep",
+      "qid": "Q20474"
     },
     {
       "slug": "genre:trap-hip-hop",
@@ -48,12 +49,14 @@
     {
       "slug": "genre:hardcore",
       "type": "genre",
-      "name": "Hardcore"
+      "name": "Hardcore",
+      "qid": "Q388906"
     },
     {
       "slug": "genre:bass-house",
       "type": "genre",
-      "name": "Bass House"
+      "name": "Bass House",
+      "qid": "Q27345019"
     }
   ],
   "key_artists": [
@@ -117,5 +120,6 @@
       "type": "track",
       "name": "Get Low"
     }
-  ]
+  ],
+  "qid": "Q2913982"
 }

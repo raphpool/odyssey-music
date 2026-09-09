@@ -24,12 +24,14 @@
     {
       "slug": "genre:rock-and-roll",
       "type": "genre",
-      "name": "Rock and Roll"
+      "name": "Rock and Roll",
+      "qid": "Q7749"
     },
     {
       "slug": "genre:country",
       "type": "genre",
-      "name": "Country"
+      "name": "Country",
+      "qid": "Q83440"
     }
   ],
   "key_artists": [
@@ -73,5 +75,6 @@
       "type": "track",
       "name": "Rockabilly Gal"
     }
-  ]
+  ],
+  "qid": "Q203720"
 }

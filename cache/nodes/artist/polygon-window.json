@@ -22,17 +22,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:industrial-techno",
       "type": "genre",
-      "name": "Industrial Techno"
+      "name": "Industrial Techno",
+      "qid": "Q29480448"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "labels": [

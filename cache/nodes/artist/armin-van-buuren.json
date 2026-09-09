@@ -25,12 +25,14 @@
     {
       "slug": "genre:uplifting-trance",
       "type": "genre",
-      "name": "Uplifting trance"
+      "name": "Uplifting trance",
+      "qid": "Q1136765"
     },
     {
       "slug": "genre:progressive-trance",
       "type": "genre",
-      "name": "Progressive trance"
+      "name": "Progressive trance",
+      "qid": "Q2260696"
     },
     {
       "slug": "genre:psytrance",
@@ -40,12 +42,14 @@
     {
       "slug": "genre:progressive-house",
       "type": "genre",
-      "name": "Progressive house"
+      "name": "Progressive house",
+      "qid": "Q915152"
     },
     {
       "slug": "genre:dance-pop",
       "type": "genre",
-      "name": "Dance-pop"
+      "name": "Dance-pop",
+      "qid": "Q211756"
     }
   ],
   "labels": [

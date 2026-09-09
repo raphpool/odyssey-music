@@ -37,12 +37,14 @@
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:ambient-dub",
       "type": "genre",
-      "name": "Ambient Dub"
+      "name": "Ambient Dub",
+      "qid": "Q3613770"
     }
   ],
   "tracklist": [

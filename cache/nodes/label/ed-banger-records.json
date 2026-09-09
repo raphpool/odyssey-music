@@ -27,17 +27,20 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:dance",
       "type": "genre",
-      "name": "Dance"
+      "name": "Dance",
+      "qid": "Q8195422"
     },
     {
       "slug": "genre:electro",
       "type": "genre",
-      "name": "Electro"
+      "name": "Electro",
+      "qid": "Q217597"
     }
   ],
   "roster": [

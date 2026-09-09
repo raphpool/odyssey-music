@@ -17,7 +17,8 @@
     {
       "slug": "genre:rock",
       "type": "genre",
-      "name": "Rock"
+      "name": "Rock",
+      "qid": "Q11399"
     }
   ],
   "subgenres": [],
@@ -25,22 +26,26 @@
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy Metal"
+      "name": "Heavy Metal",
+      "qid": "Q38848"
     },
     {
       "slug": "genre:blues-rock",
       "type": "genre",
-      "name": "Blues Rock"
+      "name": "Blues Rock",
+      "qid": "Q193355"
     },
     {
       "slug": "genre:psychedelic-rock",
       "type": "genre",
-      "name": "Psychedelic Rock"
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
     },
     {
       "slug": "genre:arena-rock",
       "type": "genre",
-      "name": "Arena Rock"
+      "name": "Arena Rock",
+      "qid": "Q379033"
     }
   ],
   "key_artists": [
@@ -103,5 +108,6 @@
       "name": "Appetite for Destruction"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q83270"
 }

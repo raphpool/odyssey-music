@@ -36,12 +36,14 @@
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     },
     {
       "slug": "genre:alternative-dance",
       "type": "genre",
-      "name": "Alternative dance"
+      "name": "Alternative dance",
+      "qid": "Q2187392"
     },
     {
       "slug": "genre:madchester",

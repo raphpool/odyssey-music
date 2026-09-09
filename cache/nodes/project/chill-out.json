@@ -28,17 +28,20 @@
     {
       "slug": "genre:ambient-house",
       "type": "genre",
-      "name": "Ambient house"
+      "name": "Ambient house",
+      "qid": "Q2465085"
     },
     {
       "slug": "genre:ambient",
       "type": "genre",
-      "name": "Ambient"
+      "name": "Ambient",
+      "qid": "Q193207"
     },
     {
       "slug": "genre:sound-collage",
       "type": "genre",
-      "name": "Sound collage"
+      "name": "Sound collage",
+      "qid": "Q1744304"
     }
   ],
   "tracklist": [],

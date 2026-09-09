@@ -28,17 +28,20 @@
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     },
     {
       "slug": "genre:breakbeat",
       "type": "genre",
-      "name": "Breakbeat"
+      "name": "Breakbeat",
+      "qid": "Q663519"
     },
     {
       "slug": "genre:idm",
       "type": "genre",
-      "name": "IDM"
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "tracklist": [

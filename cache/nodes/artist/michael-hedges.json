@@ -21,12 +21,14 @@
     {
       "slug": "genre:new-age",
       "type": "genre",
-      "name": "New Age"
+      "name": "New Age",
+      "qid": "Q213121"
     },
     {
       "slug": "genre:new-acoustic",
       "type": "genre",
-      "name": "New Acoustic"
+      "name": "New Acoustic",
+      "qid": "Q7005181"
     }
   ],
   "labels": [

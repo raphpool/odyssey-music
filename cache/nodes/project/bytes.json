@@ -33,12 +33,14 @@
     {
       "slug": "genre:electronic",
       "type": "genre",
-      "name": "Electronic"
+      "name": "Electronic",
+      "qid": "Q9778"
     },
     {
       "slug": "genre:intelligent-dance-music",
       "type": "genre",
-      "name": "Intelligent Dance Music"
+      "name": "Intelligent Dance Music",
+      "qid": "Q660984"
     }
   ],
   "tracklist": [

@@ -20,12 +20,14 @@
     {
       "slug": "genre:digital-hardcore",
       "type": "genre",
-      "name": "Digital Hardcore"
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
     },
     {
       "slug": "genre:techno",
       "type": "genre",
-      "name": "Techno"
+      "name": "Techno",
+      "qid": "Q170611"
     }
   ],
   "labels": [

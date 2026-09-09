@@ -24,22 +24,26 @@
     {
       "slug": "genre:americana",
       "type": "genre",
-      "name": "Americana"
+      "name": "Americana",
+      "qid": "Q2407862"
     },
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:rock-music",
       "type": "genre",
-      "name": "Rock music"
+      "name": "Rock music",
+      "qid": "Q11399"
     },
     {
       "slug": "genre:film-score",
       "type": "genre",
-      "name": "Film score"
+      "name": "Film score",
+      "qid": "Q492264"
     }
   ],
   "labels": [

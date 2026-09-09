@@ -41,27 +41,32 @@
     {
       "slug": "genre:jazz",
       "type": "genre",
-      "name": "Jazz"
+      "name": "Jazz",
+      "qid": "Q8341"
     },
     {
       "slug": "genre:hard-bop",
       "type": "genre",
-      "name": "Hard bop"
+      "name": "Hard bop",
+      "qid": "Q181010"
     },
     {
       "slug": "genre:spiritual-jazz",
       "type": "genre",
-      "name": "Spiritual jazz"
+      "name": "Spiritual jazz",
+      "qid": "Q98528204"
     },
     {
       "slug": "genre:modal-jazz",
       "type": "genre",
-      "name": "Modal jazz"
+      "name": "Modal jazz",
+      "qid": "Q1127530"
     },
     {
       "slug": "genre:free-jazz",
       "type": "genre",
-      "name": "Free jazz"
+      "name": "Free jazz",
+      "qid": "Q211781"
     }
   ],
   "labels": [

@@ -31,7 +31,8 @@
     {
       "slug": "genre:heavy-metal",
       "type": "genre",
-      "name": "Heavy Metal"
+      "name": "Heavy Metal",
+      "qid": "Q38848"
     }
   ],
   "tracklist": [],

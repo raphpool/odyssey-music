@@ -33,7 +33,8 @@
     {
       "slug": "genre:ska",
       "type": "genre",
-      "name": "Ska"
+      "name": "Ska",
+      "qid": "Q54365"
     }
   ],
   "subgenres": [],
@@ -41,12 +42,14 @@
     {
       "slug": "genre:reggae",
       "type": "genre",
-      "name": "Reggae"
+      "name": "Reggae",
+      "qid": "Q9794"
     },
     {
       "slug": "genre:soul",
       "type": "genre",
-      "name": "Soul"
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "key_artists": [
@@ -121,5 +124,6 @@
       "type": "track",
       "name": "The Tide Is High"
     }
-  ]
+  ],
+  "qid": "Q573484"
 }

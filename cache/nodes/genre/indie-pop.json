@@ -17,51 +17,60 @@
     {
       "slug": "genre:pop-music",
       "type": "genre",
-      "name": "Pop music"
+      "name": "Pop music",
+      "qid": "Q37073"
     },
     {
       "slug": "genre:indie-rock",
       "type": "genre",
-      "name": "Indie rock"
+      "name": "Indie rock",
+      "qid": "Q183504"
     }
   ],
   "subgenres": [
     {
       "slug": "genre:twee-pop",
       "type": "genre",
-      "name": "Twee pop"
+      "name": "Twee pop",
+      "qid": "Q370778"
     },
     {
       "slug": "genre:chamber-pop",
       "type": "genre",
-      "name": "Chamber pop"
+      "name": "Chamber pop",
+      "qid": "Q22991878"
     },
     {
       "slug": "genre:indietronica",
       "type": "genre",
-      "name": "Indietronica"
+      "name": "Indietronica",
+      "qid": "Q325397"
     }
   ],
   "related_genres": [
     {
       "slug": "genre:jangle-pop",
       "type": "genre",
-      "name": "Jangle pop"
+      "name": "Jangle pop",
+      "qid": "Q1190565"
     },
     {
       "slug": "genre:twee-pop",
       "type": "genre",
-      "name": "Twee pop"
+      "name": "Twee pop",
+      "qid": "Q370778"
     },
     {
       "slug": "genre:chamber-pop",
       "type": "genre",
-      "name": "Chamber pop"
+      "name": "Chamber pop",
+      "qid": "Q22991878"
     },
     {
       "slug": "genre:post-punk",
       "type": "genre",
-      "name": "Post-punk"
+      "name": "Post-punk",
+      "qid": "Q598929"
     }
   ],
   "key_artists": [
@@ -109,5 +118,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q842324"
 }
