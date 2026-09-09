@@ -46,8 +46,12 @@ jobs:
   diff-size:
     # Une PR trop grosse coûte plus cher à reviewer qu'à redécouper.
     # Exclusions propres à ce repo : le lockfile, le bundle généré
-    # web/data.json et le cache de connaissance cache/** ne sont pas de la
-    # surface de review — un ticket de crawl ajouterait des milliers de lignes.
+    # web/data.json, le cache de connaissance cache/** et
+    # data/genre-qid-map.json (table générée par scripts/build-genre-qid-map.ts,
+    # régénérable) ne sont pas de la surface de review — un ticket de crawl
+    # ajouterait des milliers de lignes. Les autres fichiers de data/
+    # (genre-catalog.json, genre-taxonomy.json) sont des inputs de pipeline
+    # sans script générateur dans ce repo : ils restent comptés.
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
@@ -57,7 +61,7 @@ jobs:
         run: |
           BASE="origin/${{ github.event.pull_request.base.ref }}"
           git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
-          EXCL=(':(exclude)package-lock.json' ':(exclude)web/data.json' ':(exclude)cache/**' ':(exclude)**/*.snap')
+          EXCL=(':(exclude)package-lock.json' ':(exclude)web/data.json' ':(exclude)cache/**' ':(exclude)**/*.snap' ':(exclude)data/genre-qid-map.json')
           STATS=$(git diff --shortstat "$BASE"...HEAD -- . "${EXCL[@]}")
           FILES=$(git diff --name-only "$BASE"...HEAD -- . "${EXCL[@]}" | wc -l)
           LINES=$(git diff --numstat "$BASE"...HEAD -- . "${EXCL[@]}" \
