@@ -172,7 +172,11 @@ export class NodeCache {
 	}
 
 	private async emitReverses(source: NodePayload): Promise<void> {
-		const sourceEdge: EdgeRef = { slug: source.slug, type: source.type, name: source.name };
+		// A genre source's qid rides along on the reverse edge it emits (TRA-18).
+		const sourceEdge: EdgeRef =
+			source.type === "genre" && source.qid
+				? { slug: source.slug, type: source.type, name: source.name, qid: source.qid }
+				: { slug: source.slug, type: source.type, name: source.name };
 		const fields = reversibleFields(source.type);
 		for (const field of fields) {
 			const value = (source as unknown as Record<string, unknown>)[field];

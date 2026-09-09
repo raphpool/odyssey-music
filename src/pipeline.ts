@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { pipelineConfig, pricingConfig } from "./config.js";
+import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
@@ -33,6 +34,7 @@ import {
 	findLabelMbidByName,
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
+	type MbGenreTag,
 } from "./musicbrainz.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
@@ -782,8 +784,43 @@ async function generateNodeDraft(
 	};
 }
 
+interface GenreEdge {
+	type: "genre";
+	name: string;
+	slug: string;
+	qid?: string;
+}
+
+// Shared by mbGenreEdges and the parent_genres backfill below (TRA-18): omit the qid key
+// entirely rather than set it to undefined (exactOptionalPropertyTypes).
+function genreEdge(name: string, slug: string, qid?: string): GenreEdge {
+	return qid ? { type: "genre", name, slug, qid } : { type: "genre", name, slug };
+}
+
+// Resolves each MB genre tag to its catalog QID (TRA-18); g.name is MB's lowercased name, not
+// the display name. Unresolvable genres are kept, just without a qid (per ticket contract).
+function mbGenreEdges(genres: readonly MbGenreTag[], resolver: GenreResolver | null): GenreEdge[] {
+	return genres.map((g) => {
+		const display = genreDisplayName(g.name);
+		const identity = resolver?.resolve(g.mbid ? { name: g.name, mbid: g.mbid } : { name: g.name });
+		return genreEdge(display, makeSlug("genre", display), identity?.qid);
+	});
+}
+
+// Exported for test/pipeline-genre-qid.test.ts (TRA-18), which mocks musicbrainz.js.
+export { enrichFromMusicBrainz };
 async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: PipelineLog): Promise<void> {
 	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
+	// Genre resolver load is best-effort (TRA-18): a failure just means no qid on genre edges below.
+	let genreResolver: GenreResolver | null = null;
+	if (input.type === "artist" || input.type === "track" || input.type === "project") {
+		try {
+			genreResolver = await loadGenreResolver();
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] genre resolver unavailable, genre edges will have no qid: ${msg.slice(0, 100)}`);
+		}
+	}
 	if (input.type === "artist") {
 		try {
 			let mbid = input.mbid;
@@ -793,11 +830,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 				const genres = await fetchEntityGenresMb("artist", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
 					const obj = node as Record<string, unknown>;
-					obj.genres = genres.map((g) => ({
-						type: "genre",
-						name: genreDisplayName(g.name),
-						slug: makeSlug("genre", genreDisplayName(g.name)),
-					}));
+					obj.genres = mbGenreEdges(genres, genreResolver);
 				}
 				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
 				// Keep Album/EP/Single primary types, drop anything with secondary types
@@ -883,11 +916,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 				const genres = await fetchEntityGenresMb("recording", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
 					const obj = node as Record<string, unknown>;
-					obj.genres = genres.map((g) => ({
-						type: "genre",
-						name: genreDisplayName(g.name),
-						slug: makeSlug("genre", genreDisplayName(g.name)),
-					}));
+					obj.genres = mbGenreEdges(genres, genreResolver);
 				}
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
@@ -950,11 +979,7 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 				const genres = await fetchEntityGenresMb("release-group", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
 					const obj = node as Record<string, unknown>;
-					obj.genres = genres.map((g) => ({
-						type: "genre",
-						name: genreDisplayName(g.name),
-						slug: makeSlug("genre", genreDisplayName(g.name)),
-					}));
+					obj.genres = mbGenreEdges(genres, genreResolver);
 				}
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
@@ -1024,19 +1049,18 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 	if (input.type === "genre") {
 		try {
 			const obj = node as Record<string, unknown>;
+			const catalog = await loadGenreCatalog();
+			const body = (obj.slug as string).split(":")[1] ?? "";
+			const entry = catalog.get(body);
+			// Outside the parent_genres guard below (TRA-18): a genre with parents already still needs its qid.
+			if (entry) obj.qid = entry.wikidata_qid;
 			const current = Array.isArray(obj.parent_genres) ? (obj.parent_genres as unknown[]) : [];
-			if (current.length === 0) {
-				const catalog = await loadGenreCatalog();
-				const body = (obj.slug as string).split(":")[1] ?? "";
-				const entry = catalog.get(body);
-				if (entry?.parents?.length) {
-					obj.parent_genres = entry.parents.map((p) => ({
-						type: "genre",
-						name: genreDisplayName(p.replace(/-/g, " ")),
-						slug: makeSlug("genre", genreDisplayName(p.replace(/-/g, " "))),
-					}));
-					log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
-				}
+			if (current.length === 0 && entry?.parents?.length) {
+				obj.parent_genres = entry.parents.map((p) => {
+					const display = genreDisplayName(p.replace(/-/g, " "));
+					return genreEdge(display, makeSlug("genre", display), catalog.get(p)?.wikidata_qid);
+				});
+				log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
 			}
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
