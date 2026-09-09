@@ -1051,9 +1051,40 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 			const obj = node as Record<string, unknown>;
 			const catalog = await loadGenreCatalog();
 			const body = (obj.slug as string).split(":")[1] ?? "";
-			const entry = catalog.get(body);
-			// Outside the parent_genres guard below (TRA-18): a genre with parents already still needs its qid.
-			if (entry) obj.qid = entry.wikidata_qid;
+			// 2026-09-09 (TRA-26): catalog.get(body) was a slug-exact lookup. The Wikidata
+			// catalog only has "electronic-music", not "electronic", so genre:electronic got
+			// neither qid nor parents and was invisible to report:genre-dupes. Route through
+			// the resolver (name -> catalog slug -> alias -> "music" suffix -> squashed form)
+			// instead; only fall back to the old slug-exact lookup when the resolver itself
+			// failed to load (loadGenreResolver is memoized, so this doesn't load it twice).
+			let resolver: GenreResolver | null = null;
+			try {
+				resolver = await loadGenreResolver();
+			} catch (e) {
+				const msg = e instanceof Error ? e.message : String(e);
+				log(
+					`[pipeline] genre resolver unavailable for node qid, falling back to slug lookup: ${msg.slice(0, 100)}`,
+				);
+			}
+			let entry: WikidataGenreEntry | undefined;
+			if (resolver) {
+				// An unresolved name is a deliberate no-op (architecture decision 5): the node
+				// keeps whatever it had, rather than guessing via the old slug-exact lookup.
+				// Resolve on the node's own materialized name (obj.name), not input.name: by
+				// this point canonicalizeDraft (:1179) has already let the LLM draft override
+				// the requested name, so obj.name is the one actually persisted on the node —
+				// same convention as mbGenreEdges (:805), which resolves on the tag's own name.
+				const ownName = typeof obj.name === "string" ? obj.name : "";
+				const identity = resolver.resolve({ name: ownName || body });
+				if (identity) {
+					obj.qid = identity.qid;
+					entry = catalog.get(identity.slug);
+				}
+			} else {
+				entry = catalog.get(body);
+				// Outside the parent_genres guard below (TRA-18): a genre with parents already still needs its qid.
+				if (entry) obj.qid = entry.wikidata_qid;
+			}
 			const current = Array.isArray(obj.parent_genres) ? (obj.parent_genres as unknown[]) : [];
 			if (current.length === 0 && entry?.parents?.length) {
 				obj.parent_genres = entry.parents.map((p) => {
