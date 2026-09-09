@@ -4,7 +4,9 @@ import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	formatReport,
+	parseCliArgs,
 	planBackfill,
+	readCacheNodes,
 	runMigration,
 } from "../scripts/migrations/2026-09-04-backfill-genre-qid.js";
 import { createGenreResolver, type GenreResolver } from "../src/genre-identity.js";
@@ -358,5 +360,35 @@ describe("runMigration (disk integration)", () => {
 
 		const goodRaw = await readFile(goodPath, "utf8");
 		expect((JSON.parse(goodRaw) as ArtistNode).genres[0]).toEqual({ ...edge, qid: "Q170611" });
+	});
+
+	it("reports a stray non-type directory under nodes/ as invalid instead of throwing", async () => {
+		const strayPath = join(dir, "nodes", "bak", "leftover.json");
+		await mkdir(dirname(strayPath), { recursive: true });
+		await writeFile(strayPath, "{}", "utf8");
+
+		const { nodes, invalid } = await readCacheNodes(dir);
+
+		expect(nodes).toHaveLength(0);
+		expect(invalid).toHaveLength(1);
+		expect(invalid[0]?.error).toMatch(/Invalid slug type/);
+	});
+});
+
+describe("parseCliArgs", () => {
+	it("rejects a missing cache-dir instead of defaulting", () => {
+		expect(parseCliArgs([])).toBeNull();
+	});
+
+	it("rejects a flag standing in for the positional cache-dir", () => {
+		// Regression: `tsx ...backfill-genre-qid.ts --apply` (forgetting the cache-dir) used to
+		// be accepted with cacheDir = "--apply", silently no-op-migrating a nonexistent
+		// directory and exiting 0 instead of failing the required usage check.
+		expect(parseCliArgs(["--apply"])).toBeNull();
+	});
+
+	it("parses the positional cache-dir and the --apply flag", () => {
+		expect(parseCliArgs(["cache"])).toEqual({ cacheDir: "cache", apply: false });
+		expect(parseCliArgs(["cache", "--apply"])).toEqual({ cacheDir: "cache", apply: true });
 	});
 });

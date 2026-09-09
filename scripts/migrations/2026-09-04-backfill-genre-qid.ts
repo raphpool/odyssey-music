@@ -307,13 +307,16 @@ export async function readCacheNodes(
 	const nodes: CacheNodeFile[] = [];
 	const invalid: UnreadableNodeFile[] = [];
 	for (const slug of slugs) {
-		const { type, body } = parseSlug(slug);
-		const path = join(root, "nodes", type, `${body}.json`);
 		try {
+			const { type, body } = parseSlug(slug);
+			const path = join(root, "nodes", type, `${body}.json`);
 			const raw = await readFile(path, "utf8");
 			nodes.push({ path, node: JSON.parse(raw) as unknown });
 		} catch (e) {
-			invalid.push({ path, error: e instanceof Error ? e.message : String(e) });
+			// parseSlug throws for a stray non-type directory under nodes/ (e.g. a leftover
+			// tmp/ or bak/ folder) -- reported the same way as an unreadable file, never left
+			// to propagate uncaught, matching this function's own contract above.
+			invalid.push({ path: join(root, "nodes", slug), error: e instanceof Error ? e.message : String(e) });
 		}
 	}
 	return { nodes, invalid };
@@ -398,14 +401,31 @@ export async function runMigration(
 	return { plan, report: formatReport(plan, false), skippedWrites, exitCode: 0 };
 }
 
+export interface CliArgs {
+	cacheDir: string;
+	apply: boolean;
+}
+
+/**
+ * Parses `<cache-dir> [--apply]` from argv (excluding the node/script entries). Returns
+ * null when the mandatory positional cache-dir is missing OR a flag was passed in its
+ * place (e.g. running with only `--apply`, forgetting the positional arg) -- accepting a
+ * flag there would silently migrate a nonexistent directory named after the flag, print an
+ * all-zero report, and exit 0 instead of failing loudly.
+ */
+export function parseCliArgs(argv: readonly string[]): CliArgs | null {
+	const cacheDir = argv[0];
+	if (!cacheDir || cacheDir.startsWith("-")) return null;
+	return { cacheDir, apply: argv.includes("--apply") };
+}
+
 async function main(): Promise<void> {
-	const cacheDir = process.argv[2];
-	if (!cacheDir) {
+	const args = parseCliArgs(process.argv.slice(2));
+	if (!args) {
 		process.stderr.write("usage: 2026-09-04-backfill-genre-qid.ts <cache-dir> [--apply]\n");
 		process.exit(2);
 	}
-	const apply = process.argv.includes("--apply");
-	const result = await runMigration(cacheDir, apply);
+	const result = await runMigration(args.cacheDir, args.apply);
 	console.log(result.report);
 	process.exit(result.exitCode);
 }
