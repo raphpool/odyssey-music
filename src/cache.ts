@@ -1,10 +1,13 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
+import { logger } from "./logger.js";
 import { reverseFor, reversibleFields } from "./reverse-edges.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
+
+const log = logger.child({ module: "cache" });
 
 export interface PendingReverse {
 	field: string;
@@ -33,6 +36,27 @@ export class NodeCache {
 	private pendingDirty = false;
 	private pendingLoading: Promise<void> | null = null;
 	private pendingLoaded = false;
+	// Memoized qid -> slug index for genre nodes, built lazily and thrown away on any genre
+	// write (see write()). Null means "not built yet". genreQidIndexBuild tracks a build in
+	// progress, tagged with the version it started at, so concurrent callers share one
+	// promise (no double build) while a write that lands mid-build (bumping the version)
+	// makes the NEXT caller start a fresh build instead of awaiting the now-stale one.
+	//
+	// 2026-09-09: write() used to bump the version only on entry, synchronously, before the
+	// node file was actually on disk (loadPending -> runLocked -> mkdir -> atomicWriteJson ->
+	// rename all still had to happen). A build that started after that bump but before the
+	// rename landed would read a disk that didn't have the new node yet, then commit that
+	// stale snapshot as the memo forever. write() now invalidates a second time after the node
+	// has actually landed on disk (in a finally, so a throw from emitReverses/flushPending
+	// can't skip it either), so no build window can miss it -- PROVIDED the commit guard checks
+	// the live genreQidIndexVersion (not a frozen copy on the build's own tracker object): a
+	// build still in flight when either invalidation fires keeps its tracker object untouched
+	// (write() only ever touches genreQidIndex/genreQidIndexVersion), so a guard compared
+	// against that stale tracker would trivially match itself and commit anyway, overwriting
+	// the null the invalidation had just set. See getOrBuildGenreQidIndex's commit closure.
+	private genreQidIndex: Map<string, Slug> | null = null;
+	private genreQidIndexBuild: { version: number; promise: Promise<Map<string, Slug>> } | null = null;
+	private genreQidIndexVersion = 0;
 	public readonly stats: CacheStats = { written: 0, revUpdates: 0 };
 
 	constructor(root: string) {
@@ -145,6 +169,111 @@ export class NodeCache {
 	}
 
 	/**
+	 * Find the slug of the existing genre node carrying a given Wikidata QID, if any.
+	 *
+	 * 2026-09-09: the slug of a genre node has always been a pure function of its *name*
+	 * (makeSlug), never of its resolved identity — nothing could answer "does a genre node
+	 * for this QID already exist?" This caused 20 groups of duplicate genre nodes sharing a
+	 * QID (e.g. "Electronic" / "Electronic music", "idm" / "intelligent-dance-music"). This
+	 * index is the first brick of duplicate prevention: pure read, no consumer yet.
+	 *
+	 * Built lazily on first call by scanning every `genre:` slug via get() (so qid is
+	 * Zod-validated), then memoized until the next genre write() invalidates it (write()
+	 * invalidates both on entry and again once the node has landed on disk — see the
+	 * genreQidIndex field comment). A genre file that fails validation (e.g. a qid violating
+	 * QID_PATTERN) is skipped with a warning rather than failing the whole build.
+	 *
+	 * Accepted risk, documented in docs/plans/qid-genre-identity.md (Décisions d'archi /
+	 * Risques): this index is process-scoped, same as the existing pendingReverses memo on
+	 * this class — a one-off `--apply` run and a long-lived server each hold their own copy,
+	 * so nothing propagates a write from one process to another.
+	 */
+	async findGenreSlugByQid(qid: string): Promise<Slug | undefined> {
+		if (!qid) return undefined;
+		const index = await this.getOrBuildGenreQidIndex();
+		return index.get(qid);
+	}
+
+	private async getOrBuildGenreQidIndex(): Promise<Map<string, Slug>> {
+		if (this.genreQidIndex) return this.genreQidIndex;
+		const startedAtVersion = this.genreQidIndexVersion;
+		// A build already in flight, tagged with the version in effect when IT started, is
+		// stale to share if a genre write() has landed since (bumping the version): start a
+		// fresh build instead of awaiting a result that won't reflect that write.
+		if (!this.genreQidIndexBuild || this.genreQidIndexBuild.version !== startedAtVersion) {
+			const promise = this.buildGenreQidIndex().then(
+				(index) => {
+					// 2026-09-09: this used to gate the commit on `genreQidIndexBuild.version`
+					// instead of the live `genreQidIndexVersion`. write()'s invalidations (entry
+					// and exit) only ever touch genreQidIndex/genreQidIndexVersion, never this
+					// build's own tracker object -- so a build still in flight when a write
+					// invalidated survived with its tracker untouched, and its guard trivially
+					// matched itself, committing a stale snapshot straight over the fresh null a
+					// write had *just* set. Comparing against the live version instead means ANY
+					// invalidation that happened anywhere during this build's lifetime -- not
+					// just a newer build replacing the tracker -- correctly vetoes the commit.
+					if (this.genreQidIndexVersion === startedAtVersion) {
+						this.genreQidIndex = index;
+					}
+					// Only clear the tracker if it's still ours to clear -- a newer build may
+					// have already replaced it with its own.
+					if (this.genreQidIndexBuild?.version === startedAtVersion) {
+						this.genreQidIndexBuild = null;
+					}
+					return index;
+				},
+				(err: unknown) => {
+					// Don't let a failed build (e.g. a transient read error) permanently poison
+					// the memo: clear it so the next call retries instead of re-throwing forever.
+					if (this.genreQidIndexBuild?.version === startedAtVersion) {
+						this.genreQidIndexBuild = null;
+					}
+					throw err;
+				},
+			);
+			this.genreQidIndexBuild = { version: startedAtVersion, promise };
+		}
+		return this.genreQidIndexBuild.promise;
+	}
+
+	private async buildGenreQidIndex(): Promise<Map<string, Slug>> {
+		const slugs = (await this.listSlugs()).filter((s) => s.startsWith("genre:"));
+		// Collect every candidate per qid first so collisions (multiple genre nodes sharing a
+		// qid, a transient pre-merge state) can be resolved deterministically below.
+		const candidates = new Map<string, Slug[]>();
+		for (const slug of slugs) {
+			let node: NodePayload;
+			try {
+				node = await this.get(slug);
+			} catch (e) {
+				// A single malformed genre file (e.g. a qid violating QID_PATTERN) must not
+				// fail the whole build — that would take every other qid lookup down with it.
+				// Skip it and keep going; it stays invisible to the index until fixed.
+				log.warn("skipping invalid genre node while building qid index", {
+					slug,
+					error: e instanceof Error ? e.message : String(e),
+				});
+				continue;
+			}
+			// Narrow on the validated type discriminant (not a cast) so a node misfiled under
+			// nodes/genre/ with a different type can't leak a same-shaped field into the index.
+			if (node.type !== "genre" || !node.qid) continue;
+			const list = candidates.get(node.qid) ?? [];
+			list.push(slug);
+			candidates.set(node.qid, list);
+		}
+		const index = new Map<string, Slug>();
+		for (const [nodeQid, list] of candidates) {
+			// Deterministic collision pick: shortest slug, then lexicographic. Matches the
+			// most-used member in 18 of the 20 current duplicate groups; the merge redirects
+			// the others.
+			const winner = [...list].sort((a, b) => a.length - b.length || (a < b ? -1 : a > b ? 1 : 0))[0];
+			if (winner) index.set(nodeQid, winner);
+		}
+		return index;
+	}
+
+	/**
 	 * Write a node payload. Validates against the schema, merges any pending reverse edges
 	 * that were enqueued for this slug before it was materialized, then emits forward
 	 * edges as reverse updates on the target nodes (materializing them if cached, or
@@ -152,23 +281,49 @@ export class NodeCache {
 	 */
 	async write(node: NodePayload): Promise<void> {
 		const parsed = nodePayloadSchema.parse(node) as NodePayload;
-		await this.loadPending();
-		await this.runLocked(parsed.slug, async () => {
-			const pending = this.pendingReverses[parsed.slug] ?? [];
-			const merged = applyReverses(parsed, pending);
-			const validated = nodePayloadSchema.parse(merged) as NodePayload;
-			const file = this.pathFor(validated.slug);
-			await mkdir(dirname(file), { recursive: true });
-			await atomicWriteJson(file, validated);
-			this.stats.written++;
-			if (pending.length) {
-				delete this.pendingReverses[parsed.slug];
-				this.pendingDirty = true;
+		if (parsed.type === "genre") {
+			// First invalidation, on entry: covers any build that started before this write and
+			// is still in flight, and rules out a stale-but-not-yet-invalidated index being
+			// handed out to a caller between now and the node actually landing on disk below.
+			this.genreQidIndex = null;
+			this.genreQidIndexVersion++;
+		}
+		try {
+			await this.loadPending();
+			await this.runLocked(parsed.slug, async () => {
+				const pending = this.pendingReverses[parsed.slug] ?? [];
+				const merged = applyReverses(parsed, pending);
+				const validated = nodePayloadSchema.parse(merged) as NodePayload;
+				const file = this.pathFor(validated.slug);
+				await mkdir(dirname(file), { recursive: true });
+				await atomicWriteJson(file, validated);
+				this.stats.written++;
+				if (pending.length) {
+					delete this.pendingReverses[parsed.slug];
+					this.pendingDirty = true;
+				}
+			});
+			// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
+			await this.emitReverses(parsed);
+			await this.flushPending();
+		} finally {
+			// 2026-09-09: emitReverses/flushPending can throw after the source node itself is
+			// already on disk (e.g. a target of a reverse edge fails to validate on read). The
+			// second invalidation must still run on that path — it was previously a plain
+			// statement after the try body, so a throw here skipped it and left a build that
+			// raced this write memoized on a stale, pre-write snapshot forever.
+			if (parsed.type === "genre") {
+				// Second invalidation, after the node has actually landed on disk: a build that
+				// started between the first invalidation above and this point could have read a
+				// disk snapshot still missing this node. Bumping the version here — checked
+				// against the live genreQidIndexVersion in getOrBuildGenreQidIndex's commit
+				// guard, not a frozen copy — vetoes that build's commit even if it resolves
+				// after this line runs, and guarantees the next lookup rebuilds from a disk that
+				// has the write applied.
+				this.genreQidIndex = null;
+				this.genreQidIndexVersion++;
 			}
-		});
-		// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
-		await this.emitReverses(parsed);
-		await this.flushPending();
+		}
 	}
 
 	private async emitReverses(source: NodePayload): Promise<void> {

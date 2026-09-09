@@ -1,9 +1,9 @@
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
-import type { ArtistNode, GenreNode, NodePayload, TrackNode } from "../src/types.js";
+import type { ArtistNode, GenreNode, NodePayload, Slug, TrackNode } from "../src/types.js";
 
 let dir: string;
 let cache: NodeCache;
@@ -150,6 +150,178 @@ describe("NodeCache", () => {
 		const slugs = await cache.listSlugs();
 		expect(slugs.length).toBeGreaterThanOrEqual(3);
 		expect(slugs).toContain("track:windowlicker" as NodePayload["slug"]);
+	});
+});
+
+describe("NodeCache — findGenreSlugByQid (TRA-24)", () => {
+	it("resolves a slug by qid, ignores nodes without a qid, and returns undefined for unknown/empty qids", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			await qidCache.write(genreNode({ slug: "genre:b", name: "B" }));
+
+			expect(await qidCache.findGenreSlugByQid("Q1")).toBe("genre:a");
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined();
+			expect(await qidCache.findGenreSlugByQid("")).toBeUndefined();
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("invalidates the memo on a genre write so a later lookup sees the new node", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			// Prime the memo before the node we're looking for even exists.
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined();
+
+			await qidCache.write(genreNode({ slug: "genre:c", name: "C", qid: "Q2" }));
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBe("genre:c");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("resolves a qid collision deterministically: shortest slug, then lexicographic, order-independent", async () => {
+		const qidDir1 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache1 = new NodeCache(qidDir1);
+		const qidDir2 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache2 = new NodeCache(qidDir2);
+		try {
+			await cache1.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q9778" }));
+			await cache1.write(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q9778" }),
+			);
+			expect(await cache1.findGenreSlugByQid("Q9778")).toBe("genre:electronic");
+
+			// Reversed creation order must resolve to the same winner.
+			await cache2.write(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q9778" }),
+			);
+			await cache2.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q9778" }));
+			expect(await cache2.findGenreSlugByQid("Q9778")).toBe("genre:electronic");
+		} finally {
+			await rm(qidDir1, { recursive: true, force: true });
+			await rm(qidDir2, { recursive: true, force: true });
+		}
+	});
+
+	it("ignores an invalid genre node while building the index, logs a warning, and still resolves the rest", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		const warnSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+		try {
+			await qidCache.write(genreNode({ slug: "genre:good", name: "Good", qid: "Q1" }));
+			// Sneak in a genre file that fails schema validation without going through write().
+			const genreDir = join(qidDir, "nodes", "genre");
+			await mkdir(genreDir, { recursive: true });
+			await writeFile(join(genreDir, "broken.json"), JSON.stringify({ type: "genre" }), "utf8");
+
+			// The corrupt file must not fail the whole build: Q1 still resolves.
+			expect(await qidCache.findGenreSlugByQid("Q1")).toBe("genre:good");
+			// ...and the skip is logged, naming the offending slug.
+			const logged = warnSpy.mock.calls.map((c) => String(c[0])).join("\n");
+			expect(logged).toContain("genre:broken");
+		} finally {
+			warnSpy.mockRestore();
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("resolves concurrent lookups racing the first build to the same result without error, sharing one build", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:concurrent", name: "Concurrent", qid: "Q42" }));
+			const buildSpy = vi.spyOn(
+				qidCache as unknown as { buildGenreQidIndex: () => Promise<Map<string, Slug>> },
+				"buildGenreQidIndex",
+			);
+			const [a, b] = await Promise.all([
+				qidCache.findGenreSlugByQid("Q42"),
+				qidCache.findGenreSlugByQid("Q42"),
+			]);
+			expect(a).toBe("genre:concurrent");
+			expect(b).toBe("genre:concurrent");
+			expect(buildSpy).toHaveBeenCalledTimes(1);
+			buildSpy.mockRestore();
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
+
+	it("does not memoize a stale index once a genre write it raced has fully landed, whichever call starts first (regression)", async () => {
+		const qidDir1 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache1 = new NodeCache(qidDir1);
+		const qidDir2 = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const cache2 = new NodeCache(qidDir2);
+		try {
+			// The write starts first; the lookup (and the build it triggers) races it.
+			await cache1.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			const w1 = cache1.write(genreNode({ slug: "genre:c", name: "C", qid: "Q2" })); // not awaited
+			await cache1.findGenreSlugByQid("Q2"); // undefined here is fine: genuinely concurrent
+			await w1; // the write has now fully landed on disk
+			expect(await cache1.has("genre:c")).toBe(true);
+			expect(await cache1.findGenreSlugByQid("Q2")).toBe("genre:c");
+
+			// Same interleaving, but the lookup (and its build) starts first this time.
+			await cache2.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			const lookup2 = cache2.findGenreSlugByQid("Q2"); // not awaited
+			const w2 = cache2.write(genreNode({ slug: "genre:c", name: "C", qid: "Q2" })); // not awaited
+			await lookup2; // undefined here is fine: genuinely concurrent
+			await w2; // the write has now fully landed on disk
+			expect(await cache2.has("genre:c")).toBe(true);
+			expect(await cache2.findGenreSlugByQid("Q2")).toBe("genre:c");
+		} finally {
+			await rm(qidDir1, { recursive: true, force: true });
+			await rm(qidDir2, { recursive: true, force: true });
+		}
+	});
+
+	it("still runs the second invalidation when write() throws after the source node landed (regression, review round 2)", async () => {
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			// A genre file that exists on disk but fails schema validation: in production this
+			// is exactly what happens when emitReverses tries to materialize a reverse edge onto
+			// a corrupt target and get() throws ValidationError (not NotFoundError) in
+			// applyReverseToTarget, so write() fails AFTER the source node has already landed.
+			const genreDir = join(qidDir, "nodes", "genre");
+			await mkdir(genreDir, { recursive: true });
+			await writeFile(join(genreDir, "target.json"), JSON.stringify({ type: "genre" }), "utf8");
+
+			// Pin the interleaving explicitly instead of racing real fs timing: freeze the
+			// directory listing a build would see to the pre-write state (no genre:c yet), so
+			// the lookup below is guaranteed to build and memoize a stale (Q2-less) index —
+			// deterministically simulating a build that started in the window before genre:c
+			// landed, regardless of how fast the write below actually completes on disk.
+			const staleListing = await qidCache.listSlugs();
+			const listSlugsSpy = vi.spyOn(qidCache, "listSlugs").mockImplementation(async () => staleListing);
+
+			const w = qidCache.write(
+				genreNode({
+					slug: "genre:c",
+					name: "C",
+					qid: "Q2",
+					parent_genres: [{ type: "genre", slug: "genre:target", name: "Target" }],
+				}),
+			); // not awaited: its entry invalidation has already run synchronously by this point
+
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBeUndefined(); // built off the stale listing, now memoized
+			listSlugsSpy.mockRestore();
+
+			await expect(w).rejects.toThrow(); // genre:c is on disk, but emitReverses fails on the corrupt target
+			expect(await qidCache.has("genre:c")).toBe(true);
+
+			// The second invalidation (in write()'s finally) must have busted the stale memo
+			// above even though write() threw, so this rebuilds from the real, current disk.
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBe("genre:c");
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
 	});
 });
 
