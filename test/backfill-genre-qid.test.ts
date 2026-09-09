@@ -144,6 +144,39 @@ describe("planBackfill", () => {
 		]);
 	});
 
+	it("adds qid after the existing keys, never reordering (edge and genre node)", () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		const node = artistNode({ genres: [edge] });
+		const direct = genreNode({ slug: "genre:techno", name: "Techno" });
+
+		const plan = planBackfill(
+			[
+				{ path: "/a.json", node },
+				{ path: "/g.json", node: direct },
+			],
+			fakeResolver(),
+		);
+
+		const writtenEdge = (plan.writes.get("/a.json") as ArtistNode).genres[0] as EdgeRef;
+		expect(Object.keys(writtenEdge)).toEqual([...Object.keys(edge), "qid"]);
+
+		const writtenGenre = plan.writes.get("/g.json") as GenreNode;
+		expect(Object.keys(writtenGenre)).toEqual([...Object.keys(direct), "qid"]);
+	});
+
+	it("never mutates the input node or its edges in place", () => {
+		const edge: EdgeRef = { slug: "genre:techno", type: "genre", name: "Techno" };
+		const node = artistNode({ genres: [edge] });
+		const nodeSnapshot = JSON.parse(JSON.stringify(node)) as ArtistNode;
+		const edgeSnapshot = JSON.parse(JSON.stringify(edge)) as EdgeRef;
+
+		const plan = planBackfill([{ path: "/a.json", node }], fakeResolver());
+
+		expect(plan.writes.get("/a.json")).not.toBe(node);
+		expect(node).toEqual(nodeSnapshot);
+		expect(edge).toEqual(edgeSnapshot);
+	});
+
 	it("sorts unresolved genres by frequency descending, then by name", () => {
 		const mkEdge = (name: string): EdgeRef => ({
 			slug: `genre:${name.toLowerCase()}` as Slug,
