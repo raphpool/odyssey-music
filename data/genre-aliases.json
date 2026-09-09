@@ -1,0 +1,9 @@
+{
+  "source": "hand-curated",
+  "aliases": [
+    { "alias": "idm", "qid": "Q660984", "catalog_name": "intelligent dance music" },
+    { "alias": "minimalism", "qid": "Q572901", "catalog_name": "minimalist music" },
+    { "alias": "prog rock", "qid": "Q49451", "catalog_name": "progressive rock" },
+    { "alias": "r and b", "qid": "Q45981", "catalog_name": "rhythm and blues" }
+  ]
+}
