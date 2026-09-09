@@ -243,7 +243,7 @@ function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
 	return next as unknown as NodePayload;
 }
 
-async function atomicWriteJson(file: string, data: unknown): Promise<void> {
+export async function atomicWriteJson(file: string, data: unknown): Promise<void> {
 	const tmp = `${file}.tmp-${process.pid}-${Math.random().toString(36).slice(2)}`;
 	await writeFile(tmp, `${JSON.stringify(data, null, 2)}\n`, "utf8");
 	await rename(tmp, file);
