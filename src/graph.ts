@@ -20,6 +20,9 @@ export interface VizNode {
 	facts: Record<string, string>;
 	materialized_at: string;
 	image_url?: string;
+	// Wikidata entity id, genre nodes only — mirrors GenreNode.qid (TRA-17/TRA-19). Kept out of
+	// facts/UI: toVizNode below is the sole gate that lets it onto a VizNode.
+	qid?: string;
 }
 
 export interface VizEdge {
@@ -94,7 +97,7 @@ export async function buildGraphFromCache(
 	return out;
 }
 
-function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {
+export function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {
 	const raw = node as unknown as Record<string, unknown>;
 	const teaserVal = raw[TEASER_FIELD_BY_TYPE[node.type]];
 	const facts: Record<string, string> = {};
@@ -122,6 +125,8 @@ function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {
 		facts,
 		materialized_at: node.materialized_at,
 	};
+	// Node-level qid whitelist: genre only, mirroring the edge-level one already applied above (TRA-19).
+	if (node.type === "genre" && node.qid) viz.qid = node.qid;
 	if (options.includeImageUrls) {
 		const imageField =
 			node.type === "artist"
@@ -207,6 +212,9 @@ function backfillGenreReverses(nodes: VizNode[]): void {
 	for (const node of nodes) {
 		if (node.type !== "genre") continue;
 		const self: EdgeRef = { slug: node.id as EdgeRef["slug"], type: "genre", name: node.name };
+		// Stamp the source's own qid onto the synthesized reverse edge, mirroring emitReverses
+		// on the write path (src/cache.ts, TRA-18) — now that node.qid survives toVizNode (TRA-19).
+		if (node.qid) self.qid = node.qid;
 		for (const pair of genrePairs) {
 			const refs = node.edges[pair.sourceField];
 			const list = Array.isArray(refs) ? refs : [];
