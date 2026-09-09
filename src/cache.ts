@@ -1,10 +1,13 @@
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
+import { logger } from "./logger.js";
 import { reverseFor, reversibleFields } from "./reverse-edges.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
+
+const log = logger.child({ module: "cache" });
 
 export interface PendingReverse {
 	field: string;
@@ -38,6 +41,14 @@ export class NodeCache {
 	// progress, tagged with the version it started at, so concurrent callers share one
 	// promise (no double build) while a write that lands mid-build (bumping the version)
 	// makes the NEXT caller start a fresh build instead of awaiting the now-stale one.
+	//
+	// 2026-09-09: write() used to bump the version only on entry, synchronously, before the
+	// node file was actually on disk (loadPending -> runLocked -> mkdir -> atomicWriteJson ->
+	// rename all still had to happen). A build that started after that bump but before the
+	// rename landed would read a disk that didn't have the new node yet, then commit that
+	// stale snapshot as the memo forever (the version had already moved, so the build's own
+	// guard saw no further invalidation to defer to). write() now invalidates a second time
+	// after the node has actually landed on disk, so no build window can miss it.
 	private genreQidIndex: Map<string, Slug> | null = null;
 	private genreQidIndexBuild: { version: number; promise: Promise<Map<string, Slug>> } | null = null;
 	private genreQidIndexVersion = 0;
@@ -162,8 +173,15 @@ export class NodeCache {
 	 * index is the first brick of duplicate prevention: pure read, no consumer yet.
 	 *
 	 * Built lazily on first call by scanning every `genre:` slug via get() (so qid is
-	 * Zod-validated), then memoized until the next genre write() invalidates it. Freshness
-	 * beyond that isn't tracked: the file's presence on disk is what counts as existence.
+	 * Zod-validated), then memoized until the next genre write() invalidates it (write()
+	 * invalidates both on entry and again once the node has landed on disk — see the
+	 * genreQidIndex field comment). A genre file that fails validation (e.g. a qid violating
+	 * QID_PATTERN) is skipped with a warning rather than failing the whole build.
+	 *
+	 * Accepted risk, documented in docs/plans/qid-genre-identity.md (Décisions d'archi /
+	 * Risques): this index is process-scoped, same as the existing pendingReverses memo on
+	 * this class — a one-off `--apply` run and a long-lived server each hold their own copy,
+	 * so nothing propagates a write from one process to another.
 	 */
 	async findGenreSlugByQid(qid: string): Promise<Slug | undefined> {
 		if (!qid) return undefined;
@@ -207,7 +225,19 @@ export class NodeCache {
 		// qid, a transient pre-merge state) can be resolved deterministically below.
 		const candidates = new Map<string, Slug[]>();
 		for (const slug of slugs) {
-			const node = await this.get(slug);
+			let node: NodePayload;
+			try {
+				node = await this.get(slug);
+			} catch (e) {
+				// A single malformed genre file (e.g. a qid violating QID_PATTERN) must not
+				// fail the whole build — that would take every other qid lookup down with it.
+				// Skip it and keep going; it stays invisible to the index until fixed.
+				log.warn("skipping invalid genre node while building qid index", {
+					slug,
+					error: e instanceof Error ? e.message : String(e),
+				});
+				continue;
+			}
 			// Narrow on the validated type discriminant (not a cast) so a node misfiled under
 			// nodes/genre/ with a different type can't leak a same-shaped field into the index.
 			if (node.type !== "genre" || !node.qid) continue;
@@ -235,7 +265,9 @@ export class NodeCache {
 	async write(node: NodePayload): Promise<void> {
 		const parsed = nodePayloadSchema.parse(node) as NodePayload;
 		if (parsed.type === "genre") {
-			// Invalidate the memoized qid index: a genre write can add, change, or dedupe a qid.
+			// First invalidation, on entry: covers any build that started before this write and
+			// is still in flight, and rules out a stale-but-not-yet-invalidated index being
+			// handed out to a caller between now and the node actually landing on disk below.
 			this.genreQidIndex = null;
 			this.genreQidIndexVersion++;
 		}
@@ -256,6 +288,15 @@ export class NodeCache {
 		// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
 		await this.emitReverses(parsed);
 		await this.flushPending();
+		if (parsed.type === "genre") {
+			// Second invalidation, after the node has actually landed on disk: a build that
+			// started between the first invalidation above and this point could have read a
+			// disk snapshot still missing this node, then committed that stale result as the
+			// memo (the version guard only defers to invalidations it can still observe). This
+			// bump guarantees the next lookup rebuilds from a disk that has the write applied.
+			this.genreQidIndex = null;
+			this.genreQidIndexVersion++;
+		}
 	}
 
 	private async emitReverses(source: NodePayload): Promise<void> {
