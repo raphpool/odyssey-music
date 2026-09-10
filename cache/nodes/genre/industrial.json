@@ -46,6 +46,16 @@
       "slug": "artist:skinny-puppy",
       "type": "artist",
       "name": "Skinny Puppy"
+    },
+    {
+      "slug": "artist:einsturzende-neubauten",
+      "type": "artist",
+      "name": "Einstürzende Neubauten"
+    },
+    {
+      "slug": "artist:spk",
+      "type": "artist",
+      "name": "SPK"
     }
   ],
   "key_labels": [
@@ -75,6 +85,16 @@
       "slug": "project:twitch",
       "type": "project",
       "name": "Twitch"
+    },
+    {
+      "slug": "project:20-jazz-funk-greats",
+      "type": "project",
+      "name": "20 Jazz Funk Greats"
+    },
+    {
+      "slug": "project:kollaps",
+      "type": "project",
+      "name": "Kollaps"
     }
   ],
   "landmark_tracks": [],

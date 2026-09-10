@@ -14,9 +14,66 @@
   "era": "Early 20th century to present",
   "origin": "Global, with significant developments in Italy (Futurism), France (Musique concrète), and Japan.",
   "sonic_markers": "Extreme volume, harsh distortion, feedback, atonality, lack of traditional meter, static textures, and field recordings.",
-  "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:harsh-noise",
+      "type": "genre",
+      "name": "Harsh Noise",
+      "qid": "Q16562829"
+    },
+    {
+      "slug": "genre:power-noise",
+      "type": "genre",
+      "name": "Power Noise",
+      "qid": "Q1913888"
+    },
+    {
+      "slug": "genre:harsh-noise-wall",
+      "type": "genre",
+      "name": "Harsh Noise Wall",
+      "qid": "Q39046859"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock",
+      "qid": "Q181861"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial",
+      "qid": "Q487965"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique concrète",
+      "qid": "Q823560"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone",
+      "qid": "Q650316"
+    },
+    {
+      "slug": "genre:power-electronics",
+      "type": "genre",
+      "name": "Power Electronics",
+      "qid": "Q2687544"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:merzbow",
@@ -32,6 +89,26 @@
       "slug": "artist:pauline-oliveros",
       "type": "artist",
       "name": "Pauline Oliveros"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage"
+    },
+    {
+      "slug": "artist:luigi-russolo",
+      "type": "artist",
+      "name": "Luigi Russolo"
+    },
+    {
+      "slug": "artist:incapacitants",
+      "type": "artist",
+      "name": "Incapacitants"
+    },
+    {
+      "slug": "artist:keiji-haino",
+      "type": "artist",
+      "name": "Keiji Haino"
     }
   ],
   "key_labels": [

@@ -47,13 +47,13 @@
       "qid": "Q572901"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic Music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental Music",
       "qid": "Q1640319"
@@ -89,6 +89,11 @@
       "slug": "artist:olivier-messiaen",
       "type": "artist",
       "name": "Olivier Messiaen"
+    },
+    {
+      "slug": "artist:milton-babbitt",
+      "type": "artist",
+      "name": "Milton Babbitt"
     }
   ],
   "key_labels": [],

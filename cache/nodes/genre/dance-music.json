@@ -47,7 +47,7 @@
       "qid": "Q58339"
     },
     {
-      "slug": "genre:house-music",
+      "slug": "genre:house",
       "type": "genre",
       "name": "House music",
       "qid": "Q20502"
@@ -79,7 +79,7 @@
       "qid": "Q58339"
     },
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"

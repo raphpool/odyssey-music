@@ -99,11 +99,6 @@
       "slug": "project:make-happy",
       "type": "project",
       "name": "Make Happy"
-    },
-    {
-      "slug": "project:inside",
-      "type": "project",
-      "name": "Inside (Deluxe)"
     }
   ]
 }

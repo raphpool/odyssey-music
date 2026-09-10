@@ -32,24 +32,9 @@
       "slug": "artist:various-artists",
       "type": "artist",
       "name": "Various Artists"
-    },
-    {
-      "slug": "artist:various-artists",
-      "type": "artist",
-      "name": "Various Artists"
-    },
-    {
-      "slug": "artist:various-artists",
-      "type": "artist",
-      "name": "Various Artists"
     }
   ],
   "notable_releases": [
-    {
-      "slug": "project:rap-com",
-      "type": "project",
-      "name": "Rap.Com"
-    },
     {
       "slug": "project:rap-com",
       "type": "project",

@@ -84,6 +84,11 @@
       "slug": "artist:richard-wagner",
       "type": "artist",
       "name": "Richard Wagner"
+    },
+    {
+      "slug": "artist:joseph-haydn",
+      "type": "artist",
+      "name": "Joseph Haydn"
     }
   ],
   "key_labels": [],

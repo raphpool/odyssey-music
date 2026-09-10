@@ -15,7 +15,7 @@
   "origin": "Chicago, U.S.",
   "parent_genres": [
     {
-      "slug": "genre:house-music",
+      "slug": "genre:house",
       "type": "genre",
       "name": "House music",
       "qid": "Q20502"

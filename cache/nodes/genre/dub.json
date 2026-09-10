@@ -45,6 +45,18 @@
       "type": "genre",
       "name": "Dubstep",
       "qid": "Q20474"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk",
+      "qid": "Q598929"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "key_artists": [
@@ -62,6 +74,11 @@
       "slug": "artist:scientist",
       "type": "artist",
       "name": "Scientist"
+    },
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo"
     }
   ],
   "key_labels": [

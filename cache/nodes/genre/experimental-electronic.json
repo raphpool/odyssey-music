@@ -15,13 +15,13 @@
   "origin": "France",
   "parent_genres": [
     {
-      "slug": "genre:avant-garde-music",
+      "slug": "genre:avant-garde",
       "type": "genre",
       "name": "Avant-Garde Music",
       "qid": "Q2332751"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic Music",
       "qid": "Q9778"

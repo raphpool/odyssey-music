@@ -34,7 +34,7 @@
   "active_years": "1972-2023",
   "genres": [
     {
-      "slug": "genre:synthpop",
+      "slug": "genre:synth-pop",
       "type": "genre",
       "name": "Synthpop",
       "qid": "Q1298934"

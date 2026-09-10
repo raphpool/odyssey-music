@@ -74,11 +74,6 @@
       "name": "Tendency"
     },
     {
-      "slug": "track:moire",
-      "type": "track",
-      "name": "Moiré (Strings)"
-    },
-    {
       "slug": "track:do-dekor",
       "type": "track",
       "name": "Do Dekor"
@@ -87,11 +82,6 @@
       "slug": "track:drift",
       "type": "track",
       "name": "Drift"
-    },
-    {
-      "slug": "track:moire",
-      "type": "track",
-      "name": "Moiré (Guitar & Horns)"
     },
     {
       "slug": "track:poren",

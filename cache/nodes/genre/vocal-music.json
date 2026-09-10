@@ -38,7 +38,7 @@
   ],
   "related_genres": [
     {
-      "slug": "genre:classical-music",
+      "slug": "genre:classical",
       "type": "genre",
       "name": "Classical Music",
       "qid": "Q9730"
@@ -50,7 +50,7 @@
       "qid": "Q1076513"
     },
     {
-      "slug": "genre:folk-music",
+      "slug": "genre:folk",
       "type": "genre",
       "name": "Folk Music",
       "qid": "Q43343"

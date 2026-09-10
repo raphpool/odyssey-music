@@ -16,7 +16,7 @@
   "sonic_markers": "Syncopated drum loops, heavy use of sampling, organic drum textures (funk/jazz origins), complex percussion patterns, typically 110–175 BPM.",
   "parent_genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic Music",
       "qid": "Q9778"

@@ -30,6 +30,18 @@
       "type": "genre",
       "name": "Ambient",
       "qid": "Q193207"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
     }
   ],
   "related_genres": [
@@ -56,6 +68,18 @@
       "type": "genre",
       "name": "Disco",
       "qid": "Q58339"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
     }
   ],
   "key_artists": [
@@ -83,10 +107,47 @@
       "slug": "artist:kraftwerk",
       "type": "artist",
       "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
     }
   ],
-  "key_labels": [],
-  "landmark_projects": [],
+  "key_labels": [
+    {
+      "slug": "label:warp-records",
+      "type": "label",
+      "name": "Warp Records"
+    },
+    {
+      "slug": "label:mute-records",
+      "type": "label",
+      "name": "Mute Records"
+    },
+    {
+      "slug": "label:kompakt",
+      "type": "label",
+      "name": "Kompakt"
+    }
+  ],
+  "landmark_projects": [
+    {
+      "slug": "project:trans-europe-express",
+      "type": "project",
+      "name": "Trans-Europe Express"
+    },
+    {
+      "slug": "project:selected-ambient-works-85-92",
+      "type": "project",
+      "name": "Selected Ambient Works 85-92"
+    }
+  ],
   "landmark_tracks": [
     {
       "slug": "track:i-feel-love",
@@ -102,6 +163,16 @@
       "slug": "track:1-1",
       "type": "track",
       "name": "1/1"
+    },
+    {
+      "slug": "track:autobahn",
+      "type": "track",
+      "name": "Autobahn"
+    },
+    {
+      "slug": "track:windowlicker",
+      "type": "track",
+      "name": "Windowlicker"
     }
   ],
   "qid": "Q9778"

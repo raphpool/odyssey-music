@@ -13,8 +13,64 @@
   "editorial_definition": "A broad, dominant genre of popular music characterized by a strong, driving beat and electric instrumentation, which emerged in the 1950s and encompasses a vast array of styles ranging from the early rock and roll of the 1950s to later developments in punk, metal, and indie.",
   "era": "1950s–Present",
   "origin": "United States",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and blues",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music",
+      "qid": "Q83440"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock",
+      "qid": "Q83270"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy metal",
+      "qid": "Q38848"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk rock",
+      "qid": "Q3071"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock",
+      "qid": "Q76092"
+    }
+  ],
   "related_genres": [],
   "key_artists": [
     {
@@ -41,6 +97,21 @@
       "slug": "artist:the-rolling-stones",
       "type": "artist",
       "name": "The Rolling Stones"
+    },
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana"
     }
   ],
   "key_labels": [],
