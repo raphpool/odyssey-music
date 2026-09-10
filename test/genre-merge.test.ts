@@ -8,6 +8,7 @@ import {
 	loadOnboardingGenreSlugs,
 	mergeGenreEdges,
 	mergeRedirects,
+	parseCliArgs,
 	readCacheNodes,
 	rewriteNodeEdges,
 	rewritePendingReverses,
@@ -553,4 +554,32 @@ describe("runMigration (disk integration)", () => {
 	});
 });
 
-// parseCliArgs and its tests are TRA-44 (CLI entry point), stacked on this branch.
+describe("parseCliArgs", () => {
+	it("rejects a missing cache-dir instead of defaulting", () => {
+		expect(parseCliArgs([])).toBeNull();
+	});
+
+	it("rejects a flag standing in for the positional cache-dir", () => {
+		expect(parseCliArgs(["--apply"])).toBeNull();
+	});
+
+	it("parses the positional cache-dir, the --apply flag, and an optional --redirects path", () => {
+		expect(parseCliArgs(["cache"])).toEqual({ cacheDir: "cache", apply: false });
+		expect(parseCliArgs(["cache", "--apply"])).toEqual({ cacheDir: "cache", apply: true });
+		expect(parseCliArgs(["cache", "--redirects", "data/genre-redirects.json"])).toEqual({
+			cacheDir: "cache",
+			apply: false,
+			redirectsPath: "data/genre-redirects.json",
+		});
+	});
+
+	it("rejects --redirects with no path, or a path that's actually another flag", () => {
+		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
+		expect(parseCliArgs(["cache", "--redirects", "--apply"])).toBeNull();
+	});
+
+	it("rejects any unrecognized flag", () => {
+		expect(parseCliArgs(["cache", "--dry-run"])).toBeNull();
+		expect(parseCliArgs(["cache", "--aply"])).toBeNull();
+	});
+});
