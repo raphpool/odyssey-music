@@ -2,7 +2,6 @@ import { NodeCache } from "./cache.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects } from "./genre-registry.js";
 import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
-import { makeSlug } from "./slug.js";
 import {
 	type EdgeRef,
 	LIST_EDGES_BY_TYPE,
@@ -71,7 +70,9 @@ export type FrontierStrategy = "bfs" | "popularity" | "hybrid";
  *
  * Re-pushing an already-known slug bumps its refCount instead of duplicating.
  */
-class FrontierQueue {
+// Exported for test/crawler.test.ts (TRA-28 review, B1): enqueueEdges needs a real instance to
+// assert against, and FrontierQueue's push/pop/size surface is otherwise private to this module.
+export class FrontierQueue {
 	private readonly items = new Map<Slug, FrontierEntry>();
 	private readonly seen = new Set<Slug>();
 	private seq = 0;
@@ -232,7 +233,6 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				);
 				// A caller-supplied genreRegistry (if any) wins -- don't clobber one the caller
 				// deliberately built (e.g. against a different cache) with crawl()'s own default.
-				// (TRA-28 review nit; the frontier/e.slug fix itself is TRA-37.)
 				const result = await runPipeline(next.entry.input, {
 					...opts.deps,
 					genreRegistry: opts.deps.genreRegistry ?? genreRegistry,
@@ -281,7 +281,8 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	};
 }
 
-function enqueueEdges(
+// Exported for test/crawler.test.ts (TRA-28 review, B1).
+export function enqueueEdges(
 	node: NodePayload,
 	depth: number,
 	frontier: FrontierQueue,
@@ -293,13 +294,20 @@ function enqueueEdges(
 	// would lock onto the wrong entity. Henry called this out 2026-05-14.
 	const parentDisambig = `${node.type} "${node.name}"`;
 	const collect = (e: EdgeRef, kind: string): void => {
-		const slug = makeSlug(e.type, e.name);
+		// 2026-09-10 (TRA-28 review, B1): key the frontier by the edge's OWN slug, not one
+		// re-derived from its name. A genre edge can carry a slug that GenreRegistry
+		// canonicalized onto an existing/redirected node, which no longer matches
+		// makeSlug(e.type, e.name) -- re-deriving it here sent the frontier chasing a
+		// name-derived slug the cache.has() dedup check below (in `start`) could never match,
+		// minting a second, orphaned duplicate node for a target that was never actually
+		// missing. `input.slug` pins runPipeline's output to this exact slug if it does end up
+		// getting materialized (see PipelineInput.slug).
 		const disambiguator = `${kind.replace(/_/g, " ")} of ${parentDisambig}`;
-		const added = frontier.push(slug, {
-			input: { type: e.type, name: e.name, disambiguator },
+		const added = frontier.push(e.slug, {
+			input: { type: e.type, name: e.name, slug: e.slug, disambiguator },
 			depth,
 		});
-		if (added) log(`  + frontier ${slug} (depth=${depth}) disambig=${disambiguator}`);
+		if (added) log(`  + frontier ${e.slug} (depth=${depth}) disambig=${disambiguator}`);
 	};
 	const obj = node as unknown as Record<string, unknown>;
 	for (const field of LIST_EDGES_BY_TYPE[node.type]) {
