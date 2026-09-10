@@ -1,5 +1,6 @@
 import { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
+import { loadGenreRedirects } from "./genre-registry.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
@@ -38,12 +39,19 @@ export interface GraphProjection {
 	nodes: VizNode[];
 	edges: VizEdge[];
 	quarantine?: { id: string; name: string; reason: string }[];
+	// Loser slug -> canonical slug, sourced from data/genre-redirects.json (TRA-22's
+	// duplicate-merge migration output) so a deep link to a merged-away genre slug can be
+	// resolved by the front (TRA-23, 2026-09-10). Absent when the table has no entries.
+	redirects?: Record<string, string>;
 }
 
 export interface BuildGraphOptions {
 	includeImageUrls?: boolean;
 	quarantineOrphanGenres?: boolean;
 	scrubQuarantinedRefs?: boolean;
+	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
+	// own `path` param — test-only injection point (TRA-23, 2026-09-10).
+	redirectsPath?: string;
 }
 
 export async function buildGraphFromCache(
@@ -84,6 +92,8 @@ export async function buildGraphFromCache(
 		}
 	}
 
+	const redirects = await loadGenreRedirects(options.redirectsPath);
+
 	const types: Record<string, number> = {};
 	for (const node of nodes) types[node.type] = (types[node.type] ?? 0) + 1;
 	const out: GraphProjection = {
@@ -94,6 +104,10 @@ export async function buildGraphFromCache(
 		edges,
 	};
 	if (quarantine) out.quarantine = quarantine;
+	// Omit when empty, mirroring quarantine above — keeps a data.json built against today's
+	// still-empty data/genre-redirects.json skeleton (TRA-22 not yet run) byte-identical to
+	// pre-TRA-23 output.
+	if (redirects.size > 0) out.redirects = Object.fromEntries(redirects);
 	return out;
 }
 
