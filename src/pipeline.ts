@@ -117,10 +117,9 @@ export interface PipelineInput {
 	// makeSlug(type, name) would produce -- omitting this re-derives the wrong slug from `name`
 	// and mints a second, name-derived duplicate of a target that was never actually missing.
 	slug?: Slug;
-	// 2026-09-10 (TRA-43): an identity hint for a genre input, carried by the EDGE that produced
-	// this request (front chip / crawler frontier), not re-derived from `name`. Given precedence
-	// over a fresh by-name resolve in enrichFromMusicBrainz's genre block -- the edge is the
-	// source of truth for identity (decision d'archi 8/9, docs/plans/qid-genre-identity.md).
+	// 2026-09-10 (TRA-43): a genre identity hint from the EDGE that produced this request (front
+	// chip / crawler frontier) -- wins over a fresh by-name resolve in enrichFromMusicBrainz
+	// (decision d'archi 8/9, docs/plans/qid-genre-identity.md).
 	qid?: string;
 }
 
@@ -1153,12 +1152,8 @@ async function enrichFromMusicBrainz(
 						`[pipeline] genre qid conflict for ${slug}: cached=${cachedQid} resolved=${identity.qid} (cached kept)`,
 					);
 				}
-				// 2026-09-10 (TRA-43): input.qid is the identity of the EDGE that produced this
-				// materialize request (front chip / crawler frontier) -- it wins over a fresh
-				// by-name resolve, same rationale as the already-committed cachedQid above (the
-				// edge/cache are the source of truth for identity, never a later LLM draft's own
-				// name). Log the same way when it disagrees with the name-based resolve so a
-				// genuinely mismatched edge qid stays visible.
+				// 2026-09-10 (TRA-43): the edge's own qid wins over a fresh by-name resolve, same
+				// rationale as cachedQid above -- log when it disagrees, like the cached case.
 				if (input.qid && identity && input.qid !== identity.qid) {
 					log(
 						`[pipeline] genre qid conflict for ${slug}: edge=${input.qid} resolved=${identity.qid} (edge identity kept)`,
