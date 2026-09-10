@@ -31,7 +31,26 @@
       "qid": "Q180268"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:philadelphia-soul",
+      "type": "genre",
+      "name": "Philadelphia soul",
+      "qid": "Q1546028"
+    },
+    {
+      "slug": "genre:southern-soul",
+      "type": "genre",
+      "name": "Southern soul",
+      "qid": "Q1567032"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:funk",
@@ -88,6 +107,11 @@
       "slug": "artist:curtis-mayfield",
       "type": "artist",
       "name": "Curtis Mayfield"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye"
     }
   ],
   "key_labels": [
@@ -100,6 +124,16 @@
       "slug": "label:stax-records",
       "type": "label",
       "name": "Stax Records"
+    },
+    {
+      "slug": "label:motown-records",
+      "type": "label",
+      "name": "Motown Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
     }
   ],
   "landmark_projects": [
@@ -107,6 +141,16 @@
       "slug": "project:live-at-the-apollo",
       "type": "project",
       "name": "Live at the Apollo"
+    },
+    {
+      "slug": "project:what-s-going-on",
+      "type": "project",
+      "name": "What's Going On"
+    },
+    {
+      "slug": "project:i-never-loved-a-man-the-way-i-love-you",
+      "type": "project",
+      "name": "I Never Loved a Man the Way I Love You"
     }
   ],
   "landmark_tracks": [

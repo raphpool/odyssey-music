@@ -23,13 +23,13 @@
   "active_years": "1950s–2026",
   "genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:drone-music",
+      "slug": "genre:drone",
       "type": "genre",
       "name": "Drone music",
       "qid": "Q650316"

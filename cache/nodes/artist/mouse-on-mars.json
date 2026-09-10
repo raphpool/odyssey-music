@@ -20,7 +20,7 @@
   "active_years": "1993-present",
   "genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"

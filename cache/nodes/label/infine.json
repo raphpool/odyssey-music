@@ -15,13 +15,13 @@
   "location": "Paris, France",
   "genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:contemporary-classical-music",
+      "slug": "genre:contemporary-classical",
       "type": "genre",
       "name": "Contemporary classical music",
       "qid": "Q612024"

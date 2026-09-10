@@ -19,13 +19,13 @@
   "origin": "Global (with significant roots in UK and US avant-pop scenes)",
   "parent_genres": [
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
@@ -40,13 +40,13 @@
       "qid": "Q25094849"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:avant-garde-music",
+      "slug": "genre:avant-garde",
       "type": "genre",
       "name": "Avant-garde music",
       "qid": "Q2332751"

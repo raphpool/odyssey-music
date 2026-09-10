@@ -19,7 +19,7 @@
   "origin": "Western Europe and North America, early 20th century",
   "parent_genres": [
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
@@ -43,6 +43,12 @@
       "type": "genre",
       "name": "Musique Concrète",
       "qid": "Q823560"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise music",
+      "qid": "Q726239"
     }
   ],
   "key_artists": [
@@ -60,10 +66,21 @@
       "slug": "artist:ornette-coleman",
       "type": "artist",
       "name": "Ornette Coleman"
+    },
+    {
+      "slug": "artist:sun-ra",
+      "type": "artist",
+      "name": "Sun Ra"
     }
   ],
   "key_labels": [],
-  "landmark_projects": [],
+  "landmark_projects": [
+    {
+      "slug": "project:4-33",
+      "type": "project",
+      "name": "4'33\""
+    }
+  ],
   "landmark_tracks": [
     {
       "slug": "track:4-33",

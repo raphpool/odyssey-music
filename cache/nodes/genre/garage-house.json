@@ -15,7 +15,7 @@
   "origin": "New York City and Newark, New Jersey, USA",
   "parent_genres": [
     {
-      "slug": "genre:house-music",
+      "slug": "genre:house",
       "type": "genre",
       "name": "House music",
       "qid": "Q20502"
@@ -55,7 +55,7 @@
       "qid": "Q58339"
     },
     {
-      "slug": "genre:soul-music",
+      "slug": "genre:soul",
       "type": "genre",
       "name": "Soul music",
       "qid": "Q131272"

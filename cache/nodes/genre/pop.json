@@ -74,6 +74,18 @@
       "type": "genre",
       "name": "R&B",
       "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock music",
+      "qid": "Q11399"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
     }
   ],
   "key_artists": [
@@ -103,7 +115,23 @@
       "name": "Taylor Swift"
     }
   ],
-  "key_labels": [],
+  "key_labels": [
+    {
+      "slug": "label:motown",
+      "type": "label",
+      "name": "Motown"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
   "landmark_projects": [],
   "landmark_tracks": [],
   "qid": "Q37073"

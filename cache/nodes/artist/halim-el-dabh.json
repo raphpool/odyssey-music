@@ -23,19 +23,19 @@
   "active_years": "1940s–2017",
   "genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:contemporary-classical-music",
+      "slug": "genre:contemporary-classical",
       "type": "genre",
       "name": "Contemporary classical music",
       "qid": "Q612024"
     },
     {
-      "slug": "genre:avant-garde-music",
+      "slug": "genre:avant-garde",
       "type": "genre",
       "name": "Avant-garde music",
       "qid": "Q2332751"

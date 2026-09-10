@@ -30,7 +30,7 @@
   "origin": "United States and United Kingdom",
   "parent_genres": [
     {
-      "slug": "genre:folk-music",
+      "slug": "genre:folk",
       "type": "genre",
       "name": "Folk music",
       "qid": "Q43343"

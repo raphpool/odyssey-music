@@ -15,7 +15,7 @@
   "origin": "United States/United Kingdom",
   "parent_genres": [
     {
-      "slug": "genre:rock-music",
+      "slug": "genre:rock",
       "type": "genre",
       "name": "Rock music",
       "qid": "Q11399"

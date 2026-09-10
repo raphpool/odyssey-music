@@ -15,7 +15,26 @@
   "origin": "United States (California/New York)",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal House",
+      "qid": "Q750811"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:cold-wave",
+      "type": "genre",
+      "name": "Cold-wave",
+      "qid": "Q2343562"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:steve-reich",
@@ -41,10 +60,47 @@
       "slug": "artist:john-adams",
       "type": "artist",
       "name": "John Adams"
+    },
+    {
+      "slug": "artist:steve-bug",
+      "type": "artist",
+      "name": "Steve Bug"
+    },
+    {
+      "slug": "artist:thomas-brinkmann",
+      "type": "artist",
+      "name": "Thomas Brinkmann"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    },
+    {
+      "slug": "artist:sascha-muller",
+      "type": "artist",
+      "name": "Sascha Müller"
+    },
+    {
+      "slug": "artist:celer",
+      "type": "artist",
+      "name": "Celer"
     }
   ],
-  "key_labels": [],
+  "key_labels": [
+    {
+      "slug": "label:zyx-music",
+      "type": "label",
+      "name": "ZYX Music"
+    }
+  ],
   "landmark_projects": [],
-  "landmark_tracks": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:eisb-r",
+      "type": "track",
+      "name": "Eisbær"
+    }
+  ],
   "qid": "Q12183214"
 }

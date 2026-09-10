@@ -25,7 +25,7 @@
   ],
   "genres": [
     {
-      "slug": "genre:avant-garde-music",
+      "slug": "genre:avant-garde",
       "type": "genre",
       "name": "Avant-garde music",
       "qid": "Q2332751"
@@ -37,7 +37,7 @@
       "qid": "Q612024"
     },
     {
-      "slug": "genre:drone-music",
+      "slug": "genre:drone",
       "type": "genre",
       "name": "Drone music",
       "qid": "Q650316"

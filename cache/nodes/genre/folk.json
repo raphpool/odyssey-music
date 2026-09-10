@@ -18,8 +18,39 @@
   "era": "Antiquity to present",
   "origin": "Global (primarily rural/community-based)",
   "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:appalachian-folk",
+      "type": "genre",
+      "name": "Appalachian folk",
+      "qid": "Q108616106"
+    },
+    {
+      "slug": "genre:traditional-irish-music",
+      "type": "genre",
+      "name": "Traditional Irish music"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:country-music",
+      "type": "genre",
+      "name": "Country music",
+      "qid": "Q83440"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:americana",
+      "type": "genre",
+      "name": "Americana",
+      "qid": "Q2407862"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:bob-dylan",
@@ -40,6 +71,11 @@
       "slug": "artist:woody-guthrie",
       "type": "artist",
       "name": "Woody Guthrie"
+    },
+    {
+      "slug": "artist:pete-seeger",
+      "type": "artist",
+      "name": "Pete Seeger"
     }
   ],
   "key_labels": [],

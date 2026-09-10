@@ -23,7 +23,7 @@
   },
   "genres": [
     {
-      "slug": "genre:micro-house",
+      "slug": "genre:microhouse",
       "type": "genre",
       "name": "Micro-house",
       "qid": "Q1931555"

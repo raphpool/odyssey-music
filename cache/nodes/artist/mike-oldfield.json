@@ -24,13 +24,13 @@
       "qid": "Q49451"
     },
     {
-      "slug": "genre:folk-music",
+      "slug": "genre:folk",
       "type": "genre",
       "name": "Folk music",
       "qid": "Q43343"
     },
     {
-      "slug": "genre:ambient-music",
+      "slug": "genre:ambient",
       "type": "genre",
       "name": "Ambient music",
       "qid": "Q193207"
