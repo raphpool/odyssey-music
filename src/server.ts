@@ -34,7 +34,7 @@ import { serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
-import { createGenreRegistry, loadGenreRedirects } from "./genre-registry.js";
+import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
@@ -76,7 +76,7 @@ async function getCacheIndex(): Promise<CacheIndex> {
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
 const materializeService = createMaterializeService({ cache, env, genreRegistry });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
-const imageService = createImageService({ cache });
+const imageService = createImageService({ cache, redirects: genreRedirects });
 const graphService = createGraphService(CACHE_DIR);
 
 const server = createServer(async (req, res) => {
@@ -222,7 +222,12 @@ function clampLimit(raw: string | null): number {
 }
 
 async function handleLinks(res: ServerResponse, slug: Slug, force: boolean): Promise<void> {
-	const node = await cache.get(slug).catch((e: unknown) => {
+	// 2026-09-10 (TRA-39): a genre slug merged away by TRA-22's duplicate-merge migration (e.g.
+	// genre:electronic-music) has no cache node of its own, so a plain cache.get(slug) here
+	// 404'd instead of matching /node/:slug's 200 with null links, which the docstring above
+	// promises for every genre. Resolve via the same rule node-service.getNode uses (TRA-30).
+	const lookupSlug = await resolveReadSlug(slug, genreRedirects, cache);
+	const node = await cache.get(lookupSlug).catch((e: unknown) => {
 		if (isNotFoundError(e)) return null;
 		throw e;
 	});
