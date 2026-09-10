@@ -12,6 +12,7 @@
 import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { NodeCache } from "../src/cache.js";
+import type { ApiEnv } from "../src/env.js";
 import { loadEnv } from "../src/env.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects } from "../src/genre-registry.js";
@@ -21,15 +22,26 @@ import { parseSlug } from "../src/slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "../src/types.js";
 import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/types.js";
 
-async function main(): Promise<void> {
-	const dir = process.argv[2];
-	const maxNew = Number.parseInt(process.argv[3] ?? "200", 10);
-	const concurrency = Number.parseInt(process.argv[4] ?? "16", 10);
-	if (!dir) {
-		process.stderr.write("usage: top-up-dangling.ts <cache-dir> <max-new-nodes> [concurrency]\n");
-		process.exit(2);
-	}
-	const env = loadEnv();
+export interface TopUpResult {
+	targetsFound: number;
+	okCount: number;
+	failCount: number;
+	abandonCount: number;
+}
+
+/**
+ * Core top-up logic, factored out of main() so test/top-up-dangling.test.ts can drive it
+ * directly against a real temp cache dir instead of shelling out via process.argv (TRA-28
+ * review B2's regression test needs two consecutive runs against the same dir). main() below
+ * is the CLI entry point; the file's bottom guards it so importing this module for the export
+ * doesn't also run it.
+ */
+export async function topUpDangling(
+	dir: string,
+	maxNew: number,
+	concurrency: number,
+	env: ApiEnv,
+): Promise<TopUpResult> {
 	const cache = new NodeCache(dir);
 	// TRA-28: built on this run's own cache, not a new one (see PipelineDeps.genreRegistry).
 	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
@@ -96,7 +108,14 @@ async function main(): Promise<void> {
 					continue;
 				}
 				const parsed = parseSlug(t.slug);
-				const input: PipelineInput = { type: parsed.type, name: t.name };
+				// 2026-09-10 (TRA-28 review, B2): materialize under the dangling reference's OWN
+				// slug (t.slug), not one re-derived from t.name alone. A genre edge's slug can
+				// differ from a fresh name-derived slug once GenreRegistry has canonicalized it
+				// onto an existing/redirected target (e.g. slug "genre:electronic", display name
+				// "Electronic Music") -- omitting it let runPipeline mint a second, name-derived
+				// node ("genre:electronic-music") for a target that was never actually missing,
+				// re-running the LLM for it on every single top-up pass.
+				const input: PipelineInput = { type: parsed.type, name: t.name, slug: t.slug };
 				const t0 = Date.now();
 				const result = await runPipeline(input, {
 					tavilyApiKey: env.TAVILY_API_KEY,
@@ -128,9 +147,28 @@ async function main(): Promise<void> {
 	await Promise.all(workers);
 	const wall = Math.round((Date.now() - startedAt) / 1000);
 	console.log(`\n[top-up] DONE: ok=${okCount} fail=${failCount} abandon=${abandonCount} in ${wall}s`);
+	return { targetsFound: targets.length, okCount, failCount, abandonCount };
 }
 
-main().catch((e: unknown) => {
-	process.stderr.write(`error: ${e instanceof Error ? e.message : String(e)}\n`);
-	process.exit(1);
-});
+async function main(): Promise<void> {
+	const dir = process.argv[2];
+	const maxNew = Number.parseInt(process.argv[3] ?? "200", 10);
+	const concurrency = Number.parseInt(process.argv[4] ?? "16", 10);
+	if (!dir) {
+		process.stderr.write("usage: top-up-dangling.ts <cache-dir> <max-new-nodes> [concurrency]\n");
+		process.exit(2);
+	}
+	const env = loadEnv();
+	await topUpDangling(dir, maxNew, concurrency, env);
+}
+
+// Only run the CLI entry point when this file is executed directly (`tsx scripts/top-up-dangling.ts
+// ...`), not when test/top-up-dangling.test.ts imports it for topUpDangling — otherwise importing
+// the module would immediately read process.argv and process.exit(2) in the test runner.
+const isMain = process.argv[1] && import.meta.url === `file://${process.argv[1]}`;
+if (isMain) {
+	main().catch((e: unknown) => {
+		process.stderr.write(`error: ${e instanceof Error ? e.message : String(e)}\n`);
+		process.exit(1);
+	});
+}
