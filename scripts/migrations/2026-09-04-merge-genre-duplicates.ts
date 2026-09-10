@@ -1,25 +1,21 @@
 /**
- * CLI, disk application and report for merging genre nodes sharing a Wikidata QID. Election
- * / union / rewrite / redirect rules are documented on the pure functions above (TRA-22);
- * this wires them to real disk I/O: elect, union edges, rewrite every other cache node's
- * edges pointing at a loser, delete the loser files, rewrite pending-reverses.json the same
- * way, and record loser -> canonical in data/genre-redirects.json.
+ * Disk application and report for merging genre nodes sharing a Wikidata QID (election /
+ * union / rewrite / redirect rules: TRA-22 above). Wires them to disk: elect, union edges,
+ * rewrite every other node's edges pointing at a loser, delete the losers, rewrite
+ * pending-reverses.json, and record loser -> canonical in data/genre-redirects.json. CLI
+ * entry point is TRA-44, stacked on this branch.
  *
- * WARNING: with --apply, this DELETES cache files and rewrites edges cache-wide. Dry-run by
- * default. Fails loudly (an invariant violation writes nothing) and is idempotent (no
- * duplicate groups left -> nothing to do).
+ * WARNING: with `apply: true`, this DELETES cache files and rewrites edges cache-wide.
+ * Fails loudly (an invariant violation writes nothing) and is idempotent.
  *
  * Deployment (TRA-30 review): deploy/deploy-server.sh rsyncs cache/** excluded, so this must
  * also run on the server's cache (server stopped, then restarted -- cacheIndex and the
  * redirects table are memoized per-process). data/genre-redirects.json must be committed;
  * merge the repo's and the server's tables (append-only, chains flattened) if they differ.
- *
- * Usage: tsx scripts/migrations/2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply]
- *        [--redirects <path>]
  */
 import { mkdir, readFile, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { atomicWriteJson, NodeCache, type PendingReverse } from "../../src/cache.js";
 import { normalizeGenreName } from "../../src/genre-identity.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../../src/genre-registry.js";
@@ -551,54 +547,4 @@ export async function runMigration(
 	for (const path of deletePaths) await rm(path);
 
 	return { report, groupsFound: groupPlans.length, deletedCount: deletePaths.length, exitCode: 0 };
-}
-
-// --- CLI ---
-
-export interface CliArgs {
-	cacheDir: string;
-	apply: boolean;
-	redirectsPath?: string;
-}
-
-/** Parses `<cache-dir> [--apply] [--redirects <path>]`; null if cache-dir is missing or a
- * flag stands in its place, so a forgotten argument fails loudly instead of silently
- * migrating a nonexistent directory named after the flag. */
-export function parseCliArgs(argv: readonly string[]): CliArgs | null {
-	const cacheDir = argv[0];
-	if (!cacheDir || cacheDir.startsWith("-")) return null;
-	const redirectsIndex = argv.indexOf("--redirects");
-	const redirectsPath = redirectsIndex >= 0 ? argv[redirectsIndex + 1] : undefined;
-	// A missing value, or one that's actually another flag (e.g. --redirects --apply with
-	// the path forgotten), is rejected rather than silently taken as the path.
-	if (redirectsIndex >= 0 && (!redirectsPath || redirectsPath.startsWith("-"))) return null;
-	const known = new Set(["--apply", "--redirects"]);
-	if (argv.slice(1).some((a) => a.startsWith("-") && !known.has(a))) return null;
-	return { cacheDir, apply: argv.includes("--apply"), ...(redirectsPath ? { redirectsPath } : {}) };
-}
-
-async function main(): Promise<void> {
-	const args = parseCliArgs(process.argv.slice(2));
-	if (!args) {
-		process.stderr.write(
-			"usage: 2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply] [--redirects <path>]\n",
-		);
-		process.exit(2);
-	}
-	const result = await runMigration(
-		args.cacheDir,
-		args.apply,
-		args.redirectsPath ? { redirectsPath: args.redirectsPath } : {},
-	);
-	console.log(result.report);
-	process.exit(result.exitCode);
-}
-
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-	// Guarded like the other migrations in this directory, so importing this module from a
-	// test doesn't require a cache-dir argument or touch the filesystem.
-	main().catch((e: unknown) => {
-		process.stderr.write(`error: ${e instanceof Error ? e.message : String(e)}\n`);
-		process.exit(1);
-	});
 }
