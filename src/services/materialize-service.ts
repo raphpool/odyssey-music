@@ -28,12 +28,21 @@ export interface MaterializeRequest {
 // slug from ever reaching a cache path (NodeCache resolves slugs straight to disk paths).
 const SLUG_BODY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 
+// 2026-09-10 (TRA-43 review round 1, nit): an unbounded slug reaches NodeCache's fs calls
+// straight from the request body -- a multi-KB value passed SLUG_BODY_PATTERN (which has no
+// length limit of its own) would surface as a raw ENOENT/ENAMETOOLONG 500 instead of a clean 400.
+// 200 is generous next to any real makeSlug output (longest committed slug body is well under 100).
+const MAX_SLUG_LENGTH = 200;
+
 /**
- * Validates a client-supplied slug before any I/O (TRA-43): it must parse (parseSlug), name the
- * same type as the rest of the request, and match SLUG_BODY_PATTERN. Throws BadRequestError
- * (never a bare Error) -- src/server.ts maps that to a 400.
+ * Validates a client-supplied slug before any I/O (TRA-43): bounded length, must parse
+ * (parseSlug), name the same type as the rest of the request, and match SLUG_BODY_PATTERN.
+ * Throws BadRequestError (never a bare Error) -- src/server.ts maps that to a 400.
  */
 function validateRequestSlug(rawSlug: string, type: string): Slug {
+	if (rawSlug.length > MAX_SLUG_LENGTH) {
+		throw new BadRequestError(`Invalid slug: too long (max ${MAX_SLUG_LENGTH} chars)`);
+	}
 	let parsed: { type: NodeType; body: string };
 	try {
 		parsed = parseSlug(rawSlug);
@@ -44,6 +53,23 @@ function validateRequestSlug(rawSlug: string, type: string): Slug {
 		throw new BadRequestError(`Invalid slug: ${rawSlug}`);
 	}
 	return rawSlug as Slug;
+}
+
+/**
+ * SECURITY (TRA-43 review round 1, 2026-09-10): a refresh of an existing/canonical node must use
+ * THAT NODE'S OWN identity, never the client's -- repro that forced this: a stale `genre:techno`
+ * (nodeTtlMs is 12h, so most committed nodes are "stale") plus `{name: "Attacker Controlled
+ * Topic", slug: "genre:techno"}` used to pin `slug` straight from the client body while keeping
+ * the client's own `name`, so a public, unauthenticated POST /materialize could rewrite any
+ * cache/<slug>.json with attacker-chosen LLM-generated content. A differing client `mbid` must
+ * likewise never survive onto `effectiveBody`: it would otherwise force the `mbidMismatch` check
+ * below to treat an already-correct, freshly-served node as needing a refresh.
+ */
+function refreshIdentityFrom(node: NodePayload): MaterializeRequest {
+	const out: MaterializeRequest = { type: node.type, name: node.name };
+	const mbid = (node as unknown as { mbid?: string }).mbid;
+	if (mbid) out.mbid = mbid;
+	return out;
 }
 
 export interface MaterializeResponse {
@@ -92,20 +118,41 @@ export function createMaterializeService(deps: {
 		const t0 = Date.now();
 		const fresh = opts.fresh === true;
 		let effectiveBody = body;
-		// `requestSlug`, when present, IS the target identity (edge-carried slug) -- never
-		// re-derived from `name` (TRA-43/TRA-37).
-		let slug = requestSlug ?? makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
+		// 2026-09-10 (TRA-43 security fix, review round 1): the eventual MINT slug is always
+		// name-derived, exactly as on main before this ticket. `requestSlug` below is a LOOKUP key
+		// for an existing/canonical node, never a write target on its own -- see refreshIdentityFrom
+		// above for why (an unresolved `requestSlug` must never become a mint target with the
+		// client's own name/mbid attached).
+		let slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
 		// Set whenever `slug` above is known to already name the exact target this call is about
-		// to serve or mint under: a caller-supplied slug (TRA-43), a canonical rewrite, or the
-		// cache lookup below finding it (whether or not `fresh` was requested) -- never on a
-		// genuinely fresh, name-derived mint with no identity of its own. Passed through to
-		// runPipeline as PipelineInput.slug so canonicalizeDraft (pipeline.ts) keeps that exact
-		// slug instead of re-deriving one from whatever name the LLM draft happens to use, which
-		// can legitimately differ from the node's own persisted name (2026-09-10, review round 2 /
-		// TRA-30 review: 62 real cache nodes already have makeSlug(name) !== slug). A fresh mint
-		// with no requestSlug keeps deriving its own slug from the draft, same as before this
-		// ticket -- the draft is the one place that gets to decide a brand new node's identity.
-		let pinnedSlug: Slug | undefined = requestSlug;
+		// to serve or refresh: a caller-supplied slug that hit a real node (TRA-43 phase 1 below),
+		// a canonical rewrite, or the cache lookup further down finding it (whether or not `fresh`
+		// was requested) -- never on a genuinely fresh, name-derived mint with no identity of its
+		// own. Passed through to runPipeline as PipelineInput.slug so canonicalizeDraft
+		// (pipeline.ts) keeps that exact slug instead of re-deriving one from whatever name the LLM
+		// draft happens to use, which can legitimately differ from the node's own persisted name
+		// (2026-09-10, review round 2 / TRA-30 review: 62 real cache nodes already have
+		// makeSlug(name) !== slug). A fresh mint with no resolved identity keeps deriving its own
+		// slug from the draft, same as before this ticket.
+		let pinnedSlug: Slug | undefined;
+		let cached: NodePayload | null = null;
+
+		// Phase 1 (TRA-43): does the caller's OWN slug already name a real node? If so, that node's
+		// own identity (refreshIdentityFrom) drives everything below, never the client's -- this is
+		// the direct analog of GenreRegistry's rule 2 ("a ref pointing at an existing node never
+		// moves"), applied up front for every node type, not just genre.
+		if (requestSlug) {
+			const existing = await deps.cache.get(requestSlug).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
+			if (existing) {
+				effectiveBody = refreshIdentityFrom(existing);
+				slug = requestSlug;
+				pinnedSlug = requestSlug;
+				cached = existing;
+			}
+		}
 
 		// 2026-09-09: after TRA-22's duplicate-merge migration, a genre chip whose display name
 		// survives edge rewriting (e.g. a "Electronic music" chip after the "electronic-music"
@@ -119,35 +166,49 @@ export function createMaterializeService(deps: {
 		// canonicalSlugFor's resolver lookup is name-only and would otherwise happily merge
 		// {name: "Trap", disambiguator: "EDM"} onto the unrelated existing "genre:trap" (hip-hop)
 		// the moment their names resolve to the same qid.
-		if (body.type === "genre" && !body.disambiguator && !(await deps.cache.has(slug))) {
-			// 2026-09-10 (TRA-43): forward the request's own qid/mbid so the registry's rule 4 (an
-			// existing node for this qid wins, qid autoritaire) can fire even for a request that
-			// hashes to a brand new, never-before-seen slug -- e.g. two MB tags sharing a QID
-			// materialized by name, one after the other (test/genre-dedup-postmerge.test.ts
-			// scenario 6).
-			const canonicalRef: { slug: Slug; name: string; qid?: string; mbid?: string } = {
-				slug,
-				name: body.name,
-			};
-			if (body.qid) canonicalRef.qid = body.qid;
-			if (body.mbid) canonicalRef.mbid = body.mbid;
-			const canonical = await deps.genreRegistry.canonicalSlugFor(canonicalRef);
-			if (canonical.slug !== slug) {
-				// Single read, not has()+get(): the registry can name a slug that isn't actually on
-				// disk (e.g. a fresh deployment with a pruned cache) -- ENOENT there means "nothing
-				// to serve", so fall through and mint under the originally requested slug, same as
-				// if canonicalSlugFor had returned it unchanged. Any other read failure still throws.
-				const canonicalNode = await deps.cache.get(canonical.slug).catch((e: unknown) => {
-					if (isNotFoundError(e)) return null;
-					throw e;
-				});
-				if (canonicalNode) {
-					// Spread `body`, not a fresh {type, name} literal, so mbid/disambiguator survive
-					// the rewrite (mbidMismatch below, and the write in runJit, both need it).
-					effectiveBody = { ...body, name: canonicalNode.name };
-					slug = canonical.slug;
-					pinnedSlug = canonical.slug;
+		//
+		// 2026-09-10 (TRA-43 review round 1): skipped when phase 1 above already resolved a node.
+		// Reference `requestSlug` for the redirect/qid lookups below when the caller gave one --
+		// their own identity anchor, possibly a merged loser slug or a brand-new one -- else the
+		// plain name-derived `slug`, exactly as before this ticket. `requestSlug`'s own
+		// non-existence was already established in phase 1, so only the no-`requestSlug` case needs
+		// its own has() check here.
+		if (!cached && body.type === "genre" && !body.disambiguator) {
+			const guardSlug = requestSlug ?? slug;
+			const guardApplies = requestSlug !== undefined || !(await deps.cache.has(guardSlug));
+			if (guardApplies) {
+				// 2026-09-10 (TRA-43): forward the request's own qid/mbid so the registry's rule 4
+				// (an existing node for this qid wins, qid autoritaire) can fire even for a request
+				// whose own slug hashes to a brand new, never-before-seen target -- e.g. two MB tags
+				// sharing a QID materialized by name, one after the other
+				// (test/genre-dedup-postmerge.test.ts scenario 6).
+				const canonicalRef: { slug: Slug; name: string; qid?: string; mbid?: string } = {
+					slug: guardSlug,
+					name: body.name,
+				};
+				if (body.qid) canonicalRef.qid = body.qid;
+				if (body.mbid) canonicalRef.mbid = body.mbid;
+				const canonical = await deps.genreRegistry.canonicalSlugFor(canonicalRef);
+				if (canonical.slug !== guardSlug) {
+					// Single read, not has()+get(): the registry can name a slug that isn't actually
+					// on disk (e.g. a fresh deployment with a pruned cache) -- ENOENT there means
+					// "nothing to serve", so fall through and mint under the name-derived slug, same
+					// as if canonicalSlugFor had returned it unchanged. Any other read failure still
+					// throws.
+					const canonicalNode = await deps.cache.get(canonical.slug).catch((e: unknown) => {
+						if (isNotFoundError(e)) return null;
+						throw e;
+					});
+					if (canonicalNode) {
+						effectiveBody = refreshIdentityFrom(canonicalNode);
+						slug = canonical.slug;
+						pinnedSlug = canonical.slug;
+						cached = canonicalNode;
+					}
 				}
+				// canonical.slug === guardSlug (rule 5, "nothing to canonicalize"): `slug` stays
+				// name-derived and `pinnedSlug` stays unset -- an unresolved `requestSlug` is never
+				// pinned as a mint target on its own (the security fix above).
 			}
 		}
 
@@ -155,11 +216,14 @@ export function createMaterializeService(deps: {
 		// (?fresh=1, server.ts) used to skip this whole block, so a request for an ALREADY-cached
 		// slug with fresh:true never set pinnedSlug: the loser name was protected by the guard
 		// above, but the canonical name wasn't, once fresh:true was in play. A node found here is
-		// always the one this call is about to refresh, fresh or not.
-		const cached = await deps.cache.get(slug).catch((e: unknown) => {
-			if (isNotFoundError(e)) return null;
-			throw e;
-		});
+		// always the one this call is about to refresh, fresh or not. Skipped when phase 1/2 above
+		// already resolved `cached` -- no need to re-read the same file.
+		if (!cached) {
+			cached = await deps.cache.get(slug).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
+		}
 		if (cached) pinnedSlug = slug;
 		let effectiveFresh = fresh;
 		if (!fresh && cached) {

@@ -1166,7 +1166,9 @@ async function enrichFromMusicBrainz(
 				}
 				obj.qid = cachedQid ?? input.qid ?? identity?.qid;
 			} else {
-				obj.qid = cachedQid ?? catalog.get(body)?.wikidata_qid;
+				// 2026-09-10 (TRA-43 review round 1, nit): same precedence as the resolver-available
+				// branch above -- the resolver being unavailable must not drop the edge's own qid.
+				obj.qid = cachedQid ?? input.qid ?? catalog.get(body)?.wikidata_qid;
 			}
 			// 2026-09-10 (TRA-32): look up the parent_genres backfill entry by whichever qid
 			// actually won above, BY QID — not by identity.slug/catalog.get(body)'s own slug,

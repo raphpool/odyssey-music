@@ -309,8 +309,12 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 	// found nothing at all. Net effect used to be two nodes for one MB identity, invisible to
 	// report:genre-dupes. TRA-43 makes this test build its requests the way the front chip does
 	// (TRA-38: `reqBody.slug`/`reqBody.qid` from the chip's own dataset) -- both requests below
-	// carry the artist edge's own `slug` and `qid`, which handleMaterialize's guard now takes as
-	// authoritative (qid autoritaire, decision d'archi 8/9) instead of re-resolving by name.
+	// carry the artist edge's own `slug` and `qid`. Per the review-round-1 security fix, a
+	// `slug` that names no existing node is a LOOKUP key only, never a mint target: request 1
+	// mints under the NAME-derived "genre:dance" (stamped with the edge's qid via
+	// PipelineInput.qid), and request 2's `slug`/`qid` let the registry's qid index (rule 4) find
+	// that same node and serve it from cache -- neither request's own `slug` (the artist edge's,
+	// which may differ from both) ever becomes a write target on its own.
 	it(
 		"scenario 6 — two MusicBrainz tags sharing a QID converge onto one artist edge, and separate by-name materializations converge on one node",
 		async () => {
@@ -380,6 +384,12 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 			});
 
 			expect(clubResult.node.slug).toBe(danceResult.node.slug);
+			// Nit (review round 1): without an assertion on the minted node's qid, this scenario
+			// would stay green even if the guard silently minted the WRONG qid (e.g. genre:dance's
+			// own catalog entry, Q8195422) instead of the edge's Q11787389.
+			expect((danceResult.node as GenreNode).qid).toBe(CLUB_DANCE_QID);
+			// Request 2 must be served from cache (rule 4, qid index) -- not a second mint.
+			expect(clubResult.source).toBe("cache");
 			expect(await genreFileCount(cache)).toBe(filesBefore + 1);
 			await expectNoDuplicateGroups(cache);
 		},

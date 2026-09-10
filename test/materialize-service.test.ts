@@ -382,9 +382,24 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	);
 
 	it(
-		"keeps the request's mbid through a canonical rewrite, so the refreshed node still carries it",
+		"a canonical rewrite refresh carries the CANONICAL node's own mbid, ignoring a different client-supplied one (TRA-43 security fix, review round 1)",
 		async () => {
-			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			// SECURITY (2026-09-10): before this fix, a canonical rewrite spread the client's own
+			// `body` (`{ ...body, name: canonicalNode.name }`), so a client-supplied mbid survived
+			// onto the refreshed node even though only `name` had been realigned to the canonical
+			// node's own identity -- the same class of bug as the direct body.slug repro, just with
+			// `mbid` as the surviving vector instead of `name`. A refresh must use the canonical
+			// node's OWN mbid, never the client's -- CANONICAL_MBID below is deliberately NOT
+			// ELECTRONIC_MBID, so the assertion can't pass by coincidence.
+			const CANONICAL_MBID = "11111111-1111-1111-1111-111111111111";
+			await cache.write(
+				genreNode({
+					slug: "genre:electronic",
+					name: "Electronic",
+					qid: ELECTRONIC_QID,
+					mbid: CANONICAL_MBID,
+				}),
+			);
 			const genreRegistry = createGenreRegistry({
 				cache,
 				resolver: await loadGenreResolver(),
@@ -404,14 +419,20 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 			const createMaterializeService = await loadCreateMaterializeService();
 			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
 
-			const result = await service.handleMaterialize({
-				type: "genre",
-				name: "Electronic music",
-				mbid: ELECTRONIC_MBID,
-			});
+			// fresh:true forces the refresh through runJit regardless of mbidMismatch, so this
+			// observes what identity actually drives the mint -- the canonical node's, not the
+			// client's attacker-controlled mbid below.
+			const result = await service.handleMaterialize(
+				{
+					type: "genre",
+					name: "Electronic music",
+					mbid: ELECTRONIC_MBID,
+				},
+				{ fresh: true },
+			);
 
 			expect(result.node.slug).toBe("genre:electronic");
-			expect((result.node as GenreNode).mbid).toBe(ELECTRONIC_MBID);
+			expect((result.node as GenreNode).mbid).toBe(CANONICAL_MBID);
 		},
 		TIMEOUT_MS,
 	);
@@ -482,6 +503,10 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		["the wrong type for the request", "artist:foo"],
 		["an uppercase type", "Genre:foo"],
 		["an uppercase body", "genre:Foo"],
+		// Review round 1, nit: SLUG_BODY_PATTERN has no length bound of its own -- an unbounded
+		// value would otherwise reach NodeCache's fs calls and surface as a raw 500 (ENOENT/
+		// ENAMETOOLONG) instead of a clean 400.
+		["too long", `genre:${"a".repeat(5000)}`],
 	])("rejects a slug that is %s, without touching the cache", async (_label, badSlug) => {
 		const service = await buildService();
 		const hasSpy = vi.spyOn(cache, "has");
@@ -543,7 +568,11 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 	);
 
 	it(
-		"mints a genre under the request's own qid when the name is unresolvable, pinning the requested slug",
+		// Note: this slug happens to equal makeSlug("genre", <name>) already, so it stays the mint
+		// target under the post-review-round-1 semantics too (a body.slug that resolves to nothing
+		// real is never itself pinned -- see the "body.slug is a lookup key" describe block below
+		// for a case where the requested slug and the name-derived one actually differ).
+		"mints a genre under the request's own qid when the name is unresolvable, landing on the name-derived slug",
 		async () => {
 			const service = await buildService();
 			installPipelineMocks({
@@ -566,6 +595,132 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 			});
 
 			expect(result.node.slug).toBe("genre:totally-unresolvable-fixture-genre");
+			expect((result.node as GenreNode).qid).toBe("Q106528337");
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-43 review round 1 (security, 2026-09-10): body.slug is a LOOKUP key for an existing node,
+// never a write target the client gets to choose on its own. Repro that forced this: a stale
+// `genre:techno` node (nodeTtlMs=12h makes most committed nodes "stale") plus
+// `{name: "Attacker Controlled Topic", slug: "genre:techno"}` used to pin `slug` from the client
+// while keeping the client's own `name`/`mbid` -- POST /materialize is public/unauthenticated
+// (server.ts), so this was an arbitrary unauthenticated write into cache/, any node type.
+describe("createMaterializeService — body.slug is a lookup key, never a write target (TRA-43 security fix)", () => {
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-materialize-slug-security-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	async function buildService() {
+		const genreRegistry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const createMaterializeService = await loadCreateMaterializeService();
+		return createMaterializeService({ cache, env: ENV, genreRegistry });
+	}
+
+	it(
+		"THE REPRO: a stale node's own identity drives a body.slug refresh, never an attacker-supplied name",
+		async () => {
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > nodeTtlMs (12h)
+			await cache.write(
+				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", materialized_at: staleAt }),
+			);
+			const service = await buildService();
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Techno",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Attacker Controlled Topic",
+				slug: "genre:techno",
+			});
+
+			expect(result.node.slug).toBe("genre:techno");
+			// The refreshed node keeps ITS OWN name -- the attacker's `name` never lands on disk.
+			expect(result.node.name).toBe("Techno");
+			const tavilySearch = await loadTavilySearch();
+			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
+			expect(query).toBe("Techno genre music wiki discogs");
+			expect(query).not.toContain("Attacker");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the cached node's own mbid when the client supplies a different one, without treating it as a mismatch (no refresh)",
+		async () => {
+			const CACHED_MBID = "22222222-2222-2222-2222-222222222222";
+			await cache.write(
+				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", mbid: CACHED_MBID }),
+			);
+			const service = await buildService();
+			const tavilySearch = await loadTavilySearch();
+			vi.mocked(tavilySearch)
+				.mockReset()
+				.mockImplementation(async () => {
+					throw new Error("unexpected pipeline run");
+				});
+
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Whatever The Client Calls It",
+				slug: "genre:techno",
+				mbid: "ffffffff-ffff-ffff-ffff-ffffffffffff",
+			});
+
+			expect(result.source).toBe("cache");
+			expect(result.node.slug).toBe("genre:techno");
+			expect((result.node as GenreNode).mbid).toBe(CACHED_MBID);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"mints a brand-new node under the NAME-derived slug when body.slug names no existing/canonical node -- never pinning body.slug itself",
+		async () => {
+			const service = await buildService();
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Totally Unresolvable Fixture Genre",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Totally Unresolvable Fixture Genre",
+				slug: "genre:some-entirely-different-slug",
+				qid: "Q106528337",
+			});
+
+			expect(result.node.slug).toBe("genre:totally-unresolvable-fixture-genre");
+			expect(await cache.has("genre:some-entirely-different-slug")).toBe(false);
 			expect((result.node as GenreNode).qid).toBe("Q106528337");
 		},
 		TIMEOUT_MS,
