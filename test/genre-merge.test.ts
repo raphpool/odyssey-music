@@ -6,8 +6,10 @@ import {
 	type ElectionCandidate,
 	electCanonical,
 	loadOnboardingGenreSlugs,
+	looksLikeCacheDir,
 	mergeGenreEdges,
 	mergeRedirects,
+	parseCliArgs,
 	readCacheNodes,
 	rewriteNodeEdges,
 	rewritePendingReverses,
@@ -553,4 +555,57 @@ describe("runMigration (disk integration)", () => {
 	});
 });
 
-// parseCliArgs and its tests are TRA-44 (CLI entry point), stacked on this branch.
+describe("parseCliArgs", () => {
+	it("rejects a missing cache-dir instead of defaulting", () => {
+		expect(parseCliArgs([])).toBeNull();
+	});
+
+	it("rejects a flag standing in for the positional cache-dir", () => {
+		expect(parseCliArgs(["--apply"])).toBeNull();
+	});
+
+	it("parses the positional cache-dir, the --apply flag, and an optional --redirects path", () => {
+		expect(parseCliArgs(["cache"])).toEqual({ cacheDir: "cache", apply: false });
+		expect(parseCliArgs(["cache", "--apply"])).toEqual({ cacheDir: "cache", apply: true });
+		expect(parseCliArgs(["cache", "--redirects", "data/genre-redirects.json"])).toEqual({
+			cacheDir: "cache",
+			apply: false,
+			redirectsPath: "data/genre-redirects.json",
+		});
+	});
+
+	it("rejects --redirects with no path, or a path that's actually another flag", () => {
+		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
+		expect(parseCliArgs(["cache", "--redirects", "--apply"])).toBeNull();
+	});
+
+	it("rejects any unrecognized flag", () => {
+		expect(parseCliArgs(["cache", "--dry-run"])).toBeNull();
+		expect(parseCliArgs(["cache", "--aply"])).toBeNull();
+	});
+
+	it("rejects a stray extra positional (e.g. a redirects path typed without --redirects)", () => {
+		// Regression: this used to silently become { cacheDir: "cache", apply: true },
+		// discarding "data/genre-redirects.json" and applying with the default redirects path.
+		expect(parseCliArgs(["cache", "data/genre-redirects.json", "--apply"])).toBeNull();
+	});
+
+	it("rejects a repeated --redirects flag instead of silently using the first", () => {
+		expect(parseCliArgs(["cache", "--redirects", "a.json", "--redirects", "b.json"])).toBeNull();
+	});
+});
+
+describe("looksLikeCacheDir", () => {
+	it("discriminates a real (even if empty) cache directory from a missing or malformed one", async () => {
+		const dir = await mkdtemp(join(tmpdir(), "odyssey-cachedir-check-"));
+		try {
+			// Regression: main() used to let a missing/typo'd cache-dir through to runMigration,
+			// which reported "0 groups" -- indistinguishable from a genuinely idempotent rerun.
+			expect(await looksLikeCacheDir(join(dir, "does-not-exist"))).toBe(false);
+			await mkdir(join(dir, "empty-cache", "nodes"), { recursive: true });
+			expect(await looksLikeCacheDir(join(dir, "empty-cache"))).toBe(true);
+		} finally {
+			await rm(dir, { recursive: true, force: true });
+		}
+	});
+});
