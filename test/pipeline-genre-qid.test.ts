@@ -3,6 +3,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
+// Namespace import alongside the named one above (TRA-45 point 5): vi.spyOn needs the module's
+// own exports object to replace `loadGenreResolver` for one call, so pipeline.ts's own import of
+// it observes the mock -- a plain `vi.fn()` swapped into a local variable wouldn't reach there.
+import * as genreIdentity from "../src/genre-identity.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry } from "../src/genre-registry.js";
 import { enrichFromMusicBrainz, normalizeEdge, type PipelineDeps, runPipeline } from "../src/pipeline.js";
@@ -457,6 +461,29 @@ describe("enrichFromMusicBrainz — qid carried across rematerialization (TRA-32
 		expect(node.qid).toBe("Q1");
 	});
 
+	// TRA-45 point 3: obj.qid is `cachedQid ?? input.qid ?? identity?.qid` -- when cachedQid wins
+	// (this test's exact setup), input.qid was NOT what got kept, so the "edge identity kept" log
+	// (which fired here before the fix) was actively misleading.
+	it("does not log 'edge identity kept' when the cached qid wins over a disagreeing edge qid", async () => {
+		await cache.write(cachedGenreNode({ slug: "genre:techno", name: "Techno", qid: "Q1" }));
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const logs: string[] = [];
+		const node: Record<string, unknown> = { slug: "genre:techno", name: "Techno" };
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Techno", qid: "Q11787389" },
+			(line) => logs.push(line),
+			registry,
+		);
+		expect(node.qid).toBe("Q1");
+		expect(logs.some((l) => l.includes("edge identity kept"))).toBe(false);
+		expect(logs.some((l) => l.includes("cached kept"))).toBe(true);
+	});
+
 	it("mints a genre with an unresolvable name using the edge's own qid, backfilling parent_genres from its catalog entry", async () => {
 		const registry = createGenreRegistry({
 			cache,
@@ -480,6 +507,32 @@ describe("enrichFromMusicBrainz — qid carried across rematerialization (TRA-32
 		expect(node.qid).toBe("Q106528337");
 		const parents = node.parent_genres as Array<{ name: string; slug: string; qid?: string }>;
 		expect(parents.some((p) => p.slug === "genre:electronic-music")).toBe(true);
+	});
+});
+
+// TRA-45 point 5: the resolver-unavailable branch (src/pipeline.ts, `else` of `if (resolver)`)
+// falls back to `cachedQid ?? input.qid ?? catalog.get(body)?.wikidata_qid` -- same precedence as
+// the resolver-available branch, just sourced from the raw catalog map instead of the resolver.
+// Forcing "unavailable" means making the memoized loadGenreResolver() reject for exactly one
+// call; a namespace-import spy is the only way to do that without touching genre-identity.ts,
+// which is out of this ticket's scope.
+describe("enrichFromMusicBrainz — resolver unavailable, edge qid precedence (TRA-45 point 5)", () => {
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
+	it("keeps the edge's own qid over the catalog's own value when the genre resolver fails to load", async () => {
+		vi.spyOn(genreIdentity, "loadGenreResolver").mockRejectedValueOnce(new Error("boom"));
+		const logs: string[] = [];
+		// "genre:techno" resolves in the committed catalog (data/genre-catalog.json) to Q170611 --
+		// a disagreeing, fictional edge qid must win instead per the documented precedence, proving
+		// the resolver-unavailable branch doesn't silently drop input.qid in favor of the catalog.
+		const node: Record<string, unknown> = { slug: "genre:techno", name: "Techno" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Techno", qid: "Q11787389" }, (line) =>
+			logs.push(line),
+		);
+		expect(node.qid).toBe("Q11787389");
+		expect(logs.some((l) => l.includes("genre resolver unavailable"))).toBe(true);
 	});
 });
 
