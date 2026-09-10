@@ -105,6 +105,34 @@ export async function loadGenreRedirects(path?: string): Promise<GenreRedirects>
 	return parseGenreRedirects(JSON.parse(raw));
 }
 
+/**
+ * The read-time canonicalization rule shared by every slug-keyed read path: a live cache node
+ * always wins, unchanged (even if the slug also happens to be a redirect key -- inconsistent
+ * state, but a live node is never redirected away from itself); otherwise follow the flattened
+ * genre-redirect table for a single hop; otherwise the slug is returned unchanged (unknown slug,
+ * or a genre slug with neither a live node nor a redirect entry). Never consults the qid index
+ * (decision d'archi 9, docs/plans/qid-genre-identity.md) -- a slug that was never materialized
+ * under any identity stays unresolved, since none of these read paths materialize on miss.
+ *
+ * `redirects.get` is checked first because it's an in-memory Map lookup (redirect keys are only
+ * ever genre slugs, so this is an immediate miss for every other node type) -- `cache.has`, a
+ * disk read, only runs for the rare slug that's actually a redirect key.
+ *
+ * 2026-09-10 (TRA-39): extracted from node-service.ts's original inline check (TRA-30) so
+ * image-service and server.ts's handleLinks apply the exact same rule instead of reimplementing
+ * it -- before this, GET /image and GET /links on a redirected genre slug diverged from
+ * GET /node/:slug on the same slug (the latter already applied this rule).
+ */
+export async function resolveReadSlug(
+	slug: Slug,
+	redirects: GenreRedirects,
+	cache: NodeCache,
+): Promise<Slug> {
+	const redirected = redirects.get(slug);
+	if (redirected && !(await cache.has(slug))) return redirected;
+	return slug;
+}
+
 export interface GenreRegistry {
 	canonicalSlugFor(ref: {
 		slug: Slug;
