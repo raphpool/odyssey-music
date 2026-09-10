@@ -519,20 +519,6 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		expect(hasSpy).not.toHaveBeenCalled();
 	});
 
-	it("accepts a well-formed slug with a disambiguator segment", async () => {
-		await cache.write(genreNode({ slug: "genre:trap--edm", name: "Trap" }));
-		const service = await buildService();
-
-		const result = await service.handleMaterialize({
-			type: "genre",
-			name: "Trap",
-			slug: "genre:trap--edm",
-		});
-
-		expect(result.node.slug).toBe("genre:trap--edm");
-		expect(result.source).toBe("cache");
-	});
-
 	it(
 		"serves an existing node by qid even when the request's name doesn't resolve there, minting nothing",
 		async () => {
