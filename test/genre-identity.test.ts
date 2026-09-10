@@ -192,6 +192,18 @@ describe("loadGenreResolver", () => {
 		expect(identity?.via).toBe("name");
 	});
 
+	it('resolves "Trap (EDM)" to the EDM trap music QID via the curated alias (TRA-33)', async () => {
+		// TRA-33: the backfill (TRA-21) stamped genre:trap with Q2913982 "trap music" via
+		// slug-body matching, but the catalog also has a distinct "edm-trap-music" entry
+		// that better matches this node's definition. Human decision: alias to Q47781397.
+		const resolver = await loadGenreResolver();
+
+		const identity = resolver.resolve({ name: "Trap (EDM)" });
+
+		expect(identity?.qid).toBe("Q47781397");
+		expect(identity?.via).toBe("alias");
+	});
+
 	it("resolves the five measured cases from the plan to a non-null identity", async () => {
 		const resolver = await loadGenreResolver();
 
