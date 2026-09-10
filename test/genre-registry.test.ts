@@ -386,6 +386,30 @@ describe("canonicalizeNodeEdges", () => {
 
 		expect(node.related_genres).toEqual([]);
 	});
+
+	it("drops a genre edge that resolves to a DIFFERENT, already-cached node sharing this node's own qid (TRA-28 review B3)", async () => {
+		// genre:electronic already exists with Q9778. The node under construction here is
+		// itself a not-yet-merged duplicate of it ("genre:electronic-music", also Q9778 --
+		// enrichFromMusicBrainz's genre-catalog backfill stamps a genre node's own qid before
+		// canonicalizeNodeEdges ever runs). A related_genres ref naming a variant of "Electronic"
+		// resolves via the qid index (rule 4) to the OTHER, already-cached node -- a different
+		// slug than this node's own, so the old ownSlug-only self-loop filter let it survive,
+		// linking two not-yet-merged duplicates of the same qid to each other.
+		await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q9778" }));
+		const resolver = resolverFor([{ slug: "irrelevant", name: "Electronic", wikidata_qid: "Q9778" }]);
+		const registry = registryFor({ resolver });
+
+		const node = genreNode({
+			slug: "genre:electronic-music",
+			name: "Electronic music",
+			qid: "Q9778",
+			related_genres: [genreRef({ slug: "genre:electronic-variant", name: "Electronic" })],
+		});
+
+		await registry.canonicalizeNodeEdges(node);
+
+		expect(node.related_genres).toEqual([]);
+	});
 });
 
 describe("parseGenreRedirects", () => {
