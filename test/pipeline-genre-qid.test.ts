@@ -415,6 +415,107 @@ describe("enrichFromMusicBrainz — qid carried across rematerialization (TRA-32
 	});
 });
 
+// TRA-43: PipelineInput.qid carries the identity of the EDGE that produced this materialize
+// request (front chip / crawler frontier) -- precedence is cachedQid ?? input.qid ??
+// identity?.qid, so an edge's own qid wins over a fresh by-name resolve but never over an
+// already-committed cached qid (TRA-32 unchanged).
+describe("enrichFromMusicBrainz — PipelineInput.qid precedence (TRA-43)", () => {
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-pipeline-genre-qid-edge-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	function cachedGenreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
+		return {
+			type: "genre",
+			editorial_article:
+				"A real long article about this genre, well past the eighty character floor. ".repeat(2),
+			editorial_definition: "A short definition.",
+			citations: [{ url: "https://example.com/genre" }],
+			materialized_at: new Date().toISOString(),
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+			...overrides,
+		};
+	}
+
+	it("keeps the edge's own qid over a disagreeing by-name resolve, logging the conflict", async () => {
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const logs: string[] = [];
+		const node: Record<string, unknown> = { slug: "genre:techno", name: "Techno" };
+		// "Techno" resolves by name to Q170611 -- a fictional edge qid (CLUB_DANCE_QID) must win
+		// instead, same motif as test/genre-dedup-postmerge.test.ts scenario 6.
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Techno", qid: "Q11787389" },
+			(line) => logs.push(line),
+			registry,
+		);
+		expect(node.qid).toBe("Q11787389");
+		expect(
+			logs.some((l) => l.includes("Q11787389") && l.includes("Q170611") && l.includes("edge identity kept")),
+		).toBe(true);
+	});
+
+	it("keeps the cached qid over BOTH a disagreeing edge qid and a disagreeing by-name resolve (TRA-32 unchanged)", async () => {
+		await cache.write(cachedGenreNode({ slug: "genre:techno", name: "Techno", qid: "Q1" }));
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const node: Record<string, unknown> = { slug: "genre:techno", name: "Techno" };
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Techno", qid: "Q11787389" },
+			() => undefined,
+			registry,
+		);
+		expect(node.qid).toBe("Q1");
+	});
+
+	it("mints a genre with an unresolvable name using the edge's own qid, backfilling parent_genres from its catalog entry", async () => {
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		// "Not A Real Genre Xyz" resolves via neither name nor slug body (established in the
+		// TRA-32 describe block above) -- the edge's own qid ("acid"'s real Wikidata id) is the
+		// only source of identity here.
+		const node: Record<string, unknown> = {
+			slug: "genre:not-a-real-genre-xyz",
+			name: "Not A Real Genre Xyz",
+			parent_genres: [],
+		};
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Not A Real Genre Xyz", qid: "Q106528337" },
+			() => undefined,
+			registry,
+		);
+		expect(node.qid).toBe("Q106528337");
+		const parents = node.parent_genres as Array<{ name: string; slug: string; qid?: string }>;
+		expect(parents.some((p) => p.slug === "genre:electronic-music")).toBe(true);
+	});
+});
+
 describe("runPipeline — cached qid wins on disk, not just in-memory (TRA-32 review round 1, item 3)", () => {
 	let dir: string;
 	let cache: NodeCache;

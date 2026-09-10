@@ -300,33 +300,18 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 		TIMEOUT_MS,
 	);
 
-	// KNOWN BUG (not fixed here — out of scope per TRA-31, documented in the PR): the first half
-	// of this scenario (the artist edge dedup via TRA-36's shared batchMemo) genuinely passes.
-	// The second half — materializing "Dance" then "Club" by name and expecting the same node —
-	// fails against real committed data:
-	//   - src/services/materialize-service.ts:78 (`canonicalSlugFor({ slug, name: body.name })`,
-	//     the genre canonicalization guard in handleMaterialize) never forwards `body.mbid`, even
-	//     though MaterializeRequest.mbid exists and IS used two lines below for the cache-hit
-	//     mbidMismatch check (materialize-service.ts:113). src/genre-registry.ts's public
-	//     GenreRegistry.canonicalSlugFor signature (genre-registry.ts:109) doesn't even accept an
-	//     mbid parameter -- only the private resolveCanonical helper does (genre-registry.ts:145).
-	//     So a genre materialize-BY-NAME request has no way to use a known real MBID for identity,
-	//     unlike the MusicBrainz-tag path (mbGenreEdges, pipeline.ts:844-850) which always passes
-	//     mbid through to resolver.resolve().
-	//   - Without an mbid, GenreResolver.resolve({name: "Dance"}) (src/genre-identity.ts:127,
-	//     step 2 "exact name") matches data/genre-catalog.json's OWN "dance" entry -- a different,
-	//     unrelated Wikidata entity (Q8195422) -- before ever considering the MusicBrainz mbid
-	//     mapping (data/genre-qid-map.json) that ties the real "club"/"dance" MB tags to Q11787389
-	//     ("club/dance music", catalog slug "clubdance-music"). resolve({name: "Club"}) finds no
-	//     catalog/alias entry at all and returns null.
-	//   - Verified 2026-09-10 against the real committed data (`loadGenreResolver()`, no mocks):
-	//     resolve({name:"Dance"}) -> {qid:"Q8195422", slug:"dance", via:"name"};
-	//     resolve({name:"Club"}) -> null.
-	// Net effect: materializing "Dance" mints genre:dance with the WRONG qid (Q8195422, not
-	// Q11787389), and materializing "Club" mints a second, separate genre:club with no qid at
-	// all -- two nodes, not one, exactly the kind of duplicate this ticket exists to gate against.
-	// Left failing on purpose (it.fails) rather than skipped or fixed -- TRA-31 is test-only.
-	it.fails(
+	// FIXED (TRA-43, 2026-09-10): the second half of this scenario -- materializing "Dance" then
+	// "Club" by name and expecting the same node -- used to fail against real committed data,
+	// because handleMaterialize's genre canonicalization guard only ever had a bare {slug, name}
+	// to canonicalize against: no qid, no mbid. GenreResolver.resolve({name: "Dance"}) matches
+	// data/genre-catalog.json's OWN "dance" entry (Q8195422, an unrelated Wikidata entity) before
+	// ever considering the real MB "club"/"dance" tags' QID (Q11787389); resolve({name: "Club"})
+	// found nothing at all. Net effect used to be two nodes for one MB identity, invisible to
+	// report:genre-dupes. TRA-43 makes this test build its requests the way the front chip does
+	// (TRA-38: `reqBody.slug`/`reqBody.qid` from the chip's own dataset) -- both requests below
+	// carry the artist edge's own `slug` and `qid`, which handleMaterialize's guard now takes as
+	// authoritative (qid autoritaire, decision d'archi 8/9) instead of re-resolving by name.
+	it(
 		"scenario 6 — two MusicBrainz tags sharing a QID converge onto one artist edge, and separate by-name materializations converge on one node",
 		async () => {
 			const filesBefore = await genreFileCount(cache);
@@ -347,8 +332,17 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 			// resolve to the same QID via mbid, so the second collapses onto the first's slug and is
 			// de-duped away — one edge, not two.
 			expect(artist.genres).toHaveLength(1);
-			expect(artist.genres[0]?.qid).toBe(CLUB_DANCE_QID);
+			const edge = artist.genres[0];
+			expect(edge?.qid).toBe(CLUB_DANCE_QID);
+			// Narrow to a plain Slug (not `Slug | undefined`) so the requests below can pass it
+			// straight through -- exactOptionalPropertyTypes rejects an explicit `undefined` for
+			// MaterializeRequest.slug, which the assertion above already rules out at runtime.
+			if (!edge?.slug) throw new Error("expected the deduped artist edge to carry a slug");
+			const edgeSlug = edge.slug;
 
+			// TRA-43/TRA-38: the front chip sends `{type, name, slug: chip.dataset.jitSlug, qid:
+			// chip.dataset.jitQid}` -- both requests below carry the SAME edge slug/qid, only the
+			// display `name` differs (whatever the chip happened to render).
 			installPipelineMocks({
 				draft: genreDraftFixture({
 					name: "Dance",
@@ -360,7 +354,12 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 					landmark_tracks: [],
 				}),
 			});
-			const danceResult = await materializeService.handleMaterialize({ type: "genre", name: "Dance" });
+			const danceResult = await materializeService.handleMaterialize({
+				type: "genre",
+				name: "Dance",
+				slug: edgeSlug,
+				qid: CLUB_DANCE_QID,
+			});
 
 			installPipelineMocks({
 				draft: genreDraftFixture({
@@ -373,7 +372,12 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 					landmark_tracks: [],
 				}),
 			});
-			const clubResult = await materializeService.handleMaterialize({ type: "genre", name: "Club" });
+			const clubResult = await materializeService.handleMaterialize({
+				type: "genre",
+				name: "Club",
+				slug: edgeSlug,
+				qid: CLUB_DANCE_QID,
+			});
 
 			expect(clubResult.node.slug).toBe(danceResult.node.slug);
 			expect(await genreFileCount(cache)).toBe(filesBefore + 1);
