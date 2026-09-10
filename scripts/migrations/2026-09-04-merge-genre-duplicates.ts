@@ -17,7 +17,7 @@
  * Usage: tsx scripts/migrations/2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply]
  *        [--redirects <path>]
  */
-import { readFile, rm } from "node:fs/promises";
+import { mkdir, readFile, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache, type PendingReverse } from "../../src/cache.js";
@@ -307,12 +307,18 @@ async function loadCatalogNameIndex(): Promise<Map<string, string>> {
 	return index;
 }
 
-/** Reads the 34 ONBOARDING_GENRES slugs straight out of web/index.html -- not touched, only read. */
+/**
+ * Reads ONBOARDING_GENRES out of web/index.html (read-only). Throws on zero matches --
+ * feeds the onboarding invariant directly, so a stale regex must fail loudly, not check
+ * nothing silently.
+ */
 export async function loadOnboardingGenreSlugs(webIndexPath?: string): Promise<string[]> {
 	const path = webIndexPath ?? join(defaultDataDir(), "..", "web", "index.html");
 	const html = await readFile(path, "utf8");
 	const arrayLiteral = html.match(/const ONBOARDING_GENRES = \[([\s\S]*?)\];/)?.[1] ?? "";
-	return [...arrayLiteral.matchAll(/"(genre:[a-z0-9-]+)"/g)].map((m) => m[1] as string);
+	const slugs = [...arrayLiteral.matchAll(/"(genre:[a-z0-9-]+)"/g)].map((m) => m[1] as string);
+	if (slugs.length === 0) throw new Error(`no ONBOARDING_GENRES slugs found in ${path}`);
+	return slugs;
 }
 
 async function readTextOrDefault(path: string, fallback: string): Promise<string> {
@@ -337,13 +343,16 @@ interface GroupPlan {
 export function formatMergeReport(
 	groups: readonly GroupPlan[],
 	rewritesByType: ReadonlyMap<NodeType, number>,
-	redirectsWritten: number,
+	redirects: { newCount: number; totalCount: number },
+	onboardingSlugsChecked: number,
 	dryRun: boolean,
 ): string {
+	const totalRewritten = [...rewritesByType.values()].reduce((sum, n) => sum + n, 0);
 	const lines: string[] = [`=== Genre duplicate merge${dryRun ? " (DRY RUN)" : ""} ===`];
 	lines.push(`${"Groups to merge:".padEnd(24)}${groups.length}`);
 	lines.push(`${"Files to delete:".padEnd(24)}${groups.reduce((sum, g) => sum + g.losers.length, 0)}`);
-	lines.push(`${"Redirects written:".padEnd(24)}${redirectsWritten}`);
+	lines.push(`${"Redirects (new/total):".padEnd(24)}${redirects.newCount}/${redirects.totalCount}`);
+	lines.push(`${"Onboarding slugs checked:".padEnd(24)}${onboardingSlugsChecked}`);
 
 	lines.push("", "=== Groups ===");
 	for (const g of groups) {
@@ -362,6 +371,7 @@ export function formatMergeReport(
 			lines.push(`  ${type.padEnd(10)} ${count}`);
 		}
 	}
+	lines.push(`  ${"total".padEnd(10)} ${totalRewritten}`);
 
 	return lines.join("\n");
 }
@@ -489,8 +499,8 @@ export async function runMigration(
 		if (loserSlugs.has(slug)) errors.push(`onboarding genre slug ${slug} would be deleted by this merge`);
 	}
 
-	// Wrapped together: a corrupted existing genre-redirects.json (bad slug, or a cycle
-	// mergeRedirects can't flatten) must fail loudly here, not mid-write.
+	// A corrupted redirects table or a truncated pending-reverses.json must fail here,
+	// before any write -- not after losers are already gone from disk.
 	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "genre-redirects.json");
 	let mergedRedirects: Record<string, string> = {};
 	try {
@@ -501,8 +511,19 @@ export async function runMigration(
 		errors.push(`redirects table would fail validation: ${e instanceof Error ? e.message : String(e)}`);
 	}
 
-	const redirectsWritten = Object.keys(mergedRedirects).length;
-	const report = formatMergeReport(groupPlans, hitsByType, redirectsWritten, !apply);
+	const pendingPath = join(cacheDir, "pending-reverses.json");
+	let pendingParsed: Record<string, PendingReverse[]> = {};
+	try {
+		pendingParsed = JSON.parse(await readTextOrDefault(pendingPath, "{}")) as Record<
+			string,
+			PendingReverse[]
+		>;
+	} catch (e) {
+		errors.push(`pending-reverses.json is invalid: ${e instanceof Error ? e.message : String(e)}`);
+	}
+
+	const redirectsWritten = { newCount: rewriteMap.size, totalCount: Object.keys(mergedRedirects).length };
+	const report = formatMergeReport(groupPlans, hitsByType, redirectsWritten, onboardingSlugs.length, !apply);
 
 	if (errors.length > 0) {
 		for (const err of errors) process.stderr.write(`error: ${err}\n`);
@@ -511,23 +532,23 @@ export async function runMigration(
 
 	if (!apply) return { report, groupsFound: groupPlans.length, deletedCount: 0, exitCode: 0 };
 
-	// --- Apply: writes, deletes, pending-reverses, then redirects.
+	// --- Apply, crash-safe order: rewrite nodes, pending-reverses, redirects, THEN delete
+	// losers last -- a loser briefly having both its file and a redirect is harmless
+	// (genre-registry's rule 2, an existing node, beats rule 3, follow a redirect); deleting
+	// first could leave a loser with neither if a later step then failed.
 	for (const [path, node] of writes) await atomicWriteJson(path, node);
-	for (const path of deletePaths) await rm(path);
 
-	const pendingPath = join(cacheDir, "pending-reverses.json");
-	const pendingParsed = JSON.parse(await readTextOrDefault(pendingPath, "{}")) as Record<
-		string,
-		PendingReverse[]
-	>;
 	const { result: nextPending, changed: pendingChanged } = rewritePendingReverses(pendingParsed, rewriteMap);
 	if (pendingChanged) await atomicWriteJson(pendingPath, nextPending);
 
+	await mkdir(dirname(redirectsPath), { recursive: true });
 	await atomicWriteJson(redirectsPath, {
 		source: "genre duplicate merge",
 		generated_at: new Date().toISOString(),
 		redirects: mergedRedirects,
 	});
+
+	for (const path of deletePaths) await rm(path);
 
 	return { report, groupsFound: groupPlans.length, deletedCount: deletePaths.length, exitCode: 0 };
 }
@@ -548,7 +569,11 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	const redirectsIndex = argv.indexOf("--redirects");
 	const redirectsPath = redirectsIndex >= 0 ? argv[redirectsIndex + 1] : undefined;
-	if (redirectsIndex >= 0 && !redirectsPath) return null;
+	// A missing value, or one that's actually another flag (e.g. --redirects --apply with
+	// the path forgotten), is rejected rather than silently taken as the path.
+	if (redirectsIndex >= 0 && (!redirectsPath || redirectsPath.startsWith("-"))) return null;
+	const known = new Set(["--apply", "--redirects"]);
+	if (argv.slice(1).some((a) => a.startsWith("-") && !known.has(a))) return null;
 	return { cacheDir, apply: argv.includes("--apply"), ...(redirectsPath ? { redirectsPath } : {}) };
 }
 

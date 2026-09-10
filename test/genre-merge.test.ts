@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	type ElectionCandidate,
 	electCanonical,
+	loadOnboardingGenreSlugs,
 	mergeGenreEdges,
 	mergeRedirects,
 	parseCliArgs,
@@ -309,6 +310,30 @@ describe("rewritePendingReverses", () => {
 	});
 });
 
+describe("loadOnboardingGenreSlugs", () => {
+	it("extracts exactly the 34 slugs from the real web/index.html, all present in cache/nodes/genre", async () => {
+		const slugs = await loadOnboardingGenreSlugs();
+		expect(slugs).toHaveLength(34);
+		expect(new Set(slugs).size).toBe(34);
+		for (const slug of slugs) {
+			await expect(
+				readFile(`cache/nodes/genre/${slug.slice("genre:".length)}.json`, "utf8"),
+			).resolves.toBeTruthy();
+		}
+	});
+
+	it("throws instead of returning an empty list when the regex no longer matches", async () => {
+		const dir = await mkdtemp(join(tmpdir(), "odyssey-onboarding-"));
+		const path = join(dir, "index.html");
+		try {
+			await writeFile(path, 'const ONBOARDING_GENRES = Object.freeze(["genre:electronic"]);', "utf8");
+			await expect(loadOnboardingGenreSlugs(path)).rejects.toThrow(/no ONBOARDING_GENRES slugs found/);
+		} finally {
+			await rm(dir, { recursive: true, force: true });
+		}
+	});
+});
+
 describe("runMigration (disk integration)", () => {
 	let dir: string;
 	let redirectsPath: string;
@@ -360,9 +385,14 @@ describe("runMigration (disk integration)", () => {
 		return { loserPath, artistPath };
 	}
 
-	it("dry-run computes the plan but leaves every file byte-identical", async () => {
+	it("dry-run computes the plan but leaves every file byte-identical, including a preexisting redirects table", async () => {
 		const { loserPath, artistPath } = await seedElectronicGroup();
-		const before = { loser: await readFile(loserPath, "utf8"), artist: await readFile(artistPath, "utf8") };
+		await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+		const before = {
+			loser: await readFile(loserPath, "utf8"),
+			artist: await readFile(artistPath, "utf8"),
+			redirects: await readFile(redirectsPath, "utf8"),
+		};
 
 		const result = await runMigration(dir, false, { catalogNames, redirectsPath });
 
@@ -371,7 +401,7 @@ describe("runMigration (disk integration)", () => {
 		expect(result.report).toContain("DRY RUN");
 		expect(await readFile(loserPath, "utf8")).toBe(before.loser);
 		expect(await readFile(artistPath, "utf8")).toBe(before.artist);
-		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+		expect(await readFile(redirectsPath, "utf8")).toBe(before.redirects);
 	});
 
 	it("--apply deletes the loser, rewrites incoming edges (list and singular) and pending-reverses, and a second --apply is a no-op", async () => {
@@ -456,6 +486,26 @@ describe("runMigration (disk integration)", () => {
 		await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
 	});
 
+	it("invariant: a truncated pending-reverses.json exits 1 without writing anything (crash-safety)", async () => {
+		// Regression: pending-reverses.json used to be parsed AFTER the losers were deleted.
+		const { loserPath, artistPath } = await seedElectronicGroup();
+		const pendingPath = await writePendingReversesFile({ "artist:x": [] });
+		await writeFile(pendingPath, '{"artist:x": [', "utf8");
+		const before = {
+			loser: await readFile(loserPath, "utf8"),
+			artist: await readFile(artistPath, "utf8"),
+			pending: await readFile(pendingPath, "utf8"),
+		};
+
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+
+		expect(result.exitCode).toBe(1);
+		expect(await readFile(loserPath, "utf8")).toBe(before.loser);
+		expect(await readFile(artistPath, "utf8")).toBe(before.artist);
+		expect(await readFile(pendingPath, "utf8")).toBe(before.pending);
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
 	it("invariant: an onboarding slug that would be the loser exits 1 without writing (2026-09-10 regression)", async () => {
 		await writeNodeFile(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q1" }));
 		const loserPath = await writeNodeFile(
@@ -525,5 +575,11 @@ describe("parseCliArgs", () => {
 
 	it("rejects --redirects with no path after it", () => {
 		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
+	});
+
+	it("rejects --redirects immediately followed by another flag, and any unknown flag", () => {
+		expect(parseCliArgs(["cache", "--redirects", "--apply"])).toBeNull();
+		expect(parseCliArgs(["cache", "--dry-run"])).toBeNull();
+		expect(parseCliArgs(["cache", "--aply"])).toBeNull();
 	});
 });
