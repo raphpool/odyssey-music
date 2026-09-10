@@ -272,6 +272,18 @@ let byId = new Map();
 let SEED_ID = null;
 let crumbs = []; // node ids forming the back-trail
 
+// 2026-09-10 (TRA-38): the server can serve a canonical node under a different
+// slug than the one requested (POST /materialize's genre-rewrite guard, GET
+// /node/:slug's redirect table). Without this, a materialized chip or a
+// redirected search hit stays indexed under the losing slug: byId.has(oldSlug)
+// keeps reporting "dangling"/"not found" even though the canonical node is
+// already loaded, and re-clicking just re-fetches instead of navigating.
+// requested slug -> slug actually served.
+const slugAlias = new Map();
+function resolveId(id) {
+  return byId.has(id) ? id : (slugAlias.get(id) ?? id);
+}
+
 const contentEl = document.getElementById("content");
 const statEl = document.getElementById("stat");
 const searchEl = document.getElementById("search");
@@ -371,12 +383,15 @@ async function pingApi() {
   async function onSearchHitClick(hit, rowEl) {
     crumbs = [];
     searchEl.value = "";
-    if (hit.source === "cache" && hit.slug && byId.has(hit.slug)) {
+    // 2026-09-10 (TRA-38): resolveId, not raw byId.has -- a second click on a hit whose
+    // slug a previous /node fetch already redirected (slugAlias) must take the fast path
+    // below instead of re-fetching /node/:slug for a slug we already resolved.
+    if (hit.source === "cache" && hit.slug && byId.has(resolveId(hit.slug))) {
       searchResults.style.display = "none";
       show(hit.slug);
       return;
     }
-    if (hit.source === "cache" && hit.slug && !byId.has(hit.slug)) {
+    if (hit.source === "cache" && hit.slug && !byId.has(resolveId(hit.slug))) {
       // Cache result whose viz-shape we don't have loaded yet (e.g. brand-new node since boot).
       // Pull it via the API and slot it in.
       rowEl.style.opacity = "0.6";
@@ -385,8 +400,14 @@ async function pingApi() {
         if (r.ok) {
           const body = await r.json();
           insertNodeIntoData(body.node);
+          // 2026-09-10 (TRA-38): the server's cacheIndex can still point at a slug that
+          // was merged away (genre dedup) or rewritten by the redirect table -- body.node.slug
+          // then differs from hit.slug. Before this, show(hit.slug) looked up the losing
+          // slug in byId (indexed under body.node.slug), found nothing, and returned with
+          // no visible effect: a dead search-result click.
+          if (body.redirected_from || body.node.slug !== hit.slug) slugAlias.set(hit.slug, body.node.slug);
           searchResults.style.display = "none";
-          show(hit.slug);
+          show(body.node.slug);
           return;
         }
       } catch {}
@@ -997,6 +1018,11 @@ function wireRecoCard(node) {
 }
 
 function show(id, { fromHistory = false, replaceHistory = false } = {}) {
+  // 2026-09-10 (TRA-38): a chip/card's data-id can carry a slug that a materialize
+  // or redirect response later superseded (slugAlias, fed by the materialize handler
+  // and the search-hit fetch). Resolve to the served slug so a click on an aliased
+  // ref navigates straight to the canonical node instead of finding nothing in byId.
+  id = resolveId(id);
   const node = byId.get(id);
   if (!node) return;
 
@@ -1184,7 +1210,9 @@ function countDangling(node) {
   let n = 0;
   for (const v of Object.values(node.edges || {})) {
     const refs = Array.isArray(v) ? v : [v];
-    for (const r of refs) if (!byId.has(r.slug) && !deadCache.has(r.slug)) n++;
+    // 2026-09-10 (TRA-38): an edge ref can still carry the slug a materialize response
+    // superseded -- without it, a chip that is really cached keeps counting as dangling.
+    for (const r of refs) if (!byId.has(resolveId(r.slug)) && !deadCache.has(r.slug)) n++;
   }
   return n;
 }
@@ -1199,7 +1227,7 @@ async function precacheAllDangling(node, btn) {
   for (const [kind, v] of Object.entries(node.edges || {})) {
     const refs = Array.isArray(v) ? v : [v];
     for (const r of refs) {
-      if (byId.has(r.slug) || deadCache.has(r.slug)) continue;
+      if (byId.has(resolveId(r.slug)) || deadCache.has(r.slug)) continue;
       targets.push({ ref: r, kind });
     }
   }
@@ -1374,7 +1402,9 @@ const PROJECT_CAROUSEL_EDGE = {
 function projectCarouselHtml(refs, kindLabel) {
   if (!Array.isArray(refs) || !refs.length) return "";
   const cards = refs.map((ref) => {
-    const cached = byId.get(ref.slug);
+    // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
+    // under a different slug than the one recorded on the edge.
+    const cached = byId.get(resolveId(ref.slug));
     const facts = (cached && cached.facts) || {};
     const imageUrl = (cached && cached.image_url) || "";
     const year = facts.year || ref.year || "";
@@ -1393,7 +1423,11 @@ function projectCarouselHtml(refs, kindLabel) {
     const navAttrs = inCache
       ? `data-id="${ref.slug}"`
       : `data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : ""}`;
-    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(ref.slug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
+    // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
+    // is only an alias key once this card is inCache via resolveId, not a slug byId or
+    // the ?node= deep link reader can look up directly.
+    const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
+    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
       <div class="cover"${bg}></div>
       <div class="name">${escapeHtml(ref.name)}</div>
       <div class="meta">${yearHtml}${rtHtml}</div>
@@ -1413,9 +1447,18 @@ function chipHtml(ref, parentCtx) {
   const rt = ref.releaseType;
   const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${rt}">${rt}</span>` : "";
   const extras = `${rtBadge}${yearSuffix}`;
-  const inCache = byId.has(ref.slug);
+  // 2026-09-10 (TRA-38): a materialize response can serve this ref's node under a
+  // different slug (genre canonical rewrite) -- without this the chip stays
+  // rendered "dangling" forever, countDangling never decrements, and each click
+  // re-POSTs /materialize instead of navigating to the already-cached node.
+  const inCache = byId.has(resolveId(ref.slug));
   if (inCache) {
-    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
+    // href uses the resolved slug (not the click handler, which already navigates
+    // correctly via show()'s own resolveId call): a plain <a href> is a new deep-link
+    // surface this branch didn't have while the ref rendered as a dangling <span>, and
+    // the raw ref.slug is only an alias key, not a slug byId (or the ?node= deep link
+    // reader, TRA-23) can look up on its own.
+    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
     return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
@@ -1483,12 +1526,19 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     // already-materialized canonical node (server-side rewrite, see materialize-service.ts),
     // whose id is already in byId/DATA.nodes from the initial data.json load. Re-pushing it here
     // would duplicate it in the search list and inflate DATA.total. show() below still navigates
-    // to the right node either way -- a stale-looking dangling chip on return is the same
-    // pre-existing name-drift symptom as an LLM rename, tracked separately (TRA-38), not this fix.
+    // to the right node either way.
     if (!byId.has(vizNode.id)) {
       byId.set(vizNode.id, vizNode);
       DATA.nodes.push(vizNode);
       DATA.total = DATA.nodes.length;
+    }
+    // 2026-09-10 (TRA-38): record the requested-slug -> served-slug mapping so that on
+    // any *other* render of this ref (chipHtml, countDangling, project cards) the chip
+    // stops being reported "dangling" and a click navigates straight to the canonical
+    // node without re-POSTing /materialize. Without this, a chip whose requested slug
+    // (chipEl.dataset.jitSlug) lost the rewrite kept looking dangling on every re-render.
+    if (chipEl.dataset.jitSlug && chipEl.dataset.jitSlug !== vizNode.id) {
+      slugAlias.set(chipEl.dataset.jitSlug, vizNode.id);
     }
     // Snap the progress bar to 100% then jump straight to the new node.
     chipEl.classList.add("done");
