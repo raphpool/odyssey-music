@@ -1,12 +1,13 @@
 import type { NodeCache } from "../cache.js";
 import { isNotFoundError } from "../errors.js";
+import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import { lookupAlbumArt } from "../itunes.js";
 import { logger } from "../logger.js";
 import type { EdgeRef, NodePayload, Slug } from "../types.js";
 
 const log = logger.child({ module: "image-service" });
 
-export function createImageService(deps: { cache: NodeCache }) {
+export function createImageService(deps: { cache: NodeCache; redirects: GenreRedirects }) {
 	async function resolveDisplayImage(
 		slug: Slug,
 		visited: Set<string> = new Set(),
@@ -14,7 +15,13 @@ export function createImageService(deps: { cache: NodeCache }) {
 		if (visited.has(slug)) return { slug, image_url: null, source: "cycle" };
 		visited.add(slug);
 
-		const node = await deps.cache.get(slug).catch((e: unknown) => {
+		// 2026-09-10 (TRA-39): without resolving the redirect first, GET /image/genre:electronic-music
+		// served { image_url: null, source: "not-cached" } forever (and cached that null for 24h,
+		// see the /image handler's Cache-Control in server.ts) even though genre:electronic (and its
+		// landmark covers) exist and GET /node/genre:electronic-music already serves the canonical
+		// node for the same slug (TRA-30). Same rule as node-service.getNode, via the shared helper.
+		const lookupSlug = await resolveReadSlug(slug, deps.redirects, deps.cache);
+		const node = await deps.cache.get(lookupSlug).catch((e: unknown) => {
 			if (isNotFoundError(e)) return null;
 			throw e;
 		});
