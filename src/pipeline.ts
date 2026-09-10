@@ -117,6 +117,10 @@ export interface PipelineInput {
 	// makeSlug(type, name) would produce -- omitting this re-derives the wrong slug from `name`
 	// and mints a second, name-derived duplicate of a target that was never actually missing.
 	slug?: Slug;
+	// 2026-09-10 (TRA-43): a genre identity hint from the EDGE that produced this request (front
+	// chip / crawler frontier) -- wins over a fresh by-name resolve in enrichFromMusicBrainz
+	// (decision d'archi 8/9, docs/plans/qid-genre-identity.md).
+	qid?: string;
 }
 
 export interface PipelineResult {
@@ -1148,9 +1152,18 @@ async function enrichFromMusicBrainz(
 						`[pipeline] genre qid conflict for ${slug}: cached=${cachedQid} resolved=${identity.qid} (cached kept)`,
 					);
 				}
-				obj.qid = cachedQid ?? identity?.qid;
+				// 2026-09-10 (TRA-43): the edge's own qid wins over a fresh by-name resolve, same
+				// rationale as cachedQid above -- log when it disagrees, like the cached case.
+				if (input.qid && identity && input.qid !== identity.qid) {
+					log(
+						`[pipeline] genre qid conflict for ${slug}: edge=${input.qid} resolved=${identity.qid} (edge identity kept)`,
+					);
+				}
+				obj.qid = cachedQid ?? input.qid ?? identity?.qid;
 			} else {
-				obj.qid = cachedQid ?? catalog.get(body)?.wikidata_qid;
+				// 2026-09-10 (TRA-43 review round 1, nit): same precedence as the resolver-available
+				// branch above -- the resolver being unavailable must not drop the edge's own qid.
+				obj.qid = cachedQid ?? input.qid ?? catalog.get(body)?.wikidata_qid;
 			}
 			// 2026-09-10 (TRA-32): look up the parent_genres backfill entry by whichever qid
 			// actually won above, BY QID — not by identity.slug/catalog.get(body)'s own slug,

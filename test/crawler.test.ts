@@ -71,4 +71,32 @@ describe("enqueueEdges (TRA-28 review B1)", () => {
 		expect(popped?.slug).toBe("label:fixture-label");
 		expect(popped?.entry.input.name).toBe("Fixture Label");
 	});
+
+	// TRA-43: a genre edge carrying a qid must produce a PipelineInput with that same qid, so a
+	// rematerialization at this frontier target is stamped with the edge's own identity instead
+	// of a fresh by-name resolve that could land on a different QID (2026-09-10).
+	it("forwards a genre edge's qid onto the enqueued PipelineInput", () => {
+		const frontier = new FrontierQueue();
+		const node = artistNode({
+			genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic Music", qid: "Q9778" }],
+		});
+
+		enqueueEdges(node, 1, frontier, () => {});
+
+		const popped = frontier.pop();
+		expect(popped?.entry.input.qid).toBe("Q9778");
+	});
+
+	it("leaves PipelineInput.qid unset for an edge without one (no undefined leaking through)", () => {
+		const frontier = new FrontierQueue();
+		const node = artistNode({
+			labels: [{ type: "label", slug: "label:fixture-label", name: "Fixture Label" }],
+		});
+
+		enqueueEdges(node, 0, frontier, () => {});
+
+		const popped = frontier.pop();
+		expect(popped?.entry.input.qid).toBeUndefined();
+		expect(popped?.entry.input).not.toHaveProperty("qid");
+	});
 });

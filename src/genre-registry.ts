@@ -106,7 +106,12 @@ export async function loadGenreRedirects(path?: string): Promise<GenreRedirects>
 }
 
 export interface GenreRegistry {
-	canonicalSlugFor(ref: { slug: Slug; name: string; qid?: string }): Promise<{ slug: Slug; qid?: string }>;
+	canonicalSlugFor(ref: {
+		slug: Slug;
+		name: string;
+		qid?: string;
+		mbid?: string;
+	}): Promise<{ slug: Slug; qid?: string }>;
 	canonicalizeGenreEdges(refs: readonly EdgeRef[]): Promise<EdgeRef[]>;
 	canonicalizeNodeEdges(node: unknown): Promise<void>;
 	/**
@@ -182,6 +187,7 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		slug: Slug;
 		name: string;
 		qid?: string;
+		mbid?: string;
 	}): Promise<{ slug: Slug; qid?: string }> {
 		return resolveCanonical(ref, undefined);
 	}

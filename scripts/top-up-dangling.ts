@@ -50,7 +50,7 @@ export async function topUpDangling(
 	// 1. Index materialized slugs and count dangling references.
 	const nodesDir = join(dir, "nodes");
 	const slugs = new Set<Slug>();
-	const dangling = new Map<Slug, { type: NodeType; name: string; count: number }>();
+	const dangling = new Map<Slug, { type: NodeType; name: string; count: number; qid?: string }>();
 	for (const t of await readdir(nodesDir)) {
 		for (const f of await readdir(join(nodesDir, t))) {
 			if (!f.endsWith(".json")) continue;
@@ -70,8 +70,21 @@ export async function topUpDangling(
 			const inspect = (e: EdgeRef): void => {
 				if (slugs.has(e.slug)) return;
 				const cur = dangling.get(e.slug);
-				if (cur) cur.count++;
-				else dangling.set(e.slug, { type: e.type, name: e.name, count: 1 });
+				if (cur) {
+					cur.count++;
+					// 2026-09-10 (TRA-43): backfill qid from a later edge if the first-seen one for
+					// this slug didn't carry one -- any edge naming this slug should carry the same
+					// identity, so the first available qid is as good as any.
+					if (!cur.qid && e.qid) cur.qid = e.qid;
+				} else {
+					const entry: { type: NodeType; name: string; count: number; qid?: string } = {
+						type: e.type,
+						name: e.name,
+						count: 1,
+					};
+					if (e.qid) entry.qid = e.qid;
+					dangling.set(e.slug, entry);
+				}
 			};
 			for (const field of LIST_EDGES_BY_TYPE[parsed.type]) {
 				const v = obj[field];
@@ -115,7 +128,10 @@ export async function topUpDangling(
 				// "Electronic Music") -- omitting it let runPipeline mint a second, name-derived
 				// node ("genre:electronic-music") for a target that was never actually missing,
 				// re-running the LLM for it on every single top-up pass.
+				// 2026-09-10 (TRA-43): forward the dangling reference's own qid, when known, so a
+				// rematerialization here carries the same identity the edge that referenced it did.
 				const input: PipelineInput = { type: parsed.type, name: t.name, slug: t.slug };
+				if (t.qid) input.qid = t.qid;
 				const t0 = Date.now();
 				const result = await runPipeline(input, {
 					tavilyApiKey: env.TAVILY_API_KEY,
