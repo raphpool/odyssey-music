@@ -207,4 +207,43 @@ describe("genre registry wiring (TRA-28)", () => {
 		},
 		TIMEOUT_MS,
 	);
+
+	it(
+		"mints a fresh name-derived slug on an empty cache (rule 5), then a second run converges on it (rule 2)",
+		async () => {
+			// TRA-28 review: the four scenarios above all pre-seed the target node -- this is the
+			// crawler's main window (a genre minted by one worker, referenced again before a
+			// second worker/run has a chance to see it in cache): nothing to canonicalize against
+			// yet, so the pipeline mints the name-derived slug same as always (rule 5); once that
+			// node is actually persisted, a later run resolving the SAME mbid must converge on it
+			// unchanged (rule 2), not mint yet another name-derived variant.
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			const deps: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test", genreRegistry };
+
+			installPipelineMocks({
+				draft: artistDraftFixture(),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const first = await runPipeline({ type: "artist", name: "Fixture Artist" }, deps);
+			const firstArtist = first.node as ArtistNode;
+			expect(firstArtist.genres[0]?.slug).toBe("genre:electronic-music");
+			expect(firstArtist.genres[0]?.qid).toBe(ELECTRONIC_QID);
+			await cache.write(first.node);
+
+			installPipelineMocks({
+				draft: artistDraftFixture({ name: "Fixture Artist Two" }),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const second = await runPipeline({ type: "artist", name: "Fixture Artist Two" }, deps);
+			const secondArtist = second.node as ArtistNode;
+			expect(secondArtist.genres[0]?.slug).toBe("genre:electronic-music");
+		},
+		TIMEOUT_MS,
+	);
 });
