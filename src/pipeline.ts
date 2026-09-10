@@ -66,6 +66,25 @@ async function loadGenreCatalog(): Promise<Map<string, WikidataGenreEntry>> {
 	return map;
 }
 
+// 2026-09-10 (TRA-32): a QID that wins the cached-vs-resolved conflict below (see
+// enrichFromMusicBrainz) doesn't necessarily match identity.slug/body's OWN catalog entry — using
+// that entry for the parent_genres backfill would backfill the WRONG lineage (e.g. genre:trap
+// keeping its curated Q47781397 (EDM) while "trap" resolves by name to Q2913982's hip-hop entry).
+// Look up the entry by the QID that actually won instead. On a QID shared by multiple catalog
+// entries, the first one wins (catalog is sorted by slug) — same collision policy as
+// genre-identity.ts's own qidIndex.
+let GENRE_CATALOG_BY_QID: Map<string, WikidataGenreEntry> | null = null;
+async function loadGenreCatalogByQid(): Promise<Map<string, WikidataGenreEntry>> {
+	if (GENRE_CATALOG_BY_QID) return GENRE_CATALOG_BY_QID;
+	const catalog = await loadGenreCatalog();
+	const byQid = new Map<string, WikidataGenreEntry>();
+	for (const entry of catalog.values()) {
+		if (!byQid.has(entry.wikidata_qid)) byQid.set(entry.wikidata_qid, entry);
+	}
+	GENRE_CATALOG_BY_QID = byQid;
+	return byQid;
+}
+
 import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
@@ -623,7 +642,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const research = await researchTarget(input, deps, log);
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
-	await enrichFromMusicBrainz(node, input, log);
+	await enrichFromMusicBrainz(node, input, log, deps.genreRegistry);
 	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
 	// derive a genre edge's slug from its display name alone, which produced 20 groups of
 	// duplicate genre nodes sharing a QID (e.g. "electronic" / "electronic-music"). All three
@@ -832,7 +851,12 @@ function mbGenreEdges(genres: readonly MbGenreTag[], resolver: GenreResolver | n
 
 // Exported for test/pipeline-genre-qid.test.ts (TRA-18), which mocks musicbrainz.js.
 export { enrichFromMusicBrainz };
-async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: PipelineLog): Promise<void> {
+async function enrichFromMusicBrainz(
+	node: unknown,
+	input: PipelineInput,
+	log: PipelineLog,
+	genreRegistry?: GenreRegistry,
+): Promise<void> {
 	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	// Genre resolver load is best-effort (TRA-18): a failure just means no qid on genre edges below.
 	let genreResolver: GenreResolver | null = null;
@@ -1073,7 +1097,14 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 		try {
 			const obj = node as Record<string, unknown>;
 			const catalog = await loadGenreCatalog();
-			const body = (obj.slug as string).split(":")[1] ?? "";
+			const slug = obj.slug as Slug;
+			const body = slug.split(":")[1] ?? "";
+			// 2026-09-10 (TRA-32): read the already-committed qid unconditionally, before either
+			// branch below decides obj.qid — the cached-wins conflict rule needs it regardless of
+			// whether the resolver even succeeds. This is a single local file read (~150us, per
+			// the review round that requested it), negligible next to the multi-second LLM call
+			// already paid for this node; do not move it into an "on resolve miss" branch only.
+			const cachedQid = await genreRegistry?.existingGenreQid(slug);
 			// 2026-09-09 (TRA-26): catalog.get(body) was a slug-exact lookup. The Wikidata
 			// catalog only has "electronic-music", not "electronic", so genre:electronic got
 			// neither qid nor parents and was invisible to report:genre-dupes. Route through
@@ -1089,25 +1120,44 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 					`[pipeline] genre resolver unavailable for node qid, falling back to slug lookup: ${msg.slice(0, 100)}`,
 				);
 			}
-			let entry: WikidataGenreEntry | undefined;
+			// TRA-18: obj.qid is stamped here, outside/before the parent_genres guard below — a
+			// genre with parents already resolved still needs its own qid (re)stamped.
 			if (resolver) {
-				// An unresolved name is a deliberate no-op (architecture decision 5): the node
-				// keeps whatever it had, rather than guessing via the old slug-exact lookup.
-				// Resolve on the node's own materialized name (obj.name), not input.name: by
-				// this point canonicalizeDraft (:1179) has already let the LLM draft override
-				// the requested name, so obj.name is the one actually persisted on the node —
-				// same convention as mbGenreEdges (:805), which resolves on the tag's own name.
+				// Resolve on the node's own materialized name (obj.name), not input.name: by this
+				// point canonicalizeDraft (:1179) has already let the LLM draft override the
+				// requested name, so obj.name is the one actually persisted on the node — same
+				// convention as mbGenreEdges (:805), which resolves on the tag's own name.
 				const ownName = typeof obj.name === "string" ? obj.name : "";
-				const identity = resolver.resolve({ name: ownName || body });
-				if (identity) {
-					obj.qid = identity.qid;
-					entry = catalog.get(identity.slug);
+				// 2026-09-10 (TRA-32): resolution order matches the backfill migration
+				// (scripts/migrations/2026-09-04-backfill-genre-qid.ts:200-204) exactly — resolve
+				// on the name first, and only fall back to the slug body (when non-empty) on any
+				// resolve failure, not merely when the name is empty.
+				const identity =
+					resolver.resolve({ name: ownName }) ?? (body ? resolver.resolve({ name: body }) : null);
+
+				// Conflict policy matches the backfill migration exactly (scripts/migrations/
+				// 2026-09-04-backfill-genre-qid.ts:206-217, "conflicts (kept as-is)"): an
+				// already-committed qid is authoritative over a freshly resolved one. Identity
+				// corrections are a migration/curation concern (the TRA-21 backfill, TRA-33's
+				// alias table) — cache/ is the committed knowledge base — never a silent runtime
+				// overwrite. Concretely: genre:trap's TRA-33-curated qid Q47781397 (EDM lineage)
+				// must never be replaced by "trap"'s "music"-suffix heuristic match Q2913982
+				// (hip-hop lineage) just because a later LLM draft's name failed to resolve.
+				if (cachedQid && identity && cachedQid !== identity.qid) {
+					log(
+						`[pipeline] genre qid conflict for ${slug}: cached=${cachedQid} resolved=${identity.qid} (cached kept)`,
+					);
 				}
+				obj.qid = cachedQid ?? identity?.qid;
 			} else {
-				entry = catalog.get(body);
-				// Outside the parent_genres guard below (TRA-18): a genre with parents already still needs its qid.
-				if (entry) obj.qid = entry.wikidata_qid;
+				obj.qid = cachedQid ?? catalog.get(body)?.wikidata_qid;
 			}
+			// 2026-09-10 (TRA-32): look up the parent_genres backfill entry by whichever qid
+			// actually won above, BY QID — not by identity.slug/catalog.get(body)'s own slug,
+			// which would backfill the wrong lineage whenever the cached-wins rule above picked a
+			// qid other than what name/slug resolution would have (see the conflict comment
+			// above).
+			const entry = typeof obj.qid === "string" ? (await loadGenreCatalogByQid()).get(obj.qid) : undefined;
 			const current = Array.isArray(obj.parent_genres) ? (obj.parent_genres as unknown[]) : [];
 			if (current.length === 0 && entry?.parents?.length) {
 				obj.parent_genres = entry.parents.map((p) => {
