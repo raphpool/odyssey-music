@@ -383,12 +383,15 @@ async function pingApi() {
   async function onSearchHitClick(hit, rowEl) {
     crumbs = [];
     searchEl.value = "";
-    if (hit.source === "cache" && hit.slug && byId.has(hit.slug)) {
+    // 2026-09-10 (TRA-38): resolveId, not raw byId.has -- a second click on a hit whose
+    // slug a previous /node fetch already redirected (slugAlias) must take the fast path
+    // below instead of re-fetching /node/:slug for a slug we already resolved.
+    if (hit.source === "cache" && hit.slug && byId.has(resolveId(hit.slug))) {
       searchResults.style.display = "none";
       show(hit.slug);
       return;
     }
-    if (hit.source === "cache" && hit.slug && !byId.has(hit.slug)) {
+    if (hit.source === "cache" && hit.slug && !byId.has(resolveId(hit.slug))) {
       // Cache result whose viz-shape we don't have loaded yet (e.g. brand-new node since boot).
       // Pull it via the API and slot it in.
       rowEl.style.opacity = "0.6";
@@ -1207,7 +1210,7 @@ function countDangling(node) {
   let n = 0;
   for (const v of Object.values(node.edges || {})) {
     const refs = Array.isArray(v) ? v : [v];
-    // resolveId (TRA-38): an edge ref can still carry the slug a materialize response
+    // 2026-09-10 (TRA-38): an edge ref can still carry the slug a materialize response
     // superseded -- without it, a chip that is really cached keeps counting as dangling.
     for (const r of refs) if (!byId.has(resolveId(r.slug)) && !deadCache.has(r.slug)) n++;
   }
@@ -1399,7 +1402,7 @@ const PROJECT_CAROUSEL_EDGE = {
 function projectCarouselHtml(refs, kindLabel) {
   if (!Array.isArray(refs) || !refs.length) return "";
   const cards = refs.map((ref) => {
-    // resolveId (TRA-38): a materialize/redirect response can serve this ref's node
+    // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
     // under a different slug than the one recorded on the edge.
     const cached = byId.get(resolveId(ref.slug));
     const facts = (cached && cached.facts) || {};
@@ -1420,7 +1423,11 @@ function projectCarouselHtml(refs, kindLabel) {
     const navAttrs = inCache
       ? `data-id="${ref.slug}"`
       : `data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : ""}`;
-    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(ref.slug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
+    // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
+    // is only an alias key once this card is inCache via resolveId, not a slug byId or
+    // the ?node= deep link reader can look up directly.
+    const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
+    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
       <div class="cover"${bg}></div>
       <div class="name">${escapeHtml(ref.name)}</div>
       <div class="meta">${yearHtml}${rtHtml}</div>
@@ -1440,13 +1447,18 @@ function chipHtml(ref, parentCtx) {
   const rt = ref.releaseType;
   const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${rt}">${rt}</span>` : "";
   const extras = `${rtBadge}${yearSuffix}`;
-  // resolveId (TRA-38): a materialize response can serve this ref's node under a
+  // 2026-09-10 (TRA-38): a materialize response can serve this ref's node under a
   // different slug (genre canonical rewrite) -- without this the chip stays
   // rendered "dangling" forever, countDangling never decrements, and each click
   // re-POSTs /materialize instead of navigating to the already-cached node.
   const inCache = byId.has(resolveId(ref.slug));
   if (inCache) {
-    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(ref.slug)}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
+    // href uses the resolved slug (not the click handler, which already navigates
+    // correctly via show()'s own resolveId call): a plain <a href> is a new deep-link
+    // surface this branch didn't have while the ref rendered as a dangling <span>, and
+    // the raw ref.slug is only an alias key, not a slug byId (or the ?node= deep link
+    // reader, TRA-23) can look up on its own.
+    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
     return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
