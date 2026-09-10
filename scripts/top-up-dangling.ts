@@ -13,6 +13,8 @@ import { readdir, readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { NodeCache } from "../src/cache.js";
 import { loadEnv } from "../src/env.js";
+import { loadGenreResolver } from "../src/genre-identity.js";
+import { createGenreRegistry, loadGenreRedirects } from "../src/genre-registry.js";
 import { type PipelineInput, runPipeline } from "../src/pipeline.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
@@ -29,6 +31,9 @@ async function main(): Promise<void> {
 	}
 	const env = loadEnv();
 	const cache = new NodeCache(dir);
+	// TRA-28: built on this run's own cache, not a new one (see PipelineDeps.genreRegistry).
+	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 
 	// 1. Index materialized slugs and count dangling references.
 	const nodesDir = join(dir, "nodes");
@@ -96,6 +101,7 @@ async function main(): Promise<void> {
 				const result = await runPipeline(input, {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
+					genreRegistry,
 				});
 				if (await cache.has(result.slug)) {
 					okCount++;

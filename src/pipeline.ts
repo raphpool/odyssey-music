@@ -23,6 +23,7 @@ import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { pipelineConfig, pricingConfig } from "./config.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
+import type { GenreRegistry } from "./genre-registry.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchEntityGenresMb,
@@ -75,6 +76,13 @@ export interface PipelineDeps {
 	geminiApiKey?: string;
 	model?: string;
 	logger?: (line: string) => void;
+	// OPTIONAL, but omitting it silently disables genre-duplicate prevention: the node's
+	// genre edges keep whatever name-derived slug their producer minted instead of being
+	// canonicalized against an existing node/redirect/QID (see src/genre-registry.ts, TRA-28).
+	// Every caller that persists runPipeline's result via NodeCache.write must pass this,
+	// built on that same NodeCache. Callers with no cache (smoke test, bench, live tests)
+	// are the only legitimate reason to leave it unset.
+	genreRegistry?: GenreRegistry;
 }
 
 export interface PipelineInput {
@@ -608,6 +616,13 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
 	await enrichFromMusicBrainz(node, input, log);
+	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
+	// derive a genre edge's slug from its display name alone, which produced 20 groups of
+	// duplicate genre nodes sharing a QID (e.g. "electronic" / "electronic-music"). All three
+	// producers have emitted by this point and the node isn't validated yet, so canonicalizing
+	// genre edges here once covers every producer, present and future (decision d'archi 7,
+	// docs/plans/qid-genre-identity.md).
+	await deps.genreRegistry?.canonicalizeNodeEdges(node);
 	const validated = validateNode(node);
 
 	return {

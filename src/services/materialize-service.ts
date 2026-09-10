@@ -2,6 +2,7 @@ import type { NodeCache } from "../cache.js";
 import { pipelineConfig } from "../config.js";
 import type { ApiEnv } from "../env.js";
 import { BadRequestError, isNotFoundError } from "../errors.js";
+import type { GenreRegistry } from "../genre-registry.js";
 import { runPipeline } from "../pipeline.js";
 import { makeSlug } from "../slug.js";
 import type { NodePayload, NodeType } from "../types.js";
@@ -21,7 +22,11 @@ export interface MaterializeResponse {
 	metricsCostUsd?: number;
 }
 
-export function createMaterializeService(deps: { cache: NodeCache; env: ApiEnv }) {
+export function createMaterializeService(deps: {
+	cache: NodeCache;
+	env: ApiEnv;
+	genreRegistry: GenreRegistry;
+}) {
 	const inflight = new Map<string, Promise<NodePayload>>();
 
 	async function handleMaterialize(
@@ -90,6 +95,7 @@ export function createMaterializeService(deps: { cache: NodeCache; env: ApiEnv }
 		const r = await runPipeline(pipelineInput, {
 			tavilyApiKey: deps.env.TAVILY_API_KEY,
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,
+			genreRegistry: deps.genreRegistry,
 		});
 		if (!opts.fresh) {
 			const existing = await deps.cache.get(r.slug).catch((e: unknown) => {

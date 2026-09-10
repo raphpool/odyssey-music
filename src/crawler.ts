@@ -1,4 +1,6 @@
 import { NodeCache } from "./cache.js";
+import { loadGenreResolver } from "./genre-identity.js";
+import { createGenreRegistry, loadGenreRedirects } from "./genre-registry.js";
 import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { makeSlug } from "./slug.js";
 import {
@@ -134,6 +136,10 @@ class FrontierQueue {
 export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	const log = opts.logger ?? (() => undefined);
 	const cache = new NodeCache(opts.out);
+	// TRA-28: built on this crawl's own cache, not a new one, so genre canonicalization sees
+	// the same nodes this run has already written (see PipelineDeps.genreRegistry, pipeline.ts).
+	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 	const strategy: FrontierStrategy = opts.strategy ?? "hybrid";
 	const frontier = new FrontierQueue(strategy, opts.bfsHead ?? 40);
 
@@ -224,7 +230,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 				log(
 					`[w${workerId}] materialize depth=${next.entry.depth} ${describeInput(next.entry.input, next.slug)}`,
 				);
-				const result = await runPipeline(next.entry.input, opts.deps);
+				const result = await runPipeline(next.entry.input, { ...opts.deps, genreRegistry });
 				const alreadyCached = await cache.has(result.slug);
 				if (alreadyCached) {
 					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
