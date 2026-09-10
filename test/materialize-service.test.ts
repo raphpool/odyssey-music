@@ -468,9 +468,8 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 });
 
 // TRA-43: body.slug/body.qid name the identity the calling edge (front chip, crawler frontier)
-// already carries. Validation must reject anything that doesn't look like makeSlug's own output
-// BEFORE any cache I/O, and a valid qid must be able to steer the guard onto an existing node
-// even when the request's name alone would never resolve there.
+// already carries -- validated strictly before any I/O, then used as a lookup key, never a
+// client-chosen write target (review round 1 security fix, see the tests below).
 describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 	let dir: string;
 	let cache: NodeCache;
@@ -499,10 +498,7 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		["the wrong type for the request", "artist:foo"],
 		["an uppercase type", "Genre:foo"],
 		["an uppercase body", "genre:Foo"],
-		// Review round 1, nit: SLUG_BODY_PATTERN has no length bound of its own -- an unbounded
-		// value would otherwise reach NodeCache's fs calls and surface as a raw 500 (ENOENT/
-		// ENAMETOOLONG) instead of a clean 400.
-		["too long", `genre:${"a".repeat(5000)}`],
+		["too long (review round 1, nit: would otherwise 500, not 400)", `genre:${"a".repeat(5000)}`],
 	])("rejects a slug that is %s, without touching the cache", async (_label, badSlug) => {
 		const service = await buildService();
 		const hasSpy = vi.spyOn(cache, "has");
@@ -562,10 +558,9 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		},
 		TIMEOUT_MS,
 	);
-	// SECURITY (2026-09-10): body.slug is a LOOKUP key, never a client-chosen write target. Repro:
-	// a stale `genre:techno` (nodeTtlMs=12h) + `{name: "Attacker Controlled Topic", slug:
-	// "genre:techno"}` used to pin `slug` while keeping the client's own name -- an arbitrary
-	// unauthenticated write into cache/ (POST /materialize has no auth), any node type.
+	// SECURITY (2026-09-10): a stale `genre:techno` (nodeTtlMs=12h) + `{name: "Attacker Controlled
+	// Topic", slug: "genre:techno"}` used to pin `slug` while keeping the client's own name -- an
+	// arbitrary unauthenticated write into cache/ (POST /materialize has no auth), any node type.
 	it(
 		"THE REPRO: a stale node's own identity drives a body.slug refresh, never an attacker-supplied name",
 		async () => {
