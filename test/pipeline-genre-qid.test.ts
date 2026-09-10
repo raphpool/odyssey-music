@@ -413,44 +413,11 @@ describe("enrichFromMusicBrainz — qid carried across rematerialization (TRA-32
 		// existingGenreQid's failure on the (unrelated-to-resolution) cache read is invisible here.
 		expect(node.qid).toBe("Q9778");
 	});
-});
 
-// TRA-43: PipelineInput.qid carries the identity of the EDGE that produced this materialize
-// request (front chip / crawler frontier) -- precedence is cachedQid ?? input.qid ??
-// identity?.qid, so an edge's own qid wins over a fresh by-name resolve but never over an
-// already-committed cached qid (TRA-32 unchanged).
-describe("enrichFromMusicBrainz — PipelineInput.qid precedence (TRA-43)", () => {
-	let dir: string;
-	let cache: NodeCache;
-
-	beforeEach(async () => {
-		dir = await mkdtemp(join(tmpdir(), "odyssey-pipeline-genre-qid-edge-"));
-		cache = new NodeCache(dir);
-	});
-
-	afterEach(async () => {
-		await rm(dir, { recursive: true, force: true });
-	});
-
-	function cachedGenreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
-		return {
-			type: "genre",
-			editorial_article:
-				"A real long article about this genre, well past the eighty character floor. ".repeat(2),
-			editorial_definition: "A short definition.",
-			citations: [{ url: "https://example.com/genre" }],
-			materialized_at: new Date().toISOString(),
-			parent_genres: [],
-			subgenres: [],
-			related_genres: [],
-			key_artists: [],
-			key_labels: [],
-			landmark_projects: [],
-			landmark_tracks: [],
-			...overrides,
-		};
-	}
-
+	// TRA-43: PipelineInput.qid carries the identity of the EDGE that produced this materialize
+	// request (front chip / crawler frontier) -- precedence is cachedQid ?? input.qid ??
+	// identity?.qid, so an edge's own qid wins over a fresh by-name resolve but never over an
+	// already-committed cached qid (unchanged from the tests above).
 	it("keeps the edge's own qid over a disagreeing by-name resolve, logging the conflict", async () => {
 		const registry = createGenreRegistry({
 			cache,
@@ -496,9 +463,9 @@ describe("enrichFromMusicBrainz — PipelineInput.qid precedence (TRA-43)", () =
 			resolver: await loadGenreResolver(),
 			redirects: new Map(),
 		});
-		// "Not A Real Genre Xyz" resolves via neither name nor slug body (established in the
-		// TRA-32 describe block above) -- the edge's own qid ("acid"'s real Wikidata id) is the
-		// only source of identity here.
+		// "Not A Real Genre Xyz" resolves via neither name nor slug body (established above in
+		// this block) -- the edge's own qid ("acid"'s real Wikidata id) is the only source of
+		// identity here.
 		const node: Record<string, unknown> = {
 			slug: "genre:not-a-real-genre-xyz",
 			name: "Not A Real Genre Xyz",
