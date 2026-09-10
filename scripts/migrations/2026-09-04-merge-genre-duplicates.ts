@@ -111,8 +111,12 @@ export function unionListField(
 	const merged: unknown[] = [];
 	for (const edge of [canonicalList, ...loserLists].flat()) {
 		const slug = isRecord(edge) && typeof edge.slug === "string" ? edge.slug : undefined;
-		if (slug === undefined || seen.has(slug)) continue;
-		seen.add(slug);
+		// An edge without a string slug is kept as-is (consistent with rewriteNodeEdges's
+		// dedupe below) -- only slug-bearing edges participate in the dedupe-by-slug.
+		if (slug !== undefined) {
+			if (seen.has(slug)) continue;
+			seen.add(slug);
+		}
 		merged.push(edge);
 	}
 	return merged;
@@ -125,23 +129,30 @@ export function unionSingularField(canonicalValue: unknown, loserValues: readonl
 
 /**
  * Merges every genre edge field of the losers into the canonical node. Everything else --
- * editorial prose included -- is left as-is: edges are unioned, prose is never merged.
+ * editorial prose included -- is left as-is: edges are unioned, prose is never merged. A
+ * loser's edge pointing at the canonical itself (a real case: two duplicates commonly link
+ * to each other as "related") would otherwise survive the union as a self-loop -- dropped
+ * here, from list fields by filtering and from a singular field by clearing it to undefined.
  */
 export function mergeGenreEdges(
 	canonical: Record<string, unknown>,
 	losers: readonly Record<string, unknown>[],
 ): Record<string, unknown> {
+	const ownSlug = typeof canonical.slug === "string" ? canonical.slug : undefined;
 	const merged: Record<string, unknown> = { ...canonical };
 	for (const field of LIST_EDGES_BY_TYPE.genre) {
 		const canonicalList = Array.isArray(canonical[field]) ? (canonical[field] as unknown[]) : [];
 		const loserLists = losers.map((l) => (Array.isArray(l[field]) ? (l[field] as unknown[]) : []));
-		merged[field] = unionListField(canonicalList, loserLists);
+		merged[field] = unionListField(canonicalList, loserLists).filter(
+			(r) => !(isRecord(r) && r.slug === ownSlug),
+		);
 	}
 	for (const field of SINGULAR_EDGES_BY_TYPE.genre) {
-		merged[field] = unionSingularField(
+		const value = unionSingularField(
 			canonical[field],
 			losers.map((l) => l[field]),
 		);
+		merged[field] = isRecord(value) && value.slug === ownSlug ? undefined : value;
 	}
 	return merged;
 }
@@ -151,7 +162,9 @@ export function mergeGenreEdges(
 /**
  * Rewrites every edge on `node` whose slug is a key of `rewriteMap` to point at its mapped
  * value, deduplicating list fields afterwards by slug. Returns which loser slugs were
- * actually redirected (and how many times), for reporting.
+ * actually redirected (and how many times), for reporting. A rewrite can turn an edge into
+ * a self-loop (node itself referenced a loser that redirects back to node's own slug) --
+ * dropped from list fields by filtering, from a singular field by clearing it to undefined.
  */
 export function rewriteNodeEdges(
 	node: Record<string, unknown>,
@@ -159,6 +172,7 @@ export function rewriteNodeEdges(
 	rewriteMap: ReadonlyMap<string, string>,
 ): { node: Record<string, unknown>; hits: Map<string, number> } {
 	const hits = new Map<string, number>();
+	const ownSlug = typeof node.slug === "string" ? node.slug : undefined;
 	const rewriteRef = (edge: unknown): unknown => {
 		const slug = isRecord(edge) && typeof edge.slug === "string" ? edge.slug : undefined;
 		const next = slug ? rewriteMap.get(slug) : undefined;
@@ -174,14 +188,16 @@ export function rewriteNodeEdges(
 		next[field] = list.map(rewriteRef).filter((edge) => {
 			const slug = isRecord(edge) && typeof edge.slug === "string" ? edge.slug : undefined;
 			if (slug === undefined) return true;
-			if (seen.has(slug)) return false;
+			if (slug === ownSlug || seen.has(slug)) return false;
 			seen.add(slug);
 			return true;
 		});
 	}
 	for (const field of SINGULAR_EDGES_BY_TYPE[type]) {
 		const value = node[field];
-		if (isRecord(value) && typeof value.slug === "string") next[field] = rewriteRef(value);
+		if (!isRecord(value) || typeof value.slug !== "string") continue;
+		const rewritten = rewriteRef(value);
+		next[field] = isRecord(rewritten) && rewritten.slug === ownSlug ? undefined : rewritten;
 	}
 
 	return { node: next, hits };
