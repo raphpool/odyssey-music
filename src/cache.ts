@@ -194,46 +194,70 @@ export class NodeCache {
 		return index.get(qid);
 	}
 
+	// 2026-09-10 (TRA-28 review, B4): the commit guard below protects the MEMO (genreQidIndex)
+	// from a stale write, but used to still hand the vetoed snapshot straight back to whichever
+	// caller's own lookup triggered that build -- e.g. 8 concurrent crawler workers, one starts
+	// this build, another writes a new genre node mid-build and bumps the version; the commit is
+	// correctly vetoed so the memo stays clean, but the first caller's `findGenreSlugByQid` still
+	// resolved with the pre-write snapshot, missing the new node, sending the genre registry down
+	// rule 5 (mint) for a target that had just landed. Bounded retry loop: a build whose commit
+	// was vetoed is retried against the (now current) version instead of being handed back as-is.
 	private async getOrBuildGenreQidIndex(): Promise<Map<string, Slug>> {
-		if (this.genreQidIndex) return this.genreQidIndex;
-		const startedAtVersion = this.genreQidIndexVersion;
-		// A build already in flight, tagged with the version in effect when IT started, is
-		// stale to share if a genre write() has landed since (bumping the version): start a
-		// fresh build instead of awaiting a result that won't reflect that write.
-		if (!this.genreQidIndexBuild || this.genreQidIndexBuild.version !== startedAtVersion) {
-			const promise = this.buildGenreQidIndex().then(
-				(index) => {
-					// 2026-09-09: this used to gate the commit on `genreQidIndexBuild.version`
-					// instead of the live `genreQidIndexVersion`. write()'s invalidations (entry
-					// and exit) only ever touch genreQidIndex/genreQidIndexVersion, never this
-					// build's own tracker object -- so a build still in flight when a write
-					// invalidated survived with its tracker untouched, and its guard trivially
-					// matched itself, committing a stale snapshot straight over the fresh null a
-					// write had *just* set. Comparing against the live version instead means ANY
-					// invalidation that happened anywhere during this build's lifetime -- not
-					// just a newer build replacing the tracker -- correctly vetoes the commit.
-					if (this.genreQidIndexVersion === startedAtVersion) {
-						this.genreQidIndex = index;
-					}
-					// Only clear the tracker if it's still ours to clear -- a newer build may
-					// have already replaced it with its own.
-					if (this.genreQidIndexBuild?.version === startedAtVersion) {
-						this.genreQidIndexBuild = null;
-					}
-					return index;
-				},
-				(err: unknown) => {
-					// Don't let a failed build (e.g. a transient read error) permanently poison
-					// the memo: clear it so the next call retries instead of re-throwing forever.
-					if (this.genreQidIndexBuild?.version === startedAtVersion) {
-						this.genreQidIndexBuild = null;
-					}
-					throw err;
-				},
-			);
-			this.genreQidIndexBuild = { version: startedAtVersion, promise };
+		const maxAttempts = 3;
+		for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+			if (this.genreQidIndex) return this.genreQidIndex;
+			const startedAtVersion = this.genreQidIndexVersion;
+			// A build already in flight, tagged with the version in effect when IT started, is
+			// stale to share if a genre write() has landed since (bumping the version): start a
+			// fresh build instead of awaiting a result that won't reflect that write.
+			if (!this.genreQidIndexBuild || this.genreQidIndexBuild.version !== startedAtVersion) {
+				const promise = this.buildGenreQidIndex().then(
+					(index) => {
+						// 2026-09-09: this used to gate the commit on `genreQidIndexBuild.version`
+						// instead of the live `genreQidIndexVersion`. write()'s invalidations (entry
+						// and exit) only ever touch genreQidIndex/genreQidIndexVersion, never this
+						// build's own tracker object -- so a build still in flight when a write
+						// invalidated survived with its tracker untouched, and its guard trivially
+						// matched itself, committing a stale snapshot straight over the fresh null a
+						// write had *just* set. Comparing against the live version instead means ANY
+						// invalidation that happened anywhere during this build's lifetime -- not
+						// just a newer build replacing the tracker -- correctly vetoes the commit.
+						if (this.genreQidIndexVersion === startedAtVersion) {
+							this.genreQidIndex = index;
+						}
+						// Only clear the tracker if it's still ours to clear -- a newer build may
+						// have already replaced it with its own.
+						if (this.genreQidIndexBuild?.version === startedAtVersion) {
+							this.genreQidIndexBuild = null;
+						}
+						return index;
+					},
+					(err: unknown) => {
+						// Don't let a failed build (e.g. a transient read error) permanently poison
+						// the memo: clear it so the next call retries instead of re-throwing forever.
+						if (this.genreQidIndexBuild?.version === startedAtVersion) {
+							this.genreQidIndexBuild = null;
+						}
+						throw err;
+					},
+				);
+				this.genreQidIndexBuild = { version: startedAtVersion, promise };
+			}
+			const index = await this.genreQidIndexBuild.promise;
+			// Commit succeeded (reference equality: the memo was set to THIS build's own result,
+			// meaning the version never moved during it) -- safe to hand back.
+			if (this.genreQidIndex === index) return index;
+			// Vetoed: a write landed during this build, so `index` may be missing it. Retry
+			// against the (now current) version rather than returning a known-stale snapshot.
+			if (attempt === maxAttempts) {
+				log.warn("genre qid index build repeatedly raced a concurrent write; returning last snapshot", {
+					attempts: maxAttempts,
+				});
+				return index;
+			}
 		}
-		return this.genreQidIndexBuild.promise;
+		// Unreachable: the loop above always returns by its last iteration.
+		throw new Error("unreachable: getOrBuildGenreQidIndex exhausted its retry loop");
 	}
 
 	private async buildGenreQidIndex(): Promise<Map<string, Slug>> {

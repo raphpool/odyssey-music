@@ -199,6 +199,15 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		const nodeType = rec.type;
 		if (!isNodeType(nodeType)) return;
 		const ownSlug = rec.slug;
+		// The node's own qid, when already stamped (enrichFromMusicBrainz's genre-catalog
+		// backfill runs before this call point) -- used below to drop a self-loop that resolves
+		// to a DIFFERENT slug sharing this same qid, not just an exact ownSlug match (TRA-28
+		// review B3): materializing "genre:electronic-music" (qid Q9778) with a related_genres
+		// ref that canonicalizes to the existing "genre:electronic" (also Q9778, rule 4) is the
+		// same duplicate-pair problem this module exists to prevent, just discovered from the
+		// new node's own side instead of an existing one's -- keeping that edge would let two
+		// not-yet-merged duplicates of one QID point at each other in the emitted graph.
+		const ownQid = typeof rec.qid === "string" ? rec.qid : undefined;
 
 		// One batchMemo shared across every genre-bearing field of this node (TRA-36) -- without
 		// it, two fields naming the same new genre differently (e.g. parent_genres: "Electronic
@@ -219,8 +228,9 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 			// A genre node's own related_genres/parent_genres/subgenres can canonicalize a
 			// name-derived variant of itself back onto its own slug (e.g. "techno-music"
 			// resolving to the same qid as "techno") -- drop that self-loop rather than let a
-			// node reference itself.
-			rec[field] = canonicalRefs.filter((r) => r.slug !== ownSlug);
+			// node reference itself. Also drop a ref that lands on a DIFFERENT slug sharing this
+			// node's own qid (see ownQid comment above): that's the same node, just not merged yet.
+			rec[field] = canonicalRefs.filter((r) => r.slug !== ownSlug && !(ownQid && r.qid === ownQid));
 		}
 	}
 

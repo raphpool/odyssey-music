@@ -323,6 +323,41 @@ describe("NodeCache — findGenreSlugByQid (TRA-24)", () => {
 			await rm(qidDir, { recursive: true, force: true });
 		}
 	});
+
+	it("retries instead of returning a build its own call raced a write into (regression, TRA-28 review B4)", async () => {
+		// The commit guard (write()'s two invalidations vs. genreQidIndexVersion) protects the
+		// MEMO from a stale write, but getOrBuildGenreQidIndex used to still hand the vetoed
+		// snapshot straight back to whichever caller's own lookup had started that build --
+		// e.g. one crawler worker's findGenreSlugByQid triggers a build, another worker's write
+		// lands mid-build and bumps the version; the commit is correctly vetoed so the memo
+		// stays clean, but the FIRST worker's own call still resolved with the pre-write
+		// snapshot, missing the new node, sending the genre registry down rule 5 (mint) for a
+		// target that had in fact just landed.
+		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
+		const qidCache = new NodeCache(qidDir);
+		try {
+			await qidCache.write(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			await qidCache.write(genreNode({ slug: "genre:c", name: "C", qid: "Q2" }));
+
+			// The FIRST listSlugs() call (the one build this test's lookup triggers) simulates a
+			// concurrent write landing while the build is in flight -- bumping the version itself,
+			// deterministically, right after this build's startedAtVersion snapshot was already
+			// taken -- then returns a listing frozen to before that write ("genre:c" missing.)
+			// The real listSlugs() (used by any retry) sees both nodes, already on disk above.
+			const staleListing: Slug[] = ["genre:a"];
+			const listSlugsSpy = vi.spyOn(qidCache, "listSlugs").mockImplementationOnce(async () => {
+				(qidCache as unknown as { genreQidIndexVersion: number }).genreQidIndexVersion++;
+				return staleListing;
+			});
+
+			// Without the fix: resolves with the vetoed, Q2-less snapshot (undefined). With the
+			// fix: retries once the veto is detected and returns the correct, current answer.
+			expect(await qidCache.findGenreSlugByQid("Q2")).toBe("genre:c");
+			listSlugsSpy.mockRestore();
+		} finally {
+			await rm(qidDir, { recursive: true, force: true });
+		}
+	});
 });
 
 describe("NodeCache — genre qid propagation on reverse edges (TRA-18)", () => {

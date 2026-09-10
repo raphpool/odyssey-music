@@ -1,6 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { NodeCache } from "../src/cache.js";
+import { loadGenreResolver } from "../src/genre-identity.js";
+import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
 import type { PipelineDeps } from "../src/pipeline.js";
-import type { ArtistNode, GenreNode } from "../src/types.js";
+import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-25: end-to-end runPipeline harness, all four external boundaries mocked
@@ -54,6 +60,189 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 			const genre = result.node as GenreNode;
 			expect(genre.related_genres.length).toBeGreaterThan(0);
 			expect(genre.subgenres.length).toBeGreaterThan(0);
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-28: wires src/genre-registry.ts (TRA-27) into runPipeline, between enrichFromMusicBrainz
+// and validateNode. These four scenarios are the ticket's acceptance criteria — cache and
+// registry are real (mkdtemp'd NodeCache, real loadGenreResolver() reading the committed
+// data/ files), only the pipeline's four external boundaries stay mocked (see the harness
+// comment above and test/helpers/pipeline-mocks.ts).
+describe("genre registry wiring (TRA-28)", () => {
+	// Real MusicBrainz MBID for the "electronic" genre tag (data/genre-qid-map.json), which
+	// maps to Wikidata Q9778 — the same QID data/genre-catalog.json's "electronic music"
+	// entry (slug "electronic-music") carries. Exercises the mbid-priority resolver path.
+	const ELECTRONIC_MBID = "89255676-1f14-4dd8-bbad-fca839d6aff4";
+	const ELECTRONIC_QID = "Q9778";
+
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-pipeline-e2e-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	/** Minimal valid GenreNode for seeding the cache directly via cache.write(). */
+	function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
+		return {
+			type: "genre",
+			editorial_article:
+				"A real long article about this genre, well past the eighty character floor. ".repeat(2),
+			editorial_definition: "A short definition.",
+			citations: [{ url: "https://example.com/genre" }],
+			materialized_at: new Date().toISOString(),
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+			...overrides,
+		};
+	}
+
+	it(
+		"canonicalizes an MB genre tag onto an existing node cached under another slug",
+		async () => {
+			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: parseGenreRedirects({
+					redirects: { "genre:electronic-music": "genre:electronic" },
+				}),
+			});
+			const deps: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test", genreRegistry };
+			installPipelineMocks({
+				draft: artistDraftFixture(),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, deps);
+
+			const artist = result.node as ArtistNode;
+			expect(artist.genres[0]?.slug).toBe("genre:electronic");
+			expect(artist.genres[0]?.qid).toBe(ELECTRONIC_QID);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"leaves an edge pointing at its own existing node unchanged, even without a redirect",
+		async () => {
+			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			await cache.write(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic Music", qid: ELECTRONIC_QID }),
+			);
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			const deps: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test", genreRegistry };
+			installPipelineMocks({
+				draft: artistDraftFixture(),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, deps);
+
+			const artist = result.node as ArtistNode;
+			expect(artist.genres[0]?.slug).toBe("genre:electronic-music");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"canonicalizes a Gemini draft's genre edge naming an existing genre under a variant name",
+		async () => {
+			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			const deps: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test", genreRegistry };
+			installPipelineMocks({
+				draft: genreDraftFixture({ related_genres: [{ type: "genre", name: "Electronic music" }] }),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "genre", name: "Fixture Genre" }, deps);
+
+			const genre = result.node as GenreNode;
+			expect(genre.related_genres[0]?.slug).toBe("genre:electronic");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"leaves the name-derived slug untouched when runPipeline is called without a genreRegistry",
+		async () => {
+			// Non-regression: same cache/redirect setup as the first scenario, but deps omit
+			// genreRegistry entirely — proves the dependency is truly optional (TRA-28 contract).
+			installPipelineMocks({
+				draft: artistDraftFixture(),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline(
+				{ type: "artist", name: "Fixture Artist" },
+				{ tavilyApiKey: "test", firecrawlApiKey: "test" },
+			);
+
+			const artist = result.node as ArtistNode;
+			expect(artist.genres[0]?.slug).toBe("genre:electronic-music");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"mints a fresh name-derived slug on an empty cache (rule 5), then a second run converges on it (rule 2)",
+		async () => {
+			// TRA-28 review: the four scenarios above all pre-seed the target node -- this is the
+			// crawler's main window (a genre minted by one worker, referenced again before a
+			// second worker/run has a chance to see it in cache): nothing to canonicalize against
+			// yet, so the pipeline mints the name-derived slug same as always (rule 5); once that
+			// node is actually persisted, a later run resolving the SAME mbid must converge on it
+			// unchanged (rule 2), not mint yet another name-derived variant.
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			const deps: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test", genreRegistry };
+
+			installPipelineMocks({
+				draft: artistDraftFixture(),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const first = await runPipeline({ type: "artist", name: "Fixture Artist" }, deps);
+			const firstArtist = first.node as ArtistNode;
+			expect(firstArtist.genres[0]?.slug).toBe("genre:electronic-music");
+			expect(firstArtist.genres[0]?.qid).toBe(ELECTRONIC_QID);
+			await cache.write(first.node);
+
+			installPipelineMocks({
+				draft: artistDraftFixture({ name: "Fixture Artist Two" }),
+				mbGenres: [{ name: "electronic music", mbid: ELECTRONIC_MBID }],
+			});
+			const second = await runPipeline({ type: "artist", name: "Fixture Artist Two" }, deps);
+			const secondArtist = second.node as ArtistNode;
+			expect(secondArtist.genres[0]?.slug).toBe("genre:electronic-music");
 		},
 		TIMEOUT_MS,
 	);

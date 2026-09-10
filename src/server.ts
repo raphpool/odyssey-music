@@ -33,6 +33,8 @@ import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
 import { serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
+import { loadGenreResolver } from "./genre-identity.js";
+import { createGenreRegistry, loadGenreRedirects } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
@@ -56,6 +58,12 @@ const STREAM_CACHE_DIR = streamConfig.cacheDir;
 
 const env = loadEnv();
 const cache = new NodeCache(CACHE_DIR);
+// TRA-28: canonicalizes genre edges (existing node > redirect > QID > mint) so the pipeline
+// stops minting duplicate genre nodes for name variants of one already-cached genre.
+// loadGenreResolver() is memoized (genre-identity.ts), so this doesn't double the load
+// enrichFromMusicBrainz already does per pipeline run.
+const [genreRedirects, genreResolver] = await Promise.all([loadGenreRedirects(), loadGenreResolver()]);
+const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
 const log = logger.child({ module: "server" });
 let cacheIndex: CacheIndex | null = null;
@@ -66,7 +74,7 @@ async function getCacheIndex(): Promise<CacheIndex> {
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
-const materializeService = createMaterializeService({ cache, env });
+const materializeService = createMaterializeService({ cache, env, genreRegistry });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit });
 const imageService = createImageService({ cache });
 const graphService = createGraphService(CACHE_DIR);
