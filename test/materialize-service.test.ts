@@ -566,39 +566,9 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		},
 		TIMEOUT_MS,
 	);
-
-	it(
-		// Note: this slug happens to equal makeSlug("genre", <name>) already, so it stays the mint
-		// target under the post-review-round-1 semantics too (a body.slug that resolves to nothing
-		// real is never itself pinned -- see the "body.slug is a lookup key" describe block below
-		// for a case where the requested slug and the name-derived one actually differ).
-		"mints a genre under the request's own qid when the name is unresolvable, landing on the name-derived slug",
-		async () => {
-			const service = await buildService();
-			installPipelineMocks({
-				draft: genreDraftFixture({
-					name: "Totally Unresolvable Fixture Genre",
-					parent_genres: [],
-					subgenres: [],
-					related_genres: [],
-					key_artists: [],
-					key_labels: [],
-					landmark_tracks: [],
-				}),
-			});
-
-			const result = await service.handleMaterialize({
-				type: "genre",
-				name: "Totally Unresolvable Fixture Genre",
-				slug: "genre:totally-unresolvable-fixture-genre",
-				qid: "Q106528337",
-			});
-
-			expect(result.node.slug).toBe("genre:totally-unresolvable-fixture-genre");
-			expect((result.node as GenreNode).qid).toBe("Q106528337");
-		},
-		TIMEOUT_MS,
-	);
+	// A fresh mint by qid alone (name unresolvable, body.slug names nothing real) is covered by
+	// the "mints a brand-new node under the NAME-derived slug..." test in the security describe
+	// block below -- kept there since it also proves body.slug itself is never pinned as a target.
 });
 
 // TRA-43 review round 1 (security, 2026-09-10): body.slug is a LOOKUP key for an existing node,
