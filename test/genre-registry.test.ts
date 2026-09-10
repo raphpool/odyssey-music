@@ -1,4 +1,4 @@
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -474,5 +474,28 @@ describe("existingGenreQid (TRA-32)", () => {
 	it("returns undefined when the slug has no cache node at all", async () => {
 		const registry = registryFor({});
 		await expect(registry.existingGenreQid("genre:does-not-exist")).resolves.toBeUndefined();
+	});
+
+	it("returns undefined (not a throw) for malformed JSON on disk, review round 1 BLOCK 2", async () => {
+		const genreNodesDir = join(dir, "nodes", "genre");
+		await mkdir(genreNodesDir, { recursive: true });
+		await writeFile(join(genreNodesDir, "broken.json"), "{ not valid json", "utf8");
+		const registry = registryFor({});
+		await expect(registry.existingGenreQid("genre:broken")).resolves.toBeUndefined();
+	});
+
+	it("returns undefined (not a throw) for a qid violating QID_PATTERN on disk, review round 1 BLOCK 2", async () => {
+		const genreNodesDir = join(dir, "nodes", "genre");
+		await mkdir(genreNodesDir, { recursive: true });
+		await writeFile(
+			join(genreNodesDir, "bad-qid.json"),
+			JSON.stringify({
+				...genreNode({ slug: "genre:bad-qid", name: "Bad Qid" }),
+				qid: "not-a-qid",
+			}),
+			"utf8",
+		);
+		const registry = registryFor({});
+		await expect(registry.existingGenreQid("genre:bad-qid")).resolves.toBeUndefined();
 	});
 });

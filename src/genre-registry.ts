@@ -32,9 +32,12 @@ import { z } from "zod";
 import type { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
 import type { GenreResolver } from "./genre-identity.js";
+import { logger } from "./logger.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
+
+const log = logger.child({ module: "genre-registry" });
 
 /** Loser slug -> canonical slug, as produced by TRA-22's duplicate-merge migration. */
 export type GenreRedirects = ReadonlyMap<Slug, Slug>;
@@ -108,10 +111,14 @@ export interface GenreRegistry {
 	canonicalizeNodeEdges(node: unknown): Promise<void>;
 	/**
 	 * The qid already committed on the cached genre node at `slug`, if any (TRA-32). Read-only —
-	 * used by runPipeline to carry a previously-resolved qid onto a rematerialized node when the
-	 * resolver itself can't re-derive one, rather than let a fresh, qid-less node overwrite it on
-	 * write. A missing node, or a node of a different type, resolves to `undefined` rather than an
-	 * error -- a genre reference to a not-yet-materialized slug is the common case.
+	 * used by runPipeline both to carry a previously-resolved qid onto a rematerialized node when
+	 * the resolver itself can't re-derive one, and to let an already-committed qid win over a
+	 * disagreeing fresh resolve (identity corrections are a migration/curation concern, not a
+	 * runtime one). Resolves to `undefined`, never rejects, in three cases: (1) no cache node at
+	 * `slug` — a genre reference to a not-yet-materialized slug is the common case; (2) a node
+	 * exists but isn't a genre node; (3) the cached file exists but is unreadable (malformed JSON,
+	 * schema violation) — logged as a warning rather than propagated, so one corrupt genre file
+	 * can't take down qid resolution for every other node.
 	 */
 	existingGenreQid(slug: Slug): Promise<string | undefined>;
 }
@@ -249,7 +256,17 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 			existing = await deps.cache.get(slug);
 		} catch (e) {
 			if (isNotFoundError(e)) return undefined;
-			throw e;
+			// A malformed genre file (bad JSON, a qid violating QID_PATTERN, a field NodeCache.get's
+			// schema parse rejects, ...) must not take down the caller's whole qid-stamping block
+			// with it -- runPipeline's enrichFromMusicBrainz still needs to resolve/backfill a
+			// DIFFERENT node's genre edges even when this one slug's cache file is unreadable. Same
+			// posture as NodeCache.buildGenreQidIndex's "skipping invalid genre node" (cache.ts
+			// ~270-280): warn and treat it as "no cached qid" rather than propagate.
+			log.warn("existingGenreQid: skipping unreadable genre node", {
+				slug,
+				error: e instanceof Error ? e.message : String(e),
+			});
+			return undefined;
 		}
 		// Only GenreNode carries a top-level qid; narrow on `type` rather than casting.
 		return existing.type === "genre" ? existing.qid : undefined;
