@@ -90,6 +90,14 @@ export interface PipelineInput {
 	name: string;
 	disambiguator?: string;
 	mbid?: string;
+	// 2026-09-10 (TRA-28 review, B1/B2): when set, the produced node is written under this
+	// EXACT slug instead of one freshly derived from name/type/disambiguator (canonicalizeDraft).
+	// `name`/`disambiguator` still drive research and content generation as usual. For a caller
+	// that already knows the canonical target for a dangling reference -- e.g. a genre edge
+	// GenreRegistry has canonicalized onto an existing node under a different slug than a fresh
+	// makeSlug(type, name) would produce -- omitting this re-derives the wrong slug from `name`
+	// and mints a second, name-derived duplicate of a target that was never actually missing.
+	slug?: Slug;
 }
 
 export interface PipelineResult {
@@ -1212,7 +1220,7 @@ function canonicalizeDraft(
 	allowedUrls: Set<string>,
 ): unknown {
 	const nameStr = typeof raw.name === "string" && raw.name.trim() ? raw.name.trim() : input.name;
-	const slug = makeSlug(input.type, nameStr, input.disambiguator);
+	const slug = input.slug ?? makeSlug(input.type, nameStr, input.disambiguator);
 	const next: Record<string, unknown> = { ...raw, type: input.type, slug, name: nameStr };
 	if (input.disambiguator) next.disambiguator = input.disambiguator;
 
