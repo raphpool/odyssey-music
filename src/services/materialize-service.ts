@@ -52,14 +52,14 @@ export function createMaterializeService(deps: {
 		let effectiveBody = body;
 		let slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
 		// Set only when `slug` above is known to already name an existing cache node that this
-		// call is about to refresh (canonical rewrite, or the stale/mbid-mismatch branch below) --
-		// never on a genuinely fresh mint. Passed through to runPipeline as PipelineInput.slug so
-		// canonicalizeDraft (pipeline.ts) keeps that exact slug instead of re-deriving one from
-		// whatever name the LLM draft happens to use, which can legitimately differ from the
-		// node's own persisted name (2026-09-10, review round 2 / TRA-30 review: 62 real cache
-		// nodes already have makeSlug(name) !== slug). A fresh mint keeps deriving its own slug
-		// from the draft, same as before this ticket -- the draft is the one place that gets to
-		// decide a brand new node's identity.
+		// call is about to refresh (canonical rewrite, or the cache lookup below finding it,
+		// whether or not `fresh` was requested) -- never on a genuinely fresh mint. Passed through
+		// to runPipeline as PipelineInput.slug so canonicalizeDraft (pipeline.ts) keeps that exact
+		// slug instead of re-deriving one from whatever name the LLM draft happens to use, which
+		// can legitimately differ from the node's own persisted name (2026-09-10, review round 2 /
+		// TRA-30 review: 62 real cache nodes already have makeSlug(name) !== slug). A fresh mint
+		// keeps deriving its own slug from the draft, same as before this ticket -- the draft is
+		// the one place that gets to decide a brand new node's identity.
 		let pinnedSlug: Slug | undefined;
 
 		// 2026-09-09: after TRA-22's duplicate-merge migration, a genre chip whose display name
@@ -95,23 +95,26 @@ export function createMaterializeService(deps: {
 			}
 		}
 
+		// 2026-09-10 (review round 2, nit): read once regardless of `fresh` -- opts.fresh === true
+		// (?fresh=1, server.ts) used to skip this whole block, so a request for an ALREADY-cached
+		// slug with fresh:true never set pinnedSlug: the loser name was protected by the guard
+		// above, but the canonical name wasn't, once fresh:true was in play. A node found here is
+		// always the one this call is about to refresh, fresh or not.
+		const cached = await deps.cache.get(slug).catch((e: unknown) => {
+			if (isNotFoundError(e)) return null;
+			throw e;
+		});
+		if (cached) pinnedSlug = slug;
 		let effectiveFresh = fresh;
-		if (!fresh) {
-			const cached = await deps.cache.get(slug).catch((e: unknown) => {
-				if (isNotFoundError(e)) return null;
-				throw e;
-			});
-			if (cached) {
-				const matAt = new Date(cached.materialized_at).getTime();
-				const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
-				const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
-				const mbidMismatch = !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
-				if (!stale && !mbidMismatch) {
-					return { node: cached, source: "cache", wallMs: Date.now() - t0 };
-				}
-				effectiveFresh = true;
-				pinnedSlug = slug;
+		if (!fresh && cached) {
+			const matAt = new Date(cached.materialized_at).getTime();
+			const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
+			const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
+			const mbidMismatch = !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
+			if (!stale && !mbidMismatch) {
+				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
+			effectiveFresh = true;
 		}
 		const key = `${slug}|${effectiveBody.disambiguator ?? ""}|fresh=${effectiveFresh}`;
 		const existing = inflight.get(key);

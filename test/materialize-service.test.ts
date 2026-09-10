@@ -261,6 +261,44 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	);
 
 	it(
+		"pins the slug when fresh is requested for an ALREADY-cached slug, with no canonicalization rewrite involved (review round 2 nit)",
+		async () => {
+			// No redirect, no qid-index detour: the request already hashes to "genre:electronic",
+			// so the canonicalization guard above never runs (cache.has(slug) is true) -- the only
+			// thing that can pin the slug here is the fresh/cached read below. Before the round-2
+			// fix, `if (!fresh)` skipped that read entirely when opts.fresh === true, so pinnedSlug
+			// stayed undefined and the renamed draft below minted a second "genre:electronic-music"
+			// file instead of refreshing "genre:electronic" in place.
+			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Electronic music",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Electronic" }, { fresh: true });
+
+			expect(result.node.slug).toBe("genre:electronic");
+			expect(await genreFileCount()).toBe(1);
+			expect(await cache.has("genre:electronic-music")).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
 		"pins the canonical slug when refreshing a stale canonical found via the qid index, with no explicit fresh (BLOCK 1 regression)",
 		async () => {
 			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > pipelineConfig.nodeTtlMs (12h)
