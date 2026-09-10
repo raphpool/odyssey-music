@@ -15,7 +15,7 @@
   "origin": "United Kingdom",
   "parent_genres": [
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"

@@ -15,13 +15,13 @@
   "location": "Northampton, U.S.",
   "genres": [
     {
-      "slug": "genre:avant-garde-music",
+      "slug": "genre:avant-garde",
       "type": "genre",
       "name": "Avant-garde music",
       "qid": "Q2332751"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"

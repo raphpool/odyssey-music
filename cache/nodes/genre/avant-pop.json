@@ -15,13 +15,13 @@
   "origin": "United Kingdom, United States, Germany",
   "parent_genres": [
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
@@ -36,7 +36,7 @@
       "qid": "Q25094849"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"

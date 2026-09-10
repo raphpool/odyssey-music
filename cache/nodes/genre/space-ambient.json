@@ -19,7 +19,7 @@
   "origin": "Germany and Japan (early 1970s)",
   "parent_genres": [
     {
-      "slug": "genre:ambient-music",
+      "slug": "genre:ambient",
       "type": "genre",
       "name": "Ambient music",
       "qid": "Q193207"

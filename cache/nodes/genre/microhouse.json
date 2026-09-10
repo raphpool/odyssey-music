@@ -18,7 +18,20 @@
   "era": "Early 2000s to mid-2010s",
   "origin": "Germany and Canada",
   "sonic_markers": "Clicks, glitches, micro-edits, found-sound percussion, minimalist 4/4 structures, granular synthesis, subtle timbral variations.",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -60,6 +73,26 @@
       "slug": "artist:jan-jelinek",
       "type": "artist",
       "name": "Jan Jelinek"
+    },
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear"
+    },
+    {
+      "slug": "artist:raresh",
+      "type": "artist",
+      "name": "Raresh"
+    },
+    {
+      "slug": "artist:francesco-del-garda",
+      "type": "artist",
+      "name": "Francesco Del Garda"
     }
   ],
   "key_labels": [
@@ -77,6 +110,11 @@
       "slug": "label:playhouse",
       "type": "label",
       "name": "Playhouse"
+    },
+    {
+      "slug": "label:klang-elektronik",
+      "type": "label",
+      "name": "Klang Elektronik"
     }
   ],
   "landmark_projects": [

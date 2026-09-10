@@ -19,7 +19,32 @@
   "origin": "United Kingdom and Japan",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore",
+      "qid": "Q903735"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:aphex-twin",
@@ -62,6 +87,11 @@
       "slug": "label:black-dog-productions",
       "type": "label",
       "name": "Black Dog Productions"
+    },
+    {
+      "slug": "label:warp",
+      "type": "label",
+      "name": "Warp"
     }
   ],
   "landmark_projects": [

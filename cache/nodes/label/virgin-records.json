@@ -37,7 +37,7 @@
       "qid": "Q187760"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic Music",
       "qid": "Q9778"
@@ -49,7 +49,7 @@
       "qid": "Q205560"
     },
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop Music",
       "qid": "Q37073"

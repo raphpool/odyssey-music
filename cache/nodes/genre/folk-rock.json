@@ -16,13 +16,13 @@
   "sonic_markers": "Emphasis on electric 12-string guitars, intricate vocal harmonies, acoustic-to-electric instrumentation hybrids, and narrative-driven lyrics.",
   "parent_genres": [
     {
-      "slug": "genre:folk-music",
+      "slug": "genre:folk",
       "type": "genre",
       "name": "Folk music",
       "qid": "Q43343"
     },
     {
-      "slug": "genre:rock-music",
+      "slug": "genre:rock",
       "type": "genre",
       "name": "Rock music",
       "qid": "Q11399"

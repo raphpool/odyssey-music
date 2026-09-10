@@ -35,13 +35,13 @@
   },
   "genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:ambient-music",
+      "slug": "genre:ambient",
       "type": "genre",
       "name": "Ambient music",
       "qid": "Q193207"

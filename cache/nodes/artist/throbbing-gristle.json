@@ -18,19 +18,19 @@
   "origin": "Kingston upon Hull, England",
   "genres": [
     {
-      "slug": "genre:industrial-music",
+      "slug": "genre:industrial",
       "type": "genre",
       "name": "Industrial music",
       "qid": "Q487965"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"

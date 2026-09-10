@@ -27,13 +27,13 @@
       "qid": "Q823560"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:noise-music",
+      "slug": "genre:noise",
       "type": "genre",
       "name": "Noise music",
       "qid": "Q726239"
@@ -42,6 +42,12 @@
       "slug": "genre:computer-music",
       "type": "genre",
       "name": "Computer music"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental music",
+      "qid": "Q1640319"
     }
   ],
   "key_artists": [
@@ -69,6 +75,16 @@
       "slug": "artist:luigi-nono",
       "type": "artist",
       "name": "Luigi Nono"
+    },
+    {
+      "slug": "artist:pierre-boulez",
+      "type": "artist",
+      "name": "Pierre Boulez"
+    },
+    {
+      "slug": "artist:alvin-lucier",
+      "type": "artist",
+      "name": "Alvin Lucier"
     }
   ],
   "key_labels": [

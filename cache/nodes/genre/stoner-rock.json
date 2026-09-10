@@ -15,7 +15,7 @@
   "origin": "California, United States",
   "parent_genres": [
     {
-      "slug": "genre:rock-music",
+      "slug": "genre:rock",
       "type": "genre",
       "name": "Rock music",
       "qid": "Q11399"

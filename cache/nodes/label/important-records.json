@@ -19,25 +19,25 @@
   "location": "Groveland, Massachusetts",
   "genres": [
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
     },
     {
-      "slug": "genre:drone-music",
+      "slug": "genre:drone",
       "type": "genre",
       "name": "Drone music",
       "qid": "Q650316"
     },
     {
-      "slug": "genre:noise-music",
+      "slug": "genre:noise",
       "type": "genre",
       "name": "Noise music",
       "qid": "Q726239"
     },
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"

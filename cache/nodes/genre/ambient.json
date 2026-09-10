@@ -23,13 +23,13 @@
   "origin": "United Kingdom / Germany",
   "parent_genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:experimental-music",
+      "slug": "genre:experimental",
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Dark ambient",
       "qid": "Q756956"
+    },
+    {
+      "slug": "genre:ambient-dub",
+      "type": "genre",
+      "name": "Ambient dub",
+      "qid": "Q3613770"
     }
   ],
   "related_genres": [
@@ -61,6 +67,12 @@
       "type": "genre",
       "name": "Drone",
       "qid": "Q650316"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism",
+      "qid": "Q572901"
     }
   ],
   "key_artists": [
@@ -78,6 +90,11 @@
       "slug": "artist:klaus-schulze",
       "type": "artist",
       "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:wendy-carlos",
+      "type": "artist",
+      "name": "Wendy Carlos"
     }
   ],
   "key_labels": [

@@ -1,5 +1,26 @@
 {
   "source": "genre duplicate merge",
-  "generated_at": "1970-01-01T00:00:00.000Z",
-  "redirects": {}
+  "generated_at": "2026-09-10T19:19:45.754Z",
+  "redirects": {
+    "genre:ambient-music": "genre:ambient",
+    "genre:avant-garde-music": "genre:avant-garde",
+    "genre:classical-music": "genre:classical",
+    "genre:contemporary-classical-music": "genre:contemporary-classical",
+    "genre:drone-music": "genre:drone",
+    "genre:dub-music": "genre:dub",
+    "genre:electroacoustic": "genre:electroacoustic-music",
+    "genre:electronic-music": "genre:electronic",
+    "genre:experimental-music": "genre:experimental",
+    "genre:folk-music": "genre:folk",
+    "genre:house-music": "genre:house",
+    "genre:industrial-music": "genre:industrial",
+    "genre:intelligent-dance-music": "genre:idm",
+    "genre:micro-house": "genre:microhouse",
+    "genre:minimal": "genre:minimal-music",
+    "genre:noise-music": "genre:noise",
+    "genre:pop-music": "genre:pop",
+    "genre:rock-music": "genre:rock",
+    "genre:soul-music": "genre:soul",
+    "genre:synthpop": "genre:synth-pop"
+  }
 }

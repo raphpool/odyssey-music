@@ -66,6 +66,26 @@
       "slug": "artist:sunn-o",
       "type": "artist",
       "name": "Sunn O)))"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
     }
   ],
   "key_labels": [
@@ -83,9 +103,35 @@
       "slug": "label:kranky",
       "type": "label",
       "name": "Kranky"
+    },
+    {
+      "slug": "label:southern-lord",
+      "type": "label",
+      "name": "Southern Lord"
+    },
+    {
+      "slug": "label:touch",
+      "type": "label",
+      "name": "Touch"
     }
   ],
-  "landmark_projects": [],
+  "landmark_projects": [
+    {
+      "slug": "project:trio-for-strings",
+      "type": "project",
+      "name": "Trio for Strings"
+    },
+    {
+      "slug": "project:metal-machine-music",
+      "type": "project",
+      "name": "Metal Machine Music"
+    },
+    {
+      "slug": "project:zeit",
+      "type": "project",
+      "name": "Zeit"
+    }
+  ],
   "landmark_tracks": [],
   "qid": "Q650316"
 }

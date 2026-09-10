@@ -16,13 +16,13 @@
   "sonic_markers": "Prominent use of synthesizers, drum machines, and sequencers; rejection of blues-based guitar structures; synthetic textures; programmed, repetitive beats; minimalist production styles; robotic or sterile vocal delivery.",
   "parent_genres": [
     {
-      "slug": "genre:electronic-music",
+      "slug": "genre:electronic",
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
     },
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"
@@ -86,6 +86,21 @@
       "slug": "artist:the-human-league",
       "type": "artist",
       "name": "The Human League"
+    },
+    {
+      "slug": "artist:pet-shop-boys",
+      "type": "artist",
+      "name": "Pet Shop Boys"
+    },
+    {
+      "slug": "artist:erasure",
+      "type": "artist",
+      "name": "Erasure"
+    },
+    {
+      "slug": "artist:a-ha",
+      "type": "artist",
+      "name": "A-ha"
     }
   ],
   "key_labels": [],

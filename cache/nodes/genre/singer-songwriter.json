@@ -32,13 +32,13 @@
   "subgenres": [],
   "related_genres": [
     {
-      "slug": "genre:folk-music",
+      "slug": "genre:folk",
       "type": "genre",
       "name": "Folk music",
       "qid": "Q43343"
     },
     {
-      "slug": "genre:pop-music",
+      "slug": "genre:pop",
       "type": "genre",
       "name": "Pop music",
       "qid": "Q37073"

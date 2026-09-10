@@ -35,6 +35,21 @@
       "slug": "artist:terry-riley",
       "type": "artist",
       "name": "Terry Riley"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
+    },
+    {
+      "slug": "artist:harry-partch",
+      "type": "artist",
+      "name": "Harry Partch"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
     }
   ],
   "key_labels": [],

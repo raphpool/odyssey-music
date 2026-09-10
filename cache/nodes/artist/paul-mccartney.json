@@ -126,11 +126,6 @@
   "aliases": [],
   "members": [
     {
-      "slug": "artist:paul-mccartney",
-      "type": "artist",
-      "name": "Paul McCartney"
-    },
-    {
       "slug": "artist:linda-mccartney",
       "type": "artist",
       "name": "Linda McCartney"
