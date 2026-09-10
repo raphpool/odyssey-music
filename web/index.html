@@ -1426,7 +1426,12 @@ function chipHtml(ref, parentCtx) {
   // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
   // reconciled with the bare-slug edges. Slug-from-name only now.
   const mbidAttr = ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : "";
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
+  // 2026-09-10 (TRA-43): carry the edge's own qid, when it has one, so a click on this chip
+  // materializes by IDENTITY (slug + qid) instead of a name the server would have to re-resolve
+  // -- see jitMaterialize's reqBody below and docs/plans/qid-genre-identity.md, decision d'archi
+  // 8/9. Genre edges only (EdgeRef.qid), same scope as mbidAttr above.
+  const qidAttr = ref.qid ? ` data-jit-qid="${ref.qid}"` : "";
+  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
@@ -1449,6 +1454,12 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     // MBID pinned at emit time (artist.discography, project.tracklist, etc.) — passing it
     // here avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN" (Raph 2026-05-19).
     if (mbid) reqBody.mbid = mbid;
+    // 2026-09-10 (TRA-43): send the edge's own identity (slug always present on a dangling
+    // chip, qid when the edge carries one) instead of letting the server re-derive it from
+    // `name` alone -- this is what makes handleMaterialize's qid-autoritaire guard actually
+    // reachable from a chip click (server-side fix landed in TRA-43, this is the front half).
+    reqBody.slug = chipEl.dataset.jitSlug;
+    if (chipEl.dataset.jitQid) reqBody.qid = chipEl.dataset.jitQid;
     const r = await fetch(`${API_BASE}/materialize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
