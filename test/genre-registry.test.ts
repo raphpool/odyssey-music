@@ -457,3 +457,22 @@ describe("loadGenreRedirects", () => {
 		expect(present).toEqual(new Map([["genre:electronic-music", "genre:electronic"]]));
 	});
 });
+
+describe("existingGenreQid (TRA-32)", () => {
+	it("returns the qid already committed on a cached genre node", async () => {
+		await cache.write(genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611" }));
+		const registry = registryFor({});
+		await expect(registry.existingGenreQid("genre:techno")).resolves.toBe("Q170611");
+	});
+
+	it("returns undefined for a genre node with no qid", async () => {
+		await cache.write(genreNode({ slug: "genre:techno", name: "Techno" }));
+		const registry = registryFor({});
+		await expect(registry.existingGenreQid("genre:techno")).resolves.toBeUndefined();
+	});
+
+	it("returns undefined when the slug has no cache node at all", async () => {
+		const registry = registryFor({});
+		await expect(registry.existingGenreQid("genre:does-not-exist")).resolves.toBeUndefined();
+	});
+});

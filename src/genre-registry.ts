@@ -30,10 +30,11 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import type { NodeCache } from "./cache.js";
+import { isNotFoundError } from "./errors.js";
 import type { GenreResolver } from "./genre-identity.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
-import type { EdgeRef, NodeType, Slug } from "./types.js";
+import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 
 /** Loser slug -> canonical slug, as produced by TRA-22's duplicate-merge migration. */
 export type GenreRedirects = ReadonlyMap<Slug, Slug>;
@@ -105,6 +106,14 @@ export interface GenreRegistry {
 	canonicalSlugFor(ref: { slug: Slug; name: string; qid?: string }): Promise<{ slug: Slug; qid?: string }>;
 	canonicalizeGenreEdges(refs: readonly EdgeRef[]): Promise<EdgeRef[]>;
 	canonicalizeNodeEdges(node: unknown): Promise<void>;
+	/**
+	 * The qid already committed on the cached genre node at `slug`, if any (TRA-32). Read-only —
+	 * used by runPipeline to carry a previously-resolved qid onto a rematerialized node when the
+	 * resolver itself can't re-derive one, rather than let a fresh, qid-less node overwrite it on
+	 * write. A missing node, or a node of a different type, resolves to `undefined` rather than an
+	 * error -- a genre reference to a not-yet-materialized slug is the common case.
+	 */
+	existingGenreQid(slug: Slug): Promise<string | undefined>;
 }
 
 export interface GenreRegistryDeps {
@@ -234,5 +243,17 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		}
 	}
 
-	return { canonicalSlugFor, canonicalizeGenreEdges, canonicalizeNodeEdges };
+	async function existingGenreQid(slug: Slug): Promise<string | undefined> {
+		let existing: NodePayload;
+		try {
+			existing = await deps.cache.get(slug);
+		} catch (e) {
+			if (isNotFoundError(e)) return undefined;
+			throw e;
+		}
+		// Only GenreNode carries a top-level qid; narrow on `type` rather than casting.
+		return existing.type === "genre" ? existing.qid : undefined;
+	}
+
+	return { canonicalSlugFor, canonicalizeGenreEdges, canonicalizeNodeEdges, existingGenreQid };
 }

@@ -1,5 +1,12 @@
-import { describe, expect, it, vi } from "vitest";
+import { mkdtemp, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { NodeCache } from "../src/cache.js";
+import { loadGenreResolver } from "../src/genre-identity.js";
+import { createGenreRegistry } from "../src/genre-registry.js";
 import { enrichFromMusicBrainz, normalizeEdge } from "../src/pipeline.js";
+import type { GenreNode, Slug } from "../src/types.js";
 
 // TRA-18: mock only the external MB boundary; genre-identity.ts is ours, so it runs for real
 // against the committed catalog — "techno" resolves there, "not-a-real-genre-xyz" doesn't.
@@ -175,5 +182,109 @@ describe("enrichFromMusicBrainz — parent_genres backfill expands the 'rb' toke
 		const parent = bySlug.get("genre:bass-music-edm");
 		expect(parent?.name).toBe("Bass Music Edm");
 		expect(parent?.qid).toBe("Q114880130");
+	});
+});
+
+describe("enrichFromMusicBrainz — qid carried across rematerialization (TRA-32)", () => {
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-pipeline-genre-qid-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	/** Minimal, schema-valid genre node for pre-seeding the cache. */
+	function cachedGenreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
+		return {
+			type: "genre",
+			editorial_article:
+				"A real long article about this genre, well past the eighty character floor. ".repeat(2),
+			editorial_definition: "A short definition.",
+			citations: [{ url: "https://example.com/genre" }],
+			materialized_at: new Date().toISOString(),
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+			...overrides,
+		};
+	}
+
+	it("falls back to the slug body when the name fails to resolve, same order as the backfill (genre:trap)", async () => {
+		// Explicitly constructed so the name alone never resolves: since TRA-33 an alias resolves
+		// "trap edm" (the normalized form of the real "Trap (EDM)" name), so that string can no
+		// longer stand in for "resolution fails". The slug body "trap" still resolves via the
+		// resolver's "music"-suffix heuristic ("trap" -> "trap music" -> Q2913982), same as the
+		// backfill migration falls back to it.
+		const node: Record<string, unknown> = { slug: "genre:trap", name: "Trap (Not A Real Genre)" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Trap (Not A Real Genre)" }, () => undefined);
+		expect(node.qid).toBe("Q2913982");
+	});
+
+	it("reports the cached qid when rematerializing a node whose name and slug body both fail to resolve", async () => {
+		await cache.write(
+			cachedGenreNode({
+				slug: "genre:not-a-real-genre-xyz",
+				name: "Not A Real Genre Xyz",
+				qid: "Q999999999",
+			}),
+		);
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const node: Record<string, unknown> = {
+			slug: "genre:not-a-real-genre-xyz",
+			name: "Not A Real Genre Xyz",
+		};
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Not A Real Genre Xyz" },
+			() => undefined,
+			registry,
+		);
+		expect(node.qid).toBe("Q999999999");
+	});
+
+	it("stamps no qid when nothing resolves and nothing is cached (unchanged behavior)", async () => {
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const node: Record<string, unknown> = {
+			slug: "genre:not-a-real-genre-xyz",
+			name: "Not A Real Genre Xyz",
+		};
+		await enrichFromMusicBrainz(
+			node,
+			{ type: "genre", name: "Not A Real Genre Xyz" },
+			() => undefined,
+			registry,
+		);
+		expect(node.qid).toBeUndefined();
+	});
+
+	it("prefers a freshly resolved qid over a different cached one, logging the discrepancy", async () => {
+		await cache.write(cachedGenreNode({ slug: "genre:techno", name: "Techno", qid: "Q1" }));
+		const registry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const logs: string[] = [];
+		const node: Record<string, unknown> = { slug: "genre:techno", name: "Techno" };
+		await enrichFromMusicBrainz(node, { type: "genre", name: "Techno" }, (line) => logs.push(line), registry);
+		expect(node.qid).toBe("Q170611");
+		expect(logs.some((l) => l.includes("Q1") && l.includes("Q170611"))).toBe(true);
 	});
 });

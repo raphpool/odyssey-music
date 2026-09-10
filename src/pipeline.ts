@@ -623,7 +623,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const research = await researchTarget(input, deps, log);
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
-	await enrichFromMusicBrainz(node, input, log);
+	await enrichFromMusicBrainz(node, input, log, deps.genreRegistry);
 	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
 	// derive a genre edge's slug from its display name alone, which produced 20 groups of
 	// duplicate genre nodes sharing a QID (e.g. "electronic" / "electronic-music"). All three
@@ -832,7 +832,12 @@ function mbGenreEdges(genres: readonly MbGenreTag[], resolver: GenreResolver | n
 
 // Exported for test/pipeline-genre-qid.test.ts (TRA-18), which mocks musicbrainz.js.
 export { enrichFromMusicBrainz };
-async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: PipelineLog): Promise<void> {
+async function enrichFromMusicBrainz(
+	node: unknown,
+	input: PipelineInput,
+	log: PipelineLog,
+	genreRegistry?: GenreRegistry,
+): Promise<void> {
 	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	// Genre resolver load is best-effort (TRA-18): a failure just means no qid on genre edges below.
 	let genreResolver: GenreResolver | null = null;
@@ -1073,7 +1078,8 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 		try {
 			const obj = node as Record<string, unknown>;
 			const catalog = await loadGenreCatalog();
-			const body = (obj.slug as string).split(":")[1] ?? "";
+			const slug = obj.slug as Slug;
+			const body = slug.split(":")[1] ?? "";
 			// 2026-09-09 (TRA-26): catalog.get(body) was a slug-exact lookup. The Wikidata
 			// catalog only has "electronic-music", not "electronic", so genre:electronic got
 			// neither qid nor parents and was invisible to report:genre-dupes. Route through
@@ -1091,17 +1097,47 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 			}
 			let entry: WikidataGenreEntry | undefined;
 			if (resolver) {
-				// An unresolved name is a deliberate no-op (architecture decision 5): the node
-				// keeps whatever it had, rather than guessing via the old slug-exact lookup.
-				// Resolve on the node's own materialized name (obj.name), not input.name: by
-				// this point canonicalizeDraft (:1179) has already let the LLM draft override
-				// the requested name, so obj.name is the one actually persisted on the node —
-				// same convention as mbGenreEdges (:805), which resolves on the tag's own name.
+				// Resolve on the node's own materialized name (obj.name), not input.name: by this
+				// point canonicalizeDraft (:1179) has already let the LLM draft override the
+				// requested name, so obj.name is the one actually persisted on the node — same
+				// convention as mbGenreEdges (:805), which resolves on the tag's own name.
 				const ownName = typeof obj.name === "string" ? obj.name : "";
-				const identity = resolver.resolve({ name: ownName || body });
+				// 2026-09-10 (TRA-32): resolution order matches the backfill migration
+				// (scripts/migrations/2026-09-04-backfill-genre-qid.ts:200-204) exactly — resolve
+				// on the name first, and only fall back to the slug body when THAT fails, not
+				// merely when the name is empty. Runtime and backfill must agree, or a
+				// rematerialized node can regress a qid the backfill would have kept: genre:trap
+				// (name "Trap (EDM)") normalizes to "trap edm", which misses the catalog and (pre
+				// TRA-33) every resolver heuristic, while the slug body "trap" hits the "music"
+				// suffix heuristic ("trap" -> "trap music") — the backfill falls through to the
+				// slug body on any resolve failure, the old runtime code here only tried it when
+				// obj.name was empty.
+				const identity = resolver.resolve({ name: ownName }) ?? resolver.resolve({ name: body });
+
+				// TRA-18: obj.qid is stamped here, outside/before the parent_genres guard below —
+				// a genre with parents already resolved still needs its own qid (re)stamped.
+				// 2026-09-10 (TRA-32): `node` here is a BRAND NEW object -- canonicalizeDraft and
+				// this function reconstruct it from the LLM draft on every rematerialization, they
+				// never start from the cached payload -- so an unresolved name is NOT a no-op that
+				// "keeps whatever it had": nothing has been assigned to obj.qid yet, and leaving it
+				// unset here would erase a qid the cache already committed once this node is
+				// written. genreRegistry.existingGenreQid reads that committed qid back so it can
+				// be carried over instead.
+				const cachedQid = await genreRegistry?.existingGenreQid(slug);
 				if (identity) {
-					obj.qid = identity.qid;
 					entry = catalog.get(identity.slug);
+					// The resolver is authoritative: a freshly resolved qid always wins over a
+					// different one already committed in the cache. That disagreement is still
+					// worth surfacing -- it usually means the cached qid predates a resolver fix
+					// (alias, heuristic) and is now stale.
+					if (cachedQid && cachedQid !== identity.qid) {
+						log(
+							`[pipeline] genre qid mismatch for ${slug}: cached=${cachedQid} resolved=${identity.qid} (resolver wins)`,
+						);
+					}
+					obj.qid = identity.qid;
+				} else if (cachedQid) {
+					obj.qid = cachedQid;
 				}
 			} else {
 				entry = catalog.get(body);
