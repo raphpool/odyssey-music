@@ -1088,7 +1088,22 @@ async function enrichFromMusicBrainz(node: unknown, input: PipelineInput, log: P
 			const current = Array.isArray(obj.parent_genres) ? (obj.parent_genres as unknown[]) : [];
 			if (current.length === 0 && entry?.parents?.length) {
 				obj.parent_genres = entry.parents.map((p) => {
-					const display = genreDisplayName(p.replace(/-/g, " "));
+					// 2026-09-10 (TRA-34): the catalog slug collapses "R&B" to "rb"
+					// ("contemporary-rb"), and rehydrating that slug verbatim produced
+					// "Contemporary Rb" -> genre:contemporary-rb — off the cache's "-r-and-b"
+					// convention (genre:r-and-b, genre:alternative-r-and-b) and a duplicate-minting
+					// risk alongside a resolver-derived genre:contemporary-r-and-b. Deriving from the
+					// catalog NAME instead was tried and reverted: it also restores every internal
+					// hyphen, apostrophe and diacritic the catalog name carries (e.g. "hip-hop" ->
+					// "Hip-Hop" instead of "Hip Hop"), changing 143 of 1449 parent slugs — including
+					// two real collisions where a distinct "*-edm" entry folded onto its unrelated
+					// non-EDM sibling (bass-music-edm -> genre:bass-music, glitch-hop-edm ->
+					// genre:glitch-hop). Scoped fix instead: expand the standalone "rb" word back to
+					// "R&B" before title-casing; makeSlug already turns "&" into " and ", so
+					// "Contemporary R&B" slugs to genre:contemporary-r-and-b. Every other slug
+					// (hyphenation, diacritics, apostrophes) is untouched.
+					const expanded = p.replace(/-/g, " ").replace(/\brb\b/gi, "R&B");
+					const display = genreDisplayName(expanded);
 					return genreEdge(display, makeSlug("genre", display), catalog.get(p)?.wikidata_qid);
 				});
 				log(`[pipeline] genre parent_genres backfilled from Wikidata: ${entry.parents.length}`);
