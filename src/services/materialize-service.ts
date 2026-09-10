@@ -24,9 +24,8 @@ export interface MaterializeRequest {
 // with body "../x". This is what keeps a client-supplied slug from ever reaching a cache path.
 const SLUG_BODY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 
-// 2026-09-10 (TRA-43 review round 1, nit): SLUG_BODY_PATTERN has no length bound of its own -- an
-// unbounded value reaching NodeCache's fs calls would surface as a raw ENOENT/ENAMETOOLONG 500
-// instead of a clean 400. 200 is generous (longest real committed slug body is well under 100).
+// 2026-09-10 (review round 1, nit): unbounded, this would surface as a raw ENOENT/ENAMETOOLONG
+// 500 instead of a 400. 200 is generous (real committed slug bodies are well under 100).
 const MAX_SLUG_LENGTH = 200;
 
 /**
@@ -51,13 +50,10 @@ function validateRequestSlug(rawSlug: string, type: string): Slug {
 }
 
 /**
- * SECURITY (TRA-43 review round 1, 2026-09-10): a refresh of an existing/canonical node must use
- * THAT NODE'S OWN identity, never the client's. Repro: a stale `genre:techno` (nodeTtlMs=12h, so
- * most committed nodes are "stale") + `{name: "Attacker Controlled Topic", slug: "genre:techno"}`
- * pinned `slug` from the client while keeping the client's own `name` -- a public, unauthenticated
- * POST /materialize could rewrite any cache/<slug>.json with attacker-chosen content. A differing
- * client `mbid` must likewise never survive: it would force `mbidMismatch` to refresh an
- * already-correct, freshly-served node.
+ * SECURITY (TRA-43 review round 1, 2026-09-10): a refresh must use the existing/canonical node's
+ * OWN identity, never the client's. Repro: a stale `genre:techno` + `{name: "Attacker Controlled
+ * Topic", slug: "genre:techno"}` pinned `slug` while keeping the client's `name` -- an
+ * unauthenticated POST /materialize could rewrite any cache/<slug>.json with attacker content.
  */
 function refreshIdentityFrom(node: NodePayload): MaterializeRequest {
 	const out: MaterializeRequest = { type: node.type, name: node.name };
@@ -125,9 +121,8 @@ export function createMaterializeService(deps: {
 		let cached: NodePayload | null = null;
 
 		// Phase 1 (TRA-43): does the caller's OWN slug already name a real node? If so, that node's
-		// own identity (refreshIdentityFrom) drives everything below, never the client's -- this is
-		// the direct analog of GenreRegistry's rule 2 ("a ref pointing at an existing node never
-		// moves"), applied up front for every node type, not just genre.
+		// identity drives everything below, never the client's (GenreRegistry rule 2's analog,
+		// applied up front for every node type).
 		if (requestSlug) {
 			const existing = await deps.cache.get(requestSlug).catch((e: unknown) => {
 				if (isNotFoundError(e)) return null;
@@ -162,9 +157,8 @@ export function createMaterializeService(deps: {
 			const guardSlug = requestSlug ?? slug;
 			const guardApplies = requestSlug !== undefined || !(await deps.cache.has(guardSlug));
 			if (guardApplies) {
-				// 2026-09-10 (TRA-43): forward qid/mbid so rule 4 (existing node for this qid wins)
-				// can fire even for a brand-new slug -- e.g. two MB tags sharing a QID materialized
-				// by name, one after the other (test/genre-dedup-postmerge.test.ts scenario 6).
+				// 2026-09-10 (TRA-43): forward qid/mbid so rule 4 can fire even for a brand-new slug
+				// (two MB tags sharing a QID materialized by name, one after the other -- scenario 6).
 				const canonicalRef: { slug: Slug; name: string; qid?: string; mbid?: string } = {
 					slug: guardSlug,
 					name: body.name,
@@ -187,8 +181,8 @@ export function createMaterializeService(deps: {
 						cached = canonicalNode;
 					}
 				}
-				// Rule 5 ("nothing to canonicalize"): `slug` stays name-derived, `pinnedSlug` stays
-				// unset -- an unresolved `requestSlug` is never pinned as a mint target (security fix).
+				// Rule 5: `slug`/`pinnedSlug` stay untouched -- an unresolved `requestSlug` is never
+				// pinned as a mint target (security fix).
 			}
 		}
 
