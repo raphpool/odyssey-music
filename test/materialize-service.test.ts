@@ -566,40 +566,13 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		},
 		TIMEOUT_MS,
 	);
-	// A fresh mint by qid alone (name unresolvable, body.slug names nothing real) is covered by
-	// the "mints a brand-new node under the NAME-derived slug..." test in the security describe
-	// block below -- kept there since it also proves body.slug itself is never pinned as a target.
-});
-
-// TRA-43 review round 1 (security, 2026-09-10): body.slug is a LOOKUP key for an existing node,
-// never a write target the client gets to choose on its own. Repro that forced this: a stale
-// `genre:techno` node (nodeTtlMs=12h makes most committed nodes "stale") plus
-// `{name: "Attacker Controlled Topic", slug: "genre:techno"}` used to pin `slug` from the client
-// while keeping the client's own `name`/`mbid` -- POST /materialize is public/unauthenticated
-// (server.ts), so this was an arbitrary unauthenticated write into cache/, any node type.
-describe("createMaterializeService — body.slug is a lookup key, never a write target (TRA-43 security fix)", () => {
-	let dir: string;
-	let cache: NodeCache;
-
-	beforeEach(async () => {
-		dir = await mkdtemp(join(tmpdir(), "odyssey-materialize-slug-security-"));
-		cache = new NodeCache(dir);
-	});
-
-	afterEach(async () => {
-		await rm(dir, { recursive: true, force: true });
-	});
-
-	async function buildService() {
-		const genreRegistry = createGenreRegistry({
-			cache,
-			resolver: await loadGenreResolver(),
-			redirects: new Map(),
-		});
-		const createMaterializeService = await loadCreateMaterializeService();
-		return createMaterializeService({ cache, env: ENV, genreRegistry });
-	}
-
+	// TRA-43 review round 1 (security, 2026-09-10): body.slug is a LOOKUP key for an existing
+	// node, never a write target the client gets to choose on its own. Repro that forced this: a
+	// stale `genre:techno` node (nodeTtlMs=12h makes most committed nodes "stale") plus
+	// `{name: "Attacker Controlled Topic", slug: "genre:techno"}` used to pin `slug` from the
+	// client while keeping the client's own `name`/`mbid` -- POST /materialize is public and
+	// unauthenticated (server.ts), so this was an arbitrary unauthenticated write into cache/,
+	// any node type.
 	it(
 		"THE REPRO: a stale node's own identity drives a body.slug refresh, never an attacker-supplied name",
 		async () => {
