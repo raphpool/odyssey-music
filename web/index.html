@@ -1468,9 +1468,17 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
-    byId.set(vizNode.id, vizNode);
-    DATA.nodes.push(vizNode);
-    DATA.total = DATA.nodes.length;
+    // 2026-09-10 (TRA-29 review round 2): a genre request can now come back pointing at an
+    // already-materialized canonical node (server-side rewrite, see materialize-service.ts),
+    // whose id is already in byId/DATA.nodes from the initial data.json load. Re-pushing it here
+    // would duplicate it in the search list and inflate DATA.total. show() below still navigates
+    // to the right node either way -- a stale-looking dangling chip on return is the same
+    // pre-existing name-drift symptom as an LLM rename, tracked separately (TRA-38), not this fix.
+    if (!byId.has(vizNode.id)) {
+      byId.set(vizNode.id, vizNode);
+      DATA.nodes.push(vizNode);
+      DATA.total = DATA.nodes.length;
+    }
     // Snap the progress bar to 100% then jump straight to the new node.
     chipEl.classList.add("done");
     chipEl.style.setProperty("--progress", "100%");

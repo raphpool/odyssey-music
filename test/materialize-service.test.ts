@@ -1,10 +1,10 @@
-import { mkdtemp, readdir, rm } from "node:fs/promises";
+import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { ApiEnv } from "../src/env.js";
-import { loadGenreResolver } from "../src/genre-identity.js";
+import { createGenreResolver, loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry } from "../src/genre-registry.js";
 import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
@@ -28,8 +28,20 @@ async function loadTavilySearch() {
 
 const ELECTRONIC_MBID = "89255676-1f14-4dd8-bbad-fca839d6aff4";
 const ELECTRONIC_QID = "Q9778";
+// Not in the real committed catalog (there is no "trap" entry there) -- a synthetic in-memory
+// resolver (motif test/genre-identity.test.ts:15-25) is the only way to exercise the qid-index
+// rule (rule 4) for a name the real data doesn't cover.
+const FAKE_TRAP_QID = "Q999999";
 const ENV: ApiEnv = { GEMINI_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
 const TIMEOUT_MS = 5_000;
+
+function buildTrapResolver() {
+	return createGenreResolver({
+		catalog: [{ slug: "trap", name: "Trap", wikidata_qid: FAKE_TRAP_QID }],
+		mbidToQid: new Map(),
+		aliases: new Map(),
+	});
+}
 
 function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
 	return {
@@ -119,11 +131,7 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	});
 
 	async function genreFileCount(): Promise<number> {
-		try {
-			return (await readdir(join(dir, "nodes", "genre"))).length;
-		} catch {
-			return 0;
-		}
+		return (await cache.listSlugs()).filter((s) => s.startsWith("genre:")).length;
 	}
 
 	it(
@@ -207,7 +215,135 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	);
 
 	it(
-		"refreshes the canonical node, never the redirected loser, when fresh is requested",
+		"pins the canonical slug so a fresh refresh never mints a second file from the LLM draft's own name (BLOCK 1 regression)",
+		async () => {
+			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map<Slug, Slug>([["genre:electronic-music", "genre:electronic"]]),
+			});
+			// The mocked draft deliberately names itself DIFFERENTLY from the canonical node's own
+			// name ("Electronic music", not "Electronic"): without PipelineInput.slug pinned,
+			// canonicalizeDraft re-derives "genre:electronic-music" from this name and mints a
+			// second file -- this is exactly the bug BLOCK 1 fixed.
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Electronic music",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
+
+			const result = await service.handleMaterialize(
+				{ type: "genre", name: "Electronic music" },
+				{ fresh: true },
+			);
+
+			expect(result.node.slug).toBe("genre:electronic");
+			expect(await genreFileCount()).toBe(1);
+			expect(await cache.has("genre:electronic-music")).toBe(false);
+			const tavilySearch = await loadTavilySearch();
+			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
+			// The search query is built from the REQUEST's (rewritten) name, "Electronic" -- not
+			// the LLM draft's own name -- so this is an exact match, not the substring check a
+			// previous round of review flagged as tautological ("Electronic music" contains
+			// "Electronic").
+			expect(query).toBe("Electronic genre music wiki discogs");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"pins the canonical slug when refreshing a stale canonical found via the qid index, with no explicit fresh (BLOCK 1 regression)",
+		async () => {
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > pipelineConfig.nodeTtlMs (12h)
+			await cache.write(
+				genreNode({
+					slug: "genre:electronic",
+					name: "Electronic",
+					qid: ELECTRONIC_QID,
+					materialized_at: staleAt,
+				}),
+			);
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map(),
+			});
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Electronic music",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Electronic music" });
+
+			expect(result.node.slug).toBe("genre:electronic");
+			expect(await genreFileCount()).toBe(1);
+			expect(await cache.has("genre:electronic-music")).toBe(false);
+			const refreshed = await cache.get("genre:electronic");
+			expect(new Date(refreshed.materialized_at).getTime()).toBeGreaterThan(new Date(staleAt).getTime());
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"skips the canonicalization guard entirely when a disambiguator is present",
+		async () => {
+			// A qid-index collision that would otherwise merge {name: "Trap", disambiguator: "EDM"}
+			// onto the unrelated existing "genre:trap" (hip-hop) the moment their names resolve to
+			// the same qid -- canonicalSlugFor's resolver lookup is name-only and blind to
+			// disambiguator, which exists precisely to force a distinct node (slug.ts).
+			await cache.write(genreNode({ slug: "genre:trap", name: "Trap", qid: FAKE_TRAP_QID }));
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: buildTrapResolver(),
+				redirects: new Map(),
+			});
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Trap",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
+
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Trap",
+				disambiguator: "EDM",
+			});
+
+			expect(result.node.slug).toBe("genre:trap--edm");
+			const untouched = await cache.get("genre:trap");
+			expect(untouched.name).toBe("Trap");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the request's mbid through a canonical rewrite, so the refreshed node still carries it",
 		async () => {
 			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
 			const genreRegistry = createGenreRegistry({
@@ -229,16 +365,47 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 			const createMaterializeService = await loadCreateMaterializeService();
 			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
 
-			const result = await service.handleMaterialize(
-				{ type: "genre", name: "Electronic music" },
-				{ fresh: true },
-			);
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Electronic music",
+				mbid: ELECTRONIC_MBID,
+			});
 
 			expect(result.node.slug).toBe("genre:electronic");
-			const tavilySearch = await loadTavilySearch();
-			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
-			expect(query).toContain("Electronic");
-			expect(query).not.toContain("Electronic music");
+			expect((result.node as GenreNode).mbid).toBe(ELECTRONIC_MBID);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"mints under the requested slug without throwing when the registry names a canonical slug absent from disk",
+		async () => {
+			// The redirect table names genre:electronic as canonical (e.g. surviving a cache prune),
+			// but nothing was ever written there -- a single get().catch(isNotFoundError) must treat
+			// that as "nothing to serve" and fall through to a normal mint, not raise.
+			const genreRegistry = createGenreRegistry({
+				cache,
+				resolver: await loadGenreResolver(),
+				redirects: new Map<Slug, Slug>([["genre:electronic-music", "genre:electronic"]]),
+			});
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Electronic music",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Electronic music" });
+
+			expect(result.node.slug).toBe("genre:electronic-music");
+			expect(await cache.has("genre:electronic")).toBe(false);
 		},
 		TIMEOUT_MS,
 	);
