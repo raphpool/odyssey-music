@@ -18,6 +18,12 @@
 // qid already persisted on the node that rule 2 keeps pointing at (e.g. "trap" MBID-resolves to
 // Q2913982 while the existing genre:trap node was minted with a different qid); this module
 // doesn't reconcile that, it only decides the slug -- tracked as a curation follow-up in TRA-35.
+//
+// 2026-09-10 (TRA-36): canonicalizeNodeEdges now shares one batchMemo across every genre-bearing
+// field of a node instead of one per field. That widens the window for the mismatch above: a
+// rule-2 hit in one field still memoizes its freshly-resolved (possibly wrong) qid, and that entry
+// is now visible to every later field on the same node, not just later refs in the same field.
+// Still tracked under TRA-35, not reconciled here.
 
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -164,8 +170,15 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		return resolveCanonical(ref, undefined);
 	}
 
-	async function canonicalizeGenreEdges(refs: readonly EdgeRef[]): Promise<EdgeRef[]> {
-		const batchMemo = new Map<string, Slug>();
+	// `sharedBatchMemo` lets canonicalizeNodeEdges (below) pass one memo across every genre-bearing
+	// field of the same node, so a new qid seen in an earlier field is recognized in a later one --
+	// see TRA-36. Callers other than canonicalizeNodeEdges omit it and get today's behavior
+	// unchanged: a fresh, call-scoped memo.
+	async function canonicalizeGenreEdges(
+		refs: readonly EdgeRef[],
+		sharedBatchMemo?: Map<string, Slug>,
+	): Promise<EdgeRef[]> {
+		const batchMemo = sharedBatchMemo ?? new Map<string, Slug>();
 		const seenSlugs = new Set<Slug>();
 		const out: EdgeRef[] = [];
 		for (const ref of refs) {
@@ -187,6 +200,14 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		if (!isNodeType(nodeType)) return;
 		const ownSlug = rec.slug;
 
+		// One batchMemo shared across every genre-bearing field of this node (TRA-36) -- without
+		// it, two fields naming the same new genre differently (e.g. parent_genres: "Electronic
+		// Music", related_genres: "Electronic") would each mint their own slug for the same qid,
+		// since neither has a cache node yet to converge on. Fields are processed in
+		// node-spec.ts's EDGE_FIELDS_BY_TYPE declaration order, so the first field to see a given
+		// qid decides the slug every later field converges on.
+		const batchMemo = new Map<string, Slug>();
+
 		for (const field of LIST_EDGES_BY_TYPE[nodeType]) {
 			// Select genre-bearing fields the same way schemas.ts does (EDGE_TARGET_TYPES_BY_TYPE),
 			// rather than filtering individual refs by ref.type -- every such field targets
@@ -194,7 +215,7 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 			if (!EDGE_TARGET_TYPES_BY_TYPE[nodeType][field]?.includes("genre")) continue;
 			const value = rec[field];
 			if (!Array.isArray(value)) continue;
-			const canonicalRefs = await canonicalizeGenreEdges(value as EdgeRef[]);
+			const canonicalRefs = await canonicalizeGenreEdges(value as EdgeRef[], batchMemo);
 			// A genre node's own related_genres/parent_genres/subgenres can canonicalize a
 			// name-derived variant of itself back onto its own slug (e.g. "techno-music"
 			// resolving to the same qid as "techno") -- drop that self-loop rather than let a
