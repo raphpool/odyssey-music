@@ -308,6 +308,10 @@ async function pingApi() {
   const res = await fetch(JIT_ENABLED ? `${API_BASE}/data.json` : "./data.json", { cache: "no-cache" });
   DATA = await res.json();
   for (const n of DATA.nodes) byId.set(n.id, n);
+  // Seed slugAlias with the graph-level redirect table (TRA-23) so a deep link to a slug
+  // merged away by TRA-22's genre-dedup migration resolves via the existing resolveId
+  // indirection (TRA-38) below. DATA.redirects is absent on an older data.json.
+  for (const [from, to] of Object.entries(DATA.redirects ?? {})) slugAlias.set(from, to);
   SEED_ID = DATA.nodes.find((n) => /tendency/.test(n.id))?.id || DATA.nodes[0].id;
   statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${SEED_ID}</span>`;
 
@@ -578,7 +582,11 @@ async function pingApi() {
   // working). Otherwise: home for a signed-in user, seed node for everyone else.
   const params = new URLSearchParams(window.location.search);
   const initial = params.get("node");
-  if (initial && byId.has(initial)) show(initial, { replaceHistory: true });
+  // Resolve through the redirect table before testing byId (TRA-23): a shared link to a slug
+  // merged away by TRA-22's genre-dedup migration should land on the canonical node, not fall
+  // through to the home/seed branches below. Unknown slugs pass through resolveId unchanged.
+  const resolvedInitial = initial && resolveId(initial);
+  if (resolvedInitial && byId.has(resolvedInitial)) show(resolvedInitial, { replaceHistory: true });
   else if (params.get("view") === "home" || Profile.data) showHome({ replaceHistory: true });
   else show(SEED_ID, { replaceHistory: true });
 

@@ -10,6 +10,7 @@ import {
 	type GenreRegistry,
 	loadGenreRedirects,
 	parseGenreRedirects,
+	resolveReadSlug,
 } from "../src/genre-registry.js";
 import type { ArtistNode, EdgeRef, GenreNode, Slug } from "../src/types.js";
 
@@ -455,6 +456,34 @@ describe("loadGenreRedirects", () => {
 		);
 		const present = await loadGenreRedirects(path);
 		expect(present).toEqual(new Map([["genre:electronic-music", "genre:electronic"]]));
+	});
+});
+
+describe("resolveReadSlug (TRA-39)", () => {
+	// The shared read-time rule node-service.getNode originally inlined (TRA-30), now also used
+	// by image-service and server.ts's handleLinks so all three read paths agree on a redirected
+	// genre slug's canonical identity.
+	it("returns the slug unchanged when a live node exists at the redirect's own key (a live node wins)", async () => {
+		await cache.write(genreNode({ slug: "genre:electronic-music", name: "Electronic music" }));
+		const redirects: GenreRedirects = new Map([["genre:electronic-music", "genre:electronic"]]);
+
+		const result = await resolveReadSlug("genre:electronic-music", redirects, cache);
+
+		expect(result).toBe("genre:electronic-music");
+	});
+
+	it("follows the redirect target when the redirected slug has no live node", async () => {
+		const redirects: GenreRedirects = new Map([["genre:electronic-music", "genre:electronic"]]);
+
+		const result = await resolveReadSlug("genre:electronic-music", redirects, cache);
+
+		expect(result).toBe("genre:electronic");
+	});
+
+	it("leaves an unknown slug unchanged (no node, no redirect entry)", async () => {
+		const result = await resolveReadSlug("genre:does-not-exist", new Map(), cache);
+
+		expect(result).toBe("genre:does-not-exist");
 	});
 });
 
