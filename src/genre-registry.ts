@@ -12,6 +12,12 @@
 //      then NodeCache.findGenreSlugByQid);
 //   5. otherwise mint: keep the name-derived slug, same as today.
 // Nothing calls this yet — see TRA-28 for wiring it into runPipeline.
+//
+// 2026-09-10 (review round): a ref's own `qid`, when already set, is never replaced by a fresh
+// resolver lookup -- and the freshly resolved qid for a ref can legitimately disagree with the
+// qid already persisted on the node that rule 2 keeps pointing at (e.g. "trap" MBID-resolves to
+// Q2913982 while the existing genre:trap node was minted with a different qid); this module
+// doesn't reconcile that, it only decides the slug -- tracked as a curation follow-up in TRA-35.
 
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -19,7 +25,7 @@ import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import type { NodeCache } from "./cache.js";
 import type { GenreResolver } from "./genre-identity.js";
-import { LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
+import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
 
@@ -71,13 +77,17 @@ export function parseGenreRedirects(raw: unknown): GenreRedirects {
  * file, so a missing file resolves to an empty table rather than an error. Not memoized — the
  * caller (server.ts, wired in a later ticket) loads it once and holds onto the result; reuse
  * that loaded value instead of reading the file again (see TRA-23).
+ *
+ * `path` overrides the default location -- for tests exercising the absent/present transition
+ * against a real temp file rather than the (currently nonexistent) real data file, which would
+ * start failing the moment TRA-22 lands it. Production callers omit it.
  */
-export async function loadGenreRedirects(): Promise<GenreRedirects> {
-	const here = dirname(fileURLToPath(import.meta.url));
-	const path = join(here, "..", "data", "genre-redirects.json");
+export async function loadGenreRedirects(path?: string): Promise<GenreRedirects> {
+	const filePath =
+		path ?? join(dirname(fileURLToPath(import.meta.url)), "..", "data", "genre-redirects.json");
 	let raw: string;
 	try {
-		raw = await readFile(path, "utf8");
+		raw = await readFile(filePath, "utf8");
 	} catch (e) {
 		if ((e as NodeJS.ErrnoException).code === "ENOENT") return new Map();
 		throw e;
@@ -110,10 +120,16 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 	// even though neither has a cache node yet. Undefined when called from canonicalSlugFor
 	// directly, which has no batch to remember across.
 	async function resolveCanonical(
-		ref: { slug: Slug; name: string; qid?: string },
+		ref: { slug: Slug; name: string; qid?: string; mbid?: string },
 		batchMemo: Map<string, Slug> | undefined,
 	): Promise<{ slug: Slug; qid?: string }> {
-		const qid = ref.qid ?? deps.resolver.resolve({ name: ref.name })?.qid ?? undefined;
+		// A ref's own qid, when already set, is authoritative and never replaced by a fresh
+		// resolver lookup. A known mbid is passed through -- like mbGenreEdges -- so a curated
+		// MBID match (GenreResolver.resolve's own step 1) wins over a plain name match.
+		const qid =
+			ref.qid ??
+			deps.resolver.resolve(ref.mbid ? { name: ref.name, mbid: ref.mbid } : { name: ref.name })?.qid ??
+			undefined;
 
 		const settle = (slug: Slug): { slug: Slug; qid?: string } => {
 			if (qid && batchMemo && !batchMemo.has(qid)) batchMemo.set(qid, slug);
@@ -157,6 +173,8 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 			// De-dup by final slug, first occurrence wins -- order is otherwise preserved.
 			if (seenSlugs.has(slug)) continue;
 			seenSlugs.add(slug);
+			// ref.name is this edge's own display text, not the target node's name -- it is never
+			// realigned to whatever the canonical slug's node is called, even across a redirect.
 			out.push(qid ? { ...ref, slug, qid } : { ...ref, slug });
 		}
 		return out;
@@ -167,25 +185,21 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 		const rec = node as Record<string, unknown>;
 		const nodeType = rec.type;
 		if (!isNodeType(nodeType)) return;
+		const ownSlug = rec.slug;
 
 		for (const field of LIST_EDGES_BY_TYPE[nodeType]) {
+			// Select genre-bearing fields the same way schemas.ts does (EDGE_TARGET_TYPES_BY_TYPE),
+			// rather than filtering individual refs by ref.type -- every such field targets
+			// "genre" only (node-spec.ts EDGE_FIELDS_BY_TYPE), so this is exact, not defensive.
+			if (!EDGE_TARGET_TYPES_BY_TYPE[nodeType][field]?.includes("genre")) continue;
 			const value = rec[field];
 			if (!Array.isArray(value)) continue;
-			const refs = value as EdgeRef[];
-			const genreRefs = refs.filter((r) => r?.type === "genre");
-			if (genreRefs.length === 0) continue;
-			const canonicalGenreRefs = await canonicalizeGenreEdges(genreRefs);
-			if (genreRefs.length === refs.length) {
-				rec[field] = canonicalGenreRefs;
-				continue;
-			}
-			// Defensive path: every genre-bearing list field declared in EDGE_FIELDS_BY_TYPE
-			// (node-spec.ts) targets "genre" only, so a mix isn't expected in practice. Keep
-			// non-genre refs untouched, in their original relative order, ahead of the
-			// canonicalized genre refs -- correctness over positional fidelity for a case that
-			// shouldn't occur.
-			const nonGenreRefs = refs.filter((r) => r?.type !== "genre");
-			rec[field] = [...nonGenreRefs, ...canonicalGenreRefs];
+			const canonicalRefs = await canonicalizeGenreEdges(value as EdgeRef[]);
+			// A genre node's own related_genres/parent_genres/subgenres can canonicalize a
+			// name-derived variant of itself back onto its own slug (e.g. "techno-music"
+			// resolving to the same qid as "techno") -- drop that self-loop rather than let a
+			// node reference itself.
+			rec[field] = canonicalRefs.filter((r) => r.slug !== ownSlug);
 		}
 	}
 
