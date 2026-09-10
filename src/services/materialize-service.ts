@@ -13,19 +13,15 @@ export interface MaterializeRequest {
 	name?: string;
 	disambiguator?: string;
 	mbid?: string;
-	// 2026-09-10 (TRA-43): identity carried by the EDGE that produced this request (front chip's
-	// dataset, crawler frontier), not re-derived from `name` -- see the validation block in
-	// handleMaterialize below and docs/plans/qid-genre-identity.md, decision d'archi 8/9.
+	// 2026-09-10 (TRA-43): identity carried by the EDGE that produced this request (front chip,
+	// crawler frontier), not re-derived from `name` -- validated in handleMaterialize below.
 	slug?: string;
 	qid?: string;
 }
 
-// Matches exactly what makeSlug (src/slug.ts normalizeSlugBody) can produce: one or more
-// dash-joined lowercase alphanumeric segments, optionally followed by a `--`-separated
-// disambiguator segment of the same shape. parseSlug alone doesn't enforce this -- it only
-// checks for a colon and a known type -- so "genre:../x" would otherwise parse "successfully"
-// with body "../x". Rejecting anything but this exact shape is what keeps a client-supplied
-// slug from ever reaching a cache path (NodeCache resolves slugs straight to disk paths).
+// Matches exactly what makeSlug (src/slug.ts normalizeSlugBody) can produce -- parseSlug alone
+// doesn't enforce this (just a colon + a known type), so "genre:../x" would parse "successfully"
+// with body "../x". This is what keeps a client-supplied slug from ever reaching a cache path.
 const SLUG_BODY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 
 // 2026-09-10 (TRA-43 review round 1, nit): SLUG_BODY_PATTERN has no length bound of its own -- an
