@@ -94,6 +94,36 @@ describe("buildGraphFromCache — genre qid reaches the exported graph (TRA-19)"
 	});
 });
 
+describe("buildGraphFromCache — genre redirects reach the exported graph (TRA-23)", () => {
+	it("populates redirects from a genre-redirects.json-shaped fixture", async () => {
+		const redirectsPath = join(dir, "redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, { redirectsPath });
+		expect(graph.redirects).toEqual({ "genre:electronic-music": "genre:electronic" });
+	});
+
+	it("leaves redirects undefined when the redirects file is absent", async () => {
+		const graph = await buildGraphFromCache(dir, { redirectsPath: join(dir, "missing.json") });
+		expect(graph.redirects).toBeUndefined();
+	});
+
+	it("propagates parseGenreRedirects' error for a table that isn't flattened", async () => {
+		const redirectsPath = join(dir, "cyclic-redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:a": "genre:b", "genre:b": "genre:c" } }),
+			"utf8",
+		);
+		await expect(buildGraphFromCache(dir, { redirectsPath })).rejects.toThrow(
+			/appears as both key and value/,
+		);
+	});
+});
+
 describe("backfillGenreReverses — stamping self.qid on synthesized reverse edges (TRA-19)", () => {
 	it("stamps the source genre's qid onto the reverse edge it synthesizes", async () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:acid", name: "Acid" }));
