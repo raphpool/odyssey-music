@@ -384,11 +384,9 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	it(
 		"a canonical rewrite refresh carries the CANONICAL node's own mbid, ignoring a different client-supplied one (TRA-43 security fix, review round 1)",
 		async () => {
-			// SECURITY (2026-09-10): a canonical rewrite used to spread the client's own `body`
-			// (`{ ...body, name: canonicalNode.name }`), so a client mbid survived even though only
-			// `name` had been realigned -- same bug class as the body.slug repro below, `mbid` as
-			// the vector. CANONICAL_MBID is deliberately NOT ELECTRONIC_MBID so this can't pass by
-			// coincidence.
+			// SECURITY (2026-09-10): a canonical rewrite used to spread the client's `body`, so a
+			// client mbid survived even though `name` had been realigned. NOT ELECTRONIC_MBID below
+			// so this can't pass by coincidence.
 			const CANONICAL_MBID = "11111111-1111-1111-1111-111111111111";
 			await cache.write(
 				genreNode({
