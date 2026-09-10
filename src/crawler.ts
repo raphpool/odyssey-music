@@ -303,11 +303,8 @@ export function enqueueEdges(
 		// missing. `input.slug` pins runPipeline's output to this exact slug if it does end up
 		// getting materialized (see PipelineInput.slug).
 		const disambiguator = `${kind.replace(/_/g, " ")} of ${parentDisambig}`;
-		// 2026-09-10 (TRA-43): forward the edge's own qid, when it carries one, so the frontier's
-		// PipelineInput names the same identity the edge does -- omitting it let a rematerialized
-		// genre get stamped by a fresh by-name resolve instead, potentially landing on a different
-		// QID than the edge that enqueued it. Built conditionally (exactOptionalPropertyTypes):
-		// `qid: e.qid` would fail to typecheck when e.qid is undefined.
+		// 2026-09-10 (TRA-43): forward the edge's own qid so a rematerialization is stamped with
+		// the same identity, not a fresh by-name resolve. Conditional (exactOptionalPropertyTypes).
 		const input: FrontierEntry["input"] = { type: e.type, name: e.name, slug: e.slug, disambiguator };
 		if (e.qid) input.qid = e.qid;
 		const added = frontier.push(e.slug, { input, depth });
