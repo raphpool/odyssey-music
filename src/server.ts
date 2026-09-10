@@ -75,7 +75,7 @@ async function getCacheIndex(): Promise<CacheIndex> {
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
 const materializeService = createMaterializeService({ cache, env, genreRegistry });
-const getNode = createNodeService({ cache, runJit: materializeService.runJit });
+const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 const imageService = createImageService({ cache });
 const graphService = createGraphService(CACHE_DIR);
 
