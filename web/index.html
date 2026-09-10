@@ -1248,6 +1248,12 @@ async function precacheAllDangling(node, btn) {
       const reqBody = { type: ref.type, name: ref.name };
       if (disambiguator) reqBody.disambiguator = disambiguator;
       if (ref.mbid) reqBody.mbid = ref.mbid;
+      // 2026-09-10 (TRA-45): send the edge's own identity (slug always present, qid when the
+      // edge carries one), same convention as jitMaterialize (TRA-43) -- without this,
+      // "précacher tout" stayed on the old by-name path and could remint the duplicate TRA-31
+      // scenario 6 already fixed for the single-chip JIT path.
+      reqBody.slug = ref.slug;
+      if (ref.qid) reqBody.qid = ref.qid;
       try {
         await fetch(`${API_BASE}/materialize`, {
           method: "POST", headers: { "Content-Type": "application/json" },

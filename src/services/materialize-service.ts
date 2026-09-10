@@ -3,10 +3,13 @@ import { pipelineConfig } from "../config.js";
 import type { ApiEnv } from "../env.js";
 import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
+import { logger } from "../logger.js";
 import { runPipeline } from "../pipeline.js";
-import { makeSlug, parseSlug } from "../slug.js";
+import { makeSlug, normalizeSlugBody, parseSlug } from "../slug.js";
 import type { NodePayload, NodeType, Slug } from "../types.js";
 import { NODE_TYPES, QID_PATTERN } from "../types.js";
+
+const log = logger.child({ module: "materialize-service" });
 
 export interface MaterializeRequest {
 	type?: string;
@@ -54,11 +57,26 @@ function validateRequestSlug(rawSlug: string, type: string): Slug {
  * OWN identity, never the client's. Repro: a stale `genre:techno` + `{name: "Attacker Controlled
  * Topic", slug: "genre:techno"}` pinned `slug` while keeping the client's `name` -- an
  * unauthenticated POST /materialize could rewrite any cache/<slug>.json with attacker content.
+ *
+ * 2026-09-10 (TRA-45): the node itself never stores a `disambiguator` (src/types.ts) -- left
+ * alone, a refresh silently dropped it from the search query/prompt even though the node's OWN
+ * slug still carries the distinguishing suffix (bug repro: refreshing "genre:trap--edm" lost
+ * "EDM" entirely). Reconstruct it from that suffix; prefer `clientDisambiguator`'s original
+ * casing/wording ONLY when it normalizes to the exact same suffix the node's own slug already
+ * carries -- never apply a client value the slug doesn't corroborate, which would reopen the
+ * spoofing this refresh path exists to close.
  */
-function refreshIdentityFrom(node: NodePayload): MaterializeRequest {
+function refreshIdentityFrom(node: NodePayload, clientDisambiguator?: string): MaterializeRequest {
 	const out: MaterializeRequest = { type: node.type, name: node.name };
 	const mbid = (node as unknown as { mbid?: string }).mbid;
 	if (mbid) out.mbid = mbid;
+	const { body } = parseSlug(node.slug);
+	const suffixIdx = body.indexOf("--");
+	if (suffixIdx >= 0) {
+		const suffix = body.slice(suffixIdx + 2);
+		const coherent = !!clientDisambiguator && normalizeSlugBody(clientDisambiguator) === suffix;
+		out.disambiguator = coherent ? clientDisambiguator : suffix;
+	}
 	return out;
 }
 
@@ -129,7 +147,7 @@ export function createMaterializeService(deps: {
 				throw e;
 			});
 			if (existing) {
-				effectiveBody = refreshIdentityFrom(existing);
+				effectiveBody = refreshIdentityFrom(existing, body.disambiguator);
 				slug = requestSlug;
 				pinnedSlug = requestSlug;
 				cached = existing;
@@ -175,7 +193,7 @@ export function createMaterializeService(deps: {
 						throw e;
 					});
 					if (canonicalNode) {
-						effectiveBody = refreshIdentityFrom(canonicalNode);
+						effectiveBody = refreshIdentityFrom(canonicalNode, body.disambiguator);
 						slug = canonical.slug;
 						pinnedSlug = canonical.slug;
 						cached = canonicalNode;
@@ -256,7 +274,22 @@ export function createMaterializeService(deps: {
 		if (opts.slug) pipelineInput.slug = opts.slug;
 		// 2026-09-10 (TRA-43): the edge's own qid, carried through as an identity hint --
 		// enrichFromMusicBrainz's genre block gives it precedence over a fresh by-name resolve.
-		if (body.qid) pipelineInput.qid = body.qid;
+		// 2026-09-10 (TRA-45): EXCEPT when a disambiguator is present -- a disambiguator asserts
+		// this is a DISTINCT node, which a client-supplied qid (naming some OTHER, presumably
+		// existing entity) directly contradicts. Repro this closes: an unauthenticated POST
+		// {name:"Fake Genre", disambiguator:"xx", qid:<genre:techno's real Q170611>} used to mint
+		// a brand-new "genre:fake-genre--xx" stamped with techno's qid -- two nodes sharing one
+		// QID, which TRA-32 then makes sticky on every future rematerialization.
+		if (body.qid && body.disambiguator) {
+			log.info("materialize: disambiguator present, ignoring client-supplied qid", {
+				type: body.type,
+				name: body.name,
+				disambiguator: body.disambiguator,
+				ignoredQid: body.qid,
+			});
+		} else if (body.qid) {
+			pipelineInput.qid = body.qid;
+		}
 		const r = await runPipeline(pipelineInput, {
 			tavilyApiKey: deps.env.TAVILY_API_KEY,
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,

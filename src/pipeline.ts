@@ -1154,7 +1154,11 @@ async function enrichFromMusicBrainz(
 				}
 				// 2026-09-10 (TRA-43): the edge's own qid wins over a fresh by-name resolve, same
 				// rationale as cachedQid above -- log when it disagrees, like the cached case.
-				if (input.qid && identity && input.qid !== identity.qid) {
+				// 2026-09-10 (TRA-45): guarded on `!cachedQid` -- obj.qid below is `cachedQid ??
+				// input.qid ?? identity?.qid`, so whenever cachedQid is set IT wins, not input.qid.
+				// Logging "edge identity kept" unconditionally was misleading in that case (the
+				// "cached kept" log above already covers it, and it's the one that's actually true).
+				if (!cachedQid && input.qid && identity && input.qid !== identity.qid) {
 					log(
 						`[pipeline] genre qid conflict for ${slug}: edge=${input.qid} resolved=${identity.qid} (edge identity kept)`,
 					);

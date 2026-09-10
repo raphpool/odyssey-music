@@ -641,3 +641,103 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		TIMEOUT_MS,
 	);
 });
+
+// TRA-45: four review-round-2 nits from TRA-43 (PR #37, raphpool/odyssey-music#37) that didn't
+// fit its 600-line hard gate -- merged separately (Raph decision 2026-09-10). See
+// src/services/materialize-service.ts's refreshIdentityFrom and runJit comments.
+describe("createMaterializeService identity refinements (TRA-45)", () => {
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-materialize-tra45-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	async function buildService() {
+		const genreRegistry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const createMaterializeService = await loadCreateMaterializeService();
+		return createMaterializeService({ cache, env: ENV, genreRegistry });
+	}
+
+	it(
+		"point 1: ignores a client qid when a disambiguator is present, never stamping an unrelated cached node's qid",
+		async () => {
+			// "Q170611" is genre:techno's real committed qid (also used by
+			// test/pipeline-genre-qid.test.ts's TRA-32 fixtures) -- a client sending {name,
+			// disambiguator, qid: <that qid>} together must never mint a DISTINCT node (that's
+			// what the disambiguator asserts) carrying an identity that belongs to a wholly
+			// unrelated genre.
+			await cache.write(genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611" }));
+			const service = await buildService();
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Fake Genre",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			const result = await service.handleMaterialize({
+				type: "genre",
+				name: "Fake Genre",
+				disambiguator: "xx",
+				qid: "Q170611",
+			});
+
+			expect(result.node.slug).toBe("genre:fake-genre--xx");
+			expect((result.node as GenreNode).qid).not.toBe("Q170611");
+			const techno = await cache.get("genre:techno");
+			expect(techno.name).toBe("Techno");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"point 2: reports a client disambiguator coherent with body.slug's own suffix, preserving it in the search query",
+		async () => {
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > nodeTtlMs (12h)
+			await cache.write(
+				genreNode({ slug: "genre:trap--edm", name: "Trap", qid: "Q47781397", materialized_at: staleAt }),
+			);
+			const service = await buildService();
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Trap",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			await service.handleMaterialize({
+				type: "genre",
+				name: "Trap",
+				slug: "genre:trap--edm",
+				disambiguator: "EDM",
+			});
+
+			const tavilySearch = await loadTavilySearch();
+			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
+			// Before the fix, refreshIdentityFrom dropped the disambiguator entirely (the node
+			// itself never stores one) -- the search query lost "EDM" on every body.slug refresh.
+			expect(query).toContain("EDM");
+		},
+		TIMEOUT_MS,
+	);
+});
