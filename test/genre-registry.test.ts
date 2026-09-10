@@ -312,6 +312,61 @@ describe("canonicalizeNodeEdges", () => {
 		await expect(registry.canonicalizeNodeEdges({ genres: [] })).resolves.toBeUndefined();
 	});
 
+	it("shares a single batchMemo across all genre-bearing fields of the same node (TRA-36)", async () => {
+		// Reproduces TRA-36: a genre node's Gemini draft names the same new genre differently in
+		// two fields ("Electronic Music" in parent_genres, "Electronic" in related_genres). Both
+		// resolve to the same qid; neither slug has a cache node nor a redirect. Before the fix,
+		// each field's canonicalizeGenreEdges call got its own empty batchMemo, so the two fields
+		// minted two different slugs for the same qid. Field order matches declaration order in
+		// node-spec.ts's EDGE_FIELDS_BY_TYPE (parent_genres before related_genres for "genre"), so
+		// the first-encountered field's slug ("genre:electronic-music") must win in both fields.
+		const resolver = resolverFor([
+			{ slug: "electronic-music", name: "Electronic Music", wikidata_qid: "Q9778" },
+			{ slug: "electronic", name: "Electronic", wikidata_qid: "Q9778" },
+		]);
+		const registry = registryFor({ resolver });
+
+		const node = genreNode({
+			slug: "genre:techno",
+			name: "Techno",
+			parent_genres: [genreRef({ slug: "genre:electronic-music", name: "Electronic Music" })],
+			related_genres: [genreRef({ slug: "genre:electronic", name: "Electronic" })],
+		});
+
+		await registry.canonicalizeNodeEdges(node);
+
+		expect(node.parent_genres).toEqual([
+			{ type: "genre", slug: "genre:electronic-music", name: "Electronic Music", qid: "Q9778" },
+		]);
+		expect(node.related_genres).toEqual([
+			{ type: "genre", slug: "genre:electronic-music", name: "Electronic", qid: "Q9778" },
+		]);
+	});
+
+	it("still drops a self-loop when it only arises via the shared batchMemo (not a same-field or cache-based one)", async () => {
+		// A first field ("parent_genres") lists the node's own slug/name outright (bad upstream
+		// data), which mints unchanged and seeds the shared batchMemo with qid -> ownSlug. A later
+		// field ("related_genres") names a *different*, uncached variant that resolves to the same
+		// qid: rule 4 now finds ownSlug via the shared batchMemo (there is no cache node and no
+		// redirect to catch this any other way), and the self-loop filter must still drop it.
+		const resolver = resolverFor([
+			{ slug: "techno", name: "Techno", wikidata_qid: "Q170611" },
+			{ slug: "techno-music", name: "Techno Music", wikidata_qid: "Q170611" },
+		]);
+		const registry = registryFor({ resolver });
+
+		const node = genreNode({
+			slug: "genre:techno",
+			name: "Techno",
+			parent_genres: [genreRef({ slug: "genre:techno", name: "Techno" })],
+			related_genres: [genreRef({ slug: "genre:techno-music", name: "Techno Music" })],
+		});
+
+		await registry.canonicalizeNodeEdges(node);
+
+		expect(node.related_genres).toEqual([]);
+	});
+
 	it("drops a genre edge that canonicalizes back onto the node's own slug (self-loop after a name-derived fallback)", async () => {
 		// genre:techno already exists with Q170611. Its related_genres references a name-derived
 		// variant of itself ("techno-music") that isn't cached under its own slug: it resolves to
