@@ -384,13 +384,11 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	it(
 		"a canonical rewrite refresh carries the CANONICAL node's own mbid, ignoring a different client-supplied one (TRA-43 security fix, review round 1)",
 		async () => {
-			// SECURITY (2026-09-10): before this fix, a canonical rewrite spread the client's own
-			// `body` (`{ ...body, name: canonicalNode.name }`), so a client-supplied mbid survived
-			// onto the refreshed node even though only `name` had been realigned to the canonical
-			// node's own identity -- the same class of bug as the direct body.slug repro, just with
-			// `mbid` as the surviving vector instead of `name`. A refresh must use the canonical
-			// node's OWN mbid, never the client's -- CANONICAL_MBID below is deliberately NOT
-			// ELECTRONIC_MBID, so the assertion can't pass by coincidence.
+			// SECURITY (2026-09-10): a canonical rewrite used to spread the client's own `body`
+			// (`{ ...body, name: canonicalNode.name }`), so a client mbid survived even though only
+			// `name` had been realigned -- same bug class as the body.slug repro below, `mbid` as
+			// the vector. CANONICAL_MBID is deliberately NOT ELECTRONIC_MBID so this can't pass by
+			// coincidence.
 			const CANONICAL_MBID = "11111111-1111-1111-1111-111111111111";
 			await cache.write(
 				genreNode({
@@ -419,9 +417,7 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 			const createMaterializeService = await loadCreateMaterializeService();
 			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
 
-			// fresh:true forces the refresh through runJit regardless of mbidMismatch, so this
-			// observes what identity actually drives the mint -- the canonical node's, not the
-			// client's attacker-controlled mbid below.
+			// fresh:true forces the refresh through runJit regardless of mbidMismatch.
 			const result = await service.handleMaterialize(
 				{
 					type: "genre",
@@ -566,13 +562,10 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		},
 		TIMEOUT_MS,
 	);
-	// TRA-43 review round 1 (security, 2026-09-10): body.slug is a LOOKUP key for an existing
-	// node, never a write target the client gets to choose on its own. Repro that forced this: a
-	// stale `genre:techno` node (nodeTtlMs=12h makes most committed nodes "stale") plus
-	// `{name: "Attacker Controlled Topic", slug: "genre:techno"}` used to pin `slug` from the
-	// client while keeping the client's own `name`/`mbid` -- POST /materialize is public and
-	// unauthenticated (server.ts), so this was an arbitrary unauthenticated write into cache/,
-	// any node type.
+	// SECURITY (2026-09-10): body.slug is a LOOKUP key, never a client-chosen write target. Repro:
+	// a stale `genre:techno` (nodeTtlMs=12h) + `{name: "Attacker Controlled Topic", slug:
+	// "genre:techno"}` used to pin `slug` while keeping the client's own name -- an arbitrary
+	// unauthenticated write into cache/ (POST /materialize has no auth), any node type.
 	it(
 		"THE REPRO: a stale node's own identity drives a body.slug refresh, never an attacker-supplied name",
 		async () => {
