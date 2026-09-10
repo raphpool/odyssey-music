@@ -1,15 +1,22 @@
-import { describe, expect, it } from "vitest";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	type ElectionCandidate,
 	electCanonical,
 	mergeGenreEdges,
 	mergeRedirects,
+	parseCliArgs,
+	readCacheNodes,
 	rewriteNodeEdges,
 	rewritePendingReverses,
+	runMigration,
 	unionListField,
 	unionSingularField,
 } from "../scripts/migrations/2026-09-04-merge-genre-duplicates.js";
 import type { PendingReverse } from "../src/cache.js";
+import { parseSlug } from "../src/slug.js";
 import type { ArtistNode, EdgeRef, GenreNode } from "../src/types.js";
 
 function artistNode(overrides: Partial<ArtistNode> = {}): ArtistNode {
@@ -299,5 +306,224 @@ describe("rewritePendingReverses", () => {
 			new Map([["genre:electronic", "genre:electronic-music"]]),
 		);
 		expect(changed).toBe(false);
+	});
+});
+
+describe("runMigration (disk integration)", () => {
+	let dir: string;
+	let redirectsPath: string;
+	const catalogNames = new Map([["Q1", "electronic music"]]);
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-genre-merge-"));
+		redirectsPath = join(dir, "genre-redirects.json");
+	});
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	async function writeNodeFile(node: GenreNode | ArtistNode): Promise<string> {
+		const { type, body } = parseSlug(node.slug);
+		const path = join(dir, "nodes", type, `${body}.json`);
+		await mkdir(dirname(path), { recursive: true });
+		await writeFile(path, `${JSON.stringify(node, null, 2)}\n`, "utf8");
+		return path;
+	}
+
+	async function writePendingReversesFile(content: Record<string, unknown>): Promise<string> {
+		const path = join(dir, "pending-reverses.json");
+		await writeFile(path, `${JSON.stringify(content, null, 2)}\n`, "utf8");
+		return path;
+	}
+
+	// "genre:electronic" wins by usage count alone (2 referrers vs. 0 for the loser).
+	async function seedElectronicGroup(): Promise<{ loserPath: string; artistPath: string }> {
+		await writeNodeFile(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q1" }));
+		const loserPath = await writeNodeFile(
+			genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q1" }),
+		);
+		await writeNodeFile(
+			artistNode({
+				slug: "artist:booster-1",
+				genres: [{ slug: "genre:electronic", type: "genre", name: "Electronic" }],
+			}),
+		);
+		await writeNodeFile(
+			artistNode({
+				slug: "artist:booster-2",
+				genres: [{ slug: "genre:electronic", type: "genre", name: "Electronic" }],
+			}),
+		);
+		const artistPath = await writeNodeFile(
+			artistNode({ genres: [{ slug: "genre:electronic-music", type: "genre", name: "Electronic music" }] }),
+		);
+		return { loserPath, artistPath };
+	}
+
+	it("dry-run computes the plan but leaves every file byte-identical", async () => {
+		const { loserPath, artistPath } = await seedElectronicGroup();
+		const before = { loser: await readFile(loserPath, "utf8"), artist: await readFile(artistPath, "utf8") };
+
+		const result = await runMigration(dir, false, { catalogNames, redirectsPath });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.groupsFound).toBe(1);
+		expect(result.report).toContain("DRY RUN");
+		expect(await readFile(loserPath, "utf8")).toBe(before.loser);
+		expect(await readFile(artistPath, "utf8")).toBe(before.artist);
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
+	it("--apply deletes the loser, rewrites incoming edges (list and singular) and pending-reverses, and a second --apply is a no-op", async () => {
+		const { loserPath, artistPath } = await seedElectronicGroup();
+		const pendingPath = await writePendingReversesFile({
+			"genre:electronic-music": [
+				{
+					field: "genres",
+					cardinality: "list",
+					edge: { slug: "artist:pending-someone", type: "artist", name: "Pending Someone" },
+				},
+			],
+		});
+
+		const first = await runMigration(dir, true, { catalogNames, redirectsPath });
+		expect(first.exitCode).toBe(0);
+		expect(first.deletedCount).toBe(1);
+		expect(first.report).not.toContain("DRY RUN");
+		expect(first.report).toContain("artist");
+
+		await expect(readFile(loserPath, "utf8")).rejects.toThrow();
+
+		const artistRaw = JSON.parse(await readFile(artistPath, "utf8")) as ArtistNode;
+		expect(artistRaw.genres.map((e) => e.slug)).toEqual(["genre:electronic"]);
+
+		const pending = JSON.parse(await readFile(pendingPath, "utf8")) as Record<string, unknown>;
+		expect(pending["genre:electronic-music"]).toBeUndefined();
+		expect(pending["genre:electronic"]).toBeDefined();
+
+		const redirectsAfterFirst = JSON.parse(await readFile(redirectsPath, "utf8")) as {
+			redirects: Record<string, string>;
+		};
+		expect(redirectsAfterFirst.redirects).toEqual({ "genre:electronic-music": "genre:electronic" });
+
+		const second = await runMigration(dir, true, { catalogNames, redirectsPath });
+		expect(second.exitCode).toBe(0);
+		expect(second.deletedCount).toBe(0);
+		expect(second.groupsFound).toBe(0);
+
+		const redirectsAfterSecond = JSON.parse(await readFile(redirectsPath, "utf8")) as {
+			redirects: Record<string, string>;
+		};
+		expect(redirectsAfterSecond.redirects).toEqual({ "genre:electronic-music": "genre:electronic" });
+	});
+
+	it("invariant: after a real --apply, no edge.slug anywhere in the cache points at a deleted file", async () => {
+		// End-to-end confirmation of rewriteNodeEdges's own guarantee (unit-tested above): no
+		// black-box fixture can violate this without a bug in that function itself.
+		const { loserPath } = await seedElectronicGroup();
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+		expect(result.exitCode).toBe(0);
+
+		const { nodes } = await readCacheNodes(dir);
+		const remainingSlugs = new Set(nodes.map((n) => n.slug));
+		const edgeFields = ["genres", "parent_genres", "subgenres", "related_genres"];
+		for (const file of nodes) {
+			for (const field of edgeFields) {
+				const list = file.node[field];
+				if (!Array.isArray(list)) continue;
+				for (const edge of list) {
+					const slug = edge && typeof edge === "object" ? (edge as Record<string, unknown>).slug : undefined;
+					if (typeof slug === "string") expect(remainingSlugs.has(slug)).toBe(true);
+				}
+			}
+		}
+		await expect(readFile(loserPath, "utf8")).rejects.toThrow();
+	});
+
+	it("invariant: a corrupted existing redirects table (fails parseGenreRedirects) exits 1 without writing", async () => {
+		// Pre-seeded cycle: "electronic" -> "electronic-music", combined with this run's own
+		// "electronic-music" -> "electronic" (electronic wins, see seedElectronicGroup).
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic": "genre:electronic-music" } }),
+			"utf8",
+		);
+		const { loserPath } = await seedElectronicGroup();
+
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+
+		expect(result.exitCode).toBe(1);
+		await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+	});
+
+	it("invariant: an onboarding slug that would be the loser exits 1 without writing (2026-09-10 regression)", async () => {
+		await writeNodeFile(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q1" }));
+		const loserPath = await writeNodeFile(
+			genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q1" }),
+		);
+		// One referrer is enough to give "electronic-music" more usages than "electronic" (0).
+		await writeNodeFile(
+			artistNode({ genres: [{ slug: "genre:electronic-music", type: "genre", name: "Electronic music" }] }),
+		);
+
+		const result = await runMigration(dir, true, {
+			catalogNames: new Map(),
+			redirectsPath,
+			onboardingSlugs: ["genre:electronic"],
+		});
+
+		expect(result.exitCode).toBe(1);
+		await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
+	it("keeps every ONBOARDING_GENRES slug alive across the groups it belongs to (happy path)", async () => {
+		const onboardingSlugs = ["genre:electronic", "genre:idm", "genre:ambient"];
+		for (const [short, long, qid] of [
+			["genre:electronic", "genre:electronic-music", "Q1"],
+			["genre:idm", "genre:intelligent-dance-music", "Q2"],
+			["genre:ambient", "genre:ambient-music", "Q3"],
+		] as const) {
+			await writeNodeFile(genreNode({ slug: short, name: "Short", qid }));
+			await writeNodeFile(genreNode({ slug: long, name: "Long", qid }));
+			await writeNodeFile(
+				artistNode({
+					slug: `artist:booster-${qid}`,
+					genres: [{ slug: short, type: "genre", name: "Short" }],
+				}),
+			);
+		}
+
+		const result = await runMigration(dir, true, { catalogNames: new Map(), redirectsPath, onboardingSlugs });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.groupsFound).toBe(3);
+		const { nodes } = await readCacheNodes(dir);
+		const remainingSlugs = new Set(nodes.map((n) => n.slug));
+		for (const slug of onboardingSlugs) expect(remainingSlugs.has(slug)).toBe(true);
+	});
+});
+
+describe("parseCliArgs", () => {
+	it("rejects a missing cache-dir instead of defaulting", () => {
+		expect(parseCliArgs([])).toBeNull();
+	});
+
+	it("rejects a flag standing in for the positional cache-dir", () => {
+		expect(parseCliArgs(["--apply"])).toBeNull();
+	});
+
+	it("parses the positional cache-dir, the --apply flag, and an optional --redirects path", () => {
+		expect(parseCliArgs(["cache"])).toEqual({ cacheDir: "cache", apply: false });
+		expect(parseCliArgs(["cache", "--apply"])).toEqual({ cacheDir: "cache", apply: true });
+		expect(parseCliArgs(["cache", "--redirects", "data/genre-redirects.json"])).toEqual({
+			cacheDir: "cache",
+			apply: false,
+			redirectsPath: "data/genre-redirects.json",
+		});
+	});
+
+	it("rejects --redirects with no path after it", () => {
+		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
 	});
 });
