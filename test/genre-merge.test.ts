@@ -6,6 +6,7 @@ import {
 	type ElectionCandidate,
 	electCanonical,
 	loadOnboardingGenreSlugs,
+	looksLikeCacheDir,
 	mergeGenreEdges,
 	mergeRedirects,
 	parseCliArgs,
@@ -581,5 +582,30 @@ describe("parseCliArgs", () => {
 	it("rejects any unrecognized flag", () => {
 		expect(parseCliArgs(["cache", "--dry-run"])).toBeNull();
 		expect(parseCliArgs(["cache", "--aply"])).toBeNull();
+	});
+
+	it("rejects a stray extra positional (e.g. a redirects path typed without --redirects)", () => {
+		// Regression: this used to silently become { cacheDir: "cache", apply: true },
+		// discarding "data/genre-redirects.json" and applying with the default redirects path.
+		expect(parseCliArgs(["cache", "data/genre-redirects.json", "--apply"])).toBeNull();
+	});
+
+	it("rejects a repeated --redirects flag instead of silently using the first", () => {
+		expect(parseCliArgs(["cache", "--redirects", "a.json", "--redirects", "b.json"])).toBeNull();
+	});
+});
+
+describe("looksLikeCacheDir", () => {
+	it("discriminates a real (even if empty) cache directory from a missing or malformed one", async () => {
+		const dir = await mkdtemp(join(tmpdir(), "odyssey-cachedir-check-"));
+		try {
+			// Regression: main() used to let a missing/typo'd cache-dir through to runMigration,
+			// which reported "0 groups" -- indistinguishable from a genuinely idempotent rerun.
+			expect(await looksLikeCacheDir(join(dir, "does-not-exist"))).toBe(false);
+			await mkdir(join(dir, "empty-cache", "nodes"), { recursive: true });
+			expect(await looksLikeCacheDir(join(dir, "empty-cache"))).toBe(true);
+		} finally {
+			await rm(dir, { recursive: true, force: true });
+		}
 	});
 });

@@ -15,7 +15,7 @@
  * Usage: tsx scripts/migrations/2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply]
  *        [--redirects <path>]
  */
-import { mkdir, readFile, rm } from "node:fs/promises";
+import { mkdir, readFile, rm, stat } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache, type PendingReverse } from "../../src/cache.js";
@@ -561,19 +561,36 @@ export interface CliArgs {
 
 /**
  * Parses `<cache-dir> [--apply] [--redirects <path>]`. Null (CLI exits 2) when: cache-dir
- * is missing or is itself a flag; --redirects has no value or one that's actually another
- * flag (--redirects --apply with the path forgotten); or any unrecognized flag is present
- * (--dry-run, a typo like --aply) -- an ambiguous argument never falls through to a guess.
+ * is missing or is itself a flag; --redirects is repeated, has no value, or one that's
+ * actually another flag (--redirects --apply with the path forgotten); or any argv token
+ * beyond cache-dir isn't consumed by a recognized flag (an unrecognized flag like
+ * --dry-run/--aply, or a stray extra positional such as a redirects path typed without its
+ * --redirects flag) -- an ambiguous argument never falls through to a guess.
  */
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
+
 	const redirectsIndex = argv.indexOf("--redirects");
+	if (redirectsIndex >= 0 && argv.lastIndexOf("--redirects") !== redirectsIndex) return null;
 	const redirectsPath = redirectsIndex >= 0 ? argv[redirectsIndex + 1] : undefined;
 	if (redirectsIndex >= 0 && (!redirectsPath || redirectsPath.startsWith("-"))) return null;
-	const known = new Set(["--apply", "--redirects"]);
-	if (argv.slice(1).some((a) => a.startsWith("-") && !known.has(a))) return null;
+
+	const consumed = new Set([0, redirectsIndex, redirectsIndex + 1, argv.indexOf("--apply")]);
+	if (argv.some((_, i) => i > 0 && !consumed.has(i))) return null;
+
 	return { cacheDir, apply: argv.includes("--apply"), ...(redirectsPath ? { redirectsPath } : {}) };
+}
+
+/** True when `dir` has a nodes/ subdirectory, i.e. looks like a NodeCache root. Guards main
+ * against a typo'd or nonexistent cache-dir, which would otherwise report "0 groups" --
+ * indistinguishable from a genuinely idempotent second run on a real cache. */
+export async function looksLikeCacheDir(dir: string): Promise<boolean> {
+	try {
+		return (await stat(join(dir, "nodes"))).isDirectory();
+	} catch {
+		return false;
+	}
 }
 
 async function main(): Promise<void> {
@@ -582,6 +599,10 @@ async function main(): Promise<void> {
 		process.stderr.write(
 			"usage: 2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply] [--redirects <path>]\n",
 		);
+		process.exit(2);
+	}
+	if (!(await looksLikeCacheDir(args.cacheDir))) {
+		process.stderr.write(`error: ${args.cacheDir} is not a cache directory (no nodes/ subdirectory)\n`);
 		process.exit(2);
 	}
 	const result = await runMigration(
