@@ -1,6 +1,6 @@
 {
-  "source": "genre duplicate merge",
-  "generated_at": "2026-09-10T19:19:45.754Z",
+  "source": "genre node rename",
+  "generated_at": "2026-09-11T08:32:42.709Z",
   "redirects": {
     "genre:ambient-music": "genre:ambient",
     "genre:avant-garde-music": "genre:avant-garde",
@@ -21,6 +21,7 @@
     "genre:pop-music": "genre:pop",
     "genre:rock-music": "genre:rock",
     "genre:soul-music": "genre:soul",
-    "genre:synthpop": "genre:synth-pop"
+    "genre:synthpop": "genre:synth-pop",
+    "genre:trap": "genre:edm-trap"
   }
 }
