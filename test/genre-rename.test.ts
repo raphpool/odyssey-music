@@ -153,17 +153,24 @@ describe("runRename (disk integration)", () => {
 		expect(redirects.redirects).toEqual({ "genre:trap-edm-alt": TO, [FROM]: TO });
 	});
 
-	it("`to` already existing exits 1 without writing anything", async () => {
+	it("`to` already existing -- as a node, or as a live redirect source -- exits 1 without writing", async () => {
 		const { fromPath } = await seedTrapGroup();
 		const toPath = await writeNodeFile(node({ slug: TO, type: "genre", name: "EDM Trap" }));
 		const before = { from: await readFile(fromPath, "utf8"), to: await readFile(toPath, "utf8") };
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
-
-		expect(result.exitCode).toBe(1);
+		const nodeConflict = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		expect(nodeConflict.exitCode).toBe(1);
 		expect(await readFile(fromPath, "utf8")).toBe(before.from);
 		expect(await readFile(toPath, "utf8")).toBe(before.to);
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+
+		// `to` as a redirect *source* (not a node) is just as broken: applying would leave a
+		// live node at `to` while the table still says `to` itself redirects elsewhere.
+		await rm(toPath);
+		await writeFile(redirectsPath, JSON.stringify({ redirects: { [TO]: "genre:gone" } }), "utf8");
+		const redirectConflict = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		expect(redirectConflict.exitCode).toBe(1);
+		expect(await readFile(fromPath, "utf8")).toBe(before.from);
 	});
 
 	it("a second --apply is a no-op (idempotent)", async () => {
@@ -184,13 +191,20 @@ describe("runRename (disk integration)", () => {
 		expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
 	});
 
-	it("exits 1 when the source doesn't exist, and passes the onboarding check when it does (redirect target alive)", async () => {
+	it("a missing source exits 1; an ONBOARDING_GENRES slug is refused outright, tree unchanged", async () => {
 		const missing = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
 		expect(missing.exitCode).toBe(1);
 
-		await seedTrapGroup();
-		const ok = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [FROM] });
-		expect(ok.exitCode).toBe(0);
+		const paths = await seedTrapGroup();
+		const before = await Promise.all(Object.values(paths).map((p) => readFile(p, "utf8")));
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [FROM] });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+		const after = await Promise.all(Object.values(paths).map((p) => readFile(p, "utf8")));
+		expect(after).toEqual(before);
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
 	});
 });
 

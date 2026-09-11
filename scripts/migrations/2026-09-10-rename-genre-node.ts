@@ -8,17 +8,20 @@
  *
  * WHY (2026-09-10, TRA-35): genre:trap collided two concepts under one slug -- the MusicBrainz
  * tag "trap" denotes trap hip-hop (Q2913982), while the node materialized under genre:trap is
- * actually "Trap (EDM)" (Q47781397, TRA-33). Renaming the EDM node to genre:edm-trap and
- * redirecting genre:trap -> genre:edm-trap frees the slug for trap hip-hop to mint under
- * later without ever creating a duplicate (genre-registry.ts follows a redirect before minting).
+ * actually "Trap (EDM)" (Q47781397, TRA-33). Renaming it to genre:edm-trap and redirecting
+ * genre:trap -> genre:edm-trap frees the slug for trap hip-hop without ever creating a
+ * duplicate (genre-registry.ts follows a redirect before minting).
  *
  * Reuses 2026-09-04-merge-genre-duplicates.ts rather than duplicating it (rewriteNodeEdges,
  * rewritePendingReverses, mergeRedirects, readCacheNodes, loadOnboardingGenreSlugs,
- * looksLikeCacheDir, isRecord, isNodeType, defaultDataDir, readTextOrDefault) plus
- * atomicWriteJson from src/cache.ts. rewriteNodeEdges/rewritePendingReverses were generalized
- * there (RewriteTarget: a bare slug, still all the merge script itself ever passes, or
- * `{ slug, qid }`) to also correct a denormalized qid -- the merge script's own behavior and
- * tests are unchanged.
+ * looksLikeCacheDir, isRecord, isNodeType, defaultDataDir, readTextOrDefault, plus
+ * atomicWriteJson from src/cache.ts). rewriteNodeEdges/rewritePendingReverses were generalized
+ * there (RewriteTarget: a bare slug, still all the merge script passes, or `{ slug, qid }`) to
+ * also correct a denormalized qid -- the merge script's own behavior/tests are unchanged.
+ *
+ * Deployment (same procedure as TRA-42): also run this against the server's cache (stop the
+ * server first, restart after -- the redirects table is memoized per-process), merging the
+ * repo's and the server's redirects tables (append-only, chains flattened) if they diverge.
  *
  * Usage: tsx scripts/migrations/2026-09-10-rename-genre-node.ts <cache-dir> <from> <to>
  *        [--apply] [--redirects <path>]
@@ -49,8 +52,6 @@ import {
 function isGenreSlug(value: string): value is Slug {
 	return isValidSlug(value) && value.startsWith("genre:");
 }
-
-// --- Report formatting (same visual style as the merge script's formatMergeReport) ---
 
 function formatRenameReport(args: {
 	from: Slug;
@@ -89,8 +90,6 @@ function formatRenameReport(args: {
 	return lines.join("\n");
 }
 
-// --- Migration runner ---
-
 export interface RenameResult {
 	report: string;
 	/** True only when this call actually wrote the rename (apply=true, not already done). */
@@ -99,9 +98,8 @@ export interface RenameResult {
 }
 
 /**
- * Runs the rename against `cacheDir`: builds the plan in memory, verifies its invariants
- * before touching disk, and -- only if clean and `apply` is set -- writes. Never calls
- * process.exit; exit-code semantics only, so it's directly testable.
+ * Runs the rename against `cacheDir`: builds the plan in memory, verifies invariants before
+ * touching disk, writes only if clean and `apply` is set. No process.exit -- exit code only.
  */
 export async function runRename(
 	cacheDir: string,
@@ -134,9 +132,8 @@ export async function runRename(
 			note,
 		});
 
-	// Idempotence: a completed prior run leaves `from` gone, `to` in its place, and the redirect
-	// recorded -- recognize that shape as "nothing to do" rather than a "from must exist" error.
-	// Any other combination is a genuine conflict below (fail loud, don't guess at recovery).
+	// Idempotence: a completed prior run leaves `from` gone, `to` in place, redirect recorded --
+	// that shape is "nothing to do", not a "from must exist" error (anything else below fails loud).
 	if (!fromFile && toFile && existingRedirects.get(from) === to) {
 		return {
 			report: earlyReport(`${from} is already renamed to ${to} -- nothing to do.`),
@@ -147,6 +144,7 @@ export async function runRename(
 
 	const errors: string[] = [];
 	if (toFile) errors.push(`target slug ${to} already exists`);
+	if (existingRedirects.has(to)) errors.push(`target slug ${to} is itself a redirect source`);
 	if (!fromFile) {
 		errors.push(`source slug ${from} does not exist`);
 	} else if (fromFile.type !== "genre") {
@@ -216,19 +214,15 @@ export async function runRename(
 		errors.push(`pending-reverses.json is invalid: ${e instanceof Error ? e.message : String(e)}`);
 	}
 
-	// Onboarding invariant, generalized from the merge script's plain "never delete an
-	// onboarding slug": ok as long as `from`'s redirect resolves to a surviving slug (always
-	// `to` here, but kept general on purpose). genre:trap is not itself onboarding.
-	for (const slug of onboardingSlugs) {
-		if (slug !== from) continue;
-		const redirectTarget = mergedRedirects[slug];
-		const targetAlive = redirectTarget !== undefined && (redirectTarget === to || bySlug.has(redirectTarget));
-		if (!targetAlive) {
-			errors.push(`onboarding genre slug ${slug} would be renamed without a live redirect target`);
-		}
+	// Strict guard, same rule as the merge script (2026-09-11, review 1): web/index.html's
+	// genrePickList() filters ONBOARDING_GENRES by cache membership only, never through
+	// DATA.redirects -- a renamed slug would silently vanish from onboarding, not follow it.
+	if (onboardingSlugs.includes(from)) {
+		errors.push(`${from} is an ONBOARDING_GENRES slug; update web/index.html first`);
 	}
 
-	const redirectsWritten = { newCount: 1, totalCount: Object.keys(mergedRedirects).length };
+	const newCount = existingRedirects.has(from) ? 0 : 1;
+	const redirectsWritten = { newCount, totalCount: Object.keys(mergedRedirects).length };
 	const report = formatRenameReport({
 		from,
 		to,
@@ -247,8 +241,7 @@ export async function runRename(
 	if (!apply) return { report, applied: false, exitCode: 0 };
 
 	// --- Apply, crash-safe order (same as TRA-22/41): nodes -> pending -> redirects -> THEN
-	// delete `from` last (a briefly-duplicated node is harmless; deleting `from` first could
-	// leave neither if a later step then failed).
+	// delete `from` last (a briefly-duplicated node is harmless; deleting first could lose both).
 	const toPath = join(cacheDir, "nodes", parseSlug(to).type, `${parseSlug(to).body}.json`);
 	await mkdir(dirname(toPath), { recursive: true });
 	await atomicWriteJson(toPath, renamedSource);
@@ -269,8 +262,6 @@ export async function runRename(
 	return { report, applied: true, exitCode: 0 };
 }
 
-// --- CLI ---
-
 export interface CliArgs {
 	cacheDir: string;
 	from: string;
@@ -280,9 +271,9 @@ export interface CliArgs {
 }
 
 /**
- * Parses `<cache-dir> <from> <to> [--apply] [--redirects <path>]`, modeled strictly on the
- * merge script's parseCliArgs: null (CLI exits 2) on a missing/flag-like positional, a
- * malformed or repeated --redirects, or any unconsumed argv token -- never a guess.
+ * Parses `<cache-dir> <from> <to> [--apply] [--redirects <path>]`, modeled on the merge
+ * script's parseCliArgs: null (exit 2) on a bad positional, a malformed/repeated --redirects,
+ * or any unconsumed argv token -- never a guess.
  */
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
