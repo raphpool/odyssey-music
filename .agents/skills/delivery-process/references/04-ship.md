@@ -7,9 +7,9 @@ adapté aux tâches mécaniques ; aucun modèle spécifique n'est imposé ici.
 ## Merge
 | Tier | Condition | Commande |
 |---|---|---|
-| tier/1 | CI + `ai-review` verts | auto-merge posé à la création de la PR |
-| tier/2 | CI + `ai-review` verts | auto-merge, Raphael notifié |
-| tier/3 | CI + `ai-review` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
+| tier/1 | CI + `review` verts | auto-merge posé à la création de la PR |
+| tier/2 | CI + `review` verts | auto-merge, Raphael notifié |
+| tier/3 | CI + `review` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
 
 Branch protection sur `main` (déjà configurée) : checks requis `typecheck`,
 `lint`, `test`, `diff-size` — GitHub publie les contextes sous le nom du job,

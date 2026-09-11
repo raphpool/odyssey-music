@@ -10,7 +10,7 @@ jamais par tâche · **Sortie :** un fichier de plan + des tickets Linear autopo
 ## Étapes
 
 ### 1. Cartographier avant d'écrire
-Lance l'agent `Explore` (pas toi) avec une question précise : « où vivent
+Lance l'agent `explorer` (pas toi) avec une question précise : « où vivent
 les X, quelles conventions, quels tests existants sur Y ». Tu récupères une
 note d'archi de 20 lignes max. Tu n'ouvres aucun fichier toi-même à ce stade.
 

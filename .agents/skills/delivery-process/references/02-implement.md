@@ -35,9 +35,8 @@ ou non sans consommer de tokens de review.
 - Respecte les conventions du repo (`AGENTS.md`), pas tes préférences.
 - Ne refactore rien qui n'est pas dans la Portée. Si tu vois un problème
   hors-scope : crée un ticket Linear `tier/?` et continue.
-- Le hook `Stop` fait tourner typecheck + lint + tests à chaque fin de tour.
-  S'il bloque, corrige avant de continuer — c'est gratuit comparé à un
-  aller-retour CI.
+- Lance `npm run check` avant l'auto-review et avant le commit. S'il bloque,
+  corrige avant de continuer — c'est gratuit comparé à un aller-retour CI.
 
 ### 5. Auto-review avant de pousser
 Délègue au reviewer `gpt-5.6-sol`, effort `high`, en lecture seule.
