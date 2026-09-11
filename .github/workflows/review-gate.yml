@@ -1,0 +1,37 @@
+name: review-gate-relay
+
+# Relais additif : le workflow Claude existant reste inchangé. Quand sa review
+# réussit, ce workflow publie le gate fournisseur neutre `review-gate`.
+# Codex Desktop peut publier le même gate via .codex/scripts/publish-review-status.sh.
+on:
+  workflow_run:
+    workflows: [ai-review]
+    types: [completed]
+
+permissions:
+  contents: read
+  statuses: write
+
+jobs:
+  relay-claude-review:
+    # Un échec peut être un finding ou une panne de quota. Il ne publie rien :
+    # la CI locale le qualifie avant d'autoriser éventuellement le fallback.
+    if: >-
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Publier le verdict Claude dans review-gate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const run = context.payload.workflow_run;
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: run.head_sha,
+              state: "success",
+              context: "review-gate",
+              description: "Review Claude validée",
+              target_url: run.html_url,
+            });

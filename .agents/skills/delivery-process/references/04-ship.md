@@ -7,15 +7,15 @@ adapté aux tâches mécaniques ; aucun modèle spécifique n'est imposé ici.
 ## Merge
 | Tier | Condition | Commande |
 |---|---|---|
-| tier/1 | CI + `review` verts | auto-merge posé à la création de la PR |
-| tier/2 | CI + `review` verts | auto-merge, Raphael notifié |
-| tier/3 | CI + `review` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
+| tier/1 | CI + `review-gate` verts | auto-merge posé à la création de la PR |
+| tier/2 | CI + `review-gate` verts | auto-merge, Raphael notifié |
+| tier/3 | CI + `review-gate` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
 
 Branch protection sur `main` (déjà configurée) : checks requis `typecheck`,
-`lint`, `test`, `diff-size` — GitHub publie les contextes sous le nom du job,
-sans préfixe `ci /`. Pas de `build` : ce repo n'a rien à compiler. `review`
-(le job de `ai-review`) s'ajoute aux checks requis une fois le secret
-`CLAUDE_CODE_OAUTH_TOKEN` posé, sinon il échoue et bloque toutes les PR.
+`lint`, `test`, `diff-size`, puis `review-gate` après activation de TRA-49.
+GitHub publie les contextes sous le nom du job, sans préfixe `ci /`. Pas de
+`build` : ce repo n'a rien à compiler. Le check Claude `review` alimente
+`review-gate`; Codex peut fournir le même gate avec le quota ChatGPT Pro.
 Historique linéaire, pas de merge commit, suppression de branche automatique.
 
 ## Après la merge

@@ -65,9 +65,9 @@ gh pr merge --auto --squash
 ```
 La PR se mergera d'elle-même quand tous les checks requis seront verts.
 
-### 7. Rendre
-Retourne : URL de la PR, ticket Linear, résumé du diff (fichiers + lignes),
-findings corrigés en auto-review, et ce qui reste à valider.
+### 7. Passer à la CI
+Après `gh pr ready`, passe la même PR à la phase `ci` (`05-ci.md`). Ne rends
+pas la main uniquement parce que la PR existe.
 
 ## Garde-fous durs
 - **> 400 lignes de diff ou > 12 fichiers** → arrête-toi, propose un découpage

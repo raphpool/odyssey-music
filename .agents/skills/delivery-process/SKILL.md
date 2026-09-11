@@ -23,6 +23,7 @@ Phase demandée : `$phase` — cible : `$target`
 | `implement` | `references/02-implement.md` | `implementer` ou `implementer-terra` | gpt-5.6-luna / max ou gpt-5.6-terra / high |
 | `review` | `references/03-review.md` | `reviewer` | gpt-5.6-sol / high |
 | `ship` | `references/04-ship.md` | `ticket-writer` | modèle hérité / low |
+| `ci` | `references/05-ci.md` | `implementer` | reprend Luna/max ou Terra/high du ticket |
 | vide | — | demande la phase, ne devine pas | — |
 
 ## Procédure
@@ -41,6 +42,10 @@ Phase demandée : `$phase` — cible : `$target`
    - rien d'autre. Pas d'historique de conversation, pas de fichiers déjà lus.
 5. **Rapporte** en 5 lignes maximum : ce qui a été fait, l'URL Linear, l'URL
    de la PR, l'état des gates, la prochaine action attendue de Raphael.
+
+Une implémentation ne se rend pas au moment où la PR est créée : elle passe
+immédiatement en phase `ci`. Cette phase ne s'achève qu'avec les checks verts,
+un blocage à corriger, ou une validation humaine requise pour un tier/3.
 
 ## Règles non négociables
 

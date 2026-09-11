@@ -18,14 +18,16 @@ process. Elle attrape les erreurs que l'agent vient de faire.
 ## Couche 2 — review CI sur la PR
 Workflow `.github/workflows/ai-review.yml`, déclenché sur
 `ready_for_review` et `synchronize`. Modèle Opus, effort xhigh, lecture seule.
-Cette CI Claude est indépendante du reviewer local Sol/high. Le nom du check
-GitHub est `review`.
+Cette CI Claude est indépendante du reviewer local Sol/high. Son check GitHub
+`review` est relayé vers le gate fournisseur neutre `review-gate`. Si Claude
+est indisponible, la phase `ci` publie le même gate après une review Sol/high.
 Il produit :
 - des commentaires inline sur les lignes concernées,
 - un fichier `review.json` `{ verdict: "pass" | "block", findings: [...] }`,
 - un check `review` qui échoue si `verdict == "block"`.
 
-C'est ce check qui conditionne l'auto-merge. Sévérités :
+Après activation de TRA-49, c'est `review-gate` qui conditionne l'auto-merge.
+Sévérités :
 - **block** — bug qui casserait la prod, fuite de données, régression,
   cas limite non géré sur un chemin critique
 - **nit** — style, nommage, simplification. N'a jamais bloqué une merge.
