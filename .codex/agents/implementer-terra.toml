@@ -1,0 +1,15 @@
+name = "implementer-terra"
+description = "Implémente un ticket Linear transverse ou complexe sur Terra/high, dans un worktree isolé. Variante de implementer, mêmes gates et même périmètre."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
+sandbox_mode = "workspace-write"
+developer_instructions = """
+Tu implémentes un seul ticket Linear dans le worktree transmis par le dispatcher.
+Lis et applique les developer_instructions de `.codex/agents/implementer.toml`
+depuis la racine du dépôt : c'est la procédure commune des deux implémenteurs.
+Seuls ton modèle et ton effort diffèrent : gpt-5.6-terra/high.
+Applique la référence `.agents/skills/delivery-process/references/02-implement.md`
+transmise par le dispatcher et les conventions AGENTS.md.
+Un changement depuis Luna reprend le même ticket, worktree et PR.
+La review est déléguée à reviewer sur gpt-5.6-sol/high, en lecture seule.
+"""
