@@ -239,6 +239,16 @@ arêtes dénormalisées encore à Q2913982 (`label:never-say-die`,
 `project:every-dog-has-its-day`). `genre:trap` n'est pas dans
 `ONBOARDING_GENRES` (vérifié). Exécution **après l'étape serveur de TRA-42**,
 pour ne pas empiler deux migrations de cache serveur.
+*Mise à jour du 2026-09-11 :* la réutilisation des fonctions de fusion a demandé
+une généralisation préalable (`RewriteTarget`, TRA-46) ; le renommage est exécuté
+sur le cache du dépôt (TRA-47, résultat en Partie 5) ; côté serveur, il est
+intégré à la fenêtre de TRA-42, juste après la fusion — une seule fenêtre, deux
+migrations dans l'ordre, plutôt que deux arrêts du serveur. Ajout de review
+(TRA-35) : la garde onboarding du script est **stricte** — `genrePickList()`
+filtre `ONBOARDING_GENRES` par présence en cache, jamais via `DATA.redirects`,
+donc un slug d'onboarding renommé disparaîtrait de l'onboarding au lieu de
+suivre la redirection ; le script refuse de renommer un tel slug tant que
+`ONBOARDING_GENRES` (`web/index.html`) n'est pas mis à jour.
 Rejeté — inverser la priorité `mbid > alias` dans `src/genre-identity.ts` :
 affaiblit le résolveur pour tous les genres pour régler un cas. Rejeté — libérer
 `genre:trap` pour le trap hip-hop : un profil ou un deep link qui stocke
@@ -246,13 +256,16 @@ affaiblit le résolveur pour tous les genres pour régler un cas. Rejeté — li
 
 ## Découpage
 
-**Statut au 2026-09-10 soir.** Parties 1 à 3 livrées. **Partie 4 terminée** :
-TRA-24 à 30, 32 à 34, 36, 37, 43 mergés ; la gate TRA-31 est verte 6/6 sur
+**Statut au 2026-09-11 (matin).** Parties 1 à 3 livrées. **Partie 4 terminée** :
+TRA-24 à 30, 32 à 34, 36, 37, 43, 45 mergés ; la gate TRA-31 est verte 6/6 sur
 `main` — son scénario 6 a révélé le trou « matérialisation par nom seul », corrigé
-par TRA-43 (décision 12). **Partie 5 : fusion exécutée sur le cache du dépôt**
-(TRA-22, 41, 44, 42-repo, 23, 38, 39 mergés). En cours : TRA-42 (étape serveur,
-à la main par Raphaël), TRA-45 (PR en préparation), TRA-35 (PR en préparation).
-À faire : TRA-40 (nettoyage, trois lots).
+par TRA-43 (décision 12). **Partie 5 : tout est mergé** — fusion exécutée sur le
+cache du dépôt (TRA-22, 41, 44, 42-repo, 23, 38, 39) et renommage
+`genre:trap → genre:edm-trap` exécuté sur le cache du dépôt (TRA-46, 35, 47).
+Il reste : (a) la **fenêtre serveur** de TRA-42, à exécuter à la main par
+Raphaël, qui enchaîne désormais fusion puis renommage (procédure détaillée au
+ticket TRA-42 ci-dessous) ; (b) TRA-40 (nettoyage, trois lots, `tier/1`, au
+rythme hebdomadaire).
 
 ### Partie 1 — Résolveur d'identité (aucun comportement modifié)
 
@@ -348,14 +361,14 @@ TRA-22 — c'est fait : la gate TRA-31 est verte 6/6 sur `main`.
       par nom seul donnaient deux nœuds, l'un avec le mauvais qid, l'autre sans.
       Décision 12 sur le rôle de `body.slug`. `tier/3` (PR #37, 598 lignes —
       les nits du tour 2 sont dans TRA-45)
-- [ ] TRA-45 Matérialisation par identité : `disambiguator` ⇒ `qid` client
+- [x] TRA-45 Matérialisation par identité : `disambiguator` ⇒ `qid` client
       ignoré, `disambiguator` reporté au refresh, `precacheAllDangling` envoie
-      slug/qid (suite de TRA-43). `tier/3` — **En cours** (PR en préparation).
+      slug/qid (suite de TRA-43). `tier/3` (PR #43)
 - [ ] TRA-40 Nettoyage — nits accumulés des reviews de la Partie 4 (prévention
       des doublons) : trois lots (A : I/O et performance ; B : robustesse et
       lisibilité ; C : tests), ≤ 200 lignes chacun, aucun changement de
       comportement observable. Collecte aussi les nits des PR de la Partie 5
-      (#35, #37, #38, #41, #42). `tier/1` — **À faire**.
+      (#35, #37, #38, #41, #42). `tier/1` — **À faire**, au rythme hebdomadaire.
 
 ### Partie 5 — Fusion des doublons par QID *(ex-Partie 4)*
 
@@ -379,16 +392,22 @@ partie front, décision 13 pour le renommage de `genre:trap`.
       `nodes/`, positionnel surnuméraire, flag répété. `tier/3` (PR #39)
 - [ ] TRA-42 Exécuter la fusion des doublons de genre sur le cache réel (repo
       puis serveur) et committer les redirections. **Étape repo faite** (PR #40,
-      résultat ci-dessous) ; **reste l'étape serveur**, à faire à la main par
-      Raphaël : sauvegarde `tar` du cache serveur → arrêt → déploiement
-      (`deploy/deploy-server.sh`, qui exclut `cache/` et livre le code +
-      `data/genre-redirects.json`) → sur le serveur, `npm run migrate:genre-merge
-      -- cache` (dry-run, comparer aux 20 groupes) puis `--apply` → redémarrage →
-      deux vérifications HTTP : `GET /node/genre:electronic-music` renvoie
-      `node.slug === "genre:electronic"` avec `redirected_from`, et
+      résultat ci-dessous) ; **reste la fenêtre serveur**, à faire à la main par
+      Raphaël, qui inclut depuis TRA-47 le renommage `genre:trap → genre:edm-trap`
+      — une seule fenêtre, deux migrations dans l'ordre : sauvegarde `tar` du
+      cache serveur → arrêt → déploiement (`deploy/deploy-server.sh`, qui exclut
+      `cache/` et livre le code + `data/genre-redirects.json`) → sur le serveur,
+      `npm run migrate:genre-merge -- cache` (dry-run, comparer aux 20 groupes)
+      puis `--apply` → `npx tsx scripts/migrations/2026-09-10-rename-genre-node.ts
+      cache genre:trap genre:edm-trap` (dry-run) puis `--apply` → redémarrage →
+      trois vérifications HTTP : `GET /node/genre:electronic-music` renvoie
+      `node.slug === "genre:electronic"` avec `redirected_from` ;
+      `GET /node/genre:trap` renvoie `node.slug === "genre:edm-trap"` ;
       `POST /materialize {"type":"genre","name":"Electronic music"}` renvoie le
-      canonique en `source: "cache"`. Le ticket se ferme sur ces deux
-      vérifications, consignées dans Linear. `tier/3` — **En cours**.
+      canonique en `source: "cache"`. Si la table de redirections produite sur
+      le serveur diverge de celle du repo (21 entrées), les fusionner et
+      committer le résultat. Le ticket se ferme sur ces trois vérifications,
+      consignées dans Linear. `tier/3` — **En cours**.
 - [x] TRA-23 Propager les redirections au graphe exporté et résoudre les deep
       links dans le front : `GraphProjection.redirects` (`src/graph.ts:45`,
       depuis `data/genre-redirects.json` via le loader de TRA-27) et `?node=`
@@ -401,13 +420,22 @@ partie front, décision 13 pour le renommage de `genre:trap`.
       genre appliquée par `node-service` : `GET /image/:slug` et `GET /links/:slug`
       la suivent désormais via `resolveReadSlug` (`src/genre-registry.ts:126`),
       partagé avec `node-service`. `tier/3` (PR #42)
-- [ ] TRA-35 Renommer le nœud « Trap (EDM) » en `genre:edm-trap` avec redirection
+- [x] TRA-46 Généraliser la réécriture d'arêtes de la migration de fusion
+      (`RewriteTarget`) pour la réutiliser dans le renommage TRA-35 :
+      `rewriteNodeEdges` / `rewritePendingReverses` prennent une cible générique
+      au lieu du groupe de fusion. Préparatoire, comportement de fusion inchangé.
+      `tier/3` (PR #45)
+- [x] TRA-35 Renommer le nœud « Trap (EDM) » en `genre:edm-trap` avec redirection
       `genre:trap → genre:edm-trap` (collision de slug trap hip-hop / EDM) —
       décision 13. Script `scripts/migrations/2026-09-10-rename-genre-node.ts`
-      `<cacheDir> <from> <to> [--apply]`, tests sur fixture `mkdtemp`, exécution
-      sur le cache du repo dans une PR de données séparée, puis procédure serveur
-      identique à TRA-42. `tier/3` — **En cours** (PR en préparation).
-      **Dépend de** TRA-42 (étape serveur).
+      `<cacheDir> <from> <to> [--apply]`, tests sur fixture `mkdtemp`. Ajout de
+      review : garde onboarding **stricte** — la liste d'onboarding du front ne
+      suit pas les redirections, donc le script refuse de renommer un slug de
+      `ONBOARDING_GENRES` tant que la liste n'est pas mise à jour ; `genre:trap`
+      n'en fait pas partie. `tier/3` (PR #46)
+- [x] TRA-47 Exécuter le renommage `genre:trap → genre:edm-trap` sur le cache du
+      repo (PR de données) et l'ajouter à la fenêtre serveur de TRA-42. Résultat
+      ci-dessous. `tier/3` (PR #47)
 
 TRA-15 (fusion et redirections en un seul ticket) annulé : remplacé par TRA-22
 et TRA-23.
@@ -442,20 +470,31 @@ diffèrent** de ce qu'aurait donné « nom du catalogue d'abord » — `electron
 (`electroacoustic-music`, `minimal-music`, `microhouse`, `soul`, `synth-pop`)
 coïncident.
 
+**Résultat du renommage sur le cache du dépôt (2026-09-11, TRA-47, PR #47).**
+1 nœud renommé (`genre:trap` → `genre:edm-trap`, nom « Trap (EDM) », Q47781397,
+contenu inchangé), **4 arêtes entrantes réécrites** (`artist:skrillex`,
+`label:owsla`, `label:never-say-die`, `project:every-dog-has-its-day`), 2 `qid`
+dénormalisés corrigés (Q2913982 → Q47781397 sur `label:never-say-die` et
+`project:every-dog-has-its-day`), table `data/genre-redirects.json` à **21
+entrées** (20 de la fusion + `genre:trap → genre:edm-trap`), 0 groupe au rapport
+de doublons. Export identique à celui de la fusion — 1 375 nœuds, 7 387 arêtes,
+quarantaine 9 — au renommage près.
+
 **Note de déploiement du `--apply`.** `deploy/deploy-server.sh:75` exclut
 `cache/` du rsync : le cache du serveur évolue par JIT et n'est pas écrasé au
 déploiement. Donc, dans l'ordre : (1) migration exécutée sur le cache du dépôt
 **et** sur le cache du serveur, serveur arrêté ; (2) `data/genre-redirects.json`
 committé ; (3) serveur redémarré — `cacheIndex` et la table de redirections sont
-mémoïsés par processus. Au soir du 2026-09-10, (1)-repo et (2) sont faits ;
-(1)-serveur et (3) restent — c'est l'étape serveur de TRA-42 ci-dessus. Jusqu'à
-son exécution, le serveur sert encore les 40 nœuds d'avant fusion avec le code
-d'après : sans table de redirections chargée, rien ne redirige ; le registre
-(règle 2) garde les slugs existants, donc **aucun doublon nouveau** n'est créé
-entre-temps.
+mémoïsés par processus. Au matin du 2026-09-11, (1)-repo et (2) sont faits pour
+la fusion **et** pour le renommage (PR #40 et #47) ; (1)-serveur et (3) restent —
+c'est la fenêtre serveur de TRA-42 ci-dessus, qui enchaîne les deux migrations.
+Jusqu'à son exécution, le serveur sert encore les 40 nœuds d'avant fusion et
+`genre:trap` avec le code d'après : sans table de redirections chargée, rien ne
+redirige ; le registre (règle 2) garde les slugs existants, donc **aucun doublon
+nouveau** n'est créé entre-temps.
 
-Chaîne restante : TRA-42 (serveur) → TRA-35. TRA-45 et TRA-40 sont
-indépendants et parallélisables avec le reste.
+Chaîne restante : la fenêtre serveur de TRA-42 (fusion, puis renommage). TRA-40
+est indépendant.
 
 ## Risques
 
@@ -476,7 +515,9 @@ indépendants et parallélisables avec le reste.
   Partie 5, et cette faiblesse disparaît quand le profil passera aux QIDs (autre
   projet). Avec la règle d'élection tranchée le 2026-09-10, les slugs
   d'onboarding — ceux que détient la majorité des profils — survivent tous
-  (critère de sortie, vérifié 34/34 à l'`--apply`).
+  (critère de sortie, vérifié 34/34 à l'`--apply`). Le script de renommage
+  (TRA-35) porte la même garde, stricte : il refuse de renommer un slug
+  d'onboarding.
 - **Régression mécanique de la fusion (évitée, vérifiée).** Sans prévention,
   chaque producteur re-mint le perdant à la matérialisation suivante, parfois
   sans `qid` donc hors radar. Garde-fou : la Partie 4 entière avant le `--apply`,
@@ -488,8 +529,9 @@ indépendants et parallélisables avec le reste.
   table périmées jusqu'au prochain `write()` d'un nœud genre. Et le cache du
   serveur n'est pas celui du dépôt (`deploy/deploy-server.sh:75` l'exclut du
   rsync). Garde-fou : la note de déploiement de la Partie 5 — migration sur les
-  deux caches, serveur arrêté, puis redémarrage. Étape serveur de TRA-42 en
-  attente ; TRA-35 s'exécute après, pour ne pas empiler deux migrations serveur.
+  deux caches, serveur arrêté, puis redémarrage. Fenêtre serveur de TRA-42 en
+  attente ; elle enchaîne fusion puis renommage (TRA-47) dans le même arrêt,
+  pour ne pas empiler deux migrations serveur.
 - **`PipelineDeps.genreRegistry` est optionnel.** Un appelant qui l'omet
   désactive la prévention en silence. Garde-fou : commentaire explicite sur le
   champ, critère de TRA-28 (`grep runPipeline(` : tout appelant qui écrit passe
@@ -500,15 +542,16 @@ indépendants et parallélisables avec le reste.
   (`body.slug` clé de recherche, identité reprise du nœud caché au refresh), et
   TRA-45 pour le reste de la surface (`disambiguator` ⇒ `qid` client ignoré :
   sinon `{ name: "Fake", disambiguator: "xx", qid: "Q170611" }` mint un second
-  nœud pour le QID de `techno`, rendu collant par TRA-32).
+  nœud pour le QID de `techno`, rendu collant par TRA-32). TRA-45 est mergé
+  (PR #43).
 - **Collision d'index avant fusion (résorbée).** Le choix « slug le plus court »
   différait du membre le plus utilisé dans 2 groupes sur 20 (`electroacoustic`,
   `minimal`). Transitoire : la fusion a redirigé les deux vers
   `electroacoustic-music` et `minimal-music`, conformément à « usages d'abord ».
 - **Un refresh peut écraser une curation.** Le `qid` de `genre:trap` en a failli
   faire les frais (décision 10). Garde-fou : `existingGenreQid` (TRA-32) et le
-  log du désaccord ; TRA-35 (décision 13) renomme le nœud en `genre:edm-trap` et
-  aligne les arêtes dénormalisées.
+  log du désaccord ; TRA-35 et TRA-47 (décision 13) ont renommé le nœud en
+  `genre:edm-trap` et corrigé les deux `qid` dénormalisés sur le cache du dépôt.
 - **Aucune télémétrie de coût aujourd'hui** : `runJit` jette
   `PipelineResult.metrics` et `_metrics` n'est plus écrit que par l'ancien agent.
   Ce projet ne fait aucun appel LLM, donc il n'est pas exposé — mais on ne pourra
@@ -532,7 +575,9 @@ TRA-41) demandent un `rebase --onto` de la base squashée puis un force-push ave
 lease — une manœuvre manuelle à chaque merge de la base, et une occasion de
 perdre du travail. À éviter : préférer des PR séquentielles (la suivante part de
 `main` après le merge de la précédente) quand le découpage le permet, quitte à
-attendre une review.
+attendre une review. La chaîne TRA-46 → TRA-35 → TRA-47 a suivi cette règle :
+trois PR séquentielles (#45, #46, #47), chacune partie de `main` après le merge
+de la précédente.
 
 ## Critères de sortie
 
@@ -540,8 +585,8 @@ attendre une review.
       comme atteignable : 96,7 %). Atteint par TRA-21 : 96,7 % des arêtes,
       256/274 nœuds genre.
 - [x] Zéro groupe de nœuds genre partageant un QID après la Partie 5. Atteint sur
-      le cache du dépôt (TRA-42, PR #40 : 0 groupe résiduel, second `--apply`
-      no-op) ; le cache serveur suit à l'étape serveur de TRA-42.
+      le cache du dépôt : 0 groupe résiduel après la fusion (TRA-42, PR #40,
+      second `--apply` no-op) et toujours 0 après le renommage (TRA-47, PR #47).
 - [x] **Non-régression après fusion** : sur un cache en forme d'après-fusion,
       matérialiser un artiste dont MusicBrainz renvoie un tag d'un groupe
       fusionné, un genre dont le brouillon Gemini cite un perdant, un genre dont
@@ -550,10 +595,16 @@ attendre une review.
       supplémentaire, zéro groupe au rapport** (TRA-31, 6/6 vert sur `main`).
 - [x] Les 34 slugs de `ONBOARDING_GENRES` (`web/index.html:656`) existent tous
       dans `web/data.json` après le `--apply` de TRA-22 — invariant de la règle
-      d'élection tranchée le 2026-09-10. Vérifié 34/34 (TRA-42).
+      d'élection tranchée le 2026-09-10. Vérifié 34/34 (TRA-42) ; le renommage
+      ne touche aucun slug d'onboarding (garde stricte de TRA-35).
 - [x] Un `qid` committé sur un nœud genre survit à une rematérialisation dont le
       résolveur donnerait un autre QID ; le désaccord est loggé (TRA-32,
       décision 10).
+- [ ] **Fusion et renommage déployés sur le cache serveur** (fenêtre serveur de
+      TRA-42) : les trois vérifications HTTP passent — `GET /node/genre:electronic-music`
+      → `genre:electronic` avec `redirected_from`, `GET /node/genre:trap` →
+      `genre:edm-trap`, `POST /materialize {"type":"genre","name":"Electronic
+      music"}` → canonique en `source: "cache"` — et sont consignées dans Linear.
 - [ ] Un rapport de couverture reproductible par une commande, qui liste les
       non-résolus par fréquence — c'est la file de curation d'alias.
 - [x] `npm run check` vert, et **aucun changement visible dans l'UI** à l'issue de
