@@ -30,7 +30,9 @@ import {
 import { parseSlug } from "../../src/slug.js";
 import { buildDuplicateReport, type DuplicateGroup } from "../report-genre-duplicates.js";
 
-function isRecord(value: unknown): value is Record<string, unknown> {
+// Exported (2026-09-10, TRA-35): the single-slug rename migration reuses this instead of
+// duplicating it.
+export function isRecord(value: unknown): value is Record<string, unknown> {
 	return typeof value === "object" && value !== null;
 }
 
@@ -158,24 +160,43 @@ export function mergeGenreEdges(
 // --- Cache-wide incoming edge rewrite (pure) ---
 
 /**
+ * A rewrite target: either a bare slug (the merge script's own usage -- an edge's slug is
+ * rewritten, its qid left alone since a QID-duplicate merge unifies same-real-entity nodes),
+ * or a slug plus the qid to stamp on any rewritten edge that already carries a *different*
+ * qid. Generalized 2026-09-10 (TRA-35) for the genre-rename migration, which needs to also
+ * correct a denormalized qid drifted from the node's own -- see rename script for why. Never
+ * changes the merge script's own behavior: it only ever passes bare-string targets.
+ */
+export type RewriteTarget = string | { slug: string; qid?: string };
+
+/**
  * Rewrites every edge on `node` whose slug is a key of `rewriteMap` to point at its mapped
  * value, deduplicating list fields afterwards by slug. Returns which loser slugs were
- * actually redirected (and how many times), for reporting. A rewrite can turn an edge into
- * a self-loop (node itself referenced a loser that redirects back to node's own slug) --
- * dropped from list fields by filtering, from a singular field by clearing it to undefined.
+ * actually redirected (and how many times), for reporting, plus which of those rewrites also
+ * corrected an existing-but-wrong denormalized qid (only ever non-empty for an object rewrite
+ * target -- see RewriteTarget). A rewrite can turn an edge into a self-loop (node itself
+ * referenced a loser that redirects back to node's own slug) -- dropped from list fields by
+ * filtering, from a singular field by clearing it to undefined.
  */
 export function rewriteNodeEdges(
 	node: Record<string, unknown>,
 	type: NodeType,
-	rewriteMap: ReadonlyMap<string, string>,
-): { node: Record<string, unknown>; hits: Map<string, number> } {
+	rewriteMap: ReadonlyMap<string, RewriteTarget>,
+): { node: Record<string, unknown>; hits: Map<string, number>; qidFixes: Map<string, number> } {
 	const hits = new Map<string, number>();
+	const qidFixes = new Map<string, number>();
 	const ownSlug = typeof node.slug === "string" ? node.slug : undefined;
 	const rewriteRef = (edge: unknown): unknown => {
 		const slug = isRecord(edge) && typeof edge.slug === "string" ? edge.slug : undefined;
-		const next = slug ? rewriteMap.get(slug) : undefined;
-		if (next) hits.set(slug as string, (hits.get(slug as string) ?? 0) + 1);
-		return next ? { ...(edge as Record<string, unknown>), slug: next } : edge;
+		const target = slug ? rewriteMap.get(slug) : undefined;
+		if (!target) return edge;
+		hits.set(slug as string, (hits.get(slug as string) ?? 0) + 1);
+		const nextSlug = typeof target === "string" ? target : target.slug;
+		const nextQid = typeof target === "string" ? undefined : target.qid;
+		const record = edge as Record<string, unknown>;
+		const qidChanged = nextQid !== undefined && typeof record.qid === "string" && record.qid !== nextQid;
+		if (qidChanged) qidFixes.set(slug as string, (qidFixes.get(slug as string) ?? 0) + 1);
+		return { ...record, slug: nextSlug, ...(qidChanged ? { qid: nextQid } : {}) };
 	};
 
 	const next: Record<string, unknown> = { ...node };
@@ -198,7 +219,7 @@ export function rewriteNodeEdges(
 		next[field] = isRecord(rewritten) && rewritten.slug === ownSlug ? undefined : rewritten;
 	}
 
-	return { node: next, hits };
+	return { node: next, hits, qidFixes };
 }
 
 // --- Redirect table (pure) ---
@@ -231,21 +252,29 @@ export function mergeRedirects(
 	return flattened;
 }
 
-/** Rewrites pending-reverses.json the same way: keys and edge.slug values alike. */
+/** Rewrites pending-reverses.json the same way: keys and edge.slug values alike, plus the
+ * same denormalized-qid correction as rewriteNodeEdges (see RewriteTarget) when the target
+ * carries a qid. */
 export function rewritePendingReverses(
 	pending: Readonly<Record<string, PendingReverse[]>>,
-	rewriteMap: ReadonlyMap<string, string>,
+	rewriteMap: ReadonlyMap<string, RewriteTarget>,
 ): { result: Record<string, PendingReverse[]>; changed: boolean } {
 	const result: Record<string, PendingReverse[]> = {};
 	let changed = false;
 	for (const [key, list] of Object.entries(pending)) {
-		const canonicalKey = rewriteMap.get(key) ?? key;
+		const keyTarget = rewriteMap.get(key);
+		const canonicalKey = keyTarget ? (typeof keyTarget === "string" ? keyTarget : keyTarget.slug) : key;
 		if (canonicalKey !== key) changed = true;
 		const rewrittenList = list.map((pr) => {
 			const target = rewriteMap.get(pr.edge.slug);
 			if (!target) return pr;
 			changed = true;
-			return { ...pr, edge: { ...pr.edge, slug: target as PendingReverse["edge"]["slug"] } };
+			const nextSlug = (typeof target === "string" ? target : target.slug) as PendingReverse["edge"]["slug"];
+			const nextQid = typeof target === "string" ? undefined : target.qid;
+			const edgeRecord = pr.edge as unknown as Record<string, unknown>;
+			const qidChanged =
+				nextQid !== undefined && typeof edgeRecord.qid === "string" && edgeRecord.qid !== nextQid;
+			return { ...pr, edge: { ...pr.edge, slug: nextSlug, ...(qidChanged ? { qid: nextQid } : {}) } };
 		});
 		result[canonicalKey] = [...(result[canonicalKey] ?? []), ...rewrittenList];
 	}
@@ -283,7 +312,9 @@ export async function readCacheNodes(
 	return { nodes, invalid };
 }
 
-function defaultDataDir(): string {
+// Exported (2026-09-10, TRA-35): shared with the rename migration, which lives in this same
+// directory, so the relative resolution below is correct for it too.
+export function defaultDataDir(): string {
 	return join(dirname(fileURLToPath(import.meta.url)), "..", "..", "data");
 }
 
@@ -319,7 +350,8 @@ export async function loadOnboardingGenreSlugs(webIndexPath?: string): Promise<s
 	return slugs;
 }
 
-async function readTextOrDefault(path: string, fallback: string): Promise<string> {
+// Exported (2026-09-10, TRA-35): reused verbatim by the rename migration for pending-reverses.json.
+export async function readTextOrDefault(path: string, fallback: string): Promise<string> {
 	try {
 		return await readFile(path, "utf8");
 	} catch (e) {
