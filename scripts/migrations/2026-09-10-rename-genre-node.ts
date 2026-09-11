@@ -22,6 +22,9 @@
  * Deployment (same procedure as TRA-42): also run this against the server's cache (stop the
  * server first, restart after -- the redirects table is memoized per-process), merging the
  * repo's and the server's redirects tables (append-only, chains flattened) if they diverge.
+ * This rename itself doesn't need the QID backfill (it matches by explicit slug, not QID) --
+ * but see 2026-09-04-merge-genre-duplicates.ts's header (TRA-48) for that prerequisite when
+ * the duplicate merge runs in the same server window.
  *
  * Usage: tsx scripts/migrations/2026-09-10-rename-genre-node.ts <cache-dir> <from> <to>
  *        [--apply] [--redirects <path>]

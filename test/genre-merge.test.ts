@@ -120,6 +120,46 @@ describe("electCanonical", () => {
 		expect(electCanonical(tied, undefined).winner.slug).toBe("genre:aaa");
 		expect(electCanonical([...tied].reverse(), undefined).winner.slug).toBe("genre:aaa");
 	});
+
+	// TRA-48: an existing redirect between two members wins outright, even against usages.
+	it("criterion 0: an existing redirect to a group member wins even though usages favor the other member", () => {
+		const members: ElectionCandidate[] = [
+			{ slug: "genre:minimal", name: "Minimal", usages: 40 },
+			{ slug: "genre:minimal-music", name: "Minimal music", usages: 2 },
+		];
+		const redirects = new Map([["genre:minimal", "genre:minimal-music"]]);
+		const result = electCanonical(members, undefined, redirects);
+		expect(result.winner.slug).toBe("genre:minimal-music");
+		expect(result.criterion).toBe("existing-redirect");
+		expect(result.losers).toEqual([members[0]]);
+	});
+
+	// Empty/absent table (default parameter): every pre-TRA-48 call site, this module's own
+	// tests included, keeps behaving exactly as before.
+	it("an empty (or absent) redirects table changes nothing -- usage-count still decides", () => {
+		const members: ElectionCandidate[] = [
+			{ slug: "genre:electronic", name: "Electronic", usages: 179 },
+			{ slug: "genre:electronic-music", name: "Electronic music", usages: 61 },
+		];
+		expect(electCanonical(members, undefined, new Map()).criterion).toBe("usage-count");
+		expect(electCanonical(members, undefined).winner.slug).toBe("genre:electronic");
+	});
+
+	it("throws an invariant error naming the conflicting targets when a group has two distinct existing-redirect targets", () => {
+		const members: ElectionCandidate[] = [
+			{ slug: "genre:a", name: "A", usages: 1 },
+			{ slug: "genre:b", name: "B", usages: 1 },
+			{ slug: "genre:c", name: "C", usages: 1 },
+			{ slug: "genre:d", name: "D", usages: 1 },
+		];
+		const redirects = new Map([
+			["genre:a", "genre:b"],
+			["genre:c", "genre:d"],
+		]);
+		expect(() => electCanonical(members, undefined, redirects)).toThrow(
+			/conflicting existing-redirect targets/,
+		);
+	});
 });
 
 describe("unionListField", () => {
@@ -472,11 +512,14 @@ describe("runMigration (disk integration)", () => {
 	});
 
 	it("invariant: a corrupted existing redirects table (fails parseGenreRedirects) exits 1 without writing", async () => {
-		// Pre-seeded cycle: "electronic" -> "electronic-music", combined with this run's own
-		// "electronic-music" -> "electronic" (electronic wins, see seedElectronicGroup).
+		// A table that already violates the flatten invariant on its own (a value that is also
+		// a key) fails at load time, unrelated to any group's own election. (TRA-48: the old
+		// fixture here seeded a redirect directly between the seeded group's own members,
+		// expecting it to combine into a cycle -- the existing-redirect criterion now makes
+		// election converge to such a table instead, so it no longer reproduces this failure.)
 		await writeFile(
 			redirectsPath,
-			JSON.stringify({ redirects: { "genre:electronic": "genre:electronic-music" } }),
+			JSON.stringify({ redirects: { "genre:foo": "genre:bar", "genre:bar": "genre:baz" } }),
 			"utf8",
 		);
 		const { loserPath } = await seedElectronicGroup();
@@ -485,6 +528,58 @@ describe("runMigration (disk integration)", () => {
 
 		expect(result.exitCode).toBe(1);
 		await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+	});
+
+	it("TRA-48: an existing redirect converges the election on --apply, and leaves the table unchanged", async () => {
+		// The prod regression, reproduced: "electronic" has the higher usage count (2 vs. 1),
+		// but the table already redirects it to "electronic-music" -- apply must elect
+		// "electronic-music", delete "electronic", and add no new redirect entry.
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic": "genre:electronic-music" } }),
+			"utf8",
+		);
+		const { loserPath: survivorPath } = await seedElectronicGroup();
+		const nowDeletedPath = join(dir, "nodes", "genre", "electronic.json");
+
+		// "genre:electronic" is a real ONBOARDING_GENRES entry -- irrelevant here, so pass an
+		// empty list rather than trip that unrelated invariant now that it's the one deleted.
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath, onboardingSlugs: [] });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.report).toContain("winner=genre:electronic-music");
+		expect(result.report).toContain("criterion=existing-redirect");
+		await expect(readFile(nowDeletedPath, "utf8")).rejects.toThrow();
+		await expect(readFile(survivorPath, "utf8")).resolves.toBeTruthy();
+
+		const after = JSON.parse(await readFile(redirectsPath, "utf8")) as { redirects: Record<string, string> };
+		expect(after.redirects).toEqual({ "genre:electronic": "genre:electronic-music" });
+		const counts = result.report.match(/Redirects \(new\/total\):\s*(\d+)\/(\d+)/);
+		expect(counts?.slice(1)).toEqual(["1", "1"]);
+	});
+
+	it("invariant: two distinct existing-redirect targets in one group exits 1 without writing anything", async () => {
+		for (const slug of ["genre:a", "genre:b", "genre:c", "genre:d"] as const) {
+			await writeNodeFile(genreNode({ slug, name: slug, qid: "Q99" }));
+		}
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:a": "genre:b", "genre:c": "genre:d" } }),
+			"utf8",
+		);
+		const before = new Map<string, string>();
+		for (const slug of ["a", "b", "c", "d"]) {
+			before.set(slug, await readFile(join(dir, "nodes", "genre", `${slug}.json`), "utf8"));
+		}
+		const redirectsBefore = await readFile(redirectsPath, "utf8");
+
+		const result = await runMigration(dir, true, { catalogNames: new Map(), redirectsPath });
+
+		expect(result.exitCode).toBe(1);
+		for (const slug of ["a", "b", "c", "d"]) {
+			expect(await readFile(join(dir, "nodes", "genre", `${slug}.json`), "utf8")).toBe(before.get(slug));
+		}
+		expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
 	});
 
 	it("invariant: a truncated pending-reverses.json exits 1 without writing anything (crash-safety)", async () => {

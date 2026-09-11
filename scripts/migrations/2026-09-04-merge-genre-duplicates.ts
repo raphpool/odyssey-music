@@ -12,6 +12,11 @@
  * redirects table are memoized per-process). data/genre-redirects.json must be committed;
  * merge the repo's and the server's tables (append-only, chains flattened) if they differ.
  *
+ * PREREQUISITE (TRA-42/TRA-48): run `npm run migrate:genre-qid -- cache --apply` (QID
+ * backfill) on that same cache first. A node without a `qid` never joins a duplicate group,
+ * so a cache that hasn't been backfilled yet reports "nothing to merge" -- indistinguishable
+ * from a genuinely already-merged cache -- while still hiding real duplicates.
+ *
  * Usage: tsx scripts/migrations/2026-09-04-merge-genre-duplicates.ts <cache-dir> [--apply]
  *        [--redirects <path>]
  */
@@ -46,7 +51,12 @@ function compareLex(a: string, b: string): number {
 
 // --- Election (pure) ---
 
-export type ElectionCriterion = "usage-count" | "catalog-name" | "slug-length" | "slug-lex-order";
+export type ElectionCriterion =
+	| "existing-redirect"
+	| "usage-count"
+	| "catalog-name"
+	| "slug-length"
+	| "slug-lex-order";
 
 export interface ElectionCandidate {
 	slug: string;
@@ -61,17 +71,46 @@ export interface ElectionResult {
 }
 
 /**
- * Elects the canonical member of a QID group: most incoming usages wins outright; at a tie,
- * the node whose name matches the Wikidata catalog name for the QID; else shortest slug;
+ * Elects the canonical member of a QID group: an existing redirect between two members of
+ * the group wins outright (see criterion 0 below); otherwise most incoming usages wins; at a
+ * tie, the node whose name matches the Wikidata catalog name for the QID; else shortest slug;
  * else lexicographic order. Order-independent -- the same group, in any order, always
- * elects the same winner. Usages first (2026-09-10, reversed from catalog-name-first): see
- * the header comment for why.
+ * elects the same winner. Usages first among the remaining criteria (2026-09-10, reversed
+ * from catalog-name-first): see the header comment for why.
+ *
+ * `existingRedirects` defaults to empty so every prior caller (this module's own tests
+ * included) keeps behaving exactly as before.
  */
 export function electCanonical(
 	members: readonly ElectionCandidate[],
 	catalogName: string | undefined,
+	existingRedirects: ReadonlyMap<string, string> = new Map(),
 ): ElectionResult {
 	if (members.length === 0) throw new Error("electCanonical: empty group");
+
+	// Criterion 0 (2026-09-11, TRA-48): prod elected genre:minimal while the repo's
+	// already-shipped table said genre:minimal -> genre:minimal-music (elected there) --
+	// two caches, two elections, then a "redirect cycle detected" refusal on the next merge.
+	// The table records a decision already taken elsewhere; election must converge to it.
+	const memberSlugs = new Set(members.map((m) => m.slug));
+	const existingTargets = new Set<string>();
+	for (const member of members) {
+		const target = existingRedirects.get(member.slug);
+		if (target !== undefined && memberSlugs.has(target)) existingTargets.add(target);
+	}
+	if (existingTargets.size > 1) {
+		// Defensive: a flattened table can never store two distinct targets for members of
+		// the same group, but a corrupted or hand-edited one could -- fail loudly.
+		const targets = [...existingTargets].sort().join(", ");
+		throw new Error(
+			`electCanonical: group has ${existingTargets.size} conflicting existing-redirect targets (${targets})`,
+		);
+	}
+	if (existingTargets.size === 1) {
+		const targetSlug = [...existingTargets][0] as string;
+		const winner = members.find((m) => m.slug === targetSlug) as ElectionCandidate;
+		return { winner, losers: members.filter((m) => m.slug !== targetSlug), criterion: "existing-redirect" };
+	}
 
 	const maxUsage = Math.max(...members.map((m) => m.usages));
 	const byUsage = members.filter((m) => m.usages === maxUsage);
@@ -447,6 +486,20 @@ export async function runMigration(
 		};
 	}
 
+	// Loaded up front (TRA-48): electCanonical's existing-redirect criterion needs the table
+	// during election, and the final validation below (mergeRedirects + re-parse) reuses this
+	// same loaded value instead of reading the file twice. A load failure here doesn't abort
+	// immediately -- the plan still builds (so the report reflects it) -- but it always ends
+	// in `errors` below, so the migration exits 1 without writing, same as before.
+	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "genre-redirects.json");
+	const errors: string[] = [];
+	let existingRedirects: ReadonlyMap<string, string> = new Map();
+	try {
+		existingRedirects = await loadGenreRedirects(redirectsPath);
+	} catch (e) {
+		errors.push(`existing redirects table failed to load: ${e instanceof Error ? e.message : String(e)}`);
+	}
+
 	// --- Plan (in memory, nothing written yet): elect, union, then rewrite every kept node.
 	const bySlug = new Map(nodes.map((f) => [f.slug, f]));
 	const rewriteMap = new Map<string, string>();
@@ -456,7 +509,15 @@ export async function runMigration(
 
 	for (const group of duplicateGroups) {
 		const candidates = group.members.map((m) => ({ slug: m.slug, name: m.name, usages: m.usages }));
-		const result = electCanonical(candidates, catalogNames.get(group.qid));
+		let result: ElectionResult;
+		try {
+			result = electCanonical(candidates, catalogNames.get(group.qid), existingRedirects);
+		} catch (e) {
+			// Defensive invariant (see electCanonical's own comment): named by QID so the
+			// operator knows which group to look at, exit 1 without writing anything.
+			errors.push(`group ${group.qid}: ${e instanceof Error ? e.message : String(e)}`);
+			continue;
+		}
 		elections.push({ group, result });
 
 		const winnerFile = bySlug.get(result.winner.slug);
@@ -507,7 +568,6 @@ export async function runMigration(
 	const deletePaths = [...loserSlugs].map((slug) => (bySlug.get(slug) as CacheNodeFile).path);
 
 	// --- Verify invariants in memory before writing anything -- fail loudly, never half-merged.
-	const errors: string[] = [];
 	const remainingGroups = buildDuplicateReport(resultNodes).groups.length;
 	if (remainingGroups > 0) errors.push(`${remainingGroups} duplicate group(s) still share a QID after merge`);
 	for (const node of resultNodes) {
@@ -530,11 +590,10 @@ export async function runMigration(
 	}
 
 	// A corrupted redirects table or a truncated pending-reverses.json must fail here,
-	// before any write -- not after losers are already gone from disk.
-	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "genre-redirects.json");
+	// before any write -- not after losers are already gone from disk. `existingRedirects`
+	// is the same value loaded up front, above, for electCanonical.
 	let mergedRedirects: Record<string, string> = {};
 	try {
-		const existingRedirects = await loadGenreRedirects(redirectsPath);
 		mergedRedirects = mergeRedirects(Object.fromEntries(existingRedirects), Object.fromEntries(rewriteMap));
 		parseGenreRedirects({ redirects: mergedRedirects }); // re-validates the flattening invariant
 	} catch (e) {
