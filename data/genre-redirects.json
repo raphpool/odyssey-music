@@ -1,11 +1,12 @@
 {
   "source": "genre node rename",
-  "generated_at": "2026-09-11T08:32:42.709Z",
+  "generated_at": "2026-09-11T13:33:03.384Z",
   "redirects": {
     "genre:ambient-music": "genre:ambient",
     "genre:avant-garde-music": "genre:avant-garde",
     "genre:classical-music": "genre:classical",
     "genre:contemporary-classical-music": "genre:contemporary-classical",
+    "genre:country-music": "genre:country",
     "genre:drone-music": "genre:drone",
     "genre:dub-music": "genre:dub",
     "genre:electroacoustic": "genre:electroacoustic-music",

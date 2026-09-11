@@ -262,10 +262,18 @@ TRA-24 à 30, 32 à 34, 36, 37, 43, 45 mergés ; la gate TRA-31 est verte 6/6 su
 par TRA-43 (décision 12). **Partie 5 : tout est mergé** — fusion exécutée sur le
 cache du dépôt (TRA-22, 41, 44, 42-repo, 23, 38, 39) et renommage
 `genre:trap → genre:edm-trap` exécuté sur le cache du dépôt (TRA-46, 35, 47).
-Il reste : (a) la **fenêtre serveur** de TRA-42, à exécuter à la main par
-Raphaël, qui enchaîne désormais fusion puis renommage (procédure détaillée au
-ticket TRA-42 ci-dessous) ; (b) TRA-40 (nettoyage, trois lots, `tier/1`, au
-rythme hebdomadaire).
+**Fenêtre serveur exécutée le 2026-09-11 (après-midi)** par l'agent serveur :
+le cache de prod ne portait aucun `qid` (le backfill TRA-21 n'avait été joué que
+sur le dépôt) → backfill appliqué d'abord (260/278 nœuds, 96,7 % des arêtes),
+puis fusion (21 groupes, 278 → 257 nœuds genre, 0 groupe résiduel) et renommage
+(1 nœud, 12 arêtes, 10 qids corrigés). Un groupe prod-only (`country-music` →
+`country`) a produit une 22ᵉ redirection, rapatriée dans `data/genre-redirects.json` ;
+le groupe `minimal` avait élu l'inverse de la table livrée, ce qui a motivé
+TRA-48 (une redirection existante entre membres gagne l'élection) avant reprise.
+Les trois vérifications HTTP passent, consignées dans TRA-42.
+Il reste : (a) déployer le front depuis `main` (`scripts/deploy-web.sh`) pour
+régénérer `web/data.json` avec le champ `redirects` ; (b) TRA-40 (nettoyage,
+trois lots, `tier/1`, au rythme hebdomadaire).
 
 ### Partie 1 — Résolveur d'identité (aucun comportement modifié)
 
@@ -600,11 +608,13 @@ de la précédente.
 - [x] Un `qid` committé sur un nœud genre survit à une rematérialisation dont le
       résolveur donnerait un autre QID ; le désaccord est loggé (TRA-32,
       décision 10).
-- [ ] **Fusion et renommage déployés sur le cache serveur** (fenêtre serveur de
-      TRA-42) : les trois vérifications HTTP passent — `GET /node/genre:electronic-music`
+- [x] **Fusion et renommage déployés sur le cache serveur** (fenêtre serveur de
+      TRA-42, 2026-09-11) : les trois vérifications HTTP passent — `GET /node/genre:electronic-music`
       → `genre:electronic` avec `redirected_from`, `GET /node/genre:trap` →
       `genre:edm-trap`, `POST /materialize {"type":"genre","name":"Electronic
       music"}` → canonique en `source: "cache"` — et sont consignées dans Linear.
+      Prérequis découvert en prod : le backfill des QIDs doit précéder la fusion
+      (note ajoutée en tête des deux scripts, TRA-48).
 - [ ] Un rapport de couverture reproductible par une commande, qui liste les
       non-résolus par fréquence — c'est la file de curation d'alias.
 - [x] `npm run check` vert, et **aucun changement visible dans l'UI** à l'issue de
