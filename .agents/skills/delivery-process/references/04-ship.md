@@ -7,15 +7,15 @@ adapté aux tâches mécaniques ; aucun modèle spécifique n'est imposé ici.
 ## Merge
 | Tier | Condition | Commande |
 |---|---|---|
-| tier/1 | CI + `review` verts | auto-merge posé à la création de la PR |
-| tier/2 | CI + `review` verts | auto-merge, Raphael notifié |
-| tier/3 | CI + `review` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
+| tier/1 | CI + `review-gate` verts | auto-merge posé à la création de la PR |
+| tier/2 | CI + `review-gate` verts | auto-merge, Raphael notifié |
+| tier/3 | CI + `review-gate` + review profonde Sol/high + OK humain | `gh pr merge --squash` manuel |
 
 Branch protection sur `main` (déjà configurée) : checks requis `typecheck`,
 `lint`, `test`, `diff-size` — GitHub publie les contextes sous le nom du job,
-sans préfixe `ci /`. Pas de `build` : ce repo n'a rien à compiler. `review`
-(le job de `ai-review`) s'ajoute aux checks requis une fois le secret
-`CLAUDE_CODE_OAUTH_TOKEN` posé, sinon il échoue et bloque toutes les PR.
+sans préfixe `ci /`. Pas de `build` : ce repo n'a rien à compiler.
+`review-gate` s'ajoute aux checks requis. Il valide le SHA dès que Claude ou
+Codex réussit, et bloque si Codex échoue ou si aucun fournisseur ne répond.
 Historique linéaire, pas de merge commit, suppression de branche automatique.
 
 ## Après la merge

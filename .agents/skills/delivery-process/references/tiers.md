@@ -6,14 +6,14 @@ et ne peut être **abaissé** que par Raphael, jamais par un agent.
 ## tier/1 — auto-merge
 Copy, contenu, styles isolés, ajout de test, doc, dépendance patch,
 composant purement présentationnel sans état.
-- Gates : CI verte + review IA sans finding bloquant
+- Gates : CI verte + `review-gate` vert
 - Merge : automatique (`gh pr merge --auto --squash`)
 - Review humaine : non
 
 ## tier/2 — merge après review IA, coup d'œil humain
 Nouveau composant avec état, endpoint sans effet de bord irréversible,
 refacto couvert par des tests existants, changement de logique métier local.
-- Gates : CI verte + review IA sans finding bloquant
+- Gates : CI verte + `review-gate` vert
 - Merge : automatique, mais Raphael est notifié et peut revert
 - Review humaine : lecture du résumé de PR, pas du diff ligne à ligne
 
@@ -21,7 +21,7 @@ refacto couvert par des tests existants, changement de logique métier local.
 Auth, paiement, données personnelles, migration de schéma, suppression de
 données, changement de contrat d'API public, config CI/CD, secrets,
 dépendance majeure, tout ce qui touche `infra/`.
-- Gates : CI verte + review IA + review profonde Sol/high + relecture humaine du diff
+- Gates : CI verte + `review-gate` + review profonde Sol/high + relecture humaine du diff
 - Merge : manuel, jamais d'auto-merge
 - Une PR tier/3 ne dépasse pas 200 lignes de diff. Sinon on découpe.
 

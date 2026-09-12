@@ -1,0 +1,58 @@
+name: review-gate
+
+on:
+  pull_request:
+    types: [ready_for_review, synchronize, reopened]
+
+concurrency:
+  group: review-gate-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review-gate:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      checks: read
+      statuses: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: ${{ github.repository }}
+      SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - name: Wait for one review provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 24); do
+            claude_info=$(gh api "repos/$REPOSITORY/commits/$SHA/check-runs?check_name=review&filter=all&per_page=100" \
+              --jq '[.check_runs[] | select(.name == "review")] | sort_by(.started_at) | last // {} | [(.id // 0), (.conclusion // "missing")] | @tsv')
+            IFS=$'\t' read -r claude_id claude <<< "$claude_info"
+            claude_blocking=false
+            if [ "$claude" = "failure" ] && [ "$claude_id" != "0" ]; then
+              claude_blocking=$(gh api "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100" \
+                --jq 'any(.[]; .message == "Findings bloquants — voir les commentaires inline.")')
+            fi
+            codex=$(gh api "repos/$REPOSITORY/commits/$SHA/status" \
+              --jq '[.statuses[] | select(.context == "codex-review")] | first | .state // "missing"')
+            if [ "$codex" = "failure" ]; then
+              decision=block
+            elif [ "$claude_blocking" = "true" ]; then
+              decision=block
+            elif [ "$claude" = "success" ]; then
+              decision=pass
+            elif [ "$claude" != "missing" ] && [ "$codex" = "success" ]; then
+              decision=pass
+            else
+              decision=wait
+            fi
+            echo "attempt=$attempt claude=$claude codex-review=$codex decision=$decision"
+            case "$decision" in
+              pass) exit 0 ;;
+              block) echo "::error::Un fournisseur de review a détecté des findings bloquants."; exit 1 ;;
+            esac
+            sleep 15
+          done
+          echo "::error::Aucun fournisseur de review n'a validé ce SHA avant le délai."
+          exit 1
