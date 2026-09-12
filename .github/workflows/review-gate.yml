@@ -6,7 +6,7 @@ name: review-gate-relay
 on:
   workflow_run:
     workflows: [ai-review]
-    types: [completed]
+    types: [in_progress, completed]
 
 permissions:
   contents: read
@@ -14,11 +14,12 @@ permissions:
 
 jobs:
   relay-claude-review:
-    # Un échec peut être un finding ou une panne de quota. Il ne publie rien :
+    # Un nouveau run invalide tout succès antérieur. Un échec reste pending :
     # la CI locale le qualifie avant d'autoriser éventuellement le fallback.
     if: >-
       github.event.workflow_run.event == 'pull_request' &&
-      github.event.workflow_run.conclusion == 'success'
+      (github.event.action == 'in_progress' ||
+      github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     steps:
       - name: Publier le verdict Claude dans review-gate
@@ -26,12 +27,13 @@ jobs:
         with:
           script: |
             const run = context.payload.workflow_run;
+            const reviewing = context.payload.action === "in_progress";
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
               sha: run.head_sha,
-              state: "success",
+              state: reviewing ? "pending" : "success",
               context: "review-gate",
-              description: "Review Claude validée",
+              description: reviewing ? "Review Claude en cours" : "Review Claude validée",
               target_url: run.html_url,
             });
