@@ -20,6 +20,9 @@ Workflow `.github/workflows/ai-review.yml`, déclenché sur
 `ready_for_review` et `synchronize`. Modèle Opus, effort xhigh, lecture seule.
 Cette CI Claude est indépendante du reviewer local Sol/high. Le nom du check
 GitHub est `review`.
+Le fallback local publie séparément `codex-review` après une review Sol/high ;
+il ne remplace ni ne modifie ce workflow. Le gate neutre de TRA-53 arbitrera
+ensuite les deux fournisseurs.
 Il produit :
 - des commentaires inline sur les lignes concernées,
 - un fichier `review.json` `{ verdict: "pass" | "block", findings: [...] }`,
