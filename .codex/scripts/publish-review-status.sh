@@ -41,4 +41,13 @@ gh api --method POST "repos/$repo/statuses/$reviewed_sha" \
 	-f context="codex-review" \
 	-f description="$description" \
 	-f target_url="$target_url" >/dev/null
+run_info="$(gh run list --commit "$reviewed_sha" --event pull_request --limit 100 \
+	--json databaseId,name,status,conclusion,headSha \
+	--jq 'map(select(.name == "review-gate")) | .[0] | select(.headSha != null) | [.databaseId, .status, .conclusion, .headSha] | @tsv')"
+if [ -n "$run_info" ]; then
+	IFS=$'\t' read -r run_id run_status run_conclusion run_sha <<< "$run_info"
+	if [ "$run_sha" = "$reviewed_sha" ] && [ "$run_status" = "completed" ] && [ "$run_conclusion" != "success" ]; then
+		gh run rerun "$run_id" >/dev/null
+	fi
+fi
 printf 'codex-review=%s pour %s (%s)\n' "$state" "$reviewed_sha" "$target_url"
