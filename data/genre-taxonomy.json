@@ -708,6 +708,75 @@
 			"name": "Deck",
 			"family": "new-club",
 			"published": false
+		},
+		{
+			"id": "Q96376113",
+			"name": "Deconstructed Club",
+			"family": "new-club",
+			"qid": "Q96376113",
+			"sourceSlugs": ["genre:deconstructed-club"],
+			"published": false
+		},
+		{
+			"id": "local:electro-acholi",
+			"name": "Electro Acholi",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q5466607",
+			"name": "Footwork",
+			"family": "new-club",
+			"qid": "Q5466607",
+			"published": false
+		},
+		{
+			"id": "local:forro-piseiro",
+			"name": "Forró Piseiro",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q122034475",
+			"name": "Gengetone",
+			"family": "new-club",
+			"qid": "Q122034475",
+			"published": false
+		},
+		{
+			"id": "Q29973057",
+			"name": "Gqom",
+			"family": "new-club",
+			"qid": "Q29973057",
+			"published": false
+		},
+		{
+			"id": "Q104695865",
+			"name": "Hyperpop",
+			"family": "new-club",
+			"qid": "Q104695865",
+			"published": false
+		},
+		{
+			"id": "Q4965901",
+			"name": "Jersey Club",
+			"family": "new-club",
+			"qid": "Q4965901",
+			"published": false
+		},
+		{
+			"id": "Q1191544",
+			"name": "Kuduro",
+			"family": "new-club",
+			"qid": "Q1191544",
+			"published": false
+		},
+		{
+			"id": "Q956717",
+			"name": "Kwaito",
+			"family": "new-club",
+			"qid": "Q956717",
+			"published": false
 		}
 	]
 }
