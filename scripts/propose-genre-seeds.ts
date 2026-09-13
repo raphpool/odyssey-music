@@ -2,9 +2,8 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
 
-import type { GenreCoverageReport } from "../src/genre-coverage.js";
-import { type ProposalCandidates, proposeGenreSeedsFromMusicBrainz } from "../src/genre-seed-proposals.js";
-import { type GenreTaxonomy, GenreTaxonomySchema } from "../src/genre-taxonomy.js";
+import { proposeGenreSeedsFromMusicBrainz } from "../src/genre-seed-proposals.js";
+import { GenreTaxonomySchema } from "../src/genre-taxonomy.js";
 import type { Slug } from "../src/types.js";
 
 const sourceSlugSchema = z
@@ -62,15 +61,6 @@ function errorMessage(error: unknown): string {
 	return error instanceof Error ? error.message : String(error);
 }
 
-function parseInput(value: unknown): {
-	taxonomy: GenreTaxonomy;
-	coverage: GenreCoverageReport;
-	candidates: Record<string, ProposalCandidates>;
-	trustedHosts: string[];
-} {
-	return inputSchema.parse(value);
-}
-
 export async function main(
 	args = process.argv.slice(2),
 	output: CliOutput = { stdout: process.stdout, stderr: process.stderr },
@@ -92,7 +82,7 @@ export async function main(
 		return 2;
 	}
 	try {
-		const input = parseInput(parsed.data);
+		const input = parsed.data;
 		const report = await proposeGenreSeedsFromMusicBrainz(input.taxonomy, input.coverage, input.candidates, {
 			trustedHosts: input.trustedHosts,
 		});

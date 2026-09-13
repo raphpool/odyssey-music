@@ -399,9 +399,13 @@ export async function resolveMusicBrainzCandidates(
 		candidates.map(async (candidate) => {
 			if (candidate.homonym) return candidate;
 			try {
-				const hit = (await catalog.searchByType(candidate.type, candidate.name, 8))
+				const matches = (await catalog.searchByType(candidate.type, candidate.name, 8))
 					.map((result) => matchingCatalogResult(candidate, result))
-					.find((result) => result !== undefined);
+					.filter((result): result is CatalogResult => result !== undefined);
+				if (matches.length === 0) return { ...candidate, resolutionError: "MusicBrainz identity unresolved" };
+				if (new Set(matches.map(({ mbid }) => mbid.toLowerCase())).size !== 1)
+					return { ...candidate, resolutionError: "MusicBrainz identity ambiguous" };
+				const hit = matches[0];
 				if (!hit) return { ...candidate, resolutionError: "MusicBrainz identity unresolved" };
 				const proof = musicBrainzProof(hit);
 				return {

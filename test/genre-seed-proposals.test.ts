@@ -306,4 +306,19 @@ describe("TRA-218 MusicBrainz identity resolution", () => {
 		expect(unavailable?.resolutionError).toMatch(/unresolved/i);
 		expect(fetch).toHaveBeenCalledTimes(3);
 	});
+
+	it("rejects same-name MusicBrainz results with distinct MBIDs as unresolved homonyms", async () => {
+		vi.stubGlobal("fetch", async () =>
+			musicBrainzResponse({
+				artists: [
+					{ id: "550e8400-e29b-41d4-a716-446655440000", name: "Duplicate Artist" },
+					{ id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8", name: "Duplicate Artist" },
+				],
+			}),
+		);
+		const [candidate] = await resolveMusicBrainzCandidates([
+			{ type: "artist", name: "Duplicate Artist", slug: "artist:duplicate-artist", proofs: [] },
+		]);
+		expect(candidate?.resolutionError).toBe("MusicBrainz identity ambiguous");
+	});
 });
