@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
+import type { CrawlOptions } from "../src/crawler.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
 import type { GenreNode, Slug } from "../src/types.js";
 import { artistDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
@@ -18,9 +19,28 @@ async function loadCrawl() {
 	return await import("../src/crawler.js");
 }
 
+async function loadCli() {
+	return await import("../src/cli.js");
+}
+
 const ELECTRONIC_MBID = "89255676-1f14-4dd8-bbad-fca839d6aff4";
 const ELECTRONIC_QID = "Q9778";
 const TIMEOUT_MS = 5_000;
+
+function cliSeeds(): GenreSeeds {
+	return {
+		Q1: {
+			genre: { slug: "genre:q1", name: "Q1", qid: "Q1" },
+			anchors: [],
+			targets: [],
+		},
+		Q2: {
+			genre: { slug: "genre:q2", name: "Q2", qid: "Q2" },
+			anchors: [],
+			targets: [],
+		},
+	};
+}
 
 function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
 	return {
@@ -165,5 +185,66 @@ describe("crawlGenreSeeds() (TRA-61)", () => {
 		expect(result.refused).toBe(1);
 		expect(logs.some((line) => line.includes("skip cached genre genre:Trap Hip-Hop"))).toBe(true);
 		expect(await cache.has("genre:trap-hip-hop")).toBe(false);
+	});
+});
+
+describe("CLI genre seed mode (TRA-62)", () => {
+	it("requires one family or genre selection and keeps the text mode distinct", async () => {
+		const { program, resolveCliMode, runGenreSeedCrawl, selectGenreSeeds } = await loadCli();
+		const genreSeedsPath = "data/genre-seeds.json";
+		const runCommand = program.commands.find((command) => command.name() === "run");
+		const familyMode = resolveCliMode({ genreSeeds: genreSeedsPath, family: "house-techno" });
+		if (familyMode.kind !== "genre-seeds") throw new Error("expected genre seed mode");
+		const selected = selectGenreSeeds(cliSeeds(), familyMode, {
+			families: [{ key: "house-techno" }],
+			genres: [{ id: "Q1", family: "house-techno" }],
+		});
+
+		expect(familyMode).toEqual({ kind: "genre-seeds", path: genreSeedsPath, family: "house-techno" });
+		expect(Object.keys(selected)).toEqual(["Q1"]);
+		expect(runCommand?.options.map((option) => option.long)).toEqual(
+			expect.arrayContaining(["--genre-seeds", "--genre-id", "--family"]),
+		);
+		expect(runCommand?.options.find((option) => option.long === "--max-nodes")?.mandatory).toBe(true);
+		expect(runCommand?.options.find((option) => option.long === "--out")?.mandatory).toBe(true);
+
+		let received: { options: CrawlOptions; seeds: GenreSeeds } | undefined;
+		await runGenreSeedCrawl(
+			{
+				seed: "genre-seeds",
+				maxDepth: 0,
+				maxNodes: 3,
+				concurrency: 1,
+				out: "cache-output",
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			selected,
+			async (options, seeds) => {
+				received = { options, seeds };
+				return {};
+			},
+		);
+		expect(received).toMatchObject({ options: { maxNodes: 3, out: "cache-output" }, seeds: selected });
+		expect(resolveCliMode({ seed: "artist:Fixture Artist", maxDepth: 2 })).toEqual({
+			kind: "text",
+			seed: "artist:Fixture Artist",
+			maxDepth: 2,
+		});
+	});
+
+	it("rejects missing, conflicting, and text-only selectors before crawler setup", async () => {
+		const { resolveCliMode } = await loadCli();
+		const genreSeedsPath = "data/genre-seeds.json";
+
+		expect(() => resolveCliMode({ genreSeeds: genreSeedsPath })).toThrow(
+			"exactly one of --genre-id or --family",
+		);
+		expect(() =>
+			resolveCliMode({ seed: "artist:Fixture Artist", genreSeeds: genreSeedsPath, genreId: "Q1" }),
+		).toThrow("exclusive of --seed");
+		expect(() =>
+			resolveCliMode({ genreSeeds: genreSeedsPath, genreId: "Q1", family: "house-techno" }),
+		).toThrow("exactly one of --genre-id or --family");
+		expect(() => resolveCliMode({ family: "house-techno" })).toThrow("require --genre-seeds");
 	});
 });
