@@ -13,7 +13,13 @@ const validTaxonomy = {
 		{ key: "avant-garde", label: "Avant-Garde", order: 1, qid: "Q2332751" },
 	],
 	genres: [
-		{ id: "local:shoegaze", name: "Shoegaze", family: "rock", sourceSlugs: ["shoegaze"], published: true },
+		{
+			id: "local:shoegaze",
+			name: "Shoegaze",
+			family: "rock",
+			sourceSlugs: ["genre:shoegaze"],
+			published: true,
+		},
 		{
 			id: "Q123",
 			qid: "Q123",
@@ -24,7 +30,14 @@ const validTaxonomy = {
 		},
 	],
 };
-
+const withFirstGenre = (change: object) => ({
+	genres: [{ ...validTaxonomy.genres[0], ...change }, validTaxonomy.genres[1]],
+});
+const withRockFamily = (change: object) => ({
+	families: validTaxonomy.families.map((family) =>
+		family.key === "rock" ? { ...family, ...change } : family,
+	),
+});
 describe("genre taxonomy v2", () => {
 	it("loads the contract, validates ids and returns fixed ordering", async () => {
 		const directory = await mkdtemp(join(tmpdir(), "genre-taxonomy-"));
@@ -34,49 +47,30 @@ describe("genre taxonomy v2", () => {
 		await expect(loadGenreTaxonomy(path)).resolves.toMatchObject({
 			version: 2,
 			families: [{ key: "avant-garde" }, { key: "rock" }, { key: "jazz" }],
-			genres: [{ name: "Shoegaze" }, { name: "Free Jazz" }],
+			genres: [
+				{ id: "local:shoegaze", name: "Shoegaze" },
+				{ id: "Q123", name: "Free Jazz" },
+			],
 		});
 	});
 
 	it.each([
-		[
-			"duplicate ids",
-			{ genres: [{ ...validTaxonomy.genres[0], id: "Q123", qid: "Q123" }, validTaxonomy.genres[1]] },
-		],
-		["unknown family", { genres: [{ ...validTaxonomy.genres[0], family: "metal" }] }],
+		["duplicate ids", withFirstGenre({ id: "Q123", qid: "Q123" })],
+		["unknown family", withFirstGenre({ family: "metal" })],
 		[
 			"duplicate family order",
 			{ families: validTaxonomy.families.map((family) => ({ ...family, order: 1 })) },
 		],
-		[
-			"ambiguous alias",
-			{ genres: [{ ...validTaxonomy.genres[0], aliases: ["Free Jazz"] }, validTaxonomy.genres[1]] },
-		],
-		[
-			"invalid source slug",
-			{ genres: [{ ...validTaxonomy.genres[0], sourceSlugs: ["Shoegaze"] }, validTaxonomy.genres[1]] },
-		],
+		["ambiguous alias", withFirstGenre({ aliases: ["Free Jazz"] })],
+		["invalid source slug", withFirstGenre({ sourceSlugs: ["shoegaze"] })],
+		["invalid QID", withFirstGenre({ id: "Q0", qid: "Q0" })],
+		["family key does not match label", withRockFamily({ label: "Alternative Rock" })],
+		["invalid family QID", withRockFamily({ qid: "Q1" })],
 		[
 			"family parent used by a child",
-			{
-				families: validTaxonomy.families.map((family) =>
-					family.key === "rock" ? { ...family, qid: undefined } : family,
-				),
-				genres: [{ ...validTaxonomy.genres[0], id: "Q11399", qid: "Q11399" }, validTaxonomy.genres[1]],
-			},
+			{ ...withRockFamily({ qid: undefined }), ...withFirstGenre({ id: "Q11399", qid: "Q11399" }) },
 		],
 	])("rejects %s", (_, change) => {
 		expect(() => validateGenreTaxonomy({ ...validTaxonomy, ...change })).toThrow();
-	});
-
-	it("requires the family QID contract and derives local ids", () => {
-		expect(() =>
-			validateGenreTaxonomy({
-				...validTaxonomy,
-				families: [{ ...validTaxonomy.families[0], qid: "Q1" }, ...validTaxonomy.families.slice(1)],
-			}),
-		).toThrow();
-		expect(validateGenreTaxonomy(validTaxonomy).genres[1]?.id).toBe("Q123");
-		expect(validateGenreTaxonomy(validTaxonomy).genres[0]?.id).toBe("local:shoegaze");
 	});
 });

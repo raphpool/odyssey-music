@@ -1,10 +1,15 @@
 import { readFile } from "node:fs/promises";
 import { z } from "zod";
 
-import { normalizeSlugBody } from "./slug.js";
+import { isValidSlug, normalizeSlugBody, parseSlug } from "./slug.js";
+import { QID_PATTERN, type Slug } from "./types.js";
 
-const qidSchema = z.string().regex(/^Q\d+$/);
+const qidSchema = z.string().regex(QID_PATTERN);
 const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
+const genreSlugSchema = z.custom<Slug>(
+	(value) => typeof value === "string" && isValidSlug(value) && parseSlug(value).type === "genre",
+	{ message: "Expected a complete genre slug" },
+);
 
 export const GenreFamilySchema = z.object({
 	key: slugSchema,
@@ -19,7 +24,7 @@ export const GenreTaxonomyEntrySchema = z.object({
 	name: z.string().trim().min(1),
 	family: slugSchema,
 	aliases: z.array(z.string().trim().min(1)).optional(),
-	sourceSlugs: z.array(slugSchema).optional(),
+	sourceSlugs: z.array(genreSlugSchema).optional(),
 	published: z.boolean(),
 });
 
@@ -70,6 +75,9 @@ function assertTaxonomyInvariants(taxonomy: GenreTaxonomy): GenreTaxonomy {
 	assertUnique([...familyQids, ...genreQids], "Genre and family QIDs must be unique");
 
 	for (const family of taxonomy.families) {
+		if (family.key !== normalizeSlugBody(family.label)) {
+			throw new Error(`Genre family key does not match its label: ${family.key}`);
+		}
 		const expectedQid = FAMILY_QIDS.get(family.key);
 		if (family.qid !== undefined && family.qid !== expectedQid) {
 			throw new Error(`Unexpected QID for genre family ${family.key}`);
@@ -110,7 +118,7 @@ export function validateGenreTaxonomy(input: unknown): GenreTaxonomy {
 	return assertTaxonomyInvariants(GenreTaxonomySchema.parse(input));
 }
 
-export async function loadGenreTaxonomy(path = "cache/genre-taxonomy.v2.json"): Promise<GenreTaxonomy> {
+export async function loadGenreTaxonomy(path = "data/genre-taxonomy.json"): Promise<GenreTaxonomy> {
 	const content = await readFile(path, "utf8");
 	return validateGenreTaxonomy(JSON.parse(content) as unknown);
 }
