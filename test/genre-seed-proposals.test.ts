@@ -1,11 +1,15 @@
-import { describe, expect, it } from "vitest";
-
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { main } from "../scripts/propose-genre-seeds.js";
 import type { GenreCoverageReport } from "../src/genre-coverage.js";
 import {
 	BATCH_BUDGETS,
 	PRESCRIBED_GENRES,
 	type ProposalCandidates,
 	proposeGenreSeeds,
+	resolveMusicBrainzCandidates,
 	validateGenreSeedProposalInputs,
 } from "../src/genre-seed-proposals.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
@@ -213,5 +217,93 @@ describe("TRA-217 justified seed proposals", () => {
 			"missing anchor relation justification",
 			"proof host is not trusted: bad.test",
 		]);
+	});
+});
+
+function musicBrainzResponse(body: unknown): Response {
+	return { ok: true, status: 200, json: async () => body } as Response;
+}
+
+afterEach(() => {
+	vi.unstubAllGlobals();
+});
+
+describe("TRA-218 MusicBrainz identity resolution", () => {
+	it("keeps CLI stdout to JSON and distinguishes valid, invalid, and unreadable inputs", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "odyssey-tra-218-"));
+		let stdout = "";
+		let stderr = "";
+		const output = {
+			stdout: {
+				write: (value: string) => {
+					stdout += value;
+				},
+			},
+			stderr: {
+				write: (value: string) => {
+					stderr += value;
+				},
+			},
+		};
+		try {
+			const valid = join(directory, "valid.json");
+			const { taxonomy, coverage } = fixture();
+			await writeFile(valid, JSON.stringify({ taxonomy, coverage, candidates: candidates() }));
+			expect(await main([valid], output)).toBe(0);
+			expect(() => JSON.parse(stdout)).not.toThrow();
+
+			stdout = "";
+			await writeFile(valid, "{}");
+			expect(await main([valid], output)).toBe(2);
+			expect(stdout).toBe("");
+			expect(stderr).toMatch(/invalid proposal input/i);
+			expect(await main([join(directory, "missing.json")], output)).toBe(1);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	it("resolves a same-name, same-type candidate at the HTTP boundary and adds its MB proof", async () => {
+		const fetch = vi.fn(async (_input: RequestInfo | URL) =>
+			musicBrainzResponse({
+				artists: [{ id: "550e8400-e29b-41d4-a716-446655440000", name: "Boundary Artist" }],
+			}),
+		);
+		vi.stubGlobal("fetch", fetch);
+
+		const [resolved] = await resolveMusicBrainzCandidates([
+			{ type: "artist", name: "Boundary Artist", slug: "artist:boundary-artist", proofs: [] },
+		]);
+
+		expect(fetch).toHaveBeenCalledOnce();
+		expect(String(fetch.mock.calls[0]?.[0])).toContain("/ws/2/artist");
+		expect(resolved).toMatchObject({
+			mbid: "550e8400-e29b-41d4-a716-446655440000",
+			proofs: [
+				{ url: "https://musicbrainz.org/artist/550e8400-e29b-41d4-a716-446655440000", verified: true },
+			],
+		});
+	});
+
+	it("does not look up homonyms and reports a failed network lookup without throwing", async () => {
+		const fetch = vi.fn(async () => {
+			throw new Error("offline");
+		});
+		vi.stubGlobal("fetch", fetch);
+
+		const [homonym, unavailable] = await resolveMusicBrainzCandidates([
+			{
+				type: "artist",
+				name: "Ambiguous Artist",
+				slug: "artist:ambiguous-artist",
+				proofs: [],
+				homonym: true,
+			},
+			{ type: "track", name: "Offline Track", slug: "track:offline-track", proofs: [] },
+		]);
+
+		expect(homonym?.homonym).toBe(true);
+		expect(unavailable?.resolutionError).toMatch(/unresolved/i);
+		expect(fetch).toHaveBeenCalledTimes(3);
 	});
 });

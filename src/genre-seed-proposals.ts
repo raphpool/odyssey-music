@@ -1,6 +1,7 @@
 import type { GenreCoverageReport } from "./genre-coverage.js";
 import { GenreSeedSchema, type GenreSeeds, validateGenreSeeds } from "./genre-seeds.js";
 import type { GenreTaxonomy } from "./genre-taxonomy.js";
+import { type CatalogResult, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { makeSlug } from "./slug.js";
 import type { Slug } from "./types.js";
 
@@ -161,16 +162,17 @@ interface Candidate {
 	name: string;
 	slug: string;
 	proofs: readonly Proof[];
-	homonym?: boolean;
+	homonym?: boolean | undefined;
 }
 export interface TargetCandidate extends Candidate {
 	type: "artist" | "project" | "track";
-	mbid?: string;
+	mbid?: string | undefined;
+	resolutionError?: string | undefined;
 }
 
 export interface AnchorCandidate extends Candidate {
-	qid?: string;
-	justification?: string;
+	qid?: string | undefined;
+	justification?: string | undefined;
 }
 
 export type ProposalCandidates = { targets: readonly TargetCandidate[]; anchors: readonly AnchorCandidate[] };
@@ -236,6 +238,8 @@ function candidateError(
 	if (!candidate.name.trim()) return reject(kind, candidate, "empty name");
 	if (!CANDIDATE_SLUG.test(candidate.slug)) return reject(kind, candidate, "invalid explicit slug");
 	if (candidate.homonym) return reject(kind, candidate, "homonym");
+	if (kind === "target" && (candidate as TargetCandidate).resolutionError)
+		return reject(kind, candidate, (candidate as TargetCandidate).resolutionError as string);
 	const error = proofError(candidate.proofs, trustedHosts);
 	if (error) return reject(kind, candidate, error);
 	if (kind === "target") {
@@ -357,4 +361,77 @@ export function proposeGenreSeeds(
 			});
 	}
 	return { entries, seeds: validateGenreSeeds(seeds, taxonomy.genres) };
+}
+
+function normalizedName(name: string): string {
+	return name
+		.normalize("NFKD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.trim()
+		.toLowerCase();
+}
+
+function matchingCatalogResult(candidate: TargetCandidate, value: unknown): CatalogResult | undefined {
+	if (value === null || typeof value !== "object") return undefined;
+	const result = value as Partial<CatalogResult>;
+	if (
+		result.type !== candidate.type ||
+		typeof result.name !== "string" ||
+		typeof result.mbid !== "string" ||
+		!MBID.test(result.mbid) ||
+		normalizedName(result.name) !== normalizedName(candidate.name) ||
+		(candidate.mbid !== undefined && result.mbid.toLowerCase() !== candidate.mbid.toLowerCase())
+	)
+		return undefined;
+	return { type: result.type, name: result.name, mbid: result.mbid, subtitle: "" };
+}
+
+function musicBrainzProof({ type, mbid }: CatalogResult): Proof {
+	const entity = type === "artist" ? "artist" : type === "project" ? "release-group" : "recording";
+	return { url: `https://musicbrainz.org/${entity}/${mbid}`, verified: true };
+}
+
+export async function resolveMusicBrainzCandidates(
+	candidates: readonly TargetCandidate[],
+): Promise<TargetCandidate[]> {
+	const catalog = createMusicBrainzCatalog();
+	return Promise.all(
+		candidates.map(async (candidate) => {
+			if (candidate.homonym) return candidate;
+			try {
+				const hit = (await catalog.searchByType(candidate.type, candidate.name, 8))
+					.map((result) => matchingCatalogResult(candidate, result))
+					.find((result) => result !== undefined);
+				if (!hit) return { ...candidate, resolutionError: "MusicBrainz identity unresolved" };
+				const proof = musicBrainzProof(hit);
+				return {
+					...candidate,
+					name: hit.name,
+					mbid: hit.mbid,
+					proofs: candidate.proofs.some(({ url }) => url === proof.url)
+						? candidate.proofs
+						: [...candidate.proofs, proof],
+				};
+			} catch {
+				return { ...candidate, resolutionError: "MusicBrainz lookup failed" };
+			}
+		}),
+	);
+}
+
+export async function proposeGenreSeedsFromMusicBrainz(
+	taxonomy: GenreTaxonomy,
+	coverage: GenreCoverageReport,
+	candidates: Readonly<Record<string, ProposalCandidates>>,
+	options: ProposalOptions,
+): Promise<GenreSeedProposalReport> {
+	const resolved = Object.fromEntries(
+		await Promise.all(
+			Object.entries(candidates).map(async ([id, dossier]) => [
+				id,
+				{ ...dossier, targets: await resolveMusicBrainzCandidates(dossier.targets) },
+			]),
+		),
+	) as Record<string, ProposalCandidates>;
+	return proposeGenreSeeds(taxonomy, coverage, resolved, options);
 }
