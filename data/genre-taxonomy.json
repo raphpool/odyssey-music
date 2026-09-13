@@ -777,6 +777,73 @@
 			"family": "new-club",
 			"qid": "Q956717",
 			"published": false
+		},
+		{
+			"id": "local:mara",
+			"name": "Mara",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q3337494",
+			"name": "Ndombolo",
+			"family": "new-club",
+			"qid": "Q3337494",
+			"published": false
+		},
+		{
+			"id": "Q3876770",
+			"name": "Nightcore",
+			"family": "new-club",
+			"qid": "Q3876770",
+			"published": false
+		},
+		{
+			"id": "local:raptor-house",
+			"name": "Raptor House",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q202930",
+			"name": "Reggaeton",
+			"family": "new-club",
+			"qid": "Q202930",
+			"published": false
+		},
+		{
+			"id": "Q65330805",
+			"name": "Singeli",
+			"family": "new-club",
+			"qid": "Q65330805",
+			"published": false
+		},
+		{
+			"id": "local:street-hop",
+			"name": "Street Hop",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q2346991",
+			"name": "UK bass",
+			"family": "new-club",
+			"qid": "Q2346991",
+			"sourceSlugs": ["genre:uk-bass"],
+			"published": false
+		},
+		{
+			"id": "Q109538574",
+			"name": "Vinahouse",
+			"family": "new-club",
+			"qid": "Q109538574",
+			"published": false
+		},
+		{
+			"id": "local:wisisi",
+			"name": "Wisisi",
+			"family": "new-club",
+			"published": false
 		}
 	]
 }
