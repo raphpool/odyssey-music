@@ -777,6 +777,152 @@
 			"family": "new-club",
 			"qid": "Q956717",
 			"published": false
+		},
+		{
+			"id": "local:mara",
+			"name": "Mara",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q3337494",
+			"name": "Ndombolo",
+			"family": "new-club",
+			"qid": "Q3337494",
+			"published": false
+		},
+		{
+			"id": "Q3876770",
+			"name": "Nightcore",
+			"family": "new-club",
+			"qid": "Q3876770",
+			"published": false
+		},
+		{
+			"id": "local:raptor-house",
+			"name": "Raptor House",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q202930",
+			"name": "Reggaeton",
+			"family": "new-club",
+			"qid": "Q202930",
+			"published": false
+		},
+		{
+			"id": "Q65330805",
+			"name": "Singeli",
+			"family": "new-club",
+			"qid": "Q65330805",
+			"published": false
+		},
+		{
+			"id": "local:street-hop",
+			"name": "Street Hop",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q2346991",
+			"name": "UK bass",
+			"family": "new-club",
+			"qid": "Q2346991",
+			"sourceSlugs": ["genre:uk-bass"],
+			"published": false
+		},
+		{
+			"id": "Q109538574",
+			"name": "Vinahouse",
+			"family": "new-club",
+			"qid": "Q109538574",
+			"published": false
+		},
+		{
+			"id": "local:wisisi",
+			"name": "Wisisi",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q193207",
+			"name": "Ambient",
+			"family": "ambient-new-age",
+			"qid": "Q193207",
+			"sourceSlugs": ["genre:ambient"],
+			"published": false
+		},
+		{
+			"id": "Q3613770",
+			"name": "Ambient Dub",
+			"family": "ambient-new-age",
+			"qid": "Q3613770",
+			"sourceSlugs": ["genre:ambient-dub"],
+			"published": false
+		},
+		{
+			"id": "Q2465085",
+			"name": "Ambient House",
+			"family": "ambient-new-age",
+			"qid": "Q2465085",
+			"sourceSlugs": ["genre:ambient-house"],
+			"published": false
+		},
+		{
+			"id": "Q530750",
+			"name": "Berlin School",
+			"family": "ambient-new-age",
+			"qid": "Q530750",
+			"sourceSlugs": ["genre:berlin-school", "genre:berlin-school-of-electronic-music"],
+			"aliases": ["Berlin school of electronic music"],
+			"published": false
+		},
+		{
+			"id": "local:fourth-world",
+			"name": "Fourth World",
+			"family": "ambient-new-age",
+			"published": false
+		},
+		{
+			"id": "local:generative-music",
+			"name": "Generative music",
+			"family": "ambient-new-age",
+			"sourceSlugs": ["genre:generative-music"],
+			"published": false
+		},
+		{
+			"id": "Q121494463",
+			"name": "Kosmische Musik",
+			"family": "ambient-new-age",
+			"qid": "Q121494463",
+			"sourceSlugs": ["genre:kosmische-musik"],
+			"aliases": ["Kosmische"],
+			"published": false
+		},
+		{
+			"id": "Q613874",
+			"name": "Neoclassical new-age music",
+			"family": "ambient-new-age",
+			"qid": "Q613874",
+			"sourceSlugs": ["genre:neoclassical-new-age-music"],
+			"published": false
+		},
+		{
+			"id": "Q213121",
+			"name": "New Age",
+			"family": "ambient-new-age",
+			"qid": "Q213121",
+			"sourceSlugs": ["genre:new-age"],
+			"published": false
+		},
+		{
+			"id": "Q79784514",
+			"name": "Progressive Electronic",
+			"family": "ambient-new-age",
+			"qid": "Q79784514",
+			"sourceSlugs": ["genre:progressive-electronic"],
+			"published": false
 		}
 	]
 }
