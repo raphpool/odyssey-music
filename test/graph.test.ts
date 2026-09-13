@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { buildGraphFromCache, toVizNode } from "../src/graph.js";
+import { createGraphService } from "../src/services/graph-service.js";
 import type { ArtistNode, EdgeRef, GenreNode, NodePayload } from "../src/types.js";
 
 let dir: string;
@@ -29,6 +30,26 @@ function genreNode(overrides: Partial<GenreNode> & Pick<GenreNode, "slug" | "nam
 		key_labels: [],
 		landmark_projects: [],
 		landmark_tracks: [],
+		...overrides,
+	};
+}
+
+function artistNode(overrides: Partial<ArtistNode> & Pick<ArtistNode, "slug" | "name">): ArtistNode {
+	return {
+		type: "artist",
+		editorial_bio: `Test fixture bio for ${overrides.name}.`,
+		editorial_article: `A real long article about ${overrides.name} for graph export coverage. `.repeat(4),
+		citations: [{ url: `https://example.com/${overrides.slug.split(":")[1]}` }],
+		materialized_at: new Date().toISOString(),
+		genres: [],
+		labels: [],
+		discography: [],
+		notable_tracks: [],
+		influences: [],
+		influenced: [],
+		collaborators: [],
+		aliases: [],
+		members: [],
 		...overrides,
 	};
 }
@@ -159,5 +180,110 @@ describe("backfillGenreReverses — stamping self.qid on synthesized reverse edg
 		const reverse = subgenres?.find((e) => e.slug === "genre:braindance");
 		expect(reverse).toBeDefined();
 		expect(reverse && "qid" in reverse).toBe(false);
+	});
+});
+
+describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () => {
+	it("applies the static build quarantine policy to the HTTP graph service", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+			}),
+		);
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:unanchored",
+				name: "Unanchored",
+				qid: "Q999999",
+				related_genres: [{ type: "genre", slug: "genre:missing", name: "Missing" }],
+			}),
+		);
+		await writeRawNode(
+			dir,
+			artistNode({
+				slug: "artist:anchor",
+				name: "Anchor",
+				genres: [
+					{ type: "genre", slug: "genre:techno", name: "Techno" },
+					{ type: "genre", slug: "genre:unanchored", name: "Unanchored" },
+				],
+			}),
+		);
+
+		const staticGraph = await buildGraphFromCache(dir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+		});
+		const serviceGraph = await createGraphService(dir).getGraph();
+
+		expect(serviceGraph.nodes).toEqual(staticGraph.nodes);
+		expect(serviceGraph.edges).toEqual(staticGraph.edges);
+		expect(serviceGraph.quarantine).toEqual([
+			{ id: "genre:unanchored", name: "Unanchored", reason: "no genre-genre edges" },
+		]);
+	});
+
+	it("keeps a genre with a recognized incoming relationship reconstructed before filtering", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+			}),
+		);
+
+		const graph = await buildGraphFromCache(dir, { quarantineOrphanGenres: true });
+		const electronic = graph.nodes.find((node) => node.id === "genre:electronic");
+
+		expect(graph.nodes.map((node) => node.id)).toContain("genre:electronic");
+		expect(electronic?.edges.subgenres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
+	});
+
+	it("removes quarantined genre references while preserving materialized relationships and redirects", async () => {
+		const redirectsPath = join(dir, "redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:old": "genre:electronic" } }),
+			"utf8",
+		);
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+			}),
+		);
+		await writeRawNode(dir, genreNode({ slug: "genre:orphan", name: "Orphan" }));
+		await writeRawNode(
+			dir,
+			artistNode({
+				slug: "artist:anchor",
+				name: "Anchor",
+				genres: [
+					{ type: "genre", slug: "genre:techno", name: "Techno" },
+					{ type: "genre", slug: "genre:orphan", name: "Orphan" },
+				],
+			}),
+		);
+
+		const graph = await buildGraphFromCache(dir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+			redirectsPath,
+		});
+		const artist = graph.nodes.find((node) => node.id === "artist:anchor");
+
+		expect(artist?.edges.genres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
+		expect(graph.edges).toContainEqual({ source: "artist:anchor", target: "genre:techno", kind: "genres" });
+		expect(graph.redirects).toEqual({ "genre:old": "genre:electronic" });
 	});
 });
