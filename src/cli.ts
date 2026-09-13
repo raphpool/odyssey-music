@@ -3,7 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Command } from "commander";
 import { cliConfig } from "./config.js";
-import { type CrawlOptions, type CrawlProgress, crawl, crawlGenreSeeds } from "./crawler.js";
+import { type CrawlOptions, type CrawlProgress, crawl, crawlGenreSeeds, refreshGenre } from "./crawler.js";
 import { loadEnv } from "./env.js";
 import { type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
 import { logger } from "./logger.js";
@@ -18,7 +18,8 @@ type GenreTaxonomy = {
 
 type CliMode =
 	| { kind: "text"; seed: string; maxDepth: number }
-	| { kind: "genre-seeds"; path: string; genreId?: string; family?: string };
+	| { kind: "genre-seeds"; path: string; genreId?: string; family?: string }
+	| { kind: "genre-refresh"; slug: string };
 
 type GenreSeedRunner = (options: CrawlOptions, seeds: GenreSeeds) => Promise<Record<string, unknown>>;
 
@@ -27,14 +28,24 @@ type CliModeOptions = {
 	genreSeeds?: string;
 	genreId?: string;
 	family?: string;
+	refreshGenre?: string;
 	maxDepth?: number;
 };
 
 export function resolveCliMode(options: CliModeOptions): CliMode {
 	const selectorCount = [options.genreId, options.family].filter((value) => value !== undefined).length;
 
-	if (options.seed !== undefined && options.genreSeeds !== undefined) {
-		throw new Error("--genre-seeds is exclusive of --seed");
+	if (
+		options.seed !== undefined &&
+		(options.genreSeeds !== undefined || options.refreshGenre !== undefined)
+	) {
+		throw new Error("--genre-seeds and --refresh-genre are exclusive of --seed");
+	}
+	if (options.refreshGenre !== undefined) {
+		if (options.genreSeeds !== undefined || selectorCount > 0) {
+			throw new Error("--refresh-genre is exclusive of --genre-seeds, --genre-id, and --family");
+		}
+		return { kind: "genre-refresh", slug: options.refreshGenre };
 	}
 	if (options.genreSeeds !== undefined) {
 		if (selectorCount !== 1) {
@@ -107,6 +118,7 @@ program
 	.option("--genre-seeds <path>", "Validated genre seed registry JSON")
 	.option("--genre-id <id>", "Select one genre seed by taxonomy ID")
 	.option("--family <key>", "Select all genre seeds in one taxonomy family")
+	.option("--refresh-genre <slug>", "Refresh one cached genre without traversing its references")
 	.option("-d, --max-depth <n>", "Max BFS depth", (v) => Number.parseInt(v, 10))
 	.requiredOption("-n, --max-nodes <n>", "Max total nodes to materialize", (v) => Number.parseInt(v, 10))
 	.requiredOption("-o, --out <dir>", "Output cache directory")
@@ -150,6 +162,7 @@ program
 			genreSeeds?: string;
 			genreId?: string;
 			family?: string;
+			refreshGenre?: string;
 			maxDepth?: number;
 			maxNodes: number;
 			out: string;
@@ -170,7 +183,7 @@ program
 			const strategy: "bfs" | "popularity" | "hybrid" =
 				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
 			const base: CrawlOptions = {
-				seed: mode.kind === "text" ? mode.seed : "genre-seeds",
+				seed: mode.kind === "text" ? mode.seed : mode.kind === "genre-seeds" ? "genre-seeds" : mode.slug,
 				maxDepth: mode.kind === "text" ? mode.maxDepth : 0,
 				maxNodes: opts.maxNodes,
 				concurrency: opts.concurrency,
@@ -216,6 +229,21 @@ program
 						{
 							genreSeeds: mode.path,
 							...(mode.genreId !== undefined ? { genreId: mode.genreId } : { family: mode.family }),
+							out: opts.out,
+							...result,
+							wallSec: Math.round((Date.now() - t0) / 1000),
+						},
+						null,
+					)}\n`,
+				);
+				return;
+			}
+			if (mode.kind === "genre-refresh") {
+				const result = await refreshGenre(base, mode.slug as `genre:${string}`);
+				process.stdout.write(
+					`${JSON.stringify(
+						{
+							refreshGenre: mode.slug,
 							out: opts.out,
 							...result,
 							wallSec: Math.round((Date.now() - t0) / 1000),

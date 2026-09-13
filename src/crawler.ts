@@ -399,6 +399,62 @@ export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Pr
 	};
 }
 
+/**
+ * Re-materializes one cached genre without walking its references. The existing node remains on
+ * disk until the replacement has passed the pipeline and NodeCache validation successfully.
+ */
+export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<GenreSeedCrawlResult> {
+	const log = opts.logger ?? (() => undefined);
+	const cache = new NodeCache(opts.out);
+	const existing = await cache.get(slug);
+	if (existing.type !== "genre") {
+		throw new Error(`--refresh-genre requires a cached genre node (got ${existing.type}: ${slug})`);
+	}
+	const genreRegistry = await getGenreRegistry(cache, opts.deps.genreRegistry);
+	const canonical = await genreRegistry.canonicalSlugFor({
+		slug,
+		name: existing.name,
+		...(existing.qid ? { qid: existing.qid } : {}),
+	});
+	const input: PipelineInput = { type: "genre", name: existing.name, slug: canonical.slug };
+	const qid = canonical.qid ?? existing.qid;
+	if (qid) input.qid = qid;
+	const startedAt = Date.now();
+	let calls = 0;
+	let consumed = 0;
+	let failed = 0;
+	let refused = 0;
+
+	log(`[refresh] maxNodes=${opts.maxNodes} concurrency=1`);
+	if (consumed >= opts.maxNodes) {
+		refused++;
+		log(`[refresh] limit genre ${describeInput(input, input.slug as Slug)}`);
+	} else {
+		consumed++;
+		calls++;
+		try {
+			log(`[refresh] materialize genre ${describeInput(input, input.slug as Slug)}`);
+			const result = await runPipeline(input, { ...opts.deps, genreRegistry });
+			await cache.replace(result.node);
+		} catch (error) {
+			failed++;
+			const message = error instanceof Error ? error.message : String(error);
+			log(`[refresh] FAIL genre ${input.slug}: ${message}`);
+		}
+	}
+
+	return {
+		nodesWritten: cache.stats.written,
+		revUpdates: cache.stats.revUpdates,
+		durationMs: Date.now() - startedAt,
+		failed,
+		calls,
+		consumed,
+		refused,
+		coverage: { total: 1, written: cache.stats.written, failed, refused },
+	};
+}
+
 async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Promise<GenreRegistry> {
 	if (injected) return injected;
 	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
