@@ -62,6 +62,7 @@ async function writeTaxonomy(path: string, genres: GenreTaxonomy["genres"]): Pro
 	await writeFile(path, JSON.stringify(taxonomy(genres)));
 }
 type CliResult = { status: number; stdout: string; stderr: string };
+type GenreCoverageReport = Awaited<ReturnType<typeof measureGenreCoverage>>;
 function runCoverageCli(...args: string[]): CliResult {
 	try {
 		const stdout = execFileSync("npm", ["--silent", "run", "analyze:genre-coverage", "--", ...args], {
@@ -78,6 +79,16 @@ function runCoverageCli(...args: string[]): CliResult {
 			stdout: typeof result.stdout === "string" ? result.stdout : "",
 			stderr: typeof result.stderr === "string" ? result.stderr : "",
 		};
+	}
+}
+function assertPublishedEntriesAreAdmissible(
+	report: GenreCoverageReport,
+	entries: GenreTaxonomy["genres"],
+): void {
+	for (const entry of entries.filter(({ published }) => published === true)) {
+		expect(report.entries[entry.id]?.publishable, `published entry ${entry.id} must be admissible`).toBe(
+			true,
+		);
 	}
 }
 describe("measureGenreCoverage (TRA-57)", () => {
@@ -190,6 +201,154 @@ describe("measureGenreCoverage (TRA-57)", () => {
 				graph,
 			),
 		).rejects.toThrow(/multiple genres/i);
+	});
+});
+
+describe("publication eligibility floor (TRA-59)", () => {
+	it("marks a published entry with only two canonical neighbours as inadmissible", async () => {
+		const cache = new NodeCache(directory);
+		await cache.write(genre("genre:two", "Two neighbours", "Q2"));
+		await cache.write(genre("genre:support", "Support genre"));
+		const choices = [
+			{
+				id: "Q2",
+				qid: "Q2",
+				name: "Two neighbours",
+				family: "electronic",
+				published: true,
+				sourceSlugs: ["genre:two"],
+			},
+		] satisfies GenreTaxonomy["genres"];
+
+		const report = await measureGenreCoverage(
+			taxonomy(choices),
+			cache,
+			projection(
+				[
+					vizNode("genre:two", "genre"),
+					vizNode("genre:support", "genre"),
+					vizNode("artist:one", "artist"),
+					vizNode("project:two", "project"),
+					vizNode("label:ignored", "label"),
+				],
+				[
+					{ source: "genre:two", target: "genre:support", kind: "related_genres" },
+					{ source: "genre:two", target: "artist:one", kind: "key_artists" },
+					{ source: "project:two", target: "genre:two", kind: "genres" },
+					{ source: "genre:two", target: "label:ignored", kind: "key_labels" },
+				],
+			),
+		);
+
+		expect(report.entries.Q2).toMatchObject({
+			resolvedSources: ["genre:two"],
+			neighbourCount: 2,
+			deficit: 1,
+			publishable: false,
+		});
+		expect(() => assertPublishedEntriesAreAdmissible(report, choices)).toThrow(/published entry Q2/);
+	});
+
+	it("marks a published entry with exactly three canonical neighbours as admissible", async () => {
+		const cache = new NodeCache(directory);
+		await cache.write(genre("genre:three", "Three neighbours", "Q3"));
+		await cache.write(genre("genre:support", "Support genre"));
+		const choices = [
+			{
+				id: "Q3",
+				qid: "Q3",
+				name: "Three neighbours",
+				family: "electronic",
+				published: true,
+				sourceSlugs: ["genre:three"],
+			},
+		] satisfies GenreTaxonomy["genres"];
+
+		const report = await measureGenreCoverage(
+			taxonomy(choices),
+			cache,
+			projection(
+				[
+					vizNode("genre:three", "genre"),
+					vizNode("genre:support", "genre"),
+					vizNode("artist:one", "artist"),
+					vizNode("project:two", "project"),
+					vizNode("track:three", "track"),
+				],
+				[
+					{ source: "genre:three", target: "genre:support", kind: "related_genres" },
+					{ source: "genre:three", target: "artist:one", kind: "key_artists" },
+					{ source: "project:two", target: "genre:three", kind: "genres" },
+					{ source: "genre:three", target: "track:three", kind: "landmark_tracks" },
+				],
+			),
+		);
+
+		expect(report.entries.Q3).toMatchObject({
+			resolvedSources: ["genre:three"],
+			neighbourCount: 3,
+			deficit: 0,
+			publishable: true,
+		});
+		assertPublishedEntriesAreAdmissible(report, choices);
+	});
+
+	it("excludes a published=false reserve from the publication floor before part two", async () => {
+		const cache = new NodeCache(directory);
+		await cache.write(genre("genre:published", "Published choice", "Q3"));
+		await cache.write(genre("genre:reserve", "Reserved choice", "Q2"));
+		await cache.write(genre("genre:support", "Support genre"));
+
+		const choices = [
+			{
+				id: "Q3",
+				qid: "Q3",
+				name: "Published choice",
+				family: "electronic",
+				published: true,
+				sourceSlugs: ["genre:published"],
+			},
+			{
+				id: "Q2",
+				qid: "Q2",
+				name: "Reserved choice",
+				family: "electronic",
+				published: false,
+				sourceSlugs: ["genre:reserve"],
+			},
+		] satisfies GenreTaxonomy["genres"];
+		const report = await measureGenreCoverage(
+			taxonomy(choices),
+			cache,
+			projection(
+				[
+					vizNode("genre:published", "genre"),
+					vizNode("genre:reserve", "genre"),
+					vizNode("genre:support", "genre"),
+					vizNode("artist:one", "artist"),
+					vizNode("project:two", "project"),
+					vizNode("track:three", "track"),
+					vizNode("artist:four", "artist"),
+					vizNode("project:five", "project"),
+				],
+				[
+					{ source: "genre:published", target: "genre:support", kind: "related_genres" },
+					{ source: "genre:reserve", target: "genre:support", kind: "related_genres" },
+					{ source: "genre:published", target: "artist:one", kind: "key_artists" },
+					{ source: "project:two", target: "genre:published", kind: "genres" },
+					{ source: "genre:published", target: "track:three", kind: "landmark_tracks" },
+					{ source: "genre:reserve", target: "artist:four", kind: "key_artists" },
+					{ source: "project:five", target: "genre:reserve", kind: "genres" },
+				],
+			),
+		);
+
+		expect(report.entries.Q2).toMatchObject({
+			neighbourCount: 2,
+			deficit: 1,
+			publishable: false,
+		});
+		assertPublishedEntriesAreAdmissible(report, choices);
 	});
 });
 
