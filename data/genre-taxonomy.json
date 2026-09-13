@@ -180,6 +180,83 @@
 			"qid": "Q874038",
 			"sourceSlugs": ["genre:deep-house"],
 			"published": false
+		},
+		{
+			"id": "Q108610706",
+			"name": "Detroit House",
+			"family": "house-techno",
+			"qid": "Q108610706",
+			"sourceSlugs": ["genre:detroit-house"],
+			"published": false
+		},
+		{
+			"id": "Q526463",
+			"name": "Detroit Techno",
+			"family": "house-techno",
+			"qid": "Q526463",
+			"sourceSlugs": ["genre:detroit-techno"],
+			"published": false
+		},
+		{
+			"id": "Q1262781",
+			"name": "Dub Techno",
+			"family": "house-techno",
+			"qid": "Q1262781",
+			"sourceSlugs": ["genre:dub-techno"],
+			"published": false
+		},
+		{
+			"id": "Q217597",
+			"name": "Electro",
+			"family": "house-techno",
+			"qid": "Q217597",
+			"sourceSlugs": ["genre:electro"],
+			"published": false
+		},
+		{
+			"id": "Q627906",
+			"name": "Electro House",
+			"family": "house-techno",
+			"qid": "Q627906",
+			"sourceSlugs": ["genre:electro-house"],
+			"published": false
+		},
+		{
+			"id": "local:euro-house",
+			"name": "Euro House",
+			"family": "house-techno",
+			"published": false
+		},
+		{
+			"id": "Q216961",
+			"name": "Eurodance",
+			"family": "house-techno",
+			"qid": "Q216961",
+			"sourceSlugs": ["genre:eurodance"],
+			"published": false
+		},
+		{
+			"id": "Q105636937",
+			"name": "Experimental Techno",
+			"family": "house-techno",
+			"qid": "Q105636937",
+			"sourceSlugs": ["genre:experimental-techno"],
+			"published": false
+		},
+		{
+			"id": "Q820049",
+			"name": "Gabber",
+			"family": "house-techno",
+			"qid": "Q820049",
+			"published": false
+		},
+		{
+			"id": "Q928825",
+			"name": "Garage House",
+			"family": "house-techno",
+			"qid": "Q928825",
+			"sourceSlugs": ["genre:garage-house"],
+			"published": false
 		}
 	]
 }
