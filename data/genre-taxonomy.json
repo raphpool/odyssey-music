@@ -1,0 +1,109 @@
+{
+	"version": 2,
+	"families": [
+		{
+			"key": "house-techno",
+			"label": "House / Techno",
+			"order": 1
+		},
+		{
+			"key": "uk-dance-grime",
+			"label": "UK Dance / Grime",
+			"order": 2
+		},
+		{
+			"key": "new-club",
+			"label": "New Club",
+			"order": 3
+		},
+		{
+			"key": "ambient-new-age",
+			"label": "Ambient / New Age",
+			"order": 4
+		},
+		{
+			"key": "electronica-downtempo",
+			"label": "Electronica / Downtempo",
+			"order": 5
+		},
+		{
+			"key": "avant-garde",
+			"label": "Avant Garde",
+			"order": 6,
+			"qid": "Q2332751"
+		},
+		{
+			"key": "post-punk-new-wave",
+			"label": "Post Punk / New Wave",
+			"order": 7
+		},
+		{
+			"key": "alternative-rock-punk",
+			"label": "Alternative Rock / Punk",
+			"order": 8
+		},
+		{
+			"key": "rock",
+			"label": "Rock",
+			"order": 9,
+			"qid": "Q11399"
+		},
+		{
+			"key": "metal",
+			"label": "Metal",
+			"order": 10
+		},
+		{
+			"key": "hip-hop-r-n-b",
+			"label": "Hip-Hop / R'n'B",
+			"order": 11
+		},
+		{
+			"key": "soul-rhythm-and-blues",
+			"label": "Soul / Rhythm & Blues",
+			"order": 12
+		},
+		{
+			"key": "disco-boogie",
+			"label": "Disco / Boogie",
+			"order": 13
+		},
+		{
+			"key": "jazz",
+			"label": "Jazz",
+			"order": 14,
+			"qid": "Q8341"
+		},
+		{
+			"key": "latin-brazilian",
+			"label": "Latin / Brazilian",
+			"order": 15
+		},
+		{
+			"key": "caribbean",
+			"label": "Caribbean",
+			"order": 16
+		},
+		{
+			"key": "african-middle-eastern",
+			"label": "African / Middle Eastern",
+			"order": 17
+		},
+		{
+			"key": "asia",
+			"label": "Asia",
+			"order": 18
+		},
+		{
+			"key": "classical-opera",
+			"label": "Classical / Opera",
+			"order": 19
+		},
+		{
+			"key": "other",
+			"label": "Other",
+			"order": 20
+		}
+	],
+	"genres": []
+}
