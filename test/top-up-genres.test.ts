@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { planGenreTopUp, selectGenreTopUps, topUpGenres } from "../scripts/top-up-genres.js";
+import {
+	executeGenreTopUp,
+	type GenreTopUpRunner,
+	planGenreTopUp,
+	selectGenreTopUps,
+	topUpGenres,
+} from "../scripts/top-up-genres.js";
 import type { NodeCache } from "../src/cache.js";
 import type { GenreCoverageEntry, GenreCoverageReport } from "../src/genre-coverage.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
@@ -109,5 +115,45 @@ describe("genre top-up selection", () => {
 		);
 
 		expect(result.candidates).toHaveLength(1);
+	});
+	it("shares one limit between top-ups and refreshes without traversing outside the selected batch", async () => {
+		const selected = selectGenreTopUps(taxonomy, coverage, seeds, { maxNew: 2 });
+		const calls: string[] = [];
+		const runner: GenreTopUpRunner = async (candidate, remaining) => {
+			calls.push(`${candidate.id}:${remaining}`);
+			return { calls: 1, consumed: 1, nodesWritten: 1, refused: 0, failed: 0 };
+		};
+
+		const result = await executeGenreTopUp(selected, 1, runner);
+
+		expect(calls).toEqual(["local:under-a:1"]);
+		expect(result).toMatchObject({ calls: 1, consumed: 1, nodesWritten: 1, refused: 1, failed: 0 });
+		expect(result.attempts).toEqual([
+			{ candidateId: "local:under-a", status: "written" },
+			{ candidateId: "local:under-b", status: "refused" },
+		]);
+	});
+	it("reports a runner failure as a typed failed attempt", async () => {
+		const selected = selectGenreTopUps(taxonomy, coverage, seeds, { maxNew: 1 });
+		const runner: GenreTopUpRunner = async () => {
+			throw new Error("pipeline unavailable");
+		};
+
+		const result = await executeGenreTopUp(selected, 1, runner);
+
+		expect(result).toMatchObject({ calls: 1, consumed: 1, nodesWritten: 0, refused: 0, failed: 1 });
+		expect(result.attempts).toEqual([
+			{ candidateId: "local:under-a", status: "failed", error: "pipeline unavailable" },
+		]);
+	});
+	it("makes zero calls on a second run with no remaining deficit", async () => {
+		const runner = async (): Promise<never> => {
+			throw new Error("must not run");
+		};
+
+		const result = await executeGenreTopUp([], 5, runner);
+
+		expect(result).toMatchObject({ calls: 0, consumed: 0, nodesWritten: 0, refused: 0, failed: 0 });
+		expect(result.attempts).toEqual([]);
 	});
 });
