@@ -1,4 +1,4 @@
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -6,7 +6,7 @@ import { NodeCache } from "../src/cache.js";
 import type { CrawlOptions } from "../src/crawler.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
 import type { GenreNode, Slug } from "../src/types.js";
-import { artistDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
+import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-28 review: missing wiring test (i) -- crawl() (src/crawler.ts) builds its own GenreRegistry
 // on its own NodeCache and must actually use it, both when materializing a node and when
@@ -188,6 +188,140 @@ describe("crawlGenreSeeds() (TRA-61)", () => {
 	});
 });
 
+describe("refreshGenre() (TRA-63)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-crawler-refresh-e2e-"));
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	it("refreshes one cached genre with its existing slug and QID", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				qid: "Q2913982",
+				editorial_definition: "The old definition must be replaced.",
+			}),
+		);
+		installPipelineMocks({ draft: genreDraftFixture() });
+		const { refreshGenre } = await loadCrawl();
+
+		const result = await refreshGenre(
+			{
+				seed: "genre:unused",
+				maxDepth: 0,
+				maxNodes: 1,
+				concurrency: 4,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			"genre:trap-hip-hop",
+		);
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(result).toMatchObject({ calls: 1, consumed: 1, failed: 0, refused: 0 });
+		expect(refreshed).toMatchObject({ slug: "genre:trap-hip-hop", qid: "Q2913982" });
+		expect(refreshed.editorial_definition).not.toBe("The old definition must be replaced.");
+	});
+
+	it("keeps the cached genre when its refresh fails", async () => {
+		const cache = new NodeCache(dir);
+		const original = genreNode({
+			slug: "genre:trap-hip-hop",
+			name: "Trap Hip-Hop",
+			qid: "Q2913982",
+			editorial_definition: "The definition that must remain after failure.",
+		});
+		await cache.write(original);
+		installPipelineMocks({ draft: artistDraftFixture() });
+		const { refreshGenre } = await loadCrawl();
+
+		const result = await refreshGenre(
+			{
+				seed: "genre:unused",
+				maxDepth: 0,
+				maxNodes: 1,
+				concurrency: 1,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			"genre:trap-hip-hop",
+		);
+
+		expect(result).toMatchObject({ calls: 1, consumed: 1, failed: 1, refused: 0 });
+		expect(await cache.get("genre:trap-hip-hop")).toEqual(original);
+	});
+
+	it("restores the cached genre when writing refreshed reverse edges fails", async () => {
+		const cache = new NodeCache(dir);
+		const original = genreNode({
+			slug: "genre:trap-hip-hop",
+			name: "Trap Hip-Hop",
+			qid: "Q2913982",
+			editorial_definition: "The definition that must survive a late cache write failure.",
+		});
+		await cache.write(original);
+		const genreDir = join(dir, "nodes", "genre");
+		await mkdir(genreDir, { recursive: true });
+		await writeFile(join(genreDir, "electronic.json"), JSON.stringify({ type: "genre" }), "utf8");
+		installPipelineMocks({ draft: genreDraftFixture() });
+		const { refreshGenre } = await loadCrawl();
+
+		const result = await refreshGenre(
+			{
+				seed: "genre:unused",
+				maxDepth: 0,
+				maxNodes: 1,
+				concurrency: 1,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			"genre:trap-hip-hop",
+		);
+
+		expect(result).toMatchObject({
+			nodesWritten: 0,
+			revUpdates: 0,
+			calls: 1,
+			consumed: 1,
+			failed: 1,
+			refused: 0,
+			coverage: { total: 1, written: 0, failed: 1, refused: 0 },
+		});
+		expect(await cache.get("genre:trap-hip-hop")).toEqual(original);
+	});
+
+	it("refuses a refresh once the maxNodes budget is exhausted", async () => {
+		const cache = new NodeCache(dir);
+		const original = genreNode({ slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" });
+		await cache.write(original);
+		installPipelineMocks({ draft: genreDraftFixture() });
+		const { refreshGenre } = await loadCrawl();
+
+		const result = await refreshGenre(
+			{
+				seed: "genre:unused",
+				maxDepth: 0,
+				maxNodes: 0,
+				concurrency: 1,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			"genre:trap-hip-hop",
+		);
+
+		expect(result).toMatchObject({ calls: 0, consumed: 0, failed: 0, refused: 1 });
+		expect(await cache.get("genre:trap-hip-hop")).toEqual(original);
+	});
+});
+
 describe("CLI genre seed mode (TRA-62)", () => {
 	it("requires one family or genre selection and keeps the text mode distinct", async () => {
 		const { program, resolveCliMode, runGenreSeedCrawl, selectGenreSeeds } = await loadCli();
@@ -203,7 +337,7 @@ describe("CLI genre seed mode (TRA-62)", () => {
 		expect(familyMode).toEqual({ kind: "genre-seeds", path: genreSeedsPath, family: "house-techno" });
 		expect(Object.keys(selected)).toEqual(["Q1"]);
 		expect(runCommand?.options.map((option) => option.long)).toEqual(
-			expect.arrayContaining(["--genre-seeds", "--genre-id", "--family"]),
+			expect.arrayContaining(["--genre-seeds", "--genre-id", "--family", "--refresh-genre"]),
 		);
 		expect(runCommand?.options.find((option) => option.long === "--max-nodes")?.mandatory).toBe(true);
 		expect(runCommand?.options.find((option) => option.long === "--out")?.mandatory).toBe(true);
@@ -230,6 +364,7 @@ describe("CLI genre seed mode (TRA-62)", () => {
 			seed: "artist:Fixture Artist",
 			maxDepth: 2,
 		});
+		expect(resolveCliMode({ refreshGenre: "genre:q1" })).toEqual({ kind: "genre-refresh", slug: "genre:q1" });
 	});
 
 	it("rejects missing, conflicting, and text-only selectors before crawler setup", async () => {
