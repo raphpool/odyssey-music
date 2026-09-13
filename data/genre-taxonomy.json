@@ -637,6 +637,77 @@
 			"family": "new-club",
 			"qid": "Q106522098",
 			"published": false
+		},
+		{
+			"id": "Q4852979",
+			"name": "Baltimore Club",
+			"family": "new-club",
+			"qid": "Q4852979",
+			"published": false
+		},
+		{
+			"id": "Q21006606",
+			"name": "Bass",
+			"family": "new-club",
+			"qid": "Q21006606",
+			"published": false
+		},
+		{
+			"id": "Q96740854",
+			"name": "Bass Music",
+			"family": "new-club",
+			"qid": "Q96740854",
+			"sourceSlugs": ["genre:bass-music"],
+			"published": false
+		},
+		{
+			"id": "Q108297194",
+			"name": "Batida",
+			"family": "new-club",
+			"qid": "Q108297194",
+			"published": false
+		},
+		{
+			"id": "Q2464314",
+			"name": "Brega",
+			"family": "new-club",
+			"qid": "Q2464314",
+			"published": false
+		},
+		{
+			"id": "Q20903",
+			"name": "Brostep",
+			"family": "new-club",
+			"qid": "Q20903",
+			"sourceSlugs": ["genre:brostep"],
+			"published": false
+		},
+		{
+			"id": "Q2963621",
+			"name": "Chillstep",
+			"family": "new-club",
+			"qid": "Q2963621",
+			"sourceSlugs": ["genre:chillstep"],
+			"published": false
+		},
+		{
+			"id": "local:club",
+			"name": "Club",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q513357",
+			"name": "Coupé-Décalé",
+			"family": "new-club",
+			"qid": "Q513357",
+			"published": false
+		},
+		{
+			"id": "local:deck",
+			"name": "Deck",
+			"family": "new-club",
+			"published": false
 		}
 	]
 }
