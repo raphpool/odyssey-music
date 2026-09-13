@@ -1,5 +1,5 @@
 import type { GenreCoverageReport } from "./genre-coverage.js";
-import { type GenreSeeds, validateGenreSeeds } from "./genre-seeds.js";
+import { GenreSeedSchema, type GenreSeeds, validateGenreSeeds } from "./genre-seeds.js";
 import type { GenreTaxonomy } from "./genre-taxonomy.js";
 import { makeSlug } from "./slug.js";
 import type { Slug } from "./types.js";
@@ -148,4 +148,213 @@ export function validateGenreSeedProposalInputs({
 		if (measured.neighbourCount !== prescribed.existingNeighbours || measured.deficit !== prescribed.deficit)
 			throw new Error(`Coverage deficit does not match prescribed baseline: ${prescribed.id}`);
 	}
+}
+
+const MBID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+const QID = /^Q[1-9]\d*$/;
+const CANDIDATE_SLUG =
+	/^(?:genre|artist|project|track):[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
+
+export type Proof = { url: string; verified: boolean };
+
+interface Candidate {
+	name: string;
+	slug: string;
+	proofs: readonly Proof[];
+	homonym?: boolean;
+}
+export interface TargetCandidate extends Candidate {
+	type: "artist" | "project" | "track";
+	mbid?: string;
+}
+
+export interface AnchorCandidate extends Candidate {
+	qid?: string;
+	justification?: string;
+}
+
+export type ProposalCandidates = { targets: readonly TargetCandidate[]; anchors: readonly AnchorCandidate[] };
+
+export type ProposalOptions = { trustedHosts: readonly string[] };
+
+export type RejectedCandidate = { kind: "target" | "anchor"; name: string; slug: string; reason: string };
+
+export interface GenreSeedProposal {
+	requiredTargets: number;
+	acceptedTargets: readonly TargetCandidate[];
+	acceptedAnchors: readonly AnchorCandidate[];
+	rejected: readonly RejectedCandidate[];
+	missingTargets: number;
+	missingAnchors: number;
+	promotable: boolean;
+	publishable: boolean;
+}
+
+export type GenreSeedProposalReport = { entries: Record<string, GenreSeedProposal>; seeds: GenreSeeds };
+
+interface CandidateState {
+	slugs: Set<string>;
+	mbids: Set<string>;
+	qids: Set<string>;
+	targets: TargetCandidate[];
+	anchors: AnchorCandidate[];
+	rejected: RejectedCandidate[];
+}
+
+function reject(
+	kind: RejectedCandidate["kind"],
+	candidate: Pick<TargetCandidate | AnchorCandidate, "name" | "slug">,
+	reason: string,
+): RejectedCandidate {
+	return { kind, name: candidate.name, slug: candidate.slug, reason };
+}
+
+function proofError(proofs: readonly Proof[], trustedHosts: readonly string[]): string | undefined {
+	if (!Array.isArray(proofs) || proofs.length === 0) return "no proof provided";
+	const trusted = new Set(trustedHosts.map((host) => host.toLowerCase()));
+	for (const proof of proofs) {
+		if (proof?.verified !== true) return "proof is not verified";
+		let url: URL;
+		try {
+			url = new URL(proof.url);
+		} catch {
+			return "proof URL is invalid";
+		}
+		if (url.protocol !== "https:" || !url.hostname || url.username || url.password)
+			return "proof URL must be HTTPS with a plain host";
+		const host = url.hostname.toLowerCase();
+		if (![...trusted].some((allowed) => host === allowed || host.endsWith(`.${allowed}`)))
+			return `proof host is not trusted: ${host}`;
+	}
+}
+
+function candidateError(
+	candidate: TargetCandidate | AnchorCandidate,
+	kind: RejectedCandidate["kind"],
+	trustedHosts: readonly string[],
+): RejectedCandidate | undefined {
+	if (!candidate.name.trim()) return reject(kind, candidate, "empty name");
+	if (!CANDIDATE_SLUG.test(candidate.slug)) return reject(kind, candidate, "invalid explicit slug");
+	if (candidate.homonym) return reject(kind, candidate, "homonym");
+	const error = proofError(candidate.proofs, trustedHosts);
+	if (error) return reject(kind, candidate, error);
+	if (kind === "target") {
+		const target = candidate as TargetCandidate;
+		if (!(["artist", "project", "track"] as string[]).includes(target.type))
+			return reject(kind, candidate, "invalid target type");
+		if (!target.slug.startsWith(`${target.type}:`))
+			return reject(kind, candidate, "target type and slug disagree");
+		if (target.mbid !== undefined && !MBID.test(target.mbid)) return reject(kind, candidate, "invalid MBID");
+	} else {
+		const anchor = candidate as AnchorCandidate;
+		if (!anchor.slug.startsWith("genre:")) return reject(kind, candidate, "anchor must be a genre slug");
+		if (!anchor.justification?.trim())
+			return reject(kind, candidate, "missing anchor relation justification");
+		if (anchor.qid !== undefined && !QID.test(anchor.qid))
+			return reject(kind, candidate, "invalid anchor QID");
+	}
+}
+
+function addCandidate(
+	candidate: TargetCandidate | AnchorCandidate,
+	kind: RejectedCandidate["kind"],
+	state: CandidateState,
+	trustedHosts: readonly string[],
+	requiredTargets: number,
+): void {
+	const error = candidateError(candidate, kind, trustedHosts);
+	if (error) return void state.rejected.push(error);
+	const mbid = kind === "target" ? (candidate as TargetCandidate).mbid?.toLowerCase() : undefined;
+	const qid = kind === "anchor" ? (candidate as AnchorCandidate).qid : undefined;
+	if (
+		state.slugs.has(candidate.slug) ||
+		(mbid !== undefined && state.mbids.has(mbid)) ||
+		(qid !== undefined && state.qids.has(qid))
+	)
+		return void state.rejected.push(reject(kind, candidate, "duplicate seed identity"));
+	if (kind === "target" && state.targets.length === requiredTargets)
+		return void state.rejected.push(reject(kind, candidate, "exceeds materialized deficit"));
+	state.slugs.add(candidate.slug);
+	if (mbid !== undefined) state.mbids.add(mbid);
+	if (qid !== undefined) state.qids.add(qid);
+	if (kind === "target") state.targets.push(candidate as TargetCandidate);
+	else state.anchors.push(candidate as AnchorCandidate);
+}
+
+function proposalGenre(prescribed: PrescribedGenre): { slug: Slug; name: string; qid?: string } {
+	return {
+		slug: prescribed.slug,
+		name: prescribed.name,
+		...(prescribed.qid === undefined ? {} : { qid: prescribed.qid }),
+	};
+}
+
+export function proposeGenreSeeds(
+	taxonomy: GenreTaxonomy,
+	coverage: GenreCoverageReport,
+	candidates: Readonly<Record<string, ProposalCandidates>>,
+	options: ProposalOptions,
+): GenreSeedProposalReport {
+	const emptySeeds: GenreSeeds = Object.fromEntries(
+		PRESCRIBED_GENRES.map((prescribed) => [
+			prescribed.id,
+			{ genre: proposalGenre(prescribed), targets: [], anchors: [] },
+		]),
+	);
+	validateGenreSeedProposalInputs({ taxonomy, coverage, dossiers: emptySeeds });
+	const expectedIds = new Set(PRESCRIBED_GENRES.map(({ id }) => id));
+	const missing = PRESCRIBED_GENRES.filter(({ id }) => !Object.hasOwn(candidates, id)).map(({ id }) => id);
+	const foreign = Object.keys(candidates).filter((id) => !expectedIds.has(id));
+	if (missing.length > 0) throw new Error(`Missing prescribed candidates: ${missing.join(", ")}`);
+	if (foreign.length > 0) throw new Error(`Foreign prescribed candidates: ${foreign.join(", ")}`);
+
+	const entries: Record<string, GenreSeedProposal> = {};
+	const seeds: GenreSeeds = {};
+	for (const prescribed of PRESCRIBED_GENRES) {
+		const dossier = candidates[prescribed.id];
+		const measured = coverage.entries[prescribed.id];
+		if (!dossier || !measured) throw new Error(`Prescribed input disappeared: ${prescribed.id}`);
+		const genre = proposalGenre(prescribed);
+		const state: CandidateState = {
+			slugs: new Set([genre.slug]),
+			mbids: new Set(),
+			qids: new Set(genre.qid === undefined ? [] : [genre.qid]),
+			targets: [],
+			anchors: [],
+			rejected: [],
+		};
+		for (const candidate of dossier.targets)
+			addCandidate(candidate, "target", state, options.trustedHosts, prescribed.deficit);
+		for (const candidate of dossier.anchors)
+			addCandidate(candidate, "anchor", state, options.trustedHosts, prescribed.deficit);
+		const missingTargets = prescribed.deficit - state.targets.length;
+		const missingAnchors = state.anchors.length === 0 ? 1 : 0;
+		const promotable = missingTargets === 0 && missingAnchors === 0;
+		entries[prescribed.id] = {
+			requiredTargets: prescribed.deficit,
+			acceptedTargets: state.targets,
+			acceptedAnchors: state.anchors,
+			rejected: state.rejected,
+			missingTargets,
+			missingAnchors,
+			promotable,
+			publishable: measured.publishable,
+		};
+		if (promotable)
+			seeds[prescribed.id] = GenreSeedSchema.parse({
+				genre,
+				targets: state.targets.map(({ type, name, slug, mbid }) => ({
+					type,
+					name,
+					slug,
+					...(mbid === undefined ? {} : { mbid }),
+				})),
+				anchors: state.anchors.map(({ slug, name, qid }) => ({
+					slug,
+					name,
+					...(qid === undefined ? {} : { qid }),
+				})),
+			});
+	}
+	return { entries, seeds: validateGenreSeeds(seeds, taxonomy.genres) };
 }

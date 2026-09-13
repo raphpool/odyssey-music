@@ -4,6 +4,8 @@ import type { GenreCoverageReport } from "../src/genre-coverage.js";
 import {
 	BATCH_BUDGETS,
 	PRESCRIBED_GENRES,
+	type ProposalCandidates,
+	proposeGenreSeeds,
 	validateGenreSeedProposalInputs,
 } from "../src/genre-seed-proposals.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
@@ -125,5 +127,91 @@ describe("TRA-216 prescribed genre proposals", () => {
 		dancehallCoverage.resolvedSources = [];
 		dancehallCoverage.missingSources = ["genre:dancehall"];
 		expect(() => validateGenreSeedProposalInputs(missingSource)).toThrow(/coverage sources/i);
+	});
+});
+
+const proof = { url: "https://evidence.example.test/relation", verified: true };
+const unverifiedProof = { ...proof, verified: "false" as never };
+const anchor = {
+	slug: "genre:jazz",
+	name: "Jazz",
+	qid: "Q8341",
+	justification: "The cited source identifies Jazz as the documented parent context.",
+	proofs: [proof],
+};
+
+function candidates(): Record<string, ProposalCandidates> {
+	return Object.fromEntries(PRESCRIBED_GENRES.map(({ id }) => [id, { targets: [], anchors: [] }]));
+}
+
+describe("TRA-217 justified seed proposals", () => {
+	it("builds strict B1 seeds from distinct justified candidates without changing materialized publication", () => {
+		const input = candidates();
+		input.Q2913982 = {
+			targets: [
+				{
+					type: "artist",
+					name: "One",
+					slug: "artist:one",
+					mbid: "550e8400-e29b-41d4-a716-446655440000",
+					proofs: [proof],
+				},
+				{ type: "project", name: "Two", slug: "project:two", proofs: [proof] },
+				{ type: "track", name: "Three", slug: "track:three", proofs: [proof] },
+			],
+			anchors: [anchor],
+		};
+		const report = proposeGenreSeeds(fixture().taxonomy, fixture().coverage, input, {
+			trustedHosts: ["evidence.example.test"],
+		});
+
+		expect(report.entries.Q2913982).toMatchObject({
+			requiredTargets: 3,
+			publishable: false,
+			acceptedAnchors: [anchor],
+		});
+		expect(report.seeds.Q2913982).toMatchObject({
+			anchors: [{ slug: "genre:jazz", name: "Jazz", qid: "Q8341" }],
+		});
+	});
+
+	it("reports homonyms, untrusted evidence, duplicate targets, and a missing justified anchor", () => {
+		const input = candidates();
+		input.Q2913982 = {
+			targets: [
+				{ type: "artist", name: "Homonym", slug: "artist:homonym", homonym: true, proofs: [proof] },
+				{
+					type: "project",
+					name: "Unsafe",
+					slug: "project:unsafe",
+					proofs: [{ ...proof, url: "http://bad.test" }],
+				},
+				{ type: "track", name: "Valid", slug: "track:valid", proofs: [proof] },
+				{ type: "track", name: "Duplicate", slug: "track:valid", proofs: [proof] },
+				{ type: "genre" as never, name: "Wrong type", slug: "genre:wrong", proofs: [proof] },
+				{ type: "artist", name: "Unchecked", slug: "artist:unchecked", proofs: [unverifiedProof] },
+			],
+			anchors: [
+				{ ...anchor, justification: "" },
+				{ ...anchor, slug: "genre:untrusted", proofs: [{ ...proof, url: "https://bad.test/proof" }] },
+			],
+		};
+		const report = proposeGenreSeeds(fixture().taxonomy, fixture().coverage, input, {
+			trustedHosts: ["evidence.example.test"],
+		});
+
+		expect(report.entries.Q2913982).toMatchObject({
+			missingTargets: 2,
+			missingAnchors: 1,
+		});
+		expect(report.entries.Q2913982?.rejected.map(({ reason }) => reason)).toEqual([
+			"homonym",
+			"proof URL must be HTTPS with a plain host",
+			"duplicate seed identity",
+			"invalid target type",
+			"proof is not verified",
+			"missing anchor relation justification",
+			"proof host is not trusted: bad.test",
+		]);
 	});
 });
