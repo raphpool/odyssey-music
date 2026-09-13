@@ -1,6 +1,7 @@
 import { NodeCache } from "./cache.js";
 import { loadGenreResolver } from "./genre-identity.js";
-import { createGenreRegistry, loadGenreRedirects } from "./genre-registry.js";
+import { createGenreRegistry, type GenreRegistry, loadGenreRedirects } from "./genre-registry.js";
+import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
 import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import {
 	type EdgeRef,
@@ -46,6 +47,28 @@ export interface CrawlResult {
 	revUpdates: number;
 	durationMs: number;
 	failed: number;
+}
+
+export type GenreSeedStage = "anchor" | "genre" | "target";
+
+export interface GenreSeedPlanEntry {
+	stage: GenreSeedStage;
+	input: PipelineInput;
+}
+
+export interface GenreSeedCrawlResult extends CrawlResult {
+	/** Pipeline invocations, excluding entries already present in the cache. */
+	calls: number;
+	/** Budget consumed by create/refresh attempts, including failures. */
+	consumed: number;
+	/** Entries skipped because their budget was exhausted or their node already existed. */
+	refused: number;
+	coverage: {
+		total: number;
+		written: number;
+		failed: number;
+		refused: number;
+	};
 }
 
 interface FrontierEntry {
@@ -279,6 +302,107 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 		durationMs: Date.now() - startedAt,
 		failed,
 	};
+}
+
+/**
+ * Builds one data-folder's exact materialization order. Seed batches deliberately do not use the
+ * general crawl frontier: a curated target must not implicitly expand into its own references.
+ */
+export async function buildGenreSeedPlan(
+	folder: GenreSeed,
+	genreRegistry: Pick<GenreRegistry, "canonicalSlugFor">,
+): Promise<GenreSeedPlanEntry[]> {
+	const canonicalGenreInput = async (ref: GenreSeed["genre"]): Promise<PipelineInput> => {
+		const canonical = await genreRegistry.canonicalSlugFor({
+			slug: ref.slug as Slug,
+			name: ref.name,
+			...(ref.qid ? { qid: ref.qid } : {}),
+		});
+		const input: PipelineInput = { type: "genre", name: ref.name, slug: canonical.slug };
+		const qid = canonical.qid ?? ref.qid;
+		if (qid) input.qid = qid;
+		return input;
+	};
+	const anchors = await Promise.all(folder.anchors.map(async (anchor) => canonicalGenreInput(anchor)));
+	const genre = await canonicalGenreInput(folder.genre);
+	const targets = folder.targets.map((target): PipelineInput => {
+		const input: PipelineInput = { type: target.type, name: target.name, slug: target.slug as Slug };
+		if (target.mbid) input.mbid = target.mbid;
+		return input;
+	});
+	return [
+		...anchors.map((input): GenreSeedPlanEntry => ({ stage: "anchor", input })),
+		{ stage: "genre", input: genre },
+		...targets.map((input): GenreSeedPlanEntry => ({ stage: "target", input })),
+	];
+}
+
+/**
+ * Materializes curated seed folders sequentially. This keeps the cache's QID index authoritative
+ * between folders and makes the reported maxNodes consumption deterministic.
+ */
+export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Promise<GenreSeedCrawlResult> {
+	const log = opts.logger ?? (() => undefined);
+	const cache = new NodeCache(opts.out);
+	const genreRegistry = await getGenreRegistry(cache, opts.deps.genreRegistry);
+	const startedAt = Date.now();
+	let calls = 0;
+	let consumed = 0;
+	let failed = 0;
+	let refused = 0;
+	let total = 0;
+
+	log(`[seed] maxNodes=${opts.maxNodes} concurrency=1`);
+	for (const folder of Object.values(seeds)) {
+		const plan = await buildGenreSeedPlan(folder, genreRegistry);
+		total += plan.length;
+		for (const entry of plan) {
+			if (await cache.has(entry.input.slug as Slug)) {
+				refused++;
+				log(`[seed] skip cached ${entry.stage} ${describeInput(entry.input, entry.input.slug as Slug)}`);
+				continue;
+			}
+			if (consumed >= opts.maxNodes) {
+				refused++;
+				log(`[seed] limit ${entry.stage} ${describeInput(entry.input, entry.input.slug as Slug)}`);
+				continue;
+			}
+
+			consumed++;
+			calls++;
+			try {
+				log(`[seed] materialize ${entry.stage} ${describeInput(entry.input, entry.input.slug as Slug)}`);
+				const result = await runPipeline(entry.input, { ...opts.deps, genreRegistry });
+				if (await cache.has(result.slug)) {
+					refused++;
+					log(`[seed] dedup ${result.slug}`);
+					continue;
+				}
+				await cache.write(result.node);
+			} catch (error) {
+				failed++;
+				const message = error instanceof Error ? error.message : String(error);
+				log(`[seed] FAIL ${entry.stage} ${entry.input.slug}: ${message}`);
+			}
+		}
+	}
+
+	return {
+		nodesWritten: cache.stats.written,
+		revUpdates: cache.stats.revUpdates,
+		durationMs: Date.now() - startedAt,
+		failed,
+		calls,
+		consumed,
+		refused,
+		coverage: { total, written: cache.stats.written, failed, refused },
+	};
+}
+
+async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Promise<GenreRegistry> {
+	if (injected) return injected;
+	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	return createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 }
 
 // Exported for test/crawler.test.ts (TRA-28 review, B1).

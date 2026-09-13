@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { enqueueEdges, FrontierQueue } from "../src/crawler.js";
+import { buildGenreSeedPlan, enqueueEdges, FrontierQueue } from "../src/crawler.js";
+import type { GenreRegistry } from "../src/genre-registry.js";
+import type { GenreSeed } from "../src/genre-seeds.js";
 import type { ArtistNode } from "../src/types.js";
 
 /** Minimal valid ArtistNode, only the fields enqueueEdges actually reads matter here. */
@@ -98,5 +100,62 @@ describe("enqueueEdges (TRA-28 review B1)", () => {
 		const popped = frontier.pop();
 		expect(popped?.entry.input.qid).toBeUndefined();
 		expect(popped?.entry.input).not.toHaveProperty("qid");
+	});
+});
+
+describe("buildGenreSeedPlan (TRA-61)", () => {
+	const folder: GenreSeed = {
+		genre: { slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" },
+		anchors: [{ slug: "genre:hip-hop", name: "Hip hop", qid: "Q11401" }],
+		targets: [
+			{
+				type: "artist",
+				name: "Fixture Artist",
+				slug: "artist:fixture-artist",
+				mbid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+			},
+			{ type: "track", name: "Fixture Track", slug: "track:fixture-track" },
+		],
+	};
+
+	it("preserves seed identities, reuses the canonical genre, and puts anchors before explicit targets", async () => {
+		const seen: Array<{ slug: string; qid?: string }> = [];
+		const registry: Pick<GenreRegistry, "canonicalSlugFor"> = {
+			canonicalSlugFor: async (ref) => {
+				seen.push({ slug: ref.slug, ...(ref.qid ? { qid: ref.qid } : {}) });
+				if (ref.qid === "Q2913982") return { slug: "genre:cached-trap", qid: ref.qid };
+				return ref.qid ? { slug: ref.slug, qid: ref.qid } : { slug: ref.slug };
+			},
+		};
+
+		const plan = await buildGenreSeedPlan(folder, registry);
+
+		expect(seen).toEqual([
+			{ slug: "genre:hip-hop", qid: "Q11401" },
+			{ slug: "genre:trap-hip-hop", qid: "Q2913982" },
+		]);
+		expect(plan.map(({ stage, input }) => ({ stage, input }))).toEqual([
+			{
+				stage: "anchor",
+				input: { type: "genre", name: "Hip hop", slug: "genre:hip-hop", qid: "Q11401" },
+			},
+			{
+				stage: "genre",
+				input: { type: "genre", name: "Trap Hip-Hop", slug: "genre:cached-trap", qid: "Q2913982" },
+			},
+			{
+				stage: "target",
+				input: {
+					type: "artist",
+					name: "Fixture Artist",
+					slug: "artist:fixture-artist",
+					mbid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+				},
+			},
+			{
+				stage: "target",
+				input: { type: "track", name: "Fixture Track", slug: "track:fixture-track" },
+			},
+		]);
 	});
 });
