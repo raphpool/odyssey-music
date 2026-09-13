@@ -9,6 +9,7 @@ import {
 	PRESCRIBED_GENRES,
 	type ProposalCandidates,
 	proposeGenreSeeds,
+	proposeGenreSeedsFromMusicBrainz,
 	resolveMusicBrainzCandidates,
 	validateGenreSeedProposalInputs,
 } from "../src/genre-seed-proposals.js";
@@ -320,5 +321,122 @@ describe("TRA-218 MusicBrainz identity resolution", () => {
 			{ type: "artist", name: "Duplicate Artist", slug: "artist:duplicate-artist", proofs: [] },
 		]);
 		expect(candidate?.resolutionError).toBe("MusicBrainz identity ambiguous");
+	});
+});
+
+describe("TRA-219 MusicBrainz proposal resolution pacing", () => {
+	it("paces 172 candidates without a MusicBrainz request burst", async () => {
+		let activeRequests = 0;
+		let peakRequests = 0;
+		let requestCount = 0;
+		const wait = vi.fn(async () => undefined);
+		vi.stubGlobal("fetch", async () => {
+			const requestIndex = requestCount++;
+			activeRequests += 1;
+			peakRequests = Math.max(peakRequests, activeRequests);
+			await Promise.resolve();
+			activeRequests -= 1;
+			if (requestIndex === 170)
+				return musicBrainzResponse({
+					artists: [
+						{ id: "550e8400-e29b-41d4-a716-446655440000", name: "Ambiguous Candidate" },
+						{ id: "6ba7b810-9dad-11d1-80b4-00c04fd430c8", name: "Ambiguous Candidate" },
+					],
+				});
+			return musicBrainzResponse({
+				artists: [
+					{
+						id: "550e8400-e29b-41d4-a716-446655440000",
+						name: `Candidate ${requestIndex + 1}`,
+					},
+				],
+			});
+		});
+
+		const resolved = await resolveMusicBrainzCandidates(
+			[
+				...Array.from({ length: 170 }, (_, index) => ({
+					type: "artist" as const,
+					name: `Candidate ${index + 1}`,
+					slug: `artist:candidate-${index + 1}`,
+					proofs: [],
+				})),
+				{
+					type: "artist",
+					name: "Known Homonym",
+					slug: "artist:known-homonym",
+					proofs: [],
+					homonym: true,
+				},
+				{
+					type: "artist",
+					name: "Ambiguous Candidate",
+					slug: "artist:ambiguous-candidate",
+					proofs: [],
+				},
+			],
+			{ wait },
+		);
+
+		expect(resolved).toHaveLength(172);
+		expect(resolved[170]?.homonym).toBe(true);
+		expect(resolved[171]?.resolutionError).toBe("MusicBrainz identity ambiguous");
+		expect(requestCount).toBe(171);
+		expect(peakRequests).toBe(1);
+		expect(wait).toHaveBeenCalledTimes(170);
+	});
+
+	it("paces candidates globally when proposals span multiple dossiers", async () => {
+		let activeRequests = 0;
+		let peakRequests = 0;
+		let requestCount = 0;
+		const wait = vi.fn(async () => undefined);
+		vi.stubGlobal("fetch", async (input: RequestInfo | URL) => {
+			const requestIndex = requestCount++;
+			const name = new URL(String(input)).searchParams.get("query");
+			if (!name) throw new Error("MusicBrainz request must include the candidate name");
+			activeRequests += 1;
+			peakRequests = Math.max(peakRequests, activeRequests);
+			await Promise.resolve();
+			activeRequests -= 1;
+			return musicBrainzResponse({
+				artists: [
+					{
+						id: `550e8400-e29b-41d4-a716-${String(requestIndex + 1).padStart(12, "0")}`,
+						name,
+					},
+				],
+			});
+		});
+		const input = candidates();
+		let candidateIndex = 0;
+		for (const prescribed of PRESCRIBED_GENRES) {
+			const count = Math.min(3, 172 - candidateIndex);
+			input[prescribed.id] = {
+				targets: Array.from({ length: count }, () => {
+					candidateIndex += 1;
+					return {
+						type: "artist" as const,
+						name: `Distributed Candidate ${candidateIndex}`,
+						slug: `artist:distributed-candidate-${candidateIndex}`,
+						proofs: [],
+					};
+				}),
+				anchors: [],
+			};
+		}
+
+		await proposeGenreSeedsFromMusicBrainz(
+			fixture().taxonomy,
+			fixture().coverage,
+			input,
+			{ trustedHosts: ["musicbrainz.org"] },
+			{ wait },
+		);
+
+		expect(candidateIndex).toBe(172);
+		expect(requestCount).toBe(172);
+		expect(peakRequests).toBe(1);
+		expect(wait).toHaveBeenCalledTimes(171);
 	});
 });
