@@ -565,6 +565,78 @@
 			"qid": "Q106130091",
 			"sourceSlugs": ["genre:post-dubstep"],
 			"published": false
+		},
+		{
+			"id": "Q2710523",
+			"name": "Ragga Jungle",
+			"family": "uk-dance-grime",
+			"qid": "Q2710523",
+			"sourceSlugs": ["genre:ragga-jungle"],
+			"published": false
+		},
+		{
+			"id": "Q780517",
+			"name": "Speed Garage",
+			"family": "uk-dance-grime",
+			"qid": "Q780517",
+			"sourceSlugs": ["genre:speed-garage"],
+			"published": false
+		},
+		{
+			"id": "Q9364028",
+			"name": "UK Funky",
+			"family": "uk-dance-grime",
+			"qid": "Q9364028",
+			"published": false
+		},
+		{
+			"id": "Q1165777",
+			"name": "UK Garage",
+			"family": "uk-dance-grime",
+			"qid": "Q1165777",
+			"sourceSlugs": ["genre:uk-garage"],
+			"published": false
+		},
+		{
+			"id": "Q388100",
+			"name": "Afro House",
+			"family": "new-club",
+			"qid": "Q388100",
+			"published": false
+		},
+		{
+			"id": "Q25099840",
+			"name": "Afrobeats",
+			"family": "new-club",
+			"qid": "Q25099840",
+			"published": false
+		},
+		{
+			"id": "Q85741139",
+			"name": "Amapiano",
+			"family": "new-club",
+			"qid": "Q85741139",
+			"published": false
+		},
+		{
+			"id": "Q2863648",
+			"name": "Arrocha",
+			"family": "new-club",
+			"qid": "Q2863648",
+			"published": false
+		},
+		{
+			"id": "local:baile-funk",
+			"name": "Baile Funk",
+			"family": "new-club",
+			"published": false
+		},
+		{
+			"id": "Q106522098",
+			"name": "Ballroom",
+			"family": "new-club",
+			"qid": "Q106522098",
+			"published": false
 		}
 	]
 }
