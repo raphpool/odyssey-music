@@ -486,6 +486,85 @@
 			"name": "Donk",
 			"family": "uk-dance-grime",
 			"published": false
+		},
+		{
+			"id": "Q1259016",
+			"name": "Drill and Bass",
+			"family": "uk-dance-grime",
+			"qid": "Q1259016",
+			"sourceSlugs": ["genre:drill-and-bass", "genre:drill-n-bass"],
+			"aliases": ["Drill 'n' bass"],
+			"published": false
+		},
+		{
+			"id": "Q188994",
+			"name": "Drum & Bass",
+			"family": "uk-dance-grime",
+			"qid": "Q188994",
+			"sourceSlugs": ["genre:drum-and-bass"],
+			"published": false
+		},
+		{
+			"id": "Q24876318",
+			"name": "Drumstep",
+			"family": "uk-dance-grime",
+			"qid": "Q24876318",
+			"sourceSlugs": ["genre:drumstep"],
+			"published": false
+		},
+		{
+			"id": "Q20474",
+			"name": "Dubstep",
+			"family": "uk-dance-grime",
+			"qid": "Q20474",
+			"sourceSlugs": ["genre:dubstep"],
+			"published": false
+		},
+		{
+			"id": "Q5510816",
+			"name": "Future garage",
+			"family": "uk-dance-grime",
+			"qid": "Q5510816",
+			"sourceSlugs": ["genre:future-garage"],
+			"published": false
+		},
+		{
+			"id": "local:garage",
+			"name": "Garage",
+			"family": "uk-dance-grime",
+			"published": false
+		},
+		{
+			"id": "Q1166726",
+			"name": "Grime",
+			"family": "uk-dance-grime",
+			"qid": "Q1166726",
+			"sourceSlugs": ["genre:grime"],
+			"published": false
+		},
+		{
+			"id": "Q46649",
+			"name": "Jump-Up",
+			"family": "uk-dance-grime",
+			"qid": "Q46649",
+			"sourceSlugs": ["genre:jump-up"],
+			"published": false
+		},
+		{
+			"id": "Q1102161",
+			"name": "Jungle",
+			"family": "uk-dance-grime",
+			"qid": "Q1102161",
+			"sourceSlugs": ["genre:jungle"],
+			"published": false
+		},
+		{
+			"id": "Q106130091",
+			"name": "Post-dubstep",
+			"family": "uk-dance-grime",
+			"qid": "Q106130091",
+			"sourceSlugs": ["genre:post-dubstep"],
+			"published": false
 		}
 	]
 }
