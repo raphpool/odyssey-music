@@ -257,6 +257,77 @@
 			"qid": "Q928825",
 			"sourceSlugs": ["genre:garage-house"],
 			"published": false
+		},
+		{
+			"id": "Q2748817",
+			"name": "Ghetto House",
+			"family": "house-techno",
+			"qid": "Q2748817",
+			"published": false
+		},
+		{
+			"id": "Q1521688",
+			"name": "Ghettotech",
+			"family": "house-techno",
+			"qid": "Q1521688",
+			"published": false
+		},
+		{
+			"id": "Q339906",
+			"name": "Happy Hardcore",
+			"family": "house-techno",
+			"qid": "Q339906",
+			"published": false
+		},
+		{
+			"id": "Q223840",
+			"name": "Hardstyle",
+			"family": "house-techno",
+			"qid": "Q223840",
+			"published": false
+		},
+		{
+			"id": "Q601235",
+			"name": "Hip-House",
+			"family": "house-techno",
+			"qid": "Q601235",
+			"published": false
+		},
+		{
+			"id": "Q20502",
+			"name": "House",
+			"family": "house-techno",
+			"qid": "Q20502",
+			"sourceSlugs": ["genre:house"],
+			"published": false
+		},
+		{
+			"id": "Q29480448",
+			"name": "Industrial Techno",
+			"family": "house-techno",
+			"qid": "Q29480448",
+			"sourceSlugs": ["genre:industrial-techno"],
+			"published": false
+		},
+		{
+			"id": "Q105636940",
+			"name": "Leftfield House",
+			"family": "house-techno",
+			"qid": "Q105636940",
+			"published": false
+		},
+		{
+			"id": "local:leftfield-techno",
+			"name": "Leftfield Techno",
+			"family": "house-techno",
+			"published": false
+		},
+		{
+			"id": "Q3048168",
+			"name": "Makina",
+			"family": "house-techno",
+			"qid": "Q3048168",
+			"published": false
 		}
 	]
 }
