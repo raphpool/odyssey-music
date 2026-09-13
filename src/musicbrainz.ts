@@ -105,6 +105,32 @@ const SPECIAL_PURPOSE_MBIDS = new Set([
 const mbCache = new Map<string, { at: number; data: unknown }>();
 const MB_CACHE_TTL_MS = musicBrainzConfig.cacheTtlMs;
 const MB_CACHE_MAX = musicBrainzConfig.cacheMaxEntries;
+const MB_MAX_ATTEMPTS = 3;
+const MB_RETRY_DELAY_MS = 1_000;
+const MAX_TIMER_DELAY_MS = 2_147_483_647;
+let retryQueue = Promise.resolve();
+
+function retryAfterDelayMs(retryAfter: string | null, now: number): number | null {
+	if (!retryAfter) return null;
+	const seconds = Number(retryAfter.trim());
+	const delay = Math.ceil(seconds * 1_000);
+	if (Number.isSafeInteger(delay) && delay >= 0) return delay;
+	const retryAt = Date.parse(retryAfter);
+	if (Number.isNaN(retryAt)) return null;
+	return Math.max(0, retryAt - now);
+}
+
+async function sleep(delayMs: number): Promise<void> {
+	for (let remaining = delayMs; remaining > 0; remaining -= MAX_TIMER_DELAY_MS) {
+		await new Promise<void>((resolve) => setTimeout(resolve, Math.min(remaining, MAX_TIMER_DELAY_MS)));
+	}
+}
+
+function queueRetry(delayMs: number): Promise<void> {
+	const queued = retryQueue.then(() => sleep(delayMs));
+	retryQueue = queued.catch(() => undefined);
+	return queued;
+}
 
 async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
 	const key = `${path}?${Object.entries(params)
@@ -120,10 +146,9 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 	for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
 	url.searchParams.set("fmt", "json");
 
-	// Retry on 503 with backoff. MB throttles aggressively during burst traffic; a short
-	// retry with jitter usually clears it. We cap at 2 retries (3 total attempts) so we
-	// don't pile on if MB is genuinely down.
-	for (let attempt = 0; attempt < 3; attempt++) {
+	// MusicBrainz returns 503 or 429 when its rate limit is exceeded. Queue retries globally
+	// and wait at least one second so concurrent callers cannot create a recovery burst.
+	for (let attempt = 0; attempt < MB_MAX_ATTEMPTS; attempt++) {
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
@@ -131,9 +156,10 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
 				signal: ctrl.signal,
 			});
-			if (r.status === 503 && attempt < 2) {
-				const wait = 250 * 2 ** attempt + Math.random() * 100;
-				await new Promise((res) => setTimeout(res, wait));
+			if ((r.status === 503 || r.status === 429) && attempt < MB_MAX_ATTEMPTS - 1) {
+				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
+				const wait = Math.max(MB_RETRY_DELAY_MS, retryAfter ?? 0);
+				await queueRetry(wait);
 				continue;
 			}
 			if (!r.ok) {
@@ -150,7 +176,7 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 			return data;
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
-			if (attempt === 2) log.warn("fetch failed", { path: url.pathname, error: msg });
+			if (attempt === MB_MAX_ATTEMPTS - 1) log.warn("fetch failed", { path: url.pathname, error: msg });
 		} finally {
 			clearTimeout(timer);
 		}
