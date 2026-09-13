@@ -1,4 +1,4 @@
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
@@ -20,6 +20,11 @@ export interface CacheStats {
 	revUpdates: number;
 }
 
+interface CacheWriteDelta {
+	written: number;
+	revUpdates: number;
+}
+
 /**
  * Slug-keyed on-disk cache.
  *
@@ -32,6 +37,7 @@ export interface CacheStats {
 export class NodeCache {
 	private readonly root: string;
 	private readonly locks = new Map<string, Promise<unknown>>();
+	private readonly operationLocks = new Map<string, Promise<unknown>>();
 	private pendingReverses: Record<string, PendingReverse[]> = {};
 	private pendingDirty = false;
 	private pendingLoading: Promise<void> | null = null;
@@ -75,6 +81,20 @@ export class NodeCache {
 		} finally {
 			if (this.locks.get(slug) === stored) {
 				this.locks.delete(slug);
+			}
+		}
+	}
+
+	private async runOperationLocked<T>(slug: Slug, fn: () => Promise<T>): Promise<T> {
+		const prev = this.operationLocks.get(slug) ?? Promise.resolve();
+		const next = prev.then(fn, fn);
+		const stored = next.catch(() => undefined);
+		this.operationLocks.set(slug, stored);
+		try {
+			return await next;
+		} finally {
+			if (this.operationLocks.get(slug) === stored) {
+				this.operationLocks.delete(slug);
 			}
 		}
 	}
@@ -306,6 +326,22 @@ export class NodeCache {
 	async write(node: NodePayload): Promise<void> {
 		const parsed = nodePayloadSchema.parse(node) as NodePayload;
 		if (parsed.type === "genre") {
+			// Preserve the eager invalidation contract: concurrent QID lookups must not reuse a
+			// memo from before a write that has already been requested but is still queued.
+			this.genreQidIndex = null;
+			this.genreQidIndexVersion++;
+		}
+		await this.runOperationLocked(parsed.slug, async () => {
+			await this.writeParsed(parsed, { written: 0, revUpdates: 0 }, true);
+		});
+	}
+
+	private async writeParsed(
+		parsed: NodePayload,
+		delta: CacheWriteDelta,
+		alreadyInvalidated = false,
+	): Promise<void> {
+		if (parsed.type === "genre" && !alreadyInvalidated) {
 			// First invalidation, on entry: covers any build that started before this write and
 			// is still in flight, and rules out a stale-but-not-yet-invalidated index being
 			// handed out to a caller between now and the node actually landing on disk below.
@@ -322,13 +358,14 @@ export class NodeCache {
 				await mkdir(dirname(file), { recursive: true });
 				await atomicWriteJson(file, validated);
 				this.stats.written++;
+				delta.written++;
 				if (pending.length) {
 					delete this.pendingReverses[parsed.slug];
 					this.pendingDirty = true;
 				}
 			});
 			// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
-			await this.emitReverses(parsed);
+			await this.emitReverses(parsed, delta);
 			await this.flushPending();
 		} finally {
 			// 2026-09-09: emitReverses/flushPending can throw after the source node itself is
@@ -350,7 +387,50 @@ export class NodeCache {
 		}
 	}
 
-	private async emitReverses(source: NodePayload): Promise<void> {
+	/**
+	 * Replaces an existing node while preserving its exact source file if a later write phase
+	 * fails. The source remains readable until its replacement lands, and the backup is renamed
+	 * back rather than written again, so a failed flush or reverse edge update cannot turn a
+	 * refresh failure into a second best-effort write.
+	 */
+	async replace(node: NodePayload): Promise<void> {
+		const parsed = nodePayloadSchema.parse(node) as NodePayload;
+		await this.runOperationLocked(parsed.slug, async () => {
+			const file = this.pathFor(parsed.slug);
+			const backup = `${file}.backup-${process.pid}-${Math.random().toString(36).slice(2)}`;
+			const delta: CacheWriteDelta = { written: 0, revUpdates: 0 };
+
+			await copyFile(file, backup);
+			try {
+				await this.writeParsed(parsed, delta);
+			} catch (error) {
+				this.stats.written -= delta.written;
+				this.stats.revUpdates -= delta.revUpdates;
+				try {
+					await rename(backup, file);
+				} catch (rollbackError) {
+					throw new AggregateError(
+						[error, rollbackError],
+						`Failed to replace ${parsed.slug} and restore its previous source file`,
+					);
+				}
+				throw error;
+			}
+
+			try {
+				await unlink(backup);
+			} catch (error) {
+				if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+					log.warn("replacement backup cleanup failed", {
+						slug: parsed.slug,
+						error: error instanceof Error ? error.message : String(error),
+					});
+				}
+			}
+		});
+	}
+
+	private async emitReverses(source: NodePayload, delta: CacheWriteDelta): Promise<void> {
 		// A genre source's qid rides along on the reverse edge it emits (TRA-18).
 		const sourceEdge: EdgeRef =
 			source.type === "genre" && source.qid
@@ -369,6 +449,7 @@ export class NodeCache {
 			for (const targetRef of refs) {
 				await this.applyReverseToTarget(targetRef.slug, reverse.field, reverse.cardinality, sourceEdge);
 				this.stats.revUpdates++;
+				delta.revUpdates++;
 			}
 		}
 	}
