@@ -1,4 +1,5 @@
-import { mkdtemp, rm } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
@@ -56,6 +57,28 @@ function vizNode(id: string, type: NodeType): VizNode {
 		edges: {},
 		materialized_at: "",
 	};
+}
+async function writeTaxonomy(path: string, genres: GenreTaxonomy["genres"]): Promise<void> {
+	await writeFile(path, JSON.stringify(taxonomy(genres)));
+}
+type CliResult = { status: number; stdout: string; stderr: string };
+function runCoverageCli(...args: string[]): CliResult {
+	try {
+		const stdout = execFileSync("npm", ["--silent", "run", "analyze:genre-coverage", "--", ...args], {
+			cwd: process.cwd(),
+			encoding: "utf8",
+			stdio: ["ignore", "pipe", "pipe"],
+		});
+		return { status: 0, stdout: String(stdout), stderr: "" };
+	} catch (error: unknown) {
+		if (!(error instanceof Error)) throw error;
+		const result = error as Error & { status?: number; stderr?: unknown; stdout?: unknown };
+		return {
+			status: result.status ?? 1,
+			stdout: typeof result.stdout === "string" ? result.stdout : "",
+			stderr: typeof result.stderr === "string" ? result.stderr : "",
+		};
+	}
 }
 describe("measureGenreCoverage (TRA-57)", () => {
 	it("unites incoming and outgoing eligible neighbours across sources and reports missing and quarantined sources", async () => {
@@ -167,5 +190,92 @@ describe("measureGenreCoverage (TRA-57)", () => {
 				graph,
 			),
 		).rejects.toThrow(/multiple genres/i);
+	});
+});
+
+describe("analyze:genre-coverage (TRA-58)", () => {
+	it("reports named choices, family summary, missing sources and a data fingerprint without writing", async () => {
+		const cache = new NodeCache(directory);
+		const canonical = genre("genre:canonical", "Canonical", "Q1");
+		canonical.related_genres = [{ slug: "genre:alias", type: "genre", name: "Alias" }];
+		await cache.write(canonical);
+		await cache.write(genre("genre:alias", "Alias"));
+		const taxonomyPath = join(directory, "genre-taxonomy.json");
+		await writeTaxonomy(taxonomyPath, [
+			{
+				id: "Q1",
+				qid: "Q1",
+				name: "Choice",
+				family: "electronic",
+				published: true,
+				sourceSlugs: ["genre:alias", "genre:missing"],
+			},
+		]);
+		const beforeCanonical = await readFile(join(directory, "nodes/genre/canonical.json"), "utf8");
+		const result = runCoverageCli("--cache", directory, "--taxonomy", taxonomyPath);
+
+		expect(result.status).toBe(0);
+		const report = JSON.parse(result.stdout) as {
+			entries: Record<string, Record<string, unknown>>;
+			families: Record<string, Record<string, unknown>>;
+			fingerprint: string;
+		};
+		expect(report.entries.Q1).toMatchObject({
+			name: "Choice",
+			family: "electronic",
+			resolvedSources: ["genre:alias", "genre:canonical"],
+			missingSources: ["genre:missing"],
+			deficit: 3,
+			publishable: false,
+		});
+		expect(report.families.electronic).toMatchObject({ entries: 1, deficit: 3, publishable: 0 });
+		expect(report.families.electronic).toMatchObject({
+			absent: 1,
+			quarantined: 0,
+			deficit: 3,
+			publication: 0,
+		});
+		expect(
+			(
+				JSON.parse(runCoverageCli("--cache", directory, "--taxonomy", taxonomyPath).stdout) as {
+					fingerprint: string;
+				}
+			).fingerprint,
+		).toBe(report.fingerprint);
+		expect(await readFile(join(directory, "nodes/genre/canonical.json"), "utf8")).toBe(beforeCanonical);
+	});
+
+	it("diagnoses invalid arguments and reports unresolved inputs from the selected cache", async () => {
+		const invalid = runCoverageCli("--cache");
+		expect(invalid.status).toBe(2);
+		expect(invalid.stderr).toMatch(/--cache <dir>/i);
+
+		const taxonomyPath = join(directory, "genre-taxonomy.json");
+		await writeTaxonomy(taxonomyPath, [
+			{
+				id: "Q9",
+				qid: "Q9",
+				name: "Unknown choice",
+				family: "electronic",
+				published: true,
+			},
+		]);
+		const result = runCoverageCli("--cache", directory, "--taxonomy", taxonomyPath);
+		const report = JSON.parse(result.stdout) as {
+			entries: Record<string, Record<string, unknown>>;
+			diagnostics: Array<Record<string, unknown>>;
+		};
+		expect(result.status).toBe(0);
+		expect(report.entries.Q9).toMatchObject({
+			resolvedSources: [],
+			missingSources: [],
+			deficit: 3,
+			publishable: false,
+		});
+		expect(report.diagnostics).toContainEqual({
+			code: "unresolved-entry",
+			id: "Q9",
+			name: "Unknown choice",
+		});
 	});
 });
