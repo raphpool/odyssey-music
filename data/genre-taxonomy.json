@@ -105,5 +105,81 @@
 			"order": 20
 		}
 	],
-	"genres": []
+	"genres": [
+		{
+			"id": "Q106528337",
+			"name": "Acid",
+			"family": "house-techno",
+			"qid": "Q106528337",
+			"published": false
+		},
+		{
+			"id": "Q341364",
+			"name": "Acid House",
+			"family": "house-techno",
+			"qid": "Q341364",
+			"sourceSlugs": ["genre:acid-house"],
+			"published": false
+		},
+		{
+			"id": "Q341395",
+			"name": "Acid Techno",
+			"family": "house-techno",
+			"qid": "Q341395",
+			"sourceSlugs": ["genre:acid-techno"],
+			"published": false
+		},
+		{
+			"id": "Q481900",
+			"name": "Acid Trance",
+			"family": "house-techno",
+			"qid": "Q481900",
+			"sourceSlugs": ["genre:acid-trance"],
+			"published": false
+		},
+		{
+			"id": "Q9149801",
+			"name": "Ambient Techno",
+			"family": "house-techno",
+			"qid": "Q9149801",
+			"sourceSlugs": ["genre:ambient-techno"],
+			"published": false
+		},
+		{
+			"id": "local:balearic-house",
+			"name": "Balearic House",
+			"family": "house-techno",
+			"published": false
+		},
+		{
+			"id": "Q65937774",
+			"name": "Breaks",
+			"family": "house-techno",
+			"qid": "Q65937774",
+			"published": false
+		},
+		{
+			"id": "Q2406633",
+			"name": "Broken Beat",
+			"family": "house-techno",
+			"qid": "Q2406633",
+			"published": false
+		},
+		{
+			"id": "Q1071961",
+			"name": "Chicago House",
+			"family": "house-techno",
+			"qid": "Q1071961",
+			"sourceSlugs": ["genre:chicago-house"],
+			"published": false
+		},
+		{
+			"id": "Q874038",
+			"name": "Deep House",
+			"family": "house-techno",
+			"qid": "Q874038",
+			"sourceSlugs": ["genre:deep-house"],
+			"published": false
+		}
+	]
 }
