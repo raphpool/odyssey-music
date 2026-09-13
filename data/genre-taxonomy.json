@@ -328,6 +328,87 @@
 			"family": "house-techno",
 			"qid": "Q3048168",
 			"published": false
+		},
+		{
+			"id": "Q1931555",
+			"name": "Microhouse",
+			"family": "house-techno",
+			"qid": "Q1931555",
+			"sourceSlugs": ["genre:microhouse"],
+			"published": false
+		},
+		{
+			"id": "Q750811",
+			"name": "Minimal house",
+			"family": "house-techno",
+			"qid": "Q750811",
+			"sourceSlugs": ["genre:minimal-house"],
+			"published": false
+		},
+		{
+			"id": "Q1430587",
+			"name": "Minimal techno",
+			"family": "house-techno",
+			"qid": "Q1430587",
+			"sourceSlugs": ["genre:minimal-techno"],
+			"aliases": ["Minimal"],
+			"published": false
+		},
+		{
+			"id": "Q915152",
+			"name": "Progressive House",
+			"family": "house-techno",
+			"qid": "Q915152",
+			"sourceSlugs": ["genre:progressive-house"],
+			"published": false
+		},
+		{
+			"id": "Q622871",
+			"name": "Psytrance",
+			"family": "house-techno",
+			"qid": "Q622871",
+			"sourceSlugs": ["genre:psytrance"],
+			"published": false
+		},
+		{
+			"id": "Q898709",
+			"name": "Rave",
+			"family": "house-techno",
+			"qid": "Q898709",
+			"sourceSlugs": ["genre:rave"],
+			"published": false
+		},
+		{
+			"id": "Q598593",
+			"name": "Tech House",
+			"family": "house-techno",
+			"qid": "Q598593",
+			"sourceSlugs": ["genre:tech-house"],
+			"published": false
+		},
+		{
+			"id": "Q170611",
+			"name": "Techno",
+			"family": "house-techno",
+			"qid": "Q170611",
+			"sourceSlugs": ["genre:techno"],
+			"published": false
+		},
+		{
+			"id": "Q170435",
+			"name": "Trance",
+			"family": "house-techno",
+			"qid": "Q170435",
+			"sourceSlugs": ["genre:trance"],
+			"published": false
+		},
+		{
+			"id": "Q1751409",
+			"name": "2-step garage",
+			"family": "uk-dance-grime",
+			"qid": "Q1751409",
+			"sourceSlugs": ["genre:2-step-garage"],
+			"published": false
 		}
 	]
 }
