@@ -9,16 +9,18 @@ function jsonResponse(body: unknown): Response {
 	} as Response;
 }
 
-function failedResponse(status: number): Response {
+function failedResponse(status: number, retryAfter?: string): Response {
 	return {
 		ok: false,
 		status,
+		headers: new Headers(retryAfter ? { "Retry-After": retryAfter } : undefined),
 		json: async () => ({}),
 	} as Response;
 }
 
 afterEach(() => {
 	vi.unstubAllGlobals();
+	vi.useRealTimers();
 });
 
 describe("fetchEntityGenresMb", () => {
@@ -125,5 +127,79 @@ describe("fetchEntityGenresMb", () => {
 		);
 		const out = await fetchEntityGenresMb("artist", "66666666-6666-6666-6666-666666666666");
 		expect(out).toEqual([]);
+	});
+
+	it("spaces 503 retries by one second and stops after the bounded retry count", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return failedResponse(503);
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777777");
+		await vi.advanceTimersByTimeAsync(2_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes).toEqual([
+			new Date("2026-09-14T00:00:00.000Z").getTime(),
+			new Date("2026-09-14T00:00:01.000Z").getTime(),
+			new Date("2026-09-14T00:00:02.000Z").getTime(),
+		]);
+	});
+
+	it("honors a valid Retry-After delay before retrying a 503", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
+		const requestTimes: number[] = [];
+		const fetchMock = vi.fn(async () => {
+			requestTimes.push(Date.now());
+			return requestTimes.length === 1 ? failedResponse(503, "3") : jsonResponse({ genres: [] });
+		});
+		vi.stubGlobal("fetch", fetchMock);
+
+		const pending = fetchEntityGenresMb("artist", "88888888-8888-8888-8888-888888888888");
+		await vi.advanceTimersByTimeAsync(3_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes).toEqual([
+			new Date("2026-09-14T00:00:00.000Z").getTime(),
+			new Date("2026-09-14T00:00:03.000Z").getTime(),
+		]);
+	});
+
+	it("serializes concurrent retries to avoid a retry burst", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
+		const requestTimes: number[] = [];
+		const attempts = new Map<string, number>();
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const key = input.pathname;
+				const attempt = attempts.get(key) ?? 0;
+				attempts.set(key, attempt + 1);
+				requestTimes.push(Date.now());
+				return attempt === 0 ? failedResponse(503) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const requests = [
+			"99999999-9999-9999-9999-999999999991",
+			"99999999-9999-9999-9999-999999999992",
+			"99999999-9999-9999-9999-999999999993",
+		].map((mbid) => fetchEntityGenresMb("artist", mbid));
+		await vi.advanceTimersByTimeAsync(3_000);
+
+		expect(await Promise.all(requests)).toEqual([[], [], []]);
+		expect(requestTimes.slice(3)).toEqual([
+			new Date("2026-09-14T00:00:01.000Z").getTime(),
+			new Date("2026-09-14T00:00:02.000Z").getTime(),
+			new Date("2026-09-14T00:00:03.000Z").getTime(),
+		]);
 	});
 });
