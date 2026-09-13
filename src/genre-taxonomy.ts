@@ -1,6 +1,9 @@
 import { readFile } from "node:fs/promises";
+import { basename, dirname, join } from "node:path";
 import { z } from "zod";
 
+import { NodeCache } from "./cache.js";
+import { loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { isValidSlug, makeSlug, normalizeSlugBody, parseSlug } from "./slug.js";
 import { QID_PATTERN, type Slug } from "./types.js";
 
@@ -128,7 +131,74 @@ export function validateGenreTaxonomy(input: unknown): GenreTaxonomy {
 	return assertTaxonomyInvariants(GenreTaxonomySchema.parse(input));
 }
 
+function cacheRootFor(path: string): string {
+	const directory = dirname(path);
+	return basename(directory) === "data" ? join(directory, "..", "cache") : join(directory, "cache");
+}
+
+async function cachedGenreQid(cache: NodeCache, source: Slug): Promise<string | undefined> {
+	const node = await cache.get(source).catch(() => undefined);
+	return node?.type === "genre" ? node.qid : undefined;
+}
+
+async function loadSources(taxonomy: GenreTaxonomy, path: string): Promise<GenreTaxonomy> {
+	const cache = new NodeCache(cacheRootFor(path));
+	const redirects = await loadGenreRedirects(join(dirname(path), "genre-redirects.json"));
+	const owners = new Map<Slug, string>();
+	const genres: GenreTaxonomyEntry[] = [];
+
+	for (const genre of taxonomy.genres) {
+		const explicit = new Set<Slug>();
+		let sourceQid: string | undefined;
+		for (const source of genre.sourceSlugs ?? []) {
+			explicit.add(await resolveReadSlug(source, redirects, cache));
+		}
+		const qidSource = genre.qid === undefined ? undefined : await cache.findGenreSlugByQid(genre.qid);
+		const canonicalQidSource =
+			qidSource === undefined ? undefined : await resolveReadSlug(qidSource, redirects, cache);
+
+		const sources = [...explicit];
+		if (canonicalQidSource !== undefined) sources.push(canonicalQidSource);
+		const uniqueSources = [...new Set(sources)];
+		for (const source of uniqueSources) {
+			if (!(await cache.has(source))) throw new Error(`Genre source slug disappeared: ${source}`);
+			const cachedQid = await cachedGenreQid(cache, source);
+			const expectedQid = genre.qid ?? sourceQid;
+			if (cachedQid !== undefined && expectedQid !== undefined && cachedQid !== expectedQid) {
+				throw new Error(`Contradictory source QID for genre ${genre.id}`);
+			}
+			sourceQid ??= cachedQid;
+			const owner = owners.get(source);
+			if (owner !== undefined && owner !== genre.id) {
+				throw new Error(`Source slug ${source} is assigned to multiple genres`);
+			}
+			owners.set(source, genre.id);
+		}
+		genres.push(
+			uniqueSources.length > 0 || genre.sourceSlugs !== undefined
+				? { ...genre, sourceSlugs: uniqueSources }
+				: genre,
+		);
+	}
+
+	return { ...taxonomy, genres };
+}
+
 export async function loadGenreTaxonomy(path = "data/genre-taxonomy.json"): Promise<GenreTaxonomy> {
-	const content = await readFile(path, "utf8");
-	return validateGenreTaxonomy(JSON.parse(content) as unknown);
+	let content: string;
+	try {
+		content = await readFile(path, "utf8");
+	} catch (error) {
+		if ((error as NodeJS.ErrnoException).code === "ENOENT") {
+			throw new Error(`Genre taxonomy not found: ${path}`, { cause: error });
+		}
+		throw error;
+	}
+	let parsed: unknown;
+	try {
+		parsed = JSON.parse(content) as unknown;
+	} catch (error) {
+		throw new Error(`Invalid genre taxonomy JSON: ${path}`, { cause: error });
+	}
+	return loadSources(validateGenreTaxonomy(parsed), path);
 }
