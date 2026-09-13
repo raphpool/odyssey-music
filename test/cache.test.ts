@@ -153,6 +153,126 @@ describe("NodeCache", () => {
 	});
 });
 
+describe("NodeCache — transactional replacement (TRA-215)", () => {
+	it("counts a successful replacement as one write", async () => {
+		const replacementDir = await mkdtemp(join(tmpdir(), "odyssey-cache-replace-"));
+		const replacementCache = new NodeCache(replacementDir);
+		try {
+			await replacementCache.write(genreNode({ slug: "genre:acid", name: "Acid", qid: "Q1" }));
+			const before = replacementCache.stats.written;
+
+			await replacementCache.replace(
+				genreNode({
+					slug: "genre:acid",
+					name: "Acid",
+					qid: "Q1",
+					editorial_definition: "Replacement definition.",
+				}),
+			);
+
+			expect(replacementCache.stats.written).toBe(before + 1);
+			expect(await replacementCache.get("genre:acid")).toMatchObject({
+				editorial_definition: "Replacement definition.",
+			});
+		} finally {
+			await rm(replacementDir, { recursive: true, force: true });
+		}
+	});
+
+	it("keeps the source readable and serializes a later same-slug write", async () => {
+		const replacementDir = await mkdtemp(join(tmpdir(), "odyssey-cache-replace-"));
+		const replacementCache = new NodeCache(replacementDir);
+		const cacheInternals = replacementCache as unknown as {
+			emitReverses: (source: NodePayload, delta: { written: number; revUpdates: number }) => Promise<void>;
+		};
+		const originalEmitReverses = cacheInternals.emitReverses;
+		let resumeReplacement: (() => void) | undefined;
+		const replacementPaused = new Promise<void>((resolve) => {
+			resumeReplacement = resolve;
+		});
+		let replacementVisible: (() => void) | undefined;
+		const replacementStarted = new Promise<void>((resolve) => {
+			replacementVisible = resolve;
+		});
+		try {
+			await replacementCache.write(genreNode({ slug: "genre:acid", name: "Acid", qid: "Q1" }));
+			const emitSpy = vi
+				.spyOn(cacheInternals, "emitReverses")
+				.mockImplementationOnce(async (source, delta) => {
+					replacementVisible?.();
+					await replacementPaused;
+					await originalEmitReverses.call(replacementCache, source, delta);
+				});
+			const replacing = replacementCache.replace(
+				genreNode({
+					slug: "genre:acid",
+					name: "Acid",
+					qid: "Q1",
+					editorial_definition: "Replacement visible while its effects are pending.",
+				}),
+			);
+			await replacementStarted;
+			const laterWrite = replacementCache.write(
+				genreNode({
+					slug: "genre:acid",
+					name: "Acid",
+					qid: "Q1",
+					editorial_definition: "Later write after replacement.",
+				}),
+			);
+
+			const visible = await replacementCache.get("genre:acid");
+			if (visible.type !== "genre") throw new Error("expected a visible genre source");
+			expect(visible.editorial_definition).toBe("Replacement visible while its effects are pending.");
+
+			resumeReplacement?.();
+			await replacing;
+			await laterWrite;
+			const final = await replacementCache.get("genre:acid");
+			if (final.type !== "genre") throw new Error("expected final genre source");
+			expect(final.editorial_definition).toBe("Later write after replacement.");
+			emitSpy.mockRestore();
+		} finally {
+			await rm(replacementDir, { recursive: true, force: true });
+		}
+	});
+
+	it("restores the source and counters after a late reverse-edge failure", async () => {
+		const replacementDir = await mkdtemp(join(tmpdir(), "odyssey-cache-replace-"));
+		const replacementCache = new NodeCache(replacementDir);
+		try {
+			const original = genreNode({
+				slug: "genre:acid",
+				name: "Acid",
+				qid: "Q1",
+				editorial_definition: "The source that must survive a failed replacement.",
+			});
+			await replacementCache.write(original);
+			const before = { ...replacementCache.stats };
+			const genreDir = join(replacementDir, "nodes", "genre");
+			await mkdir(genreDir, { recursive: true });
+			await writeFile(join(genreDir, "invalid-target.json"), JSON.stringify({ type: "genre" }), "utf8");
+
+			await expect(
+				replacementCache.replace(
+					genreNode({
+						slug: "genre:acid",
+						name: "Acid",
+						qid: "Q1",
+						editorial_definition: "Replacement that must be rolled back.",
+						parent_genres: [{ type: "genre", slug: "genre:invalid-target", name: "Invalid target" }],
+					}),
+				),
+			).rejects.toThrow();
+
+			expect(await replacementCache.get("genre:acid")).toEqual(original);
+			expect(replacementCache.stats).toEqual(before);
+		} finally {
+			await rm(replacementDir, { recursive: true, force: true });
+		}
+	});
+});
+
 describe("NodeCache — findGenreSlugByQid (TRA-24)", () => {
 	it("resolves a slug by qid, ignores nodes without a qid, and returns undefined for unknown/empty qids", async () => {
 		const qidDir = await mkdtemp(join(tmpdir(), "odyssey-cache-qid-"));
