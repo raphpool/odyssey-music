@@ -391,36 +391,61 @@ function musicBrainzProof({ type, mbid }: CatalogResult): Proof {
 	return { url: `https://musicbrainz.org/${entity}/${mbid}`, verified: true };
 }
 
+const MUSICBRAINZ_REQUEST_INTERVAL_MS = 1_000;
+
+function waitForMusicBrainzRequest(durationMs: number): Promise<void> {
+	return new Promise((resolve) => setTimeout(resolve, durationMs));
+}
+
+export interface MusicBrainzResolutionOptions {
+	wait?: (durationMs: number) => Promise<void>;
+}
+
 export async function resolveMusicBrainzCandidates(
 	candidates: readonly TargetCandidate[],
+	{ wait = waitForMusicBrainzRequest }: MusicBrainzResolutionOptions = {},
 ): Promise<TargetCandidate[]> {
 	const catalog = createMusicBrainzCatalog();
-	return Promise.all(
-		candidates.map(async (candidate) => {
-			if (candidate.homonym) return candidate;
-			try {
-				const matches = (await catalog.searchByType(candidate.type, candidate.name, 8))
-					.map((result) => matchingCatalogResult(candidate, result))
-					.filter((result): result is CatalogResult => result !== undefined);
-				if (matches.length === 0) return { ...candidate, resolutionError: "MusicBrainz identity unresolved" };
-				if (new Set(matches.map(({ mbid }) => mbid.toLowerCase())).size !== 1)
-					return { ...candidate, resolutionError: "MusicBrainz identity ambiguous" };
-				const hit = matches[0];
-				if (!hit) return { ...candidate, resolutionError: "MusicBrainz identity unresolved" };
-				const proof = musicBrainzProof(hit);
-				return {
-					...candidate,
-					name: hit.name,
-					mbid: hit.mbid,
-					proofs: candidate.proofs.some(({ url }) => url === proof.url)
-						? candidate.proofs
-						: [...candidate.proofs, proof],
-				};
-			} catch {
-				return { ...candidate, resolutionError: "MusicBrainz lookup failed" };
+	const resolved: TargetCandidate[] = [];
+	let hasRequested = false;
+	for (const candidate of candidates) {
+		if (candidate.homonym) {
+			resolved.push(candidate);
+			continue;
+		}
+		if (hasRequested) await wait(MUSICBRAINZ_REQUEST_INTERVAL_MS);
+		hasRequested = true;
+		try {
+			const matches = (await catalog.searchByType(candidate.type, candidate.name, 8))
+				.map((result) => matchingCatalogResult(candidate, result))
+				.filter((result): result is CatalogResult => result !== undefined);
+			if (matches.length === 0) {
+				resolved.push({ ...candidate, resolutionError: "MusicBrainz identity unresolved" });
+				continue;
 			}
-		}),
-	);
+			if (new Set(matches.map(({ mbid }) => mbid.toLowerCase())).size !== 1) {
+				resolved.push({ ...candidate, resolutionError: "MusicBrainz identity ambiguous" });
+				continue;
+			}
+			const hit = matches[0];
+			if (!hit) {
+				resolved.push({ ...candidate, resolutionError: "MusicBrainz identity unresolved" });
+				continue;
+			}
+			const proof = musicBrainzProof(hit);
+			resolved.push({
+				...candidate,
+				name: hit.name,
+				mbid: hit.mbid,
+				proofs: candidate.proofs.some(({ url }) => url === proof.url)
+					? candidate.proofs
+					: [...candidate.proofs, proof],
+			});
+		} catch {
+			resolved.push({ ...candidate, resolutionError: "MusicBrainz lookup failed" });
+		}
+	}
+	return resolved;
 }
 
 export async function proposeGenreSeedsFromMusicBrainz(
@@ -428,14 +453,17 @@ export async function proposeGenreSeedsFromMusicBrainz(
 	coverage: GenreCoverageReport,
 	candidates: Readonly<Record<string, ProposalCandidates>>,
 	options: ProposalOptions,
+	resolutionOptions?: MusicBrainzResolutionOptions,
 ): Promise<GenreSeedProposalReport> {
-	const resolved = Object.fromEntries(
-		await Promise.all(
-			Object.entries(candidates).map(async ([id, dossier]) => [
-				id,
-				{ ...dossier, targets: await resolveMusicBrainzCandidates(dossier.targets) },
-			]),
-		),
-	) as Record<string, ProposalCandidates>;
+	const dossiers = Object.entries(candidates);
+	const targets = dossiers.flatMap(([, dossier]) => dossier.targets);
+	const resolvedTargets = await resolveMusicBrainzCandidates(targets, resolutionOptions);
+	const resolved: Record<string, ProposalCandidates> = {};
+	let targetIndex = 0;
+	for (const [id, dossier] of dossiers) {
+		const nextTargetIndex = targetIndex + dossier.targets.length;
+		resolved[id] = { ...dossier, targets: resolvedTargets.slice(targetIndex, nextTargetIndex) };
+		targetIndex = nextTargetIndex;
+	}
 	return proposeGenreSeeds(taxonomy, coverage, resolved, options);
 }
