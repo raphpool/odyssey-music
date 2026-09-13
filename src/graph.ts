@@ -182,6 +182,7 @@ function findOrphanGenreIds(nodes: VizNode[], edges: VizEdge[]): Set<string> {
 		if (
 			edge.source.startsWith("genre:") &&
 			edge.target.startsWith("genre:") &&
+			edge.source !== edge.target &&
 			genreLinkKinds.has(edge.kind)
 		) {
 			genreLinkCount.set(edge.source, (genreLinkCount.get(edge.source) ?? 0) + 1);
