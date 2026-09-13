@@ -246,6 +246,27 @@ describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () 
 		expect(electronic?.edges.subgenres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
 	});
 
+	it("quarantines a genre whose only recognized relationship points to itself", async () => {
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:self-referential",
+				name: "Self Referential",
+				related_genres: [{ type: "genre", slug: "genre:self-referential", name: "Self Referential" }],
+			}),
+		);
+
+		const graph = await buildGraphFromCache(dir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+		});
+
+		expect(graph.nodes.map((node) => node.id)).not.toContain("genre:self-referential");
+		expect(graph.quarantine).toEqual([
+			{ id: "genre:self-referential", name: "Self Referential", reason: "no genre-genre edges" },
+		]);
+	});
+
 	it("removes quarantined genre references while preserving materialized relationships and redirects", async () => {
 		const redirectsPath = join(dir, "redirects.json");
 		await writeFile(
