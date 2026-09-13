@@ -923,6 +923,83 @@
 			"qid": "Q79784514",
 			"sourceSlugs": ["genre:progressive-electronic"],
 			"published": false
+		},
+		{
+			"id": "Q16625659",
+			"name": "Space ambient",
+			"family": "ambient-new-age",
+			"qid": "Q16625659",
+			"sourceSlugs": ["genre:space-ambient"],
+			"published": false
+		},
+		{
+			"id": "Q2342263",
+			"name": "Space music",
+			"family": "ambient-new-age",
+			"qid": "Q2342263",
+			"sourceSlugs": ["genre:space-music"],
+			"published": false
+		},
+		{
+			"id": "Q15733887",
+			"name": "Vaporwave",
+			"family": "ambient-new-age",
+			"qid": "Q15733887",
+			"sourceSlugs": ["genre:vaporwave"],
+			"published": false
+		},
+		{
+			"id": "local:abstract-electronic",
+			"name": "Abstract Electronic",
+			"family": "electronica-downtempo",
+			"sourceSlugs": ["genre:abstract-electronic"],
+			"published": false
+		},
+		{
+			"id": "Q2187392",
+			"name": "Alternative Dance",
+			"family": "electronica-downtempo",
+			"qid": "Q2187392",
+			"sourceSlugs": ["genre:alternative-dance"],
+			"published": false
+		},
+		{
+			"id": "Q112176170",
+			"name": "Beats",
+			"family": "electronica-downtempo",
+			"qid": "Q112176170",
+			"published": false
+		},
+		{
+			"id": "local:braindance",
+			"name": "Braindance",
+			"family": "electronica-downtempo",
+			"sourceSlugs": ["genre:braindance"],
+			"published": false
+		},
+		{
+			"id": "Q2626684",
+			"name": "Chillwave",
+			"family": "electronica-downtempo",
+			"qid": "Q2626684",
+			"sourceSlugs": ["genre:chillwave"],
+			"published": false
+		},
+		{
+			"id": "Q251192",
+			"name": "downtempo",
+			"family": "electronica-downtempo",
+			"qid": "Q251192",
+			"sourceSlugs": ["genre:downtempo"],
+			"published": false
+		},
+		{
+			"id": "Q9778",
+			"name": "Electronic",
+			"family": "electronica-downtempo",
+			"qid": "Q9778",
+			"sourceSlugs": ["genre:electronic"],
+			"published": false
 		}
 	]
 }
