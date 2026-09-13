@@ -1,15 +1,28 @@
 import { readFile } from "node:fs/promises";
 import { z } from "zod";
 
-import { isValidSlug, normalizeSlugBody, parseSlug } from "./slug.js";
+import { isValidSlug, makeSlug, normalizeSlugBody, parseSlug } from "./slug.js";
 import { QID_PATTERN, type Slug } from "./types.js";
 
 const qidSchema = z.string().regex(QID_PATTERN);
 const slugSchema = z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/);
-const genreSlugSchema = z.custom<Slug>(
-	(value) => typeof value === "string" && isValidSlug(value) && parseSlug(value).type === "genre",
-	{ message: "Expected a complete genre slug" },
-);
+function isCanonicalGenreSlug(value: unknown): value is Slug {
+	if (typeof value !== "string" || !isValidSlug(value)) return false;
+	const { type, body } = parseSlug(value);
+	if (type !== "genre") return false;
+	const parts = body.split("--");
+	const [name, disambiguator] = parts;
+	if (name === undefined || parts.length > 2) return false;
+	try {
+		const canonical =
+			disambiguator === undefined ? makeSlug("genre", name) : makeSlug("genre", name, disambiguator);
+		return canonical === value;
+	} catch {
+		return false;
+	}
+}
+
+const genreSlugSchema = z.custom<Slug>(isCanonicalGenreSlug, { message: "Expected a canonical genre slug" });
 
 export const GenreFamilySchema = z.object({
 	key: slugSchema,
@@ -45,12 +58,9 @@ const FAMILY_QIDS = new Map([
 ]);
 
 function assertUnique(values: Iterable<string>, message: string): void {
-	const seen = new Set<string>();
-	for (const value of values) {
-		if (seen.has(value)) {
-			throw new Error(message);
-		}
-		seen.add(value);
+	const items = [...values];
+	if (new Set(items).size !== items.length) {
+		throw new Error(message);
 	}
 }
 
