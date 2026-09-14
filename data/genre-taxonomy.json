@@ -1858,6 +1858,80 @@
 			"family": "metal",
 			"sourceSlugs": ["genre:experimental-metal"],
 			"published": false
+		},
+		{
+			"id": "Q188534",
+			"name": "Grindcore",
+			"family": "metal",
+			"qid": "Q188534",
+			"published": false
+		},
+		{
+			"id": "local:heavy-metal",
+			"name": "Heavy Metal",
+			"family": "metal",
+			"published": false
+		},
+		{
+			"id": "Q183862",
+			"name": "Metalcore",
+			"family": "metal",
+			"qid": "Q183862",
+			"published": false
+		},
+		{
+			"id": "Q263734",
+			"name": "Nu Metal",
+			"family": "metal",
+			"qid": "Q263734",
+			"published": false
+		},
+		{
+			"id": "Q41343",
+			"name": "Post-metal",
+			"family": "metal",
+			"qid": "Q41343",
+			"sourceSlugs": ["genre:post-metal"],
+			"published": false
+		},
+		{
+			"id": "Q720959",
+			"name": "Sludge metal",
+			"family": "metal",
+			"qid": "Q720959",
+			"sourceSlugs": ["genre:sludge-metal"],
+			"aliases": ["Sludge"],
+			"published": false
+		},
+		{
+			"id": "local:thrash",
+			"name": "Thrash",
+			"family": "metal",
+			"published": false
+		},
+		{
+			"id": "Q438503",
+			"name": "Alternative hip-hop",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q438503",
+			"sourceSlugs": ["genre:alternative-hip-hop"],
+			"published": false
+		},
+		{
+			"id": "Q7118426",
+			"name": "Alternative R&B",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q7118426",
+			"sourceSlugs": ["genre:alternative-r-and-b"],
+			"published": false
+		},
+		{
+			"id": "Q529742",
+			"name": "Boom bap",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q529742",
+			"sourceSlugs": ["genre:boom-bap"],
+			"published": false
 		}
 	]
 }
