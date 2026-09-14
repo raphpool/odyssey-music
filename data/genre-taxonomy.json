@@ -1470,6 +1470,85 @@
 			"qid": "Q183504",
 			"sourceSlugs": ["genre:indie-rock"],
 			"published": false
+		},
+		{
+			"id": "Q1190565",
+			"name": "Jangle pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q1190565",
+			"sourceSlugs": ["genre:jangle-pop"],
+			"published": false
+		},
+		{
+			"id": "Q1132152",
+			"name": "Math Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q1132152",
+			"published": false
+		},
+		{
+			"id": "Q1995980",
+			"name": "New Rave",
+			"family": "alternative-rock-punk",
+			"qid": "Q1995980",
+			"sourceSlugs": ["genre:new-rave"],
+			"published": false
+		},
+		{
+			"id": "Q2545135",
+			"name": "Noise Pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q2545135",
+			"sourceSlugs": ["genre:noise-pop"],
+			"published": false
+		},
+		{
+			"id": "Q181861",
+			"name": "Noise Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q181861",
+			"sourceSlugs": ["genre:noise-rock"],
+			"published": false
+		},
+		{
+			"id": "Q487914",
+			"name": "Pop Punk",
+			"family": "alternative-rock-punk",
+			"qid": "Q487914",
+			"sourceSlugs": ["genre:pop-punk"],
+			"published": false
+		},
+		{
+			"id": "Q377910",
+			"name": "Post Hardcore",
+			"family": "alternative-rock-punk",
+			"qid": "Q377910",
+			"published": false
+		},
+		{
+			"id": "Q209137",
+			"name": "Post Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q209137",
+			"sourceSlugs": ["genre:post-rock"],
+			"published": false
+		},
+		{
+			"id": "Q27190",
+			"name": "Proto-Punk",
+			"family": "alternative-rock-punk",
+			"qid": "Q27190",
+			"sourceSlugs": ["genre:proto-punk"],
+			"published": false
+		},
+		{
+			"id": "Q3071",
+			"name": "Punk Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q3071",
+			"sourceSlugs": ["genre:punk-rock"],
+			"aliases": ["Punk"],
+			"published": false
 		}
 	]
 }
