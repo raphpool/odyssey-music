@@ -2084,25 +2084,26 @@
 			"published": false
 		},
 		{
-			"id": "Q221772",
-			"name": "Acid Jazz",
+			"id": "Q9759",
+			"name": "Blues",
 			"family": "soul-rhythm-and-blues",
-			"qid": "Q221772",
-			"sourceSlugs": ["genre:acid-jazz"],
-			"published": false
-		},
-		{
-			"id": "Q850412",
-			"name": "Contemporary R&B",
-			"family": "soul-rhythm-and-blues",
-			"qid": "Q850412",
+			"qid": "Q9759",
+			"sourceSlugs": ["genre:blues"],
 			"published": false
 		},
 		{
 			"id": "Q546359",
-			"name": "Doo-Wop",
+			"name": "Doo Wop",
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q546359",
+			"published": false
+		},
+		{
+			"id": "Q1325963",
+			"name": "Electro-funk",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q1325963",
+			"sourceSlugs": ["genre:electro-funk"],
 			"published": false
 		},
 		{
@@ -2122,32 +2123,32 @@
 			"published": false
 		},
 		{
-			"id": "Q268253",
-			"name": "Neo Soul",
+			"id": "Q577080",
+			"name": "P Funk",
 			"family": "soul-rhythm-and-blues",
-			"qid": "Q268253",
+			"qid": "Q577080",
+			"published": false
+		},
+		{
+			"id": "Q2743435",
+			"name": "Psychedelic Soul",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q2743435",
+			"published": false
+		},
+		{
+			"id": "local:rare-groove",
+			"name": "Rare Groove",
+			"family": "soul-rhythm-and-blues",
 			"published": false
 		},
 		{
 			"id": "Q45981",
-			"name": "Rhythm and Blues",
+			"name": "Rhythm & Blues",
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q45981",
-			"published": false
-		},
-		{
-			"id": "Q131272",
-			"name": "Soul",
-			"family": "soul-rhythm-and-blues",
-			"qid": "Q131272",
-			"sourceSlugs": ["genre:soul"],
-			"published": false
-		},
-		{
-			"id": "Q1615483",
-			"name": "Soul Jazz",
-			"family": "soul-rhythm-and-blues",
-			"qid": "Q1615483",
+			"sourceSlugs": ["genre:r-and-b"],
+			"aliases": ["R&B"],
 			"published": false
 		}
 	]

@@ -69,6 +69,76 @@ it("loads the contract, validates ids and returns fixed ordering", async () => {
 	});
 });
 
+it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", async () => {
+	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
+	const corrected = [262, 263, 264, 267, 268, 269, 270].map((position) => {
+		const entry = taxonomy.genres[position - 1];
+		if (entry === undefined) throw new Error(`missing taxonomy entry at position ${position}`);
+		return entry;
+	});
+
+	expect(corrected).toMatchObject([
+		{ id: "Q9759", name: "Blues", family: "soul-rhythm-and-blues", qid: "Q9759", published: false },
+		{ id: "Q546359", name: "Doo Wop", family: "soul-rhythm-and-blues", qid: "Q546359", published: false },
+		{
+			id: "Q1325963",
+			name: "Electro-funk",
+			family: "soul-rhythm-and-blues",
+			qid: "Q1325963",
+			published: false,
+		},
+		{ id: "Q577080", name: "P Funk", family: "soul-rhythm-and-blues", qid: "Q577080", published: false },
+		{
+			id: "Q2743435",
+			name: "Psychedelic Soul",
+			family: "soul-rhythm-and-blues",
+			qid: "Q2743435",
+			published: false,
+		},
+		{ id: "local:rare-groove", name: "Rare Groove", family: "soul-rhythm-and-blues", published: false },
+		{
+			id: "Q45981",
+			name: "Rhythm & Blues",
+			family: "soul-rhythm-and-blues",
+			qid: "Q45981",
+			published: false,
+		},
+	]);
+	expect(corrected.map((entry) => Object.hasOwn(entry, "qid"))).toEqual([
+		true,
+		true,
+		true,
+		true,
+		true,
+		false,
+		true,
+	]);
+	expect(corrected.map((entry) => Object.hasOwn(entry, "sourceSlugs"))).toEqual([
+		true,
+		false,
+		true,
+		false,
+		false,
+		false,
+		true,
+	]);
+	expect(corrected.filter((entry) => "sourceSlugs" in entry).map((entry) => entry.sourceSlugs)).toEqual([
+		["genre:blues"],
+		["genre:electro-funk"],
+		["genre:r-and-b"],
+	]);
+	expect(corrected.map((entry) => Object.hasOwn(entry, "aliases"))).toEqual([
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		true,
+	]);
+	expect(corrected.at(-1)?.aliases).toEqual(["R&B"]);
+});
+
 it("loads the Berlin, French rap and Drill and Bass source fixture idempotently", async () => {
 	const taxonomy = {
 		...validTaxonomy,
