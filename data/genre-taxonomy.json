@@ -3633,6 +3633,67 @@
 			"family": "asia",
 			"qid": "Q665286",
 			"published": false
+		},
+		{
+			"id": "local:mando-pop",
+			"name": "Mando Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:molam",
+			"name": "Molam",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:newa",
+			"name": "Newa",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:nhac-vang",
+			"name": "Nhạc Vàng",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:pakistani-classical",
+			"name": "Pakistani Classical",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:pakistani-pop",
+			"name": "Pakistani Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:pashto-pop",
+			"name": "Pashto Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:persian-pop",
+			"name": "Persian Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q4372158",
+			"name": "Pop Sunda",
+			"family": "asia",
+			"qid": "Q4372158",
+			"published": false
+		},
+		{
+			"id": "local:proto-visual-kei",
+			"name": "Proto Visual Kei",
+			"family": "asia",
+			"published": false
 		}
 	]
 }
