@@ -256,5 +256,39 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"Q2748817": {
+		"genre": {
+			"slug": "genre:ghetto-house",
+			"name": "Ghetto House",
+			"qid": "Q2748817"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Funk",
+				"slug": "artist:dj-funk",
+				"mbid": "9c446bec-9272-4828-a958-9dd43e33cc97"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Slugo",
+				"slug": "artist:dj-slugo",
+				"mbid": "5791156a-75e9-454d-9a23-fbc2896f9151"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Deeon",
+				"slug": "artist:dj-deeon",
+				"mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House music",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
