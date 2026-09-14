@@ -32,5 +32,39 @@
 				"qid": "Q9778"
 			}
 		]
+	},
+	"Q481900": {
+		"genre": {
+			"slug": "genre:acid-trance",
+			"name": "Acid Trance",
+			"qid": "Q481900"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Kai Tracid",
+				"slug": "artist:kai-tracid",
+				"mbid": "6546b116-81c8-4783-9219-19f6e8f3c020"
+			},
+			{
+				"type": "artist",
+				"name": "A*S*Y*S",
+				"slug": "artist:a-s-y-s",
+				"mbid": "2e40998c-e1c3-4063-9b03-03279ff64d4b"
+			},
+			{
+				"type": "project",
+				"name": "Trance & Acid",
+				"slug": "project:trance-and-acid",
+				"mbid": "469709c2-8d36-3734-a447-684818851ffa"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:trance",
+				"name": "Trance",
+				"qid": "Q170435"
+			}
+		]
 	}
 }
