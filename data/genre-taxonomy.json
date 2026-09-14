@@ -2713,6 +2713,74 @@
 			"name": "Bashment",
 			"family": "caribbean",
 			"published": false
+		},
+		{
+			"id": "local:beguine",
+			"name": "Beguine",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q4950496",
+			"name": "Bouyon",
+			"family": "caribbean",
+			"qid": "Q4950496",
+			"published": false
+		},
+		{
+			"id": "Q106876075",
+			"name": "Bubbling",
+			"family": "caribbean",
+			"qid": "Q106876075",
+			"published": false
+		},
+		{
+			"id": "Q752785",
+			"name": "Calypso",
+			"family": "caribbean",
+			"qid": "Q752785",
+			"published": false
+		},
+		{
+			"id": "local:chutney",
+			"name": "Chutney",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q474027",
+			"name": "Dancehall",
+			"family": "caribbean",
+			"qid": "Q474027",
+			"sourceSlugs": ["genre:dancehall"],
+			"published": false
+		},
+		{
+			"id": "local:dembow",
+			"name": "Dembow",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q108297227",
+			"name": "Dennery Segment",
+			"family": "caribbean",
+			"qid": "Q108297227",
+			"published": false
+		},
+		{
+			"id": "local:digi-dub",
+			"name": "Digi Dub",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q212688",
+			"name": "Dub",
+			"family": "caribbean",
+			"qid": "Q212688",
+			"sourceSlugs": ["genre:dub"],
+			"published": false
 		}
 	]
 }
