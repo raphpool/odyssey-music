@@ -3050,6 +3050,72 @@
 			"family": "african-middle-eastern",
 			"qid": "Q3090876",
 			"published": false
+		},
+		{
+			"id": "local:ga",
+			"name": "Ga",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q2000173",
+			"name": "Gnawa",
+			"family": "african-middle-eastern",
+			"qid": "Q2000173",
+			"published": false
+		},
+		{
+			"id": "local:griot",
+			"name": "Griot",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q5618068",
+			"name": "Gumbe",
+			"family": "african-middle-eastern",
+			"qid": "Q5618068",
+			"published": false
+		},
+		{
+			"id": "local:gyil",
+			"name": "Gyil",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:halay",
+			"name": "Halay",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q3141414",
+			"name": "Hawzi",
+			"family": "african-middle-eastern",
+			"qid": "Q3141414",
+			"published": false
+		},
+		{
+			"id": "Q963061",
+			"name": "Highlife",
+			"family": "african-middle-eastern",
+			"qid": "Q963061",
+			"sourceSlugs": ["genre:highlife"],
+			"published": false
+		},
+		{
+			"id": "Q12193614",
+			"name": "Iraqi Maqam",
+			"family": "african-middle-eastern",
+			"qid": "Q12193614",
+			"published": false
+		},
+		{
+			"id": "local:juju",
+			"name": "Juju",
+			"family": "african-middle-eastern",
+			"published": false
 		}
 	]
 }
