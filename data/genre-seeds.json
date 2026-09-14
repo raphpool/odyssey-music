@@ -358,5 +358,39 @@
 				"qid": "Q1585075"
 			}
 		]
+	},
+	"Q223840": {
+		"genre": {
+			"slug": "genre:hardstyle",
+			"name": "Hardstyle",
+			"qid": "Q223840"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Headhunterz",
+				"slug": "artist:headhunterz",
+				"mbid": "79dbc936-adf2-4a29-8e01-c1fbe5613b0a"
+			},
+			{
+				"type": "artist",
+				"name": "Wildstylez",
+				"slug": "artist:wildstylez",
+				"mbid": "43fca023-da2f-4cc8-baaa-648cac5323bd"
+			},
+			{
+				"type": "artist",
+				"name": "Noisecontrollers",
+				"slug": "artist:noisecontrollers",
+				"mbid": "6c4335db-e676-418f-98e2-f8037ac88576"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:electronic-dance-music",
+				"name": "Electronic dance music",
+				"qid": "Q851213"
+			}
+		]
 	}
 }
