@@ -3309,6 +3309,72 @@
 			"family": "african-middle-eastern",
 			"qid": "Q1781796",
 			"published": false
+		},
+		{
+			"id": "Q1470503",
+			"name": "Semba",
+			"family": "african-middle-eastern",
+			"qid": "Q1470503",
+			"published": false
+		},
+		{
+			"id": "Q17146868",
+			"name": "Shangaan Electro",
+			"family": "african-middle-eastern",
+			"qid": "Q17146868",
+			"published": false
+		},
+		{
+			"id": "local:simpa",
+			"name": "Simpa",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q1752683",
+			"name": "Soukous",
+			"family": "african-middle-eastern",
+			"qid": "Q1752683",
+			"published": false
+		},
+		{
+			"id": "Q7565881",
+			"name": "South African Jazz",
+			"family": "african-middle-eastern",
+			"qid": "Q7565881",
+			"published": false
+		},
+		{
+			"id": "local:sudanese-folk",
+			"name": "Sudanese Folk",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:sudanese-pop",
+			"name": "Sudanese Pop",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q1564596",
+			"name": "Taarab",
+			"family": "african-middle-eastern",
+			"qid": "Q1564596",
+			"published": false
+		},
+		{
+			"id": "local:turkish-disco",
+			"name": "Turkish Disco",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:wassoulou",
+			"name": "Wassoulou",
+			"family": "african-middle-eastern",
+			"aliases": ["Wassalou"],
+			"published": false
 		}
 	]
 }
