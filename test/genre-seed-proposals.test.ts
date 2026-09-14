@@ -149,6 +149,121 @@ function candidates(): Record<string, ProposalCandidates> {
 	return Object.fromEntries(PRESCRIBED_GENRES.map(({ id }) => [id, { targets: [], anchors: [] }]));
 }
 
+function partialProposalInput(ids: readonly string[]): {
+	taxonomy: GenreTaxonomy;
+	coverage: GenreCoverageReport;
+	candidates: Record<string, ProposalCandidates>;
+} {
+	const input = fixture();
+	const entries = Object.fromEntries(
+		ids.map((id) => {
+			const entry = input.coverage.entries[id];
+			if (!entry) throw new Error(`Fixture must include coverage for ${id}`);
+			return [id, entry];
+		}),
+	);
+	return {
+		taxonomy: { ...input.taxonomy, genres: input.taxonomy.genres.filter(({ id }) => ids.includes(id)) },
+		coverage: {
+			...input.coverage,
+			entries,
+			families: { fixture: { entries: ids.length, publishable: 0, deficit: 0 } },
+		},
+		candidates: Object.fromEntries(ids.map((id) => [id, { targets: [], anchors: [] }])),
+	};
+}
+
+describe("TRA-221 targeted genre proposals", () => {
+	it("accepts multiple requested IDs from a partial taxonomy in explicit CLI mode", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "odyssey-tra-221-"));
+		let stdout = "";
+		let stderr = "";
+		const output = {
+			stdout: {
+				write(value: string): void {
+					stdout += value;
+				},
+			},
+			stderr: {
+				write(value: string): void {
+					stderr += value;
+				},
+			},
+		};
+		try {
+			const path = join(directory, "partial.json");
+			await writeFile(path, JSON.stringify(partialProposalInput(["Q106528337", "Q481900"])));
+
+			expect(await main([path, "--ids", "Q106528337,Q481900"], output)).toBe(0);
+			const report = JSON.parse(stdout) as { entries: Record<string, unknown> };
+			expect(Object.keys(report.entries)).toEqual(["Q106528337", "Q481900"]);
+			expect(stderr).toBe("");
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	it("still validates the identity of every requested genre", () => {
+		const input = partialProposalInput(["Q106528337"]);
+		input.taxonomy = {
+			...input.taxonomy,
+			genres: input.taxonomy.genres.map((genre) => ({ ...genre, name: "Wrong Acid" })),
+		};
+
+		expect(() =>
+			proposeGenreSeeds(input.taxonomy, input.coverage, input.candidates, {
+				trustedHosts: [],
+				requestedIds: ["Q106528337"],
+			}),
+		).toThrow("Taxonomy identity does not match prescribed genre: Q106528337");
+	});
+
+	it("keeps the default mode strict and identifies an unknown requested ID", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "odyssey-tra-221-"));
+		try {
+			const path = join(directory, "partial.json");
+			await writeFile(path, JSON.stringify(partialProposalInput(["Q106528337"])));
+
+			let stdout = "";
+			let stderr = "";
+			const defaultOutput = {
+				stdout: {
+					write(value: string): void {
+						stdout += value;
+					},
+				},
+				stderr: {
+					write(value: string): void {
+						stderr += value;
+					},
+				},
+			};
+			expect(await main([path], defaultOutput)).toBe(1);
+			expect(stdout).toBe("");
+			expect(stderr).toMatch(/Unknown genre taxonomy id: Q486263/);
+
+			stdout = "";
+			stderr = "";
+			const targetedOutput = {
+				stdout: {
+					write(value: string): void {
+						stdout += value;
+					},
+				},
+				stderr: {
+					write(value: string): void {
+						stderr += value;
+					},
+				},
+			};
+			expect(await main([path, "--ids", "Q999"], targetedOutput)).toBe(1);
+			expect(stderr).toMatch(/Unknown requested genre id: Q999/);
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+});
+
 describe("TRA-217 justified seed proposals", () => {
 	it("builds strict B1 seeds from distinct justified candidates without changing materialized publication", () => {
 		const input = candidates();
