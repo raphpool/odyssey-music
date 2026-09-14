@@ -3504,6 +3504,71 @@
 			"family": "asia",
 			"qid": "Q1159539",
 			"published": false
+		},
+		{
+			"id": "local:filipino-folk",
+			"name": "Filipino Folk",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q194492",
+			"name": "Gamelan",
+			"family": "asia",
+			"qid": "Q194492",
+			"published": false
+		},
+		{
+			"id": "Q281111",
+			"name": "Ghazal",
+			"family": "asia",
+			"qid": "Q281111",
+			"published": false
+		},
+		{
+			"id": "Q278409",
+			"name": "Hokkien Pop",
+			"family": "asia",
+			"qid": "Q278409",
+			"published": false
+		},
+		{
+			"id": "Q115248229",
+			"name": "I-Pop",
+			"family": "asia",
+			"qid": "Q115248229",
+			"published": false
+		},
+		{
+			"id": "local:indian-classical",
+			"name": "Indian Classical",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:j-rock",
+			"name": "J Rock",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q131578",
+			"name": "J-Pop",
+			"family": "asia",
+			"qid": "Q131578",
+			"published": false
+		},
+		{
+			"id": "local:jaipong",
+			"name": "Jaipong",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:japanese-traditional",
+			"name": "Japanese Traditional",
+			"family": "asia",
+			"published": false
 		}
 	]
 }
