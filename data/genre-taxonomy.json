@@ -1703,6 +1703,85 @@
 			"qid": "Q320592",
 			"sourceSlugs": ["genre:krautrock"],
 			"published": false
+		},
+		{
+			"id": "Q484641",
+			"name": "Pop rock",
+			"family": "rock",
+			"qid": "Q484641",
+			"sourceSlugs": ["genre:pop-rock"],
+			"published": false
+		},
+		{
+			"id": "Q837837",
+			"name": "Power Pop",
+			"family": "rock",
+			"qid": "Q837837",
+			"sourceSlugs": ["genre:power-pop"],
+			"published": false
+		},
+		{
+			"id": "Q49451",
+			"name": "Prog Rock",
+			"family": "rock",
+			"qid": "Q49451",
+			"sourceSlugs": ["genre:progressive-rock"],
+			"aliases": ["Progressive Rock"],
+			"published": false
+		},
+		{
+			"id": "local:psychedelia",
+			"name": "Psychedelia",
+			"family": "rock",
+			"sourceSlugs": ["genre:psychedelia"],
+			"published": false
+		},
+		{
+			"id": "Q1500364",
+			"name": "Psychedelic Folk",
+			"family": "rock",
+			"qid": "Q1500364",
+			"published": false
+		},
+		{
+			"id": "Q206159",
+			"name": "Psychedelic Rock",
+			"family": "rock",
+			"qid": "Q206159",
+			"sourceSlugs": ["genre:psychedelic-rock"],
+			"published": false
+		},
+		{
+			"id": "Q7749",
+			"name": "Rock and Roll",
+			"family": "rock",
+			"qid": "Q7749",
+			"sourceSlugs": ["genre:rock-and-roll"],
+			"aliases": ["Rock N Roll"],
+			"published": false
+		},
+		{
+			"id": "Q203720",
+			"name": "Rockabilly",
+			"family": "rock",
+			"qid": "Q203720",
+			"sourceSlugs": ["genre:rockabilly"],
+			"published": false
+		},
+		{
+			"id": "Q89363113",
+			"name": "Singer-songwriter",
+			"family": "rock",
+			"qid": "Q89363113",
+			"sourceSlugs": ["genre:singer-songwriter"],
+			"published": false
+		},
+		{
+			"id": "Q217191",
+			"name": "Soft Rock",
+			"family": "rock",
+			"qid": "Q217191",
+			"published": false
 		}
 	]
 }
