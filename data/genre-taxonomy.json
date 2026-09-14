@@ -3901,6 +3901,80 @@
 			"name": "Celtic Folk",
 			"family": "other",
 			"published": false
+		},
+		{
+			"id": "Q1092553",
+			"name": "Celtic fusion",
+			"family": "other",
+			"qid": "Q1092553",
+			"sourceSlugs": ["genre:celtic-fusion"],
+			"published": false
+		},
+		{
+			"id": "Q854451",
+			"name": "Celtic music",
+			"family": "other",
+			"qid": "Q854451",
+			"sourceSlugs": ["genre:celtic-music"],
+			"published": false
+		},
+		{
+			"id": "Q1062328",
+			"name": "Chanson",
+			"family": "other",
+			"qid": "Q1062328",
+			"published": false
+		},
+		{
+			"id": "local:chip-tune",
+			"name": "Chip Tune",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:christian-traditional",
+			"name": "Christian Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q2280497",
+			"name": "Country Pop",
+			"family": "other",
+			"qid": "Q2280497",
+			"sourceSlugs": ["genre:country-pop"],
+			"published": false
+		},
+		{
+			"id": "Q211756",
+			"name": "Dance-pop",
+			"family": "other",
+			"qid": "Q211756",
+			"sourceSlugs": ["genre:dance-pop"],
+			"published": false
+		},
+		{
+			"id": "Q1166158",
+			"name": "Dark cabaret",
+			"family": "other",
+			"qid": "Q1166158",
+			"sourceSlugs": ["genre:dark-cabaret"],
+			"published": false
+		},
+		{
+			"id": "Q48971892",
+			"name": "Dungeon Synth",
+			"family": "other",
+			"qid": "Q48971892",
+			"published": false
+		},
+		{
+			"id": "Q848399",
+			"name": "Easy listening",
+			"family": "other",
+			"qid": "Q848399",
+			"sourceSlugs": ["genre:easy-listening"],
+			"published": false
 		}
 	]
 }
