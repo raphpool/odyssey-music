@@ -2513,6 +2513,71 @@
 			"family": "latin-brazilian",
 			"qid": "Q586110",
 			"published": false
+		},
+		{
+			"id": "local:freestyle",
+			"name": "Freestyle",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "local:gaita",
+			"name": "Gaita",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "Q1552806",
+			"name": "Guaracha",
+			"family": "latin-brazilian",
+			"qid": "Q1552806",
+			"published": false
+		},
+		{
+			"id": "local:guarani",
+			"name": "Guaraní",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "local:guarapo",
+			"name": "Guarapo",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "local:huaynos",
+			"name": "Huayños",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "Q1202208",
+			"name": "Joropo",
+			"family": "latin-brazilian",
+			"qid": "Q1202208",
+			"published": false
+		},
+		{
+			"id": "Q837389",
+			"name": "Latin Jazz",
+			"family": "latin-brazilian",
+			"qid": "Q837389",
+			"published": false
+		},
+		{
+			"id": "Q6496549",
+			"name": "Latin Soul",
+			"family": "latin-brazilian",
+			"qid": "Q6496549",
+			"published": false
+		},
+		{
+			"id": "Q464129",
+			"name": "Mariachi",
+			"family": "latin-brazilian",
+			"qid": "Q464129",
+			"published": false
 		}
 	]
 }
