@@ -2781,6 +2781,80 @@
 			"qid": "Q212688",
 			"sourceSlugs": ["genre:dub"],
 			"published": false
+		},
+		{
+			"id": "Q1113204",
+			"name": "Dub poetry",
+			"family": "caribbean",
+			"qid": "Q1113204",
+			"sourceSlugs": ["genre:dub-poetry"],
+			"published": false
+		},
+		{
+			"id": "Q2915789",
+			"name": "Gwo Ka",
+			"family": "caribbean",
+			"qid": "Q2915789",
+			"published": false
+		},
+		{
+			"id": "Q610022",
+			"name": "Kaseko",
+			"family": "caribbean",
+			"qid": "Q610022",
+			"published": false
+		},
+		{
+			"id": "local:la-plena",
+			"name": "La Plena",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q1872505",
+			"name": "Lovers Rock",
+			"family": "caribbean",
+			"qid": "Q1872505",
+			"sourceSlugs": ["genre:lovers-rock"],
+			"published": false
+		},
+		{
+			"id": "Q1262697",
+			"name": "Mento",
+			"family": "caribbean",
+			"qid": "Q1262697",
+			"published": false
+		},
+		{
+			"id": "Q22908082",
+			"name": "Rabòday",
+			"family": "caribbean",
+			"qid": "Q22908082",
+			"published": false
+		},
+		{
+			"id": "Q9794",
+			"name": "Reggae",
+			"family": "caribbean",
+			"qid": "Q9794",
+			"sourceSlugs": ["genre:reggae"],
+			"published": false
+		},
+		{
+			"id": "Q573484",
+			"name": "Rocksteady",
+			"family": "caribbean",
+			"qid": "Q573484",
+			"sourceSlugs": ["genre:rocksteady"],
+			"published": false
+		},
+		{
+			"id": "Q1299260",
+			"name": "Roots Reggae",
+			"family": "caribbean",
+			"qid": "Q1299260",
+			"sourceSlugs": ["genre:roots-reggae"],
+			"published": false
 		}
 	]
 }
