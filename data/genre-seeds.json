@@ -99,5 +99,39 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"Q65937774": {
+		"genre": {
+			"slug": "genre:breaks",
+			"name": "Breaks",
+			"qid": "Q65937774"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Plump DJs",
+				"slug": "artist:plump-djs",
+				"mbid": "870aaacf-ef15-4633-856b-212a1054377e"
+			},
+			{
+				"type": "artist",
+				"name": "Krafty Kuts",
+				"slug": "artist:krafty-kuts",
+				"mbid": "d14416ef-2283-49ef-9118-d690613d0bc9"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Icey",
+				"slug": "artist:dj-icey",
+				"mbid": "138dd95b-9311-416e-bcdd-a80067289de6"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:electronic-dance-music",
+				"name": "Electronic dance music",
+				"qid": "Q851213"
+			}
+		]
 	}
 }
