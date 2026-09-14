@@ -3569,6 +3569,70 @@
 			"name": "Japanese Traditional",
 			"family": "asia",
 			"published": false
+		},
+		{
+			"id": "Q213665",
+			"name": "K-Pop",
+			"family": "asia",
+			"qid": "Q213665",
+			"published": false
+		},
+		{
+			"id": "local:keroncong",
+			"name": "Keroncong",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:khmer-pop",
+			"name": "Khmer Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:korean-traditional",
+			"name": "Korean Traditional",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q6444335",
+			"name": "Kundiman",
+			"family": "asia",
+			"qid": "Q6444335",
+			"published": false
+		},
+		{
+			"id": "local:kyrgyz-folk",
+			"name": "Kyrgyz Folk",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:lao-traditional",
+			"name": "Lao Traditional",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:lollywood",
+			"name": "Lollywood",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q6701559",
+			"name": "Luk Krung",
+			"family": "asia",
+			"qid": "Q6701559",
+			"published": false
+		},
+		{
+			"id": "Q665286",
+			"name": "Luk Thung",
+			"family": "asia",
+			"qid": "Q665286",
+			"published": false
 		}
 	]
 }
