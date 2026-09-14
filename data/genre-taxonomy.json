@@ -1313,6 +1313,84 @@
 			"qid": "Q598929",
 			"sourceSlugs": ["genre:post-punk"],
 			"published": false
+		},
+		{
+			"id": "Q1298934",
+			"name": "Synth Pop",
+			"family": "post-punk-new-wave",
+			"qid": "Q1298934",
+			"sourceSlugs": ["genre:synth-pop"],
+			"published": false
+		},
+		{
+			"id": "Q30632022",
+			"name": "Synth-funk",
+			"family": "post-punk-new-wave",
+			"qid": "Q30632022",
+			"sourceSlugs": ["genre:synth-funk"],
+			"published": false
+		},
+		{
+			"id": "Q131425",
+			"name": "Visual Kei",
+			"family": "post-punk-new-wave",
+			"qid": "Q131425",
+			"published": false
+		},
+		{
+			"id": "Q1695023",
+			"name": "Alternative",
+			"family": "alternative-rock-punk",
+			"qid": "Q1695023",
+			"sourceSlugs": ["genre:alternative"],
+			"published": false
+		},
+		{
+			"id": "Q11366",
+			"name": "Alternative rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q11366",
+			"sourceSlugs": ["genre:alternative-rock"],
+			"published": false
+		},
+		{
+			"id": "Q217467",
+			"name": "Art Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q217467",
+			"sourceSlugs": ["genre:art-rock"],
+			"published": false
+		},
+		{
+			"id": "Q189045",
+			"name": "Britpop",
+			"family": "alternative-rock-punk",
+			"qid": "Q189045",
+			"sourceSlugs": ["genre:britpop"],
+			"published": false
+		},
+		{
+			"id": "Q22991878",
+			"name": "Chamber pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q22991878",
+			"sourceSlugs": ["genre:chamber-pop"],
+			"published": false
+		},
+		{
+			"id": "Q783097",
+			"name": "College rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q783097",
+			"sourceSlugs": ["genre:college-rock"],
+			"published": false
+		},
+		{
+			"id": "Q592330",
+			"name": "Dream Pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q592330",
+			"published": false
 		}
 	]
 }
