@@ -3694,6 +3694,69 @@
 			"name": "Proto Visual Kei",
 			"family": "asia",
 			"published": false
+		},
+		{
+			"id": "local:rajasthani-folk",
+			"name": "Rajasthani Folk",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:roadshow-music",
+			"name": "Roadshow Music",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:saung",
+			"name": "Saung",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q3091180",
+			"name": "Shashmaqam",
+			"family": "asia",
+			"qid": "Q3091180",
+			"published": false
+		},
+		{
+			"id": "Q7496127",
+			"name": "Shidaiqu",
+			"family": "asia",
+			"qid": "Q7496127",
+			"published": false
+		},
+		{
+			"id": "local:tajik-folk",
+			"name": "Tajik Folk",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q61063128",
+			"name": "Tamil Film Music",
+			"family": "asia",
+			"qid": "Q61063128",
+			"published": false
+		},
+		{
+			"id": "local:thai-classical",
+			"name": "Thai Classical",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:toi",
+			"name": "Toi",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:uyghur-pop",
+			"name": "Uyghur Pop",
+			"family": "asia",
+			"published": false
 		}
 	]
 }
