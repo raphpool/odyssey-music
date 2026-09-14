@@ -3439,6 +3439,71 @@
 			"name": "Bollywood",
 			"family": "asia",
 			"published": false
+		},
+		{
+			"id": "Q100922002",
+			"name": "Budots",
+			"family": "asia",
+			"qid": "Q100922002",
+			"published": false
+		},
+		{
+			"id": "local:burmese-folk",
+			"name": "Burmese Folk",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q1192110",
+			"name": "C-Pop",
+			"family": "asia",
+			"qid": "Q1192110",
+			"published": false
+		},
+		{
+			"id": "Q5202988",
+			"name": "Cải Lương",
+			"family": "asia",
+			"qid": "Q5202988",
+			"published": false
+		},
+		{
+			"id": "local:canto-pop",
+			"name": "Canto Pop",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:chinese-traditional",
+			"name": "Chinese Traditional",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "local:choliya",
+			"name": "Choliya",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q11307326",
+			"name": "City Pop",
+			"family": "asia",
+			"qid": "Q11307326",
+			"published": false
+		},
+		{
+			"id": "local:dan-ca",
+			"name": "Dân Ca",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q1159539",
+			"name": "Dangdut",
+			"family": "asia",
+			"qid": "Q1159539",
+			"published": false
 		}
 	]
 }
