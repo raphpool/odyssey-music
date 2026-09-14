@@ -1782,6 +1782,82 @@
 			"family": "rock",
 			"qid": "Q217191",
 			"published": false
+		},
+		{
+			"id": "Q617240",
+			"name": "Stoner Rock",
+			"family": "rock",
+			"qid": "Q617240",
+			"sourceSlugs": ["genre:stoner-rock"],
+			"published": false
+		},
+		{
+			"id": "local:surf",
+			"name": "Surf",
+			"family": "rock",
+			"published": false
+		},
+		{
+			"id": "Q106621063",
+			"name": "Symphonic Prog",
+			"family": "rock",
+			"qid": "Q106621063",
+			"sourceSlugs": ["genre:symphonic-prog"],
+			"published": false
+		},
+		{
+			"id": "Q28401124",
+			"name": "Yacht Rock",
+			"family": "rock",
+			"qid": "Q28401124",
+			"published": false
+		},
+		{
+			"id": "Q196999",
+			"name": "Zeuhl",
+			"family": "rock",
+			"qid": "Q196999",
+			"sourceSlugs": ["genre:zeuhl"],
+			"published": false
+		},
+		{
+			"id": "Q132438",
+			"name": "Black Metal",
+			"family": "metal",
+			"qid": "Q132438",
+			"published": false
+		},
+		{
+			"id": "Q483251",
+			"name": "Death Metal",
+			"family": "metal",
+			"qid": "Q483251",
+			"sourceSlugs": ["genre:death-metal"],
+			"published": false
+		},
+		{
+			"id": "Q186170",
+			"name": "Doom metal",
+			"family": "metal",
+			"qid": "Q186170",
+			"sourceSlugs": ["genre:doom-metal"],
+			"aliases": ["Doom"],
+			"published": false
+		},
+		{
+			"id": "Q1433387",
+			"name": "Drone Metal",
+			"family": "metal",
+			"qid": "Q1433387",
+			"sourceSlugs": ["genre:drone-metal"],
+			"published": false
+		},
+		{
+			"id": "local:experimental-metal",
+			"name": "Experimental metal",
+			"family": "metal",
+			"sourceSlugs": ["genre:experimental-metal"],
+			"published": false
 		}
 	]
 }
