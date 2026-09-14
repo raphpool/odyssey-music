@@ -146,7 +146,7 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 //
 // Next batch: bump this value in the same commit as the imported entries, e.g. 351-360 -> 360,
 // 361-370 -> 370, ... down to the final batch 561-568 (only 8 entries) -> 568.
-const EXPECTED_TAXONOMY_SIZE = 350;
+const EXPECTED_TAXONOMY_SIZE = 360;
 
 function assertExpectedTaxonomySize(genres: readonly unknown[], expected: number): void {
 	if (genres.length !== expected) {
