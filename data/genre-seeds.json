@@ -392,5 +392,39 @@
 				"qid": "Q851213"
 			}
 		]
+	},
+	"Q601235": {
+		"genre": {
+			"slug": "genre:hip-house",
+			"name": "Hip-House",
+			"qid": "Q601235"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Tyree",
+				"slug": "artist:tyree",
+				"mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+			},
+			{
+				"type": "project",
+				"name": "Nation of Hip House",
+				"slug": "project:nation-of-hip-house",
+				"mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb"
+			},
+			{
+				"type": "track",
+				"name": "Hip House",
+				"slug": "track:hip-house--fast-eddie",
+				"mbid": "e461d666-f8be-4691-8326-2608d3bfb715"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House music",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
