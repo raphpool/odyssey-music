@@ -2150,6 +2150,73 @@
 			"sourceSlugs": ["genre:r-and-b"],
 			"aliases": ["R&B"],
 			"published": false
+		},
+		{
+			"id": "Q7397088",
+			"name": "Sacred Harp",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q7397088",
+			"published": false
+		},
+		{
+			"id": "local:slow-jams",
+			"name": "Slow Jams",
+			"family": "soul-rhythm-and-blues",
+			"published": false
+		},
+		{
+			"id": "Q131272",
+			"name": "Soul",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q131272",
+			"sourceSlugs": ["genre:soul"],
+			"published": false
+		},
+		{
+			"id": "local:street-soul",
+			"name": "Street Soul",
+			"family": "soul-rhythm-and-blues",
+			"published": false
+		},
+		{
+			"id": "local:sweet-soul",
+			"name": "Sweet Soul",
+			"family": "soul-rhythm-and-blues",
+			"published": false
+		},
+		{
+			"id": "Q4942839",
+			"name": "Boogie",
+			"family": "disco-boogie",
+			"qid": "Q4942839",
+			"published": false
+		},
+		{
+			"id": "local:bubblegum",
+			"name": "Bubblegum",
+			"family": "disco-boogie",
+			"published": false
+		},
+		{
+			"id": "local:classic-disco",
+			"name": "Classic Disco",
+			"family": "disco-boogie",
+			"published": false
+		},
+		{
+			"id": "Q336567",
+			"name": "Cosmic Disco",
+			"family": "disco-boogie",
+			"qid": "Q336567",
+			"published": false
+		},
+		{
+			"id": "Q58339",
+			"name": "Disco",
+			"family": "disco-boogie",
+			"qid": "Q58339",
+			"sourceSlugs": ["genre:disco"],
+			"published": false
 		}
 	]
 }
