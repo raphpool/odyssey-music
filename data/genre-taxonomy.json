@@ -2217,6 +2217,83 @@
 			"qid": "Q58339",
 			"sourceSlugs": ["genre:disco"],
 			"published": false
+		},
+		{
+			"id": "Q1374731",
+			"name": "Eurodisco",
+			"family": "disco-boogie",
+			"qid": "Q1374731",
+			"sourceSlugs": ["genre:eurodisco"],
+			"published": false
+		},
+		{
+			"id": "Q606393",
+			"name": "Hi-NRG",
+			"family": "disco-boogie",
+			"qid": "Q606393",
+			"sourceSlugs": ["genre:hi-nrg"],
+			"published": false
+		},
+		{
+			"id": "Q744417",
+			"name": "Italo disco",
+			"family": "disco-boogie",
+			"qid": "Q744417",
+			"aliases": ["Italo"],
+			"sourceSlugs": ["genre:italo-disco"],
+			"published": false
+		},
+		{
+			"id": "local:leftfield-disco",
+			"name": "Leftfield Disco",
+			"family": "disco-boogie",
+			"published": false
+		},
+		{
+			"id": "Q4045538",
+			"name": "Nu-disco",
+			"family": "disco-boogie",
+			"qid": "Q4045538",
+			"sourceSlugs": ["genre:nu-disco"],
+			"published": false
+		},
+		{
+			"id": "Q221772",
+			"name": "Acid Jazz",
+			"family": "jazz",
+			"qid": "Q221772",
+			"sourceSlugs": ["genre:acid-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q3163340",
+			"name": "Afro Cuban Jazz",
+			"family": "jazz",
+			"qid": "Q3163340",
+			"published": false
+		},
+		{
+			"id": "Q110038872",
+			"name": "Ambient Jazz",
+			"family": "jazz",
+			"qid": "Q110038872",
+			"published": false
+		},
+		{
+			"id": "Q790188",
+			"name": "Avant-Garde Jazz",
+			"family": "jazz",
+			"qid": "Q790188",
+			"sourceSlugs": ["genre:avant-garde-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q105513",
+			"name": "Bebop",
+			"family": "jazz",
+			"qid": "Q105513",
+			"sourceSlugs": ["genre:bebop"],
+			"published": false
 		}
 	]
 }
