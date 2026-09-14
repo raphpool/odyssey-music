@@ -1549,6 +1549,81 @@
 			"sourceSlugs": ["genre:punk-rock"],
 			"aliases": ["Punk"],
 			"published": false
+		},
+		{
+			"id": "Q1207347",
+			"name": "Shibuya-Kei",
+			"family": "alternative-rock-punk",
+			"qid": "Q1207347",
+			"published": false
+		},
+		{
+			"id": "Q272167",
+			"name": "Shoegaze",
+			"family": "alternative-rock-punk",
+			"qid": "Q272167",
+			"sourceSlugs": ["genre:shoegaze"],
+			"published": false
+		},
+		{
+			"id": "Q236913",
+			"name": "Space Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q236913",
+			"sourceSlugs": ["genre:space-rock"],
+			"published": false
+		},
+		{
+			"id": "Q370778",
+			"name": "Twee pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q370778",
+			"sourceSlugs": ["genre:twee-pop"],
+			"published": false
+		},
+		{
+			"id": "Q236932",
+			"name": "Acid rock",
+			"family": "rock",
+			"qid": "Q236932",
+			"sourceSlugs": ["genre:acid-rock"],
+			"published": false
+		},
+		{
+			"id": "local:american-primitivism",
+			"name": "American Primitivism",
+			"family": "rock",
+			"published": false
+		},
+		{
+			"id": "Q379033",
+			"name": "Arena Rock",
+			"family": "rock",
+			"qid": "Q379033",
+			"sourceSlugs": ["genre:arena-rock"],
+			"published": false
+		},
+		{
+			"id": "local:bluegrass",
+			"name": "Bluegrass",
+			"family": "rock",
+			"published": false
+		},
+		{
+			"id": "Q193355",
+			"name": "Blues rock",
+			"family": "rock",
+			"qid": "Q193355",
+			"sourceSlugs": ["genre:blues-rock"],
+			"published": false
+		},
+		{
+			"id": "Q727803",
+			"name": "Canterbury Scene",
+			"family": "rock",
+			"qid": "Q727803",
+			"sourceSlugs": ["genre:canterbury-scene"],
+			"published": false
 		}
 	]
 }
