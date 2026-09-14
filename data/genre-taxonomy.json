@@ -2578,6 +2578,75 @@
 			"family": "latin-brazilian",
 			"qid": "Q464129",
 			"published": false
+		},
+		{
+			"id": "Q282131",
+			"name": "Merengue",
+			"family": "latin-brazilian",
+			"qid": "Q282131",
+			"published": false
+		},
+		{
+			"id": "Q3333303",
+			"name": "Meringue",
+			"family": "latin-brazilian",
+			"qid": "Q3333303",
+			"published": false
+		},
+		{
+			"id": "Q1046768",
+			"name": "Música Popular Brasileira",
+			"family": "latin-brazilian",
+			"qid": "Q1046768",
+			"published": false
+		},
+		{
+			"id": "Q1780056",
+			"name": "Norteño",
+			"family": "latin-brazilian",
+			"qid": "Q1780056",
+			"published": false
+		},
+		{
+			"id": "Q1151259",
+			"name": "Nueva Cancion",
+			"family": "latin-brazilian",
+			"qid": "Q1151259",
+			"published": false
+		},
+		{
+			"id": "Q497957",
+			"name": "Nueva Trova",
+			"family": "latin-brazilian",
+			"qid": "Q497957",
+			"published": false
+		},
+		{
+			"id": "Q9051102",
+			"name": "Nuevo Cancionero",
+			"family": "latin-brazilian",
+			"qid": "Q9051102",
+			"published": false
+		},
+		{
+			"id": "Q7142141",
+			"name": "Pasillo",
+			"family": "latin-brazilian",
+			"qid": "Q7142141",
+			"published": false
+		},
+		{
+			"id": "Q208341",
+			"name": "Pasodoble",
+			"family": "latin-brazilian",
+			"qid": "Q208341",
+			"published": false
+		},
+		{
+			"id": "local:quechua",
+			"name": "Quechua",
+			"family": "latin-brazilian",
+			"published": false
 		}
 	]
 }
