@@ -2855,6 +2855,73 @@
 			"qid": "Q1299260",
 			"sourceSlugs": ["genre:roots-reggae"],
 			"published": false
+		},
+		{
+			"id": "Q109653544",
+			"name": "Shatta",
+			"family": "caribbean",
+			"qid": "Q109653544",
+			"published": false
+		},
+		{
+			"id": "Q54365",
+			"name": "Ska",
+			"family": "caribbean",
+			"qid": "Q54365",
+			"sourceSlugs": ["genre:ska"],
+			"published": false
+		},
+		{
+			"id": "local:soca",
+			"name": "Soca",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "local:steel-drum",
+			"name": "Steel Drum",
+			"family": "caribbean",
+			"published": false
+		},
+		{
+			"id": "Q2406900",
+			"name": "Twoubadou",
+			"family": "caribbean",
+			"qid": "Q2406900",
+			"published": false
+		},
+		{
+			"id": "Q227045",
+			"name": "Zouk",
+			"family": "caribbean",
+			"qid": "Q227045",
+			"published": false
+		},
+		{
+			"id": "local:afro-disco",
+			"name": "Afro Disco",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q388296",
+			"name": "Afrobeat",
+			"family": "african-middle-eastern",
+			"qid": "Q388296",
+			"published": false
+		},
+		{
+			"id": "local:amazigh-music",
+			"name": "Amazigh Music",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q483740",
+			"name": "Anatolian Rock",
+			"family": "african-middle-eastern",
+			"qid": "Q483740",
+			"published": false
 		}
 	]
 }
