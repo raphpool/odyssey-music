@@ -139,6 +139,49 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 	expect(corrected.at(-1)?.aliases).toEqual(["R&B"]);
 });
 
+// Delivery-note guard (TRA-227): typecheck/lint/test/diff-size/tier-guard all pass on a batch
+// that silently drops or duplicates one entry (skipped line, dedup swallowed) — nothing else in
+// the pipeline counts the real file. This constant and check live in the test file on purpose:
+// src/genre-taxonomy.ts is a loader, not a delivery-tracking concern.
+//
+// Next batch: bump this value in the same commit as the imported entries, e.g. 351-360 -> 360,
+// 361-370 -> 370, ... down to the final batch 561-568 (only 8 entries) -> 568.
+const EXPECTED_TAXONOMY_SIZE = 350;
+
+function assertExpectedTaxonomySize(genres: readonly unknown[], expected: number): void {
+	if (genres.length !== expected) {
+		throw new Error(
+			`Taxonomy has ${genres.length} entries, expected ${expected}. If this batch's entries are ` +
+				"correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
+		);
+	}
+}
+
+it("locks the real taxonomy file to EXPECTED_TAXONOMY_SIZE entries", async () => {
+	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
+	assertExpectedTaxonomySize(taxonomy.genres, EXPECTED_TAXONOMY_SIZE);
+});
+
+it("fails with an actionable message when the entry count drifts either way", async () => {
+	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
+
+	// Mutate the already-loaded array in memory only — data/genre-taxonomy.json is never touched,
+	// on disk or otherwise, by this test.
+	const oneShort = taxonomy.genres.slice(1);
+	const oneOver = [...taxonomy.genres, taxonomy.genres[0]];
+
+	// Numbers are derived from the real file's current length, not hardcoded, so this keeps
+	// passing after a future batch bumps EXPECTED_TAXONOMY_SIZE and the file grows with it.
+	expect(() => assertExpectedTaxonomySize(oneShort, EXPECTED_TAXONOMY_SIZE)).toThrow(
+		`Taxonomy has ${oneShort.length} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this batch's ` +
+			"entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
+	);
+	expect(() => assertExpectedTaxonomySize(oneOver, EXPECTED_TAXONOMY_SIZE)).toThrow(
+		`Taxonomy has ${oneOver.length} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this batch's ` +
+			"entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
+	);
+});
+
 it("loads the Berlin, French rap and Drill and Bass source fixture idempotently", async () => {
 	const taxonomy = {
 		...validTaxonomy,
