@@ -2922,6 +2922,70 @@
 			"family": "african-middle-eastern",
 			"qid": "Q483740",
 			"published": false
+		},
+		{
+			"id": "local:arabian-bellydance",
+			"name": "Arabian Bellydance",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q624081",
+			"name": "Arabic Pop",
+			"family": "african-middle-eastern",
+			"qid": "Q624081",
+			"published": false
+		},
+		{
+			"id": "local:arabic-traditional",
+			"name": "Arabic Traditional",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:arbantone",
+			"name": "Arbantone",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:balani",
+			"name": "Balani",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:benga",
+			"name": "Benga",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q860196",
+			"name": "Bikutsi",
+			"family": "african-middle-eastern",
+			"qid": "Q860196",
+			"published": false
+		},
+		{
+			"id": "Q2961763",
+			"name": "Chaabi",
+			"family": "african-middle-eastern",
+			"qid": "Q2961763",
+			"published": false
+		},
+		{
+			"id": "local:chaoui",
+			"name": "Chaoui",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q2982341",
+			"name": "Coladeira",
+			"family": "african-middle-eastern",
+			"qid": "Q2982341",
+			"published": false
 		}
 	]
 }
