@@ -1157,6 +1157,83 @@
 			"qid": "Q1045756",
 			"sourceSlugs": ["genre:microtonal-music"],
 			"published": false
+		},
+		{
+			"id": "local:modular-synth",
+			"name": "Modular Synth",
+			"family": "avant-garde",
+			"sourceSlugs": ["genre:modular-synth"],
+			"published": false
+		},
+		{
+			"id": "Q823560",
+			"name": "Musique Concrete",
+			"family": "avant-garde",
+			"qid": "Q823560",
+			"sourceSlugs": ["genre:musique-concrete"],
+			"published": false
+		},
+		{
+			"id": "Q726239",
+			"name": "Noise",
+			"family": "avant-garde",
+			"qid": "Q726239",
+			"sourceSlugs": ["genre:noise"],
+			"published": false
+		},
+		{
+			"id": "Q2687544",
+			"name": "Power Electronics",
+			"family": "avant-garde",
+			"qid": "Q2687544",
+			"sourceSlugs": ["genre:power-electronics"],
+			"published": false
+		},
+		{
+			"id": "Q507246",
+			"name": "Serialism",
+			"family": "avant-garde",
+			"qid": "Q507246",
+			"sourceSlugs": ["genre:serialism"],
+			"published": false
+		},
+		{
+			"id": "Q2343562",
+			"name": "Cold-wave",
+			"family": "post-punk-new-wave",
+			"qid": "Q2343562",
+			"sourceSlugs": ["genre:cold-wave"],
+			"published": false
+		},
+		{
+			"id": "Q1643549",
+			"name": "Dance-punk",
+			"family": "post-punk-new-wave",
+			"qid": "Q1643549",
+			"sourceSlugs": ["genre:dance-punk"],
+			"published": false
+		},
+		{
+			"id": "Q3840596",
+			"name": "Dark wave",
+			"family": "post-punk-new-wave",
+			"qid": "Q3840596",
+			"sourceSlugs": ["genre:dark-wave"],
+			"published": false
+		},
+		{
+			"id": "local:ebm",
+			"name": "EBM",
+			"family": "post-punk-new-wave",
+			"published": false
+		},
+		{
+			"id": "Q1403744",
+			"name": "Electro-industrial",
+			"family": "post-punk-new-wave",
+			"qid": "Q1403744",
+			"sourceSlugs": ["genre:electro-industrial"],
+			"published": false
 		}
 	]
 }
