@@ -3834,6 +3834,73 @@
 			"qid": "Q65937946",
 			"sourceSlugs": ["genre:modern-classical"],
 			"published": false
+		},
+		{
+			"id": "Q1344",
+			"name": "Opera",
+			"family": "classical-opera",
+			"qid": "Q1344",
+			"sourceSlugs": ["genre:opera"],
+			"published": false
+		},
+		{
+			"id": "local:armenian-pop",
+			"name": "Armenian Pop",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q25094849",
+			"name": "Art Pop",
+			"family": "other",
+			"qid": "Q25094849",
+			"sourceSlugs": ["genre:art-pop"],
+			"published": false
+		},
+		{
+			"id": "local:australian-indigenous-music",
+			"name": "Australian Indigenous Music",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q9162904",
+			"name": "Avant-pop",
+			"family": "other",
+			"qid": "Q9162904",
+			"sourceSlugs": ["genre:avant-pop"],
+			"published": false
+		},
+		{
+			"id": "local:balkan-pop",
+			"name": "Balkan Pop",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q854775",
+			"name": "Bhajan",
+			"family": "other",
+			"qid": "Q854775",
+			"published": false
+		},
+		{
+			"id": "local:buddhist-traditional",
+			"name": "Buddhist Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:bulgarian-traditional",
+			"name": "Bulgarian Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:celtic-folk",
+			"name": "Celtic Folk",
+			"family": "other",
+			"published": false
 		}
 	]
 }
