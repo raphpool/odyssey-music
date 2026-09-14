@@ -32,25 +32,40 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           prompt: |
             Tu reviewes la PR #${{ github.event.pull_request.number }} de
-            ${{ github.repository }}.
+            ${{ github.repository }}. Budget serré : conclus et écris
+            /tmp/review.json en 15 tours ou moins si possible — tu en as
+            60 au maximum avant coupure forcée, ne les utilise pas comme
+            objectif.
 
-            1. Lis les instructions de review dans REVIEW.md à la racine et
-               applique-les à la lettre, y compris le plafond de nits.
-            2. Diffe la branche contre origin/${{ github.event.pull_request.base.ref }}.
-               Pour chaque finding, vérifie le comportement réel dans le code
-               avant de le rapporter — pas de déduction depuis un nom.
-            3. Poste chaque finding en commentaire inline sur la ligne concernée
-               via l'outil de commentaire inline. Français.
-            4. Écris /tmp/review.json, et rien d'autre dans ce fichier :
+            1. Lis REVIEW.md à la racine et applique-le à la lettre, y
+               compris le plafond de nits et la barre de preuve (pas de
+               déduction depuis un nom de fichier ou de fonction).
+            2. Un seul `git diff origin/${{ github.event.pull_request.base.ref }}...HEAD`
+               pour tout le diff. Ne relis un fichier en entier ou ne grep
+               que si ce diff seul ne suffit pas à trancher un finding
+               précis — pas de relecture ou de grep systématique fichier
+               par fichier. Le budget de tours ne justifie jamais un
+               finding "block" non vérifié dans le code réel : si tu
+               hésites à lire plus pour trancher, lis plus ; dans le
+               doute persistant, classe en "nit" (barre de preuve de
+               REVIEW.md).
+            3. Écris /tmp/review.json en premier, et rien d'autre dans ce
+               fichier :
                {"verdict":"pass"|"block","blocking":<n>,"nits":<n>,
                 "summary":"<une ligne>",
                 "findings":[{"file":"","line":0,"severity":"block"|"nit"|"pre-existing","message":""}]}
                verdict = "block" seulement s'il existe au moins un finding
                de sévérité "block" au sens de REVIEW.md.
+            4. Ensuite seulement, poste un commentaire inline — Français,
+               via l'outil de commentaire inline — pour chaque finding
+               "block", et uniquement ceux-là. Les nits restent dans
+               review.json (résumé et liste) sans commentaire inline :
+               REVIEW.md plafonne déjà leur affichage à 5 avec un compte
+               agrégé au-delà.
           claude_args: |
             --model claude-opus-5
             --effort xhigh
-            --max-turns 40
+            --max-turns 60
             --allowedTools "Read,Grep,Glob,Bash(git diff:*),Bash(git log:*),Write,mcp__github_inline_comment__create_inline_comment"
 
       - name: Gate
