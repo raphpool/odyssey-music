@@ -3757,6 +3757,83 @@
 			"name": "Uyghur Pop",
 			"family": "asia",
 			"published": false
+		},
+		{
+			"id": "Q5398894",
+			"name": "V-Pop",
+			"family": "asia",
+			"qid": "Q5398894",
+			"published": false
+		},
+		{
+			"id": "local:vietnamese-traditional",
+			"name": "Vietnamese Traditional",
+			"family": "asia",
+			"published": false
+		},
+		{
+			"id": "Q8361",
+			"name": "Baroque",
+			"family": "classical-opera",
+			"qid": "Q8361",
+			"sourceSlugs": ["genre:baroque-music"],
+			"aliases": ["Baroque music"],
+			"published": false
+		},
+		{
+			"id": "Q189201",
+			"name": "Chamber Music",
+			"family": "classical-opera",
+			"qid": "Q189201",
+			"published": false
+		},
+		{
+			"id": "Q1076513",
+			"name": "Choral Music",
+			"family": "classical-opera",
+			"qid": "Q1076513",
+			"sourceSlugs": ["genre:choral-music"],
+			"published": false
+		},
+		{
+			"id": "Q9730",
+			"name": "Classical",
+			"family": "classical-opera",
+			"qid": "Q9730",
+			"sourceSlugs": ["genre:classical"],
+			"published": false
+		},
+		{
+			"id": "Q612024",
+			"name": "Contemporary Classical",
+			"family": "classical-opera",
+			"qid": "Q612024",
+			"sourceSlugs": ["genre:contemporary-classical"],
+			"published": false
+		},
+		{
+			"id": "Q12183214",
+			"name": "Minimal music",
+			"family": "classical-opera",
+			"qid": "Q12183214",
+			"sourceSlugs": ["genre:minimal-music"],
+			"published": false
+		},
+		{
+			"id": "Q572901",
+			"name": "Minimalism",
+			"family": "classical-opera",
+			"qid": "Q572901",
+			"sourceSlugs": ["genre:minimalism"],
+			"published": false
+		},
+		{
+			"id": "Q65937946",
+			"name": "Modern Classical",
+			"family": "classical-opera",
+			"qid": "Q65937946",
+			"sourceSlugs": ["genre:modern-classical"],
+			"published": false
 		}
 	]
 }
