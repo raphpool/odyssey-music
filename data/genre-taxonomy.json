@@ -2647,6 +2647,72 @@
 			"name": "Quechua",
 			"family": "latin-brazilian",
 			"published": false
+		},
+		{
+			"id": "local:rancheras",
+			"name": "Rancheras",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "local:rockola",
+			"name": "Rockola",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "Q208239",
+			"name": "Salsa",
+			"family": "latin-brazilian",
+			"qid": "Q208239",
+			"published": false
+		},
+		{
+			"id": "Q11403",
+			"name": "Samba",
+			"family": "latin-brazilian",
+			"qid": "Q11403",
+			"published": false
+		},
+		{
+			"id": "local:south-american-indigenous-music",
+			"name": "South American Indigenous Music",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "Q14390274",
+			"name": "Tango",
+			"family": "latin-brazilian",
+			"qid": "Q14390274",
+			"published": false
+		},
+		{
+			"id": "Q3392209",
+			"name": "Tonada",
+			"family": "latin-brazilian",
+			"qid": "Q3392209",
+			"published": false
+		},
+		{
+			"id": "Q1574985",
+			"name": "Vallenato",
+			"family": "latin-brazilian",
+			"qid": "Q1574985",
+			"published": false
+		},
+		{
+			"id": "Q15623112",
+			"name": "Zapateado",
+			"family": "latin-brazilian",
+			"qid": "Q15623112",
+			"published": false
+		},
+		{
+			"id": "local:bashment",
+			"name": "Bashment",
+			"family": "caribbean",
+			"published": false
 		}
 	]
 }
