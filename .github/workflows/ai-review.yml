@@ -30,6 +30,11 @@ jobs:
           # Token d'abonnement : la review est facturée sur le plan Max,
           # pas en crédits API. C'est le principal levier de coût du process.
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # TRA-226 : le job échoue en ~2s avant tout appel modèle
+          # (is_error: true, modelUsage: {}) et l'action masque le message
+          # réel par défaut. Diagnostic temporaire — à retirer une fois la
+          # cause racine confirmée par un run de cette PR.
+          show_full_output: true
           prompt: |
             Tu reviewes la PR #${{ github.event.pull_request.number }} de
             ${{ github.repository }}.
