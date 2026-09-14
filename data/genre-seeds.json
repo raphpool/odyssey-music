@@ -460,5 +460,38 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"local:leftfield-techno": {
+		"genre": {
+			"slug": "genre:leftfield-techno",
+			"name": "Leftfield Techno"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Oscar Mulero",
+				"slug": "artist:oscar-mulero",
+				"mbid": "fefc8328-4ec3-4616-9303-862e8d4de4c4"
+			},
+			{
+				"type": "artist",
+				"name": "Hyph11E",
+				"slug": "artist:hyph11e",
+				"mbid": "d368d799-3575-41ec-bae2-084b630601bf"
+			},
+			{
+				"type": "artist",
+				"name": "Nazira",
+				"slug": "artist:nazira",
+				"mbid": "d38a97eb-d91b-44fd-9aff-a431f8a30528"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:techno",
+				"name": "Techno",
+				"qid": "Q170611"
+			}
+		]
 	}
 }
