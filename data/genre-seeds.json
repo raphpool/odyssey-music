@@ -167,5 +167,38 @@
 				"qid": "Q851213"
 			}
 		]
+	},
+	"local:euro-house": {
+		"genre": {
+			"slug": "genre:euro-house",
+			"name": "Euro House"
+		},
+		"targets": [
+			{
+				"type": "project",
+				"name": "Ride on Time",
+				"slug": "project:ride-on-time",
+				"mbid": "7563c455-bc30-3210-9a1e-b33caa4dc4a6"
+			},
+			{
+				"type": "project",
+				"name": "We All Need Love",
+				"slug": "project:we-all-need-love",
+				"mbid": "55312297-444e-3d8f-baf1-3f802e60e663"
+			},
+			{
+				"type": "artist",
+				"name": "49ers",
+				"slug": "artist:49ers",
+				"mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House music",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
