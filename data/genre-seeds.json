@@ -324,5 +324,39 @@
 				"qid": "Q2748817"
 			}
 		]
+	},
+	"Q339906": {
+		"genre": {
+			"slug": "genre:happy-hardcore",
+			"name": "Happy Hardcore",
+			"qid": "Q339906"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Dune",
+				"slug": "artist:dune",
+				"mbid": "e497aa76-e7de-4845-a4b7-e27bb9fc9967"
+			},
+			{
+				"type": "artist",
+				"name": "Hixxy",
+				"slug": "artist:hixxy",
+				"mbid": "f84c6074-dd3e-4d60-b67b-bd72e93b36a5"
+			},
+			{
+				"type": "artist",
+				"name": "Dougal",
+				"slug": "artist:dougal",
+				"mbid": "1deb5b30-b45d-468f-a8b9-3659b7efb45c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:breakbeat-hardcore",
+				"name": "Breakbeat hardcore",
+				"qid": "Q1585075"
+			}
+		]
 	}
 }
