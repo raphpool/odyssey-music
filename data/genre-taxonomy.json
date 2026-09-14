@@ -1079,6 +1079,84 @@
 			"family": "electronica-downtempo",
 			"qid": "Q1840167",
 			"published": false
+		},
+		{
+			"id": "Q423918",
+			"name": "Acousmatic music",
+			"family": "avant-garde",
+			"qid": "Q423918",
+			"sourceSlugs": ["genre:acousmatic-music"],
+			"published": false
+		},
+		{
+			"id": "local:computer-music",
+			"name": "Computer music",
+			"family": "avant-garde",
+			"sourceSlugs": ["genre:computer-music"],
+			"published": false
+		},
+		{
+			"id": "Q756956",
+			"name": "Dark Ambient",
+			"family": "avant-garde",
+			"qid": "Q756956",
+			"sourceSlugs": ["genre:dark-ambient"],
+			"published": false
+		},
+		{
+			"id": "Q650316",
+			"name": "Drone",
+			"family": "avant-garde",
+			"qid": "Q650316",
+			"sourceSlugs": ["genre:drone"],
+			"published": false
+		},
+		{
+			"id": "Q1326777",
+			"name": "Electroacoustic music",
+			"family": "avant-garde",
+			"qid": "Q1326777",
+			"sourceSlugs": ["genre:electroacoustic-music"],
+			"published": false
+		},
+		{
+			"id": "Q1640319",
+			"name": "Experimental",
+			"family": "avant-garde",
+			"qid": "Q1640319",
+			"sourceSlugs": ["genre:experimental"],
+			"published": false
+		},
+		{
+			"id": "Q105763581",
+			"name": "Experimental Electronic",
+			"family": "avant-garde",
+			"qid": "Q105763581",
+			"sourceSlugs": ["genre:experimental-electronic"],
+			"published": false
+		},
+		{
+			"id": "Q2404568",
+			"name": "Freak Folk",
+			"family": "avant-garde",
+			"qid": "Q2404568",
+			"published": false
+		},
+		{
+			"id": "Q3503814",
+			"name": "Microsound",
+			"family": "avant-garde",
+			"qid": "Q3503814",
+			"sourceSlugs": ["genre:microsound"],
+			"published": false
+		},
+		{
+			"id": "Q1045756",
+			"name": "Microtonal Music",
+			"family": "avant-garde",
+			"qid": "Q1045756",
+			"sourceSlugs": ["genre:microtonal-music"],
+			"published": false
 		}
 	]
 }
