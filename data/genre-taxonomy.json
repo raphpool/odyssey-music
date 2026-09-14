@@ -1234,6 +1234,85 @@
 			"qid": "Q1403744",
 			"sourceSlugs": ["genre:electro-industrial"],
 			"published": false
+		},
+		{
+			"id": "Q861823",
+			"name": "Electroclash",
+			"family": "post-punk-new-wave",
+			"qid": "Q861823",
+			"sourceSlugs": ["genre:electroclash"],
+			"published": false
+		},
+		{
+			"id": "Q188450",
+			"name": "Electropop",
+			"family": "post-punk-new-wave",
+			"qid": "Q188450",
+			"sourceSlugs": ["genre:electropop"],
+			"published": false
+		},
+		{
+			"id": "Q828243",
+			"name": "Futurepop",
+			"family": "post-punk-new-wave",
+			"qid": "Q828243",
+			"sourceSlugs": ["genre:futurepop"],
+			"published": false
+		},
+		{
+			"id": "Q485395",
+			"name": "Gothic Rock",
+			"family": "post-punk-new-wave",
+			"qid": "Q485395",
+			"aliases": ["Goth Rock"],
+			"sourceSlugs": ["genre:gothic-rock"],
+			"published": false
+		},
+		{
+			"id": "Q487965",
+			"name": "Industrial",
+			"family": "post-punk-new-wave",
+			"qid": "Q487965",
+			"sourceSlugs": ["genre:industrial"],
+			"published": false
+		},
+		{
+			"id": "Q98528171",
+			"name": "Minimal Synth",
+			"family": "post-punk-new-wave",
+			"qid": "Q98528171",
+			"published": false
+		},
+		{
+			"id": "Q1890098",
+			"name": "New Beat",
+			"family": "post-punk-new-wave",
+			"qid": "Q1890098",
+			"published": false
+		},
+		{
+			"id": "Q187760",
+			"name": "New Wave",
+			"family": "post-punk-new-wave",
+			"qid": "Q187760",
+			"sourceSlugs": ["genre:new-wave"],
+			"published": false
+		},
+		{
+			"id": "Q823080",
+			"name": "No Wave",
+			"family": "post-punk-new-wave",
+			"qid": "Q823080",
+			"sourceSlugs": ["genre:no-wave"],
+			"published": false
+		},
+		{
+			"id": "Q598929",
+			"name": "Post Punk",
+			"family": "post-punk-new-wave",
+			"qid": "Q598929",
+			"sourceSlugs": ["genre:post-punk"],
+			"published": false
 		}
 	]
 }
