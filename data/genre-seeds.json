@@ -426,5 +426,39 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"Q105636940": {
+		"genre": {
+			"slug": "genre:leftfield-house",
+			"name": "Leftfield House",
+			"qid": "Q105636940"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Daft Punk",
+				"slug": "artist:daft-punk",
+				"mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+			},
+			{
+				"type": "artist",
+				"name": "Leon Vynehall",
+				"slug": "artist:leon-vynehall",
+				"mbid": "b98202d3-4fb4-4e32-9ff3-b9e1987d02cf"
+			},
+			{
+				"type": "artist",
+				"name": "Camomile Dawn",
+				"slug": "artist:camomile-dawn",
+				"mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House music",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
