@@ -1,1 +1,36 @@
-{}
+{
+	"Q106528337": {
+		"genre": {
+			"slug": "genre:acid",
+			"name": "Acid",
+			"qid": "Q106528337"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Phuture",
+				"slug": "artist:phuture",
+				"mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+			},
+			{
+				"type": "artist",
+				"name": "Hardfloor",
+				"slug": "artist:hardfloor",
+				"mbid": "49c5cce4-aaa6-4600-a9a2-2b045fb6a87b"
+			},
+			{
+				"type": "artist",
+				"name": "A Guy Called Gerald",
+				"slug": "artist:a-guy-called-gerald",
+				"mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:electronic-music",
+				"name": "Electronic music",
+				"qid": "Q9778"
+			}
+		]
+	}
+}
