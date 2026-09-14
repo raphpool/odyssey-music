@@ -66,5 +66,38 @@
 				"qid": "Q170435"
 			}
 		]
+	},
+	"local:balearic-house": {
+		"genre": {
+			"slug": "genre:balearic-house",
+			"name": "Balearic House"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "José Padilla",
+				"slug": "artist:jose-padilla",
+				"mbid": "3a238c56-3790-4a6a-89af-4aa0c71fa732"
+			},
+			{
+				"type": "artist",
+				"name": "Paul Oakenfold",
+				"slug": "artist:paul-oakenfold",
+				"mbid": "7bf1f441-ccf1-4258-9797-07c8d16eb44c"
+			},
+			{
+				"type": "artist",
+				"name": "Danny Rampling",
+				"slug": "artist:danny-rampling",
+				"mbid": "77124f1c-1231-49fa-905e-564d0e0aa60b"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House music",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
