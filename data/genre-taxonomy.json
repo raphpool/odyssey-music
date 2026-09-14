@@ -3116,6 +3116,70 @@
 			"name": "Juju",
 			"family": "african-middle-eastern",
 			"published": false
+		},
+		{
+			"id": "local:kabyle",
+			"name": "Kabyle",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:kalenjin",
+			"name": "Kalenjin",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:khaleeji",
+			"name": "Khaleeji",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q135274887",
+			"name": "Kilalaky",
+			"family": "african-middle-eastern",
+			"qid": "Q135274887",
+			"published": false
+		},
+		{
+			"id": "Q1597549",
+			"name": "Kizomba",
+			"family": "african-middle-eastern",
+			"qid": "Q1597549",
+			"published": false
+		},
+		{
+			"id": "local:kora",
+			"name": "Kora",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:lewa",
+			"name": "Lewa",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q25230739",
+			"name": "Mahraganat",
+			"family": "african-middle-eastern",
+			"qid": "Q25230739",
+			"published": false
+		},
+		{
+			"id": "Q1815364",
+			"name": "Makossa",
+			"family": "african-middle-eastern",
+			"qid": "Q1815364",
+			"published": false
+		},
+		{
+			"id": "local:malagasy-folk",
+			"name": "Malagasy Folk",
+			"family": "african-middle-eastern",
+			"published": false
 		}
 	]
 }
