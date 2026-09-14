@@ -190,6 +190,40 @@
 			}
 		]
 	},
+	"Q820049": {
+		"genre": {
+			"slug": "genre:gabber",
+			"name": "Gabber",
+			"qid": "Q820049"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Paul Elstak",
+				"slug": "artist:dj-paul-elstak",
+				"mbid": "026c4d7c-8dfe-46e8-ab14-cf9304d6863d"
+			},
+			{
+				"type": "artist",
+				"name": "Rotterdam Terror Corps",
+				"slug": "artist:rotterdam-terror-corps",
+				"mbid": "bf4143da-9b14-4ae8-8787-2a1dfe610a76"
+			},
+			{
+				"type": "artist",
+				"name": "Neophyte",
+				"slug": "artist:neophyte",
+				"mbid": "ba474cdb-fd06-4a49-988d-819a6bbd2077"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hardcore-techno",
+				"name": "Hardcore techno",
+				"qid": "Q388906"
+			}
+		]
+	},
 	"local:euro-house": {
 		"genre": {
 			"slug": "genre:euro-house",
