@@ -1391,6 +1391,85 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q592330",
 			"published": false
+		},
+		{
+			"id": "Q10926",
+			"name": "Emo",
+			"family": "alternative-rock-punk",
+			"qid": "Q10926",
+			"sourceSlugs": ["genre:emo"],
+			"published": false
+		},
+		{
+			"id": "Q1641839",
+			"name": "Experimental rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q1641839",
+			"sourceSlugs": ["genre:experimental-rock"],
+			"published": false
+		},
+		{
+			"id": "Q2296495",
+			"name": "Garage punk",
+			"family": "alternative-rock-punk",
+			"qid": "Q2296495",
+			"sourceSlugs": ["genre:garage-punk"],
+			"published": false
+		},
+		{
+			"id": "Q211573",
+			"name": "Garage Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q211573",
+			"sourceSlugs": ["genre:garage-rock"],
+			"published": false
+		},
+		{
+			"id": "Q11365",
+			"name": "Grunge",
+			"family": "alternative-rock-punk",
+			"qid": "Q11365",
+			"sourceSlugs": ["genre:grunge"],
+			"published": false
+		},
+		{
+			"id": "local:guitar-pop",
+			"name": "Guitar Pop",
+			"family": "alternative-rock-punk",
+			"sourceSlugs": ["genre:guitar-pop"],
+			"published": false
+		},
+		{
+			"id": "Q10922",
+			"name": "Hardcore Punk",
+			"family": "alternative-rock-punk",
+			"qid": "Q10922",
+			"sourceSlugs": ["genre:hardcore-punk"],
+			"published": false
+		},
+		{
+			"id": "Q1317816",
+			"name": "Indie folk",
+			"family": "alternative-rock-punk",
+			"qid": "Q1317816",
+			"sourceSlugs": ["genre:indie-folk"],
+			"published": false
+		},
+		{
+			"id": "Q842324",
+			"name": "Indie Pop",
+			"family": "alternative-rock-punk",
+			"qid": "Q842324",
+			"sourceSlugs": ["genre:indie-pop"],
+			"published": false
+		},
+		{
+			"id": "Q183504",
+			"name": "Indie Rock",
+			"family": "alternative-rock-punk",
+			"qid": "Q183504",
+			"sourceSlugs": ["genre:indie-rock"],
+			"published": false
 		}
 	]
 }
