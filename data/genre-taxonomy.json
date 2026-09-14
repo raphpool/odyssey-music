@@ -2294,6 +2294,83 @@
 			"qid": "Q105513",
 			"sourceSlugs": ["genre:bebop"],
 			"published": false
+		},
+		{
+			"id": "Q5928480",
+			"name": "Contemporary Jazz",
+			"family": "jazz",
+			"qid": "Q5928480",
+			"sourceSlugs": ["genre:contemporary-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q327547",
+			"name": "Cool Jazz",
+			"family": "jazz",
+			"qid": "Q327547",
+			"sourceSlugs": ["genre:cool-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q2579417",
+			"name": "European Jazz",
+			"family": "jazz",
+			"qid": "Q2579417",
+			"sourceSlugs": ["genre:european-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q211781",
+			"name": "Free Jazz",
+			"family": "jazz",
+			"qid": "Q211781",
+			"sourceSlugs": ["genre:free-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q181010",
+			"name": "Hard Bop",
+			"family": "jazz",
+			"qid": "Q181010",
+			"sourceSlugs": ["genre:hard-bop"],
+			"published": false
+		},
+		{
+			"id": "Q105527",
+			"name": "Jazz Fusion",
+			"family": "jazz",
+			"qid": "Q105527",
+			"sourceSlugs": ["genre:jazz-fusion"],
+			"published": false
+		},
+		{
+			"id": "Q944465",
+			"name": "Jazz Rock",
+			"family": "jazz",
+			"qid": "Q944465",
+			"published": false
+		},
+		{
+			"id": "Q38656",
+			"name": "Jazz-Funk",
+			"family": "jazz",
+			"qid": "Q38656",
+			"sourceSlugs": ["genre:jazz-funk"],
+			"published": false
+		},
+		{
+			"id": "local:modal",
+			"name": "Modal",
+			"family": "jazz",
+			"published": false
+		},
+		{
+			"id": "Q1136331",
+			"name": "Nu Jazz",
+			"family": "jazz",
+			"qid": "Q1136331",
+			"sourceSlugs": ["genre:nu-jazz"],
+			"published": false
 		}
 	]
 }
