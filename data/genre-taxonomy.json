@@ -3975,6 +3975,73 @@
 			"qid": "Q848399",
 			"sourceSlugs": ["genre:easy-listening"],
 			"published": false
+		},
+		{
+			"id": "Q25094591",
+			"name": "Experimental pop",
+			"family": "other",
+			"qid": "Q25094591",
+			"sourceSlugs": ["genre:experimental-pop"],
+			"published": false
+		},
+		{
+			"id": "local:greek-traditional",
+			"name": "Greek Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q5765288",
+			"name": "Himene Tarava",
+			"family": "other",
+			"qid": "Q5765288",
+			"published": false
+		},
+		{
+			"id": "local:imene-tuki",
+			"name": "Imene Tuki",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:irish-traditional",
+			"name": "Irish Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:italian-traditional",
+			"name": "Italian Traditional",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q744327",
+			"name": "Joik",
+			"family": "other",
+			"qid": "Q744327",
+			"published": false
+		},
+		{
+			"id": "local:keiji-haino-music",
+			"name": "Keiji Haino Music",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q212944",
+			"name": "Klezmer",
+			"family": "other",
+			"qid": "Q212944",
+			"sourceSlugs": ["genre:klezmer"],
+			"published": false
+		},
+		{
+			"id": "Q106576127",
+			"name": "Leftfield Pop",
+			"family": "other",
+			"qid": "Q106576127",
+			"published": false
 		}
 	]
 }
