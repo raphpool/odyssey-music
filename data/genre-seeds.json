@@ -493,5 +493,39 @@
 				"qid": "Q170611"
 			}
 		]
+	},
+	"Q3048168": {
+		"genre": {
+			"slug": "genre:makina",
+			"name": "Makina",
+			"qid": "Q3048168"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Pastis",
+				"slug": "artist:pastis",
+				"mbid": "17a729c0-0df1-40a4-b444-0c3d4ca3f8e5"
+			},
+			{
+				"type": "artist",
+				"name": "Skudero",
+				"slug": "artist:skudero",
+				"mbid": "8880c6be-e2c8-460b-a5aa-c1d54d89cf16"
+			},
+			{
+				"type": "artist",
+				"name": "Tracy Onne",
+				"slug": "artist:tracy-onne",
+				"mbid": "8ebd4e1f-7edb-49e8-84dd-e0442580386e"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:techno",
+				"name": "Techno",
+				"qid": "Q170611"
+			}
+		]
 	}
 }
