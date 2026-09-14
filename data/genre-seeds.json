@@ -168,6 +168,28 @@
 			}
 		]
 	},
+	"Q216961": {
+		"genre": {
+			"slug": "genre:eurodance",
+			"name": "Eurodance",
+			"qid": "Q216961"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "2 Unlimited",
+				"slug": "artist:2-unlimited",
+				"mbid": "515b236c-cce1-4dc2-aedd-50de7b1736e2"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:electronic-dance-music",
+				"name": "Electronic dance music",
+				"qid": "Q851213"
+			}
+		]
+	},
 	"local:euro-house": {
 		"genre": {
 			"slug": "genre:euro-house",
