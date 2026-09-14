@@ -2003,6 +2003,78 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q1045541",
 			"published": false
+		},
+		{
+			"id": "Q753679",
+			"name": "Gangsta Rap",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q753679",
+			"published": false
+		},
+		{
+			"id": "Q11401",
+			"name": "Hip Hop",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q11401",
+			"sourceSlugs": ["genre:hip-hop"],
+			"published": false
+		},
+		{
+			"id": "Q255406",
+			"name": "Jazz Rap",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q255406",
+			"sourceSlugs": ["genre:jazz-rap"],
+			"published": false
+		},
+		{
+			"id": "Q97265899",
+			"name": "Lofi Hip-Hop",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q97265899",
+			"sourceSlugs": ["genre:lofi-hip-hop"],
+			"published": false
+		},
+		{
+			"id": "local:memphis",
+			"name": "Memphis",
+			"family": "hip-hop-r-n-b",
+			"published": false
+		},
+		{
+			"id": "Q6918602",
+			"name": "Motswako",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q6918602",
+			"published": false
+		},
+		{
+			"id": "Q840065",
+			"name": "New Jack Swing",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q840065",
+			"published": false
+		},
+		{
+			"id": "local:rap",
+			"name": "Rap",
+			"family": "hip-hop-r-n-b",
+			"published": false
+		},
+		{
+			"id": "Q138020",
+			"name": "Rap français",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q138020",
+			"sourceSlugs": ["genre:rap-francais", "genre:french-hip-hop", "genre:hip-hop-francais"],
+			"aliases": ["French hip hop", "Hip-hop français"],
+			"published": false
+		},
+		{
+			"id": "local:rnb",
+			"name": "RnB",
+			"family": "hip-hop-r-n-b",
+			"published": false
 		}
 	]
 }
