@@ -3245,6 +3245,70 @@
 			"family": "african-middle-eastern",
 			"qid": "Q502535",
 			"published": false
+		},
+		{
+			"id": "local:muzika-mizrahit",
+			"name": "Muzika Mizrahit",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:persian-traditional",
+			"name": "Persian Traditional",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:qaraami",
+			"name": "Qaraami",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:rababa",
+			"name": "Rababa",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q839029",
+			"name": "Raï",
+			"family": "african-middle-eastern",
+			"qid": "Q839029",
+			"published": false
+		},
+		{
+			"id": "Q21684437",
+			"name": "Rumba",
+			"family": "african-middle-eastern",
+			"qid": "Q21684437",
+			"published": false
+		},
+		{
+			"id": "local:sahara-blues",
+			"name": "Sahara Blues",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:sai",
+			"name": "Sai",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q3032090",
+			"name": "Salegy",
+			"family": "african-middle-eastern",
+			"qid": "Q3032090",
+			"published": false
+		},
+		{
+			"id": "Q1781796",
+			"name": "Sega",
+			"family": "african-middle-eastern",
+			"qid": "Q1781796",
+			"published": false
 		}
 	]
 }
