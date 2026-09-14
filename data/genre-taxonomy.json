@@ -2371,6 +2371,79 @@
 			"qid": "Q1136331",
 			"sourceSlugs": ["genre:nu-jazz"],
 			"published": false
+		},
+		{
+			"id": "Q1092837",
+			"name": "Post Bop",
+			"family": "jazz",
+			"qid": "Q1092837",
+			"published": false
+		},
+		{
+			"id": "Q185652",
+			"name": "Ragtime",
+			"family": "jazz",
+			"qid": "Q185652",
+			"sourceSlugs": ["genre:ragtime"],
+			"published": false
+		},
+		{
+			"id": "Q1615483",
+			"name": "Soul Jazz",
+			"family": "jazz",
+			"qid": "Q1615483",
+			"published": false
+		},
+		{
+			"id": "Q98528204",
+			"name": "Spiritual Jazz",
+			"family": "jazz",
+			"qid": "Q98528204",
+			"published": false
+		},
+		{
+			"id": "Q16636260",
+			"name": "Straight Jazz",
+			"family": "jazz",
+			"qid": "Q16636260",
+			"published": false
+		},
+		{
+			"id": "Q203775",
+			"name": "Swing",
+			"family": "jazz",
+			"qid": "Q203775",
+			"published": false
+		},
+		{
+			"id": "Q1530455",
+			"name": "Vocal Jazz",
+			"family": "jazz",
+			"qid": "Q1530455",
+			"sourceSlugs": ["genre:vocal-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q1548603",
+			"name": "West Coast jazz",
+			"family": "jazz",
+			"qid": "Q1548603",
+			"sourceSlugs": ["genre:west-coast-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q40461",
+			"name": "Bachata",
+			"family": "latin-brazilian",
+			"qid": "Q40461",
+			"published": false
+		},
+		{
+			"id": "Q19816",
+			"name": "Batucada",
+			"family": "latin-brazilian",
+			"qid": "Q19816",
+			"published": false
 		}
 	]
 }
