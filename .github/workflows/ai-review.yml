@@ -44,7 +44,11 @@ jobs:
                pour tout le diff. Ne relis un fichier en entier ou ne grep
                que si ce diff seul ne suffit pas à trancher un finding
                précis — pas de relecture ou de grep systématique fichier
-               par fichier.
+               par fichier. Le budget de tours ne justifie jamais un
+               finding "block" non vérifié dans le code réel : si tu
+               hésites à lire plus pour trancher, lis plus ; dans le
+               doute persistant, classe en "nit" (barre de preuve de
+               REVIEW.md).
             3. Écris /tmp/review.json en premier, et rien d'autre dans ce
                fichier :
                {"verdict":"pass"|"block","blocking":<n>,"nits":<n>,
