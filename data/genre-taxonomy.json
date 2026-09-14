@@ -2986,6 +2986,70 @@
 			"family": "african-middle-eastern",
 			"qid": "Q2982341",
 			"published": false
+		},
+		{
+			"id": "Q1156570",
+			"name": "Dabke",
+			"family": "african-middle-eastern",
+			"qid": "Q1156570",
+			"published": false
+		},
+		{
+			"id": "Q16960459",
+			"name": "Dhaanto",
+			"family": "african-middle-eastern",
+			"qid": "Q16960459",
+			"published": false
+		},
+		{
+			"id": "local:eritrean-folk",
+			"name": "Eritrean Folk",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:eritrean-pop",
+			"name": "Eritrean Pop",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:ethiopian-jazz",
+			"name": "Ethiopian Jazz",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q109586004",
+			"name": "Ethiopian Pop",
+			"family": "african-middle-eastern",
+			"qid": "Q109586004",
+			"published": false
+		},
+		{
+			"id": "local:ethiopian-traditional",
+			"name": "Ethiopian Traditional",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:ethiopiques",
+			"name": "Ethiopiques",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:fuji",
+			"name": "Fuji",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q3090876",
+			"name": "Funaná",
+			"family": "african-middle-eastern",
+			"qid": "Q3090876",
+			"published": false
 		}
 	]
 }
