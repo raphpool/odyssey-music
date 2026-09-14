@@ -1000,6 +1000,85 @@
 			"qid": "Q9778",
 			"sourceSlugs": ["genre:electronic"],
 			"published": false
+		},
+		{
+			"id": "Q817138",
+			"name": "Electronica",
+			"family": "electronica-downtempo",
+			"qid": "Q817138",
+			"sourceSlugs": ["genre:electronica"],
+			"published": false
+		},
+		{
+			"id": "Q1100989",
+			"name": "Glitch",
+			"family": "electronica-downtempo",
+			"qid": "Q1100989",
+			"sourceSlugs": ["genre:glitch"],
+			"published": false
+		},
+		{
+			"id": "Q85765918",
+			"name": "hauntology",
+			"family": "electronica-downtempo",
+			"qid": "Q85765918",
+			"sourceSlugs": ["genre:hauntology"],
+			"published": false
+		},
+		{
+			"id": "Q660984",
+			"name": "IDM",
+			"family": "electronica-downtempo",
+			"qid": "Q660984",
+			"sourceSlugs": ["genre:idm"],
+			"published": false
+		},
+		{
+			"id": "Q325397",
+			"name": "Indietronica",
+			"family": "electronica-downtempo",
+			"qid": "Q325397",
+			"sourceSlugs": ["genre:indietronica"],
+			"published": false
+		},
+		{
+			"id": "Q1507298",
+			"name": "Lo-fi",
+			"family": "electronica-downtempo",
+			"qid": "Q1507298",
+			"sourceSlugs": ["genre:lo-fi"],
+			"published": false
+		},
+		{
+			"id": "Q19938910",
+			"name": "Synthwave",
+			"family": "electronica-downtempo",
+			"qid": "Q19938910",
+			"sourceSlugs": ["genre:synthwave"],
+			"published": false
+		},
+		{
+			"id": "Q205560",
+			"name": "Trip Hop",
+			"family": "electronica-downtempo",
+			"qid": "Q205560",
+			"sourceSlugs": ["genre:trip-hop"],
+			"published": false
+		},
+		{
+			"id": "Q106369996",
+			"name": "Wave",
+			"family": "electronica-downtempo",
+			"qid": "Q106369996",
+			"sourceSlugs": ["genre:wave"],
+			"published": false
+		},
+		{
+			"id": "Q1840167",
+			"name": "Witch House",
+			"family": "electronica-downtempo",
+			"qid": "Q1840167",
+			"published": false
 		}
 	]
 }
