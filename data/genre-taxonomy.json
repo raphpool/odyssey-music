@@ -3180,6 +3180,71 @@
 			"name": "Malagasy Folk",
 			"family": "african-middle-eastern",
 			"published": false
+		},
+		{
+			"id": "Q496929",
+			"name": "Maloya",
+			"family": "african-middle-eastern",
+			"qid": "Q496929",
+			"published": false
+		},
+		{
+			"id": "Q98528238",
+			"name": "Mande Music",
+			"family": "african-middle-eastern",
+			"qid": "Q98528238",
+			"published": false
+		},
+		{
+			"id": "local:mandinka",
+			"name": "Mandinka",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q3287249",
+			"name": "Mapouka",
+			"family": "african-middle-eastern",
+			"qid": "Q3287249",
+			"published": false
+		},
+		{
+			"id": "local:maringa",
+			"name": "Maringa",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:mauritanian-traditional",
+			"name": "Mauritanian Traditional",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q556959",
+			"name": "Mbalax",
+			"family": "african-middle-eastern",
+			"qid": "Q556959",
+			"published": false
+		},
+		{
+			"id": "local:mezoued",
+			"name": "Mezoued",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "local:mizmar",
+			"name": "Mizmar",
+			"family": "african-middle-eastern",
+			"published": false
+		},
+		{
+			"id": "Q502535",
+			"name": "Morna",
+			"family": "african-middle-eastern",
+			"qid": "Q502535",
+			"published": false
 		}
 	]
 }
