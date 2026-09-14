@@ -133,5 +133,39 @@
 				"qid": "Q851213"
 			}
 		]
+	},
+	"Q2406633": {
+		"genre": {
+			"slug": "genre:broken-beat",
+			"name": "Broken Beat",
+			"qid": "Q2406633"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Bugz in the Attic",
+				"slug": "artist:bugz-in-the-attic",
+				"mbid": "e12903cf-78ff-4d15-8dfa-54985733827f"
+			},
+			{
+				"type": "artist",
+				"name": "4hero",
+				"slug": "artist:4hero",
+				"mbid": "3d05eb8b-1644-4143-9a61-b28e33c4d85f"
+			},
+			{
+				"type": "artist",
+				"name": "Opolopo",
+				"slug": "artist:opolopo",
+				"mbid": "50e1d32b-8873-4f30-aec0-f22c46346872"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:electronic-dance-music",
+				"name": "Electronic dance music",
+				"qid": "Q851213"
+			}
+		]
 	}
 }
