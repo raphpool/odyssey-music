@@ -115,22 +115,48 @@ export interface GenreSeedProposalInputs {
 	taxonomy: GenreTaxonomy;
 	coverage: GenreCoverageReport;
 	dossiers: GenreSeeds;
+	requestedIds?: readonly string[];
+}
+
+function selectPrescribedGenres(requestedIds: readonly string[] | undefined): readonly PrescribedGenre[] {
+	if (requestedIds === undefined) return PRESCRIBED_GENRES;
+	if (requestedIds.length === 0) throw new Error("At least one requested genre id is required");
+	const prescribedById = new Map(PRESCRIBED_GENRES.map((genre) => [genre.id, genre]));
+	const selected: PrescribedGenre[] = [];
+	const seen = new Set<string>();
+	const unknown: string[] = [];
+	for (const id of requestedIds) {
+		if (seen.has(id)) continue;
+		seen.add(id);
+		const prescribed = prescribedById.get(id);
+		if (prescribed === undefined) unknown.push(id);
+		else selected.push(prescribed);
+	}
+	if (unknown.length > 0) throw new Error(`Unknown requested genre id: ${unknown.join(", ")}`);
+	return selected;
 }
 
 export function validateGenreSeedProposalInputs({
 	taxonomy,
 	coverage,
 	dossiers,
+	requestedIds,
 }: GenreSeedProposalInputs): void {
+	const selectedGenres = selectPrescribedGenres(requestedIds);
 	const prescribedIds = new Set(PRESCRIBED_GENRES.map(({ id }) => id));
-	const missing = PRESCRIBED_GENRES.filter(({ id }) => !Object.hasOwn(dossiers, id)).map(({ id }) => id);
+	const missing = selectedGenres.filter(({ id }) => !Object.hasOwn(dossiers, id)).map(({ id }) => id);
 	const foreign = Object.keys(dossiers).filter((id) => !prescribedIds.has(id));
 	if (missing.length > 0) throw new Error(`Missing prescribed dossiers: ${missing.join(", ")}`);
 	if (foreign.length > 0) throw new Error(`Foreign prescribed dossiers: ${foreign.join(", ")}`);
-	validateGenreSeeds(dossiers, taxonomy.genres);
+	const selectedDossiers: GenreSeeds = {};
+	for (const { id } of selectedGenres) {
+		const dossier = dossiers[id];
+		if (dossier !== undefined) selectedDossiers[id] = dossier;
+	}
+	validateGenreSeeds(selectedDossiers, taxonomy.genres);
 
 	const entries = new Map(taxonomy.genres.map((entry) => [entry.id, entry]));
-	for (const prescribed of PRESCRIBED_GENRES) {
+	for (const prescribed of selectedGenres) {
 		const entry = entries.get(prescribed.id);
 		if (!entry) throw new Error(`Taxonomy is missing prescribed genre: ${prescribed.id}`);
 		if (
@@ -177,7 +203,7 @@ export interface AnchorCandidate extends Candidate {
 
 export type ProposalCandidates = { targets: readonly TargetCandidate[]; anchors: readonly AnchorCandidate[] };
 
-export type ProposalOptions = { trustedHosts: readonly string[] };
+export type ProposalOptions = { trustedHosts: readonly string[]; requestedIds?: readonly string[] };
 
 export type RejectedCandidate = { kind: "target" | "anchor"; name: string; slug: string; reason: string };
 
@@ -299,22 +325,28 @@ export function proposeGenreSeeds(
 	candidates: Readonly<Record<string, ProposalCandidates>>,
 	options: ProposalOptions,
 ): GenreSeedProposalReport {
+	const selectedGenres = selectPrescribedGenres(options.requestedIds);
 	const emptySeeds: GenreSeeds = Object.fromEntries(
-		PRESCRIBED_GENRES.map((prescribed) => [
+		selectedGenres.map((prescribed) => [
 			prescribed.id,
 			{ genre: proposalGenre(prescribed), targets: [], anchors: [] },
 		]),
 	);
-	validateGenreSeedProposalInputs({ taxonomy, coverage, dossiers: emptySeeds });
+	validateGenreSeedProposalInputs({
+		taxonomy,
+		coverage,
+		dossiers: emptySeeds,
+		...(options.requestedIds === undefined ? {} : { requestedIds: options.requestedIds }),
+	});
 	const expectedIds = new Set(PRESCRIBED_GENRES.map(({ id }) => id));
-	const missing = PRESCRIBED_GENRES.filter(({ id }) => !Object.hasOwn(candidates, id)).map(({ id }) => id);
+	const missing = selectedGenres.filter(({ id }) => !Object.hasOwn(candidates, id)).map(({ id }) => id);
 	const foreign = Object.keys(candidates).filter((id) => !expectedIds.has(id));
 	if (missing.length > 0) throw new Error(`Missing prescribed candidates: ${missing.join(", ")}`);
 	if (foreign.length > 0) throw new Error(`Foreign prescribed candidates: ${foreign.join(", ")}`);
 
 	const entries: Record<string, GenreSeedProposal> = {};
 	const seeds: GenreSeeds = {};
-	for (const prescribed of PRESCRIBED_GENRES) {
+	for (const prescribed of selectedGenres) {
 		const dossier = candidates[prescribed.id];
 		const measured = coverage.entries[prescribed.id];
 		if (!dossier || !measured) throw new Error(`Prescribed input disappeared: ${prescribed.id}`);
@@ -455,12 +487,20 @@ export async function proposeGenreSeedsFromMusicBrainz(
 	options: ProposalOptions,
 	resolutionOptions?: MusicBrainzResolutionOptions,
 ): Promise<GenreSeedProposalReport> {
+	const selectedIds = new Set(selectPrescribedGenres(options.requestedIds).map(({ id }) => id));
+	const targeted = options.requestedIds !== undefined;
 	const dossiers = Object.entries(candidates);
-	const targets = dossiers.flatMap(([, dossier]) => dossier.targets);
+	const targets = dossiers.flatMap(([id, dossier]) =>
+		targeted && !selectedIds.has(id) ? [] : dossier.targets,
+	);
 	const resolvedTargets = await resolveMusicBrainzCandidates(targets, resolutionOptions);
 	const resolved: Record<string, ProposalCandidates> = {};
 	let targetIndex = 0;
 	for (const [id, dossier] of dossiers) {
+		if (targeted && !selectedIds.has(id)) {
+			resolved[id] = dossier;
+			continue;
+		}
 		const nextTargetIndex = targetIndex + dossier.targets.length;
 		resolved[id] = { ...dossier, targets: resolvedTargets.slice(targetIndex, nextTargetIndex) };
 		targetIndex = nextTargetIndex;

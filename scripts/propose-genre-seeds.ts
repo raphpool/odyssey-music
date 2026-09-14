@@ -57,6 +57,48 @@ interface CliOutput {
 	stderr: { write(value: string): unknown };
 }
 
+interface CliArguments {
+	inputPath: string;
+	requestedIds?: readonly string[];
+}
+
+function parseArguments(args: readonly string[]): CliArguments | undefined {
+	let inputPath: string | undefined;
+	let requestedIds: string[] | undefined;
+	for (let index = 0; index < args.length; index += 1) {
+		const arg = args[index];
+		if (arg === "--ids") {
+			const value = args[index + 1];
+			if (!value || value.startsWith("-")) return undefined;
+			index += 1;
+			const ids = value
+				.split(",")
+				.map((id) => id.trim())
+				.filter((id) => id.length > 0);
+			if (ids.length === 0) return undefined;
+			requestedIds = [...(requestedIds ?? []), ...ids];
+			continue;
+		}
+		if (arg?.startsWith("--ids=")) {
+			const ids = arg
+				.slice("--ids=".length)
+				.split(",")
+				.map((id) => id.trim())
+				.filter((id) => id.length > 0);
+			if (ids.length === 0) return undefined;
+			requestedIds = [...(requestedIds ?? []), ...ids];
+			continue;
+		}
+		if (arg && !arg.startsWith("-") && inputPath === undefined) {
+			inputPath = arg;
+			continue;
+		}
+		return undefined;
+	}
+	if (inputPath === undefined) return undefined;
+	return requestedIds === undefined ? { inputPath } : { inputPath, requestedIds };
+}
+
 function errorMessage(error: unknown): string {
 	return error instanceof Error ? error.message : String(error);
 }
@@ -65,13 +107,14 @@ export async function main(
 	args = process.argv.slice(2),
 	output: CliOutput = { stdout: process.stdout, stderr: process.stderr },
 ): Promise<number> {
-	if (args.length !== 1 || !args[0]) {
-		output.stderr.write("usage: propose-genre-seeds.ts <proposal-input.json>\n");
+	const parsedArgs = parseArguments(args);
+	if (parsedArgs === undefined) {
+		output.stderr.write("usage: propose-genre-seeds.ts <proposal-input.json> [--ids <id[,id...]>]\n");
 		return 2;
 	}
 	let raw: unknown;
 	try {
-		raw = JSON.parse(await readFile(args[0], "utf8")) as unknown;
+		raw = JSON.parse(await readFile(parsedArgs.inputPath, "utf8")) as unknown;
 	} catch (error) {
 		output.stderr.write(`error: ${errorMessage(error)}\n`);
 		return 1;
@@ -85,6 +128,7 @@ export async function main(
 		const input = parsed.data;
 		const report = await proposeGenreSeedsFromMusicBrainz(input.taxonomy, input.coverage, input.candidates, {
 			trustedHosts: input.trustedHosts,
+			...(parsedArgs.requestedIds === undefined ? {} : { requestedIds: parsedArgs.requestedIds }),
 		});
 		output.stdout.write(`${JSON.stringify(report)}\n`);
 		return 0;
