@@ -1624,6 +1624,85 @@
 			"qid": "Q727803",
 			"sourceSlugs": ["genre:canterbury-scene"],
 			"published": false
+		},
+		{
+			"id": "Q2662148",
+			"name": "Celtic rock",
+			"family": "rock",
+			"qid": "Q2662148",
+			"sourceSlugs": ["genre:celtic-rock"],
+			"published": false
+		},
+		{
+			"id": "Q56351111",
+			"name": "Classic Rock",
+			"family": "rock",
+			"qid": "Q56351111",
+			"published": false
+		},
+		{
+			"id": "Q83440",
+			"name": "Country",
+			"family": "rock",
+			"qid": "Q83440",
+			"sourceSlugs": ["genre:country-music"],
+			"aliases": ["Country music"],
+			"published": false
+		},
+		{
+			"id": "local:desert-rock",
+			"name": "Desert Rock",
+			"family": "rock",
+			"sourceSlugs": ["genre:desert-rock"],
+			"published": false
+		},
+		{
+			"id": "Q5320459",
+			"name": "Düsseldorf School",
+			"family": "rock",
+			"qid": "Q5320459",
+			"sourceSlugs": ["genre:dusseldorf-school"],
+			"published": false
+		},
+		{
+			"id": "Q43343",
+			"name": "Folk",
+			"family": "rock",
+			"qid": "Q43343",
+			"sourceSlugs": ["genre:folk"],
+			"published": false
+		},
+		{
+			"id": "Q186472",
+			"name": "Folk Rock",
+			"family": "rock",
+			"qid": "Q186472",
+			"sourceSlugs": ["genre:folk-rock"],
+			"published": false
+		},
+		{
+			"id": "Q76092",
+			"name": "Glam Rock",
+			"family": "rock",
+			"qid": "Q76092",
+			"sourceSlugs": ["genre:glam-rock"],
+			"published": false
+		},
+		{
+			"id": "Q83270",
+			"name": "Hard Rock",
+			"family": "rock",
+			"qid": "Q83270",
+			"sourceSlugs": ["genre:hard-rock"],
+			"published": false
+		},
+		{
+			"id": "Q320592",
+			"name": "Krautrock",
+			"family": "rock",
+			"qid": "Q320592",
+			"sourceSlugs": ["genre:krautrock"],
+			"published": false
 		}
 	]
 }
