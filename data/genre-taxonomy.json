@@ -2075,6 +2075,80 @@
 			"name": "RnB",
 			"family": "hip-hop-r-n-b",
 			"published": false
+		},
+		{
+			"id": "Q2913982",
+			"name": "Trap",
+			"family": "hip-hop-r-n-b",
+			"qid": "Q2913982",
+			"published": false
+		},
+		{
+			"id": "Q221772",
+			"name": "Acid Jazz",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q221772",
+			"sourceSlugs": ["genre:acid-jazz"],
+			"published": false
+		},
+		{
+			"id": "Q850412",
+			"name": "Contemporary R&B",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q850412",
+			"published": false
+		},
+		{
+			"id": "Q546359",
+			"name": "Doo-Wop",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q546359",
+			"published": false
+		},
+		{
+			"id": "Q164444",
+			"name": "Funk",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q164444",
+			"sourceSlugs": ["genre:funk"],
+			"published": false
+		},
+		{
+			"id": "Q180268",
+			"name": "Gospel",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q180268",
+			"sourceSlugs": ["genre:gospel"],
+			"published": false
+		},
+		{
+			"id": "Q268253",
+			"name": "Neo Soul",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q268253",
+			"published": false
+		},
+		{
+			"id": "Q45981",
+			"name": "Rhythm and Blues",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q45981",
+			"published": false
+		},
+		{
+			"id": "Q131272",
+			"name": "Soul",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q131272",
+			"sourceSlugs": ["genre:soul"],
+			"published": false
+		},
+		{
+			"id": "Q1615483",
+			"name": "Soul Jazz",
+			"family": "soul-rhythm-and-blues",
+			"qid": "Q1615483",
+			"published": false
 		}
 	]
 }
