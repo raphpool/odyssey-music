@@ -527,5 +527,33 @@
 				"qid": "Q170611"
 			}
 		]
+	},
+	"Q438503": {
+		"genre": {
+			"slug": "genre:alternative-hip-hop",
+			"name": "Alternative hip-hop",
+			"qid": "Q438503"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "The Roots",
+				"slug": "artist:the-roots",
+				"mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+			},
+			{
+				"type": "artist",
+				"name": "Death Grips",
+				"slug": "artist:death-grips",
+				"mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
