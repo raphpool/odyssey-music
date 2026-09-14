@@ -290,5 +290,39 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"Q1521688": {
+		"genre": {
+			"slug": "genre:ghettotech",
+			"name": "Ghettotech",
+			"qid": "Q1521688"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Assault",
+				"slug": "artist:dj-assault",
+				"mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Godfather",
+				"slug": "artist:dj-godfather",
+				"mbid": "45fc5c0a-3614-4018-95e9-9101ac827e2b"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Nasty",
+				"slug": "artist:dj-nasty",
+				"mbid": "25378785-3fc1-4eea-af1f-4108052ec708"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:ghetto-house",
+				"name": "Ghetto House",
+				"qid": "Q2748817"
+			}
+		]
 	}
 }
