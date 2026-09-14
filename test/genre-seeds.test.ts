@@ -20,8 +20,19 @@ const folder = {
 	anchors: [{ slug: "genre:jazz", name: "Jazz", qid: "Q8341" }],
 };
 describe("genre seeds", () => {
-	it("loads the empty seed registry", async () => {
-		expect(await loadGenreSeeds()).toEqual({});
+	it("loads the real seed registry", async () => {
+		expect(await loadGenreSeeds()).toBeTypeOf("object");
+	});
+
+	it("loads an explicitly empty seed registry", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "odyssey-genre-seeds-"));
+		try {
+			const filePath = join(directory, "genre-seeds.json");
+			await writeFile(filePath, "{}");
+			await expect(loadGenreSeeds(filePath)).resolves.toEqual({});
+		} finally {
+			await rm(directory, { recursive: true, force: true });
+		}
 	});
 
 	it("validates taxonomy membership, coherent QIDs, and explicit slugs", () => {
