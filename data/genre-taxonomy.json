@@ -2444,6 +2444,75 @@
 			"family": "latin-brazilian",
 			"qid": "Q19816",
 			"published": false
+		},
+		{
+			"id": "Q489913",
+			"name": "Bolero",
+			"family": "latin-brazilian",
+			"qid": "Q489913",
+			"published": false
+		},
+		{
+			"id": "Q486263",
+			"name": "Bossa Nova",
+			"family": "latin-brazilian",
+			"qid": "Q486263",
+			"published": false
+		},
+		{
+			"id": "local:brasillica",
+			"name": "Brasillica",
+			"family": "latin-brazilian",
+			"published": false
+		},
+		{
+			"id": "Q1036183",
+			"name": "Carimbó",
+			"family": "latin-brazilian",
+			"qid": "Q1036183",
+			"published": false
+		},
+		{
+			"id": "Q1061165",
+			"name": "Champeta",
+			"family": "latin-brazilian",
+			"qid": "Q1061165",
+			"published": false
+		},
+		{
+			"id": "Q1143741",
+			"name": "Chicha",
+			"family": "latin-brazilian",
+			"qid": "Q1143741",
+			"published": false
+		},
+		{
+			"id": "Q869210",
+			"name": "Corrido",
+			"family": "latin-brazilian",
+			"qid": "Q869210",
+			"published": false
+		},
+		{
+			"id": "Q723418",
+			"name": "Cumbia",
+			"family": "latin-brazilian",
+			"qid": "Q723418",
+			"published": false
+		},
+		{
+			"id": "Q9764",
+			"name": "Flamenco",
+			"family": "latin-brazilian",
+			"qid": "Q9764",
+			"published": false
+		},
+		{
+			"id": "Q586110",
+			"name": "Forró",
+			"family": "latin-brazilian",
+			"qid": "Q586110",
+			"published": false
 		}
 	]
 }
