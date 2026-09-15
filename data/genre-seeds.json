@@ -1778,5 +1778,39 @@
 				"qid": "Q3135787"
 			}
 		]
+	},
+	"Q840065": {
+		"genre": {
+			"slug": "genre:new-jack-swing",
+			"name": "New Jack Swing",
+			"qid": "Q840065"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Bobby Brown",
+				"slug": "artist:bobby-brown",
+				"mbid": "d11f9c07-0eac-4a1f-a443-19cd0f63d5f0"
+			},
+			{
+				"type": "artist",
+				"name": "Bell Biv DeVoe",
+				"slug": "artist:bell-biv-devoe",
+				"mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+			},
+			{
+				"type": "artist",
+				"name": "Guy",
+				"slug": "artist:guy",
+				"mbid": "fa209319-6d7b-4a20-b445-62186ec41e0d"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:contemporary-r-and-b",
+				"name": "Contemporary R&B",
+				"qid": "Q850412"
+			}
+		]
 	}
 }
