@@ -759,5 +759,38 @@
 				"qid": "Q6942329"
 			}
 		]
+	},
+	"local:ethiopian-jazz": {
+		"genre": {
+			"slug": "genre:ethiopian-jazz",
+			"name": "Ethiopian Jazz"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Mulatu Astatke",
+				"slug": "artist:mulatu-astatke",
+				"mbid": "67f0c7ca-14e8-47a3-be0e-bd2f2ffe25bb"
+			},
+			{
+				"type": "artist",
+				"name": "Hailu Mergia",
+				"slug": "artist:hailu-mergia",
+				"mbid": "0b40d946-2362-4445-90f6-a3a5f333bd30"
+			},
+			{
+				"type": "artist",
+				"name": "Akalé Wubé",
+				"slug": "artist:akale-wube",
+				"mbid": "09e543a1-2a27-4436-a597-92ea89495b27"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:jazz",
+				"name": "Jazz",
+				"qid": "Q8341"
+			}
+		]
 	}
 }
