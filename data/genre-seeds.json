@@ -962,6 +962,40 @@
 			}
 		]
 	},
+	"Q194492": {
+		"genre": {
+			"slug": "genre:gamelan",
+			"name": "Gamelan",
+			"qid": "Q194492"
+		},
+		"targets": [
+			{
+				"type": "project",
+				"name": "Javanese Court Gamelan from the Pura Paku Alaman, Jogyakarta",
+				"slug": "project:javanese-court-gamelan-from-the-pura-paku-alaman-jogyakarta",
+				"mbid": "ba42a2f5-0b8c-36ee-bfbb-c78f7b232a79"
+			},
+			{
+				"type": "artist",
+				"name": "K.R.T. Wasitodiningrat",
+				"slug": "artist:k-r-t-wasitodiningrat",
+				"mbid": "d1a772d1-dee6-4c7d-a089-ce66ab456bcd"
+			},
+			{
+				"type": "project",
+				"name": "Music from the Morning of the World",
+				"slug": "project:music-from-the-morning-of-the-world",
+				"mbid": "7f1dabe5-32b6-3d1f-b16a-2f2f92b418eb"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:southeast-asian-classical-music",
+				"name": "Southeast Asian classical music",
+				"qid": "Q106586998"
+			}
+		]
+	},
 	"Q131578": {
 		"genre": {
 			"slug": "genre:j-pop",
