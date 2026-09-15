@@ -867,7 +867,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q2465085",
 			"sourceSlugs": ["genre:ambient-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q530750",
@@ -876,7 +876,7 @@
 			"qid": "Q530750",
 			"sourceSlugs": ["genre:berlin-school", "genre:berlin-school-of-electronic-music"],
 			"aliases": ["Berlin school of electronic music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:fourth-world",
@@ -898,7 +898,7 @@
 			"qid": "Q121494463",
 			"sourceSlugs": ["genre:kosmische-musik"],
 			"aliases": ["Kosmische"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q613874",
@@ -906,7 +906,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q613874",
 			"sourceSlugs": ["genre:neoclassical-new-age-music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q213121",
@@ -914,7 +914,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q213121",
 			"sourceSlugs": ["genre:new-age"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q79784514",
@@ -922,7 +922,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q79784514",
 			"sourceSlugs": ["genre:progressive-electronic"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q16625659",
@@ -930,7 +930,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q16625659",
 			"sourceSlugs": ["genre:space-ambient"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2342263",
@@ -938,7 +938,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q2342263",
 			"sourceSlugs": ["genre:space-music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q15733887",
@@ -953,7 +953,7 @@
 			"name": "Abstract Electronic",
 			"family": "electronica-downtempo",
 			"sourceSlugs": ["genre:abstract-electronic"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2187392",
@@ -961,7 +961,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q2187392",
 			"sourceSlugs": ["genre:alternative-dance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q112176170",
@@ -975,7 +975,7 @@
 			"name": "Braindance",
 			"family": "electronica-downtempo",
 			"sourceSlugs": ["genre:braindance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2626684",
@@ -991,7 +991,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q251192",
 			"sourceSlugs": ["genre:downtempo"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9778",
@@ -999,7 +999,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q9778",
 			"sourceSlugs": ["genre:electronic"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q817138",
@@ -1007,7 +1007,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q817138",
 			"sourceSlugs": ["genre:electronica"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1100989",
@@ -1015,7 +1015,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q1100989",
 			"sourceSlugs": ["genre:glitch"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q85765918",
@@ -1023,7 +1023,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q85765918",
 			"sourceSlugs": ["genre:hauntology"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q660984",
@@ -1031,7 +1031,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q660984",
 			"sourceSlugs": ["genre:idm"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q325397",
@@ -1039,7 +1039,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q325397",
 			"sourceSlugs": ["genre:indietronica"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1507298",
@@ -1047,7 +1047,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q1507298",
 			"sourceSlugs": ["genre:lo-fi"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q19938910",
@@ -1063,7 +1063,7 @@
 			"family": "electronica-downtempo",
 			"qid": "Q205560",
 			"sourceSlugs": ["genre:trip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q106369996",
@@ -1101,7 +1101,7 @@
 			"family": "avant-garde",
 			"qid": "Q756956",
 			"sourceSlugs": ["genre:dark-ambient"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q650316",
@@ -1109,7 +1109,7 @@
 			"family": "avant-garde",
 			"qid": "Q650316",
 			"sourceSlugs": ["genre:drone"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1326777",
@@ -1117,7 +1117,7 @@
 			"family": "avant-garde",
 			"qid": "Q1326777",
 			"sourceSlugs": ["genre:electroacoustic-music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1640319",
@@ -1125,7 +1125,7 @@
 			"family": "avant-garde",
 			"qid": "Q1640319",
 			"sourceSlugs": ["genre:experimental"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q105763581",
@@ -1133,7 +1133,7 @@
 			"family": "avant-garde",
 			"qid": "Q105763581",
 			"sourceSlugs": ["genre:experimental-electronic"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2404568",
@@ -1148,7 +1148,7 @@
 			"family": "avant-garde",
 			"qid": "Q3503814",
 			"sourceSlugs": ["genre:microsound"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1045756",
@@ -1156,7 +1156,7 @@
 			"family": "avant-garde",
 			"qid": "Q1045756",
 			"sourceSlugs": ["genre:microtonal-music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:modular-synth",
@@ -1171,7 +1171,7 @@
 			"family": "avant-garde",
 			"qid": "Q823560",
 			"sourceSlugs": ["genre:musique-concrete"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q726239",
@@ -1179,7 +1179,7 @@
 			"family": "avant-garde",
 			"qid": "Q726239",
 			"sourceSlugs": ["genre:noise"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2687544",
@@ -1195,7 +1195,7 @@
 			"family": "avant-garde",
 			"qid": "Q507246",
 			"sourceSlugs": ["genre:serialism"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2343562",
@@ -1211,7 +1211,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q1643549",
 			"sourceSlugs": ["genre:dance-punk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3840596",
@@ -1249,7 +1249,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q188450",
 			"sourceSlugs": ["genre:electropop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q828243",
@@ -1274,7 +1274,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q487965",
 			"sourceSlugs": ["genre:industrial"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q98528171",
@@ -1296,7 +1296,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q187760",
 			"sourceSlugs": ["genre:new-wave"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q823080",
@@ -1312,7 +1312,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q598929",
 			"sourceSlugs": ["genre:post-punk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1298934",
@@ -1320,7 +1320,7 @@
 			"family": "post-punk-new-wave",
 			"qid": "Q1298934",
 			"sourceSlugs": ["genre:synth-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q30632022",
@@ -1343,7 +1343,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q1695023",
 			"sourceSlugs": ["genre:alternative"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11366",
@@ -1351,7 +1351,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q11366",
 			"sourceSlugs": ["genre:alternative-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q217467",
@@ -1359,7 +1359,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q217467",
 			"sourceSlugs": ["genre:art-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q189045",
