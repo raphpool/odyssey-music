@@ -1131,5 +1131,39 @@
 				"qid": "Q58339"
 			}
 		]
+	},
+	"Q54365": {
+		"genre": {
+			"slug": "genre:ska",
+			"name": "Ska",
+			"qid": "Q54365"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "The Skatalites",
+				"slug": "artist:the-skatalites",
+				"mbid": "87ac7e25-f278-47a0-b109-5eb131dc96b6"
+			},
+			{
+				"type": "artist",
+				"name": "Prince Buster",
+				"slug": "artist:prince-buster",
+				"mbid": "a1d32e75-2391-4d94-904e-13536304dcf6"
+			},
+			{
+				"type": "artist",
+				"name": "The Specials",
+				"slug": "artist:the-specials",
+				"mbid": "07eb40a2-2914-439c-a01d-15a685b84ddf"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:popular-music",
+				"name": "Popular music",
+				"qid": "Q373342"
+			}
+		]
 	}
 }
