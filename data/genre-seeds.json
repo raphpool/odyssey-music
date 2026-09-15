@@ -1554,5 +1554,33 @@
 				"qid": "Q966564"
 			}
 		]
+	},
+	"Q141459": {
+		"genre": {
+			"slug": "genre:conscious-hip-hop",
+			"name": "Conscious hip-hop",
+			"qid": "Q141459"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Kendrick Lamar",
+				"slug": "artist:kendrick-lamar",
+				"mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+			},
+			{
+				"type": "artist",
+				"name": "Mos Def",
+				"slug": "artist:mos-def",
+				"mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
