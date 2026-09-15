@@ -1677,5 +1677,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q19879476": {
+		"genre": {
+			"slug": "genre:classic-hip-hop",
+			"name": "Classic Hip Hop",
+			"qid": "Q19879476"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "LL Cool J",
+				"slug": "artist:ll-cool-j",
+				"mbid": "a4dd0e77-83b8-4e92-89b7-effb0e47fd8c"
+			},
+			{
+				"type": "artist",
+				"name": "Queen Latifah",
+				"slug": "artist:queen-latifah",
+				"mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+			},
+			{
+				"type": "artist",
+				"name": "Salt-N-Pepa",
+				"slug": "artist:salt-n-pepa",
+				"mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
