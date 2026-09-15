@@ -1,0 +1,139 @@
+name: top-up-genres
+
+# Manually proposes a capped batch of genre top-up/refresh nodes as a draft PR.
+# workflow_dispatch only: deliberately no `schedule` and no `push` trigger —
+# this must never run unattended and must never write to main. See TRA-70.
+on:
+  workflow_dispatch:
+    inputs:
+      max_nodes:
+        description: "Hard cap on create/refresh attempts, failures included (required)"
+        required: true
+        type: string
+      max_new:
+        description: "Max number of top-up candidates to select"
+        required: false
+        type: string
+        default: "20"
+      dry_run:
+        description: "Plan only, write nothing to the cache"
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: top-up-genres
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  top-up:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+
+      - run: npm ci
+
+      - name: Validate max_nodes
+        env:
+          MAX_NODES: ${{ github.event.inputs.max_nodes }}
+        run: |
+          set -euo pipefail
+          if ! [[ "$MAX_NODES" =~ ^[0-9]+$ ]]; then
+            echo "::error::max_nodes must be a non-negative integer, got: $MAX_NODES"
+            exit 1
+          fi
+
+      - name: Run genre top-up
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          MAX_NODES: ${{ github.event.inputs.max_nodes }}
+          MAX_NEW: ${{ github.event.inputs.max_new }}
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          args=(--max-nodes "$MAX_NODES" --max-new "$MAX_NEW")
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          # --silent: npm's own "> pkg@ver script" banner goes to stdout and would
+          # otherwise land ahead of the JSON report, breaking the jq parsing below.
+          npm run --silent topup:genres -- "${args[@]}" | tee topup-report.json
+
+      - name: Measure the produced diff
+        id: diff
+        run: |
+          set -euo pipefail
+          git add -A -- cache
+          files=$(git diff --cached --name-only | wc -l | tr -d ' ')
+          lines=$(git diff --cached --numstat | awk '{a+=$1; d+=$2} END {print a+d+0}')
+          git diff --cached > topup-diff.patch
+          echo "lines=$lines" >> "$GITHUB_OUTPUT"
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+          echo "diff: $lines lines, $files files"
+          # Same thresholds as ci.yml's diff-size job, applied to the cache-only diff.
+          if [ "$lines" -gt 600 ] || [ "$files" -gt 20 ]; then
+            echo "oversized=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "oversized=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload oversized diff for partitioning
+        if: steps.diff.outputs.oversized == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: top-up-genres-oversized-${{ github.run_id }}
+          path: |
+            topup-report.json
+            topup-diff.patch
+          retention-days: 14
+
+      - name: Reject oversized diff
+        if: steps.diff.outputs.oversized == 'true'
+        run: |
+          echo "::error::Diff too large (${{ steps.diff.outputs.lines }} lines, ${{ steps.diff.outputs.files }} files) — partition into smaller batches, see the uploaded artifact. No PR was opened."
+          exit 1
+
+      - name: Skip PR when nothing changed
+        if: steps.diff.outputs.lines == '0'
+        run: echo "No candidate was written — nothing to propose."
+
+      - name: Open a draft PR with the proposed batch
+        if: steps.diff.outputs.lines != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MAX_NODES: ${{ github.event.inputs.max_nodes }}
+        run: |
+          set -euo pipefail
+          branch="topup-genres/${{ github.run_id }}"
+          git checkout -b "$branch"
+          git -c user.name="odyssey-bot" -c user.email="actions@users.noreply.github.com" \
+            commit -m "feat(genre-topup): proposer un lot de complement de couverture" -m "Refs TRA-70"
+          git push origin "$branch"
+          calls=$(jq '.execution.calls' topup-report.json)
+          consumed=$(jq '.execution.consumed' topup-report.json)
+          written=$(jq '.execution.nodesWritten' topup-report.json)
+          refused=$(jq '.execution.refused' topup-report.json)
+          failed=$(jq '.execution.failed' topup-report.json)
+          families=$(jq '.coverage.families | length' topup-report.json)
+          {
+            echo "Lot de complement de couverture genres, propose automatiquement (workflow_dispatch, TRA-70)."
+            echo
+            echo "- appels: $calls, consommation: $consumed / $MAX_NODES"
+            echo "- noeuds ecrits: $written, refuses: $refused, echecs: $failed"
+            echo "- familles presentes dans le rapport de couverture: $families"
+            echo
+            echo "Revue humaine requise avant merge (tier/3, jamais d'auto-merge)."
+          } > pr-body.md
+          gh pr create --draft --base main --head "$branch" \
+            --title "feat(genre-topup): lot de complement de couverture" \
+            --body-file pr-body.md
