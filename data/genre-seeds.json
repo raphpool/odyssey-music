@@ -1273,6 +1273,40 @@
 			}
 		]
 	},
+	"Q483251": {
+		"genre": {
+			"slug": "genre:death-metal",
+			"name": "Death Metal",
+			"qid": "Q483251"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Death",
+				"slug": "artist:death",
+				"mbid": "dbb3b771-ae77-4381-b61c-758b5b7898ec"
+			},
+			{
+				"type": "artist",
+				"name": "Morbid Angel",
+				"slug": "artist:morbid-angel",
+				"mbid": "4355a36d-805e-478d-8589-64f0292724b2"
+			},
+			{
+				"type": "artist",
+				"name": "Obituary",
+				"slug": "artist:obituary",
+				"mbid": "2e8ac3ed-2a89-4377-ba80-790106aba554"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:extreme-metal",
+				"name": "Extreme metal",
+				"qid": "Q465978"
+			}
+		]
+	},
 	"Q876171": {
 		"genre": {
 			"slug": "genre:east-coast-hip-hop",
