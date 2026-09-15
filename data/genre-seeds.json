@@ -1812,5 +1812,20 @@
 				"qid": "Q850412"
 			}
 		]
+	},
+	"Q1259016": {
+		"genre": {
+			"slug": "genre:drill-and-bass",
+			"name": "Drill and Bass",
+			"qid": "Q1259016"
+		},
+		"targets": [],
+		"anchors": [
+			{
+				"slug": "genre:idm",
+				"name": "IDM",
+				"qid": "Q660984"
+			}
+		]
 	}
 }
