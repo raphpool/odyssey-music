@@ -1165,5 +1165,39 @@
 				"qid": "Q373342"
 			}
 		]
+	},
+	"Q85741139": {
+		"genre": {
+			"slug": "genre:amapiano",
+			"name": "Amapiano",
+			"qid": "Q85741139"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Kabza De Small",
+				"slug": "artist:kabza-de-small",
+				"mbid": "36f9accc-d9f6-4dd2-8c23-91da477ce35c"
+			},
+			{
+				"type": "artist",
+				"name": "Uncle Waffles",
+				"slug": "artist:uncle-waffles",
+				"mbid": "aec7779a-aa40-4b6e-8764-bd64b0500caf"
+			},
+			{
+				"type": "artist",
+				"name": "Killer Kau",
+				"slug": "artist:killer-kau",
+				"mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:house",
+				"name": "House",
+				"qid": "Q20502"
+			}
+		]
 	}
 }
