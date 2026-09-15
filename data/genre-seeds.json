@@ -1272,5 +1272,27 @@
 				"qid": "Q465978"
 			}
 		]
+	},
+	"Q876171": {
+		"genre": {
+			"slug": "genre:east-coast-hip-hop",
+			"name": "East Coast hip-hop",
+			"qid": "Q876171"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Nas",
+				"slug": "artist:nas",
+				"mbid": "cfbc0924-0035-4d6c-8197-f024653af823"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:american-hip-hop",
+				"name": "American hip-hop",
+				"qid": "Q3135787"
+			}
+		]
 	}
 }
