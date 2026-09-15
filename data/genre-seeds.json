@@ -1649,5 +1649,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q97265899": {
+		"genre": {
+			"slug": "genre:lofi-hip-hop",
+			"name": "Lofi Hip-Hop",
+			"qid": "Q97265899"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lofi Girl",
+				"slug": "artist:lofi-girl",
+				"mbid": "c62ebbc2-dad6-42e6-ad2e-9e16eee7d5e5"
+			},
+			{
+				"type": "artist",
+				"name": "Purrple Cat",
+				"slug": "artist:purrple-cat",
+				"mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+			},
+			{
+				"type": "artist",
+				"name": "Nujabes",
+				"slug": "artist:nujabes",
+				"mbid": "1595addf-f76b-450a-a097-af852ff35f27"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
