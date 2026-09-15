@@ -78,30 +78,27 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 	});
 
 	expect(corrected).toMatchObject([
-		{ id: "Q9759", name: "Blues", family: "soul-rhythm-and-blues", qid: "Q9759", published: false },
-		{ id: "Q546359", name: "Doo Wop", family: "soul-rhythm-and-blues", qid: "Q546359", published: false },
+		{ id: "Q9759", name: "Blues", family: "soul-rhythm-and-blues", qid: "Q9759" },
+		{ id: "Q546359", name: "Doo Wop", family: "soul-rhythm-and-blues", qid: "Q546359" },
 		{
 			id: "Q1325963",
 			name: "Electro-funk",
 			family: "soul-rhythm-and-blues",
 			qid: "Q1325963",
-			published: false,
 		},
-		{ id: "Q577080", name: "P Funk", family: "soul-rhythm-and-blues", qid: "Q577080", published: false },
+		{ id: "Q577080", name: "P Funk", family: "soul-rhythm-and-blues", qid: "Q577080" },
 		{
 			id: "Q2743435",
 			name: "Psychedelic Soul",
 			family: "soul-rhythm-and-blues",
 			qid: "Q2743435",
-			published: false,
 		},
-		{ id: "local:rare-groove", name: "Rare Groove", family: "soul-rhythm-and-blues", published: false },
+		{ id: "local:rare-groove", name: "Rare Groove", family: "soul-rhythm-and-blues" },
 		{
 			id: "Q45981",
 			name: "Rhythm & Blues",
 			family: "soul-rhythm-and-blues",
 			qid: "Q45981",
-			published: false,
 		},
 	]);
 	expect(corrected.map((entry) => Object.hasOwn(entry, "qid"))).toEqual([
