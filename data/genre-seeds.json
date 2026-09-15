@@ -1238,5 +1238,39 @@
 				"qid": "Q37073"
 			}
 		]
+	},
+	"Q132438": {
+		"genre": {
+			"slug": "genre:black-metal",
+			"name": "Black Metal",
+			"qid": "Q132438"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Mayhem",
+				"slug": "artist:mayhem",
+				"mbid": "c5f9e699-7b0d-4030-86dd-7acc8250d147"
+			},
+			{
+				"type": "artist",
+				"name": "Darkthrone",
+				"slug": "artist:darkthrone",
+				"mbid": "af8fd97c-db72-4e30-b2aa-30ebd0c4f1a0"
+			},
+			{
+				"type": "artist",
+				"name": "Emperor",
+				"slug": "artist:emperor",
+				"mbid": "d9951785-7906-4daf-9a60-21753bf64aa9"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:extreme-metal",
+				"name": "Extreme metal",
+				"qid": "Q465978"
+			}
+		]
 	}
 }
