@@ -894,5 +894,38 @@
 				"qid": "Q106588687"
 			}
 		]
+	},
+	"local:bollywood": {
+		"genre": {
+			"slug": "genre:bollywood",
+			"name": "Bollywood"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lata Mangeshkar",
+				"slug": "artist:lata-mangeshkar",
+				"mbid": "aeb71bd8-447d-4415-8ea1-2b7d664f67e1"
+			},
+			{
+				"type": "artist",
+				"name": "Asha Bhosle",
+				"slug": "artist:asha-bhosle",
+				"mbid": "79c5547a-e098-495c-8dac-7e99546aa46b"
+			},
+			{
+				"type": "artist",
+				"name": "Kishore Kumar",
+				"slug": "artist:kishore-kumar",
+				"mbid": "793b8f58-80ab-49b3-b5ae-d94034dab10c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:indian-film-music",
+				"name": "Indian Film Music",
+				"qid": "Q544440"
+			}
+		]
 	}
 }
