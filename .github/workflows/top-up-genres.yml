@@ -1,8 +1,15 @@
 name: top-up-genres
 
-# Manually proposes a capped batch of genre top-up/refresh nodes as a draft PR.
-# workflow_dispatch only: deliberately no `schedule` and no `push` trigger —
-# this must never run unattended and must never write to main. See TRA-70.
+# Manually proposes a capped batch of genre top-up/refresh nodes. workflow_dispatch
+# only: no `schedule`, no `push` — never unattended, never writes to main. See TRA-70.
+#
+# Pushes a dedicated branch but does not rely on opening the PR itself: this repo
+# disallows Actions-created pull requests (enabling that setting also grants
+# Actions the power to *approve* PRs — Raphael's call, not this ticket's). When
+# creation is refused for that reason, the job stays green and the run summary
+# gets the exact `gh pr create` command instead. A human-opened PR is the nominal
+# path anyway — it fires the `pull_request` event ci.yml needs for its required
+# checks, which a token-opened PR never would.
 on:
   workflow_dispatch:
     inputs:
@@ -28,6 +35,16 @@ concurrency:
 permissions:
   contents: read
 
+env:
+  # Deliberately independent from ci.yml's diff-size job: that job measures the
+  # whole PR diff EXCLUDING cache/**, this one measures ONLY the cache/ diff it
+  # produces — disjoint measurement domains, thresholds not kept in sync.
+  TOPUP_DIFF_LINES_CAP: "600"
+  TOPUP_DIFF_FILES_CAP: "20"
+  # Without an upper bound, a max_nodes typo burns the API quota before the job's
+  # own timeout kills it.
+  TOPUP_MAX_NODES_CAP: "500"
+
 jobs:
   top-up:
     runs-on: ubuntu-latest
@@ -37,6 +54,8 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
 
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
@@ -52,8 +71,13 @@ jobs:
             echo "::error::max_nodes must be a non-negative integer, got: $MAX_NODES"
             exit 1
           fi
+          if [ "$MAX_NODES" -gt "$TOPUP_MAX_NODES_CAP" ]; then
+            echo "::error::max_nodes ($MAX_NODES) exceeds the safety cap of $TOPUP_MAX_NODES_CAP — likely a typo. Lower it, or raise TOPUP_MAX_NODES_CAP deliberately."
+            exit 1
+          fi
 
       - name: Run genre top-up
+        id: topup
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
@@ -65,12 +89,12 @@ jobs:
           set -euo pipefail
           args=(--max-nodes "$MAX_NODES" --max-new "$MAX_NEW")
           if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
-          # --silent: npm's own "> pkg@ver script" banner goes to stdout and would
-          # otherwise land ahead of the JSON report, breaking the jq parsing below.
+          # --silent: npm's own script banner goes to stdout, ahead of the JSON report.
           npm run --silent topup:genres -- "${args[@]}" | tee topup-report.json
 
       - name: Measure the produced diff
         id: diff
+        if: always()
         run: |
           set -euo pipefail
           git add -A -- cache
@@ -80,45 +104,61 @@ jobs:
           echo "lines=$lines" >> "$GITHUB_OUTPUT"
           echo "files=$files" >> "$GITHUB_OUTPUT"
           echo "diff: $lines lines, $files files"
-          # Same thresholds as ci.yml's diff-size job, applied to the cache-only diff.
-          if [ "$lines" -gt 600 ] || [ "$files" -gt 20 ]; then
+          if [ "$lines" -gt "$TOPUP_DIFF_LINES_CAP" ] || [ "$files" -gt "$TOPUP_DIFF_FILES_CAP" ]; then
             echo "oversized=true" >> "$GITHUB_OUTPUT"
           else
             echo "oversized=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Upload oversized diff for partitioning
-        if: steps.diff.outputs.oversized == 'true'
+      # always(): a run killed by the job timeout still leaves its partial report/patch.
+      - name: Upload run artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: top-up-genres-oversized-${{ github.run_id }}
+          name: top-up-genres-${{ github.run_id }}
           path: |
             topup-report.json
             topup-diff.patch
+          if-no-files-found: ignore
           retention-days: 14
 
       - name: Reject oversized diff
         if: steps.diff.outputs.oversized == 'true'
         run: |
-          echo "::error::Diff too large (${{ steps.diff.outputs.lines }} lines, ${{ steps.diff.outputs.files }} files) — partition into smaller batches, see the uploaded artifact. No PR was opened."
+          echo "::error::Diff too large (${{ steps.diff.outputs.lines }} lines, ${{ steps.diff.outputs.files }} files) — partition into smaller batches, see the uploaded artifact. No branch was pushed, no PR was opened."
           exit 1
 
-      - name: Skip PR when nothing changed
+      - name: Skip when nothing changed
         if: steps.diff.outputs.lines == '0'
         run: echo "No candidate was written — nothing to propose."
 
-      - name: Open a draft PR with the proposed batch
-        if: steps.diff.outputs.lines != '0'
+      - name: Push the proposal branch
+        id: push
+        if: >-
+          steps.topup.outcome == 'success' &&
+          steps.diff.outputs.lines != '0' && steps.diff.outputs.oversized != 'true'
         env:
           GH_TOKEN: ${{ github.token }}
-          MAX_NODES: ${{ github.event.inputs.max_nodes }}
         run: |
           set -euo pipefail
           branch="topup-genres/${{ github.run_id }}"
           git checkout -b "$branch"
           git -c user.name="odyssey-bot" -c user.email="actions@users.noreply.github.com" \
             commit -m "feat(genre-topup): proposer un lot de complement de couverture" -m "Refs TRA-70"
+          # Token given only here, not at checkout — the crawl step ingests untrusted
+          # web content and has no business holding it.
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
           git push origin "$branch"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+
+      - name: Open a draft PR (best effort)
+        if: steps.push.outputs.branch != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          MAX_NODES: ${{ github.event.inputs.max_nodes }}
+          BRANCH: ${{ steps.push.outputs.branch }}
+        run: |
+          set -euo pipefail
           calls=$(jq '.execution.calls' topup-report.json)
           consumed=$(jq '.execution.consumed' topup-report.json)
           written=$(jq '.execution.nodesWritten' topup-report.json)
@@ -134,6 +174,40 @@ jobs:
             echo
             echo "Revue humaine requise avant merge (tier/3, jamais d'auto-merge)."
           } > pr-body.md
-          gh pr create --draft --base main --head "$branch" \
+          set +e
+          pr_output=$(gh pr create --draft --base main --head "$BRANCH" \
             --title "feat(genre-topup): lot de complement de couverture" \
-            --body-file pr-body.md
+            --body-file pr-body.md 2>&1)
+          pr_status=$?
+          set -e
+          if [ "$pr_status" -eq 0 ]; then
+            echo "$pr_output"
+            { echo "### PR ouverte"; echo; echo "$pr_output"; } >> "$GITHUB_STEP_SUMMARY"
+          elif echo "$pr_output" | grep -qi "not permitted to create"; then
+            {
+              echo "### Ouverture de PR refusée par la configuration du dépôt"
+              echo
+              echo "GitHub Actions n'est pas autorisé à créer de pull request ici (réglage"
+              echo "« Allow GitHub Actions to create and approve pull requests » désactivé)."
+              echo "La branche \`$BRANCH\` a bien été poussée avec le lot proposé. Ouvre la"
+              echo "PR toi-même — c'est aussi ce qui déclenche les checks requis de ci.yml :"
+              echo
+              echo '```'
+              echo "gh pr create --draft --base main --head $BRANCH \\"
+              echo "  --title \"feat(genre-topup): lot de complement de couverture\" \\"
+              echo "  --body \"\$(cat <<'PRBODY'"
+              cat pr-body.md
+              echo "PRBODY"
+              echo ")\""
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::error::gh pr create failed unexpectedly: $pr_output"
+            exit 1
+          fi
+
+      - name: Delete the pushed branch on unexpected failure
+        if: failure() && steps.push.outputs.branch != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X DELETE "repos/${{ github.repository }}/git/refs/heads/${{ steps.push.outputs.branch }}" || true

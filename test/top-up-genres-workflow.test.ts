@@ -8,6 +8,10 @@ import { describe, expect, it } from "vitest";
 // a change to the embedded bash logic is caught by a real run, not a re-implementation.
 const workflowPath = ".github/workflows/top-up-genres.yml";
 const workflow = readFileSync(workflowPath, "utf8");
+// Steps are YAML list items indented "      - " under jobs.top-up.steps; splitting on
+// that marker (rather than on "- name:") catches steps without a `name:` too
+// (checkout, setup-node, npm ci).
+const steps = workflow.split(/\n {6}- /).slice(1);
 
 describe("top-up-genres workflow (TRA-70)", () => {
 	it("triggers only on workflow_dispatch, never on schedule or push", () => {
@@ -26,7 +30,7 @@ describe("top-up-genres workflow (TRA-70)", () => {
 	it("grants only contents:write and pull-requests:write at job level, nothing at workflow level", () => {
 		const topLevelPermissions = workflow.slice(
 			workflow.indexOf("\npermissions:"),
-			workflow.indexOf("\njobs:"),
+			workflow.indexOf("\nenv:"),
 		);
 		expect(topLevelPermissions).toContain("contents: read");
 		const jobPermissions = workflow.slice(
@@ -41,46 +45,83 @@ describe("top-up-genres workflow (TRA-70)", () => {
 		expect(workflow).toMatch(/concurrency:\s*\n\s*group:\s*top-up-genres/);
 	});
 
-	it("never interpolates github.event.inputs.* directly inside a run: shell block", () => {
-		// Inputs must flow through env: (then be referenced as "$VAR"); a raw
-		// ${{ github.event.inputs.* }} inside `run:` risks shell injection.
-		const runBlocks = [...workflow.matchAll(/run: \|\n([\s\S]*?)(?=\n {6}- name:|\n {2}[a-z-]+:\n|$)/g)];
-		expect(runBlocks.length).toBeGreaterThan(0);
-		for (const [, body] of runBlocks) {
-			expect(body).not.toMatch(/\$\{\{\s*github\.event\.inputs\./);
+	it("checks out without persisting git credentials, so only the push/PR steps hold the token", () => {
+		const checkoutStep = steps.find((step) => step.startsWith("uses: actions/checkout"));
+		expect(checkoutStep).toBeDefined();
+		expect(checkoutStep).toMatch(/persist-credentials:\s*false/);
+	});
+
+	it("never interpolates github.event.inputs.* directly inside a run: step body (single- or multi-line)", () => {
+		// A raw ${{ github.event.inputs.* }} inside a run: body risks shell injection.
+		// Scoped to each step's `run:` field, not the whole file: the `env:` mapping
+		// right above it legitimately reads github.event.inputs.* — that's the safe
+		// pattern this test protects — flagging it too would be a false positive.
+		// Covers single-line `run: ...` too, not just the `run: |` form checked before.
+		const runBodies = steps
+			.map((step) => {
+				const index = step.search(/\n {8}run:/);
+				return index === -1 ? null : step.slice(index);
+			})
+			.filter((body): body is string => body !== null);
+		expect(runBodies.length).toBeGreaterThan(5);
+		for (const body of runBodies) {
+			expect(body).not.toMatch(/\$\{\{[^}]*github\.event\.inputs\./);
 		}
 	});
 
 	it("only exposes the API secrets to the step that runs the crawler", () => {
 		const secretNames = ["GEMINI_API_KEY", "TAVILY_API_KEY", "FIRECRAWL_API_KEY"];
-		const steps = workflow.split(/\n {6}- name: /).slice(1);
+		expect(steps.length).toBeGreaterThan(5); // sanity: unnamed steps (checkout, npm ci...) are included
 		const stepsWithSecrets = steps.filter((step) =>
 			secretNames.some((name) => step.includes(`secrets.${name}`)),
 		);
 		expect(stepsWithSecrets).toHaveLength(1);
-		expect(stepsWithSecrets[0]).toMatch(/^Run genre top-up/);
+		expect(stepsWithSecrets[0]).toMatch(/^name: Run genre top-up/);
 	});
 
-	it("rejects diffs over the documented cap and accepts diffs within it (nominal, limit, failure)", () => {
-		// Pull the exact predicate out of the workflow so a change to the thresholds
-		// is exercised for real, not re-typed here.
-		const match = workflow.match(/if \[ "\$lines" -gt (\d+) \] \|\| \[ "\$files" -gt (\d+) \]/);
-		expect(match).not.toBeNull();
-		const [, lineCap, fileCap] = match as RegExpMatchArray;
-		expect(lineCap).toBe("600");
-		expect(fileCap).toBe("20");
+	it("caps max_nodes with an explicit upper bound to limit blast radius from a typo", () => {
+		expect(workflow).toMatch(/TOPUP_MAX_NODES_CAP/);
+		expect(workflow).toMatch(/"\$MAX_NODES" -gt "\$TOPUP_MAX_NODES_CAP"/);
+	});
+
+	it("rejects diffs over the declared cap and accepts diffs within it (nominal, limit, failure)", () => {
+		// Caps pulled from the workflow's env: block, predicate from its own source:
+		// this tracks real behavior instead of re-typing (and drifting from) constants.
+		const lineCap = workflow.match(/TOPUP_DIFF_LINES_CAP:\s*"(\d+)"/)?.[1];
+		const fileCap = workflow.match(/TOPUP_DIFF_FILES_CAP:\s*"(\d+)"/)?.[1];
+		expect(lineCap).toBeDefined();
+		expect(fileCap).toBeDefined();
+		expect(workflow).toMatch(
+			/if \[ "\$lines" -gt "\$TOPUP_DIFF_LINES_CAP" \] \|\| \[ "\$files" -gt "\$TOPUP_DIFF_FILES_CAP" \]/,
+		);
 
 		const predicate = (lines: number, files: number): string => {
 			const script = `
+				TOPUP_DIFF_LINES_CAP=${lineCap}; TOPUP_DIFF_FILES_CAP=${fileCap}
 				lines=${lines}; files=${files}
-				if [ "$lines" -gt ${lineCap} ] || [ "$files" -gt ${fileCap} ]; then echo oversized; else echo ok; fi
+				if [ "$lines" -gt "$TOPUP_DIFF_LINES_CAP" ] || [ "$files" -gt "$TOPUP_DIFF_FILES_CAP" ]; then echo oversized; else echo ok; fi
 			`;
 			return execFileSync("bash", ["-c", script]).toString().trim();
 		};
+		const line = Number(lineCap);
+		const file = Number(fileCap);
 
-		expect(predicate(10, 5)).toBe("ok"); // nominal
-		expect(predicate(600, 20)).toBe("ok"); // exactly at the cap: still accepted
-		expect(predicate(601, 5)).toBe("oversized"); // over the line cap
-		expect(predicate(10, 21)).toBe("oversized"); // over the file cap
+		expect(predicate(1, 1)).toBe("ok"); // nominal
+		expect(predicate(line, file)).toBe("ok"); // exactly at the cap: still accepted
+		expect(predicate(line + 1, 1)).toBe("oversized"); // over the line cap
+		expect(predicate(1, file + 1)).toBe("oversized"); // over the file cap
+	});
+
+	it("gates push on a successful top-up, falls back gracefully on PR-creation permission, and only cleans up on real failure", () => {
+		const pushStep = steps.find((step) => step.startsWith("name: Push the proposal branch"));
+		expect(pushStep).toMatch(/steps\.topup\.outcome == 'success'/);
+
+		const prStep = steps.find((step) => step.startsWith("name: Open a draft PR"));
+		expect(prStep).toMatch(/not permitted to create/);
+		expect(prStep).toMatch(/GITHUB_STEP_SUMMARY/);
+		expect(prStep).toMatch(/exit 1/); // any other gh pr create failure still fails the job
+
+		const cleanupStep = steps.find((step) => step.startsWith("name: Delete the pushed branch"));
+		expect(cleanupStep).toMatch(/if: failure\(\) && steps\.push\.outputs\.branch/);
 	});
 });
