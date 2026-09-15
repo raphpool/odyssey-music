@@ -4042,6 +4042,72 @@
 			"family": "other",
 			"qid": "Q106576127",
 			"published": false
+		},
+		{
+			"id": "local:manele-pop",
+			"name": "Manele Pop",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q783874",
+			"name": "Nasheed",
+			"family": "other",
+			"qid": "Q783874",
+			"published": false
+		},
+		{
+			"id": "local:native-american-rock",
+			"name": "Native American Rock",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:nordic-folk",
+			"name": "Nordic Folk",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:north-american-indigenous-music",
+			"name": "North American Indigenous Music",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:northumbrian-folk",
+			"name": "Northumbrian Folk",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "local:norwegian-folk",
+			"name": "Norwegian Folk",
+			"family": "other",
+			"aliases": ["Norweigan Folk"],
+			"published": false
+		},
+		{
+			"id": "Q37073",
+			"name": "Pop",
+			"family": "other",
+			"qid": "Q37073",
+			"sourceSlugs": ["genre:pop"],
+			"published": false
+		},
+		{
+			"id": "local:portuguese-fado",
+			"name": "Portuguese Fado",
+			"family": "other",
+			"aliases": ["Portugese Fado"],
+			"published": false
+		},
+		{
+			"id": "Q512410",
+			"name": "Qawwali",
+			"family": "other",
+			"qid": "Q512410",
+			"published": false
 		}
 	]
 }
