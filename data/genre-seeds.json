@@ -1328,5 +1328,39 @@
 				"qid": "Q3135787"
 			}
 		]
+	},
+	"Q2913982": {
+		"genre": {
+			"slug": "genre:trap-hip-hop",
+			"name": "Trap",
+			"qid": "Q2913982"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Gucci Mane",
+				"slug": "artist:gucci-mane",
+				"mbid": "36494952-f434-45d8-a958-8b4acdbcf8a8"
+			},
+			{
+				"type": "artist",
+				"name": "Jeezy",
+				"slug": "artist:jeezy",
+				"mbid": "dcad99e7-3c3e-4c78-bf8a-68203e17da48"
+			},
+			{
+				"type": "artist",
+				"name": "T.I.",
+				"slug": "artist:t-i",
+				"mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
