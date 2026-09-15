@@ -1097,5 +1097,39 @@
 				"qid": "Q45981"
 			}
 		]
+	},
+	"Q336567": {
+		"genre": {
+			"slug": "genre:cosmic-disco",
+			"name": "Cosmic Disco",
+			"qid": "Q336567"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Daniele Baldelli",
+				"slug": "artist:daniele-baldelli",
+				"mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
+			},
+			{
+				"type": "artist",
+				"name": "Beppe Loda",
+				"slug": "artist:beppe-loda",
+				"mbid": "bbecd9f9-130c-4e56-a7b9-bde8f4376d52"
+			},
+			{
+				"type": "project",
+				"name": "Cosmic - The Original",
+				"slug": "project:cosmic-the-original",
+				"mbid": "4ed0eaba-4a0a-4823-849b-551daa838da6"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:disco",
+				"name": "Disco",
+				"qid": "Q58339"
+			}
+		]
 	}
 }
