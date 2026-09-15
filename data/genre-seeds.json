@@ -1812,5 +1812,20 @@
 				"qid": "Q850412"
 			}
 		]
+	},
+	"Q96740854": {
+		"genre": {
+			"slug": "genre:bass-music",
+			"name": "Bass Music",
+			"qid": "Q96740854"
+		},
+		"targets": [],
+		"anchors": [
+			{
+				"slug": "genre:popular-music",
+				"name": "Popular music",
+				"qid": "Q373342"
+			}
+		]
 	}
 }
