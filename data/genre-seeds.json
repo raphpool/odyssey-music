@@ -1650,6 +1650,34 @@
 			}
 		]
 	},
+	"Q529742": {
+		"genre": {
+			"slug": "genre:boom-bap",
+			"name": "Boom bap",
+			"qid": "Q529742"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Premier",
+				"slug": "artist:dj-premier",
+				"mbid": "084e06f5-3c82-4b71-bd94-dd69e7bd515e"
+			},
+			{
+				"type": "artist",
+				"name": "KRS-One",
+				"slug": "artist:krs-one",
+				"mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q5421158": {
 		"genre": {
 			"slug": "genre:experimental-hip-hop",
