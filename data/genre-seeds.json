@@ -1711,5 +1711,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q6918602": {
+		"genre": {
+			"slug": "genre:motswako",
+			"name": "Motswako",
+			"qid": "Q6918602"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Khuli Chana",
+				"slug": "artist:khuli-chana",
+				"mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a"
+			},
+			{
+				"type": "artist",
+				"name": "Hip Hop Pantsula",
+				"slug": "artist:hip-hop-pantsula",
+				"mbid": "36b47aca-c378-4f7f-b4a8-9cb2ccb81dc1"
+			},
+			{
+				"type": "artist",
+				"name": "Towdee Mac",
+				"slug": "artist:towdee-mac",
+				"mbid": "77196abd-5c7e-494f-aaca-1014989aca7d"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:african-hip-hop",
+				"name": "African hip-hop",
+				"qid": "Q387236"
+			}
+		]
 	}
 }
