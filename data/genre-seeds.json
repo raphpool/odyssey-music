@@ -826,5 +826,39 @@
 				"qid": "Q11400811"
 			}
 		]
+	},
+	"Q963061": {
+		"genre": {
+			"slug": "genre:highlife",
+			"name": "Highlife",
+			"qid": "Q963061"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "E.T. Mensah",
+				"slug": "artist:e-t-mensah",
+				"mbid": "23c8fdc8-e593-48df-87f4-df448a85ba43"
+			},
+			{
+				"type": "artist",
+				"name": "Victor Uwaifo",
+				"slug": "artist:victor-uwaifo",
+				"mbid": "a77f26ec-ec08-40dc-bc22-aeec8ce7c610"
+			},
+			{
+				"type": "artist",
+				"name": "A.B. Crentsil",
+				"slug": "artist:a-b-crentsil",
+				"mbid": "c783dbc7-c1a7-4548-8fb9-195efc79bd85"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-west-africa",
+				"name": "Music of West Africa",
+				"qid": "Q6942329"
+			}
+		]
 	}
 }
