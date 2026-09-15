@@ -1813,6 +1813,108 @@
 			}
 		]
 	},
+	"Q97265899": {
+		"genre": {
+			"slug": "genre:lofi-hip-hop",
+			"name": "Lofi Hip-Hop",
+			"qid": "Q97265899"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lofi Girl",
+				"slug": "artist:lofi-girl",
+				"mbid": "c62ebbc2-dad6-42e6-ad2e-9e16eee7d5e5"
+			},
+			{
+				"type": "artist",
+				"name": "Purrple Cat",
+				"slug": "artist:purrple-cat",
+				"mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+			},
+			{
+				"type": "artist",
+				"name": "Nujabes",
+				"slug": "artist:nujabes",
+				"mbid": "1595addf-f76b-450a-a097-af852ff35f27"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"Q622871": {
+		"genre": {
+			"slug": "genre:psytrance",
+			"name": "Psytrance",
+			"qid": "Q622871"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Astrix",
+				"slug": "artist:astrix",
+				"mbid": "13875f81-5bfc-4939-a6cc-296c3f8d0fa5"
+			},
+			{
+				"type": "artist",
+				"name": "Astral Projection",
+				"slug": "artist:astral-projection",
+				"mbid": "2ba31cc4-df9e-4c21-9dbc-bb8fa9af424f"
+			},
+			{
+				"type": "artist",
+				"name": "Hallucinogen",
+				"slug": "artist:hallucinogen",
+				"mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:trance",
+				"name": "Trance",
+				"qid": "Q170435"
+			}
+		]
+	},
+	"Q15697534": {
+		"genre": {
+			"slug": "genre:drill",
+			"name": "Drill",
+			"qid": "Q15697534"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Chief Keef",
+				"slug": "artist:chief-keef",
+				"mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+			},
+			{
+				"type": "artist",
+				"name": "Pop Smoke",
+				"slug": "artist:pop-smoke",
+				"mbid": "253c9ae7-850b-46be-8fbb-65e9fa621058"
+			},
+			{
+				"type": "artist",
+				"name": "Central Cee",
+				"slug": "artist:central-cee",
+				"mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q96740854": {
 		"genre": {
 			"slug": "genre:bass-music",
