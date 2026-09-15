@@ -555,5 +555,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q486263": {
+		"genre": {
+			"slug": "genre:bossa-nova",
+			"name": "Bossa Nova",
+			"qid": "Q486263"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "João Gilberto",
+				"slug": "artist:joao-gilberto",
+				"mbid": "286ec4c2-b5ca-4f85-b331-280a6d73dd14"
+			},
+			{
+				"type": "artist",
+				"name": "Antônio Carlos Jobim",
+				"slug": "artist:antonio-carlos-jobim",
+				"mbid": "7a8dbe84-f4c0-4457-bfa3-edced1f8cde0"
+			},
+			{
+				"type": "artist",
+				"name": "Vinicius de Moraes",
+				"slug": "artist:vinicius-de-moraes",
+				"mbid": "1c01cf84-07c7-408a-b5a8-7dae0b1312fc"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:jazz",
+				"name": "Jazz",
+				"qid": "Q8341"
+			}
+		]
 	}
 }
