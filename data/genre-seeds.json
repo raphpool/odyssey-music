@@ -1589,6 +1589,39 @@
 			}
 		]
 	},
+	"local:chopped-n-screwed": {
+		"genre": {
+			"slug": "genre:chopped-n-screwed",
+			"name": "Chopped N Screwed"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Screw",
+				"slug": "artist:dj-screw",
+				"mbid": "d0dd58c4-ab66-41c4-9883-4f493ef6653f"
+			},
+			{
+				"type": "artist",
+				"name": "Big Moe",
+				"slug": "artist:big-moe",
+				"mbid": "42aedc65-3723-45ad-a75b-f0af10940c95"
+			},
+			{
+				"type": "artist",
+				"name": "Big Hawk",
+				"slug": "artist:big-hawk",
+				"mbid": "1e8b3e4f-83c3-4b30-afa0-220363a7df5a"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q141459": {
 		"genre": {
 			"slug": "genre:conscious-hip-hop",
