@@ -657,5 +657,39 @@
 				"qid": "Q3328778"
 			}
 		]
+	},
+	"Q11403": {
+		"genre": {
+			"slug": "genre:samba",
+			"name": "Samba",
+			"qid": "Q11403"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Cartola",
+				"slug": "artist:cartola",
+				"mbid": "7c743881-aed4-47d4-93d5-9fdd6e2904bb"
+			},
+			{
+				"type": "artist",
+				"name": "Noel Rosa",
+				"slug": "artist:noel-rosa",
+				"mbid": "7ac94b2b-1f0e-439c-b6af-2b710e44d6d3"
+			},
+			{
+				"type": "artist",
+				"name": "Adoniran Barbosa",
+				"slug": "artist:adoniran-barbosa",
+				"mbid": "b3cf1138-7300-4c6a-9f5d-79457848499b"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-brazil",
+				"name": "Music of Brazil",
+				"qid": "Q899215"
+			}
+		]
 	}
 }
