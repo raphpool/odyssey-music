@@ -1778,5 +1778,39 @@
 				"qid": "Q3135787"
 			}
 		]
+	},
+	"Q622871": {
+		"genre": {
+			"slug": "genre:psytrance",
+			"name": "Psytrance",
+			"qid": "Q622871"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Astrix",
+				"slug": "artist:astrix",
+				"mbid": "13875f81-5bfc-4939-a6cc-296c3f8d0fa5"
+			},
+			{
+				"type": "artist",
+				"name": "Astral Projection",
+				"slug": "artist:astral-projection",
+				"mbid": "2ba31cc4-df9e-4c21-9dbc-bb8fa9af424f"
+			},
+			{
+				"type": "artist",
+				"name": "Hallucinogen",
+				"slug": "artist:hallucinogen",
+				"mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:trance",
+				"name": "Trance",
+				"qid": "Q170435"
+			}
+		]
 	}
 }
