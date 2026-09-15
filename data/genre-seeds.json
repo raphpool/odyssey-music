@@ -1063,5 +1063,39 @@
 				"qid": "Q10730335"
 			}
 		]
+	},
+	"Q4942839": {
+		"genre": {
+			"slug": "genre:boogie",
+			"name": "Boogie",
+			"qid": "Q4942839"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "The Whispers",
+				"slug": "artist:the-whispers",
+				"mbid": "2e7afe0c-ec52-4c1d-9413-5d40f77922c7"
+			},
+			{
+				"type": "artist",
+				"name": "Inner Life",
+				"slug": "artist:inner-life",
+				"mbid": "5a1b05f4-493f-4f32-939c-e1556e2069fe"
+			},
+			{
+				"type": "artist",
+				"name": "D-Train",
+				"slug": "artist:d-train",
+				"mbid": "1d0b2ed9-56a2-4792-a5a1-a47313fb24c4"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:r-and-b",
+				"name": "R&B",
+				"qid": "Q45981"
+			}
+		]
 	}
 }
