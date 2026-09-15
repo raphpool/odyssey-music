@@ -1199,5 +1199,44 @@
 				"qid": "Q20502"
 			}
 		]
+	},
+	"Q25099840": {
+		"genre": {
+			"slug": "genre:afrobeats",
+			"name": "Afrobeats",
+			"qid": "Q25099840"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Wizkid",
+				"slug": "artist:wizkid",
+				"mbid": "efc5d365-a448-4e2f-9b5f-4a7c84be725c"
+			},
+			{
+				"type": "artist",
+				"name": "Davido",
+				"slug": "artist:davido",
+				"mbid": "a9ae7d4b-10f0-4da8-8b8c-21722a074a54"
+			},
+			{
+				"type": "artist",
+				"name": "Rema",
+				"slug": "artist:rema",
+				"mbid": "720c46ba-a0e4-4b58-aee2-3bd70c70901f"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-west-africa",
+				"name": "Music of West Africa",
+				"qid": "Q6942329"
+			},
+			{
+				"slug": "genre:pop",
+				"name": "Pop",
+				"qid": "Q37073"
+			}
+		]
 	}
 }
