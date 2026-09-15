@@ -1397,6 +1397,40 @@
 			}
 		]
 	},
+	"Q8560269": {
+		"genre": {
+			"slug": "genre:dirty-south",
+			"name": "Dirty South",
+			"qid": "Q8560269"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "OutKast",
+				"slug": "artist:outkast",
+				"mbid": "73fdb566-a9b1-494c-9f32-51768ec9fd27"
+			},
+			{
+				"type": "artist",
+				"name": "UGK",
+				"slug": "artist:ugk",
+				"mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+			},
+			{
+				"type": "artist",
+				"name": "Ludacris",
+				"slug": "artist:ludacris",
+				"mbid": "0638ba22-040f-438d-83a5-9b670c4adaf5"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q16829781": {
 		"genre": {
 			"slug": "genre:cloud-rap",
