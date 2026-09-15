@@ -927,5 +927,39 @@
 				"qid": "Q544440"
 			}
 		]
+	},
+	"Q11307326": {
+		"genre": {
+			"slug": "genre:city-pop",
+			"name": "City Pop",
+			"qid": "Q11307326"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Tatsurō Yamashita",
+				"slug": "artist:tatsuro-yamashita",
+				"mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb"
+			},
+			{
+				"type": "artist",
+				"name": "Mariya Takeuchi",
+				"slug": "artist:mariya-takeuchi",
+				"mbid": "02bdc7ec-d102-4698-85e2-789a42d40b9c"
+			},
+			{
+				"type": "artist",
+				"name": "Junko Ōhashi",
+				"slug": "artist:junko-ohashi",
+				"mbid": "1c006b2c-eb12-4f50-a339-2d0c697c9045"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:pop",
+				"name": "Pop",
+				"qid": "Q37073"
+			}
+		]
 	}
 }
