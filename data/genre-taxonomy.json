@@ -1406,7 +1406,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q1641839",
 			"sourceSlugs": ["genre:experimental-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2296495",
@@ -1422,7 +1422,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q211573",
 			"sourceSlugs": ["genre:garage-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11365",
@@ -1437,7 +1437,7 @@
 			"name": "Guitar Pop",
 			"family": "alternative-rock-punk",
 			"sourceSlugs": ["genre:guitar-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q10922",
@@ -1445,7 +1445,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q10922",
 			"sourceSlugs": ["genre:hardcore-punk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1317816",
@@ -1453,7 +1453,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q1317816",
 			"sourceSlugs": ["genre:indie-folk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q842324",
@@ -1461,7 +1461,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q842324",
 			"sourceSlugs": ["genre:indie-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q183504",
@@ -1469,7 +1469,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q183504",
 			"sourceSlugs": ["genre:indie-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1190565",
@@ -1477,7 +1477,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q1190565",
 			"sourceSlugs": ["genre:jangle-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1132152",
@@ -1508,7 +1508,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q181861",
 			"sourceSlugs": ["genre:noise-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q487914",
@@ -1531,7 +1531,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q209137",
 			"sourceSlugs": ["genre:post-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q27190",
@@ -1539,7 +1539,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q27190",
 			"sourceSlugs": ["genre:proto-punk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3071",
@@ -1548,7 +1548,7 @@
 			"qid": "Q3071",
 			"sourceSlugs": ["genre:punk-rock"],
 			"aliases": ["Punk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1207347",
@@ -1571,7 +1571,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q236913",
 			"sourceSlugs": ["genre:space-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q370778",
@@ -1579,7 +1579,7 @@
 			"family": "alternative-rock-punk",
 			"qid": "Q370778",
 			"sourceSlugs": ["genre:twee-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q236932",
@@ -1601,7 +1601,7 @@
 			"family": "rock",
 			"qid": "Q379033",
 			"sourceSlugs": ["genre:arena-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:bluegrass",
@@ -1615,7 +1615,7 @@
 			"family": "rock",
 			"qid": "Q193355",
 			"sourceSlugs": ["genre:blues-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q727803",
@@ -1654,7 +1654,7 @@
 			"name": "Desert Rock",
 			"family": "rock",
 			"sourceSlugs": ["genre:desert-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q5320459",
@@ -1662,7 +1662,7 @@
 			"family": "rock",
 			"qid": "Q5320459",
 			"sourceSlugs": ["genre:dusseldorf-school"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q43343",
@@ -1670,7 +1670,7 @@
 			"family": "rock",
 			"qid": "Q43343",
 			"sourceSlugs": ["genre:folk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q186472",
@@ -1678,7 +1678,7 @@
 			"family": "rock",
 			"qid": "Q186472",
 			"sourceSlugs": ["genre:folk-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q76092",
@@ -1686,7 +1686,7 @@
 			"family": "rock",
 			"qid": "Q76092",
 			"sourceSlugs": ["genre:glam-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q83270",
@@ -1694,7 +1694,7 @@
 			"family": "rock",
 			"qid": "Q83270",
 			"sourceSlugs": ["genre:hard-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q320592",
@@ -1702,7 +1702,7 @@
 			"family": "rock",
 			"qid": "Q320592",
 			"sourceSlugs": ["genre:krautrock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q484641",
@@ -1710,7 +1710,7 @@
 			"family": "rock",
 			"qid": "Q484641",
 			"sourceSlugs": ["genre:pop-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q837837",
@@ -1727,14 +1727,14 @@
 			"qid": "Q49451",
 			"sourceSlugs": ["genre:progressive-rock"],
 			"aliases": ["Progressive Rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:psychedelia",
 			"name": "Psychedelia",
 			"family": "rock",
 			"sourceSlugs": ["genre:psychedelia"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1500364",
@@ -1749,7 +1749,7 @@
 			"family": "rock",
 			"qid": "Q206159",
 			"sourceSlugs": ["genre:psychedelic-rock"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7749",
@@ -1758,7 +1758,7 @@
 			"qid": "Q7749",
 			"sourceSlugs": ["genre:rock-and-roll"],
 			"aliases": ["Rock N Roll"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q203720",
@@ -1774,7 +1774,7 @@
 			"family": "rock",
 			"qid": "Q89363113",
 			"sourceSlugs": ["genre:singer-songwriter"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q217191",
@@ -1803,7 +1803,7 @@
 			"family": "rock",
 			"qid": "Q106621063",
 			"sourceSlugs": ["genre:symphonic-prog"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q28401124",
@@ -1850,14 +1850,14 @@
 			"family": "metal",
 			"qid": "Q1433387",
 			"sourceSlugs": ["genre:drone-metal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:experimental-metal",
 			"name": "Experimental metal",
 			"family": "metal",
 			"sourceSlugs": ["genre:experimental-metal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q188534",
@@ -1892,7 +1892,7 @@
 			"family": "metal",
 			"qid": "Q41343",
 			"sourceSlugs": ["genre:post-metal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q720959",
@@ -2017,7 +2017,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q11401",
 			"sourceSlugs": ["genre:hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q255406",
@@ -2068,7 +2068,7 @@
 			"qid": "Q138020",
 			"sourceSlugs": ["genre:rap-francais", "genre:french-hip-hop", "genre:hip-hop-francais"],
 			"aliases": ["French hip hop", "Hip-hop français"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:rnb",
@@ -2089,7 +2089,7 @@
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q9759",
 			"sourceSlugs": ["genre:blues"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q546359",
@@ -2112,7 +2112,7 @@
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q164444",
 			"sourceSlugs": ["genre:funk"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q180268",
@@ -2120,7 +2120,7 @@
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q180268",
 			"sourceSlugs": ["genre:gospel"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q577080",
@@ -2149,7 +2149,7 @@
 			"qid": "Q45981",
 			"sourceSlugs": ["genre:r-and-b"],
 			"aliases": ["R&B"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7397088",
@@ -2170,7 +2170,7 @@
 			"family": "soul-rhythm-and-blues",
 			"qid": "Q131272",
 			"sourceSlugs": ["genre:soul"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:street-soul",
