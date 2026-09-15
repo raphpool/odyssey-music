@@ -1,6 +1,6 @@
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { CrawlOptions } from "../src/crawler.js";
@@ -381,5 +381,89 @@ describe("CLI genre seed mode (TRA-62)", () => {
 			resolveCliMode({ genreSeeds: genreSeedsPath, genreId: "Q1", family: "house-techno" }),
 		).toThrow("exactly one of --genre-id or --family");
 		expect(() => resolveCliMode({ family: "house-techno" })).toThrow("require --genre-seeds");
+	});
+});
+
+describe("CLI genre-seeds mode validates the taxonomy canonically (TRA-231)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-cli-taxonomy-"));
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	// Fixtures live in a temp dir, never in data/genre-taxonomy.json.
+	async function writeFixtures(taxonomy: unknown, seeds: unknown = {}): Promise<{ seedsPath: string }> {
+		const seedsPath = join(dir, "genre-seeds.json");
+		await writeFile(join(dir, "genre-taxonomy.json"), JSON.stringify(taxonomy), "utf8");
+		await writeFile(seedsPath, JSON.stringify(seeds), "utf8");
+		return { seedsPath };
+	}
+
+	// Bug reproduction (TRA-231): with an empty seeds file, loadGenreSeeds (src/genre-seeds.ts)
+	// returns before ever validating the taxonomy, so the taxonomy load in cli.ts's genre-seeds
+	// mode is the only gate. Before this fix, that gate was a local, homonymous
+	// `loadGenreTaxonomy` doing minimal type-only parsing -- it silently accepted duplicate
+	// genre ids, and the failure only surfaced later, confusingly, as selectGenreSeeds's own
+	// "No genre seed found for --genre-id" (a duplicated id can never resolve a unique seed).
+	it("rejects a taxonomy with duplicate genre ids using the canonical loader's message", async () => {
+		const { resolveCliMode, readGenreTaxonomy } = await loadCli();
+		const { seedsPath } = await writeFixtures({
+			version: 2,
+			families: [{ key: "house-techno", label: "House / Techno", order: 0 }],
+			genres: [
+				{ id: "Q1", qid: "Q1", name: "Foo", family: "house-techno", published: true },
+				{ id: "Q1", qid: "Q1", name: "Bar", family: "house-techno", published: true },
+			],
+		});
+		const mode = resolveCliMode({ genreSeeds: seedsPath, genreId: "Q1" });
+		if (mode.kind !== "genre-seeds") throw new Error("expected genre seed mode");
+		const taxonomyPath = join(dirname(mode.path), "genre-taxonomy.json");
+
+		await expect(readGenreTaxonomy(taxonomyPath)).rejects.toThrow("Genre ids must be unique");
+	});
+
+	it("rejects a taxonomy genre referencing an undeclared family, distinct from the --family selector error", async () => {
+		const { resolveCliMode, readGenreTaxonomy } = await loadCli();
+		const { seedsPath } = await writeFixtures({
+			version: 2,
+			families: [{ key: "house-techno", label: "House / Techno", order: 0 }],
+			genres: [{ id: "Q1", qid: "Q1", name: "Foo", family: "ghost-family", published: true }],
+		});
+		const mode = resolveCliMode({ genreSeeds: seedsPath, genreId: "Q1" });
+		if (mode.kind !== "genre-seeds") throw new Error("expected genre seed mode");
+		const taxonomyPath = join(dirname(mode.path), "genre-taxonomy.json");
+
+		// Canonical message has no colon ("Unknown genre family <x>"). selectGenreSeeds's own
+		// --family selector check throws a differently worded, colon-prefixed message
+		// ("Unknown genre family: <x>") for an unrecognized --family flag -- easy to confuse
+		// with this one, so pin the exact text.
+		await expect(readGenreTaxonomy(taxonomyPath)).rejects.toThrow("Unknown genre family ghost-family");
+	});
+
+	it("keeps accepting a valid taxonomy and reaches genre-seed selection unchanged", async () => {
+		const { resolveCliMode, readGenreTaxonomy, selectGenreSeeds } = await loadCli();
+		const { loadGenreSeeds } = await import("../src/genre-seeds.js");
+		const { seedsPath } = await writeFixtures(
+			{
+				version: 2,
+				families: [{ key: "house-techno", label: "House / Techno", order: 0 }],
+				genres: [{ id: "Q1", qid: "Q1", name: "Foo", family: "house-techno", published: true }],
+			},
+			{ Q1: { genre: { slug: "genre:foo", name: "Foo", qid: "Q1" }, targets: [], anchors: [] } },
+		);
+		const mode = resolveCliMode({ genreSeeds: seedsPath, genreId: "Q1" });
+		if (mode.kind !== "genre-seeds") throw new Error("expected genre seed mode");
+		const taxonomyPath = join(dirname(mode.path), "genre-taxonomy.json");
+
+		const taxonomy = await readGenreTaxonomy(taxonomyPath);
+		const seeds = await loadGenreSeeds(mode.path, taxonomyPath);
+		const selected = selectGenreSeeds(seeds, mode, taxonomy);
+
+		expect(Object.keys(selected)).toEqual(["Q1"]);
+		expect(selected.Q1?.genre.qid).toBe("Q1");
 	});
 });
