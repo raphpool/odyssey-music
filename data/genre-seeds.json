@@ -1711,5 +1711,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q15697534": {
+		"genre": {
+			"slug": "genre:drill",
+			"name": "Drill",
+			"qid": "Q15697534"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Chief Keef",
+				"slug": "artist:chief-keef",
+				"mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+			},
+			{
+				"type": "artist",
+				"name": "Pop Smoke",
+				"slug": "artist:pop-smoke",
+				"mbid": "253c9ae7-850b-46be-8fbb-65e9fa621058"
+			},
+			{
+				"type": "artist",
+				"name": "Central Cee",
+				"slug": "artist:central-cee",
+				"mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
