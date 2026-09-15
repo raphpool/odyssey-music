@@ -32,7 +32,11 @@ const FAMILY_PROBE_PREFIX = "family-root:";
 
 // Stands in for a family's own root genre node, so resolving "is this family's QID materialized
 // and not quarantined" reuses measureGenreCoverage's resolution/quarantine logic instead of
-// duplicating it; genre-taxonomy.ts already forbids a real entry from reusing a family's QID.
+// duplicating it. Always measured through its own, isolated measureGenreCoverage call (see below):
+// genre-taxonomy.ts's invariants only forbid a real entry's own `qid` from reusing a family's QID,
+// not its `sourceSlugs` (the loader accepts a local: entry that lists a family root slug there),
+// so sharing one owners registry between probes and real entries could let a single such entry
+// throw "assigned to multiple genres" and take the whole projection down with it.
 function familyProbe(family: GenreTaxonomy["families"][number]): GenreTaxonomyEntry | undefined {
 	if (family.qid === undefined) return undefined;
 	return {
@@ -44,45 +48,51 @@ function familyProbe(family: GenreTaxonomy["families"][number]): GenreTaxonomyEn
 	};
 }
 
+function indexId(index: Map<Slug, Set<string>>, slug: Slug, id: string): void {
+	let ids = index.get(slug);
+	if (!ids) {
+		ids = new Set();
+		index.set(slug, ids);
+	}
+	ids.add(id);
+}
+
 // Projects a validated GenreTaxonomy onto the already-built base graph: publishable genres, each
 // family's slug, and a legacy-slug migration table -- reusing measureGenreCoverage throughout, so
-// this never reconstructs the graph or recurses into the cache on its own.
+// this never reconstructs the graph or recurses into the cache on its own. Assumes `taxonomy` came
+// from loadGenreTaxonomy: every genre's sourceSlugs is already canonicalized (a live node winning
+// over its own stale redirect entry) and guaranteed present in `cache`.
 export async function projectGenreTaxonomy(
 	taxonomy: GenreTaxonomy,
 	cache: NodeCache,
 	graph: GraphProjection,
 	redirects: GenreRedirects,
 ): Promise<GenreTaxonomyProjection> {
+	const report = await measureGenreCoverage(taxonomy, cache, graph);
 	const probes = taxonomy.families.flatMap((family) => familyProbe(family) ?? []);
-	const report = await measureGenreCoverage(
-		{ version: 2, families: taxonomy.families, genres: [...taxonomy.genres, ...probes] },
-		cache,
-		graph,
-	);
+	const probeReport =
+		probes.length === 0
+			? undefined
+			: await measureGenreCoverage({ version: 2, families: taxonomy.families, genres: probes }, cache, graph);
 
-	const legacySelectionBySlug: Record<Slug, string[]> = {};
-	const addLegacy = (slug: Slug, id: string): void => {
-		if (!legacySelectionBySlug[slug]) legacySelectionBySlug[slug] = [];
-		legacySelectionBySlug[slug].push(id);
-	};
-
+	// Every exported genre's admissible AND quarantined sources are "known" migration keys --
+	// loadGenreTaxonomy guarantees a declared source exists in cache, so quarantine and (below)
+	// old redirected slugs are the only ways a key here ends up outside the served graph.
+	const idsBySlug = new Map<Slug, Set<string>>();
 	const genres: ProjectedTaxonomyGenre[] = [];
 	for (const genre of taxonomy.genres) {
 		const entry = report.entries[genre.id];
 		if (!genre.published || !entry?.publishable) continue;
 		genres.push({ id: genre.id, name: genre.name, family: genre.family, slugs: entry.resolvedSources });
-		// Every declared source (even a missing one, so a stored legacy pick still resolves).
-		const known = new Set<Slug>([...(genre.sourceSlugs ?? []), ...entry.resolvedSources]);
-		for (const slug of known) addLegacy(slug, genre.id);
-		for (const [loser, target] of redirects) {
-			if (entry.resolvedSources.includes(target)) addLegacy(loser, genre.id);
+		for (const slug of [...entry.resolvedSources, ...entry.quarantinedSources]) {
+			indexId(idsBySlug, slug, genre.id);
 		}
 	}
 
 	const families: ProjectedTaxonomyFamily[] = [];
 	for (const family of taxonomy.families) {
 		const probe = familyProbe(family);
-		const slug = probe ? report.entries[probe.id]?.resolvedSources[0] : undefined;
+		const slug = probe ? probeReport?.entries[probe.id]?.resolvedSources[0] : undefined;
 		families.push({
 			key: family.key,
 			label: family.label,
@@ -92,10 +102,24 @@ export async function projectGenreTaxonomy(
 		});
 		// Old family slug -> published children within it.
 		if (slug !== undefined) {
-			const children = genres.filter((entry) => entry.family === family.key).map((entry) => entry.id);
-			if (children.length > 0) legacySelectionBySlug[slug] = children;
+			for (const child of genres) if (child.family === family.key) indexId(idsBySlug, slug, child.id);
 		}
 	}
+
+	// A redirect's old slug is a migration key only when it is itself dead. A live old slug keeps
+	// resolving to whatever it is a real source of (already indexed above, if anything) and never
+	// inherits its target's ids -- this is resolveReadSlug's "a live node always wins" rule,
+	// applied here directly rather than through measureGenreCoverage (which always sees an empty
+	// redirect table, see genre-coverage.ts's EMPTY_REDIRECTS).
+	for (const [loser, target] of redirects) {
+		if (await cache.has(loser)) continue;
+		const targetIds = idsBySlug.get(target);
+		if (!targetIds) continue;
+		for (const id of targetIds) indexId(idsBySlug, loser, id);
+	}
+
+	const legacySelectionBySlug: Record<Slug, string[]> = {};
+	for (const [slug, ids] of idsBySlug) legacySelectionBySlug[slug] = [...ids];
 
 	return { version: 2, families, genres, legacySelectionBySlug };
 }
