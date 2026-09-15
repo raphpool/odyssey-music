@@ -1521,6 +1521,40 @@
 			}
 		]
 	},
+	"Q753679": {
+		"genre": {
+			"slug": "genre:gangsta-rap",
+			"name": "Gangsta Rap",
+			"qid": "Q753679"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Ice-T",
+				"slug": "artist:ice-t",
+				"mbid": "8a75ce0d-1df3-47cc-b076-ce2f4e8250f0"
+			},
+			{
+				"type": "artist",
+				"name": "Eazy-E",
+				"slug": "artist:eazy-e",
+				"mbid": "c3009d7a-51ac-4c9c-888a-04f5c3c4be0c"
+			},
+			{
+				"type": "artist",
+				"name": "N.W.A",
+				"slug": "artist:n-w-a",
+				"mbid": "3a54bffa-2314-44a2-927b-60144119c780"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hardcore-hip-hop",
+				"name": "Hardcore hip-hop",
+				"qid": "Q966564"
+			}
+		]
+	},
 	"Q12362064": {
 		"genre": {
 			"slug": "genre:emo-rap",
