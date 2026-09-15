@@ -1465,6 +1465,34 @@
 			}
 		]
 	},
+	"Q255406": {
+		"genre": {
+			"slug": "genre:jazz-rap",
+			"name": "Jazz Rap",
+			"qid": "Q255406"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "De La Soul",
+				"slug": "artist:de-la-soul",
+				"mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+			},
+			{
+				"type": "artist",
+				"name": "Digable Planets",
+				"slug": "artist:digable-planets",
+				"mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q12362064": {
 		"genre": {
 			"slug": "genre:emo-rap",
