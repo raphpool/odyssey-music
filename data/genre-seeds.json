@@ -995,5 +995,39 @@
 				"qid": "Q106586998"
 			}
 		]
+	},
+	"Q213665": {
+		"genre": {
+			"slug": "genre:k-pop",
+			"name": "K-Pop",
+			"qid": "Q213665"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "BTS",
+				"slug": "artist:bts",
+				"mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+			},
+			{
+				"type": "artist",
+				"name": "BIGBANG",
+				"slug": "artist:bigbang",
+				"mbid": "ec2bcb77-b9a1-49e2-bfe7-419586bbef48"
+			},
+			{
+				"type": "artist",
+				"name": "BLACKPINK",
+				"slug": "artist:blackpink",
+				"mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:a-pop",
+				"name": "A-pop",
+				"qid": "Q10730335"
+			}
+		]
 	}
 }
