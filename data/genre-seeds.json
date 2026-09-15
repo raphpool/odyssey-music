@@ -1712,6 +1712,175 @@
 			}
 		]
 	},
+	"Q19879476": {
+		"genre": {
+			"slug": "genre:classic-hip-hop",
+			"name": "Classic Hip Hop",
+			"qid": "Q19879476"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "LL Cool J",
+				"slug": "artist:ll-cool-j",
+				"mbid": "a4dd0e77-83b8-4e92-89b7-effb0e47fd8c"
+			},
+			{
+				"type": "artist",
+				"name": "Queen Latifah",
+				"slug": "artist:queen-latifah",
+				"mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+			},
+			{
+				"type": "artist",
+				"name": "Salt-N-Pepa",
+				"slug": "artist:salt-n-pepa",
+				"mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"local:memphis": {
+		"genre": {
+			"slug": "genre:memphis",
+			"name": "Memphis"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Three 6 Mafia",
+				"slug": "artist:three-6-mafia",
+				"mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+			},
+			{
+				"type": "artist",
+				"name": "Project Pat",
+				"slug": "artist:project-pat",
+				"mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Paul",
+				"slug": "artist:dj-paul",
+				"mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:american-hip-hop",
+				"name": "American hip-hop",
+				"qid": "Q3135787"
+			}
+		]
+	},
+	"Q840065": {
+		"genre": {
+			"slug": "genre:new-jack-swing",
+			"name": "New Jack Swing",
+			"qid": "Q840065"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Bobby Brown",
+				"slug": "artist:bobby-brown",
+				"mbid": "d11f9c07-0eac-4a1f-a443-19cd0f63d5f0"
+			},
+			{
+				"type": "artist",
+				"name": "Bell Biv DeVoe",
+				"slug": "artist:bell-biv-devoe",
+				"mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+			},
+			{
+				"type": "artist",
+				"name": "Guy",
+				"slug": "artist:guy",
+				"mbid": "fa209319-6d7b-4a20-b445-62186ec41e0d"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:contemporary-r-and-b",
+				"name": "Contemporary R&B",
+				"qid": "Q850412"
+			}
+		]
+	},
+	"Q97265899": {
+		"genre": {
+			"slug": "genre:lofi-hip-hop",
+			"name": "Lofi Hip-Hop",
+			"qid": "Q97265899"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lofi Girl",
+				"slug": "artist:lofi-girl",
+				"mbid": "c62ebbc2-dad6-42e6-ad2e-9e16eee7d5e5"
+			},
+			{
+				"type": "artist",
+				"name": "Purrple Cat",
+				"slug": "artist:purrple-cat",
+				"mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+			},
+			{
+				"type": "artist",
+				"name": "Nujabes",
+				"slug": "artist:nujabes",
+				"mbid": "1595addf-f76b-450a-a097-af852ff35f27"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"Q622871": {
+		"genre": {
+			"slug": "genre:psytrance",
+			"name": "Psytrance",
+			"qid": "Q622871"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Astrix",
+				"slug": "artist:astrix",
+				"mbid": "13875f81-5bfc-4939-a6cc-296c3f8d0fa5"
+			},
+			{
+				"type": "artist",
+				"name": "Astral Projection",
+				"slug": "artist:astral-projection",
+				"mbid": "2ba31cc4-df9e-4c21-9dbc-bb8fa9af424f"
+			},
+			{
+				"type": "artist",
+				"name": "Hallucinogen",
+				"slug": "artist:hallucinogen",
+				"mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:trance",
+				"name": "Trance",
+				"qid": "Q170435"
+			}
+		]
+	},
 	"Q15697534": {
 		"genre": {
 			"slug": "genre:drill",
