@@ -691,5 +691,39 @@
 				"qid": "Q899215"
 			}
 		]
+	},
+	"Q14390274": {
+		"genre": {
+			"slug": "genre:tango",
+			"name": "Tango",
+			"qid": "Q14390274"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Carlos Gardel",
+				"slug": "artist:carlos-gardel",
+				"mbid": "bb54817c-6829-4ccc-bc58-030abb85c583"
+			},
+			{
+				"type": "artist",
+				"name": "Astor Piazzolla",
+				"slug": "artist:astor-piazzolla",
+				"mbid": "e280268a-a5ab-4bb0-be4d-ec470ca59131"
+			},
+			{
+				"type": "artist",
+				"name": "Aníbal Troilo",
+				"slug": "artist:anibal-troilo",
+				"mbid": "9a7f8969-387f-4161-b643-4b0e733f8d64"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-latin-america",
+				"name": "Music of Latin America",
+				"qid": "Q727781"
+			}
+		]
 	}
 }
