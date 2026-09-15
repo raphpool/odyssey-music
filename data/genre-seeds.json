@@ -792,5 +792,39 @@
 				"qid": "Q8341"
 			}
 		]
+	},
+	"Q2000173": {
+		"genre": {
+			"slug": "genre:gnawa",
+			"name": "Gnawa",
+			"qid": "Q2000173"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Mahmoud Guinia",
+				"slug": "artist:mahmoud-guinia",
+				"mbid": "f55cc026-59e9-4bbd-80ce-4dd951c840bb"
+			},
+			{
+				"type": "artist",
+				"name": "Hamid El Kasri",
+				"slug": "artist:hamid-el-kasri",
+				"mbid": "0326ff65-a31b-4a54-9c79-4777c2bb3a1e"
+			},
+			{
+				"type": "artist",
+				"name": "Hassan Hakmoun",
+				"slug": "artist:hassan-hakmoun",
+				"mbid": "3d3fdc17-ba59-4ba0-a326-a7803e65d4fc"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-north-africa",
+				"name": "Music of North Africa",
+				"qid": "Q11400811"
+			}
+		]
 	}
 }
