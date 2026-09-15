@@ -137,9 +137,11 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 });
 
 // Delivery-note guard (TRA-227): typecheck/lint/test/diff-size/tier-guard all pass on a batch
-// that silently drops or duplicates one entry (skipped line, dedup swallowed) — nothing else in
-// the pipeline counts the real file. This constant and check live in the test file on purpose:
-// src/genre-taxonomy.ts is a loader, not a delivery-tracking concern.
+// that silently drops one entry (skipped line, entry dropped during import) — nothing else in
+// the pipeline counts the real file. A duplicated id never reaches this count: assertUnique on
+// genre ids (src/genre-taxonomy.ts:79-82, "Genre ids must be unique") already rejects it upstream,
+// so this guard's job is the missing-entry case only (TRA-228). This constant and check live in
+// the test file on purpose: src/genre-taxonomy.ts is a loader, not a delivery-tracking concern.
 //
 // Next batch: bump this value in the same commit as the imported entries, e.g. 351-360 -> 360,
 // 361-370 -> 370, ... down to the final batch 561-568 (only 8 entries) -> 568.
@@ -159,23 +161,29 @@ it("locks the real taxonomy file to EXPECTED_TAXONOMY_SIZE entries", async () =>
 	assertExpectedTaxonomySize(taxonomy.genres, EXPECTED_TAXONOMY_SIZE);
 });
 
-it("fails with an actionable message when the entry count drifts either way", async () => {
-	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
+it("fails with an actionable message when the entry count drifts either way", () => {
+	// Synthetic array, not the real taxonomy file: this test only exercises
+	// assertExpectedTaxonomySize's own arithmetic and wording, so reloading
+	// data/genre-taxonomy.json here only duplicated the I/O (disk read, NodeCache,
+	// source-redirect resolution) already paid for by the guard test above (TRA-228).
+	const genres = Array.from({ length: EXPECTED_TAXONOMY_SIZE }, (_, index) => ({ id: String(index) }));
 
-	// Mutate the already-loaded array in memory only — data/genre-taxonomy.json is never touched,
-	// on disk or otherwise, by this test.
-	const oneShort = taxonomy.genres.slice(1);
-	const oneOver = [...taxonomy.genres, taxonomy.genres[0]];
+	// Both cases are derived from EXPECTED_TAXONOMY_SIZE, never from genres.length: a batch that
+	// drifts by exactly one entry without bumping the constant must still land on the actionable
+	// message below, not on "expected function to throw" because the array happened to already
+	// match the expected size (TRA-228).
+	const oneShort = genres.slice(1);
+	const oneOver = [...genres, genres[0]];
 
-	// Numbers are derived from the real file's current length, not hardcoded, so this keeps
-	// passing after a future batch bumps EXPECTED_TAXONOMY_SIZE and the file grows with it.
+	// Expected messages are frozen literals, not rebuilt from the same template as
+	// assertExpectedTaxonomySize, so a wording regression there can't pass by construction (TRA-228).
 	expect(() => assertExpectedTaxonomySize(oneShort, EXPECTED_TAXONOMY_SIZE)).toThrow(
-		`Taxonomy has ${oneShort.length} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this batch's ` +
-			"entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
+		`Taxonomy has ${EXPECTED_TAXONOMY_SIZE - 1} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this ` +
+			"batch's entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
 	);
 	expect(() => assertExpectedTaxonomySize(oneOver, EXPECTED_TAXONOMY_SIZE)).toThrow(
-		`Taxonomy has ${oneOver.length} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this batch's ` +
-			"entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
+		`Taxonomy has ${EXPECTED_TAXONOMY_SIZE + 1} entries, expected ${EXPECTED_TAXONOMY_SIZE}. If this ` +
+			"batch's entries are correct, update EXPECTED_TAXONOMY_SIZE in the same commit as the import.",
 	);
 });
 
