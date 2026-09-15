@@ -1430,5 +1430,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q16829781": {
+		"genre": {
+			"slug": "genre:cloud-rap",
+			"name": "Cloud Rap",
+			"qid": "Q16829781"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lil B",
+				"slug": "artist:lil-b",
+				"mbid": "1550f952-c91b-40d7-9b4d-d26a259ee932"
+			},
+			{
+				"type": "artist",
+				"name": "A$AP Rocky",
+				"slug": "artist:a-ap-rocky",
+				"mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+			},
+			{
+				"type": "artist",
+				"name": "Yung Lean",
+				"slug": "artist:yung-lean",
+				"mbid": "757ed661-fbad-4e45-b1cd-a6b09f06f54a"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
