@@ -1650,6 +1650,135 @@
 			}
 		]
 	},
+	"Q529742": {
+		"genre": {
+			"slug": "genre:boom-bap",
+			"name": "Boom bap",
+			"qid": "Q529742"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "DJ Premier",
+				"slug": "artist:dj-premier",
+				"mbid": "084e06f5-3c82-4b71-bd94-dd69e7bd515e"
+			},
+			{
+				"type": "artist",
+				"name": "KRS-One",
+				"slug": "artist:krs-one",
+				"mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"Q5421158": {
+		"genre": {
+			"slug": "genre:experimental-hip-hop",
+			"name": "Experimental Hip Hop",
+			"qid": "Q5421158"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "clipping.",
+				"slug": "artist:clipping",
+				"mbid": "84ca8fa4-7cca-4948-a90a-cb44db29853d"
+			},
+			{
+				"type": "artist",
+				"name": "JPEGMAFIA",
+				"slug": "artist:jpegmafia",
+				"mbid": "c42e60f4-4520-4954-b6e4-82bbdf532c11"
+			},
+			{
+				"type": "artist",
+				"name": "Earl Sweatshirt",
+				"slug": "artist:earl-sweatshirt",
+				"mbid": "8b22acd6-20e6-4463-a75c-c14b5cfdb666"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"Q19879476": {
+		"genre": {
+			"slug": "genre:classic-hip-hop",
+			"name": "Classic Hip Hop",
+			"qid": "Q19879476"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "LL Cool J",
+				"slug": "artist:ll-cool-j",
+				"mbid": "a4dd0e77-83b8-4e92-89b7-effb0e47fd8c"
+			},
+			{
+				"type": "artist",
+				"name": "Queen Latifah",
+				"slug": "artist:queen-latifah",
+				"mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+			},
+			{
+				"type": "artist",
+				"name": "Salt-N-Pepa",
+				"slug": "artist:salt-n-pepa",
+				"mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
+	"local:memphis": {
+		"genre": {
+			"slug": "genre:memphis",
+			"name": "Memphis"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Three 6 Mafia",
+				"slug": "artist:three-6-mafia",
+				"mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+			},
+			{
+				"type": "artist",
+				"name": "Project Pat",
+				"slug": "artist:project-pat",
+				"mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Paul",
+				"slug": "artist:dj-paul",
+				"mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:american-hip-hop",
+				"name": "American hip-hop",
+				"qid": "Q3135787"
+			}
+		]
+	},
 	"Q840065": {
 		"genre": {
 			"slug": "genre:new-jack-swing",
