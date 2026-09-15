@@ -1,52 +1,47 @@
 /**
  * Prepares a union of two genre caches (repo + server) in a new temp dir, without touching
  * either source -- B6a (TRA-66). A slug on only one side is copied byte-identical. The SAME
- * slug on both sides is compared by decideSameIdentity. Two DIFFERENT slugs naming the same
- * real genre (genre:country-music on the repo, genre:country on the server) are never merged
- * here -- both are copied as-is ("never assume the redirect was followed in the repo"); the
- * existing duplicate-merge migration then runs for real against a throwaway copy of the union,
- * using a copy of the redirects table so the source table is never written. Both raw variants
- * of a compared pair are archived under <output>/archive/{repo,server}/ regardless of outcome.
+ * slug on both sides is compared by decideSameIdentity; a qid conflict or unusable timestamp
+ * is refused on BOTH sides (a non-zero exit code then signals an incomplete union). Two
+ * DIFFERENT slugs naming the same genre (genre:country-music vs genre:country) are never
+ * merged here -- both are copied as-is ("never assume the redirect was followed in the repo");
+ * the duplicate-merge migration's own PREVIEW then runs against a copy of the redirects table
+ * (never the source) so the manifest reports what a real merge would do. Both variants of a
+ * compared pair are archived under <output>/archive/{repo,server}/ regardless of outcome.
  *
- * Out of scope: pending-reverses.json is not unioned (left for B6b).
+ * This script does NOT validate references at all -- neither before nor after the (unapplied)
+ * merge. A conflict refusal already leaves the output an incomplete cache for that slug (see
+ * the non-zero exit code), but nothing here checks whether some OTHER node's edge now points
+ * at a slug missing from the union. Reference validation, in delta against the two sources, is
+ * TRA-234 (B6b), along with actually applying the migration and unioning pending-reverses.json.
  *
  * Usage: tsx scripts/prepare-genre-cache-union.ts <repo-cache-dir> <server-cache-dir>
  */
 import { copyFile, mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { dirname, join } from "node:path";
+import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
-import { NodeCache } from "../src/cache.js";
-import { loadGenreRedirects, resolveReadSlug } from "../src/genre-registry.js";
-import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { loadGenreRedirects } from "../src/genre-registry.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
-import { isRecord, readCacheNodes, runMigration } from "./migrations/2026-09-04-merge-genre-duplicates.js";
+import { readCacheNodes, runMigration } from "./migrations/2026-09-04-merge-genre-duplicates.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 
-// "kept"/"conflict" only ever compare the SAME raw slug on both sides (see buildCacheUnion),
-// so one `slug` field is all either variant needs -- there is no separate repo/server spelling
-// to record.
+// "kept"/"conflict" only ever compare the SAME raw slug on both sides (see buildCacheUnion), so
+// one `slug` field is all either variant needs.
 export type UnionEntry =
 	| { decision: "copied"; from: "repo" | "server"; slug: Slug }
 	| { decision: "kept"; from: "repo" | "server"; slug: Slug; tie: boolean; qidOnlyOn?: "repo" | "server" }
 	| { decision: "conflict"; slug: Slug; reason: "qid" | "timestamp" };
-
-export interface DanglingReference {
-	slug: Slug;
-	field: string;
-	targetSlug: Slug;
-}
 
 export interface UnionManifest {
 	generatedAt: string;
 	repoCacheDir: string;
 	serverCacheDir: string;
 	entries: UnionEntry[];
-	migrationPreview: { groupsFound: number; exitCode: 0 | 1 };
-	migrationApplied: { groupsFound: number; deletedCount: number; exitCode: 0 | 1 };
-	danglingReferences: DanglingReference[];
+	skipped: { source: "repo" | "server"; path: string; error: string }[];
+	migrationPreview: { groupsFound: number; exitCode: 0 | 1; report: string };
 }
 
 /** Pure: which side wins when the SAME raw slug exists on both sides. */
@@ -64,8 +59,11 @@ export function decideSameIdentity(
 	const serverTime = Date.parse(String(server.materialized_at));
 	if (Number.isNaN(repoTime) || Number.isNaN(serverTime)) return { reason: "timestamp" };
 
-	// Surfaces a qid present on only one side -- kept regardless (not a conflict), but worth
-	// flagging: the losing side's qid is silently dropped by the winner otherwise.
+	// Records which side carries a qid the other doesn't -- kept regardless (not a conflict).
+	// countUnionProblems below only flags this as a problem when the qid-BEARING side is NOT
+	// the winner: that's the case where the qid is actually dropped from the union (a node
+	// without a qid never rejoins a duplicate group -- see the migration's own header comment).
+	// When the qid-bearing side wins, nothing is lost.
 	const qidOnlyOn: "repo" | "server" | undefined =
 		repoQid && !serverQid ? "repo" : !repoQid && serverQid ? "server" : undefined;
 	const rest = qidOnlyOn ? { qidOnlyOn } : {};
@@ -80,35 +78,30 @@ async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
 	await copyFile(file.path, dest);
 }
 
-/** Edges whose target resolves to neither a live union node nor a redirect (resolveReadSlug's
- * own rule: a live node always wins, otherwise follow the redirects table). readCacheNodes
- * reads raw, un-Zod-validated JSON, so a ref's slug can be malformed (no colon, unknown type) --
- * that's reported as dangling too, rather than left to throw out of parseSlug/NodeCache. */
-async function findDanglingReferences(
-	outputDir: string,
-	redirectsPath: string,
-): Promise<DanglingReference[]> {
-	const cache = new NodeCache(outputDir);
-	const redirects = await loadGenreRedirects(redirectsPath);
-	const { nodes } = await readCacheNodes(outputDir);
-	const dangling: DanglingReference[] = [];
-	for (const file of nodes) {
-		for (const field of [...LIST_EDGES_BY_TYPE[file.type], ...SINGULAR_EDGES_BY_TYPE[file.type]]) {
-			const value = file.node[field];
-			const refs = Array.isArray(value) ? value : value ? [value] : [];
-			for (const ref of refs) {
-				if (!isRecord(ref) || typeof ref.slug !== "string") continue;
-				try {
-					const resolved = await resolveReadSlug(ref.slug as Slug, redirects, cache);
-					if (await cache.has(resolved)) continue;
-				} catch {
-					// Malformed slug -- falls through to "dangling" below, for a different reason.
-				}
-				dangling.push({ slug: file.slug as Slug, field, targetSlug: ref.slug as Slug });
-			}
-		}
+/** readCacheNodes's own `invalid` entries build `path` as `join(root, "nodes", slug)` -- not a
+ * real file (the real one is `nodes/<type>/<body>.json`). Rebuilds the real path from that same
+ * slug when it parses; falls back to the bogus path (still useful to locate the entry in the
+ * `invalid.error` context) only if the slug itself is unparseable. */
+function skippedEntry(
+	source: "repo" | "server",
+	root: string,
+	entry: { path: string; error: string },
+): UnionManifest["skipped"][number] {
+	try {
+		const { type, body } = parseSlug(relative(join(root, "nodes"), entry.path));
+		return { source, path: join(root, "nodes", type, `${body}.json`), error: entry.error };
+	} catch {
+		return { source, path: entry.path, error: entry.error };
 	}
-	return dangling;
+}
+
+export function countUnionProblems(manifest: UnionManifest): number {
+	const conflicts = manifest.entries.filter((e) => e.decision === "conflict").length;
+	// A qid dropped from the union: the side carrying it did NOT win the comparison.
+	const droppedQid = manifest.entries.filter(
+		(e) => e.decision === "kept" && e.qidOnlyOn !== undefined && e.qidOnlyOn !== e.from,
+	).length;
+	return conflicts + droppedQid + manifest.skipped.length + manifest.migrationPreview.exitCode;
 }
 
 export async function buildCacheUnion(
@@ -118,8 +111,12 @@ export async function buildCacheUnion(
 ): Promise<{ outputDir: string; manifest: UnionManifest }> {
 	const { nodes: repoNodes, invalid: repoInvalid } = await readCacheNodes(repoCacheDir);
 	const { nodes: serverNodes, invalid: serverInvalid } = await readCacheNodes(serverCacheDir);
-	for (const { path, error } of [...repoInvalid, ...serverInvalid]) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
+	const skipped: UnionManifest["skipped"] = [
+		...repoInvalid.map((e) => skippedEntry("repo", repoCacheDir, e)),
+		...serverInvalid.map((e) => skippedEntry("server", serverCacheDir, e)),
+	];
+	for (const { source, path, error } of skipped) {
+		process.stderr.write(`warning: skipping unreadable ${source} node file ${path}: ${error}\n`);
 	}
 	const repoBySlug = new Map(repoNodes.map((f) => [f.slug, f]));
 	const serverBySlug = new Map(serverNodes.map((f) => [f.slug, f]));
@@ -157,10 +154,9 @@ export async function buildCacheUnion(
 		}
 	}
 
-	// Seed the union's OWN redirects copy from the source table (read-only), then run the
-	// existing duplicate-merge migration for real against that copy -- this is what actually
-	// unifies a same-QID pair like genre:country-music/genre:country left as two slugs above.
-	// The source table (options.redirectsPath, or its real committed default) is never written.
+	// Seed the union's OWN redirects copy from the source table (read-only) so the migration's
+	// preview below sees the same existing-redirect knowledge a real merge would -- the source
+	// table (options.redirectsPath, or its real committed default) is never written.
 	const sourceRedirects = await loadGenreRedirects(options.redirectsPath);
 	const redirectsPath = join(outputDir, "genre-redirects.json");
 	await writeFile(
@@ -168,26 +164,22 @@ export async function buildCacheUnion(
 		`${JSON.stringify({ redirects: Object.fromEntries(sourceRedirects) }, null, 2)}\n`,
 		"utf8",
 	);
-	const migrationOptions = {
+	const preview = await runMigration(outputDir, false, {
 		redirectsPath,
 		...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
-	};
-	const migrationPreview = await runMigration(outputDir, false, migrationOptions);
-	const migrationApplied = await runMigration(outputDir, true, migrationOptions);
-	const danglingReferences = await findDanglingReferences(outputDir, redirectsPath);
+	});
 
 	const manifest: UnionManifest = {
 		generatedAt: new Date().toISOString(),
 		repoCacheDir,
 		serverCacheDir,
 		entries,
-		migrationPreview: { groupsFound: migrationPreview.groupsFound, exitCode: migrationPreview.exitCode },
-		migrationApplied: {
-			groupsFound: migrationApplied.groupsFound,
-			deletedCount: migrationApplied.deletedCount,
-			exitCode: migrationApplied.exitCode,
+		skipped,
+		migrationPreview: {
+			groupsFound: preview.groupsFound,
+			exitCode: preview.exitCode,
+			report: preview.report,
 		},
-		danglingReferences,
 	};
 	await writeFile(join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 	return { outputDir, manifest };
@@ -198,9 +190,5 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
 	if (!repoCacheDir || !serverCacheDir) throw new Error("usage: <repo-cache-dir> <server-cache-dir>");
 	const { outputDir, manifest } = await buildCacheUnion(repoCacheDir, serverCacheDir);
 	console.log(`Union written to ${outputDir} (${manifest.entries.length} entries)`);
-	const problems =
-		manifest.entries.filter((e) => e.decision === "conflict").length +
-		manifest.danglingReferences.length +
-		manifest.migrationApplied.exitCode;
-	if (problems > 0) process.exitCode = 1;
+	if (countUnionProblems(manifest) > 0) process.exitCode = 1;
 }
