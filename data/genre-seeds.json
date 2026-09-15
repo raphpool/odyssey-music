@@ -1328,5 +1328,39 @@
 				"qid": "Q3135787"
 			}
 		]
+	},
+	"Q1045541": {
+		"genre": {
+			"slug": "genre:g-funk",
+			"name": "G-Funk",
+			"qid": "Q1045541"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Dr. Dre",
+				"slug": "artist:dr-dre",
+				"mbid": "5f6ab597-f57a-40da-be9e-adad48708203"
+			},
+			{
+				"type": "artist",
+				"name": "Warren G",
+				"slug": "artist:warren-g",
+				"mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+			},
+			{
+				"type": "artist",
+				"name": "Nate Dogg",
+				"slug": "artist:nate-dogg",
+				"mbid": "405528df-2632-4730-80fc-83e775a97651"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:funk",
+				"name": "Funk",
+				"qid": "Q164444"
+			}
+		]
 	}
 }
