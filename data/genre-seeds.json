@@ -1621,5 +1621,39 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"Q5421158": {
+		"genre": {
+			"slug": "genre:experimental-hip-hop",
+			"name": "Experimental Hip Hop",
+			"qid": "Q5421158"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "clipping.",
+				"slug": "artist:clipping",
+				"mbid": "84ca8fa4-7cca-4948-a90a-cb44db29853d"
+			},
+			{
+				"type": "artist",
+				"name": "JPEGMAFIA",
+				"slug": "artist:jpegmafia",
+				"mbid": "c42e60f4-4520-4954-b6e4-82bbdf532c11"
+			},
+			{
+				"type": "artist",
+				"name": "Earl Sweatshirt",
+				"slug": "artist:earl-sweatshirt",
+				"mbid": "8b22acd6-20e6-4463-a75c-c14b5cfdb666"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
 	}
 }
