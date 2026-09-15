@@ -860,5 +860,39 @@
 				"qid": "Q6942329"
 			}
 		]
+	},
+	"Q1752683": {
+		"genre": {
+			"slug": "genre:soukous",
+			"name": "Soukous",
+			"qid": "Q1752683"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Kanda Bongo Man",
+				"slug": "artist:kanda-bongo-man",
+				"mbid": "aee0642c-1d8b-4a64-9993-443f94242b2e"
+			},
+			{
+				"type": "artist",
+				"name": "Pépé Kallé",
+				"slug": "artist:pepe-kalle",
+				"mbid": "c2a1a86c-1219-4a03-b34b-e4db2506bcb0"
+			},
+			{
+				"type": "artist",
+				"name": "Aurlus Mabélé",
+				"slug": "artist:aurlus-mabele",
+				"mbid": "aa68e70a-f15a-4583-89c5-61784bb782f3"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-central-africa",
+				"name": "Music of Central Africa",
+				"qid": "Q106588687"
+			}
+		]
 	}
 }
