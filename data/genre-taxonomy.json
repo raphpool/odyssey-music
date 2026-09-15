@@ -119,7 +119,7 @@
 			"family": "house-techno",
 			"qid": "Q341364",
 			"sourceSlugs": ["genre:acid-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q341395",
@@ -127,7 +127,7 @@
 			"family": "house-techno",
 			"qid": "Q341395",
 			"sourceSlugs": ["genre:acid-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q481900",
@@ -143,7 +143,7 @@
 			"family": "house-techno",
 			"qid": "Q9149801",
 			"sourceSlugs": ["genre:ambient-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:balearic-house",
@@ -171,7 +171,7 @@
 			"family": "house-techno",
 			"qid": "Q1071961",
 			"sourceSlugs": ["genre:chicago-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q874038",
@@ -179,7 +179,7 @@
 			"family": "house-techno",
 			"qid": "Q874038",
 			"sourceSlugs": ["genre:deep-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q108610706",
@@ -187,7 +187,7 @@
 			"family": "house-techno",
 			"qid": "Q108610706",
 			"sourceSlugs": ["genre:detroit-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q526463",
@@ -195,7 +195,7 @@
 			"family": "house-techno",
 			"qid": "Q526463",
 			"sourceSlugs": ["genre:detroit-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1262781",
@@ -203,7 +203,7 @@
 			"family": "house-techno",
 			"qid": "Q1262781",
 			"sourceSlugs": ["genre:dub-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q217597",
@@ -211,7 +211,7 @@
 			"family": "house-techno",
 			"qid": "Q217597",
 			"sourceSlugs": ["genre:electro"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q627906",
@@ -219,7 +219,7 @@
 			"family": "house-techno",
 			"qid": "Q627906",
 			"sourceSlugs": ["genre:electro-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:euro-house",
@@ -241,7 +241,7 @@
 			"family": "house-techno",
 			"qid": "Q105636937",
 			"sourceSlugs": ["genre:experimental-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q820049",
@@ -256,7 +256,7 @@
 			"family": "house-techno",
 			"qid": "Q928825",
 			"sourceSlugs": ["genre:garage-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2748817",
@@ -299,7 +299,7 @@
 			"family": "house-techno",
 			"qid": "Q20502",
 			"sourceSlugs": ["genre:house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q29480448",
@@ -307,7 +307,7 @@
 			"family": "house-techno",
 			"qid": "Q29480448",
 			"sourceSlugs": ["genre:industrial-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q105636940",
@@ -335,7 +335,7 @@
 			"family": "house-techno",
 			"qid": "Q1931555",
 			"sourceSlugs": ["genre:microhouse"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q750811",
@@ -343,7 +343,7 @@
 			"family": "house-techno",
 			"qid": "Q750811",
 			"sourceSlugs": ["genre:minimal-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1430587",
@@ -352,7 +352,7 @@
 			"qid": "Q1430587",
 			"sourceSlugs": ["genre:minimal-techno"],
 			"aliases": ["Minimal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q915152",
@@ -360,7 +360,7 @@
 			"family": "house-techno",
 			"qid": "Q915152",
 			"sourceSlugs": ["genre:progressive-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q622871",
@@ -376,7 +376,7 @@
 			"family": "house-techno",
 			"qid": "Q898709",
 			"sourceSlugs": ["genre:rave"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q598593",
@@ -384,7 +384,7 @@
 			"family": "house-techno",
 			"qid": "Q598593",
 			"sourceSlugs": ["genre:tech-house"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q170611",
@@ -392,7 +392,7 @@
 			"family": "house-techno",
 			"qid": "Q170611",
 			"sourceSlugs": ["genre:techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q170435",
@@ -400,7 +400,7 @@
 			"family": "house-techno",
 			"qid": "Q170435",
 			"sourceSlugs": ["genre:trance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1751409",
@@ -408,7 +408,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q1751409",
 			"sourceSlugs": ["genre:2-step-garage"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q4846346",
@@ -431,7 +431,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q663519",
 			"sourceSlugs": ["genre:breakbeat"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1585075",
@@ -439,7 +439,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q1585075",
 			"sourceSlugs": ["genre:breakbeat-hardcore"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q903735",
@@ -447,7 +447,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q903735",
 			"sourceSlugs": ["genre:breakcore"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1987980",
@@ -479,7 +479,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q56580",
 			"sourceSlugs": ["genre:digital-hardcore"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:donk",
@@ -494,7 +494,7 @@
 			"qid": "Q1259016",
 			"sourceSlugs": ["genre:drill-and-bass", "genre:drill-n-bass"],
 			"aliases": ["Drill 'n' bass"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q188994",
@@ -502,7 +502,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q188994",
 			"sourceSlugs": ["genre:drum-and-bass"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q24876318",
@@ -518,7 +518,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q20474",
 			"sourceSlugs": ["genre:dubstep"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q5510816",
@@ -526,7 +526,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q5510816",
 			"sourceSlugs": ["genre:future-garage"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:garage",
@@ -540,7 +540,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q1166726",
 			"sourceSlugs": ["genre:grime"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q46649",
@@ -556,7 +556,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q1102161",
 			"sourceSlugs": ["genre:jungle"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q106130091",
@@ -564,7 +564,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q106130091",
 			"sourceSlugs": ["genre:post-dubstep"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2710523",
@@ -595,7 +595,7 @@
 			"family": "uk-dance-grime",
 			"qid": "Q1165777",
 			"sourceSlugs": ["genre:uk-garage"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q388100",
@@ -680,7 +680,7 @@
 			"family": "new-club",
 			"qid": "Q20903",
 			"sourceSlugs": ["genre:brostep"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2963621",
@@ -688,7 +688,7 @@
 			"family": "new-club",
 			"qid": "Q2963621",
 			"sourceSlugs": ["genre:chillstep"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:club",
@@ -830,7 +830,7 @@
 			"family": "new-club",
 			"qid": "Q2346991",
 			"sourceSlugs": ["genre:uk-bass"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q109538574",
@@ -851,7 +851,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q193207",
 			"sourceSlugs": ["genre:ambient"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3613770",
@@ -859,7 +859,7 @@
 			"family": "ambient-new-age",
 			"qid": "Q3613770",
 			"sourceSlugs": ["genre:ambient-dub"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2465085",
