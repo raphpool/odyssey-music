@@ -725,5 +725,39 @@
 				"qid": "Q727781"
 			}
 		]
+	},
+	"Q388296": {
+		"genre": {
+			"slug": "genre:afrobeat",
+			"name": "Afrobeat",
+			"qid": "Q388296"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Fela Kuti",
+				"slug": "artist:fela-kuti",
+				"mbid": "6514cffa-fbe0-4965-ad88-e998ead8a82a"
+			},
+			{
+				"type": "artist",
+				"name": "Tony Allen",
+				"slug": "artist:tony-allen",
+				"mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+			},
+			{
+				"type": "artist",
+				"name": "Femi Kuti",
+				"slug": "artist:femi-kuti",
+				"mbid": "702d2b90-eef0-4354-b2c4-6366eba92b7f"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-west-africa",
+				"name": "Music of West Africa",
+				"qid": "Q6942329"
+			}
+		]
 	}
 }
