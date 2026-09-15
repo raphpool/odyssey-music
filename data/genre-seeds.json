@@ -996,6 +996,40 @@
 			}
 		]
 	},
+	"Q131578": {
+		"genre": {
+			"slug": "genre:j-pop",
+			"name": "J-Pop",
+			"qid": "Q131578"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Hikaru Utada",
+				"slug": "artist:hikaru-utada",
+				"mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+			},
+			{
+				"type": "artist",
+				"name": "Ayumi Hamasaki",
+				"slug": "artist:ayumi-hamasaki",
+				"mbid": "2b615bcf-baa0-4657-b9a5-1a5f34c386c4"
+			},
+			{
+				"type": "artist",
+				"name": "Namie Amuro",
+				"slug": "artist:namie-amuro",
+				"mbid": "888994e5-6f53-4f53-bced-b20482aea42a"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:a-pop",
+				"name": "A-pop",
+				"qid": "Q10730335"
+			}
+		]
+	},
 	"Q213665": {
 		"genre": {
 			"slug": "genre:k-pop",
