@@ -1621,5 +1621,38 @@
 				"qid": "Q11401"
 			}
 		]
+	},
+	"local:memphis": {
+		"genre": {
+			"slug": "genre:memphis",
+			"name": "Memphis"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Three 6 Mafia",
+				"slug": "artist:three-6-mafia",
+				"mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+			},
+			{
+				"type": "artist",
+				"name": "Project Pat",
+				"slug": "artist:project-pat",
+				"mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1"
+			},
+			{
+				"type": "artist",
+				"name": "DJ Paul",
+				"slug": "artist:dj-paul",
+				"mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:american-hip-hop",
+				"name": "American hip-hop",
+				"qid": "Q3135787"
+			}
+		]
 	}
 }
