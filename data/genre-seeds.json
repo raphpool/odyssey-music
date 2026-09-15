@@ -589,5 +589,39 @@
 				"qid": "Q8341"
 			}
 		]
+	},
+	"Q723418": {
+		"genre": {
+			"slug": "genre:cumbia",
+			"name": "Cumbia",
+			"qid": "Q723418"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Totó la Momposina",
+				"slug": "artist:toto-la-momposina",
+				"mbid": "6904c849-97ab-4bf2-af51-467e8dd98ec9"
+			},
+			{
+				"type": "artist",
+				"name": "Los Gaiteros de San Jacinto",
+				"slug": "artist:los-gaiteros-de-san-jacinto",
+				"mbid": "2e574282-8fd1-4625-a6ce-eecad43232d8"
+			},
+			{
+				"type": "artist",
+				"name": "La Sonora Dinamita",
+				"slug": "artist:la-sonora-dinamita",
+				"mbid": "46a153df-a143-403b-948c-0131cb1a1067"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:tropical-music",
+				"name": "Tropical music",
+				"qid": "Q3328778"
+			}
+		]
 	}
 }
