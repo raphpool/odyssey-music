@@ -623,5 +623,39 @@
 				"qid": "Q3328778"
 			}
 		]
+	},
+	"Q208239": {
+		"genre": {
+			"slug": "genre:salsa",
+			"name": "Salsa",
+			"qid": "Q208239"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Héctor Lavoe",
+				"slug": "artist:hector-lavoe",
+				"mbid": "2cf18512-c129-482b-aff1-7430a1a7850b"
+			},
+			{
+				"type": "artist",
+				"name": "Willie Colón",
+				"slug": "artist:willie-colon",
+				"mbid": "f1edfbed-9315-4550-859c-599cc3fdee57"
+			},
+			{
+				"type": "artist",
+				"name": "Larry Harlow",
+				"slug": "artist:larry-harlow",
+				"mbid": "da41db71-1e34-46c8-a74c-797811943c4c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:tropical-music",
+				"name": "Tropical music",
+				"qid": "Q3328778"
+			}
+		]
 	}
 }
