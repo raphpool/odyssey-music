@@ -4108,6 +4108,64 @@
 			"family": "other",
 			"qid": "Q512410",
 			"published": false
+		},
+		{
+			"id": "Q3415943",
+			"name": "Rabiz",
+			"family": "other",
+			"qid": "Q3415943",
+			"published": false
+		},
+		{
+			"id": "Q17018487",
+			"name": "Scottish folk music",
+			"family": "other",
+			"qid": "Q17018487",
+			"sourceSlugs": ["genre:scottish-folk-music"],
+			"published": false
+		},
+		{
+			"id": "Q264289",
+			"name": "Sophisti-pop",
+			"family": "other",
+			"qid": "Q264289",
+			"sourceSlugs": ["genre:sophisti-pop"],
+			"published": false
+		},
+		{
+			"id": "Q1779294",
+			"name": "Space Age Pop",
+			"family": "other",
+			"qid": "Q1779294",
+			"published": false
+		},
+		{
+			"id": "Q212024",
+			"name": "Spirituals",
+			"family": "other",
+			"qid": "Q212024",
+			"published": false
+		},
+		{
+			"id": "local:spoken-word",
+			"name": "Spoken Word",
+			"family": "other",
+			"published": false
+		},
+		{
+			"id": "Q739138",
+			"name": "Teen pop",
+			"family": "other",
+			"qid": "Q739138",
+			"sourceSlugs": ["genre:teen-pop"],
+			"published": false
+		},
+		{
+			"id": "Q1062702",
+			"name": "Video Game Music",
+			"family": "other",
+			"qid": "Q1062702",
+			"published": false
 		}
 	]
 }
