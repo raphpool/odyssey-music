@@ -1779,6 +1779,74 @@
 			}
 		]
 	},
+	"Q840065": {
+		"genre": {
+			"slug": "genre:new-jack-swing",
+			"name": "New Jack Swing",
+			"qid": "Q840065"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Bobby Brown",
+				"slug": "artist:bobby-brown",
+				"mbid": "d11f9c07-0eac-4a1f-a443-19cd0f63d5f0"
+			},
+			{
+				"type": "artist",
+				"name": "Bell Biv DeVoe",
+				"slug": "artist:bell-biv-devoe",
+				"mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+			},
+			{
+				"type": "artist",
+				"name": "Guy",
+				"slug": "artist:guy",
+				"mbid": "fa209319-6d7b-4a20-b445-62186ec41e0d"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:contemporary-r-and-b",
+				"name": "Contemporary R&B",
+				"qid": "Q850412"
+			}
+		]
+	},
+	"Q97265899": {
+		"genre": {
+			"slug": "genre:lofi-hip-hop",
+			"name": "Lofi Hip-Hop",
+			"qid": "Q97265899"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Lofi Girl",
+				"slug": "artist:lofi-girl",
+				"mbid": "c62ebbc2-dad6-42e6-ad2e-9e16eee7d5e5"
+			},
+			{
+				"type": "artist",
+				"name": "Purrple Cat",
+				"slug": "artist:purrple-cat",
+				"mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+			},
+			{
+				"type": "artist",
+				"name": "Nujabes",
+				"slug": "artist:nujabes",
+				"mbid": "1595addf-f76b-450a-a097-af852ff35f27"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:hip-hop",
+				"name": "Hip-Hop",
+				"qid": "Q11401"
+			}
+		]
+	},
 	"Q622871": {
 		"genre": {
 			"slug": "genre:psytrance",
