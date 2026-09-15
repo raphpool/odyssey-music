@@ -2216,7 +2216,7 @@
 			"family": "disco-boogie",
 			"qid": "Q58339",
 			"sourceSlugs": ["genre:disco"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1374731",
@@ -2224,7 +2224,7 @@
 			"family": "disco-boogie",
 			"qid": "Q1374731",
 			"sourceSlugs": ["genre:eurodisco"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q606393",
@@ -2285,7 +2285,7 @@
 			"family": "jazz",
 			"qid": "Q790188",
 			"sourceSlugs": ["genre:avant-garde-jazz"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q105513",
@@ -2293,7 +2293,7 @@
 			"family": "jazz",
 			"qid": "Q105513",
 			"sourceSlugs": ["genre:bebop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q5928480",
@@ -2301,7 +2301,7 @@
 			"family": "jazz",
 			"qid": "Q5928480",
 			"sourceSlugs": ["genre:contemporary-jazz"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q327547",
@@ -2309,7 +2309,7 @@
 			"family": "jazz",
 			"qid": "Q327547",
 			"sourceSlugs": ["genre:cool-jazz"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2579417",
@@ -2325,7 +2325,7 @@
 			"family": "jazz",
 			"qid": "Q211781",
 			"sourceSlugs": ["genre:free-jazz"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q181010",
@@ -2333,7 +2333,7 @@
 			"family": "jazz",
 			"qid": "Q181010",
 			"sourceSlugs": ["genre:hard-bop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q105527",
@@ -2341,7 +2341,7 @@
 			"family": "jazz",
 			"qid": "Q105527",
 			"sourceSlugs": ["genre:jazz-fusion"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q944465",
@@ -2370,7 +2370,7 @@
 			"family": "jazz",
 			"qid": "Q1136331",
 			"sourceSlugs": ["genre:nu-jazz"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1092837",
@@ -2780,7 +2780,7 @@
 			"family": "caribbean",
 			"qid": "Q212688",
 			"sourceSlugs": ["genre:dub"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1113204",
@@ -2838,7 +2838,7 @@
 			"family": "caribbean",
 			"qid": "Q9794",
 			"sourceSlugs": ["genre:reggae"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q573484",
@@ -2854,7 +2854,7 @@
 			"family": "caribbean",
 			"qid": "Q1299260",
 			"sourceSlugs": ["genre:roots-reggae"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q109653544",
@@ -3801,7 +3801,7 @@
 			"family": "classical-opera",
 			"qid": "Q9730",
 			"sourceSlugs": ["genre:classical"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q612024",
@@ -3855,7 +3855,7 @@
 			"family": "other",
 			"qid": "Q25094849",
 			"sourceSlugs": ["genre:art-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:australian-indigenous-music",
@@ -3869,7 +3869,7 @@
 			"family": "other",
 			"qid": "Q9162904",
 			"sourceSlugs": ["genre:avant-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:balkan-pop",
@@ -3943,7 +3943,7 @@
 			"family": "other",
 			"qid": "Q2280497",
 			"sourceSlugs": ["genre:country-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q211756",
@@ -3951,7 +3951,7 @@
 			"family": "other",
 			"qid": "Q211756",
 			"sourceSlugs": ["genre:dance-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1166158",
@@ -3959,7 +3959,7 @@
 			"family": "other",
 			"qid": "Q1166158",
 			"sourceSlugs": ["genre:dark-cabaret"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q48971892",
@@ -3982,7 +3982,7 @@
 			"family": "other",
 			"qid": "Q25094591",
 			"sourceSlugs": ["genre:experimental-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:greek-traditional",
@@ -4130,7 +4130,7 @@
 			"family": "other",
 			"qid": "Q264289",
 			"sourceSlugs": ["genre:sophisti-pop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1779294",
