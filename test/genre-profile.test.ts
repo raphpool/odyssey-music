@@ -1,16 +1,15 @@
-// Exercises the profile v1 -> v2 migration added to web/index.html's inline script
-// (TRA-135 / D2a). We load the real script into jsdom rather than reimplementing its
-// logic here, per the repo's front-end test convention: no copy of the migration
-// functions, only the DOM/localStorage/fetch boundaries are simulated.
+// Exercises the profile v1 -> v2 migration in web/index.html's inline script (TRA-135 /
+// D2a): loads the real script into jsdom instead of reimplementing its logic here, only
+// simulating the DOM/localStorage/fetch boundaries.
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import type { GenreTaxonomyProjection } from "../src/genre-taxonomy-projection.js";
 
-// PROFILE_KEY / PROFILE_V2_KEY are `const` bindings inside the inline script, so they
-// never become properties of `window` (unlike its `function` declarations) and can't be
-// read back from the test. These literals mirror the storage contract the ticket names.
+// `const` bindings in the inline script never become `window` properties (unlike its
+// `function` declarations), so these storage-key literals can't be read back from the
+// script and are duplicated here.
 const PROFILE_KEY = "odyssey.profile.v1";
 const PROFILE_V2_KEY = "odyssey.profile.v2";
 
@@ -44,11 +43,9 @@ beforeEach(() => {
 		runScripts: "dangerously",
 		pretendToBeVisual: false,
 		beforeParse(window) {
-			// The real script's top-level init() IIFE awaits this fetch on its very first
-			// line and never proceeds past it. A promise that never settles freezes init()
-			// there harmlessly (no throw, no unhandled rejection) while the rest of the real
-			// script -- including the migration functions under test -- still runs to
-			// completion synchronously, without ever fetching data.json or rendering the graph.
+			// init()'s first line awaits this; a promise that never settles freezes it there
+			// harmlessly (no throw, no timer) while the rest of the real script -- including
+			// the migration functions under test -- still runs to completion.
 			window.fetch = (() => new Promise<Response>(() => {})) as typeof fetch;
 		},
 	});
@@ -70,11 +67,9 @@ function seedV1(genres: string[], overrides: Partial<ProfileV1Fixture> = {}): Pr
 	return v1;
 }
 
-// Ids are deliberately shaped unlike the graph slugs that map to them (e.g. "local:techno"
-// vs. "genre:techno"), matching the real projection (src/genre-taxonomy-projection.ts):
-// an entry's `id` is a QID/"local:" id, never the graph slug itself. Every graph slug --
-// including ones that still resolve to the same genre, unrenamed -- goes through
-// legacySelectionBySlug; production's migration table is exhaustive over known sources.
+// Ids are shaped unlike the graph slugs that map to them ("local:techno" vs. "genre:techno"),
+// matching the real projection: an entry's `id` is never the graph slug itself, and every
+// slug -- even an unrenamed one -- goes through legacySelectionBySlug.
 const taxonomy: GenreTaxonomyProjection = {
 	version: 2,
 	families: [{ key: "electronic", label: "Electronic", order: 1 }],
@@ -91,10 +86,9 @@ const taxonomy: GenreTaxonomyProjection = {
 	},
 };
 
-// jsdom's Storage exposes getItem/setItem as WebIDL named operations on its prototype:
-// assigning `win.localStorage.setItem = ...` only adds an own named entry (per the spec's
-// legacy platform object semantics) and never shadows the real method, so the throw would
-// silently never fire. Overriding Storage.prototype directly is what actually intercepts it.
+// jsdom's Storage is a WebIDL legacy platform object: assigning `win.localStorage.setItem =
+// ...` only adds an unrelated own property, it never shadows the real method. Overriding
+// Storage.prototype is what actually intercepts calls.
 function stubStorageMethod(name: "getItem" | "setItem", impl: () => never): void {
 	win.Storage.prototype[name] = impl;
 }
@@ -140,20 +134,54 @@ describe("profile v1 -> v2 migration (TRA-135)", () => {
 		expect(result?.unresolvedGenreSlugs?.sort()).toEqual(["genre:discontinued", "genre:never-existed"]);
 	});
 
-	it("computes a best-effort v2 without a taxonomy but never persists it", () => {
+	it("returns null without a taxonomy, leaving v1 as the caller's source of truth", () => {
 		const v1 = seedV1(["genre:techno"]);
 
-		// No taxonomy yet (e.g. an older data.json still being served): the slug can't be
-		// validated, so it's trusted as-is, but the result must not be written to storage --
-		// otherwise the idempotency guard would lock in this unvalidated guess forever.
-		const withoutTaxonomy = win.migrateProfileToV2();
-		expect(withoutTaxonomy?.genres).toEqual(["genre:techno"]);
+		// No taxonomy yet (e.g. an older data.json still being served): nothing can be
+		// resolved, so the caller must keep reading v1. Persisting a guess here would let
+		// the idempotency guard above freeze it in, unvalidated, forever.
+		expect(win.migrateProfileToV2()).toBeNull();
 		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
 
 		// A later call with the real taxonomy still migrates properly, unblocked.
 		const withTaxonomy = win.migrateProfileToV2(taxonomy);
 		expect(withTaxonomy?.genres).toEqual(["local:techno"]);
 		expect(win.localStorage.getItem(PROFILE_KEY)).toEqual(JSON.stringify(v1));
+	});
+
+	it("treats a malformed taxonomy (wrong version, or no legacySelectionBySlug) like no taxonomy", () => {
+		seedV1(["genre:techno"]);
+		const noLegacyMap = { version: 2, families: [], genres: [] } as unknown as GenreTaxonomyProjection;
+		const wrongVersion = { ...taxonomy, version: 1 } as unknown as GenreTaxonomyProjection;
+
+		expect(win.migrateProfileToV2(noLegacyMap)).toBeNull();
+		expect(win.migrateProfileToV2(wrongVersion)).toBeNull();
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+	});
+
+	it("preserves every personal v1 field (name, email, createdAt) in the migrated v2 record", () => {
+		const v1 = seedV1(["genre:techno"], { email: "raph@example.com" });
+		const result = win.migrateProfileToV2(taxonomy);
+		// A migration that dropped a field (e.g. only copied `name`) would still pass every
+		// other assertion in this file; only a full-record comparison catches that.
+		expect(result).toEqual({ ...v1, genres: ["local:techno"] });
+	});
+
+	it("drops non-string entries from a corrupted v1.genres instead of surfacing them as unresolved", () => {
+		win.localStorage.setItem(
+			PROFILE_KEY,
+			JSON.stringify({ name: "Raph", genres: ["genre:techno", null, 7] }),
+		);
+		const result = win.migrateProfileToV2(taxonomy);
+		expect(result?.genres).toEqual(["local:techno"]);
+		expect(result?.unresolvedGenreSlugs).toBeUndefined();
+	});
+
+	it("recomputes from v1 when the stored v2 has the wrong shape (e.g. a non-string name)", () => {
+		const v1 = seedV1(["genre:techno"]);
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify({ name: 42, genres: ["local:house"] }));
+		const result = win.migrateProfileToV2(taxonomy);
+		expect(result).toEqual({ ...v1, genres: ["local:techno"] });
 	});
 
 	it("returns null and leaves storage untouched when v1 itself is corrupt json", () => {
