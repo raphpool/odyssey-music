@@ -44,7 +44,12 @@ jobs:
 
       - name: Smoke
         run: |
-          set -e
+          set -euo pipefail
           curl -fsS https://dropcliffs.com/api/odyssey/health; echo
           curl -fsS https://dropcliffs.com/api/odyssey/version; echo
           curl -fsS -o /dev/null -w "labs/odyssey HTTP %{http_code}\n" https://dropcliffs.com/labs/odyssey/
+          curl -fsS https://dropcliffs.com/api/odyssey/data.json -o /tmp/data.json \
+            || { echo "Smoke failed: GET /api/odyssey/data.json did not return HTTP 200" >&2; exit 1; }
+          jq -e '(.nodes | type) == "array" and (.nodes | length > 0)' /tmp/data.json >/dev/null \
+            || { echo "Smoke failed: /api/odyssey/data.json body has no non-empty 'nodes' array" >&2; exit 1; }
+          echo "data.json OK"
