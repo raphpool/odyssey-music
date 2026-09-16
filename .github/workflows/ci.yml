@@ -1,6 +1,7 @@
 name: ci
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
 
@@ -15,7 +16,9 @@ concurrency:
 
 jobs:
   typecheck:
-    runs-on: ubuntu-latest
+    # Draft PRs are the agents' delivery mode: no CI run until ready_for_review.
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
@@ -24,7 +27,8 @@ jobs:
       - run: npm run typecheck
 
   lint:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
@@ -33,7 +37,8 @@ jobs:
       - run: npm run lint
 
   test:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
@@ -52,8 +57,8 @@ jobs:
     # ajouterait des milliers de lignes. Les autres fichiers de data/
     # (genre-catalog.json, genre-taxonomy.json) sont des inputs de pipeline
     # sans script générateur dans ce repo : ils restent comptés.
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
@@ -78,8 +83,8 @@ jobs:
   tier-guard:
     # Escalade automatique en tier/3 sur les chemins sensibles.
     # `deploy/` et `scripts/deploy-web.sh` sont ajoutés : ils poussent en prod.
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     permissions: { contents: read, pull-requests: write }
     steps:
       - uses: actions/checkout@v6
