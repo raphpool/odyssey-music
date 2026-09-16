@@ -1924,9 +1924,14 @@
 		"targets": [],
 		"anchors": [
 			{
-				"slug": "genre:popular-music",
-				"name": "Popular music",
-				"qid": "Q373342"
+				"slug": "genre:uk-bass",
+				"name": "UK bass",
+				"qid": "Q2346991"
+			},
+			{
+				"slug": "genre:dubstep",
+				"name": "Dubstep",
+				"qid": "Q20474"
 			}
 		]
 	},
@@ -1938,6 +1943,11 @@
 		},
 		"targets": [],
 		"anchors": [
+			{
+				"slug": "genre:drum-and-bass",
+				"name": "Drum and bass",
+				"qid": "Q188994"
+			},
 			{
 				"slug": "genre:idm",
 				"name": "IDM",

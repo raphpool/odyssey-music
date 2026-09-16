@@ -6,6 +6,7 @@ import { cliConfig } from "./config.js";
 import { type CrawlOptions, type CrawlProgress, crawl, crawlGenreSeeds, refreshGenre } from "./crawler.js";
 import { loadEnv } from "./env.js";
 import { type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
+import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } from "./genre-taxonomy.js";
 import { logger } from "./logger.js";
 
 export const program = new Command();
@@ -220,7 +221,7 @@ program
 
 			if (mode.kind === "genre-seeds") {
 				const taxonomyPath = join(dirname(mode.path), "genre-taxonomy.json");
-				const taxonomy = await loadGenreTaxonomy(taxonomyPath);
+				const taxonomy = await readGenreTaxonomy(taxonomyPath);
 				const seeds = await loadGenreSeeds(mode.path, taxonomyPath);
 				const selected = selectGenreSeeds(seeds, mode, taxonomy);
 				const result = await runGenreSeedCrawl(base, selected);
@@ -268,29 +269,18 @@ program
 		},
 	);
 
-async function loadGenreTaxonomy(filePath: string): Promise<GenreTaxonomy> {
-	const raw: unknown = JSON.parse(await readFile(filePath, "utf8"));
-	if (!isRecord(raw) || !Array.isArray(raw.families) || !Array.isArray(raw.genres)) {
-		throw new Error(`Invalid genre taxonomy in ${filePath}`);
-	}
-
-	const families = raw.families.map((family) => {
-		if (!isRecord(family) || typeof family.key !== "string") {
-			throw new Error(`Invalid genre taxonomy family in ${filePath}`);
-		}
-		return { key: family.key };
-	});
-	const genres = raw.genres.map((genre) => {
-		if (!isRecord(genre) || typeof genre.id !== "string" || typeof genre.family !== "string") {
-			throw new Error(`Invalid genre taxonomy genre in ${filePath}`);
-		}
-		return { id: genre.id, family: genre.family };
-	});
-	return { families, genres };
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-	return typeof value === "object" && value !== null && !Array.isArray(value);
+// TRA-231: this used to be a local, homonymous `loadGenreTaxonomy` doing its own
+// minimal parsing (only checking that families[].key / genres[].id / genres[].family
+// were strings), never calling the canonical validator. It silently accepted
+// taxonomies the canonical loader would reject (duplicate ids, undeclared families).
+// We now delegate validation to `validateGenreTaxonomy` (src/genre-taxonomy.ts), the
+// same one `loadGenreSeeds` already uses. We deliberately don't call the canonical
+// `loadGenreTaxonomy` export itself: it also resolves sources via `loadSources`,
+// which opens a NodeCache on the taxonomy file's own directory and throws if a
+// `sourceSlugs` entry isn't in that cache -- coupling the CLI's crawl mode to the
+// repo cache instead of the `-o` output cache, and breaking on cache-less fixtures.
+export async function readGenreTaxonomy(filePath: string): Promise<CanonicalGenreTaxonomy> {
+	return validateGenreTaxonomy(JSON.parse(await readFile(filePath, "utf8")));
 }
 
 function formatHeartbeat(s: CrawlProgress): string {
