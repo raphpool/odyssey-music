@@ -15,7 +15,7 @@ import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./h
 // be built on the SAME NodeCache instance handleMaterialize/runJit writes into (src/server.ts's
 // contract). `createMaterializeService` is imported dynamically, exactly like runPipeline in
 // test/pipeline-e2e.test.ts: its module graph statically pulls in pipeline.js ->
-// musicbrainz.js/tavily.js/local-fetcher.js/@google/genai, which must stay mocked.
+// musicbrainz.js/tavily.js/local-fetcher.js/@anthropic-ai/sdk, which must stay mocked.
 async function loadCreateMaterializeService() {
 	return (await import("../src/services/materialize-service.js")).createMaterializeService;
 }
@@ -33,7 +33,7 @@ const ELECTRONIC_QID = "Q9778";
 // resolver (motif test/genre-identity.test.ts:15-25) is the only way to exercise the qid-index
 // rule (rule 4) for a name the real data doesn't cover.
 const FAKE_TRAP_QID = "Q999999";
-const ENV: ApiEnv = { GEMINI_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
+const ENV: ApiEnv = { ANTHROPIC_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
 const TIMEOUT_MS = 5_000;
 
 function buildTrapResolver() {

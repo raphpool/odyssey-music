@@ -11,13 +11,13 @@ import { genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mock
 // its already-canonicalized slug but used to materialize it from its display name alone. `crawl`
 // dynamically imports its module for the same reason test/pipeline-e2e.test.ts imports
 // runPipeline dynamically: the module graph statically pulls in pipeline.js ->
-// musicbrainz.js/tavily.js/local-fetcher.js/@google/genai, which must stay mocked -- see that
+// musicbrainz.js/tavily.js/local-fetcher.js/@anthropic-ai/sdk, which must stay mocked -- see that
 // file's comment on import-order hazards with Biome's sorter.
 async function loadTopUpDangling() {
 	return (await import("../scripts/top-up-dangling.js")).topUpDangling;
 }
 
-const ENV: ApiEnv = { GEMINI_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
+const ENV: ApiEnv = { ANTHROPIC_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
 const TIMEOUT_MS = 5_000;
 
 /** Minimal valid ArtistNode referencing a dangling genre by an already-canonicalized edge:

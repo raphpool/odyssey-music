@@ -12,7 +12,7 @@ import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./h
 // on its own NodeCache and must actually use it, both when materializing a node and when
 // enqueueing that node's outbound edges (B1). `crawl` is imported dynamically, exactly like
 // runPipeline in test/pipeline-e2e.test.ts: its module graph statically pulls in pipeline.js ->
-// musicbrainz.js/tavily.js/local-fetcher.js/@google/genai, which must stay mocked -- see that
+// musicbrainz.js/tavily.js/local-fetcher.js/@anthropic-ai/sdk, which must stay mocked -- see that
 // file's comment on import-order hazards with Biome's sorter reordering "../src/..." ahead of
 // "./helpers/...".
 async function loadCrawl() {

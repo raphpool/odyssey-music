@@ -4,23 +4,27 @@
  *   1. CODE-driven research:
  *      - Tavily web_search(name+type) → top N URLs
  *      - Parallel localFetch on top K → concatenated markdown corpus + provenance
- *   2. SINGLE LLM call to Gemini via @google/genai with `responseMimeType: application/json`
- *      and a per-type `responseSchema` that ENFORCES min-counts on required edges
- *      (artist.discography>=2, artist.genres>=1, genre.related_genres>=2, etc).
- *      No tool calls, no retries — the schema makes invalid output impossible.
+ *   2. SINGLE LLM call to Claude via @anthropic-ai/sdk with `output_config.format` set to a
+ *      per-type JSON Schema (structured outputs). No tool calls, no manual retries — the SDK
+ *      retries 429/5xx internally (bounded, `maxRetries`, default 2).
+ *      2026-09-16 (TRA-239): migrated from Gemini. Claude's structured-outputs JSON Schema
+ *      subset does NOT support array/string size constraints (minItems/maxItems/minLength —
+ *      see the "Anthropic structured-output schema builders" comment below), so the min-counts
+ *      Gemini's `responseSchema` used to enforce (artist.discography>=2, genre.related_genres>=2,
+ *      etc) are no longer enforced by the model boundary. They were never re-enforced by the
+ *      post-call Zod validation either (src/schemas.ts's array fields carry no `.min()`) — this
+ *      is a real, documented behavior change, not a regression introduced silently here.
  *   3. Validate via Zod, canonicalize slugs, return.
  *
  * Why this beats the agent loop:
  *   - 1 LLM round-trip instead of 3-6 → 3-5x latency cut.
- *   - Schema-forced edge minimums → consistent shape, no "agent forgot to fill discography".
  *   - All research happens deterministically up front → no path where the agent skips fetches.
  *   - Failures are real (search returned nothing, JSON unparseable) — not retry storms.
  */
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
-import { z } from "zod";
+import Anthropic from "@anthropic-ai/sdk";
 import { pipelineConfig, pricingConfig } from "./config.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
@@ -92,7 +96,7 @@ import { QID_PATTERN } from "./types.js";
 export interface PipelineDeps {
 	tavilyApiKey: string;
 	firecrawlApiKey: string;
-	geminiApiKey?: string;
+	anthropicApiKey?: string;
 	model?: string;
 	logger?: (line: string) => void;
 	// OPTIONAL, but omitting it silently disables genre-duplicate prevention: the node's
@@ -164,65 +168,97 @@ interface DraftResult {
 	outputTokens: number;
 }
 
-// --- Gemini schema builders ---
+// 2026-09-16 (TRA-239): distinguishes a failure AT the model boundary that isn't an SDK-level
+// APIError — no text block, a truncated (`stop_reason: "max_tokens"`) response, or unparsable
+// JSON. Callers/tests branch on `instanceof DraftGenerationError` vs `instanceof Anthropic.APIError`
+// rather than string-matching either kind of failure.
+export class DraftGenerationError extends Error {
+	constructor(message: string) {
+		super(message);
+		this.name = "DraftGenerationError";
+	}
+}
 
-const stringSchema = (description: string, minLength?: number): Schema => {
-	const s: Schema = { type: GType.STRING, description };
-	if (minLength) (s as { minLength?: string }).minLength = String(minLength);
-	return s;
-};
+// --- Anthropic structured-output schema builders ---
+//
+// 2026-09-16 (TRA-239): Claude's `output_config.format` (structured outputs) accepts a
+// constrained subset of JSON Schema. SUPPORTED: object/array/string/integer/number/boolean/null
+// types, `enum`, `const`, `anyOf`/`allOf`, `$ref`/`$def`, a handful of string `format`s, and
+// `additionalProperties: false` (required on every object — set on every object node below). NOT
+// SUPPORTED: numeric constraints (minimum/maximum/multipleOf), string constraints
+// (minLength/maxLength), array size constraints (minItems/maxItems), and recursive schemas.
+// Gemini's `responseSchema` used minItems/maxItems/minLength to force edge-array cardinalities
+// (e.g. genre.related_genres>=2) and the editorial_article length floor. Those keywords are
+// dropped here rather than sent and silently ignored/rejected. The `editorial_article` floor is
+// still enforced post-call by src/schemas.ts (`z.string().min(80)`); the edge-array minimums are
+// NOT re-enforced anywhere post-call (src/schemas.ts's array fields carry no `.min()`) — this is
+// a real, documented behavior change from the Gemini-backed pipeline (see the module docstring).
+// `required` below keeps the exact same required/optional field split Gemini's schema used —
+// optional fields simply aren't listed in `required`, same as before.
 
-const edgeRefSchema = (allowedTypes: readonly NodeType[]): Schema => ({
-	type: GType.OBJECT,
+interface JsonSchemaNode {
+	type: "object" | "array" | "string" | "boolean" | "integer" | "number";
+	description?: string;
+	enum?: readonly string[];
+	properties?: Record<string, JsonSchemaNode>;
+	required?: readonly string[];
+	additionalProperties?: false;
+	items?: JsonSchemaNode;
+}
+
+const stringSchema = (description: string): JsonSchemaNode => ({ type: "string", description });
+
+const arraySchema = (items: JsonSchemaNode): JsonSchemaNode => ({ type: "array", items });
+
+const edgeRefSchema = (allowedTypes: readonly NodeType[]): JsonSchemaNode => ({
+	type: "object",
 	properties: {
-		type: { type: GType.STRING, enum: [...allowedTypes], description: "Target node type." },
-		name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'.", 1),
+		type: { type: "string", enum: [...allowedTypes], description: "Target node type." },
+		name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'."),
 	},
 	required: ["type", "name"],
-	propertyOrdering: ["type", "name"],
+	additionalProperties: false,
 });
 
-const edgeRefSchemaFor = (type: NodeType, field: string): Schema => {
+const edgeRefSchemaFor = (type: NodeType, field: string): JsonSchemaNode => {
 	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
 	if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
 	return edgeRefSchema(allowed);
 };
 
-const citationSchema: Schema = {
-	type: GType.OBJECT,
+const citationSchema: JsonSchemaNode = {
+	type: "object",
 	properties: {
-		url: { type: GType.STRING, description: "Full http(s) URL of a source you cite." },
-		title: { type: GType.STRING, description: "Title of the page." },
+		url: { type: "string", description: "Full http(s) URL of a source you cite." },
+		title: { type: "string", description: "Title of the page." },
 	},
 	required: ["url", "title"],
-	propertyOrdering: ["url", "title"],
+	additionalProperties: false,
 };
 
 interface SchemaShape {
-	schema: Schema;
-	zodValidator: z.ZodType<unknown>;
+	schema: JsonSchemaNode;
 }
 
 function makeNodeSchema(type: NodeType): SchemaShape {
-	const baseProps: Record<string, Schema> = {
-		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)').", 1),
+	const baseProps: Record<string, JsonSchemaNode> = {
+		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)')."),
 		editorial_article: stringSchema(
-			// Tighter article keeps output tokens down and saves ~1s of LLM wall-clock per node.
-			// Hard caps + first-sentence rule + slop ban embedded in the schema description because
-			// Gemini Flash Lite honors schema descriptions more reliably than narrative system prompts.
+			// Tighter article keeps output tokens down and saves wall-clock time per node. Hard
+			// caps + first-sentence rule + slop ban are embedded in the description text itself —
+			// structured outputs don't support a minLength constraint (see the comment above this
+			// block); the 80-char floor is enforced post-call instead (src/schemas.ts).
 			"Real article prose, 350-700 chars. FIRST SENTENCE must contain at least 2 concrete sourced facts (year/date + place/scene + named collaborator OR label OR sample). NEVER open with marketing voice ('emerged as', 'serves as', 'stands as', 'pivots on a foundation of', 'released under the X banner'). Each sentence teaches the reader ONE concrete thing from the corpus (named producer, named sample, real venue, real chart fact, real critic). FORBIDDEN phrases (these are AI tells, instant fail): 'stylistic trajectory', 'sonic identity', 'sonic palette', 'signature blend', 'creative pivot', 'polished production values', 'major label output', 'atmospheric tension', 'high-stakes', 'continues to', 'showcases', 'reinforces', 'standout moment', 'definitive anchor'. SHORTER honest prose beats longer padded prose. If the corpus gives <2 hard musical facts, write 1-2 short sentences only.",
-			350,
 		),
-		citations: { type: GType.ARRAY, items: citationSchema, minItems: "2", maxItems: "4" },
+		citations: arraySchema(citationSchema),
 	};
 	const requiredBase = ["name", "editorial_article", "citations"];
 
 	switch (type) {
 		case "genre": {
 			return {
-				zodValidator: z.unknown(),
 				schema: {
-					type: GType.OBJECT,
+					type: "object",
 					required: [
 						...requiredBase,
 						"editorial_definition",
@@ -234,63 +270,28 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						"key_labels",
 						"landmark_tracks",
 					],
+					additionalProperties: false,
 					properties: {
 						...baseProps,
-						editorial_definition: stringSchema("1-2 sentence teaser definition.", 30),
-						era: stringSchema("e.g. 'late 1980s to mid 1990s'.", 5),
-						origin: stringSchema("Geographic + scene origin.", 3),
-						sonic_markers: stringSchema("BPM range, instrumentation, signature production traits.", 10),
-						parent_genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "parent_genres"),
-							minItems: "0",
-							maxItems: "4",
-						},
-						subgenres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "subgenres"),
-							minItems: "0",
-							maxItems: "6",
-						},
-						related_genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "related_genres"),
-							minItems: "2",
-							maxItems: "6",
-						},
-						key_artists: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "key_artists"),
-							minItems: "3",
-							maxItems: "8",
-						},
-						key_labels: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "key_labels"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						landmark_projects: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "landmark_projects"),
-							minItems: "0",
-							maxItems: "5",
-						},
-						landmark_tracks: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("genre", "landmark_tracks"),
-							minItems: "1",
-							maxItems: "5",
-						},
+						editorial_definition: stringSchema("1-2 sentence teaser definition."),
+						era: stringSchema("e.g. 'late 1980s to mid 1990s'."),
+						origin: stringSchema("Geographic + scene origin."),
+						sonic_markers: stringSchema("BPM range, instrumentation, signature production traits."),
+						parent_genres: arraySchema(edgeRefSchemaFor("genre", "parent_genres")),
+						subgenres: arraySchema(edgeRefSchemaFor("genre", "subgenres")),
+						related_genres: arraySchema(edgeRefSchemaFor("genre", "related_genres")),
+						key_artists: arraySchema(edgeRefSchemaFor("genre", "key_artists")),
+						key_labels: arraySchema(edgeRefSchemaFor("genre", "key_labels")),
+						landmark_projects: arraySchema(edgeRefSchemaFor("genre", "landmark_projects")),
+						landmark_tracks: arraySchema(edgeRefSchemaFor("genre", "landmark_tracks")),
 					},
 				},
 			};
 		}
 		case "label": {
 			return {
-				zodValidator: z.unknown(),
 				schema: {
-					type: GType.OBJECT,
+					type: "object",
 					required: [
 						...requiredBase,
 						"editorial_description",
@@ -300,40 +301,25 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						"roster",
 						"notable_releases",
 					],
+					additionalProperties: false,
 					properties: {
 						...baseProps,
-						editorial_description: stringSchema("1-2 sentence teaser.", 30),
-						founded: stringSchema("Year string e.g. '1995'.", 4),
-						location: stringSchema("City + country.", 3),
-						founders: stringSchema("Founder names (text).", 0),
-						active_years: stringSchema("e.g. '1995-present'.", 0),
-						genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("label", "genres"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						roster: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("label", "roster"),
-							minItems: "3",
-							maxItems: "10",
-						},
-						notable_releases: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("label", "notable_releases"),
-							minItems: "2",
-							maxItems: "8",
-						},
+						editorial_description: stringSchema("1-2 sentence teaser."),
+						founded: stringSchema("Year string e.g. '1995'."),
+						location: stringSchema("City + country."),
+						founders: stringSchema("Founder names (text)."),
+						active_years: stringSchema("e.g. '1995-present'."),
+						genres: arraySchema(edgeRefSchemaFor("label", "genres")),
+						roster: arraySchema(edgeRefSchemaFor("label", "roster")),
+						notable_releases: arraySchema(edgeRefSchemaFor("label", "notable_releases")),
 					},
 				},
 			};
 		}
 		case "artist": {
 			return {
-				zodValidator: z.unknown(),
 				schema: {
-					type: GType.OBJECT,
+					type: "object",
 					required: [
 						...requiredBase,
 						"editorial_bio",
@@ -344,198 +330,85 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 						"discography",
 						"notable_tracks",
 					],
+					additionalProperties: false,
 					properties: {
 						...baseProps,
-						editorial_bio: stringSchema("1-2 sentence teaser.", 30),
-						origin: stringSchema("Where they're from.", 3),
-						active_years: stringSchema("e.g. '1991-present'.", 4),
-						genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "genres"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						labels: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "labels"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						discography: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "discography"),
-							minItems: "2",
-							maxItems: "10",
-						},
-						notable_tracks: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "notable_tracks"),
-							minItems: "1",
-							maxItems: "8",
-						},
-						influences: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "influences"),
-							minItems: "0",
-							maxItems: "8",
-						},
-						influenced: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "influenced"),
-							minItems: "0",
-							maxItems: "8",
-						},
-						collaborators: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "collaborators"),
-							minItems: "0",
-							maxItems: "8",
-						},
-						aliases: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "aliases"),
-							minItems: "0",
-							maxItems: "5",
-						},
-						members: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("artist", "members"),
-							minItems: "0",
-							maxItems: "10",
-						},
+						editorial_bio: stringSchema("1-2 sentence teaser."),
+						origin: stringSchema("Where they're from."),
+						active_years: stringSchema("e.g. '1991-present'."),
+						genres: arraySchema(edgeRefSchemaFor("artist", "genres")),
+						labels: arraySchema(edgeRefSchemaFor("artist", "labels")),
+						discography: arraySchema(edgeRefSchemaFor("artist", "discography")),
+						notable_tracks: arraySchema(edgeRefSchemaFor("artist", "notable_tracks")),
+						influences: arraySchema(edgeRefSchemaFor("artist", "influences")),
+						influenced: arraySchema(edgeRefSchemaFor("artist", "influenced")),
+						collaborators: arraySchema(edgeRefSchemaFor("artist", "collaborators")),
+						aliases: arraySchema(edgeRefSchemaFor("artist", "aliases")),
+						members: arraySchema(edgeRefSchemaFor("artist", "members")),
 					},
 				},
 			};
 		}
 		case "project": {
 			return {
-				zodValidator: z.unknown(),
 				schema: {
-					type: GType.OBJECT,
+					type: "object",
 					required: [...requiredBase, "editorial_pitch", "year", "artists", "label", "genres", "tracklist"],
+					additionalProperties: false,
 					properties: {
 						...baseProps,
-						editorial_pitch: stringSchema("1-2 sentence teaser.", 30),
-						year: stringSchema("Year string e.g. '2001'.", 4),
+						editorial_pitch: stringSchema("1-2 sentence teaser."),
+						year: stringSchema("Year string e.g. '2001'."),
 						bpm: stringSchema(
 							"BPM at album scope, e.g. '110 BPM' or '95-120 BPM'. Only if stated in the corpus.",
-							0,
 						),
-						musical_key: stringSchema("Key signature at album scope, e.g. 'C minor'. Only if stated.", 0),
+						musical_key: stringSchema("Key signature at album scope, e.g. 'C minor'. Only if stated."),
 						vocals: stringSchema(
 							"Lead/backing vocal credits as free text, e.g. 'lead: Pharrell Williams; backing: Nile Rodgers'.",
-							0,
 						),
-						samples_notes: stringSchema("Notes about samples or interpolations on the record.", 0),
+						samples_notes: stringSchema("Notes about samples or interpolations on the record."),
 						inspirations: stringSchema(
 							"Stated stylistic inspirations, e.g. 'Chic-style disco guitar, late-70s Philadelphia soul'.",
-							0,
 						),
-						artists: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "artists"),
-							minItems: "1",
-							maxItems: "5",
-						},
+						artists: arraySchema(edgeRefSchemaFor("project", "artists")),
 						label: edgeRefSchemaFor("project", "label"),
-						genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "genres"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						tracklist: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "tracklist"),
-							minItems: "2",
-							maxItems: "20",
-						},
-						producers: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "producers"),
-							minItems: "0",
-							maxItems: "6",
-						},
-						personnel: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "personnel"),
-							minItems: "0",
-							maxItems: "20",
-						},
-						related_projects: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("project", "related_projects"),
-							minItems: "0",
-							maxItems: "6",
-						},
+						genres: arraySchema(edgeRefSchemaFor("project", "genres")),
+						tracklist: arraySchema(edgeRefSchemaFor("project", "tracklist")),
+						producers: arraySchema(edgeRefSchemaFor("project", "producers")),
+						personnel: arraySchema(edgeRefSchemaFor("project", "personnel")),
+						related_projects: arraySchema(edgeRefSchemaFor("project", "related_projects")),
 					},
 				},
 			};
 		}
 		case "track": {
 			return {
-				zodValidator: z.unknown(),
 				schema: {
-					type: GType.OBJECT,
+					type: "object",
 					required: [...requiredBase, "editorial_teaser", "year", "artists", "project", "genres"],
+					additionalProperties: false,
 					properties: {
 						...baseProps,
-						editorial_teaser: stringSchema("1-2 sentence teaser.", 30),
-						year: stringSchema("Year string e.g. '1999'.", 4),
-						duration: stringSchema("e.g. '5:47'.", 0),
-						bpm: stringSchema("BPM if stated, e.g. '100 BPM'.", 0),
-						musical_key: stringSchema("Key signature if stated, e.g. 'D major'.", 0),
+						editorial_teaser: stringSchema("1-2 sentence teaser."),
+						year: stringSchema("Year string e.g. '1999'."),
+						duration: stringSchema("e.g. '5:47'."),
+						bpm: stringSchema("BPM if stated, e.g. '100 BPM'."),
+						musical_key: stringSchema("Key signature if stated, e.g. 'D major'."),
 						vocals: stringSchema(
 							"Vocal credits as free text, e.g. 'lead: Pharrell Williams; backing harmonies: Pharrell Williams, Nile Rodgers'.",
-							0,
 						),
-						samples_notes: stringSchema("Notes about samples or interpolations.", 0),
-						inspirations: stringSchema("Stated stylistic inspirations.", 0),
-						artists: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "artists"),
-							minItems: "1",
-							maxItems: "5",
-						},
+						samples_notes: stringSchema("Notes about samples or interpolations."),
+						inspirations: stringSchema("Stated stylistic inspirations."),
+						artists: arraySchema(edgeRefSchemaFor("track", "artists")),
 						project: edgeRefSchemaFor("track", "project"),
 						label: edgeRefSchemaFor("track", "label"),
-						genres: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "genres"),
-							minItems: "1",
-							maxItems: "5",
-						},
-						producers: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "producers"),
-							minItems: "0",
-							maxItems: "5",
-						},
-						personnel: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "personnel"),
-							minItems: "0",
-							maxItems: "20",
-						},
-						samples: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "samples"),
-							minItems: "0",
-							maxItems: "6",
-						},
-						sampled_by: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "sampled_by"),
-							minItems: "0",
-							maxItems: "6",
-						},
+						genres: arraySchema(edgeRefSchemaFor("track", "genres")),
+						producers: arraySchema(edgeRefSchemaFor("track", "producers")),
+						personnel: arraySchema(edgeRefSchemaFor("track", "personnel")),
+						samples: arraySchema(edgeRefSchemaFor("track", "samples")),
+						sampled_by: arraySchema(edgeRefSchemaFor("track", "sampled_by")),
 						remix_of: edgeRefSchemaFor("track", "remix_of"),
-						remixed_by: {
-							type: GType.ARRAY,
-							items: edgeRefSchemaFor("track", "remixed_by"),
-							minItems: "0",
-							maxItems: "6",
-						},
+						remixed_by: arraySchema(edgeRefSchemaFor("track", "remixed_by")),
 					},
 				},
 			};
@@ -770,11 +643,11 @@ async function generateNodeDraft(
 	research: ResearchResult,
 	log: PipelineLog,
 ): Promise<DraftResult> {
-	const apiKey = deps.geminiApiKey ?? pipelineConfig.geminiApiKey;
-	if (!apiKey) throw new Error("GEMINI_API_KEY missing");
+	const apiKey = deps.anthropicApiKey ?? pipelineConfig.anthropicApiKey;
+	if (!apiKey) throw new Error("ANTHROPIC_API_KEY missing");
 	const tLlm = Date.now();
 	const { schema } = makeNodeSchema(input.type);
-	const ai = new GoogleGenAI({ apiKey });
+	const client = new Anthropic({ apiKey });
 	const model = deps.model ?? pipelineConfig.defaultModel;
 
 	// Variability nonce (goal-2): each call carries a unique session id so that two fresh
@@ -783,50 +656,57 @@ async function generateNodeDraft(
 	const sessionNonce = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
 	const userPrompt = `${buildUserPrompt(input, research.searchResults, research.corpus)}\n\n<writing_session id="${sessionNonce}">Pick a fresh narrative angle for this session — open with a different concrete fact than you would by default, vary sentence rhythm and which collaborators/scene markers you foreground. Do NOT invent facts; vary only the grounded angle.</writing_session>`;
 
-	async function generate() {
-		return ai.models.generateContent({
-			model,
-			contents: [{ role: "user", parts: [{ text: userPrompt }] }],
-			config: {
-				systemInstruction: SYSTEM_PROMPT,
-				responseMimeType: "application/json",
-				responseSchema: schema,
-				// Higher temperature (goal-2 variability rubric): two fresh materializations of
-				// the same entity must produce substantially different prose. 0.4 was too tight.
-				temperature: pipelineConfig.temperature,
-				// Disable thinking on Flash Lite — we don't need CoT for this constrained extraction
-				// task, and it adds 1-3s of latency for no measurable accuracy gain.
-				thinkingConfig: { thinkingBudget: 0 },
-			},
-		});
-	}
-	let resp: Awaited<ReturnType<typeof generate>>;
-	try {
-		resp = await generate();
-	} catch (e) {
-		// One quick retry on Gemini 503/UNAVAILABLE — transient infra blips shouldn't fail a node.
-		const msg = e instanceof Error ? e.message : String(e);
-		if (msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED")) {
-			log(`[pipeline] gemini transient (${msg.slice(0, 80)}), retrying in 600ms`);
-			await new Promise((r) => setTimeout(r, pipelineConfig.retryDelayMs));
-			resp = await generate();
-		} else {
-			throw e;
-		}
-	}
+	// 2026-09-16 (TRA-239): no manual retry loop — the SDK retries 429/5xx/connection errors
+	// internally (client `maxRetries`, default 2) before giving up. A give-up surfaces as a typed
+	// `Anthropic.APIError` subclass (RateLimitError, InternalServerError, ...), which is left to
+	// propagate uncaught here rather than caught and re-thrown as a generic Error: callers/tests
+	// branch on `instanceof Anthropic.APIError`, never on the message string.
+	log(`[pipeline] anthropic call model=${model}`);
+	const resp = await client.messages.create({
+		model,
+		// Haiku 4.5 takes no `thinking` param on this call (goal: TRA-239 contract) — this
+		// constrained JSON-extraction task doesn't benefit from CoT, and omitting `thinking`
+		// entirely (rather than passing `{type: "disabled"}`) is Haiku 4.5's documented no-thinking
+		// mode, unlike Opus-tier models which default to adaptive thinking when the param is omitted.
+		max_tokens: pipelineConfig.maxOutputTokens,
+		system: SYSTEM_PROMPT,
+		messages: [{ role: "user", content: userPrompt }],
+		// Higher temperature (goal-2 variability rubric): two fresh materializations of the same
+		// entity must produce substantially different prose.
+		temperature: pipelineConfig.temperature,
+		output_config: { format: { type: "json_schema", schema: schema as unknown as Record<string, unknown> } },
+	});
 	const llmMs = Date.now() - tLlm;
-	const raw = resp.text;
-	if (!raw) throw new Error("Gemini returned no text");
-	const parsedRaw = JSON.parse(raw) as Record<string, unknown>;
-	const usage = (
-		resp as unknown as { usageMetadata?: { promptTokenCount?: number; candidatesTokenCount?: number } }
-	).usageMetadata;
+
+	// Truncated structured output: `resp.content` may hold a partial (sometimes still-parseable
+	// but semantically incomplete) JSON blob. Treat it as a typed failure rather than risk
+	// validating a half-written node — the caller retries the whole node, not this one call.
+	if (resp.stop_reason === "max_tokens") {
+		throw new DraftGenerationError(
+			`Anthropic response for ${input.type}:${input.name} was truncated at max_tokens=${pipelineConfig.maxOutputTokens}`,
+		);
+	}
+	const textBlock = resp.content.find((b): b is Anthropic.TextBlock => b.type === "text");
+	if (!textBlock?.text) {
+		throw new DraftGenerationError(
+			`Anthropic returned no text for ${input.type}:${input.name} (stop_reason=${resp.stop_reason})`,
+		);
+	}
+	let parsedRaw: Record<string, unknown>;
+	try {
+		parsedRaw = JSON.parse(textBlock.text) as Record<string, unknown>;
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		throw new DraftGenerationError(
+			`Anthropic returned unparsable JSON for ${input.type}:${input.name}: ${msg}`,
+		);
+	}
 
 	return {
 		raw: parsedRaw,
 		llmMs,
-		inputTokens: usage?.promptTokenCount ?? 0,
-		outputTokens: usage?.candidatesTokenCount ?? 0,
+		inputTokens: resp.usage.input_tokens,
+		outputTokens: resp.usage.output_tokens,
 	};
 }
 
@@ -1220,10 +1100,10 @@ async function enrichFromMusicBrainz(
 
 function buildMetrics(t0: number, research: ResearchResult, draft: DraftResult): PipelineResult["metrics"] {
 	const totalBytes = research.corpus.reduce((a, c) => a + c.markdown.length, 0);
-	// Gemini 3.1 Flash Lite preview pricing (approx): $0.075 / 1M input, $0.30 / 1M output.
+	// Claude Haiku 4.5 pricing (TRA-239): $1 / 1M input, $5 / 1M output.
 	const costUsd =
-		(draft.inputTokens * pricingConfig.geminiFlashLiteInputUsdPerMillion +
-			draft.outputTokens * pricingConfig.geminiFlashLiteOutputUsdPerMillion) /
+		(draft.inputTokens * pricingConfig.claudeHaikuInputUsdPerMillion +
+			draft.outputTokens * pricingConfig.claudeHaikuOutputUsdPerMillion) /
 		1_000_000;
 
 	return {
@@ -1291,8 +1171,9 @@ function canonicalizeDraft(
 	const next: Record<string, unknown> = { ...raw, type: input.type, slug, name: nameStr };
 	if (input.disambiguator) next.disambiguator = input.disambiguator;
 
-	// Gemini's structured output sometimes omits keys that have 0 minItems; the Zod schema
-	// still requires list-edge fields, so default them to [] here.
+	// The model's structured output can still omit an optional array key (see the "Anthropic
+	// structured-output schema builders" comment above makeNodeSchema); the Zod schema requires
+	// list-edge fields regardless, so default them to [] here.
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
 	}
