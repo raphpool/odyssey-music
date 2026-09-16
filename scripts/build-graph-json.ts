@@ -19,10 +19,11 @@ async function main(): Promise<void> {
 		includeImageUrls: true,
 		quarantineOrphanGenres: true,
 		scrubQuarantinedRefs: true,
+		includeTaxonomy: true,
 	});
 	await writeFile(outFile, JSON.stringify(out, null, 2));
 	console.log(
-		`wrote ${outFile}: ${out.nodes.length} nodes, ${out.edges.length} edges (quarantined ${out.quarantine?.length ?? 0} orphan genres)`,
+		`wrote ${outFile}: ${out.nodes.length} nodes, ${out.edges.length} edges (quarantined ${out.quarantine?.length ?? 0} orphan genres, taxonomy ${out.taxonomy ? `${out.taxonomy.genres.length} genres` : "absent"})`,
 	);
 }
 

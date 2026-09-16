@@ -1,6 +1,8 @@
 import { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
 import { loadGenreRedirects } from "./genre-registry.js";
+import { loadGenreTaxonomy } from "./genre-taxonomy.js";
+import { type GenreTaxonomyProjection, projectGenreTaxonomy } from "./genre-taxonomy-projection.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
@@ -43,6 +45,10 @@ export interface GraphProjection {
 	// duplicate-merge migration output) so a deep link to a merged-away genre slug can be
 	// resolved by the front (TRA-23, 2026-09-10). Absent when the table has no entries.
 	redirects?: Record<string, string>;
+	// Picker-v2 projection of data/genre-taxonomy.json (TRA-133/TRA-134). Absent when
+	// `includeTaxonomy` isn't requested, or the source file isn't present -- keeps a graph built
+	// without it byte-identical to before, mirroring quarantine/redirects above.
+	taxonomy?: GenreTaxonomyProjection;
 }
 
 export interface BuildGraphOptions {
@@ -52,6 +58,12 @@ export interface BuildGraphOptions {
 	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
 	// own `path` param — test-only injection point (TRA-23, 2026-09-10).
 	redirectsPath?: string;
+	// Projects data/genre-taxonomy.json onto this graph (TRA-134). Off by default so callers that
+	// don't ask for it (scripts, other tests) see no behavior change.
+	includeTaxonomy?: boolean;
+	// Override for data/genre-taxonomy.json's default location, mirroring redirectsPath above --
+	// test-only injection point (TRA-134).
+	taxonomyPath?: string;
 }
 
 export async function buildGraphFromCache(
@@ -108,7 +120,27 @@ export async function buildGraphFromCache(
 	// still-empty data/genre-redirects.json skeleton (TRA-22 not yet run) byte-identical to
 	// pre-TRA-23 output.
 	if (redirects.size > 0) out.redirects = Object.fromEntries(redirects);
+
+	// Enrich after the base projection is filtered above, so quarantined genres are already gone
+	// from `out` by the time projectGenreTaxonomy measures coverage against it (TRA-134).
+	if (options.includeTaxonomy) {
+		const taxonomy = await loadTaxonomyOrUndefined(options.taxonomyPath);
+		if (taxonomy) out.taxonomy = await projectGenreTaxonomy(taxonomy, cache, out, redirects);
+	}
 	return out;
+}
+
+// A missing taxonomy file is a normal, silent no-op (the graph stays usable without picker v2) --
+// any other failure (invalid JSON, failed schema/invariant validation) is loadGenreTaxonomy's own
+// diagnostic and must propagate, not be swallowed (TRA-134).
+async function loadTaxonomyOrUndefined(path: string | undefined) {
+	try {
+		return await loadGenreTaxonomy(path);
+	} catch (error) {
+		const cause = error instanceof Error ? (error.cause as NodeJS.ErrnoException | undefined) : undefined;
+		if (cause?.code === "ENOENT") return undefined;
+		throw error;
+	}
 }
 
 export function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {

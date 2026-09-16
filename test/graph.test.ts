@@ -308,3 +308,141 @@ describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () 
 		expect(graph.redirects).toEqual({ "genre:old": "genre:electronic" });
 	});
 });
+
+describe("buildGraphFromCache — genre taxonomy projection wired into both exports (TRA-134)", () => {
+	let root: string;
+	let cacheDir: string;
+	let taxonomyPath: string;
+
+	beforeEach(async () => {
+		root = await mkdtemp(join(tmpdir(), "odyssey-graph-taxonomy-"));
+		// loadGenreTaxonomy derives its own cache root from the taxonomy path's directory
+		// (src/genre-taxonomy.ts's cacheRootFor): a non-"data" parent means "<parent>/cache", so
+		// nesting the graph's own cache dir there keeps both lookups pointed at the same fixture.
+		cacheDir = join(root, "cache");
+		taxonomyPath = join(root, "genre-taxonomy.json");
+	});
+	afterEach(async () => rm(root, { recursive: true, force: true }));
+
+	function taxonomyFixture() {
+		return {
+			version: 2,
+			families: [{ key: "core", label: "Core", order: 0 }],
+			genres: [
+				{
+					id: "local:test-genre",
+					name: "Test Genre",
+					family: "core",
+					published: true,
+					sourceSlugs: ["genre:test-genre"],
+				},
+			],
+		};
+	}
+	async function writeTaxonomy(fixture: unknown): Promise<void> {
+		await writeFile(taxonomyPath, JSON.stringify(fixture), "utf8");
+	}
+
+	it("attaches the taxonomy projection for an admissible genre while keeping the quarantine policy for unrelated orphans", async () => {
+		await writeRawNode(
+			cacheDir,
+			genreNode({
+				slug: "genre:test-genre",
+				name: "Test Genre",
+				related_genres: [{ type: "genre", slug: "genre:test-support", name: "Support" }],
+				key_artists: [
+					{ type: "artist", slug: "artist:a", name: "A" },
+					{ type: "artist", slug: "artist:b", name: "B" },
+					{ type: "artist", slug: "artist:c", name: "C" },
+				],
+			}),
+		);
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:test-support", name: "Support" }));
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:orphan", name: "Orphan" }));
+		await writeRawNode(cacheDir, artistNode({ slug: "artist:a", name: "A" }));
+		await writeRawNode(cacheDir, artistNode({ slug: "artist:b", name: "B" }));
+		await writeRawNode(cacheDir, artistNode({ slug: "artist:c", name: "C" }));
+		await writeTaxonomy(taxonomyFixture());
+
+		const graph = await buildGraphFromCache(cacheDir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+			includeTaxonomy: true,
+			taxonomyPath,
+		});
+
+		expect(graph.quarantine).toEqual([
+			{ id: "genre:orphan", name: "Orphan", reason: "no genre-genre edges" },
+		]);
+		expect(graph.nodes.map((node) => node.id)).not.toContain("genre:orphan");
+		expect(graph.taxonomy).toEqual({
+			version: 2,
+			families: [{ key: "core", label: "Core", order: 0 }],
+			genres: [{ id: "local:test-genre", name: "Test Genre", family: "core", slugs: ["genre:test-genre"] }],
+			legacySelectionBySlug: { "genre:test-genre": ["local:test-genre"] },
+		});
+	});
+
+	it("omits a quarantined source from the taxonomy, since taxonomy enrichment runs after quarantine filtering", async () => {
+		// No genre-genre edges at all -> quarantined and spliced out of the base projection before
+		// projectGenreTaxonomy ever sees it, even though the raw node still exists on disk.
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:test-genre", name: "Test Genre" }));
+		await writeTaxonomy(taxonomyFixture());
+
+		const graph = await buildGraphFromCache(cacheDir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+			includeTaxonomy: true,
+			taxonomyPath,
+		});
+
+		expect(graph.quarantine).toEqual([
+			{ id: "genre:test-genre", name: "Test Genre", reason: "no genre-genre edges" },
+		]);
+		expect(graph.taxonomy?.genres).toEqual([]);
+		expect(graph.taxonomy?.legacySelectionBySlug["genre:test-genre"]).toBeUndefined();
+	});
+
+	it("omits the taxonomy field, without error, when the taxonomy file is absent", async () => {
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
+
+		const graph = await buildGraphFromCache(cacheDir, {
+			includeTaxonomy: true,
+			taxonomyPath: join(root, "missing-taxonomy.json"),
+		});
+
+		expect(graph.taxonomy).toBeUndefined();
+		expect(graph.nodes.map((node) => node.id)).toContain("genre:solo");
+	});
+
+	it("propagates the taxonomy loader's own diagnostic for an invalid taxonomy file, instead of silently omitting it", async () => {
+		await writeFile(taxonomyPath, "{not json", "utf8");
+
+		await expect(buildGraphFromCache(cacheDir, { includeTaxonomy: true, taxonomyPath })).rejects.toThrow(
+			/invalid genre taxonomy json/i,
+		);
+	});
+
+	it("doesn't attach a taxonomy when includeTaxonomy isn't requested, even if the file is present", async () => {
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
+		await writeTaxonomy(taxonomyFixture());
+
+		const graph = await buildGraphFromCache(cacheDir, {});
+
+		expect(graph.taxonomy).toBeUndefined();
+	});
+
+	it("produces the same taxonomy from the static build path and the HTTP graph service for the same cache", async () => {
+		// No taxonomyPath override here: both calls resolve data/genre-taxonomy.json the same way
+		// createGraphService/buildGraphFromCache do in production, so this exercises the real
+		// wiring rather than a fixture -- the point of D1b is that the two exports agree.
+		const staticGraph = await buildGraphFromCache(dir, {
+			quarantineOrphanGenres: true,
+			scrubQuarantinedRefs: true,
+			includeTaxonomy: true,
+		});
+		const serviceGraph = await createGraphService(dir).getGraph();
+
+		expect(serviceGraph.taxonomy).toEqual(staticGraph.taxonomy);
+	});
+});

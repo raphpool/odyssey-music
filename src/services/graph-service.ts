@@ -6,6 +6,7 @@ export function createGraphService(cacheDir: string) {
 			return buildGraphFromCache(cacheDir, {
 				quarantineOrphanGenres: true,
 				scrubQuarantinedRefs: true,
+				includeTaxonomy: true,
 			});
 		},
 	};
