@@ -21,7 +21,7 @@ on:
         description: "Max number of top-up candidates to select"
         required: false
         type: string
-        default: "20"
+        default: "3"
       dry_run:
         description: "Plan only, write nothing to the cache"
         required: false
@@ -41,9 +41,14 @@ env:
   # produces — disjoint measurement domains, thresholds not kept in sync.
   TOPUP_DIFF_LINES_CAP: "600"
   TOPUP_DIFF_FILES_CAP: "20"
-  # Without an upper bound, a max_nodes typo burns the API quota before the job's
-  # own timeout kills it.
-  TOPUP_MAX_NODES_CAP: "500"
+  # Measured 2026-09-16 against cache/nodes/genre/ (254 files, 26069 lines): a
+  # genre node averages ~103 lines and touches ~3 files (its own file plus
+  # inverse-edge updates on neighbouring nodes). "Validate max_nodes" derives
+  # its node-count bound from these ratios against the two caps above, so the
+  # per-run node limit and the diff caps can no longer contradict each other —
+  # a nominal-sized batch is guaranteed to clear both.
+  TOPUP_LINES_PER_NODE: "103"
+  TOPUP_FILES_PER_NODE: "3"
 
 jobs:
   top-up:
@@ -65,14 +70,29 @@ jobs:
       - name: Validate max_nodes
         env:
           MAX_NODES: ${{ github.event.inputs.max_nodes }}
+          MAX_NEW: ${{ github.event.inputs.max_new }}
         run: |
           set -euo pipefail
           if ! [[ "$MAX_NODES" =~ ^[0-9]+$ ]]; then
             echo "::error::max_nodes must be a non-negative integer, got: $MAX_NODES"
             exit 1
           fi
-          if [ "$MAX_NODES" -gt "$TOPUP_MAX_NODES_CAP" ]; then
-            echo "::error::max_nodes ($MAX_NODES) exceeds the safety cap of $TOPUP_MAX_NODES_CAP — likely a typo. Lower it, or raise TOPUP_MAX_NODES_CAP deliberately."
+          if ! [[ "$MAX_NEW" =~ ^[0-9]+$ ]]; then
+            echo "::error::max_new must be a non-negative integer, got: $MAX_NEW"
+            exit 1
+          fi
+          # Derived, not hardcoded: a batch must clear BOTH diff caps, so the node
+          # bound is the tighter of the two ratios (see the env: block above).
+          bound_by_lines=$(( TOPUP_DIFF_LINES_CAP / TOPUP_LINES_PER_NODE ))
+          bound_by_files=$(( TOPUP_DIFF_FILES_CAP / TOPUP_FILES_PER_NODE ))
+          bound=$bound_by_lines
+          if [ "$bound_by_files" -lt "$bound" ]; then bound=$bound_by_files; fi
+          if [ "$MAX_NODES" -gt "$bound" ]; then
+            echo "::error::max_nodes ($MAX_NODES) exceeds the batch bound of $bound nodes (min of $bound_by_lines from the line cap, $bound_by_files from the file cap) — a proposal batch fits in $bound nodes; retry with max_nodes <= $bound."
+            exit 1
+          fi
+          if [ "$MAX_NEW" -gt "$bound" ]; then
+            echo "::error::max_new ($MAX_NEW) exceeds the batch bound of $bound nodes — a proposal batch fits in $bound nodes; retry with max_new <= $bound."
             exit 1
           fi
 
@@ -122,6 +142,9 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
 
+      # Safety net only: "Validate max_nodes" already keeps a nominal run under
+      # both caps, so this should not fire on the normal path — it catches a
+      # candidate that writes more than the average node (e.g. many neighbours).
       - name: Reject oversized diff
         if: steps.diff.outputs.oversized == 'true'
         run: |

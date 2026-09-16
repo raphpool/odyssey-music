@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 
@@ -12,6 +12,18 @@ const workflow = readFileSync(workflowPath, "utf8");
 // that marker (rather than on "- name:") catches steps without a `name:` too
 // (checkout, setup-node, npm ci).
 const steps = workflow.split(/\n {6}- /).slice(1);
+
+/** Dedents a step's `run: |` body so it can be executed standalone by bash. */
+function runBodyOf(step: string): string {
+	const marker = "\n        run: |\n";
+	const index = step.indexOf(marker);
+	if (index === -1) throw new Error(`run: | block not found in step: ${step.slice(0, 40)}`);
+	return step
+		.slice(index + marker.length)
+		.split("\n")
+		.map((line) => (line.startsWith(" ".repeat(10)) ? line.slice(10) : line))
+		.join("\n");
+}
 
 describe("top-up-genres workflow (TRA-70)", () => {
 	it("triggers only on workflow_dispatch, never on schedule or push", () => {
@@ -79,9 +91,54 @@ describe("top-up-genres workflow (TRA-70)", () => {
 		expect(stepsWithSecrets[0]).toMatch(/^name: Run genre top-up/);
 	});
 
-	it("caps max_nodes with an explicit upper bound to limit blast radius from a typo", () => {
-		expect(workflow).toMatch(/TOPUP_MAX_NODES_CAP/);
-		expect(workflow).toMatch(/"\$MAX_NODES" -gt "\$TOPUP_MAX_NODES_CAP"/);
+	it("derives the max_nodes/max_new bound from the diff caps instead of an independent constant, and max_new's default stays under it (TRA-70 review round 2)", () => {
+		// The two limits used to be independent and could contradict each other: a
+		// nominal max_nodes=20 run (the old default) wrote ~20 nodes at ~103 lines
+		// each, blowing past TOPUP_DIFF_LINES_CAP=600 *after* paying for the API
+		// calls. The fix derives the node bound from the diff caps themselves, so
+		// that can no longer happen — this executes the real "Validate max_nodes"
+		// step body (not a re-implementation) to prove it.
+		const linesCap = Number(workflow.match(/TOPUP_DIFF_LINES_CAP:\s*"(\d+)"/)?.[1]);
+		const filesCap = Number(workflow.match(/TOPUP_DIFF_FILES_CAP:\s*"(\d+)"/)?.[1]);
+		const linesPerNode = Number(workflow.match(/TOPUP_LINES_PER_NODE:\s*"(\d+)"/)?.[1]);
+		const filesPerNode = Number(workflow.match(/TOPUP_FILES_PER_NODE:\s*"(\d+)"/)?.[1]);
+		const maxNewDefault = Number(
+			workflow
+				.slice(workflow.indexOf("max_new:"), workflow.indexOf("dry_run:"))
+				.match(/default:\s*"(\d+)"/)?.[1],
+		);
+		for (const value of [linesCap, filesCap, linesPerNode, filesPerNode, maxNewDefault]) {
+			expect(value).toBeGreaterThan(0);
+		}
+		const bound = Math.floor(Math.min(linesCap / linesPerNode, filesCap / filesPerNode));
+
+		// Static invariant: the default alone must never need the oversized-diff
+		// safety net.
+		expect(maxNewDefault).toBeLessThanOrEqual(bound);
+		expect(maxNewDefault * linesPerNode).toBeLessThanOrEqual(linesCap);
+		expect(maxNewDefault * filesPerNode).toBeLessThanOrEqual(filesCap);
+
+		// Dynamic: run the actual derivation-and-rejection logic from the workflow.
+		const validateStep = steps.find((step) => step.startsWith("name: Validate max_nodes"));
+		expect(validateStep).toBeDefined();
+		const script = runBodyOf(validateStep as string);
+		const run = (maxNodes: number, maxNew: number): number | null =>
+			spawnSync("bash", ["-c", script], {
+				env: {
+					...process.env,
+					TOPUP_DIFF_LINES_CAP: String(linesCap),
+					TOPUP_DIFF_FILES_CAP: String(filesCap),
+					TOPUP_LINES_PER_NODE: String(linesPerNode),
+					TOPUP_FILES_PER_NODE: String(filesPerNode),
+					MAX_NODES: String(maxNodes),
+					MAX_NEW: String(maxNew),
+				},
+			}).status;
+
+		expect(run(bound, bound)).toBe(0); // exactly at the derived bound: accepted
+		expect(run(bound + 1, 1)).not.toBe(0); // max_nodes over the bound: rejected
+		expect(run(1, bound + 1)).not.toBe(0); // max_new over the bound: rejected
+		expect(run(20, 20)).not.toBe(0); // the old max_nodes/max_new=20 defaults: now rejected up front
 	});
 
 	it("rejects diffs over the declared cap and accepts diffs within it (nominal, limit, failure)", () => {
