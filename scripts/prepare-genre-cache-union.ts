@@ -32,7 +32,12 @@ import { loadGenreRedirects } from "../src/genre-registry.js";
 import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
-import { isRecord, readCacheNodes, runMigration } from "./migrations/2026-09-04-merge-genre-duplicates.js";
+import {
+	isRecord,
+	looksLikeCacheDir,
+	readCacheNodes,
+	runMigration,
+} from "./migrations/2026-09-04-merge-genre-duplicates.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 
@@ -56,17 +61,32 @@ export interface UnionManifest {
 	serverCacheDir: string;
 	entries: UnionEntry[];
 	skipped: { source: "repo" | "server"; path: string; error: string }[];
-	migrationPreview: { groupsFound: number; exitCode: 0 | 1; report: string };
+	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
+	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
+	// the one that actually describes the artifact's final state.
+	migrationPreview?: { groupsFound: number; exitCode: 0 | 1; report: string };
 	// Present only with --apply-merge: the FINAL state of the artifact after the migration
 	// actually ran (winner/criterion/losers/rewritten-edge counts live only in `report`'s free
 	// text -- MigrationResult has no structured per-group field, and the migration script is out
 	// of scope to change).
 	migrationApply?: {
+		// false when the migration refused to write anything at all (e.g. an onboarding-protected
+		// loser) -- exitCode:1 alone doesn't say THAT happened vs. some other invariant failure;
+		// `applied` is the one-glance signal, `refusalReason` the free-text detail.
+		applied: boolean;
 		groupsFound: number;
 		deletedCount: number;
 		exitCode: 0 | 1;
 		report: string;
 		archivedNodeCount: number;
+		// Only present when NOT applied: the migration's own stderr text. MigrationResult carries
+		// no structured failure reason, and `report` (unlike this) describes the merge plan, not
+		// why it was refused.
+		refusalReason?: string;
+		// Union entries (decision "copied"/"kept") that existed right after the union step but no
+		// longer have a live node after the migration ran -- the "final state, not intermediate"
+		// gap the B6a review flagged (a merged-away node reported as still "copied").
+		removedByMigration: { slug: Slug; redirectsTo?: Slug }[];
 	};
 	referenceRegressions?: ReferenceRegression[];
 }
@@ -134,6 +154,23 @@ function collectReferencedSlugs(nodes: readonly NodeFile[]): Set<Slug> {
 	return result;
 }
 
+/** Captures whatever `fn` writes to stderr while it runs -- the only way to recover the
+ * migration's refusal reason (e.g. an onboarding-protected slug), since `MigrationResult` has no
+ * structured error field and `report` describes the merge plan, not why it was refused. */
+async function captureStderr<T>(fn: () => Promise<T>): Promise<{ result: T; stderr: string }> {
+	const original = process.stderr.write.bind(process.stderr);
+	let captured = "";
+	process.stderr.write = ((chunk: string | Uint8Array) => {
+		captured += typeof chunk === "string" ? chunk : Buffer.from(chunk).toString("utf8");
+		return true;
+	}) as typeof process.stderr.write;
+	try {
+		return { result: await fn(), stderr: captured };
+	} finally {
+		process.stderr.write = original;
+	}
+}
+
 async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
 	const { body } = parseSlug(file.slug);
 	const dest = join(baseDir, file.type, `${body}.json`);
@@ -165,7 +202,8 @@ export function countUnionProblems(manifest: UnionManifest): number {
 		(e) => e.decision === "kept" && e.qidOnlyOn !== undefined && e.qidOnlyOn !== e.from,
 	).length;
 	const regressions = manifest.referenceRegressions?.length ?? 0;
-	return conflicts + droppedQid + manifest.skipped.length + manifest.migrationPreview.exitCode + regressions;
+	const migrationExitCode = manifest.migrationApply?.exitCode ?? manifest.migrationPreview?.exitCode ?? 0;
+	return conflicts + droppedQid + manifest.skipped.length + migrationExitCode + regressions;
 }
 
 export async function buildCacheUnion(
@@ -247,29 +285,46 @@ export async function buildCacheUnion(
 		await cp(nodesDir, join(archiveDir, "pre-migration"), { recursive: true });
 		archivedNodeCount = entries.filter((e) => e.decision !== "conflict").length;
 	}
-	const migration = await runMigration(outputDir, options.applyMerge ?? false, {
-		redirectsPath,
-		...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
-	});
+	const { result: migration, stderr: migrationStderr } = await captureStderr(() =>
+		runMigration(outputDir, options.applyMerge ?? false, {
+			redirectsPath,
+			...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
+		}),
+	);
 
 	let migrationApply: UnionManifest["migrationApply"];
 	let referenceRegressions: UnionManifest["referenceRegressions"];
 	if (options.applyMerge) {
+		// Re-read AFTER the migration ran: the union's live nodes and its redirects, which the
+		// migration may just have rewritten (a merged pair with no PRE-existing redirect gets one
+		// created here) -- reusing the pre-migration `sourceRedirects` here would silently miss
+		// that and falsely flag a reference to the loser as broken.
+		const unionLiveSlugs = new Set(await new NodeCache(outputDir).listSlugs());
+		const unionRedirects = await loadGenreRedirects(redirectsPath);
+
+		const removedByMigration = entries
+			.filter((e) => e.decision !== "conflict" && !unionLiveSlugs.has(e.slug))
+			.map((e) => {
+				const redirectsTo = unionRedirects.get(e.slug);
+				return { slug: e.slug, ...(redirectsTo ? { redirectsTo } : {}) };
+			});
+
 		migrationApply = {
+			applied: migration.exitCode === 0,
 			groupsFound: migration.groupsFound,
 			deletedCount: migration.deletedCount,
 			exitCode: migration.exitCode,
 			report: migration.report,
 			archivedNodeCount,
+			...(migration.exitCode !== 0 ? { refusalReason: migrationStderr.trim() } : {}),
+			removedByMigration,
 		};
 
 		// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
-		// source's OWN live nodes plus the pre-migration redirect table; "resolvable in the union"
-		// uses the union's live nodes and its (migration-rewritten) redirects after apply.
+		// source's OWN live nodes plus the PRE-migration redirect table (what that source actually
+		// had); "resolvable in the union" uses the re-read post-migration state above.
 		const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
 		const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
-		const unionLiveSlugs = new Set(await new NodeCache(outputDir).listSlugs());
-		const unionRedirects = await loadGenreRedirects(redirectsPath);
 		const referenced = collectReferencedSlugs([...repoNodes, ...serverNodes]);
 
 		referenceRegressions = [...referenced].flatMap((slug) => {
@@ -288,13 +343,17 @@ export async function buildCacheUnion(
 		serverCacheDir,
 		entries,
 		skipped,
-		// With --apply-merge this mirrors the SAME applied run as migrationApply below (no separate
-		// dry run) -- kept for the non-apply case, where it's the only migration-related field.
-		migrationPreview: {
-			groupsFound: migration.groupsFound,
-			exitCode: migration.exitCode,
-			report: migration.report,
-		},
+		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
+		// FINAL-state) migration field -- see its type doc.
+		...(migrationApply
+			? {}
+			: {
+					migrationPreview: {
+						groupsFound: migration.groupsFound,
+						exitCode: migration.exitCode,
+						report: migration.report,
+					},
+				}),
 		...(migrationApply ? { migrationApply } : {}),
 		...(referenceRegressions ? { referenceRegressions } : {}),
 	};
@@ -309,9 +368,18 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
 	const unknownFlag = args.find((a) => a.startsWith("--") && a !== "--apply-merge");
 	if (unknownFlag) throw new Error(`unknown argument: ${unknownFlag}`);
 	const applyMerge = args.includes("--apply-merge");
-	const [repoCacheDir, serverCacheDir] = args.filter((a) => !a.startsWith("--"));
-	if (!repoCacheDir || !serverCacheDir) {
+	// Exactly two positional arguments -- an unflagged typo (no dashes, or a single dash) must
+	// never silently become a third, ignored token.
+	const positional = args.filter((a) => a !== "--apply-merge");
+	const [repoCacheDir, serverCacheDir] = positional;
+	if (positional.length !== 2 || !repoCacheDir || !serverCacheDir) {
 		throw new Error("usage: <repo-cache-dir> <server-cache-dir> [--apply-merge]");
+	}
+	for (const dir of [repoCacheDir, serverCacheDir]) {
+		// A typo'd/nonexistent source silently unions "the other side alone" and exits 0 --
+		// same guard the migration script's own CLI uses on itself.
+		if (!(await looksLikeCacheDir(dir)))
+			throw new Error(`${dir} is not a cache directory (no nodes/ subdirectory)`);
 	}
 	const { outputDir, manifest } = await buildCacheUnion(repoCacheDir, serverCacheDir, { applyMerge });
 	console.log(`Union written to ${outputDir} (${manifest.entries.length} entries)`);

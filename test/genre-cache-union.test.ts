@@ -79,6 +79,19 @@ describe("countUnionProblems", () => {
 			),
 		).toBeGreaterThan(0);
 	});
+
+	// Isolates referenceRegressions's own contribution: no conflict, no dropped qid, nothing else
+	// wrong -- only a non-empty referenceRegressions should make this non-zero.
+	it("is non-zero for referenceRegressions alone, with no conflict and a healthy entries list", () => {
+		expect(
+			countUnionProblems(
+				manifest({
+					entries: [{ decision: "copied", from: "repo", slug: "genre:x" }],
+					referenceRegressions: [{ slug: "genre:gone", resolvedIn: ["server"] }],
+				}),
+			),
+		).toBeGreaterThan(0);
+	});
 });
 
 function node(overrides: Partial<Record<string, unknown>> & { slug: string }): Record<string, unknown> {
@@ -130,7 +143,7 @@ describe("buildCacheUnion", () => {
 		await rm(serverDir, { recursive: true, force: true });
 	});
 
-	function union(extra: { applyMerge?: boolean } = {}) {
+	function union(extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[] } = {}) {
 		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
 	}
 
@@ -220,8 +233,8 @@ describe("buildCacheUnion", () => {
 				{ decision: "copied", from: "server", slug: "genre:country" },
 			]),
 		);
-		expect(manifest.migrationPreview.groupsFound).toBe(1);
-		expect(manifest.migrationPreview.exitCode).toBe(0);
+		expect(manifest.migrationPreview?.groupsFound).toBe(1);
+		expect(manifest.migrationPreview?.exitCode).toBe(0);
 		// Preview only: neither slug is deleted from the union artifact.
 		expect(await readFile(join(outputDir, "nodes", "genre", "country-music.json"), "utf8")).toBeTruthy();
 		expect(await readFile(join(outputDir, "nodes", "genre", "country.json"), "utf8")).toBeTruthy();
@@ -248,10 +261,21 @@ describe("buildCacheUnion", () => {
 			const { outputDir, manifest } = await union({ applyMerge: true });
 
 			expect(manifest.migrationApply).toEqual(
-				expect.objectContaining({ groupsFound: 1, deletedCount: 1, exitCode: 0, archivedNodeCount: 2 }),
+				expect.objectContaining({
+					applied: true,
+					groupsFound: 1,
+					deletedCount: 1,
+					exitCode: 0,
+					archivedNodeCount: 2,
+				}),
 			);
 			expect(manifest.migrationApply?.report.length).toBeGreaterThan(0);
 			expect(countUnionProblems(manifest)).toBe(0);
+			// The manifest must describe the FINAL state, not the union step's now-stale decision --
+			// the loser is no longer "copied", it's removedByMigration, with the winner it redirects to.
+			expect(manifest.migrationApply?.removedByMigration).toEqual([
+				{ slug: "genre:country-music", redirectsTo: "genre:country" },
+			]);
 
 			// The loser (older materialized_at) is gone from nodes/, but both variants survive
 			// under archive/pre-migration/ -- the exact B6a review gap this ticket closes.
@@ -271,9 +295,63 @@ describe("buildCacheUnion", () => {
 			expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
 		});
 
-		it("flags a reference genuinely broken by the union (a conflict-excluded slug) but not a reference that was never materialized in either source", async () => {
+		it("captures the migration's refusal (an onboarding-protected loser) as applied:false + refusalReason, instead of a report indistinguishable from a successful merge", async () => {
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-IDM" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-IDM", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+
+			// Both candidate slugs protected, so whichever the election picks as the loser is covered
+			// without depending on knowing the election's exact tie-break order.
+			const { manifest } = await union({ applyMerge: true, onboardingSlugs: ["genre:idm", "genre:idm-alt"] });
+
+			expect(manifest.migrationApply).toEqual(
+				expect.objectContaining({ applied: false, exitCode: 1, deletedCount: 0 }),
+			);
+			expect(manifest.migrationApply?.refusalReason).toMatch(/onboarding genre slug/);
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		it("re-reads the union's post-migration redirects (not the pre-existing source table): a reference to a loser with NO pre-existing redirect must not false-positive as broken", async () => {
+			await seed(repoDir, node({ slug: "genre:ambient-techno", qid: "Q-AT" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:ambient", qid: "Q-AT", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:idm-witness",
+					related_genres: [{ slug: "genre:ambient-techno", type: "genre", name: "Ambient Techno" }],
+				}),
+			);
+
+			const { outputDir, manifest } = await union({ applyMerge: true });
+
+			expect(manifest.migrationApply?.deletedCount).toBe(1);
+			expect(manifest.referenceRegressions).toEqual([]);
+
+			const [atSurvives, ambSurvives] = await Promise.all(
+				["ambient-techno", "ambient"].map((body) =>
+					readFile(join(outputDir, "nodes", "genre", `${body}.json`), "utf8").then(
+						() => true,
+						() => false,
+					),
+				),
+			);
+			expect(atSurvives).not.toBe(ambSurvives);
+			const loserSlug = atSurvives ? "genre:ambient" : "genre:ambient-techno";
+			expect(manifest.migrationApply?.removedByMigration).toEqual([
+				expect.objectContaining({ slug: loserSlug, redirectsTo: expect.any(String) }),
+			]);
+		});
+
+		it("flags references genuinely broken by the union (conflict-excluded slugs), scanning edges from BOTH sources, but not a reference that was never materialized anywhere", async () => {
 			await seed(repoDir, node({ slug: "genre:conflict", qid: "Q1" }));
 			await seed(serverDir, node({ slug: "genre:conflict", qid: "Q2" }));
+			await seed(repoDir, node({ slug: "genre:conflict-2", qid: "QA" }));
+			await seed(serverDir, node({ slug: "genre:conflict-2", qid: "QB" }));
 			await seed(
 				repoDir,
 				node({
@@ -284,12 +362,25 @@ describe("buildCacheUnion", () => {
 					],
 				}),
 			);
+			// This edge exists ONLY on the server side -- a "repo edges only" mutant would never
+			// even consider genre:conflict-2 a candidate reference, missing this regression.
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:server-witness",
+					related_genres: [{ slug: "genre:conflict-2", type: "genre", name: "Conflict 2" }],
+				}),
+			);
 
 			const { manifest } = await union({ applyMerge: true });
 
-			expect(manifest.referenceRegressions).toEqual([
-				{ slug: "genre:conflict", resolvedIn: expect.arrayContaining(["repo", "server"]) },
-			]);
+			expect(manifest.referenceRegressions).toEqual(
+				expect.arrayContaining([
+					{ slug: "genre:conflict", resolvedIn: expect.arrayContaining(["repo", "server"]) },
+					{ slug: "genre:conflict-2", resolvedIn: expect.arrayContaining(["repo", "server"]) },
+				]),
+			);
+			expect(manifest.referenceRegressions).toHaveLength(2);
 			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
 		});
 	});
