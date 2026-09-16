@@ -1929,9 +1929,19 @@
 				"qid": "Q2346991"
 			},
 			{
+				"slug": "genre:drill-and-bass",
+				"name": "Drill and Bass",
+				"qid": "Q1259016"
+			},
+			{
 				"slug": "genre:dubstep",
 				"name": "Dubstep",
 				"qid": "Q20474"
+			},
+			{
+				"slug": "genre:drum-and-bass",
+				"name": "Drum and bass",
+				"qid": "Q188994"
 			}
 		]
 	},
