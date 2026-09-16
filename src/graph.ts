@@ -1,8 +1,11 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
 import { loadGenreRedirects } from "./genre-registry.js";
 import { loadGenreTaxonomy } from "./genre-taxonomy.js";
 import { type GenreTaxonomyProjection, projectGenreTaxonomy } from "./genre-taxonomy-projection.js";
+import { logger } from "./logger.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
@@ -11,6 +14,20 @@ import {
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
 import type { Citation, EdgeRef, NodePayload, NodeType } from "./types.js";
+
+const log = logger.child({ module: "graph" });
+
+// Absolute, module-relative resolution of data/genre-taxonomy.json (mirrors loadGenreRedirects's
+// own default in genre-registry.ts). Exported so the live service and the static build both pass
+// it explicitly instead of relying on loadGenreTaxonomy's own cwd-relative default -- otherwise
+// taxonomy resolution silently depends on the process's working directory, and the two exports
+// can only agree on it by accident (TRA-134 review).
+export const DEFAULT_TAXONOMY_PATH = join(
+	dirname(fileURLToPath(import.meta.url)),
+	"..",
+	"data",
+	"genre-taxonomy.json",
+);
 
 export interface VizNode {
 	id: string;
@@ -45,9 +62,10 @@ export interface GraphProjection {
 	// duplicate-merge migration output) so a deep link to a merged-away genre slug can be
 	// resolved by the front (TRA-23, 2026-09-10). Absent when the table has no entries.
 	redirects?: Record<string, string>;
-	// Picker-v2 projection of data/genre-taxonomy.json (TRA-133/TRA-134). Absent when
-	// `includeTaxonomy` isn't requested, or the source file isn't present -- keeps a graph built
-	// without it byte-identical to before, mirroring quarantine/redirects above.
+	// Picker-v2 projection of data/genre-taxonomy.json (TRA-133/TRA-134). Absent when the
+	// `taxonomy` option isn't set, the source file isn't present, or (in "degrade" mode) it
+	// failed to load/project against this cache -- keeps a graph built without it byte-identical
+	// to before, mirroring quarantine/redirects above.
 	taxonomy?: GenreTaxonomyProjection;
 }
 
@@ -58,11 +76,21 @@ export interface BuildGraphOptions {
 	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
 	// own `path` param — test-only injection point (TRA-23, 2026-09-10).
 	redirectsPath?: string;
-	// Projects data/genre-taxonomy.json onto this graph (TRA-134). Off by default so callers that
-	// don't ask for it (scripts, other tests) see no behavior change.
-	includeTaxonomy?: boolean;
-	// Override for data/genre-taxonomy.json's default location, mirroring redirectsPath above --
-	// test-only injection point (TRA-134).
+	// Projects data/genre-taxonomy.json onto this graph (TRA-134). Unset (default) skips it
+	// entirely, so callers that don't ask for it see no behavior change. A taxonomy file that's
+	// genuinely absent is always a silent no-op in both modes -- the two modes only differ on a
+	// file that's *present but broken relative to this cache* (invalid JSON/schema, or a declared
+	// source slug missing from it):
+	//   - "strict": the failure propagates. Use for the static build, so CI catches a taxonomy
+	//     that has drifted from the committed cache/ before it ships.
+	//   - "degrade": the failure is logged (see log.error below) and `taxonomy` is left off the
+	//     graph, which is otherwise served normally. Use for the live service, whose cache can
+	//     lag the repo's (deploy/deploy-server.sh excludes cache/) -- a stale server cache must
+	//     never 500 the whole explorer over a genre that hasn't been deployed yet (TRA-134 review).
+	taxonomy?: "strict" | "degrade";
+	// Explicit override for data/genre-taxonomy.json's location. Both real callers pass
+	// DEFAULT_TAXONOMY_PATH (exported above) rather than omitting this and relying on
+	// loadGenreTaxonomy's own cwd-relative default; tests point it at a fixture.
 	taxonomyPath?: string;
 }
 
@@ -123,24 +151,38 @@ export async function buildGraphFromCache(
 
 	// Enrich after the base projection is filtered above, so quarantined genres are already gone
 	// from `out` by the time projectGenreTaxonomy measures coverage against it (TRA-134).
-	if (options.includeTaxonomy) {
-		const taxonomy = await loadTaxonomyOrUndefined(options.taxonomyPath);
-		if (taxonomy) out.taxonomy = await projectGenreTaxonomy(taxonomy, cache, out, redirects);
+	if (options.taxonomy) {
+		const taxonomyPath = options.taxonomyPath ?? DEFAULT_TAXONOMY_PATH;
+		try {
+			const taxonomy = await loadGenreTaxonomy(taxonomyPath);
+			out.taxonomy = await projectGenreTaxonomy(taxonomy, cache, out, redirects);
+		} catch (error) {
+			// A genuinely absent taxonomy file is a normal, silent no-op in both modes -- the
+			// graph stays usable without picker v2, same as before this file was ever authored.
+			if (!isTaxonomyAbsent(error)) reportTaxonomyFailure(options.taxonomy, taxonomyPath, error);
+		}
 	}
 	return out;
 }
 
-// A missing taxonomy file is a normal, silent no-op (the graph stays usable without picker v2) --
-// any other failure (invalid JSON, failed schema/invariant validation) is loadGenreTaxonomy's own
-// diagnostic and must propagate, not be swallowed (TRA-134).
-async function loadTaxonomyOrUndefined(path: string | undefined) {
-	try {
-		return await loadGenreTaxonomy(path);
-	} catch (error) {
-		const cause = error instanceof Error ? (error.cause as NodeJS.ErrnoException | undefined) : undefined;
-		if (cause?.code === "ENOENT") return undefined;
-		throw error;
-	}
+function isTaxonomyAbsent(error: unknown): boolean {
+	const cause = error instanceof Error ? (error.cause as NodeJS.ErrnoException | undefined) : undefined;
+	return cause?.code === "ENOENT";
+}
+
+// A taxonomy file that's present but broken relative to this cache (invalid JSON/schema, or
+// loadGenreTaxonomy/projectGenreTaxonomy hitting a declared source slug missing from it) never
+// surfaces with file context on its own -- a bare Zod error, for one, prints as a JSON array of
+// issues. Wrapping it here means both the CI-facing "strict" failure and the "degrade" log line
+// point at the exact file (TRA-134 review).
+function reportTaxonomyFailure(mode: "strict" | "degrade", path: string, error: unknown): void {
+	const message = error instanceof Error ? error.message : String(error);
+	const wrapped = new Error(`Genre taxonomy at ${path} could not be projected: ${message}`, { cause: error });
+	if (mode === "strict") throw wrapped;
+	log.error("genre taxonomy projection failed; serving the graph without it", {
+		taxonomyPath: path,
+		error: wrapped.message,
+	});
 }
 
 export function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {

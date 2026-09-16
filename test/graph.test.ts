@@ -1,7 +1,8 @@
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { STATIC_GRAPH_OPTIONS } from "../scripts/build-graph-json.js";
 import { buildGraphFromCache, toVizNode } from "../src/graph.js";
 import { createGraphService } from "../src/services/graph-service.js";
 import type { ArtistNode, EdgeRef, GenreNode, NodePayload } from "../src/types.js";
@@ -324,6 +325,9 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 	});
 	afterEach(async () => rm(root, { recursive: true, force: true }));
 
+	// Declares one genre sourced from genre:test-genre. The fixture is deliberately reused
+	// whether or not genre:test-genre is ever written to cacheDir, so the same taxonomy file
+	// exercises both "the source resolves" and "the source is missing from this cache" below.
 	function taxonomyFixture() {
 		return {
 			version: 2,
@@ -342,8 +346,9 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 	async function writeTaxonomy(fixture: unknown): Promise<void> {
 		await writeFile(taxonomyPath, JSON.stringify(fixture), "utf8");
 	}
-
-	it("attaches the taxonomy projection for an admissible genre while keeping the quarantine policy for unrelated orphans", async () => {
+	// Materializes an admissible genre:test-genre: linked to genre:test-support (clears the
+	// genre-genre quarantine check) and to three artists (clears the 3-neighbour publish floor).
+	async function writeAdmissibleTestGenre(): Promise<void> {
 		await writeRawNode(
 			cacheDir,
 			genreNode({
@@ -358,16 +363,20 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 			}),
 		);
 		await writeRawNode(cacheDir, genreNode({ slug: "genre:test-support", name: "Support" }));
-		await writeRawNode(cacheDir, genreNode({ slug: "genre:orphan", name: "Orphan" }));
 		await writeRawNode(cacheDir, artistNode({ slug: "artist:a", name: "A" }));
 		await writeRawNode(cacheDir, artistNode({ slug: "artist:b", name: "B" }));
 		await writeRawNode(cacheDir, artistNode({ slug: "artist:c", name: "C" }));
+	}
+
+	it("attaches the taxonomy projection for an admissible genre while keeping the quarantine policy for unrelated orphans", async () => {
+		await writeAdmissibleTestGenre();
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:orphan", name: "Orphan" }));
 		await writeTaxonomy(taxonomyFixture());
 
 		const graph = await buildGraphFromCache(cacheDir, {
 			quarantineOrphanGenres: true,
 			scrubQuarantinedRefs: true,
-			includeTaxonomy: true,
+			taxonomy: "strict",
 			taxonomyPath,
 		});
 
@@ -392,7 +401,7 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 		const graph = await buildGraphFromCache(cacheDir, {
 			quarantineOrphanGenres: true,
 			scrubQuarantinedRefs: true,
-			includeTaxonomy: true,
+			taxonomy: "strict",
 			taxonomyPath,
 		});
 
@@ -403,11 +412,11 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 		expect(graph.taxonomy?.legacySelectionBySlug["genre:test-genre"]).toBeUndefined();
 	});
 
-	it("omits the taxonomy field, without error, when the taxonomy file is absent", async () => {
+	it("omits the taxonomy field, without error, when the taxonomy file is absent -- in strict mode too", async () => {
 		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
 
 		const graph = await buildGraphFromCache(cacheDir, {
-			includeTaxonomy: true,
+			taxonomy: "strict",
 			taxonomyPath: join(root, "missing-taxonomy.json"),
 		});
 
@@ -415,15 +424,71 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 		expect(graph.nodes.map((node) => node.id)).toContain("genre:solo");
 	});
 
-	it("propagates the taxonomy loader's own diagnostic for an invalid taxonomy file, instead of silently omitting it", async () => {
+	it("wraps an unparseable taxonomy file's error with the file path, in strict mode", async () => {
 		await writeFile(taxonomyPath, "{not json", "utf8");
 
-		await expect(buildGraphFromCache(cacheDir, { includeTaxonomy: true, taxonomyPath })).rejects.toThrow(
-			/invalid genre taxonomy json/i,
+		const failure: unknown = await buildGraphFromCache(cacheDir, { taxonomy: "strict", taxonomyPath }).catch(
+			(error: unknown) => error,
+		);
+
+		expect(failure).toBeInstanceOf(Error);
+		expect((failure as Error).message).toContain(taxonomyPath);
+		expect((failure as Error).message).toContain("could not be projected");
+		expect((failure as Error).message).toMatch(/invalid genre taxonomy json/i);
+	});
+
+	it("wraps a well-formed but schema-invalid taxonomy file's raw Zod error with the file path, in strict mode", async () => {
+		// Valid JSON, but `genres` must be an array -- fails GenreTaxonomySchema.parse, which
+		// throws a bare ZodError (an unadorned array of issues) with no file context on its own.
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify({ version: 2, families: [], genres: "not-an-array" }),
+			"utf8",
+		);
+
+		const failure: unknown = await buildGraphFromCache(cacheDir, { taxonomy: "strict", taxonomyPath }).catch(
+			(error: unknown) => error,
+		);
+
+		expect(failure).toBeInstanceOf(Error);
+		expect((failure as Error).message).toContain(taxonomyPath);
+		expect((failure as Error).message).toContain("could not be projected");
+	});
+
+	it("fails loudly, in strict mode, when a declared taxonomy source is missing from this cache", async () => {
+		// genre:test-genre is declared in the taxonomy but never written to cacheDir -- the exact
+		// production scenario the review caught: a live cache lagging the repo's committed cache/.
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
+		await writeTaxonomy(taxonomyFixture());
+
+		await expect(buildGraphFromCache(cacheDir, { taxonomy: "strict", taxonomyPath })).rejects.toThrow(
+			/genre source slug disappeared/i,
 		);
 	});
 
-	it("doesn't attach a taxonomy when includeTaxonomy isn't requested, even if the file is present", async () => {
+	it("serves the graph without a taxonomy field, logging the failure, in degrade mode with the same missing source", async () => {
+		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
+		await writeTaxonomy(taxonomyFixture());
+		const errorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
+
+		try {
+			const graph = await buildGraphFromCache(cacheDir, { taxonomy: "degrade", taxonomyPath });
+
+			expect(graph.taxonomy).toBeUndefined();
+			expect(graph.nodes.map((node) => node.id)).toContain("genre:solo");
+			expect(errorSpy).toHaveBeenCalledTimes(1);
+			const logged = JSON.parse((errorSpy.mock.calls[0] as [string])[0]) as {
+				level?: string;
+				taxonomyPath?: string;
+			};
+			expect(logged.level).toBe("error");
+			expect(logged.taxonomyPath).toBe(taxonomyPath);
+		} finally {
+			errorSpy.mockRestore();
+		}
+	});
+
+	it("doesn't attach a taxonomy when the `taxonomy` option isn't set, even if the file is present", async () => {
 		await writeRawNode(cacheDir, genreNode({ slug: "genre:solo", name: "Solo" }));
 		await writeTaxonomy(taxonomyFixture());
 
@@ -432,17 +497,20 @@ describe("buildGraphFromCache — genre taxonomy projection wired into both expo
 		expect(graph.taxonomy).toBeUndefined();
 	});
 
-	it("produces the same taxonomy from the static build path and the HTTP graph service for the same cache", async () => {
-		// No taxonomyPath override here: both calls resolve data/genre-taxonomy.json the same way
-		// createGraphService/buildGraphFromCache do in production, so this exercises the real
-		// wiring rather than a fixture -- the point of D1b is that the two exports agree.
-		const staticGraph = await buildGraphFromCache(dir, {
-			quarantineOrphanGenres: true,
-			scrubQuarantinedRefs: true,
-			includeTaxonomy: true,
-		});
-		const serviceGraph = await createGraphService(dir).getGraph();
+	it("produces the same taxonomy from the static build path and the HTTP graph service for the same cache and taxonomy fixture", async () => {
+		await writeAdmissibleTestGenre();
+		await writeTaxonomy(taxonomyFixture());
 
+		// Reuses the real STATIC_GRAPH_OPTIONS the script ships with (only the fixture path
+		// differs), so dropping `taxonomy: "strict"` from the script would turn this red instead
+		// of leaving it green -- the gap the previous version of this test had (TRA-134 review).
+		const staticGraph = await buildGraphFromCache(cacheDir, { ...STATIC_GRAPH_OPTIONS, taxonomyPath });
+		// Real createGraphService, not a hand-copied options object -- same reasoning.
+		const serviceGraph = await createGraphService(cacheDir, { taxonomyPath }).getGraph();
+
+		expect(staticGraph.taxonomy?.genres).toEqual([
+			{ id: "local:test-genre", name: "Test Genre", family: "core", slugs: ["genre:test-genre"] },
+		]);
 		expect(serviceGraph.taxonomy).toEqual(staticGraph.taxonomy);
 	});
 });
