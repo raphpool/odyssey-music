@@ -93,7 +93,7 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 			family: "soul-rhythm-and-blues",
 			qid: "Q2743435",
 		},
-		{ id: "local:rare-groove", name: "Rare Groove", family: "soul-rhythm-and-blues" },
+		{ id: "Q3287743", name: "Rare Groove", family: "soul-rhythm-and-blues", qid: "Q3287743" },
 		{
 			id: "Q45981",
 			name: "Rhythm & Blues",
@@ -107,7 +107,7 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 		true,
 		true,
 		true,
-		false,
+		true,
 		true,
 	]);
 	expect(corrected.map((entry) => Object.hasOwn(entry, "sourceSlugs"))).toEqual([
