@@ -65,7 +65,10 @@ interface RunOptions {
 	apply?: boolean;
 	env?: Record<string, string>;
 	seedServer?: boolean;
-	seedRedirects?: string | undefined;
+	seedRedirects?: string;
+	// The server redirects table is seeded with a valid empty table by default so most scenarios
+	// don't have to think about it; set this to skip seeding entirely (the missing-table test).
+	omitRedirects?: boolean;
 	crawlLock?: boolean;
 	serviceActive?: boolean;
 }
@@ -86,9 +89,9 @@ function run(options: RunOptions = {}) {
 
 	if (options.seedServer !== false) seedServerCache(serverCacheRemote);
 	else mkdirSync(join(serverCacheRemote, "nodes"), { recursive: true });
-	if (options.seedRedirects !== undefined) {
+	if (!options.omitRedirects) {
 		mkdirSync(join(serverRoot, "data"), { recursive: true });
-		writeFileSync(serverRedirectsRemote, options.seedRedirects);
+		writeFileSync(serverRedirectsRemote, options.seedRedirects ?? JSON.stringify({ redirects: {} }));
 	}
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
@@ -126,6 +129,13 @@ case "$cmd" in
     else
       bash -c "$cmd"
     fi
+    ;;
+  *"gzip -t"*)
+    if [[ "\${TEST_CORRUPT_ARCHIVE:-0}" == "1" ]]; then
+      path=$(printf '%s' "$cmd" | sed -n "s/.*gzip -t '\\(.*\\)'.*/\\1/p")
+      printf 'not a gzip file' > "$path"
+    fi
+    bash -c "$cmd"
     ;;
   *)
     bash -c "$cmd"
@@ -223,6 +233,19 @@ describe("sync-genre-cache.sh", () => {
 		// transfer, or the archive.
 		expect(calls).not.toContain("systemctl stop");
 		expect(existsSync(serverBackupDir)).toBe(false);
+		// Nit: the union's own mktemp output dir (never removed by prepare-genre-cache-union.ts
+		// itself) must not be left behind once this script exits.
+		const unionDir = /Union written to (\S+) /.exec(result.stdout)?.[1];
+		expect(unionDir).toBeTruthy();
+		expect(existsSync(unionDir!)).toBe(false);
+	});
+
+	// Nit: a missing/unreachable server table must be a hard refusal, never a silent "no
+	// redirects" -- same discipline as loadRequiredGenreRedirects (TRA-245).
+	it("refuses when the server's redirects table is missing, rather than assuming it's empty", () => {
+		const { result } = run({ omitRedirects: true });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/redirects table missing|unreachable/);
 	});
 
 	it("refuses to apply and never writes when the union itself reports a problem (e.g. a qid conflict)", () => {
@@ -242,6 +265,8 @@ describe("sync-genre-cache.sh", () => {
 			join(serverCacheRemote, "nodes", "genre", "conflict.json"),
 			JSON.stringify({ type: "genre", name: "x", qid: "Q2", materialized_at: "2026-01-01T00:00:00.000Z" }),
 		);
+		mkdirSync(join(serverRoot, "data"), { recursive: true });
+		writeFileSync(join(serverRoot, "data", "genre-redirects.json"), JSON.stringify({ redirects: {} }));
 		const callsLog = join(tmp("sync-calls-"), "calls.log");
 		writeFileSync(callsLog, "");
 		writeFakeBin(binDir, "ssh", `printf 'ssh %s\\n' "$*" >> "$TEST_CALLS"\nhost="$1"; shift\nbash -c "$*"\n`);
@@ -304,10 +329,11 @@ describe("sync-genre-cache.sh", () => {
 		expect(existsSync(serverBackupDir)).toBe(false);
 	});
 
-	it("archives the server cache before any apply, and prints the rollback archive path", () => {
+	it("archives the server cache before any apply, verifies it with gzip -t, and prints the rollback archive path", () => {
 		const { result, calls, serverBackupDir } = run({ apply: true });
 		expect(result.status).toBe(0);
 		expect(calls).toContain("tar czf");
+		expect(calls).toContain("gzip -t");
 		const archives = readdirSync(serverBackupDir);
 		expect(archives).toHaveLength(1);
 		expect(archives[0]).toMatch(/^genre-cache-.*\.tar\.gz$/);
@@ -316,12 +342,21 @@ describe("sync-genre-cache.sh", () => {
 		);
 	});
 
-	it("stops the writer, verifies it stopped, transfers additively (never --delete), and restarts it", () => {
+	// Nit: the archive is verified (gzip -t) before the script proceeds to stop the writer.
+	it("refuses to proceed when the archive fails its integrity check", () => {
+		const { result, calls } = run({ apply: true, env: { TEST_CORRUPT_ARCHIVE: "1" } });
+		expect(result.status).not.toBe(0);
+		expect(calls).toContain("gzip -t");
+		expect(calls).not.toContain("systemctl stop");
+	});
+
+	it("stops the writer, verifies it stopped, transfers additively (never --delete or --del), and restarts it", () => {
 		const { result, calls, serverCacheRemote, repoCacheDir } = run({ apply: true });
 		expect(result.status).toBe(0);
 		expect(calls).toContain("systemctl stop odyssey-server.service");
 		expect(calls).toContain("systemctl start odyssey-server.service");
 		expect(calls).not.toMatch(/rsync[^\n]*--delete/);
+		expect(calls).not.toMatch(/rsync[^\n]*--del\b/);
 		// The repo-only node made it into the server's nodes/ tree, and the server-only node (never
 		// in the repo) was NOT deleted -- the criterion this whole script exists to satisfy.
 		const repoSlug = readdirSync(join(repoCacheDir, "nodes", "genre"))[0];

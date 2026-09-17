@@ -13,12 +13,19 @@ set -euo pipefail
 # No personal SSH key: this relies on the caller's ssh-agent (same as deploy-server.sh / the
 # `deploy` job on the self-hosted runner) and never writes to $HOME/.ssh or $HOME/.
 #
+# DO NOT RUN WITH --apply YET: an independent review of this ticket found a relevé/arrêt race and
+# writer-left-down gaps in the --apply path below (a stop or the smoke test failing can leave
+# odyssey-server stopped). The fix is TRA-271 (blocks TRA-269, the prod rollout) -- --apply is safe
+# only once that ticket lands. Preview-only usage (no --apply) is unaffected.
+#
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
-#   bash deploy/sync-genre-cache.sh --apply    # also syncs the server cache
+#   bash deploy/sync-genre-cache.sh --apply    # also syncs the server cache (see above)
 #
 # Real workflow_dispatch wiring (when this runs, and from what trigger) is out of scope here --
-# that's B6c, a separate ticket.
+# that's B6c, a separate ticket. A git branch/clean-tree guard (deploy-server.sh:34-43's own
+# pattern) was reviewed as a nit but deferred to TRA-271 to keep this ticket under the diff-size
+# gate -- add it there alongside the other hardening.
 
 SERVER="${SERVER:-root@46.101.167.241}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -46,7 +53,13 @@ done
 WORKDIR="$(mktemp -d)"
 SNAPSHOT_DIR="$WORKDIR/server-cache-snapshot"
 SNAPSHOT_REDIRECTS="$WORKDIR/server-genre-redirects.json"
-cleanup() { rm -rf "$WORKDIR"; }
+UNION_DIR=""
+# Removes WORKDIR and the union's own mktemp output under os.tmpdir(), which
+# prepare-genre-cache-union.ts never removes itself.
+cleanup() {
+	[[ -n "$UNION_DIR" ]] && rm -rf "$UNION_DIR"
+	rm -rf "$WORKDIR"
+}
 trap cleanup EXIT
 
 # Content fingerprint of the server's cache tree, computed ON the server (not from a local copy,
@@ -60,11 +73,13 @@ remote_hash() {
 echo "==> Snapshotting server cache (read-only) from $SERVER:$SERVER_CACHE_REMOTE"
 mkdir -p "$SNAPSHOT_DIR"
 rsync -az "$SERVER:$SERVER_CACHE_REMOTE/" "$SNAPSHOT_DIR/"
-if ssh "$SERVER" "test -f '$SERVER_REDIRECTS_REMOTE'"; then
-	ssh "$SERVER" "cat '$SERVER_REDIRECTS_REMOTE'" >"$SNAPSHOT_REDIRECTS"
-else
-	echo '{"redirects":{}}' >"$SNAPSHOT_REDIRECTS"
+# A missing table is a hard refusal, never a silent "no redirects" (same discipline as
+# loadRequiredGenreRedirects, TRA-245): the server's table is untrusted data.
+if ! ssh "$SERVER" "test -f '$SERVER_REDIRECTS_REMOTE'"; then
+	echo "ERROR: server redirects table missing or unreachable at $SERVER:$SERVER_REDIRECTS_REMOTE -- refusing." >&2
+	exit 1
 fi
+ssh "$SERVER" "cat '$SERVER_REDIRECTS_REMOTE'" >"$SNAPSHOT_REDIRECTS"
 SNAPSHOT_FINGERPRINT="$(remote_hash)"
 
 echo "==> Building the validated cache union (repo + server snapshot)"
@@ -106,6 +121,8 @@ echo "==> Archiving server cache before writing (mandatory)"
 TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 ARCHIVE_PATH="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar.gz"
 ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar czf '$ARCHIVE_PATH' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")'"
+echo "==> Verifying archive integrity"
+ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
 echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
 
 STOPPED=0
