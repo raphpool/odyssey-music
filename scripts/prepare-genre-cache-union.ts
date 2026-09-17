@@ -268,22 +268,18 @@ async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
 
 /** Pure: merges every list-edge field of `type` between the winning ("kept") node and the other
  * side's -- the winner's own list first, then the loser's edges not already present by slug
- * (unionListField's own "first occurrence wins" rule, reused here so both callers dedupe list
- * edges identically instead of two slightly different implementations drifting apart). An edge
- * that no longer resolves against the union's own live-slug/redirect state (slugResolves -- same
- * rule as resolveReadSlug) is dropped instead of written dangling; the caller reports it via
- * `dropped` (see DroppedEdge) rather than letting it vanish silently, which is the bug this
- * function fixes (B6a-3 / TRA-268 review finding). `ownSlug` is the slug this union entry is
- * being written under (the loop's own key, never `winner.slug`/`loser.slug` -- readCacheNodes
- * never validates cache content, so a node's own claimed slug is untrusted the same way any
- * other field is). An edge on EITHER side that targets `ownSlug` would survive the union as a
- * self-loop (two variants of the same node commonly cross-link as "related") -- dropped here too,
- * from list fields by filtering and from singular fields by clearing to undefined, mirroring
- * mergeGenreEdges's own self-loop handling above (review finding, PR #221 follow-up). Every other
- * field, singular edges included, is otherwise left exactly as the winner had it -- the ticket
- * contract only asks list edges to be unioned. `mergedEdgeCount` only counts edges that came from
- * the LOSER and weren't already on the winner -- the signal worth surfacing in the manifest is
- * how much this run actually recovered. */
+ * (unionListField's "first occurrence wins" rule, reused so both callers dedupe identically). An
+ * edge no longer resolving against the union's own live-slug/redirect state (slugResolves -- same
+ * rule as resolveReadSlug) is dropped instead of written dangling and reported via `dropped` (see
+ * DroppedEdge) instead of vanishing silently -- the bug this function fixes (B6a-3 / TRA-268
+ * review finding). `ownSlug` is the loop's own key, never `winner.slug`/`loser.slug` --
+ * readCacheNodes never validates cache content, so a node's claimed slug is untrusted like any
+ * other field. An edge on EITHER side targeting `ownSlug` would survive as a self-loop (two
+ * variants commonly cross-link as "related") -- dropped here too, from list fields by filtering
+ * and singular fields by clearing to undefined, mirroring mergeGenreEdges's own self-loop handling
+ * above (follow-up review finding). Every other field, singular edges included, is otherwise left
+ * exactly as the winner had it. `mergedEdgeCount` only counts edges the LOSER contributed that
+ * weren't already on the winner -- the signal worth surfacing in the manifest. */
 export function mergeUnionEdges(
 	winner: Record<string, unknown>,
 	loser: Record<string, unknown>,
@@ -329,22 +325,18 @@ export function mergeUnionEdges(
 	return { node: merged, mergedEdgeCount, dropped };
 }
 
-/** Writes a "kept" node to the union's own nodes/ tree through the same schema every real
- * read/write in this codebase goes through (nodePayloadSchema) -- unlike copyNode's raw byte
- * copy (fine for an untouched single-sided or archived file), this node was just reconstructed
- * in memory by mergeUnionEdges, so it must be proven valid before it's ever trusted again (ticket
- * contract: "pas d'écriture brute non validée"). Never throws: this file's own idiom for a
- * per-item problem is degrade-with-report (skippedEntry, redirectsConflicts), not an uncaught
- * exception that kills the whole build before manifest.json is even written -- see
- * InvalidMergedNode and its review finding. Returns `ok: false` on either a genuine schema
- * violation, or on `expectedSlug` not matching the validated node's own `slug` field: readCacheNodes
- * derives a NodeFile's slug/type from the FILENAME, this function's caller passes that same
- * expected slug, but nothing before this point ever confirmed the file's own `slug` field agrees
- * with the name it was found under (an untrusted cache read, same category as every other field --
- * review finding) -- writing it under the wrong path would silently mint a stray file instead of
- * surfacing the mismatch. Uses atomicWriteJson directly rather than NodeCache.write(): the latter
- * also merges pending reverses and emits fresh reverse edges to OTHER nodes, side effects this
- * offline, order-independent union pass must not trigger. */
+/** Writes a "kept" node through the same schema every real read/write in this codebase goes
+ * through (nodePayloadSchema) -- unlike copyNode's raw byte copy, this node was just
+ * reconstructed in memory by mergeUnionEdges, so it must be proven valid before it's trusted
+ * again (ticket contract: "pas d'écriture brute non validée"). Never throws: this file's idiom
+ * for a per-item problem is degrade-with-report (skippedEntry, redirectsConflicts), not an
+ * uncaught exception killing the whole build before manifest.json is written (InvalidMergedNode,
+ * review finding). Also returns `ok: false` when `expectedSlug` (from the FILENAME, via
+ * readCacheNodes) disagrees with the validated node's own `slug` field (untrusted cache content,
+ * same category as any other field) -- writing it under the wrong path would silently mint a
+ * stray file instead of surfacing the mismatch (review finding). Uses atomicWriteJson directly
+ * rather than NodeCache.write(): the latter also emits reverse edges to OTHER nodes, a side
+ * effect this offline, order-independent pass must not trigger. */
 async function writeValidatedNode(
 	nodesDir: string,
 	expectedSlug: Slug,
