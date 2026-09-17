@@ -29,6 +29,7 @@ import { GoogleGenAI } from "@google/genai";
 import { afterAll, vi } from "vitest";
 import {
 	fetchArtistDiscographyMb,
+	fetchArtistEntityMb,
 	fetchEntityGenresMb,
 	fetchLabelEntityMb,
 	fetchLabelMetaMb,
@@ -107,6 +108,7 @@ vi.mock("@google/genai", () => ({
 vi.mock("../../src/musicbrainz.js", () => ({
 	findArtistMbidByName: vi.fn(unexpectedCall("findArtistMbidByName")),
 	fetchArtistDiscographyMb: vi.fn(unexpectedCall("fetchArtistDiscographyMb")),
+	fetchArtistEntityMb: vi.fn(unexpectedCall("fetchArtistEntityMb")),
 	fetchEntityGenresMb: vi.fn(unexpectedCall("fetchEntityGenresMb")),
 	findLabelMbidByName: vi.fn(unexpectedCall("findLabelMbidByName")),
 	fetchLabelMetaMb: vi.fn(unexpectedCall("fetchLabelMetaMb")),
@@ -208,6 +210,7 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 
 	resetToUnexpected(findArtistMbidByName, "findArtistMbidByName");
 	resetToUnexpected(fetchArtistDiscographyMb, "fetchArtistDiscographyMb");
+	resetToUnexpected(fetchArtistEntityMb, "fetchArtistEntityMb");
 	resetToUnexpected(fetchEntityGenresMb, "fetchEntityGenresMb");
 	resetToUnexpected(findLabelMbidByName, "findLabelMbidByName");
 	resetToUnexpected(fetchLabelMetaMb, "fetchLabelMetaMb");
