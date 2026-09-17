@@ -11,7 +11,7 @@ concurrency:
 jobs:
   review-gate:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 8
     permissions:
       checks: read
@@ -21,6 +21,13 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       SHA: ${{ github.event.pull_request.head.sha }}
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - name: Wait for one review provider
         shell: bash
         run: |

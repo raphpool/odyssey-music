@@ -4,10 +4,11 @@ import { pathToFileURL } from "node:url";
 import { Command } from "commander";
 import { cliConfig } from "./config.js";
 import { type CrawlOptions, type CrawlProgress, crawl, crawlGenreSeeds, refreshGenre } from "./crawler.js";
-import { loadEnv } from "./env.js";
+import { type ApiEnv, loadEnv } from "./env.js";
 import { type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
 import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } from "./genre-taxonomy.js";
 import { logger } from "./logger.js";
+import type { PipelineDeps } from "./pipeline.js";
 
 export const program = new Command();
 const log = logger.child({ module: "cli" });
@@ -32,6 +33,25 @@ type CliModeOptions = {
 	refreshGenre?: string;
 	maxDepth?: number;
 };
+
+// TRA-242: --search-provider is validated up front, before loadEnv() or any network call, so
+// an unknown value fails fast with a clear message instead of surfacing deep inside the pipeline.
+export function resolveSearchProvider(value: string): "tavily" | "firecrawl" {
+	if (value === "tavily" || value === "firecrawl") return value;
+	throw new Error(`--search-provider must be "tavily" or "firecrawl" (got: ${value})`);
+}
+
+// Extracted (TRA-242 review) so the CLI -> pipeline wiring for searchProvider is itself
+// testable: inlined in the action closure, a dropped `searchProvider` field is invisible to
+// every existing test (nothing asserts on `deps` directly), so the CLI's --search-provider
+// flag could silently stop reaching the pipeline without a single red test.
+export function buildCrawlDeps(searchProvider: "tavily" | "firecrawl", env: ApiEnv): PipelineDeps {
+	return {
+		tavilyApiKey: env.TAVILY_API_KEY,
+		firecrawlApiKey: env.FIRECRAWL_API_KEY,
+		searchProvider,
+	};
+}
 
 export function resolveCliMode(options: CliModeOptions): CliMode {
 	const selectorCount = [options.genreId, options.family].filter((value) => value !== undefined).length;
@@ -179,7 +199,8 @@ program
 			quiet: boolean;
 		}) => {
 			const mode = resolveCliMode(opts);
-			const env = loadEnv();
+			const searchProvider = resolveSearchProvider(opts.searchProvider);
+			const env = loadEnv({ searchProvider });
 			const t0 = Date.now();
 			const strategy: "bfs" | "popularity" | "hybrid" =
 				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
@@ -192,10 +213,7 @@ program
 				heartbeatMs: opts.heartbeatMs,
 				strategy,
 				bfsHead: opts.bfsHead,
-				deps: {
-					tavilyApiKey: env.TAVILY_API_KEY,
-					firecrawlApiKey: env.FIRECRAWL_API_KEY,
-				},
+				deps: buildCrawlDeps(searchProvider, env),
 			};
 			if (!opts.quiet) {
 				base.logger = (line: string): void => {

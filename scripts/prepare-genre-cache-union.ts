@@ -9,22 +9,35 @@
  * (never the source) so the manifest reports what a real merge would do. Both variants of a
  * compared pair are archived under <output>/archive/{repo,server}/ regardless of outcome.
  *
- * This script does NOT validate references at all -- neither before nor after the (unapplied)
- * merge. A conflict refusal already leaves the output an incomplete cache for that slug (see
- * the non-zero exit code), but nothing here checks whether some OTHER node's edge now points
- * at a slug missing from the union. Reference validation, in delta against the two sources, is
- * TRA-234 (B6b), along with actually applying the migration and unioning pending-reverses.json.
+ * With `--apply-merge` (TRA-234 / B6a-2), the QID-duplicate merge migration is actually applied
+ * to the union's OWN copy: every file under `nodes/` is archived to `archive/pre-migration/`
+ * first (so a variant the migration deletes is never lost from the artifact -- see the B6a
+ * review incident where a live repo node was silently dropped), then `runMigration(outputDir,
+ * true, ...)` runs against the union's own redirects copy (never the source). References are
+ * then validated in DELTA, never in absolute: a slug is "resolvable" in a source when a live
+ * node exists there, or its (pre-migration) redirect target does -- same rule as
+ * `resolveReadSlug`. Only a reference that resolved in at least one source and no longer
+ * resolves in the (migrated) union is a real regression; the cache's normal baseline of
+ * never-materialized edges is not. This does NOT union `pending-reverses.json` between the two
+ * sources -- see the PR for whether that matters for a given run.
  *
- * Usage: tsx scripts/prepare-genre-cache-union.ts <repo-cache-dir> <server-cache-dir>
+ * Usage: tsx scripts/prepare-genre-cache-union.ts <repo-cache-dir> <server-cache-dir> [--apply-merge]
  */
-import { copyFile, mkdir, mkdtemp, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
+import { NodeCache } from "../src/cache.js";
 import { loadGenreRedirects } from "../src/genre-registry.js";
+import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
-import { readCacheNodes, runMigration } from "./migrations/2026-09-04-merge-genre-duplicates.js";
+import {
+	isRecord,
+	looksLikeCacheDir,
+	readCacheNodes,
+	runMigration,
+} from "./migrations/2026-09-04-merge-genre-duplicates.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 
@@ -35,13 +48,47 @@ export type UnionEntry =
 	| { decision: "kept"; from: "repo" | "server"; slug: Slug; tie: boolean; qidOnlyOn?: "repo" | "server" }
 	| { decision: "conflict"; slug: Slug; reason: "qid" | "timestamp" };
 
+// A reference that resolved in a source before the union but no longer resolves after the
+// (applied) migration -- see `slugResolves` and the reference-delta block in `buildCacheUnion`.
+export interface ReferenceRegression {
+	slug: Slug;
+	resolvedIn: ("repo" | "server")[];
+}
+
 export interface UnionManifest {
 	generatedAt: string;
 	repoCacheDir: string;
 	serverCacheDir: string;
 	entries: UnionEntry[];
 	skipped: { source: "repo" | "server"; path: string; error: string }[];
-	migrationPreview: { groupsFound: number; exitCode: 0 | 1; report: string };
+	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
+	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
+	// the one that actually describes the artifact's final state.
+	migrationPreview?: { groupsFound: number; exitCode: 0 | 1; report: string };
+	// Present only with --apply-merge: the FINAL state of the artifact after the migration
+	// actually ran (winner/criterion/losers/rewritten-edge counts live only in `report`'s free
+	// text -- MigrationResult has no structured per-group field, and the migration script is out
+	// of scope to change).
+	migrationApply?: {
+		// false when the migration refused to write anything at all (e.g. an onboarding-protected
+		// loser) -- exitCode:1 alone doesn't say THAT happened vs. some other invariant failure;
+		// `applied` is the one-glance signal, `refusalReason` the free-text detail.
+		applied: boolean;
+		groupsFound: number;
+		deletedCount: number;
+		exitCode: 0 | 1;
+		report: string;
+		archivedNodeCount: number;
+		// Only present when NOT applied: the migration's own stderr text. MigrationResult carries
+		// no structured failure reason, and `report` (unlike this) describes the merge plan, not
+		// why it was refused.
+		refusalReason?: string;
+		// Union entries (decision "copied"/"kept") that existed right after the union step but no
+		// longer have a live node after the migration ran -- the "final state, not intermediate"
+		// gap the B6a review flagged (a merged-away node reported as still "copied").
+		removedByMigration: { slug: Slug; redirectsTo?: Slug }[];
+	};
+	referenceRegressions?: ReferenceRegression[];
 }
 
 /** Pure: which side wins when the SAME raw slug exists on both sides. */
@@ -69,6 +116,59 @@ export function decideSameIdentity(
 	const rest = qidOnlyOn ? { qidOnlyOn } : {};
 	if (repoTime === serverTime) return { from: "repo", tie: true, ...rest };
 	return { from: repoTime > serverTime ? "repo" : "server", tie: false, ...rest };
+}
+
+/** Pure: same resolution rule as `resolveReadSlug` (a live node always wins, else its redirect
+ * target if that target is itself live) -- reimplemented in-memory against a precomputed live-slug
+ * set instead of calling `resolveReadSlug`'s own `NodeCache.has`, which does one file read per
+ * call: checking every referenced slug against three caches (repo/server/union) that way would
+ * mean tens of thousands of extra disk reads on the real cache when the live-slug membership is
+ * already known from `readCacheNodes` / `listSlugs`. */
+export function slugResolves(
+	slug: Slug,
+	liveSlugs: ReadonlySet<Slug>,
+	redirects: ReadonlyMap<Slug, Slug>,
+): boolean {
+	if (liveSlugs.has(slug)) return true;
+	const target = redirects.get(slug);
+	return target !== undefined && liveSlugs.has(target);
+}
+
+/** Every outgoing edge target slug across the given nodes, via the canonical field lists in
+ * node-spec.ts (top-level fields only, list and singular cardinality) -- same source the
+ * duplicate-merge migration itself uses to find edges pointing at a slug. */
+function collectReferencedSlugs(nodes: readonly NodeFile[]): Set<Slug> {
+	const result = new Set<Slug>();
+	for (const { node, type } of nodes) {
+		for (const field of LIST_EDGES_BY_TYPE[type]) {
+			const list = node[field];
+			if (!Array.isArray(list)) continue;
+			for (const edge of list)
+				if (isRecord(edge) && typeof edge.slug === "string") result.add(edge.slug as Slug);
+		}
+		for (const field of SINGULAR_EDGES_BY_TYPE[type]) {
+			const value = node[field];
+			if (isRecord(value) && typeof value.slug === "string") result.add(value.slug as Slug);
+		}
+	}
+	return result;
+}
+
+/** Captures whatever `fn` writes to stderr while it runs -- the only way to recover the
+ * migration's refusal reason (e.g. an onboarding-protected slug), since `MigrationResult` has no
+ * structured error field and `report` describes the merge plan, not why it was refused. */
+async function captureStderr<T>(fn: () => Promise<T>): Promise<{ result: T; stderr: string }> {
+	const original = process.stderr.write.bind(process.stderr);
+	let captured = "";
+	process.stderr.write = ((chunk: string | Uint8Array) => {
+		captured += typeof chunk === "string" ? chunk : Buffer.from(chunk).toString("utf8");
+		return true;
+	}) as typeof process.stderr.write;
+	try {
+		return { result: await fn(), stderr: captured };
+	} finally {
+		process.stderr.write = original;
+	}
 }
 
 async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
@@ -101,13 +201,20 @@ export function countUnionProblems(manifest: UnionManifest): number {
 	const droppedQid = manifest.entries.filter(
 		(e) => e.decision === "kept" && e.qidOnlyOn !== undefined && e.qidOnlyOn !== e.from,
 	).length;
-	return conflicts + droppedQid + manifest.skipped.length + manifest.migrationPreview.exitCode;
+	const regressions = manifest.referenceRegressions?.length ?? 0;
+	const migrationExitCode = manifest.migrationApply?.exitCode ?? manifest.migrationPreview?.exitCode ?? 0;
+	return conflicts + droppedQid + manifest.skipped.length + migrationExitCode + regressions;
 }
 
 export async function buildCacheUnion(
 	repoCacheDir: string,
 	serverCacheDir: string,
-	options: { redirectsPath?: string; outputRoot?: string; onboardingSlugs?: readonly string[] } = {},
+	options: {
+		redirectsPath?: string;
+		outputRoot?: string;
+		onboardingSlugs?: readonly string[];
+		applyMerge?: boolean;
+	} = {},
 ): Promise<{ outputDir: string; manifest: UnionManifest }> {
 	const { nodes: repoNodes, invalid: repoInvalid } = await readCacheNodes(repoCacheDir);
 	const { nodes: serverNodes, invalid: serverInvalid } = await readCacheNodes(serverCacheDir);
@@ -164,10 +271,71 @@ export async function buildCacheUnion(
 		`${JSON.stringify({ redirects: Object.fromEntries(sourceRedirects) }, null, 2)}\n`,
 		"utf8",
 	);
-	const preview = await runMigration(outputDir, false, {
-		redirectsPath,
-		...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
-	});
+	// Only ONE runMigration call ever happens: preview and apply both re-read and recompute the
+	// full duplicate-group plan from scratch (readCacheNodes + election + edge rewrite +
+	// invariants), so calling both on the real cache would double that I/O/CPU cost for nothing.
+	// With --apply-merge, nodes/ must be archived BEFORE this call, since apply may delete losers.
+	let archivedNodeCount = 0;
+	if (options.applyMerge) {
+		// Archive the WHOLE union nodes/ tree -- at least covers what the migration is about to
+		// delete, without needing the migration's own (unexported) per-group loser list. This is
+		// exactly the B6a review gap: a live node deleted by the applied migration must never be
+		// missing from both nodes/ and archive/ at once.
+		await mkdir(nodesDir, { recursive: true });
+		await cp(nodesDir, join(archiveDir, "pre-migration"), { recursive: true });
+		archivedNodeCount = entries.filter((e) => e.decision !== "conflict").length;
+	}
+	const { result: migration, stderr: migrationStderr } = await captureStderr(() =>
+		runMigration(outputDir, options.applyMerge ?? false, {
+			redirectsPath,
+			...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
+		}),
+	);
+
+	let migrationApply: UnionManifest["migrationApply"];
+	let referenceRegressions: UnionManifest["referenceRegressions"];
+	if (options.applyMerge) {
+		// Re-read AFTER the migration ran: the union's live nodes and its redirects, which the
+		// migration may just have rewritten (a merged pair with no PRE-existing redirect gets one
+		// created here) -- reusing the pre-migration `sourceRedirects` here would silently miss
+		// that and falsely flag a reference to the loser as broken.
+		const unionLiveSlugs = new Set(await new NodeCache(outputDir).listSlugs());
+		const unionRedirects = await loadGenreRedirects(redirectsPath);
+
+		const removedByMigration = entries
+			.filter((e) => e.decision !== "conflict" && !unionLiveSlugs.has(e.slug))
+			.map((e) => {
+				const redirectsTo = unionRedirects.get(e.slug);
+				return { slug: e.slug, ...(redirectsTo ? { redirectsTo } : {}) };
+			});
+
+		migrationApply = {
+			applied: migration.exitCode === 0,
+			groupsFound: migration.groupsFound,
+			deletedCount: migration.deletedCount,
+			exitCode: migration.exitCode,
+			report: migration.report,
+			archivedNodeCount,
+			...(migration.exitCode !== 0 ? { refusalReason: migrationStderr.trim() } : {}),
+			removedByMigration,
+		};
+
+		// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
+		// source's OWN live nodes plus the PRE-migration redirect table (what that source actually
+		// had); "resolvable in the union" uses the re-read post-migration state above.
+		const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
+		const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
+		const referenced = collectReferencedSlugs([...repoNodes, ...serverNodes]);
+
+		referenceRegressions = [...referenced].flatMap((slug) => {
+			const resolvedIn: ("repo" | "server")[] = [
+				...(slugResolves(slug, repoLiveSlugs, sourceRedirects) ? (["repo"] as const) : []),
+				...(slugResolves(slug, serverLiveSlugs, sourceRedirects) ? (["server"] as const) : []),
+			];
+			if (resolvedIn.length === 0 || slugResolves(slug, unionLiveSlugs, unionRedirects)) return [];
+			return [{ slug, resolvedIn }];
+		});
+	}
 
 	const manifest: UnionManifest = {
 		generatedAt: new Date().toISOString(),
@@ -175,20 +343,45 @@ export async function buildCacheUnion(
 		serverCacheDir,
 		entries,
 		skipped,
-		migrationPreview: {
-			groupsFound: preview.groupsFound,
-			exitCode: preview.exitCode,
-			report: preview.report,
-		},
+		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
+		// FINAL-state) migration field -- see its type doc.
+		...(migrationApply
+			? {}
+			: {
+					migrationPreview: {
+						groupsFound: migration.groupsFound,
+						exitCode: migration.exitCode,
+						report: migration.report,
+					},
+				}),
+		...(migrationApply ? { migrationApply } : {}),
+		...(referenceRegressions ? { referenceRegressions } : {}),
 	};
 	await writeFile(join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 	return { outputDir, manifest };
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-	const [repoCacheDir, serverCacheDir] = process.argv.slice(2);
-	if (!repoCacheDir || !serverCacheDir) throw new Error("usage: <repo-cache-dir> <server-cache-dir>");
-	const { outputDir, manifest } = await buildCacheUnion(repoCacheDir, serverCacheDir);
+	const args = process.argv.slice(2);
+	// An unrecognized flag must never fall through to a silent preview-mode guess -- see the
+	// sibling migration script's own parseCliArgs for the same discipline.
+	const unknownFlag = args.find((a) => a.startsWith("--") && a !== "--apply-merge");
+	if (unknownFlag) throw new Error(`unknown argument: ${unknownFlag}`);
+	const applyMerge = args.includes("--apply-merge");
+	// Exactly two positional arguments -- an unflagged typo (no dashes, or a single dash) must
+	// never silently become a third, ignored token.
+	const positional = args.filter((a) => a !== "--apply-merge");
+	const [repoCacheDir, serverCacheDir] = positional;
+	if (positional.length !== 2 || !repoCacheDir || !serverCacheDir) {
+		throw new Error("usage: <repo-cache-dir> <server-cache-dir> [--apply-merge]");
+	}
+	for (const dir of [repoCacheDir, serverCacheDir]) {
+		// A typo'd/nonexistent source silently unions "the other side alone" and exits 0 --
+		// same guard the migration script's own CLI uses on itself.
+		if (!(await looksLikeCacheDir(dir)))
+			throw new Error(`${dir} is not a cache directory (no nodes/ subdirectory)`);
+	}
+	const { outputDir, manifest } = await buildCacheUnion(repoCacheDir, serverCacheDir, { applyMerge });
 	console.log(`Union written to ${outputDir} (${manifest.entries.length} entries)`);
 	if (countUnionProblems(manifest) > 0) process.exitCode = 1;
 }
