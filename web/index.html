@@ -885,36 +885,130 @@ function refreshGenreCount() {
 // match is worth 3, a match on a subgenre / related genre of a selection is
 // worth 1. The genre node's own curated edges (key artists, landmark releases)
 // get a bonus so hand-picked entries surface ahead of incidentally-tagged ones.
-function scoreAffinity(genreSlugs) {
-  const direct = new Set(genreSlugs.filter((s) => byId.has(s)));
+//
+// scoreAffinityFromChoices below is the actual engine (TRA-136/D5): it groups
+// slugs by logical choice first, so a choice backed by several source slugs
+// (e.g. a Berlin School / rap français merge, decision 4 of the genre-grid
+// plan) never earns a bigger bonus than a single-source choice just because
+// two of its sources tag the same node or curate the same landmark/key
+// artist. scoreAffinity is its v1 wrapper -- one choice per raw slug -- kept
+// so today's Profile.data.genres (still v1-shaped until D2b/TRA-137 wires v2
+// reads into init()) scores exactly as before.
+
+// True only when every published/resolved child of `family.key` in the
+// projection is among the selected choice ids. No family id is ever stored
+// in `genres` (decision 4): this is re-derived here at scoring time, never
+// persisted by the picker.
+function selectedFamilySlugs(genreIds, taxonomy) {
+  const selected = new Set(genreIds);
+  const childrenByFamily = new Map();
+  for (const g of taxonomy.genres) {
+    if (!childrenByFamily.has(g.family)) childrenByFamily.set(g.family, []);
+    childrenByFamily.get(g.family).push(g.id);
+  }
+  const slugs = [];
+  for (const family of taxonomy.families) {
+    if (!family.slug) continue;
+    const children = childrenByFamily.get(family.key) || [];
+    if (children.length > 0 && children.every((id) => selected.has(id))) slugs.push(family.slug);
+  }
+  return slugs;
+}
+
+// Bundles a v2 profile's picks into one scoring group per logical choice: the
+// taxonomy entry for each selected id, a synthetic group per resolved family
+// umbrella (selectedFamilySlugs above), and one per legacy slug from
+// `unresolvedGenreSlugs` that still resolves against `graph` -- through
+// `resolveSlug` (the redirect table) when given -- and isn't already covered
+// by a selected choice's own sources.
+function resolveScoringChoices(genreIds, taxonomy, unresolvedGenreSlugs, graph, resolveSlug = (slug) => slug) {
+  const entryById = new Map(taxonomy.genres.map((g) => [g.id, g]));
+  const choices = [];
+  for (const id of new Set(genreIds)) {
+    const entry = entryById.get(id);
+    if (entry) choices.push({ id: entry.id, slugs: entry.slugs });
+  }
+  for (const slug of selectedFamilySlugs(genreIds, taxonomy)) {
+    choices.push({ id: `family:${slug}`, slugs: [slug] });
+  }
+  const covered = new Set(choices.flatMap((c) => c.slugs));
+  for (const slug of unresolvedGenreSlugs || []) {
+    const resolved = resolveSlug(slug);
+    if (covered.has(resolved) || !graph.has(resolved)) continue;
+    choices.push({ id: slug, slugs: [resolved] });
+    covered.add(resolved);
+  }
+  return choices;
+}
+
+// The scoring engine: `choices` is a list of { id, slugs } groups (see
+// resolveScoringChoices above), `graph` a Map of node id -> node (byId's own
+// shape). Every weight below matches scoreAffinity's original ones exactly,
+// applied once per choice and relation rather than once per source slug.
+function scoreAffinityFromChoices(choices, graph) {
+  const choiceOfSlug = new Map();
+  for (const choice of choices) {
+    for (const slug of choice.slugs) if (graph.has(slug)) choiceOfSlug.set(slug, choice.id);
+  }
+
   const near = new Set();
-  for (const g of direct) {
-    const gn = byId.get(g);
+  for (const slug of choiceOfSlug.keys()) {
+    const node = graph.get(slug);
     for (const kind of ["subgenres", "related_genres"]) {
-      for (const r of (gn.edges && gn.edges[kind]) || []) if (!direct.has(r.slug)) near.add(r.slug);
+      for (const r of (node.edges && node.edges[kind]) || []) if (!choiceOfSlug.has(r.slug)) near.add(r.slug);
     }
   }
+
   const scores = new Map();
   const bump = (slug, by) => {
-    if (!byId.has(slug)) return;
-    const n = byId.get(slug);
+    if (!graph.has(slug)) return;
+    const n = graph.get(slug);
     if (n.type === "genre" || n.type === "label") return; // labels make poor "listen to this" picks
     scores.set(slug, (scores.get(slug) || 0) + by);
   };
-  for (const g of direct) {
-    const edges = byId.get(g).edges || {};
-    for (const r of edges.landmark_projects || []) bump(r.slug, 4);
-    for (const r of edges.landmark_tracks || []) bump(r.slug, 4);
-    for (const r of edges.key_artists || []) bump(r.slug, 3);
+
+  // Curated picks (landmark / key artist): union each choice's sources'
+  // targets per relation before bumping, so a choice with several sources --
+  // or an editorial duplicate across them -- never earns a bigger bonus than
+  // a single-source choice pointing at the same target.
+  for (const choice of choices) {
+    const landmarks = new Set();
+    const keyArtists = new Set();
+    for (const slug of choice.slugs) {
+      if (!graph.has(slug)) continue;
+      const edges = graph.get(slug).edges || {};
+      for (const r of edges.landmark_projects || []) landmarks.add(r.slug);
+      for (const r of edges.landmark_tracks || []) landmarks.add(r.slug);
+      for (const r of edges.key_artists || []) keyArtists.add(r.slug);
+    }
+    for (const slug of landmarks) bump(slug, 4);
+    for (const slug of keyArtists) bump(slug, 3);
   }
-  for (const n of byId.values()) {
+
+  // Direct/near tag matches: a node can carry several of the same choice's
+  // source slugs as separate genre tags, so direct hits are collected per
+  // choice first and bumped once each; a near hit (not any selected choice's
+  // own source) still bumps per matching tag, same as before.
+  for (const n of graph.values()) {
     if (n.type === "genre" || n.type === "label") continue;
+    const hitChoices = new Set();
     for (const r of (n.edges && n.edges.genres) || []) {
-      if (direct.has(r.slug)) bump(n.id, 3);
+      const choiceId = choiceOfSlug.get(r.slug);
+      if (choiceId) hitChoices.add(choiceId);
       else if (near.has(r.slug)) bump(n.id, 1);
     }
+    for (const choiceId of hitChoices) bump(n.id, 3);
   }
+
   return [...scores.entries()].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).map(([id]) => id);
+}
+
+// v1 compat: one choice per raw graph slug, scored against the live graph.
+// Still what pickDailyReco calls today (Profile.data.genres is v1-shaped
+// until D2b), and byte-identical to before this ticket for that reason.
+function scoreAffinity(genreSlugs) {
+  const choices = [...new Set(genreSlugs.filter((s) => byId.has(s)))].map((s) => ({ id: s, slugs: [s] }));
+  return scoreAffinityFromChoices(choices, byId);
 }
 
 function todayKey() {
