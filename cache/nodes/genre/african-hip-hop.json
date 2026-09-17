@@ -1,0 +1,98 @@
+{
+  "slug": "genre:african-hip-hop",
+  "name": "African hip-hop",
+  "editorial_article": "African hip-hop music has maintained a significant presence across the continent since the early 1980s, often spurred by widespread American influence. Senegal saw the genre take root by 1985, while Motswako emerged as a distinct subgenre of Southern African hip-hop, gaining substantial popularity in Botswana and South Africa. Compilations such as the 2002 'Africa Raps' and the 2005 'Afrolution' series documented the growth of the regional scene, highlighting artists who adapted the global medium to local contexts. These recordings often bridge various stylistic gaps, drawing on indigenous traditions and contemporary production techniques to create a unique regional identity.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/1140520-Various-Afrolution-Vol-1-The-Original-African-Hip-Hop-Collection?srsltid=AU7gw4XElrNrAdJ-8OsDrZ_ftVoadgVZcgRShOjGBWqW5gVt-4WjVhd6",
+      "title": "Afrolution Vol. 1 - The Original African Hip Hop Collection - Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/308946-Various-Africa-Raps?srsltid=AU7gw4XdlRkpfBf7ng0T7JCMhcTeE6T03D2mFuUfOZehuwGUVrYR0bdF",
+      "title": "Africa Raps – Vinyl (LP, Compilation), 2002"
+    },
+    {
+      "url": "https://www.wikiwand.com/en/African_hip-hop",
+      "title": "African hip-hop - Wikiwand"
+    },
+    {
+      "url": "https://www.discogs.com/ru/forum/thread/206538?message_id=2585275&srsltid=AU7gw4WZglS8F1ny8Wr3ZJJKqHuFMh5Tom-WBsAvZzWIFJCyoPJiNnwk",
+      "title": "Форум Discogs - Hip-Hop Style Requests"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:44.146Z",
+  "type": "genre",
+  "editorial_definition": "A diverse musical movement encompassing regional hip-hop scenes across the African continent, notably including the Motswako subgenre.",
+  "qid": "Q387236",
+  "era": "early 1980s to present",
+  "origin": "Continental Africa",
+  "sonic_markers": "Regional fusions of hip-hop with local music traditions, rapping in diverse languages, and distinct production styles like Motswako.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:music-of-africa",
+      "type": "genre",
+      "name": "Music Of Africa",
+      "qid": "Q369820"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-sugarhill-gang",
+      "type": "artist",
+      "name": "The Sugarhill Gang"
+    },
+    {
+      "slug": "artist:kurtis-blow",
+      "type": "artist",
+      "name": "Kurtis Blow"
+    },
+    {
+      "slug": "artist:grandmaster-flash",
+      "type": "artist",
+      "name": "Grandmaster Flash"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sugar-hill-records",
+      "type": "label",
+      "name": "Sugar Hill Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:rapper-s-delight",
+      "type": "track",
+      "name": "Rapper's Delight"
+    }
+  ]
+}

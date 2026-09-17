@@ -1,0 +1,113 @@
+{
+  "slug": "artist:hip-hop-pantsula",
+  "name": "Hip Hop Pantsula",
+  "editorial_article": "Born Jabulani Tsambo in Mafikeng on 14 September 1980, Hip Hop Pantsula rose as a Motswako pioneer who performed primarily in Setswana. His early career began in the group Verbal Assassins with producer Tebogo Rameetse, which released the debut album Party in 1997. After the group dissolved, Tsambo launched a solo career that saw him recording in diverse languages including isiZulu and Sesotho, with production on his Introduction album handled by Isaac Mthethwa. In 2004, he reunited with Rameetse for the track 'On My Own' on his O Mang album. By the time he released Acceptance Speech in 2007, he had achieved widespread mainstream recognition, later co-chairing the label Lekoko Entertainment. His discography spanned over two decades, concluding with 2018's Drum.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hip_Hop_Pantsula",
+      "title": "Hip Hop Pantsula - Wikipedia"
+    },
+    {
+      "url": "https://africanmusiclibrary.org/artist/Hip%20Hop%20Pantsula",
+      "title": "Hip Hop Pantsula Profile and Discography | African Music Library"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:59.328Z",
+  "type": "artist",
+  "editorial_bio": "A seminal South African Motswako rapper known for multilingual lyrics and his instrumental role in bringing the genre to the global mainstream.",
+  "origin": "Mafikeng, North West, South Africa",
+  "active_years": "1997-2018",
+  "genres": [
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:lekoko-entertainment",
+      "type": "label",
+      "name": "Lekoko Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:8-goals-away",
+      "type": "project",
+      "name": "8 Goals Away (UN Song)",
+      "mbid": "c8bbd1af-98a6-4179-8798-baef659a50d3",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:victory",
+      "type": "project",
+      "name": "Victory",
+      "mbid": "b879c9ce-7dd3-4b09-8e20-32d77bb929ff",
+      "year": "2010",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:music-and-lights",
+      "type": "track",
+      "name": "Music & Lights"
+    },
+    {
+      "slug": "track:breadwinners",
+      "type": "track",
+      "name": "Breadwinners"
+    },
+    {
+      "slug": "track:on-my-own",
+      "type": "track",
+      "name": "On My Own"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tebogo-rameetse",
+      "type": "artist",
+      "name": "Tebogo Rameetse"
+    },
+    {
+      "slug": "artist:isaac-mthethwa",
+      "type": "artist",
+      "name": "Isaac Mthethwa"
+    },
+    {
+      "slug": "artist:proverb",
+      "type": "artist",
+      "name": "ProVerb"
+    },
+    {
+      "slug": "artist:focalistic",
+      "type": "artist",
+      "name": "Focalistic"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:hhp",
+      "type": "artist",
+      "name": "HHP"
+    },
+    {
+      "slug": "artist:jabba",
+      "type": "artist",
+      "name": "Jabba"
+    }
+  ],
+  "members": []
+}

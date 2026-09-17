@@ -1,0 +1,222 @@
+{
+  "slug": "artist:hallucinogen",
+  "name": "Hallucinogen",
+  "editorial_article": "Simon Posford, the English electronic musician behind the Hallucinogen project, released his debut studio album, Twisted, in 1995. The record is widely recognized as a foundational release within the psychedelic trance genre. Posford later followed this with The Lone Deranger in 1997, maintaining his distinct approach to layered, synthesized production. By 2002, he expanded the project's sound through In Dub, a compilation featuring Hallucinogen tracks reworked by the producer Ott. Beyond his solo work as Hallucinogen, Posford is the founder of Twisted Records and a member of the groups Shpongle and Younger Brother, the latter of which he co-founded with Benji Vaughan to explore a departure from his previous synthesized style.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hallucinogen_(musician)",
+      "title": "Hallucinogen (musician) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:03.132Z",
+  "type": "artist",
+  "editorial_bio": "English electronic producer Simon Posford is a key figure in psychedelic trance, known for his influential work under the Hallucinogen alias and his label, Twisted Records.",
+  "origin": "Chobham, Surrey, England",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:goa-trance",
+      "type": "genre",
+      "name": "Goa Trance",
+      "qid": "Q835131"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:twisted-records",
+      "type": "label",
+      "name": "Twisted Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:snakey-shaker",
+      "type": "project",
+      "name": "Snakey Shaker (X-Noize & Space Cat remix)",
+      "mbid": "33a2c3c4-29db-4fef-9c7d-707e74192100",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:machine-selves",
+      "type": "project",
+      "name": "Machine Selves",
+      "mbid": "28dab4c2-3592-40f9-b31e-6454c23f55fa",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-gms-remixes",
+      "type": "project",
+      "name": "The GMS Remixes",
+      "mbid": "b2d51827-f78b-454a-ae0b-279a6ed96e2c",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lsd-remixes",
+      "type": "project",
+      "name": "LSD Remixes",
+      "mbid": "7570f8a3-7598-3e48-a606-74a73443524f",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mi-loony-um-ep",
+      "type": "project",
+      "name": "Mi-Loony-Um! EP",
+      "mbid": "6798c053-eb9d-3d20-b25f-79f563d11551",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-lone-deranger",
+      "type": "project",
+      "name": "The Lone Deranger",
+      "mbid": "abbcf8d8-5903-3b82-8ab3-356c579bd656",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clarity-from-deep-fog-spiritual-antiseptic",
+      "type": "project",
+      "name": "Clarity From Deep Fog / Spiritual Antiseptic",
+      "mbid": "75af6d63-a9ea-3cda-854a-91385d289c00",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:space-pussy-ep",
+      "type": "project",
+      "name": "Space Pussy EP",
+      "mbid": "621b7a70-ad84-376b-bcda-f78bc8ae4f88",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deranger",
+      "type": "project",
+      "name": "Deranger",
+      "mbid": "35a1e6fd-bb45-3506-a138-12f04017ec9e",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lsd",
+      "type": "project",
+      "name": "LSD",
+      "mbid": "3fd8bd9e-729f-3ca9-a84e-e8c6e073d6fc",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twisted",
+      "type": "project",
+      "name": "Twisted",
+      "mbid": "12a863d9-b86d-3782-992b-81bf895dadba",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fluoro-neuro-sponge",
+      "type": "project",
+      "name": "Fluoro Neuro Sponge",
+      "mbid": "b420b08c-42be-355d-8a8f-41430dcdc99a",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angelic-particles-soothsayer",
+      "type": "project",
+      "name": "Angelic Particles / Soothsayer",
+      "mbid": "221021f8-1d50-3594-b092-8ba9a34afb3c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lsd",
+      "type": "project",
+      "name": "LSD (live mix)",
+      "mbid": "0ce7addc-cfcc-3c46-ba34-804b64a717a9",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alpha-centauri-lsd",
+      "type": "project",
+      "name": "Alpha Centauri / LSD",
+      "mbid": "d112970c-60dd-3553-9d3d-0f97edda6a1d",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:asnesnothine",
+      "type": "project",
+      "name": "Asnesnothine",
+      "mbid": "21b831be-8ee4-3a5c-a2d4-013f8acb4e63",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lsd",
+      "type": "track",
+      "name": "LSD"
+    },
+    {
+      "slug": "track:alpha-centauri",
+      "type": "track",
+      "name": "Alpha Centauri"
+    },
+    {
+      "slug": "track:gamma-goblins",
+      "type": "track",
+      "name": "Gamma Goblins"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ott",
+      "type": "artist",
+      "name": "Ott"
+    },
+    {
+      "slug": "artist:benji-vaughan",
+      "type": "artist",
+      "name": "Benji Vaughan"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:simon-posford",
+      "type": "artist",
+      "name": "Simon Posford"
+    },
+    {
+      "slug": "artist:walter-ego",
+      "type": "artist",
+      "name": "Walter Ego"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:simon-posford",
+      "type": "artist",
+      "name": "Simon Posford"
+    }
+  ]
+}

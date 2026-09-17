@@ -1,0 +1,271 @@
+{
+  "slug": "artist:pop-smoke",
+  "name": "Pop Smoke",
+  "editorial_article": "Born Bashar Barakah Jackson in Brooklyn, Pop Smoke rose to prominence in 2019 by importing the aggressive, minimalist production sensibilities of UK drill to the New York scene. His breakout single \"Welcome to the Party,\" produced by 808Melo and released in April 2019, solidified his position as a pioneer of Brooklyn drill. Following his signing to Victor Victor Worldwide and Republic Records, he released his debut mixtape \"Meet the Woo\" in July 2019. His second project, \"Meet the Woo 2,\" debuted at number seven on the Billboard 200 shortly before his death in February 2020. 50 Cent later executive produced the posthumous debut studio album \"Shoot for the Stars, Aim for the Moon,\" which arrived in July 2020 and featured 19 tracks that all entered the Billboard Hot 100.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pop_Smoke",
+      "title": "Pop Smoke - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Pop_Smoke_discography",
+      "title": "Pop Smoke discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:25.276Z",
+  "type": "artist",
+  "editorial_bio": "Brooklyn rapper who revitalized the drill subgenre by integrating aggressive UK production styles, achieving significant posthumous commercial success.",
+  "origin": "Brooklyn, New York City",
+  "active_years": "2018–2020",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:victor-victor-worldwide",
+      "type": "label",
+      "name": "Victor Victor Worldwide"
+    },
+    {
+      "slug": "label:republic-records",
+      "type": "label",
+      "name": "Republic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:sunshine",
+      "type": "project",
+      "name": "Sunshine",
+      "mbid": "a8247fc5-0ee8-42bc-bdb6-2d17cc1d3765",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:faith",
+      "type": "project",
+      "name": "Faith",
+      "mbid": "9026e443-ff39-4b1b-bd46-9654f8a9fe30",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ap",
+      "type": "project",
+      "name": "AP (music from the film Boogie)",
+      "mbid": "621838d2-5e5b-46c7-80c8-0e8e70523b42",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-the-night",
+      "type": "project",
+      "name": "For the Night",
+      "mbid": "582d24ca-3794-4811-a4a1-7bf0bb1aba89",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:enjoy-yourself",
+      "type": "project",
+      "name": "Enjoy Yourself",
+      "mbid": "45f835cd-6ef0-4258-8d55-d80b040cc9f9",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mood-swings",
+      "type": "project",
+      "name": "Mood Swings",
+      "mbid": "09809929-6f72-4b2c-9504-833501b416c0",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mood-swings",
+      "type": "project",
+      "name": "Mood Swings",
+      "mbid": "72045d11-fbd2-4a4d-b1ee-61d50bdc1f14",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-woo",
+      "type": "project",
+      "name": "The Woo",
+      "mbid": "eeeedb12-74cd-48e2-b552-3b4351f4fcc7",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shoot-for-the-stars-aim-for-the-moon",
+      "type": "project",
+      "name": "Shoot for the Stars Aim for the Moon",
+      "mbid": "d6d1de65-7e43-4277-b723-fc74a2b385e1",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enjoy-yourself",
+      "type": "project",
+      "name": "Enjoy Yourself",
+      "mbid": "6562d186-1b18-495a-a93c-05951dc5cd82",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-it-rain",
+      "type": "project",
+      "name": "Make It Rain",
+      "mbid": "bccc92b6-05ed-4a8d-bd78-dcdc67905fb6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:50k",
+      "type": "project",
+      "name": "50k",
+      "mbid": "48793e11-ca72-44e1-a3b8-aa402cc2aa42",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ordinary",
+      "type": "project",
+      "name": "Ordinary",
+      "mbid": "4fb87b96-d86a-4871-adfa-78e532395c11",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dior",
+      "type": "project",
+      "name": "Dior",
+      "mbid": "f7bb3f96-f7e6-4ec1-b784-02059126c849",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:christopher-walking",
+      "type": "project",
+      "name": "Christopher Walking",
+      "mbid": "dcaffb35-bb4a-4d8d-809f-421b6b20d32a",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:100k-on-a-coupe",
+      "type": "project",
+      "name": "100k on a Coupe",
+      "mbid": "49bb3f5d-0854-4808-ba83-09a4c1157ee9",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drive-the-boat",
+      "type": "project",
+      "name": "Drive the Boat",
+      "mbid": "9656ed19-6c81-443a-9b6e-975370a7f3ad",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:war",
+      "type": "project",
+      "name": "War",
+      "mbid": "cff90b90-861f-4646-93d9-925880de4246",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flexing",
+      "type": "project",
+      "name": "FLEXING",
+      "mbid": "0116510d-1ab2-4334-af8f-771e6de74815",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mpr",
+      "type": "project",
+      "name": "MPR",
+      "mbid": "562d0006-d218-4623-8ecc-427b7f097abd",
+      "year": "2018",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:welcome-to-the-party",
+      "type": "track",
+      "name": "Welcome to the Party"
+    },
+    {
+      "slug": "track:dior",
+      "type": "track",
+      "name": "Dior"
+    },
+    {
+      "slug": "track:gatti",
+      "type": "track",
+      "name": "Gatti"
+    },
+    {
+      "slug": "track:for-the-night",
+      "type": "track",
+      "name": "For the Night"
+    },
+    {
+      "slug": "track:what-you-know-bout-love",
+      "type": "track",
+      "name": "What You Know Bout Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:50-cent",
+      "type": "artist",
+      "name": "50 Cent"
+    },
+    {
+      "slug": "artist:808melo",
+      "type": "artist",
+      "name": "808Melo"
+    },
+    {
+      "slug": "artist:lil-tjay",
+      "type": "artist",
+      "name": "Lil Tjay"
+    },
+    {
+      "slug": "artist:quavo",
+      "type": "artist",
+      "name": "Quavo"
+    },
+    {
+      "slug": "artist:lil-baby",
+      "type": "artist",
+      "name": "Lil Baby"
+    },
+    {
+      "slug": "artist:dababy",
+      "type": "artist",
+      "name": "DaBaby"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:shar",
+      "type": "artist",
+      "name": "Shar"
+    }
+  ],
+  "members": []
+}

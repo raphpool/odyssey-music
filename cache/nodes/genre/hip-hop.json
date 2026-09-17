@@ -96,6 +96,18 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
     }
   ],
   "related_genres": [
@@ -146,6 +158,18 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
+    },
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
     }
   ],
   "key_artists": [

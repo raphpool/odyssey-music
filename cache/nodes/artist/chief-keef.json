@@ -1,0 +1,734 @@
+{
+  "slug": "artist:chief-keef",
+  "name": "Chief Keef",
+  "editorial_article": "Born Keith Farrelle Cozart in Chicago in 1995, Chief Keef is a rapper and record producer who defined the drill subgenre. He gained early attention through YouTube videos filmed while under house arrest in 2011, eventually signing a deal with Interscope Records. His debut album 'Finally Rich' (2012) featured the hit 'I Don't Like,' which drew a remix from Kanye West, Pusha T, Jadakiss, and Big Sean. In 2013, he contributed a vocal hook to 'Hold My Liquor' on West's 'Yeezus' album. Following his departure from Interscope in 2014, he founded the label Glo Gang, serving as a primary producer for mixtapes like 'Back from the Dead 2.' His 2024 album 'Almighty So 2' followed a years-long path of independent releases, often featuring self-produced beats and collaborations with artists such as Zaytoven.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chief_Keef",
+      "title": "Chief Keef - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:18.236Z",
+  "type": "artist",
+  "editorial_bio": "Chicago-born rapper and producer credited with spearheading the drill music movement in the early 2010s.",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "2008-present",
+  "genres": [
+    {
+      "slug": "genre:chicago-drill",
+      "type": "genre",
+      "name": "Chicago Drill",
+      "qid": "Q115691081"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:interscope-records",
+      "type": "label",
+      "name": "Interscope Records"
+    },
+    {
+      "slug": "label:glo-gang",
+      "type": "label",
+      "name": "Glo Gang"
+    },
+    {
+      "slug": "label:43b",
+      "type": "label",
+      "name": "43B"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:skeletor",
+      "type": "project",
+      "name": "Skeletor",
+      "mbid": "63e5f1b2-93a6-4eb5-b6e5-76932c999021",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:video-shoot",
+      "type": "project",
+      "name": "Video Shoot",
+      "mbid": "b2bd623e-ac90-4b40-8651-fe3954c034a1",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rooms",
+      "type": "project",
+      "name": "ROOMS",
+      "mbid": "c3855054-7ca4-4a96-92d9-5fd93e937894",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:talking-ish",
+      "type": "project",
+      "name": "Talking Ish",
+      "mbid": "7c68399f-0b88-497c-a986-53a6f2bfcac4",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:almighty-so-2",
+      "type": "project",
+      "name": "Almighty So 2",
+      "mbid": "6232bcb9-4179-4216-b316-f1a922a10a22",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dirty-nachos",
+      "type": "project",
+      "name": "Dirty Nachos",
+      "mbid": "551b43ec-2dd0-4b3c-ae65-d4083fd31dff",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bow-bow-bow",
+      "type": "project",
+      "name": "Bow Bow Bow (F My Baby Mama)",
+      "mbid": "b2a16566-b0f2-414e-adb0-f3daefdbf3c9",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-all-the-barbz",
+      "type": "project",
+      "name": "FOR ALL THE BARBZ",
+      "mbid": "0b417264-fbd2-4f58-beb5-d74a1140f2dd",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:charlie",
+      "type": "project",
+      "name": "Charlie",
+      "mbid": "0d8a01b3-3856-4897-b0a2-3ca31487565b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-for-me",
+      "type": "project",
+      "name": "Bad for Me",
+      "mbid": "0928e1b2-a1d0-4712-8203-5d3135af3269",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-out",
+      "type": "project",
+      "name": "ROCK OUT",
+      "mbid": "126026ac-77c9-4254-b31e-69c43a8331c7",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atlantis",
+      "type": "project",
+      "name": "ATLANTIS",
+      "mbid": "19e21721-d292-424a-8b42-e02176bd07b5",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:racks-stuffed-inna-couch",
+      "type": "project",
+      "name": "Racks Stuffed Inna Couch",
+      "mbid": "32693d7a-3f3d-4020-a780-1f054939cecb",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:almighty-gnar",
+      "type": "project",
+      "name": "Almighty Gnar",
+      "mbid": "a0fe509c-c43d-49ae-be14-bd585a5269b2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chief-so",
+      "type": "project",
+      "name": "Chief So",
+      "mbid": "d76fa813-9304-4840-ad8d-e4e820d84718",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:murdaman",
+      "type": "project",
+      "name": "MURDAMAN!",
+      "mbid": "05e72ec0-7627-42dc-8e0e-468bcb8888b3",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tony-montana-flow",
+      "type": "project",
+      "name": "Tony Montana Flow",
+      "mbid": "d5d73a91-46e9-4477-bf78-b30f9d817952",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-me-mad",
+      "type": "project",
+      "name": "make me mad",
+      "mbid": "33452265-a137-45ab-9081-a2373731b65f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4nem",
+      "type": "project",
+      "name": "4NEM",
+      "mbid": "117e87e8-5890-4fb4-a014-1ef93d2a86eb",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luigi",
+      "type": "project",
+      "name": "Luigi",
+      "mbid": "c1ea6d73-4491-4bc2-8e40-dff88e0e8de6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:harley-quinn",
+      "type": "project",
+      "name": "Harley Quinn",
+      "mbid": "f2b0621e-f903-429c-b315-8f3cb4fc45c7",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-talk",
+      "type": "project",
+      "name": "The Talk",
+      "mbid": "97af4687-34ed-4c5b-980f-28e3623d2dd2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-don-t-live-here",
+      "type": "project",
+      "name": "Love Don’t Live Here",
+      "mbid": "c96e7776-6130-42e1-816d-09ac3cdbe1d6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-bugatti",
+      "type": "project",
+      "name": "NEW BUGATTI",
+      "mbid": "bd44e342-ea29-4e81-a17a-61084905a568",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-gang",
+      "type": "project",
+      "name": "On Gang",
+      "mbid": "ae9fd053-d9f8-42de-a153-78f7e1806acb",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beat-cry",
+      "type": "project",
+      "name": "Beat Cry",
+      "mbid": "06a99073-5900-430d-8cda-e2320b0a5353",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:status",
+      "type": "project",
+      "name": "Status",
+      "mbid": "9a116c5b-b7e2-45b0-a4aa-632f825d262f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gucci-everything",
+      "type": "project",
+      "name": "Gucci Everything",
+      "mbid": "82e426c0-41ea-42e2-a1d2-8efffebb9210",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shawty-say-she-love-me-colors",
+      "type": "project",
+      "name": "Shawty Say She Love Me / Colors",
+      "mbid": "c6438a22-2d64-43cc-a996-f3b4d47de4f6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bang-bang",
+      "type": "project",
+      "name": "Bang Bang",
+      "mbid": "5678233a-402e-4f1e-97ef-2312c58cc64a",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ps",
+      "type": "project",
+      "name": "PS (Pants Sag)",
+      "mbid": "d9f2776d-7472-4102-af2f-5c51f243f6ab",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bands-in-the-basement",
+      "type": "project",
+      "name": "Bands in the Basement",
+      "mbid": "3bd605a1-1f30-4daf-818d-a88a16d811d4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:extra-glo",
+      "type": "project",
+      "name": "Extra GLO",
+      "mbid": "d12b0a9b-494a-45e1-9876-a02026f72fb6",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:faneto",
+      "type": "project",
+      "name": "Faneto",
+      "mbid": "54202dc3-e140-43c5-9b15-bbdebbbe4306",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lamb-pass-by",
+      "type": "project",
+      "name": "Lamb Pass By",
+      "mbid": "2c7eddca-5c42-404f-a604-5042b4bff3db",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-mo",
+      "type": "project",
+      "name": "One Mo",
+      "mbid": "99e1b531-6be2-4ead-b645-3594f820a8e5",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:layaway",
+      "type": "project",
+      "name": "Layaway",
+      "mbid": "95ab1891-2106-4d2a-a40e-d4c556936e17",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:floor-seats",
+      "type": "project",
+      "name": "Floor Seats",
+      "mbid": "99883a61-cb51-4499-9ce2-3793ee2a6d1c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tampa-bay-bustdown",
+      "type": "project",
+      "name": "Tampa Bay Bustdown",
+      "mbid": "836076dc-113e-4dba-aa8e-2dd8c36dd477",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:treasure-chest",
+      "type": "project",
+      "name": "Treasure Chest",
+      "mbid": "f109979c-7f27-49ff-9d58-5180f1eeaaa8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-wish-you-would",
+      "type": "project",
+      "name": "I Wish You Would",
+      "mbid": "5e2de66b-1de5-49e4-893b-95e0bccf18ce",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tip-toe-3",
+      "type": "project",
+      "name": "TiP TOE 3",
+      "mbid": "9587674b-05ad-493c-86c8-cda3671c7106",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spy-kid",
+      "type": "project",
+      "name": "Spy Kid",
+      "mbid": "1b00c49c-cabb-46e7-a42f-14b46601b410",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobody",
+      "type": "project",
+      "name": "Nobody",
+      "mbid": "9395057b-e488-4560-95e4-d6e52a43185f",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pitbulls",
+      "type": "project",
+      "name": "Pitbulls",
+      "mbid": "cb2decaf-2560-454d-a17b-27691d35878d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ottopsy",
+      "type": "project",
+      "name": "Ottopsy",
+      "mbid": "283850fd-6934-4a45-806c-0b78e8e7e1a1",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-kill-people",
+      "type": "project",
+      "name": "I Kill People!",
+      "mbid": "1cf91dca-0cb7-4990-9ffc-1cc1330cc521",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-kill-people",
+      "type": "project",
+      "name": "I Kill People",
+      "mbid": "2982ed65-6a83-417e-ac3b-7340b9f58421",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dedication",
+      "type": "project",
+      "name": "Dedication",
+      "mbid": "668ccb23-7846-40b7-a58b-71ebe030ab31",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-on-now",
+      "type": "project",
+      "name": "Come on Now",
+      "mbid": "6a747df4-6a91-4586-a383-d724af89fa9e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mailbox",
+      "type": "project",
+      "name": "Mailbox",
+      "mbid": "548d016e-f607-4680-8ca0-ecfbbb087445",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:semi",
+      "type": "project",
+      "name": "Semi",
+      "mbid": "adff9617-1060-4f9a-81f9-00c89013758a",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-baby",
+      "type": "project",
+      "name": "My Baby",
+      "mbid": "fde0a07f-32e5-4275-9cb1-2f9a62639b00",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chieffing-again",
+      "type": "project",
+      "name": "Chieffing Again",
+      "mbid": "78e14c6e-0e31-458c-92a3-1c784ae9d20b",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:going-home",
+      "type": "project",
+      "name": "Going Home",
+      "mbid": "d58daddc-e586-400a-bce8-83ccbd14a5aa",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smoked",
+      "type": "project",
+      "name": "Smoked",
+      "mbid": "e4be19ad-5616-499b-850f-4571037dbb1a",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:100-s",
+      "type": "project",
+      "name": "100’s",
+      "mbid": "44d34576-5ff0-45bb-8691-6df4b0f52fc0",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-you-be-my-friend",
+      "type": "project",
+      "name": "Can You Be My Friend",
+      "mbid": "93c89b9e-f69a-4dce-b42d-a264a7b13204",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:young-man",
+      "type": "project",
+      "name": "Young Man",
+      "mbid": "ec495331-ba1f-4afb-a0c9-3ec508fa7f7f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:superheroes",
+      "type": "project",
+      "name": "Superheroes",
+      "mbid": "c66584d0-42de-4dba-a1a1-3a697e25cba4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-trap",
+      "type": "project",
+      "name": "New Trap",
+      "mbid": "63fb30a5-e7f6-40c5-95f3-81e29832a878",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:young-n-wild",
+      "type": "project",
+      "name": "Young n Wild",
+      "mbid": "f120b528-7c0f-4406-9519-a4903d6af83c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:any-opponent",
+      "type": "project",
+      "name": "Any Opponent",
+      "mbid": "f863f095-5dcc-4dd5-8018-978488171e4f",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blocka",
+      "type": "project",
+      "name": "Blocka",
+      "mbid": "d67779ad-fab8-4cbc-8303-a1014f6bbd11",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tweaker",
+      "type": "project",
+      "name": "Tweaker",
+      "mbid": "539c32e7-c7f5-4a31-ba5d-b0f3b48d9d33",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bang-3-pt-2",
+      "type": "project",
+      "name": "Bang 3, Pt. 2",
+      "mbid": "ae7f393d-af18-498b-9e82-9d7974c8536e",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bang-3",
+      "type": "project",
+      "name": "Bang 3",
+      "mbid": "09dcaee7-c759-4464-8e76-cddec768eea9",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ain-t-missing-you",
+      "type": "project",
+      "name": "Ain’t Missing You",
+      "mbid": "779624aa-c64d-466c-8a1e-e37c575e14a0",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:psych-ward",
+      "type": "project",
+      "name": "Psych Ward",
+      "mbid": "d475e036-1c1e-4157-8aea-5bb6104363e7",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:earned-it",
+      "type": "project",
+      "name": "Earned It",
+      "mbid": "4f3053fc-7216-4d4c-b3f9-0de4f7add624",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:decline",
+      "type": "project",
+      "name": "Decline",
+      "mbid": "34f4661f-1e5a-4cbb-9ab9-2b3127d14ed8",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voodoo",
+      "type": "project",
+      "name": "Voodoo",
+      "mbid": "b5bc6a99-01c2-43d3-90eb-e7fbd20f10fa",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:michelin",
+      "type": "project",
+      "name": "Michelin",
+      "mbid": "585bc416-9652-429c-93b0-15199b10da02",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chiefin-keef",
+      "type": "project",
+      "name": "Chiefin’ Keef",
+      "mbid": "bb8baf6a-42ad-42b0-ba91-48700ada53c0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nobody",
+      "type": "project",
+      "name": "Nobody",
+      "mbid": "6c256a79-60a1-44c8-aac1-7edac81d2891",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:colors",
+      "type": "project",
+      "name": "Colors",
+      "mbid": "60ace8b4-e267-4a66-bf9e-eb515268bc66",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-rich",
+      "type": "project",
+      "name": "Still Rich",
+      "mbid": "3e918c19-4c3b-4e1d-8cba-b19e0f5348c0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brick-squad-soldier",
+      "type": "project",
+      "name": "Brick Squad Soldier",
+      "mbid": "27b7dbac-3314-40f2-b721-ab33d4bae61c",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:finally-rich",
+      "type": "project",
+      "name": "Finally Rich",
+      "mbid": "249eeae3-9e0f-4d19-a580-9b80bf054f41",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unreleased-xanax",
+      "type": "project",
+      "name": "Unreleased: Xanax",
+      "mbid": "fd15bfad-14b5-4ed8-8774-791d6f0aa5bc",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-don-t-like",
+      "type": "track",
+      "name": "I Don't Like"
+    },
+    {
+      "slug": "track:love-sosa",
+      "type": "track",
+      "name": "Love Sosa"
+    },
+    {
+      "slug": "track:faneto",
+      "type": "track",
+      "name": "Faneto"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}
