@@ -277,7 +277,10 @@ let crumbs = []; // node ids forming the back-trail
 // are fixed behind it in TRA-251; off here keeps every deploy in between exactly v1. Read
 // from window.__PROFILE_V2_ENABLED__ (set before this script runs) since a test can't flip a
 // `const` after the fact the way it can a window property.
-const PROFILE_V2_ENABLED = true; // TRA-251: B1 (delta-safe writes) and B4 (unresolved-slug picker support) are fixed below
+// TRA-251: on by default now that B1 (delta-safe writes) and B4 (unresolved-slug picker
+// support) are fixed. Still overridable to false via window.__PROFILE_V2_ENABLED__ (set before
+// this script runs) -- kept as a rollback lever and to regression-test the kill switch itself.
+const PROFILE_V2_ENABLED = window.__PROFILE_V2_ENABLED__ !== false;
 
 // Set by loadActiveProfile() (TRA-137/D2b), inside init() after DATA/byId are ready --
 // never derived at module load, so a v2 read never runs before the graph is available.
@@ -603,7 +606,7 @@ async function pingApi() {
   // through to the home/seed branches below. Unknown slugs pass through resolveId unchanged.
   const resolvedInitial = initial && resolveId(initial);
   if (resolvedInitial && byId.has(resolvedInitial)) show(resolvedInitial, { replaceHistory: true });
-  else if (params.get("view") === "home" || currentProfile()) showHome({ replaceHistory: true });
+  else if (params.get("view") === "home" || currentProfile() || v2EditUnavailable()) showHome({ replaceHistory: true });
   else show(SEED_ID, { replaceHistory: true });
 
   // First visit: open the account creation flow over whatever we just rendered. Skipped for a
@@ -829,18 +832,20 @@ function v2PickerChoiceSlugs(profile) {
 
 function renderProfileChip() {
   const chip = document.getElementById("profile-chip");
+  // B2/nit (2nd review): checked before the v1-fallback profile lookup below -- a stored v2
+  // that's locked out must say so even when a stale v1 record also exists (it would otherwise
+  // win the `!profile` check below and show its own name/count instead).
+  if (v2EditUnavailable()) {
+    chip.hidden = false;
+    chip.textContent = "préférences conservées";
+    chip.onclick = () => openOnboarding({ mode: "edit" });
+    return;
+  }
   const profile = currentProfile();
   if (!profile) {
     chip.hidden = false;
-    if (v2EditUnavailable()) {
-      // B2: a real v2 account exists, just not editable right now -- never say "create an
-      // account" to a user who already has one.
-      chip.textContent = "préférences conservées";
-      chip.onclick = () => openOnboarding({ mode: "edit" });
-    } else {
-      chip.textContent = "créer un compte";
-      chip.onclick = () => openOnboarding({ mode: "signup" });
-    }
+    chip.textContent = "créer un compte";
+    chip.onclick = () => openOnboarding({ mode: "signup" });
     return;
   }
   chip.hidden = false;
@@ -1295,6 +1300,21 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
   if (!fromHistory) {
     if (replaceHistory) history.replaceState({ view: "home" }, "", "?view=home");
     else history.pushState({ view: "home" }, "", "?view=home");
+  }
+
+  if (v2EditUnavailable()) {
+    // nit (2nd review): a stored v2 -- with or without a stale v1 alongside it -- must not be
+    // treated as a new visitor (B3-nit3) nor silently shown a v1 record that may have drifted
+    // from it (B3-nit4). Read-only: no reco, scoring needs an active TAXONOMY.
+    contentEl.innerHTML = `
+      <div class="home">
+        <div class="home-hello">Salut ${escapeHtml(storedV2.name)} 👋</div>
+        <div class="reco-empty">
+          <p>${storedV2.genres.length} genre(s) enregistrés, en lecture seule tant que le graphe n'est pas disponible.</p>
+        </div>
+      </div>`;
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return;
   }
 
   const profile = currentProfile();

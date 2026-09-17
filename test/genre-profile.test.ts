@@ -165,7 +165,9 @@ function stubStorageMethod(name: "getItem" | "setItem", impl: () => never): void
 // the v1 *fallback* (currentProfile() falling back to Profile.data, e.g. the old picker's
 // open/save flow) needs v1 seeded before the script parses instead, matching a real browser
 // visit where localStorage already holds whatever a previous session left there.
-function newWindowWithV1(genres: string[], overrides: Partial<ProfileV1Fixture> = {}) {
+// PROFILE_V2_ENABLED defaults true (TRA-251); pass v2Enabled: false to regression-test the
+// kill switch itself.
+function newWindowWithV1(genres: string[], overrides: Partial<ProfileV1Fixture> = {}, v2Enabled = true) {
 	const v1: ProfileV1Fixture = { createdAt: "2026-01-01T00:00:00.000Z", name: "Raph", genres, ...overrides };
 	const dom = new JSDOM(indexHtml, {
 		url: "http://localhost/",
@@ -174,6 +176,7 @@ function newWindowWithV1(genres: string[], overrides: Partial<ProfileV1Fixture> 
 		beforeParse(window) {
 			window.fetch = (() => new Promise<Response>(() => {})) as typeof fetch;
 			window.localStorage.setItem(PROFILE_KEY, JSON.stringify(v1));
+			if (!v2Enabled) (window as unknown as Record<string, unknown>).__PROFILE_V2_ENABLED__ = false;
 		},
 	});
 	return { win: dom.window as unknown as OdysseyWindow, v1 };
@@ -623,15 +626,25 @@ describe("scoreAffinityFromChoices — every published choice in the shipped cac
 	}, 20000);
 });
 
-describe("PROFILE_V2_ENABLED — on for good in this ticket (TRA-251)", () => {
-	it("is true, unlike D2b-1 where B1/B4 made it unsafe to enable", () => {
-		expect(win.loadActiveProfile).toBeTypeOf("function"); // switch is a `const`, not read via window
+describe("PROFILE_V2_ENABLED — defaults true (TRA-251), still forceable off as a rollback lever", () => {
+	it("true by default: an existing v2 activates", () => {
 		const v2 = newV2Window();
 		try {
 			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify({ name: "Raph", genres: ["local:house"] }));
-			expect(v2.loadActiveProfile(taxonomy)).not.toBeNull(); // no longer a no-op
+			expect(v2.loadActiveProfile(taxonomy)).not.toBeNull();
 		} finally {
 			v2.close();
+		}
+	});
+
+	it("forced false: loadActiveProfile stays a no-op, currentProfile only ever reflects v1, and v2 storage stays untouched", () => {
+		const { win: w, v1 } = newWindowWithV1(["genre:techno"], {}, false);
+		try {
+			expect(w.loadActiveProfile(taxonomy)).toBeNull();
+			expect(w.currentProfile()).toEqual(v1);
+			expect(w.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+		} finally {
+			w.close();
 		}
 	});
 });
@@ -667,11 +680,15 @@ describe("loadActiveProfile / currentProfile — v2 activation after the graph i
 			const existingV2: MigratedProfile = { name: "Raph", genres: ["local:house"] };
 			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
 
-			// activeV2 (what the app reads/scores/writes against) stays inactive -- this used to
-			// feed a null TAXONOMY straight into resolveScoringChoices and throw.
+			// activeV2 (what the app reads/scores/writes against) stays inactive.
 			expect(v2.loadActiveProfile(undefined)).toBeNull();
 			expect(v2.v2EditUnavailable()).toBe(true);
 			expect(v2.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2));
+
+			// The actual crash path: both used to feed a null TAXONOMY straight into
+			// resolveScoringChoices via activeV2.genres and throw a TypeError.
+			expect(() => v2.pickDailyReco()).not.toThrow();
+			expect(() => v2.recoReasons({ id: "artist:hero", type: "artist", edges: {} })).not.toThrow();
 		} finally {
 			v2.close();
 		}
@@ -899,55 +916,121 @@ describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, crite
 		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
 	});
 
-	it("B2: locks editing out (chip message, disabled done, no write) when taxonomy is unusable", () => {
+	it("B2: locks editing out (chip message, disabled done, guard rejects even a non-empty selection) when taxonomy is unusable", () => {
+		// v1 seeded pre-parse (>= MIN_GENRES) so onbSelection ends up non-empty -- otherwise
+		// "done" staying disabled could just be the unrelated MIN_GENRES gate, not the lock.
+		const { win: w, v1 } = newWindowWithV1(["genre:techno", "genre:house", "genre:idm"]);
+		try {
+			const existingV2: MigratedProfile = { name: "Raph", genres: ["local:house"] };
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			w.loadActiveProfile(undefined); // v2 stays stored (decision 4), TAXONOMY null this run
+
+			w.wireOnboarding();
+			w.renderProfileChip();
+			expect((w.document.getElementById("profile-chip") as HTMLElement).textContent).toContain("conservées");
+
+			w.openOnboarding({ mode: "edit" }); // onbSelection seeded from the v1 fallback: 3 slugs
+			const done = w.document.getElementById("onb-done") as HTMLButtonElement;
+			expect(done.disabled).toBe(true);
+			// A disabled button's own .click() no-ops before the listener runs -- dispatching the
+			// event directly is what actually proves the handler's index.html guard, not just the
+			// disabled attribute, rejects the write (removing either must fail this test).
+			done.dispatchEvent(new w.Event("click", { bubbles: true }));
+
+			expect(w.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2));
+			expect(w.localStorage.getItem(PROFILE_KEY)).toEqual(JSON.stringify(v1)); // v1 untouched too
+		} finally {
+			w.close();
+		}
+	});
+
+	it("nit 3 (2nd review): a v2-only user (no v1) locked out by a missing taxonomy isn't treated as a new visitor on ?view=home", () => {
 		const v2 = newV2Window();
 		try {
-			const genres = ["local:techno", "local:house", "local:idm"];
-			const existingV2: MigratedProfile = { name: "Raph", genres };
+			const existingV2: MigratedProfile = { name: "Raph", genres: ["local:house", "local:idm"] };
 			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
-			v2.loadActiveProfile(undefined); // v2 stays stored (decision 4), TAXONOMY null this run
+			v2.loadActiveProfile(undefined);
 
-			v2.wireOnboarding();
-			v2.renderProfileChip();
-			expect((v2.document.getElementById("profile-chip") as HTMLElement).textContent).toContain("conservées");
-
-			v2.openOnboarding({ mode: "edit" });
-			expect((v2.document.getElementById("onb-done") as HTMLButtonElement).disabled).toBe(true);
-			(v2.document.getElementById("onb-done") as HTMLButtonElement).click();
-
-			expect(v2.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2));
+			v2.showHome();
+			const html = v2.document.querySelector(".home")?.textContent ?? "";
+			expect(html).toContain("Raph");
+			expect(html).not.toContain("Bienvenue");
+			expect(html).not.toContain("Créer mon compte");
 		} finally {
 			v2.close();
 		}
 	});
 
-	it("saves through the v2 adapter end-to-end, preserving an off-picker id (criteria 5, 6, 7)", () => {
-		const v2 = newV2Window();
+	it("nit 4 (2nd review): v1 and v2 both present, taxonomy missing -- shows the stored v2's name/count read-only, not the stale v1", () => {
+		const { win: w } = newWindowWithV1(["genre:techno", "genre:house", "genre:idm"], { name: "Old Name" });
 		try {
-			const genres = ["local:techno", "local:house", "local:idm", "local:off-picker-choice"];
-			const existingV2: MigratedProfile = { name: "Raph", genres };
-			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
-			v2.loadActiveProfile(taxonomy);
-			v2.genrePickList = () => ["genre:techno", "genre:house", "genre:idm"];
-			// byId is empty in this harness (DATA never fetched); only selection/save is under test.
-			v2.renderGenreGrid = () => {};
+			const existingV2: MigratedProfile = { name: "New Name", genres: ["local:house"] };
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			w.loadActiveProfile(undefined);
 
-			v2.wireOnboarding();
-			v2.openOnboarding({ mode: "edit" }); // seeds onbSelection = the 3 picker-coverable slugs
-			(v2.document.getElementById("onb-done") as HTMLButtonElement).click();
-
-			const saved = JSON.parse(v2.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
-			expect(saved.genres.slice().sort()).toEqual(
-				["local:house", "local:idm", "local:off-picker-choice", "local:techno"].sort(),
-			);
-
-			// B3/nit 4: the chip counts 3 picker choices, not the 4 raw expanded ids.
-			v2.renderProfileChip();
-			expect((v2.document.getElementById("profile-chip") as HTMLElement).textContent).toContain("3 genres");
+			w.showHome();
+			const html = w.document.querySelector(".home")?.textContent ?? "";
+			expect(html).toContain("New Name");
+			expect(html).not.toContain("Old Name");
 		} finally {
-			v2.close();
+			w.close();
 		}
 	});
+
+	// nit 5: genrePickList/renderGenreGrid are code we own -- run the real graph (built from
+	// cache/, the same path the D5 "shipped cache" test above uses) through a real fetch
+	// instead of stubbing them.
+	it("saves through the real onb-done handler and the real picker/graph, preserving an off-picker id (criteria 5, 6, 7)", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const realTaxonomy = built.taxonomy;
+		expect(realTaxonomy).toBeDefined();
+		if (!realTaxonomy) return;
+
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(built))) as unknown as typeof fetch;
+				(window as unknown as Record<string, unknown>).__PROFILE_V2_ENABLED__ = true;
+			},
+		});
+		const w = dom.window as unknown as OdysseyWindow;
+		try {
+			// "…" is the static placeholder in the markup itself -- wait for init() to replace it.
+			await vi.waitFor(() => {
+				if ((w.document.getElementById("stat") as HTMLElement).textContent === "…")
+					throw new Error("not ready");
+			});
+
+			// Three real, currently-resolving picker slugs (whatever their legacySelectionBySlug
+			// expansion is -- single or multi-id) plus a fake off-picker id that must survive.
+			const picks: string[] = [];
+			let checked = 0;
+			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
+			for (const slug of w.genrePickList()) {
+				const ids = legacyMap[slug];
+				if (Array.isArray(ids) && ids.length > 0) {
+					picks.push(...ids);
+					checked++;
+				}
+				if (checked === 3) break;
+			}
+			expect(checked).toBe(3); // sanity: the curated picker always has resolving entries
+			const existingV2: MigratedProfile = { name: "Raph", genres: [...picks, "local:off-picker-choice"] };
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			w.loadActiveProfile(realTaxonomy); // re-read storage with the seeded v2 now in it
+
+			w.wireOnboarding();
+			w.openOnboarding({ mode: "edit" }); // real renderGenreGrid(): seeds onbSelection from the real graph
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click(); // untouched save
+
+			const saved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(saved.genres.slice().sort()).toEqual([...picks, "local:off-picker-choice"].sort());
+		} finally {
+			w.close();
+		}
+	}, 20000);
 });
 
 describe("reload preserves every genre after a v2 save (TRA-137/D2b, criterion 5)", () => {
