@@ -1,0 +1,511 @@
+{
+  "slug": "artist:jeezy",
+  "name": "Jeezy",
+  "editorial_article": "Jay Wayne Jenkins, known as Jeezy, rose from Hawkinsville and Atlanta to help define the trap music subgenre alongside T.I. and Gucci Mane in the mid-2000s. His 2005 Def Jam debut, Let's Get It: Thug Motivation 101, peaked at number two on the Billboard 200 and secured double platinum status, propelled by the Akon-assisted single Soul Survivor. The 2008 release The Recession topped the Billboard 200 and featured the Kanye West collaboration Put On, earning a Grammy nomination for Best Rap Performance by a duo. Throughout his career, Jeezy maintained the Corporate Thugz Entertainment (CTE World) label, signing artists such as YG and Freddie Gibbs. His discography includes later chart-topping records like 2016's Trap or Die 3. Beyond music, he famously opened his home to Hurricane Katrina victims and has ventured into film roles, including 2024's Trap City.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jeezy",
+      "title": "Jeezy - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:17:22.958Z",
+  "type": "artist",
+  "editorial_bio": "An influential figure in Southern trap music, the Atlanta-based rapper established a legacy of street-focused narratives and commercial chart success.",
+  "origin": "Atlanta, Georgia",
+  "active_years": "1997-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    },
+    {
+      "slug": "label:corporate-thugz-entertainment",
+      "type": "label",
+      "name": "Corporate Thugz Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:errtime",
+      "type": "project",
+      "name": "ErrTime",
+      "mbid": "8a35f75f-5c6d-4de3-8a9d-5c06e6b33230",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-snowin",
+      "type": "project",
+      "name": "Still Snowin’",
+      "mbid": "0f99fde8-8920-43cf-a652-6f15f96e9b7d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-might-forgive-but-i-don-t-forget",
+      "type": "project",
+      "name": "I Might Forgive... But I Don't Forget",
+      "mbid": "7ee85fd1-7e4f-403d-a761-78fa61737712",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-time",
+      "type": "project",
+      "name": "One Time",
+      "mbid": "9b8bef12-2b46-4835-827b-9624bf9bb00c",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-recession-2",
+      "type": "project",
+      "name": "The Recession 2",
+      "mbid": "e4a0499e-5152-41b0-bff8-934f7493c4be",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trap-or-treat",
+      "type": "project",
+      "name": "Trap or Treat",
+      "mbid": "893bd775-5a8b-4f4a-9cf4-e43a18010be2",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:twenty-20-pyrex-vision",
+      "type": "project",
+      "name": "Twenty/20 Pyrex Vision",
+      "mbid": "83db36c6-83ce-4c0f-8cf6-6675a07ae56e",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tm104-the-legend-of-the-snowman",
+      "type": "project",
+      "name": "TM104: The Legend of the Snowman",
+      "mbid": "526bf3ab-3e9f-4440-a720-90aff80637df",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mlk-blvd",
+      "type": "project",
+      "name": "MLK BLVD",
+      "mbid": "f95a9dda-4c9c-4fb5-985c-517e4b08560f",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pressure",
+      "type": "project",
+      "name": "Pressure",
+      "mbid": "f70f359d-2998-447d-b1f5-f090b401e454",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kill-jill",
+      "type": "project",
+      "name": "Kill Jill",
+      "mbid": "413cf5e7-bac9-48ec-a992-e0f0d034d31d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trap-or-die-3",
+      "type": "project",
+      "name": "Trap or Die 3",
+      "mbid": "a7a94c4f-2d0c-4dda-9e6e-2daeb3ed62e1",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:iamtrap",
+      "type": "project",
+      "name": "iAmTrap",
+      "mbid": "4c97cdf4-5763-4a6b-9404-a0581a13c5c8",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:church-in-these-streets",
+      "type": "project",
+      "name": "Church in These Streets",
+      "mbid": "1f54198f-c0f0-4dd1-b207-2c0395111364",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:politically-correct",
+      "type": "project",
+      "name": "Politically Correct",
+      "mbid": "76a719bb-3433-4fb5-b466-6b97e4185ea7",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:seen-it-all-the-autobiography",
+      "type": "project",
+      "name": "Seen It All: The Autobiography",
+      "mbid": "0ae4d03d-f3ad-46db-a8b2-8db35c0354d3",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seen-it-all",
+      "type": "project",
+      "name": "Seen It All",
+      "mbid": "60585d5d-809f-433f-98b1-02ecde6ed9a9",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-can-t-buy",
+      "type": "project",
+      "name": "Money Can’t Buy",
+      "mbid": "171563dc-3542-481a-a17a-62d08f6f8fcb",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vato",
+      "type": "project",
+      "name": "Vato",
+      "mbid": "31f0129b-1773-4517-9b08-24d94b127263",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:which-1-u-workin",
+      "type": "project",
+      "name": "Which 1 U Workin",
+      "mbid": "5c763c37-bd0d-46d5-952b-dd49eaa21687",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-nigga",
+      "type": "project",
+      "name": "My Nigga",
+      "mbid": "4572311e-674c-44e7-8605-d6af5fb52a5d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-what",
+      "type": "project",
+      "name": "4 What",
+      "mbid": "ec7752eb-abe1-49a9-b809-e868f2617d2f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:r-i-p",
+      "type": "project",
+      "name": "R.I.P.",
+      "mbid": "b5d7b758-265a-4daf-b1a8-7613f6cab140",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:major-distribution",
+      "type": "project",
+      "name": "Major Distribution",
+      "mbid": "defe1e3a-49d9-4910-8e34-afd165e969d9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:balcony",
+      "type": "project",
+      "name": "Balcony",
+      "mbid": "0b02f8c0-619b-4f4f-bfbb-e77edfd207cd",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:westside-right-on-time",
+      "type": "project",
+      "name": "Westside, Right on Time",
+      "mbid": "c3916bc2-fa38-4f86-9f22-54bba0c031e1",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-right",
+      "type": "project",
+      "name": "Get Right",
+      "mbid": "be067063-cd8a-49d7-b559-753af8928c07",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tm-103-hustlerz-ambition",
+      "type": "project",
+      "name": "TM:103: Hustlerz Ambition",
+      "mbid": "b06b3048-1ea6-41dc-8733-ecaea6cc75b3",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shake-life",
+      "type": "project",
+      "name": "Shake Life",
+      "mbid": "de3048f2-8fe6-4929-9e7a-d35c71021e5f",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ballin",
+      "type": "project",
+      "name": "Ballin'",
+      "mbid": "6245af04-4e1e-4859-aaf6-cd375872e24c",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-out-on-the-town",
+      "type": "project",
+      "name": "Go Out on the Town",
+      "mbid": "e893b227-fe9f-4f53-b0a2-20abc2cb8e7d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jizzle",
+      "type": "project",
+      "name": "Jizzle",
+      "mbid": "e77df6d8-5ce9-4880-a2b9-4ead91e70556",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-white-everything",
+      "type": "project",
+      "name": "All White Everything",
+      "mbid": "0d68e01e-c82a-4f2b-b71e-b57939ae5544",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-my-mind",
+      "type": "project",
+      "name": "Lose My Mind",
+      "mbid": "745b122d-65ff-4729-8d98-5f0d5ae73561",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-ever",
+      "type": "project",
+      "name": "Never Ever",
+      "mbid": "ddca7f8c-cc8e-48e5-a42a-6c2bdfc121c1",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-so-paid",
+      "type": "project",
+      "name": "I’m So Paid",
+      "mbid": "7dd45895-b4fb-38cf-80a5-8f92ed67650c",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-recession",
+      "type": "project",
+      "name": "The Recession",
+      "mbid": "b6787057-a471-34a7-a523-51a84b6cb360",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:put-on",
+      "type": "project",
+      "name": "Put On",
+      "mbid": "239d4e08-7f4f-3113-b170-bd9181ebd34d",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-in-this-club",
+      "type": "project",
+      "name": "Love in This Club",
+      "mbid": "fd44dc92-5983-32a8-a8a3-4b947199d021",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-getta-hit-pack",
+      "type": "project",
+      "name": "Go Getta Hit Pack",
+      "mbid": "84d3cc1c-163f-4a03-84b0-2038aa44809b",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:diamonds",
+      "type": "project",
+      "name": "Diamonds",
+      "mbid": "948ccfde-9dd3-4d26-97ee-652245fee45b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-inspiration",
+      "type": "project",
+      "name": "The Inspiration",
+      "mbid": "485f7305-f687-3a7a-a496-9067fb79c58c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-luv-it",
+      "type": "project",
+      "name": "I Luv It",
+      "mbid": "f9619144-ec01-4663-b6ae-1298aa05c178",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-getta",
+      "type": "project",
+      "name": "Go Getta",
+      "mbid": "571afcda-f68c-42bc-9ff6-1a87b9f13667",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:grew-up-a-screw-up",
+      "type": "project",
+      "name": "Grew Up a Screw Up",
+      "mbid": "7ee388cc-ab9c-44f7-b332-81e3cbd65dab",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-get-it-thug-motivation-101",
+      "type": "project",
+      "name": "Let’s Get It: Thug Motivation 101",
+      "mbid": "889b5843-34bd-3f12-b9a5-eeaaab799ef5",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:streets-on-lock",
+      "type": "project",
+      "name": "Streets On Lock",
+      "mbid": "18e3d6b8-d79a-4234-b069-0f459007bcba",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soul-survivor",
+      "type": "project",
+      "name": "Soul Survivor",
+      "mbid": "8d1ebc4a-72cd-4293-baae-b16040af00e7",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:over-here",
+      "type": "project",
+      "name": "Over Here",
+      "mbid": "c029a159-984a-4981-b8e6-3c730f6f0636",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-shop-wit-me",
+      "type": "project",
+      "name": "Come Shop Wit' Me",
+      "mbid": "0ceeb7ea-e4be-315e-bc61-551ef5b4246d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thuggin-under-the-influence",
+      "type": "project",
+      "name": "Thuggin Under the Influence",
+      "mbid": "fb8106f2-3a33-3023-a89a-e03606931fc1",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:official-white-label",
+      "type": "project",
+      "name": "Official White Label (Red Edition)",
+      "mbid": "6048865b-1996-4a58-b801-bc40be95941a",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:amazing",
+      "type": "project",
+      "name": "Amazing",
+      "mbid": "d243e76a-f0a2-4340-b327-13db827ede93",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:soul-survivor",
+      "type": "track",
+      "name": "Soul Survivor"
+    },
+    {
+      "slug": "track:put-on",
+      "type": "track",
+      "name": "Put On"
+    },
+    {
+      "slug": "track:my-president",
+      "type": "track",
+      "name": "My President"
+    },
+    {
+      "slug": "track:i-luv-it",
+      "type": "track",
+      "name": "I Luv It"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

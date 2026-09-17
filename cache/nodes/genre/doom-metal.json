@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of heavy metal characterized by slow tempos, low-tuned guitars, and a thick, heavy sound intended to evoke feelings of despair, dread, and impending doom.",
+  "qid": "Q186170",
   "era": "1970s–present",
   "origin": "United Kingdom and United States",
   "parent_genres": [
@@ -65,6 +66,12 @@
       "type": "genre",
       "name": "Stoner metal",
       "qid": "Q1772422"
+    },
+    {
+      "slug": "genre:extreme-metal",
+      "type": "genre",
+      "name": "Extreme metal",
+      "qid": "Q465978"
     }
   ],
   "key_artists": [
@@ -97,6 +104,5 @@
       "name": "Epicus Doomicus Metallicus"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q186170"
+  "landmark_tracks": []
 }

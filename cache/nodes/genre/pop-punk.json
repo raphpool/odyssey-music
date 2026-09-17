@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A fusion genre combining the high-energy, fast-paced instrumentation and anti-establishment themes of punk rock with the accessible, melodic songwriting structures of 1960s pop and power pop.",
+  "qid": "Q487914",
   "era": "Late 1970s – Present",
   "origin": "United States and United Kingdom",
   "parent_genres": [
@@ -84,6 +85,12 @@
       "type": "genre",
       "name": "New Wave",
       "qid": "Q187760"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
     }
   ],
   "key_artists": [
@@ -142,6 +149,5 @@
       "name": "All Killer No Filler"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q487914"
+  "landmark_tracks": []
 }

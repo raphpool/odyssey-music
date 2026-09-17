@@ -1,0 +1,402 @@
+{
+  "slug": "artist:outkast",
+  "name": "OutKast",
+  "editorial_article": "Formed in Atlanta in 1992 by high school classmates André 3000 and Big Boi, OutKast emerged as a seminal hip-hop duo that eventually popularized Southern rap through their distinct mix of live instrumentation and futuristic production. Their debut album, 1994's Southernplayalisticadillacmuzik, was produced entirely by the local collective Organized Noize, laying the groundwork for the Dungeon Family organization. The group expanded their sound through subsequent records like 1996's ATLiens and 1998's Aquemini, incorporating influences from psychedelia, dub, and funk. They achieved mainstream dominance with the 2003 diamond-certified double album Speakerboxxx/The Love Below, which spawned global hits like André 3000's 'Hey Ya!' and Big Boi's 'The Way You Move.' After their 2006 soundtrack and film project Idlewild, the duo moved to solo ventures before briefly reuniting for a global festival circuit in 2014.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Outkast",
+      "title": "Outkast"
+    },
+    {
+      "url": "https://hip-hop-music.fandom.com/wiki/OutKast",
+      "title": "OutKast - Hip Hop Wiki"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Outkast_discography",
+      "title": "Outkast discography"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:36.020Z",
+  "type": "artist",
+  "editorial_bio": "An influential Atlanta hip-hop duo consisting of André 3000 and Big Boi, known for pioneering Southern rap and blending diverse genres.",
+  "origin": "Atlanta, Georgia",
+  "active_years": "1992-2007, 2014, 2016",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:laface-records",
+      "type": "label",
+      "name": "LaFace Records"
+    },
+    {
+      "slug": "label:arista-records",
+      "type": "label",
+      "name": "Arista Records"
+    },
+    {
+      "slug": "label:purple-ribbon-records",
+      "type": "label",
+      "name": "Purple Ribbon Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:int-l-players-anthem",
+      "type": "project",
+      "name": "Int’l Players Anthem (I Choose You)",
+      "mbid": "87b43fc5-9be6-4441-9c65-dd5483072427",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:morris-brown",
+      "type": "project",
+      "name": "Morris Brown",
+      "mbid": "23a22455-2e09-34e3-8b25-18609eff3c8e",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mighty-o",
+      "type": "project",
+      "name": "Mighty “O”",
+      "mbid": "64899975-01d7-372d-a167-2f227be2e53b",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:morris-brown-idlewild-blue",
+      "type": "project",
+      "name": "Morris Brown / Idlewild Blue (Don’tchu Worry ’Bout Me)",
+      "mbid": "70885dfa-2d71-35ec-a833-d883a46bf933",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roses",
+      "type": "project",
+      "name": "Roses",
+      "mbid": "8e5205b0-fe90-3679-bac6-e73e7ba92429",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-way-you-move",
+      "type": "project",
+      "name": "The Way You Move",
+      "mbid": "c16ede5b-ab04-3559-9c68-6481094b2196",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prototype",
+      "type": "project",
+      "name": "Prototype",
+      "mbid": "16846eae-e1a8-4a64-9453-ada982713127",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prototype-ghetto-musick",
+      "type": "project",
+      "name": "Prototype / Ghetto Musick",
+      "mbid": "3d90629e-5429-4b0b-87f5-82f4fb391687",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:speakerboxxx-the-love-below",
+      "type": "project",
+      "name": "Speakerboxxx / The Love Below",
+      "mbid": "fa64febd-61e0-346e-aaa2-04564ed4f0a3",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghettomusick",
+      "type": "project",
+      "name": "GhettoMusick",
+      "mbid": "92ae54eb-1c9f-3461-88bc-da3020d9621d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hey-ya",
+      "type": "project",
+      "name": "Hey Ya!",
+      "mbid": "f450a3d1-c7c4-3985-85f0-8bff98c63e17",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-way-you-move-hey-ya",
+      "type": "project",
+      "name": "The Way You Move / Hey Ya!",
+      "mbid": "83909403-cb1a-4e81-a9a4-050cee68f084",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:speakerboxxx-the-love-below-album-sampler",
+      "type": "project",
+      "name": "Speakerboxxx / The Love Below - Album Sampler",
+      "mbid": "fd3be64e-76d0-4146-84ab-a79e246a5080",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:land-of-a-million-drums",
+      "type": "project",
+      "name": "Land of a Million Drums",
+      "mbid": "b5361c20-125e-414b-b037-f4c3c1bf2d37",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-whole-world",
+      "type": "project",
+      "name": "The Whole World",
+      "mbid": "d4a92b1b-1eb8-4c19-a840-26c648bc3af2",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-fresh-so-clean",
+      "type": "project",
+      "name": "So Fresh, So Clean",
+      "mbid": "b5fd0064-968c-3437-a664-e04205130c56",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stankonia",
+      "type": "project",
+      "name": "Stankonia",
+      "mbid": "00d2cd53-21c9-3738-b683-56847b7b0040",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bombs-over-baghdad",
+      "type": "project",
+      "name": "Bombs Over Baghdad",
+      "mbid": "275a1493-0807-4f57-9acb-db111a5c60d4",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ms-jackson",
+      "type": "project",
+      "name": "Ms. Jackson",
+      "mbid": "78f65edc-dfec-3ccb-83b3-c8819581898a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:street-talkin",
+      "type": "project",
+      "name": "Street Talkin’",
+      "mbid": "d408831b-7a9d-4c30-aa90-6461a776d8de",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aquemini",
+      "type": "project",
+      "name": "Aquemini",
+      "mbid": "eb655897-6cc5-3fc1-b9ed-5008eb80c682",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-art-of-storytellin-part-1",
+      "type": "project",
+      "name": "Da Art of Storytellin’, Part 1",
+      "mbid": "a3a8888d-2dac-3b73-a4eb-048fdf92ab92",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-ice",
+      "type": "project",
+      "name": "Black Ice (Sky High)",
+      "mbid": "47a9bb46-2e9c-46bd-a600-8d741f2faf75",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skew-it-on-the-bar-b",
+      "type": "project",
+      "name": "Skew It on the Bar-B",
+      "mbid": "8770866e-2fad-46e4-8c21-78c6595a9f33",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rosa-parks",
+      "type": "project",
+      "name": "Rosa Parks",
+      "mbid": "d486e130-070d-46ff-ba14-eec1c22cb25e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-due-time",
+      "type": "project",
+      "name": "In Due Time",
+      "mbid": "469668cd-cf93-4f71-87a8-20c1f4493524",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atliens",
+      "type": "project",
+      "name": "ATLiens",
+      "mbid": "672fa6be-ae6a-38a2-a0d3-6a393a3929bf",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atliens-wheelz-of-steel",
+      "type": "project",
+      "name": "ATLiens / Wheelz of Steel",
+      "mbid": "e72f669d-3945-39c1-a6ef-9024367530ff",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elevators",
+      "type": "project",
+      "name": "Elevators (Me & You)",
+      "mbid": "6d1ab761-f5b2-3fbc-8aaa-0c19e9a7de20",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jazzy-belle",
+      "type": "project",
+      "name": "Jazzy Belle",
+      "mbid": "318ef18d-392e-3a49-9f85-e13c294fd3e5",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:outkast",
+      "type": "project",
+      "name": "Outkast",
+      "mbid": "c9857739-9b9d-4790-8656-f76bc9ff7e55",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:git-up-git-out",
+      "type": "project",
+      "name": "Git Up, Git Out",
+      "mbid": "71239b98-9719-4e94-aa64-73741fe292b5",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:southernplayalisticadillacmuzik",
+      "type": "project",
+      "name": "Southernplayalisticadillacmuzik",
+      "mbid": "b4b3f56a-f5b8-3dba-b61b-b0d4b8cbbcae",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:southernplayalisticadillacmuzik",
+      "type": "project",
+      "name": "Southernplayalisticadillacmuzik",
+      "mbid": "2ee919fe-eab8-3fb5-a069-ef0220c29e09",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:player-s-ball",
+      "type": "project",
+      "name": "Player’s Ball",
+      "mbid": "ab24f50f-212c-3271-81ee-42bd5f4d4239",
+      "year": "1993",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:player-s-ball",
+      "type": "track",
+      "name": "Player's Ball"
+    },
+    {
+      "slug": "track:elevators",
+      "type": "track",
+      "name": "Elevators (Me & You)"
+    },
+    {
+      "slug": "track:rosa-parks",
+      "type": "track",
+      "name": "Rosa Parks"
+    },
+    {
+      "slug": "track:b-o-b",
+      "type": "track",
+      "name": "B.O.B."
+    },
+    {
+      "slug": "track:ms-jackson",
+      "type": "track",
+      "name": "Ms. Jackson"
+    },
+    {
+      "slug": "track:hey-ya",
+      "type": "track",
+      "name": "Hey Ya!"
+    },
+    {
+      "slug": "track:the-way-you-move",
+      "type": "track",
+      "name": "The Way You Move"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:andre-3000",
+      "type": "artist",
+      "name": "André 3000"
+    },
+    {
+      "slug": "artist:big-boi",
+      "type": "artist",
+      "name": "Big Boi"
+    }
+  ]
+}

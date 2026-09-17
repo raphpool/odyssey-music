@@ -46,6 +46,12 @@
       "type": "genre",
       "name": "Balearic House",
       "qid": "Q2866725"
+    },
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
     }
   ],
   "key_artists": [

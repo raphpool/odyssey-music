@@ -19,11 +19,19 @@
   "materialized_at": "2026-05-13T13:12:18.527Z",
   "type": "genre",
   "editorial_definition": "A modern dance music movement that revives the aesthetic of 1970s disco and 1980s Euro-disco through contemporary, polished production and traditional songwriting structures.",
+  "qid": "Q4045538",
   "era": "2000s-present",
   "origin": "United Kingdom",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:todd-terje",
@@ -80,6 +88,5 @@
       "name": "Metro Area"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q4045538"
+  "landmark_tracks": []
 }

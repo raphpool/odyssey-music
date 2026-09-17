@@ -1,0 +1,306 @@
+{
+  "slug": "artist:warren-g",
+  "name": "Warren G",
+  "editorial_article": "Born Warren Griffin III on November 10, 1970, in Long Beach, California, the artist became a pivotal architect of G-funk, a subgenre he helped propel into the global mainstream during the 1990s. After honing his skills in the back of the V.I.P. Records store with his childhood trio 213—comprising Snoop Dogg and Nate Dogg—Griffin launched a successful solo career with his 1994 Def Jam debut, Regulate... G Funk Era. The title track, a duet with Nate Dogg that samples Michael McDonald's \"I Keep Forgettin' (Every Time You're Near),\" reached number two on the Billboard Hot 100 and spent 18 weeks in the Top 40. Known for a smoother, more melodic approach compared to his gangsta-rap contemporaries, he continued to collaborate with artists like Ron Isley and Adina Howard on subsequent projects such as 1997's Take a Look Over Your Shoulder. In 2015, he returned to his roots with the EP Regulate... G Funk Era, Part II, featuring archived vocals from his late collaborator Nate Dogg.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Warren_G",
+      "title": "Warren G - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:14.881Z",
+  "type": "artist",
+  "editorial_bio": "A foundational G-funk producer and rapper from Long Beach, Warren G achieved global fame in 1994 with his multi-platinum smash 'Regulate'.",
+  "origin": "Long Beach, California",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    },
+    {
+      "slug": "label:g-funk-entertainment",
+      "type": "label",
+      "name": "G-Funk Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:let-me-breathe",
+      "type": "project",
+      "name": "Let Me Breathe",
+      "mbid": "f75163cb-6a65-4114-b4ad-ebdf021d01ee",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cali-2-canada",
+      "type": "project",
+      "name": "Cali 2 Canada",
+      "mbid": "8fe1e179-31a8-4ed4-a3a7-5203756f4ad7",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lofi-chill-vibes-with-warren-g",
+      "type": "project",
+      "name": "lofi chill vibes with warren g",
+      "mbid": "db57dd77-4614-4399-86b0-06f4c7912386",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:and-you-know-that",
+      "type": "project",
+      "name": "And You Know That",
+      "mbid": "9e42b727-fe61-49b9-8e60-cf8c9e9a6ec6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:regulate-g-funk-era-part-ii",
+      "type": "project",
+      "name": "Regulate… G Funk Era, Part II",
+      "mbid": "e65ecfd9-1282-494c-bfda-f733063af7b6",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:my-house",
+      "type": "project",
+      "name": "My House",
+      "mbid": "a899a1ec-8cc2-4ab0-a725-48bc91805340",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:p-d-d",
+      "type": "project",
+      "name": "P.D.D",
+      "mbid": "779dd58d-00f4-44e6-bad8-d7f83d350874",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-we-will-throw-now",
+      "type": "project",
+      "name": "Party We Will Throw Now!",
+      "mbid": "60ea1487-8bfb-4e4f-a219-fa9a29cac26d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-dedicated-to-you",
+      "type": "project",
+      "name": "This Is Dedicated to You",
+      "mbid": "4de5dd9b-06c0-46db-b9c5-16be9da18d41",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-g-files",
+      "type": "project",
+      "name": "The G Files",
+      "mbid": "90416a3f-1488-41e4-b851-70107684b37a",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-u-down",
+      "type": "project",
+      "name": "Get U Down",
+      "mbid": "b5af8505-b88b-417e-8373-043854b39587",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-the-mid-nite-hour",
+      "type": "project",
+      "name": "In the Mid‐Nite Hour",
+      "mbid": "374c9ce9-613d-3468-84cb-03b66c8fff5d",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:make-it-do-what-it-do",
+      "type": "project",
+      "name": "Make It Do What It Do",
+      "mbid": "fba26618-c8be-48d1-b6b7-e7dea7c4b1f3",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-return-of-the-regulator",
+      "type": "project",
+      "name": "The Return of the Regulator",
+      "mbid": "380644d0-c325-3c71-aa8d-8a435477e9c3",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lookin-at-you",
+      "type": "project",
+      "name": "Lookin’ at You",
+      "mbid": "8afc8f47-7f2e-470d-a0a5-226011ca20df",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-want-it-all",
+      "type": "project",
+      "name": "I Want It All",
+      "mbid": "0ddb301b-1d31-3420-9d06-afb1743b1328",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-want-it-all",
+      "type": "project",
+      "name": "I Want It All",
+      "mbid": "5f16cfce-3ecb-3a8f-a7fe-77c6212dd766",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobody-does-it-better",
+      "type": "project",
+      "name": "Nobody Does It Better",
+      "mbid": "fcd5c2fa-fbb3-3965-9ce9-5eee0c6bd7dd",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prince-igor",
+      "type": "project",
+      "name": "Prince Igor",
+      "mbid": "3f803f69-0e80-3920-802d-6ad0e949153b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smokin-me-out",
+      "type": "project",
+      "name": "Smokin’ Me Out",
+      "mbid": "c882ebd7-2cde-4a74-b051-223d11a2b4da",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-a-look-over-your-shoulder",
+      "type": "project",
+      "name": "Take a Look Over Your Shoulder (Reality)",
+      "mbid": "c11317fa-6d03-3ccd-b88e-1baae7e1c726",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-shot-the-sheriff",
+      "type": "project",
+      "name": "I Shot the Sheriff",
+      "mbid": "ce18a8d2-17a1-36ff-972f-eecd7e4b2f8a",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-night-all-right",
+      "type": "project",
+      "name": "All Night All Right",
+      "mbid": "9a1cacca-0311-3037-be4d-36fd975bfb9c",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-s-love-got-to-do-with-it",
+      "type": "project",
+      "name": "What’s Love Got to Do With It",
+      "mbid": "ebf5e3a8-d375-3d3c-b77f-9be0a4261dbf",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-d-j",
+      "type": "project",
+      "name": "This D.J.",
+      "mbid": "6ba20208-6e86-40e3-8df4-210f06014200",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:regulate-g-funk-era",
+      "type": "project",
+      "name": "Regulate… G Funk Era",
+      "mbid": "7d2ec03f-4abb-3fef-b7e5-465334a47b54",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:regulate",
+      "type": "project",
+      "name": "Regulate",
+      "mbid": "44a050fd-a335-3297-bdd2-8e2222805ef9",
+      "year": "1994",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:regulate",
+      "type": "track",
+      "name": "Regulate"
+    },
+    {
+      "slug": "track:this-d-j",
+      "type": "track",
+      "name": "This D.J."
+    },
+    {
+      "slug": "track:do-you-see",
+      "type": "track",
+      "name": "Do You See"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:nate-dogg",
+      "type": "artist",
+      "name": "Nate Dogg"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

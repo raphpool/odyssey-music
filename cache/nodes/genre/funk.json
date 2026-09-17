@@ -64,6 +64,42 @@
       "type": "genre",
       "name": "Afrobeat",
       "qid": "Q388296"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
     }
   ],
   "key_artists": [

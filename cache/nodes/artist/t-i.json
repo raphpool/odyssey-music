@@ -1,0 +1,819 @@
+{
+  "slug": "artist:t-i",
+  "name": "T.I.",
+  "editorial_article": "Born Clifford Joseph Harris Jr. in Atlanta, Georgia, T.I. is widely credited as a primary pioneer of trap music, rising to mainstream prominence in the early 2000s alongside fellow Georgia rappers Gucci Mane and Jeezy. After his debut album 'I'm Serious' (2001) under Arista and LaFace Records yielded modest returns, he founded Grand Hustle Records in 2003 and secured a joint venture with Atlantic Records. His second studio album, 'Trap Muzik' (2003), marked his breakout, spawning the singles 'Rubber Band Man' and 'Let's Get Away'. The rapper achieved significant commercial heights with his 2008 album 'Paper Trail', which produced the chart-topping singles 'Whatever You Like' and 'Live Your Life' (featuring Rihanna), the latter making him the first rapper to occupy the top two positions on the Billboard Hot 100 simultaneously. Beyond his solo work, Harris has served as an executive producer for artists including Iggy Azalea, Travis Scott, and B.o.B. His acting career includes roles in films such as 'ATL' and the Marvel Cinematic Universe's 'Ant-Man'. In 2026, he released his twelfth album, 'Kill the King', following a career defined by extensive Southern hip-hop influence and numerous collaborations with artists like Lil Wayne, Pharrell Williams, and Justin Timberlake.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/T.I.",
+      "title": "T.I. - Wikipedia"
+    },
+    {
+      "url": "https://excellentmusic.miraheze.org/wiki/T.I.",
+      "title": "T.I. - Excellent Music Wiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:17:39.717Z",
+  "type": "artist",
+  "editorial_bio": "An Atlanta-born rapper, actor, and Grand Hustle founder credited with pioneering the Southern trap music subgenre.",
+  "origin": "Atlanta, Georgia",
+  "active_years": "1999-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grand-hustle-records",
+      "type": "label",
+      "name": "Grand Hustle Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:kill-the-king",
+      "type": "project",
+      "name": "Kill The King",
+      "mbid": "1fd6a620-fc5b-4629-8d4b-b5c4f2f718a9",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-him",
+      "type": "project",
+      "name": "MR HIM",
+      "mbid": "28b2bb4e-2058-4f75-b211-92df3b73258f",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trauma-bond",
+      "type": "project",
+      "name": "Trauma Bond",
+      "mbid": "5fde9aad-8c17-48e6-8acd-fe5c73876ef2",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-em-know",
+      "type": "project",
+      "name": "LET 'EM KNOW",
+      "mbid": "2c96a66d-eab9-41b7-a28a-62d4cf3b67da",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:llogclay",
+      "type": "project",
+      "name": "LLOGCLAY",
+      "mbid": "03417214-a7bd-4b16-bbb3-bc569b16f785",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-the-shit",
+      "type": "project",
+      "name": "U The Shit",
+      "mbid": "1a838bd1-1eaa-4c72-a4f7-196a88cfe8fd",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-stand-on-that",
+      "type": "project",
+      "name": "I Stand on That",
+      "mbid": "9543fa7d-11ff-40c4-a8cb-f2dbf654d039",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-l-i-b-r-a",
+      "type": "project",
+      "name": "The L.I.B.R.A. (Legend Is Back Running Atlanta)",
+      "mbid": "350cd7f0-83c0-44b0-8516-26814852592c",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dime-trap",
+      "type": "project",
+      "name": "DIME TRAP",
+      "mbid": "c9377a12-9f10-42f9-afd0-ffe8956457ab",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jefe",
+      "type": "project",
+      "name": "Jefe",
+      "mbid": "25e0b0f7-9a58-40c4-a4eb-afcd70d68436",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wraith",
+      "type": "project",
+      "name": "Wraith",
+      "mbid": "8625ecea-aadd-4dff-adc3-7288b2626882",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ye-vs-the-people",
+      "type": "project",
+      "name": "Ye vs. The People",
+      "mbid": "3af5875a-8ca2-4c8a-94a5-a60b25642428",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-blessed",
+      "type": "project",
+      "name": "I'm Blessed",
+      "mbid": "1fb1b748-222b-41fe-abc5-4a506c942766",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-lit",
+      "type": "project",
+      "name": "4 Lit",
+      "mbid": "851e1ac3-7ae4-4962-905b-53da4696b362",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:us-or-else",
+      "type": "project",
+      "name": "Us or Else",
+      "mbid": "2a8ba5c8-f745-4069-a7e2-89cb03fec171",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-down",
+      "type": "project",
+      "name": "Come Down",
+      "mbid": "cde1ab5e-5fd5-4209-b979-747aa8ef0dea",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dope",
+      "type": "project",
+      "name": "DOPE",
+      "mbid": "dade20b3-0b17-41bf-a656-451aaeb6f8b5",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-talk",
+      "type": "project",
+      "name": "Money Talk",
+      "mbid": "3f395bab-0ff2-4b46-87be-2ac3b79d33f0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-nic",
+      "type": "project",
+      "name": "Da' Nic",
+      "mbid": "ea1d5a27-cbe1-431b-9026-972c9d929ad3",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:california",
+      "type": "project",
+      "name": "California",
+      "mbid": "dc841c50-f8d0-47bc-a574-970376188bc5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-low",
+      "type": "project",
+      "name": "Get Low",
+      "mbid": "71f251de-03a2-4020-9ea4-1e774eeba4d6",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:project-steps",
+      "type": "project",
+      "name": "Project Steps",
+      "mbid": "91b889fa-a2a4-44bb-ba08-97bb3e00b360",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flexin",
+      "type": "project",
+      "name": "Flexin",
+      "mbid": "4e970322-380b-468d-b2e9-d1cad87d28cf",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-like-it",
+      "type": "project",
+      "name": "I Like It",
+      "mbid": "42bde280-cc6f-4fe9-bf03-3373f9c7795a",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paperwork",
+      "type": "project",
+      "name": "Paperwork",
+      "mbid": "0dc1e37f-7e14-47f2-97ba-6e1e6787c660",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paperwork",
+      "type": "project",
+      "name": "Paperwork",
+      "mbid": "04e7dc4d-3e4d-4b38-a741-8807a52a8605",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-national-anthem",
+      "type": "project",
+      "name": "New National Anthem",
+      "mbid": "39566737-742d-42dc-9671-40c441664a0b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-girl",
+      "type": "project",
+      "name": "This Girl",
+      "mbid": "72e4dd4e-f375-4085-ac31-7f22d17a731d",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-mediocre",
+      "type": "project",
+      "name": "No Mediocre",
+      "mbid": "ecad400b-8fe4-43d9-a41a-957bf8208f86",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:about-the-money",
+      "type": "project",
+      "name": "About the Money",
+      "mbid": "56757fdc-cad1-4fef-9309-c53f1edce749",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coke-bottle",
+      "type": "project",
+      "name": "Coke Bottle",
+      "mbid": "03246269-fdde-47f8-95ca-0a857cab8862",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:change-your-life",
+      "type": "project",
+      "name": "Change Your Life",
+      "mbid": "f7d264d8-d27f-4f5b-9b85-595a5af8b00e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-potna",
+      "type": "project",
+      "name": "My Potna",
+      "mbid": "a3d08a73-bb2c-4930-bd61-e9cb11a000e8",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-wish",
+      "type": "project",
+      "name": "I Wish",
+      "mbid": "eaf0a5d9-1f97-4dd7-9fcd-481a9210119d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:upper-echelon",
+      "type": "project",
+      "name": "Upper Echelon",
+      "mbid": "23ad0c84-c98d-4f60-b90a-7d471f7e5f90",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wit-me",
+      "type": "project",
+      "name": "Wit Me",
+      "mbid": "bf7552d4-02aa-4f14-9216-cb4ccd0dda82",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:memories-back-then",
+      "type": "project",
+      "name": "Memories Back Then",
+      "mbid": "fda1cf4b-e673-4a23-ac90-9b7237a260d7",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blurred-lines",
+      "type": "project",
+      "name": "Blurred Lines",
+      "mbid": "a02f908b-40bb-4aad-9e0a-2c41ca857031",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-still-in-this-bitch",
+      "type": "project",
+      "name": "We Still In This Bitch",
+      "mbid": "28887b64-8e92-4162-af43-4cdfe3353266",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trouble-man-heavy-is-the-head",
+      "type": "project",
+      "name": "Trouble Man: Heavy Is the Head",
+      "mbid": "dfd3a78e-bed6-495a-a914-82ab17bca5fd",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hello",
+      "type": "project",
+      "name": "Hello",
+      "mbid": "16d162f9-7719-40f1-bcbb-77add6f7446d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trap-back-jumpin",
+      "type": "project",
+      "name": "Trap Back Jumpin",
+      "mbid": "bc09955d-ad6f-49cb-8729-b4f8243b61e3",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ball",
+      "type": "project",
+      "name": "Ball",
+      "mbid": "c3e2094e-c018-43eb-b703-d9102c41294c",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-get-it",
+      "type": "project",
+      "name": "Go Get It",
+      "mbid": "171d7cb1-61cf-46cc-a849-5a0111dd7b15",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-this-life",
+      "type": "project",
+      "name": "Love This Life",
+      "mbid": "48fbe325-a33a-4909-b5fc-b1bea4fdf232",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-beast",
+      "type": "project",
+      "name": "Big Beast",
+      "mbid": "04de1b41-7848-4d3b-8f52-dabab6f1594e",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:care",
+      "type": "project",
+      "name": "Care",
+      "mbid": "e85f8687-8777-4d9f-b221-314156c18d95",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spend-it",
+      "type": "project",
+      "name": "Spend It (remix)",
+      "mbid": "3a60699c-451b-49e9-8bba-80e6cbd169a3",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-ye-hear-ye",
+      "type": "project",
+      "name": "Here Ye, Hear Ye",
+      "mbid": "f2615d89-69bc-4b0a-8fe8-cf63f89b5b4d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-flexin",
+      "type": "project",
+      "name": "I'm Flexin'",
+      "mbid": "ebf6e9ee-f63a-42aa-8b6a-769c15b7fd5d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-don-t-get-down-like-y-all",
+      "type": "project",
+      "name": "We Don’t Get Down Like Y’all",
+      "mbid": "7ffe5efb-024d-4c91-b9f7-2f8ce954727c",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ready-set-go",
+      "type": "project",
+      "name": "Ready Set Go",
+      "mbid": "ef9c7fac-f687-4ff7-80a3-c57250e97e6e",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-mercy",
+      "type": "project",
+      "name": "No Mercy",
+      "mbid": "2340ac78-4cca-4bc9-ba53-1071124e55a5",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:got-your-back",
+      "type": "project",
+      "name": "Got Your Back",
+      "mbid": "6c55446f-9256-47ba-b889-20c2351067c0",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-back",
+      "type": "project",
+      "name": "I'm Back",
+      "mbid": "f2830570-9bc8-44f9-b355-fa672348baf9",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hell-of-a-life",
+      "type": "project",
+      "name": "Hell of a Life",
+      "mbid": "1d9651f3-370d-4f1c-99c8-c25471b37022",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:remember-me",
+      "type": "project",
+      "name": "Remember Me",
+      "mbid": "ab3729fa-8234-4adc-9eb2-81447dbcad2e",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dead-and-gone",
+      "type": "project",
+      "name": "Dead and Gone",
+      "mbid": "25dceb8f-e378-4be2-8999-24a560cba0df",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-i",
+      "type": "project",
+      "name": "Ain’t I",
+      "mbid": "4140cdff-6731-473f-aa8f-b009bde0f6d9",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paper-trail",
+      "type": "project",
+      "name": "Paper Trail",
+      "mbid": "5f31bfcb-d817-3cf9-8376-237e1f8ecbe9",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-your-life",
+      "type": "project",
+      "name": "Live Your Life",
+      "mbid": "57fbd350-d14d-3110-9e6d-26df976ce5ea",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wish-you-would",
+      "type": "project",
+      "name": "Wish You Would",
+      "mbid": "0f1cf257-b409-419a-b743-9eb448d692cd",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whatever-you-like",
+      "type": "project",
+      "name": "Whatever You Like",
+      "mbid": "35b540fe-6a28-47a9-a273-f2bc2047ea84",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:t-i-vs-t-i-p",
+      "type": "project",
+      "name": "T.I. vs. T.I.P.",
+      "mbid": "f32d7c11-70cb-3441-975d-3339113ad75c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pac-s-life",
+      "type": "project",
+      "name": "Pac’s Life",
+      "mbid": "4a8edf47-2c78-498d-85d5-12f744a8861f",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whatever-u-like",
+      "type": "project",
+      "name": "Whatever U Like",
+      "mbid": "578c716a-ad11-3542-87dc-cdcd4f95ee7a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hurt",
+      "type": "project",
+      "name": "Hurt",
+      "mbid": "5a0e0de6-8337-4bec-a64f-02b4e0f6449a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-things-poppin",
+      "type": "project",
+      "name": "Big Things Poppin' (Do It)",
+      "mbid": "7180e2ac-7542-42fb-8624-466c9df1d609",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-shit-poppin",
+      "type": "project",
+      "name": "Big Shit Poppin' (Do It)",
+      "mbid": "c893cf11-414a-4436-9748-32b56e1e4cae",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:top-back",
+      "type": "project",
+      "name": "Top Back",
+      "mbid": "a8f20c49-5120-4d65-836d-a932293b8f2b",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-love",
+      "type": "project",
+      "name": "My Love",
+      "mbid": "af5c3310-a3fc-3593-9f1b-1615fe33a93b",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king",
+      "type": "project",
+      "name": "King",
+      "mbid": "976904b2-824e-339c-9823-f3d67c8d906c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-you-know",
+      "type": "project",
+      "name": "What You Know",
+      "mbid": "521b66bb-c3ec-4864-8558-8d8fb497a2a7",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:why-you-wanna",
+      "type": "project",
+      "name": "Why You Wanna",
+      "mbid": "54133e41-d09c-4534-8961-f7427631bc87",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dem-boyz",
+      "type": "project",
+      "name": "Dem Boyz (Remix)",
+      "mbid": "963df189-7962-40f9-b58c-ef5103e73c5a",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:urban-legend",
+      "type": "project",
+      "name": "Urban Legend",
+      "mbid": "53e8d518-a95f-30d7-9ce4-24537c3262f3",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:u-don-t-know-me",
+      "type": "project",
+      "name": "U Don't Know Me",
+      "mbid": "4c979f1f-9951-475b-a4f1-9b3f5b2bcd12",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rubber-band-man",
+      "type": "project",
+      "name": "Rubber Band Man (remix)",
+      "mbid": "5c92e4fc-3c95-4993-8327-300fd41b4cbe",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trap-muzik",
+      "type": "project",
+      "name": "Trap Muzik",
+      "mbid": "099a331b-f9f7-3b89-b1bd-ef9dd9880de6",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-serious",
+      "type": "project",
+      "name": "I’m Serious",
+      "mbid": "deb35c22-f779-361e-a8e8-25607a3cba45",
+      "year": "2001",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:rubber-band-man",
+      "type": "track",
+      "name": "Rubber Band Man"
+    },
+    {
+      "slug": "track:what-you-know",
+      "type": "track",
+      "name": "What You Know"
+    },
+    {
+      "slug": "track:whatever-you-like",
+      "type": "track",
+      "name": "Whatever You Like"
+    },
+    {
+      "slug": "track:live-your-life",
+      "type": "track",
+      "name": "Live Your Life"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:young-thug",
+      "type": "artist",
+      "name": "Young Thug"
+    },
+    {
+      "slug": "artist:pharrell-williams",
+      "type": "artist",
+      "name": "Pharrell Williams"
+    },
+    {
+      "slug": "artist:lil-wayne",
+      "type": "artist",
+      "name": "Lil Wayne"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna"
+    },
+    {
+      "slug": "artist:justin-timberlake",
+      "type": "artist",
+      "name": "Justin Timberlake"
+    },
+    {
+      "slug": "artist:b-o-b",
+      "type": "artist",
+      "name": "B.o.B"
+    },
+    {
+      "slug": "artist:iggy-azalea",
+      "type": "artist",
+      "name": "Iggy Azalea"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tip",
+      "type": "artist",
+      "name": "Tip"
+    },
+    {
+      "slug": "artist:t-i-p",
+      "type": "artist",
+      "name": "T.I.P."
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    },
+    {
+      "slug": "artist:young-thug",
+      "type": "artist",
+      "name": "Young Thug"
+    }
+  ]
+}

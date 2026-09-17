@@ -1,0 +1,360 @@
+{
+  "slug": "artist:nujabes",
+  "name": "Nujabes",
+  "editorial_article": "Born Jun Yamada in Tokyo in 1974, the producer known as Nujabes became a cornerstone of independent Japanese hip-hop through his label Hydeout Productions. He first gained notice operating the Shibuya record store Guinness Records, where he began pressing his own beats onto vinyl under the name Dimension Ball. His breakthrough as a producer followed collaborations with Shing02 on the Luv(sic) hexalogy and with Fat Jon on the soundtrack for Shinichirō Watanabe's anime series Samurai Champloo. These works, including the widely recognized tracks 'Battlecry' and 'Aruarian Dance', utilized a signature technique of layering jazz and soul samples over downtempo breakbeats. Before his death in a 2010 traffic collision, he released the albums Metaphorical Music (2003) and Modal Soul (2005). His influence has since grown, as he is posthumously cited as a primary architect of lo-fi hip-hop culture, with later artists such as Logic and Ta-ku acknowledging his production style as a significant inspiration.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nujabes",
+      "title": "Nujabes - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:40.474Z",
+  "type": "artist",
+  "editorial_bio": "A Japanese producer and label founder who bridged underground hip-hop and jazz, posthumously recognized as a definitive figure in lo-fi hip-hop.",
+  "origin": "Tokyo, Japan",
+  "active_years": "1995-2010",
+  "genres": [
+    {
+      "slug": "genre:instrumental-hip-hop",
+      "type": "genre",
+      "name": "Instrumental Hip Hop",
+      "qid": "Q1077172"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:instrumental",
+      "type": "genre",
+      "name": "Instrumental",
+      "qid": "Q639197"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative Hip Hop",
+      "qid": "Q438503"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz Fusion",
+      "qid": "Q105527"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hydeout-productions",
+      "type": "label",
+      "name": "Hydeout Productions"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:life",
+      "type": "project",
+      "name": "Life(sic)",
+      "mbid": "79ccbbb9-3bb8-4fc6-9c3b-0dc9e862b83e",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kumomi-untitled",
+      "type": "project",
+      "name": "Kumomi / Untitled",
+      "mbid": "2f5396a9-f480-48e7-bf61-8fbda5ad2c15",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:perfect-circle",
+      "type": "project",
+      "name": "Perfect Circle",
+      "mbid": "afa63320-e60b-415c-b8e2-23aaadff42c4",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-sic-part-3",
+      "type": "project",
+      "name": "Luv(sic) Part 3",
+      "mbid": "f195b985-e4a2-44ac-a48d-d410ab1e4749",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:child-s-attraction-yes",
+      "type": "project",
+      "name": "Child's Attraction/Yes",
+      "mbid": "74ff225c-27ea-40b5-8fc4-be1074424f94",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-sic-grand-finale-part-6",
+      "type": "project",
+      "name": "Luv(sic) Grand Finale / Part 6",
+      "mbid": "83eeced2-ae59-4482-b92d-8aace6dbbe80",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-sic-part-5",
+      "type": "project",
+      "name": "Luv(sic) Part 5",
+      "mbid": "1dd879c0-32cc-48ae-b231-cbf574edd70c",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spiritual-state",
+      "type": "project",
+      "name": "Spiritual State",
+      "mbid": "7fcbc3cb-be2f-4700-9aad-a629100532bf",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luv-sic-part-4",
+      "type": "project",
+      "name": "Luv(sic) Part 4",
+      "mbid": "a6999502-7b6a-463a-b108-9ca575842c35",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:homeward-journey",
+      "type": "project",
+      "name": "Homeward Journey",
+      "mbid": "dc59cddc-22ab-4efe-9653-e020135a9fab",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reflection-eternal-another-reflection",
+      "type": "project",
+      "name": "Reflection Eternal / Another Reflection",
+      "mbid": "f19d9dfa-b346-49e4-baee-6f99835656c5",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-of-life",
+      "type": "project",
+      "name": "Kiss Of Life",
+      "mbid": "b002b67f-f73b-454c-a662-6afe8a84d4b1",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thank-you",
+      "type": "project",
+      "name": "Thank You",
+      "mbid": "d0503a80-9373-4c15-9f7b-636243b55ec9",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blessing-it",
+      "type": "project",
+      "name": "Blessing It (remix)",
+      "mbid": "d7a9a5fb-62d5-4563-bc73-88398e3bfa12",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:modal-soul",
+      "type": "project",
+      "name": "Modal Soul",
+      "mbid": "bd62a5df-6643-3aef-b129-9d4e6e296022",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:d-t-f-n-shades-of-nostalgia",
+      "type": "project",
+      "name": "D.T.F.N. / Shades Of Nostalgia",
+      "mbid": "739b7dd1-ca93-4bfd-a349-182ade836dc3",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:other-side-of-phase",
+      "type": "project",
+      "name": "Other Side of Phase",
+      "mbid": "0b6761f9-0ec7-4487-aa34-7a78ff633a73",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lady-brown",
+      "type": "project",
+      "name": "Lady Brown",
+      "mbid": "e97610d0-f0e9-4701-8adf-8439c7d12b62",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:metaphorical-music",
+      "type": "project",
+      "name": "Metaphorical Music",
+      "mbid": "2e52bd6a-53e6-325c-925b-19eaa449db44",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:next-view",
+      "type": "project",
+      "name": "Next View",
+      "mbid": "2b40c060-bed8-4e87-ae93-a04a293c76ba",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-talking-to-you-steadfast",
+      "type": "project",
+      "name": "Still Talking to You / Steadfast",
+      "mbid": "9874be5f-6d70-4351-ad77-831bce9042ff",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:f-i-l-o",
+      "type": "project",
+      "name": "F.I.L.O.",
+      "mbid": "2ba5d019-0819-4ed4-92e1-0e69164ea59e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flowers-after-hanabi",
+      "type": "project",
+      "name": "Flowers / After Hanabi (Listen To My Beat)",
+      "mbid": "90473d49-f3e2-460b-a0d5-4c89a6458106",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-sic-part-two",
+      "type": "project",
+      "name": "Luv(sic) Part Two",
+      "mbid": "67fe48ed-458b-4c6f-ad13-053cfac1b0ea",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blessing-it-the-final-view",
+      "type": "project",
+      "name": "Blessing It / The Final View",
+      "mbid": "b9fa1256-edbd-46c8-bc7f-165f153573f1",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv",
+      "type": "project",
+      "name": "Luv(sic.)",
+      "mbid": "63301591-47db-4e60-88f0-c957c22854b5",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-no-mystery",
+      "type": "project",
+      "name": "Ain't No Mystery",
+      "mbid": "11d903da-30a5-4843-b1d3-af65181a31ea",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peoples-don-t-stray",
+      "type": "project",
+      "name": "Peoples Don’t Stray",
+      "mbid": "53dc2caf-aa6f-43f4-ab26-30426f00f0aa",
+      "year": "1999",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:battlecry",
+      "type": "track",
+      "name": "Battlecry"
+    },
+    {
+      "slug": "track:aruarian-dance",
+      "type": "track",
+      "name": "Aruarian Dance"
+    },
+    {
+      "slug": "track:feather",
+      "type": "track",
+      "name": "Feather"
+    },
+    {
+      "slug": "track:reflection-eternal",
+      "type": "track",
+      "name": "Reflection Eternal"
+    },
+    {
+      "slug": "track:counting-stars",
+      "type": "track",
+      "name": "Counting Stars"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:shing02",
+      "type": "artist",
+      "name": "Shing02"
+    },
+    {
+      "slug": "artist:fat-jon",
+      "type": "artist",
+      "name": "Fat Jon"
+    },
+    {
+      "slug": "artist:substantial",
+      "type": "artist",
+      "name": "Substantial"
+    },
+    {
+      "slug": "artist:funky-dl",
+      "type": "artist",
+      "name": "Funky DL"
+    },
+    {
+      "slug": "artist:uyama-hiroto",
+      "type": "artist",
+      "name": "Uyama Hiroto"
+    },
+    {
+      "slug": "artist:pase-rock",
+      "type": "artist",
+      "name": "Pase Rock"
+    },
+    {
+      "slug": "artist:cise-starr",
+      "type": "artist",
+      "name": "Cise Starr"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:jun-seba",
+      "type": "artist",
+      "name": "Jun Seba"
+    },
+    {
+      "slug": "artist:dimension-ball",
+      "type": "artist",
+      "name": "Dimension Ball"
+    }
+  ],
+  "members": []
+}

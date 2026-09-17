@@ -1,0 +1,211 @@
+{
+  "slug": "artist:bell-biv-devoe",
+  "name": "Bell Biv DeVoe",
+  "editorial_article": "Formed in 1989 by New Edition alumni Ricky Bell, Michael Bivins, and Ronnie DeVoe, the trio helped define the new jack swing movement through their 1990 debut album, Poison. Released on MCA Records, the album was produced with heavy input from Public Enemy producers Eric Sadler, Hank Shocklee, and Keith Shocklee, bridging traditional soul and R&B with a harder-edged hip-hop sound. The title track reached number three on the Billboard Hot 100, a feat mirrored by their follow-up single, \"Do Me!.\" In 1992, the group collaborated with Luther Vandross and Janet Jackson on \"The Best Things in Life Are Free,\" a track featured on the Mo' Money soundtrack. Despite limited album output, they performed for the Boston Strong benefit concert in 2013 and released the album Three Stripes in 2017.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bell_Biv_DeVoe",
+      "title": "Bell Biv DeVoe - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:14.456Z",
+  "type": "artist",
+  "editorial_bio": "An influential R&B and hip-hop trio formed by New Edition members that defined the early 1990s new jack swing sound.",
+  "origin": "Boston, Massachusetts",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mca-records",
+      "type": "label",
+      "name": "MCA Records"
+    },
+    {
+      "slug": "label:biv-10-records",
+      "type": "label",
+      "name": "Biv 10 Records"
+    },
+    {
+      "slug": "label:eone-music",
+      "type": "label",
+      "name": "eOne Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:act-like-you-know",
+      "type": "project",
+      "name": "Act Like You Know",
+      "mbid": "6dcb6c96-f460-4f2a-97af-1821ac2d65a2",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three-stripes",
+      "type": "project",
+      "name": "Three Stripes",
+      "mbid": "65bdbe37-5da3-4a39-bd91-2638d165b5d4",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bbd",
+      "type": "project",
+      "name": "BBD",
+      "mbid": "9680ceb6-67a1-371e-b8ce-35e139a08cec",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-hot-sh",
+      "type": "project",
+      "name": "Da Hot Sh** (Aight)",
+      "mbid": "dd7faa82-0f83-4520-91de-ef9e03a5945a",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hootie-mack",
+      "type": "project",
+      "name": "Hootie Mack",
+      "mbid": "d610be53-7d44-3a13-9d20-134279887d93",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:above-the-rim",
+      "type": "project",
+      "name": "Above the Rim",
+      "mbid": "0a034f31-3957-48a6-ab78-56c9e3348d4e",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-best-things-in-life-are-free",
+      "type": "project",
+      "name": "The Best Things in Life Are Free",
+      "mbid": "ef36d3d2-0788-33a6-8365-7d929ae1e07a",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta",
+      "type": "project",
+      "name": "Gangsta",
+      "mbid": "21115ba2-4c4e-44e3-bf4e-ff48e4f62edd",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poison",
+      "type": "project",
+      "name": "Poison",
+      "mbid": "2fafcd40-ae81-3b0a-80fd-222447f2265e",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poison",
+      "type": "project",
+      "name": "Poison",
+      "mbid": "47b883c4-ec27-3a2f-b9d3-de3a43f6cbcd",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:do-me",
+      "type": "project",
+      "name": "Do Me!",
+      "mbid": "7f85bcaf-363b-4ed7-90c8-b24f02c32f41",
+      "year": "1989",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:poison",
+      "type": "track",
+      "name": "Poison"
+    },
+    {
+      "slug": "track:do-me",
+      "type": "track",
+      "name": "Do Me!"
+    },
+    {
+      "slug": "track:b-b-d-i-thought-it-was-me",
+      "type": "track",
+      "name": "B.B.D. (I Thought It Was Me)?"
+    },
+    {
+      "slug": "track:the-best-things-in-life-are-free",
+      "type": "track",
+      "name": "The Best Things in Life Are Free"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    },
+    {
+      "slug": "artist:ralph-tresvant",
+      "type": "artist",
+      "name": "Ralph Tresvant"
+    },
+    {
+      "slug": "artist:johnny-gill",
+      "type": "artist",
+      "name": "Johnny Gill"
+    },
+    {
+      "slug": "artist:luther-vandross",
+      "type": "artist",
+      "name": "Luther Vandross"
+    },
+    {
+      "slug": "artist:janet-jackson",
+      "type": "artist",
+      "name": "Janet Jackson"
+    },
+    {
+      "slug": "artist:rev-run",
+      "type": "artist",
+      "name": "Rev Run"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:bbd",
+      "type": "artist",
+      "name": "BBD"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:ricky-bell",
+      "type": "artist",
+      "name": "Ricky Bell"
+    },
+    {
+      "slug": "artist:michael-bivins",
+      "type": "artist",
+      "name": "Michael Bivins"
+    },
+    {
+      "slug": "artist:ronnie-devoe",
+      "type": "artist",
+      "name": "Ronnie DeVoe"
+    }
+  ]
+}

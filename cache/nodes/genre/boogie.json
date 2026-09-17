@@ -1,0 +1,148 @@
+{
+  "slug": "genre:boogie",
+  "name": "Boogie",
+  "editorial_article": "Emerging in the United States during the late 1970s and early 1980s, boogie is an R&B-rooted electronic dance genre that frequently eschews the standard disco four-on-the-floor beat. The sound is defined by a mid-tempo range of 110 to 116 BPM, placing a heavy accent on the second and fourth beats rather than the rhythmic patterns typical of traditional disco. Classic productions like Kashif's 1983 single \"I Just Gotta Have You (Lover Turn Me On)\" helped establish the genre’s reliance on synthesizers and electronic bass, while tracks such as D. Train's 1981 \"You're the One for Me\" and Peech Boys' 1982 \"Don't Make Me Wait\" showcased the use of cavernous reverberance and deep, driving bass lines. The term was coined by London-based DJs Norman Jay and Dez Parkes as a retrospective tag for this African-American dance music. Nigerian producers like Nkono Teles further adapted the style in Lagos with local synthesizers and slap bass, creating regional variations known as afro-boogie.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Boogie_(genre)",
+      "title": "Boogie (genre) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:11:58.178Z",
+  "type": "genre",
+  "editorial_definition": "A post-disco, funk-derived electronic dance genre characterized by mid-tempo rhythms, slap bass, and prominent synthesizer use during the early 1980s.",
+  "qid": "Q4942839",
+  "era": "late 1970s to mid-1980s",
+  "origin": "United States; London underground club scene",
+  "sonic_markers": "110-116 BPM, slap bass, heavy use of synthesizers, drum machines, accent on beats 2 and 4",
+  "parent_genres": [
+    {
+      "slug": "genre:post-disco",
+      "type": "genre",
+      "name": "Post Disco",
+      "qid": "Q1190485"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "Rhythm And Blues",
+      "qid": "Q45981"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:post-disco",
+      "type": "genre",
+      "name": "Post-disco",
+      "qid": "Q1190485"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House music",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synthpop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:nu-disco",
+      "type": "genre",
+      "name": "Nu-disco",
+      "qid": "Q4045538"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kashif",
+      "type": "artist",
+      "name": "Kashif"
+    },
+    {
+      "slug": "artist:d-train",
+      "type": "artist",
+      "name": "D. Train"
+    },
+    {
+      "slug": "artist:hamilton-bohannon",
+      "type": "artist",
+      "name": "Hamilton Bohannon"
+    },
+    {
+      "slug": "artist:sharon-redd",
+      "type": "artist",
+      "name": "Sharon Redd"
+    },
+    {
+      "slug": "artist:nkono-teles",
+      "type": "artist",
+      "name": "Nkono Teles"
+    },
+    {
+      "slug": "artist:patrice-rushen",
+      "type": "artist",
+      "name": "Patrice Rushen"
+    },
+    {
+      "slug": "artist:zapp",
+      "type": "artist",
+      "name": "Zapp"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:west-end",
+      "type": "label",
+      "name": "West End"
+    },
+    {
+      "slug": "label:prelude",
+      "type": "label",
+      "name": "Prelude"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-just-gotta-have-you",
+      "type": "track",
+      "name": "I Just Gotta Have You (Lover Turn Me On)"
+    },
+    {
+      "slug": "track:you-re-the-one-for-me",
+      "type": "track",
+      "name": "You're the One for Me"
+    },
+    {
+      "slug": "track:don-t-make-me-wait",
+      "type": "track",
+      "name": "Don't Make Me Wait"
+    },
+    {
+      "slug": "track:give-me-the-night",
+      "type": "track",
+      "name": "Give Me the Night"
+    },
+    {
+      "slug": "track:boogie-wonderland",
+      "type": "track",
+      "name": "Boogie Wonderland"
+    }
+  ]
+}

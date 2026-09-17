@@ -1,0 +1,88 @@
+{
+  "slug": "genre:popular-music",
+  "name": "Popular music",
+  "editorial_article": "Popular music, often shortened to pop, is a broad genre that developed in its modern form during the 1950s. It largely emerged from the cultural and commercial evolution of rock and roll, prioritizing accessible melodies and radio-friendly structures. Unlike niche or underground styles, popular music is designed for mass consumption and frequently dominates the charts. Its development is intertwined with the rise of modern recording formats, from vinyl and cassettes to digital distribution, which have enabled its global reach. The genre is characterized by its adaptability, constantly absorbing elements from rock, R&B, and electronic music to maintain its broad appeal. Database resources like Discogs track this vast history, documenting thousands of variations and versions of popular releases as they evolve across decades of production and commercial shift.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/genre/pop?srsltid=AU7gw4WuzdmTdTGPKRmnyWd3_5bKJfjp3GdULHOkYlnNco7BgwTb_4tu",
+      "title": "Pop Music - Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Discogs",
+      "title": "Discogs - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:21.435Z",
+  "type": "genre",
+  "editorial_definition": "A pervasive, mass-market musical genre that evolved from the rock and roll foundations of the 1950s.",
+  "qid": "Q373342",
+  "era": "1950s to present",
+  "origin": "United States and United Kingdom",
+  "sonic_markers": "Melodic hooks, verse-chorus structure, polished arrangements, 100-130 BPM",
+  "parent_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa Nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:a-pop",
+      "type": "genre",
+      "name": "A-pop",
+      "qid": "Q10730335"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll",
+      "qid": "Q7749"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-want-to-hold-your-hand",
+      "type": "track",
+      "name": "I Want to Hold Your Hand"
+    }
+  ]
+}

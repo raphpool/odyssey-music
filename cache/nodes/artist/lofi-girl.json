@@ -1,0 +1,90 @@
+{
+  "slug": "artist:lofi-girl",
+  "name": "Lofi Girl",
+  "editorial_article": "Lofi Girl is a French YouTube channel and music label founded in 2017 by Dimitri Somoguy, originally operating under the name ChilledCow until its 2021 rebrand. The channel is globally recognized for its 24/7 livestreams of lo-fi hip hop, featuring a signature animation of a student named Jade. Originally, the channel used footage of the character Shizuku Tsukishima from the 1995 Studio Ghibli film Whisper of the Heart, but copyright concerns led to the commissioning of an original character by Colombian-French artist Juan Pablo Machado. Machado, a graduate of the École Émile-Cohl in Lyon, incorporated local architectural details such as the La Croix-Rousse hill into the background. The channel has expanded to include diverse radio streams, such as Synthwave, Peaceful Piano, and Dark Ambient, and has engaged in notable partnerships with brands including The Lego Group, Chess.com, Renault, and Ubisoft for Assassin's Creed Shadows.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lofi_Girl",
+      "title": "Lofi Girl - Wikipedia"
+    },
+    {
+      "url": "https://www.lofigirl.com/",
+      "title": "Lofi Girl"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:28.046Z",
+  "type": "artist",
+  "editorial_bio": "A French music label and YouTube channel famous for its 24/7 lo-fi hip hop livestreams and iconic study-themed animation.",
+  "origin": "Lyon, France",
+  "active_years": "2017-present",
+  "genres": [
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lo-fi hip hop",
+      "qid": "Q97265899"
+    },
+    {
+      "slug": "genre:synthwave",
+      "type": "genre",
+      "name": "Synthwave",
+      "qid": "Q19938910"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:lofi-records",
+      "type": "label",
+      "name": "Lofi Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chill-music",
+      "type": "project",
+      "name": "Chill Music",
+      "mbid": "1382e902-12f6-4410-b7e8-82994bd8840b",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lofi-minnie-focus",
+      "type": "project",
+      "name": "Lofi Minnie: Focus",
+      "mbid": "7edd6052-69b0-4518-bd74-4273c83a0117",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-flows",
+      "type": "project",
+      "name": "Time Flows",
+      "mbid": "7271dfb5-1941-427b-9489-0c83c36dfe63",
+      "year": "2021",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:snowman",
+      "type": "track",
+      "name": "Snowman"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:dimitri-somoguy",
+      "type": "artist",
+      "name": "Dimitri Somoguy"
+    },
+    {
+      "slug": "artist:juan-pablo-machado",
+      "type": "artist",
+      "name": "Juan Pablo Machado"
+    }
+  ]
+}

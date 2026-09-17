@@ -1,0 +1,309 @@
+{
+  "slug": "artist:morbid-angel",
+  "name": "Morbid Angel",
+  "editorial_article": "Formed in 1983 in Tampa, Florida, by Trey Azagthoth, Mike Browning, and Dallas Ward, Morbid Angel defined the foundations of death metal by introducing guttural vocals, rapid blast beats, and complex, atonal guitar work. Their debut, 1989's Altars of Madness (Earache), is widely regarded as a pivotal record that propelled the underground scene into international prominence. The band achieved unique mainstream visibility in the early 1990s through a partnership with Giant Records, which saw the music video for \"God of Emptiness\" enter heavy rotation on MTV and feature on Beavis and Butt-Head. Guitarist Trey Azagthoth, the band's sole original member, has maintained a unique lead style inspired by Sumerian mythology and the Simon Necronomicon, which significantly influenced the group's thematic shift from early Satanic imagery to more philosophical, ancient-god-focused lyrics beginning with 1998's Formulas Fatal to the Flesh. Renowned for a discography following an alphabetical sequence—from Altars of Madness through 2017's Kingdoms Disdained—the band has featured diverse contributors including drummers Pete Sandoval and Tim Yeung, and vocalists David Vincent and Steve Tucker. Their performance history was marred in 2023 when a storm caused a building collapse at the Apollo Theatre in Belvidere, Illinois, during their 40th-anniversary tour.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Morbid_Angel",
+      "title": "Morbid Angel"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:56.172Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Florida death metal band renowned for technical complexity, aggressive blast beats, and a career-long commitment to alphabetical album titling.",
+  "origin": "Tampa, Florida, U.S.",
+  "active_years": "1983-present",
+  "genres": [
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:metal",
+      "type": "genre",
+      "name": "Metal",
+      "qid": "Q12326776"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:earache-records",
+      "type": "label",
+      "name": "Earache Records"
+    },
+    {
+      "slug": "label:giant-records",
+      "type": "label",
+      "name": "Giant Records"
+    },
+    {
+      "slug": "label:season-of-mist",
+      "type": "label",
+      "name": "Season of Mist"
+    },
+    {
+      "slug": "label:silver-lining-music",
+      "type": "label",
+      "name": "Silver Lining Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:kingdoms-disdained",
+      "type": "project",
+      "name": "Kingdoms Disdained",
+      "mbid": "a782c277-caad-4a09-afbd-312599275d32",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-acid-terror",
+      "type": "project",
+      "name": "Complete Acid Terror",
+      "mbid": "b9960671-6c1f-4966-b2d2-ff4f68a0bf1c",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:piles-of-little-arms",
+      "type": "project",
+      "name": "Piles of Little Arms",
+      "mbid": "8fd28478-692f-4934-a659-940b2a44ab63",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-am-morbid",
+      "type": "project",
+      "name": "I Am Morbid",
+      "mbid": "3ab03f34-491b-4737-a33e-55cba1c074b5",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:illud-divinum-insanus",
+      "type": "project",
+      "name": "Illud Divinum Insanus",
+      "mbid": "4e771d1b-b8cd-48d9-9f7d-fb643d4a7f9c",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nevermore",
+      "type": "project",
+      "name": "Nevermore",
+      "mbid": "537e108e-2739-4e79-9685-48e936622025",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heretic",
+      "type": "project",
+      "name": "Heretic",
+      "mbid": "706e5ae0-86ed-3856-9052-b6a165d6eb69",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:winter-sampler-03",
+      "type": "project",
+      "name": "Winter Sampler ’03",
+      "mbid": "6d8ec570-22fc-4e47-b8a3-e4483b3651bf",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gateways-to-annihilation",
+      "type": "project",
+      "name": "Gateways to Annihilation",
+      "mbid": "3b1320f1-fbe9-3302-bc66-d740c5f5008d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gateways-to-annihilation-radio-sampler",
+      "type": "project",
+      "name": "Gateways to Annihilation Radio Sampler",
+      "mbid": "24de0f7f-5861-4c51-9e8e-e9ce013eb88e",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:formulas-fatal-to-the-flesh",
+      "type": "project",
+      "name": "Formulas Fatal to the Flesh",
+      "mbid": "b516ba09-1797-311c-a2ea-99d4351cc359",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:domination",
+      "type": "project",
+      "name": "Domination",
+      "mbid": "16b66d60-50ee-3abf-aaac-05abb4237059",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dawn-of-the-angry-where-the-slime-live",
+      "type": "project",
+      "name": "Dawn of the Angry / Where the Slime Live",
+      "mbid": "e272d320-80a7-4844-b218-be687ac57da4",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:laibach-remixes",
+      "type": "project",
+      "name": "Laibach Remixes",
+      "mbid": "cd0acf58-fba2-3bac-a1e2-e5ae42410b73",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:harmony-dies-vol-1",
+      "type": "project",
+      "name": "Harmony Dies, Vol. 1",
+      "mbid": "debb5562-dc23-46c6-807d-d28400e02c22",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:covenant",
+      "type": "project",
+      "name": "Covenant",
+      "mbid": "2ba9247a-16f2-3410-b4f4-f704d133fcfb",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rapture",
+      "type": "project",
+      "name": "Rapture",
+      "mbid": "16d7276c-28a8-4b8e-ac76-8b204027415e",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blessed-are-the-sick",
+      "type": "project",
+      "name": "Blessed Are the Sick",
+      "mbid": "cae89c54-820c-3b2f-b211-bb5e29a079ea",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:suffer-the-children-morbid-angel",
+      "type": "project",
+      "name": "Suffer the Children / Morbid Angel",
+      "mbid": "4cc50d72-5b72-44e3-a263-2f94e8680b11",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:altars-of-madness",
+      "type": "project",
+      "name": "Altars of Madness",
+      "mbid": "e5be441e-53ec-376a-b261-426e8f06e144",
+      "year": "1989",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:god-of-emptiness",
+      "type": "track",
+      "name": "God of Emptiness"
+    },
+    {
+      "slug": "track:rapture",
+      "type": "track",
+      "name": "Rapture"
+    },
+    {
+      "slug": "track:where-the-slime-live",
+      "type": "track",
+      "name": "Where the Slime Live"
+    },
+    {
+      "slug": "track:piles-of-little-arms",
+      "type": "track",
+      "name": "Piles of Little Arms"
+    },
+    {
+      "slug": "track:nevermore",
+      "type": "track",
+      "name": "Nevermore"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:trey-azagthoth",
+      "type": "artist",
+      "name": "Trey Azagthoth"
+    },
+    {
+      "slug": "artist:steve-tucker",
+      "type": "artist",
+      "name": "Steve Tucker"
+    },
+    {
+      "slug": "artist:david-vincent",
+      "type": "artist",
+      "name": "David Vincent"
+    },
+    {
+      "slug": "artist:pete-sandoval",
+      "type": "artist",
+      "name": "Pete Sandoval"
+    },
+    {
+      "slug": "artist:mike-browning",
+      "type": "artist",
+      "name": "Mike Browning"
+    },
+    {
+      "slug": "artist:erik-rutan",
+      "type": "artist",
+      "name": "Erik Rutan"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:ice",
+      "type": "artist",
+      "name": "Ice"
+    },
+    {
+      "slug": "artist:heretic",
+      "type": "artist",
+      "name": "Heretic"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:trey-azagthoth",
+      "type": "artist",
+      "name": "Trey Azagthoth"
+    },
+    {
+      "slug": "artist:steve-tucker",
+      "type": "artist",
+      "name": "Steve Tucker"
+    },
+    {
+      "slug": "artist:dan-vadim-von",
+      "type": "artist",
+      "name": "Dan Vadim Von"
+    },
+    {
+      "slug": "artist:charlie-koryn",
+      "type": "artist",
+      "name": "Charlie Koryn"
+    }
+  ]
+}

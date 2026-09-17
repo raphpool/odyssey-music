@@ -1,0 +1,466 @@
+{
+  "slug": "artist:the-specials",
+  "name": "The Specials",
+  "editorial_article": "Formed in 1977 in Coventry, England, The Specials emerged as architects of the 2 tone movement, blending ska and rocksteady rhythms with the raw energy of punk. Founded by Jerry Dammers, the group debuted with the 1979 single 'Gangsters,' which reached the UK Top 10 after receiving airplay on John Peel's BBC Radio One show. Their self-titled 1979 debut album was produced by Elvis Costello and featured horn arrangements by Dick Cuthell and Rico Rodriguez. The band became known for their mod-inspired rude boy style and explicit political stances, notably with the 1981 recession-themed No. 1 single 'Ghost Town.' While the original lineup fractured in 1981, with Terry Hall, Neville Staple, and Lynval Golding departing to form Fun Boy Three, the band reunited in various capacities between 1993 and 2022. Their 2019 album 'Encore' marked a return to the top of the UK Albums Chart, ending a 39-year wait for a number-one studio record.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Specials",
+      "title": "The Specials - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Specials_(album)",
+      "title": "The Specials (album) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:39.908Z",
+  "type": "artist",
+  "editorial_bio": "The Specials were a seminal English band that defined the 2 tone ska revival movement through a combination of social activism, political lyricism, and rhythmic dance music.",
+  "origin": "Coventry, England",
+  "active_years": "1977–2022",
+  "genres": [
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
+    },
+    {
+      "slug": "genre:2-tone",
+      "type": "genre",
+      "name": "2 Tone",
+      "qid": "Q209498"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:2-tone",
+      "type": "label",
+      "name": "2 Tone"
+    },
+    {
+      "slug": "label:chrysalis",
+      "type": "label",
+      "name": "Chrysalis"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:ghost-town",
+      "type": "project",
+      "name": "Ghost Town (re‐recorded – sped up)",
+      "mbid": "4bad4557-65a4-47bc-b603-b2775dd0b6b0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-message-to-you-rudy",
+      "type": "project",
+      "name": "A Message to You Rudy (Re-Recorded, Sped Up)",
+      "mbid": "674f0f51-6271-4b57-937d-86bad389c196",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:protest-songs-1924-2012",
+      "type": "project",
+      "name": "Protest Songs 1924–2012",
+      "mbid": "68fde6df-0a26-4f9f-9631-a3e6608f8ae8",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:10-commandments-you-re-wondering-now",
+      "type": "project",
+      "name": "10 Commandments / You’re Wondering Now",
+      "mbid": "e01399d9-bbec-47f6-88d5-ca3b6cdc30f5",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encore",
+      "type": "project",
+      "name": "Encore",
+      "mbid": "85f0b4c9-e891-4045-be7c-e13d1017ccc7",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vote-for-me",
+      "type": "project",
+      "name": "Vote for Me",
+      "mbid": "86250647-c154-4639-b6bf-fbd0d96cdf67",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghost-town",
+      "type": "project",
+      "name": "Ghost Town",
+      "mbid": "b8b23f3d-bd3e-4bc1-9329-d4916cb10b7b",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:conquering-ruler",
+      "type": "project",
+      "name": "Conquering Ruler",
+      "mbid": "b7d1cc70-68b1-30ad-a9d3-d7b7412e3821",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:skinhead-girl",
+      "type": "project",
+      "name": "Skinhead Girl",
+      "mbid": "fd228050-ea18-3686-af81-a30127d82e53",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-ska",
+      "type": "project",
+      "name": "King of Ska",
+      "mbid": "2c846b23-6e66-3f78-9688-c975c07fc324",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guilty-til-proved-innocent",
+      "type": "project",
+      "name": "Guilty ’Til Proved Innocent!",
+      "mbid": "75440986-cf67-39cc-a359-4678a5582ead",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-you",
+      "type": "project",
+      "name": "It’s You",
+      "mbid": "4dd89187-9592-465f-a68a-cfc49e001af2",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:today-s-specials",
+      "type": "project",
+      "name": "Today’s Specials",
+      "mbid": "214427d8-ff52-3f5c-b5bd-a6254aca94a0",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pressure-drop",
+      "type": "project",
+      "name": "Pressure Drop",
+      "mbid": "4cddc159-f98b-46ac-87ef-71c15836a7f1",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-little-bit-me-a-little-bit-you",
+      "type": "project",
+      "name": "A Little Bit Me, a Little Bit You",
+      "mbid": "70878b67-86a8-4fd1-93a7-dbe7931b6c90",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hypocrite",
+      "type": "project",
+      "name": "Hypocrite",
+      "mbid": "17fb94e5-3536-4b99-945d-c1e6b4c19eaf",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-of-kings",
+      "type": "project",
+      "name": "King of Kings",
+      "mbid": "b5766735-0541-3e7a-9917-882417b82fcd",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghost-town-revisited",
+      "type": "project",
+      "name": "Ghost Town Revisited",
+      "mbid": "d7a95843-15d8-4c75-b533-1f7912a1adf4",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-the-studio",
+      "type": "project",
+      "name": "In the Studio",
+      "mbid": "be59d73e-508b-3405-a13c-622b7c7926ec",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nelson-mandela",
+      "type": "project",
+      "name": "Nelson Mandela",
+      "mbid": "01a0f73c-efa5-4c3f-91db-78e46f99da40",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-i-like-most-about-you-is-your-girlfriend",
+      "type": "project",
+      "name": "What I Like Most About You Is Your Girlfriend",
+      "mbid": "918a1f5c-8a2a-4ce2-81ec-bdeebd4d588f",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:racist-friend-bright-lights",
+      "type": "project",
+      "name": "Racist Friend / Bright Lights",
+      "mbid": "48343b5c-763c-4908-9e00-827535bc8b90",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:war-crimes",
+      "type": "project",
+      "name": "War Crimes",
+      "mbid": "c00aa346-af56-448c-a9bf-09d95f36e699",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jungle-music",
+      "type": "project",
+      "name": "Jungle Music",
+      "mbid": "5b9162ce-946c-4936-a684-4fb117fc97aa",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-boiler",
+      "type": "project",
+      "name": "The Boiler",
+      "mbid": "a5fb4f99-f3ac-44f7-bf26-8b748abcb17f",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghost-town",
+      "type": "project",
+      "name": "Ghost Town",
+      "mbid": "697d3295-a39c-311a-b408-0568a7b1b1f9",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:concrete-jungle",
+      "type": "project",
+      "name": "Concrete Jungle",
+      "mbid": "7f162612-50e3-46d3-92aa-29206609ce2c",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghost-town-why-friday-night-saturday-morning",
+      "type": "project",
+      "name": "Ghost Town / Why? / Friday Night Saturday Morning",
+      "mbid": "a6aa11aa-c19c-4166-8ef6-53054acb85d7",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-specials",
+      "type": "project",
+      "name": "More Specials",
+      "mbid": "da095ec5-ca70-30ab-bd36-45ef961dced7",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:too-much-too-young",
+      "type": "project",
+      "name": "Too Much Too Young",
+      "mbid": "01f002d7-bb2f-4700-a1a5-5996a5270dde",
+      "year": "1980",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stereotype",
+      "type": "project",
+      "name": "Stereotype",
+      "mbid": "26770eff-cd6c-407a-9a11-6132dc0eaa8d",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-nothing",
+      "type": "project",
+      "name": "Do Nothing",
+      "mbid": "61965fc3-14cd-4f49-8bc5-2c46861e324d",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:braggin-and-tryin-not-to-lie-rude-boys-outa-jail",
+      "type": "project",
+      "name": "Braggin’ & Tryin’ Not to Lie / Rude Boys Outa Jail",
+      "mbid": "7bee01cb-0739-48ba-a73a-c1a98ce49db7",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rat-race-rude-buoys-outa-jail",
+      "type": "project",
+      "name": "Rat Race / Rude Buoys Outa Jail",
+      "mbid": "cdbef4c5-5834-3476-9855-6d315e02da90",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:specials",
+      "type": "project",
+      "name": "Specials",
+      "mbid": "9c02ca99-df9a-3e48-8b7a-fabb599d19a3",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-message-to-you-rudy",
+      "type": "project",
+      "name": "A Message to You Rudy",
+      "mbid": "447f2b1a-a645-41ec-8cf5-724704cc74f9",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsters-the-selecter",
+      "type": "project",
+      "name": "Gangsters / The Selecter",
+      "mbid": "c4212492-a134-3905-ab32-51b137189a9f",
+      "year": "1979",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:gangsters",
+      "type": "track",
+      "name": "Gangsters"
+    },
+    {
+      "slug": "track:a-message-to-you-rudy",
+      "type": "track",
+      "name": "A Message to You, Rudy"
+    },
+    {
+      "slug": "track:too-much-too-young",
+      "type": "track",
+      "name": "Too Much Too Young"
+    },
+    {
+      "slug": "track:ghost-town",
+      "type": "track",
+      "name": "Ghost Town"
+    },
+    {
+      "slug": "track:free-nelson-mandela",
+      "type": "track",
+      "name": "Free Nelson Mandela"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:elvis-costello",
+      "type": "artist",
+      "name": "Elvis Costello"
+    },
+    {
+      "slug": "artist:rico-rodriguez",
+      "type": "artist",
+      "name": "Rico Rodriguez"
+    },
+    {
+      "slug": "artist:dick-cuthell",
+      "type": "artist",
+      "name": "Dick Cuthell"
+    },
+    {
+      "slug": "artist:rhoda-dakar",
+      "type": "artist",
+      "name": "Rhoda Dakar"
+    },
+    {
+      "slug": "artist:damon-albarn",
+      "type": "artist",
+      "name": "Damon Albarn"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:the-special-a-k-a",
+      "type": "artist",
+      "name": "The Special A.K.A."
+    },
+    {
+      "slug": "artist:the-coventry-automatics",
+      "type": "artist",
+      "name": "The Coventry Automatics"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:terry-hall",
+      "type": "artist",
+      "name": "Terry Hall"
+    },
+    {
+      "slug": "artist:jerry-dammers",
+      "type": "artist",
+      "name": "Jerry Dammers"
+    },
+    {
+      "slug": "artist:lynval-golding",
+      "type": "artist",
+      "name": "Lynval Golding"
+    },
+    {
+      "slug": "artist:horace-panter",
+      "type": "artist",
+      "name": "Horace Panter"
+    },
+    {
+      "slug": "artist:neville-staple",
+      "type": "artist",
+      "name": "Neville Staple"
+    },
+    {
+      "slug": "artist:john-bradbury",
+      "type": "artist",
+      "name": "John Bradbury"
+    },
+    {
+      "slug": "artist:roddy-radiation",
+      "type": "artist",
+      "name": "Roddy Radiation"
+    }
+  ]
+}

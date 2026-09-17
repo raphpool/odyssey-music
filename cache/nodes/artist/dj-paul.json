@@ -1,0 +1,512 @@
+{
+  "slug": "artist:dj-paul",
+  "name": "DJ Paul",
+  "editorial_article": "Born Paul Duane Beauregard in Memphis, Tennessee, DJ Paul began his career in 1988 at age 11 as a DJ at the local venue 380 Beale. In 1989, he formed the duo Serial Killaz with his half-brother, Lord Infamous, recording their earliest tapes using equipment rented with money from their father. Along with Juicy J, he helped pioneer the modern mixtape format by featuring original tracks from local artists rather than simple compilations. Together with Juicy J, he founded the group Three 6 Mafia and their label Hypnotize Minds, defining a sound characterized by dark, eerie, and bass-heavy production. In 2006, the group won an Academy Award for Best Original Song for 'It's Hard out Here for a Pimp' from the film Hustle & Flow. In 2018, Paul expanded his production work to the mainstream by co-producing the track 'Talk Up' for Drake's album Scorpion. Beyond music, he has managed diverse business ventures including a signature line of BBQ seasonings, a real estate company, and part-ownership of FaZe Clan.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Paul",
+      "title": "DJ Paul - Wikipedia"
+    },
+    {
+      "url": "https://www.memphisflyer.com/q-a-with-dj-paul-of-three-6-mafia/",
+      "title": "Q & A with DJ Paul of Three 6 Mafia - Memphis Flyer"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:48.491Z",
+  "type": "artist",
+  "editorial_bio": "Founding member of Three 6 Mafia and Academy Award-winning producer from Memphis who pioneered dark, bass-heavy Southern hip-hop production.",
+  "origin": "Memphis, Tennessee",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern hip-hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis rap",
+      "qid": "Q6010117"
+    },
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:horrorcore",
+      "type": "genre",
+      "name": "Horrorcore",
+      "qid": "Q1139136"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hypnotize-minds",
+      "type": "label",
+      "name": "Hypnotize Minds"
+    },
+    {
+      "slug": "label:scale-a-ton",
+      "type": "label",
+      "name": "Scale-A-Ton"
+    },
+    {
+      "slug": "label:slumerican",
+      "type": "label",
+      "name": "Slumerican"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:goat-of-all-goats",
+      "type": "project",
+      "name": "Goat of All Goats",
+      "mbid": "00459514-29e5-4c13-bad8-b8fd595212cc",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:omg",
+      "type": "project",
+      "name": "OMG!",
+      "mbid": "fd272ccd-829a-4d92-a5cc-0a7cbc4a10ee",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-for-the-funeral",
+      "type": "project",
+      "name": "Music for the Funeral",
+      "mbid": "453d0425-7d57-4303-a72e-45428f5d5bd5",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hallucinations",
+      "type": "project",
+      "name": "HALLUCINATIONS",
+      "mbid": "bac0d554-4062-4e0f-8b54-f62cc8c23465",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:championship-ring",
+      "type": "project",
+      "name": "CHAMPIONSHIP RING",
+      "mbid": "b49a3012-7a31-4929-a7a6-5fe87ff95808",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-it-back",
+      "type": "project",
+      "name": "Run It Back",
+      "mbid": "091ff645-dcc4-4a46-ad70-204abf968382",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-made-it",
+      "type": "project",
+      "name": "We Made It",
+      "mbid": "12820435-8542-48cf-8ec0-15c90ba25720",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pour-out-my-drink",
+      "type": "project",
+      "name": "Pour Out My Drink (For the Homies)",
+      "mbid": "6915eb16-588b-4de9-a1fa-6fa9ca862558",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-tired-2",
+      "type": "project",
+      "name": "SO TIRED 2",
+      "mbid": "e0bfd8e2-095a-49e1-b829-d2e584e38d0f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn",
+      "type": "project",
+      "name": "BURN",
+      "mbid": "41de1707-ff56-4feb-8d57-d5573f4610df",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pys",
+      "type": "project",
+      "name": "PYS",
+      "mbid": "b254965e-33c6-4fd9-b16e-0c93ac57624d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-hard-or-get-gone",
+      "type": "project",
+      "name": "Go Hard or Get Gone",
+      "mbid": "2c79a6b2-8d8a-41b1-bf7e-2c3468a59111",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ridin-clean",
+      "type": "project",
+      "name": "RIDIN CLEAN",
+      "mbid": "faf70a20-7e7c-4955-a665-925691c22f1c",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mafia-family",
+      "type": "project",
+      "name": "Mafia Family",
+      "mbid": "9431435f-9b59-4943-9e45-d8e2f3cb9983",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mother-mary",
+      "type": "project",
+      "name": "Mother Mary",
+      "mbid": "e6169df7-d02a-466a-ab33-b5aceca71036",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slumafia",
+      "type": "project",
+      "name": "Slumafia",
+      "mbid": "eb45ffab-ba12-4b3b-a7e5-54cecd0f574f",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cup-cup-cup",
+      "type": "project",
+      "name": "Cup Cup Cup",
+      "mbid": "1cc96782-3b2c-4f16-9de4-ec25bc317e1f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-what-you-want",
+      "type": "project",
+      "name": "Say What You Want",
+      "mbid": "a026a933-2000-48e7-9cfe-6e00b0b62472",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scary-garry",
+      "type": "project",
+      "name": "Scary Garry",
+      "mbid": "81c8d7c6-6965-4aff-b862-49715d70095f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-so-juiced-up",
+      "type": "project",
+      "name": "I'm So Juiced Up",
+      "mbid": "1163aaa3-81c0-4875-9796-2156866285f5",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:power-pleasure-and-painful-things",
+      "type": "project",
+      "name": "Power, Pleasure & Painful Things",
+      "mbid": "96d04733-eeec-4af9-abbe-84670521622f",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:8-ways-to-die",
+      "type": "project",
+      "name": "8 Ways to Die",
+      "mbid": "39455346-858c-4977-878a-b97b933aab1e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:underground-vol-17-for-da-summa",
+      "type": "project",
+      "name": "Underground, Vol. 17 - For da Summa",
+      "mbid": "aa0d384e-ec05-47ff-979a-3ee7f0c64473",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-reason-thank-me-later",
+      "type": "project",
+      "name": "Da Reason: Thank Me Later",
+      "mbid": "0e0478d2-2040-4761-8d7a-5a1b8543e6dd",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-alergia",
+      "type": "project",
+      "name": "La alergia",
+      "mbid": "7aef2997-2574-4504-a981-98ef0e67a8b5",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yots-year-of-the-six-pt-2",
+      "type": "project",
+      "name": "Yots (Year of the Six), Pt. 2",
+      "mbid": "fc5a2c88-77be-43c0-99bc-ac0193584e40",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yots-year-of-the-six-pt-1",
+      "type": "project",
+      "name": "Yots (Year of the Six), Pt. 1",
+      "mbid": "c31dfb72-2d25-418d-be5d-84cba6750c4e",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:master-of-evil",
+      "type": "project",
+      "name": "Master of Evil",
+      "mbid": "263a8ad5-30f6-4b68-b042-20129a181296",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-light-up-da-poe-up",
+      "type": "project",
+      "name": "Da Light Up, Da Poe Up",
+      "mbid": "c6c7da2e-1826-41f4-9f79-ea1694813274",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-16-the-original-masters",
+      "type": "project",
+      "name": "Volume 16: The Original Masters",
+      "mbid": "c7cb7475-b7a4-4058-afb9-126459469366",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-person-of-interest",
+      "type": "project",
+      "name": "A Person of Interest",
+      "mbid": "93434880-71ca-404a-83c0-bccbfd6dd5b1",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pray-for-forgiveness",
+      "type": "project",
+      "name": "Pray for Forgiveness",
+      "mbid": "facf3224-f1f8-4e8a-9432-46e25a28706f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scale-a-ton",
+      "type": "project",
+      "name": "Scale‐A‐Ton (Skeleton)",
+      "mbid": "61cf5473-a537-35e3-8107-7443fdacf594",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:liquor-and-powder",
+      "type": "project",
+      "name": "Liquor & Powder",
+      "mbid": "450dd79a-378a-4de5-970f-4b200570c4ea",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-on-t-want-it",
+      "type": "project",
+      "name": "You On’t Want It",
+      "mbid": "7f12440e-c64f-4b14-9cbc-77f9cdd63260",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jus-like-dat",
+      "type": "project",
+      "name": "Jus Like Dat???",
+      "mbid": "5acbfb75-a521-4378-9a0a-4956fbe5f303",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:underground-volume-16-for-da-summa",
+      "type": "project",
+      "name": "Underground, Volume 16: For da Summa",
+      "mbid": "79c3a8c1-04a3-3a13-afa5-b0df60701ec3",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-with-me-2-hell-part-2",
+      "type": "project",
+      "name": "Come With Me 2 Hell Part 2",
+      "mbid": "7e034753-60b1-4d3f-b355-425997b75938",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:part-3-spring-mix",
+      "type": "project",
+      "name": "Part 3 - Spring Mix",
+      "mbid": "b8f92812-f3e6-4ffd-ad11-ee0f23697230",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vol-2-da-exorcist",
+      "type": "project",
+      "name": "Vol. 2: Da Exorcist",
+      "mbid": "181c9418-69f1-4607-8bcf-8b8592a6cbd0",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vol-16-for-da-summa-of-94",
+      "type": "project",
+      "name": "Vol. 16 For Da Summa of '94",
+      "mbid": "30c7f2f4-aa23-45ec-8ab9-876641947fd4",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vol-15-for-them-niggaz-w-anna",
+      "type": "project",
+      "name": "Vol.15 \"For Them Niggaz W/ Anna\"",
+      "mbid": "5455f9ce-1406-4046-98d6-53e7b92bb776",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-with-me-2-hell",
+      "type": "project",
+      "name": "Come With Me 2 Hell",
+      "mbid": "153cf58d-b6a7-49a1-956b-05c7f34f0d6e",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-14",
+      "type": "project",
+      "name": "Volume 14",
+      "mbid": "1e3b5d98-f898-4199-a493-a71ea0869837",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-serial-killaz",
+      "type": "project",
+      "name": "The Serial Killaz",
+      "mbid": "b4467310-36dc-4b1c-a921-49109954b47b",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-12-part-1",
+      "type": "project",
+      "name": "Volume 12, Part 1",
+      "mbid": "f8661a71-aee4-450b-bace-72474cf8c516",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-10-da-killa-mix",
+      "type": "project",
+      "name": "Volume 10. Da Killa Mix",
+      "mbid": "684d30ef-4466-4b5b-b534-80d7ce174526",
+      "year": "1992",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:it-s-hard-out-here-for-a-pimp",
+      "type": "track",
+      "name": "It's Hard out Here for a Pimp"
+    },
+    {
+      "slug": "track:talk-up",
+      "type": "track",
+      "name": "Talk Up"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J"
+    },
+    {
+      "slug": "artist:lord-infamous",
+      "type": "artist",
+      "name": "Lord Infamous"
+    },
+    {
+      "slug": "artist:crunchy-black",
+      "type": "artist",
+      "name": "Crunchy Black"
+    },
+    {
+      "slug": "artist:yelawolf",
+      "type": "artist",
+      "name": "Yelawolf"
+    },
+    {
+      "slug": "artist:project-pat",
+      "type": "artist",
+      "name": "Project Pat"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:da-killa-man",
+      "type": "artist",
+      "name": "Da Killa Man"
+    },
+    {
+      "slug": "artist:dj-paul-k-o-m",
+      "type": "artist",
+      "name": "DJ Paul K.O.M."
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:dj-paul",
+      "type": "artist",
+      "name": "DJ Paul"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia"
+    }
+  ]
+}

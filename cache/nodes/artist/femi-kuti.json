@@ -251,6 +251,11 @@
       "slug": "artist:seun-kuti",
       "type": "artist",
       "name": "Seun Kuti"
+    },
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
     }
   ],
   "aliases": [],

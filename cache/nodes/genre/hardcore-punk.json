@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A high-intensity, fast-paced subgenre of punk rock characterized by raw, DIY production, aggressive vocal delivery, and anti-establishment themes.",
+  "qid": "Q10922",
   "era": "Late 1970s–Present",
   "origin": "United States",
   "parent_genres": [],
@@ -54,6 +55,12 @@
       "type": "genre",
       "name": "Straight edge",
       "qid": "Q108865641"
+    },
+    {
+      "slug": "genre:extreme-metal",
+      "type": "genre",
+      "name": "Extreme metal",
+      "qid": "Q465978"
     }
   ],
   "key_artists": [
@@ -123,6 +130,5 @@
       "type": "track",
       "name": "Straight Edge"
     }
-  ],
-  "qid": "Q10922"
+  ]
 }

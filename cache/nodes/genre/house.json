@@ -87,6 +87,12 @@
       "type": "genre",
       "name": "Leftfield House",
       "qid": "Q105636940"
+    },
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
     }
   ],
   "related_genres": [
@@ -137,6 +143,12 @@
       "type": "genre",
       "name": "Hip-House",
       "qid": "Q601235"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
     }
   ],
   "key_artists": [
