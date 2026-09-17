@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { CrawlOptions } from "../src/crawler.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
-import type { GenreNode, Slug } from "../src/types.js";
+import type { GenreNode, ProjectNode, Slug } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-28 review: missing wiring test (i) -- crawl() (src/crawler.ts) builds its own GenreRegistry
@@ -58,6 +58,26 @@ function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string })
 		key_labels: [],
 		landmark_projects: [],
 		landmark_tracks: [],
+		...overrides,
+	};
+}
+
+// TRA-252: only what preserveLiveNeighbors' cache.has() check needs -- a project node that
+// exists in the cache so it counts as an "alive" landmark_projects target.
+function projectNode(overrides: Partial<ProjectNode> & { slug: Slug; name: string }): ProjectNode {
+	return {
+		type: "project",
+		editorial_article:
+			"A real long article about this project, well past the eighty character floor. ".repeat(2),
+		editorial_pitch: "A short pitch.",
+		citations: [{ url: "https://example.com/project" }],
+		materialized_at: new Date().toISOString(),
+		artists: [],
+		genres: [],
+		tracklist: [],
+		producers: [],
+		personnel: [],
+		related_projects: [],
 		...overrides,
 	};
 }
@@ -367,6 +387,145 @@ describe("refreshGenre() (TRA-63)", () => {
 	});
 });
 
+describe("refreshGenre() seed dossier QID + neighbor preservation (TRA-252)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-crawler-refresh-tra252-"));
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	const baseOpts = (dir: string): CrawlOptions => ({
+		seed: "genre:unused",
+		maxDepth: 0,
+		maxNodes: 1,
+		concurrency: 1,
+		out: dir,
+		deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+	});
+
+	it("inherits the seed dossier's QID onto a refreshed node that has none cached yet", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(genreNode({ slug: "genre:trap-hip-hop", name: "Trap Hip-Hop" }));
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+		const folder: GenreSeeds[string] = {
+			genre: { slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" },
+			anchors: [],
+			targets: [],
+		};
+
+		const result = await refreshGenre(baseOpts(dir), "genre:trap-hip-hop", folder);
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(result).toMatchObject({ calls: 1, consumed: 1, failed: 0, refused: 0 });
+		expect(refreshed.qid).toBe("Q2913982");
+	});
+
+	it("refuses a refresh whose dossier QID contradicts the cached node's QID, without writing", async () => {
+		const cache = new NodeCache(dir);
+		const original = genreNode({ slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" });
+		await cache.write(original);
+		// No mocks armed: a contradiction must be refused before any pipeline call, so an
+		// "unexpected call" throw here would itself prove the guard ran too late.
+		const { refreshGenre } = await loadCrawl();
+		const folder: GenreSeeds[string] = {
+			genre: { slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q9999999" },
+			anchors: [],
+			targets: [],
+		};
+
+		const result = await refreshGenre(baseOpts(dir), "genre:trap-hip-hop", folder);
+
+		expect(result).toMatchObject({ calls: 0, consumed: 0, failed: 0, refused: 1 });
+		expect(await cache.get("genre:trap-hip-hop")).toEqual(original);
+	});
+
+	it("keeps an old edge whose target is still cached (alive) that the fresh draft doesn't re-surface", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(projectNode({ slug: "project:old-alive-landmark", name: "Old Alive Landmark" }));
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				qid: "Q2913982",
+				landmark_projects: [
+					{ type: "project", name: "Old Alive Landmark", slug: "project:old-alive-landmark" },
+				],
+			}),
+		);
+		// landmark_projects isn't in the default fixture (and unlike parent_genres, an empty
+		// list here isn't backfilled by pipeline.ts's Wikidata catalog step), so the fresh draft
+		// has none of its own, isolating what the merge carries forward.
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+
+		await refreshGenre(baseOpts(dir), "genre:trap-hip-hop");
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(refreshed.landmark_projects).toEqual([
+			{ type: "project", name: "Old Alive Landmark", slug: "project:old-alive-landmark" },
+		]);
+	});
+
+	it("does not duplicate an old edge the fresh draft already re-surfaces under the same slug", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(genreNode({ slug: "genre:old-alive-parent", name: "Old Alive Parent" }));
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				qid: "Q2913982",
+				parent_genres: [{ type: "genre", name: "Old Alive Parent", slug: "genre:old-alive-parent" }],
+			}),
+		);
+		// Fresh draft re-surfaces the very same parent under the same name/slug.
+		installPipelineMocks({
+			draft: genreDraftFixture({
+				name: "Trap Hip-Hop",
+				parent_genres: [{ type: "genre", name: "Old Alive Parent" }],
+			}),
+		});
+		const { refreshGenre } = await loadCrawl();
+
+		await refreshGenre(baseOpts(dir), "genre:trap-hip-hop");
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(refreshed.parent_genres).toEqual([
+			{ type: "genre", name: "Old Alive Parent", slug: "genre:old-alive-parent" },
+		]);
+	});
+
+	it("drops an old edge whose target is no longer cached (dead)", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				qid: "Q2913982",
+				// project:old-dead-landmark was never written to this cache -- a dead neighbor.
+				landmark_projects: [
+					{ type: "project", name: "Old Dead Landmark", slug: "project:old-dead-landmark" },
+				],
+			}),
+		);
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+
+		await refreshGenre(baseOpts(dir), "genre:trap-hip-hop");
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(refreshed.landmark_projects).toEqual([]);
+	});
+});
+
 describe("CLI genre seed mode (TRA-62)", () => {
 	it("requires one family or genre selection and keeps the text mode distinct", async () => {
 		const { program, resolveCliMode, runGenreSeedCrawl, selectGenreSeeds } = await loadCli();
@@ -410,6 +569,26 @@ describe("CLI genre seed mode (TRA-62)", () => {
 			maxDepth: 2,
 		});
 		expect(resolveCliMode({ refreshGenre: "genre:q1" })).toEqual({ kind: "genre-refresh", slug: "genre:q1" });
+	});
+
+	// TRA-252: --genre-seeds names the dossier registry to look the refreshed genre's QID up
+	// in. It's compatible with --refresh-genre (unlike --genre-id/--family, still exclusive),
+	// and findGenreSeedFolder locates the dossier by its own genre slug, not the taxonomy key.
+	it("accepts --genre-seeds alongside --refresh-genre and resolves the matching dossier by slug", async () => {
+		const { resolveCliMode, findGenreSeedFolder } = await loadCli();
+		const genreSeedsPath = "data/genre-seeds.json";
+
+		expect(resolveCliMode({ refreshGenre: "genre:q2", genreSeeds: genreSeedsPath })).toEqual({
+			kind: "genre-refresh",
+			slug: "genre:q2",
+			genreSeedsPath,
+		});
+		expect(() =>
+			resolveCliMode({ refreshGenre: "genre:q1", genreSeeds: genreSeedsPath, genreId: "Q1" }),
+		).toThrow("exclusive of --genre-id and --family");
+
+		expect(findGenreSeedFolder(cliSeeds(), "genre:q2")).toEqual(cliSeeds().Q2);
+		expect(findGenreSeedFolder(cliSeeds(), "genre:unknown")).toBeUndefined();
 	});
 
 	it("rejects missing, conflicting, and text-only selectors before crawler setup", async () => {
