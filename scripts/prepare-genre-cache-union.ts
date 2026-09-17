@@ -23,19 +23,20 @@
  *
  * Usage: tsx scripts/prepare-genre-cache-union.ts <repo-cache-dir> <server-cache-dir> [--apply-merge]
  */
-import { copyFile, cp, mkdir, mkdtemp, writeFile } from "node:fs/promises";
+import { copyFile, cp, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { NodeCache } from "../src/cache.js";
 import type { GenreRedirects } from "../src/genre-registry.js";
-import { loadGenreRedirects } from "../src/genre-registry.js";
+import { loadGenreRedirects, parseGenreRedirects } from "../src/genre-registry.js";
 import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
 import {
 	isRecord,
 	looksLikeCacheDir,
+	mergeRedirects,
 	readCacheNodes,
 	runMigration,
 } from "./migrations/2026-09-04-merge-genre-duplicates.js";
@@ -56,20 +57,21 @@ export interface ReferenceRegression {
 	resolvedIn: ("repo" | "server")[];
 }
 
-// PR #213 review (B6a-2): the union only ever loaded ONE redirects table (the committed
-// data/genre-redirects.json), never the server's own copy. On a real duplicate group, the
-// server may already have elected a different winner than the repo would -- a "diverged-target"
-// conflict (same loser slug, two different canonical targets), or the repo's redirect is the
-// exact reverse of the server's ("inverted-pair", e.g. repo says a->b, server says b->a). Either
-// one, left unflagged, would let the merge migration below write a redirect in the wrong
-// direction and, once the two tables are combined by hand, produce a cycle -- the TRA-48 symptom.
-export interface RedirectsConflict {
-	reason: "diverged-target" | "inverted-pair";
-	repoFrom: Slug;
-	repoTo: Slug;
-	serverFrom: Slug;
-	serverTo: Slug;
-}
+// PR #213 review (B6a-2) and PR #224 review (TRA-245): the server's own redirects table may
+// already disagree with the repo's -- "diverged-target" (same loser, two targets) or
+// "inverted-pair" (exact reversal), both pairwise; or "cycle", a longer chain spanning both
+// tables (repo: a->b, c->d; server: b->c, d->a) that no pairwise check can see -- caught instead
+// by combining the two tables with mergeRedirects (see buildCacheUnion). Left unflagged, any of
+// these lets the merge migration below write a redirect in the wrong direction -- TRA-48 symptom.
+export type RedirectsConflict =
+	| {
+			reason: "diverged-target" | "inverted-pair";
+			repoFrom: Slug;
+			repoTo: Slug;
+			serverFrom: Slug;
+			serverTo: Slug;
+	  }
+	| { reason: "cycle"; message: string };
 
 /** Pure: flags every genre-redirect entry that disagrees between the two tables. An entry present
  * on only one side is normal steady-state (the other side hasn't caught up yet) and is never
@@ -238,6 +240,37 @@ function skippedEntry(
 	}
 }
 
+/** Loads the server's own redirects table for a caller-provided path. Unlike
+ * `loadGenreRedirects`'s default-location behavior (missing file -> empty table), a path here is
+ * always REQUIRED: the server's table is untrusted data, so a typo'd/moved path must fail loudly,
+ * not silently fall back to "no redirects" (finding 4, PR #224 review). Every failure -- missing
+ * file, invalid JSON, schema violation -- names `path`, and is raised before any write. */
+async function loadRequiredGenreRedirects(path: string): Promise<GenreRedirects> {
+	let raw: string;
+	try {
+		raw = await readFile(path, "utf8");
+	} catch (e) {
+		throw new Error(
+			`server redirects table ${path} could not be read: ${e instanceof Error ? e.message : String(e)}`,
+		);
+	}
+	let json: unknown;
+	try {
+		json = JSON.parse(raw);
+	} catch (e) {
+		throw new Error(
+			`server redirects table ${path} is not valid JSON: ${e instanceof Error ? e.message : String(e)}`,
+		);
+	}
+	try {
+		return parseGenreRedirects(json);
+	} catch (e) {
+		throw new Error(
+			`server redirects table ${path} failed validation: ${e instanceof Error ? e.message : String(e)}`,
+		);
+	}
+}
+
 export function countUnionProblems(manifest: UnionManifest): number {
 	const conflicts = manifest.entries.filter((e) => e.decision === "conflict").length;
 	// A qid dropped from the union: the side carrying it did NOT win the comparison.
@@ -274,6 +307,37 @@ export async function buildCacheUnion(
 	for (const { source, path, error } of skipped) {
 		process.stderr.write(`warning: skipping unreadable ${source} node file ${path}: ${error}\n`);
 	}
+
+	// Redirects loaded and validated BEFORE anything is written to nodes/ or archive/ (finding 4)
+	// -- a typo'd/missing/broken --server-redirects-path must fail loudly right here.
+	const sourceRedirects = await loadGenreRedirects(options.redirectsPath);
+	let serverRedirects: GenreRedirects | undefined;
+	let redirectsConflicts: UnionManifest["redirectsConflicts"];
+	// Seeds the union's OWN redirects copy below: the source table alone, unless both tables agree
+	// -- then the COMBINED table, so election (criterion 0) sees a winner the server already
+	// picked, not just the repo's. Never combined on a conflict (finding 1).
+	let combinedRedirects: Record<string, string> = Object.fromEntries(sourceRedirects);
+	if (options.serverRedirectsPath) {
+		serverRedirects = await loadRequiredGenreRedirects(options.serverRedirectsPath);
+		const pairwiseConflicts = diffGenreRedirects(sourceRedirects, serverRedirects);
+		if (pairwiseConflicts.length > 0) {
+			redirectsConflicts = pairwiseConflicts;
+		} else {
+			// No pairwise disagreement doesn't rule out a longer cycle spanning BOTH tables --
+			// mergeRedirects's chain-following throws on exactly that (finding 2).
+			try {
+				combinedRedirects = mergeRedirects(
+					Object.fromEntries(sourceRedirects),
+					Object.fromEntries(serverRedirects),
+				);
+			} catch (e) {
+				redirectsConflicts = [{ reason: "cycle", message: e instanceof Error ? e.message : String(e) }];
+			}
+		}
+	}
+	// A conflict found above means the migration below must never actually apply (finding 3).
+	const redirectsRefused = redirectsConflicts !== undefined;
+
 	const repoBySlug = new Map(repoNodes.map((f) => [f.slug, f]));
 	const serverBySlug = new Map(serverNodes.map((f) => [f.slug, f]));
 	const allSlugs = new Set([...repoBySlug.keys(), ...serverBySlug.keys()]);
@@ -310,32 +374,14 @@ export async function buildCacheUnion(
 		}
 	}
 
-	// Seed the union's OWN redirects copy from the source table (read-only) so the migration's
-	// preview below sees the same existing-redirect knowledge a real merge would -- the source
-	// table (options.redirectsPath, or its real committed default) is never written.
-	const sourceRedirects = await loadGenreRedirects(options.redirectsPath);
-	// PR #213 review: refuse (rather than silently pick the repo's side) when the server's own
-	// redirects table disagrees with the repo's -- see diffGenreRedirects's doc comment. Checked
-	// against the source table, before the migration below can add its own new entries to the
-	// union's copy (those are never conflicts -- they don't exist on either source yet).
-	let redirectsConflicts: UnionManifest["redirectsConflicts"];
-	if (options.serverRedirectsPath) {
-		const serverRedirects = await loadGenreRedirects(options.serverRedirectsPath);
-		const conflicts = diffGenreRedirects(sourceRedirects, serverRedirects);
-		if (conflicts.length > 0) redirectsConflicts = conflicts;
-	}
 	const redirectsPath = join(outputDir, "genre-redirects.json");
-	await writeFile(
-		redirectsPath,
-		`${JSON.stringify({ redirects: Object.fromEntries(sourceRedirects) }, null, 2)}\n`,
-		"utf8",
-	);
-	// Only ONE runMigration call ever happens: preview and apply both re-read and recompute the
-	// full duplicate-group plan from scratch (readCacheNodes + election + edge rewrite +
-	// invariants), so calling both on the real cache would double that I/O/CPU cost for nothing.
-	// With --apply-merge, nodes/ must be archived BEFORE this call, since apply may delete losers.
+	await writeFile(redirectsPath, `${JSON.stringify({ redirects: combinedRedirects }, null, 2)}\n`, "utf8");
+	// Only ONE runMigration call ever happens: preview and apply both recompute the full plan from
+	// scratch. With --apply-merge, nodes/ must be archived BEFORE this call, since apply may
+	// delete losers -- unless redirectsRefused, in which case nothing gets deleted.
 	let archivedNodeCount = 0;
-	if (options.applyMerge) {
+	const willApply = (options.applyMerge ?? false) && !redirectsRefused;
+	if (options.applyMerge && !redirectsRefused) {
 		// Archive the WHOLE union nodes/ tree -- at least covers what the migration is about to
 		// delete, without needing the migration's own (unexported) per-group loser list. This is
 		// exactly the B6a review gap: a live node deleted by the applied migration must never be
@@ -345,7 +391,7 @@ export async function buildCacheUnion(
 		archivedNodeCount = entries.filter((e) => e.decision !== "conflict").length;
 	}
 	const { result: migration, stderr: migrationStderr } = await captureStderr(() =>
-		runMigration(outputDir, options.applyMerge ?? false, {
+		runMigration(outputDir, willApply, {
 			redirectsPath,
 			...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
 		}),
@@ -354,46 +400,73 @@ export async function buildCacheUnion(
 	let migrationApply: UnionManifest["migrationApply"];
 	let referenceRegressions: UnionManifest["referenceRegressions"];
 	if (options.applyMerge) {
-		// Re-read AFTER the migration ran: the union's live nodes and its redirects, which the
-		// migration may just have rewritten (a merged pair with no PRE-existing redirect gets one
-		// created here) -- reusing the pre-migration `sourceRedirects` here would silently miss
-		// that and falsely flag a reference to the loser as broken.
-		const unionLiveSlugs = new Set(await new NodeCache(outputDir).listSlugs());
-		const unionRedirects = await loadGenreRedirects(redirectsPath);
+		if (redirectsRefused) {
+			// Never point at a merged union when the tables disagree (finding 3): willApply above
+			// was forced false, so nothing was deleted or rewritten -- the manifest must say so too.
+			migrationApply = {
+				applied: false,
+				groupsFound: migration.groupsFound,
+				deletedCount: 0,
+				exitCode: 1,
+				report: migration.report,
+				archivedNodeCount: 0,
+				refusalReason:
+					"server redirects table diverges from the repo's -- refusing to apply the merge (see redirectsConflicts)",
+				removedByMigration: [],
+			};
+		} else {
+			// Re-read AFTER the migration ran: the union's live nodes and its redirects, which the
+			// migration may just have rewritten (a merged pair with no PRE-existing redirect gets one
+			// created here) -- reusing the pre-migration `sourceRedirects` here would silently miss
+			// that and falsely flag a reference to the loser as broken.
+			const unionLiveSlugs = new Set(await new NodeCache(outputDir).listSlugs());
+			const unionRedirects = await loadGenreRedirects(redirectsPath);
 
-		const removedByMigration = entries
-			.filter((e) => e.decision !== "conflict" && !unionLiveSlugs.has(e.slug))
-			.map((e) => {
-				const redirectsTo = unionRedirects.get(e.slug);
-				return { slug: e.slug, ...(redirectsTo ? { redirectsTo } : {}) };
+			const removedByMigration = entries
+				.filter((e) => e.decision !== "conflict" && !unionLiveSlugs.has(e.slug))
+				.map((e) => {
+					const redirectsTo = unionRedirects.get(e.slug);
+					return { slug: e.slug, ...(redirectsTo ? { redirectsTo } : {}) };
+				});
+
+			migrationApply = {
+				applied: migration.exitCode === 0,
+				groupsFound: migration.groupsFound,
+				deletedCount: migration.deletedCount,
+				exitCode: migration.exitCode,
+				report: migration.report,
+				archivedNodeCount,
+				...(migration.exitCode !== 0 ? { refusalReason: migrationStderr.trim() } : {}),
+				removedByMigration,
+			};
+
+			// Belt-and-suspenders (finding 1): the FINAL union table should already agree with the
+			// server's (it was seeded from the combined table) -- compare anyway and refuse any
+			// divergence a bug elsewhere might still have produced.
+			if (serverRedirects) {
+				const postConflicts = diffGenreRedirects(unionRedirects, serverRedirects);
+				if (postConflicts.length > 0) redirectsConflicts = [...(redirectsConflicts ?? []), ...postConflicts];
+			}
+
+			// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
+			// source's OWN live nodes plus the PRE-migration redirect table (what that source actually
+			// had); "resolvable in the union" uses the re-read post-migration state above.
+			const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
+			const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
+			const referenced = collectReferencedSlugs([...repoNodes, ...serverNodes]);
+
+			referenceRegressions = [...referenced].flatMap((slug) => {
+				const resolvedIn: ("repo" | "server")[] = [
+					...(slugResolves(slug, repoLiveSlugs, sourceRedirects) ? (["repo"] as const) : []),
+					// The server's OWN table when one was loaded (finding 5); sourceRedirects otherwise.
+					...(slugResolves(slug, serverLiveSlugs, serverRedirects ?? sourceRedirects)
+						? (["server"] as const)
+						: []),
+				];
+				if (resolvedIn.length === 0 || slugResolves(slug, unionLiveSlugs, unionRedirects)) return [];
+				return [{ slug, resolvedIn }];
 			});
-
-		migrationApply = {
-			applied: migration.exitCode === 0,
-			groupsFound: migration.groupsFound,
-			deletedCount: migration.deletedCount,
-			exitCode: migration.exitCode,
-			report: migration.report,
-			archivedNodeCount,
-			...(migration.exitCode !== 0 ? { refusalReason: migrationStderr.trim() } : {}),
-			removedByMigration,
-		};
-
-		// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
-		// source's OWN live nodes plus the PRE-migration redirect table (what that source actually
-		// had); "resolvable in the union" uses the re-read post-migration state above.
-		const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
-		const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
-		const referenced = collectReferencedSlugs([...repoNodes, ...serverNodes]);
-
-		referenceRegressions = [...referenced].flatMap((slug) => {
-			const resolvedIn: ("repo" | "server")[] = [
-				...(slugResolves(slug, repoLiveSlugs, sourceRedirects) ? (["repo"] as const) : []),
-				...(slugResolves(slug, serverLiveSlugs, sourceRedirects) ? (["server"] as const) : []),
-			];
-			if (resolvedIn.length === 0 || slugResolves(slug, unionLiveSlugs, unionRedirects)) return [];
-			return [{ slug, resolvedIn }];
-		});
+		}
 	}
 
 	const manifest: UnionManifest = {
@@ -421,20 +494,38 @@ export async function buildCacheUnion(
 	return { outputDir, manifest };
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-	const args = process.argv.slice(2);
-	const serverRedirectsFlagIndex = args.indexOf("--server-redirects-path");
+export interface UnionCliArgs {
+	repoCacheDir: string;
+	serverCacheDir: string;
+	applyMerge: boolean;
+	serverRedirectsPath?: string;
+}
+
+/** Parses `<repo-cache-dir> <server-cache-dir> [--apply-merge] [--server-redirects-path <path>]`.
+ * Throws (never a silent guess) when --server-redirects-path is repeated, has no value, or is
+ * followed by another flag (finding 4); an unrecognized flag is present; or anything but exactly
+ * two positional arguments remain. */
+export function parseUnionCliArgs(argv: readonly string[]): UnionCliArgs {
+	const serverRedirectsFlagIndex = argv.indexOf("--server-redirects-path");
+	if (
+		serverRedirectsFlagIndex !== -1 &&
+		argv.lastIndexOf("--server-redirects-path") !== serverRedirectsFlagIndex
+	) {
+		throw new Error("--server-redirects-path may only be given once");
+	}
 	let serverRedirectsPath: string | undefined;
 	if (serverRedirectsFlagIndex !== -1) {
-		serverRedirectsPath = args[serverRedirectsFlagIndex + 1];
-		if (!serverRedirectsPath) throw new Error("--server-redirects-path requires a value");
+		serverRedirectsPath = argv[serverRedirectsFlagIndex + 1];
+		if (!serverRedirectsPath || serverRedirectsPath.startsWith("-")) {
+			throw new Error("--server-redirects-path requires a value");
+		}
 	}
 	// The flag and its value are consumed as a pair before the unknown-flag/positional checks
 	// below, so neither one is mistaken for an unrecognized flag or a stray positional argument.
 	const remainingArgs =
 		serverRedirectsFlagIndex === -1
-			? args
-			: [...args.slice(0, serverRedirectsFlagIndex), ...args.slice(serverRedirectsFlagIndex + 2)];
+			? argv
+			: [...argv.slice(0, serverRedirectsFlagIndex), ...argv.slice(serverRedirectsFlagIndex + 2)];
 	// An unrecognized flag must never fall through to a silent preview-mode guess -- see the
 	// sibling migration script's own parseCliArgs for the same discipline.
 	const unknownFlag = remainingArgs.find((a) => a.startsWith("--") && a !== "--apply-merge");
@@ -449,6 +540,18 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
 			"usage: <repo-cache-dir> <server-cache-dir> [--apply-merge] [--server-redirects-path <path>]",
 		);
 	}
+	return {
+		repoCacheDir,
+		serverCacheDir,
+		applyMerge,
+		...(serverRedirectsPath ? { serverRedirectsPath } : {}),
+	};
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
+	const { repoCacheDir, serverCacheDir, applyMerge, serverRedirectsPath } = parseUnionCliArgs(
+		process.argv.slice(2),
+	);
 	for (const dir of [repoCacheDir, serverCacheDir]) {
 		// A typo'd/nonexistent source silently unions "the other side alone" and exits 0 --
 		// same guard the migration script's own CLI uses on itself.
