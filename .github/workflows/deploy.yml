@@ -11,9 +11,16 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 15
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
@@ -27,14 +34,28 @@ jobs:
       - run: npm run test
 
       - name: Set up SSH
+        # 2026-09-17 (TRA-243): never write the deploy key to disk. On the self-hosted runner,
+        # ~/.ssh is Raphael's personal directory (the previous step overwrote ~/.ssh/id_ed25519),
+        # and OpenSSH resolves ~/.ssh from the password database, not from $HOME. The key lives in
+        # a job-scoped ssh-agent; known_hosts lives in $RUNNER_TEMP, enforced by an `ssh` wrapper
+        # put first on PATH (deploy scripts call `ssh` and `rsync`, which calls `ssh`).
         env:
           DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
         run: |
-          mkdir -p ~/.ssh
-          chmod 700 ~/.ssh
-          printf '%s\n' "$DEPLOY_SSH_KEY" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H 46.101.167.241 >> ~/.ssh/known_hosts 2>/dev/null
+          set -euo pipefail
+          eval "$(ssh-agent -s)" > /dev/null
+          # A failed start would leave SSH_AUTH_SOCK pointing at the host user's own agent.
+          test -n "${SSH_AGENT_PID:-}"
+          printf '%s\n' "$DEPLOY_SSH_KEY" | ssh-add - > /dev/null
+          ssh-keyscan -H 46.101.167.241 > "$RUNNER_TEMP/known_hosts" 2> /dev/null
+          mkdir -p "$RUNNER_TEMP/bin"
+          printf '#!/bin/bash\nexec /usr/bin/ssh -o UserKnownHostsFile="%s" "$@"\n' "$RUNNER_TEMP/known_hosts" > "$RUNNER_TEMP/bin/ssh"
+          chmod 700 "$RUNNER_TEMP/bin/ssh"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          {
+            echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+            echo "SSH_AGENT_PID=$SSH_AGENT_PID"
+          } >> "$GITHUB_ENV"
 
       - name: Deploy server
         run: bash deploy/deploy-server.sh
@@ -48,3 +69,9 @@ jobs:
           curl -fsS https://dropcliffs.com/api/odyssey/health; echo
           curl -fsS https://dropcliffs.com/api/odyssey/version; echo
           curl -fsS -o /dev/null -w "labs/odyssey HTTP %{http_code}\n" https://dropcliffs.com/labs/odyssey/
+
+      - name: Stop SSH agent
+        # The runner host is persistent: do not leave the job's agent (and the key it holds) behind.
+        if: always()
+        run: |
+          if [ -n "${SSH_AGENT_PID:-}" ]; then ssh-agent -k > /dev/null || true; fi

@@ -1,6 +1,7 @@
 name: ci
 on:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
   push:
     branches: [main]
 
@@ -15,8 +16,17 @@ concurrency:
 
 jobs:
   typecheck:
-    runs-on: ubuntu-latest
+    # Draft PRs are the agents' delivery mode: no CI run until ready_for_review.
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
@@ -24,8 +34,16 @@ jobs:
       - run: npm run typecheck
 
   lint:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
@@ -33,8 +51,16 @@ jobs:
       - run: npm run lint
 
   test:
-    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
@@ -52,9 +78,16 @@ jobs:
     # ajouterait des milliers de lignes. Les autres fichiers de data/
     # (genre-catalog.json, genre-taxonomy.json) sont des inputs de pipeline
     # sans script générateur dans ce repo : ils restent comptés.
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
       - name: Mesurer le diff
@@ -78,10 +111,17 @@ jobs:
   tier-guard:
     # Escalade automatique en tier/3 sur les chemins sensibles.
     # `deploy/` et `scripts/deploy-web.sh` sont ajoutés : ils poussent en prod.
-    if: github.event_name == 'pull_request'
-    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
     permissions: { contents: read, pull-requests: write }
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
       - name: Détecter les chemins sensibles

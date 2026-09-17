@@ -4,13 +4,22 @@ export interface ApiEnv {
 	FIRECRAWL_API_KEY: string;
 }
 
-export function loadEnv(): ApiEnv {
+export interface LoadEnvOptions {
+	// 2026-09-17 (TRA-242): which web-search backend the caller intends to use. Defaults to
+	// "tavily", which keeps the strict pre-existing contract (TAVILY_API_KEY always required) —
+	// every caller that omits this option (server, materialize-service, scripts) is unaffected.
+	// Only "firecrawl" relaxes the TAVILY_API_KEY requirement.
+	searchProvider?: "tavily" | "firecrawl";
+}
+
+export function loadEnv(opts: LoadEnvOptions = {}): ApiEnv {
+	const searchProvider = opts.searchProvider ?? "tavily";
 	const GEMINI_API_KEY = process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY ?? "";
 	const TAVILY_API_KEY = process.env.TAVILY_API_KEY ?? "";
 	const FIRECRAWL_API_KEY = process.env.FIRECRAWL_API_KEY ?? "";
 	const missing: string[] = [];
 	if (!GEMINI_API_KEY) missing.push("GEMINI_API_KEY");
-	if (!TAVILY_API_KEY) missing.push("TAVILY_API_KEY");
+	if (!TAVILY_API_KEY && searchProvider === "tavily") missing.push("TAVILY_API_KEY");
 	if (!FIRECRAWL_API_KEY) missing.push("FIRECRAWL_API_KEY");
 	if (missing.length) {
 		throw new Error(
