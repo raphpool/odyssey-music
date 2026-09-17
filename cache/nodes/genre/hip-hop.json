@@ -42,6 +42,36 @@
       "type": "genre",
       "name": "American hip-hop",
       "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore hip-hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
     }
   ],
   "related_genres": [
@@ -68,6 +98,24 @@
       "type": "genre",
       "name": "K-Pop",
       "qid": "Q213665"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
     }
   ],
   "key_artists": [

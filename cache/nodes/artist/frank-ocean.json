@@ -1,0 +1,300 @@
+{
+  "slug": "artist:frank-ocean",
+  "name": "Frank Ocean",
+  "editorial_article": "Frank Ocean, born Christopher Edwin Breaux in New Orleans, relocated to Los Angeles in 2005 following the destruction of his studio during Hurricane Katrina. After signing to Def Jam Recordings in 2009, he built creative partnerships with Odd Future leader Tyler, the Creator and producer Malay. His 2011 mixtape Nostalgia, Ultra, which featured the Billboard Hot 100 charting single 'Novacane', preceded the 2012 release of his debut studio album Channel Orange. This record peaked at number two on the Billboard 200 and made chart history in the UK for its digital-only sales. Ocean later concluded his Def Jam contract with the 2016 visual album Endless, released just one day before his sophomore studio album, Blonde. Throughout his career, he has written for various artists including Beyoncé and Justin Bieber, while maintaining a diverse production history characterized by notable collaborations with Jay-Z and Kanye West on the Watch the Throne album.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Frank_Ocean",
+      "title": "Frank Ocean"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Frank_Ocean_discography",
+      "title": "Frank Ocean discography"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:52.059Z",
+  "type": "artist",
+  "editorial_bio": "An influential American singer-songwriter and rapper known for his distinct lyrical style and significant contributions to R&B and hip hop since the early 2010s.",
+  "origin": "New Orleans, Louisiana",
+  "active_years": "2009-present",
+  "genres": [
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cayendo",
+      "type": "project",
+      "name": "Cayendo (acoustic)",
+      "mbid": "b15c3956-0087-4654-a74e-6de689814891",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:these-days",
+      "type": "project",
+      "name": "These Days",
+      "mbid": "692d62ee-a2e7-4652-a9d9-a7ddaefc5857",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-my-room",
+      "type": "project",
+      "name": "In My Room",
+      "mbid": "f85d76ed-076c-464f-8b0c-3a634da2755a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dear-april",
+      "type": "project",
+      "name": "Dear April",
+      "mbid": "3fec739e-49ee-45e6-b232-28f591d67baf",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cayendo",
+      "type": "project",
+      "name": "Cayendo",
+      "mbid": "8691abf4-9ca5-4df2-abd0-957b2820c908",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dhl",
+      "type": "project",
+      "name": "DHL",
+      "mbid": "b1fde86b-4ee4-41c2-9833-db56d86738c4",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moon-river",
+      "type": "project",
+      "name": "Moon River",
+      "mbid": "702b99ac-883f-4701-8d7d-351b89ad0985",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:provider",
+      "type": "project",
+      "name": "Provider",
+      "mbid": "c21e42b4-3a6a-4244-9054-c9de323c3e96",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biking",
+      "type": "project",
+      "name": "Biking (solo)",
+      "mbid": "ba3f7098-e9dc-412e-98a7-0a9cab85bdc4",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slide-on-me",
+      "type": "project",
+      "name": "Slide on Me",
+      "mbid": "04d15687-ae6a-44e0-abd0-154ab08e52a0",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lens",
+      "type": "project",
+      "name": "Lens",
+      "mbid": "73c40c14-c39b-4d72-8b39-2ac897b67991",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lens",
+      "type": "project",
+      "name": "Lens",
+      "mbid": "53d11caf-0a71-41d9-98e1-90283211a2cf",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biking",
+      "type": "project",
+      "name": "Biking",
+      "mbid": "20a211c6-60fd-426a-a2df-68631393b656",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chanel",
+      "type": "project",
+      "name": "Chanel",
+      "mbid": "36b5e98f-85f2-4fa0-a179-061cef2dfe09",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slide",
+      "type": "project",
+      "name": "Slide",
+      "mbid": "922f1466-03f1-4b14-b7c8-c3a274a2950f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slide",
+      "type": "project",
+      "name": "Slide",
+      "mbid": "c0926b1a-3c06-419a-bbeb-899992046218",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blonde",
+      "type": "project",
+      "name": "Blonde",
+      "mbid": "0da340a0-6ad7-4fc2-a272-6f94393a7831",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lonny-breaux-pt-2",
+      "type": "project",
+      "name": "Lonny Breaux, Pt. 2",
+      "mbid": "24d3b8f9-a099-407d-8c7a-4841c32c7f40",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:channel-orange",
+      "type": "project",
+      "name": "channel ORANGE",
+      "mbid": "f8f4167d-897c-4b25-a171-638374d1dfa4",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thinkin-bout-you",
+      "type": "project",
+      "name": "Thinkin Bout You",
+      "mbid": "198cee24-a93c-4565-a5ca-48d9265a5f17",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:swim-good",
+      "type": "project",
+      "name": "Swim Good",
+      "mbid": "48577404-5fb6-40b1-9449-34b658b9f521",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:novacane",
+      "type": "project",
+      "name": "Novacane",
+      "mbid": "4c0f585f-59d0-4480-994b-0094491e836a",
+      "year": "2011",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:novacane",
+      "type": "track",
+      "name": "Novacane"
+    },
+    {
+      "slug": "track:thinkin-bout-you",
+      "type": "track",
+      "name": "Thinkin Bout You"
+    },
+    {
+      "slug": "track:pyramids",
+      "type": "track",
+      "name": "Pyramids"
+    },
+    {
+      "slug": "track:lost",
+      "type": "track",
+      "name": "Lost"
+    },
+    {
+      "slug": "track:nikes",
+      "type": "track",
+      "name": "Nikes"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, the Creator"
+    },
+    {
+      "slug": "artist:malay",
+      "type": "artist",
+      "name": "Malay"
+    },
+    {
+      "slug": "artist:kanye-west",
+      "type": "artist",
+      "name": "Kanye West"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "Jay-Z"
+    },
+    {
+      "slug": "artist:andre-3000",
+      "type": "artist",
+      "name": "André 3000"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:christopher-breaux",
+      "type": "artist",
+      "name": "Christopher Breaux"
+    },
+    {
+      "slug": "artist:lonny-breaux",
+      "type": "artist",
+      "name": "Lonny Breaux"
+    }
+  ],
+  "members": []
+}

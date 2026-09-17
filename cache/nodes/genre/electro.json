@@ -90,6 +90,12 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
     }
   ],
   "key_artists": [

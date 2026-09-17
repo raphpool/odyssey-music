@@ -1,0 +1,140 @@
+{
+  "slug": "artist:trippie-redd",
+  "name": "Trippie Redd",
+  "editorial_article": "Born Michael Lamar White II in Canton, Ohio, in 1999, the rapper and singer emerged from the SoundCloud era to become a central figure in emo rap and rage. He rose to prominence with his 2017 debut mixtape, A Love Letter to You, released by 10K Projects, featuring the double-platinum single \"Love Scars.\" His sound evolved through early collaborations with artists like Lil Wop and Kodie Shane, eventually blending trap with elements of pop-punk and alternative rock. Throughout his career, he has achieved significant chart success, including his first Billboard 200 chart-topper with A Love Letter to You 4 in 2019. His 2021 collaboration \"Miss the Rage\" with Playboi Carti stands as his highest-charting single on the Billboard Hot 100, reaching number 11. Known for his work with producers like Scott Storch and collaborators ranging from Travis Scott to MGK, he has maintained a prolific output that explores everything from hardcore trap to rock-infused reissues like Neon Shark vs Pegasus.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Trippie_Redd",
+      "title": "Trippie Redd - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:10.361Z",
+  "type": "artist",
+  "editorial_bio": "An influential figure in the evolution of emo rap and rage, known for his prolific series of love-themed mixtapes and genre-bending studio albums.",
+  "origin": "Canton, Ohio",
+  "active_years": "2012-present",
+  "genres": [
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:rage",
+      "type": "genre",
+      "name": "Rage",
+      "qid": "Q111133884"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:10k-projects",
+      "type": "label",
+      "name": "10K Projects"
+    },
+    {
+      "slug": "label:1400-entertainment",
+      "type": "label",
+      "name": "1400 Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:a-love-letter-to-you",
+      "type": "project",
+      "name": "A Love Letter to You"
+    },
+    {
+      "slug": "project:life-s-a-trip",
+      "type": "project",
+      "name": "Life's a Trip"
+    },
+    {
+      "slug": "project:pegasus",
+      "type": "project",
+      "name": "Pegasus"
+    },
+    {
+      "slug": "project:trip-at-knight",
+      "type": "project",
+      "name": "Trip at Knight"
+    },
+    {
+      "slug": "project:mansion-musik",
+      "type": "project",
+      "name": "Mansion Musik"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-scars",
+      "type": "track",
+      "name": "Love Scars"
+    },
+    {
+      "slug": "track:dark-knight-dummo",
+      "type": "track",
+      "name": "Dark Knight Dummo"
+    },
+    {
+      "slug": "track:miss-the-rage",
+      "type": "track",
+      "name": "Miss the Rage"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott"
+    },
+    {
+      "slug": "artist:playboi-carti",
+      "type": "artist",
+      "name": "Playboi Carti"
+    },
+    {
+      "slug": "artist:juice-wrld",
+      "type": "artist",
+      "name": "Juice Wrld"
+    },
+    {
+      "slug": "artist:lil-wop",
+      "type": "artist",
+      "name": "Lil Wop"
+    },
+    {
+      "slug": "artist:travis-barker",
+      "type": "artist",
+      "name": "Travis Barker"
+    },
+    {
+      "slug": "artist:mgk",
+      "type": "artist",
+      "name": "MGK"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:1400",
+      "type": "artist",
+      "name": "1400"
+    }
+  ],
+  "members": []
+}

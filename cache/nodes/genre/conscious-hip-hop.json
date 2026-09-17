@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-14T09:21:05.755Z",
   "type": "genre",
   "editorial_definition": "A subgenre of hip-hop characterized by lyrics that focus on social, political, and economic issues to challenge dominant cultural narratives.",
+  "qid": "Q141459",
   "era": "late 1980s to present",
   "origin": "United States",
   "sonic_markers": "Variable BPM, sample-heavy production, emphasis on lyrical clarity and storytelling.",
@@ -42,6 +43,12 @@
       "type": "genre",
       "name": "Alternative hip-hop",
       "qid": "Q438503"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
     }
   ],
   "key_artists": [
@@ -100,6 +107,5 @@
       "type": "track",
       "name": "Alright"
     }
-  ],
-  "qid": "Q141459"
+  ]
 }

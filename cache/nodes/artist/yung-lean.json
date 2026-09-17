@@ -1,0 +1,771 @@
+{
+  "slug": "artist:yung-lean",
+  "name": "Yung Lean",
+  "editorial_article": "Born in Stockholm in 1996, Swedish rapper Jonatan Aron Leandoer Håstad rose to international prominence in 2013 after his music video for 'Ginseng Strip 2002' became a viral phenomenon on YouTube. A central figure in the cloud rap movement, Lean co-founded the Sad Boys collective with producers Yung Gud and Yung Sherman, favoring a sound characterized by thick, melancholic atmospheres that helped define the SoundCloud rap era. In 2014, he released his debut studio album 'Unknown Memory' and embarked on a North American tour that included a performance at Webster Hall. Throughout his career, Lean has maintained a parallel project under the pseudonym Jonatan Leandoer96, exploring indie rock and neofolk on releases like 'Nectar' (2019). His work has earned industry recognition, including a 2019 Bram Stoker Medal for Cultural Achievement from Trinity College Dublin, and he has collaborated with artists such as Frank Ocean, Charli XCX, and Travis Scott.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Yung_Lean",
+      "title": "Yung Lean - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:21.987Z",
+  "type": "artist",
+  "editorial_bio": "A Swedish cloud rap pioneer, Jonatan Håstad has shaped underground hip-hop through his distinctively melancholic sound, Sad Boys collective, and genre-defying solo work.",
+  "origin": "Stockholm, Sweden",
+  "active_years": "2012-present",
+  "genres": [
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:world-affairs",
+      "type": "label",
+      "name": "World Affairs"
+    },
+    {
+      "slug": "label:year0001",
+      "type": "label",
+      "name": "YEAR0001"
+    },
+    {
+      "slug": "label:sad-boys-entertainment",
+      "type": "label",
+      "name": "Sad Boys Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:storm",
+      "type": "project",
+      "name": "STORM",
+      "mbid": "58a7d9ce-fcf5-449c-8260-cc6d34d94e1e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:evil-world",
+      "type": "project",
+      "name": "Evil World",
+      "mbid": "e6b05184-0023-4321-ace5-21bc0f941219",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:evil-world",
+      "type": "project",
+      "name": "Evil World",
+      "mbid": "0a66bc35-371b-4f9b-826a-26b2604ee899",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inferno",
+      "type": "project",
+      "name": "Inferno",
+      "mbid": "ad64c021-ff0f-4f5a-b4c0-f6148b949f6b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jonatan",
+      "type": "project",
+      "name": "Jonatan",
+      "mbid": "6a242e6a-8385-4a61-bd0f-6a7388832d9d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:forever-yung",
+      "type": "project",
+      "name": "Forever Yung",
+      "mbid": "d60c52b9-c514-40ed-974b-c75ace9f2aa8",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shadowboxing",
+      "type": "project",
+      "name": "Shadowboxing",
+      "mbid": "0835074f-4c38-4a2f-bd52-d3d29f13a836",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:psykos",
+      "type": "project",
+      "name": "Psykos",
+      "mbid": "fb062722-6c78-404f-8001-418bf68e60fe",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spirit-of-thunder",
+      "type": "project",
+      "name": "SPIRIT OF THUNDER",
+      "mbid": "f9084443-9dc2-483a-9318-1a9111d9d1b5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:violent-lullaby",
+      "type": "project",
+      "name": "Violent Lullaby",
+      "mbid": "92ee02d2-f028-488d-876c-e20f508b69d2",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:victorious-bullets",
+      "type": "project",
+      "name": "Victorious//Bullets",
+      "mbid": "2ff57116-0069-4049-8675-e70ca02d8677",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ceremony",
+      "type": "project",
+      "name": "Ceremony",
+      "mbid": "3e0a2054-2381-4d92-b549-02700a6bcf77",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-love",
+      "type": "project",
+      "name": "True Love",
+      "mbid": "ce6748ee-e4df-41fe-86e8-6e91f1492c19",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lazy-summer-day-chinese-restaurant",
+      "type": "project",
+      "name": "Lazy Summer Day / Chinese Restaurant",
+      "mbid": "e07bac97-332e-467a-9d5e-89dc64d8e464",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trip",
+      "type": "project",
+      "name": "Trip",
+      "mbid": "bb4ba4ae-fa84-4c28-a317-7f6d64c3c910",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chandelier",
+      "type": "project",
+      "name": "Chandelier",
+      "mbid": "e6deddb6-888b-4c58-af32-b69be8d458dd",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:opium-dreams",
+      "type": "project",
+      "name": "Opium Dreams",
+      "mbid": "bc6164ba-4e73-4297-8da1-c1fdd320d5eb",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:starz",
+      "type": "project",
+      "name": "Starz",
+      "mbid": "803ce490-39a3-475c-8151-1b1478b281f7",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pikachu",
+      "type": "project",
+      "name": "Pikachu",
+      "mbid": "54514178-bbcb-401e-83ca-52519db78c8b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:violence",
+      "type": "project",
+      "name": "Violence",
+      "mbid": "c893fc41-da8c-4452-94c6-757e40c5056c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:evigheten",
+      "type": "project",
+      "name": "Evigheten",
+      "mbid": "94dea943-387a-4c12-9eb3-6ad9ece4aab7",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boylife-in-eu",
+      "type": "project",
+      "name": "Boylife in EU",
+      "mbid": "f32adb69-6eb3-45c2-a9c2-55017398f721",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blue-plastic",
+      "type": "project",
+      "name": "Blue Plastic",
+      "mbid": "40796851-94f6-4f48-8b4d-fb2d9c401941",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:divine-madness",
+      "type": "project",
+      "name": "Divine Madness",
+      "mbid": "fc36fa33-3bb0-41db-9439-911dff8445db",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:famous",
+      "type": "project",
+      "name": "Famous",
+      "mbid": "88a93bce-2fbe-4dea-9a12-4dbed012b771",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-class",
+      "type": "project",
+      "name": "First Class",
+      "mbid": "ea2ed0be-ba51-4429-b4aa-a3ea591c9506",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:total-eclipse",
+      "type": "project",
+      "name": "Total Eclipse",
+      "mbid": "558363b5-4d37-4c2f-a0dd-f854e82fcb35",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:creep-creeps",
+      "type": "project",
+      "name": "Creep Creeps",
+      "mbid": "df60a460-65ae-4f0c-b2e6-0e008c75cb97",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-velvet",
+      "type": "project",
+      "name": "Red Velvet",
+      "mbid": "d6fd4731-9f93-4d56-ac9a-2c5983249afe",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:happy-feet",
+      "type": "project",
+      "name": "happy feet",
+      "mbid": "690bfe64-194f-4166-bc61-be6895188614",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-me",
+      "type": "project",
+      "name": "Like Me",
+      "mbid": "8dc9ba17-82c6-45b6-9cfe-1d2253b8316f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crash-bandicoot-and-ghostface-shyguy",
+      "type": "project",
+      "name": "Crash Bandicoot & Ghostface / Shyguy",
+      "mbid": "3bba6415-4094-4b9a-921d-92a29c08ba5d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-cobra",
+      "type": "project",
+      "name": "King Cobra",
+      "mbid": "992cc969-8bcc-4210-a935-c47a264f2d5b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:metallic-intuition",
+      "type": "project",
+      "name": "Metallic Intuition",
+      "mbid": "7ed2e14c-6552-4526-b8be-2483de8099af",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skimask",
+      "type": "project",
+      "name": "Skimask",
+      "mbid": "989a1426-ac9d-4b02-940b-de45a968dd53",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stranger",
+      "type": "project",
+      "name": "Stranger",
+      "mbid": "1e530a00-eb5a-464c-b56c-559feaa553f9",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hunting-my-own-skin",
+      "type": "project",
+      "name": "Hunting My Own Skin",
+      "mbid": "106c0edb-3b7f-4d96-a7f6-743e6752e6eb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-bottom-sky",
+      "type": "project",
+      "name": "Red Bottom Sky",
+      "mbid": "20990379-9f16-4b1d-963a-fbb8634141b8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gotham-city",
+      "type": "project",
+      "name": "Gotham City",
+      "mbid": "a90aac91-083d-4184-a097-8b871d1d44bb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-mercy",
+      "type": "project",
+      "name": "No Mercy",
+      "mbid": "f6ee1998-ae3c-4501-a4db-d19e12fa5f51",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reebok",
+      "type": "project",
+      "name": "Reebok",
+      "mbid": "3f11e6ae-7928-414e-9053-dfb0f9252f3a",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghostrider",
+      "type": "project",
+      "name": "Ghostrider",
+      "mbid": "6b15837b-e79d-4884-8a71-51ce4abfcdc5",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mj",
+      "type": "project",
+      "name": "MJ",
+      "mbid": "c04c4f68-ff90-4be3-bbc5-b2819be6e724",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:af1s",
+      "type": "project",
+      "name": "AF1s",
+      "mbid": "91823bf9-0307-4a12-a44f-50ac67c24eda",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warlord",
+      "type": "project",
+      "name": "Warlord",
+      "mbid": "84595dc8-f297-49f7-bd57-f64a870dfb7c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hoover-how-u-like-me-now",
+      "type": "project",
+      "name": "Hoover / How U Like Me Now?",
+      "mbid": "62d385d9-d17a-4400-b8c8-12eb4e986246",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:t-a-i-p-e-i",
+      "type": "project",
+      "name": "T A I P E I",
+      "mbid": "2200d255-1b53-4e59-8242-b27b2e45e324",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:creepin",
+      "type": "project",
+      "name": "Creepin",
+      "mbid": "b84163c0-69b3-448a-aadf-6efae7e75946",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crystal-clear-ice",
+      "type": "project",
+      "name": "Crystal Clear Ice",
+      "mbid": "ac10b98e-e10e-4b1b-8c4f-43ec4971251d",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tokyo-drift",
+      "type": "project",
+      "name": "Tokyo Drift",
+      "mbid": "55ac2107-579c-4cda-9f20-b55d4072aaae",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roses",
+      "type": "project",
+      "name": "Roses",
+      "mbid": "6c535dce-ac26-4726-81c6-2cf5f10f34aa",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wanna-smoke",
+      "type": "project",
+      "name": "Wanna Smoke",
+      "mbid": "8ffa81fd-e06e-4191-a4a7-fd13729dd940",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bathtub",
+      "type": "project",
+      "name": "Bathtub",
+      "mbid": "5d89f0a7-6af2-4662-9df0-5a1d16415c9c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:x-o-n-u",
+      "type": "project",
+      "name": "X o n u",
+      "mbid": "e22fad4d-2b70-4b71-84c7-28cf350aa360",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-98",
+      "type": "project",
+      "name": "summer 98",
+      "mbid": "e117ffa9-f0e7-4e1a-8df3-3e572307948e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:devlish-paradise",
+      "type": "project",
+      "name": "Devlish Paradise",
+      "mbid": "f5e5c234-2f71-47ee-943e-bfc6b4a4a628",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unknown-memory",
+      "type": "project",
+      "name": "Unknown Memory",
+      "mbid": "7109db5e-542c-48f5-8fe1-d68feae236e0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:re-charge",
+      "type": "project",
+      "name": "re-charge",
+      "mbid": "eb4cb450-8476-4720-be33-046f0cc81dc2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yoshi-city",
+      "type": "project",
+      "name": "Yoshi City",
+      "mbid": "54a2abf4-9257-42dd-b981-d19074bc7359",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blood-rain",
+      "type": "project",
+      "name": "Blood Rain",
+      "mbid": "0a693bf1-7317-4de4-886a-f2af9cd3204d",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:visions-of-u",
+      "type": "project",
+      "name": "Visions of U",
+      "mbid": "648de6b5-52bb-4786-ad33-3edad52db1b6",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:motorola",
+      "type": "project",
+      "name": "Motorola",
+      "mbid": "cf1a9b93-8144-4041-a0cc-beacabb4adec",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-of-darkness",
+      "type": "project",
+      "name": "King of Darkness",
+      "mbid": "36418ada-e7e7-4cd5-aad8-544e82b5e79b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crystalized-snow",
+      "type": "project",
+      "name": "Crystalized Snow",
+      "mbid": "90a04367-4f57-4b58-8757-00cef2a3c565",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kyoto",
+      "type": "project",
+      "name": "Kyoto",
+      "mbid": "a7f38eac-6345-4c22-87fd-eab072f8bdf9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nekobasu",
+      "type": "project",
+      "name": "Nekobasu",
+      "mbid": "8b1d3741-f76b-46ac-80d0-2632ecf9c027",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marble-phone",
+      "type": "project",
+      "name": "Marble Phone",
+      "mbid": "56e49919-afe3-45c3-b257-51073fd85b2e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:buildings",
+      "type": "project",
+      "name": "Buildings",
+      "mbid": "3d1a658d-db09-4086-bb62-20a6ace48fec",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bitch-named-bitch",
+      "type": "project",
+      "name": "Bitch Named Bitch",
+      "mbid": "92bf6376-6a3f-48dd-b419-e58f7ead4c97",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:die-with-me",
+      "type": "project",
+      "name": "Die With Me",
+      "mbid": "efa512ea-cb1c-4c72-a8be-f661dd54c9aa",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lavender",
+      "type": "project",
+      "name": "Lavender",
+      "mbid": "961c342b-85fc-475a-aea7-a585727e581a",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plastic-boy",
+      "type": "project",
+      "name": "Plastic Boy",
+      "mbid": "6e40648a-1c49-4b2a-ba6b-ad4cd2549bab",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bladeecity",
+      "type": "project",
+      "name": "Bladeecity",
+      "mbid": "57ae3769-4bb0-47e8-9a3e-602d7ea9afbd",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:racks-on-racks",
+      "type": "project",
+      "name": "Racks on Racks",
+      "mbid": "e5387230-864e-498d-a7fc-ab1ad51829f3",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3d-spaceship",
+      "type": "project",
+      "name": "3D Spaceship",
+      "mbid": "4e225034-953c-46da-a3f8-b7cf0d3762eb",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stevie-nicks",
+      "type": "project",
+      "name": "Stevie Nicks",
+      "mbid": "1a2980f5-92a6-498b-88c3-dad302294906",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:plastic-g-shock",
+      "type": "project",
+      "name": "Plastic G-Shock",
+      "mbid": "c58a2b7d-222c-43d9-93fe-cea78fbb8185",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-5th-element",
+      "type": "project",
+      "name": "The 5th Element",
+      "mbid": "30c85d14-a91b-49be-9aca-0a1571db3d18",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:damn-gud-shawty",
+      "type": "project",
+      "name": "DAMN GUD SHAWTY",
+      "mbid": "76cc994b-75fc-4e19-9789-133811bdb438",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rangerover",
+      "type": "project",
+      "name": "Rangerover",
+      "mbid": "59b24f64-c50b-485a-8b59-4f1adaa93647",
+      "year": "2012",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:ginseng-strip-2002",
+      "type": "track",
+      "name": "Ginseng Strip 2002"
+    },
+    {
+      "slug": "track:yoshi-city",
+      "type": "track",
+      "name": "Yoshi City"
+    },
+    {
+      "slug": "track:red-bottom-sky",
+      "type": "track",
+      "name": "Red Bottom Sky"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bladee",
+      "type": "artist",
+      "name": "Bladee"
+    },
+    {
+      "slug": "artist:yung-gud",
+      "type": "artist",
+      "name": "Yung Gud"
+    },
+    {
+      "slug": "artist:yung-sherman",
+      "type": "artist",
+      "name": "Yung Sherman"
+    },
+    {
+      "slug": "artist:thaiboy-digital",
+      "type": "artist",
+      "name": "Thaiboy Digital"
+    },
+    {
+      "slug": "artist:ecco2k",
+      "type": "artist",
+      "name": "Ecco2k"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:jonatan-leandoer96",
+      "type": "artist",
+      "name": "Jonatan Leandoer96"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:yung-lean",
+      "type": "artist",
+      "name": "Yung Lean"
+    },
+    {
+      "slug": "artist:yung-sherman",
+      "type": "artist",
+      "name": "Yung Sherman"
+    },
+    {
+      "slug": "artist:yung-gud",
+      "type": "artist",
+      "name": "Yung Gud"
+    }
+  ]
+}

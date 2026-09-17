@@ -1,0 +1,149 @@
+{
+  "slug": "genre:trap-hip-hop",
+  "name": "Trap",
+  "editorial_article": "Originating in Atlanta, Georgia during the 1990s, trap music takes its name from the local term for a drug house. The genre's fundamental sound evolved from the 1990s gangsta rap and Southern hip-hop scenes, with pioneers like DJ Spanish Fly, DJ Paul, Juicy J, and Mannie Fresh establishing its reliance on the Roland TR-808 drum machine. By 2003, rapper T.I. released his album Trap Muzik, helping to codify the genre's focus on narratives of the drug trade. Producers such as Lex Luger and Zaytoven later modernized the sound by incorporating rapid-fire hi-hats, deep 808 bass, and orchestral synth swells. The genre's influence exploded in the 2010s, as artists like Future, Migos, and Travis Scott topped the Billboard charts, and producers like Metro Boomin and 808 Mafia refined the signature aesthetic. Trap has since crossed over into pop music, with hits by Ariana Grande and Katy Perry, and sparked global subgenres including Latin trap, drill, and rage.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Trap_music",
+      "title": "Trap music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:16:54.596Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop defined by its gritty lyrical focus on the drug trade and a production style anchored by 808 drum machines, syncopated hi-hats, and synth-based melodies.",
+  "qid": "Q2913982",
+  "era": "1990s to present",
+  "origin": "Atlanta, Georgia, U.S.",
+  "sonic_markers": "50-88 BPM (often programmed in half-time), TR-808 kick drums, rapid hi-hat subdivisions, synth-heavy, melodic brass/string motifs.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:us-bass-music",
+      "type": "genre",
+      "name": "Us Bass Music",
+      "qid": "Q114880124"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern hip-hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:latin-trap",
+      "type": "genre",
+      "name": "Latin trap",
+      "qid": "Q54329757"
+    },
+    {
+      "slug": "genre:rage",
+      "type": "genre",
+      "name": "Rage",
+      "qid": "Q111133884"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    },
+    {
+      "slug": "artist:young-jeezy",
+      "type": "artist",
+      "name": "Young Jeezy"
+    },
+    {
+      "slug": "artist:future",
+      "type": "artist",
+      "name": "Future"
+    },
+    {
+      "slug": "artist:migos",
+      "type": "artist",
+      "name": "Migos"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott"
+    },
+    {
+      "slug": "artist:playboi-carti",
+      "type": "artist",
+      "name": "Playboi Carti"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:808-mafia",
+      "type": "label",
+      "name": "808 Mafia"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:pocket-full-of-stones",
+      "type": "track",
+      "name": "Pocket Full of Stones"
+    },
+    {
+      "slug": "track:dope-boyz",
+      "type": "track",
+      "name": "Dope Boyz"
+    },
+    {
+      "slug": "track:b-m-f",
+      "type": "track",
+      "name": "B.M.F. (Blowin' Money Fast)"
+    },
+    {
+      "slug": "track:trap-queen",
+      "type": "track",
+      "name": "Trap Queen"
+    },
+    {
+      "slug": "track:bad-and-boujee",
+      "type": "track",
+      "name": "Bad and Boujee"
+    }
+  ]
+}
