@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Soul",
       "qid": "Q131272"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
     }
   ],
   "labels": [

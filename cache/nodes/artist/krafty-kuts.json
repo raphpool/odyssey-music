@@ -41,6 +41,12 @@
       "type": "genre",
       "name": "House",
       "qid": "Q20502"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
     }
   ],
   "labels": [

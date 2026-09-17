@@ -19,6 +19,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom bap",
+      "qid": "Q529742"
     }
   ],
   "labels": [

@@ -31,6 +31,12 @@
       "type": "genre",
       "name": "Hard Trance",
       "qid": "Q832665"
+    },
+    {
+      "slug": "genre:acid-trance",
+      "type": "genre",
+      "name": "Acid Trance",
+      "qid": "Q481900"
     }
   ],
   "labels": [

@@ -37,6 +37,12 @@
       "type": "genre",
       "name": "Funk",
       "qid": "Q164444"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
     }
   ],
   "labels": [

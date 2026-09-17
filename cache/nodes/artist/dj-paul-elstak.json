@@ -19,6 +19,12 @@
       "type": "genre",
       "name": "Rave",
       "qid": "Q898709"
+    },
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
     }
   ],
   "labels": [

@@ -23,6 +23,12 @@
       "type": "genre",
       "name": "Javanese Gamelan",
       "qid": "Q11215782"
+    },
+    {
+      "slug": "genre:gamelan",
+      "type": "genre",
+      "name": "Gamelan",
+      "qid": "Q194492"
     }
   ],
   "labels": [

@@ -27,6 +27,12 @@
       "type": "genre",
       "name": "Hip hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped N Screwed",
+      "qid": "Q2261628"
     }
   ],
   "labels": [

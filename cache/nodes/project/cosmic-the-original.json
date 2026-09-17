@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Downtempo",
       "qid": "Q251192"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
     }
   ],
   "tracklist": [

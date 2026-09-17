@@ -31,6 +31,12 @@
       "type": "genre",
       "name": "Dance",
       "qid": "Q8195422"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
     }
   ],
   "labels": [

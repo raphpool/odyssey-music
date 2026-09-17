@@ -33,6 +33,11 @@
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
     }
   ],
   "labels": [

@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "R&B",
       "qid": "Q45981"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
     }
   ],
   "labels": [

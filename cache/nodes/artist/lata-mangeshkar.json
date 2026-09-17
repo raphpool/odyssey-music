@@ -51,6 +51,12 @@
       "type": "genre",
       "name": "Sufi",
       "qid": "Q1755959"
+    },
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
     }
   ],
   "labels": [

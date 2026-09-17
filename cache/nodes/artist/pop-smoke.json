@@ -23,6 +23,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
     }
   ],
   "labels": [

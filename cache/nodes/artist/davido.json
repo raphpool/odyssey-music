@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "labels": [

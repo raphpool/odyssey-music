@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Pop Rap",
       "qid": "Q2572585"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
     }
   ],
   "labels": [

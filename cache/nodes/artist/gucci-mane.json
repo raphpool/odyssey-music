@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Southern Hip Hop",
       "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
     }
   ],
   "labels": [

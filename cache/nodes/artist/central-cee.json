@@ -25,6 +25,12 @@
       "type": "genre",
       "name": "Uk Drill",
       "qid": "Q65943851"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
     }
   ],
   "labels": [

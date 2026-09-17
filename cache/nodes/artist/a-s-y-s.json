@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Hardtechno",
       "qid": "Q3084222"
+    },
+    {
+      "slug": "genre:acid-trance",
+      "type": "genre",
+      "name": "Acid Trance",
+      "qid": "Q481900"
     }
   ],
   "labels": [
