@@ -29,6 +29,12 @@
       "type": "genre",
       "name": "Eurodance",
       "qid": "Q216961"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
     }
   ],
   "labels": [

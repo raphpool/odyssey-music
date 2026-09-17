@@ -25,6 +25,11 @@
       "type": "genre",
       "name": "Ambient",
       "qid": "Q193207"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
     }
   ],
   "labels": [

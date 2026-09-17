@@ -27,6 +27,12 @@
       "type": "genre",
       "name": "Filmi",
       "qid": "Q544440"
+    },
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
     }
   ],
   "labels": [

@@ -45,6 +45,12 @@
       "type": "genre",
       "name": "Pop",
       "qid": "Q37073"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
     }
   ],
   "labels": [

@@ -19,6 +19,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
     }
   ],
   "labels": [

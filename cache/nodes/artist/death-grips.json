@@ -61,6 +61,12 @@
       "type": "genre",
       "name": "Industrial Hip Hop",
       "qid": "Q2004156"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
     }
   ],
   "labels": [

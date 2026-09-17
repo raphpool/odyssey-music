@@ -25,6 +25,12 @@
       "type": "genre",
       "name": "Gangsta Rap",
       "qid": "Q753679"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
     }
   ],
   "labels": [

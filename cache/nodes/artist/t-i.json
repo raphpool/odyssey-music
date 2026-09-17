@@ -59,6 +59,12 @@
       "type": "genre",
       "name": "Trap",
       "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
     }
   ],
   "labels": [

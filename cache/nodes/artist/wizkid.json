@@ -25,6 +25,12 @@
       "type": "genre",
       "name": "Pop",
       "qid": "Q37073"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "labels": [

@@ -23,6 +23,12 @@
       "type": "genre",
       "name": "Gnawa music",
       "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
     }
   ],
   "labels": [

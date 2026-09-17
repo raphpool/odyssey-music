@@ -23,6 +23,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious hip-hop",
+      "qid": "Q141459"
     }
   ],
   "labels": [

@@ -59,6 +59,12 @@
       "type": "genre",
       "name": "Electro House",
       "qid": "Q627906"
+    },
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
     }
   ],
   "labels": [

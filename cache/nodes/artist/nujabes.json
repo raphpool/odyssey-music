@@ -43,6 +43,12 @@
       "type": "genre",
       "name": "Jazz Fusion",
       "qid": "Q105527"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
     }
   ],
   "labels": [
