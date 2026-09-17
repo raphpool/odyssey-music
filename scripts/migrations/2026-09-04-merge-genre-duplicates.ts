@@ -26,6 +26,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache, type PendingReverse } from "../../src/cache.js";
 import { normalizeGenreName } from "../../src/genre-identity.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../../src/genre-registry.js";
+import { type GenreTaxonomy, loadGenreTaxonomy } from "../../src/genre-taxonomy.js";
 import {
 	LIST_EDGES_BY_TYPE,
 	NODE_TYPES,
@@ -291,6 +292,24 @@ export function mergeRedirects(
 	return flattened;
 }
 
+/**
+ * True when `slug` still points at a node present in `survivingSlugs`: either `slug` itself is
+ * still a live node, or -- failing that -- it resolves through one hop of `redirects` (already
+ * flattened by mergeRedirects, so one hop is always enough). An existing node always wins over
+ * a redirect entry, mirroring resolveReadSlug's own rule 2 in src/genre-registry.ts ("an
+ * existing node beats a stale redirect") -- see this file's header comment on why a loser can
+ * briefly have both its file and a redirect after a crash mid-apply. Used by the taxonomy-era
+ * protection below (TRA-138): unlike v1's literal "never a loser" rule, a protected slug here
+ * may legitimately become a loser as long as it still resolves one way or the other.
+ */
+export function stillResolves(
+	slug: string,
+	redirects: Readonly<Record<string, string>>,
+	survivingSlugs: ReadonlySet<string>,
+): boolean {
+	return survivingSlugs.has(slug) || survivingSlugs.has(redirects[slug] ?? slug);
+}
+
 /** Rewrites pending-reverses.json the same way: keys and edge.slug values alike, plus the
  * same denormalized-qid correction as rewriteNodeEdges (see RewriteTarget) when the target
  * carries a qid. */
@@ -466,6 +485,9 @@ export async function runMigration(
 		redirectsPath?: string;
 		catalogNames?: ReadonlyMap<string, string>;
 		onboardingSlugs?: readonly string[];
+		webIndexPath?: string;
+		taxonomyPath?: string;
+		taxonomy?: GenreTaxonomy;
 	} = {},
 ): Promise<MigrationResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
@@ -474,7 +496,6 @@ export async function runMigration(
 	}
 
 	const catalogNames = options.catalogNames ?? (await loadCatalogNameIndex());
-	const onboardingSlugs = options.onboardingSlugs ?? (await loadOnboardingGenreSlugs());
 	const duplicateGroups: readonly DuplicateGroup[] = buildDuplicateReport(nodes.map((n) => n.node)).groups;
 	const header = `=== Genre duplicate merge${apply ? "" : " (DRY RUN)"} ===`;
 	if (duplicateGroups.length === 0) {
@@ -498,6 +519,64 @@ export async function runMigration(
 		existingRedirects = await loadGenreRedirects(redirectsPath);
 	} catch (e) {
 		errors.push(`existing redirects table failed to load: ${e instanceof Error ? e.message : String(e)}`);
+	}
+
+	// --- Genre protections (TRA-138, D6a) -----------------------------------------------------
+	// v1 reads ONBOARDING_GENRES out of web/index.html by regex; it stays in force exactly as
+	// before, as long as that constant exists. D3 (TRA-211) will remove it -- loadOnboardingGenreSlugs
+	// then throws its own specific "no slugs found" error, which alone means "retired on purpose"
+	// and is swallowed into `undefined` (protection inactive). Any *other* failure (a genuinely
+	// unreadable web/index.html, say) is not this planned retirement and must still fail loudly,
+	// same as before this ticket.
+	let onboardingSlugs: string[] | undefined;
+	if (options.onboardingSlugs) {
+		onboardingSlugs = [...options.onboardingSlugs];
+	} else {
+		try {
+			onboardingSlugs = await loadOnboardingGenreSlugs(options.webIndexPath);
+		} catch (e) {
+			if (e instanceof Error && e.message.startsWith("no ONBOARDING_GENRES slugs found")) {
+				onboardingSlugs = undefined;
+			} else {
+				throw e;
+			}
+		}
+	}
+
+	// The taxonomy-era protection (A4b): every source slug of a `published: true` entry,
+	// already resolved through existing redirects and QID lookup by the canonical loader. Not
+	// shipped yet (file missing, checked with `stat` rather than sniffing loadGenreTaxonomy's
+	// error text) is likewise treated as `undefined`; an existing-but-broken file is a hard
+	// error instead -- corruption is never silently treated as "no taxonomy". Default path is a
+	// sibling of `cacheDir`, not of the repo's own data/ (loadGenreTaxonomy's own cacheRootFor
+	// mirrors this): the header above documents this same migration running against the
+	// *server's* cache, at a different path than the repo's -- this keeps the two aligned
+	// whenever cacheDir follows the usual cache/data sibling layout; pass `taxonomyPath`
+	// explicitly for a cache directory that doesn't.
+	let taxonomySources: string[] | undefined;
+	if (options.taxonomy) {
+		taxonomySources = options.taxonomy.genres.filter((g) => g.published).flatMap((g) => g.sourceSlugs ?? []);
+	} else {
+		const taxonomyPath = options.taxonomyPath ?? join(dirname(cacheDir), "data", "genre-taxonomy.json");
+		const taxonomyExists = await stat(taxonomyPath).then(
+			() => true,
+			() => false,
+		);
+		if (taxonomyExists) {
+			try {
+				const taxonomy = await loadGenreTaxonomy(taxonomyPath);
+				taxonomySources = taxonomy.genres.filter((g) => g.published).flatMap((g) => g.sourceSlugs ?? []);
+			} catch (e) {
+				errors.push(`genre taxonomy failed to load: ${e instanceof Error ? e.message : String(e)}`);
+			}
+		}
+	}
+
+	if (onboardingSlugs === undefined && taxonomySources === undefined) {
+		errors.push(
+			"no genre protection available: both ONBOARDING_GENRES and the genre taxonomy are missing -- " +
+				"refusing rather than merging unchecked",
+		);
 	}
 
 	// --- Plan (in memory, nothing written yet): elect, union, then rewrite every kept node.
@@ -585,7 +664,7 @@ export async function runMigration(
 	if (deletePaths.length !== loserSlugs.size) {
 		errors.push(`delete count ${deletePaths.length} does not match loser count ${loserSlugs.size}`);
 	}
-	for (const slug of onboardingSlugs) {
+	for (const slug of onboardingSlugs ?? []) {
 		if (loserSlugs.has(slug)) errors.push(`onboarding genre slug ${slug} would be deleted by this merge`);
 	}
 
@@ -600,6 +679,21 @@ export async function runMigration(
 		errors.push(`redirects table would fail validation: ${e instanceof Error ? e.message : String(e)}`);
 	}
 
+	// Post-operation control (TRA-138): every published taxonomy source, and every slug the
+	// redirects table already protected before this run, must still resolve afterwards -- via
+	// mergedRedirects, not literal survival, so a safe merge-with-redirect is accepted while a
+	// resolution actually broken by drift or corruption is refused. Checked only once a
+	// taxonomy is actually loaded; v1's stricter, literal rule above is unaffected by it.
+	if (taxonomySources !== undefined) {
+		const survivingSlugs = new Set(resultNodes.flatMap((n) => (typeof n.slug === "string" ? [n.slug] : [])));
+		const protectedSlugs = new Set([...taxonomySources, ...existingRedirects.keys()]);
+		for (const slug of protectedSlugs) {
+			if (!stillResolves(slug, mergedRedirects, survivingSlugs)) {
+				errors.push(`genre taxonomy protection: ${slug} no longer resolves after this merge`);
+			}
+		}
+	}
+
 	const pendingPath = join(cacheDir, "pending-reverses.json");
 	let pendingParsed: Record<string, PendingReverse[]> = {};
 	try {
@@ -612,7 +706,13 @@ export async function runMigration(
 	}
 
 	const redirectsWritten = { newCount: rewriteMap.size, totalCount: Object.keys(mergedRedirects).length };
-	const report = formatMergeReport(groupPlans, hitsByType, redirectsWritten, onboardingSlugs.length, !apply);
+	const report = formatMergeReport(
+		groupPlans,
+		hitsByType,
+		redirectsWritten,
+		(onboardingSlugs ?? []).length,
+		!apply,
+	);
 
 	if (errors.length > 0) {
 		for (const err of errors) process.stderr.write(`error: ${err}\n`);

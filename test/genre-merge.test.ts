@@ -14,10 +14,12 @@ import {
 	rewriteNodeEdges,
 	rewritePendingReverses,
 	runMigration,
+	stillResolves,
 	unionListField,
 	unionSingularField,
 } from "../scripts/migrations/2026-09-04-merge-genre-duplicates.js";
 import type { PendingReverse } from "../src/cache.js";
+import type { GenreTaxonomy } from "../src/genre-taxonomy.js";
 import { parseSlug } from "../src/slug.js";
 import type { ArtistNode, EdgeRef, GenreNode } from "../src/types.js";
 
@@ -293,6 +295,26 @@ describe("mergeRedirects", () => {
 		for (const value of Object.values(merged)) {
 			expect(keys.has(value)).toBe(false);
 		}
+	});
+});
+
+describe("stillResolves", () => {
+	it("a slug that is not a redirect key resolves to itself", () => {
+		expect(stillResolves("genre:x", {}, new Set(["genre:x"]))).toBe(true);
+		expect(stillResolves("genre:x", {}, new Set(["genre:y"]))).toBe(false);
+	});
+
+	it("follows a single redirect hop to its target when the key itself is no longer a live node", () => {
+		const redirects = { "genre:old": "genre:new" };
+		expect(stillResolves("genre:old", redirects, new Set(["genre:new"]))).toBe(true);
+		expect(stillResolves("genre:old", redirects, new Set(["genre:unrelated"]))).toBe(false);
+	});
+
+	it("an existing node wins over a stale redirect entry (resolveReadSlug's rule 2)", () => {
+		// A crash between writing redirects.json and deleting losers can leave a slug with both
+		// its own file and a redirect to a now-vanished target -- the file must still win.
+		const redirects = { "genre:old": "genre:gone" };
+		expect(stillResolves("genre:old", redirects, new Set(["genre:old"]))).toBe(true);
 	});
 });
 
@@ -647,6 +669,131 @@ describe("runMigration (disk integration)", () => {
 		const { nodes } = await readCacheNodes(dir);
 		const remainingSlugs = new Set(nodes.map((n) => n.slug));
 		for (const slug of onboardingSlugs) expect(remainingSlugs.has(slug)).toBe(true);
+	});
+
+	describe("taxonomy protection (TRA-138, D6a)", () => {
+		function publishedTaxonomy(sourceSlugs: GenreTaxonomy["genres"][number]["sourceSlugs"]): GenreTaxonomy {
+			return {
+				version: 2,
+				families: [{ key: "electronic", label: "Electronic", order: 0 }],
+				genres: [
+					{ id: "local:test-genre", name: "Test Genre", family: "electronic", published: true, sourceSlugs },
+				],
+			};
+		}
+
+		it("refuses a merge that would lose a published source with no redirect covering it", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			// "genre:phantom" is declared as a source but was never written to this cache -- it
+			// can never resolve, with or without this merge (taxonomy/cache drift).
+			const taxonomy = publishedTaxonomy(["genre:phantom"]);
+
+			const result = await runMigration(dir, true, { catalogNames, redirectsPath, taxonomy });
+
+			expect(result.exitCode).toBe(1);
+			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+		});
+
+		it("accepts a safe merge where the published source becomes a loser but redirects to the winner", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			const taxonomy = publishedTaxonomy(["genre:electronic-music"]);
+
+			const result = await runMigration(dir, true, { catalogNames, redirectsPath, taxonomy });
+
+			expect(result.exitCode).toBe(0);
+			await expect(readFile(loserPath, "utf8")).rejects.toThrow();
+		});
+
+		it("refuses when this run's redirect table leaves an already-protected old slug unresolved", async () => {
+			// Corruption/drift case: a prior merge's redirect key survives in the table, but its
+			// target was never written to this cache -- the merge under test doesn't touch it,
+			// so nothing else in runMigration would otherwise notice.
+			await writeFile(
+				redirectsPath,
+				JSON.stringify({ redirects: { "genre:stale": "genre:vanished" } }),
+				"utf8",
+			);
+			await seedElectronicGroup();
+			const taxonomy: GenreTaxonomy = { version: 2, families: [], genres: [] };
+
+			const result = await runMigration(dir, true, { catalogNames, redirectsPath, taxonomy });
+
+			expect(result.exitCode).toBe(1);
+		});
+
+		it("keeps v1's stricter literal rule in force even with a valid, non-conflicting taxonomy present", async () => {
+			await writeNodeFile(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q1" }));
+			const loserPath = await writeNodeFile(
+				genreNode({ slug: "genre:electronic-music", name: "Electronic music", qid: "Q1" }),
+			);
+			await writeNodeFile(
+				artistNode({ genres: [{ slug: "genre:electronic-music", type: "genre", name: "Electronic music" }] }),
+			);
+			// Untouched by this merge, and present on disk, so the taxonomy check stays silent --
+			// isolating v1's own refusal below from the taxonomy-era one.
+			await writeNodeFile(genreNode({ slug: "genre:unrelated", name: "Unrelated", qid: "Q99" }));
+			const taxonomy = publishedTaxonomy(["genre:unrelated"]);
+
+			const result = await runMigration(dir, true, {
+				catalogNames: new Map(),
+				redirectsPath,
+				onboardingSlugs: ["genre:electronic"],
+				taxonomy,
+			});
+
+			expect(result.exitCode).toBe(1);
+			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+		});
+
+		it("refuses explicitly when both ONBOARDING_GENRES and the genre taxonomy are unavailable", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			// A file that exists but no longer declares ONBOARDING_GENRES as a plain array literal
+			// (D3, TRA-211) -- the "retired on purpose" shape, not a missing/unreadable file.
+			const webIndexPath = join(dir, "no-onboarding.html");
+			await writeFile(webIndexPath, 'const ONBOARDING_GENRES = Object.freeze(["genre:electronic"]);', "utf8");
+
+			const result = await runMigration(dir, true, {
+				catalogNames,
+				redirectsPath,
+				webIndexPath,
+				taxonomyPath: join(dir, "no-such-taxonomy.json"),
+			});
+
+			expect(result.exitCode).toBe(1);
+			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+			await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+		});
+
+		it("still fails loudly on an unexpected ONBOARDING_GENRES load error, not just a retired constant", async () => {
+			await seedElectronicGroup();
+			// A directory where a file is expected -- readFile rejects with EISDIR, a shape
+			// distinct from loadOnboardingGenreSlugs's own "no slugs found" retirement signal.
+			await expect(
+				runMigration(dir, true, { catalogNames, redirectsPath, webIndexPath: dir }),
+			).rejects.toThrow();
+		});
+
+		it("refuses explicitly when the taxonomy file exists but is invalid, via the real loader", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			const taxonomyPath = join(dir, "bad-taxonomy.json");
+			await writeFile(
+				taxonomyPath,
+				JSON.stringify({
+					version: 2,
+					families: [
+						{ key: "dup", label: "Dup", order: 0 },
+						{ key: "dup", label: "Dup 2", order: 1 },
+					],
+					genres: [],
+				}),
+				"utf8",
+			);
+
+			const result = await runMigration(dir, true, { catalogNames, redirectsPath, taxonomyPath });
+
+			expect(result.exitCode).toBe(1);
+			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+		});
 	});
 });
 
