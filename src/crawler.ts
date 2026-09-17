@@ -640,6 +640,15 @@ async function preserveLiveNeighbors(
 ): Promise<NodePayload> {
 	const merged = { ...fresh } as unknown as Record<string, unknown>;
 	const existingObj = existing as unknown as Record<string, unknown>;
+	// 2026-09-17 (TRA-252 review): survivors must pass the same filter as the fresh draft's own edges.
+	// `canonicalizeNodeEdges` drops an edge to the node itself or to another node sharing its qid --
+	// an unmerged duplicate (TRA-28/B3). That filter only fires once the node has a qid, which this
+	// ticket now grants on refresh, so a survivor could otherwise re-inject the very edge the pipeline
+	// had just removed, and the corrupted node would reach the committed cache.
+	const freshQid =
+		typeof (fresh as { qid?: unknown }).qid === "string" ? (fresh as { qid: string }).qid : undefined;
+	const isSelfReference = (edge: EdgeRef): boolean =>
+		edge.slug === fresh.slug || (freshQid !== undefined && edge.qid === freshQid);
 	for (const field of LIST_EDGES_BY_TYPE[fresh.type]) {
 		const freshEdges = Array.isArray(merged[field]) ? (merged[field] as EdgeRef[]) : [];
 		const oldEdges = Array.isArray(existingObj[field]) ? (existingObj[field] as EdgeRef[]) : [];
@@ -648,6 +657,10 @@ async function preserveLiveNeighbors(
 		const survivors: EdgeRef[] = [];
 		for (const edge of oldEdges) {
 			if (freshSlugs.has(edge.slug)) continue; // already re-surfaced by the fresh draft
+			if (isSelfReference(edge)) {
+				log(`[refresh] dropped self/duplicate-qid neighbor ${edge.slug} from ${field} of ${fresh.slug}`);
+				continue;
+			}
 			if (await cache.has(edge.slug)) survivors.push(edge); // still alive, keep it
 			// else: target no longer cached — a dead neighbor, dropped rather than carried forward.
 		}

@@ -743,6 +743,36 @@ describe("refreshGenre() seed dossier QID + neighbor preservation (TRA-252)", ()
 		]);
 	});
 
+	// 2026-09-17 (review de #233): an inherited qid makes canonicalizeNodeEdges drop the fresh draft's
+	// edge to an unmerged duplicate of that qid. The merge must not carry the cached one back in.
+	it("drops an old edge pointing at an unmerged duplicate of the node's own qid", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(genreNode({ slug: "genre:trap-duplicate", name: "Trap Duplicate", qid: "Q2913982" }));
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				related_genres: [
+					{ type: "genre", name: "Trap Duplicate", slug: "genre:trap-duplicate", qid: "Q2913982" },
+				],
+			}),
+		);
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+		const folder: GenreSeeds[string] = {
+			genre: { slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" },
+			anchors: [],
+			targets: [],
+		};
+
+		await refreshGenre(baseOpts(dir), "genre:trap-hip-hop", folder);
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(refreshed.qid).toBe("Q2913982");
+		expect(refreshed.related_genres.map((edge) => edge.slug)).not.toContain("genre:trap-duplicate");
+	});
+
 	it("drops an old edge whose target is no longer cached (dead)", async () => {
 		const cache = new NodeCache(dir);
 		await cache.write(
