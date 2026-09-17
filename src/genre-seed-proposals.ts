@@ -78,6 +78,7 @@ export const PRESCRIBED_GENRES: readonly PrescribedGenre[] = [
 	prescribed("B4b", 372, "Q54365", "Ska", "genre:ska", 2),
 	prescribed("B4c", 66, "Q25099840", "Afrobeats"),
 	prescribed("B4c", 67, "Q85741139", "Amapiano"),
+	prescribed("B4c", 69, "Q1931130", "Baile Funk"),
 	prescribed("B4c", 226, "Q132438", "Black Metal"),
 	prescribed("B4c", 227, "Q483251", "Death Metal", "genre:death-metal", 1),
 	prescribed("B4c", 239, "Q7118426", "Alternative R&B", "genre:alternative-r-and-b", 2),
