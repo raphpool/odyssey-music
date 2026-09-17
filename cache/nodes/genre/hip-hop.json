@@ -170,6 +170,18 @@
       "type": "genre",
       "name": "Motswako",
       "qid": "Q6918602"
+    },
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Baile Funk",
+      "qid": "Q1931130"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "key_artists": [

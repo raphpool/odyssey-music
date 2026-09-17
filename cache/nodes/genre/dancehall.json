@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A high-energy, rhythm-driven Jamaican musical genre that evolved from sound system culture, characterized by the use of \"riddims,\" digital production techniques, and a distinct vocal tradition of toasting.",
+  "qid": "Q474027",
   "era": "1970s–present",
   "origin": "Jamaica",
   "parent_genres": [
@@ -62,6 +63,12 @@
       "type": "genre",
       "name": "Dancehall Pop",
       "qid": "Q85755605"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "key_artists": [
@@ -146,6 +153,5 @@
       "type": "track",
       "name": "Clarks"
     }
-  ],
-  "qid": "Q474027"
+  ]
 }
