@@ -60,7 +60,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:mulatu-astatke",
+      "type": "artist",
+      "name": "Mulatu Astatke"
+    }
+  ],
   "aliases": [],
   "members": []
 }

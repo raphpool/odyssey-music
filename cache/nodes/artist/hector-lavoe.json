@@ -1,0 +1,228 @@
+{
+  "slug": "artist:hector-lavoe",
+  "name": "Héctor Lavoe",
+  "editorial_article": "Born in 1946 in Ponce, Puerto Rico, Héctor Lavoe moved to New York City in 1963 and became a vital force in the development of salsa throughout the 1960s, 1970s, and 1980s. He initially gained recognition as the vocalist for Willie Colón’s band, recording hits like “El Malo” and “Canto a Borinquen.” Beyond his work with Colón, Lavoe established a successful solo career with albums like 1975's La Voz and contributed extensively to the Fania All-Stars. His signature song “El Cantante,” written by Rubén Blades, solidified his status as one of the genre’s most influential vocalists. Lavoe faced significant personal challenges throughout his life, including struggle with drug addiction, which he documented in songs like “El Rey de la Puntualidad.” He died in 1993 from AIDS-related complications at the age of 46.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/H%C3%A9ctor_Lavoe",
+      "title": "Héctor Lavoe"
+    },
+    {
+      "url": "https://fania.com/eras/hector-lavoe-la-voz/",
+      "title": "HÉCTOR LAVOE - LA VOZ - Albums & Eras | Fania Records"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:23.998Z",
+  "type": "artist",
+  "editorial_bio": "Héctor Lavoe was a transformative Puerto Rican salsa singer celebrated as 'El Cantante de los Cantantes' for his charismatic vocal style and profound influence on Latin music.",
+  "origin": "Ponce, Puerto Rico",
+  "active_years": "1965-1992",
+  "genres": [
+    {
+      "slug": "genre:latin",
+      "type": "genre",
+      "name": "Latin",
+      "qid": "Q18345375"
+    },
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fania-records",
+      "type": "label",
+      "name": "Fania Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:guaracha",
+      "type": "project",
+      "name": "Güaracha (remastered 2026)",
+      "mbid": "15cf63f0-8833-45aa-9b37-aa7f68d78803",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shut-the-door",
+      "type": "project",
+      "name": "Shut the Door",
+      "mbid": "c55ed1db-c3a6-44e6-b7d4-16682c802379",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mi-gente",
+      "type": "project",
+      "name": "Mi gente",
+      "mbid": "a4ae0769-315b-4083-a32e-8d7158b4948a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-master-and-the-protege",
+      "type": "project",
+      "name": "The Master & The Protégé",
+      "mbid": "1a9ff1e2-9b5f-48f8-b5c1-5038b8292ed1",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asalto-navideno",
+      "type": "project",
+      "name": "Asalto navideño",
+      "mbid": "c3b869d3-8c27-4922-a78d-21c7f04b5c23",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strikes-back",
+      "type": "project",
+      "name": "Strikes Back",
+      "mbid": "3b35902c-df2b-37b8-9ead-828a0acce76b",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:revento",
+      "type": "project",
+      "name": "Revento",
+      "mbid": "0f5acd29-6152-3024-8c57-f999c9496e82",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vigilante",
+      "type": "project",
+      "name": "Vigilante",
+      "mbid": "0e34b8e1-ff6f-34ce-8916-18fff825a04d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:que-sentimiento",
+      "type": "project",
+      "name": "Que sentimiento!",
+      "mbid": "0fef5cc6-e62e-3870-a766-cedb96777fdb",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-sabio",
+      "type": "project",
+      "name": "El sabio",
+      "mbid": "844e1edb-8b75-3aa3-b2e6-ba04be04d687",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:recordando-a-felipe-pirela",
+      "type": "project",
+      "name": "Recordando a Felipe Pirela",
+      "mbid": "83dc1858-cf76-4082-b0bc-9807b9d8a55d",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feliz-navidad",
+      "type": "project",
+      "name": "Feliz Navidad",
+      "mbid": "8c92b853-9ae1-49ea-882e-1bebae695837",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:comedia",
+      "type": "project",
+      "name": "Comedia",
+      "mbid": "bc11b3c3-49e2-3c5d-bec3-7cfc75851e54",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:de-ti-depende",
+      "type": "project",
+      "name": "De ti depende",
+      "mbid": "9364d65b-ebdf-3cd1-b155-3025f0e8e35c",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-voz",
+      "type": "project",
+      "name": "La voz",
+      "mbid": "35dee68f-a1ad-3090-b055-6a6033178782",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asalto-navideno-vol-ii",
+      "type": "project",
+      "name": "Asalto navideño, vol. II",
+      "mbid": "83f5905a-b6a9-363f-88cb-fb4caab57808",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asalto-navideno",
+      "type": "project",
+      "name": "Asalto navideño",
+      "mbid": "66cc792a-ca36-3f44-be44-a898337ba396",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guisando",
+      "type": "project",
+      "name": "Guisando (Doing a Job)",
+      "mbid": "1f8d79aa-1979-327a-8ec1-4850e4e59a03",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cosa-nuestra",
+      "type": "project",
+      "name": "Cosa nuestra",
+      "mbid": "e828464d-c6fc-357f-b976-1d895120b8d6",
+      "year": "1969",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:el-cantante",
+      "type": "track",
+      "name": "El Cantante"
+    },
+    {
+      "slug": "track:mi-gente",
+      "type": "track",
+      "name": "Mi Gente"
+    },
+    {
+      "slug": "track:periodico-de-ayer",
+      "type": "track",
+      "name": "Periódico de ayer"
+    },
+    {
+      "slug": "track:aguanile",
+      "type": "track",
+      "name": "Aguanilé"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:willie-colon",
+      "type": "artist",
+      "name": "Willie Colón"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

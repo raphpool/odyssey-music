@@ -1,0 +1,126 @@
+{
+  "slug": "genre:music-of-latin-america",
+  "name": "Music of Latin America",
+  "editorial_article": "Rooted in the 16th-century confluence of indigenous traditions, African rhythmic heritage, and Iberian colonial influences, Latin American music defines a massive, syncretic landscape of regional styles. The genre captures the specific development of localized rhythms like the Afro-Peruvian cajón, the Andean siku, and the Argentinian bandoneón, which emerged from 19th-century immigrant circles to become central to tango. Contemporary global recognition is driven by urban movements like the reggaeton popularized in 1990s Puerto Rico, built on the Jamaican 'dembow' beat pioneered by producer Bobby 'Digital' Dixon. Beyond these, the landscape spans the Venezuelan merengue—distinct from the Dominican namesake—and the expansive, multi-zone folkloric traditions of Colombia. From the protest-focused Nueva canción in 1970s Chile to the modern Brazilian funk carioca, these traditions continuously adapt, merging local instrumentation with elements of jazz, rock, and electronic production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_of_Latin_America",
+      "title": "Music of Latin America - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:24.808Z",
+  "type": "genre",
+  "editorial_definition": "A diverse array of musical traditions from Spanish and Portuguese-speaking regions of the Americas, characterized by a deep syncretism of indigenous, African, and European roots.",
+  "qid": "Q727781",
+  "era": "16th century to present",
+  "origin": "Latin America",
+  "sonic_markers": "Highly syncretic, includes complex polyrhythms, syncopation, use of indigenous percussion, Spanish/Portuguese lyrics, and diverse instrumentation like bandoneon, cajón, and marimba.",
+  "parent_genres": [
+    {
+      "slug": "genre:latin-music",
+      "type": "genre",
+      "name": "Latin Music",
+      "qid": "Q18345375"
+    },
+    {
+      "slug": "genre:music-of-the-americas",
+      "type": "genre",
+      "name": "Music Of The Americas",
+      "qid": "Q3328669"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:tropical-music",
+      "type": "genre",
+      "name": "Tropical music",
+      "qid": "Q3328778"
+    },
+    {
+      "slug": "genre:music-of-brazil",
+      "type": "genre",
+      "name": "Music of Brazil",
+      "qid": "Q899215"
+    },
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:reggaeton",
+      "type": "genre",
+      "name": "Reggaeton",
+      "qid": "Q202930"
+    },
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    },
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ruben-blades",
+      "type": "artist",
+      "name": "Rubén Blades"
+    },
+    {
+      "slug": "artist:gloria-estefan",
+      "type": "artist",
+      "name": "Gloria Estefan"
+    },
+    {
+      "slug": "artist:daddy-yankee",
+      "type": "artist",
+      "name": "Daddy Yankee"
+    },
+    {
+      "slug": "artist:daniela-mercury",
+      "type": "artist",
+      "name": "Daniela Mercury"
+    },
+    {
+      "slug": "artist:los-kjarkas",
+      "type": "artist",
+      "name": "Los Kjarkas"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sony-music-latin",
+      "type": "label",
+      "name": "Sony Music Latin"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:dembow",
+      "type": "track",
+      "name": "Dembow"
+    }
+  ]
+}

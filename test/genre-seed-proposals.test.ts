@@ -55,11 +55,11 @@ function fixture(): { taxonomy: GenreTaxonomy; coverage: GenreCoverageReport; do
 }
 
 describe("TRA-216 prescribed genre proposals", () => {
-	it("defines 60 unique targets across five budgets, including absent, deficient, and Trap cases", () => {
-		expect(PRESCRIBED_GENRES).toHaveLength(60);
-		expect(new Set(PRESCRIBED_GENRES.map(({ id }) => id))).toHaveLength(60);
+	it("defines 61 unique targets across five budgets, including absent, deficient, and Trap cases", () => {
+		expect(PRESCRIBED_GENRES).toHaveLength(61);
+		expect(new Set(PRESCRIBED_GENRES.map(({ id }) => id))).toHaveLength(61);
 		expect(PRESCRIBED_GENRES.map(({ id }) => id).join(",")).toBe(
-			"Q486263,Q723418,Q208239,Q11403,Q14390274,Q388296,Q3591962,Q2000173,Q963061,Q1752683,Q6942022,Q11307326,Q194492,Q131578,Q213665,Q4942839,Q336567,Q474027,Q54365,Q25099840,Q85741139,Q132438,Q483251,Q7118426,Q876171,Q2913982,Q106528337,Q481900,Q2866725,Q65937774,Q2406633,Q30917612,Q216961,Q820049,Q2748817,Q1521688,Q339906,Q223840,Q601235,Q105636940,local:leftfield-techno,Q3048168,Q438503,Q529742,Q2261628,Q19879476,Q16829781,Q141459,Q8560269,Q15697534,Q12362064,Q5421158,Q1045541,Q753679,Q255406,Q97265899,Q6010117,Q6918602,Q840065,Q850412",
+			"Q486263,Q723418,Q208239,Q11403,Q14390274,Q388296,Q3591962,Q2000173,Q963061,Q1752683,Q6942022,Q11307326,Q194492,Q131578,Q213665,Q4942839,Q336567,Q474027,Q54365,Q25099840,Q85741139,Q1931130,Q132438,Q483251,Q7118426,Q876171,Q2913982,Q106528337,Q481900,Q2866725,Q65937774,Q2406633,Q30917612,Q216961,Q820049,Q2748817,Q1521688,Q339906,Q223840,Q601235,Q105636940,local:leftfield-techno,Q3048168,Q438503,Q529742,Q2261628,Q19879476,Q16829781,Q141459,Q8560269,Q15697534,Q12362064,Q5421158,Q1045541,Q753679,Q255406,Q97265899,Q6010117,Q6918602,Q840065,Q850412",
 		);
 		expect(BATCH_BUDGETS).toEqual({ B4a: 58, B4b: 16, B4c: 20, B4e: 60, B4f: 67 });
 		expect(PRESCRIBED_GENRES.find(({ id }) => id === "Q486263")).toMatchObject({
@@ -88,6 +88,9 @@ describe("TRA-216 prescribed genre proposals", () => {
 		const entries = new Map(taxonomy.genres.map((entry) => [entry.id, entry]));
 		for (const target of PRESCRIBED_GENRES) {
 			expect(entries.get(target.id)?.name, target.id).toBe(target.name);
+			// 2026-09-17 (TRA-264): a T attachment added sourceSlugs to the taxonomy but not to this list,
+			// and validateGenreSeedProposalInputs compares them strictly.
+			expect(entries.get(target.id)?.sourceSlugs ?? [], target.id).toEqual(target.sourceSlugs);
 			const dossier = dossiers[target.id];
 			if (dossier !== undefined) {
 				expect(dossier.genre.name, target.id).toBe(target.name);

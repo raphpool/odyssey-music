@@ -1,0 +1,120 @@
+{
+  "slug": "artist:noel-rosa",
+  "name": "Noel Rosa",
+  "editorial_article": "Born in Rio de Janeiro in 1910, Noel Rosa became one of the foundational figures of Brazilian samba by transforming the genre's Afro-Brazilian roots with a witty, urban vernacular. His 1931 breakthrough hit, \"Com que roupa?\", remains a signature of his ability to weave ironic social commentary into popular song. Rosa often spent his nights in bars collaborating with figures like Vadico, with whom he co-wrote enduring tracks such as \"Conversa de botequim\" and \"Feitiço da Vila\". A member of the musical group Bando de Tangarás alongside Braguinha and Almirante, he produced roughly 250 compositions before his death from tuberculosis at age 26 in 1937. His work remains a primary influence on the development of samba canção, frequently recorded by the major voices of his era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Noel_Rosa",
+      "title": "Noel Rosa - Wikipedia"
+    },
+    {
+      "url": "https://www.slipcue.com/music/brazil/noelrosa.html",
+      "title": "Noel Rosa Discography - Slipcue.com Brazilian music guide"
+    },
+    {
+      "url": "https://artsandculture.google.com/entity/noel-rosa/m01v3lbx?hl=en",
+      "title": "Noel Rosa - Google Arts & Culture"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:04.206Z",
+  "type": "artist",
+  "editorial_bio": "A seminal Brazilian singer-songwriter who revolutionized samba in the early 1930s with his urban wit and poignant social commentary.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "1929-1937",
+  "genres": [
+    {
+      "slug": "genre:samba",
+      "type": "genre",
+      "name": "Samba",
+      "qid": "Q11403"
+    },
+    {
+      "slug": "genre:marchinha",
+      "type": "genre",
+      "name": "Marchinha",
+      "qid": "Q3889661"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:odeon",
+      "type": "label",
+      "name": "Odeon"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:com-que-roupa",
+      "type": "project",
+      "name": "Com que roupa?"
+    },
+    {
+      "slug": "project:feitico-da-vila",
+      "type": "project",
+      "name": "Feitiço da Vila"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:com-que-roupa",
+      "type": "track",
+      "name": "Com que roupa?"
+    },
+    {
+      "slug": "track:conversa-de-botequim",
+      "type": "track",
+      "name": "Conversa de botequim"
+    },
+    {
+      "slug": "track:feitico-da-vila",
+      "type": "track",
+      "name": "Feitiço da Vila"
+    },
+    {
+      "slug": "track:tres-apitos",
+      "type": "track",
+      "name": "Três apitos"
+    },
+    {
+      "slug": "track:ultimo-desejo",
+      "type": "track",
+      "name": "Último desejo"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:vadico",
+      "type": "artist",
+      "name": "Vadico"
+    },
+    {
+      "slug": "artist:braguinha",
+      "type": "artist",
+      "name": "Braguinha"
+    },
+    {
+      "slug": "artist:almirante",
+      "type": "artist",
+      "name": "Almirante"
+    },
+    {
+      "slug": "artist:cartola",
+      "type": "artist",
+      "name": "Cartola"
+    },
+    {
+      "slug": "artist:ary-barroso",
+      "type": "artist",
+      "name": "Ary Barroso"
+    },
+    {
+      "slug": "artist:lamartine-babo",
+      "type": "artist",
+      "name": "Lamartine Babo"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

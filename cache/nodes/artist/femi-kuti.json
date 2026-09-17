@@ -1,0 +1,258 @@
+{
+  "slug": "artist:femi-kuti",
+  "name": "Femi Kuti",
+  "editorial_article": "Born 16 June 1962 in London and raised in Lagos, Femi Kuti is a Nigerian musician who established his band, Positive Force, in 1986 after training in his father Fela Kuti's ensemble, Egypt 80. His work integrates funk, jazz, and traditional African percussion to address themes of political corruption and poverty, as heard on albums like his 1995 release Femi Kuti and 2001's Fight to Win. Throughout his career, he has collaborated with artists including D'Angelo, Macy Gray, Nile Rodgers, and Roy Hargrove on the 2002 Red Hot & Riot tribute compilation. He remains an activist, having performed at Glastonbury in 1984 and later holding a Guinness World Record for the longest single note on a saxophone via circular breathing at 51 minutes and 35 seconds. His 2021 project, Legacy+, released through Partisan Records, features a joint effort with his son Made Kuti, continuing the family's history of utilizing music for social advocacy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Femi_Kuti",
+      "title": "Femi Kuti - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:39.321Z",
+  "type": "artist",
+  "editorial_bio": "A Nigerian musician and activist who emerged from his father Fela Kuti's legacy to define a modern Afrobeat sound through his band, Positive Force.",
+  "origin": "Lagos, Nigeria",
+  "active_years": "1978-present",
+  "genres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:partisan-records",
+      "type": "label",
+      "name": "Partisan Records"
+    },
+    {
+      "slug": "label:knitting-factory-records",
+      "type": "label",
+      "name": "Knitting Factory Records"
+    },
+    {
+      "slug": "label:motown-records",
+      "type": "label",
+      "name": "Motown Records"
+    },
+    {
+      "slug": "label:wrasse-records",
+      "type": "label",
+      "name": "Wrasse Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:journey-through-life",
+      "type": "project",
+      "name": "Journey Through Life",
+      "mbid": "01669840-6ae1-44af-b107-0519d0b3cce6",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:politics-don-expose-them",
+      "type": "project",
+      "name": "Politics Don Expose Them",
+      "mbid": "49d6c0c7-f33a-4b00-8db2-5c5427ab802e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:variations",
+      "type": "project",
+      "name": "Variations",
+      "mbid": "0ba4b414-33f5-4728-9769-a71492374fe2",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stop-the-hate",
+      "type": "project",
+      "name": "Stop the Hate",
+      "mbid": "570bb7bb-c5c5-4f7e-adef-c3e9a131f926",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:legacy",
+      "type": "project",
+      "name": "Legacy +",
+      "mbid": "93f177e2-aca8-4a48-8e2a-df69d3dca29f",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-people-one-world",
+      "type": "project",
+      "name": "One People One World",
+      "mbid": "6300e081-54d4-4ce6-8bfa-b253f1a9f864",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jaiye-jaiye",
+      "type": "project",
+      "name": "Jaiye Jaiye",
+      "mbid": "c1adf1a3-c9d0-4c8f-a003-9103cf6e5b78",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-place-for-my-dream",
+      "type": "project",
+      "name": "No Place for My Dream",
+      "mbid": "8ee342e7-b9f4-455a-88de-53f9a92de843",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:africa-for-africa",
+      "type": "project",
+      "name": "Africa for Africa",
+      "mbid": "3667a519-02cf-43b7-ab75-a33e1e6eb6a3",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:day-by-day",
+      "type": "project",
+      "name": "Day by Day",
+      "mbid": "f624578b-11aa-335e-98bc-93a2d7ad993d",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:make-you-crazy",
+      "type": "project",
+      "name": "Make You Crazy",
+      "mbid": "b6614025-b115-4256-bb5a-dd82df6f8fca",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fight-to-win",
+      "type": "project",
+      "name": "Fight to Win",
+      "mbid": "63c5d191-b8c8-3cbc-b706-e5a6ad23bcea",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cd-sampler",
+      "type": "project",
+      "name": "CD Sampler",
+      "mbid": "f709ff6e-852d-46f9-a9f8-97a9c4697d23",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blackman-know-yourself",
+      "type": "project",
+      "name": "Blackman Know Yourself",
+      "mbid": "593c3003-ce0f-4522-9395-965eaa75977b",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:truth-don-die",
+      "type": "project",
+      "name": "Truth Don Die",
+      "mbid": "e6e81239-67e6-4d17-970f-5bd48a03be5f",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shoki-shoki",
+      "type": "project",
+      "name": "Shoki Shoki",
+      "mbid": "b1781d5b-2e2b-3c12-bb54-65020c864b69",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:femi-kuti",
+      "type": "project",
+      "name": "Femi Kuti",
+      "mbid": "4bf6210c-ecb3-3ad8-805f-a1ac55ebbe60",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:femi-anikulapo-kuti-and-the-positive-force",
+      "type": "project",
+      "name": "Femi Anikulapo Kuti and the Positive Force",
+      "mbid": "4253251c-168b-4de0-a421-69d1ff7ef7eb",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-cause-for-alarm",
+      "type": "project",
+      "name": "No Cause for Alarm?",
+      "mbid": "556c4491-b420-43f1-8d41-372c0b9fe814",
+      "year": "1989",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sorry-sorry",
+      "type": "track",
+      "name": "Sorry Sorry"
+    },
+    {
+      "slug": "track:make-we-remember",
+      "type": "track",
+      "name": "Make We Remember"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:made-kuti",
+      "type": "artist",
+      "name": "Made Kuti"
+    },
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    },
+    {
+      "slug": "artist:d-angelo",
+      "type": "artist",
+      "name": "D'Angelo"
+    },
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers"
+    },
+    {
+      "slug": "artist:roy-hargrove",
+      "type": "artist",
+      "name": "Roy Hargrove"
+    },
+    {
+      "slug": "artist:macy-gray",
+      "type": "artist",
+      "name": "Macy Gray"
+    },
+    {
+      "slug": "artist:dele-sosimi",
+      "type": "artist",
+      "name": "Dele Sosimi"
+    },
+    {
+      "slug": "artist:seun-kuti",
+      "type": "artist",
+      "name": "Seun Kuti"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

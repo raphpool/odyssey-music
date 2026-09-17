@@ -1,0 +1,97 @@
+{
+  "slug": "artist:hailu-mergia",
+  "name": "Hailu Mergia",
+  "editorial_article": "Born in 1946 in Debre Birhan, Ethiopia, keyboardist and accordionist Hailu Mergia defined the sound of the 1970s Addis Ababa music scene as a founding member of the Walias Band. During a ten-year residency at the Addis Hilton, the ensemble synthesized traditional Amhara melodies with the funk and jazz styles of figures like Maceo Parker and King Curtis. To circumvent Derg government censorship that restricted vocal content, Mergia shifted his output toward instrumental recordings, notably on the 1977 landmark Walias Band release Tche Belew. After moving to the United States in the 1980s, Mergia independently produced the experimental synth-heavy solo project Hailu Mergia & His Classical Instrument in 1985. Following decades away from the professional stage, his profile expanded significantly after the label Awesome Tapes From Africa reissued his 1970s work in 2013. He resumed active touring and recording in 2018 with the album Lala Belu, which featured collaborations with bassist Mike Majkowski and drummer Tony Buck.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hailu_Mergia",
+      "title": "Hailu Mergia - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:00.268Z",
+  "type": "artist",
+  "editorial_bio": "An influential Ethiopian keyboardist and arranger known for his foundational role in the Walias Band and his successful return to global stages.",
+  "origin": "Debre Birhan, Ethiopia",
+  "active_years": "1960s-present",
+  "genres": [
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethio-Jazz",
+      "qid": "Q3591962"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:awesome-tapes-from-africa",
+      "type": "label",
+      "name": "Awesome Tapes From Africa"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tche-belew",
+      "type": "project",
+      "name": "Tche Belew"
+    },
+    {
+      "slug": "project:wede-harer-guzo",
+      "type": "project",
+      "name": "Wede Harer Guzo"
+    },
+    {
+      "slug": "project:hailu-mergia-and-his-classical-instrument",
+      "type": "project",
+      "name": "Hailu Mergia & His Classical Instrument"
+    },
+    {
+      "slug": "project:lala-belu",
+      "type": "project",
+      "name": "Lala Belu"
+    },
+    {
+      "slug": "project:yene-mircha",
+      "type": "project",
+      "name": "Yene Mircha"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:muziqawi-silt",
+      "type": "track",
+      "name": "Muziqawi Silt"
+    },
+    {
+      "slug": "track:anchin-kfu-ayinkash",
+      "type": "track",
+      "name": "Anchin Kfu Ayinkash"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mike-majkowski",
+      "type": "artist",
+      "name": "Mike Majkowski"
+    },
+    {
+      "slug": "artist:tony-buck",
+      "type": "artist",
+      "name": "Tony Buck"
+    },
+    {
+      "slug": "artist:mulatu-astatke",
+      "type": "artist",
+      "name": "Mulatu Astatke"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

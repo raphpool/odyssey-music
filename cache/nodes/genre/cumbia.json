@@ -1,0 +1,122 @@
+{
+  "slug": "genre:cumbia",
+  "name": "Cumbia",
+  "editorial_article": "Originating from the coastal region of Colombia, cumbia emerged as a fusion of American Indigenous, African, and Spanish cultural elements during the colonial era. The genre traditionally centers on a 2/2 or 2/4 meter, utilizing a percussion section defined by the tambora, tambor alegre, and llamador drums alongside the signature \"chu-chucu-chu\" rhythm of the guacharaca. Melodic textures are typically provided by the gaita hembra, gaita macho, and flauta de millo, though instrumentation expanded significantly during the 1950s to include brass sections and piano. While deeply rooted in funeral traditions of Afro-Colombian communities, the music evolved into a popular ballroom and street dance characterized by pairs performing an amorous, often symbolic, courtship. Throughout the 20th century, the genre expanded hemispherically, leading to distinct regional adaptations like the slum-born cumbia villera in Argentina, the psychedelic-influenced chicha in Peru, and the electronic-infused tecnocumbia. Despite a dip in popularity during the 1970s due to the rise of salsa, cumbia proved highly adaptable, absorbing local influences in Mexico, Texas, and across Central America to remain a vital Latin American musical backbone.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cumbia",
+      "title": "Cumbia - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:51.863Z",
+  "type": "genre",
+  "editorial_definition": "A foundational Latin American musical rhythm and folk dance tradition characterized by a 2/4 percussion-heavy structure and diverse cross-cultural fusion.",
+  "qid": "Q723418",
+  "era": "colonial times to present",
+  "origin": "Colombia and Panama",
+  "sonic_markers": "2/2 or 2/4 meter, guacharaca percussion, gaita flutes, tambora drums",
+  "parent_genres": [
+    {
+      "slug": "genre:latin-american-folk-music",
+      "type": "genre",
+      "name": "Latin American folk music",
+      "qid": "Q98528197"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:cumbia-villera",
+      "type": "genre",
+      "name": "Cumbia villera",
+      "qid": "Q1143752"
+    },
+    {
+      "slug": "genre:chicha",
+      "type": "genre",
+      "name": "Chicha",
+      "qid": "Q1143741"
+    },
+    {
+      "slug": "genre:tecnocumbia",
+      "type": "genre",
+      "name": "Tecnocumbia",
+      "qid": "Q7692752"
+    },
+    {
+      "slug": "genre:cumbia-rebajada",
+      "type": "genre",
+      "name": "Cumbia rebajada",
+      "qid": "Q85867089"
+    },
+    {
+      "slug": "genre:cumbia-sonidera",
+      "type": "genre",
+      "name": "Cumbia sonidera",
+      "qid": "Q108297224"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:vallenato",
+      "type": "genre",
+      "name": "Vallenato",
+      "qid": "Q1574985"
+    },
+    {
+      "slug": "genre:merengue",
+      "type": "genre",
+      "name": "Merengue",
+      "qid": "Q282131"
+    },
+    {
+      "slug": "genre:tropical-music",
+      "type": "genre",
+      "name": "Tropical music",
+      "qid": "Q3328778"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music of Latin America",
+      "qid": "Q727781"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:peregoyo-y-su-combo-vacana",
+      "type": "artist",
+      "name": "Peregoyo y Su Combo Vacana"
+    },
+    {
+      "slug": "artist:selena",
+      "type": "artist",
+      "name": "Selena"
+    },
+    {
+      "slug": "artist:celso-pina",
+      "type": "artist",
+      "name": "Celso Piña"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:discos-fuentes",
+      "type": "label",
+      "name": "Discos Fuentes"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:cumbia-cumbia",
+      "type": "track",
+      "name": "Cumbia Cumbia"
+    }
+  ]
+}
