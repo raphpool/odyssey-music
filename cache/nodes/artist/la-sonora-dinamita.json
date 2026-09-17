@@ -1,0 +1,565 @@
+{
+  "slug": "artist:la-sonora-dinamita",
+  "name": "La Sonora Dinamita",
+  "editorial_article": "Formed in 1960 in Cartagena de Indias, Colombia, La Sonora Dinamita helped popularize cumbia across Latin America through the support of producer Don Antonio Fuentes. Under the direction of bandleader Lucho Argaín, the group recorded early work on the Discos Fuentes label before disbanding in 1963. In 1975, the ensemble was reactivated by Julio Ernesto Estrada 'Fruko' Rincón, transitioning to a Mexico City base by 1977. Their 1986 album, Sida, reached number five on the Regional Mexican Albums chart, featuring a ten-piece brass section that became the group's trademark. Over several decades, the band maintained a distinct sound anchored by female vocalists like Margarita Vargas, Mélida Yará, and Vilma Díaz, alongside hit recordings such as 'Mi Cucu', 'Se me perdió la cadenita', and 'El africano'. The group expanded its reach with a 1991 performance at Madison Square Garden, continuing to evolve its lineup following the 2002 passing of Lucho Argaín.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/La_Sonora_Dinamita",
+      "title": "La Sonora Dinamita - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:10.875Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Colombo-Mexican cumbia ensemble that brought traditional tropical rhythms to international stages through extensive brass arrangements.",
+  "origin": "Cartagena de Indias, Colombia and Mexico City, Mexico",
+  "active_years": "1960-1963, 1977-present",
+  "genres": [
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    },
+    {
+      "slug": "genre:latin",
+      "type": "genre",
+      "name": "Latin",
+      "qid": "Q18345375"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:discos-fuentes",
+      "type": "label",
+      "name": "Discos Fuentes"
+    },
+    {
+      "slug": "label:fonovisa",
+      "type": "label",
+      "name": "Fonovisa"
+    },
+    {
+      "slug": "label:universal-music-mexico",
+      "type": "label",
+      "name": "Universal Music Mexico"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:el-coronavirus",
+      "type": "project",
+      "name": "El coronavirus",
+      "mbid": "a0bff218-7e71-42dc-a90a-62cfd1792819",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:juntos-por-la-sonora",
+      "type": "project",
+      "name": "Juntos por la Sonora",
+      "mbid": "2b2535d6-9e42-458d-ae97-972227ea03a9",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vengo-caliente",
+      "type": "project",
+      "name": "Vengo caliente",
+      "mbid": "2ea6fbbe-c340-4e5e-bd2c-1a927f0450d3",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:51-anos-de-grandeza",
+      "type": "project",
+      "name": "51 Años de Grandeza",
+      "mbid": "3076a64c-f296-46b0-9c6a-7b7672f15e29",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coleccion-de-oro-vol-7",
+      "type": "project",
+      "name": "Colección de Oro, Vol. 7",
+      "mbid": "a8e359d2-57bf-458d-815e-4e822695b757",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:en-la-fiesta",
+      "type": "project",
+      "name": "En la fiesta",
+      "mbid": "27973723-69d8-48df-9fda-d74cd0b9ceae",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-reina-de-la-cumbia",
+      "type": "project",
+      "name": "La Reina De La Cumbia",
+      "mbid": "c74b6c80-9852-47fd-8edd-528bb4e2eb07",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-mera-mera-que-lindo-cu",
+      "type": "project",
+      "name": "La mera mera ¡Que lindo cu...!",
+      "mbid": "d3437091-c0d8-42f4-bc7b-6d511e3c3f51",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-movida-de-la-cumbia",
+      "type": "project",
+      "name": "La movida de la cumbia",
+      "mbid": "b544d26d-2c42-43bb-872c-66b9e41f4732",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:llego-la-reina-de-la-cumbia",
+      "type": "project",
+      "name": "¡Llegó la reina de la cumbia!",
+      "mbid": "b686fab1-bd94-358a-bd94-93dbd6d4a273",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:despeinada",
+      "type": "project",
+      "name": "Despeinada",
+      "mbid": "6530f108-9bef-4fc8-9d5e-4fc0ca8d627f",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chispeante",
+      "type": "project",
+      "name": "Chispeante!",
+      "mbid": "095f894b-447f-3153-a605-d051719a830b",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-show-de-la-sonora-dinamita",
+      "type": "project",
+      "name": "El show de la Sonora Dinamita",
+      "mbid": "c53c2fd4-d10d-44b3-8632-0e8f95dd1d1d",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-nuevo-sonido-de-la-explosiva",
+      "type": "project",
+      "name": "El nuevo sonido de la explosiva",
+      "mbid": "af51b55f-d4ce-447c-986b-d6626b59e3f6",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-original",
+      "type": "project",
+      "name": "La original",
+      "mbid": "a6daaf20-8465-4e17-afc7-9288b5fc578b",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-viejo-del-sombreron",
+      "type": "project",
+      "name": "El viejo del sombrerón",
+      "mbid": "7fff0dd5-7c4d-4ae4-954c-7d5bbdbeda02",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:festejando-con",
+      "type": "project",
+      "name": "Festejando con...",
+      "mbid": "f7455550-562c-40f1-89a2-4792d91de541",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fin-de-ano-con-la-sonora-dinamita",
+      "type": "project",
+      "name": "Fin de año con la Sonora Dinamita",
+      "mbid": "4e0f4856-b2a0-4996-9187-0da715416f41",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-suprema-sonora-dinamita-con-lucho-argain",
+      "type": "project",
+      "name": "La suprema Sonora Dinamita con Lucho Argaín",
+      "mbid": "8b6ea633-780b-4a4e-8205-034442a50a3a",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mi-cucu",
+      "type": "project",
+      "name": "Mi cucú",
+      "mbid": "034b80c0-f8e6-44c7-972d-600290ee7fa6",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-nuevo-el-tao-tao-murieron-los-girasoles",
+      "type": "project",
+      "name": "De nuevo el tao tao / Murieron los girasoles",
+      "mbid": "8789f4d5-611d-4cbf-a7a2-999ea2ed5f3e",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cuando-calienta-el-sol-la-vaca-vieja",
+      "type": "project",
+      "name": "Cuando calienta el sol / La vaca vieja",
+      "mbid": "8e7fedb0-2980-47ef-913d-8a37d9e94fa2",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-bamba-saca-la-maleta",
+      "type": "project",
+      "name": "La bamba / Saca la maleta",
+      "mbid": "1e87c001-bac9-46b8-a5ff-87cd76db8b13",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-mover-la-colita-se-me-perdio-la-cadenita",
+      "type": "project",
+      "name": "A mover la colita / Se me perdió la cadenita",
+      "mbid": "8c8924e2-df43-4537-bb2b-fcfe53665baf",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dinamitando-exitos",
+      "type": "project",
+      "name": "Dinamitando éxitos",
+      "mbid": "5d885b0f-3876-42fa-95ca-5838eb53ef73",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mexico-86",
+      "type": "project",
+      "name": "México 86",
+      "mbid": "e5a6f063-aa2f-4c4b-a4be-df1244254dd7",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-internacional",
+      "type": "project",
+      "name": "La internacional",
+      "mbid": "883ebff5-1bad-435f-9b4a-764127fdd5bf",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:25-anos-de-triunfos-bodas-de-plata-1960-1985",
+      "type": "project",
+      "name": "25 años de triunfos, bodas de plata 1960 - 1985",
+      "mbid": "215152e7-9a47-4bb9-922a-eca5fd6566cf",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-poderosa",
+      "type": "project",
+      "name": "La poderosa",
+      "mbid": "607efac9-d03c-42d0-bf30-f6340513e290",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oye-la-firma",
+      "type": "project",
+      "name": "Oye / La firma",
+      "mbid": "0f4e7639-cc93-4246-805c-9116a2948387",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bombazos-dinamiteros",
+      "type": "project",
+      "name": "Bombazos dinamiteros",
+      "mbid": "37b06de3-7d98-4186-9de6-63311b636440",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lamento-marino-el-esclavo-aquel",
+      "type": "project",
+      "name": "Lamento marino / El esclavo aquel",
+      "mbid": "0039eadf-79ca-4244-a5b4-60a3bcaa3e43",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:el-tizon-la-nina-nory",
+      "type": "project",
+      "name": "El tizón / La niña Nory",
+      "mbid": "4f27473f-d940-44cf-a4ab-41b828e125e0",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:explosion-tropical",
+      "type": "project",
+      "name": "Explosión tropical",
+      "mbid": "0c237184-0735-4cd3-8318-cb0b0a3f97ef",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:terremoto-tropical",
+      "type": "project",
+      "name": "Terremoto tropical",
+      "mbid": "2543ebb2-cd8e-4582-a02c-2b378414af1e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-cumbia-nacio-en-baru",
+      "type": "project",
+      "name": "La cumbia nació en Barú",
+      "mbid": "d3c05b13-fe17-43c4-a6be-4072157d4bfb",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-cumbia-nacio-en-baru-las-velas-encendidas",
+      "type": "project",
+      "name": "La cumbia nació en Baru / Las velas encendidas",
+      "mbid": "746ece0b-d6d7-4bb2-9619-b613888616a5",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-detonante",
+      "type": "project",
+      "name": "La Detonante",
+      "mbid": "82f47672-f70c-4e93-a1cd-95e4cc929505",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mexico-y-colombia",
+      "type": "project",
+      "name": "México y Colombia",
+      "mbid": "f0ceac6a-a089-4c17-9efb-3ff874592520",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lupita-baila-la-cumbia-teresa",
+      "type": "project",
+      "name": "Lupita / Baila la cumbia Teresa",
+      "mbid": "8d163c4e-3d55-4a23-8a43-59403ae8f2de",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:detonantes",
+      "type": "project",
+      "name": "Detonantes",
+      "mbid": "13082900-f514-4e05-a482-0db8320f4323",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lucho-argain-y-la-sonora-dinamita",
+      "type": "project",
+      "name": "Lucho Argaín y La Sonora Dinamita",
+      "mbid": "2f3702a1-4500-49cf-97ea-e9cf9eee5f60",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:encontre-la-cadenita",
+      "type": "project",
+      "name": "Encontré la cadenita",
+      "mbid": "5cf0a12a-fd21-443f-b4a7-2ff902b3cbd3",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:maruja-cumbia-frenetica",
+      "type": "project",
+      "name": "Maruja / Cumbia frenética",
+      "mbid": "081de515-8610-4324-b787-7b7c7910c73c",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-vieron-llorar-oye-mi-cumbia",
+      "type": "project",
+      "name": "La vieron llorar / Oye mi cumbia",
+      "mbid": "6869ed95-3286-4501-a77c-8dfc8f5332a5",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:el-meneito",
+      "type": "project",
+      "name": "El meneito",
+      "mbid": "c606cdcb-f795-4d79-99e5-36da7e05195c",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-explosiva",
+      "type": "project",
+      "name": "La explosiva",
+      "mbid": "a1f63a5d-236d-4df5-92c3-3c7f201d9a8f",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chambacu-separacion",
+      "type": "project",
+      "name": "Chambacu / Separación",
+      "mbid": "5910bb5e-9052-4f76-8662-c06250c1ed10",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ritmo",
+      "type": "project",
+      "name": "Ritmo!",
+      "mbid": "a6c59ce5-17f7-4919-ac56-ed39a121e605",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bailamos",
+      "type": "project",
+      "name": "Bailamos",
+      "mbid": "172a132e-c415-4ad4-9e48-8c2cdbdb533b",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:si-la-vieran-suena-la-timba",
+      "type": "project",
+      "name": "Si la vieran / Suena la timba",
+      "mbid": "6a7aa0a9-468d-4198-a70e-e45d68336658",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mayen-raye-para-que-bailes",
+      "type": "project",
+      "name": "Mayen Raye / Para que bailes",
+      "mbid": "7d77d0e1-8128-4ceb-8daf-ec13722b8953",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vuelve-la-sonora-dinamita",
+      "type": "project",
+      "name": "Vuelve la Sonora Dinamita",
+      "mbid": "0f9646d0-35e1-4958-a702-fce4a8e3179a",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ritmo",
+      "type": "project",
+      "name": "Ritmo!",
+      "mbid": "a910a761-2f53-4af9-9e08-dad909ad0985",
+      "year": "1965",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cumbia-barulera-golpes-de-la-vida",
+      "type": "project",
+      "name": "Cumbia barulera / Golpes de la vida",
+      "mbid": "9ec76a51-ac05-45eb-a2e7-3b2b40fbe60d",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dinamita",
+      "type": "project",
+      "name": "Dinamita",
+      "mbid": "88f61751-4e22-4240-a1d6-09c692cd9539",
+      "year": "1961",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mi-cucu",
+      "type": "track",
+      "name": "Mi Cucu"
+    },
+    {
+      "slug": "track:se-me-perdio-la-cadenita",
+      "type": "track",
+      "name": "Se me perdió la cadenita"
+    },
+    {
+      "slug": "track:el-africano",
+      "type": "track",
+      "name": "El africano"
+    },
+    {
+      "slug": "track:que-nadie-sepa-mi-sufrir",
+      "type": "track",
+      "name": "Que nadie sepa mi sufrir"
+    },
+    {
+      "slug": "track:a-mover-la-colita",
+      "type": "track",
+      "name": "A mover la colita"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:charlie-alvarez",
+      "type": "artist",
+      "name": "Charlie Alvarez"
+    },
+    {
+      "slug": "artist:lucho-argain",
+      "type": "artist",
+      "name": "Lucho Argaín"
+    },
+    {
+      "slug": "artist:margarita-vargas",
+      "type": "artist",
+      "name": "Margarita Vargas"
+    },
+    {
+      "slug": "artist:julio-ernesto-estrada",
+      "type": "artist",
+      "name": "Julio Ernesto Estrada"
+    },
+    {
+      "slug": "artist:rodolfo-aicardi",
+      "type": "artist",
+      "name": "Rodolfo Aicardi"
+    },
+    {
+      "slug": "artist:melida-yara",
+      "type": "artist",
+      "name": "Mélida Yará"
+    },
+    {
+      "slug": "artist:vilma-diaz",
+      "type": "artist",
+      "name": "Vilma Díaz"
+    }
+  ]
+}

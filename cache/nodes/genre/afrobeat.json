@@ -1,0 +1,106 @@
+{
+  "slug": "genre:afrobeat",
+  "name": "Afrobeat",
+  "editorial_article": "Originating in Nigeria during the late 1960s, Afrobeat coalesced when Fela Kuti and drummer Tony Allen integrated traditional Yoruba music with American funk, jazz, and soul. Fela Kuti established the movement at his Lagos club, the Afrika Shrine, where his band Africa '70 maintained a residency from 1970 to 1975. The genre is defined by complex, intersecting rhythms and long instrumental solos, often featuring heavy horn sections, Hammond organs, and a range of percussion including the shekere and ogene. Political discourse was central to the style, with Kuti using confrontational lyrics to critique military corruption and social injustice. Beyond its roots, the genre left a lasting footprint on Western music, notably influencing the 1980 Talking Heads album 'Remain in Light' and finding a new home in the 2000s with Brooklyn-based collectives like Antibalas.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Afrobeat",
+      "title": "Afrobeat"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:20.730Z",
+  "type": "genre",
+  "editorial_definition": "A 1960s Nigerian genre pioneered by Fela Kuti, characterized by a fusion of highlife, funk, and jazz alongside complex polyrhythms and socio-political commentary.",
+  "qid": "Q388296",
+  "era": "late 1960s to present",
+  "origin": "Lagos, Nigeria",
+  "sonic_markers": "Big band sound, complex polyrhythms, long instrumental solos, horn sections, Hammond organ, Yoruba-inspired percussion.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-west-africa",
+      "type": "genre",
+      "name": "Music Of West Africa",
+      "qid": "Q6942329"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:music-of-west-africa",
+      "type": "genre",
+      "name": "Music of West Africa",
+      "qid": "Q6942329"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
+    },
+    {
+      "slug": "artist:femi-kuti",
+      "type": "artist",
+      "name": "Femi Kuti"
+    },
+    {
+      "slug": "artist:seun-kuti",
+      "type": "artist",
+      "name": "Seun Kuti"
+    },
+    {
+      "slug": "artist:antibalas",
+      "type": "artist",
+      "name": "Antibalas"
+    },
+    {
+      "slug": "artist:dele-sosimi",
+      "type": "artist",
+      "name": "Dele Sosimi"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:knitting-factory-records",
+      "type": "label",
+      "name": "Knitting Factory Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:beasts-of-no-nation",
+      "type": "track",
+      "name": "Beasts of No Nation"
+    }
+  ]
+}
