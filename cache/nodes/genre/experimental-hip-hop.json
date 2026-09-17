@@ -1,0 +1,103 @@
+{
+  "slug": "genre:experimental-hip-hop",
+  "name": "Experimental Hip Hop",
+  "editorial_article": "Experimental hip-hop is a subgenre defined by the integration of unorthodox electronic textures and non-traditional production techniques into rap foundations. Often associated with the 2026 release of JPEGMafia's album Experimental Rap, the genre thrives on subversive sampling and erratic song structures that challenge conventions of flow and melody. Critics and artists alike define the style by its willingness to incorporate elements from punk, ambient, and industrial music, moving beyond standard boom-bap arrangements. Influential touchstones for the scene include albums like Kanye West's Yeezus, Death Grips' The Money Store, and Outkast’s Atliens, which frequently utilize heavy distortion, dissonant synthesizers, and fragmented vocal delivery to create disorienting soundscapes that prioritize artistic risk over mainstream accessibility.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Experimental_Rap_(album)",
+      "title": "Experimental Rap (album) - Wikipedia"
+    },
+    {
+      "url": "https://www.reddit.com/r/hiphopheads/comments/1fxe9px/what_are_some_of_the_most_influential/",
+      "title": "What are some of the most influential experimental hip hop releases of all time?"
+    },
+    {
+      "url": "https://en.namu.wiki/w/%EC%9D%B5%EC%8A%A4%ED%8E%98%EB%A6%AC%EB%A9%98%ED%83%88%20%ED%9E%99%ED%95%A9",
+      "title": "Experimental Hip Hop - NamuWiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:30.413Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop that integrates unconventional electronic, industrial, and punk influences to deconstruct traditional rap song structures and production.",
+  "qid": "Q5421158",
+  "era": "late 2000s to present",
+  "origin": "United States; global electronic and rap fusion scene",
+  "sonic_markers": "Irregular song structures, dissonant sampling, heavy industrial distortion, manipulated vocal textures, and fusion of electronic subgenres.",
+  "parent_genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental Music",
+      "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:industrial-hip-hop",
+      "type": "genre",
+      "name": "Industrial Hip Hop",
+      "qid": "Q2004156"
+    },
+    {
+      "slug": "genre:punk-rap",
+      "type": "genre",
+      "name": "Punk Rap",
+      "qid": "Q65089257"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic Music",
+      "qid": "Q9778"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:jpegmafia",
+      "type": "artist",
+      "name": "JPEGMafia"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips"
+    },
+    {
+      "slug": "artist:kanye-west",
+      "type": "artist",
+      "name": "Kanye West"
+    },
+    {
+      "slug": "artist:danny-brown",
+      "type": "artist",
+      "name": "Danny Brown"
+    },
+    {
+      "slug": "artist:outkast",
+      "type": "artist",
+      "name": "Outkast"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:awal",
+      "type": "label",
+      "name": "AWAL"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:babygirl",
+      "type": "track",
+      "name": "Babygirl"
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "slug": "artist:guy",
+  "name": "Guy",
+  "editorial_article": "Guy formed in the late 1980s as a foundational group for the new jack swing movement, led by the producer and songwriter Teddy Riley. Their self-titled 1988 debut album established the group at the center of the emerging fusion of hip hop rhythms and urban contemporary R&B. The group achieved significant commercial success with hits including 'Groove Me', which reached number four on the US R&B charts, and 'Teddy's Jam', which climbed to number five on the same chart. Throughout their tenure, they bridged the divide between street-oriented rap sensibilities and pop-focused vocal arrangements. Their 1990 track 'Let's Chill' further solidified their chart presence, peaking at number three on the US R&B charts, illustrating the enduring impact of Riley's swingbeat rhythmic patterns.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New_jack_swing",
+      "title": "New jack swing"
+    },
+    {
+      "url": "https://www.facebook.com/SoulTrain/videos/rb-group-guy-had-a-different-sound/1049546705794630/",
+      "title": "The New Jack Swing era was a time! #SoulTrainAwards | Soul Train"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:20.206Z",
+  "type": "artist",
+  "editorial_bio": "An influential R&B group led by Teddy Riley that pioneered the new jack swing genre in the late 1980s.",
+  "origin": "United States",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:swing",
+      "type": "genre",
+      "name": "Swing",
+      "qid": "Q203775"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:uptown-records",
+      "type": "label",
+      "name": "Uptown Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:guy-iii",
+      "type": "project",
+      "name": "Guy III",
+      "mbid": "9274e145-7448-3f4c-a96c-2f438c56d0ac",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:teddy-s-jam-2",
+      "type": "project",
+      "name": "Teddy's Jam 2",
+      "mbid": "1f8336ad-2708-47c2-986d-9d7ebb0b5f98",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d-o-g-me-out",
+      "type": "project",
+      "name": "D-O-G Me Out",
+      "mbid": "0d5edc23-e5f7-42ea-a88d-b4810662c369",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:her",
+      "type": "project",
+      "name": "Her",
+      "mbid": "b614b1ef-5747-4e48-b9ba-73c7c1877559",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-future",
+      "type": "project",
+      "name": "The Future",
+      "mbid": "e987ae18-21ae-3ea8-8ea4-65a719735316",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-wanna-get-with-u",
+      "type": "project",
+      "name": "I Wanna Get With U",
+      "mbid": "cd413547-c618-428b-9597-1d19dafdf6de",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-fantasy",
+      "type": "project",
+      "name": "My Fantasy",
+      "mbid": "003f476a-e202-4f1d-b807-15da9c022b97",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spend-the-night",
+      "type": "project",
+      "name": "Spend the Night",
+      "mbid": "9a797ab5-ba41-4236-8020-ff83f2995065",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:teddy-s-jam",
+      "type": "project",
+      "name": "Teddy's Jam (extended version)",
+      "mbid": "7adc0589-9d19-46c8-bae9-9a0d18c14424",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:guy",
+      "type": "project",
+      "name": "Guy",
+      "mbid": "740bfea6-512f-37eb-b1ad-c318017f93f8",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:groove-me",
+      "type": "project",
+      "name": "Groove Me",
+      "mbid": "e44fba1e-1be9-47d8-a4b7-7270530ab2f6",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:round-and-round",
+      "type": "project",
+      "name": "Round & Round",
+      "mbid": "ead304e4-3e18-4905-8229-1bbac7934aaa",
+      "year": "1988",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:groove-me",
+      "type": "track",
+      "name": "Groove Me"
+    },
+    {
+      "slug": "track:teddy-s-jam",
+      "type": "track",
+      "name": "Teddy's Jam"
+    },
+    {
+      "slug": "track:let-s-chill",
+      "type": "track",
+      "name": "Let's Chill"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:teddy-riley",
+      "type": "artist",
+      "name": "Teddy Riley"
+    },
+    {
+      "slug": "artist:aaron-hall",
+      "type": "artist",
+      "name": "Aaron Hall"
+    },
+    {
+      "slug": "artist:damion-hall",
+      "type": "artist",
+      "name": "Damion Hall"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -72,6 +72,12 @@
       "type": "genre",
       "name": "Emo Rap",
       "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
     }
   ],
   "key_artists": [

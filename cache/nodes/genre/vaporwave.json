@@ -89,6 +89,12 @@
       "type": "genre",
       "name": "Plunderphonics",
       "qid": "Q7205507"
+    },
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped N Screwed",
+      "qid": "Q2261628"
     }
   ],
   "key_artists": [

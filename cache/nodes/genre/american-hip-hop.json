@@ -33,7 +33,14 @@
       "qid": "Q2267955"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:disco",

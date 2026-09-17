@@ -282,6 +282,11 @@
       "slug": "artist:andre-3000",
       "type": "artist",
       "name": "André 3000"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
     }
   ],
   "aliases": [

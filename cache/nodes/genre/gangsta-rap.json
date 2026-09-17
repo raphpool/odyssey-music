@@ -65,6 +65,12 @@
       "type": "genre",
       "name": "Dirty South",
       "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
     }
   ],
   "key_artists": [
