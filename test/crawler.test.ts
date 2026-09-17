@@ -158,4 +158,60 @@ describe("buildGenreSeedPlan (TRA-61)", () => {
 			},
 		]);
 	});
+
+	// TRA-254: a folder's genre disambiguator (e.g. distinguishing Afrobeats pop from Fela
+	// Kuti's Afrobeat) must reach the pipeline input for the genre stage, without changing the
+	// canonical slug or QID the registry already resolved.
+	it("forwards the folder genre's disambiguator onto the genre stage's pipeline input", async () => {
+		const disambiguatedFolder: GenreSeed = {
+			...folder,
+			genre: {
+				...folder.genre,
+				disambiguator: "2000s pop, distinct from Fela Kuti's Afrobeat",
+			},
+		};
+		const registry: Pick<GenreRegistry, "canonicalSlugFor"> = {
+			canonicalSlugFor: async (ref) => (ref.qid ? { slug: ref.slug, qid: ref.qid } : { slug: ref.slug }),
+		};
+
+		const plan = await buildGenreSeedPlan(disambiguatedFolder, registry);
+
+		const genreEntry = plan.find(({ stage }) => stage === "genre");
+		expect(genreEntry?.input).toEqual({
+			type: "genre",
+			name: "Trap Hip-Hop",
+			slug: "genre:trap-hip-hop",
+			qid: "Q2913982",
+			disambiguator: "2000s pop, distinct from Fela Kuti's Afrobeat",
+		});
+	});
+
+	// TRA-254 code review: genre-seeds.ts's targetSchema also accepts a disambiguator (for a
+	// homonymous target such as a same-named artist), so buildGenreSeedPlan must not drop it.
+	it("forwards a target's disambiguator onto its pipeline input", async () => {
+		const disambiguatedFolder: GenreSeed = {
+			...folder,
+			targets: [
+				{
+					type: "artist",
+					name: "Fixture Artist",
+					slug: "artist:fixture-artist",
+					disambiguator: "British rock band, not the American rapper",
+				},
+			],
+		};
+		const registry: Pick<GenreRegistry, "canonicalSlugFor"> = {
+			canonicalSlugFor: async (ref) => (ref.qid ? { slug: ref.slug, qid: ref.qid } : { slug: ref.slug }),
+		};
+
+		const plan = await buildGenreSeedPlan(disambiguatedFolder, registry);
+
+		const targetEntry = plan.find(({ stage }) => stage === "target");
+		expect(targetEntry?.input).toEqual({
+			type: "artist",
+			name: "Fixture Artist",
+			slug: "artist:fixture-artist",
+			disambiguator: "British rock band, not the American rapper",
+		});
+	});
 });

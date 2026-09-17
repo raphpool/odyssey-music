@@ -322,6 +322,10 @@ export async function buildGenreSeedPlan(
 		const input: PipelineInput = { type: "genre", name: ref.name, slug: canonical.slug };
 		const qid = canonical.qid ?? ref.qid;
 		if (qid) input.qid = qid;
+		// TRA-254: forward the seed folder's disambiguator (e.g. distinguishing Afrobeats
+		// pop from Fela Kuti's Afrobeat) to the pipeline's search query and prompt. The
+		// slug is already fixed above, so this cannot affect it (see canonicalizeDraft).
+		if (ref.disambiguator) input.disambiguator = ref.disambiguator;
 		return input;
 	};
 	const anchors = await Promise.all(folder.anchors.map(async (anchor) => canonicalGenreInput(anchor)));
@@ -329,6 +333,9 @@ export async function buildGenreSeedPlan(
 	const targets = folder.targets.map((target): PipelineInput => {
 		const input: PipelineInput = { type: target.type, name: target.name, slug: target.slug as Slug };
 		if (target.mbid) input.mbid = target.mbid;
+		// TRA-254 code review: genre-seeds.ts's targetSchema also accepts a disambiguator —
+		// drop it silently here and a homonymous target loses its only disambiguating hint.
+		if (target.disambiguator) input.disambiguator = target.disambiguator;
 		return input;
 	});
 	return [
