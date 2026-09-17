@@ -5439,6 +5439,16 @@
         "name": "Ghetto House",
         "qid": "Q2748817"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:drill",
+        "type": "genre",
+        "name": "Drill",
+        "qid": "Q15697534"
+      }
     }
   ],
   "genre:us-bass-music": [
@@ -5470,6 +5480,16 @@
         "type": "genre",
         "name": "Memphis Rap",
         "qid": "Q6010117"
+      }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:drill",
+        "type": "genre",
+        "name": "Drill",
+        "qid": "Q15697534"
       }
     }
   ],
@@ -7521,6 +7541,16 @@
         "type": "genre",
         "name": "Music of Central Africa",
         "qid": "Q106588687"
+      }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:african-hip-hop",
+        "type": "genre",
+        "name": "African hip-hop",
+        "qid": "Q387236"
       }
     }
   ],
@@ -9894,6 +9924,16 @@
         "name": "Amapiano",
         "qid": "Q85741139"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:motswako",
+        "type": "genre",
+        "name": "Motswako",
+        "qid": "Q6918602"
+      }
     }
   ],
   "genre:gqom": [
@@ -10001,6 +10041,15 @@
         "type": "artist",
         "name": "Uncle Waffles"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
+      }
     }
   ],
   "artist:tony-duardo": [
@@ -10053,6 +10102,24 @@
         "slug": "artist:project-pat",
         "type": "artist",
         "name": "Project Pat"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:khuli-chana",
+        "type": "artist",
+        "name": "Khuli Chana"
       }
     }
   ],
@@ -10658,18 +10725,6 @@
       }
     }
   ],
-  "genre:drill": [
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:trap-hip-hop",
-        "type": "genre",
-        "name": "Trap",
-        "qid": "Q2913982"
-      }
-    }
-  ],
   "genre:latin-trap": [
     {
       "field": "related_genres",
@@ -10751,26 +10806,6 @@
         "slug": "artist:gucci-mane",
         "type": "artist",
         "name": "Gucci Mane"
-      }
-    }
-  ],
-  "artist:chief-keef": [
-    {
-      "field": "collaborators",
-      "cardinality": "list",
-      "edge": {
-        "slug": "artist:gucci-mane",
-        "type": "artist",
-        "name": "Gucci Mane"
-      }
-    },
-    {
-      "field": "influences",
-      "cardinality": "list",
-      "edge": {
-        "slug": "artist:lil-b",
-        "type": "artist",
-        "name": "Lil B"
       }
     }
   ],
@@ -11058,6 +11093,15 @@
         "slug": "artist:nate-dogg",
         "type": "artist",
         "name": "Nate Dogg"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
       }
     }
   ],
@@ -13253,6 +13297,375 @@
         "slug": "artist:nujabes",
         "type": "artist",
         "name": "Nujabes"
+      }
+    }
+  ],
+  "artist:infected-mushroom": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    }
+  ],
+  "artist:linkin-park": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    }
+  ],
+  "artist:michele-adamson": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    }
+  ],
+  "artist:pixel": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    }
+  ],
+  "artist:gms": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astrix",
+        "type": "artist",
+        "name": "Astrix"
+      }
+    }
+  ],
+  "artist:avi-nissim": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astral-projection",
+        "type": "artist",
+        "name": "Astral Projection"
+      }
+    }
+  ],
+  "artist:lior-perlmutter": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:astral-projection",
+        "type": "artist",
+        "name": "Astral Projection"
+      }
+    }
+  ],
+  "artist:ott": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hallucinogen",
+        "type": "artist",
+        "name": "Hallucinogen"
+      }
+    }
+  ],
+  "artist:benji-vaughan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hallucinogen",
+        "type": "artist",
+        "name": "Hallucinogen"
+      }
+    }
+  ],
+  "artist:simon-posford": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hallucinogen",
+        "type": "artist",
+        "name": "Hallucinogen"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hallucinogen",
+        "type": "artist",
+        "name": "Hallucinogen"
+      }
+    }
+  ],
+  "artist:walter-ego": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hallucinogen",
+        "type": "artist",
+        "name": "Hallucinogen"
+      }
+    }
+  ],
+  "artist:808melo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    }
+  ],
+  "artist:lil-tjay": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    }
+  ],
+  "artist:quavo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    }
+  ],
+  "artist:lil-baby": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:dababy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    }
+  ],
+  "artist:shar": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pop-smoke",
+        "type": "artist",
+        "name": "Pop Smoke"
+      }
+    }
+  ],
+  "artist:youngboy-never-broke-again": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:j-cole": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:dave": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:j-hus": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:21-savage": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "artist:cench": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:central-cee",
+        "type": "artist",
+        "name": "Central Cee"
+      }
+    }
+  ],
+  "genre:music-of-southern-africa": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:motswako",
+        "type": "genre",
+        "name": "Motswako",
+        "qid": "Q6918602"
+      }
+    }
+  ],
+  "artist:da-l-e-s": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:khuli-chana",
+        "type": "artist",
+        "name": "Khuli Chana"
+      }
+    }
+  ],
+  "artist:magesh": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:khuli-chana",
+        "type": "artist",
+        "name": "Khuli Chana"
+      }
+    }
+  ],
+  "artist:tebogo-rameetse": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
+      }
+    }
+  ],
+  "artist:isaac-mthethwa": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
+      }
+    }
+  ],
+  "artist:proverb": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
+      }
+    }
+  ],
+  "artist:hhp": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
+      }
+    }
+  ],
+  "artist:jabba": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hip-hop-pantsula",
+        "type": "artist",
+        "name": "Hip Hop Pantsula"
       }
     }
   ]

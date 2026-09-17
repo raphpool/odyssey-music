@@ -765,7 +765,13 @@
       "name": "Mos Def"
     }
   ],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee"
+    }
+  ],
   "collaborators": [
     {
       "slug": "artist:dr-dre",

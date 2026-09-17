@@ -71,6 +71,12 @@
       "type": "genre",
       "name": "Memphis Rap",
       "qid": "Q6010117"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
     }
   ],
   "key_artists": [

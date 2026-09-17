@@ -120,7 +120,13 @@
       "name": "Orchestral Manoeuvres in the Dark"
     }
   ],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:astrix",
+      "type": "artist",
+      "name": "Astrix"
+    }
+  ],
   "collaborators": [
     {
       "slug": "artist:bt",

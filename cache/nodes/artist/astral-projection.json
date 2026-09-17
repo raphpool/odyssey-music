@@ -1,0 +1,426 @@
+{
+  "slug": "artist:astral-projection",
+  "name": "Astral Projection",
+  "editorial_article": "Formed in Tel Aviv in 1993, Astral Projection developed into a central force in the Goa and psychedelic trance scenes through their professional sound studio opened in 1995. The group initially operated as SFX in 1989, a duo consisting of Avi Nissim and Lior Perlmutter that achieved a hit with the 1991 single \"Monster Mania.\" Following a period where Lior Perlmutter spent time in the United States, the group reformed and released material through their label Trust in Trance Records. Their 1995 album Trust in Trance 2 attained the number two position on the Israeli best-selling album charts. Known for tracks like \"Kabalah,\" \"People Can Fly,\" and \"Mahadeva,\" the group has maintained an extensive international touring schedule alongside their discography. In 2012, they collaborated with TIP Records for the release of their \"One\" EP. More recently, the duo expanded their reach with a 2025 album, \"For All Mankind,\" issued via Iboga Records.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Astral_Projection_(band)",
+      "title": "Astral Projection (band) - Wikipedia"
+    },
+    {
+      "url": "https://www.insomniac.com/music/artists/astral-projection/",
+      "title": "Astral Projection – Artists - Insomniac"
+    },
+    {
+      "url": "https://www.discogs.com/release/18789433-Astral-Projection-Trust-In-Trance?srsltid=AU7gw4W4jGMRTTaxzi3U36hFmC7AyH66_ldZybXuqour5eaqeZmg_8Uw",
+      "title": "Astral Projection – Trust In Trance – CD (Album), 1996"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:57.215Z",
+  "type": "artist",
+  "editorial_bio": "An influential Israeli electronic duo and pioneers of Goa and psychedelic trance music.",
+  "origin": "Tel Aviv, Israel",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
+    },
+    {
+      "slug": "genre:goa-trance",
+      "type": "genre",
+      "name": "Goa Trance",
+      "qid": "Q835131"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trust-in-trance-records",
+      "type": "label",
+      "name": "Trust in Trance Records"
+    },
+    {
+      "slug": "label:phonokol",
+      "type": "label",
+      "name": "Phonokol"
+    },
+    {
+      "slug": "label:tip-records",
+      "type": "label",
+      "name": "TIP Records"
+    },
+    {
+      "slug": "label:iboga-records",
+      "type": "label",
+      "name": "Iboga Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:for-all-mankind",
+      "type": "project",
+      "name": "For All Mankind",
+      "mbid": "284adf7d-7b02-4c41-b1aa-b293e615870f",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mahadeva",
+      "type": "project",
+      "name": "Mahadeva (Save the Robot remix)",
+      "mbid": "e30c30c8-d5d7-4f68-9798-c642f8672c59",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mahadeva",
+      "type": "project",
+      "name": "Mahadeva (Faders remix)",
+      "mbid": "d7c32314-4537-4d2f-839a-7412cd14418d",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aban-don-and-sfx-the-lost-tapes-album-1988-1993",
+      "type": "project",
+      "name": "Aban Don & SFX - \"The Lost Tapes Album 1988 - 1993\"",
+      "mbid": "5e356b3b-1daf-4da2-92fd-029551a34683",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-highest-mountain",
+      "type": "project",
+      "name": "The Highest Mountain",
+      "mbid": "809a4176-2836-424e-a4e6-dd7df50adfd1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:into-the-void",
+      "type": "project",
+      "name": "Into The Void",
+      "mbid": "86e77ce0-156d-4796-a96f-98c1cccf041a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kabalah",
+      "type": "project",
+      "name": "Kabalah (Shivatree remix)",
+      "mbid": "81122377-27e3-4c0a-b539-946e9dc28c80",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dance-is-the-answer",
+      "type": "project",
+      "name": "Dance Is The Answer!",
+      "mbid": "bd3bf47b-e1b6-4a20-91b9-40b6bfd93cbb",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:power-gen",
+      "type": "project",
+      "name": "Power Gen (Kundalini remix)",
+      "mbid": "dfecee9e-a4c5-42a0-a0d0-e7c480f51415",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:power-gen",
+      "type": "project",
+      "name": "Power Gen (Kundalini remix)",
+      "mbid": "e2068a6a-08d7-4d3a-a5dc-c198d86e1e7b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dancing-galaxy",
+      "type": "project",
+      "name": "Dancing Galaxy (Galactic Explorers Remix)",
+      "mbid": "642e1b57-3ad1-453b-bcb6-7a48fafa8045",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:utopia-remix",
+      "type": "project",
+      "name": "Utopia Remix",
+      "mbid": "665c8787-f540-40d6-84b9-0d3473cf234d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:y-salem",
+      "type": "project",
+      "name": "Y-Salem",
+      "mbid": "4124c2ce-dc75-4fb1-bfcf-382d2a0b436e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one",
+      "type": "project",
+      "name": "One (Cybernetic Worlock remix)",
+      "mbid": "66c6d0a4-b1e0-4be5-8aa2-2c3772e50b8d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-there-be-light",
+      "type": "project",
+      "name": "Let There Be Light",
+      "mbid": "a63e0809-c836-4125-b180-fb58e028d1f9",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one",
+      "type": "project",
+      "name": "One",
+      "mbid": "c7fcd3b1-0131-4965-a67c-f29cbaf6fe00",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:open-society-the-ep",
+      "type": "project",
+      "name": "Open Society: The EP",
+      "mbid": "5050be4d-12db-45d7-bbb5-d4622c003cdb",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-blissdom-ep",
+      "type": "project",
+      "name": "The Blissdom EP (11th Anniversary limited edition)",
+      "mbid": "cc63da31-f3b7-4b95-89ca-117b4e000509",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-prophecy-ep",
+      "type": "project",
+      "name": "The Prophecy EP",
+      "mbid": "ee6e8f09-192a-4ad1-9f97-482ebf673ed4",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dj-condom",
+      "type": "project",
+      "name": "DJ Condom",
+      "mbid": "9650c100-36d2-41b6-8f6b-a0d8f8e55f75",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ten",
+      "type": "project",
+      "name": "Ten",
+      "mbid": "0c024836-b0f6-3421-876d-d18b0aace1ea",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mahadeva",
+      "type": "project",
+      "name": "Mahadeva",
+      "mbid": "1e029b51-6bde-46ec-a2c0-4dcb3657c7fe",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-astral-projection-ep-part-2",
+      "type": "project",
+      "name": "The Astral Projection EP, Part 2",
+      "mbid": "56d1fd5c-0cbd-33c8-a2a3-20ba0560e892",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-astral-projection-ep-part-1",
+      "type": "project",
+      "name": "The Astral Projection EP, Part 1",
+      "mbid": "6eb05efb-8af5-3018-904a-ee3a9274e7d5",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:amen",
+      "type": "project",
+      "name": "Amen",
+      "mbid": "1cf06a54-a491-3480-a988-ed04fb5a3a9f",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anything-is-possible-another-world",
+      "type": "project",
+      "name": "Anything Is Possible / Another World (Passenger Remix)",
+      "mbid": "c7f780dd-4b28-49de-b769-487d647d225f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:liquid-sun",
+      "type": "project",
+      "name": "Liquid Sun",
+      "mbid": "298d04e6-3f26-3c6f-9c99-42bf34fdc1ce",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burning-up",
+      "type": "project",
+      "name": "Burning Up",
+      "mbid": "7d8954d7-f84c-36d5-88ad-0555e651abcf",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nilaya-solid-electronics",
+      "type": "project",
+      "name": "Nilaya / Solid Electronics",
+      "mbid": "3aa76314-ceb9-402c-bd07-32483781781e",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-world",
+      "type": "project",
+      "name": "Another World",
+      "mbid": "0023af6e-4dcc-3795-8a9c-fac5d30041c0",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-world-ep",
+      "type": "project",
+      "name": "Another World EP",
+      "mbid": "7c695ee8-dc1c-49e2-8653-921bd3c81d94",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-mix",
+      "type": "project",
+      "name": "The Mix",
+      "mbid": "9d0bcb51-5a24-3c51-ab63-8748b469a582",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancing-galaxy-ambient-galaxy",
+      "type": "project",
+      "name": "Dancing Galaxy / Ambient Galaxy (Disco Valley Mix)",
+      "mbid": "a76af40e-819b-4a44-bc87-86beb3f6d90a",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dancing-galaxy",
+      "type": "project",
+      "name": "Dancing Galaxy",
+      "mbid": "0807b476-a687-3558-9206-c8d4ba1327ea",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ionized-kabalah",
+      "type": "project",
+      "name": "Ionized / Kabalah",
+      "mbid": "67ec7a36-0804-34eb-8add-1bbbfc9dd6f2",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-astral-files",
+      "type": "project",
+      "name": "The Astral Files",
+      "mbid": "b1fde373-b539-3eee-82b2-911b3ccc9ea6",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-began-with-the-universe-ep",
+      "type": "project",
+      "name": "Time Began With the Universe EP",
+      "mbid": "fd558c33-f5f5-3625-bf10-07aff9f031ae",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:trust-in-trance",
+      "type": "project",
+      "name": "Trust in Trance",
+      "mbid": "2b6bfcfd-46a5-3f98-a58f-2c51d7c9e960",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:power-gen",
+      "type": "project",
+      "name": "Power Gen",
+      "mbid": "b50fbaa7-64bc-4c8f-bb2a-84b2ec7edd24",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:power-gen",
+      "type": "project",
+      "name": "Power Gen",
+      "mbid": "c319ace6-f9b1-4a0d-ac29-acf2ecb8b784",
+      "year": "1995",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:kabalah",
+      "type": "track",
+      "name": "Kabalah"
+    },
+    {
+      "slug": "track:people-can-fly",
+      "type": "track",
+      "name": "People Can Fly"
+    },
+    {
+      "slug": "track:mahadeva",
+      "type": "track",
+      "name": "Mahadeva"
+    },
+    {
+      "slug": "track:dancing-galaxy",
+      "type": "track",
+      "name": "Dancing Galaxy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:avi-nissim",
+      "type": "artist",
+      "name": "Avi Nissim"
+    },
+    {
+      "slug": "artist:lior-perlmutter",
+      "type": "artist",
+      "name": "Lior Perlmutter"
+    }
+  ]
+}
