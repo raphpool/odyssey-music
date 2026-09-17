@@ -11,7 +11,7 @@ concurrency:
 jobs:
   review-gate:
     if: github.event.pull_request.draft == false
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, macOS, ARM64]
     timeout-minutes: 8
     permissions:
       checks: read
