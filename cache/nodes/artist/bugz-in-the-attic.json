@@ -1,0 +1,236 @@
+{
+  "slug": "artist:bugz-in-the-attic",
+  "name": "Bugz in the Attic",
+  "editorial_article": "Formed in West London in 1996, Bugz in the Attic became a central pillar of the broken beat movement, operating out of their own BitaSuite studio. The collective—which included Orin Walters, Paul Dolby, Kaidi Tatham, Daz-I-Kue, Alex Phountzi, Cliff Scott, Mark Force, and Matt Lord—managed the BitaSweet label and hosted the influential Co-Op club night at Plastic People in Shoreditch. Their sound defined a specific intersection of jazz and electronic rhythms, achieving commercial success when their single 'Booty La La' reached number 44 on the UK Singles Chart in 2005. The group also left a mark on international collaborations, contributing 'Zombie (Part One)' to the Fela Kuti tribute album 'Red Hot and Riot' for the Red Hot Organization. Their first studio album, 'Back in the Doghouse', arrived in 2006 via V2 Records. Following years of output including remix collections like 'Got the Bug', the collective evolved into a smaller unit centered on Afronaut and Mark Force.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bugz_in_the_Attic",
+      "title": "Bugz in the Attic - Wikipedia"
+    },
+    {
+      "url": "https://bbemusic.com/artist/bugz-in-the-attic",
+      "title": "BUGZ IN THE ATTIC - BBE Music - Barely Breaking Even"
+    },
+    {
+      "url": "https://music.apple.com/us/artist/bugz-in-the-attic/21442766",
+      "title": "Bugz In the Attic - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:55.160Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering West London collective instrumental in the development and popularization of the broken beat genre through the 1990s and 2000s.",
+  "origin": "West London",
+  "active_years": "1996-present",
+  "genres": [
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken beat",
+      "qid": "Q2406633"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bitasweet-records",
+      "type": "label",
+      "name": "BitaSweet Records"
+    },
+    {
+      "slug": "label:v2-records",
+      "type": "label",
+      "name": "V2 Records"
+    },
+    {
+      "slug": "label:bbe-music",
+      "type": "label",
+      "name": "BBE Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chakattic-ep",
+      "type": "project",
+      "name": "Chakattic EP",
+      "mbid": "ac7ad669-63a6-4cea-95cc-f92a50d1e89b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booty-la-la",
+      "type": "project",
+      "name": "Booty La La (Loefah remix)",
+      "mbid": "22be0f09-1111-4b8f-a603-3e3eb1346dd0",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-stop-the-music",
+      "type": "project",
+      "name": "Don't Stop the Music",
+      "mbid": "c5e2981e-9630-4363-a384-da8b44cc8a35",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:move-aside",
+      "type": "project",
+      "name": "Move Aside",
+      "mbid": "e3f41781-2e4f-41e9-ae19-dc11eb93b0ff",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-in-the-doghouse",
+      "type": "project",
+      "name": "Back in the Doghouse",
+      "mbid": "b6dd5e17-02e7-3498-92aa-5fb16b49c0e5",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sounds-like-once-twice",
+      "type": "project",
+      "name": "Sounds Like / Once Twice",
+      "mbid": "b5c5f9b5-801e-4ea5-af40-947d5136def7",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booty-la-la",
+      "type": "project",
+      "name": "Booty La La",
+      "mbid": "d142a369-bfb3-3004-ae3f-36735e89b29c",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booty-la-la",
+      "type": "project",
+      "name": "Booty La La (Draw the Line remix)",
+      "mbid": "2e5b9e52-5607-46e2-a56f-026727ad6c76",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:happy-days-sow-into-u",
+      "type": "project",
+      "name": "Happy Days / Sow Into U",
+      "mbid": "849dd1d4-1a8e-4160-bc2f-030b7db7bb5c",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zombie",
+      "type": "project",
+      "name": "Zombie",
+      "mbid": "91daf925-032f-4f10-8148-3b4c84f70eaf",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-way-ep",
+      "type": "project",
+      "name": "On the Way EP",
+      "mbid": "448cdd05-65db-4aab-89f6-1c696864efd6",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:thinkin-of-you-waiting",
+      "type": "project",
+      "name": "Thinkin’ of You / Waiting",
+      "mbid": "53aac39b-ac63-43f7-b58d-4b70b29ddda0",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bittersweet-ep",
+      "type": "project",
+      "name": "Bittersweet EP",
+      "mbid": "500bdc5c-532d-3e82-bef4-a430b0472f00",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:white-keys-black-keys",
+      "type": "project",
+      "name": "White Keys Black Keys",
+      "mbid": "5b23d9ce-2841-4142-b7c1-f96efede0b7b",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:family-factory-ep",
+      "type": "project",
+      "name": "Family Factory EP",
+      "mbid": "81f4b77b-5530-4550-a482-ec21e5910ac5",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:family-factory",
+      "type": "project",
+      "name": "Family Factory",
+      "mbid": "98ed261d-b0e3-35ac-9e31-31311edc1ede",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:booty-la-la",
+      "type": "track",
+      "name": "Booty La La"
+    },
+    {
+      "slug": "track:zombie",
+      "type": "track",
+      "name": "Zombie (Part One)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:orin-walters",
+      "type": "artist",
+      "name": "Orin Walters"
+    },
+    {
+      "slug": "artist:paul-dolby",
+      "type": "artist",
+      "name": "Paul Dolby"
+    },
+    {
+      "slug": "artist:kaidi-tatham",
+      "type": "artist",
+      "name": "Kaidi Tatham"
+    },
+    {
+      "slug": "artist:daz-i-kue",
+      "type": "artist",
+      "name": "Daz-I-Kue"
+    },
+    {
+      "slug": "artist:alex-phountzi",
+      "type": "artist",
+      "name": "Alex Phountzi"
+    },
+    {
+      "slug": "artist:cliff-scott",
+      "type": "artist",
+      "name": "Cliff Scott"
+    },
+    {
+      "slug": "artist:mark-force",
+      "type": "artist",
+      "name": "Mark Force"
+    },
+    {
+      "slug": "artist:matt-lord",
+      "type": "artist",
+      "name": "Matt Lord"
+    }
+  ]
+}

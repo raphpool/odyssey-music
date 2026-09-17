@@ -1,0 +1,288 @@
+{
+  "slug": "artist:rotterdam-terror-corps",
+  "name": "Rotterdam Terror Corps",
+  "editorial_article": "Rotterdam Terror Corps formed in 1993 in Rotterdam as a pioneering gabber act, originally consisting of DJs Distortion, MC Raw, DJ Reanimator, DJ Petrov, and DJ Rob. The group became notorious for incorporating erotic elements into their live shows, including pyrotechnics and performances by strippers. George Ruseler, known as DJ Distortion, serves as the main producer and is the only original member remaining in the act. Over their history, they have maintained a consistent presence on Megarave Records, producing albums such as their 1995 debut Three Wasted Souls and the 2005 release Schizophrenic. The group has frequently collaborated with other scene figures, including Neophyte, Bass-D, and The Headbanger, to further the sound of hard-hitting gabber and hardcore techno.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rotterdam_Terror_Corps",
+      "title": "Rotterdam Terror Corps - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:35.023Z",
+  "type": "artist",
+  "editorial_bio": "A seminal Dutch gabber act founded in 1993, Rotterdam Terror Corps remains a foundational force in hardcore techno, known for their high-energy productions and pyrotechnic-heavy live performances.",
+  "origin": "Rotterdam, Netherlands",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:megarave-records",
+      "type": "label",
+      "name": "Megarave Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-essence-of-hardcore",
+      "type": "project",
+      "name": "The Essence Of Hardcore",
+      "mbid": "b35064a3-5897-4ca3-81bf-4695c0d671f3",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:insane",
+      "type": "project",
+      "name": "Insane",
+      "mbid": "b762840e-c456-4c04-b6e0-f7a845377128",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rtc-is-the-legacy",
+      "type": "project",
+      "name": "RTC Is the Legacy",
+      "mbid": "4e063fcd-5042-4110-8926-1e8d6a810ab3",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:release-your-anger",
+      "type": "project",
+      "name": "Release Your Anger",
+      "mbid": "c64404b4-0da9-4f7f-b6ab-0f6b19275bd8",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-to-kill-another-one",
+      "type": "project",
+      "name": "Time to Kill Another One",
+      "mbid": "00ce032b-6963-4a43-ae46-211429504c62",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:giftbox",
+      "type": "project",
+      "name": "Giftbox",
+      "mbid": "c4f9eeff-b63e-35f9-9f25-bb95954e7e15",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:classics-limited-edition",
+      "type": "project",
+      "name": "Classics - Limited Edition",
+      "mbid": "3df4e0f5-1525-4400-b730-187c58bc7af9",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chaos-on-the-dancefloor",
+      "type": "project",
+      "name": "Chaos On The Dancefloor",
+      "mbid": "ac27c568-6df3-4e8a-851a-e96f35726d54",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unleash-hell",
+      "type": "project",
+      "name": "Unleash Hell",
+      "mbid": "8310ee0b-fefe-3123-840a-2071965a83c0",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:demonic-state",
+      "type": "project",
+      "name": "Demonic State",
+      "mbid": "9f8389c0-6399-4099-abc3-0a2fcb88ee90",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:schizophrenic",
+      "type": "project",
+      "name": "Schizophrenic",
+      "mbid": "60007f77-0b01-3cdd-91b9-5b098b29b807",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:special-series-first-dimension",
+      "type": "project",
+      "name": "Special Series - First Dimension",
+      "mbid": "de9d0f03-fb86-4646-ada9-7f1dde791dce",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:special-series-first-dimension",
+      "type": "project",
+      "name": "Special Series - First Dimension",
+      "mbid": "fceb0484-67e2-420b-8b0b-2a72fa8312bc",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:constrictor",
+      "type": "project",
+      "name": "Constrictor",
+      "mbid": "0025472f-0bdc-3236-8ab3-cafa5814fef3",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-dusk-till-doom",
+      "type": "project",
+      "name": "From Dusk Till Doom",
+      "mbid": "f75331a3-992f-313c-8600-726aa2abc929",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sick-and-twisted",
+      "type": "project",
+      "name": "Sick & Twisted",
+      "mbid": "50b47ed6-4294-48d3-a2a6-11f294b4febe",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sick-and-twisted",
+      "type": "project",
+      "name": "Sick & Twisted",
+      "mbid": "04d2c1df-a598-396f-8f73-83369a028f3b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:megarave",
+      "type": "project",
+      "name": "Megarave",
+      "mbid": "938122cf-2457-4046-8c0a-2471dbcecd3f",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:limited-edition",
+      "type": "project",
+      "name": "Limited Edition",
+      "mbid": "f99d1b05-65ea-45e3-ab6b-f70845eec4bb",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-horror",
+      "type": "project",
+      "name": "The Horror",
+      "mbid": "a00575c7-87fd-3c96-990f-28595cdeb6bc",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strictly-hardcore",
+      "type": "project",
+      "name": "Strictly Hardcore",
+      "mbid": "82f2732e-c635-30cb-a118-baf020d34349",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-dealing-with",
+      "type": "project",
+      "name": "You're Dealing With",
+      "mbid": "16dd7626-225c-4e0c-9193-b69687409c6e",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hardcore-slam",
+      "type": "project",
+      "name": "Hardcore Slam",
+      "mbid": "f448dfb5-3968-4abf-a4ce-5945f237b284",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hardcore-motherfuckers",
+      "type": "project",
+      "name": "Hardcore Motherfuckers",
+      "mbid": "213bc044-edd3-4ab9-9bd6-a74c16f5764b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three-waisted-souls",
+      "type": "project",
+      "name": "Three Waisted Souls",
+      "mbid": "7ed82643-b110-3615-a303-29057ca2393c",
+      "year": "1995",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:ready-for-war",
+      "type": "track",
+      "name": "Ready for War"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:neophyte",
+      "type": "artist",
+      "name": "Neophyte"
+    },
+    {
+      "slug": "artist:bass-d",
+      "type": "artist",
+      "name": "Bass-D"
+    },
+    {
+      "slug": "artist:the-headbanger",
+      "type": "artist",
+      "name": "The Headbanger"
+    },
+    {
+      "slug": "artist:dj-paul-elstak",
+      "type": "artist",
+      "name": "DJ Paul Elstak"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:rtc",
+      "type": "artist",
+      "name": "RTC"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:george-ruseler",
+      "type": "artist",
+      "name": "George Ruseler"
+    },
+    {
+      "slug": "artist:cyriel-brandon",
+      "type": "artist",
+      "name": "Cyriel Brandon"
+    },
+    {
+      "slug": "artist:dj-paul-elstak",
+      "type": "artist",
+      "name": "DJ Paul Elstak"
+    }
+  ]
+}

@@ -1,0 +1,773 @@
+{
+  "slug": "artist:paul-oakenfold",
+  "name": "Paul Oakenfold",
+  "editorial_article": "Born in 1963 in London, Paul Oakenfold rose to prominence in the early 1980s as a club DJ before becoming a central figure in the trance scene. His extensive discography includes studio efforts like the 2002 album Bunkka and numerous mixes such as the 1997 Global Underground 004 and 1998's Tranceport. Beyond his work as a solo artist and DJ, Oakenfold has helmed the Perfecto Records label and produced soundtracks for films including Swordfish, The Bourne Identity, and Collateral. He is known for prolific remixing, having provided reworks for artists ranging from Madonna and Britney Spears to Daft Punk and Hans Zimmer. Oakenfold's career also features significant collaborations across genres, including tracks with Aloe Blacc, Zhu, and Pharrell, as well as production work for TV themes like the Big Brother UK music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Paul_Oakenfold",
+      "title": "Paul Oakenfold - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Paul_Oakenfold_discography",
+      "title": "Paul Oakenfold discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:12.887Z",
+  "type": "artist",
+  "editorial_bio": "British record producer, trance DJ, and label founder influential in the evolution of electronic music since the 1980s.",
+  "origin": "London, England",
+  "active_years": "1980-present",
+  "genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    },
+    {
+      "slug": "genre:progressive-trance",
+      "type": "genre",
+      "name": "Progressive Trance",
+      "qid": "Q2260696"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:perfecto-records",
+      "type": "label",
+      "name": "Perfecto Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:1998",
+      "type": "project",
+      "name": "1998",
+      "mbid": "f2526960-110b-44a0-a53c-b503b365783d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:masquerade",
+      "type": "project",
+      "name": "Masquerade",
+      "mbid": "95807339-32a9-4e5e-8218-967aa63ec3ec",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ramsterdam",
+      "type": "project",
+      "name": "RAMsterdam",
+      "mbid": "ec47297f-9dcb-4aee-bc0c-55eb950bdaa6",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bullet-in-the-gun",
+      "type": "project",
+      "name": "Bullet in the Gun",
+      "mbid": "81af0ce3-9742-42e4-aae4-021ea635c5b1",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:orange",
+      "type": "project",
+      "name": "Orange",
+      "mbid": "a178ee14-2963-46cb-ab65-53eb7b90265c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-house-of-house",
+      "type": "project",
+      "name": "The House of House",
+      "mbid": "6e00d79e-7668-4220-8b4d-6f1bb10153bb",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paul-oakenfold-mini-mix",
+      "type": "project",
+      "name": "Paul Oakenfold Mini Mix",
+      "mbid": "255d5d02-ff14-45f7-92bb-8063e2710463",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bang-bang",
+      "type": "project",
+      "name": "Bang Bang",
+      "mbid": "ed47ae52-9971-4074-946c-abdfc84a0156",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:novacaine",
+      "type": "project",
+      "name": "Novacaine (Mixes)",
+      "mbid": "72564de3-ab73-46b1-b7b1-26f5365ecf77",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:novacaine",
+      "type": "project",
+      "name": "Novacaine",
+      "mbid": "f20f7e6d-4d99-4929-8088-ff929619ebe1",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-it",
+      "type": "project",
+      "name": "Lose It",
+      "mbid": "6a4bf841-18b7-430a-b19b-5b41f6782826",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:buenos-aires-to-london",
+      "type": "project",
+      "name": "Buenos Aires To London",
+      "mbid": "4b044169-9131-4c7f-97fe-24891ffcde56",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:london-to-buenos-aires",
+      "type": "project",
+      "name": "London To Buenos Aires",
+      "mbid": "74075ab0-d385-4213-be21-cb56f2a43e18",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dark-moon",
+      "type": "project",
+      "name": "Dark Moon",
+      "mbid": "042d4cae-10e6-406e-9ae1-47336e72c37c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:right-on-the-edge",
+      "type": "project",
+      "name": "Right On The Edge",
+      "mbid": "3456e89e-b2d0-493a-bc2b-a18870be08e3",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise-e-p",
+      "type": "project",
+      "name": "Rise E.P.",
+      "mbid": "fe36c537-7929-4270-9fc3-ab396ed21dd9",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:theme-for-great-cities",
+      "type": "project",
+      "name": "Theme For Great Cities (Revisited)",
+      "mbid": "1d115e28-0c8d-45e1-bcf3-745c2bfd5d3a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:concentrate",
+      "type": "project",
+      "name": "Concentrate",
+      "mbid": "9f6ef59b-5ff4-4f29-b2a1-79e2cc4d2aa9",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bullet-in-the-gun",
+      "type": "project",
+      "name": "Bullet In The Gun",
+      "mbid": "a4b86e6c-2d6b-4b5a-bc05-971f998d395a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hallucinate",
+      "type": "project",
+      "name": "Hallucinate",
+      "mbid": "1719309b-81b9-496a-bec1-0369d977ff12",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:southern-sun",
+      "type": "project",
+      "name": "Southern Sun (Metta & Glyde bootleg remix)",
+      "mbid": "80bde68e-9705-4656-b500-ed7509eea207",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pendulum",
+      "type": "project",
+      "name": "Pendulum",
+      "mbid": "ef4669fa-feaf-4d8e-b64f-483e2d44c1b0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ripples",
+      "type": "project",
+      "name": "Ripples",
+      "mbid": "1d0aab34-7d5e-4ef2-afef-cab167e0faa6",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-you-re-mine",
+      "type": "project",
+      "name": "Say You're Mine",
+      "mbid": "164f31db-3313-42bb-907b-6a001006bb4d",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-do-you-know",
+      "type": "project",
+      "name": "How Do You Know",
+      "mbid": "8b242d77-6092-4708-8f47-8ffefda0cf10",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:falling",
+      "type": "project",
+      "name": "Falling",
+      "mbid": "6c2ef85c-215c-4878-8e79-707212d833f4",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shine-on",
+      "type": "project",
+      "name": "Shine On (Remixes)",
+      "mbid": "2ec3cea9-fe06-471a-9f8b-12202acbf04f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-you-back",
+      "type": "project",
+      "name": "Love You Back",
+      "mbid": "2e03f1ff-54cb-4d42-b4da-cf0c2d2e4648",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shine-on",
+      "type": "project",
+      "name": "Shine On",
+      "mbid": "c05dea06-4dff-4f86-bac6-2b79c9a6fc0b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-into-it",
+      "type": "project",
+      "name": "I'm Into It",
+      "mbid": "f00c119a-f454-46ad-b29b-c9880802df13",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel",
+      "type": "project",
+      "name": "Angel",
+      "mbid": "834d5364-6c88-47ae-ab74-339c7eabdc1f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundtrek-mount-everest-a-musical-journey-by-paul-oakenfold",
+      "type": "project",
+      "name": "Soundtrek Mount Everest: A Musical Journey by Paul Oakenfold",
+      "mbid": "39426b65-1c70-443b-bab7-8c6dfa6f6a6d",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-in-love",
+      "type": "project",
+      "name": "I'm in Love",
+      "mbid": "e77a0717-f533-488c-a4f9-20a774b84e3c",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hypnotic",
+      "type": "project",
+      "name": "Hypnotic (Remixes)",
+      "mbid": "623d1635-c502-4c82-8ace-3b66b57da10d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-s-your-love-like",
+      "type": "project",
+      "name": "What's Your Love Like (Hip Hop mix)",
+      "mbid": "1586c175-512e-40c1-9997-35f6d4e2b086",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-s-your-love-like",
+      "type": "project",
+      "name": "What’s Your Love Like (original mix)",
+      "mbid": "07bdd2e5-3dc3-444c-9572-4b04e3fdc080",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-world-can-wait",
+      "type": "project",
+      "name": "The World Can Wait",
+      "mbid": "ae118543-854e-4de4-9b0e-707395c2db42",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-nights",
+      "type": "project",
+      "name": "Summer Nights",
+      "mbid": "9bc62d8b-b9a7-4d6e-aba4-e4969a18eb22",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stonehenge",
+      "type": "project",
+      "name": "Stonehenge",
+      "mbid": "5c0b5812-29df-4c9c-8cfd-cce87229269a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-in-the-moment",
+      "type": "project",
+      "name": "Lost In The Moment",
+      "mbid": "634d676b-ef24-4f43-bf39-edd989228675",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-us",
+      "type": "project",
+      "name": "Only Us",
+      "mbid": "0b060b0e-4d49-4309-8bae-fc6e47b26f34",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:full-moon-party",
+      "type": "project",
+      "name": "Full Moon Party",
+      "mbid": "5f8ad657-bf3c-49c9-8085-bad0bd5a98b7",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-slice-of-heaven",
+      "type": "project",
+      "name": "A Slice of Heaven",
+      "mbid": "7a21d49a-763e-49d3-91b7-f7c453079a7f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-escape",
+      "type": "project",
+      "name": "Love Escape",
+      "mbid": "7b16b67e-0496-4084-9037-58511cf923ec",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deep-space",
+      "type": "project",
+      "name": "Deep Space",
+      "mbid": "1f5f842b-ebd2-43c0-a226-d2c129322581",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreamstate-theme",
+      "type": "project",
+      "name": "Dreamstate Theme",
+      "mbid": "84be567d-8c7d-4d7d-ae96-34e1b429ba2d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:amnesia",
+      "type": "project",
+      "name": "Amnesia",
+      "mbid": "b67192e2-9910-4564-92cc-a0382699b782",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:waterfall",
+      "type": "project",
+      "name": "Waterfall",
+      "mbid": "cf2d6487-043f-4cf6-a938-89df23de5368",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-are",
+      "type": "project",
+      "name": "U Are (Festival Mix)",
+      "mbid": "b4499127-be7f-4b3b-9ef5-8e2414d9daaa",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bla-bla-bla",
+      "type": "project",
+      "name": "Bla Bla Bla",
+      "mbid": "d8fddfc7-d2ba-4aa4-b340-2a526fa2abf0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shanghai-baby",
+      "type": "project",
+      "name": "Shanghai Baby",
+      "mbid": "6645860d-e33f-44e8-9a14-c7fa9887937b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-are",
+      "type": "project",
+      "name": "U Are",
+      "mbid": "6f9c650d-2eba-4935-a365-00c3ee964e8b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:otherside",
+      "type": "project",
+      "name": "Otherside",
+      "mbid": "724de315-190d-4787-9f63-9072f54018d1",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dj-made-me-stay",
+      "type": "project",
+      "name": "The DJ Made Me Stay",
+      "mbid": "2f823f0b-1cd7-44f9-aece-89639d3b803a",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-could-be-happy",
+      "type": "project",
+      "name": "You Could Be Happy",
+      "mbid": "046c2937-a418-4942-89fa-866d29da4824",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-are-planet-perfecto-volume-04-fullonfluoro",
+      "type": "project",
+      "name": "We Are Planet Perfecto, Volume 04: #Fullonfluoro",
+      "mbid": "e7a70878-cd90-4843-891f-46665cb00a19",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:touch-me",
+      "type": "project",
+      "name": "Touch Me",
+      "mbid": "ecf35acc-012b-424a-a415-412359dbe453",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ibiza",
+      "type": "project",
+      "name": "Ibiza",
+      "mbid": "800bd1f4-d2cc-4d05-a725-e75cba5bf444",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:barber-s-adagio-for-strings",
+      "type": "project",
+      "name": "Barber's Adagio For Strings",
+      "mbid": "733b5f7c-a8fe-4552-8a3b-f251e3dd2140",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:madagascar",
+      "type": "project",
+      "name": "Madagascar",
+      "mbid": "4847d818-53d1-4b51-9c2a-70cb34f690c9",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trance-mission",
+      "type": "project",
+      "name": "Trance Mission",
+      "mbid": "38babd65-9425-4a5f-a43c-6785869872a1",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toca-me",
+      "type": "project",
+      "name": "Toca Me",
+      "mbid": "c930a826-c4f0-4e3b-bd75-d9dfd93c75a7",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cafe-del-mar",
+      "type": "project",
+      "name": "Cafe Del Mar",
+      "mbid": "22a253da-46fa-4599-95ec-de30ca15cb9e",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:awakening",
+      "type": "project",
+      "name": "Awakening",
+      "mbid": "493924e6-de90-4cf9-8b9d-e56c8a7ed156",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:theme-for-great-cities",
+      "type": "project",
+      "name": "Theme for Great Cities",
+      "mbid": "6b46882a-e06d-47de-9b5b-6c2efd01a944",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hold-that-sucker-down",
+      "type": "project",
+      "name": "Hold That Sucker Down",
+      "mbid": "76d216e2-3094-4c0e-ae04-842cc502a2c8",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreams",
+      "type": "project",
+      "name": "Dreams",
+      "mbid": "878ccdc6-8654-4683-b7a4-1ace7a59ebce",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beautiful-world",
+      "type": "project",
+      "name": "Beautiful World (Remixes)",
+      "mbid": "ffe2b55a-5db2-40b8-a175-0d8b32a06b7e",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:turn-it-on",
+      "type": "project",
+      "name": "Turn It On",
+      "mbid": "d6d04659-599f-4a91-99ce-102520841e84",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beautiful-world",
+      "type": "project",
+      "name": "Beautiful World",
+      "mbid": "6c68ac98-9762-4d0c-a574-8c41e0b68ce1",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-do-you-love",
+      "type": "project",
+      "name": "Who Do You Love",
+      "mbid": "f9a08d88-398a-474d-adf9-faeb11bd05e9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:higher",
+      "type": "project",
+      "name": "Higher",
+      "mbid": "54539974-651e-4d29-9315-f78fd4fe620d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:touch-the-sky",
+      "type": "project",
+      "name": "Touch The Sky",
+      "mbid": "f77396ba-7f07-4809-a631-bd545cc4ae11",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hollywood",
+      "type": "project",
+      "name": "Hollywood",
+      "mbid": "7edcc2ec-a2b6-44e8-bb76-100006a9ca77",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:top-of-the-world",
+      "type": "project",
+      "name": "Top of the World",
+      "mbid": "c581b36e-d8e9-40aa-aeeb-4129adb820e5",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:please-me",
+      "type": "project",
+      "name": "Please Me",
+      "mbid": "b5628210-ddf3-4a37-bafb-3ac634e39841",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:as-we-collide",
+      "type": "project",
+      "name": "As We Collide",
+      "mbid": "a2b0c2c9-679e-49c9-9e0f-999060993e40",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-lively-mind",
+      "type": "project",
+      "name": "A Lively Mind",
+      "mbid": "d543f0de-a376-3df9-a66d-ba339a0caac0",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bunkka",
+      "type": "project",
+      "name": "Bunkka",
+      "mbid": "80006664-bb78-3716-b1e7-5f3fddee4522",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bust-a-groove",
+      "type": "project",
+      "name": "Bust a Groove",
+      "mbid": "10f748c9-0086-3dec-b6ff-f445f621dd7d",
+      "year": "1994",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bullet-in-the-gun",
+      "type": "track",
+      "name": "Bullet in the Gun"
+    },
+    {
+      "slug": "track:southern-sun",
+      "type": "track",
+      "name": "Southern Sun"
+    },
+    {
+      "slug": "track:starry-eyed-surprise",
+      "type": "track",
+      "name": "Starry Eyed Surprise"
+    },
+    {
+      "slug": "track:faster-kill-pussycat",
+      "type": "track",
+      "name": "Faster Kill Pussycat"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:aloe-blacc",
+      "type": "artist",
+      "name": "Aloe Blacc"
+    },
+    {
+      "slug": "artist:zhu",
+      "type": "artist",
+      "name": "Zhu"
+    },
+    {
+      "slug": "artist:pharrell-williams",
+      "type": "artist",
+      "name": "Pharrell Williams"
+    },
+    {
+      "slug": "artist:matt-goss",
+      "type": "artist",
+      "name": "Matt Goss"
+    },
+    {
+      "slug": "artist:brittany-murphy",
+      "type": "artist",
+      "name": "Brittany Murphy"
+    },
+    {
+      "slug": "artist:ferry-corsten",
+      "type": "artist",
+      "name": "Ferry Corsten"
+    },
+    {
+      "slug": "artist:danny-rampling",
+      "type": "artist",
+      "name": "Danny Rampling"
+    },
+    {
+      "slug": "artist:dj-icey",
+      "type": "artist",
+      "name": "DJ Icey"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:planet-perfecto",
+      "type": "artist",
+      "name": "Planet Perfecto"
+    },
+    {
+      "slug": "artist:grace",
+      "type": "artist",
+      "name": "Grace"
+    },
+    {
+      "slug": "artist:electra",
+      "type": "artist",
+      "name": "Electra"
+    }
+  ],
+  "members": []
+}

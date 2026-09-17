@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:41:44.695Z",
   "type": "genre",
   "editorial_definition": "Electronic Dance Music (EDM) is a broad, inclusive umbrella category for a diverse range of percussion-heavy, synthesized musical genres primarily produced for nightclubs, raves, and festival environments.",
+  "qid": "Q851213",
   "era": "1970s-present",
   "origin": "Global (roots in US/Jamaica/Europe)",
   "parent_genres": [],
@@ -46,6 +47,30 @@
       "type": "genre",
       "name": "Drum and Bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:balearic-house",
+      "type": "genre",
+      "name": "Balearic House",
+      "qid": "Q2866725"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat",
+      "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore techno",
+      "qid": "Q388906"
     }
   ],
   "related_genres": [
@@ -99,6 +124,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q851213"
+  "landmark_tracks": []
 }

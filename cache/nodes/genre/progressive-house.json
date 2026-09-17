@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:42:00.287Z",
   "type": "genre",
   "editorial_definition": "A subgenre of house music characterized by its focus on gradual structural evolution, atmospheric layering, and a melodic, trance-infused approach that prioritizes long-form mixing over traditional, loop-heavy track construction.",
+  "qid": "Q915152",
   "era": "1990s–Present",
   "origin": "United Kingdom",
   "parent_genres": [],
@@ -39,6 +40,12 @@
       "type": "genre",
       "name": "Ambient House",
       "qid": "Q2465085"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
     }
   ],
   "key_artists": [
@@ -113,6 +120,5 @@
       "type": "track",
       "name": "Passion"
     }
-  ],
-  "qid": "Q915152"
+  ]
 }
