@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:36:23.314Z",
   "type": "genre",
   "editorial_definition": "Electronic music refers to any music primarily created, modified, or performed using electronic instruments and technology rather than traditional acoustic instruments.",
+  "qid": "Q9778",
   "parent_genres": [],
   "subgenres": [
     {
@@ -42,6 +43,12 @@
       "type": "genre",
       "name": "Drum and bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
     }
   ],
   "related_genres": [
@@ -174,6 +181,5 @@
       "type": "track",
       "name": "Windowlicker"
     }
-  ],
-  "qid": "Q9778"
+  ]
 }

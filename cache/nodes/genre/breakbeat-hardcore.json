@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:43:29.923Z",
   "type": "genre",
   "editorial_definition": "A high-energy UK rave genre from the early 1990s that fuses intense breakbeat drum patterns with acid-house synths, hoover leads, and euphoric melodic breakdowns.",
+  "qid": "Q1585075",
   "era": "1990s (Early)",
   "origin": "United Kingdom",
   "parent_genres": [],
@@ -42,6 +43,18 @@
       "slug": "genre:belgian-techno",
       "type": "genre",
       "name": "Belgian Techno"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore techno",
+      "qid": "Q388906"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
     }
   ],
   "key_artists": [
@@ -104,6 +117,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q1585075"
+  "landmark_tracks": []
 }

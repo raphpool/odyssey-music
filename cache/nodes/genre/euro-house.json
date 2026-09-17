@@ -1,0 +1,83 @@
+{
+  "slug": "genre:euro-house",
+  "name": "Euro House",
+  "editorial_article": "Euro House emerged in the late 1980s as a vocal-driven style of dance music across the European continent. Unlike the underground focus of Chicago house, the genre prioritized commercial appeal through catchy piano riffs and radio-ready vocal hooks. Producers often blended these elements with the high-energy aesthetics of the contemporary Eurodance scene to create a sound tailored for European clubs and pop radio. The style remains distinct for its focus on polish and accessibility, functioning as a bridge between localized electronic experiments and broader chart-oriented dance music of the 1990s.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/music/style/euro%20house?srsltid=AU7gw4UoGwe0bDzusMN0XXGbGxjKEYqWOMUwSVJRwqx5xdG-GbRlDkxU",
+      "title": "Euro House Style — 173,081 releases - Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/style/euro+house?srsltid=AU7gw4Uwiul1Vc9G2yWB16cWTcQvjyFyCUiNkF-5Qclld8BafLwGENee",
+      "title": "Euro House Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:48.374Z",
+  "type": "genre",
+  "editorial_definition": "A commercially oriented subgenre of house music originating in Europe during the late 1980s, characterized by melodic piano riffs and radio-friendly vocal hooks.",
+  "qid": "Q30917612",
+  "era": "late 1980s to 1990s",
+  "origin": "Europe",
+  "sonic_markers": "Catchy piano riffs, radio-friendly vocal hooks, polished production, commercial house rhythms",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House Music",
+      "qid": "Q20502"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:italo-house",
+      "type": "genre",
+      "name": "Italo-House",
+      "qid": "Q2702280"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:cappella",
+      "type": "artist",
+      "name": "Cappella"
+    },
+    {
+      "slug": "artist:house-master-boyz",
+      "type": "artist",
+      "name": "House Master Boyz"
+    },
+    {
+      "slug": "artist:the-rude-boy-of-house",
+      "type": "artist",
+      "name": "The Rude Boy of House"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:10-records",
+      "type": "label",
+      "name": "10 Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:house-nation",
+      "type": "track",
+      "name": "House Nation"
+    }
+  ]
+}

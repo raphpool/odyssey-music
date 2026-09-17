@@ -1,0 +1,379 @@
+{
+  "slug": "artist:plump-djs",
+  "name": "Plump DJs",
+  "editorial_article": "London duo Lee Rous and Andy Gardner helped establish the breakbeat sound in the late 1990s after meeting at the west London label Freskanova. Their debut 1999 release, \"Plump Chunks/Electric Disco,\" launched their presence on Finger Lickin' Records, a label that would host much of their early work. The pair gained international visibility through mix compilations like the 2001 Mixmag cover CD Elastic Breaks and the 2003 FabricLive 08 entry, which coincided with a decade-long residency at London's Fabric club. Their 2003 artist album Eargasm featured vocal contributions from Louise Rhodes and synth-work by Gary Numan. In 2010, the duo founded their own imprint, Grand Hotel, which they used to release their later material, including the single \"My Hi Tops\" and collaborations such as \"You Belong to Us\" with singer Juliette Ashby. Their live shows evolved to feature a four-deck performance technique, allowing for complex arrangements that they brought to festivals including Coachella and Glastonbury. Throughout their career, they have provided remix work for artists such as deadmau5, Fatboy Slim, and Orbital.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Plump_DJs",
+      "title": "Plump DJs - Wikipedia"
+    },
+    {
+      "url": "https://plumpdjs.co.uk/",
+      "title": "Plump DJs – Official website of the Plump DJs"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:31.703Z",
+  "type": "artist",
+  "editorial_bio": "London-based electronic duo Lee Rous and Andy Gardner, recognized for pioneering the late-90s breakbeat scene and a long-standing residency at Fabric.",
+  "origin": "London, England",
+  "active_years": "1998-present",
+  "genres": [
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grand-hotel",
+      "type": "label",
+      "name": "Grand Hotel"
+    },
+    {
+      "slug": "label:finger-lickin-records",
+      "type": "label",
+      "name": "Finger Lickin' Records"
+    },
+    {
+      "slug": "label:global-underground",
+      "type": "label",
+      "name": "Global Underground"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gotcha",
+      "type": "project",
+      "name": "Gotcha",
+      "mbid": "55a4db94-fe36-4612-8b84-23f202537ef2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:invincible",
+      "type": "project",
+      "name": "Invincible",
+      "mbid": "3ff49380-9ee7-4a3b-b87b-80c530045bd5",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voices-of-doom",
+      "type": "project",
+      "name": "Voices of Doom",
+      "mbid": "709df149-f5f7-4f31-8dba-ed4ad58e96e0",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-a-focus",
+      "type": "project",
+      "name": "Keep a Focus",
+      "mbid": "1a8df61f-1518-4c35-ae8a-2c8ebb35a77d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fear-the-funk",
+      "type": "project",
+      "name": "Fear the Funk",
+      "mbid": "98c2e4d6-7f73-471a-8844-728de8f6d0ae",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-your-mind",
+      "type": "project",
+      "name": "Lose Your Mind",
+      "mbid": "c9e11673-c5e5-46a3-bd25-b217c17a2ee8",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gobbstopper",
+      "type": "project",
+      "name": "Gobbstopper",
+      "mbid": "136ac93f-a18e-4501-95b5-f45baa69eb06",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:light-fantastic",
+      "type": "project",
+      "name": "Light Fantastic",
+      "mbid": "f706dd55-3fd7-4257-b0db-f1e01304c36a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hump-rock",
+      "type": "project",
+      "name": "Hump Rock",
+      "mbid": "f6c3ba7b-a7fb-4b9f-a178-17cc120abf97",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:volcano-coalition",
+      "type": "project",
+      "name": "Volcano Coalition",
+      "mbid": "1c323940-1aaf-4cda-89c7-b7f7035e3cdd",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-hi-tops",
+      "type": "project",
+      "name": "My Hi Tops",
+      "mbid": "649f7a4b-0991-4210-a80d-8b6f3cd11fe0",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shifting-gears-stanton-warriors-remix-rocket-soul",
+      "type": "project",
+      "name": "Shifting Gears (Stanton Warriors remix) / Rocket Soul",
+      "mbid": "5edffb22-7f43-401f-bf8a-05ee33acb3a2",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headthrash",
+      "type": "project",
+      "name": "Headthrash",
+      "mbid": "7e7089fb-5497-3c35-b0b6-0be7503a385f",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:torque-of-the-devil-take-the-weight",
+      "type": "project",
+      "name": "Torque of the Devil / Take the Weight",
+      "mbid": "1df09fb7-9ad7-38a8-943d-6cd5abe1b030",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snake-eyes-disco-unusual",
+      "type": "project",
+      "name": "Snake Eyes / Disco Unusual",
+      "mbid": "bbf9e757-34bc-3755-8834-bd60562a145d",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:system-addict-doppler",
+      "type": "project",
+      "name": "System Addict / Doppler",
+      "mbid": "5ba3a697-0ca8-3d38-84fa-611a23d3d8e8",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:electric-disko-loser",
+      "type": "project",
+      "name": "Electric Disko Loser",
+      "mbid": "4530f29b-2fe4-4dee-9b91-b8193d02c751",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mad-cow",
+      "type": "project",
+      "name": "Mad Cow",
+      "mbid": "c40b3ab1-2946-4200-8786-dfb2c3b795a6",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:electric-disco",
+      "type": "project",
+      "name": "Electric Disco (D. Ramirez remix)",
+      "mbid": "ea4b937c-6e5e-4582-8638-4ad7332b4797",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:finger-lickin-export-02-album-sampler",
+      "type": "project",
+      "name": "Finger Lickin' Export 02 Album Sampler",
+      "mbid": "86c1f1af-fe9d-40bc-abcf-58aeb484140f",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dr-dub-blackjack",
+      "type": "project",
+      "name": "Dr. Dub / Blackjack",
+      "mbid": "9551a6de-1cbb-47e0-92e8-241ca6379975",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-kinky-pressure",
+      "type": "project",
+      "name": "Get Kinky / Pressure",
+      "mbid": "5c1e3cdb-dd21-334d-be40-d2d9b6b4e779",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:redshift",
+      "type": "project",
+      "name": "Redshift",
+      "mbid": "34a4d13d-86b1-410c-80fb-82cae2a7270d",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-rub-off-acid-hustle",
+      "type": "project",
+      "name": "The Rub Off / Acid Hustle",
+      "mbid": "78b0d516-1234-3f84-8a08-de1ef81e9e3b",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soul-vibrates-bullet-train",
+      "type": "project",
+      "name": "Soul Vibrates / Bullet Train",
+      "mbid": "3b4c0f2a-a9d2-3d55-a792-7efba48ab9b6",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:creepshow",
+      "type": "project",
+      "name": "Creepshow",
+      "mbid": "0a58bdaf-981b-39cc-80d9-bc8d5f65a8b3",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pray-for-you",
+      "type": "project",
+      "name": "Pray for You",
+      "mbid": "bcf58b96-eaf3-4c0b-8961-2ae5dda6c149",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eargasm",
+      "type": "project",
+      "name": "Eargasm",
+      "mbid": "13d2d5ac-de92-3b12-99de-e72ea5883698",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-stereo-squeaks-and-bleeps",
+      "type": "project",
+      "name": "In Stereo / Squeaks & Bleeps",
+      "mbid": "af73ce97-0cc3-43df-a372-055ff35c9bf3",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-funk-hits-the-fan-the-gate",
+      "type": "project",
+      "name": "The Funk Hits The Fan / The Gate",
+      "mbid": "7d4c96e4-f732-4eda-81e5-31a9860a4e90",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eargasm-album-sampler",
+      "type": "project",
+      "name": "Eargasm Album Sampler",
+      "mbid": "e3bbcb40-822c-42a9-8cc6-280ef62886df",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-groovy-fucker-t-b-reality",
+      "type": "project",
+      "name": "Big Groovy Fucker / T.B. Reality",
+      "mbid": "db973d79-d395-375e-b967-1a69ebc9361d",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-push-remember-my-name",
+      "type": "project",
+      "name": "The Push / Remember My Name",
+      "mbid": "5316e5d7-c27f-34e2-b94d-34c06de9c6e9",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-plump-night-out-sampler-2",
+      "type": "project",
+      "name": "A Plump Night Out: Sampler 2",
+      "mbid": "4c07858a-18bb-3183-a8e0-3d61eb8ee09a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-plump-night-out-sampler-one",
+      "type": "project",
+      "name": "A Plump Night Out: Sampler One",
+      "mbid": "85fe0daf-87e0-4576-8381-eeddd03cbaf8",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:plumpy-chunks-electric-disco",
+      "type": "project",
+      "name": "Plumpy Chunks / Electric Disco",
+      "mbid": "45cdfd1f-852c-4e24-9709-d59dccf58c91",
+      "year": "1999",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:plump-chunks",
+      "type": "track",
+      "name": "Plump Chunks"
+    },
+    {
+      "slug": "track:electric-disco",
+      "type": "track",
+      "name": "Electric Disco"
+    },
+    {
+      "slug": "track:my-hi-tops",
+      "type": "track",
+      "name": "My Hi Tops"
+    },
+    {
+      "slug": "track:you-belong-to-us",
+      "type": "track",
+      "name": "You Belong to Us"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:lee-rous",
+      "type": "artist",
+      "name": "Lee Rous"
+    },
+    {
+      "slug": "artist:andy-gardner",
+      "type": "artist",
+      "name": "Andy Gardner"
+    }
+  ]
+}

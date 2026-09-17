@@ -1,7 +1,7 @@
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
@@ -243,6 +243,42 @@ describe("genre registry wiring (TRA-28)", () => {
 			const second = await runPipeline({ type: "artist", name: "Fixture Artist Two" }, deps);
 			const secondArtist = second.node as ArtistNode;
 			expect(secondArtist.genres[0]?.slug).toBe("genre:electronic-music");
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-XXX: researchTarget only pinned track/project/label searches to the MBID's MB
+// disambiguation before this fix — artist searches went out by name alone, so a homonym
+// (e.g. "Tracy Onne", MB-tagged as a Spanish makina DJ) could pull up an unrelated
+// Wikipedia page. With an mbid on the artist input, fetchArtistEntityMb's disambiguation
+// (and country/area) must now flow into the query sent to the search provider.
+describe("artist MB disambiguation hint (TRA-XXX)", () => {
+	const ARTIST_MBID = "11111111-2222-3333-4444-555555555555";
+
+	it(
+		"appends the MB disambiguation to the search query for an artist input with an mbid",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const runPipeline = await loadRunPipeline();
+			const [{ tavilySearch }, { fetchArtistEntityMb }] = await Promise.all([
+				import("../src/tools/tavily.js"),
+				import("../src/musicbrainz.js"),
+			]);
+			vi.mocked(fetchArtistEntityMb).mockImplementation(async () => ({
+				mbid: ARTIST_MBID,
+				name: "Fixture Artist",
+				country: "ES",
+				area: null,
+				disambiguation: "Spanish makina DJ",
+			}));
+
+			await runPipeline({ type: "artist", name: "Fixture Artist", mbid: ARTIST_MBID }, DEPS);
+
+			expect(tavilySearch).toHaveBeenCalledTimes(1);
+			const query = vi.mocked(tavilySearch).mock.calls[0]?.[1];
+			expect(query).toContain("Spanish makina DJ");
+			expect(query).toContain("ES");
 		},
 		TIMEOUT_MS,
 	);

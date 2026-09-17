@@ -1,0 +1,227 @@
+{
+  "slug": "artist:dj-slugo",
+  "name": "DJ Slugo",
+  "editorial_article": "Thomas Kendricks, known professionally as DJ Slugo, has been a key producer in the Chicago ghetto house scene for over three decades. His 1995 release Like It Raw on Dance Mania established a raw, stripped-back aesthetic that defined the regional style, featuring tracks like 'Pajamas' and 'Eat It.' In 1996, he followed up with Where The Rats, further cementing his role as a foundational figure in the development of the genre. His production approach often centers on repetitive, hard-hitting drum programming and minimalist, repetitive vocal hooks intended for dance floor movement. Along with contemporaries like DJ Funk and DJ Deeon, Slugo helped build the Dance Mania label into an essential outlet for Chicago's underground house music.",
+  "citations": [
+    {
+      "url": "https://chicagoreader.com/music/chicagoans-of-note/slugo-dance-mania-ghetto-house/",
+      "title": "DJ Slugo, ghetto house champion - Chicago Reader"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:25.019Z",
+  "type": "artist",
+  "editorial_bio": "Chicago ghetto house pioneer and veteran Dance Mania producer known for driving, minimalist dance floor tracks.",
+  "origin": "Chicago, Illinois",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto House",
+      "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:work-that-ep",
+      "type": "project",
+      "name": "Work That EP",
+      "mbid": "1b9b2f65-9607-4ecf-9221-981b310f57ca",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-shh-get-up",
+      "type": "project",
+      "name": "Ghetto Shh / Get Up",
+      "mbid": "2edb1307-0555-4d18-b114-2514ec3a2ec3",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wouldn-t-you-like-to-be-a-hoe-too",
+      "type": "project",
+      "name": "Wouldn't You Like To Be A Hoe Too",
+      "mbid": "a4eb351d-60dc-459b-a0d9-c94c64440008",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-da-fuck-up",
+      "type": "project",
+      "name": "Back Da Fuck Up",
+      "mbid": "c9f7c8d6-0b8b-4ec8-a031-da486cb0dcb3",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghetto",
+      "type": "project",
+      "name": "GHETTO",
+      "mbid": "381aa633-7fc6-470f-af26-21df91c5b9a2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-of-ghetto-house-ep",
+      "type": "project",
+      "name": "King of Ghetto House EP",
+      "mbid": "af6f8530-006e-4dae-bac7-1e214b992e48",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-classics-vol-4",
+      "type": "project",
+      "name": "Ghetto Classics Vol. 4",
+      "mbid": "cbff8873-b732-47e7-931f-1be8aac88fdd",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-switch-over",
+      "type": "project",
+      "name": "The Switch Over",
+      "mbid": "673c1e7f-5fc4-4b3e-b590-4b390a8adb4f",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:juke-chronicles-volume-3",
+      "type": "project",
+      "name": "Juke Chronicles, Volume 3",
+      "mbid": "e58fd129-f91c-454b-bab4-c815d8a8cf19",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:juke-chronicles-volume-1",
+      "type": "project",
+      "name": "Juke Chronicles, Volume 1",
+      "mbid": "0034dbb6-87a8-4cf8-a391-bba9d6231f59",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:juke-chronicles-volume-2",
+      "type": "project",
+      "name": "Juke Chronicles, Volume 2",
+      "mbid": "ed5a4f19-f80a-4ee0-b158-80772584fc62",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freaks-like-it-raw-part-3",
+      "type": "project",
+      "name": "Freaks Like It Raw, Part 3",
+      "mbid": "6e6b0507-8e9b-32e3-9100-7bb0363247dd",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:born-ghetto",
+      "type": "project",
+      "name": "Born Ghetto",
+      "mbid": "8696ccf4-9de1-405b-9f70-62381aff7e3e",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-94-from-detroit-to-chicago",
+      "type": "project",
+      "name": "I-94: From Detroit to Chicago",
+      "mbid": "5a473d95-de85-406c-b419-41b7d009f9ef",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-ghetto-tracks",
+      "type": "project",
+      "name": "Real Ghetto Tracks",
+      "mbid": "02add489-adc0-31c7-bac4-6b64100697f0",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:call-it-what-you-want-2",
+      "type": "project",
+      "name": "Call It What You Want 2",
+      "mbid": "19ee2617-ed6e-4de2-8452-975907d06faf",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:low-end-technics",
+      "type": "project",
+      "name": "Low End Technics",
+      "mbid": "3f6ea814-ee44-4fb2-97b1-ccacfe235e70",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hail-mary",
+      "type": "project",
+      "name": "Hail Mary",
+      "mbid": "4642b198-f5b3-4a1e-8ccc-3e2cc860ff30",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:taris-is-paris",
+      "type": "project",
+      "name": "Taris Is Paris",
+      "mbid": "ab498683-a60c-4721-a117-fa35c8262688",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:livin-that-ghetto-life",
+      "type": "project",
+      "name": "Livin' That Ghetto Life",
+      "mbid": "ecfd2a14-9709-459a-a328-792b55f810c7",
+      "year": "1995",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pajamas",
+      "type": "track",
+      "name": "Pajamas"
+    },
+    {
+      "slug": "track:eat-it",
+      "type": "track",
+      "name": "Eat It"
+    },
+    {
+      "slug": "track:clear-water",
+      "type": "track",
+      "name": "Clear Water"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

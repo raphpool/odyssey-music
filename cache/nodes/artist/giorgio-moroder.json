@@ -75,7 +75,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk"
+    }
+  ],
   "aliases": [],
   "members": []
 }

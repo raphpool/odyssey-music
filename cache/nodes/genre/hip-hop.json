@@ -26,11 +26,32 @@
   },
   "type": "genre",
   "editorial_definition": "A cultural and musical movement originating in 1970s New York, characterized by rhythmic vocal delivery (rapping) and beat-driven production, historically built on the pillars of DJing, MCing, breaking, and graffiti.",
+  "qid": "Q11401",
   "era": "1970s–Present",
   "origin": "The Bronx, New York City, USA",
   "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:dj-kool-herc",
@@ -75,6 +96,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q11401"
+  "landmark_tracks": []
 }

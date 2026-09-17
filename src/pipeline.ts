@@ -26,6 +26,7 @@ import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
 	fetchArtistDiscographyMb,
+	fetchArtistEntityMb,
 	fetchEntityGenresMb,
 	fetchLabelEntityMb,
 	fetchLabelMetaMb,
@@ -675,6 +676,27 @@ async function researchTarget(
 	log: PipelineLog,
 ): Promise<ResearchResult> {
 	let queryHint = "";
+	// Disambiguation for artist nodes (TRA-XXX, 2026-09-17): researchTarget only pinned
+	// track/project/label searches to the MBID's disambiguation + country before this fix —
+	// artist searches went out by name alone. A homonym (e.g. "Tracy Onne", MB-tagged as a
+	// Spanish makina DJ) then pulled up an unrelated Wikipedia page (Tracy Lawrence, the US
+	// country singer) and the LLM happily wrote a biography for the wrong person under the
+	// requested slug. MB fields are third-party data (CLAUDE.md: validate before use) — keep
+	// only strings, truncated, and treat lookup failure as non-fatal like the other blocks.
+	if (input.mbid && input.type === "artist") {
+		try {
+			const ent = await fetchArtistEntityMb(input.mbid);
+			if (ent) {
+				const parts: string[] = [];
+				if (ent.disambiguation) parts.push(ent.disambiguation.slice(0, 80));
+				const place = ent.country ?? ent.area;
+				if (place) parts.push(place.slice(0, 40));
+				if (parts.length > 0) queryHint = ` ${parts.join(" ")}`;
+			}
+		} catch {
+			// non-fatal
+		}
+	}
 	if (input.mbid && input.type === "track") {
 		try {
 			const meta = await fetchTrackMetaMb(input.mbid);

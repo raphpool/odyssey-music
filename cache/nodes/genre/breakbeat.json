@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:46:44.940Z",
   "type": "genre",
   "editorial_definition": "A broad style of electronic music defined by its use of syncopated, sampled drum loops—'breaks'—originating from funk and soul records, which break away from standard 4/4 rhythmic structures.",
+  "qid": "Q663519",
   "era": "1970s–Present",
   "origin": "United States (Hip-hop) / United Kingdom (Rave)",
   "sonic_markers": "Syncopated drum loops, heavy use of sampling, organic drum textures (funk/jazz origins), complex percussion patterns, typically 110–175 BPM.",
@@ -84,6 +85,11 @@
       "type": "genre",
       "name": "Breakcore",
       "qid": "Q903735"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
     }
   ],
   "key_artists": [
@@ -138,6 +144,5 @@
       "type": "track",
       "name": "Funky Drummer"
     }
-  ],
-  "qid": "Q663519"
+  ]
 }

@@ -15,11 +15,19 @@
   "materialized_at": "2026-05-13T12:55:05.004Z",
   "type": "genre",
   "editorial_definition": "Trip hop is an atmospheric, downtempo electronic genre that blends slow-tempo hip-hop, breakbeats, and elements of jazz, soul, and dub into a melancholic, cinematic soundscape. Originating in Bristol, UK, in the early 1990s, it is known for its experimental use of sampling and mood-driven production.",
+  "qid": "Q205560",
   "era": "1990s",
   "origin": "Bristol, England",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:massive-attack",
@@ -87,6 +95,5 @@
       "type": "track",
       "name": "Protection"
     }
-  ],
-  "qid": "Q205560"
+  ]
 }

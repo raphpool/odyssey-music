@@ -1,0 +1,118 @@
+{
+  "slug": "genre:ghetto-house",
+  "name": "Ghetto House",
+  "editorial_article": "Emerging from the Chicago house scene around 1992, Ghetto house—often called booty house—defined itself through minimal production using Roland TR-808 and TR-909 drum machines. Tracks frequently adapted the structural template of Cajmere's 'It's Time for the Percolator,' layering raw, repetitive vocal samples and sexually explicit lyrics over four-to-the-floor or syncopated beats. Pioneered by artists like DJ Deeon, DJ Funk, and Parris Mitchell, the sound was synonymous with the output of the Dance Mania label. Production remained purposefully bare-bones, often relying on little to no effects processing to maintain a gritty, lo-fi aesthetic that prioritized dancefloor energy. This subgenre eventually acted as a foundational precursor to faster, more fragmented styles such as Chicago juke and footwork.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ghetto_house",
+      "title": "Ghetto house - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/ghetto+house?srsltid=AU7gw4Vwp103hSxJRlYayb_NXocyMO1Zd_Z6CD1637odQFoV6zYrOrLw",
+      "title": "Ghetto House Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:10.135Z",
+  "type": "genre",
+  "editorial_definition": "A raw, minimal subgenre of Chicago house music defined by Roland drum machine patterns, repetitive vocal samples, and explicit, sexually-charged lyrics.",
+  "qid": "Q2748817",
+  "era": "early 1990s to late 1990s",
+  "origin": "Chicago, Illinois, United States",
+  "sonic_markers": "4/4 kick drums, Roland TR-808/909 percussion, lo-fi production, repetitive vocal samples, minimal synth usage.",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House music",
+      "qid": "Q20502"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:juke",
+      "type": "genre",
+      "name": "Juke",
+      "qid": "Q24885387"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork",
+      "qid": "Q5466607"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:juke",
+      "type": "genre",
+      "name": "Juke",
+      "qid": "Q24885387"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork",
+      "qid": "Q5466607"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-deeon",
+      "type": "artist",
+      "name": "DJ Deeon"
+    },
+    {
+      "slug": "artist:dj-funk",
+      "type": "artist",
+      "name": "DJ Funk"
+    },
+    {
+      "slug": "artist:parris-mitchell",
+      "type": "artist",
+      "name": "Parris Mitchell"
+    },
+    {
+      "slug": "artist:jammin-gerald",
+      "type": "artist",
+      "name": "Jammin' Gerald"
+    },
+    {
+      "slug": "artist:dj-slugo",
+      "type": "artist",
+      "name": "DJ Slugo"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:it-s-time-for-the-percolator",
+      "type": "track",
+      "name": "It's Time for the Percolator"
+    }
+  ]
+}
