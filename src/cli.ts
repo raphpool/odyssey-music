@@ -3,7 +3,14 @@ import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Command } from "commander";
 import { cliConfig } from "./config.js";
-import { type CrawlOptions, type CrawlProgress, crawl, crawlGenreSeeds, refreshGenre } from "./crawler.js";
+import {
+	backfillSeedGenres,
+	type CrawlOptions,
+	type CrawlProgress,
+	crawl,
+	crawlGenreSeeds,
+	refreshGenre,
+} from "./crawler.js";
 import { type ApiEnv, loadEnv } from "./env.js";
 import { type GenreSeed, type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
 import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } from "./genre-taxonomy.js";
@@ -20,7 +27,7 @@ type GenreTaxonomy = {
 
 type CliMode =
 	| { kind: "text"; seed: string; maxDepth: number }
-	| { kind: "genre-seeds"; path: string; genreId?: string; family?: string }
+	| { kind: "genre-seeds"; path: string; genreId?: string; family?: string; backfill?: boolean }
 	| { kind: "genre-refresh"; slug: string; genreSeedsPath?: string };
 
 type GenreSeedRunner = (options: CrawlOptions, seeds: GenreSeeds) => Promise<Record<string, unknown>>;
@@ -32,6 +39,7 @@ type CliModeOptions = {
 	family?: string;
 	refreshGenre?: string;
 	maxDepth?: number;
+	backfillSeedGenres?: boolean;
 };
 
 // TRA-242: --search-provider is validated up front, before loadEnv() or any network call, so
@@ -56,6 +64,11 @@ export function buildCrawlDeps(searchProvider: "tavily" | "firecrawl", env: ApiE
 export function resolveCliMode(options: CliModeOptions): CliMode {
 	const selectorCount = [options.genreId, options.family].filter((value) => value !== undefined).length;
 
+	// TRA-263: the backfill mode only rewrites nodes already read from a --genre-seeds plan --
+	// it has no seed source of its own.
+	if (options.backfillSeedGenres && options.genreSeeds === undefined) {
+		throw new Error("--backfill-seed-genres requires --genre-seeds");
+	}
 	if (
 		options.seed !== undefined &&
 		(options.genreSeeds !== undefined || options.refreshGenre !== undefined)
@@ -81,10 +94,20 @@ export function resolveCliMode(options: CliModeOptions): CliMode {
 			throw new Error("--genre-seeds requires exactly one of --genre-id or --family");
 		}
 		if (options.genreId !== undefined) {
-			return { kind: "genre-seeds", path: options.genreSeeds, genreId: options.genreId };
+			return {
+				kind: "genre-seeds",
+				path: options.genreSeeds,
+				genreId: options.genreId,
+				...(options.backfillSeedGenres ? { backfill: true } : {}),
+			};
 		}
 		if (options.family !== undefined) {
-			return { kind: "genre-seeds", path: options.genreSeeds, family: options.family };
+			return {
+				kind: "genre-seeds",
+				path: options.genreSeeds,
+				family: options.family,
+				...(options.backfillSeedGenres ? { backfill: true } : {}),
+			};
 		}
 	}
 	if (selectorCount > 0) {
@@ -158,6 +181,11 @@ program
 	.option("--genre-id <id>", "Select one genre seed by taxonomy ID")
 	.option("--family <key>", "Select all genre seeds in one taxonomy family")
 	.option("--refresh-genre <slug>", "Refresh one cached genre without traversing its references")
+	.option(
+		"--backfill-seed-genres",
+		"With --genre-seeds, relink cached targets missing their folder's genre edge (no pipeline calls)",
+		false,
+	)
 	.option("-d, --max-depth <n>", "Max BFS depth", (v) => Number.parseInt(v, 10))
 	.requiredOption("-n, --max-nodes <n>", "Max total nodes to materialize", (v) => Number.parseInt(v, 10))
 	.requiredOption("-o, --out <dir>", "Output cache directory")
@@ -202,6 +230,7 @@ program
 			genreId?: string;
 			family?: string;
 			refreshGenre?: string;
+			backfillSeedGenres: boolean;
 			maxDepth?: number;
 			maxNodes: number;
 			out: string;
@@ -218,7 +247,14 @@ program
 		}) => {
 			const mode = resolveCliMode(opts);
 			const searchProvider = resolveSearchProvider(opts.searchProvider);
-			const env = loadEnv({ searchProvider });
+			const isBackfill = mode.kind === "genre-seeds" && mode.backfill === true;
+			// TRA-263: backfillSeedGenres makes no pipeline or search call (it only relinks nodes
+			// already on disk), so it needs none of the provider API keys loadEnv() would
+			// otherwise require -- forcing them here would block a pure cache-maintenance run in
+			// an environment that never configured Gemini/Tavily/Firecrawl.
+			const deps: PipelineDeps = isBackfill
+				? { tavilyApiKey: "", firecrawlApiKey: "" }
+				: buildCrawlDeps(searchProvider, loadEnv({ searchProvider }));
 			const t0 = Date.now();
 			const strategy: "bfs" | "popularity" | "hybrid" =
 				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
@@ -231,7 +267,7 @@ program
 				heartbeatMs: opts.heartbeatMs,
 				strategy,
 				bfsHead: opts.bfsHead,
-				deps: buildCrawlDeps(searchProvider, env),
+				deps,
 			};
 			if (!opts.quiet) {
 				base.logger = (line: string): void => {
@@ -260,7 +296,9 @@ program
 				const taxonomy = await readGenreTaxonomy(taxonomyPath);
 				const seeds = await loadGenreSeeds(mode.path, taxonomyPath);
 				const selected = selectGenreSeeds(seeds, mode, taxonomy);
-				const result = await runGenreSeedCrawl(base, selected);
+				const result = mode.backfill
+					? await backfillSeedGenres(base, selected)
+					: await runGenreSeedCrawl(base, selected);
 				process.stdout.write(
 					`${JSON.stringify(
 						{

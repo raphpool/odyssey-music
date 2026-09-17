@@ -1,0 +1,763 @@
+{
+  "slug": "artist:wildstylez",
+  "name": "Wildstylez",
+  "editorial_article": "Born Joram Metekohy in Veenendaal, Netherlands, in 1983, Wildstylez has operated as a leading force in the hardstyle scene since his 2007 debut on Scantraxx Reloaded with the single 'Life'z a Bitch/Missin'. He gained widespread recognition in 2008 through Project One, a collaborative venture with Headhunterz that produced a 13-track self-titled debut album and a notable performance at Defqon.1. His 2012 collaboration with vocalist Niels Geusebroek, 'Year of Summer', achieved platinum status in the Netherlands and marked a crossover into mainstream radio, later becoming the first hardstyle track included in the Dutch Top 2000. Metekohy has founded multiple labels throughout his career, including Digital:Age with Noisecontrollers, the artist-run Lose Control Music, and, in 2018, Art of Creation with Headhunterz. His 2015 solo album, 'Lose Control', featured contributions from producers including Audiotricz and Brennan Heart, while his 2022 release 'Typically Dutch' saw him pivot toward trance elements in a collaboration with Armin van Buuren.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Wildstylez",
+      "title": "Wildstylez - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:38.860Z",
+  "type": "artist",
+  "editorial_bio": "Dutch hardstyle producer and label founder known for his long-standing collaboration with Headhunterz as Project One and his breakthrough 2012 platinum hit 'Year of Summer'.",
+  "origin": "Veenendaal, Netherlands",
+  "active_years": "2007-present",
+  "genres": [
+    {
+      "slug": "genre:hardstyle",
+      "type": "genre",
+      "name": "Hardstyle",
+      "qid": "Q223840"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:scantraxx",
+      "type": "label",
+      "name": "Scantraxx"
+    },
+    {
+      "slug": "label:lose-control-music",
+      "type": "label",
+      "name": "Lose Control Music"
+    },
+    {
+      "slug": "label:art-of-creation",
+      "type": "label",
+      "name": "Art of Creation"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:love",
+      "type": "project",
+      "name": "LOVE",
+      "mbid": "8c763088-bfe8-416e-92c0-00cc29f9f593",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-back-down",
+      "type": "project",
+      "name": "Never Back Down",
+      "mbid": "67afe7f0-3819-43be-90ab-16c2c60e8797",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-on-my-own",
+      "type": "project",
+      "name": "Here on My Own",
+      "mbid": "d99cc52d-0542-485b-9a10-376d9fbb8350",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:created-by-legends",
+      "type": "project",
+      "name": "Created by Legends",
+      "mbid": "615ce685-6813-4025-b91d-18537e4e5d85",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunrise",
+      "type": "project",
+      "name": "Sunrise",
+      "mbid": "b7e92fb9-3308-472f-b76c-d288248faaef",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hollow",
+      "type": "project",
+      "name": "Hollow",
+      "mbid": "b58af5cc-645c-4504-ba8f-f714d2eadffc",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:defiance",
+      "type": "project",
+      "name": "Defiance",
+      "mbid": "b75615f3-0cc6-44d7-8f64-bf84ffbb59e5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:games-of-destiny",
+      "type": "project",
+      "name": "Games of Destiny (Knockout Outdoor 2024 Anthem)",
+      "mbid": "331f53e9-22e8-4cf8-a14b-7dd638193dff",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:favourite-song",
+      "type": "project",
+      "name": "Favourite Song",
+      "mbid": "204f6a49-60de-45ea-907f-0d570abc5537",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-showdown",
+      "type": "project",
+      "name": "The Showdown",
+      "mbid": "c0cff663-6e92-4ff3-9eab-36a440b55efe",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-for-a-day",
+      "type": "project",
+      "name": "King for a Day",
+      "mbid": "95357af1-6ddc-4357-b26b-dcfc0ceeace3",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:xtc",
+      "type": "project",
+      "name": "XTC",
+      "mbid": "18e8c0de-1944-48d1-ad63-a6c3e3f6a977",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-for-cover",
+      "type": "project",
+      "name": "Run for Cover",
+      "mbid": "8b5e0d57-73a1-4bf0-9f78-4047a4cf17db",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-coming-down",
+      "type": "project",
+      "name": "Never Coming Down",
+      "mbid": "6191e168-91ce-4aac-87db-c8cabe23d896",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:glorious",
+      "type": "project",
+      "name": "Glorious",
+      "mbid": "90d87fb4-b685-435d-a25a-00a3100a2f02",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:typically-dutch",
+      "type": "project",
+      "name": "Typically Dutch",
+      "mbid": "1ea86656-dd6d-4e4d-9e49-aea03c50b8de",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hero",
+      "type": "project",
+      "name": "Hero",
+      "mbid": "a631d93d-5021-4117-997a-f4043dad7e79",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wknd",
+      "type": "project",
+      "name": "WKND!",
+      "mbid": "b6c976a5-2fca-47d5-aad7-0080dc1d8905",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-unknown",
+      "type": "project",
+      "name": "The Unknown",
+      "mbid": "f36dbd40-79f1-4346-82e3-01f5c0b9329f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sanctuary",
+      "type": "project",
+      "name": "Sanctuary",
+      "mbid": "92ec7579-d89d-420b-8ab2-3ef6693dcd86",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:edge-of-darkness",
+      "type": "project",
+      "name": "Edge of Darkness",
+      "mbid": "967f26a0-fcec-4502-8554-1efeb6002db2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warriors",
+      "type": "project",
+      "name": "Warriors",
+      "mbid": "19cf73e6-a380-4dfa-8828-eeeea2dd14a0",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-the-ground",
+      "type": "project",
+      "name": "Shake the Ground",
+      "mbid": "9b773fa0-ce9c-44cc-a4c3-e412e484da05",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deeper-than-the-ocean",
+      "type": "project",
+      "name": "Deeper Than the Ocean",
+      "mbid": "fa46df13-f474-4a17-880d-f592a65246b6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:children-of-drums",
+      "type": "project",
+      "name": "Children of Drums (Headhunterz remix)",
+      "mbid": "3a9e43b5-3cd2-4348-b441-cde35d0a7d60",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-bring-us-down",
+      "type": "project",
+      "name": "Never Bring Us Down",
+      "mbid": "79bb90c4-5a39-4a56-aca3-9c7c682a1c80",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:adrenaline",
+      "type": "project",
+      "name": "Adrenaline",
+      "mbid": "ac1dfe98-53bb-42cf-b126-3d664a7d0e80",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exist",
+      "type": "project",
+      "name": "Exist",
+      "mbid": "93c5d8a7-7f51-4aaa-9545-fa5ba0a428d1",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:200-dreams-ep",
+      "type": "project",
+      "name": "200 Dreams EP",
+      "mbid": "479fe2ef-aea2-4a41-9a8d-46276b665ee4",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:into-the-wild",
+      "type": "project",
+      "name": "Into the Wild",
+      "mbid": "8627be93-7d40-481e-9e7b-24725334df2a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:untamable",
+      "type": "project",
+      "name": "Untamable",
+      "mbid": "0e6e3a1d-d3ca-488b-9a71-359e9b190c52",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wolves-cry",
+      "type": "project",
+      "name": "Wolves Cry",
+      "mbid": "9c0dbf6c-5c81-4bea-afd7-cc4592b76e18",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-with-the-wolves",
+      "type": "project",
+      "name": "Run With the Wolves",
+      "mbid": "41ba6ba3-b632-4ce9-9be4-18b1d435988a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbeat",
+      "type": "project",
+      "name": "Heartbeat",
+      "mbid": "feaecfa1-18b4-494a-86db-b4aad2171588",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shine-a-light",
+      "type": "project",
+      "name": "Shine a Light",
+      "mbid": "81930db7-e756-4c41-a3bd-eec598726cf4",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encore",
+      "type": "project",
+      "name": "Encore (Acoustic Version)",
+      "mbid": "84ed941c-47f6-48ff-9a53-b811270e07e4",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:broken",
+      "type": "project",
+      "name": "Broken (Wildstylez remix)",
+      "mbid": "0fa4fee4-2dbb-4cdb-91ff-dcf9dbbf4295",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:children-of-drums-ep",
+      "type": "project",
+      "name": "Children of Drums EP",
+      "mbid": "cb0a13d4-9590-4503-a288-73d38db4f578",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:colours-of-the-night",
+      "type": "project",
+      "name": "Colours of the Night",
+      "mbid": "b5664206-26c0-41ac-b471-901d02e745ce",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:temple-of-light",
+      "type": "project",
+      "name": "Temple of Light (Qlimax 2017 Anthem)",
+      "mbid": "8d2d82f8-372e-4322-b772-c06f588e87d0",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-i-come",
+      "type": "project",
+      "name": "Here I Come",
+      "mbid": "4725251a-46ea-41e9-8d20-86cae957c42b",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-wild-go-hard",
+      "type": "project",
+      "name": "Get Wild Go Hard",
+      "mbid": "79193142-6f39-42ec-a715-90eac3ff6d1e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-habits",
+      "type": "project",
+      "name": "Bad Habits",
+      "mbid": "b779904f-e190-4652-9276-3b595dc69745",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-the-crowd-move",
+      "type": "project",
+      "name": "Make the Crowd Move",
+      "mbid": "2d8ce74b-c7ca-456a-b053-a68e85d36ffc",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encore",
+      "type": "project",
+      "name": "Encore",
+      "mbid": "40aa7f0f-6429-4700-b328-7ada8aed86e3",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn-it-down",
+      "type": "project",
+      "name": "Burn It Down",
+      "mbid": "6559070b-f053-4cae-a8aa-9be0114fbf38",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unleash-the-beast",
+      "type": "project",
+      "name": "Unleash the Beast (Defqon.1 Chile Anthem 2015)",
+      "mbid": "adc24803-bd9f-4c29-a9cb-c2788cef453c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lies-or-truth",
+      "type": "project",
+      "name": "Lies or Truth",
+      "mbid": "bad7293d-abcf-4c50-a95a-846c739341ea",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roots-forever",
+      "type": "project",
+      "name": "Roots / Forever (TNT remix)",
+      "mbid": "9ea71d47-bfc1-442d-bd0c-2636693baa2c",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lose-control",
+      "type": "project",
+      "name": "Lose Control",
+      "mbid": "2c6ab8f2-392d-42c5-8b81-e165a31eb1fd",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turn-the-music-up",
+      "type": "project",
+      "name": "Turn the Music Up!",
+      "mbid": "eb71bd5f-f0e2-4300-a06a-2d39ad9ba492",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:r-u-s-h",
+      "type": "project",
+      "name": "R.U.S.H. (#StartAgain Edit)",
+      "mbid": "1ead1001-29e8-4f7b-8c9f-a3e96def3daf",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:falling-to-forever",
+      "type": "project",
+      "name": "Falling to Forever",
+      "mbid": "83740c6d-d098-4f0f-bcb9-2a6bd4d9b8bc",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-home",
+      "type": "project",
+      "name": "This Is Home",
+      "mbid": "1c72ca07-85ea-4706-9017-eb4c90a8b42a",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cats-jets-and-breaks",
+      "type": "project",
+      "name": "Cats, Jets & Breaks",
+      "mbid": "686dc335-77bf-48c3-af68-20c3776b88b2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-to-history",
+      "type": "project",
+      "name": "Back To History",
+      "mbid": "4983c574-b349-4166-8417-762d8118b3fc",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-control",
+      "type": "project",
+      "name": "Lose Control",
+      "mbid": "dff9ce5e-ebf5-4598-8d76-cb2b683bf469",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lights-go-out",
+      "type": "project",
+      "name": "Lights Go Out",
+      "mbid": "dfa6c1fe-c93e-4c79-a56c-039a4c8c9098",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:timeless",
+      "type": "project",
+      "name": "Timeless",
+      "mbid": "306b4c2f-6849-4e8e-b689-d5570308c452",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-it-s-like",
+      "type": "project",
+      "name": "What It's Like",
+      "mbid": "660308b5-972d-4e06-b001-1551b322e522",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-rebel-freedom",
+      "type": "project",
+      "name": "True Rebel Freedom (Defqon.1 Australia 2012 Anthem)",
+      "mbid": "9fd7ce45-d949-4437-8757-38c640a9fc1d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:leave-it-all-behind",
+      "type": "project",
+      "name": "Leave It All Behind",
+      "mbid": "1fccc9ce-aa0f-4aab-b555-6a105bce8db5",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:year-of-summer",
+      "type": "project",
+      "name": "Year of Summer",
+      "mbid": "3b787fc7-7aee-480d-9ce4-af86858a9280",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:world-of-madness",
+      "type": "project",
+      "name": "World of Madness (Defqon.1 2012 Anthem)",
+      "mbid": "7bee65e2-fa02-4ced-91f6-3fdf5fb05ea0",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-my-mind",
+      "type": "project",
+      "name": "Lose My Mind",
+      "mbid": "a65d4dc7-d9d4-419b-ad43-446509d8a719",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lonely",
+      "type": "project",
+      "name": "Lonely",
+      "mbid": "fca970a9-f9c7-4750-b883-def319115eda",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-see-stars",
+      "type": "project",
+      "name": "I See Stars",
+      "mbid": "a0c98ab0-58a4-413d-8f79-f08644e49a8b",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:into-the-light",
+      "type": "project",
+      "name": "Into the Light",
+      "mbid": "21b1f18b-a58b-4101-881f-a0f5253288d7",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-2-basics",
+      "type": "project",
+      "name": "Back 2 Basics",
+      "mbid": "a0d4ab47-ec29-446e-bbea-83ca50fdc0a0",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:huh",
+      "type": "project",
+      "name": "Huh?",
+      "mbid": "7849d321-41bc-4366-9793-9d36cf354bb1",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stardust",
+      "type": "project",
+      "name": "Stardust",
+      "mbid": "e754bc50-b92b-444c-874b-d691e14a0188",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-different-story",
+      "type": "project",
+      "name": "A Different Story",
+      "mbid": "a33354f6-7a9c-48d1-af33-7cfb409cb380",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:midify-hard-dance-awards-sampler-2011",
+      "type": "project",
+      "name": "Midify: Hard Dance Awards Sampler 2011",
+      "mbid": "9b96a5f0-edf6-4ab6-84fb-cf6108330860",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:feedback-delay-distortion",
+      "type": "project",
+      "name": "Feedback / Delay Distortion",
+      "mbid": "7f688f27-3dd3-4f46-93e9-84405601f453",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lost-in-music",
+      "type": "project",
+      "name": "Lost In Music",
+      "mbid": "8e5d2fb1-d2e2-435f-8da7-5ac207dd5e30",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-time-to-waste",
+      "type": "project",
+      "name": "No Time to Waste (Defqon.1 2010 Anthem)",
+      "mbid": "0a79ac25-e887-466e-9c43-887e66fbde16",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-and-out",
+      "type": "project",
+      "name": "In & Out",
+      "mbid": "eaeea8b7-5f7f-46f3-9023-f6d050bb97e0",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reputation-game",
+      "type": "project",
+      "name": "Reputation Game",
+      "mbid": "e3279de1-09e3-4776-972e-7c6d32ab9032",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scantraxx-special-027-sampler",
+      "type": "project",
+      "name": "Scantraxx Special 027: Sampler",
+      "mbid": "500a609e-a184-479c-9edc-71b196eabf7a",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:push-that-feeling-k-y-h-u",
+      "type": "project",
+      "name": "Push That Feeling / K.Y.H.U. (Noisecontrollers Rmx)",
+      "mbid": "bd275cbc-eba3-40ad-b325-52941e98a64a",
+      "year": "2009",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:year-of-summer",
+      "type": "track",
+      "name": "Year of Summer"
+    },
+    {
+      "slug": "track:lose-my-mind",
+      "type": "track",
+      "name": "Lose My Mind"
+    },
+    {
+      "slug": "track:no-time-to-waste",
+      "type": "track",
+      "name": "No Time to Waste"
+    },
+    {
+      "slug": "track:shine-a-light",
+      "type": "track",
+      "name": "Shine A Light"
+    },
+    {
+      "slug": "track:typically-dutch",
+      "type": "track",
+      "name": "Typically Dutch"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:headhunterz",
+      "type": "artist",
+      "name": "Headhunterz"
+    },
+    {
+      "slug": "artist:noisecontrollers",
+      "type": "artist",
+      "name": "Noisecontrollers"
+    },
+    {
+      "slug": "artist:brennan-heart",
+      "type": "artist",
+      "name": "Brennan Heart"
+    },
+    {
+      "slug": "artist:max-enforcer",
+      "type": "artist",
+      "name": "Max Enforcer"
+    },
+    {
+      "slug": "artist:hardwell",
+      "type": "artist",
+      "name": "Hardwell"
+    },
+    {
+      "slug": "artist:armin-van-buuren",
+      "type": "artist",
+      "name": "Armin van Buuren"
+    },
+    {
+      "slug": "artist:audiotricz",
+      "type": "artist",
+      "name": "Audiotricz"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:seizure",
+      "type": "artist",
+      "name": "Seizure"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:joram-metekohy",
+      "type": "artist",
+      "name": "Joram Metekohy"
+    }
+  ]
+}

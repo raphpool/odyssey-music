@@ -1,0 +1,245 @@
+{
+  "slug": "artist:dj-funk",
+  "name": "DJ Funk",
+  "editorial_article": "Charles Chambers, professionally known as DJ Funk, was a Chicago-based producer who rose to prominence in the 1990s as a foundational figure in the development of ghetto house. Throughout the 1990s, he established a substantial regional following across the Chicago-Detroit circuit and the wider Midwest rave scene, often utilizing high-energy, repetitive loops characteristic of his subgenre. His 1999 album, Booty House Anthems, achieved significant commercial distribution and sold over one million copies. Chambers also contributed to the 1998 electronic music documentary Modulations. In 2006, he launched his own imprint, Funk Records. Beyond his solo work, he provided a notable remix for the French electronic duo Justice on their track Let There Be Light. Chambers remained active in the electronic music community until his passing in March 2025 at age 54.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Funk",
+      "title": "DJ Funk - Wikipedia"
+    },
+    {
+      "url": "https://www.beatportal.com/articles/859742-dj-funk",
+      "title": "Chicago House Legend, DJ Funk, Has Died - Beatportal"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:19.474Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering force in Chicago's ghetto house movement, DJ Funk was a vital fixture of the 1990s rave scene and a prolific producer.",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "1989–2025",
+  "genres": [
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto House",
+      "qid": "Q2748817"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    },
+    {
+      "slug": "label:funk-records",
+      "type": "label",
+      "name": "Funk Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dik-work",
+      "type": "project",
+      "name": "Dik Work",
+      "mbid": "023cee2e-73fc-42c0-946e-2aff0a3a18c2",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:untitled",
+      "type": "project",
+      "name": "Untitled",
+      "mbid": "9cb37397-b92e-470b-ae90-18337b998db7",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-house-pimp-n-ep",
+      "type": "project",
+      "name": "Ghetto House Pimp'n EP",
+      "mbid": "91b3a68f-e3f9-4c46-886e-94228b9f4f0d",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-us-ghetto-selecta",
+      "type": "project",
+      "name": "The US Ghetto Selecta",
+      "mbid": "32d8d11b-6c56-39f8-b614-4c3fd5594159",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-tek-2000",
+      "type": "project",
+      "name": "Ghetto Tek 2000",
+      "mbid": "95a9fbf3-13ef-3b21-a870-97cb7f68fe48",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:urban-mania",
+      "type": "project",
+      "name": "Urban Mania",
+      "mbid": "9a96890a-84ac-34aa-8ecc-6631c145bb3b",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:funkgasim",
+      "type": "project",
+      "name": "Funkgasim",
+      "mbid": "a06ec8e8-64a6-4b8c-bee0-a10aee913978",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghetto-house",
+      "type": "project",
+      "name": "Ghetto House",
+      "mbid": "7c713544-cbf3-4a35-a3fd-cc655d0edab5",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freaky-style-take-2",
+      "type": "project",
+      "name": "Freaky Style - Take 2",
+      "mbid": "08bd226f-efc2-4cb4-96f8-c2a3dd2091c4",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:xtc",
+      "type": "project",
+      "name": "XTC",
+      "mbid": "4068db3f-bb20-45ac-bd44-3eec8f36ac89",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:psycho-funk-ep",
+      "type": "project",
+      "name": "Psycho Funk EP",
+      "mbid": "be91780a-01a7-40e8-80e3-29b4651eb1bb",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-house-anthems",
+      "type": "project",
+      "name": "Ghetto House Anthems",
+      "mbid": "58ef400e-6631-436f-9388-20c0ba14ec84",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-house-anthems-2",
+      "type": "project",
+      "name": "Ghetto House Anthems-2",
+      "mbid": "63145b12-116a-462e-a0bb-5c828cafad1c",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freaky-style-take-2",
+      "type": "project",
+      "name": "Freaky Style Take: 2",
+      "mbid": "88581b4a-21db-4036-b360-d43784b5c4a2",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sycofunk-2",
+      "type": "project",
+      "name": "Sycofunk 2 (The EP)",
+      "mbid": "99e89686-108a-34e2-9d0b-ea20f7f29e2c",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-original-video-clash",
+      "type": "project",
+      "name": "The Original Video Clash",
+      "mbid": "25927c6e-36b5-3d2c-9b25-ca5ed05970c9",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:getto-style-konfused-konfliction",
+      "type": "project",
+      "name": "Getto Style / Konfused Konfliction",
+      "mbid": "9dbe8c36-531d-489c-b7f7-491a2a0f274b",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:trax-from-the-dark-side",
+      "type": "project",
+      "name": "Trax From the Dark Side",
+      "mbid": "a7cc16a9-d164-3f25-958c-fa82e99605b7",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:street-traxx-iii",
+      "type": "project",
+      "name": "Street Traxx III",
+      "mbid": "dfb86e37-b939-3566-b909-e975562086e7",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-trax",
+      "type": "project",
+      "name": "Ghetto Trax",
+      "mbid": "518b988f-aec7-3fc3-99dc-83f19ec5e9da",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:street-traxx-ii",
+      "type": "project",
+      "name": "Street Traxx II",
+      "mbid": "159a6b41-af56-3b2d-9908-d65d34c71820",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pumpin-tracks-ep",
+      "type": "project",
+      "name": "Pumpin' Tracks EP",
+      "mbid": "9927f4af-1f73-4959-9a96-502cc16a7ff6",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:house-the-groove",
+      "type": "project",
+      "name": "House the Groove",
+      "mbid": "269a3a79-86e6-3ab1-9a21-2752c9d0204b",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:free-at-last-12",
+      "type": "project",
+      "name": "Free-At-Last 12\"",
+      "mbid": "9c3917ce-0e4a-32b5-8181-9c629b7793e3",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:let-there-be-light",
+      "type": "track",
+      "name": "Let There Be Light (DJ Funk Remix)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

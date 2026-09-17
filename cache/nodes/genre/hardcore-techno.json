@@ -29,6 +29,12 @@
       "type": "genre",
       "name": "Gabber",
       "qid": "Q820049"
+    },
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore",
+      "qid": "Q339906"
     }
   ],
   "related_genres": [
@@ -55,6 +61,18 @@
       "type": "genre",
       "name": "Breakbeat hardcore",
       "qid": "Q1585075"
+    },
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore",
+      "qid": "Q339906"
+    },
+    {
+      "slug": "genre:makina",
+      "type": "genre",
+      "name": "Makina",
+      "qid": "Q3048168"
     }
   ],
   "key_artists": [

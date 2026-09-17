@@ -1,0 +1,119 @@
+{
+  "slug": "genre:happy-hardcore",
+  "name": "Happy Hardcore",
+  "editorial_article": "Emerging in the early 1990s as a vibrant reaction to the darker, more aggressive fringes of UK breakbeat hardcore, happy hardcore established itself through the work of producers such as Slipmatt, DJ Vibes, and DJ Seduction. These artists diverged from the burgeoning jungle and darkcore scenes by focusing on celebratory, upful compositions defined by piano-heavy arrangements and high-energy vocals. Tracks from the era, such as those found on early Impact Records releases, typically feature breakbeats running alongside a 4/4 kick drum pattern. By the mid-1990s, the genre evolved to prioritize a stomping 909-based 4/4 rhythm as artists like Hixxy, Force & Styles, and DJ Sharkey rose to prominence. The sound was frequently championed by pirate radio stations like Dream FM and documented through the commercially popular Bonkers compilation series, which emerged from a deal brokered between Hixxy, Sharkey, and React Music Limited.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Happy_hardcore",
+      "title": "Happy hardcore"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:02.394Z",
+  "type": "genre",
+  "editorial_definition": "A high-tempo subgenre of hardcore dance music characterized by uplifting melodies, piano riffs, and 4/4 kick drum rhythms that diverged from the breakbeat-heavy rave sounds of the early 1990s.",
+  "qid": "Q339906",
+  "era": "early 1990s to mid 2000s",
+  "origin": "United Kingdom, Belgium, Netherlands, Germany",
+  "sonic_markers": "170 BPM, breakbeats, 909 kick drums, piano rolls, uplifting vocal samples",
+  "parent_genres": [
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore techno"
+    },
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
+    },
+    {
+      "slug": "genre:uk-hardcore",
+      "type": "genre",
+      "name": "UK hardcore",
+      "qid": "Q2374619"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:slipmatt",
+      "type": "artist",
+      "name": "Slipmatt"
+    },
+    {
+      "slug": "artist:dj-seduction",
+      "type": "artist",
+      "name": "DJ Seduction"
+    },
+    {
+      "slug": "artist:dj-vibes",
+      "type": "artist",
+      "name": "DJ Vibes"
+    },
+    {
+      "slug": "artist:dj-dougal",
+      "type": "artist",
+      "name": "DJ Dougal"
+    },
+    {
+      "slug": "artist:hixxy",
+      "type": "artist",
+      "name": "Hixxy"
+    },
+    {
+      "slug": "artist:darren-styles",
+      "type": "artist",
+      "name": "Darren Styles"
+    },
+    {
+      "slug": "artist:dj-sharkey",
+      "type": "artist",
+      "name": "DJ Sharkey"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:impact-records",
+      "type": "label",
+      "name": "Impact Records"
+    },
+    {
+      "slug": "label:kniteforce-records",
+      "type": "label",
+      "name": "Kniteforce Records"
+    },
+    {
+      "slug": "label:react-music-limited",
+      "type": "label",
+      "name": "React Music Limited"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:heart-of-gold",
+      "type": "track",
+      "name": "Heart of Gold"
+    },
+    {
+      "slug": "track:pretty-green-eyes",
+      "type": "track",
+      "name": "Pretty Green Eyes"
+    }
+  ]
+}
