@@ -38,7 +38,7 @@ function prescribed(
 		id,
 		name,
 		...(id.startsWith("Q") ? { qid: id } : {}),
-		slug: id === "Q2913982" ? "genre:trap-hip-hop" : (sourceSlugs[0] ?? makeSlug("genre", localName)),
+		slug: SLUG_OVERRIDES[id] ?? sourceSlugs[0] ?? makeSlug("genre", localName),
 		sourceSlugs,
 		existingNeighbours,
 		deficit,
@@ -46,6 +46,16 @@ function prescribed(
 	};
 }
 
+// Targets whose slug is not the one derived from their display name. Trap keeps the hip-hop slug
+// (genre:trap is EDM trap's historical redirect); Memphis was relabelled « Memphis Rap » by the TRA-229
+// arbitration (2026-09-17, TRA-247) but its dossier and node keep genre:memphis.
+const SLUG_OVERRIDES: Readonly<Record<string, Slug>> = {
+	Q2913982: "genre:trap-hip-hop",
+	Q6010117: "genre:memphis",
+};
+
+// Classic Disco and Rap left this list on 2026-09-17 (TRA-247): the TRA-229 arbitration folded them into
+// Disco and Hip Hop as aliases, so they are no longer taxonomy entries (their S tickets were cancelled).
 export const PRESCRIBED_GENRES: readonly PrescribedGenre[] = [
 	prescribed("B4a", 312, "Q486263", "Bossa Nova"),
 	prescribed("B4a", 318, "Q723418", "Cumbia"),
@@ -63,7 +73,6 @@ export const PRESCRIBED_GENRES: readonly PrescribedGenre[] = [
 	prescribed("B4a", 478, "Q131578", "J-Pop"),
 	prescribed("B4a", 481, "Q213665", "K-Pop"),
 	prescribed("B4b", 276, "Q4942839", "Boogie"),
-	prescribed("B4b", 278, "local:classic-disco", "Classic Disco"),
 	prescribed("B4b", 279, "Q336567", "Cosmic Disco"),
 	prescribed("B4b", 356, "Q474027", "Dancehall", "genre:dancehall"),
 	prescribed("B4b", 372, "Q54365", "Ska", "genre:ska", 2),
@@ -104,10 +113,9 @@ export const PRESCRIBED_GENRES: readonly PrescribedGenre[] = [
 	prescribed("B4f", 251, "Q753679", "Gangsta Rap"),
 	prescribed("B4f", 253, "Q255406", "Jazz Rap", "genre:jazz-rap", 1),
 	prescribed("B4f", 254, "Q97265899", "Lofi Hip-Hop", "genre:lofi-hip-hop"),
-	prescribed("B4f", 255, "Q6010117", "Memphis"),
+	prescribed("B4f", 255, "Q6010117", "Memphis Rap"),
 	prescribed("B4f", 256, "Q6918602", "Motswako"),
 	prescribed("B4f", 257, "Q840065", "New Jack Swing"),
-	prescribed("B4f", 258, "local:rap", "Rap"),
 	prescribed("B4f", 260, "Q850412", "RnB"),
 ];
 

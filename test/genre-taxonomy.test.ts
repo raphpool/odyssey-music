@@ -71,7 +71,9 @@ it("loads the contract, validates ids and returns fixed ordering", async () => {
 
 it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", async () => {
 	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
-	const corrected = [262, 263, 264, 267, 268, 269, 270].map((position) => {
+	// TRA-247 removed 5 entries before this range (garage, abstract-electronic, braindance,
+	// wave and rap), shifting these positions down by 5 from the original 262-264/267-270.
+	const corrected = [257, 258, 259, 262, 263, 264, 265].map((position) => {
 		const entry = taxonomy.genres[position - 1];
 		if (entry === undefined) throw new Error(`missing taxonomy entry at position ${position}`);
 		return entry;
@@ -145,7 +147,11 @@ it("loads the corrected TRA-98 entries at positions 262–264 and 267–270", as
 //
 // Next batch: bump this value in the same commit as the imported entries, e.g. 351-360 -> 360,
 // 361-370 -> 370, ... down to the final batch 561-568 (only 8 entries) -> 568.
-const EXPECTED_TAXONOMY_SIZE = 568;
+//
+// TRA-247 (2026-09-17) applied the TRA-229 part 2 arbitration: 15 unreferenced entries were
+// deleted and 7 were folded as aliases into an existing entry (568 - 22 = 546). QID
+// reassignments and renames in the same change did not affect the count.
+const EXPECTED_TAXONOMY_SIZE = 546;
 
 function assertExpectedTaxonomySize(genres: readonly unknown[], expected: number): void {
 	if (genres.length !== expected) {
@@ -159,6 +165,14 @@ function assertExpectedTaxonomySize(genres: readonly unknown[], expected: number
 it("locks the real taxonomy file to EXPECTED_TAXONOMY_SIZE entries", async () => {
 	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
 	assertExpectedTaxonomySize(taxonomy.genres, EXPECTED_TAXONOMY_SIZE);
+});
+
+// TRA-247: Pop (Q37073) is an umbrella term, not a genre choice -- it must never be published.
+it("never publishes the Pop umbrella entry (Q37073)", async () => {
+	const taxonomy = await loadGenreTaxonomy(join(process.cwd(), "data", "genre-taxonomy.json"));
+	const pop = taxonomy.genres.find((entry) => entry.id === "Q37073");
+	if (pop === undefined) throw new Error("Pop entry (Q37073) is missing from the taxonomy");
+	expect(pop.published).toBe(false);
 });
 
 it("fails with an actionable message when the entry count drifts either way", () => {
