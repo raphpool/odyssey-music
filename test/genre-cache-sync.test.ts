@@ -393,14 +393,21 @@ describe("sync-genre-cache.sh", () => {
 		expect(readdirSync(serverBackupDir)).toHaveLength(1);
 	});
 
-	it("on a transfer failure, leaves the server safe (writer restarted, nothing deleted) and prints the rollback archive", () => {
+	it("on a transfer failure, restarts the writer, deletes nothing and points the operator at the archive", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			env: { TEST_RSYNC_FAIL_ON_CALL: "2" },
 		});
 		expect(result.status).not.toBe(0);
-		expect(result.stderr).toContain("Rollback archive:");
-		expect(result.stderr).toMatch(/safe state/);
+		expect(result.stderr).toMatch(/Restore from the archive/);
+		expect(result.stderr).toContain(serverBackupDir.replace(/\/$/, ""));
+		// 2026-09-17 (review of TRA-67): the message used to read "server left in a safe state
+		// (rsync never used --delete, so no data was removed)". rsync deletes nothing, but it
+		// overwrites node files present on both sides, so a half-finished transfer leaves a mix of
+		// old and new files -- an operator who reads "no data was removed" skips a restore they
+		// need. The failure path must never make that claim again.
+		expect(result.stderr).not.toMatch(/no data was removed/);
+		expect(result.stderr).not.toMatch(/safe state/);
 		// The writer was restarted despite the failed transfer.
 		expect(calls).toContain("systemctl start odyssey-server.service");
 		// Nothing was removed from the (untouched, since the transfer itself failed) server cache.

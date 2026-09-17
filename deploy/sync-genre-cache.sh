@@ -7,16 +7,27 @@ set -euo pipefail
 # This wraps scripts/prepare-genre-cache-union.ts (B6a/TRA-66, B6a-2/TRA-234) with the sequence
 # fixed by the plan's decision 6: snapshot the server cache read-only, build a validated union,
 # print its manifest, and only with --apply actually touch the server -- archive first, stop the
-# writer, re-check nothing wrote to the server between the snapshot and the stop, transfer
-# (additive only, never --delete), restart, smoke test. Rollback = the printed archive.
+# writer, re-check nothing wrote to the server between the snapshot and the stop, transfer,
+# restart, smoke test. Rollback = the printed archive.
+#
+# "Additive" here means file-additive: rsync never passes --delete, so no node file on the server
+# is removed. A node present on both sides is still OVERWRITTEN in place by the union's version,
+# so a field or an edge that only the server had is lost unless the union preserved it. The
+# archive, not the transfer mode, is what makes that recoverable.
 #
 # No personal SSH key: this relies on the caller's ssh-agent (same as deploy-server.sh / the
 # `deploy` job on the self-hosted runner) and never writes to $HOME/.ssh or $HOME/.
 #
-# DO NOT RUN WITH --apply YET: an independent review of this ticket found a relevé/arrêt race and
-# writer-left-down gaps in the --apply path below (a stop or the smoke test failing can leave
-# odyssey-server stopped). The fix is TRA-271 (blocks TRA-269, the prod rollout) -- --apply is safe
-# only once that ticket lands. Preview-only usage (no --apply) is unaffected.
+# DO NOT RUN WITH --apply YET. Two separate tickets gate it, and both must land first:
+#   - TRA-271 (blocks TRA-269, the prod rollout): an independent review of this ticket found a
+#     relevé/arrêt race and writer-left-down gaps in the --apply path below (a stop or the smoke
+#     test failing can leave odyssey-server stopped).
+#   - TRA-268: the union keeps the winning file whole when a slug exists on both sides, so an edge
+#     that only the server carries is dropped by the transfer -- reproduced on a node present in
+#     both caches, where a server-only `related_genres` entry disappeared with exit code 0 and an
+#     empty `referenceRegressions` (the dropped target is still a live node, so the union's own
+#     reference check sees nothing). That is data the repo never had, and it is silent.
+# Preview-only usage (no --apply) is unaffected by both.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -136,7 +147,11 @@ restart_writer() {
 on_failure() {
 	local code=$?
 	restart_writer
-	echo "ERROR: sync failed -- server left in a safe state (rsync never used --delete, so no data was removed). Rollback archive: $SERVER:$ARCHIVE_PATH" >&2
+	# 2026-09-17 (review of TRA-67): this used to claim "no data was removed" because rsync never
+	# passes --delete. An operator reading that concludes no restore is needed -- wrong: node files
+	# present on both sides are overwritten in place, so a partial transfer leaves a mix of old and
+	# new node files. The archive is the only recovery, and the message must say so.
+	echo "ERROR: sync failed -- the writer was restarted, but node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH" >&2
 	exit "$code"
 }
 trap on_failure ERR
@@ -160,7 +175,7 @@ if [[ "$CURRENT_FINGERPRINT" != "$SNAPSHOT_FINGERPRINT" ]]; then
 	exit 1
 fi
 
-echo "==> Transferring the validated union (additive only, never --delete)"
+echo "==> Transferring the validated union (never --delete; shared node files are overwritten)"
 rsync -az "$UNION_DIR/nodes/" "$SERVER:$SERVER_CACHE_REMOTE/nodes/"
 
 restart_writer
