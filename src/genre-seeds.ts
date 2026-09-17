@@ -17,9 +17,18 @@ const explicitSlug = z
 		"Expected an explicit canonical slug",
 	);
 const qid = z.string().regex(QID_PATTERN, "Expected a Wikidata QID");
+// Free-text hint disambiguating a seed from a same-named entity (e.g. Afrobeats the
+// 2000s-2010s West African pop genre vs. Fela Kuti's Afrobeat) — TRA-254. Forwarded to the
+// pipeline's search query and prompt, so it is bounded to a short phrase, not a paragraph.
+const disambiguator = z.string().trim().min(1).max(120);
 
 const genreReferenceSchema = z
-	.object({ slug: explicitSlug, name: nonEmptyText, qid: qid.optional() })
+	.object({
+		slug: explicitSlug,
+		name: nonEmptyText,
+		qid: qid.optional(),
+		disambiguator: disambiguator.optional(),
+	})
 	.strict()
 	.superRefine(({ slug }, ctx) => {
 		if (!slug.startsWith("genre:"))
@@ -32,6 +41,7 @@ const targetSchema = z
 		name: nonEmptyText,
 		slug: explicitSlug,
 		mbid: z.string().uuid().optional(),
+		disambiguator: disambiguator.optional(),
 	})
 	.strict()
 	.superRefine(({ type, slug }, ctx) => {

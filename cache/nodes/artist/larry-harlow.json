@@ -1,0 +1,154 @@
+{
+  "slug": "artist:larry-harlow",
+  "name": "Larry Harlow",
+  "editorial_article": "Born in Brooklyn in 1939, Larry Harlow was a pivotal pianist, composer, and producer who served as the first musical director of the Fania All-Stars. After studying music in Cuba during the 1950s, he returned to New York to help shape the sound of the Fania label, producing over 260 albums and acting as an architect for the burgeoning salsa movement. His work included the 1973 Latin opera 'Hommy' and the 1977 ambitious salsa suite 'La Raza Latina', which he created alongside Rubén Blades. Beyond his central role in the Fania roster, Harlow was known for his 'jazzified' piano style, which he famously lent to The Mars Volta on their 2005 track 'L'Via L'Viaquez'. In addition to his leadership within the Latin music scene, he was a staunch advocate for the inclusion of Latin music categories within the Grammy Awards, eventually receiving the Latin Recording Academy's Trustees Award in 2008 for his lifelong efforts to legitimize the genre's recognition.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Larry_Harlow_(musician)",
+      "title": "Larry Harlow (musician) - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/larry-harlow-mn0000129414",
+      "title": "Larry Harlow — Biography, Discography, Albums ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:38.523Z",
+  "type": "artist",
+  "editorial_bio": "An influential salsa pioneer, pianist, and producer who helped build the Fania label and led the legendary Fania All-Stars.",
+  "origin": "New York City, U.S.",
+  "active_years": "1960-2020",
+  "genres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:latin-jazz",
+      "type": "genre",
+      "name": "Latin jazz",
+      "qid": "Q837389"
+    },
+    {
+      "slug": "genre:boogaloo",
+      "type": "genre",
+      "name": "Boogaloo",
+      "qid": "Q892958"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fania",
+      "type": "label",
+      "name": "Fania"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:harlow-marlow-volume-one-passing-the-torch",
+      "type": "project",
+      "name": "Harlow Marlow, Volume One: Passing the Torch",
+      "mbid": "db2c2f39-15fe-43d9-86a1-02aabb620f35",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:larry-harlow-s-latin-legends-bans-1998",
+      "type": "project",
+      "name": "Larry Harlow's Latin Legends Bans 1998",
+      "mbid": "d3c95599-2a97-471f-bdc9-a7a792b31082",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-time-is-now-mi-tiempo-llego",
+      "type": "project",
+      "name": "My Time Is Now / Mi tiempo llegó",
+      "mbid": "2a5767c3-274f-4c26-89dc-9c93c83ff8c9",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miami-sessions",
+      "type": "project",
+      "name": "Miami Sessions",
+      "mbid": "30f9fca8-8800-312b-bfc4-94c1f89912b9",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:our-latin-feeling-nuestro-sentimiento-latino",
+      "type": "project",
+      "name": "Our Latin Feeling / Nuestro sentimiento latino",
+      "mbid": "4911d2bf-045e-49a9-a75f-94c12e7b1cee",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asi-soy-yo",
+      "type": "project",
+      "name": "Así soy yo",
+      "mbid": "d55199d1-5cef-3e19-ba9b-69ca981d85ca",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-responsabilidad",
+      "type": "project",
+      "name": "La responsabilidad",
+      "mbid": "23d5cba7-3779-4943-8e38-ba0b1d70d1bf",
+      "year": "1979",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:l-via-l-viaquez",
+      "type": "track",
+      "name": "L'Via L'Viaquez"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ismael-miranda",
+      "type": "artist",
+      "name": "Ismael Miranda"
+    },
+    {
+      "slug": "artist:ruben-blades",
+      "type": "artist",
+      "name": "Rubén Blades"
+    },
+    {
+      "slug": "artist:celia-cruz",
+      "type": "artist",
+      "name": "Celia Cruz"
+    },
+    {
+      "slug": "artist:ray-barreto",
+      "type": "artist",
+      "name": "Ray Barreto"
+    },
+    {
+      "slug": "artist:yomo-toro",
+      "type": "artist",
+      "name": "Yomo Toro"
+    },
+    {
+      "slug": "artist:adalberto-santiago",
+      "type": "artist",
+      "name": "Adalberto Santiago"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:lawrence-ira-kahn",
+      "type": "artist",
+      "name": "Lawrence Ira Kahn"
+    }
+  ],
+  "members": []
+}

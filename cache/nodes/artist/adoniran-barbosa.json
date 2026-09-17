@@ -1,0 +1,131 @@
+{
+  "slug": "artist:adoniran-barbosa",
+  "name": "Adoniran Barbosa",
+  "editorial_article": "Born João Rubinato in 1910, Adoniran Barbosa became the definitive chronicler of São Paulo's working-class life, blending samba with the informal, ungrammatical Portuguese of the city's immigrants. After failing as a singer at the Rádio Cruzeiro do Sul station in 1933, he adopted his stage name and eventually won a 1935 municipal Carnaval contest with 'Dona Boa'. His compositions often utilized 'samba de breque', a technique featuring abrupt melodic pauses for spoken dialogue, most notably in 1953's 'Samba do Arnesto'. During his long tenure at Rádio Record starting in 1941, he collaborated extensively with writer Osvaldo Moles, creating radio characters that preceded his later recognition as a major composer. His 1964 hit 'Trem das Onze' remains one of the most recognized sambas in history. Barbosa's lyrics, which famously included vernacular quirks like 'peguemo' and 'fumo', were initially met with academic criticism before becoming celebrated as an authentic, revolutionary record of urban experience.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Adoniran_Barbosa",
+      "title": "Adoniran Barbosa - Wikipedia"
+    },
+    {
+      "url": "https://adp.library.ucsb.edu/index.php/mastertalent/detail/108031/Barbosa_Adoniran",
+      "title": "Adoniran Barbosa - Discography of American Historical Recordings"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:14.704Z",
+  "type": "artist",
+  "editorial_bio": "An influential Brazilian singer and composer, Adoniran Barbosa defined the 'samba paulista' style with his authentic portrayals of urban life in São Paulo.",
+  "origin": "Valinhos, São Paulo, Brazil",
+  "active_years": "1935-1977",
+  "genres": [
+    {
+      "slug": "genre:samba",
+      "type": "genre",
+      "name": "Samba",
+      "qid": "Q11403"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rge",
+      "type": "label",
+      "name": "RGE"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:meus-primeiros-sambas",
+      "type": "project",
+      "name": "Meus Primeiros Sambas",
+      "mbid": "2e20c200-bbe0-43c9-a4ff-9e4a873a8f51",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:adoniran-barbosa",
+      "type": "project",
+      "name": "Adoniran Barbosa",
+      "mbid": "08a3b2e8-3843-4f6f-a269-49d170a5dce1",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adoniran-barbosa",
+      "type": "project",
+      "name": "Adoniran Barbosa",
+      "mbid": "a2e7574a-4cbe-46b9-8cb9-4ac3f2765817",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adoniran-barbosa-e-convidados",
+      "type": "project",
+      "name": "Adoniran Barbosa e Convidados",
+      "mbid": "d7f1289a-e019-4bf8-aaf9-95bd401c9800",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adoniran-barbosa",
+      "type": "project",
+      "name": "Adoniran Barbosa",
+      "mbid": "ad4b9985-507e-488a-9249-5e3f71a3d67f",
+      "year": "1974",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:trem-das-onze",
+      "type": "track",
+      "name": "Trem das Onze"
+    },
+    {
+      "slug": "track:saudosa-maloca",
+      "type": "track",
+      "name": "Saudosa Maloca"
+    },
+    {
+      "slug": "track:samba-do-arnesto",
+      "type": "track",
+      "name": "Samba do Arnesto"
+    },
+    {
+      "slug": "track:tiro-ao-alvaro",
+      "type": "track",
+      "name": "Tiro ao Álvaro"
+    },
+    {
+      "slug": "track:samba-italiano",
+      "type": "track",
+      "name": "Samba Italiano"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:osvaldo-moles",
+      "type": "artist",
+      "name": "Osvaldo Moles"
+    },
+    {
+      "slug": "artist:matilde-de-lutiis",
+      "type": "artist",
+      "name": "Matilde de Lutiis"
+    },
+    {
+      "slug": "artist:demonios-da-garoa",
+      "type": "artist",
+      "name": "Demônios da Garoa"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:joao-rubinato",
+      "type": "artist",
+      "name": "João Rubinato"
+    }
+  ],
+  "members": []
+}

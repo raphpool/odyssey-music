@@ -80,6 +80,11 @@
       "slug": "artist:robert-hood",
       "type": "artist",
       "name": "Robert Hood"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
     }
   ],
   "aliases": [
