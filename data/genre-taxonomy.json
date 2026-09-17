@@ -146,9 +146,10 @@
 			"published": true
 		},
 		{
-			"id": "local:balearic-house",
+			"id": "Q2866725",
 			"name": "Balearic House",
 			"family": "house-techno",
+			"qid": "Q2866725",
 			"published": false
 		},
 		{
@@ -222,9 +223,10 @@
 			"published": true
 		},
 		{
-			"id": "local:euro-house",
+			"id": "Q30917612",
 			"name": "Euro House",
 			"family": "house-techno",
+			"qid": "Q30917612",
 			"published": false
 		},
 		{
@@ -482,9 +484,10 @@
 			"published": true
 		},
 		{
-			"id": "local:donk",
+			"id": "Q106522190",
 			"name": "Donk",
 			"family": "uk-dance-grime",
+			"qid": "Q106522190",
 			"published": false
 		},
 		{
@@ -691,9 +694,10 @@
 			"published": true
 		},
 		{
-			"id": "local:club",
+			"id": "Q11787389",
 			"name": "Club",
 			"family": "new-club",
+			"qid": "Q11787389",
 			"published": false
 		},
 		{
@@ -718,9 +722,10 @@
 			"published": false
 		},
 		{
-			"id": "local:electro-acholi",
+			"id": "Q124851801",
 			"name": "Electro Acholi",
 			"family": "new-club",
+			"qid": "Q124851801",
 			"published": false
 		},
 		{
@@ -731,9 +736,10 @@
 			"published": false
 		},
 		{
-			"id": "local:forro-piseiro",
+			"id": "Q108857881",
 			"name": "Forró Piseiro",
 			"family": "new-club",
+			"qid": "Q108857881",
 			"published": false
 		},
 		{
@@ -799,9 +805,10 @@
 			"published": false
 		},
 		{
-			"id": "local:raptor-house",
+			"id": "Q5071702",
 			"name": "Raptor House",
 			"family": "new-club",
+			"qid": "Q5071702",
 			"published": false
 		},
 		{
@@ -885,9 +892,10 @@
 			"published": false
 		},
 		{
-			"id": "local:generative-music",
+			"id": "Q5532635",
 			"name": "Generative music",
 			"family": "ambient-new-age",
+			"qid": "Q5532635",
 			"sourceSlugs": ["genre:generative-music"],
 			"published": false
 		},
@@ -1089,9 +1097,10 @@
 			"published": false
 		},
 		{
-			"id": "local:computer-music",
+			"id": "Q1122550",
 			"name": "Computer music",
 			"family": "avant-garde",
+			"qid": "Q1122550",
 			"sourceSlugs": ["genre:computer-music"],
 			"published": false
 		},
@@ -1222,9 +1231,10 @@
 			"published": false
 		},
 		{
-			"id": "local:ebm",
+			"id": "Q372103",
 			"name": "EBM",
 			"family": "post-punk-new-wave",
+			"qid": "Q372103",
 			"published": false
 		},
 		{
@@ -1590,9 +1600,10 @@
 			"published": false
 		},
 		{
-			"id": "local:american-primitivism",
+			"id": "Q466445",
 			"name": "American Primitivism",
 			"family": "rock",
+			"qid": "Q466445",
 			"published": false
 		},
 		{
@@ -1604,9 +1615,10 @@
 			"published": true
 		},
 		{
-			"id": "local:bluegrass",
+			"id": "Q213714",
 			"name": "Bluegrass",
 			"family": "rock",
+			"qid": "Q213714",
 			"published": false
 		},
 		{
@@ -1650,9 +1662,10 @@
 			"published": false
 		},
 		{
-			"id": "local:desert-rock",
+			"id": "Q3322869",
 			"name": "Desert Rock",
 			"family": "rock",
+			"qid": "Q3322869",
 			"sourceSlugs": ["genre:desert-rock"],
 			"published": true
 		},
@@ -1730,9 +1743,10 @@
 			"published": true
 		},
 		{
-			"id": "local:psychedelia",
+			"id": "Q846119",
 			"name": "Psychedelia",
 			"family": "rock",
+			"qid": "Q846119",
 			"sourceSlugs": ["genre:psychedelia"],
 			"published": true
 		},
@@ -1792,9 +1806,10 @@
 			"published": false
 		},
 		{
-			"id": "local:surf",
+			"id": "Q220830",
 			"name": "Surf",
 			"family": "rock",
+			"qid": "Q220830",
 			"published": false
 		},
 		{
@@ -1853,9 +1868,10 @@
 			"published": true
 		},
 		{
-			"id": "local:experimental-metal",
+			"id": "Q641357",
 			"name": "Experimental metal",
 			"family": "metal",
+			"qid": "Q641357",
 			"sourceSlugs": ["genre:experimental-metal"],
 			"published": true
 		},
@@ -1867,9 +1883,10 @@
 			"published": false
 		},
 		{
-			"id": "local:heavy-metal",
+			"id": "Q38848",
 			"name": "Heavy Metal",
 			"family": "metal",
+			"qid": "Q38848",
 			"published": false
 		},
 		{
@@ -1904,9 +1921,10 @@
 			"published": false
 		},
 		{
-			"id": "local:thrash",
+			"id": "Q483352",
 			"name": "Thrash",
 			"family": "metal",
+			"qid": "Q483352",
 			"published": false
 		},
 		{
@@ -1934,9 +1952,10 @@
 			"published": false
 		},
 		{
-			"id": "local:chopped-n-screwed",
+			"id": "Q2261628",
 			"name": "Chopped N Screwed",
 			"family": "hip-hop-r-n-b",
+			"qid": "Q2261628",
 			"published": false
 		},
 		{
@@ -2036,9 +2055,10 @@
 			"published": false
 		},
 		{
-			"id": "local:memphis",
+			"id": "Q6010117",
 			"name": "Memphis",
 			"family": "hip-hop-r-n-b",
+			"qid": "Q6010117",
 			"published": false
 		},
 		{
@@ -2071,9 +2091,10 @@
 			"published": true
 		},
 		{
-			"id": "local:rnb",
+			"id": "Q850412",
 			"name": "RnB",
 			"family": "hip-hop-r-n-b",
+			"qid": "Q850412",
 			"published": false
 		},
 		{
@@ -2137,9 +2158,10 @@
 			"published": false
 		},
 		{
-			"id": "local:rare-groove",
+			"id": "Q3287743",
 			"name": "Rare Groove",
 			"family": "soul-rhythm-and-blues",
+			"qid": "Q3287743",
 			"published": false
 		},
 		{
@@ -2159,9 +2181,10 @@
 			"published": false
 		},
 		{
-			"id": "local:slow-jams",
+			"id": "Q476091",
 			"name": "Slow Jams",
 			"family": "soul-rhythm-and-blues",
+			"qid": "Q476091",
 			"published": false
 		},
 		{
@@ -2173,9 +2196,10 @@
 			"published": true
 		},
 		{
-			"id": "local:street-soul",
+			"id": "Q106876903",
 			"name": "Street Soul",
 			"family": "soul-rhythm-and-blues",
+			"qid": "Q106876903",
 			"published": false
 		},
 		{
@@ -2359,9 +2383,10 @@
 			"published": false
 		},
 		{
-			"id": "local:modal",
+			"id": "Q1127530",
 			"name": "Modal",
 			"family": "jazz",
+			"qid": "Q1127530",
 			"published": false
 		},
 		{
@@ -2515,9 +2540,10 @@
 			"published": false
 		},
 		{
-			"id": "local:freestyle",
+			"id": "Q655514",
 			"name": "Freestyle",
 			"family": "latin-brazilian",
+			"qid": "Q655514",
 			"published": false
 		},
 		{
@@ -2546,9 +2572,10 @@
 			"published": false
 		},
 		{
-			"id": "local:huaynos",
+			"id": "Q2307786",
 			"name": "Huayños",
 			"family": "latin-brazilian",
+			"qid": "Q2307786",
 			"published": false
 		},
 		{
@@ -2649,9 +2676,10 @@
 			"published": false
 		},
 		{
-			"id": "local:rancheras",
+			"id": "Q727634",
 			"name": "Rancheras",
 			"family": "latin-brazilian",
+			"qid": "Q727634",
 			"published": false
 		},
 		{
@@ -2715,9 +2743,10 @@
 			"published": false
 		},
 		{
-			"id": "local:beguine",
+			"id": "Q814402",
 			"name": "Beguine",
 			"family": "caribbean",
+			"qid": "Q814402",
 			"published": false
 		},
 		{
@@ -2742,9 +2771,10 @@
 			"published": false
 		},
 		{
-			"id": "local:chutney",
+			"id": "Q1090048",
 			"name": "Chutney",
 			"family": "caribbean",
+			"qid": "Q1090048",
 			"published": false
 		},
 		{
@@ -2805,9 +2835,10 @@
 			"published": false
 		},
 		{
-			"id": "local:la-plena",
+			"id": "Q2715398",
 			"name": "La Plena",
 			"family": "caribbean",
+			"qid": "Q2715398",
 			"published": false
 		},
 		{
@@ -2872,9 +2903,10 @@
 			"published": false
 		},
 		{
-			"id": "local:soca",
+			"id": "Q1051735",
 			"name": "Soca",
 			"family": "caribbean",
+			"qid": "Q1051735",
 			"published": false
 		},
 		{
@@ -2911,9 +2943,10 @@
 			"published": false
 		},
 		{
-			"id": "local:amazigh-music",
+			"id": "Q3328601",
 			"name": "Amazigh Music",
 			"family": "african-middle-eastern",
+			"qid": "Q3328601",
 			"published": false
 		},
 		{
@@ -2949,15 +2982,17 @@
 			"published": false
 		},
 		{
-			"id": "local:balani",
+			"id": "Q108297187",
 			"name": "Balani",
 			"family": "african-middle-eastern",
+			"qid": "Q108297187",
 			"published": false
 		},
 		{
-			"id": "local:benga",
+			"id": "Q6301761",
 			"name": "Benga",
 			"family": "african-middle-eastern",
+			"qid": "Q6301761",
 			"published": false
 		},
 		{
@@ -2975,9 +3010,10 @@
 			"published": false
 		},
 		{
-			"id": "local:chaoui",
+			"id": "Q2956468",
 			"name": "Chaoui",
 			"family": "african-middle-eastern",
+			"qid": "Q2956468",
 			"published": false
 		},
 		{
@@ -3014,9 +3050,10 @@
 			"published": false
 		},
 		{
-			"id": "local:ethiopian-jazz",
+			"id": "Q3591962",
 			"name": "Ethiopian Jazz",
 			"family": "african-middle-eastern",
+			"qid": "Q3591962",
 			"published": false
 		},
 		{
@@ -3039,9 +3076,10 @@
 			"published": false
 		},
 		{
-			"id": "local:fuji",
+			"id": "Q3509353",
 			"name": "Fuji",
 			"family": "african-middle-eastern",
+			"qid": "Q3509353",
 			"published": false
 		},
 		{
@@ -3112,15 +3150,17 @@
 			"published": false
 		},
 		{
-			"id": "local:juju",
+			"id": "Q1715700",
 			"name": "Juju",
 			"family": "african-middle-eastern",
+			"qid": "Q1715700",
 			"published": false
 		},
 		{
-			"id": "local:kabyle",
+			"id": "Q3328694",
 			"name": "Kabyle",
 			"family": "african-middle-eastern",
+			"qid": "Q3328694",
 			"published": false
 		},
 		{
@@ -3130,9 +3170,10 @@
 			"published": false
 		},
 		{
-			"id": "local:khaleeji",
+			"id": "Q585588",
 			"name": "Khaleeji",
 			"family": "african-middle-eastern",
+			"qid": "Q585588",
 			"published": false
 		},
 		{
@@ -3196,9 +3237,10 @@
 			"published": false
 		},
 		{
-			"id": "local:mandinka",
+			"id": "Q3328711",
 			"name": "Mandinka",
 			"family": "african-middle-eastern",
+			"qid": "Q3328711",
 			"published": false
 		},
 		{
@@ -3228,9 +3270,10 @@
 			"published": false
 		},
 		{
-			"id": "local:mezoued",
+			"id": "Q4118941",
 			"name": "Mezoued",
 			"family": "african-middle-eastern",
+			"qid": "Q4118941",
 			"published": false
 		},
 		{
@@ -3247,21 +3290,24 @@
 			"published": false
 		},
 		{
-			"id": "local:muzika-mizrahit",
+			"id": "Q2738544",
 			"name": "Muzika Mizrahit",
 			"family": "african-middle-eastern",
+			"qid": "Q2738544",
 			"published": false
 		},
 		{
-			"id": "local:persian-traditional",
+			"id": "Q11223087",
 			"name": "Persian Traditional",
 			"family": "african-middle-eastern",
+			"qid": "Q11223087",
 			"published": false
 		},
 		{
-			"id": "local:qaraami",
+			"id": "Q25683514",
 			"name": "Qaraami",
 			"family": "african-middle-eastern",
+			"qid": "Q25683514",
 			"published": false
 		},
 		{
@@ -3285,9 +3331,10 @@
 			"published": false
 		},
 		{
-			"id": "local:sahara-blues",
+			"id": "Q7800608",
 			"name": "Sahara Blues",
 			"family": "african-middle-eastern",
+			"qid": "Q7800608",
 			"published": false
 		},
 		{
@@ -3370,9 +3417,10 @@
 			"published": false
 		},
 		{
-			"id": "local:wassoulou",
+			"id": "Q7972788",
 			"name": "Wassoulou",
 			"family": "african-middle-eastern",
+			"qid": "Q7972788",
 			"aliases": ["Wassalou"],
 			"published": false
 		},
@@ -3410,15 +3458,17 @@
 			"published": false
 		},
 		{
-			"id": "local:baila-folk",
+			"id": "Q2879826",
 			"name": "Baila Folk",
 			"family": "asia",
+			"qid": "Q2879826",
 			"published": false
 		},
 		{
-			"id": "local:balochi",
+			"id": "Q4852449",
 			"name": "Balochi",
 			"family": "asia",
+			"qid": "Q4852449",
 			"published": false
 		},
 		{
@@ -3435,9 +3485,10 @@
 			"published": false
 		},
 		{
-			"id": "local:bollywood",
+			"id": "Q6942022",
 			"name": "Bollywood",
 			"family": "asia",
+			"qid": "Q6942022",
 			"published": false
 		},
 		{
@@ -3468,15 +3519,17 @@
 			"published": false
 		},
 		{
-			"id": "local:canto-pop",
+			"id": "Q853873",
 			"name": "Canto Pop",
 			"family": "asia",
+			"qid": "Q853873",
 			"published": false
 		},
 		{
-			"id": "local:chinese-traditional",
+			"id": "Q51446080",
 			"name": "Chinese Traditional",
 			"family": "asia",
+			"qid": "Q51446080",
 			"published": false
 		},
 		{
@@ -3540,15 +3593,17 @@
 			"published": false
 		},
 		{
-			"id": "local:indian-classical",
+			"id": "Q1323698",
 			"name": "Indian Classical",
 			"family": "asia",
+			"qid": "Q1323698",
 			"published": false
 		},
 		{
-			"id": "local:j-rock",
+			"id": "Q1055871",
 			"name": "J Rock",
 			"family": "asia",
+			"qid": "Q1055871",
 			"published": false
 		},
 		{
@@ -3559,9 +3614,10 @@
 			"published": false
 		},
 		{
-			"id": "local:jaipong",
+			"id": "Q3160589",
 			"name": "Jaipong",
 			"family": "asia",
+			"qid": "Q3160589",
 			"published": false
 		},
 		{
@@ -3578,9 +3634,10 @@
 			"published": false
 		},
 		{
-			"id": "local:keroncong",
+			"id": "Q1930107",
 			"name": "Keroncong",
 			"family": "asia",
+			"qid": "Q1930107",
 			"published": false
 		},
 		{
@@ -3590,9 +3647,10 @@
 			"published": false
 		},
 		{
-			"id": "local:korean-traditional",
+			"id": "Q116256909",
 			"name": "Korean Traditional",
 			"family": "asia",
+			"qid": "Q116256909",
 			"published": false
 		},
 		{
@@ -3635,21 +3693,24 @@
 			"published": false
 		},
 		{
-			"id": "local:mando-pop",
+			"id": "Q973150",
 			"name": "Mando Pop",
 			"family": "asia",
+			"qid": "Q973150",
 			"published": false
 		},
 		{
-			"id": "local:molam",
+			"id": "Q1753803",
 			"name": "Molam",
 			"family": "asia",
+			"qid": "Q1753803",
 			"published": false
 		},
 		{
-			"id": "local:newa",
+			"id": "Q7016547",
 			"name": "Newa",
 			"family": "asia",
+			"qid": "Q7016547",
 			"published": false
 		},
 		{
@@ -3665,9 +3726,10 @@
 			"published": false
 		},
 		{
-			"id": "local:pakistani-pop",
+			"id": "Q7125908",
 			"name": "Pakistani Pop",
 			"family": "asia",
+			"qid": "Q7125908",
 			"published": false
 		},
 		{
@@ -3677,9 +3739,10 @@
 			"published": false
 		},
 		{
-			"id": "local:persian-pop",
+			"id": "Q7170257",
 			"name": "Persian Pop",
 			"family": "asia",
+			"qid": "Q7170257",
 			"published": false
 		},
 		{
@@ -3741,15 +3804,17 @@
 			"published": false
 		},
 		{
-			"id": "local:thai-classical",
+			"id": "Q13025600",
 			"name": "Thai Classical",
 			"family": "asia",
+			"qid": "Q13025600",
 			"published": false
 		},
 		{
-			"id": "local:toi",
+			"id": "Q85809915",
 			"name": "Toi",
 			"family": "asia",
+			"qid": "Q85809915",
 			"published": false
 		},
 		{
@@ -3858,9 +3923,10 @@
 			"published": true
 		},
 		{
-			"id": "local:australian-indigenous-music",
+			"id": "Q2340395",
 			"name": "Australian Indigenous Music",
 			"family": "other",
+			"qid": "Q2340395",
 			"published": false
 		},
 		{
@@ -3926,9 +3992,10 @@
 			"published": false
 		},
 		{
-			"id": "local:chip-tune",
+			"id": "Q135637",
 			"name": "Chip Tune",
 			"family": "other",
+			"qid": "Q135637",
 			"published": false
 		},
 		{
@@ -3985,9 +4052,10 @@
 			"published": true
 		},
 		{
-			"id": "local:greek-traditional",
+			"id": "Q12876995",
 			"name": "Greek Traditional",
 			"family": "other",
+			"qid": "Q12876995",
 			"published": false
 		},
 		{
@@ -3998,9 +4066,10 @@
 			"published": false
 		},
 		{
-			"id": "local:imene-tuki",
+			"id": "Q6003762",
 			"name": "Imene Tuki",
 			"family": "other",
+			"qid": "Q6003762",
 			"published": false
 		},
 		{
@@ -4044,9 +4113,10 @@
 			"published": false
 		},
 		{
-			"id": "local:manele-pop",
+			"id": "Q642983",
 			"name": "Manele Pop",
 			"family": "other",
+			"qid": "Q642983",
 			"published": false
 		},
 		{
@@ -4096,9 +4166,10 @@
 			"published": false
 		},
 		{
-			"id": "local:portuguese-fado",
+			"id": "Q185676",
 			"name": "Portuguese Fado",
 			"family": "other",
+			"qid": "Q185676",
 			"aliases": ["Portugese Fado"],
 			"published": false
 		},

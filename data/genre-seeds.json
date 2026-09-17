@@ -67,10 +67,11 @@
 			}
 		]
 	},
-	"local:balearic-house": {
+	"Q2866725": {
 		"genre": {
 			"slug": "genre:balearic-house",
-			"name": "Balearic House"
+			"name": "Balearic House",
+			"qid": "Q2866725"
 		},
 		"targets": [
 			{
@@ -224,10 +225,11 @@
 			}
 		]
 	},
-	"local:euro-house": {
+	"Q30917612": {
 		"genre": {
 			"slug": "genre:euro-house",
-			"name": "Euro House"
+			"name": "Euro House",
+			"qid": "Q30917612"
 		},
 		"targets": [
 			{
@@ -760,10 +762,11 @@
 			}
 		]
 	},
-	"local:ethiopian-jazz": {
+	"Q3591962": {
 		"genre": {
 			"slug": "genre:ethiopian-jazz",
-			"name": "Ethiopian Jazz"
+			"name": "Ethiopian Jazz",
+			"qid": "Q3591962"
 		},
 		"targets": [
 			{
@@ -895,10 +898,11 @@
 			}
 		]
 	},
-	"local:bollywood": {
+	"Q6942022": {
 		"genre": {
 			"slug": "genre:bollywood",
-			"name": "Bollywood"
+			"name": "Bollywood",
+			"qid": "Q6942022"
 		},
 		"targets": [
 			{
@@ -1589,10 +1593,11 @@
 			}
 		]
 	},
-	"local:chopped-n-screwed": {
+	"Q2261628": {
 		"genre": {
 			"slug": "genre:chopped-n-screwed",
-			"name": "Chopped N Screwed"
+			"name": "Chopped N Screwed",
+			"qid": "Q2261628"
 		},
 		"targets": [
 			{
@@ -1746,10 +1751,11 @@
 			}
 		]
 	},
-	"local:memphis": {
+	"Q6010117": {
 		"genre": {
 			"slug": "genre:memphis",
-			"name": "Memphis"
+			"name": "Memphis",
+			"qid": "Q6010117"
 		},
 		"targets": [
 			{
