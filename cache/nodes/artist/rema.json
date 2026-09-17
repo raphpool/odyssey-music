@@ -1,0 +1,166 @@
+{
+  "slug": "artist:rema",
+  "name": "Rema",
+  "editorial_article": "Born Divine Joshua Ikubor on 1 May 2000 in Benin City, Nigeria, Rema became a primary architect of the \"Afrorave\" sound, a genre he defines as his unique perception of Afrobeats that fuses house, hip-hop, and Indian and Arabian musical influences. He gained widespread recognition after posting a viral Instagram freestyle over D'Prince's \"Gucci Gang\" in 2019, which led directly to his signing with the Jonzing World label—a subsidiary of Don Jazzy's Mavin Records. His breakthrough single \"Dumebi,\" released in May 2019, helped define his early trajectory before he achieved major international success with the 2022 hit \"Calm Down.\" A remix of the latter featuring Selena Gomez peaked at number three on the Billboard Hot 100 and spent a record-setting 58 weeks atop the Billboard U.S. Afrobeats Songs chart. His sophomore studio album, \"Heis\" (2024), marked a significant shift toward a darker, drum-driven aesthetic, earning a Grammy nomination for Best Global Music Album. Throughout his career, Rema has maintained strong ties to his Edo culture, often referencing his origins in his lyrics and imagery. He continues to expand his presence on the global stage, including a featured performance alongside Lisa and Anitta at the 2026 FIFA World Cup opening ceremony in the United States.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Rema_(musician)",
+      "title": "Rema (musician) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:14:40.162Z",
+  "type": "artist",
+  "editorial_bio": "Nigerian singer-songwriter and rapper who pioneered the Afrorave genre, achieving global chart success with the hit single 'Calm Down'.",
+  "origin": "Benin City, Edo, Nigeria",
+  "active_years": "2019-present",
+  "genres": [
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:afrorave",
+      "type": "genre",
+      "name": "Afrorave"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jonzing-world",
+      "type": "label",
+      "name": "Jonzing World"
+    },
+    {
+      "slug": "label:mavin-records",
+      "type": "label",
+      "name": "Mavin Records"
+    },
+    {
+      "slug": "label:interscope-records",
+      "type": "label",
+      "name": "Interscope Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:heis",
+      "type": "project",
+      "name": "HEIS",
+      "mbid": "03381bd9-19b5-4240-b6dd-ea7e1a6b31fc",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ravage",
+      "type": "project",
+      "name": "RAVAGE",
+      "mbid": "482521a8-d4de-4ed2-abaa-0fc1d244fe64",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rave-and-roses",
+      "type": "project",
+      "name": "Rave & Roses",
+      "mbid": "d9ce5deb-37e5-4fc6-997d-484ea4711836",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bad-commando",
+      "type": "project",
+      "name": "Bad Commando",
+      "mbid": "ea529b0a-b4bf-455f-aa03-b41b1b42417d",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freestyle-ep",
+      "type": "project",
+      "name": "Freestyle EP",
+      "mbid": "83dc920c-7a00-4a62-b9ae-fbd2f87dff50",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rema",
+      "type": "project",
+      "name": "Rema",
+      "mbid": "1c61c2ea-0b15-4281-87cf-3e198a71b200",
+      "year": "2019",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:dumebi",
+      "type": "track",
+      "name": "Dumebi"
+    },
+    {
+      "slug": "track:calm-down",
+      "type": "track",
+      "name": "Calm Down"
+    },
+    {
+      "slug": "track:benin-boys",
+      "type": "track",
+      "name": "Benin Boys"
+    },
+    {
+      "slug": "track:baby",
+      "type": "track",
+      "name": "Baby (Is It a Crime)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:d-prince",
+      "type": "artist",
+      "name": "D'Prince"
+    },
+    {
+      "slug": "artist:don-jazzy",
+      "type": "artist",
+      "name": "Don Jazzy"
+    },
+    {
+      "slug": "artist:selena-gomez",
+      "type": "artist",
+      "name": "Selena Gomez"
+    },
+    {
+      "slug": "artist:alpha-p",
+      "type": "artist",
+      "name": "Alpha P"
+    },
+    {
+      "slug": "artist:shallipopi",
+      "type": "artist",
+      "name": "Shallipopi"
+    },
+    {
+      "slug": "artist:odumodublvck",
+      "type": "artist",
+      "name": "Odumodublvck"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

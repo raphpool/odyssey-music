@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Nu-disco",
       "qid": "Q4045538"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
     }
   ],
   "related_genres": [
@@ -91,6 +97,12 @@
       "type": "genre",
       "name": "City Pop",
       "qid": "Q11307326"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
     }
   ],
   "key_artists": [

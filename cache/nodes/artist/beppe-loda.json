@@ -1,0 +1,87 @@
+{
+  "slug": "artist:beppe-loda",
+  "name": "Beppe Loda",
+  "editorial_article": "Beppe Loda is a legendary Italian DJ and producer, best known as a pioneer of the 'Cosmic' disco movement from his influential residency at the Typhoon club in Brescia. His work synthesizes disparate global sounds, including funk, afrobeat, and Italo-disco, as documented in various collections such as 'Typhoon (The Afro Sound Of Typhoon)', released in 2020, and 'Bisbi (The Best Of Afro Funky Disco)', which appeared in 2021. Loda further explores electronic experimentation through projects like his 2012 release 'Elettronica Meccanica 22', which focuses on new wave aesthetics, and the 2010 project 'Counter' issued under his MC1 alias. His influence extends to contemporary dance music, eventually leading to a London residency that highlighted his enduring reputation in the club scene.",
+  "citations": [
+    {
+      "url": "https://ra.co/dj/beppeloda",
+      "title": "Beppe Loda · Artist Profile - Resident Advisor"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:07.875Z",
+  "type": "artist",
+  "editorial_bio": "Beppe Loda is an iconic Italian DJ and producer who defined the Cosmic disco sound during his tenure at the legendary Typhoon club.",
+  "origin": "Brescia, Italy",
+  "active_years": "1970s-present",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave",
+      "qid": "Q187760"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:typhoon",
+      "type": "label",
+      "name": "Typhoon"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:disco-arabica-beppe-loda-rmx",
+      "type": "project",
+      "name": "DISCO ARABICA - Beppe Loda Rmx",
+      "mbid": "e3f0269d-cfb3-450f-b621-1f960dbc42e6",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:italian-spaghetti-disco-70-vol-1",
+      "type": "project",
+      "name": "Italian Spaghetti Disco 70 Vol.1",
+      "mbid": "d68c88c9-54db-45e9-946a-f84235a27cae",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:obscure-italian-disco-ii-beppe-loda-cuts",
+      "type": "project",
+      "name": "Obscure Italian Disco II - Beppe Loda Cuts",
+      "mbid": "fce0f698-38f3-4355-8ef2-088209f83d77",
+      "year": "2016",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:counter",
+      "type": "track",
+      "name": "Counter"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

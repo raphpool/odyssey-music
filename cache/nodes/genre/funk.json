@@ -64,6 +64,18 @@
       "type": "genre",
       "name": "Afrobeat",
       "qid": "Q388296"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
     }
   ],
   "key_artists": [

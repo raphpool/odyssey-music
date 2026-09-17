@@ -1,0 +1,242 @@
+{
+  "slug": "artist:daniele-baldelli",
+  "name": "Daniele Baldelli",
+  "editorial_article": "Daniele Baldelli is a foundational figure in the Italian electronic scene, known for pioneering the Cosmic Disco sound that emerged from his DJ residencies starting in the late 1970s. His approach centers on a blend of European electronica, synth-pop, and eclectic international records, often played at off-kilter speeds. The 2007 compilation Cosmic - The Original, released on Amarkord, captures this wide-ranging aesthetic by featuring tracks from artists like Fad Gadget, Wally Badarou, and The Pool. Baldelli followed this with his own production work, including the 2009 12-inch EP Cosmic Sound on the Mediane label, which contains tracks such as Galaxia and Alkemio. His history spans back to 1969, when he began selecting soul, funk, and reggae 45s, a formative period that influenced his later, more expansive DJ sets. As a producer, he has been credited for collections like the C70 Original Cosmic Tape, further documenting his unique influence on underground dance music.",
+  "citations": [
+    {
+      "url": "https://www.redbullmusicacademy.com/lectures/daniele-baldelli-elevator-ride/",
+      "title": "Daniele Baldelli"
+    },
+    {
+      "url": "https://open.spotify.com/artist/3NZuWa2TqpeGPWGISzX8E7",
+      "title": "Daniele Baldelli"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:12:59.305Z",
+  "type": "artist",
+  "editorial_bio": "An influential Italian DJ and producer, Daniele Baldelli is celebrated as a founding father of the Cosmic Disco genre.",
+  "origin": "Italy",
+  "active_years": "1969-present",
+  "genres": [
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo-Disco",
+      "qid": "Q744417"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mediane",
+      "type": "label",
+      "name": "Mediane"
+    },
+    {
+      "slug": "label:amarkord",
+      "type": "label",
+      "name": "Amarkord"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:taishogoto",
+      "type": "project",
+      "name": "Taishōgoto",
+      "mbid": "e86fbe49-08e8-48ed-983f-b154d032ce6d",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oil-painting",
+      "type": "project",
+      "name": "Oil Painting",
+      "mbid": "361aff48-f6b7-4a6f-a4fe-c71c34d1fe29",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:make-me-move",
+      "type": "project",
+      "name": "Make Me Move",
+      "mbid": "1e3bc16c-bd30-4825-b32a-6522c0811ddd",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:surrounding-areas",
+      "type": "project",
+      "name": "Surrounding Areas",
+      "mbid": "51f27eeb-6980-4737-ac0c-b30026bb586a",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cosmic-temple",
+      "type": "project",
+      "name": "Cosmic Temple (The Remixes)",
+      "mbid": "72a17211-37c3-4dea-adb5-a56763509531",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quagga",
+      "type": "project",
+      "name": "Quagga",
+      "mbid": "2175eda8-716c-4f83-8dbc-52f5fabf7005",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cosmic-temple-chapter-3",
+      "type": "project",
+      "name": "Cosmic Temple / Chapter 3",
+      "mbid": "153d44aa-b16b-4e2c-a677-6dffb94f9bc5",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cosmic-temple-chapter-4",
+      "type": "project",
+      "name": "Cosmic Temple / Chapter 4",
+      "mbid": "a5d2c88a-9122-4c54-b87d-486c772fed0f",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cosmic-temple-chapter-1",
+      "type": "project",
+      "name": "Cosmic Temple / Chapter 1",
+      "mbid": "e1c98c75-1f50-466a-ab0a-2a8ff45cdb58",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kachiri-remix-ep-1",
+      "type": "project",
+      "name": "Kachiri Remix EP 1",
+      "mbid": "41d7c60e-a278-4c3b-9ea4-41810956e60f",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kachiri-remix-ep-2",
+      "type": "project",
+      "name": "Kachiri Remix EP 2",
+      "mbid": "add8b800-5c39-4cd3-ad75-ad6a5f4ed437",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kachiri-remix-ep",
+      "type": "project",
+      "name": "Kachiri Remix EP",
+      "mbid": "468d8ba0-9fce-41a9-bd5b-348fd3c09b36",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cosmic-drag",
+      "type": "project",
+      "name": "Cosmic Drag",
+      "mbid": "b61bd5cc-a3d6-432f-af18-71a315dd0e3a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-to-my-funky-side-the-remix",
+      "type": "project",
+      "name": "Back to My Funky Side: The Remix",
+      "mbid": "ccc5fec7-78d6-4227-bf96-6099c21d929c",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-to-my-funky-side",
+      "type": "project",
+      "name": "Back To My Funky Side",
+      "mbid": "61ba8533-2b5a-4c7c-b154-9fbedbe30020",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:podalirius",
+      "type": "project",
+      "name": "Podalirius",
+      "mbid": "3361eb73-8a8f-4b99-999a-238fbcfb7b25",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adaptors-the-music-of-richard-bone",
+      "type": "project",
+      "name": "Adaptors: The Music Of Richard Bone",
+      "mbid": "9b854044-66db-4471-9ec3-ac64b5662880",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cosmic-sound",
+      "type": "project",
+      "name": "Cosmic Sound",
+      "mbid": "471ec333-b38b-4db3-8f41-153f34df2dbd",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:presents-phobos-2006",
+      "type": "project",
+      "name": "Presents Phobos 2006",
+      "mbid": "5c023f7f-b833-3daa-b0d2-b3affa469181",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:my-funky-side",
+      "type": "project",
+      "name": "My Funky Side",
+      "mbid": "ce1a142e-b4af-466a-9f9a-30619f001609",
+      "year": "2005",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cosmic-parsley",
+      "type": "track",
+      "name": "Cosmic Parsley"
+    },
+    {
+      "slug": "track:galaxia",
+      "type": "track",
+      "name": "Galaxia"
+    },
+    {
+      "slug": "track:alkemio",
+      "type": "track",
+      "name": "Alkemio"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

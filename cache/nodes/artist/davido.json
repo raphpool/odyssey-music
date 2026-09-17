@@ -1,0 +1,386 @@
+{
+  "slug": "artist:davido",
+  "name": "Davido",
+  "editorial_article": "Born in Atlanta and raised in Lagos, Davido is a Nigerian-American artist who pivoted from his early days at Oakwood University to become a central voice in global Afrobeats. His 2012 debut studio album Omo Baba Olowo featured production from Shizzi and Maleek Berry, cementing his place in the scene with tracks like the Naeto C-assisted 'Back When'. Known for blending Afropop with R&B and dancehall, he later achieved Billboard success with the longest-charting Nigerian pop song, 'Fall', which sampled Kojo Funds. His 2023 release Timeless, featuring production from Magicsticks, earned Grammy nominations for Best Global Music Album and Best African Music Performance. In 2024, he launched Nine+ Records in collaboration with UnitedMasters, following a career that has included historic sold-out performances at The O2 Arena and various high-profile brand partnerships with Puma and Martell.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Davido",
+      "title": "Davido - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Davido_discography",
+      "title": "Davido discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:14:33.255Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering force in modern Afrobeats, Davido is a singer, songwriter, and producer known for hits like 'Fall' and his 2023 Grammy-nominated album, Timeless.",
+  "origin": "Lagos, Nigeria",
+  "active_years": "2010–present",
+  "genres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:davido-music-worldwide",
+      "type": "label",
+      "name": "Davido Music Worldwide"
+    },
+    {
+      "slug": "label:sony-music-entertainment",
+      "type": "label",
+      "name": "Sony Music Entertainment"
+    },
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:nine-records",
+      "type": "label",
+      "name": "Nine+ Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:oriade",
+      "type": "project",
+      "name": "Oriadé",
+      "mbid": "9f8bd39e-f84b-47cd-8071-3e7556a60778",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gimme-dat-ting",
+      "type": "project",
+      "name": "Gimme Dat Ting",
+      "mbid": "b475da48-ce0a-4d06-b3f2-f4991152bb56",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-know-who-i-be",
+      "type": "project",
+      "name": "I Know Who I Be",
+      "mbid": "dc24265d-3b18-41b9-b192-e59bf94c163a",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5ive",
+      "type": "project",
+      "name": "5ive",
+      "mbid": "6b4fc09a-9a2d-45b5-8406-a1879f2e0098",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:be-there-still",
+      "type": "project",
+      "name": "Be There Still",
+      "mbid": "9c8fe121-0edc-42e6-80eb-0cdabd1baa8a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:awuke",
+      "type": "project",
+      "name": "Awuke",
+      "mbid": "a9c97373-1c9d-4fd6-a58c-f058c79b7dd3",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:joy",
+      "type": "project",
+      "name": "Joy",
+      "mbid": "fe37a508-7ef7-4ab0-83ee-13264ff0b72e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-pretty-girls",
+      "type": "project",
+      "name": "More Pretty Girls",
+      "mbid": "86f6789a-a72d-4408-a866-f0efbb129495",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sensational",
+      "type": "project",
+      "name": "Sensational",
+      "mbid": "f3207f79-9332-4ed8-9be5-bbb6c4358582",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unavailable",
+      "type": "project",
+      "name": "UNAVAILABLE",
+      "mbid": "ffe1fb4f-16aa-43f5-acb1-877c4ce00d30",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:timeless",
+      "type": "project",
+      "name": "Timeless",
+      "mbid": "b1027da3-26ce-41e1-9aa5-b5cb2e643af3",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:watawi",
+      "type": "project",
+      "name": "WATAWI",
+      "mbid": "d99eed0d-a8ba-49f2-8b30-12d3f61d2798",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:champion-sound",
+      "type": "project",
+      "name": "Champion Sound",
+      "mbid": "1c48da17-0d51-4974-8fdc-bdcd113fae0e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-better-time",
+      "type": "project",
+      "name": "A Better Time",
+      "mbid": "d03a7be0-ea85-486b-b764-b1b119c109c0",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kissez",
+      "type": "project",
+      "name": "Kissez",
+      "mbid": "6a63b12c-f741-4c3a-bdb1-75bd5ceb730b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fem",
+      "type": "project",
+      "name": "FEM",
+      "mbid": "ce673651-1139-4012-aebf-b3feee5fd17f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dream-girl",
+      "type": "project",
+      "name": "Dream Girl (Global Remix)",
+      "mbid": "1b8ba13d-70b4-4375-b2b8-46a93195ec89",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lie-for-you",
+      "type": "project",
+      "name": "Lie for You",
+      "mbid": "5c205102-518a-495a-ac61-1905e40abbdd",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-good-time",
+      "type": "project",
+      "name": "A Good Time",
+      "mbid": "8fa1c241-511a-4d74-91e8-991e199b549e",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:risky",
+      "type": "project",
+      "name": "Risky",
+      "mbid": "72249749-5ef0-40ba-ae47-27bfd0b47115",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:choosy",
+      "type": "project",
+      "name": "Choosy",
+      "mbid": "7cbcac7a-9db7-465f-b283-59aac4866bb3",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blow-my-mind",
+      "type": "project",
+      "name": "Blow My Mind",
+      "mbid": "23ecb474-0e58-4c03-b9e6-76258697ca99",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-to-you-part-ii",
+      "type": "project",
+      "name": "Next to You Part II",
+      "mbid": "f60895d0-0a72-4809-b578-262468833af8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wonder-woman",
+      "type": "project",
+      "name": "Wonder Woman",
+      "mbid": "53ec22a2-a31c-4c2a-8dbd-3ab34e7eda2a",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-ticket",
+      "type": "project",
+      "name": "One Ticket",
+      "mbid": "4951c0b9-4719-48af-8b4f-aba2505fcaff",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:assurance",
+      "type": "project",
+      "name": "Assurance",
+      "mbid": "d635367b-a4d7-4f12-8c25-532ee5c4f6a0",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fia",
+      "type": "project",
+      "name": "FIA",
+      "mbid": "abe6c7ae-9f63-42ef-b105-9ead11b705d2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-you-want",
+      "type": "project",
+      "name": "What You Want",
+      "mbid": "232bb58e-c867-44cf-977e-ff040650aa20",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fall",
+      "type": "project",
+      "name": "Fall",
+      "mbid": "4dad1bf9-eb8f-4d99-817a-b052cd29bbe7",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money",
+      "type": "project",
+      "name": "Money",
+      "mbid": "eb9f53b8-e2d0-4f2a-b647-55153ec0a65f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:if",
+      "type": "project",
+      "name": "If",
+      "mbid": "43da004b-b8d2-433b-8215-853b53913ba2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:son-of-mercy",
+      "type": "project",
+      "name": "Son of Mercy",
+      "mbid": "a0ff0e55-dd62-458e-a9fd-8395a2bae1ae",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dodo",
+      "type": "project",
+      "name": "Dodo",
+      "mbid": "79c22694-0453-43d0-a0be-6b75a26b5e09",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skelewu",
+      "type": "project",
+      "name": "Skelewu",
+      "mbid": "a6c2825a-3fe2-480d-860e-297d73567193",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-dance",
+      "type": "project",
+      "name": "Baby Dance",
+      "mbid": "9569977f-9642-49d4-8d74-5044dfe3c9fd",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:omo-baba-lowo",
+      "type": "project",
+      "name": "Omo Baba Lowo",
+      "mbid": "68de8e00-b20d-4744-9d48-b72651e816de",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sound",
+      "type": "project",
+      "name": "The Sound",
+      "mbid": "d173425a-2544-4a01-92f5-051ffc7a6fb3",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:dami-duro",
+      "type": "track",
+      "name": "Dami Duro"
+    },
+    {
+      "slug": "track:if",
+      "type": "track",
+      "name": "If"
+    },
+    {
+      "slug": "track:fall",
+      "type": "track",
+      "name": "Fall"
+    },
+    {
+      "slug": "track:unavailable",
+      "type": "track",
+      "name": "Unavailable"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

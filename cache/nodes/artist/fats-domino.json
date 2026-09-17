@@ -89,7 +89,13 @@
     }
   ],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:prince-buster",
+      "type": "artist",
+      "name": "Prince Buster"
+    }
+  ],
   "collaborators": [],
   "aliases": [],
   "members": []

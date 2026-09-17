@@ -1,0 +1,736 @@
+{
+  "slug": "artist:nas",
+  "name": "Nas",
+  "editorial_article": "Nas, born Nasir bin Olu Dara Jones in 1973, began his career in 1991 with a guest performance on the Main Source track \"Live at the Barbeque.\" His 1994 debut studio album, Illmatic, released on Columbia Records, remains a critical cornerstone of East Coast hip hop. He later achieved mainstream reach with his 1996 sophomore album, It Was Written, which featured the Lauryn Hill collaboration \"If I Ruled the World (Imagine That).\" In the 2020s, Nas entered a prolific period, releasing the King's Disease trilogy produced by Hit-Boy, with the first installment arriving in August 2020. Over his career, he has explored collaborative projects, notably forming the group The Firm with AZ, Cormega, Foxy Brown, and Nature in 1997, and releasing the 2010 album Distant Relatives with Damian Marley.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nas",
+      "title": "Nas - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nas_discography",
+      "title": "Nas discography - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/50997-Nas?srsltid=AU7gw4XhMH0Fi66K3TXEQ4ipzFqq-ysRcPNuFQTAYJyT9tX766szf31-",
+      "title": "Nas Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:16:34.438Z",
+  "type": "artist",
+  "editorial_bio": "An influential New York rapper and songwriter whose career spans over three decades, beginning with the seminal 1994 debut Illmatic.",
+  "origin": "Queens, New York",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom Bap",
+      "qid": "Q529742"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    },
+    {
+      "slug": "label:ill-will-records",
+      "type": "label",
+      "name": "Ill Will Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:u-aint-gotta-chance",
+      "type": "project",
+      "name": "U Aint Gotta Chance",
+      "mbid": "61583696-2136-4fbc-ac20-be290d4a9510",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-for-you",
+      "type": "project",
+      "name": "Down For You",
+      "mbid": "097a6996-7730-49a7-b1e6-842d51e0bba5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-omerta",
+      "type": "project",
+      "name": "The Omerta",
+      "mbid": "7ce6e529-a0ec-4c72-98f1-ea13ca52bb74",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-there-be-light",
+      "type": "project",
+      "name": "Let There Be Light",
+      "mbid": "32af776a-7671-46b8-bc6e-cb325f3a74a4",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scar-tissue",
+      "type": "project",
+      "name": "Scar Tissue",
+      "mbid": "0b78d5ca-2ced-4924-8538-89f958787c31",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:define-my-name",
+      "type": "project",
+      "name": "Define My Name",
+      "mbid": "ed253382-987a-4efc-b1b8-7f8db10352c0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:runaway",
+      "type": "project",
+      "name": "Runaway",
+      "mbid": "41c99b79-8f14-43d6-adac-06fe41f9532b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:candle-of-the-devil",
+      "type": "project",
+      "name": "Candle of the Devil",
+      "mbid": "b5435175-e687-4e20-af91-c6620a5dc095",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-tide",
+      "type": "project",
+      "name": "The Tide",
+      "mbid": "b042c796-18f1-4021-867d-dbcd873202c0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:n-y-state-of-mind-protect-ya-neck",
+      "type": "project",
+      "name": "N.Y. State Of Mind / Protect Ya Neck",
+      "mbid": "ee11a0ce-d5dc-4ba5-9bac-2e5e9e530590",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-mic-one-gun",
+      "type": "project",
+      "name": "One Mic, One Gun",
+      "mbid": "1fbd878d-4d3d-4592-887d-d26552e4dd03",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-like-water",
+      "type": "project",
+      "name": "Be Like Water",
+      "mbid": "b4152cde-627a-4284-9bcd-4e983f0b6065",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tomorrow",
+      "type": "project",
+      "name": "Tomorrow",
+      "mbid": "9cef48eb-e37b-4ab5-8504-ce4e782790bf",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-nas",
+      "type": "project",
+      "name": "Big Nas (Original Song from Masterclass)",
+      "mbid": "3d895638-dc2d-408f-96b3-3b8fa66b55cb",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:craze",
+      "type": "project",
+      "name": "Craze",
+      "mbid": "0fe63edd-841e-4b30-a023-ae85ae0272f1",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-is-like-a-dice-game",
+      "type": "project",
+      "name": "Life Is Like a Dice Game",
+      "mbid": "aa00f11f-8030-4d4d-9046-9bdc918590ec",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:epmd",
+      "type": "project",
+      "name": "EPMD",
+      "mbid": "bb64ac1c-138b-44f4-9419-20919634a27e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fallen-stars-flying",
+      "type": "project",
+      "name": "Fallen Stars Flying (Original Song From Between The World And Me)",
+      "mbid": "2cd5213f-0038-4793-af85-22fdaa023d82",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thriving",
+      "type": "project",
+      "name": "Thriving",
+      "mbid": "f3180c9f-a6af-47be-8527-109e5d597411",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ny-se-mumbai",
+      "type": "project",
+      "name": "NY Se Mumbai",
+      "mbid": "be53ca58-f09c-4770-b25c-48af02db0ad7",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:streets-of-ny",
+      "type": "project",
+      "name": "Streets Of NY (Ceiva Remix)",
+      "mbid": "46b94375-a6d6-43e2-b5cf-4ce5bef9382b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-my-ghetto",
+      "type": "project",
+      "name": "In My Ghetto",
+      "mbid": "9b3e3e13-4ee5-4bea-8b6a-b6526a0651d1",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:on-the-road-again",
+      "type": "project",
+      "name": "On the Road Again (Music from The American Epic Sessions)",
+      "mbid": "a7895e74-f427-46f4-9f52-9d883addbca8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deep",
+      "type": "project",
+      "name": "Deep",
+      "mbid": "b383b66c-0f1e-4fe3-a413-3d3889de86cb",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:god-it",
+      "type": "project",
+      "name": "God It",
+      "mbid": "d9943837-3801-464c-a6fd-3f573504313f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-season",
+      "type": "project",
+      "name": "The Season",
+      "mbid": "12f8e530-ae11-4baf-976c-fdec03a9e2a1",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hustle",
+      "type": "project",
+      "name": "Hustle",
+      "mbid": "efbfc0df-9a42-4d14-9552-7fce2d14aa2b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hard-to-love-somebody",
+      "type": "project",
+      "name": "Hard to Love Somebody",
+      "mbid": "acea0528-4958-48fc-911a-345641c3c6b2",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daughters",
+      "type": "project",
+      "name": "Daughters",
+      "mbid": "21263722-1d89-427a-a758-5c2655a28d4d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-don",
+      "type": "project",
+      "name": "The Don",
+      "mbid": "6f0ce28c-b8d3-4f6d-9e56-fd057a52b27f",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dog-s-t",
+      "type": "project",
+      "name": "Dog S#!T",
+      "mbid": "0b3422c0-1f4f-4968-9bc8-c322ef27077d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-a-tower-heist",
+      "type": "project",
+      "name": "It’s a Tower Heist",
+      "mbid": "5741cbf0-7dee-4b91-8170-490ce344f773",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:as-we-enter",
+      "type": "project",
+      "name": "As We Enter",
+      "mbid": "f5158f4f-cea9-482f-ad41-961b97dd42c4",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-many-rappers",
+      "type": "project",
+      "name": "Too Many Rappers",
+      "mbid": "3df7b0a7-9eb3-45f5-b3ff-5a03bfda2cd2",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:surviving-the-times",
+      "type": "project",
+      "name": "Surviving the Times",
+      "mbid": "8c415583-b5e3-4a2a-b183-49a6567da70a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-yourself-made-you-look",
+      "type": "project",
+      "name": "Lose Yourself / Made You Look",
+      "mbid": "3073ae10-4f34-463c-8f69-edd77cb8b07e",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:classic",
+      "type": "project",
+      "name": "Classic (Better Than I’ve Ever Been)",
+      "mbid": "e88ed7cf-6c3f-3373-a50b-5c0f98b1c53a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hip-hop-is-dead",
+      "type": "project",
+      "name": "Hip Hop Is Dead",
+      "mbid": "22f817f8-1276-35ae-97ed-588ecea57728",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-forget-about-you",
+      "type": "project",
+      "name": "Can't Forget About You",
+      "mbid": "61bcc4e5-972f-4ee3-a1e5-22e685e3edd4",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-body-ya-self-da-niggaz-iz-comin",
+      "type": "project",
+      "name": "Don't Body Ya Self / Da Niggaz Iz Comin",
+      "mbid": "ff4fff1d-167c-3ad8-b054-a3ea88006733",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unreleased-cuts",
+      "type": "project",
+      "name": "Unreleased Cuts",
+      "mbid": "a23904df-da66-3cb8-bdd2-2878e498a6e0",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blackout",
+      "type": "project",
+      "name": "Blackout",
+      "mbid": "653459f5-633e-439d-8253-9d461895222d",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-york",
+      "type": "project",
+      "name": "New York",
+      "mbid": "8548c9b2-ccbc-396f-8252-e5c7816feae9",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:road-to-zion",
+      "type": "project",
+      "name": "Road to Zion",
+      "mbid": "d4d092ca-e0ff-422f-85f4-8cf262da17a0",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bridging-the-gap",
+      "type": "project",
+      "name": "Bridging the Gap",
+      "mbid": "6cd6c04c-1397-312e-adef-4ebdd9199def",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thief-s-theme",
+      "type": "project",
+      "name": "Thief’s Theme",
+      "mbid": "6bc123a2-ebab-3289-a925-97e7338cd2fb",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:streets-of-new-york-ep",
+      "type": "project",
+      "name": "Streets Of New York EP",
+      "mbid": "7345f320-2ffe-4ee6-8259-b682df66102f",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:made-you-look",
+      "type": "project",
+      "name": "Made You Look (remix)",
+      "mbid": "39c86174-f821-3c77-a881-491397e0ec3e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can",
+      "type": "project",
+      "name": "I Can",
+      "mbid": "3eeb090a-e417-4a16-9904-be776179ddbf",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-mic",
+      "type": "project",
+      "name": "One Mic",
+      "mbid": "4acdb0e0-dd5c-3025-9fc1-abdf4c45594f",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rule",
+      "type": "project",
+      "name": "Rule",
+      "mbid": "25e6977b-3981-49a9-8684-e6a23b060b75",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oochie-wally",
+      "type": "project",
+      "name": "Oochie Wally",
+      "mbid": "ec76fc6d-c80b-3b4f-b9ab-780117dbdb53",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:got-ur-self-a",
+      "type": "project",
+      "name": "Got Ur Self A…",
+      "mbid": "37e687d1-4d72-4928-8266-24b3f45f2bc2",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-em-hang-crushed-linen",
+      "type": "project",
+      "name": "Let ’Em Hang / Crushed Linen",
+      "mbid": "d0db1761-1acc-4a00-82d5-81f674bedc52",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-goodlife",
+      "type": "project",
+      "name": "The Goodlife",
+      "mbid": "e5519501-66e4-4625-80c7-e17b5af9ecd8",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unreleased-studio-joints-i-am-lp-set",
+      "type": "project",
+      "name": "Unreleased Studio Joints I Am LP Set",
+      "mbid": "4206fce2-ced5-4dca-b6d2-c6a59d956955",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-second-coming-we-live-this",
+      "type": "project",
+      "name": "The Second Coming / We Live This",
+      "mbid": "2c86c70d-3e1e-41c0-b34d-43d0d234757a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-me-now",
+      "type": "project",
+      "name": "Hate Me Now",
+      "mbid": "ffd20d11-26d4-3d2a-8d00-4e298cc17f82",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nas-is-like-dr-knockboots",
+      "type": "project",
+      "name": "Nas Is Like / Dr. Knockboots",
+      "mbid": "245ac897-497a-4257-81a2-af1bbced4534",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:it-s-mine",
+      "type": "project",
+      "name": "It’s Mine",
+      "mbid": "c13beaa5-1f8d-4888-b776-74cd9356162f",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nastradamus",
+      "type": "project",
+      "name": "Nastradamus",
+      "mbid": "fe09fd4a-037a-4849-940c-f50c4ea849a4",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-grand-finale",
+      "type": "project",
+      "name": "The Grand Finale",
+      "mbid": "06d245e8-d4f3-446d-916f-e5754a8121e5",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:affirmative-action",
+      "type": "project",
+      "name": "Affirmative Action (Saint-Denis Style remix)",
+      "mbid": "3f461a6f-f459-4751-8148-712bb6ec0efa",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:escobar-97",
+      "type": "project",
+      "name": "Escobar '97",
+      "mbid": "99696c7b-9644-4dd8-9022-b7359dda8673",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:street-dreams",
+      "type": "project",
+      "name": "Street Dreams",
+      "mbid": "1173bc96-27e8-48e8-afa5-caf0897b3683",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:if-i-ruled-the-world",
+      "type": "project",
+      "name": "If I Ruled the World",
+      "mbid": "c233c348-d72b-4d63-88f4-8b3a544425fa",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:escobar-the-remix-ep",
+      "type": "project",
+      "name": "Escobar - The Remix EP",
+      "mbid": "851e5f6f-036d-443a-9b66-933ab8835f4e",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:street-dreams",
+      "type": "project",
+      "name": "Street Dreams (The Remixes)",
+      "mbid": "16e3a580-009a-4ab8-9d6e-06c68a823062",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-foulness-freestyle-2-the-message-and-freestyle-1",
+      "type": "project",
+      "name": "The Foulness (Freestyle 2) / The Message & Freestyle 1",
+      "mbid": "74dbbc72-06ce-486c-bc08-bdaf9158f6c5",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:head-over-heels",
+      "type": "project",
+      "name": "Head Over Heels",
+      "mbid": "abbd8817-e4b1-4539-8a86-8672b80e317d",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:understanding-life-is-like-a-dice-game",
+      "type": "project",
+      "name": "Understanding / Life Is Like a Dice Game",
+      "mbid": "ecc7823d-4f09-422d-8d66-859f763eeb4b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-love",
+      "type": "project",
+      "name": "One Love",
+      "mbid": "f555113d-14b7-3eb5-a8f3-f90ebce2a34b",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-world-is-yours",
+      "type": "project",
+      "name": "The World Is Yours",
+      "mbid": "610cfc0f-9044-49e5-8fc8-d68d682c0a61",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-s-a-bitch",
+      "type": "project",
+      "name": "Life’s a Bitch",
+      "mbid": "cfe21f85-4dd5-325e-8a7f-b1c3f97b0e62",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-ain-t-hard-to-tell",
+      "type": "project",
+      "name": "It Ain’t Hard to Tell",
+      "mbid": "999ca137-8317-4485-8adc-83a631137322",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:halftime",
+      "type": "project",
+      "name": "Halftime",
+      "mbid": "c942b7f2-2e5e-4caf-beec-8457682bf68a",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-prophecy-ep-volume-2",
+      "type": "project",
+      "name": "The Prophecy EP, Volume 2",
+      "mbid": "aea932b8-a916-4bb2-9c4b-36e18ca58c7f",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:association",
+      "type": "project",
+      "name": "Association",
+      "mbid": "17660774-da90-4daa-afb2-936745806ae6",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:death-aniversary",
+      "type": "project",
+      "name": "Death Aniversary",
+      "mbid": "30c8ac15-6a48-495a-a338-636b866ec653",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-one-married-to-marijuana",
+      "type": "project",
+      "name": "One + One / Married To Marijuana",
+      "mbid": "3df1842f-7680-43ae-a7f0-21a671f9ee61",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:halftime",
+      "type": "track",
+      "name": "Halftime"
+    },
+    {
+      "slug": "track:the-world-is-yours",
+      "type": "track",
+      "name": "The World Is Yours"
+    },
+    {
+      "slug": "track:it-ain-t-hard-to-tell",
+      "type": "track",
+      "name": "It Ain't Hard to Tell"
+    },
+    {
+      "slug": "track:if-i-ruled-the-world",
+      "type": "track",
+      "name": "If I Ruled the World (Imagine That)"
+    },
+    {
+      "slug": "track:one-mic",
+      "type": "track",
+      "name": "One Mic"
+    },
+    {
+      "slug": "track:i-can",
+      "type": "track",
+      "name": "I Can"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

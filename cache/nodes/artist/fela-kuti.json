@@ -508,7 +508,13 @@
     }
   ],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
+    }
+  ],
   "collaborators": [
     {
       "slug": "artist:tony-allen",
