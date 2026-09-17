@@ -155,6 +155,46 @@ describe("crawlGenreSeeds() (TRA-61)", () => {
 		expect(logs.some((line) => line.includes("[seed] materialize target"))).toBe(false);
 	});
 
+	it(
+		"refuses to write a node whose drafted name is not the same entity as requested (identity guard, TRA-XXX)",
+		async () => {
+			// genreDraftFixture()'s name field is always the fixed "Fixture Genre" — a stand-in
+			// for a real crawl where the LLM draft (grounded in the wrong search results for an
+			// ambiguous name) names a different entity than the one requested, e.g.
+			// genre:afrobeats drifting to "Afrobeat".
+			installPipelineMocks({ draft: genreDraftFixture() });
+			const { crawlGenreSeeds } = await loadCrawl();
+			const logs: string[] = [];
+			const seeds: GenreSeeds = {
+				Q25099840: {
+					genre: { slug: "genre:afrobeats", name: "Afrobeats", qid: "Q25099840" },
+					anchors: [],
+					targets: [],
+				},
+			};
+
+			const result = await crawlGenreSeeds(
+				{
+					seed: "genre:unused",
+					maxDepth: 0,
+					maxNodes: 1,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+					logger: (line) => logs.push(line),
+				},
+				seeds,
+			);
+
+			expect(result).toMatchObject({ calls: 1, consumed: 1, failed: 1, refused: 0 });
+			expect(await new NodeCache(dir).has("genre:afrobeats")).toBe(false);
+			expect(
+				logs.some((line) => line.includes('identity drift: requested "Afrobeats", drafted "Fixture Genre"')),
+			).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
 	it("reuses an existing genre by QID instead of materializing a second node", async () => {
 		const cache = new NodeCache(dir);
 		await cache.write(genreNode({ slug: "genre:cached-trap", name: "Trap Hip-Hop", qid: "Q2913982" }));
@@ -209,7 +249,9 @@ describe("refreshGenre() (TRA-63)", () => {
 				editorial_definition: "The old definition must be replaced.",
 			}),
 		);
-		installPipelineMocks({ draft: genreDraftFixture() });
+		// Name matches the cached genre being refreshed — the identity guard (TRA-XXX) must
+		// let a genuine refresh (same entity, updated content) through unchanged.
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
 		const { refreshGenre } = await loadCrawl();
 
 		const result = await refreshGenre(
@@ -271,7 +313,10 @@ describe("refreshGenre() (TRA-63)", () => {
 		const genreDir = join(dir, "nodes", "genre");
 		await mkdir(genreDir, { recursive: true });
 		await writeFile(join(genreDir, "electronic.json"), JSON.stringify({ type: "genre" }), "utf8");
-		installPipelineMocks({ draft: genreDraftFixture() });
+		// Name matches the cached genre so the identity guard (TRA-XXX) doesn't short-circuit
+		// before cache.replace runs — this test is specifically about the write failing, not
+		// about identity drift.
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
 		const { refreshGenre } = await loadCrawl();
 
 		const result = await refreshGenre(
