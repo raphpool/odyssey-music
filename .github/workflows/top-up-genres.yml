@@ -58,6 +58,13 @@ jobs:
       contents: write
       pull-requests: write
     steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
