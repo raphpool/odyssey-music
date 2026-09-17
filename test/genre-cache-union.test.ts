@@ -40,6 +40,7 @@ function manifest(overrides: Partial<UnionManifest> = {}): UnionManifest {
 		serverCacheDir: "s",
 		entries: [],
 		skipped: [],
+		droppedEdges: [],
 		migrationPreview: { groupsFound: 0, exitCode: 0, report: "" },
 		...overrides,
 	};
@@ -196,8 +197,52 @@ describe("countUnionProblems", () => {
 	});
 });
 
+// Full genreSchema shape (B6a-3 / TRA-268): a "kept" (same-slug-both-sides) node is now
+// reconstructed and validated against nodePayloadSchema before it's written (writeValidatedNode),
+// so every fixture that can end up "kept" must satisfy the schema, not just carry the couple of
+// fields a byte-identical copy never inspected.
 function node(overrides: Partial<Record<string, unknown>> & { slug: string }): Record<string, unknown> {
-	return { type: "genre", name: "Test", materialized_at: "2026-01-01T00:00:00.000Z", ...overrides };
+	return {
+		type: "genre",
+		name: "Test",
+		materialized_at: "2026-01-01T00:00:00.000Z",
+		editorial_article: "x".repeat(80),
+		editorial_definition: "A test genre.",
+		citations: [{ url: "https://example.com" }],
+		parent_genres: [],
+		subgenres: [],
+		related_genres: [],
+		key_artists: [],
+		key_labels: [],
+		landmark_projects: [],
+		landmark_tracks: [],
+		...overrides,
+	};
+}
+
+// Full artistSchema shape, for an edge target that must resolve to a LIVE node -- readCacheNodes
+// never validates it (raw JSON.parse), but a self-union (see the idempotence test below) can
+// still elect it "kept" once its own slug lands on both sides, at which point it goes through
+// writeValidatedNode like any other kept node.
+function artistNode(overrides: Partial<Record<string, unknown>> & { slug: string }): Record<string, unknown> {
+	return {
+		type: "artist",
+		name: "Test Artist",
+		materialized_at: "2026-01-01T00:00:00.000Z",
+		editorial_article: "x".repeat(80),
+		editorial_bio: "A test artist.",
+		citations: [{ url: "https://example.com" }],
+		genres: [],
+		labels: [],
+		discography: [],
+		notable_tracks: [],
+		influences: [],
+		influenced: [],
+		collaborators: [],
+		aliases: [],
+		members: [],
+		...overrides,
+	};
 }
 
 function raw(n: Record<string, unknown>): string {
@@ -450,6 +495,175 @@ describe("buildCacheUnion", () => {
 		expect(countUnionProblems(manifest)).toBe(0);
 	});
 
+	// B6a-3 / TRA-268: a "kept" (same-slug-both-sides) node used to be written as a byte-identical
+	// copy of whichever side won on materialized_at -- silently dropping every list edge unique to
+	// the OTHER side, notably a server-only reverse edge from applyReverseToTarget (independent
+	// review of #221, 2026-09-17). These tests cover the fix: list edges are unioned and
+	// deduplicated by slug, an edge that no longer resolves in the union is dropped and reported,
+	// and the written file goes through real schema validation instead of a raw copy.
+	describe("edge union for a kept slug", () => {
+		it("keeps a server-only edge (the exact verified bug: edge lost, text from the newer repo side)", async () => {
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					name: "Shared (repo)",
+				}),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					name: "Shared (server)",
+					key_artists: [{ slug: "artist:server-only", type: "artist", name: "Server Only" }],
+				}),
+			);
+			// Only needs to exist on disk (readCacheNodes never validates it) so it's live in the
+			// union -- an edge to a slug with no live node anywhere would be dropped (see below).
+			await seed(serverDir, artistNode({ slug: "artist:server-only" }));
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "genre", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.name).toBe("Shared (repo)");
+			expect(written.key_artists).toEqual([
+				{ slug: "artist:server-only", type: "artist", name: "Server Only" },
+			]);
+			expect(manifest.entries).toEqual(
+				expect.arrayContaining([
+					{ decision: "kept", from: "repo", slug: "genre:shared", tie: false, mergedEdgeCount: 1 },
+				]),
+			);
+			expect(manifest.droppedEdges).toEqual([]);
+		});
+
+		it("does not duplicate an edge present on both sides", async () => {
+			const edge = { slug: "artist:both", type: "artist", name: "Both" };
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					key_artists: [edge],
+				}),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					key_artists: [edge],
+				}),
+			);
+			await seed(serverDir, artistNode({ slug: "artist:both" }));
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "genre", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.key_artists).toEqual([edge]);
+			const kept = manifest.entries.find((e) => e.slug === "genre:shared");
+			expect(kept && "mergedEdgeCount" in kept ? kept.mergedEdgeCount : undefined).toBeUndefined();
+		});
+
+		it("drops an edge from the losing side that no longer resolves in the union, and lists it in the manifest", async () => {
+			await seed(
+				repoDir,
+				node({ slug: "genre:shared", qid: "Q1", materialized_at: "2026-09-01T00:00:00.000Z" }),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					key_artists: [{ slug: "artist:ghost", type: "artist", name: "Ghost" }],
+				}),
+			);
+			// artist:ghost is never seeded anywhere -- unresolvable in the union.
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "genre", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.key_artists).toEqual([]);
+			expect(manifest.droppedEdges).toEqual([
+				{ slug: "genre:shared", field: "key_artists", target: "artist:ghost" },
+			]);
+			// A dropped edge is the same tolerated baseline as any other never-materialized edge --
+			// it must not, on its own, mark the union as needing attention.
+			expect(countUnionProblems(manifest)).toBe(0);
+		});
+
+		it("still refuses a qid conflict even when the losing side carries edges", async () => {
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:conflict",
+					qid: "Q1",
+					key_artists: [{ slug: "artist:a", type: "artist", name: "A" }],
+				}),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:conflict",
+					qid: "Q2",
+					key_artists: [{ slug: "artist:b", type: "artist", name: "B" }],
+				}),
+			);
+
+			const { outputDir, manifest } = await union();
+
+			expect(manifest.entries).toEqual([{ decision: "conflict", slug: "genre:conflict", reason: "qid" }]);
+			await expect(readFile(join(outputDir, "nodes", "genre", "conflict.json"), "utf8")).rejects.toThrow();
+		});
+
+		it("is idempotent: re-running the union on its own output changes nothing", async () => {
+			// Both sides identical from the start (like the "real cache against itself" test above)
+			// so every slug is already "kept" -- and validated/reformatted -- on the FIRST run. Seeding
+			// an asymmetric edge here (present on only one side going in) would make that edge's own
+			// node transition from "copied" (byte-identical) to "kept" (schema-reformatted) between
+			// generation 1 and 2, a real but unrelated formatting difference this test isn't about.
+			const shared = node({
+				slug: "genre:shared",
+				qid: "Q1",
+				key_artists: [{ slug: "artist:x", type: "artist", name: "X" }],
+			});
+			const artist = artistNode({ slug: "artist:x" });
+			await seed(repoDir, shared);
+			await seed(serverDir, shared);
+			await seed(repoDir, artist);
+			await seed(serverDir, artist);
+
+			const first = await union();
+			const firstNodes = await fingerprint(first.outputDir, "nodes");
+
+			const second = await buildCacheUnion(first.outputDir, first.outputDir, {
+				redirectsPath: join(first.outputDir, "genre-redirects.json"),
+				onboardingSlugs: [],
+			});
+			const secondNodes = await fingerprint(second.outputDir, "nodes");
+
+			expect(secondNodes).toBe(firstNodes);
+			expect(second.manifest.droppedEdges).toEqual([]);
+			for (const entry of second.manifest.entries) {
+				expect(entry.decision).toBe("kept");
+				expect("mergedEdgeCount" in entry ? entry.mergedEdgeCount : undefined).toBeUndefined();
+			}
+		});
+	});
+
 	describe("--apply-merge", () => {
 		it("applies the merge, archives every pre-migration node, and persists the applied report/deletedCount in the manifest -- without touching either source or the source redirects file", async () => {
 			await seed(
@@ -594,9 +808,9 @@ describe("buildCacheUnion", () => {
 		// seeding the union's copy with the COMBINED table lets election follow the server's winner.
 		it("elects the server's already-chosen winner when the repo's own table has no entry for it yet", async () => {
 			await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
-			await seed(repoDir, node({ slug: "genre:aa", qid: "Q-S4" }));
-			await seed(repoDir, node({ slug: "genre:bbbb", qid: "Q-S4" }));
-			await seed(serverDir, node({ slug: "genre:bbbb", qid: "Q-S4" }));
+			await seed(repoDir, node({ slug: "genre:aa", qid: "Q54" }));
+			await seed(repoDir, node({ slug: "genre:bbbb", qid: "Q54" }));
+			await seed(serverDir, node({ slug: "genre:bbbb", qid: "Q54" }));
 			const serverRedirectsPath = await writeServerRedirects({ "genre:aa": "genre:bbbb" });
 
 			const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
@@ -646,6 +860,38 @@ describe("buildCacheUnion", () => {
 			expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: false, deletedCount: 0 }));
 			expect(await readFile(join(outputDir, "nodes", "genre", "idm.json"), "utf8")).toBeTruthy();
 			expect(await readFile(join(outputDir, "nodes", "genre", "idm-alt.json"), "utf8")).toBeTruthy();
+		});
+
+		// B6a-3 / TRA-268: a merged (unioned) edge must be the migration's INPUT, not bypassed by it
+		// -- an edge added to genre:shared by the union, pointing at a slug the QID-duplicate merge
+		// elects to delete, must come out the other side rewritten to the survivor, exactly like any
+		// edge that was already there before this ticket.
+		it("rewrites a merged edge the same way as any other when its target is itself merged away", async () => {
+			// existing-redirect (criterion 0) makes the election deterministic regardless of usage.
+			await writeFile(redirectsPath, JSON.stringify({ redirects: { "genre:bb": "genre:aa" } }), "utf8");
+			await seed(repoDir, node({ slug: "genre:aa", qid: "Q9" }));
+			await seed(repoDir, node({ slug: "genre:bb", qid: "Q9" }));
+			await seed(
+				repoDir,
+				node({ slug: "genre:shared", qid: "Q1", materialized_at: "2026-09-01T00:00:00.000Z" }),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					related_genres: [{ slug: "genre:bb", type: "genre", name: "BB" }],
+				}),
+			);
+
+			const { outputDir, manifest } = await union({ applyMerge: true });
+
+			expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: true, deletedCount: 1 }));
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "genre", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.related_genres).toEqual([{ slug: "genre:aa", type: "genre", name: "BB" }]);
 		});
 	});
 });

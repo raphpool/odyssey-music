@@ -27,18 +27,20 @@ import { copyFile, cp, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promi
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
-import { NodeCache } from "../src/cache.js";
+import { atomicWriteJson, NodeCache } from "../src/cache.js";
 import type { GenreRedirects } from "../src/genre-registry.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../src/genre-registry.js";
-import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
-import type { Slug } from "../src/types.js";
+import type { NodePayload, Slug } from "../src/types.js";
 import {
 	isRecord,
 	looksLikeCacheDir,
 	mergeRedirects,
 	readCacheNodes,
 	runMigration,
+	unionListField,
 } from "./migrations/2026-09-04-merge-genre-duplicates.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
@@ -47,8 +49,31 @@ type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 // one `slug` field is all either variant needs.
 export type UnionEntry =
 	| { decision: "copied"; from: "repo" | "server"; slug: Slug }
-	| { decision: "kept"; from: "repo" | "server"; slug: Slug; tie: boolean; qidOnlyOn?: "repo" | "server" }
+	| {
+			decision: "kept";
+			from: "repo" | "server";
+			slug: Slug;
+			tie: boolean;
+			qidOnlyOn?: "repo" | "server";
+			// Count of list edges pulled in from the OTHER side that weren't already on the winner
+			// (B6a-3 / TRA-268) -- omitted, like qidOnlyOn above, when there was nothing to add, so
+			// every pre-existing "kept" fixture in the test suite stays valid without updating it.
+			mergedEdgeCount?: number;
+	  }
 	| { decision: "conflict"; slug: Slug; reason: "qid" | "timestamp" };
+
+// A list edge that survived the union/dedupe but no longer resolves against the union's own
+// live-slug/redirect state (see slugResolves) -- dropped rather than written dangling, and
+// reported here instead of silently vanishing (the B6a-3 / TRA-268 review finding: a
+// server-only reverse edge added by applyReverseToTarget used to be lost with no trace when the
+// repo's copy of the same slug won on materialized_at). Not counted by countUnionProblems: an
+// edge that never resolves in the union is the same tolerated baseline as any other
+// never-materialized edge (see this file's header comment) -- it just used to be invisible.
+export interface DroppedEdge {
+	slug: Slug;
+	field: string;
+	target: Slug;
+}
 
 // A reference that resolved in a source before the union but no longer resolves after the
 // (applied) migration -- see `slugResolves` and the reference-delta block in `buildCacheUnion`.
@@ -103,6 +128,9 @@ export interface UnionManifest {
 	serverCacheDir: string;
 	entries: UnionEntry[];
 	skipped: { source: "repo" | "server"; path: string; error: string }[];
+	// List edges dropped from a "kept" (both-sides) node because they no longer resolve in the
+	// union -- see DroppedEdge. Always present (like `skipped`), independent of --apply-merge.
+	droppedEdges: DroppedEdge[];
 	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
 	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
 	// the one that actually describes the artifact's final state.
@@ -221,6 +249,71 @@ async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
 	const dest = join(baseDir, file.type, `${body}.json`);
 	await mkdir(dirname(dest), { recursive: true });
 	await copyFile(file.path, dest);
+}
+
+/** Pure: merges every list-edge field of `type` between the winning ("kept") node and the other
+ * side's -- the winner's own list first, then the loser's edges not already present by slug
+ * (unionListField's own "first occurrence wins" rule, reused here so both callers dedupe list
+ * edges identically instead of two slightly different implementations drifting apart). An edge
+ * that no longer resolves against the union's own live-slug/redirect state (slugResolves -- same
+ * rule as resolveReadSlug) is dropped instead of written dangling; the caller reports it via
+ * `dropped` (see DroppedEdge) rather than letting it vanish silently, which is the bug this
+ * function fixes (B6a-3 / TRA-268 review finding). Singular edge fields and every other field are
+ * left exactly as the winner had them -- the ticket contract only asks list edges to be unioned.
+ * `mergedEdgeCount` only counts edges that came from the LOSER and weren't already on the winner
+ * -- the signal worth surfacing in the manifest is how much this run actually recovered. */
+export function mergeUnionEdges(
+	winner: Record<string, unknown>,
+	loser: Record<string, unknown>,
+	type: NodeType,
+	liveSlugs: ReadonlySet<Slug>,
+	redirects: ReadonlyMap<Slug, Slug>,
+): { node: Record<string, unknown>; mergedEdgeCount: number; dropped: Omit<DroppedEdge, "slug">[] } {
+	const merged: Record<string, unknown> = { ...winner };
+	let mergedEdgeCount = 0;
+	const dropped: Omit<DroppedEdge, "slug">[] = [];
+	for (const field of LIST_EDGES_BY_TYPE[type]) {
+		const winnerList = Array.isArray(winner[field]) ? (winner[field] as unknown[]) : [];
+		const loserList = Array.isArray(loser[field]) ? (loser[field] as unknown[]) : [];
+		const winnerSlugs = new Set(
+			winnerList
+				.filter((e): e is Record<string, unknown> => isRecord(e) && typeof e.slug === "string")
+				.map((e) => e.slug as string),
+		);
+		const kept: unknown[] = [];
+		for (const edge of unionListField(winnerList, [loserList])) {
+			const edgeSlug = isRecord(edge) && typeof edge.slug === "string" ? (edge.slug as Slug) : undefined;
+			if (edgeSlug === undefined) {
+				kept.push(edge);
+				continue;
+			}
+			if (!slugResolves(edgeSlug, liveSlugs, redirects)) {
+				dropped.push({ field, target: edgeSlug });
+				continue;
+			}
+			kept.push(edge);
+			if (!winnerSlugs.has(edgeSlug)) mergedEdgeCount++;
+		}
+		merged[field] = kept;
+	}
+	return { node: merged, mergedEdgeCount, dropped };
+}
+
+/** Writes a "kept" node to the union's own nodes/ tree through the same schema every real
+ * read/write in this codebase goes through (nodePayloadSchema) -- unlike copyNode's raw byte
+ * copy (fine for an untouched single-sided or archived file), this node was just reconstructed
+ * in memory by mergeUnionEdges, so it must be proven valid before it's ever trusted again (ticket
+ * contract: "pas d'écriture brute non validée"). Throws -- never a silent partial write -- on an
+ * invariant violation, same as every other schema boundary in this repo. Uses atomicWriteJson
+ * directly rather than NodeCache.write(): the latter also merges pending reverses and emits
+ * fresh reverse edges to OTHER nodes, side effects this offline, order-independent union pass
+ * must not trigger. */
+async function writeValidatedNode(nodesDir: string, node: Record<string, unknown>): Promise<void> {
+	const validated = nodePayloadSchema.parse(node) as NodePayload;
+	const { type, body } = parseSlug(validated.slug as Slug);
+	const dest = join(nodesDir, type, `${body}.json`);
+	await mkdir(dirname(dest), { recursive: true });
+	await atomicWriteJson(dest, validated);
 }
 
 /** readCacheNodes's own `invalid` entries build `path` as `join(root, "nodes", slug)` -- not a
@@ -344,10 +437,34 @@ export async function buildCacheUnion(
 	const serverBySlug = new Map(serverNodes.map((f) => [f.slug, f]));
 	const allSlugs = new Set([...repoBySlug.keys(), ...serverBySlug.keys()]);
 
+	// Identity decided for every two-sided slug BEFORE any node is written (B6a-3 / TRA-268): a
+	// "kept" node's list edges are unioned against the FINAL union membership below, which depends
+	// on every slug's own decision (a conflicting slug never gets a live node in the union) --
+	// not knowable mid-loop if conflicts and writes stayed interleaved as before this ticket.
+	type IdentityDecision = ReturnType<typeof decideSameIdentity>;
+	const decisionBySlug = new Map<Slug, IdentityDecision>();
+	for (const slug of allSlugs) {
+		const repoFile = repoBySlug.get(slug);
+		const serverFile = serverBySlug.get(slug);
+		if (repoFile && serverFile) {
+			decisionBySlug.set(slug as Slug, decideSameIdentity(repoFile.node, serverFile.node));
+		}
+	}
+	const unionLiveSlugs = new Set<Slug>(
+		[...allSlugs].filter((slug) => {
+			const decision = decisionBySlug.get(slug as Slug);
+			return !decision || !("reason" in decision);
+		}) as Slug[],
+	);
+	// The union's OWN redirects table (see combinedRedirects above), as a Map for slugResolves --
+	// built here, ahead of writing `redirectsPath` below, since "kept" nodes need it mid-loop.
+	const unionRedirects = new Map(Object.entries(combinedRedirects)) as Map<Slug, Slug>;
+
 	const outputDir = await mkdtemp(join(options.outputRoot ?? tmpdir(), "odyssey-genre-union-"));
 	const nodesDir = join(outputDir, "nodes");
 	const archiveDir = join(outputDir, "archive");
 	const entries: UnionEntry[] = [];
+	const droppedEdges: DroppedEdge[] = [];
 
 	for (const slug of allSlugs) {
 		const repoFile = repoBySlug.get(slug);
@@ -355,18 +472,28 @@ export async function buildCacheUnion(
 		if (repoFile && serverFile) {
 			await copyNode(join(archiveDir, "repo"), repoFile);
 			await copyNode(join(archiveDir, "server"), serverFile);
-			const decision = decideSameIdentity(repoFile.node, serverFile.node);
+			const decision = decisionBySlug.get(slug as Slug) as IdentityDecision;
 			if ("reason" in decision) {
 				entries.push({ decision: "conflict", slug: slug as Slug, reason: decision.reason });
 				continue;
 			}
 			const winner = decision.from === "repo" ? repoFile : serverFile;
-			await copyNode(nodesDir, winner);
+			const loser = decision.from === "repo" ? serverFile : repoFile;
+			// Text/scalar fields and singular edges follow the winner untouched (ticket contract);
+			// only list edges are unioned -- see mergeUnionEdges.
+			const {
+				node: mergedNode,
+				mergedEdgeCount,
+				dropped,
+			} = mergeUnionEdges(winner.node, loser.node, winner.type, unionLiveSlugs, unionRedirects);
+			await writeValidatedNode(nodesDir, mergedNode);
+			for (const d of dropped) droppedEdges.push({ slug: slug as Slug, field: d.field, target: d.target });
 			entries.push({
 				decision: "kept",
 				from: decision.from,
 				slug: slug as Slug,
 				tie: decision.tie,
+				...(mergedEdgeCount > 0 ? { mergedEdgeCount } : {}),
 				...(decision.qidOnlyOn ? { qidOnlyOn: decision.qidOnlyOn } : {}),
 			});
 		} else {
@@ -481,6 +608,7 @@ export async function buildCacheUnion(
 		serverCacheDir,
 		entries,
 		skipped,
+		droppedEdges,
 		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
 		// FINAL-state) migration field -- see its type doc.
 		...(migrationApply
