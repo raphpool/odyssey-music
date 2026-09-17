@@ -85,6 +85,7 @@ async function loadGenreCatalogByQid(): Promise<Map<string, WikidataGenreEntry>>
 	return byQid;
 }
 
+import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
@@ -94,6 +95,11 @@ export interface PipelineDeps {
 	firecrawlApiKey: string;
 	geminiApiKey?: string;
 	model?: string;
+	// 2026-09-17 (TRA-242): which web-search backend the research step calls. Defaults to
+	// "tavily" (unchanged prod behavior). "firecrawl" substitutes firecrawlSearch — same
+	// TavilyResult[] shape (src/tools/firecrawl-search.ts) — for local runs where Tavily
+	// isn't available. rankResults and everything downstream is unaffected.
+	searchProvider?: "tavily" | "firecrawl";
 	logger?: (line: string) => void;
 	// OPTIONAL, but omitting it silently disables genre-duplicate prevention: the node's
 	// genre edges keep whatever name-derived slug their producer minted instead of being
@@ -720,10 +726,13 @@ async function researchTarget(
 	}
 	const tSearch = Date.now();
 	const searchQuery = buildSearchQuery(input) + queryHint;
-	const searchResultsRaw = await tavilySearch(deps.tavilyApiKey, searchQuery, {
-		max_results: SEARCH_RESULTS,
-		search_depth: "basic",
-	});
+	const searchResultsRaw =
+		deps.searchProvider === "firecrawl"
+			? await firecrawlSearch(deps.firecrawlApiKey, searchQuery, { max_results: SEARCH_RESULTS })
+			: await tavilySearch(deps.tavilyApiKey, searchQuery, {
+					max_results: SEARCH_RESULTS,
+					search_depth: "basic",
+				});
 	// Source priority: Wikipedia first, fandom/reddit last.
 	const searchResults = rankResults(searchResultsRaw);
 	const searchMs = Date.now() - tSearch;

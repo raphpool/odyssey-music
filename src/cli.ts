@@ -33,6 +33,13 @@ type CliModeOptions = {
 	maxDepth?: number;
 };
 
+// TRA-242: --search-provider is validated up front, before loadEnv() or any network call, so
+// an unknown value fails fast with a clear message instead of surfacing deep inside the pipeline.
+export function resolveSearchProvider(value: string): "tavily" | "firecrawl" {
+	if (value === "tavily" || value === "firecrawl") return value;
+	throw new Error(`--search-provider must be "tavily" or "firecrawl" (got: ${value})`);
+}
+
 export function resolveCliMode(options: CliModeOptions): CliMode {
 	const selectorCount = [options.genreId, options.family].filter((value) => value !== undefined).length;
 
@@ -179,7 +186,8 @@ program
 			quiet: boolean;
 		}) => {
 			const mode = resolveCliMode(opts);
-			const env = loadEnv();
+			const searchProvider = resolveSearchProvider(opts.searchProvider);
+			const env = loadEnv({ searchProvider });
 			const t0 = Date.now();
 			const strategy: "bfs" | "popularity" | "hybrid" =
 				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
@@ -195,6 +203,7 @@ program
 				deps: {
 					tavilyApiKey: env.TAVILY_API_KEY,
 					firecrawlApiKey: env.FIRECRAWL_API_KEY,
+					searchProvider,
 				},
 			};
 			if (!opts.quiet) {

@@ -1,11 +1,11 @@
 /**
  * Reusable mocks + fixtures for the runPipeline e2e harness (TRA-25).
  *
- * `runPipeline` (src/pipeline.ts) has exactly four external network boundaries:
- * Tavily search, the local page fetcher, the Gemini SDK, and the MusicBrainz HTTP
- * adapter. This module mocks those four and nothing else — `src/genre-identity.ts`
- * and the genre catalog under `data/` are ours and run for real against the
- * committed files (CLAUDE.md: mock external boundaries, not code we own).
+ * `runPipeline` (src/pipeline.ts) has external network boundaries: Tavily search,
+ * the Firecrawl search fallback (TRA-242), the local page fetcher, the Gemini SDK, and
+ * the MusicBrainz HTTP adapter. This module mocks those and nothing else —
+ * `src/genre-identity.ts` and the genre catalog under `data/` are ours and run for real
+ * against the committed files (CLAUDE.md: mock external boundaries, not code we own).
  *
  * Usage from a test file:
  *
@@ -39,6 +39,7 @@ import {
 	findRecordingMbidByName,
 	findReleaseGroupMbidByName,
 } from "../../src/musicbrainz.js";
+import { firecrawlSearch } from "../../src/tools/firecrawl-search.js";
 import { localFetch } from "../../src/tools/local-fetcher.js";
 import { tavilySearch } from "../../src/tools/tavily.js";
 import type { NodeType } from "../../src/types.js";
@@ -76,6 +77,10 @@ vi.mock("../../src/tools/tavily.js", async (importOriginal) => {
 		tavilySearch: vi.fn(unexpectedCall("tavilySearch")),
 	};
 });
+
+vi.mock("../../src/tools/firecrawl-search.js", () => ({
+	firecrawlSearch: vi.fn(unexpectedCall("firecrawlSearch")),
+}));
 
 vi.mock("../../src/tools/local-fetcher.js", () => ({
 	localFetch: vi.fn(unexpectedCall("localFetch")),
@@ -153,16 +158,25 @@ export interface InstallPipelineMocksOptions {
 }
 
 /**
- * (Re)installs all four boundary mocks for one `runPipeline` call. Resets every
+ * (Re)installs all boundary mocks for one `runPipeline` call. Resets every
  * MusicBrainz export back to its "unexpected call" default first, then arms only the
  * calls the nominal artist scenario makes (findArtistMbidByName, fetchArtistDiscographyMb,
  * fetchEntityGenresMb) — every other MB export stays throwing, on purpose, until a future
  * ticket's test needs it.
+ *
+ * Both search boundaries (tavilySearch and firecrawlSearch, TRA-242) are armed with the
+ * same fixture results — runPipeline only ever calls the one selected by
+ * `deps.searchProvider`, so a test asserting which provider was used should check the
+ * OTHER mock's call count stayed at zero rather than relying on one of them throwing.
  */
 export function installPipelineMocks(options: InstallPipelineMocksOptions): void {
 	const mbGenres = options.mbGenres ?? DEFAULT_MB_GENRES;
 
 	vi.mocked(tavilySearch)
+		.mockReset()
+		.mockImplementation(async () => FIXTURE_SEARCH_RESULTS);
+
+	vi.mocked(firecrawlSearch)
 		.mockReset()
 		.mockImplementation(async () => FIXTURE_SEARCH_RESULTS);
 
