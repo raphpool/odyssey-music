@@ -277,7 +277,10 @@ let crumbs = []; // node ids forming the back-trail
 // are fixed behind it in TRA-251; off here keeps every deploy in between exactly v1. Read
 // from window.__PROFILE_V2_ENABLED__ (set before this script runs) since a test can't flip a
 // `const` after the fact the way it can a window property.
-const PROFILE_V2_ENABLED = window.__PROFILE_V2_ENABLED__ === true;
+// TRA-251: on by default now that B1 (delta-safe writes) and B4 (unresolved-slug picker
+// support) are fixed. Still overridable to false via window.__PROFILE_V2_ENABLED__ (set before
+// this script runs) -- kept as a rollback lever and to regression-test the kill switch itself.
+const PROFILE_V2_ENABLED = window.__PROFILE_V2_ENABLED__ !== false;
 
 // Set by loadActiveProfile() (TRA-137/D2b), inside init() after DATA/byId are ready --
 // never derived at module load, so a v2 read never runs before the graph is available.
@@ -603,7 +606,7 @@ async function pingApi() {
   // through to the home/seed branches below. Unknown slugs pass through resolveId unchanged.
   const resolvedInitial = initial && resolveId(initial);
   if (resolvedInitial && byId.has(resolvedInitial)) show(resolvedInitial, { replaceHistory: true });
-  else if (params.get("view") === "home" || currentProfile()) showHome({ replaceHistory: true });
+  else if (params.get("view") === "home" || currentProfile() || v2EditUnavailable()) showHome({ replaceHistory: true });
   else show(SEED_ID, { replaceHistory: true });
 
   // First visit: open the account creation flow over whatever we just rendered. Skipped for a
@@ -765,33 +768,62 @@ function saveActiveV2(record) {
 // D3's id-based grid hasn't shipped, so the existing slug picker (genrePickList(), all in
 // graph-slug space) keeps driving selection. These cross the slug/id boundary through
 // taxonomy.legacySelectionBySlug -- a picker slug and a v2 id are never compared directly.
-// TRA-251/B1 replaces this pair's logic (partial-family rendering, delta-only merge).
 
-// Which candidate slugs render "on" for a v2 selection. An id the picker can't show (a
-// merged/off-picker choice) simply has no checkbox.
-function idsToPickerSlugs(ids, pickerSlugs, legacyMap) {
+// Which candidate slugs render "on" for a v2 selection. TRA-251/B1: a slug whose legacy
+// expansion is more than one id (an old family slug) is only "on" once every one of its ids is
+// selected -- a partial match must not render checked, or unchecking it would wipe ids the
+// picker never actually offered a control for. TRA-251/B4: a slug the taxonomy still can't
+// resolve at all (legacySelectionBySlug gaps like genre:pop) is "on" when tracked in
+// unresolvedGenreSlugs.
+function idsToPickerSlugs(ids, unresolvedSlugs, pickerSlugs, legacyMap) {
   const selected = new Set(ids);
+  const unresolved = new Set(unresolvedSlugs || []);
   const on = new Set();
   for (const slug of pickerSlugs) {
-    const resolved = resolveLegacyGenres([slug], legacyMap).genres[0];
-    if (resolved && selected.has(resolved)) on.add(slug);
+    const expansion = resolveLegacyGenres([slug], legacyMap).genres;
+    const fullyChecked = expansion.length > 0 && expansion.every((id) => selected.has(id));
+    if (fullyChecked || unresolved.has(slug)) on.add(slug);
   }
   return on;
 }
 
-// Merges a saved picker selection back into the active v2 record: ids from the selected
-// slugs, ids the picker never offered a checkbox for kept untouched, and any picker slug that
-// still fails to resolve added to unresolvedGenreSlugs (criterion 7). Returns null without a
-// usable taxonomy -- v2 is never written without one (criterion 2).
-function mergePickerSelectionIntoV2(current, selectedSlugs, pickerSlugs, taxonomy) {
+// Merges a picker session's checkbox toggles into the active v2 record. TRA-251/B1:
+// `initialSlugs` is the picker state idsToPickerSlugs seeded at open time, `finalSlugs` is
+// onbSelection at save time -- recomputing membership from finalSlugs' expansion alone (the
+// old behavior) loses ids on every save, even an untouched one, because a partially-selected
+// family never renders "on". Instead this only touches a slug's full expansion when its own
+// checked state actually changed this session; an id/slug outside both sets (off-picker
+// choices, or an untouched checkbox) is left exactly as the record already had it. B4: a newly
+// unresolved-but-checked slug is added to unresolvedGenreSlugs instead of dropped, and one
+// unchecked is removed from it. Returns null without a usable taxonomy (criterion 2).
+function mergePickerSelectionIntoV2(current, initialSlugs, finalSlugs, taxonomy) {
   if (!isUsableTaxonomy(taxonomy)) return null;
   const legacyMap = taxonomy.legacySelectionBySlug;
-  const { genres: pickedIds, unresolved: pickedUnresolved } = resolveLegacyGenres([...selectedSlugs], legacyMap);
-  const pickerIds = new Set(resolveLegacyGenres([...pickerSlugs], legacyMap).genres);
-  const keptOutsidePicker = (current.genres || []).filter((id) => !pickerIds.has(id));
-  const unresolved = new Set([...(current.unresolvedGenreSlugs || []), ...pickedUnresolved]);
+  const initial = new Set(initialSlugs);
+  const final = new Set(finalSlugs);
+  const ids = new Set(current.genres || []);
+  const unresolved = new Set(current.unresolvedGenreSlugs || []);
 
-  const next = { ...current, genres: [...new Set([...keptOutsidePicker, ...pickedIds])] };
+  for (const slug of final) {
+    if (initial.has(slug)) continue; // still checked -- its ids are already there, untouched
+    const { genres, unresolved: stillUnresolved } = resolveLegacyGenres([slug], legacyMap);
+    genres.forEach((id) => ids.add(id));
+    stillUnresolved.forEach((s) => unresolved.add(s));
+  }
+  // Review B5 (2026-09-17): genre:rock's expansion nests genre:krautrock's/psychedelic-rock's --
+  // unchecking rock alone used to delete its whole expansion unconditionally, wiping ids a
+  // still-checked chip was also claiming. An id only leaves once no slug left in `final` covers it.
+  const stillCoveredIds = new Set();
+  for (const slug of final) resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => stillCoveredIds.add(id));
+  for (const slug of initial) {
+    if (final.has(slug)) continue; // still unchecked from before -- nothing to remove
+    resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => {
+      if (!stillCoveredIds.has(id)) ids.delete(id);
+    });
+    unresolved.delete(slug);
+  }
+
+  const next = { ...current, genres: [...ids] };
   if (unresolved.size > 0) next.unresolvedGenreSlugs = [...unresolved];
   else delete next.unresolvedGenreSlugs;
   return next;
@@ -802,27 +834,47 @@ function mergePickerSelectionIntoV2(current, selectedSlugs, pickerSlugs, taxonom
 // would misread "3 picks" as "12 genres". Also doubles as the set of slugs the home page can
 // render a chip/link for (B3).
 function v2PickerChoiceSlugs(profile) {
-  return idsToPickerSlugs(profile.genres, genrePickList(), TAXONOMY.legacySelectionBySlug);
+  return idsToPickerSlugs(profile.genres, profile.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug);
+}
+
+// Nit (3rd review, 2026-09-17): a checked slug's expansion can be entirely covered by another
+// checked slug's (same nesting as B5) -- counting every "on" slug then balloons the chip count
+// with no user action. Counts a slug only when no other checked slug's expansion strictly
+// contains its own; an unresolved slug (empty expansion) is never "contained" and always counts.
+function distinctPickerChoiceCount(onSlugs, legacyMap) {
+  const bySlug = [...onSlugs].map((slug) => ({ slug, ids: resolveLegacyGenres([slug], legacyMap).genres }));
+  let count = 0;
+  for (const a of bySlug) {
+    const dominated =
+      a.ids.length > 0 &&
+      bySlug.some((b) => b !== a && b.ids.length > a.ids.length && a.ids.every((id) => b.ids.includes(id)));
+    if (!dominated) count++;
+  }
+  return count;
 }
 
 function renderProfileChip() {
   const chip = document.getElementById("profile-chip");
+  // B2/nit (2nd review): checked before the v1-fallback profile lookup below -- a stored v2
+  // that's locked out must say so even when a stale v1 record also exists (it would otherwise
+  // win the `!profile` check below and show its own name/count instead).
+  if (v2EditUnavailable()) {
+    chip.hidden = false;
+    chip.textContent = "préférences conservées";
+    chip.onclick = () => openOnboarding({ mode: "edit" });
+    return;
+  }
   const profile = currentProfile();
   if (!profile) {
     chip.hidden = false;
-    if (v2EditUnavailable()) {
-      // B2: a real v2 account exists, just not editable right now -- never say "create an
-      // account" to a user who already has one.
-      chip.textContent = "préférences conservées";
-      chip.onclick = () => openOnboarding({ mode: "edit" });
-    } else {
-      chip.textContent = "créer un compte";
-      chip.onclick = () => openOnboarding({ mode: "signup" });
-    }
+    chip.textContent = "créer un compte";
+    chip.onclick = () => openOnboarding({ mode: "signup" });
     return;
   }
   chip.hidden = false;
-  const count = activeV2 ? v2PickerChoiceSlugs(profile).size : profile.genres.length;
+  const count = activeV2
+    ? distinctPickerChoiceCount(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
+    : profile.genres.length;
   chip.textContent = `${profile.name} · ${count} genres`;
   chip.onclick = () => openOnboarding({ mode: "edit" });
 }
@@ -875,6 +927,7 @@ function genresByPopularity() {
 }
 
 let onbSelection = new Set();
+let onbInitialSelection = new Set(); // picker state at open time -- see mergePickerSelectionIntoV2
 let onbMode = "signup";
 
 function wireOnboarding() {
@@ -913,10 +966,14 @@ function wireOnboarding() {
     const name = nameEl.value.trim() || (currentProfile() && currentProfile().name) || "toi";
     const email = emailEl.value.trim();
     if (activeV2) {
-      // TRA-137/D2b: translate the old picker's slugs back to ids and merge, never
-      // overwriting an id the picker didn't offer a checkbox for (criterion 7). Bails
-      // out without writing if the taxonomy went missing mid-session (criterion 2).
-      const merged = mergePickerSelectionIntoV2({ ...activeV2, name, email }, onbSelection, genrePickList(), TAXONOMY);
+      // TRA-251/B1: only translate the slugs whose checked state actually changed this
+      // session (onbInitialSelection vs onbSelection) back to ids -- never overwriting an id
+      // the picker didn't offer a checkbox for (criterion 7). Bails out without writing if the
+      // taxonomy went missing mid-session (criterion 2).
+      // Nit (3rd review, 2026-09-17): an empty email field must not write "email": "" onto a v2
+      // record that never had one -- only patch it when the user actually typed something.
+      const patch = email ? { ...activeV2, name, email } : { ...activeV2, name };
+      const merged = mergePickerSelectionIntoV2(patch, onbInitialSelection, onbSelection, TAXONOMY);
       if (!merged) return;
       saveActiveV2(merged);
     } else {
@@ -955,8 +1012,9 @@ function openOnboarding({ mode = "signup" } = {}) {
   // translating them back to slugs (criterion 6); a v1 profile's genres are already
   // slugs and pass straight through, same as before this ticket.
   onbSelection = activeV2 && TAXONOMY
-    ? idsToPickerSlugs(activeV2.genres, genrePickList(), TAXONOMY.legacySelectionBySlug)
+    ? idsToPickerSlugs(activeV2.genres, activeV2.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug)
     : new Set((profile && profile.genres) || []);
+  onbInitialSelection = new Set(onbSelection);
   document.getElementById("onb-err").hidden = true;
   document.getElementById("onb-step2-kicker").textContent = mode === "edit" ? "Ton profil" : "Étape 2 / 2";
   document.getElementById("onb-back").textContent = mode === "edit" ? "annuler" : "← retour";
@@ -1196,7 +1254,12 @@ function clearReco() {
  */
 function pickDailyReco({ reroll = false } = {}) {
   const profile = currentProfile();
-  if (!profile || !profile.genres.length) return null;
+  // TRA-251/B4: a v2 profile with no resolved id yet -- every pick still an unresolved slug
+  // (legacySelectionBySlug gaps like genre:pop) -- must stay scorable through those slugs
+  // below, not bail out here just because genres.length is 0.
+  const hasSelection =
+    profile && (activeV2 ? profile.genres.length || (profile.unresolvedGenreSlugs || []).length : profile.genres.length);
+  if (!hasSelection) return null;
   const state = readReco();
   const today = todayKey();
   if (!reroll && state.date === today && byId.has(state.id)) return byId.get(state.id);
@@ -1265,6 +1328,23 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
   if (!fromHistory) {
     if (replaceHistory) history.replaceState({ view: "home" }, "", "?view=home");
     else history.pushState({ view: "home" }, "", "?view=home");
+  }
+
+  if (v2EditUnavailable()) {
+    // nit (2nd review): a stored v2 -- with or without a stale v1 alongside it -- must not be
+    // treated as a new visitor (B3-nit3) nor silently shown a v1 record that may have drifted
+    // from it (B3-nit4). Read-only: no reco, scoring needs an active TAXONOMY.
+    contentEl.innerHTML = `
+      <div class="home">
+        <div class="home-hello">Salut ${escapeHtml(storedV2.name)} 👋</div>
+        <div class="reco-empty">
+          <!-- Nit (3rd review): raw id count (e.g. 25) can't match the chip's picker-choice count
+               (e.g. 6) -- dropped the number, matching the chip's own wording when locked. -->
+          <p>Tes préférences sont conservées, en lecture seule tant que le graphe n'est pas disponible.</p>
+        </div>
+      </div>`;
+    window.scrollTo({ top: 0, behavior: "instant" });
+    return;
   }
 
   const profile = currentProfile();
