@@ -415,6 +415,41 @@ describe("buildCacheUnion", () => {
 		await expect(union({ serverRedirectsPath })).rejects.toThrow(/is not valid JSON/);
 	});
 
+	// Finding 4: an explicit "" must be validated too, never treated as "option omitted".
+	it("refuses an empty-string --server-redirects-path instead of silently skipping validation", async () => {
+		await expect(union({ serverRedirectsPath: "" })).rejects.toThrow();
+	});
+
+	// Finding 2: a slug the migration actually deletes must redirect to a live target -- scoped
+	// to what THIS run deletes, so an untouched stale entry (e.g. real production data) is fine.
+	it("marks the result untrusted when a slug the migration deletes redirects nowhere live", async () => {
+		await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+		await seed(repoDir, node({ slug: "genre:a", qid: "Q-DANGLE" }));
+		await seed(repoDir, node({ slug: "genre:cc", qid: "Q-DANGLE" }));
+		const serverRedirectsPath = await writeServerRedirects({ "genre:a": "genre:nowhere" });
+
+		const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
+
+		expect(manifest.redirectsConflicts).toEqual([expect.objectContaining({ reason: "dangling" })]);
+		// cc really was deleted from the union's disposable copy -- only `applied` is forced
+		// false; deletedCount stays honest.
+		expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: false, deletedCount: 1 }));
+		expect(await readFile(join(outputDir, "nodes", "genre", "a.json"), "utf8")).toBeTruthy();
+		await expect(readFile(join(outputDir, "nodes", "genre", "cc.json"), "utf8")).rejects.toThrow();
+	});
+
+	// TRA-245 acceptance criterion: the real committed cache, unioned against itself with the
+	// real committed redirects table on both sides, must never false-flag a conflict.
+	it("unions the real committed cache against itself with the real data/genre-redirects.json on both sides, cleanly", async () => {
+		const { manifest } = await buildCacheUnion("cache", "cache", {
+			redirectsPath: "data/genre-redirects.json",
+			serverRedirectsPath: "data/genre-redirects.json",
+			onboardingSlugs: [],
+		});
+		expect(manifest.redirectsConflicts).toBeUndefined();
+		expect(countUnionProblems(manifest)).toBe(0);
+	});
+
 	describe("--apply-merge", () => {
 		it("applies the merge, archives every pre-migration node, and persists the applied report/deletedCount in the manifest -- without touching either source or the source redirects file", async () => {
 			await seed(

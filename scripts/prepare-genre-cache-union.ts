@@ -71,7 +71,7 @@ export type RedirectsConflict =
 			serverFrom: Slug;
 			serverTo: Slug;
 	  }
-	| { reason: "cycle"; message: string };
+	| { reason: "cycle" | "dangling"; message: string };
 
 /** Pure: flags every genre-redirect entry that disagrees between the two tables. An entry present
  * on only one side is normal steady-state (the other side hasn't caught up yet) and is never
@@ -317,7 +317,9 @@ export async function buildCacheUnion(
 	// -- then the COMBINED table, so election (criterion 0) sees a winner the server already
 	// picked, not just the repo's. Never combined on a conflict (finding 1).
 	let combinedRedirects: Record<string, string> = Object.fromEntries(sourceRedirects);
-	if (options.serverRedirectsPath) {
+	// `!== undefined`, not truthy: an explicit "" must still be validated (and refused), never
+	// silently treated as "no server table given" (round-2 review, finding 4).
+	if (options.serverRedirectsPath !== undefined) {
 		serverRedirects = await loadRequiredGenreRedirects(options.serverRedirectsPath);
 		const pairwiseConflicts = diffGenreRedirects(sourceRedirects, serverRedirects);
 		if (pairwiseConflicts.length > 0) {
@@ -440,12 +442,16 @@ export async function buildCacheUnion(
 				removedByMigration,
 			};
 
-			// Belt-and-suspenders (finding 1): the FINAL union table should already agree with the
-			// server's (it was seeded from the combined table) -- compare anyway and refuse any
-			// divergence a bug elsewhere might still have produced.
-			if (serverRedirects) {
-				const postConflicts = diffGenreRedirects(unionRedirects, serverRedirects);
-				if (postConflicts.length > 0) redirectsConflicts = [...(redirectsConflicts ?? []), ...postConflicts];
+			// A deleted slug's redirectsTo must be live in the union (finding 2) -- scoped to what
+			// THIS run deleted, not every table entry, so an untouched stale entry (today's
+			// tolerated baseline) is never flagged.
+			const dangling = removedByMigration.filter((r) => !r.redirectsTo || !unionLiveSlugs.has(r.redirectsTo));
+			if (dangling.length > 0) {
+				redirectsConflicts = dangling.map((r) => ({
+					reason: "dangling" as const,
+					message: `${r.slug} was removed but its redirect target ${r.redirectsTo ?? "(none)"} is not live in the union`,
+				}));
+				migrationApply = { ...migrationApply, applied: false };
 			}
 
 			// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
