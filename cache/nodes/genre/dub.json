@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:41:00.931Z",
   "type": "genre",
   "editorial_definition": "A subgenre of reggae originating in Jamaica that emphasizes the rhythm section, uses significant studio effects like echo and reverb, and typically features instrumental remixes of existing tracks.",
+  "qid": "Q212688",
   "era": "Late 1960s to present",
   "origin": "Jamaica",
   "parent_genres": [
@@ -57,6 +58,12 @@
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
     }
   ],
   "key_artists": [
@@ -105,6 +112,5 @@
       "name": "Super Ape"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q212688"
+  "landmark_tracks": []
 }

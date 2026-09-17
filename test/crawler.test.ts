@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { buildGenreSeedPlan, enqueueEdges, FrontierQueue } from "../src/crawler.js";
+import { attachFolderGenre, buildGenreSeedPlan, enqueueEdges, FrontierQueue } from "../src/crawler.js";
 import type { GenreRegistry } from "../src/genre-registry.js";
 import type { GenreSeed } from "../src/genre-seeds.js";
+import type { PipelineInput } from "../src/pipeline.js";
 import type { ArtistNode } from "../src/types.js";
 
 /** Minimal valid ArtistNode, only the fields enqueueEdges actually reads matter here. */
@@ -100,6 +101,47 @@ describe("enqueueEdges (TRA-28 review B1)", () => {
 		const popped = frontier.pop();
 		expect(popped?.entry.input.qid).toBeUndefined();
 		expect(popped?.entry.input).not.toHaveProperty("qid");
+	});
+});
+
+describe("attachFolderGenre (TRA-263)", () => {
+	const folderGenre: PipelineInput = { type: "genre", name: "Gabber", slug: "genre:gabber", qid: "Q1085907" };
+
+	it("adds the folder's genre edge, with its qid, when the node doesn't already cite it", () => {
+		const node = artistNode({ genres: [{ type: "genre", slug: "genre:rave", name: "Rave" }] });
+
+		const updated = attachFolderGenre(node, folderGenre);
+
+		expect(updated).not.toBe(node);
+		expect((updated as ArtistNode).genres).toEqual([
+			{ type: "genre", slug: "genre:rave", name: "Rave" },
+			{ type: "genre", slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+		]);
+		// Only the genres field changes -- everything else is the same object/values.
+		expect((updated as ArtistNode).labels).toBe(node.labels);
+	});
+
+	it("does not duplicate an edge already pointing at the folder genre's slug, even under another name", () => {
+		const node = artistNode({
+			genres: [{ type: "genre", slug: "genre:gabber", name: "Old Gabber Name" }],
+		});
+
+		const updated = attachFolderGenre(node, folderGenre);
+
+		expect(updated).toBe(node);
+		expect((updated as ArtistNode).genres).toEqual([
+			{ type: "genre", slug: "genre:gabber", name: "Old Gabber Name" },
+		]);
+	});
+
+	it("omits the qid key when the folder genre has none", () => {
+		const node = artistNode({ genres: [] });
+		const noQidGenre: PipelineInput = { type: "genre", name: "Gabber", slug: "genre:gabber" };
+
+		const updated = attachFolderGenre(node, noQidGenre);
+
+		const edge = (updated as ArtistNode).genres[0];
+		expect(edge && "qid" in edge).toBe(false);
 	});
 });
 

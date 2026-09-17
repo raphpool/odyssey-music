@@ -1,0 +1,115 @@
+{
+  "slug": "genre:leftfield-house",
+  "name": "Leftfield House",
+  "editorial_article": "Emerging in London in 1989 through the production work of Neil Barnes and Paul Daley, this genre pioneered the fusion of house music with dub and reggae, a hybrid that earned the tag progressive house in the early 1990s. The sound relies heavily on heavy, studio-engineered low-end frequencies, often utilizing guest vocalists like John Lydon and Earl Sixteen to bridge dance floor mechanics with dub-influenced song structures. Beyond its standard 4/4 drum machine rhythms, the style is defined by an instrumental focus that pushes electronic dance music toward experimental, boundary-defying territory. While frequently associated with the commercial success of the 1995 album Leftism, the genre represents a shift away from standard pop structures toward a sound described by Barnes as the culmination of years of musical frustration. Its production techniques frequently incorporate unconventional percussion, atmospheric textures, and sample manipulation, distancing the result from the mainstream house of the era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Leftfield",
+      "title": "Leftfield - Wikipedia"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/leftfield",
+      "title": "Leftfield - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:15.814Z",
+  "type": "genre",
+  "editorial_definition": "A 1990s London-born electronic style that integrates house music beats with the heavy bass, echoes, and sound-system culture of dub and reggae.",
+  "qid": "Q105636940",
+  "era": "early 1990s to early 2000s",
+  "origin": "London, UK dance music scene",
+  "sonic_markers": "4/4 house tempo, heavy dub-influenced basslines, reggae-style percussion, atmospheric soundscapes, instrumental-heavy structures.",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House Music",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:leftfield-electronic",
+      "type": "genre",
+      "name": "Leftfield Electronic",
+      "qid": "Q65937906"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    },
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip Hop",
+      "qid": "Q205560"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno",
+      "qid": "Q1262781"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:leftfield",
+      "type": "artist",
+      "name": "Leftfield"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:fatboy-slim",
+      "type": "artist",
+      "name": "Fatboy Slim"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hard-hands",
+      "type": "label",
+      "name": "Hard Hands"
+    },
+    {
+      "slug": "label:outer-rhythm",
+      "type": "label",
+      "name": "Outer Rhythm"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:release-the-pressure",
+      "type": "track",
+      "name": "Release the Pressure"
+    },
+    {
+      "slug": "track:open-up",
+      "type": "track",
+      "name": "Open Up"
+    },
+    {
+      "slug": "track:not-forgotten",
+      "type": "track",
+      "name": "Not Forgotten"
+    },
+    {
+      "slug": "track:phat-planet",
+      "type": "track",
+      "name": "Phat Planet"
+    }
+  ]
+}

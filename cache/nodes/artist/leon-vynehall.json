@@ -1,0 +1,358 @@
+{
+  "slug": "artist:leon-vynehall",
+  "name": "Leon Vynehall",
+  "editorial_article": "British electronic artist Leon Vynehall began his career as a resident DJ at Akaakaroar in Brighton, eventually issuing early EPs through labels like Aus Music and Well Rounded Housing Project. His 2014 debut EP, Music for the Uninvited, earned widespread critical recognition across publications including Pitchfork and XLR8R. He signed with Ninja Tune in 2018, using the label to release his debut full-length, Nothing Is Still, a project inspired by his grandparents' mid-century emigration from the UK to Brooklyn. The record featured the single 'Envelopes (Chapter VI)', which received radio support from Gilles Peterson on WorldWide FM. Vynehall's 2021 follow-up studio album, Rare, Forever, garnered further critical praise from The Guardian and Resident Advisor. His work is known for blending the percussive energy of house music with sample-heavy arrangements, drawing creative influence from Aphex Twin, DJ Shadow, Afrika Bambaataa, and Man Parrish.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Leon_Vynehall",
+      "title": "Leon Vynehall - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/leon-vynehall-mn0003121703",
+      "title": "Leon Vynehall — Biography, Discography, Albums ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:29.988Z",
+  "type": "artist",
+  "editorial_bio": "British electronic musician and producer known for his genre-fluid approach to house, experimental electronica, and cinematic, sample-heavy compositions.",
+  "origin": "Pembury, United Kingdom",
+  "active_years": "2012-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK Bass",
+      "qid": "Q2346991"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ninja-tune",
+      "type": "label",
+      "name": "Ninja Tune"
+    },
+    {
+      "slug": "label:studio-ooze",
+      "type": "label",
+      "name": "Studio Ooze"
+    },
+    {
+      "slug": "label:3024",
+      "type": "label",
+      "name": "3024"
+    },
+    {
+      "slug": "label:aus-music",
+      "type": "label",
+      "name": "Aus Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:undo",
+      "type": "project",
+      "name": "Undo (Your Body)",
+      "mbid": "5a748bea-7d9f-4586-a051-4c8836c6de3f",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-daytona-yellow",
+      "type": "project",
+      "name": "In Daytona Yellow",
+      "mbid": "fc3a314e-6c0c-4ae4-874c-ff22b8997f69",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scab",
+      "type": "project",
+      "name": "Scab",
+      "mbid": "bbc385e8-fafb-460c-ac1b-447da28c8915",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cruel-love",
+      "type": "project",
+      "name": "Cruel Love",
+      "mbid": "f8fe53a3-e345-47f8-99aa-38d7436e6e36",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mirror-s-edge",
+      "type": "project",
+      "name": "Mirror's Edge",
+      "mbid": "832a985a-c394-4c21-88c9-f44f644e4ea0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shellac",
+      "type": "project",
+      "name": "SHELLAC",
+      "mbid": "04103237-0240-447f-a1a2-bbc9425051e8",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:duofade",
+      "type": "project",
+      "name": "Duofade",
+      "mbid": "65aa1019-8a6b-4cc4-acba-d34c983ad863",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rosebud-black-dove",
+      "type": "project",
+      "name": "Rosebud / Black Dove",
+      "mbid": "dcdb2f8e-c424-4006-b35c-71d171d7683c",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rosebud",
+      "type": "project",
+      "name": "Rosebud",
+      "mbid": "22a53497-d9d1-4911-96a4-9dc93ead7c99",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:endless",
+      "type": "project",
+      "name": "Endless (I&II)",
+      "mbid": "fad7f23c-b586-42fe-ad2d-f69d705a754d",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rare-forever",
+      "type": "project",
+      "name": "Rare, Forever",
+      "mbid": "e6c719ab-92ff-4622-9e77-064e326641db",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:an-exhale",
+      "type": "project",
+      "name": "An Exhale",
+      "mbid": "d4beab2b-18d5-41cb-8453-d5eb4e7a302f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snakeskin-has-been",
+      "type": "project",
+      "name": "Snakeskin ∞ Has-Been",
+      "mbid": "7c2e127f-4d2d-467a-940a-025940704fbe",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mothra-ecce-ego",
+      "type": "project",
+      "name": "Mothra / Ecce! Ego!",
+      "mbid": "667f2ad1-fa7b-420e-a020-40909ffab024",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-cavallo",
+      "type": "project",
+      "name": "I, Cavallo",
+      "mbid": "8f03a42c-17b0-4821-b9cf-e5fc4e2e5700",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-is-still",
+      "type": "project",
+      "name": "Nothing Is Still",
+      "mbid": "65a0cf36-8a2c-4b96-88a9-a09d9cbb9b24",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:envelopes",
+      "type": "project",
+      "name": "Envelopes (Chapter VI)",
+      "mbid": "8dd9eea9-585f-415f-8c7b-aa2f757e04c8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:envelopes",
+      "type": "project",
+      "name": "Envelopes (Chapter VI)",
+      "mbid": "c8cb14af-04b1-46ca-afee-19b5bc430ad3",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rojus",
+      "type": "project",
+      "name": "Rojus",
+      "mbid": "9c5511bb-d521-4702-ad9d-933ae64ad6dc",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mixmag-gold-016-beau-sovereign",
+      "type": "project",
+      "name": "Mixmag Gold 016: Beau Sovereign",
+      "mbid": "8e41dc6d-37e6-49bc-b4fe-aa786066c43e",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:midnight-on-rainbow-road",
+      "type": "project",
+      "name": "Midnight on Rainbow Road",
+      "mbid": "2f623a20-fbfa-41e7-ac28-33323372d62a",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:butterflies-this-is-the-place",
+      "type": "project",
+      "name": "Butterflies / This is the Place",
+      "mbid": "8053382c-0933-4f4d-b391-df9b055d11e3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-for-the-uninvited",
+      "type": "project",
+      "name": "Music for the Uninvited",
+      "mbid": "d8cb418a-69a0-4b60-96ab-8ae3b3c4dda8",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:open-ep",
+      "type": "project",
+      "name": "Open EP",
+      "mbid": "4f8a7dc4-846e-4ba3-98ca-9f0a32b05b0c",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:brother-sister-ep",
+      "type": "project",
+      "name": "Brother / Sister EP",
+      "mbid": "c8b0eee7-3c62-4ed9-9610-d7cc83b1bf35",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rosalind-ep",
+      "type": "project",
+      "name": "Rosalind EP",
+      "mbid": "0b987dab-7c2f-4da0-a618-9757f626fe38",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gold-language-ep",
+      "type": "project",
+      "name": "Gold Language EP",
+      "mbid": "c033d498-c7a9-4f1f-aaef-28bedc3b1dc7",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mauve",
+      "type": "project",
+      "name": "Mauve",
+      "mbid": "33b1fd3a-f4ca-4f05-844c-332dbe169310",
+      "year": "2012",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:envelopes",
+      "type": "track",
+      "name": "Envelopes (Chapter VI)"
+    },
+    {
+      "slug": "track:sugar-slip",
+      "type": "track",
+      "name": "Sugar Slip (The Lick)"
+    },
+    {
+      "slug": "track:rosebud",
+      "type": "track",
+      "name": "Rosebud"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:dj-shadow",
+      "type": "artist",
+      "name": "DJ Shadow"
+    },
+    {
+      "slug": "artist:afrika-bambaataa",
+      "type": "artist",
+      "name": "Afrika Bambaataa"
+    },
+    {
+      "slug": "artist:man-parrish",
+      "type": "artist",
+      "name": "Man Parrish"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:moxie",
+      "type": "artist",
+      "name": "Moxie"
+    },
+    {
+      "slug": "artist:poison-anna",
+      "type": "artist",
+      "name": "POiSON ANNA"
+    },
+    {
+      "slug": "artist:beau-nox",
+      "type": "artist",
+      "name": "Beau Nox"
+    },
+    {
+      "slug": "artist:tyson",
+      "type": "artist",
+      "name": "TYSON"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

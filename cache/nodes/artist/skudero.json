@@ -1,0 +1,84 @@
+{
+  "slug": "artist:skudero",
+  "name": "Skudero",
+  "editorial_article": "Marc Escudero Gonzálvez, known as DJ Skudero, emerged as a major figure in the Spanish electronic scene starting in 1994 when he became the resident DJ at the Pont Aeri club in Barcelona. A central force in the development of the mákina genre throughout the 1990s, he built his reputation alongside his brother, Xavi Metralla. Beyond his work in the booth, he served as an A&R representative for the record label Bit Music. His discography includes various releases under the Max and Bit labels, contributing to the movement that secured multiple top ten singles across Spain during the mid-to-late 1990s. He remains active in the electronic music community as a producer and DJ.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Skudero",
+      "title": "DJ Skudero"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:00:15.329Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Spanish mákina DJ and producer who served as the resident at the legendary Pont Aeri club.",
+  "origin": "Terrassa, Spain",
+  "active_years": "1994-present",
+  "genres": [
+    {
+      "slug": "genre:makina",
+      "type": "genre",
+      "name": "Mákina",
+      "qid": "Q3048168"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bit-music",
+      "type": "label",
+      "name": "Bit Music"
+    },
+    {
+      "slug": "label:max-music",
+      "type": "label",
+      "name": "Max Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:white-flag-remix",
+      "type": "project",
+      "name": "White Flag Remix",
+      "mbid": "c15ab16d-d3ba-4387-8902-f1cc205eead3",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:infectious-flight",
+      "type": "project",
+      "name": "Infectious Flight",
+      "mbid": "81d49912-2feb-4768-84ae-723b9b161431",
+      "year": "1998",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:extasis",
+      "type": "track",
+      "name": "Extasis"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:xavi-metralla",
+      "type": "artist",
+      "name": "Xavi Metralla"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}
