@@ -893,7 +893,11 @@ function refreshGenreCount() {
 // two of its sources tag the same node or curate the same landmark/key
 // artist. scoreAffinity is its v1 wrapper -- one choice per raw slug -- kept
 // so today's Profile.data.genres (still v1-shaped until D2b/TRA-137 wires v2
-// reads into init()) scores exactly as before.
+// reads into init()) scores the same way it did before this ticket, with one
+// deliberate exception: decision 4 also wants editorial duplicates (the same
+// slug curating the same landmark twice, or tagged twice on the same node)
+// to stop inflating a bonus, so those specific cases now count once instead
+// of once per occurrence.
 
 // True only when every published/resolved child of `family.key` in the
 // projection is among the selected choice ids. No family id is ever stored
@@ -918,20 +922,29 @@ function selectedFamilySlugs(genreIds, taxonomy) {
 // Bundles a v2 profile's picks into one scoring group per logical choice: the
 // taxonomy entry for each selected id, a synthetic group per resolved family
 // umbrella (selectedFamilySlugs above), and one per legacy slug from
-// `unresolvedGenreSlugs` that still resolves against `graph` -- through
-// `resolveSlug` (the redirect table) when given -- and isn't already covered
-// by a selected choice's own sources.
-function resolveScoringChoices(genreIds, taxonomy, unresolvedGenreSlugs, graph, resolveSlug = (slug) => slug) {
+// `unresolvedGenreSlugs` that still resolves against `graph` through
+// `resolveSlug` (the redirect table) and isn't already covered by a selected
+// choice's own sources. `resolveSlug` has no default on purpose: D2b must
+// decide explicitly how legacy slugs resolve rather than silently falling
+// back to identity.
+//
+// `covered` also guards the family branch: a family's own umbrella slug can
+// coincide with one of its published children's sources (an unusual but
+// possible taxonomy shape), and adding a second choice for that slug would
+// double its curated edges and tag matches in scoreAffinityFromChoices.
+function resolveScoringChoices(genreIds, taxonomy, unresolvedGenreSlugs, graph, resolveSlug) {
   const entryById = new Map(taxonomy.genres.map((g) => [g.id, g]));
   const choices = [];
   for (const id of new Set(genreIds)) {
     const entry = entryById.get(id);
     if (entry) choices.push({ id: entry.id, slugs: entry.slugs });
   }
-  for (const slug of selectedFamilySlugs(genreIds, taxonomy)) {
-    choices.push({ id: `family:${slug}`, slugs: [slug] });
-  }
   const covered = new Set(choices.flatMap((c) => c.slugs));
+  for (const slug of selectedFamilySlugs(genreIds, taxonomy)) {
+    if (covered.has(slug)) continue;
+    choices.push({ id: `family:${slug}`, slugs: [slug] });
+    covered.add(slug);
+  }
   for (const slug of unresolvedGenreSlugs || []) {
     const resolved = resolveSlug(slug);
     if (covered.has(resolved) || !graph.has(resolved)) continue;
@@ -943,12 +956,20 @@ function resolveScoringChoices(genreIds, taxonomy, unresolvedGenreSlugs, graph, 
 
 // The scoring engine: `choices` is a list of { id, slugs } groups (see
 // resolveScoringChoices above), `graph` a Map of node id -> node (byId's own
-// shape). Every weight below matches scoreAffinity's original ones exactly,
-// applied once per choice and relation rather than once per source slug.
+// shape). Every weight below matches scoreAffinity's original ones, applied
+// once per choice and relation rather than once per source slug.
 function scoreAffinityFromChoices(choices, graph) {
+  // First write wins: if two distinct choices happen to share a source slug
+  // (resolveScoringChoices already guards its own family/child case, but this
+  // function must stay defensive for any other caller), that slug belongs to
+  // whichever choice claimed it first -- never reassigned, so it can't get
+  // scored under a later choice too and double its curated edges or tag match.
   const choiceOfSlug = new Map();
   for (const choice of choices) {
-    for (const slug of choice.slugs) if (graph.has(slug)) choiceOfSlug.set(slug, choice.id);
+    for (const slug of choice.slugs) {
+      if (!graph.has(slug)) continue;
+      if (!choiceOfSlug.has(slug)) choiceOfSlug.set(slug, choice.id);
+    }
   }
 
   const near = new Set();
@@ -970,12 +991,15 @@ function scoreAffinityFromChoices(choices, graph) {
   // Curated picks (landmark / key artist): union each choice's sources'
   // targets per relation before bumping, so a choice with several sources --
   // or an editorial duplicate across them -- never earns a bigger bonus than
-  // a single-source choice pointing at the same target.
+  // a single-source choice pointing at the same target. Only a slug this
+  // choice actually owns in choiceOfSlug is processed here, so a slug shared
+  // with an earlier choice (first write wins, above) is never re-bumped
+  // under this later choice too.
   for (const choice of choices) {
     const landmarks = new Set();
     const keyArtists = new Set();
     for (const slug of choice.slugs) {
-      if (!graph.has(slug)) continue;
+      if (choiceOfSlug.get(slug) !== choice.id) continue;
       const edges = graph.get(slug).edges || {};
       for (const r of edges.landmark_projects || []) landmarks.add(r.slug);
       for (const r of edges.landmark_tracks || []) landmarks.add(r.slug);
@@ -985,9 +1009,10 @@ function scoreAffinityFromChoices(choices, graph) {
     for (const slug of keyArtists) bump(slug, 3);
   }
 
-  // Direct/near tag matches: a node can carry several of the same choice's
-  // source slugs as separate genre tags, so direct hits are collected per
-  // choice first and bumped once each; a near hit (not any selected choice's
+  // Direct/near tag matches: a node can carry the same choice's source slug
+  // (or several of a choice's source slugs) as more than one genre tag, so
+  // direct hits are collected per choice first and bumped once each choice,
+  // however many of its tags matched; a near hit (not any selected choice's
   // own source) still bumps per matching tag, same as before.
   for (const n of graph.values()) {
     if (n.type === "genre" || n.type === "label") continue;
@@ -1005,7 +1030,10 @@ function scoreAffinityFromChoices(choices, graph) {
 
 // v1 compat: one choice per raw graph slug, scored against the live graph.
 // Still what pickDailyReco calls today (Profile.data.genres is v1-shaped
-// until D2b), and byte-identical to before this ticket for that reason.
+// until D2b). Scores the same as before this ticket, except an editorial
+// duplicate -- the same raw slug tagged twice on one node, or curating the
+// same landmark/key artist twice -- now counts once instead of once per
+// occurrence (decision 4, see the header comment above).
 function scoreAffinity(genreSlugs) {
   const choices = [...new Set(genreSlugs.filter((s) => byId.has(s)))].map((s) => ({ id: s, slugs: [s] }));
   return scoreAffinityFromChoices(choices, byId);

@@ -61,7 +61,7 @@ type OdysseyWindow = Window &
 			taxonomy: GenreTaxonomyProjection,
 			unresolvedGenreSlugs: string[] | undefined,
 			graph: ScoringGraph,
-			resolveSlug?: (slug: string) => string,
+			resolveSlug: (slug: string) => string,
 		) => ScoringChoice[];
 		scoreAffinityFromChoices: (choices: ScoringChoice[], graph: ScoringGraph) => string[];
 	};
@@ -359,31 +359,70 @@ describe("scoreAffinityFromChoices — weights match the pre-existing scoreAffin
 		]);
 	});
 
-	it("recommends an artist tagged with the selected genre", () => {
+	it("counts a direct-tag bonus once even when a node lists the same source slug twice (decision 4: editorial duplicates)", () => {
 		const graph = makeGraph([
 			{ id: "genre:x", type: "genre" },
-			{ id: "artist:only", type: "artist", edges: { genres: [{ slug: "genre:x" }] } },
+			// The same slug tagged twice on one node -- a data duplicate, not two choices.
+			{
+				id: "artist:dup_tag",
+				type: "artist",
+				edges: { genres: [{ slug: "genre:x" }, { slug: "genre:x" }] },
+			},
+			{ id: "genre:calib", type: "genre" },
+			{ id: "artist:calib", type: "artist", edges: { genres: [{ slug: "genre:calib" }] } },
 		]);
-		const ranked = win.scoreAffinityFromChoices([{ id: "local:x", slugs: ["genre:x"] }], graph);
-		expect(ranked).toEqual(["artist:only"]);
+
+		const choices: ScoringChoice[] = [
+			{ id: "local:x", slugs: ["genre:x"] },
+			{ id: "local:calib", slugs: ["genre:calib"] },
+		];
+		const ranked = win.scoreAffinityFromChoices(choices, graph);
+
+		// Ties its single-tag calibration counterpart at +3. A duplicate-tag double bump would
+		// instead score it +6 and outrank artist:calib.
+		expect(ranked).toEqual(["artist:calib", "artist:dup_tag"]);
 	});
 
-	it("recommends a project tagged with the selected genre", () => {
+	it("does not double a curated bonus when two distinct choices happen to share a source slug", () => {
 		const graph = makeGraph([
-			{ id: "genre:x", type: "genre" },
-			{ id: "project:only", type: "project", edges: { genres: [{ slug: "genre:x" }] } },
+			{
+				id: "genre:shared",
+				type: "genre",
+				edges: { landmark_projects: [{ slug: "project:shared" }] },
+			},
+			{ id: "project:shared", type: "project" },
+			{
+				id: "genre:calib",
+				type: "genre",
+				edges: { landmark_projects: [{ slug: "project:calib" }] },
+			},
+			{ id: "project:calib", type: "project" },
 		]);
-		const ranked = win.scoreAffinityFromChoices([{ id: "local:x", slugs: ["genre:x"] }], graph);
-		expect(ranked).toEqual(["project:only"]);
+
+		// Pathological input (resolveScoringChoices guards its own family/child case so this
+		// shouldn't happen via that path, but scoreAffinityFromChoices must stay defensive):
+		// two distinct choices both listing "genre:shared" as a source.
+		const choices: ScoringChoice[] = [
+			{ id: "local:a", slugs: ["genre:shared"] },
+			{ id: "local:b", slugs: ["genre:shared"] },
+			{ id: "local:calib", slugs: ["genre:calib"] },
+		];
+		const ranked = win.scoreAffinityFromChoices(choices, graph);
+
+		// project:shared ties its single-claim calibration counterpart at +4. A double bump
+		// (last-write-wins re-scoring the shared slug under local:b too) would instead score
+		// it +8 and outrank project:calib.
+		expect(ranked).toEqual(["project:calib", "project:shared"]);
 	});
 
-	it("recommends a track tagged with the selected genre", () => {
-		const graph = makeGraph([
-			{ id: "genre:x", type: "genre" },
-			{ id: "track:only", type: "track", edges: { genres: [{ slug: "genre:x" }] } },
-		]);
+	it.each([
+		["artist", { id: "artist:only", type: "artist" as const, edges: { genres: [{ slug: "genre:x" }] } }],
+		["project", { id: "project:only", type: "project" as const, edges: { genres: [{ slug: "genre:x" }] } }],
+		["track", { id: "track:only", type: "track" as const, edges: { genres: [{ slug: "genre:x" }] } }],
+	])("recommends a %s tagged with the selected genre", (_label, neighbor) => {
+		const graph = makeGraph([{ id: "genre:x", type: "genre" }, neighbor]);
 		const ranked = win.scoreAffinityFromChoices([{ id: "local:x", slugs: ["genre:x"] }], graph);
-		expect(ranked).toEqual(["track:only"]);
+		expect(ranked).toEqual([neighbor.id]);
 	});
 });
 
@@ -398,19 +437,59 @@ describe("resolveScoringChoices — family umbrella and legacy sources (TRA-136/
 		legacySelectionBySlug: {},
 	};
 
+	const identity = (slug: string) => slug;
+
 	it("includes the family's umbrella slug only once every published child is selected", () => {
 		const graph = makeGraph([
 			{ id: "genre:techno", type: "genre" },
 			{ id: "genre:house", type: "genre" },
 		]);
 
-		const partial = win.resolveScoringChoices(["local:techno"], familyTaxonomy, [], graph);
+		const partial = win.resolveScoringChoices(["local:techno"], familyTaxonomy, [], graph, identity);
 		expect(partial.map((c) => c.id)).not.toContain("family:genre:electronic");
 
-		const complete = win.resolveScoringChoices(["local:techno", "local:house"], familyTaxonomy, [], graph);
+		const complete = win.resolveScoringChoices(
+			["local:techno", "local:house"],
+			familyTaxonomy,
+			[],
+			graph,
+			identity,
+		);
 		expect(complete).toContainEqual({ id: "family:genre:electronic", slugs: ["genre:electronic"] });
 		// No family id is ever a genres[] entry itself (decision 4) -- only its own umbrella slug.
 		expect(complete.some((c) => c.id === "electronic")).toBe(false);
+	});
+
+	it("does not add a second choice for a family umbrella slug already covered by a selected child (family == child slug)", () => {
+		// Unusual but possible taxonomy shape: the family's own resolved umbrella slug happens to
+		// equal one of its published children's own source slug.
+		const collidingTaxonomy: GenreTaxonomyProjection = {
+			version: 2,
+			families: [{ key: "electronic", label: "Electronic", order: 1, slug: "genre:techno" }],
+			genres: [
+				{ id: "local:techno", name: "Techno", family: "electronic", slugs: ["genre:techno"] },
+				{ id: "local:house", name: "House", family: "electronic", slugs: ["genre:house"] },
+			],
+			legacySelectionBySlug: {},
+		};
+		const graph = makeGraph([
+			{ id: "genre:techno", type: "genre" },
+			{ id: "genre:house", type: "genre" },
+		]);
+
+		const choices = win.resolveScoringChoices(
+			["local:techno", "local:house"],
+			collidingTaxonomy,
+			[],
+			graph,
+			identity,
+		);
+
+		// Both children selected, so the family qualifies -- but its slug is already
+		// local:techno's own source. A second "family:genre:techno" choice sharing that slug
+		// would double genre:techno's curated edges/tag matches in scoreAffinityFromChoices.
+		expect(choices.filter((c) => c.slugs.includes("genre:techno"))).toHaveLength(1);
+		expect(choices.some((c) => c.id === "family:genre:techno")).toBe(false);
 	});
 
 	it("keeps a still-resolving unresolvedGenreSlugs entry, deduped against already-selected sources", () => {
@@ -424,6 +503,7 @@ describe("resolveScoringChoices — family umbrella and legacy sources (TRA-136/
 			familyTaxonomy,
 			["genre:techno", "genre:old-standalone", "genre:gone"],
 			graph,
+			identity,
 		);
 
 		// genre:techno is already a source of the selected choice -- not added a second time.
