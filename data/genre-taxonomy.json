@@ -322,6 +322,7 @@
 			"id": "local:leftfield-techno",
 			"name": "Leftfield Techno",
 			"family": "house-techno",
+			"sourceSlugs": ["genre:leftfield-techno"],
 			"published": false
 		},
 		{
