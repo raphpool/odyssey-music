@@ -105,7 +105,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim"
+    }
+  ],
   "aliases": [],
   "members": []
 }

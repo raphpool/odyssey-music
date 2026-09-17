@@ -1,0 +1,138 @@
+{
+  "slug": "genre:bossa-nova",
+  "name": "Bossa Nova",
+  "editorial_article": "Emerging from the South Zone of Rio de Janeiro in the late 1950s, Bossa Nova evolved as a synthesis of samba rhythm and intricate jazz-inflected harmonies. Guitarist João Gilberto pioneered the style's core guitar technique—a reduction of samba's batucada rhythm—first captured on the 1958 Elizeth Cardoso recording of 'Chega de Saudade'. The movement solidified with Gilberto's 1959 self-titled album and the collaboration of songwriters Antônio Carlos Jobim and lyricist Vinicius de Moraes. These compositions moved beyond the rhythmic intensity of traditional samba, favoring a calm, syncopated delivery and a characteristic nasal vocal style inspired by the caboclo folk tradition. The genre gained global recognition following a 1962 concert at Carnegie Hall, which helped propel jazz-influenced tracks like 'Desafinado' into the standard repertoire. While the initial movement waned by the mid-1960s with the rise of the more politically focused Música popular brasileira, its influence remains pervasive, informing later pop work from artists like Billie Eilish, Laufey, and SZA.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bossa_nova",
+      "title": "Bossa nova - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:20.215Z",
+  "type": "genre",
+  "editorial_definition": "A Brazilian musical genre developed in the late 1950s that reinvented samba through a relaxed, syncopated guitar style and sophisticated, jazz-influenced harmonic progressions.",
+  "qid": "Q486263",
+  "era": "late 1950s to 1960s",
+  "origin": "Rio de Janeiro, Brazil",
+  "sonic_markers": "Syncopated samba-derived guitar patterns, nylon-string classical guitar, unconventional chord progressions, moderate tempo, intimate vocal delivery",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-brazil",
+      "type": "genre",
+      "name": "Music Of Brazil",
+      "qid": "Q899215"
+    },
+    {
+      "slug": "genre:popular-music",
+      "type": "genre",
+      "name": "Popular Music",
+      "qid": "Q373342"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:samba",
+      "type": "genre",
+      "name": "Samba",
+      "qid": "Q11403"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:latin-jazz",
+      "type": "genre",
+      "name": "Latin Jazz",
+      "qid": "Q837389"
+    },
+    {
+      "slug": "genre:samba-cancao",
+      "type": "genre",
+      "name": "Samba-canção",
+      "qid": "Q4215151"
+    },
+    {
+      "slug": "genre:music-of-brazil",
+      "type": "genre",
+      "name": "Music of Brazil",
+      "qid": "Q899215"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music of Latin America",
+      "qid": "Q727781"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto"
+    },
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim"
+    },
+    {
+      "slug": "artist:vinicius-de-moraes",
+      "type": "artist",
+      "name": "Vinicius de Moraes"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
+    },
+    {
+      "slug": "artist:astrud-gilberto",
+      "type": "artist",
+      "name": "Astrud Gilberto"
+    },
+    {
+      "slug": "artist:baden-powell",
+      "type": "artist",
+      "name": "Baden Powell"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:odeon",
+      "type": "label",
+      "name": "Odeon"
+    },
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:chega-de-saudade",
+      "type": "track",
+      "name": "Chega de Saudade"
+    },
+    {
+      "slug": "track:desafinado",
+      "type": "track",
+      "name": "Desafinado"
+    },
+    {
+      "slug": "track:manha-de-carnaval",
+      "type": "track",
+      "name": "Manhã de Carnaval"
+    },
+    {
+      "slug": "track:garota-de-ipanema",
+      "type": "track",
+      "name": "Garota de Ipanema"
+    }
+  ]
+}

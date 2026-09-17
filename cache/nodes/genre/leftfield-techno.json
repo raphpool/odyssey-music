@@ -1,0 +1,99 @@
+{
+  "slug": "genre:leftfield-techno",
+  "name": "Leftfield Techno",
+  "editorial_article": "Emerging from the UK electronic landscape in the early 1990s, Leftfield Techno developed as a broad, experimental classification for dance music that pushed boundaries beyond mainstream house or standard club techno. The term is heavily associated with the influential duo Leftfield—comprised of Neil Barnes and Paul Daley—who pioneered a fusion of house music with dub and reggae, notably on tracks like 'Release the Pressure'. These compositions often feature instrumental focus, utilizing 1980s-inspired elements such as gated reverb, analog synthesizer bass lines, and aggressive electronic drum programming. While the term occasionally refers to the specific production style of the band, it also functions as an umbrella label for boundary-pushing artists who reside to the 'left' of commercial electronic music scenes. Producers in this space frequently employ heavy dub influences, complex breakbeats, and unconventional sound design that challenged the dancefloor norms of the mid-1990s era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Leftfield",
+      "title": "Leftfield"
+    },
+    {
+      "url": "https://www.discogs.com/group/thread/603578?srsltid=AU7gw4Xk9QcHK9CwYHL-MUzM07g6mKUSSM6m9gabE2DxL_cw2VXrfcmQ",
+      "title": "Discogs Groups - Adding Leftfield as genre, but what the heck is it anyway?"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/leftfield",
+      "title": "Leftfield - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:41.374Z",
+  "type": "genre",
+  "editorial_definition": "A diverse, experimental subgenre of electronic music defined by a fusion of house, dub, and reggae, popularized by the production techniques of the band Leftfield.",
+  "era": "early 1990s to present",
+  "origin": "London, UK",
+  "sonic_markers": "Dub-influenced basslines, breakbeat rhythms, gated reverb, analog synthesizer textures, instrumental-heavy arrangements.",
+  "parent_genres": [],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno",
+      "qid": "Q1262781"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:leftfield",
+      "type": "artist",
+      "name": "Leftfield"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers"
+    },
+    {
+      "slug": "artist:fatboy-slim",
+      "type": "artist",
+      "name": "Fatboy Slim"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:hard-hands",
+      "type": "label",
+      "name": "Hard Hands"
+    },
+    {
+      "slug": "label:outer-rhythm",
+      "type": "label",
+      "name": "Outer Rhythm"
+    },
+    {
+      "slug": "label:infectious-records",
+      "type": "label",
+      "name": "Infectious Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:release-the-pressure",
+      "type": "track",
+      "name": "Release the Pressure"
+    },
+    {
+      "slug": "track:open-up",
+      "type": "track",
+      "name": "Open Up"
+    },
+    {
+      "slug": "track:phat-planet",
+      "type": "track",
+      "name": "Phat Planet"
+    }
+  ]
+}

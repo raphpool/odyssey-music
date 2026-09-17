@@ -1,0 +1,77 @@
+{
+  "slug": "artist:e-t-mensah",
+  "name": "E.T. Mensah",
+  "editorial_article": "Emmanuel Tettey Mensah, born 31 May 1919 in Accra, Gold Coast, became the pioneering 'King of Highlife' music. He started his musical path at age 12 playing flute in the Government School band and later the alto-saxophone. In 1947, he joined the band known as The Tempos, eventually becoming its leader and guiding the group to international recognition, including a 1953 tour in Britain. A landmark moment for his career arrived in 1957 when he performed alongside Louis Armstrong. His songwriting is exemplified by the track 'Ghana Freedom', which gained commercial success for its melody and national significance. Later in his career, he collaborated with Nigerian trumpeter Dr. Victor Olaiya on the 1983 album 'Highlife Giants of Africa Vol. 1'.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/E._T._Mensah",
+      "title": "E. T. Mensah"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:06.558Z",
+  "type": "artist",
+  "editorial_bio": "A Ghanaian musician widely regarded as the King of Highlife, Mensah rose to prominence leading The Tempos and collaborating with legends like Louis Armstrong.",
+  "origin": "Accra, Ghana",
+  "active_years": "1932-1996",
+  "genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:decca",
+      "type": "label",
+      "name": "Decca"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:day-by-day",
+      "type": "project",
+      "name": "Day by Day",
+      "mbid": "9d94a573-71df-3907-a246-1045f9df6f9c",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e-t-mensah-is-back-again",
+      "type": "project",
+      "name": "E.T. Mensah Is Back Again",
+      "mbid": "f2c55fbb-8755-448b-a0fb-dc633efd6608",
+      "year": "1976",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:ghana-freedom",
+      "type": "track",
+      "name": "Ghana Freedom"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:victor-olaiya",
+      "type": "artist",
+      "name": "Victor Olaiya"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong"
+    },
+    {
+      "slug": "artist:yebuah-mensah",
+      "type": "artist",
+      "name": "Yebuah Mensah"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

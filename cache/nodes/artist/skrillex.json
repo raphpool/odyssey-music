@@ -78,7 +78,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "Hikaru Utada"
+    }
+  ],
   "aliases": [],
   "members": []
 }

@@ -30,13 +30,38 @@
   "era": "1970s–Present",
   "origin": "The Bronx, New York City, USA",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:breaks",
       "type": "genre",
       "name": "Breaks",
       "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
     }
   ],
   "key_artists": [

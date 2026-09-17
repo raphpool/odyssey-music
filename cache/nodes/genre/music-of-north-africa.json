@@ -1,0 +1,106 @@
+{
+  "slug": "genre:music-of-north-africa",
+  "name": "Music of North Africa",
+  "editorial_article": "North African music encompasses a diverse array of traditions, from the Andalusian-rooted classical styles of the Maghreb to the prominent Egyptian pop and Raï scenes. Algerian Raï, an urban style that emerged in the early 20th century in Oran, gained significant international reach in the late 1980s, particularly within France. Traditional performance often features instruments like the raïta, gasba, and bendir. In Tunisia, the ancient ma'luf tradition, a derivative of Andalusian music brought to the region in the 15th century, has been preserved through formal organizational support since the 1930s. Egypt’s distinct popular canon includes the classical works of artists like Umm Kulthum and Abdel Halim Hafez, alongside modern genres such as Shaabi and el Gil. Meanwhile, in post-2000s Tunisia, artists such as Weld El 15 utilized hip hop as a vehicle for political critique during the democratization process following the Tunisian revolution.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_of_North_Africa",
+      "title": "Music of North Africa - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:21.059Z",
+  "type": "genre",
+  "editorial_definition": "A geographically and culturally expansive tradition spanning the Maghreb and Egypt, blending ancient Berber, Andalusian, and Sufi roots with contemporary global influences.",
+  "qid": "Q11400811",
+  "era": "15th century to present",
+  "origin": "North Africa, including Algeria, Morocco, Tunisia, Libya, and Egypt.",
+  "sonic_markers": "Modal scales, complex rhythmic patterns, usage of traditional instruments like the bendir and gasba, and fusion with electronic, hip hop, and reggae elements.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-africa",
+      "type": "genre",
+      "name": "Music Of Africa",
+      "qid": "Q369820"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:arabic-music",
+      "type": "genre",
+      "name": "Arabic music",
+      "qid": "Q624044"
+    },
+    {
+      "slug": "genre:andalusian-classical-music",
+      "type": "genre",
+      "name": "Andalusian classical music"
+    },
+    {
+      "slug": "genre:rai",
+      "type": "genre",
+      "name": "Raï",
+      "qid": "Q839029"
+    },
+    {
+      "slug": "genre:chaabi",
+      "type": "genre",
+      "name": "Chaabi",
+      "qid": "Q2961763"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:umm-kulthum",
+      "type": "artist",
+      "name": "Umm Kulthum"
+    },
+    {
+      "slug": "artist:abdel-halim-hafez",
+      "type": "artist",
+      "name": "Abdel Halim Hafez"
+    },
+    {
+      "slug": "artist:cheb-mami",
+      "type": "artist",
+      "name": "Cheb Mami"
+    },
+    {
+      "slug": "artist:cheb-kader",
+      "type": "artist",
+      "name": "Cheb Kader"
+    },
+    {
+      "slug": "artist:weld-el-15",
+      "type": "artist",
+      "name": "Weld El 15"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:world-music-network",
+      "type": "label",
+      "name": "World Music Network"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:m-hainek-ya-galbi",
+      "type": "track",
+      "name": "M'hainek Ya Galbi"
+    },
+    {
+      "slug": "track:douni-el-bladi",
+      "type": "track",
+      "name": "Douni El Bladi"
+    }
+  ]
+}

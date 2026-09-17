@@ -1,0 +1,114 @@
+{
+  "slug": "genre:hardstyle",
+  "name": "Hardstyle",
+  "editorial_article": "Hardstyle emerged in the late 1990s across the Netherlands, Belgium, and Italy, developing from a blend of hard trance, techno, and hardcore. The genre is defined by a distorted kick drum, often featuring the 'reverse bass' technique where the kick itself is layered and equalized to create a distinct, sustaining bass tone. Early tracks were produced at 140 BPM, though contemporary productions frequently reach 150 to 160 BPM. Key industry development was driven by the Dutch company Q-dance, which hosted the inaugural Qlubtempo event in Zaandam in 2000 and the first Qlimax in 2001. During the early 2000s, labels such as Fusion Records—home to DJ Zany—and Dov Elkabas's Scantraxx became central to the scene's distribution. By 2010, the sound branched into 'euphoric hardstyle,' known for emotive melodies, and 'rawstyle,' which prioritizes darker, industrial-influenced textures and aggressive screeches.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hardstyle",
+      "title": "Hardstyle - Wikipedia"
+    },
+    {
+      "url": "https://nocopyrightsounds.fandom.com/wiki/Hardstyle",
+      "title": "Hardstyle - NoCopyrightSounds Wiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:25.472Z",
+  "type": "genre",
+  "editorial_definition": "An electronic dance genre characterized by distorted, pitch-shifted kick drums and high-tempo rhythms rooted in late-90s hard trance and hardcore.",
+  "qid": "Q223840",
+  "era": "Late 1990s to present",
+  "origin": "Netherlands, Belgium, and Italy",
+  "sonic_markers": "140-160 BPM, overdriven kick drums with pitched basslines, dissonant 'screech' synths, vocal samples.",
+  "parent_genres": [
+    {
+      "slug": "genre:hard-dance",
+      "type": "genre",
+      "name": "Hard Dance",
+      "qid": "Q1033912"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hard-trance",
+      "type": "genre",
+      "name": "Hard Trance",
+      "qid": "Q832665"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    },
+    {
+      "slug": "genre:hard-techno",
+      "type": "genre",
+      "name": "Hard Techno",
+      "qid": "Q3084222"
+    },
+    {
+      "slug": "genre:big-room-house",
+      "type": "genre",
+      "name": "Big Room House",
+      "qid": "Q15300817"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-zany",
+      "type": "artist",
+      "name": "DJ Zany"
+    },
+    {
+      "slug": "artist:dov-elkabas",
+      "type": "artist",
+      "name": "Dov Elkabas"
+    },
+    {
+      "slug": "artist:scot-project",
+      "type": "artist",
+      "name": "Scot Project"
+    },
+    {
+      "slug": "artist:coone",
+      "type": "artist",
+      "name": "Coone"
+    },
+    {
+      "slug": "artist:d-sturb",
+      "type": "artist",
+      "name": "D-Sturb"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:q-dance",
+      "type": "label",
+      "name": "Q-dance"
+    },
+    {
+      "slug": "label:scantraxx",
+      "type": "label",
+      "name": "Scantraxx"
+    },
+    {
+      "slug": "label:fusion-records",
+      "type": "label",
+      "name": "Fusion Records"
+    },
+    {
+      "slug": "label:dirty-workz",
+      "type": "label",
+      "name": "Dirty Workz"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:eriel",
+      "type": "track",
+      "name": "Eriel"
+    }
+  ]
+}

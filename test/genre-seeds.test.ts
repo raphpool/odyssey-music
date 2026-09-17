@@ -49,6 +49,18 @@ describe("genre seeds", () => {
 		).toThrow(/identity/);
 	});
 
+	// TRA-254: a disambiguator distinguishes a seed from a same-named entity (e.g. Afrobeats
+	// the pop genre vs. Fela Kuti's Afrobeat). Optional, so existing folders stay valid as-is.
+	it("accepts an optional genre disambiguator", () => {
+		const withDisambiguator = {
+			...folder,
+			genre: { ...folder.genre, disambiguator: "2000s pop, distinct from Fela Kuti's Afrobeat" },
+		};
+		expect(validateGenreSeeds({ Q2913982: withDisambiguator }, taxonomy)).toEqual({
+			Q2913982: withDisambiguator,
+		});
+	});
+
 	it.each([
 		["duplicate targets", { Q2913982: { ...folder, targets: [target, target] } }],
 		[
@@ -79,6 +91,11 @@ describe("genre seeds", () => {
 		[
 			"path traversal",
 			{ Q2913982: { ...folder, anchors: [{ slug: "genre:../../secret", name: "Secret" }] } },
+		],
+		["empty genre disambiguator", { Q2913982: { ...folder, genre: { ...folder.genre, disambiguator: "" } } }],
+		[
+			"genre disambiguator over 120 characters",
+			{ Q2913982: { ...folder, genre: { ...folder.genre, disambiguator: "x".repeat(121) } } },
 		],
 	])("rejects %s", (_label, input) => expect(() => validateGenreSeeds(input, taxonomy)).toThrow());
 	it("requires taxonomy for non-empty seeds", () => {

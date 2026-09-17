@@ -1,0 +1,118 @@
+{
+  "slug": "genre:music-of-west-africa",
+  "name": "Music of West Africa",
+  "editorial_article": "West African musical traditions are defined by a long-standing distinction between indigenous secular music, often centered on djembe percussion, and Islamic-influenced traditions that feature stringed instruments like the goje. The role of the griot remains central to this cultural landscape, acting as a historian and storyteller who preserves oral traditions through vocal performance and instrumental accompaniment. Popular styles such as highlife emerged in the 20th century through a fusion of local drum patterns and European instruments like accordions and brass, pioneered by artists including E.T. Mensah and E.K. Nyame in Ghana. Meanwhile, Afrobeat, heavily influenced by jazz and funk, was developed by Fela Kuti in the late 1960s. Contemporary scenes are marked by a focus on electronic drum rhythms, as seen in the work of modern artists such as Wizkid, Burna Boy, and Davido. Traditional instruments like the kora and balafon remain vital to regional identity, frequently utilized by virtuosos like Sona Jobarteh and Toumani Diabaté to bridge historical musical techniques with modern performance contexts.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_of_West_Africa",
+      "title": "Music of West Africa - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:15.940Z",
+  "type": "genre",
+  "editorial_definition": "A diverse musical region characterized by a historic fusion of traditional percussion, griot oral storytelling, and the development of influential genres such as highlife and Afrobeat.",
+  "qid": "Q6942329",
+  "era": "9th century to present",
+  "origin": "West Africa; includes countries such as Nigeria, Ghana, Mali, Senegal, and The Gambia.",
+  "sonic_markers": "Polyrhythmic structures, master-drummer ensembles, pentatonic/heptatonic scales, heavy emphasis on vocal-instrumental call-and-response, and jazz-funk fusion.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-africa",
+      "type": "genre",
+      "name": "Music Of Africa",
+      "qid": "Q369820"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:palm-wine-music",
+      "type": "genre",
+      "name": "Palm-wine music",
+      "qid": "Q5480212"
+    },
+    {
+      "slug": "genre:fuji-music",
+      "type": "genre",
+      "name": "Fuji music",
+      "qid": "Q3509353"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    },
+    {
+      "slug": "artist:e-t-mensah",
+      "type": "artist",
+      "name": "E.T. Mensah"
+    },
+    {
+      "slug": "artist:toumani-diabate",
+      "type": "artist",
+      "name": "Toumani Diabaté"
+    },
+    {
+      "slug": "artist:sona-jobarteh",
+      "type": "artist",
+      "name": "Sona Jobarteh"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
+    },
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
+    },
+    {
+      "slug": "artist:burna-boy",
+      "type": "artist",
+      "name": "Burna Boy"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rough-guide",
+      "type": "label",
+      "name": "Rough Guide"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:spirit-song-of-the-baoule",
+      "type": "track",
+      "name": "Spirit Song of the Baoule"
+    }
+  ]
+}

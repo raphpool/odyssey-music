@@ -1,0 +1,466 @@
+{
+  "slug": "artist:dj-deeon",
+  "name": "DJ Deeon",
+  "editorial_article": "Chicago producer Deeon Boyd launched his influential career in 1994 with the 'Funk City' EP on the Dance Mania label. As a founding architect of the South Side's ghetto house sound, Boyd utilized a Roland TR-909 drum machine, often pushing the device to its limits to create high-energy, stripped-back percussion. His 1996 club classic 'Freak Like Me' became a defining anthem of the scene, famously earning him a mention in the Daft Punk song 'Teachers' in 1997. His vast discography spans decades, including later work for labels like Numbers and Teklife, where he released the 2021 project 'Destiny'. Before his death in 2023 at age 56, he remained prolific, dropping four EPs over a single weekend in May of that same year.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Deeon",
+      "title": "DJ Deeon - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:31.435Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Chicago house artist who defined the minimalist, high-energy ghetto house sound using the Roland TR-909.",
+  "origin": "South Side, Chicago",
+  "active_years": "1980-2023",
+  "genres": [
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto house",
+      "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    },
+    {
+      "slug": "label:numbers",
+      "type": "label",
+      "name": "Numbers"
+    },
+    {
+      "slug": "label:teklife",
+      "type": "label",
+      "name": "Teklife"
+    },
+    {
+      "slug": "label:drumcode",
+      "type": "label",
+      "name": "Drumcode"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:freak-like-me",
+      "type": "project",
+      "name": "Freak Like Me (Ben Kim Remix)",
+      "mbid": "91a66060-17aa-4fce-b7fd-183434db5724",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-to-the-groove",
+      "type": "project",
+      "name": "Back to the Groove",
+      "mbid": "ca144305-4f57-43c9-a823-f4d3f995d73e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booty-must-b",
+      "type": "project",
+      "name": "Booty Must B ...",
+      "mbid": "4c8619d3-0314-468b-9b1e-da672bc3d817",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:southside-basics-2-0",
+      "type": "project",
+      "name": "SOUTHSIDE BASICS 2.0",
+      "mbid": "5a582c2d-e60d-44f6-b58a-579bca6cbc2d",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cce036",
+      "type": "project",
+      "name": "CCE036",
+      "mbid": "03aa3d8f-0998-45ca-99e5-33821abdbb47",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:destiny",
+      "type": "project",
+      "name": "Destiny",
+      "mbid": "16c559d7-3c1f-46a0-9621-a25f147ed072",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:march-thru-bronzeville",
+      "type": "project",
+      "name": "March Thru Bronzeville",
+      "mbid": "8ca3c048-adcc-4c12-bf6e-19ffbbe6e721",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:from-the-low-end",
+      "type": "project",
+      "name": "From the Low End",
+      "mbid": "ac4cc89b-6a97-480a-8d01-a43f9174066a",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:da-disco-tekk-ep",
+      "type": "project",
+      "name": "Da Disco Tekk EP",
+      "mbid": "0078d78c-6773-41e4-a2b2-a403f523154e",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-have-bass",
+      "type": "project",
+      "name": "We Have Bass",
+      "mbid": "a1bb8e11-46ee-4e13-93d7-b73030e83a08",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freak-like-me",
+      "type": "project",
+      "name": "Freak Like Me (Radio Edit)",
+      "mbid": "0aa6875e-c9fe-47f6-a2d5-31492e85301c",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freak-like-me",
+      "type": "project",
+      "name": "Freak Like Me",
+      "mbid": "bd481f41-8e51-4106-b8fa-432e44042d0e",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deeon-doez-deeon",
+      "type": "project",
+      "name": "Deeon Doez Deeon!",
+      "mbid": "3e27418e-6deb-40ef-9397-d3e70fa6ea3f",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freakmode-ep",
+      "type": "project",
+      "name": "Freakmode EP",
+      "mbid": "4c38fdc1-2d33-435e-a9ba-c793a19bb194",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghetto-classics-vol-4",
+      "type": "project",
+      "name": "Ghetto Classics Vol. 4",
+      "mbid": "cbff8873-b732-47e7-931f-1be8aac88fdd",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-digital-pimp-series-vol-4",
+      "type": "project",
+      "name": "The Digital Pimp Series Vol 4",
+      "mbid": "1df6235d-6f28-45c2-a7f6-cdd6b83e4319",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-digital-pimp-series",
+      "type": "project",
+      "name": "The Digital Pimp Series",
+      "mbid": "9766e188-2845-47a0-8c60-d5ed9dbaa450",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-digital-pimp-series-vol-1",
+      "type": "project",
+      "name": "The Digital Pimp Series Vol 1",
+      "mbid": "f25fb395-956d-48ed-822b-3278beccbc35",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:juke-trax-online-vol-1",
+      "type": "project",
+      "name": "Juke Trax Online Vol. 1",
+      "mbid": "3a1086f5-beb9-46a4-be1f-313fa579e37c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:juke-trax-online-vol-2",
+      "type": "project",
+      "name": "Juke Trax Online Vol. 2",
+      "mbid": "7b5282c8-45aa-42b0-b8c4-048c6d40c61a",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slamm",
+      "type": "project",
+      "name": "Slamm!",
+      "mbid": "13c24ff2-190a-4539-bf5c-af6e24c9528b",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hit-da-flo-ep",
+      "type": "project",
+      "name": "Hit Da Flo EP",
+      "mbid": "b4d43e8d-692a-459c-b91b-bcb2333f6a07",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-freaks-ep",
+      "type": "project",
+      "name": "The Freaks EP",
+      "mbid": "37a2b2bb-9a8a-4cfe-b508-e5882a4cb26c",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:workin-ep",
+      "type": "project",
+      "name": "Workin' EP",
+      "mbid": "12fd2e25-9d13-47a3-aded-452c495fc192",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gimme-head",
+      "type": "project",
+      "name": "Gimme Head",
+      "mbid": "f1010a87-2bc8-410a-a151-23436eb3cc67",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tear-the-club-up-e-p",
+      "type": "project",
+      "name": "Tear the Club Up E.P.",
+      "mbid": "6fe6b6f7-204c-30a0-8c97-1ed213ad601f",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:who-u-wit",
+      "type": "project",
+      "name": "Who-U-Wit",
+      "mbid": "79025d9f-0a19-4a51-ba13-7d960f47c8a7",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:akceier-8",
+      "type": "project",
+      "name": "Akceier 8",
+      "mbid": "b08ec0c1-4659-46ec-85f5-6337d5f8a4b7",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-dik-suk",
+      "type": "project",
+      "name": "Da Dik Suk",
+      "mbid": "cc460e8d-ab4a-4ddf-8958-7ec99bee8242",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trickin-off",
+      "type": "project",
+      "name": "Trickin Off",
+      "mbid": "2441d743-a314-348c-a3cd-91ea0d4eca1f",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deeon-doez-disko-back-2-skool",
+      "type": "project",
+      "name": "Deeon Doez Disko! Back 2 Skool!",
+      "mbid": "2f0bbf89-bc96-4e7b-8e5a-ad95ce317f51",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:d-b-g-3",
+      "type": "project",
+      "name": "D.B.G. - 3",
+      "mbid": "7f4133d8-c4e2-4467-832f-b0370097ee95",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:p-i-m-p",
+      "type": "project",
+      "name": "P.I.M.P.",
+      "mbid": "fe92bb61-455d-4f27-8905-e07dc4f5ae7e",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:work-this-mf",
+      "type": "project",
+      "name": "Work this MF!",
+      "mbid": "3503374c-89cd-411b-a3dd-e3994eef8af7",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-fat-pimp",
+      "type": "project",
+      "name": "Big Fat Pimp!",
+      "mbid": "ae56848f-5d49-4d30-82a1-d72cd2978662",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dbg-project",
+      "type": "project",
+      "name": "DBG Project",
+      "mbid": "a4c72cf1-c33b-4b10-bac6-5bc109566327",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:d-b-g-ii-project",
+      "type": "project",
+      "name": "D.B.G. II Project",
+      "mbid": "0959846e-d588-49c1-bd73-4833257ce4a5",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-armagedon-1996",
+      "type": "project",
+      "name": "The Armagedon 1996",
+      "mbid": "29044b96-8bb8-4748-9ef3-ffe4a24f1c9f",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:chop-shop",
+      "type": "project",
+      "name": "Chop Shop",
+      "mbid": "443d5d8a-163d-456f-8eff-8ad0d53a7f42",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:360",
+      "type": "project",
+      "name": "360",
+      "mbid": "735bb23c-6f97-42e1-bd57-fe68d84ffd5f",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:u-g",
+      "type": "project",
+      "name": "U.G.",
+      "mbid": "85757d68-6537-400f-b975-59139b79ce92",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freak-like-me",
+      "type": "project",
+      "name": "Freak Like Me",
+      "mbid": "9b824d5d-dd85-446d-8eab-c82ab3505579",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:house-work",
+      "type": "project",
+      "name": "House Work",
+      "mbid": "c9975671-0222-4bd1-9233-fe43171a9c49",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:off-spring",
+      "type": "project",
+      "name": "Off Spring",
+      "mbid": "e58b0ae8-6a44-335d-9ed1-f3f31de2b957",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:livin-that-ghetto-life",
+      "type": "project",
+      "name": "Livin' That Ghetto Life",
+      "mbid": "ecfd2a14-9709-459a-a328-792b55f810c7",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:induced-ep",
+      "type": "project",
+      "name": "Induced EP",
+      "mbid": "45154e54-9be4-41be-9061-c5fe8d4433b5",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funk-city",
+      "type": "project",
+      "name": "Funk City",
+      "mbid": "0ee53171-a701-436e-bce1-57eca2b8b21d",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freak-mode",
+      "type": "project",
+      "name": "Freak Mode",
+      "mbid": "79a512b2-fbdb-3a93-af14-d9ca143f0b7c",
+      "year": "1994",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:freak-like-me",
+      "type": "track",
+      "name": "Freak Like Me"
+    },
+    {
+      "slug": "track:house-o-matic",
+      "type": "track",
+      "name": "House-O-Matic"
+    },
+    {
+      "slug": "track:2-b-free",
+      "type": "track",
+      "name": "2 B Free"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}
