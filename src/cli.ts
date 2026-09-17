@@ -12,7 +12,7 @@ import {
 	refreshGenre,
 } from "./crawler.js";
 import { type ApiEnv, loadEnv } from "./env.js";
-import { type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
+import { type GenreSeed, type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
 import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } from "./genre-taxonomy.js";
 import { logger } from "./logger.js";
 import type { PipelineDeps } from "./pipeline.js";
@@ -28,7 +28,7 @@ type GenreTaxonomy = {
 type CliMode =
 	| { kind: "text"; seed: string; maxDepth: number }
 	| { kind: "genre-seeds"; path: string; genreId?: string; family?: string; backfill?: boolean }
-	| { kind: "genre-refresh"; slug: string };
+	| { kind: "genre-refresh"; slug: string; genreSeedsPath?: string };
 
 type GenreSeedRunner = (options: CrawlOptions, seeds: GenreSeeds) => Promise<Record<string, unknown>>;
 
@@ -76,10 +76,18 @@ export function resolveCliMode(options: CliModeOptions): CliMode {
 		throw new Error("--genre-seeds and --refresh-genre are exclusive of --seed");
 	}
 	if (options.refreshGenre !== undefined) {
-		if (options.genreSeeds !== undefined || selectorCount > 0) {
-			throw new Error("--refresh-genre is exclusive of --genre-seeds, --genre-id, and --family");
+		// TRA-252: --genre-seeds is allowed alongside --refresh-genre (not exclusive of it) —
+		// it names the seed dossier registry to look up the target genre's curated QID in,
+		// so a targeted refresh can stamp/verify it. --genre-id and --family remain exclusive:
+		// they select genre-seeds *crawl* mode's batch, which doesn't apply to a single refresh.
+		if (selectorCount > 0) {
+			throw new Error("--refresh-genre is exclusive of --genre-id and --family");
 		}
-		return { kind: "genre-refresh", slug: options.refreshGenre };
+		return {
+			kind: "genre-refresh",
+			slug: options.refreshGenre,
+			...(options.genreSeeds !== undefined ? { genreSeedsPath: options.genreSeeds } : {}),
+		};
 	}
 	if (options.genreSeeds !== undefined) {
 		if (selectorCount !== 1) {
@@ -154,12 +162,22 @@ export async function runGenreSeedCrawl(
 	return runner(options, seeds);
 }
 
+// TRA-252: locates the curated seed dossier for a --refresh-genre slug, so refreshGenre can
+// inherit/verify its QID. Matched by the dossier's own genre slug, not the taxonomy key — the
+// key can be a QID or a "local:" id, neither of which is the slug the CLI is refreshing.
+export function findGenreSeedFolder(seeds: GenreSeeds, slug: string): GenreSeed | undefined {
+	return Object.values(seeds).find((folder) => folder.genre.slug === slug);
+}
+
 program.name("odyssey-crawl").description("Culture Graph background crawler (Phase 1)").version("0.1.0");
 
 program
 	.command("run", { isDefault: true })
 	.option("-s, --seed <text>", "Seed input (free text, e.g. 'jan jelinek tendency')")
-	.option("--genre-seeds <path>", "Validated genre seed registry JSON")
+	.option(
+		"--genre-seeds <path>",
+		"Validated genre seed registry JSON. With --refresh-genre, looks up that genre's dossier for its QID.",
+	)
 	.option("--genre-id <id>", "Select one genre seed by taxonomy ID")
 	.option("--family <key>", "Select all genre seeds in one taxonomy family")
 	.option("--refresh-genre <slug>", "Refresh one cached genre without traversing its references")
@@ -296,7 +314,19 @@ program
 				return;
 			}
 			if (mode.kind === "genre-refresh") {
-				const result = await refreshGenre(base, mode.slug as `genre:${string}`);
+				// TRA-252: --genre-seeds, when given alongside --refresh-genre, names the seed
+				// dossier registry to look the target genre up in (by its slug, not the taxonomy
+				// key — see findGenreSeedFolder). Its QID is then inherited/verified by refreshGenre.
+				const seedFolder = mode.genreSeedsPath
+					? findGenreSeedFolder(
+							await loadGenreSeeds(
+								mode.genreSeedsPath,
+								join(dirname(mode.genreSeedsPath), "genre-taxonomy.json"),
+							),
+							mode.slug,
+						)
+					: undefined;
+				const result = await refreshGenre(base, mode.slug as `genre:${string}`, seedFolder);
 				process.stdout.write(
 					`${JSON.stringify(
 						{

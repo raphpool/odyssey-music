@@ -527,23 +527,25 @@ export async function backfillSeedGenres(
 /**
  * Re-materializes one cached genre without walking its references. The existing node remains on
  * disk until the replacement has passed the pipeline and NodeCache validation successfully.
+ *
+ * TRA-252: `seedFolder`, when the caller can supply the genre's curated seed dossier, is a
+ * stronger identity anchor than a fresh by-name resolve. Its QID is inherited onto the refreshed
+ * node when the cached node doesn't have one yet, and stamped as authoritative when it does but
+ * disagrees with the dossier — the refresh is refused outright rather than letting the pipeline's
+ * ordinary "cached QID wins" rule (pipeline.ts) silently paper over what is, at this level, a
+ * curation conflict that needs a human to resolve the dossier or the cache, not a crawl.
  */
-export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<GenreSeedCrawlResult> {
+export async function refreshGenre(
+	opts: CrawlOptions,
+	slug: Slug,
+	seedFolder?: GenreSeed,
+): Promise<GenreSeedCrawlResult> {
 	const log = opts.logger ?? (() => undefined);
 	const cache = new NodeCache(opts.out);
 	const existing = await cache.get(slug);
 	if (existing.type !== "genre") {
 		throw new Error(`--refresh-genre requires a cached genre node (got ${existing.type}: ${slug})`);
 	}
-	const genreRegistry = await getGenreRegistry(cache, opts.deps.genreRegistry);
-	const canonical = await genreRegistry.canonicalSlugFor({
-		slug,
-		name: existing.name,
-		...(existing.qid ? { qid: existing.qid } : {}),
-	});
-	const input: PipelineInput = { type: "genre", name: existing.name, slug: canonical.slug };
-	const qid = canonical.qid ?? existing.qid;
-	if (qid) input.qid = qid;
 	const startedAt = Date.now();
 	let calls = 0;
 	let consumed = 0;
@@ -551,6 +553,38 @@ export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<Genr
 	let refused = 0;
 
 	log(`[refresh] maxNodes=${opts.maxNodes} concurrency=1`);
+
+	const dossierQid = seedFolder?.genre.qid;
+	if (dossierQid && existing.qid && dossierQid !== existing.qid) {
+		refused++;
+		log(
+			`[refresh] dossier QID conflict for ${slug}: dossier=${dossierQid} cached=${existing.qid} (refused, no write)`,
+		);
+		return {
+			nodesWritten: cache.stats.written,
+			revUpdates: cache.stats.revUpdates,
+			durationMs: Date.now() - startedAt,
+			failed,
+			calls,
+			consumed,
+			refused,
+			coverage: { total: 1, written: cache.stats.written, failed, refused },
+		};
+	}
+
+	const genreRegistry = await getGenreRegistry(cache, opts.deps.genreRegistry);
+	const inheritedQid = existing.qid ?? dossierQid;
+	const canonical = await genreRegistry.canonicalSlugFor({
+		slug,
+		name: existing.name,
+		...(inheritedQid ? { qid: inheritedQid } : {}),
+	});
+	const input: PipelineInput = { type: "genre", name: existing.name, slug: canonical.slug };
+	// Precedence: a registry-resolved qid first, then the node's own already-committed qid,
+	// then — only when neither is set — the seed dossier's qid, inherited onto this refresh.
+	const qid = canonical.qid ?? existing.qid ?? dossierQid;
+	if (qid) input.qid = qid;
+
 	if (consumed >= opts.maxNodes) {
 		refused++;
 		log(`[refresh] limit genre ${describeInput(input, input.slug as Slug)}`);
@@ -567,7 +601,15 @@ export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<Genr
 				failed++;
 				log(`[refresh] identity drift: requested "${input.name}", drafted "${result.node.name}"`);
 			} else {
-				await cache.replace(result.node);
+				const merged = await preserveLiveNeighbors(existing, result.node, cache, log);
+				// 2026-09-17 (TRA-252 review): edges carried over from the cached node have not been
+				// through the pipeline's own canonicalization, which drops a genre edge that lands on
+				// this node's slug or on another slug sharing its qid -- an unmerged duplicate
+				// (TRA-28/B3). Re-running it over the merged node applies that filter to survivors
+				// too, including edges whose qid is only known after name resolution, instead of
+				// re-implementing the rule here.
+				await genreRegistry.canonicalizeNodeEdges(merged);
+				await cache.replace(merged);
 			}
 		} catch (error) {
 			failed++;
@@ -586,6 +628,42 @@ export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<Genr
 		refused,
 		coverage: { total: 1, written: cache.stats.written, failed, refused },
 	};
+}
+
+/**
+ * TRA-252: `refreshGenre` re-materializes a single node without walking its references (see the
+ * docstring above), so the fresh draft reflects only what that one pipeline call surfaced —
+ * typically a narrower edge set than earlier full crawls (or curated edits) had already
+ * discovered. Replacing the node outright on every refresh would make a "targeted refresh" a
+ * lossy operation for its neighbors. Keep any edge from the previous node whose target is still
+ * cached (an alive neighbor) that the fresh draft doesn't already list; drop edges whose target
+ * no longer exists in the cache (a dead neighbor).
+ */
+async function preserveLiveNeighbors(
+	existing: NodePayload,
+	fresh: NodePayload,
+	cache: NodeCache,
+	log: (s: string) => void,
+): Promise<NodePayload> {
+	const merged = { ...fresh } as unknown as Record<string, unknown>;
+	const existingObj = existing as unknown as Record<string, unknown>;
+	for (const field of LIST_EDGES_BY_TYPE[fresh.type]) {
+		const freshEdges = Array.isArray(merged[field]) ? (merged[field] as EdgeRef[]) : [];
+		const oldEdges = Array.isArray(existingObj[field]) ? (existingObj[field] as EdgeRef[]) : [];
+		if (oldEdges.length === 0) continue;
+		const freshSlugs = new Set(freshEdges.map((e) => e.slug));
+		const survivors: EdgeRef[] = [];
+		for (const edge of oldEdges) {
+			if (freshSlugs.has(edge.slug)) continue; // already re-surfaced by the fresh draft
+			if (await cache.has(edge.slug)) survivors.push(edge); // still alive, keep it
+			// else: target no longer cached — a dead neighbor, dropped rather than carried forward.
+		}
+		if (survivors.length > 0) {
+			merged[field] = [...freshEdges, ...survivors];
+			log(`[refresh] kept ${survivors.length} live ${field} neighbor(s) for ${fresh.slug}`);
+		}
+	}
+	return merged as unknown as NodePayload;
 }
 
 async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Promise<GenreRegistry> {
