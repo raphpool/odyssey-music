@@ -71,6 +71,11 @@
       "slug": "artist:4hero",
       "type": "artist",
       "name": "4hero"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald"
     }
   ],
   "aliases": [

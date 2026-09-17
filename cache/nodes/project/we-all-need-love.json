@@ -1,0 +1,136 @@
+{
+  "slug": "project:we-all-need-love",
+  "name": "We All Need Love",
+  "editorial_article": "Released in 1992 as the debut studio album by Italian Eurodance group Double You, the record followed the massive international success of their cover version of 'Please Don't Go'. Produced by Robyx Zanetti, the collection is anchored by its title track, which was originally written and recorded by Canadian musician Domenic Troiano in 1979. The album features a hallmark Euro-house sound defined by string and piano fills, with arrangements handled by AWF and additional production work by Frankies Beathouse on various remixes. Billboard's Larry Flick praised the project for its anthemic choruses and retro-minded disco sensibility, while Music Week critic Andy Beevers noted its organ-driven production style. The project cemented the group's place in the 1990s dance scene, reaching top-10 chart positions in Austria, France, Germany, and Switzerland.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/We_All_Need_Love_(song)",
+      "title": "We All Need Love (song) - Wikipedia"
+    },
+    {
+      "url": "https://music.apple.com/ng/album/we-all-need-love/1821306331",
+      "title": "We All Need Love - Album by Double You - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:58.234Z",
+  "type": "project",
+  "editorial_pitch": "The 1992 debut album from Italian Eurodance outfit Double You, blending 70s-inspired disco arrangements with signature 90s house production.",
+  "year": "1992",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:double-you",
+      "type": "artist",
+      "name": "Double You",
+      "mbid": "136dd883-5a23-4b75-8079-0cd658d76ba1"
+    }
+  ],
+  "label": {
+    "slug": "label:dwa",
+    "type": "label",
+    "name": "DWA (Dance World Attack)",
+    "mbid": "bd0487d9-1740-4426-8740-85a7a2375c33"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:please-don-t-go",
+      "type": "track",
+      "name": "Please Don’t Go",
+      "mbid": "7b96aa8d-d275-40c6-b5fe-254206ef93f2"
+    },
+    {
+      "slug": "track:we-all-need-love",
+      "type": "track",
+      "name": "We All Need Love",
+      "mbid": "9baa40a8-2515-4771-8e44-3df953767b16"
+    },
+    {
+      "slug": "track:drive",
+      "type": "track",
+      "name": "Drive",
+      "mbid": "e27ff784-04e7-4ef7-ab8e-b5bfad085647"
+    },
+    {
+      "slug": "track:why",
+      "type": "track",
+      "name": "Why",
+      "mbid": "c70bcc51-bd58-4b33-8702-1f22e2d44788"
+    },
+    {
+      "slug": "track:who-s-fooling-who",
+      "type": "track",
+      "name": "Who’s Fooling Who",
+      "mbid": "10f64cee-beb5-4923-9d81-93b1c4910659"
+    },
+    {
+      "slug": "track:walking-on-the-chinese-wall",
+      "type": "track",
+      "name": "Walking on the Chinese Wall",
+      "mbid": "5fe2f158-a8ba-4a59-92bd-d271950d5578"
+    },
+    {
+      "slug": "track:going-back",
+      "type": "track",
+      "name": "Going Back (live in Venice)",
+      "mbid": "0063b607-9270-4b55-93d3-0009659cae68"
+    },
+    {
+      "slug": "track:with-or-without-you",
+      "type": "track",
+      "name": "With or Without You",
+      "mbid": "216d6758-cfd9-40e9-9cd8-33071931df9d"
+    },
+    {
+      "slug": "track:looking-at-my-girl",
+      "type": "track",
+      "name": "Looking at My Girl",
+      "mbid": "cf2c3859-a0fb-4c92-967c-5d492c77a98d"
+    },
+    {
+      "slug": "track:you-are-my-world",
+      "type": "track",
+      "name": "You Are My World",
+      "mbid": "66602445-bd8a-4b3b-af33-69674919bed9"
+    },
+    {
+      "slug": "track:please-don-t-go",
+      "type": "track",
+      "name": "Please Don’t Go (dub reprise)",
+      "mbid": "7a226268-e2bc-4d8c-8194-68a5fa35db32"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:robyx-zanetti",
+      "type": "artist",
+      "name": "Robyx Zanetti"
+    }
+  ],
+  "personnel": [
+    {
+      "slug": "artist:domenic-troiano",
+      "type": "artist",
+      "name": "Domenic Troiano"
+    },
+    {
+      "slug": "artist:frankies-beathouse",
+      "type": "artist",
+      "name": "Frankies Beathouse"
+    }
+  ],
+  "related_projects": []
+}

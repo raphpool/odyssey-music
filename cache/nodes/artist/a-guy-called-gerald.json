@@ -1,0 +1,588 @@
+{
+  "slug": "artist:a-guy-called-gerald",
+  "name": "A Guy Called Gerald",
+  "editorial_article": "Manchester-born Gerald Simpson launched his career as a founding member of 808 State, contributing to their 1988 debut LP Newbuild and the single 'Pacific State'. Shortly after leaving the group, he defined the UK's acid house movement with the 1988 single 'Voodoo Ray', which peaked at number 12 on the UK Singles Chart. By 1991, he established Juice Box Records in West London, using the independent label to release foundational jungle and drum and bass works like his 1995 album Black Secret Technology. His early influences stemmed from his Jamaican roots, including his father's reggae collection and the sound system culture of Moss Side, which he later merged with the electronic sounds of Chicago house and Detroit techno. Throughout his career, he has collaborated with artists such as Goldie, Finley Quaye, and Herbie Hancock, while maintaining an experimental approach that led to live laptop performances for the 2013 project Silent Sound Spread Spectrum.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/A_Guy_Called_Gerald",
+      "title": "A Guy Called Gerald - Wikipedia"
+    },
+    {
+      "url": "https://www.resolutenyc.com/a-guy-called-gerald",
+      "title": "A GUY CALLED GERALD - ReSolute"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:54:34.861Z",
+  "type": "artist",
+  "editorial_bio": "A Manchester-based innovator who transitioned from acid house pioneer to a foundational architect of the UK jungle and drum and bass sound.",
+  "origin": "Manchester, England",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum And Bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:club",
+      "type": "genre",
+      "name": "Club",
+      "qid": "Q11787389"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:juice-box-records",
+      "type": "label",
+      "name": "Juice Box Records"
+    },
+    {
+      "slug": "label:rham-records",
+      "type": "label",
+      "name": "Rham! Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:laboratory-instinct",
+      "type": "label",
+      "name": "Laboratory Instinct"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-swaggle",
+      "type": "project",
+      "name": "The Swaggle",
+      "mbid": "46c40b54-0ae7-4672-b6bd-a4600ab07658",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jitter",
+      "type": "project",
+      "name": "Jitter",
+      "mbid": "aafca47c-d6aa-43a2-958e-0bf817250786",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:step-pan-di-bass",
+      "type": "project",
+      "name": "Step Pan di Bass",
+      "mbid": "e35494da-a8a3-4489-af90-a7faa32d5a01",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ultraviolet",
+      "type": "project",
+      "name": "Ultraviolet",
+      "mbid": "69f927d3-438a-424d-bc7c-42fc60c72edd",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boomshakattack",
+      "type": "project",
+      "name": "Boomshakattack",
+      "mbid": "0d44304f-554a-4008-8307-b438f677d0c8",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-a-drug",
+      "type": "project",
+      "name": "Like a Drug",
+      "mbid": "104fcbad-6c4c-40ab-82f8-5e35f2162c8e",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-musical-magical-midi-machine",
+      "type": "project",
+      "name": "The Musical Magical Midi Machine",
+      "mbid": "228b3cd3-335c-4b6a-b0ff-3e9317969669",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heckle-and-koch",
+      "type": "project",
+      "name": "Heckle and Koch",
+      "mbid": "46861a00-0926-422e-868b-5768f0685534",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:touch-me",
+      "type": "project",
+      "name": "Touch Me",
+      "mbid": "4d43afad-2e16-4457-832f-f36817f2330d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-on-moving",
+      "type": "project",
+      "name": "Keep on Moving",
+      "mbid": "77c858c8-d509-4a96-a4e6-940ce542a835",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:darker-than-i-should-be",
+      "type": "project",
+      "name": "Darker Than I Should Be",
+      "mbid": "89d202bf-98e4-4107-80c2-a36a8982e1fd",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kicking-da-jungle-beat",
+      "type": "project",
+      "name": "Kicking da Jungle Beat",
+      "mbid": "b2e923b9-7909-4fd8-9bb7-7a6d647e2d3f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-boy-ride",
+      "type": "project",
+      "name": "Bad Boy Ride",
+      "mbid": "b37888a6-713f-4f44-b3b1-0cb58941c42d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-thanx",
+      "type": "project",
+      "name": "Black Thanx",
+      "mbid": "d0b5feca-c8a0-4f43-9f5a-e359b2147126",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-of-the-jungle",
+      "type": "project",
+      "name": "King of the Jungle",
+      "mbid": "e955e528-8e57-405c-b347-69bfb67e5c41",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bus-dis",
+      "type": "project",
+      "name": "Bus Dis",
+      "mbid": "f3c886a4-7686-4fe8-b517-38acc8c2e3e0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:indignant",
+      "type": "project",
+      "name": "Indignant",
+      "mbid": "dac70864-4b9a-4a97-8a6c-d8640567527f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:p-t-m-f",
+      "type": "project",
+      "name": "P.T.M.F.",
+      "mbid": "90d213e3-3508-4299-96ed-93c43c3ba89b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:silent-sound-spread-spectrum",
+      "type": "project",
+      "name": "Silent Sound Spread Spectrum",
+      "mbid": "a45bb2e3-2b6d-4018-b2c7-fdda11bec842",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:how-long-is-now",
+      "type": "project",
+      "name": "How Long Is Now",
+      "mbid": "f209c9bc-681e-4fbd-b544-1485d62ded3d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:attic-attack-1986-1988",
+      "type": "project",
+      "name": "Attic Attack 1986-1988",
+      "mbid": "0d156fd5-4b61-43ae-95c6-28c7fa77a4db",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:escape-to-the-moon",
+      "type": "project",
+      "name": "Escape to the Moon",
+      "mbid": "af11915c-e3be-4f03-978e-ff0465e36a4c",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-dance",
+      "type": "project",
+      "name": "G-Dance",
+      "mbid": "4e786271-56d7-494d-b7ff-d20e057f5f74",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:driver",
+      "type": "project",
+      "name": "Driver",
+      "mbid": "1204d355-6029-4abe-a708-f9e34c055e7e",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:umgaia",
+      "type": "project",
+      "name": "Umgaia",
+      "mbid": "9c520717-d8d9-43ad-9980-ed1ee7ad1275",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:manerva",
+      "type": "project",
+      "name": "Manerva",
+      "mbid": "37fba645-c639-4046-a8ff-0d3e0bbc5e6a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:falling",
+      "type": "project",
+      "name": "Falling",
+      "mbid": "52d6e9c7-ba72-4943-ba38-bacb5ca6d81f",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tronic-jazz-the-berlin-sessions",
+      "type": "project",
+      "name": "Tronic Jazz: The Berlin Sessions",
+      "mbid": "f99bc695-7750-4b6d-8645-368863d5ccd5",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-ya-head",
+      "type": "project",
+      "name": "In Ya Head",
+      "mbid": "ce2f3f1a-8904-3476-8897-00fabbe5b3b1",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:is-man-in-danger",
+      "type": "project",
+      "name": "Is Man in Danger",
+      "mbid": "b74b4bc6-290e-37f3-8905-3bbf1d9d2b72",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hoxton-whores-v-s-voodoo-ray",
+      "type": "project",
+      "name": "Hoxton Whores V's Voodoo Ray",
+      "mbid": "fae43b02-9b30-4998-8318-652e1e18b6f3",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-try",
+      "type": "project",
+      "name": "First Try",
+      "mbid": "f2347a67-1117-3eda-9231-8898979ec331",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:to-all-things-what-they-need",
+      "type": "project",
+      "name": "To All Things What They Need",
+      "mbid": "7aa3db7f-0ba3-3ed3-bdaa-fa0052c92c1f",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fever",
+      "type": "project",
+      "name": "Fever",
+      "mbid": "d6cb6f43-4699-4d20-a03b-1e8bf2d2ee07",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:essence",
+      "type": "project",
+      "name": "Essence (4 Track Album Sampler)",
+      "mbid": "82894312-f145-44bb-ba47-49f3ac130986",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:essence",
+      "type": "project",
+      "name": "Essence",
+      "mbid": "ef2441d0-fae7-3104-a337-462dff241b50",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radar-systems-the-fallen-prince-of-heaven",
+      "type": "project",
+      "name": "Radar Systems / The Fallen Prince Of Heaven",
+      "mbid": "4766beaa-e8ac-4fb7-a457-78e2a3458ffa",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-many-dreams",
+      "type": "project",
+      "name": "So Many Dreams",
+      "mbid": "7dea98b2-c41d-43d9-b7bb-0f0fe21578ad",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-secret-technology",
+      "type": "project",
+      "name": "Black Secret Technology",
+      "mbid": "13ca213d-548e-31db-a314-427a3a688c16",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kicking-the-jungle-beat",
+      "type": "project",
+      "name": "Kicking the Jungle Beat",
+      "mbid": "8fa897e7-c44d-4042-9ac5-82d440634d6d",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:finley-s-rainbow",
+      "type": "project",
+      "name": "Finley's Rainbow",
+      "mbid": "1bd91a2c-7554-318a-8054-40e65fc43e61",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:28-gun-bad-boy",
+      "type": "project",
+      "name": "28 Gun Bad Boy",
+      "mbid": "c275a6bc-cb50-3c92-9e99-68a9bc37c55d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:too-fucked-to-dance-anything-v-2-1",
+      "type": "project",
+      "name": "Too Fucked to Dance / Anything V.2.1",
+      "mbid": "6bf3f895-fd13-42e5-b486-c6ea91254057",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cops",
+      "type": "project",
+      "name": "Cops",
+      "mbid": "c8877da9-00f7-41c2-9bbb-e2a473e9fee4",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:peel-sessions",
+      "type": "project",
+      "name": "Peel Sessions",
+      "mbid": "a682e009-2fcf-44b1-9975-370eb96692ef",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:techno-trash-volume-2",
+      "type": "project",
+      "name": "Techno Trash Volume 2",
+      "mbid": "d14224d1-5d02-4809-abe5-429536e66774",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:automanikk",
+      "type": "project",
+      "name": "Automanikk",
+      "mbid": "62c8594b-9e06-3b6b-b528-73ca786d7d4b",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:automanikk",
+      "type": "project",
+      "name": "Automanikk (Bass Overload Mix)",
+      "mbid": "28559630-8712-49c5-b585-58e4fb640045",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:automanikk",
+      "type": "project",
+      "name": "Automanikk",
+      "mbid": "b2356168-5cee-30a5-8562-abe4207ca019",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fx",
+      "type": "project",
+      "name": "FX",
+      "mbid": "df66237f-baf0-34fb-83e4-1725bcb54f6b",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trip-city",
+      "type": "project",
+      "name": "Trip City",
+      "mbid": "a790af1e-3e8f-45ef-8b6e-f53ada055afe",
+      "year": "1989",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hot-lemonade",
+      "type": "project",
+      "name": "Hot Lemonade",
+      "mbid": "aa88d961-a187-3e9e-9630-b6d1a6b1afad",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voodoo-ray",
+      "type": "project",
+      "name": "Voodoo Ray",
+      "mbid": "7aac6490-ecee-31ab-ac57-a44952619003",
+      "year": "1988",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:voodoo-ray",
+      "type": "track",
+      "name": "Voodoo Ray"
+    },
+    {
+      "slug": "track:pacific-state",
+      "type": "track",
+      "name": "Pacific State"
+    },
+    {
+      "slug": "track:fx",
+      "type": "track",
+      "name": "FX"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:graham-massey",
+      "type": "artist",
+      "name": "Graham Massey"
+    },
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie"
+    },
+    {
+      "slug": "artist:finley-quaye",
+      "type": "artist",
+      "name": "Finley Quaye"
+    },
+    {
+      "slug": "artist:herbie-hancock",
+      "type": "artist",
+      "name": "Herbie Hancock"
+    },
+    {
+      "slug": "artist:bill-laswell",
+      "type": "artist",
+      "name": "Bill Laswell"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:gerald-simpson",
+      "type": "artist",
+      "name": "Gerald Simpson"
+    },
+    {
+      "slug": "artist:inertia",
+      "type": "artist",
+      "name": "Inertia"
+    },
+    {
+      "slug": "artist:ricky-rouge",
+      "type": "artist",
+      "name": "Ricky Rouge"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:gerald-simpson",
+      "type": "artist",
+      "name": "Gerald Simpson"
+    }
+  ]
+}
