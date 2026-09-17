@@ -41,6 +41,7 @@ function manifest(overrides: Partial<UnionManifest> = {}): UnionManifest {
 		entries: [],
 		skipped: [],
 		droppedEdges: [],
+		invalidMergedNodes: [],
 		migrationPreview: { groupsFound: 0, exitCode: 0, report: "" },
 		...overrides,
 	};
@@ -241,6 +242,28 @@ function artistNode(overrides: Partial<Record<string, unknown>> & { slug: string
 		collaborators: [],
 		aliases: [],
 		members: [],
+		...overrides,
+	};
+}
+
+// Full trackSchema shape -- used only for the singular-edge self-loop test below (track.remix_of
+// is the one singular field whose target type is the SAME as its owner, so it's the one place a
+// singular self-loop can actually occur; every other singular field targets a different type).
+function trackNode(overrides: Partial<Record<string, unknown>> & { slug: string }): Record<string, unknown> {
+	return {
+		type: "track",
+		name: "Test Track",
+		materialized_at: "2026-01-01T00:00:00.000Z",
+		editorial_article: "x".repeat(80),
+		editorial_teaser: "A test track.",
+		citations: [{ url: "https://example.com" }],
+		artists: [],
+		genres: [],
+		producers: [],
+		personnel: [],
+		samples: [],
+		sampled_by: [],
+		remixed_by: [],
 		...overrides,
 	};
 }
@@ -661,6 +684,117 @@ describe("buildCacheUnion", () => {
 				expect(entry.decision).toBe("kept");
 				expect("mergedEdgeCount" in entry ? entry.mergedEdgeCount : undefined).toBeUndefined();
 			}
+		});
+
+		// Review finding on this ticket: mergeGenreEdges (the sibling duplicate-merge migration)
+		// explicitly drops a self-loop introduced by union so two variants don't end up "related to
+		// themselves" -- mergeUnionEdges must do the same, on both cardinalities.
+		it("filters a self-referencing list edge (from either side), and lists it in the manifest like any other dropped edge", async () => {
+			await seed(
+				repoDir,
+				node({ slug: "genre:shared", qid: "Q1", materialized_at: "2026-09-01T00:00:00.000Z" }),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					related_genres: [{ slug: "genre:shared", type: "genre", name: "Shared" }],
+				}),
+			);
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "genre", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.related_genres).toEqual([]);
+			expect(manifest.droppedEdges).toEqual([
+				{ slug: "genre:shared", field: "related_genres", target: "genre:shared" },
+			]);
+		});
+
+		it("clears a self-referencing singular edge on the winner, and lists it in the manifest", async () => {
+			// track.remix_of is the one singular field whose target type is the same as its owner.
+			await seed(
+				repoDir,
+				trackNode({
+					slug: "track:shared",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					remix_of: { slug: "track:shared", type: "track", name: "Shared" },
+				}),
+			);
+			await seed(serverDir, trackNode({ slug: "track:shared", materialized_at: "2026-08-01T00:00:00.000Z" }));
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "track", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.remix_of).toBeUndefined();
+			expect(manifest.droppedEdges).toEqual([
+				{ slug: "track:shared", field: "remix_of", target: "track:shared" },
+			]);
+		});
+
+		// Review finding: a schema violation in a merged node used to throw a raw ZodError out of
+		// buildCacheUnion, killing the whole run (and manifest.json) before any slug got written.
+		it("degrades a merged node that fails schema validation instead of crashing the whole union", async () => {
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:bad",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					// Dropped by JSON.stringify (undefined), so the winner's own file is missing a
+					// required field once read back -- a genuine schema violation, not a fixture typo.
+					citations: undefined,
+				}),
+			);
+			await seed(
+				serverDir,
+				node({ slug: "genre:bad", qid: "Q1", materialized_at: "2026-08-01T00:00:00.000Z" }),
+			);
+			await seed(repoDir, node({ slug: "genre:ok", qid: "Q2" }));
+			await seed(serverDir, node({ slug: "genre:ok", qid: "Q2" }));
+
+			const { outputDir, manifest } = await union();
+
+			expect(manifest.invalidMergedNodes).toEqual([{ slug: "genre:bad", reason: expect.any(String) }]);
+			expect(manifest.entries.some((e) => e.slug === "genre:bad")).toBe(false);
+			await expect(readFile(join(outputDir, "nodes", "genre", "bad.json"), "utf8")).rejects.toThrow();
+			// The rest of the union still completes -- no exception escaped buildCacheUnion.
+			expect(await readFile(join(outputDir, "nodes", "genre", "ok.json"), "utf8")).toBeTruthy();
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		// Review finding: readCacheNodes derives a node's slug/type from the FILENAME it was found
+		// under; writeValidatedNode used to trust the node's own `slug` field for the write path
+		// instead, an untrusted cache read like any other field on the node.
+		it("treats a validated node whose own slug disagrees with the file it was read from as invalid", async () => {
+			const mislabeledContent = node({
+				slug: "genre:actually-elsewhere",
+				qid: "Q1",
+				materialized_at: "2026-09-01T00:00:00.000Z",
+			});
+			const mislabeledPath = join(repoDir, "nodes", "genre", "mislabeled.json");
+			await mkdir(dirname(mislabeledPath), { recursive: true });
+			await writeFile(mislabeledPath, raw(mislabeledContent), "utf8");
+			await seed(
+				serverDir,
+				node({ slug: "genre:mislabeled", qid: "Q1", materialized_at: "2026-08-01T00:00:00.000Z" }),
+			);
+
+			const { outputDir, manifest } = await union();
+
+			expect(manifest.invalidMergedNodes).toEqual([
+				{ slug: "genre:mislabeled", reason: expect.stringContaining("does not match") },
+			]);
+			await expect(readFile(join(outputDir, "nodes", "genre", "mislabeled.json"), "utf8")).rejects.toThrow();
+			await expect(
+				readFile(join(outputDir, "nodes", "genre", "actually-elsewhere.json"), "utf8"),
+			).rejects.toThrow();
 		});
 	});
 

@@ -75,6 +75,17 @@ export interface DroppedEdge {
 	target: Slug;
 }
 
+// A "kept" (both-sides) node whose merged content writeValidatedNode refused to write: either a
+// genuine nodePayloadSchema violation, or a mismatch between the slug the file was found under
+// and the node's own claimed `slug` field (review finding -- see writeValidatedNode). The union
+// degrades and keeps going rather than crashing mid-build with no manifest at all: this slug
+// simply has no live node in the union's own nodes/ tree, the same as a slug omitted for any
+// other reason.
+export interface InvalidMergedNode {
+	slug: Slug;
+	reason: string;
+}
+
 // A reference that resolved in a source before the union but no longer resolves after the
 // (applied) migration -- see `slugResolves` and the reference-delta block in `buildCacheUnion`.
 export interface ReferenceRegression {
@@ -131,6 +142,10 @@ export interface UnionManifest {
 	// List edges dropped from a "kept" (both-sides) node because they no longer resolve in the
 	// union -- see DroppedEdge. Always present (like `skipped`), independent of --apply-merge.
 	droppedEdges: DroppedEdge[];
+	// "Kept" nodes whose merged content failed to write -- see InvalidMergedNode. Always present,
+	// independent of --apply-merge; counted in countUnionProblems (unlike droppedEdges) since an
+	// invalid node is a real invariant violation, not a tolerated baseline.
+	invalidMergedNodes: InvalidMergedNode[];
 	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
 	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
 	// the one that actually describes the artifact's final state.
@@ -258,14 +273,22 @@ async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
  * that no longer resolves against the union's own live-slug/redirect state (slugResolves -- same
  * rule as resolveReadSlug) is dropped instead of written dangling; the caller reports it via
  * `dropped` (see DroppedEdge) rather than letting it vanish silently, which is the bug this
- * function fixes (B6a-3 / TRA-268 review finding). Singular edge fields and every other field are
- * left exactly as the winner had them -- the ticket contract only asks list edges to be unioned.
- * `mergedEdgeCount` only counts edges that came from the LOSER and weren't already on the winner
- * -- the signal worth surfacing in the manifest is how much this run actually recovered. */
+ * function fixes (B6a-3 / TRA-268 review finding). `ownSlug` is the slug this union entry is
+ * being written under (the loop's own key, never `winner.slug`/`loser.slug` -- readCacheNodes
+ * never validates cache content, so a node's own claimed slug is untrusted the same way any
+ * other field is). An edge on EITHER side that targets `ownSlug` would survive the union as a
+ * self-loop (two variants of the same node commonly cross-link as "related") -- dropped here too,
+ * from list fields by filtering and from singular fields by clearing to undefined, mirroring
+ * mergeGenreEdges's own self-loop handling above (review finding, PR #221 follow-up). Every other
+ * field, singular edges included, is otherwise left exactly as the winner had it -- the ticket
+ * contract only asks list edges to be unioned. `mergedEdgeCount` only counts edges that came from
+ * the LOSER and weren't already on the winner -- the signal worth surfacing in the manifest is
+ * how much this run actually recovered. */
 export function mergeUnionEdges(
 	winner: Record<string, unknown>,
 	loser: Record<string, unknown>,
 	type: NodeType,
+	ownSlug: Slug,
 	liveSlugs: ReadonlySet<Slug>,
 	redirects: ReadonlyMap<Slug, Slug>,
 ): { node: Record<string, unknown>; mergedEdgeCount: number; dropped: Omit<DroppedEdge, "slug">[] } {
@@ -287,7 +310,7 @@ export function mergeUnionEdges(
 				kept.push(edge);
 				continue;
 			}
-			if (!slugResolves(edgeSlug, liveSlugs, redirects)) {
+			if (edgeSlug === ownSlug || !slugResolves(edgeSlug, liveSlugs, redirects)) {
 				dropped.push({ field, target: edgeSlug });
 				continue;
 			}
@@ -296,6 +319,13 @@ export function mergeUnionEdges(
 		}
 		merged[field] = kept;
 	}
+	for (const field of SINGULAR_EDGES_BY_TYPE[type]) {
+		const value = merged[field];
+		if (isRecord(value) && typeof value.slug === "string" && value.slug === ownSlug) {
+			dropped.push({ field, target: ownSlug });
+			merged[field] = undefined;
+		}
+	}
 	return { node: merged, mergedEdgeCount, dropped };
 }
 
@@ -303,17 +333,40 @@ export function mergeUnionEdges(
  * read/write in this codebase goes through (nodePayloadSchema) -- unlike copyNode's raw byte
  * copy (fine for an untouched single-sided or archived file), this node was just reconstructed
  * in memory by mergeUnionEdges, so it must be proven valid before it's ever trusted again (ticket
- * contract: "pas d'écriture brute non validée"). Throws -- never a silent partial write -- on an
- * invariant violation, same as every other schema boundary in this repo. Uses atomicWriteJson
- * directly rather than NodeCache.write(): the latter also merges pending reverses and emits
- * fresh reverse edges to OTHER nodes, side effects this offline, order-independent union pass
- * must not trigger. */
-async function writeValidatedNode(nodesDir: string, node: Record<string, unknown>): Promise<void> {
-	const validated = nodePayloadSchema.parse(node) as NodePayload;
+ * contract: "pas d'écriture brute non validée"). Never throws: this file's own idiom for a
+ * per-item problem is degrade-with-report (skippedEntry, redirectsConflicts), not an uncaught
+ * exception that kills the whole build before manifest.json is even written -- see
+ * InvalidMergedNode and its review finding. Returns `ok: false` on either a genuine schema
+ * violation, or on `expectedSlug` not matching the validated node's own `slug` field: readCacheNodes
+ * derives a NodeFile's slug/type from the FILENAME, this function's caller passes that same
+ * expected slug, but nothing before this point ever confirmed the file's own `slug` field agrees
+ * with the name it was found under (an untrusted cache read, same category as every other field --
+ * review finding) -- writing it under the wrong path would silently mint a stray file instead of
+ * surfacing the mismatch. Uses atomicWriteJson directly rather than NodeCache.write(): the latter
+ * also merges pending reverses and emits fresh reverse edges to OTHER nodes, side effects this
+ * offline, order-independent union pass must not trigger. */
+async function writeValidatedNode(
+	nodesDir: string,
+	expectedSlug: Slug,
+	node: Record<string, unknown>,
+): Promise<{ ok: true } | { ok: false; reason: string }> {
+	let validated: NodePayload;
+	try {
+		validated = nodePayloadSchema.parse(node) as NodePayload;
+	} catch (e) {
+		return { ok: false, reason: e instanceof Error ? e.message : String(e) };
+	}
+	if (validated.slug !== expectedSlug) {
+		return {
+			ok: false,
+			reason: `validated node's own slug "${validated.slug}" does not match the expected slug "${expectedSlug}"`,
+		};
+	}
 	const { type, body } = parseSlug(validated.slug as Slug);
 	const dest = join(nodesDir, type, `${body}.json`);
 	await mkdir(dirname(dest), { recursive: true });
 	await atomicWriteJson(dest, validated);
+	return { ok: true };
 }
 
 /** readCacheNodes's own `invalid` entries build `path` as `join(root, "nodes", slug)` -- not a
@@ -374,7 +427,13 @@ export function countUnionProblems(manifest: UnionManifest): number {
 	const redirectsConflicts = manifest.redirectsConflicts?.length ?? 0;
 	const migrationExitCode = manifest.migrationApply?.exitCode ?? manifest.migrationPreview?.exitCode ?? 0;
 	return (
-		conflicts + droppedQid + manifest.skipped.length + migrationExitCode + regressions + redirectsConflicts
+		conflicts +
+		droppedQid +
+		manifest.skipped.length +
+		manifest.invalidMergedNodes.length +
+		migrationExitCode +
+		regressions +
+		redirectsConflicts
 	);
 }
 
@@ -465,6 +524,7 @@ export async function buildCacheUnion(
 	const archiveDir = join(outputDir, "archive");
 	const entries: UnionEntry[] = [];
 	const droppedEdges: DroppedEdge[] = [];
+	const invalidMergedNodes: InvalidMergedNode[] = [];
 
 	for (const slug of allSlugs) {
 		const repoFile = repoBySlug.get(slug);
@@ -485,8 +545,18 @@ export async function buildCacheUnion(
 				node: mergedNode,
 				mergedEdgeCount,
 				dropped,
-			} = mergeUnionEdges(winner.node, loser.node, winner.type, unionLiveSlugs, unionRedirects);
-			await writeValidatedNode(nodesDir, mergedNode);
+			} = mergeUnionEdges(winner.node, loser.node, winner.type, slug as Slug, unionLiveSlugs, unionRedirects);
+			const written = await writeValidatedNode(nodesDir, slug as Slug, mergedNode);
+			if (!written.ok) {
+				// Degrade and keep going (review finding): no "kept" entry, no live node under this
+				// slug -- same as any other slug this union couldn't produce. Known gap: unionLiveSlugs
+				// was fixed BEFORE this loop (see above), so another node's edge to this same slug can
+				// still be judged "resolves" even though nothing was actually written for it here --
+				// rare (this only fires on genuinely malformed source data) and not worth a second
+				// full pass to close.
+				invalidMergedNodes.push({ slug: slug as Slug, reason: written.reason });
+				continue;
+			}
 			for (const d of dropped) droppedEdges.push({ slug: slug as Slug, field: d.field, target: d.target });
 			entries.push({
 				decision: "kept",
@@ -609,6 +679,7 @@ export async function buildCacheUnion(
 		entries,
 		skipped,
 		droppedEdges,
+		invalidMergedNodes,
 		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
 		// FINAL-state) migration field -- see its type doc.
 		...(migrationApply
