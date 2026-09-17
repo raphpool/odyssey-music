@@ -773,6 +773,35 @@ describe("refreshGenre() seed dossier QID + neighbor preservation (TRA-252)", ()
 		expect(refreshed.related_genres.map((edge) => edge.slug)).not.toContain("genre:trap-duplicate");
 	});
 
+	// 2026-09-17 (2e review de #233): the pipeline resolves an edge's qid from its name when the edge
+	// carries none, so a survivor without an inline qid could re-inject a duplicate of the node's own.
+	it("drops an old edge with no inline qid whose name resolves to the node's own qid", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(genreNode({ slug: "genre:trap-dupe-no-qid", name: "Trap" }));
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				// No qid on the edge: the resolver maps the MusicBrainz genre "trap" to Q2913982.
+				related_genres: [{ type: "genre", name: "Trap", slug: "genre:trap-dupe-no-qid" }],
+			}),
+		);
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+		const folder: GenreSeeds[string] = {
+			genre: { slug: "genre:trap-hip-hop", name: "Trap Hip-Hop", qid: "Q2913982" },
+			anchors: [],
+			targets: [],
+		};
+
+		await refreshGenre(baseOpts(dir), "genre:trap-hip-hop", folder);
+
+		const refreshed = await cache.get("genre:trap-hip-hop");
+		if (refreshed.type !== "genre") throw new Error("expected refreshed genre");
+		expect(refreshed.qid).toBe("Q2913982");
+		expect(refreshed.related_genres.map((edge) => edge.slug)).not.toContain("genre:trap-dupe-no-qid");
+	});
+
 	it("drops an old edge whose target is no longer cached (dead)", async () => {
 		const cache = new NodeCache(dir);
 		await cache.write(
