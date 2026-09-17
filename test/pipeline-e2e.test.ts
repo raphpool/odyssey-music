@@ -10,11 +10,11 @@ import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-25: end-to-end runPipeline harness, all four external boundaries mocked
-// (tavily, local-fetcher, @google/genai, musicbrainz). No network call, no real API key —
+// (tavily, local-fetcher, @anthropic-ai/sdk, musicbrainz). No network call, no real API key —
 // see test/helpers/pipeline-mocks.ts for what's mocked and why.
 //
 // runPipeline itself is imported dynamically (below), not statically, on purpose: its
-// module graph pulls in the real musicbrainz.js/tavily.js/local-fetcher.js/@google/genai
+// module graph pulls in the real musicbrainz.js/tavily.js/local-fetcher.js/@anthropic-ai/sdk
 // unless pipeline-mocks.ts's vi.mock() calls have already registered. ES modules evaluate
 // in import-declaration order, and Biome's import sorter reorders "../src/..." ahead of
 // "./helpers/..." — a static `import { runPipeline } from "../src/pipeline.js"` would get
@@ -164,7 +164,7 @@ describe("genre registry wiring (TRA-28)", () => {
 	);
 
 	it(
-		"canonicalizes a Gemini draft's genre edge naming an existing genre under a variant name",
+		"canonicalizes a Claude draft's genre edge naming an existing genre under a variant name",
 		async () => {
 			await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic", qid: ELECTRONIC_QID }));
 			const genreRegistry = createGenreRegistry({

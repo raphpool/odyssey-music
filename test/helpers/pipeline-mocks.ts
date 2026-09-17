@@ -2,7 +2,7 @@
  * Reusable mocks + fixtures for the runPipeline e2e harness (TRA-25).
  *
  * `runPipeline` (src/pipeline.ts) has exactly four external network boundaries:
- * Tavily search, the local page fetcher, the Gemini SDK, and the MusicBrainz HTTP
+ * Tavily search, the local page fetcher, the Anthropic SDK, and the MusicBrainz HTTP
  * adapter. This module mocks those four and nothing else — `src/genre-identity.ts`
  * and the genre catalog under `data/` are ours and run for real against the
  * committed files (CLAUDE.md: mock external boundaries, not code we own).
@@ -25,7 +25,7 @@
  * node shape precisely (as the artist test below does for `genres[].qid`) rather
  * than assuming a missing mock will always throw all the way out to the test.
  */
-import { GoogleGenAI } from "@google/genai";
+import Anthropic from "@anthropic-ai/sdk";
 import { afterAll, vi } from "vitest";
 import {
 	fetchArtistDiscographyMb,
@@ -43,18 +43,18 @@ import { localFetch } from "../../src/tools/local-fetcher.js";
 import { tavilySearch } from "../../src/tools/tavily.js";
 import type { NodeType } from "../../src/types.js";
 
-// pipelineConfig (src/config.ts) reads GEMINI_API_KEY at module import time, and the
-// nominal `runPipeline` call in these tests deliberately omits `deps.geminiApiKey` to
-// exercise that env fallback (src/pipeline.ts:727). Stubbing here, before this file's
-// own imports finish and long before the test file imports src/pipeline.js, guarantees
-// config.ts sees the stubbed value the first (and only) time it reads process.env.
+// pipelineConfig (src/config.ts) reads ANTHROPIC_API_KEY at module import time, and the
+// nominal `runPipeline` call in these tests deliberately omits `deps.anthropicApiKey` to
+// exercise that env fallback (src/pipeline.ts, generateNodeDraft). Stubbing here, before
+// this file's own imports finish and long before the test file imports src/pipeline.js,
+// guarantees config.ts sees the stubbed value the first (and only) time it reads process.env.
 //
 // vi.stubEnv mutates the real process.env, which is a single global object shared by
 // the whole worker process — vitest.config.ts does not set `unstubEnvs: true`, so
-// without an explicit unstub this would leak "test-gemini-key" into GEMINI_API_KEY for
+// without an explicit unstub this would leak "test-anthropic-key" into ANTHROPIC_API_KEY for
 // every other test file sharing the worker. afterAll here is scoped to whichever test
 // file imports this module (vitest binds top-level hooks to the importing file's suite).
-vi.stubEnv("GEMINI_API_KEY", "test-gemini-key");
+vi.stubEnv("ANTHROPIC_API_KEY", "test-anthropic-key");
 afterAll(() => {
 	vi.unstubAllEnvs();
 });
@@ -81,23 +81,24 @@ vi.mock("../../src/tools/local-fetcher.js", () => ({
 	localFetch: vi.fn(unexpectedCall("localFetch")),
 }));
 
-vi.mock("@google/genai", () => ({
-	GoogleGenAI: vi.fn(() => ({
-		models: { generateContent: unexpectedCall("GoogleGenAI.models.generateContent") },
-	})),
-	// Real values from @google/genai's Type enum (src/pipeline.ts's schema builders read
-	// GType.STRING/OBJECT/ARRAY at call time, before generateContent is ever invoked).
-	Type: {
-		TYPE_UNSPECIFIED: "TYPE_UNSPECIFIED",
-		STRING: "STRING",
-		NUMBER: "NUMBER",
-		INTEGER: "INTEGER",
-		BOOLEAN: "BOOLEAN",
-		ARRAY: "ARRAY",
-		OBJECT: "OBJECT",
-		NULL: "NULL",
-	},
-}));
+// 2026-09-16 (TRA-239): mocks the Anthropic SDK's default-export client (`new
+// Anthropic({apiKey}).messages.create(...)`) in place of the previous Gemini SDK's client class.
+// Unlike that mock, this one needs no companion type-enum export — pipeline.ts's schema builders
+// (makeNodeSchema) now emit plain JSON Schema literals ("object"/"array"/"string" strings), not
+// SDK-specific enum constants.
+vi.mock("@anthropic-ai/sdk", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("@anthropic-ai/sdk")>();
+	const mockClient = vi.fn(() => ({
+		messages: { create: unexpectedCall("Anthropic.messages.create") },
+	}));
+	// The real Anthropic class exposes its typed error classes (APIError, RateLimitError, ...)
+	// through its prototype chain (they aren't own properties — verified against the installed
+	// SDK), not through named module exports. Mirroring that chain onto our mock constructor
+	// keeps `new Anthropic.RateLimitError(...)` / `instanceof Anthropic.APIError` working in
+	// tests that need a real, typed SDK error instance thrown from the mocked client.
+	Object.setPrototypeOf(mockClient, Object.getPrototypeOf(actual.default));
+	return { ...actual, default: mockClient };
+});
 
 vi.mock("../../src/musicbrainz.js", () => ({
 	findArtistMbidByName: vi.fn(unexpectedCall("findArtistMbidByName")),
@@ -179,18 +180,19 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 			};
 		});
 
-	vi.mocked(GoogleGenAI)
+	vi.mocked(Anthropic)
 		.mockReset()
 		.mockImplementation(
 			() =>
 				({
-					models: {
-						generateContent: vi.fn(async () => ({
-							text: JSON.stringify(options.draft),
-							usageMetadata: { promptTokenCount: 42, candidatesTokenCount: 42 },
+					messages: {
+						create: vi.fn(async () => ({
+							stop_reason: "end_turn",
+							content: [{ type: "text", text: JSON.stringify(options.draft) }],
+							usage: { input_tokens: 42, output_tokens: 42 },
 						})),
 					},
-				}) as unknown as GoogleGenAI,
+				}) as unknown as Anthropic,
 		);
 
 	resetToUnexpected(findArtistMbidByName, "findArtistMbidByName");
@@ -270,6 +272,66 @@ export function genreDraftFixture(overrides: Record<string, unknown> = {}): Reco
 		key_artists: [{ type: "artist", name: "Fixture Artist" }] satisfies EdgeRefFixture[],
 		key_labels: [{ type: "label", name: "Fixture Label" }] satisfies EdgeRefFixture[],
 		landmark_tracks: [{ type: "track", name: "Fixture Track" }] satisfies EdgeRefFixture[],
+		...overrides,
+	};
+}
+
+// 2026-09-16 (TRA-239): label/project/track fixtures, added alongside the boundary tests for
+// each of the five node types' structured-output schema. Same shape/rationale as
+// artistDraftFixture/genreDraftFixture above.
+
+/** A minimal label draft valid against canonicalizeDraft + nodePayloadSchema (labelSchema). */
+export function labelDraftFixture(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+	return {
+		name: "Fixture Label",
+		editorial_article:
+			"Fixture Label is a fictional record label invented for the runPipeline end-to-end " +
+			"test harness (TRA-25). No real-world facts are claimed here.",
+		citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+		editorial_description: "Fictional record label invented for the test harness.",
+		founded: "1995",
+		location: "Test fixture, nowhere",
+		genres: [{ type: "genre", name: "Techno" }] satisfies EdgeRefFixture[],
+		roster: [{ type: "artist", name: "Fixture Artist" }] satisfies EdgeRefFixture[],
+		notable_releases: [{ type: "project", name: "Fixture Album" }] satisfies EdgeRefFixture[],
+		...overrides,
+	};
+}
+
+/** A minimal project draft valid against canonicalizeDraft + nodePayloadSchema (projectSchema). */
+export function projectDraftFixture(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+	return {
+		name: "Fixture Album",
+		editorial_article:
+			"Fixture Album is a fictional record invented for the runPipeline end-to-end test " +
+			"harness (TRA-25). No real-world facts are claimed here.",
+		citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+		editorial_pitch: "Fictional record invented for the test harness.",
+		year: "2020",
+		artists: [{ type: "artist", name: "Fixture Artist" }] satisfies EdgeRefFixture[],
+		label: { type: "label", name: "Fixture Label" } satisfies EdgeRefFixture,
+		genres: [{ type: "genre", name: "Techno" }] satisfies EdgeRefFixture[],
+		tracklist: [
+			{ type: "track", name: "Fixture Track" },
+			{ type: "track", name: "Fixture Track Two" },
+		] satisfies EdgeRefFixture[],
+		...overrides,
+	};
+}
+
+/** A minimal track draft valid against canonicalizeDraft + nodePayloadSchema (trackSchema). */
+export function trackDraftFixture(overrides: Record<string, unknown> = {}): Record<string, unknown> {
+	return {
+		name: "Fixture Track",
+		editorial_article:
+			"Fixture Track is a fictional song invented for the runPipeline end-to-end test " +
+			"harness (TRA-25). No real-world facts are claimed here.",
+		citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+		editorial_teaser: "Fictional song invented for the test harness.",
+		year: "2020",
+		artists: [{ type: "artist", name: "Fixture Artist" }] satisfies EdgeRefFixture[],
+		project: { type: "project", name: "Fixture Album" } satisfies EdgeRefFixture,
+		genres: [{ type: "genre", name: "Techno" }] satisfies EdgeRefFixture[],
 		...overrides,
 	};
 }

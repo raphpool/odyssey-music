@@ -36,10 +36,13 @@ export const musicBrainzConfig = {
 };
 
 export const pipelineConfig = {
-	geminiApiKey: process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY ?? "",
-	defaultModel: envString("GEMINI_MODEL", "gemini-2.5-flash-lite"),
-	temperature: Number.parseFloat(envString("GEMINI_TEMPERATURE", "0.95")),
-	retryDelayMs: envInt("GEMINI_RETRY_DELAY_MS", 600),
+	anthropicApiKey: process.env.ANTHROPIC_API_KEY ?? "",
+	defaultModel: envString("ANTHROPIC_MODEL", "claude-haiku-4-5"),
+	temperature: Number.parseFloat(envString("ANTHROPIC_TEMPERATURE", "0.95")),
+	// 2026-09-16 (TRA-239): the model's max output tokens for one node-draft call. Node JSON
+	// payloads (editorial prose + edge arrays) run well under this; kept generous rather than
+	// tight so a large discography/tracklist can't trip `stop_reason: "max_tokens"`.
+	maxOutputTokens: envInt("ANTHROPIC_MAX_OUTPUT_TOKENS", 8192),
 	maxCorpusBytes: envInt("PIPELINE_MAX_CORPUS_BYTES", 80_000),
 	perPageBudgetBytes: envInt("PIPELINE_PER_PAGE_BUDGET_BYTES", 60_000),
 	searchResults: envInt("PIPELINE_SEARCH_RESULTS", 7),
@@ -49,12 +52,9 @@ export const pipelineConfig = {
 };
 
 export const pricingConfig = {
-	geminiFlashLiteInputUsdPerMillion: Number.parseFloat(
-		envString("GEMINI_FLASH_LITE_INPUT_USD_PER_MILLION", "0.075"),
-	),
-	geminiFlashLiteOutputUsdPerMillion: Number.parseFloat(
-		envString("GEMINI_FLASH_LITE_OUTPUT_USD_PER_MILLION", "0.30"),
-	),
+	// Claude Haiku 4.5 (TRA-239): $1 / 1M input tokens, $5 / 1M output tokens.
+	claudeHaikuInputUsdPerMillion: Number.parseFloat(envString("CLAUDE_HAIKU_INPUT_USD_PER_MILLION", "1.00")),
+	claudeHaikuOutputUsdPerMillion: Number.parseFloat(envString("CLAUDE_HAIKU_OUTPUT_USD_PER_MILLION", "5.00")),
 };
 
 export const cliConfig = {

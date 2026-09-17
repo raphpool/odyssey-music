@@ -82,7 +82,7 @@ describe("top-up-genres workflow (TRA-70)", () => {
 	});
 
 	it("only exposes the API secrets to the step that runs the crawler", () => {
-		const secretNames = ["GEMINI_API_KEY", "TAVILY_API_KEY", "FIRECRAWL_API_KEY"];
+		const secretNames = ["ANTHROPIC_API_KEY", "TAVILY_API_KEY", "FIRECRAWL_API_KEY"];
 		expect(steps.length).toBeGreaterThan(5); // sanity: unnamed steps (checkout, npm ci...) are included
 		const stepsWithSecrets = steps.filter((step) =>
 			secretNames.some((name) => step.includes(`secrets.${name}`)),

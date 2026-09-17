@@ -62,27 +62,21 @@ vi.mock("../src/tools/local-fetcher.js", () => ({
 	})),
 }));
 
-vi.mock("@google/genai", () => ({
-	GoogleGenAI: vi.fn(() => ({
-		models: {
-			generateContent: vi.fn(async () => ({
-				text: JSON.stringify(TRA32_GENRE_DRAFT),
-				usageMetadata: { promptTokenCount: 10, candidatesTokenCount: 10 },
+// 2026-09-16 (TRA-239): mocks the Anthropic SDK's default-export client shape
+// (`new Anthropic({apiKey}).messages.create(...)`) instead of the previous Gemini SDK's client
+// class. pipeline.ts's schema builders (makeNodeSchema) emit plain JSON Schema literals now (no
+// enum/type constants to mock), so unlike the old Gemini-SDK mock this one needs no companion
+// export for that.
+vi.mock("@anthropic-ai/sdk", () => ({
+	default: vi.fn(() => ({
+		messages: {
+			create: vi.fn(async () => ({
+				stop_reason: "end_turn",
+				content: [{ type: "text", text: JSON.stringify(TRA32_GENRE_DRAFT) }],
+				usage: { input_tokens: 10, output_tokens: 10 },
 			})),
 		},
 	})),
-	// Real values from @google/genai's Type enum — pipeline.ts's schema builders read
-	// GType.STRING/OBJECT/ARRAY at call time, before generateContent is ever invoked.
-	Type: {
-		TYPE_UNSPECIFIED: "TYPE_UNSPECIFIED",
-		STRING: "STRING",
-		NUMBER: "NUMBER",
-		INTEGER: "INTEGER",
-		BOOLEAN: "BOOLEAN",
-		ARRAY: "ARRAY",
-		OBJECT: "OBJECT",
-		NULL: "NULL",
-	},
 }));
 
 describe("normalizeEdge — qid propagation (TRA-17)", () => {
@@ -576,7 +570,7 @@ describe("runPipeline — cached qid wins on disk, not just in-memory (TRA-32 re
 		const deps: PipelineDeps = {
 			tavilyApiKey: "test",
 			firecrawlApiKey: "test",
-			geminiApiKey: "test",
+			anthropicApiKey: "test",
 			genreRegistry,
 		};
 

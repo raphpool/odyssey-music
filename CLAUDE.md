@@ -15,7 +15,7 @@ déploiement, jamais édité à la main.
 - Lint/format : Biome — tabs, guillemets doubles, largeur 110
 - Front : une page unique `web/index.html`, JS inline, aucun framework, aucun build
 - Serveur : http stdlib, routage à la main, pas de framework
-- Modèle : Gemini Flash Lite, **un seul appel** par nœud, schéma de réponse contraint
+- Modèle : Claude Haiku 4.5, **un seul appel** par nœud, schéma de réponse contraint
 - Porte d'entrée locale : `npm run check` (lint + typecheck + test)
 - Le process de livraison est dans `/delivery-process` (skill)
 

@@ -1,6 +1,6 @@
 /**
  * TRA-31: proves that after TRA-22's genre duplicate-merge migration, none of the pipeline's
- * genre-edge producers (a MusicBrainz tag, a Gemini draft, the Wikidata parent_genres catalog
+ * genre-edge producers (a MusicBrainz tag, a Claude draft, the Wikidata parent_genres catalog
  * backfill) or the materialize/read paths recreate a duplicate of a merged genre.
  *
  * This is the gate for TRA-22's --apply: that migration is destructive and is not authorized
@@ -27,7 +27,7 @@
  * as server.ts does.
  *
  * Reuses the TRA-25 e2e harness (test/helpers/pipeline-mocks.ts): only Tavily, localFetch,
- * @google/genai and MusicBrainz are mocked. src/genre-identity.ts, src/genre-registry.ts and
+ * @anthropic-ai/sdk and MusicBrainz are mocked. src/genre-identity.ts, src/genre-registry.ts and
  * the committed data/ catalog run for real, against the real files (CLAUDE.md: mock external
  * boundaries, not code or data we own).
  */
@@ -45,20 +45,21 @@ import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./h
 
 // Dynamic imports, same rationale as test/pipeline-e2e.test.ts and test/materialize-service.test.ts:
 // createMaterializeService's module graph statically pulls in pipeline.js ->
-// musicbrainz.js/tavily.js/local-fetcher.js/@google/genai, which must stay mocked -- a static
+// musicbrainz.js/tavily.js/local-fetcher.js/@anthropic-ai/sdk, which must stay mocked -- a static
 // `import { createMaterializeService } from "../src/services/materialize-service.js"` would get
 // sorted by Biome ahead of the "./helpers/..." import that registers those mocks.
 //
 // createNodeService (src/services/node-service.js) has no such import itself, but it DOES
-// statically import `pipelineConfig` from src/config.ts, whose `geminiApiKey` field reads
-// process.env.GEMINI_API_KEY exactly once, at module-evaluation time (src/config.ts:39).
-// pipeline-mocks.ts's vi.stubEnv("GEMINI_API_KEY", ...) call only lands in time if config.ts is
-// not evaluated before it -- so createNodeService must be loaded dynamically here too, after the
-// "./helpers/pipeline-mocks.js" import above has already run its stubEnv. A static import of
-// node-service.js here (even though it doesn't touch the mocked MB/Gemini/Tavily boundaries)
+// statically import `pipelineConfig` from src/config.ts, whose `anthropicApiKey` field reads
+// process.env.ANTHROPIC_API_KEY exactly once, at module-evaluation time (src/config.ts).
+// pipeline-mocks.ts's vi.stubEnv("ANTHROPIC_API_KEY", ...) call only lands in time if config.ts
+// is not evaluated before it -- so createNodeService must be loaded dynamically here too, after
+// the "./helpers/pipeline-mocks.js" import above has already run its stubEnv. A static import of
+// node-service.js here (even though it doesn't touch the mocked MB/Claude/Tavily boundaries)
 // would get sorted ahead of "./helpers/..." by Biome and load config.js too early, caching an
-// empty geminiApiKey for the rest of the test run -- confirmed by first writing it that way and
-// watching every runPipeline call fail with "GEMINI_API_KEY missing" (2026-09-10).
+// empty anthropicApiKey for the rest of the test run -- confirmed by first writing it that way
+// and watching every runPipeline call fail with "ANTHROPIC_API_KEY missing" (2026-09-10, and
+// re-confirmed 2026-09-16 under TRA-239's Anthropic boundary).
 async function loadCreateMaterializeService() {
 	return (await import("../src/services/materialize-service.js")).createMaterializeService;
 }
@@ -74,7 +75,7 @@ async function loadTavilySearch() {
 type CreateMaterializeService = Awaited<ReturnType<typeof loadCreateMaterializeService>>;
 type CreateNodeService = Awaited<ReturnType<typeof loadCreateNodeService>>;
 
-const ENV: ApiEnv = { GEMINI_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
+const ENV: ApiEnv = { ANTHROPIC_API_KEY: "test", TAVILY_API_KEY: "test", FIRECRAWL_API_KEY: "test" };
 const TIMEOUT_MS = 5_000;
 
 // Real MusicBrainz genre MBIDs, read from the committed data/genre-qid-map.json (verified
@@ -192,7 +193,7 @@ describe("genre dedup post-merge gate (TRA-31) — gates TRA-22's --apply", () =
 	);
 
 	it(
-		"scenario 2 — Gemini producer: a freshly minted genre's related/subgenre edges resolve onto survivors",
+		"scenario 2 — Claude producer: a freshly minted genre's related/subgenre edges resolve onto survivors",
 		async () => {
 			const filesBefore = await genreFileCount(cache);
 			installPipelineMocks({

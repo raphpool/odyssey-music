@@ -3,7 +3,7 @@ import { runPipeline } from "../src/pipeline.js";
 import type { NodePayload } from "../src/types.js";
 
 const HAVE_KEYS =
-	Boolean(process.env.GEMINI_API_KEY) &&
+	Boolean(process.env.ANTHROPIC_API_KEY) &&
 	Boolean(process.env.TAVILY_API_KEY) &&
 	Boolean(process.env.FIRECRAWL_API_KEY);
 
@@ -26,10 +26,17 @@ describe.skipIf(!HAVE_KEYS)("pipeline (live network)", () => {
 
 function assertNode(node: NodePayload, expectedType: NodePayload["type"]): void {
 	expect(node.type).toBe(expectedType);
-	expect(node.editorial_article.length).toBeGreaterThanOrEqual(400);
+	// 2026-09-16 (TRA-239): the 400-char / 3-edge floors this test used to assert came from
+	// Gemini's `responseSchema` (minLength:350 on editorial_article, minItems on several edge
+	// arrays) — constraints Claude's structured outputs don't support (see the "Anthropic
+	// structured-output schema builders" comment in src/pipeline.ts). Only the post-call Zod
+	// floor (src/schemas.ts: editorial_article.min(80), citations.min(1)) is still actually
+	// guaranteed, so the assertions below are lowered to match reality instead of asserting a
+	// guarantee this pipeline no longer makes.
+	expect(node.editorial_article.length).toBeGreaterThanOrEqual(80);
 	expect(node.citations.length).toBeGreaterThanOrEqual(1);
 	const edgeCount = countEdges(node);
-	expect(edgeCount).toBeGreaterThanOrEqual(3);
+	expect(edgeCount).toBeGreaterThanOrEqual(1);
 }
 
 function countEdges(node: NodePayload): number {
