@@ -2,9 +2,25 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
-import { parseCliArgs, runRename } from "../scripts/migrations/2026-09-10-rename-genre-node.js";
+import {
+	findLostTaxonomyResolutions,
+	parseCliArgs,
+	runRename,
+} from "../scripts/migrations/2026-09-10-rename-genre-node.js";
+import type { GenreTaxonomy, GenreTaxonomyEntry } from "../src/genre-taxonomy.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
+
+// A minimal, schema-valid v2 taxonomy wrapping a single genre entry -- used by the D6b tests
+// below. Kept to one family/one genre so assertUnique (ids, family keys/orders, qids) never
+// collides across tests, each of which builds its own independent taxonomy.
+function taxonomyOf(genre: GenreTaxonomyEntry): GenreTaxonomy {
+	return {
+		version: 2,
+		families: [{ key: "test-family", label: "Test Family", order: 0 }],
+		genres: [genre],
+	};
+}
 
 // Nodes here are plain records, not typed against src/types.ts: readCacheNodes reads raw JSON
 // (no Zod), and rewriteNodeEdges/the invariant checks skip any edge field that isn't present
@@ -28,10 +44,15 @@ const TO = "genre:edm-trap" as Slug;
 describe("runRename (disk integration)", () => {
 	let dir: string;
 	let redirectsPath: string;
+	// Deliberately never written unless a test says so: loadTaxonomyOrStatus then reports
+	// "absent", so pre-existing tests (which don't care about the D6b taxonomy guard) keep
+	// exercising only the v1 ONBOARDING_GENRES guard, exactly as before this ticket.
+	let taxonomyPath: string;
 
 	beforeEach(async () => {
 		dir = await mkdtemp(join(tmpdir(), "odyssey-genre-rename-"));
 		redirectsPath = join(dir, "genre-redirects.json");
+		taxonomyPath = join(dir, "genre-taxonomy.json");
 	});
 	afterEach(async () => {
 		await rm(dir, { recursive: true, force: true });
@@ -80,7 +101,11 @@ describe("runRename (disk integration)", () => {
 		const paths = await seedTrapGroup();
 		const before = await Promise.all(Object.values(paths).map((p) => readFile(p, "utf8")));
 
-		const result = await runRename(dir, FROM, TO, false, { redirectsPath, onboardingSlugs: [] });
+		const result = await runRename(dir, FROM, TO, false, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath,
+		});
 
 		expect(result.exitCode).toBe(0);
 		expect(result.applied).toBe(false);
@@ -107,7 +132,7 @@ describe("runRename (disk integration)", () => {
 			"utf8",
 		);
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
 
 		expect(result.exitCode).toBe(0);
 		expect(result.applied).toBe(true);
@@ -144,7 +169,7 @@ describe("runRename (disk integration)", () => {
 		await seedTrapGroup();
 		await writeFile(redirectsPath, JSON.stringify({ redirects: { "genre:trap-edm-alt": FROM } }), "utf8");
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
 
 		expect(result.exitCode).toBe(0);
 		const redirects = JSON.parse(await readFile(redirectsPath, "utf8")) as {
@@ -158,7 +183,11 @@ describe("runRename (disk integration)", () => {
 		const toPath = await writeNodeFile(node({ slug: TO, type: "genre", name: "EDM Trap" }));
 		const before = { from: await readFile(fromPath, "utf8"), to: await readFile(toPath, "utf8") };
 
-		const nodeConflict = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const nodeConflict = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath,
+		});
 		expect(nodeConflict.exitCode).toBe(1);
 		expect(await readFile(fromPath, "utf8")).toBe(before.from);
 		expect(await readFile(toPath, "utf8")).toBe(before.to);
@@ -168,14 +197,18 @@ describe("runRename (disk integration)", () => {
 		// live node at `to` while the table still says `to` itself redirects elsewhere.
 		await rm(toPath);
 		await writeFile(redirectsPath, JSON.stringify({ redirects: { [TO]: "genre:gone" } }), "utf8");
-		const redirectConflict = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const redirectConflict = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath,
+		});
 		expect(redirectConflict.exitCode).toBe(1);
 		expect(await readFile(fromPath, "utf8")).toBe(before.from);
 	});
 
 	it("a second --apply is a no-op (idempotent)", async () => {
 		await seedTrapGroup();
-		const first = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const first = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
 		expect(first.exitCode).toBe(0);
 		expect(first.applied).toBe(true);
 
@@ -183,7 +216,7 @@ describe("runRename (disk integration)", () => {
 		const before = await readFile(toPath, "utf8");
 		const redirectsBefore = await readFile(redirectsPath, "utf8");
 
-		const second = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const second = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
 
 		expect(second.exitCode).toBe(0);
 		expect(second.applied).toBe(false);
@@ -192,19 +225,206 @@ describe("runRename (disk integration)", () => {
 	});
 
 	it("a missing source exits 1; an ONBOARDING_GENRES slug is refused outright, tree unchanged", async () => {
-		const missing = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [] });
+		const missing = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath,
+		});
 		expect(missing.exitCode).toBe(1);
 
 		const paths = await seedTrapGroup();
 		const before = await Promise.all(Object.values(paths).map((p) => readFile(p, "utf8")));
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [FROM] });
+		const result = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [FROM],
+			taxonomyPath,
+		});
 
 		expect(result.exitCode).toBe(1);
 		expect(result.applied).toBe(false);
 		const after = await Promise.all(Object.values(paths).map((p) => readFile(p, "utf8")));
 		expect(after).toEqual(before);
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+});
+
+// TRA-139/D6b: the taxonomy (v2) guard, additive to (and eventually a replacement for) the
+// ONBOARDING_GENRES (v1) check exercised above.
+describe("runRename -- genre-taxonomy protection (D6b)", () => {
+	let dir: string;
+	let redirectsPath: string;
+	let taxonomyPath: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-genre-rename-taxonomy-"));
+		redirectsPath = join(dir, "genre-redirects.json");
+		taxonomyPath = join(dir, "genre-taxonomy.json");
+	});
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	async function writeNodeFile(n: RawNode): Promise<string> {
+		const { type, body } = parseSlug(n.slug as string);
+		const path = join(dir, "nodes", type, `${body}.json`);
+		await mkdir(dirname(path), { recursive: true });
+		await writeFile(path, `${JSON.stringify(n, null, 2)}\n`, "utf8");
+		return path;
+	}
+
+	async function seedTrapNode(): Promise<void> {
+		await writeNodeFile(
+			node({ slug: FROM, type: "genre", name: "Trap (EDM)", qid: "Q47781397", related_genres: [] }),
+		);
+	}
+
+	it("admits a safe rename: a published genre's explicit source still resolves via the redirect", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify(
+				taxonomyOf({
+					id: "Q47781397",
+					qid: "Q47781397",
+					name: "Trap (EDM)",
+					family: "test-family",
+					sourceSlugs: [FROM],
+					published: true,
+				}),
+			),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.applied).toBe(true);
+	});
+
+	it("refuses a rename that would lose resolution for a published genre's source", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify(
+				taxonomyOf({
+					id: "local:ghost-genre",
+					name: "Ghost Genre",
+					family: "test-family",
+					sourceSlugs: ["genre:ghost" as Slug],
+					published: true,
+				}),
+			),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+		await expect(readFile(join(dir, "nodes", "genre", "edm-trap.json"), "utf8")).rejects.toThrow();
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
+	it("keeps a family-umbrella genre resolved by qid (no explicit sourceSlugs) findable after the rename", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify(
+				taxonomyOf({
+					id: "Q47781397",
+					qid: "Q47781397",
+					name: "Trap (EDM) Umbrella",
+					family: "test-family",
+					published: true,
+				}),
+			),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.applied).toBe(true);
+	});
+
+	it("resolves a local-id entry whose sourceSlugs point at the renamed slug", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify(
+				taxonomyOf({
+					id: "local:something-local",
+					name: "Something Local",
+					family: "test-family",
+					sourceSlugs: [FROM],
+					published: true,
+				}),
+			),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		expect(result.exitCode).toBe(0);
+		expect(result.applied).toBe(true);
+	});
+
+	it("refuses outright when neither the taxonomy nor ONBOARDING_GENRES is available", async () => {
+		await seedTrapNode();
+		// taxonomyPath and webIndexPath both point at files that don't exist -- onboardingSlugs
+		// is left undefined so the real (in this run, unread) web/index.html is never consulted.
+		const result = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			taxonomyPath,
+			webIndexPath: join(dir, "no-such-index.html"),
+		});
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+		expect(result.report).not.toContain("DRY RUN"); // (an applied=false run, but not the empty-check silently passing)
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
+	it("refuses outright on an invalid taxonomy, even with ONBOARDING_GENRES present", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify({ version: 2, families: [], genres: "not-an-array" }),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+});
+
+describe("findLostTaxonomyResolutions (pure)", () => {
+	it("flags a published entry whose source neither exists nor redirects anywhere", () => {
+		const taxonomy = taxonomyOf({
+			id: "local:ghost-genre",
+			name: "Ghost Genre",
+			family: "test-family",
+			sourceSlugs: ["genre:ghost" as Slug],
+			published: true,
+		});
+		const errors = findLostTaxonomyResolutions(taxonomy, [], new Map());
+		expect(errors).toHaveLength(1);
+		expect(errors[0]?.genreId).toBe("local:ghost-genre");
+	});
+
+	it("ignores an unpublished (reserve) entry with the same dangling source", () => {
+		const taxonomy = taxonomyOf({
+			id: "local:ghost-genre",
+			name: "Ghost Genre",
+			family: "test-family",
+			sourceSlugs: ["genre:ghost" as Slug],
+			published: false,
+		});
+		expect(findLostTaxonomyResolutions(taxonomy, [], new Map())).toEqual([]);
 	});
 });
 

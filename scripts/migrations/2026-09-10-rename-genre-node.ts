@@ -29,11 +29,12 @@
  * Usage: tsx scripts/migrations/2026-09-10-rename-genre-node.ts <cache-dir> <from> <to>
  *        [--apply] [--redirects <path>]
  */
-import { mkdir, rm } from "node:fs/promises";
+import { mkdir, readFile, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../../src/genre-registry.js";
+import { type GenreTaxonomy, validateGenreTaxonomy } from "../../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
 import { isValidSlug, parseSlug } from "../../src/slug.js";
 import type { Slug } from "../../src/types.js";
@@ -100,6 +101,115 @@ export interface RenameResult {
 	exitCode: 0 | 1;
 }
 
+// --- Taxonomy-backed protection (2026-09-17, TRA-139/D6b) ---
+//
+// ONBOARDING_GENRES (checked below, unchanged) is web/index.html's v1 picker constant and is
+// due for removal by D3 (TRA-211): once gone, it can no longer be this migration's only guard
+// against renaming a slug still needed for resolution. From here on the same invariant is also
+// checked against data/genre-taxonomy.json (v2, loaded through its own canonical validator --
+// src/genre-taxonomy.ts's validateGenreTaxonomy -- never hand-rolled here): every *published*
+// genre's declared identity (explicit sourceSlugs, or -- for a family-umbrella entry with none
+// -- its qid) must still resolve to a live node after the rename, the same one-hop
+// redirect-or-live-node rule genre-registry.ts's resolveReadSlug applies at read time. Both
+// guards run when both are available; either alone is enough to protect a slug still in use.
+// Neither available is never treated as "nothing to protect" -- it's a refusal (see runRename).
+
+export type TaxonomyLoadResult =
+	| { status: "ok"; taxonomy: GenreTaxonomy }
+	| { status: "absent" }
+	| { status: "invalid"; error: string };
+
+/** Schema-only load (no source resolution against a live cache -- this script does that itself,
+ * in memory, against the post-rename plan, via findLostTaxonomyResolutions below). */
+export async function loadTaxonomyOrStatus(path: string): Promise<TaxonomyLoadResult> {
+	let raw: string;
+	try {
+		raw = await readFile(path, "utf8");
+	} catch (e) {
+		if ((e as NodeJS.ErrnoException).code === "ENOENT") return { status: "absent" };
+		return { status: "invalid", error: e instanceof Error ? e.message : String(e) };
+	}
+	try {
+		return { status: "ok", taxonomy: validateGenreTaxonomy(JSON.parse(raw)) };
+	} catch (e) {
+		return { status: "invalid", error: e instanceof Error ? e.message : String(e) };
+	}
+}
+
+/** Tolerant wrapper around loadOnboardingGenreSlugs: once D3 deletes ONBOARDING_GENRES (or the
+ * file itself can't be read), that's "the v1 guard is retired", not a crash -- the taxonomy
+ * guard above is what's left to protect the slug. */
+async function loadOnboardingSlugsOrAbsent(webIndexPath?: string): Promise<string[] | undefined> {
+	try {
+		return await loadOnboardingGenreSlugs(webIndexPath);
+	} catch {
+		return undefined;
+	}
+}
+
+export interface TaxonomyResolutionError {
+	genreId: string;
+	source: Slug | "(none)";
+	reason: string;
+}
+
+/**
+ * Pure post-write check: does every published genre in `taxonomy` still resolve, given the
+ * post-rename node set and the merged redirect table? Mirrors src/genre-taxonomy.ts's own
+ * source-resolution rule (resolveReadSlug: a live node wins unchanged, else follow one redirect
+ * hop) plus its contradictory-qid guard, against the in-memory plan rather than a second disk
+ * read -- this runs *before* anything is written, same as the dangling-edge check above it.
+ */
+export function findLostTaxonomyResolutions(
+	taxonomy: GenreTaxonomy,
+	nodesAfter: readonly Record<string, unknown>[],
+	redirectsAfter: ReadonlyMap<string, string>,
+): TaxonomyResolutionError[] {
+	const bySlug = new Map(nodesAfter.map((n) => [String(n.slug), n]));
+	const qidIndex = new Map<string, string>();
+	for (const n of nodesAfter) {
+		if (
+			n.type === "genre" &&
+			typeof n.qid === "string" &&
+			typeof n.slug === "string" &&
+			!qidIndex.has(n.qid)
+		) {
+			qidIndex.set(n.qid, n.slug);
+		}
+	}
+	const resolve = (slug: string): string => (bySlug.has(slug) ? slug : (redirectsAfter.get(slug) ?? slug));
+
+	const errors: TaxonomyResolutionError[] = [];
+	for (const genre of taxonomy.genres) {
+		if (!genre.published) continue;
+		const qidSource = genre.qid ? qidIndex.get(genre.qid) : undefined;
+		const sources =
+			genre.sourceSlugs && genre.sourceSlugs.length > 0
+				? genre.sourceSlugs
+				: qidSource
+					? [qidSource as Slug]
+					: [];
+		if (sources.length === 0) {
+			errors.push({ genreId: genre.id, source: "(none)", reason: "no source resolves after the rename" });
+			continue;
+		}
+		for (const source of sources) {
+			const resolved = resolve(source);
+			const resolvedNode = bySlug.get(resolved);
+			if (!resolvedNode) {
+				errors.push({ genreId: genre.id, source, reason: `${source} -> ${resolved} does not exist` });
+			} else if (genre.qid && typeof resolvedNode.qid === "string" && resolvedNode.qid !== genre.qid) {
+				errors.push({
+					genreId: genre.id,
+					source,
+					reason: `${source} -> ${resolved} carries a different qid`,
+				});
+			}
+		}
+	}
+	return errors;
+}
+
 /**
  * Runs the rename against `cacheDir`: builds the plan in memory, verifies invariants before
  * touching disk, writes only if clean and `apply` is set. No process.exit -- exit code only.
@@ -109,7 +219,13 @@ export async function runRename(
 	from: Slug,
 	to: Slug,
 	apply: boolean,
-	options: { redirectsPath?: string; onboardingSlugs?: readonly string[] } = {},
+	options: {
+		redirectsPath?: string;
+		onboardingSlugs?: readonly string[];
+		webIndexPath?: string;
+		taxonomy?: GenreTaxonomy;
+		taxonomyPath?: string;
+	} = {},
 ): Promise<RenameResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
 	for (const { path, error } of invalid) {
@@ -117,7 +233,11 @@ export async function runRename(
 	}
 
 	const bySlug = new Map(nodes.map((f) => [f.slug, f]));
-	const onboardingSlugs = options.onboardingSlugs ?? (await loadOnboardingGenreSlugs());
+	const onboardingSlugs =
+		options.onboardingSlugs ?? (await loadOnboardingSlugsOrAbsent(options.webIndexPath));
+	const taxonomyResult: TaxonomyLoadResult = options.taxonomy
+		? { status: "ok", taxonomy: options.taxonomy }
+		: await loadTaxonomyOrStatus(options.taxonomyPath ?? join(defaultDataDir(), "genre-taxonomy.json"));
 	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "genre-redirects.json");
 	const existingRedirects = await loadGenreRedirects(redirectsPath);
 
@@ -220,8 +340,36 @@ export async function runRename(
 	// Strict guard, same rule as the merge script (2026-09-11, review 1): web/index.html's
 	// genrePickList() filters ONBOARDING_GENRES by cache membership only, never through
 	// DATA.redirects -- a renamed slug would silently vanish from onboarding, not follow it.
-	if (onboardingSlugs.includes(from)) {
+	// Kept only as long as the constant itself is still readable (v1 picker still in use);
+	// once D3 removes it, `onboardingSlugs` is undefined and this guard is simply skipped.
+	if (onboardingSlugs?.includes(from)) {
 		errors.push(`${from} is an ONBOARDING_GENRES slug; update web/index.html first`);
+	}
+
+	// TRA-139/D6b: the taxonomy (v2) and ONBOARDING_GENRES (v1) guards are additive, but never
+	// both absent -- an absent v1 constant with no taxonomy to fall back on would otherwise run
+	// this migration with *no* resolution protection at all, silently. Same for an unreadable
+	// taxonomy: a schema failure could just as easily be hiding a real duplicate/ambiguity, so
+	// it refuses rather than proceeding as if the taxonomy weren't there.
+	if (taxonomyResult.status === "invalid") {
+		errors.push(
+			`genre taxonomy failed validation, refusing rather than skipping its guard: ${taxonomyResult.error}`,
+		);
+	} else if (taxonomyResult.status === "absent" && onboardingSlugs === undefined) {
+		errors.push(
+			"neither the genre taxonomy nor the ONBOARDING_GENRES constant is available -- refusing rather than running an empty resolution check",
+		);
+	} else if (taxonomyResult.status === "ok") {
+		const mergedRedirectsMap = new Map(Object.entries(mergedRedirects));
+		for (const lost of findLostTaxonomyResolutions(
+			taxonomyResult.taxonomy,
+			resultNodes,
+			mergedRedirectsMap,
+		)) {
+			errors.push(
+				`genre taxonomy entry ${lost.genreId} would lose resolution (source ${lost.source}): ${lost.reason}`,
+			);
+		}
 	}
 
 	const newCount = existingRedirects.has(from) ? 0 : 1;
