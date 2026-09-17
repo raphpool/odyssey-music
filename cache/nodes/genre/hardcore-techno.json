@@ -1,0 +1,122 @@
+{
+  "slug": "genre:hardcore-techno",
+  "name": "Hardcore techno",
+  "editorial_article": "Hardcore techno emerged in the early 1990s as a high-tempo evolution of electronic dance music, tracing its roots to the Belgian new beat scene and the industrial influence of producers like Marc Trauner. Early experimentation with aggressive, saturated sounds resulted in tracks like 1990's \"We Have Arrived\" by Mescalinum United, which helped establish the genre's characteristic 160-200 BPM range and heavy, distorted sawtooth kick drums. The Belgian new beat scene also contributed iconic sound design elements, specifically the \"Mentasm\" and \"Anastasia\" stabs, which became central to the genre's aesthetic. Following these developments, regional scenes expanded rapidly; Rotterdam became a primary hub for the gabber movement with Paul Elstak establishing Rotterdam Records in 1992, while New York saw Lenny Dee launch Industrial Strength Records in 1991 to promote the harder American sound. The genre further proliferated through massive compilations and events, most notably the Thunderdome series in the Netherlands, which drew thousands of participants and formalized the gabber subculture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hardcore_(electronic_dance_music_genre)",
+      "title": "Hardcore (electronic dance music genre) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:19.453Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy electronic music genre characterized by rapid tempos, distorted bass, and intense, industrial-influenced sound design.",
+  "qid": "Q388906",
+  "era": "early 1990s to present",
+  "origin": "Netherlands, Belgium, and Germany",
+  "sonic_markers": "160–200+ BPM, saturated sawtooth kicks, industrial-influenced stabs, aggressive synthesis",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial",
+      "qid": "Q487965"
+    },
+    {
+      "slug": "genre:hardstyle",
+      "type": "genre",
+      "name": "Hardstyle",
+      "qid": "Q223840"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:marc-trauner",
+      "type": "artist",
+      "name": "Marc Trauner"
+    },
+    {
+      "slug": "artist:paul-elstak",
+      "type": "artist",
+      "name": "Paul Elstak"
+    },
+    {
+      "slug": "artist:lenny-dee",
+      "type": "artist",
+      "name": "Lenny Dee"
+    },
+    {
+      "slug": "artist:angerfist",
+      "type": "artist",
+      "name": "Angerfist"
+    },
+    {
+      "slug": "artist:liza-n-eliaz",
+      "type": "artist",
+      "name": "Liza N'Eliaz"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rotterdam-records",
+      "type": "label",
+      "name": "Rotterdam Records"
+    },
+    {
+      "slug": "label:industrial-strength-records",
+      "type": "label",
+      "name": "Industrial Strength Records"
+    },
+    {
+      "slug": "label:planet-core-productions",
+      "type": "label",
+      "name": "Planet Core Productions"
+    },
+    {
+      "slug": "label:mokum-records",
+      "type": "label",
+      "name": "Mokum Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:we-have-arrived",
+      "type": "track",
+      "name": "We Have Arrived"
+    },
+    {
+      "slug": "track:hardcore-uproar",
+      "type": "track",
+      "name": "Hardcore Uproar"
+    }
+  ]
+}

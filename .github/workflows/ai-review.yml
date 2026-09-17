@@ -31,16 +31,25 @@ jobs:
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
 
+      - name: Clear any previous verdict
+        # runner.temp is emptied by the runner between jobs, but claude-code-action itself notes
+        # that this cleanup is not reliably honored on persistent self-hosted runners.
+        run: rm -f "$RUNNER_TEMP/review.json"
+
       - name: Review Claude
         uses: anthropics/claude-code-action@v1
         with:
           # Token d'abonnement : la review est facturée sur le plan Max,
           # pas en crédits API. C'est le principal levier de coût du process.
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # 2026-09-17 (TRA-246): the verdict lives in runner.temp, not /tmp. On the self-hosted
+          # runner /tmp persists across jobs, so a review that wrote nothing let the Gate read the
+          # previous PR's verdict (#219's "pass" was still there during #215's review). The runner
+          # empties runner.temp at the start and end of every job, and each runner has its own.
           prompt: |
             Tu reviewes la PR #${{ github.event.pull_request.number }} de
             ${{ github.repository }}. Budget serré : conclus et écris
-            /tmp/review.json en 15 tours ou moins si possible — tu en as
+            ${{ runner.temp }}/review.json en 15 tours ou moins si possible — tu en as
             60 au maximum avant coupure forcée, ne les utilise pas comme
             objectif.
 
@@ -56,7 +65,7 @@ jobs:
                hésites à lire plus pour trancher, lis plus ; dans le
                doute persistant, classe en "nit" (barre de preuve de
                REVIEW.md).
-            3. Écris /tmp/review.json en premier, et rien d'autre dans ce
+            3. Écris ${{ runner.temp }}/review.json en premier, et rien d'autre dans ce
                fichier :
                {"verdict":"pass"|"block","blocking":<n>,"nits":<n>,
                 "summary":"<une ligne>",
@@ -78,11 +87,12 @@ jobs:
       - name: Gate
         id: gate
         run: |
-          if [ ! -f /tmp/review.json ]; then
+          REVIEW_JSON="$RUNNER_TEMP/review.json"
+          if [ ! -f "$REVIEW_JSON" ]; then
             echo "::error::La review n'a pas produit de verdict."
             exit 1
           fi
-          cat /tmp/review.json
-          VERDICT=$(jq -r '.verdict' /tmp/review.json)
-          jq -r '"\(.blocking) bloquant(s), \(.nits) nit(s) — \(.summary)"' /tmp/review.json >> "$GITHUB_STEP_SUMMARY"
+          cat "$REVIEW_JSON"
+          VERDICT=$(jq -r '.verdict' "$REVIEW_JSON")
+          jq -r '"\(.blocking) bloquant(s), \(.nits) nit(s) — \(.summary)"' "$REVIEW_JSON" >> "$GITHUB_STEP_SUMMARY"
           [ "$VERDICT" = "pass" ] || { echo "::error::Findings bloquants — voir les commentaires inline."; exit 1; }

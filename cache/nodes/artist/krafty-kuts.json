@@ -1,0 +1,482 @@
+{
+  "slug": "artist:krafty-kuts",
+  "name": "Krafty Kuts",
+  "editorial_article": "Born Martin Reeves in Bognor Regis, the English DJ and producer Krafty Kuts earned his reputation as a pioneer in the breakbeat and nu skool breaks scenes. His 2006 debut solo album, Freakshow, arrived on his own Against The Grain label and featured contributions from Tim Deluxe and Ashley Slater. Prior to this, Reeves achieved widespread recognition for his collaborative album Tricka Technology, recorded alongside fellow DJ A Skillz. His work often blends elements of funk, hip hop, and house, reflecting a career spanning nearly three decades. In 2010, his double mix CD Against the Grain received the Best Compilation award at the Breakspoll ceremony, where he also claimed the Best DJ title. His extensive production catalog includes projects like the 2017 collaboration All 4 Corners with Dynamite MC, consistently pushing his signature high-energy dance aesthetic across international festival circuits.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Krafty_Kuts",
+      "title": "Krafty Kuts - Wikipedia"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/d14416ef-2283-49ef-9118-d690613d0bc9",
+      "title": "Krafty Kuts - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:38.225Z",
+  "type": "artist",
+  "editorial_bio": "Martin Reeves, known as Krafty Kuts, is a veteran English producer and DJ celebrated for his influential work in the breakbeat and electronic dance music circuits.",
+  "origin": "Bognor Regis, England",
+  "active_years": "1997-present",
+  "genres": [
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:against-the-grain",
+      "type": "label",
+      "name": "Against The Grain"
+    },
+    {
+      "slug": "label:ravesta-records",
+      "type": "label",
+      "name": "Ravesta Records"
+    },
+    {
+      "slug": "label:westwood-recordings",
+      "type": "label",
+      "name": "Westwood Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:turbulence",
+      "type": "project",
+      "name": "Turbulence",
+      "mbid": "d7d0ae5b-50a3-4daf-b553-1d261271ff1d",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:further-adventures-of-a-reluctant-superhero",
+      "type": "project",
+      "name": "Further Adventures Of A Reluctant Superhero",
+      "mbid": "a8745d08-a91f-45ca-93b9-e8e49c35694e",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dirtyfunk",
+      "type": "project",
+      "name": "Dirtyfunk",
+      "mbid": "63cf61f2-de0d-4f30-98b6-82bd6e7cb53f",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breakin-boundaries-vol-4",
+      "type": "project",
+      "name": "Breakin' Boundaries, Vol. 4",
+      "mbid": "429ee311-c3c9-4206-a888-94d4ba8c0b75",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ill-type-sound",
+      "type": "project",
+      "name": "ILL TYPE SOUND",
+      "mbid": "5e4788e7-a1c0-4caf-ab00-56f6e41bcf5a",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:breakin-boundaries-vol-3",
+      "type": "project",
+      "name": "Breakin' Boundaries, Vol. 3",
+      "mbid": "96f697a3-2b7d-4f4a-a829-6566114c75df",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:breakin-boundaries-vol-2",
+      "type": "project",
+      "name": "Breakin' Boundaries Vol. 2",
+      "mbid": "d5946986-2135-4ba1-adb4-2d9bfd7ce06b",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bang",
+      "type": "project",
+      "name": "Bang",
+      "mbid": "4353ee95-0bb2-4a66-840c-39884cb4e8b8",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eazy-breezy",
+      "type": "project",
+      "name": "Eazy Breezy",
+      "mbid": "7327956e-b001-4ffa-b539-7899f5b39642",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breakin-boundaries-vol-1",
+      "type": "project",
+      "name": "Breakin' Boundaries, Vol. 1",
+      "mbid": "0a052d40-4de8-46bc-b0e0-9e5026a858f4",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:humpty-nas",
+      "type": "project",
+      "name": "Humpty Nas",
+      "mbid": "fa11dd2c-364e-4817-a759-626bb231bccf",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lit-up",
+      "type": "project",
+      "name": "Lit Up",
+      "mbid": "37280b8d-3f74-432b-961e-3ef1536df3f5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-remedy-ep",
+      "type": "project",
+      "name": "The Remedy EP",
+      "mbid": "8ef348e6-bce4-41d7-b2b4-54911a20a156",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:growth",
+      "type": "project",
+      "name": "Growth",
+      "mbid": "c39468c4-58ec-4a49-bcbb-63fcc2eb2663",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:krafty-s-unreleased-kuts-vol-1",
+      "type": "project",
+      "name": "Krafty's Unreleased Kuts Vol.1",
+      "mbid": "8498ed01-e185-4219-8741-c3bbae60c1b3",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pounding",
+      "type": "project",
+      "name": "Pounding",
+      "mbid": "5b8ad510-1c26-4ea1-a328-4c53dcff733b",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:feel-the-blast-go-krafty",
+      "type": "project",
+      "name": "Feel The Blast / Go Krafty!",
+      "mbid": "de2ac619-0c3b-4053-9e94-f4e421056204",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:adventures-of-a-reluctant-superhero",
+      "type": "project",
+      "name": "Adventures of a Reluctant Superhero",
+      "mbid": "5b058e40-25e4-4056-9123-e2315304791a",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fresh-ingredients-ep",
+      "type": "project",
+      "name": "Fresh Ingredients EP",
+      "mbid": "ee294c8e-8991-4ea4-bd8e-e9e38b6a949d",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hands-high",
+      "type": "project",
+      "name": "Hands High",
+      "mbid": "9923a9fa-2769-4dc6-a339-7c71cd57d370",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boom-bangin",
+      "type": "project",
+      "name": "Boom Bangin",
+      "mbid": "4d07eea3-3bc3-4b8a-84f9-3218991ec31f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-4-corners",
+      "type": "project",
+      "name": "All 4 Corners",
+      "mbid": "9a3f672b-165a-4c5e-a0ef-8950b8314945",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-war-is-over",
+      "type": "project",
+      "name": "The War Is Over",
+      "mbid": "72a4f1f4-c834-4874-bffb-c870297b8e3c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-back",
+      "type": "project",
+      "name": "Come Back",
+      "mbid": "804805ab-2524-42d5-9c1f-764b133bd1b0",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pounding",
+      "type": "project",
+      "name": "Pounding (The Remixes)",
+      "mbid": "fd78c822-5f39-4303-b0ee-c94304c5112d",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-s-ride",
+      "type": "project",
+      "name": "Let’s Ride",
+      "mbid": "48f455eb-6af7-497e-8c61-7e06f0383847",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pounding",
+      "type": "project",
+      "name": "Pounding",
+      "mbid": "b870e145-1e1e-4d07-b627-616bb55c44d5",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-s-ride",
+      "type": "project",
+      "name": "Let's Ride",
+      "mbid": "4f2897b0-9e08-4a91-9573-ed182b04383a",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dynamite-love",
+      "type": "project",
+      "name": "Dynamite Love",
+      "mbid": "5f74ff37-8898-44bb-a182-cbd0513d64f9",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:through-the-door",
+      "type": "project",
+      "name": "Through The Door",
+      "mbid": "dea4b0c7-a4fd-42f0-a363-c1f25a6d599e",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:there-they-go",
+      "type": "project",
+      "name": "There They Go",
+      "mbid": "baf6f809-8166-443f-a87e-bb769f847b20",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freakshow",
+      "type": "project",
+      "name": "Freakshow",
+      "mbid": "068056ff-b9bb-39d1-8c9e-2ba883252acc",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freakshow",
+      "type": "project",
+      "name": "Freakshow (remix)",
+      "mbid": "3a6559fc-b0e5-3087-8caa-57aaa1971020",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-me-how-you-feel",
+      "type": "project",
+      "name": "Tell Me How You Feel (Remixes)",
+      "mbid": "34dc2a73-ad83-3cdd-b90b-609c48511fa6",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-me-how-you-feel",
+      "type": "project",
+      "name": "Tell Me How You Feel",
+      "mbid": "8982f60e-ba73-4d03-89ce-0106c08823a7",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bass-phenomenon",
+      "type": "project",
+      "name": "Bass Phenomenon",
+      "mbid": "bfaa5751-6262-3333-aadf-e0a539861a52",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freshtraxxx",
+      "type": "project",
+      "name": "Freshtraxxx",
+      "mbid": "60bc75e9-76be-489c-b60d-96a974d78190",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tricka-technology",
+      "type": "project",
+      "name": "Tricka Technology",
+      "mbid": "01171cb5-d953-303b-a4a4-d44890f88c1a",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:take-it",
+      "type": "project",
+      "name": "Take It",
+      "mbid": "93def965-b47e-3d1f-b86a-4c4858c5993b",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-it-funky",
+      "type": "project",
+      "name": "Ain't It Funky",
+      "mbid": "224273ae-b29e-470a-9e25-1f9c90cd7983",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gimme-the-breaks-trickatechnology",
+      "type": "project",
+      "name": "Gimme The Breaks / TrickaTechnology",
+      "mbid": "9c278230-a559-482d-b7f0-433621ce41fe",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundcheck-devastate",
+      "type": "project",
+      "name": "Soundcheck / Devastate",
+      "mbid": "2da36c83-cc2f-4b93-9545-ccc5d650493e",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-plates-e-p",
+      "type": "project",
+      "name": "Lost Plates E.P.",
+      "mbid": "be5668c1-0616-423b-bb33-2ed7d04077df",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:peaches-ep",
+      "type": "project",
+      "name": "Peaches EP",
+      "mbid": "5663a580-6e61-4d88-802b-b8c410e64e08",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:krafty-kuts-presents-finger-lickin-funk-vol-1",
+      "type": "project",
+      "name": "Krafty Kuts Presents... Finger Lickin' Funk Vol. 1",
+      "mbid": "c3062244-ec08-4d24-bc53-c46ee8667124",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:can-t-you-see",
+      "type": "project",
+      "name": "Can't You See",
+      "mbid": "a8e39420-638a-4b45-b97e-68e304616c17",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dangerous",
+      "type": "project",
+      "name": "Dangerous",
+      "mbid": "17436374-5072-4d9c-b8ac-6be77eba1f32",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lock-the-hype-smash-your-breaks",
+      "type": "project",
+      "name": "Lock The Hype / Smash Your Breaks",
+      "mbid": "f04ea159-aae3-462b-ac39-abd29b7a2275",
+      "year": "2001",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:can-u-feel-me",
+      "type": "track",
+      "name": "Can U Feel Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:a-skillz",
+      "type": "artist",
+      "name": "A Skillz"
+    },
+    {
+      "slug": "artist:dynamite-mc",
+      "type": "artist",
+      "name": "Dynamite MC"
+    },
+    {
+      "slug": "artist:tim-deluxe",
+      "type": "artist",
+      "name": "Tim Deluxe"
+    },
+    {
+      "slug": "artist:ashley-slater",
+      "type": "artist",
+      "name": "Ashley Slater"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

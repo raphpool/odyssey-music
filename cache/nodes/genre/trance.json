@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:41:47.207Z",
   "type": "genre",
   "editorial_definition": "A genre of electronic dance music characterized by emotive melodies, repetitive rhythmic patterns, and an emphasis on creating transcendent, euphoric atmospheres, often featuring distinctive builds and breakdowns.",
+  "qid": "Q170435",
   "era": "1990s-Present",
   "origin": "Germany and the Netherlands",
   "parent_genres": [],
@@ -33,6 +34,12 @@
       "type": "genre",
       "name": "Ambient",
       "qid": "Q193207"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
     }
   ],
   "key_artists": [
@@ -107,6 +114,5 @@
       "type": "track",
       "name": "Stella"
     }
-  ],
-  "qid": "Q170435"
+  ]
 }

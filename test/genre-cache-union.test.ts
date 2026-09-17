@@ -8,6 +8,7 @@ import {
 	countUnionProblems,
 	decideSameIdentity,
 	diffGenreRedirects,
+	parseUnionCliArgs,
 	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
@@ -103,6 +104,39 @@ describe("diffGenreRedirects", () => {
 	});
 });
 
+describe("parseUnionCliArgs", () => {
+	it("parses the two positional dirs plus both optional flags", () => {
+		expect(parseUnionCliArgs(["r", "s", "--apply-merge", "--server-redirects-path", "p.json"])).toEqual({
+			repoCacheDir: "r",
+			serverCacheDir: "s",
+			applyMerge: true,
+			serverRedirectsPath: "p.json",
+		});
+		expect(parseUnionCliArgs(["r", "s"])).toEqual({
+			repoCacheDir: "r",
+			serverCacheDir: "s",
+			applyMerge: false,
+		});
+	});
+
+	// Finding 4: a malformed CLI invocation must never fall through to a silent guess.
+	it("refuses --server-redirects-path repeated, missing its value, or followed by another flag", () => {
+		expect(() =>
+			parseUnionCliArgs(["r", "s", "--server-redirects-path", "p", "--server-redirects-path", "q"]),
+		).toThrow(/only be given once/);
+		expect(() => parseUnionCliArgs(["r", "s", "--server-redirects-path"])).toThrow(/requires a value/);
+		expect(() => parseUnionCliArgs(["r", "s", "--server-redirects-path", "--apply-merge"])).toThrow(
+			/requires a value/,
+		);
+	});
+
+	it("refuses an unrecognized flag and anything but exactly two positional arguments", () => {
+		expect(() => parseUnionCliArgs(["r", "s", "--dry-run"])).toThrow(/unknown argument/);
+		expect(() => parseUnionCliArgs(["r"])).toThrow(/usage:/);
+		expect(() => parseUnionCliArgs(["r", "s", "t"])).toThrow(/usage:/);
+	});
+});
+
 describe("countUnionProblems", () => {
 	it("is 0 for a healthy union and for a qid kept by its own bearer, non-zero for a conflict, a skipped file, or a qid dropped by the losing side", () => {
 		expect(countUnionProblems(manifest())).toBe(0);
@@ -175,6 +209,12 @@ async function seed(dir: string, n: Record<string, unknown>): Promise<void> {
 	const path = join(dir, "nodes", type, `${body}.json`);
 	await mkdir(dirname(path), { recursive: true });
 	await writeFile(path, raw(n), "utf8");
+}
+
+async function writeServerRedirects(redirects: Record<string, string>): Promise<string> {
+	const path = join(await mkdtemp(join(tmpdir(), "odyssey-union-server-data-")), "genre-redirects.json");
+	await writeFile(path, JSON.stringify({ redirects }), "utf8");
+	return path;
 }
 
 /** Content fingerprint of an entire directory tree -- catches an added/removed/modified file
@@ -318,17 +358,11 @@ describe("buildCacheUnion", () => {
 	// different winner than the repo's redirect table must be refused explicitly, not silently
 	// resolved by only ever reading the committed table -- see diffGenreRedirects.
 	it("refuses when the server's own redirects table diverges from the repo's, with the reason in the manifest -- and never when serverRedirectsPath is omitted", async () => {
-		const serverRedirectsPath = join(
-			await mkdtemp(join(tmpdir(), "odyssey-union-server-data-")),
-			"genre-redirects.json",
-		);
-		await writeFile(
-			serverRedirectsPath,
-			// Same loser (genre:country-music) as redirectsPath's table, but a different winner --
-			// the server already resolved this duplicate group differently than the repo.
-			JSON.stringify({ redirects: { "genre:country-music": "genre:country-and-western" } }),
-			"utf8",
-		);
+		// Same loser (genre:country-music) as redirectsPath's table, but a different winner -- the
+		// server already resolved this duplicate group differently than the repo.
+		const serverRedirectsPath = await writeServerRedirects({
+			"genre:country-music": "genre:country-and-western",
+		});
 
 		const { manifest } = await union({ serverRedirectsPath });
 		expect(manifest.redirectsConflicts).toEqual([
@@ -347,6 +381,73 @@ describe("buildCacheUnion", () => {
 		const { manifest: withoutServerTable } = await union();
 		expect(withoutServerTable.redirectsConflicts).toBeUndefined();
 		expect(countUnionProblems(withoutServerTable)).toBe(0);
+	});
+
+	// Finding 2: a 4-entry cycle split across the two tables has no same-key divergence and no
+	// exact reversal, so diffGenreRedirects alone reports it clean.
+	it("refuses a cycle that only appears once the two tables are combined, even though pairwise diffing finds nothing", async () => {
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:a": "genre:b", "genre:c": "genre:d" } }),
+			"utf8",
+		);
+		const serverRedirectsPath = await writeServerRedirects({ "genre:b": "genre:c", "genre:d": "genre:a" });
+
+		const { manifest } = await union({ serverRedirectsPath });
+		expect(manifest.redirectsConflicts).toEqual([{ reason: "cycle", message: expect.any(String) }]);
+		expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+	});
+
+	// Finding 4: a given-but-missing path must fail loudly, before anything is written.
+	it("refuses a --server-redirects-path that does not exist, naming the path, before writing anything", async () => {
+		const outputRoot = await mkdtemp(join(tmpdir(), "odyssey-union-out-"));
+		const missingPath = join(outputRoot, "does-not-exist.json");
+		await expect(
+			buildCacheUnion(repoDir, serverDir, { redirectsPath, serverRedirectsPath: missingPath, outputRoot }),
+		).rejects.toThrow(missingPath);
+		// Nothing was written under outputRoot -- the union's own mkdtemp never ran.
+		expect(await readdir(outputRoot)).toEqual([]);
+	});
+
+	it("refuses a --server-redirects-path with broken JSON, naming the path", async () => {
+		const serverRedirectsPath = join(await mkdtemp(join(tmpdir(), "odyssey-union-server-data-")), "bad.json");
+		await writeFile(serverRedirectsPath, "{not valid json", "utf8");
+		await expect(union({ serverRedirectsPath })).rejects.toThrow(/is not valid JSON/);
+	});
+
+	// Finding 4: an explicit "" must be validated too, never treated as "option omitted".
+	it("refuses an empty-string --server-redirects-path instead of silently skipping validation", async () => {
+		await expect(union({ serverRedirectsPath: "" })).rejects.toThrow();
+	});
+
+	// Finding 2: a slug the migration actually deletes must redirect to a live target -- scoped
+	// to what THIS run deletes, so an untouched stale entry (e.g. real production data) is fine.
+	it("marks the result untrusted when a slug the migration deletes redirects nowhere live", async () => {
+		await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+		await seed(repoDir, node({ slug: "genre:a", qid: "Q-DANGLE" }));
+		await seed(repoDir, node({ slug: "genre:cc", qid: "Q-DANGLE" }));
+		const serverRedirectsPath = await writeServerRedirects({ "genre:a": "genre:nowhere" });
+
+		const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
+
+		expect(manifest.redirectsConflicts).toEqual([expect.objectContaining({ reason: "dangling" })]);
+		// cc really was deleted from the union's disposable copy -- only `applied` is forced
+		// false; deletedCount stays honest.
+		expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: false, deletedCount: 1 }));
+		expect(await readFile(join(outputDir, "nodes", "genre", "a.json"), "utf8")).toBeTruthy();
+		await expect(readFile(join(outputDir, "nodes", "genre", "cc.json"), "utf8")).rejects.toThrow();
+	});
+
+	// TRA-245 acceptance criterion: the real committed cache, unioned against itself with the
+	// real committed redirects table on both sides, must never false-flag a conflict.
+	it("unions the real committed cache against itself with the real data/genre-redirects.json on both sides, cleanly", async () => {
+		const { manifest } = await buildCacheUnion("cache", "cache", {
+			redirectsPath: "data/genre-redirects.json",
+			serverRedirectsPath: "data/genre-redirects.json",
+			onboardingSlugs: [],
+		});
+		expect(manifest.redirectsConflicts).toBeUndefined();
+		expect(countUnionProblems(manifest)).toBe(0);
 	});
 
 	describe("--apply-merge", () => {
@@ -487,6 +588,64 @@ describe("buildCacheUnion", () => {
 			);
 			expect(manifest.referenceRegressions).toHaveLength(2);
 			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		// Finding 1 (S4 repro): the repo hasn't caught up to a merge the server already did --
+		// seeding the union's copy with the COMBINED table lets election follow the server's winner.
+		it("elects the server's already-chosen winner when the repo's own table has no entry for it yet", async () => {
+			await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+			await seed(repoDir, node({ slug: "genre:aa", qid: "Q-S4" }));
+			await seed(repoDir, node({ slug: "genre:bbbb", qid: "Q-S4" }));
+			await seed(serverDir, node({ slug: "genre:bbbb", qid: "Q-S4" }));
+			const serverRedirectsPath = await writeServerRedirects({ "genre:aa": "genre:bbbb" });
+
+			const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
+
+			expect(manifest.redirectsConflicts).toBeUndefined();
+			expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: true, deletedCount: 1 }));
+			const finalRedirects = JSON.parse(
+				await readFile(join(outputDir, "genre-redirects.json"), "utf8"),
+			).redirects;
+			expect(finalRedirects).toEqual({ "genre:aa": "genre:bbbb" });
+		});
+
+		// Finding 1+2 (S2 repro): a merge chain split across both tables, with no shared key or
+		// reversal for diffGenreRedirects to catch -- the old code would elect the wrong side.
+		it("elects the server's winner across a merge chain split over both tables, without producing a cycle", async () => {
+			await writeFile(redirectsPath, JSON.stringify({ redirects: { "genre:aaaaaa": "genre:bb" } }), "utf8");
+			await seed(repoDir, node({ slug: "genre:bb", qid: "Q-S2" }));
+			await seed(serverDir, node({ slug: "genre:cccc", qid: "Q-S2" }));
+			const serverRedirectsPath = await writeServerRedirects({ "genre:bb": "genre:cccc" });
+
+			const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
+
+			expect(manifest.redirectsConflicts).toBeUndefined();
+			expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: true, deletedCount: 1 }));
+			const finalRedirects = JSON.parse(
+				await readFile(join(outputDir, "genre-redirects.json"), "utf8"),
+			).redirects;
+			expect(finalRedirects).toEqual({ "genre:aaaaaa": "genre:cccc", "genre:bb": "genre:cccc" });
+		});
+
+		// Finding 3: a redirects conflict must block the APPLY too, not just get reported alongside
+		// a migration that ran anyway.
+		it("never applies the migration when the redirects tables conflict, leaving both duplicate-group members on disk", async () => {
+			// Diverges from the shared beforeEach table -- unrelated to the duplicate-QID pair below.
+			const serverRedirectsPath = await writeServerRedirects({
+				"genre:country-music": "genre:country-and-western",
+			});
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-F3" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-F3", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+
+			const { outputDir, manifest } = await union({ applyMerge: true, serverRedirectsPath });
+
+			expect(manifest.redirectsConflicts).toEqual([expect.objectContaining({ reason: "diverged-target" })]);
+			expect(manifest.migrationApply).toEqual(expect.objectContaining({ applied: false, deletedCount: 0 }));
+			expect(await readFile(join(outputDir, "nodes", "genre", "idm.json"), "utf8")).toBeTruthy();
+			expect(await readFile(join(outputDir, "nodes", "genre", "idm-alt.json"), "utf8")).toBeTruthy();
 		});
 	});
 });

@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:43:28.540Z",
   "type": "genre",
   "editorial_definition": "A high-energy electronic music genre originating in the UK in the early 1990s, characterized by fast, complex breakbeats, deep sub-bass, and strong influences from Caribbean reggae and dub sound system culture.",
+  "qid": "Q1102161",
   "era": "1990s",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -53,6 +54,12 @@
       "type": "genre",
       "name": "Dub",
       "qid": "Q212688"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
     }
   ],
   "key_artists": [
@@ -127,6 +134,5 @@
       "type": "track",
       "name": "Brown Paper Bag"
     }
-  ],
-  "qid": "Q1102161"
+  ]
 }
