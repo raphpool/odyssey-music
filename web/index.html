@@ -272,6 +272,11 @@ let byId = new Map();
 let SEED_ID = null;
 let crumbs = []; // node ids forming the back-trail
 
+// Set by loadActiveProfile() (TRA-137/D2b), inside init() after DATA/byId are ready --
+// never derived at module load, so a v2 read never runs before the graph is available.
+let TAXONOMY = null; // DATA.taxonomy once validated usable, else null
+let activeV2 = null; // the active v2 profile record (name/email/genres/unresolvedGenreSlugs), or null
+
 // 2026-09-10 (TRA-38): the server can serve a canonical node under a different
 // slug than the one requested (POST /materialize's genre-rewrite guard, GET
 // /node/:slug's redirect table). Without this, a materialized chip or a
@@ -312,6 +317,9 @@ async function pingApi() {
   // merged away by TRA-22's genre-dedup migration resolves via the existing resolveId
   // indirection (TRA-38) below. DATA.redirects is absent on an older data.json.
   for (const [from, to] of Object.entries(DATA.redirects ?? {})) slugAlias.set(from, to);
+  // TRA-137/D2b: the graph (byId) is populated above, so a v2 read/migration here always
+  // has a real taxonomy to check against -- never earlier, never derived at module load.
+  loadActiveProfile(DATA.taxonomy);
   SEED_ID = DATA.nodes.find((n) => /tendency/.test(n.id))?.id || DATA.nodes[0].id;
   statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${SEED_ID}</span>`;
 
@@ -711,16 +719,81 @@ function migrateProfileToV2(taxonomy) {
   return v2;
 }
 
+// ─── v2 activation with v1 fallback (TRA-137 / D2b) ────────────────────────
+// Loads/migrates the v2 record once the graph (and its taxonomy) is available
+// and records whether this session's taxonomy is actually usable. Called once
+// from init(), after byId is populated -- see the comment at that call site.
+function loadActiveProfile(taxonomy) {
+  TAXONOMY = isUsableTaxonomy(taxonomy) ? taxonomy : null;
+  activeV2 = migrateProfileToV2(taxonomy);
+  return activeV2;
+}
+
+// The record the rest of the app reads: the active v2 profile once one
+// exists, the v1 Profile otherwise (new users, or v2 not yet migrated).
+function currentProfile() {
+  return activeV2 || Profile.data;
+}
+
+function saveActiveV2(record) {
+  activeV2 = record;
+  try { localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(record)); } catch {}
+}
+
+// D3's id-based grid hasn't shipped yet, so the existing slug picker
+// (genrePickList(), all in graph-slug space) keeps driving selection during
+// this transition. These two helpers are the only place that crosses the
+// slug/id boundary, both ways through taxonomy.legacySelectionBySlug -- a
+// picker slug and a v2 id are never compared to each other directly.
+
+// Inverse of the picker->id direction below: which of the picker's own
+// candidate slugs should render "on" for a v2 selection of ids. An id the
+// picker can't show (a merged-source or off-picker choice) simply has no
+// checkbox, same as always.
+function idsToPickerSlugs(ids, pickerSlugs, legacyMap) {
+  const selected = new Set(ids);
+  const on = new Set();
+  for (const slug of pickerSlugs) {
+    const resolved = resolveLegacyGenres([slug], legacyMap).genres[0];
+    if (resolved && selected.has(resolved)) on.add(slug);
+  }
+  return on;
+}
+
+// Merges a saved picker selection back into the active v2 record: ids from
+// the selected slugs, ids the picker never offered a checkbox for (a
+// merged-source or off-picker choice) kept untouched, and any picker slug
+// that still fails to resolve added to unresolvedGenreSlugs instead of
+// silently dropped -- same as migrateProfileToV2, reusing resolveLegacyGenres
+// so both paths treat an unresolvable slug identically. Existing
+// unresolvedGenreSlugs the picker doesn't control are carried forward as-is
+// (criterion 7: the old picker has no UI to remove those yet). Returns null
+// without a usable taxonomy -- v2 is never written without one (criterion 2).
+function mergePickerSelectionIntoV2(current, selectedSlugs, pickerSlugs, taxonomy) {
+  if (!isUsableTaxonomy(taxonomy)) return null;
+  const legacyMap = taxonomy.legacySelectionBySlug;
+  const { genres: pickedIds, unresolved: pickedUnresolved } = resolveLegacyGenres([...selectedSlugs], legacyMap);
+  const pickerIds = new Set(resolveLegacyGenres([...pickerSlugs], legacyMap).genres);
+  const keptOutsidePicker = (current.genres || []).filter((id) => !pickerIds.has(id));
+  const unresolved = new Set([...(current.unresolvedGenreSlugs || []), ...pickedUnresolved]);
+
+  const next = { ...current, genres: [...new Set([...keptOutsidePicker, ...pickedIds])] };
+  if (unresolved.size > 0) next.unresolvedGenreSlugs = [...unresolved];
+  else delete next.unresolvedGenreSlugs;
+  return next;
+}
+
 function renderProfileChip() {
   const chip = document.getElementById("profile-chip");
-  if (!Profile.data) {
+  const profile = currentProfile();
+  if (!profile) {
     chip.hidden = false;
     chip.textContent = "créer un compte";
     chip.onclick = () => openOnboarding({ mode: "signup" });
     return;
   }
   chip.hidden = false;
-  chip.textContent = `${Profile.data.name} · ${Profile.data.genres.length} genres`;
+  chip.textContent = `${profile.name} · ${profile.genres.length} genres`;
   chip.onclick = () => openOnboarding({ mode: "edit" });
 }
 
@@ -804,11 +877,18 @@ function wireOnboarding() {
   });
   document.getElementById("onb-done").addEventListener("click", () => {
     if (onbSelection.size < MIN_GENRES) return;
-    Profile.save({
-      name: nameEl.value.trim() || (Profile.data && Profile.data.name) || "toi",
-      email: emailEl.value.trim(),
-      genres: [...onbSelection],
-    });
+    const name = nameEl.value.trim() || (currentProfile() && currentProfile().name) || "toi";
+    const email = emailEl.value.trim();
+    if (activeV2) {
+      // TRA-137/D2b: translate the old picker's slugs back to ids and merge, never
+      // overwriting an id the picker didn't offer a checkbox for (criterion 7). Bails
+      // out without writing if the taxonomy went missing mid-session (criterion 2).
+      const merged = mergePickerSelectionIntoV2({ ...activeV2, name, email }, onbSelection, genrePickList(), TAXONOMY);
+      if (!merged) return;
+      saveActiveV2(merged);
+    } else {
+      Profile.save({ name, email, genres: [...onbSelection] });
+    }
     clearReco(); // taste changed → today's pick is recomputed against the new genres
     renderProfileChip();
     closeOnboarding();
@@ -816,7 +896,7 @@ function wireOnboarding() {
   });
   onb.addEventListener("click", (e) => {
     // Backdrop click closes only when there is something to go back to.
-    if (e.target === onb && Profile.data) closeOnboarding();
+    if (e.target === onb && currentProfile()) closeOnboarding();
   });
 }
 
@@ -835,9 +915,15 @@ function openOnboarding({ mode = "signup" } = {}) {
   const onb = document.getElementById("onb");
   const nameEl = document.getElementById("onb-name");
   const emailEl = document.getElementById("onb-email");
-  nameEl.value = (Profile.data && Profile.data.name) || "";
-  emailEl.value = (Profile.data && Profile.data.email) || "";
-  onbSelection = new Set((Profile.data && Profile.data.genres) || []);
+  const profile = currentProfile();
+  nameEl.value = (profile && profile.name) || "";
+  emailEl.value = (profile && profile.email) || "";
+  // TRA-137/D2b: seed the old picker's checkbox state from a v2 profile's ids by
+  // translating them back to slugs (criterion 6); a v1 profile's genres are already
+  // slugs and pass straight through, same as before this ticket.
+  onbSelection = activeV2 && TAXONOMY
+    ? idsToPickerSlugs(activeV2.genres, genrePickList(), TAXONOMY.legacySelectionBySlug)
+    : new Set((profile && profile.genres) || []);
   document.getElementById("onb-err").hidden = true;
   document.getElementById("onb-step2-kicker").textContent = mode === "edit" ? "Ton profil" : "Étape 2 / 2";
   document.getElementById("onb-back").textContent = mode === "edit" ? "annuler" : "← retour";
@@ -1068,19 +1154,27 @@ function clearReco() {
  * `reroll` forces the next unseen candidate and overwrites today's pick.
  */
 function pickDailyReco({ reroll = false } = {}) {
-  if (!Profile.data || !Profile.data.genres.length) return null;
+  const profile = currentProfile();
+  if (!profile || !profile.genres.length) return null;
   const state = readReco();
   const today = todayKey();
   if (!reroll && state.date === today && byId.has(state.id)) return byId.get(state.id);
 
-  const ranked = scoreAffinity(Profile.data.genres);
+  // TRA-137/D2b: a v2 profile scores through the id-aware adapter (resolveScoringChoices
+  // + scoreAffinityFromChoices, TRA-136/D5); a v1 profile keeps the v1 wrapper unchanged.
+  const ranked = activeV2
+    ? scoreAffinityFromChoices(
+        resolveScoringChoices(activeV2.genres, TAXONOMY, activeV2.unresolvedGenreSlugs, byId, resolveId),
+        byId,
+      )
+    : scoreAffinity(profile.genres);
   if (!ranked.length) return null;
   // Only the top slice is eligible, so the daily card stays a strong match
   // rather than drifting into the long tail of one-edge nodes.
   const pool = ranked.slice(0, 60);
   const seen = new Set(state.history);
   if (reroll && state.id) seen.add(state.id);
-  const start = hashStr(`${Profile.data.name}|${today}|${state.history.length}`) % pool.length;
+  const start = hashStr(`${profile.name}|${today}|${state.history.length}`) % pool.length;
   let picked = null;
   for (let i = 0; i < pool.length; i++) {
     const cand = pool[(start + i) % pool.length];

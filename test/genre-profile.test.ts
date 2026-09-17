@@ -4,7 +4,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { JSDOM } from "jsdom";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { STATIC_GRAPH_OPTIONS } from "../scripts/build-graph-json.js";
 import type { GenreTaxonomyProjection } from "../src/genre-taxonomy-projection.js";
 import { buildGraphFromCache } from "../src/graph.js";
@@ -64,6 +64,25 @@ type OdysseyWindow = Window &
 			resolveSlug: (slug: string) => string,
 		) => ScoringChoice[];
 		scoreAffinityFromChoices: (choices: ScoringChoice[], graph: ScoringGraph) => string[];
+		scoreAffinity: (genreSlugs: string[]) => string[];
+		loadActiveProfile: (taxonomy?: GenreTaxonomyProjection) => MigratedProfile | null;
+		currentProfile: () => MigratedProfile | ProfileV1Fixture | null;
+		idsToPickerSlugs: (
+			ids: string[],
+			pickerSlugs: string[],
+			legacyMap: Record<string, string[]>,
+		) => Set<string>;
+		mergePickerSelectionIntoV2: (
+			current: MigratedProfile,
+			selectedSlugs: Iterable<string>,
+			pickerSlugs: string[],
+			taxonomy?: GenreTaxonomyProjection,
+		) => MigratedProfile | null;
+		pickDailyReco: (opts?: { reroll?: boolean }) => { id: string } | null;
+		wireOnboarding: () => void;
+		openOnboarding: (opts?: { mode?: "signup" | "edit" }) => void;
+		genrePickList: () => string[];
+		renderGenreGrid: () => void;
 	};
 
 function makeGraph(nodes: GraphNode[]): ScoringGraph {
@@ -118,6 +137,8 @@ const taxonomy: GenreTaxonomyProjection = {
 	],
 	legacySelectionBySlug: {
 		"genre:techno": ["local:techno"], // current slug, unrenamed
+		"genre:house": ["local:house"], // current slug, unrenamed
+		"genre:idm": ["local:idm"], // current slug, unrenamed
 		"genre:old-techno-name": ["local:techno"], // redirected/renamed slug
 		"genre:old-electronic-family": ["local:house", "local:idm"], // family -> published children
 		"genre:discontinued": [], // explicitly excluded by the migration table
@@ -129,6 +150,26 @@ const taxonomy: GenreTaxonomyProjection = {
 // Storage.prototype is what actually intercepts calls.
 function stubStorageMethod(name: "getItem" | "setItem", impl: () => never): void {
 	win.Storage.prototype[name] = impl;
+}
+
+// Profile.load() runs synchronously while the script parses, so seedV1() (which writes to
+// the shared `win` after it already exists) never reaches Profile.data -- only functions
+// that re-read storage themselves (migrateProfileToV2 & friends) see it. A test exercising
+// the v1 *fallback* (currentProfile() falling back to Profile.data, e.g. the old picker's
+// open/save flow) needs v1 seeded before the script parses instead, matching a real browser
+// visit where localStorage already holds whatever a previous session left there.
+function newWindowWithV1(genres: string[], overrides: Partial<ProfileV1Fixture> = {}) {
+	const v1: ProfileV1Fixture = { createdAt: "2026-01-01T00:00:00.000Z", name: "Raph", genres, ...overrides };
+	const dom = new JSDOM(indexHtml, {
+		url: "http://localhost/",
+		runScripts: "dangerously",
+		pretendToBeVisual: false,
+		beforeParse(window) {
+			window.fetch = (() => new Promise<Response>(() => {})) as typeof fetch;
+			window.localStorage.setItem(PROFILE_KEY, JSON.stringify(v1));
+		},
+	});
+	return { win: dom.window as unknown as OdysseyWindow, v1 };
 }
 
 describe("profile v1 -> v2 migration (TRA-135)", () => {
@@ -550,4 +591,239 @@ describe("scoreAffinityFromChoices — every published choice in the shipped cac
 
 		expect(empty.map((g) => g.id)).toEqual([]);
 	}, 20000);
+});
+
+describe("loadActiveProfile / currentProfile — v2 activation after the graph is ready (TRA-137/D2b)", () => {
+	it("does not migrate or activate v2 until loadActiveProfile is called (criterion 1)", () => {
+		seedV1(["genre:techno"]);
+		// Nothing in the module calls migrateProfileToV2 or promotes activeV2 on its own --
+		// init() only makes this call after DATA/byId are populated by the graph fetch.
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+
+		const activated = win.loadActiveProfile(taxonomy);
+
+		expect(activated?.genres).toEqual(["local:techno"]);
+		expect(win.currentProfile()).toEqual(activated);
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).not.toBeNull();
+	});
+
+	it("never activates or writes v2 without a usable taxonomy (criterion 2)", () => {
+		seedV1(["genre:techno"]);
+		const activated = win.loadActiveProfile(undefined);
+		expect(activated).toBeNull();
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+	});
+
+	it("keeps an already-existing v2 active even when this session's taxonomy is unusable (decision 4: no back-migration)", () => {
+		const existingV2: MigratedProfile = { name: "Raph", genres: ["local:house"] };
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+
+		const activated = win.loadActiveProfile(undefined);
+
+		expect(activated).toEqual(existingV2);
+		expect(win.currentProfile()).toEqual(existingV2);
+	});
+});
+
+describe("pickDailyReco — v2 scoring adapter vs. v1 wrapper (TRA-137/D2b)", () => {
+	it("routes through resolveScoringChoices + scoreAffinityFromChoices when a v2 profile is active", () => {
+		seedV1(["genre:techno"]);
+		win.loadActiveProfile(taxonomy); // activates v2 (genres: ["local:techno"])
+
+		const resolveSpy = vi.fn(() => []);
+		const scoreSpy = vi.fn(() => []);
+		const v1WrapperSpy = vi.fn(() => []);
+		win.resolveScoringChoices = resolveSpy;
+		win.scoreAffinityFromChoices = scoreSpy;
+		win.scoreAffinity = v1WrapperSpy;
+
+		win.pickDailyReco();
+
+		expect(resolveSpy).toHaveBeenCalledTimes(1);
+		expect(scoreSpy).toHaveBeenCalledTimes(1);
+		expect(v1WrapperSpy).not.toHaveBeenCalled();
+	});
+
+	it("keeps the v1 wrapper when no v2 profile is active", () => {
+		// currentProfile()'s v1 fallback reads Profile.data, which only reflects storage
+		// seeded before the script parses (see newWindowWithV1's comment) -- unlike the v2
+		// activation test above, which reads storage directly and doesn't need that.
+		const { win: w, v1 } = newWindowWithV1(["genre:techno"]);
+		try {
+			const resolveSpy = vi.fn(() => []);
+			const v1WrapperSpy = vi.fn(() => []);
+			w.resolveScoringChoices = resolveSpy;
+			w.scoreAffinity = v1WrapperSpy;
+
+			w.pickDailyReco();
+
+			expect(v1WrapperSpy).toHaveBeenCalledWith(v1.genres);
+			expect(resolveSpy).not.toHaveBeenCalled();
+		} finally {
+			w.close();
+		}
+	});
+});
+
+describe("idsToPickerSlugs / mergePickerSelectionIntoV2 — old picker adapter (TRA-137/D2b, criteria 6 & 7)", () => {
+	it("marks a picker slug 'on' only when its resolved id is selected -- ids and slugs are never compared directly", () => {
+		const on = win.idsToPickerSlugs(
+			["local:techno"],
+			["genre:techno", "genre:house", "genre:idm"],
+			taxonomy.legacySelectionBySlug,
+		);
+		// Compared as an array: `on` is a Set constructed in the jsdom realm, and cross-realm
+		// Set instances don't compare equal under toEqual.
+		expect([...on]).toEqual(["genre:techno"]);
+	});
+
+	it("shows no checkbox for a selected id the picker can't represent (a merged/off-picker choice)", () => {
+		const on = win.idsToPickerSlugs(
+			["local:off-picker-choice"],
+			["genre:techno"],
+			taxonomy.legacySelectionBySlug,
+		);
+		expect(on.size).toBe(0);
+	});
+
+	it("returns null without a usable taxonomy -- v2 is never written without one (criterion 2)", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
+		const merged = win.mergePickerSelectionIntoV2(
+			current,
+			["genre:house"],
+			["genre:techno", "genre:house"],
+			undefined,
+		);
+		expect(merged).toBeNull();
+	});
+
+	it("adds a newly checked picker slug and drops an unchecked one, both via legacySelectionBySlug", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
+		// techno unchecked, house checked -- the picker offered only techno/house this round.
+		const next = win.mergePickerSelectionIntoV2(
+			current,
+			["genre:house"],
+			["genre:techno", "genre:house"],
+			taxonomy,
+		);
+		expect(next?.genres.slice().sort()).toEqual(["local:house"]);
+	});
+
+	it("keeps an id the picker never offered a checkbox for untouched (criterion 7: choices outside the v1 picker)", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:techno", "local:off-picker-choice"] };
+		// This round's picker candidates don't include anything resolving to the off-picker id.
+		const next = win.mergePickerSelectionIntoV2(current, ["genre:techno"], ["genre:techno"], taxonomy);
+		expect(next?.genres.slice().sort()).toEqual(["local:off-picker-choice", "local:techno"]);
+	});
+
+	it("carries forward existing unresolvedGenreSlugs untouched -- the old picker has no control for them yet", () => {
+		const current: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:techno"],
+			unresolvedGenreSlugs: ["genre:long-gone"],
+		};
+		const next = win.mergePickerSelectionIntoV2(current, ["genre:techno"], ["genre:techno"], taxonomy);
+		expect(next?.unresolvedGenreSlugs).toEqual(["genre:long-gone"]);
+	});
+
+	it("adds a picker selection that still fails to resolve to unresolvedGenreSlugs instead of silently dropping it", () => {
+		const current: MigratedProfile = { name: "Raph", genres: [] };
+		const next = win.mergePickerSelectionIntoV2(
+			current,
+			["genre:discontinued"], // explicitly excluded by the migration table -- resolves to []
+			["genre:discontinued"],
+			taxonomy,
+		);
+		expect(next?.genres).toEqual([]);
+		expect(next?.unresolvedGenreSlugs).toEqual(["genre:discontinued"]);
+	});
+});
+
+describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, criteria 3 & 4)", () => {
+	it("the v1 picker/save flow works unchanged when no v2 is active (criterion 3)", () => {
+		const { win: w, v1 } = newWindowWithV1(["genre:techno", "genre:house", "genre:idm"]);
+		try {
+			w.wireOnboarding();
+			w.openOnboarding({ mode: "edit" });
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+			const saved = JSON.parse(w.localStorage.getItem(PROFILE_KEY) ?? "null");
+			expect(saved.genres.slice().sort()).toEqual(v1.genres.slice().sort());
+			expect(w.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+		} finally {
+			w.close();
+		}
+	});
+
+	it("cancelling (edit mode's back button) writes nothing (criterion 4)", () => {
+		const v1 = seedV1(["genre:techno", "genre:house", "genre:idm"]);
+		win.wireOnboarding();
+		win.openOnboarding({ mode: "edit" });
+		(win.document.getElementById("onb-back") as HTMLButtonElement).click();
+
+		expect(win.localStorage.getItem(PROFILE_KEY)).toEqual(JSON.stringify(v1));
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toBeNull();
+	});
+
+	it("never writes through the v2 adapter when a v2 profile is active but this session's taxonomy is unusable (criterion 2 edge case)", () => {
+		const existingV2: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:techno", "local:house", "local:idm"],
+		};
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+		win.loadActiveProfile(undefined); // v2 stays active (decision 4), but TAXONOMY is null this run
+
+		win.wireOnboarding();
+		win.openOnboarding({ mode: "edit" }); // seeds onbSelection straight from the 3 existing ids
+		(win.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2));
+	});
+
+	it("saves through the v2 adapter end-to-end, preserving an off-picker id (criteria 5, 6, 7)", () => {
+		const existingV2: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:techno", "local:house", "local:idm", "local:off-picker-choice"],
+		};
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+		win.loadActiveProfile(taxonomy);
+		win.genrePickList = () => ["genre:techno", "genre:house", "genre:idm"];
+		// The real grid needs byId (empty in this harness, DATA never fetched) to render genre
+		// names; only the selection/save wiring is under test here, not the render itself.
+		win.renderGenreGrid = () => {};
+
+		win.wireOnboarding();
+		win.openOnboarding({ mode: "edit" }); // seeds onbSelection = the 3 picker-coverable slugs
+		(win.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+		const saved = JSON.parse(win.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+		expect(saved.genres.slice().sort()).toEqual(
+			["local:house", "local:idm", "local:off-picker-choice", "local:techno"].sort(),
+		);
+	});
+});
+
+describe("reload preserves every genre after a v2 save (TRA-137/D2b, criterion 5)", () => {
+	it("keeps resolved, off-picker, and unresolved genres intact across a save + reload cycle", () => {
+		seedV1(["genre:techno"]);
+		win.loadActiveProfile(taxonomy); // v2: genres ["local:techno"]
+
+		const current = win.currentProfile() as MigratedProfile;
+		const withOffPicker = { ...current, genres: [...current.genres, "local:off-picker-choice"] };
+		const merged = win.mergePickerSelectionIntoV2(
+			withOffPicker,
+			["genre:techno", "genre:house"],
+			["genre:techno", "genre:house", "genre:idm"],
+			taxonomy,
+		);
+		expect(merged).not.toBeNull();
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(merged));
+
+		// Reload: a fresh loadActiveProfile call (as init() makes on every page load) must return
+		// the saved record unchanged, not recompute or drop anything -- migrateProfileToV2 is
+		// idempotent once a v2 exists.
+		const reloaded = win.loadActiveProfile(taxonomy);
+		expect(reloaded?.genres.slice().sort()).toEqual(merged?.genres.slice().sort());
+		expect(reloaded?.genres).toContain("local:off-picker-choice");
+	});
 });
