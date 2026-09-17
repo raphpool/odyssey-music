@@ -634,6 +634,83 @@ const Profile = {
 };
 Profile.load();
 
+// ─── Profile v2 migration (TRA-135 / D2a) ──────────────────────────────────
+// v1 stores raw genre slugs; as the taxonomy evolves (renames, family
+// reshuffles, merges) those slugs can stop matching a real choice id, so v2
+// stores resolved ids plus whatever couldn't be resolved. Idempotent: an
+// existing v2 is never recomputed, since re-deriving would clobber edits
+// made through the v2 UI (D2b). Never writes PROFILE_KEY, only reads it, so
+// the v1 backup always survives regardless of storage/JSON failures.
+const PROFILE_V2_KEY = "odyssey.profile.v2";
+
+function readProfileRecord(key) {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed.name === "string" && Array.isArray(parsed.genres) ? parsed : null;
+  } catch {
+    return null; // corrupt JSON or storage unavailable: treat as absent
+  }
+}
+
+// A taxonomy without a usable legacySelectionBySlug can't resolve anything;
+// treated like "no taxonomy" below, so we never persist an empty/garbage v2
+// that the idempotency guard would then lock in forever.
+function isUsableTaxonomy(taxonomy) {
+  return (
+    !!taxonomy &&
+    taxonomy.version === 2 &&
+    typeof taxonomy.legacySelectionBySlug === "object" &&
+    taxonomy.legacySelectionBySlug !== null
+  );
+}
+
+// Resolves v1 genre slugs against the taxonomy's legacy migration table,
+// which is exhaustive over every known source slug (including ones that
+// still resolve unchanged): a redirected slug (single id) resolves to its
+// current id; an old family slug (multiple ids) expands to its published
+// children only, never the family id itself; a slug excluded (empty id
+// list) or absent from the table is kept, never dropped, in `unresolved`.
+// Non-string entries -- a hand-edited or corrupted v1 -- are dropped rather
+// than surfaced as bogus unresolved picks.
+function resolveLegacyGenres(slugs, legacyMap) {
+  const resolved = new Set();
+  const unresolved = new Set();
+  for (const slug of slugs) {
+    if (typeof slug !== "string") continue;
+    const ids = Object.prototype.hasOwnProperty.call(legacyMap, slug) ? legacyMap[slug] : null;
+    if (Array.isArray(ids) && ids.length > 0) ids.forEach((id) => resolved.add(id));
+    else unresolved.add(slug);
+  }
+  return { genres: [...resolved], unresolved: [...unresolved] };
+}
+
+// Returns the existing v2 unchanged if present (idempotent, see header).
+// Without a usable taxonomy, returns null instead of persisting a guess --
+// that guess would then be frozen forever by the idempotency guard above.
+function migrateProfileToV2(taxonomy) {
+  const existingV2 = readProfileRecord(PROFILE_V2_KEY);
+  if (existingV2) return existingV2;
+  if (!isUsableTaxonomy(taxonomy)) return null;
+
+  const v1 = readProfileRecord(PROFILE_KEY);
+  if (!v1) return null;
+
+  const { genres, unresolved } = resolveLegacyGenres(v1.genres, taxonomy.legacySelectionBySlug);
+  const v2 = { ...v1, genres };
+  if (unresolved.length > 0) v2.unresolvedGenreSlugs = unresolved;
+
+  try {
+    localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(v2));
+  } catch {
+    // Storage unavailable (quota, disabled): keep the migrated record in
+    // memory only. v1 was never touched, so nothing is lost — the next call
+    // simply re-derives the same v2 from it.
+  }
+  return v2;
+}
+
 function renderProfileChip() {
   const chip = document.getElementById("profile-chip");
   if (!Profile.data) {
