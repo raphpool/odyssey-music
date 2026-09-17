@@ -60,6 +60,12 @@
       "type": "genre",
       "name": "Gabber",
       "qid": "Q820049"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
     }
   ],
   "key_artists": [

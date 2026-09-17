@@ -30,13 +30,26 @@
   "era": "1970s–Present",
   "origin": "The Bronx, New York City, USA",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:breaks",
       "type": "genre",
       "name": "Breaks",
       "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
     }
   ],
   "key_artists": [

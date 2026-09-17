@@ -1,0 +1,69 @@
+{
+  "slug": "artist:nazira",
+  "name": "Nazira",
+  "editorial_article": "Nazira Kassenova, a DJ and promoter born in 1991, has become a key figure in the electronic scene of Almaty, Kazakhstan. She launched the ZVUK event series in 2016, hosting her debut party inside a former World War II bunker to counter the city's limited club culture. Her approach to DJing involves blending genres to build a specific mood, a practice refined during her time studying molecular biology at the University of St. Andrews in Scotland. Since starting her career, she has performed at international venues including Berghain. She remains based in Almaty, where she works to bridge the gap between local audiences and the global electronic music community despite the city lacking dedicated record shops or extensive music infrastructure. She describes herself as a techno DJ who prioritizes the groove over adherence to rigid genre boundaries.",
+  "citations": [
+    {
+      "url": "https://www.nytimes.com/2020/03/09/arts/music/nazira-dj-kazakhstan.html",
+      "title": "A D.J. Shows How to Let Go in Authoritarian Kazakhstan"
+    },
+    {
+      "url": "https://wepresent.wetransfer.com/stories/nazira-kassenova-so-much-more-than-music",
+      "title": "WePresent | DJ Nazira: from Kazakhstan’s streets to the world"
+    },
+    {
+      "url": "https://www.new-east-archive.org/features/show/9161/new-east-100-nazira",
+      "title": "6 Kazakh electronic artists as picked by Almaty's prominent DIY promoter"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:57.236Z",
+  "type": "artist",
+  "editorial_bio": "A prominent Kazakh DJ and producer known for founding the ZVUK event series in Almaty and bringing experimental electronic sounds to international stages.",
+  "origin": "Almaty, Kazakhstan",
+  "active_years": "2016-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:zvuk",
+      "type": "label",
+      "name": "ZVUK"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:zvuk",
+      "type": "project",
+      "name": "ZVUK"
+    },
+    {
+      "slug": "project:miller-mix-almaty",
+      "type": "project",
+      "name": "Miller Mix: Almaty"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:nazira-dj-set-miller-mix-almaty-2024",
+      "type": "track",
+      "name": "Nazira DJ set - Miller Mix: Almaty 2024"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

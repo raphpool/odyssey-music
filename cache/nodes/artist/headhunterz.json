@@ -1,0 +1,766 @@
+{
+  "slug": "artist:headhunterz",
+  "name": "Headhunterz",
+  "editorial_article": "Born in Veenendaal, Netherlands in 1985, Willem Rebergen pioneered the global rise of hardstyle as Headhunterz, famously winning the Defqon.1 DJ contest in 2004 under his earlier alias, Nasty D-Tuners. His early production success was heavily nurtured by The Prophet, who signed him to Scantraxx in 2005. The 2008 debut album Project One, a collaborative effort with Wildstylez featuring tracks like 'The Art of Creation' and 'Life Beyond Earth', became a foundational influence on the genre through its trance-leaning melodies and heavy pitched kicks. After briefly pivoting toward house-influenced sounds and signing with Ultra Music in 2013, Rebergen returned to his roots at the 2017 Defqon.1 Festival. He later co-founded the label Art of Creation in 2018 with Wildstylez. Despite an indefinite break from live touring beginning in late 2023, he continued to top the Q-dance Hardstyle Top-100 poll, winning five times including three consecutive victories with 'Live Forever' in 2024.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Headhunterz",
+      "title": "Headhunterz - Wikipedia"
+    },
+    {
+      "url": "https://hardstyle.fandom.com/wiki/Headhunterz",
+      "title": "Headhunterz | Hardstyle Wiki - Fandom"
+    },
+    {
+      "url": "https://headhunterz.com/",
+      "title": "HEADHUNTERZ | THE MUSIC THAT COMES FROM WITHIN"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:32.234Z",
+  "type": "artist",
+  "editorial_bio": "Dutch DJ and producer Willem Rebergen, known as Headhunterz, is a key figure in the global hardstyle movement, celebrated for anthemic productions and his long-standing role in shaping the genre's sound.",
+  "origin": "Veenendaal, Netherlands",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:hardstyle",
+      "type": "genre",
+      "name": "Hardstyle",
+      "qid": "Q223840"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:scantraxx",
+      "type": "label",
+      "name": "Scantraxx"
+    },
+    {
+      "slug": "label:ultra-music",
+      "type": "label",
+      "name": "Ultra Music"
+    },
+    {
+      "slug": "label:art-of-creation",
+      "type": "label",
+      "name": "Art of Creation"
+    },
+    {
+      "slug": "label:hard-with-style",
+      "type": "label",
+      "name": "HARD with STYLE"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:live-forever",
+      "type": "project",
+      "name": "Live Forever",
+      "mbid": "30dd2206-166f-40f3-8bfd-232b0320b807",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moonlight",
+      "type": "project",
+      "name": "Moonlight",
+      "mbid": "c14a3794-d959-4c69-a704-6425ee799b2b",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-far-can-you-go",
+      "type": "project",
+      "name": "How Far Can You Go",
+      "mbid": "70ec24da-a80f-48de-8f97-baea183b4616",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-flame-inside",
+      "type": "project",
+      "name": "The Flame Inside",
+      "mbid": "97dd479f-f150-4273-812f-a996cf77b0d6",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-without-you",
+      "type": "project",
+      "name": "Lost Without You (Defqon.1 2023 Closing Theme)",
+      "mbid": "e122641c-1f08-4310-9d90-c3263184b3cf",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keepers-of-our-legacy",
+      "type": "project",
+      "name": "Keepers of Our Legacy",
+      "mbid": "26bf907a-19cb-438a-82b9-3c934d9f2459",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:before-i-wake",
+      "type": "project",
+      "name": "Before I Wake",
+      "mbid": "c59dfc84-bb51-4569-a93b-47845c2a7336",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-to-dance-again",
+      "type": "project",
+      "name": "Time to Dance Again",
+      "mbid": "b51ed1ad-f0d1-49e5-8873-a2250da411d0",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:defend-the-hard",
+      "type": "project",
+      "name": "Defend the Hard",
+      "mbid": "2d716dc0-f3bc-48df-9f08-54a617777428",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:battle-2-the-end",
+      "type": "project",
+      "name": "Battle 2 the End",
+      "mbid": "a289092d-5eb7-406f-a7e6-98c61ee7b6fc",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:transcendence",
+      "type": "project",
+      "name": "Transcendence",
+      "mbid": "e8892bba-40e4-42d0-b626-bce28519fe82",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dragonborn-part-iii",
+      "type": "project",
+      "name": "Dragonborn Part III (Oceans Apart)",
+      "mbid": "30642ca1-1d2c-44e3-b8d6-c7c27f7efb3d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-hunter-and-the-prey",
+      "type": "project",
+      "name": "The Hunter and the Prey",
+      "mbid": "fabd370f-a82d-449f-bdf0-218fd9a5b949",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:top-songs-for-flat-abs-hardstyle-hits-2020-session",
+      "type": "project",
+      "name": "Top Songs for Flat ABS Hardstyle Hits 2020 Session",
+      "mbid": "2087d67b-40ad-4b3c-aad4-db7569a086aa",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dragonborn-part-2",
+      "type": "project",
+      "name": "Dragonborn Part 2",
+      "mbid": "3081dad1-86c8-4f0d-8ecf-64d37e021d49",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home",
+      "type": "project",
+      "name": "Home",
+      "mbid": "39dcffdc-b8cc-4799-b80b-0ee9d815c733",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:orange-heart",
+      "type": "project",
+      "name": "Orange Heart",
+      "mbid": "20df30f7-da79-4518-aa7b-860a575bcc16",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:follow-me",
+      "type": "project",
+      "name": "Follow Me",
+      "mbid": "abb60a63-2cc6-452c-94a5-c288ebbda998",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:amen",
+      "type": "project",
+      "name": "Amen",
+      "mbid": "e1419379-5067-45bf-9d5c-c436c4087589",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:takin-it-back",
+      "type": "project",
+      "name": "Takin' It Back (live edit)",
+      "mbid": "b4094fda-6581-4b80-9ed8-8db2d6e2b00b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oxygen",
+      "type": "project",
+      "name": "Oxygen",
+      "mbid": "7576dbd0-fe72-42e7-847f-813e328ffa23",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-my-name",
+      "type": "project",
+      "name": "Say My Name",
+      "mbid": "6e10bea1-faa7-4235-a157-e630984bc2fe",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-art-of-remixes",
+      "type": "project",
+      "name": "The Art of Remixes",
+      "mbid": "f43edb51-2e90-49af-871c-29b535311196",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:leap-of-faith",
+      "type": "project",
+      "name": "Leap of Faith",
+      "mbid": "c7383c23-516a-45de-9c7b-308ee0c41060",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-return-of-headhunterz",
+      "type": "project",
+      "name": "The Return of Headhunterz",
+      "mbid": "6c8f2737-6f03-4d30-8092-6fb47f4a12b9",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:destiny",
+      "type": "project",
+      "name": "Destiny",
+      "mbid": "41038c45-5191-4c3e-a81d-f88eb6567335",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:landslide",
+      "type": "project",
+      "name": "Landslide",
+      "mbid": "4561d6c1-b725-49d4-9adf-731173d60280",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unique",
+      "type": "project",
+      "name": "Unique",
+      "mbid": "723dc9f9-d337-4a2f-a061-3e1afbd137ea",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dharma",
+      "type": "project",
+      "name": "Dharma",
+      "mbid": "8fab7df6-7c3d-46c6-af5a-9ca4e71fdb54",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kundalini",
+      "type": "project",
+      "name": "Kundalini",
+      "mbid": "86a7b0fe-211f-4991-a747-b60f9c1284ec",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lift-me-up",
+      "type": "project",
+      "name": "Lift Me Up",
+      "mbid": "6d8af097-82a9-4f1b-a35e-5fce43c1ed75",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-before-we-die",
+      "type": "project",
+      "name": "Live Before We Die",
+      "mbid": "e92c9d76-ef9c-42e9-9498-fb0d65f52ea4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel",
+      "type": "project",
+      "name": "Feel (The Power of Now)",
+      "mbid": "6128af96-7188-4f84-b589-3f2e20776c61",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-power-of-now",
+      "type": "project",
+      "name": "The Power of Now (Crystal Lake remix)",
+      "mbid": "e3cabeee-181f-45d1-96d4-c6cb8e00e266",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-universe-is-ours",
+      "type": "project",
+      "name": "The Universe Is Ours",
+      "mbid": "51b9f7cf-c70e-432d-9cf5-019746d4e57d",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-be-me",
+      "type": "project",
+      "name": "To Be Me (Maurice West remix)",
+      "mbid": "0e5645b5-f297-40c7-8491-d211e69098bf",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:won-t-stop-rocking",
+      "type": "project",
+      "name": "Won't Stop Rocking",
+      "mbid": "9296fa74-b7bc-49d5-b3cd-cb416d620235",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-be-me",
+      "type": "project",
+      "name": "To Be Me (Shilo edit)",
+      "mbid": "ab4b8bb2-dc05-4cef-91b1-c9fb1415095d",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-your-life",
+      "type": "project",
+      "name": "Live Your Life",
+      "mbid": "1fd8e89b-9475-4344-a89c-cc9441128666",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:once-again",
+      "type": "project",
+      "name": "Once Again",
+      "mbid": "f88a7e26-955b-4aff-b14f-7f46d035b609",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-it-or-love-it-this-is-hard-with-style-one",
+      "type": "project",
+      "name": "Hate It or Love It… This Is HARD With STYLE - One",
+      "mbid": "a13e3341-1848-4597-af06-4aeba2f75523",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-control-the-sound",
+      "type": "project",
+      "name": "We Control the Sound",
+      "mbid": "77dd9ef1-44c4-4512-b790-f57fe8cbd248",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:now-is-the-time",
+      "type": "project",
+      "name": "Now Is the Time",
+      "mbid": "9705b14c-1522-49d0-9d97-2e41c6d22778",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hard-with-style-the-power-of-the-mind",
+      "type": "project",
+      "name": "Hard With Style / The Power of the Mind",
+      "mbid": "1cf6d801-01e0-43cf-ab2b-f64f148c41b1",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:eternalize-doomed",
+      "type": "project",
+      "name": "Eternalize / Doomed",
+      "mbid": "25e1ed62-c626-4262-9f63-9185da4c7c3c",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:robot-s-dream-club-bizarre",
+      "type": "project",
+      "name": "Robot's Dream / Club Bizarre",
+      "mbid": "48b65621-2076-4478-ab8c-2ccebff184d0",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dragonborn",
+      "type": "project",
+      "name": "Dragonborn",
+      "mbid": "dc523ab4-d15a-47b5-b5ac-235b0236689b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shocker",
+      "type": "project",
+      "name": "Shocker",
+      "mbid": "93f81d4d-cb88-4341-92fd-9bec5bba3291",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:synergy",
+      "type": "project",
+      "name": "Synergy",
+      "mbid": "66854d8d-1605-4df8-9991-8d135e33b70e",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breakout",
+      "type": "project",
+      "name": "Breakout",
+      "mbid": "618a2b4d-8d8e-40de-94cc-0444a6a3b00c",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:united-kids-of-the-world",
+      "type": "project",
+      "name": "United Kids of the World",
+      "mbid": "6f21cf6e-d398-474d-baab-7dc30826c31d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-leaked-ep",
+      "type": "project",
+      "name": "The Leaked EP",
+      "mbid": "0ae36285-4941-43d2-a63b-faf572f7d321",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:colors",
+      "type": "project",
+      "name": "Colors",
+      "mbid": "cb95bc00-5d0d-4821-a29e-c9c88fb43d32",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:world-of-madness",
+      "type": "project",
+      "name": "World of Madness (Defqon.1 2012 Anthem)",
+      "mbid": "7bee65e2-fa02-4ced-91f6-3fdf5fb05ea0",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sacrifice",
+      "type": "project",
+      "name": "Sacrifice",
+      "mbid": "4f7e0d5c-7a58-45d9-abca-efe1a52ca7b6",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:headshot",
+      "type": "project",
+      "name": "Headshot",
+      "mbid": "aea6710b-d194-43c3-b01a-d62592985ce7",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-in-the-days",
+      "type": "project",
+      "name": "Back in the Days",
+      "mbid": "fdadfe24-b2cc-402d-bc61-99108b5d0566",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:from-within-the-message-is-hardstyle",
+      "type": "project",
+      "name": "From Within / The Message Is Hardstyle",
+      "mbid": "8a107f18-adc1-4c8e-93c1-d7ee85cbe545",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:save-your-scrap-for-victory",
+      "type": "project",
+      "name": "Save Your Scrap for Victory (Defqon.1 Australia 2010 Anthem)",
+      "mbid": "17361ca4-d669-471c-80e2-87f27d79d57a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:studio-sessions",
+      "type": "project",
+      "name": "Studio Sessions",
+      "mbid": "ccdf5840-122e-4527-be66-f8ee4c84bc71",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:psychedelic",
+      "type": "project",
+      "name": "Psychedelic",
+      "mbid": "969dff63-ead7-4411-8389-bf36760a79a0",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emptiness",
+      "type": "project",
+      "name": "Emptiness",
+      "mbid": "28faa32a-5bfc-4300-ac8d-b3582dafe360",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreamcatcher",
+      "type": "project",
+      "name": "Dreamcatcher",
+      "mbid": "dba9bd24-3246-4b41-a6fc-93a9190e3309",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-remix-ep",
+      "type": "project",
+      "name": "The Remix EP",
+      "mbid": "21ab854f-e784-442d-992f-e6a547b28758",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:summer-of-hardstyle",
+      "type": "project",
+      "name": "Summer of Hardstyle",
+      "mbid": "cde75965-595a-41ac-b5da-7558bca54c32",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:muzical-revolution-megasound",
+      "type": "project",
+      "name": "Muzical Revolution / Megasound",
+      "mbid": "630b2264-1513-4e61-8574-d3bc4d6815df",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:headhunterz-tribute-to-saifam",
+      "type": "project",
+      "name": "Headhunterz' Tribute To Saifam",
+      "mbid": "e5e86c79-b477-4318-addf-2329bceb24b3",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scrap-attack",
+      "type": "project",
+      "name": "Scrap Attack (Defqon.1 2009 Anthem)",
+      "mbid": "d1ece45a-695d-441b-a0bf-b2353d113959",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonight-famous",
+      "type": "project",
+      "name": "Tonight / Famous",
+      "mbid": "05cfb8b8-cdc1-46c1-b5ac-ffb5b61dd2b9",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-fear-of-darkness",
+      "type": "project",
+      "name": "The Fear Of Darkness",
+      "mbid": "3a43712f-3042-426b-8b83-bd554f95ef9b",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-say-my-name",
+      "type": "project",
+      "name": "Just Say My Name",
+      "mbid": "52265517-5cb3-4430-850a-a1b9bf1a6530",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-art-of-creation-numbers",
+      "type": "project",
+      "name": "The Art Of Creation / Numbers",
+      "mbid": "6ec891a0-07ef-4405-900f-d1b9bb38b038",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-of-the-mohicanz",
+      "type": "project",
+      "name": "Last of the Mohicanz",
+      "mbid": "e03441ef-1544-4c08-806d-f80201851d8b",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blame-it-on-the-muzic-project-1",
+      "type": "project",
+      "name": "Blame It on the Muzic / Project 1",
+      "mbid": "a41b5c51-ad1d-417a-845b-9449d3693cdc",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:call-it-music-w-u-w-h",
+      "type": "project",
+      "name": "Call It Music / W.U.W.H.",
+      "mbid": "9cbffe80-2156-4475-ba0b-4c53a9794569",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:subsonic",
+      "type": "project",
+      "name": "Subsonic",
+      "mbid": "63e2ec07-5093-4af9-bb02-d64892c38692",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-power-of-the-mind",
+      "type": "project",
+      "name": "The Power of the Mind (Qlimax Anthem 2007)",
+      "mbid": "45bb04a2-7700-45d6-962d-4103731666b7",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-az-one",
+      "type": "project",
+      "name": "Forever Az One",
+      "mbid": "f2ef3d81-252f-470f-b613-c74f8e4176a2",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-az-one-digiwave",
+      "type": "project",
+      "name": "Forever Az One / Digiwave",
+      "mbid": "367d0628-2b41-4456-ba2e-3e6ec1774823",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-civilization",
+      "type": "project",
+      "name": "Rock Civilization",
+      "mbid": "5efcc230-b501-4d36-94c7-f15bd13c5206",
+      "year": "2007",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-sacrifice",
+      "type": "track",
+      "name": "The Sacrifice"
+    },
+    {
+      "slug": "track:the-power-of-the-mind",
+      "type": "track",
+      "name": "The Power of the Mind"
+    },
+    {
+      "slug": "track:dragonborn",
+      "type": "track",
+      "name": "Dragonborn"
+    },
+    {
+      "slug": "track:destiny",
+      "type": "track",
+      "name": "Destiny"
+    },
+    {
+      "slug": "track:live-forever",
+      "type": "track",
+      "name": "Live Forever"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:wildstylez",
+      "type": "artist",
+      "name": "Wildstylez"
+    },
+    {
+      "slug": "artist:the-prophet",
+      "type": "artist",
+      "name": "The Prophet"
+    },
+    {
+      "slug": "artist:noisecontrollers",
+      "type": "artist",
+      "name": "Noisecontrollers"
+    },
+    {
+      "slug": "artist:vertile",
+      "type": "artist",
+      "name": "Vertile"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:nasty-d-tuners",
+      "type": "artist",
+      "name": "Nasty D-Tuners"
+    },
+    {
+      "slug": "artist:project-one",
+      "type": "artist",
+      "name": "Project One"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:willem-rebergen",
+      "type": "artist",
+      "name": "Willem Rebergen"
+    }
+  ]
+}

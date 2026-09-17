@@ -94,6 +94,18 @@
       "type": "genre",
       "name": "Euro House",
       "qid": "Q30917612"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:makina",
+      "type": "genre",
+      "name": "Makina",
+      "qid": "Q3048168"
     }
   ],
   "key_artists": [
