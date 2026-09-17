@@ -70,6 +70,7 @@ type OdysseyWindow = Window &
 		currentProfile: () => MigratedProfile | ProfileV1Fixture | null;
 		v2EditUnavailable: () => boolean;
 		v2PickerChoiceSlugs: (profile: MigratedProfile) => Set<string>;
+		distinctPickerChoiceCount: (onSlugs: Iterable<string>, legacyMap: Record<string, string[]>) => number;
 		renderProfileChip: () => void;
 		showHome: () => void;
 		idsToPickerSlugs: (
@@ -203,6 +204,29 @@ function newV2Window(): OdysseyWindow {
 // unlike Profile.data (see newWindowWithV1 above).
 function seedV1On(w: OdysseyWindow, genres: string[]): void {
 	w.localStorage.setItem(PROFILE_KEY, JSON.stringify({ createdAt: "x", name: "Raph", genres }));
+}
+
+// Real graph + real taxonomy (same path as the D5 "shipped cache" test), for tests that must
+// exercise our own code instead of stubbing it (nit, 3rd review: don't mock what we own).
+async function newRealGraphWindow(): Promise<{ win: OdysseyWindow; taxonomy: GenreTaxonomyProjection }> {
+	const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+	const realTaxonomy = built.taxonomy;
+	if (!realTaxonomy) throw new Error("cache built without a taxonomy");
+	const dom = new JSDOM(indexHtml, {
+		url: "http://localhost/",
+		runScripts: "dangerously",
+		pretendToBeVisual: false,
+		beforeParse(window) {
+			window.fetch = (async () => new Response(JSON.stringify(built))) as unknown as typeof fetch;
+			(window as unknown as Record<string, unknown>).__PROFILE_V2_ENABLED__ = true;
+		},
+	});
+	const w = dom.window as unknown as OdysseyWindow;
+	// "…" is the static placeholder in the markup itself -- wait for init() to replace it.
+	await vi.waitFor(() => {
+		if ((w.document.getElementById("stat") as HTMLElement).textContent === "…") throw new Error("not ready");
+	});
+	return { win: w, taxonomy: realTaxonomy };
 }
 
 describe("profile v1 -> v2 migration (TRA-135)", () => {
@@ -753,6 +777,22 @@ const rockJazzTaxonomy: GenreTaxonomyProjection = {
 	},
 };
 
+// Nested/overlapping expansions (3rd review, B5): genre:rock's ids fully contain
+// genre:krautrock's/psychedelic-rock's, mirroring the taxonomy shape that broke unchecking rock
+// alone. local:rock-4 is "pure rock", covered by no subfamily.
+const nestedRockTaxonomy: GenreTaxonomyProjection = {
+	version: 2,
+	families: [],
+	genres: [],
+	legacySelectionBySlug: {
+		"genre:rock": ["local:rock-1", "local:rock-2", "local:rock-3", "local:rock-4"],
+		"genre:krautrock": ["local:rock-1", "local:rock-2"],
+		"genre:psychedelic-rock": ["local:rock-3"],
+		"genre:techno": ["local:techno"],
+		"genre:house": ["local:house"],
+	},
+};
+
 describe("idsToPickerSlugs — old picker checkbox state (TRA-251, review B1 & B4)", () => {
 	it("marks a picker slug 'on' only when its resolved id is selected -- ids and slugs are never compared directly", () => {
 		const on = win.idsToPickerSlugs(
@@ -824,8 +864,11 @@ describe("mergePickerSelectionIntoV2 — delta-only save (TRA-251, review B1 & B
 		expect(next?.genres.slice().sort()).toEqual(["local:rock-1", "local:techno"]);
 	});
 
-	it("B1: checking a family slug adds every one of its ids; unchecking another removes only its own, leaving an untouched partial family alone", () => {
-		const current: MigratedProfile = { name: "Raph", genres: ["local:rock-1", "local:techno"] };
+	it("B1: checking a family slug adds every one of its ids; unchecking another removes only its own, leaving an untouched partial family and an untouched off-picker id alone", () => {
+		const current: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:rock-1", "local:techno", "local:off-picker-choice"],
+		};
 		const initial = win.idsToPickerSlugs(
 			current.genres,
 			[],
@@ -834,9 +877,13 @@ describe("mergePickerSelectionIntoV2 — delta-only save (TRA-251, review B1 & B
 		);
 		expect([...initial]).toEqual(["genre:techno"]); // rock starts partial (unchecked), jazz unchecked
 
-		const final = new Set(["genre:jazz"]); // check jazz, uncheck techno; rock untouched
+		const final = new Set(["genre:jazz"]); // check jazz, uncheck techno; rock and the off-picker id untouched
 		const next = win.mergePickerSelectionIntoV2(current, initial, final, rockJazzTaxonomy);
-		expect(next?.genres.slice().sort()).toEqual(["local:jazz-1", "local:jazz-2", "local:rock-1"]);
+		// Mutation guard: reverting to a full recompute-from-final would drop both local:rock-1
+		// (untouched partial family) and local:off-picker-choice (no picker slug covers it).
+		expect(next?.genres.slice().sort()).toEqual(
+			["local:jazz-1", "local:jazz-2", "local:off-picker-choice", "local:rock-1"].sort(),
+		);
 	});
 
 	it("keeps an id the picker never offered a checkbox for untouched (criterion 7: choices outside the v1 picker)", () => {
@@ -867,27 +914,55 @@ describe("mergePickerSelectionIntoV2 — delta-only save (TRA-251, review B1 & B
 		expect(next?.genres).toEqual([]);
 		expect(next?.unresolvedGenreSlugs).toEqual(["genre:discontinued"]);
 	});
+
+	it("B5: unchecking an overlapping chip only drops ids no still-checked chip covers", () => {
+		const current: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:rock-1", "local:rock-2", "local:rock-3", "local:rock-4", "local:techno"],
+		};
+		const initial = new Set(["genre:rock", "genre:krautrock", "genre:psychedelic-rock", "genre:techno"]);
+		const final = new Set(["genre:krautrock", "genre:psychedelic-rock", "genre:techno", "genre:house"]); // uncheck rock, check house
+		const next = win.mergePickerSelectionIntoV2(current, initial, final, nestedRockTaxonomy);
+		// rock-1/2/3 (covered by krautrock/psychedelic-rock, still checked) survive; rock-4 ("pure
+		// rock") is dropped; house is added; techno stays untouched.
+		expect(next?.genres.slice().sort()).toEqual(
+			["local:house", "local:rock-1", "local:rock-2", "local:rock-3", "local:techno"].sort(),
+		);
+	});
+});
+
+describe("distinctPickerChoiceCount — nit (3rd review): a chip's count doesn't inflate from nested taxonomy overlap", () => {
+	it("collapses a subfamily fully covered by another checked chip", () => {
+		const on = new Set(["genre:rock", "genre:krautrock", "genre:psychedelic-rock", "genre:techno"]);
+		// krautrock/psychedelic-rock are dominated by rock's expansion -> not counted. 2, not 4.
+		expect(win.distinctPickerChoiceCount(on, nestedRockTaxonomy.legacySelectionBySlug)).toBe(2);
+	});
 });
 
 describe("pickDailyReco — B4: recommendable through unresolved slugs with no resolved id", () => {
-	it("still scores when every pick is an unresolved-but-graph-existing slug", () => {
-		const v2 = newV2Window();
+	// Nit (3rd review): resolveScoringChoices is code we own, so this exercises the real
+	// computation against the real graph instead of stubbing it out.
+	it("still scores (a real, non-empty reco) when every pick is an unresolved-but-graph-existing slug", async () => {
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
 		try {
-			const noIdV2: MigratedProfile = { name: "Raph", genres: [], unresolvedGenreSlugs: ["genre:pop"] };
-			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(noIdV2));
-			v2.loadActiveProfile(taxonomy);
+			const [unresolvedSlug] = w.genrePickList(); // any real, graph-existing genre slug
+			expect(unresolvedSlug).toBeDefined();
+			const noIdV2: MigratedProfile = {
+				name: "Raph",
+				genres: [],
+				unresolvedGenreSlugs: [unresolvedSlug as string],
+			};
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(noIdV2));
+			w.loadActiveProfile(realTaxonomy);
 
-			const resolveSpy = vi.fn(() => []);
-			v2.resolveScoringChoices = resolveSpy;
-			v2.pickDailyReco();
-
-			// Reaches the scoring adapter at all -- before the fix, genres.length === 0 bailed
-			// out before resolveScoringChoices (which would have found genre:pop) ever ran.
-			expect(resolveSpy).toHaveBeenCalledTimes(1);
+			// Reaches the real scoring engine and finds something -- before the fix,
+			// genres.length === 0 bailed out before resolveScoringChoices (which would have
+			// found this slug) ever ran.
+			expect(w.pickDailyReco()).not.toBeNull();
 		} finally {
-			v2.close();
+			w.close();
 		}
-	});
+	}, 20000);
 });
 
 describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, criteria 3 & 4)", () => {
@@ -1027,6 +1102,55 @@ describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, crite
 
 			const saved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
 			expect(saved.genres.slice().sort()).toEqual([...picks, "local:off-picker-choice"].sort());
+		} finally {
+			w.close();
+		}
+	}, 20000);
+
+	// Trous de test (3rd review): the test above only exercises an *untouched* save, which can't
+	// tell a proper clone of onbInitialSelection apart from an aliased one (onbSelection ===
+	// onbInitialSelection) or an always-empty one. This one clicks for real: unchecks a checked
+	// chip, checks an off one, and saves.
+	it("a real #onb-done edit (uncheck + check) persists the delta, and open-time seeding reflects unresolvedGenreSlugs (kills the onbInitialSelection aliasing/empty-Set/ignored-unresolved mutants)", async () => {
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
+		try {
+			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
+			const resolving = w.genrePickList().filter((slug) => (legacyMap[slug] ?? []).length > 0);
+			expect(resolving.length).toBeGreaterThanOrEqual(3);
+			const [slugA, slugB, slugC] = resolving as [string, string, string];
+			const unresolvedSlug = w.genrePickList().find((s) => s !== slugA && s !== slugB && s !== slugC);
+			expect(unresolvedSlug).toBeDefined();
+
+			const existingV2: MigratedProfile = {
+				name: "Raph",
+				genres: [...(legacyMap[slugA] ?? []), ...(legacyMap[slugB] ?? []), "local:off-picker-choice"],
+				unresolvedGenreSlugs: [unresolvedSlug as string],
+			};
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			w.loadActiveProfile(realTaxonomy);
+
+			w.wireOnboarding();
+			w.openOnboarding({ mode: "edit" });
+			const btn = (slug: string) =>
+				w.document.querySelector(`.genre-pick[data-slug="${slug}"]`) as HTMLElement;
+			// nits 4/5: open-time seeding must reflect both the resolved ids and the unresolved
+			// slug -- openOnboarding / v2PickerChoiceSlugs must not ignore unresolvedGenreSlugs.
+			expect(btn(slugA).classList.contains("on")).toBe(true);
+			expect(btn(slugB).classList.contains("on")).toBe(true);
+			expect(btn(unresolvedSlug as string).classList.contains("on")).toBe(true);
+			expect(btn(slugC).classList.contains("on")).toBe(false);
+
+			btn(slugB).click(); // uncheck a genuinely-checked chip
+			btn(slugC).click(); // check a genuinely-unchecked chip
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+			const saved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			const expectedIds = [
+				...new Set([...(legacyMap[slugA] ?? []), ...(legacyMap[slugC] ?? []), "local:off-picker-choice"]),
+			];
+			expect(saved.genres.slice().sort()).toEqual(expectedIds.sort());
+			expect(saved.unresolvedGenreSlugs).toEqual([unresolvedSlug]);
+			expect(w.v2PickerChoiceSlugs(saved).has(unresolvedSlug as string)).toBe(true);
 		} finally {
 			w.close();
 		}

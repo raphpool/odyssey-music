@@ -810,9 +810,16 @@ function mergePickerSelectionIntoV2(current, initialSlugs, finalSlugs, taxonomy)
     genres.forEach((id) => ids.add(id));
     stillUnresolved.forEach((s) => unresolved.add(s));
   }
+  // Review B5 (2026-09-17): genre:rock's expansion nests genre:krautrock's/psychedelic-rock's --
+  // unchecking rock alone used to delete its whole expansion unconditionally, wiping ids a
+  // still-checked chip was also claiming. An id only leaves once no slug left in `final` covers it.
+  const stillCoveredIds = new Set();
+  for (const slug of final) resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => stillCoveredIds.add(id));
   for (const slug of initial) {
     if (final.has(slug)) continue; // still unchecked from before -- nothing to remove
-    resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => ids.delete(id));
+    resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => {
+      if (!stillCoveredIds.has(id)) ids.delete(id);
+    });
     unresolved.delete(slug);
   }
 
@@ -828,6 +835,22 @@ function mergePickerSelectionIntoV2(current, initialSlugs, finalSlugs, taxonomy)
 // render a chip/link for (B3).
 function v2PickerChoiceSlugs(profile) {
   return idsToPickerSlugs(profile.genres, profile.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug);
+}
+
+// Nit (3rd review, 2026-09-17): a checked slug's expansion can be entirely covered by another
+// checked slug's (same nesting as B5) -- counting every "on" slug then balloons the chip count
+// with no user action. Counts a slug only when no other checked slug's expansion strictly
+// contains its own; an unresolved slug (empty expansion) is never "contained" and always counts.
+function distinctPickerChoiceCount(onSlugs, legacyMap) {
+  const bySlug = [...onSlugs].map((slug) => ({ slug, ids: resolveLegacyGenres([slug], legacyMap).genres }));
+  let count = 0;
+  for (const a of bySlug) {
+    const dominated =
+      a.ids.length > 0 &&
+      bySlug.some((b) => b !== a && b.ids.length > a.ids.length && a.ids.every((id) => b.ids.includes(id)));
+    if (!dominated) count++;
+  }
+  return count;
 }
 
 function renderProfileChip() {
@@ -849,7 +872,9 @@ function renderProfileChip() {
     return;
   }
   chip.hidden = false;
-  const count = activeV2 ? v2PickerChoiceSlugs(profile).size : profile.genres.length;
+  const count = activeV2
+    ? distinctPickerChoiceCount(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
+    : profile.genres.length;
   chip.textContent = `${profile.name} · ${count} genres`;
   chip.onclick = () => openOnboarding({ mode: "edit" });
 }
@@ -945,7 +970,10 @@ function wireOnboarding() {
       // session (onbInitialSelection vs onbSelection) back to ids -- never overwriting an id
       // the picker didn't offer a checkbox for (criterion 7). Bails out without writing if the
       // taxonomy went missing mid-session (criterion 2).
-      const merged = mergePickerSelectionIntoV2({ ...activeV2, name, email }, onbInitialSelection, onbSelection, TAXONOMY);
+      // Nit (3rd review, 2026-09-17): an empty email field must not write "email": "" onto a v2
+      // record that never had one -- only patch it when the user actually typed something.
+      const patch = email ? { ...activeV2, name, email } : { ...activeV2, name };
+      const merged = mergePickerSelectionIntoV2(patch, onbInitialSelection, onbSelection, TAXONOMY);
       if (!merged) return;
       saveActiveV2(merged);
     } else {
@@ -1310,7 +1338,9 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
       <div class="home">
         <div class="home-hello">Salut ${escapeHtml(storedV2.name)} 👋</div>
         <div class="reco-empty">
-          <p>${storedV2.genres.length} genre(s) enregistrés, en lecture seule tant que le graphe n'est pas disponible.</p>
+          <!-- Nit (3rd review): raw id count (e.g. 25) can't match the chip's picker-choice count
+               (e.g. 6) -- dropped the number, matching the chip's own wording when locked. -->
+          <p>Tes préférences sont conservées, en lecture seule tant que le graphe n'est pas disponible.</p>
         </div>
       </div>`;
     window.scrollTo({ top: 0, behavior: "instant" });
