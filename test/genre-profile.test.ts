@@ -74,13 +74,14 @@ type OdysseyWindow = Window &
 		showHome: () => void;
 		idsToPickerSlugs: (
 			ids: string[],
+			unresolvedSlugs: string[] | undefined,
 			pickerSlugs: string[],
 			legacyMap: Record<string, string[]>,
 		) => Set<string>;
 		mergePickerSelectionIntoV2: (
 			current: MigratedProfile,
-			selectedSlugs: Iterable<string>,
-			pickerSlugs: string[],
+			initialSlugs: Iterable<string>,
+			finalSlugs: Iterable<string>,
 			taxonomy?: GenreTaxonomyProjection,
 		) => MigratedProfile | null;
 		pickDailyReco: (opts?: { reroll?: boolean }) => { id: string } | null;
@@ -622,24 +623,16 @@ describe("scoreAffinityFromChoices — every published choice in the shipped cac
 	}, 20000);
 });
 
-describe("PROFILE_V2_ENABLED off (default) — v1 behavior stays byte-for-byte intact (TRA-137/D2b-1)", () => {
-	it("loadActiveProfile is a no-op, currentProfile only ever reflects v1, and nothing is written to the v2 key", () => {
-		const v1 = seedV1(["genre:techno"]);
-		const existingV2: MigratedProfile = { name: "Someone else", genres: ["local:house"] };
-		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2)); // pre-existing, e.g. left by a rollback
-
-		const activated = win.loadActiveProfile(taxonomy);
-
-		expect(activated).toBeNull();
-		expect(win.v2EditUnavailable()).toBe(false); // never says "preserved" for a switch that's simply off
-		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2)); // untouched
-
-		win.wireOnboarding();
-		win.openOnboarding({ mode: "edit" });
-		(win.document.getElementById("onb-done") as HTMLButtonElement).click();
-		const savedV1 = JSON.parse(win.localStorage.getItem(PROFILE_KEY) ?? "null");
-		expect(savedV1.genres.slice().sort()).toEqual(v1.genres);
-		expect(win.localStorage.getItem(PROFILE_V2_KEY)).toEqual(JSON.stringify(existingV2)); // still untouched
+describe("PROFILE_V2_ENABLED — on for good in this ticket (TRA-251)", () => {
+	it("is true, unlike D2b-1 where B1/B4 made it unsafe to enable", () => {
+		expect(win.loadActiveProfile).toBeTypeOf("function"); // switch is a `const`, not read via window
+		const v2 = newV2Window();
+		try {
+			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify({ name: "Raph", genres: ["local:house"] }));
+			expect(v2.loadActiveProfile(taxonomy)).not.toBeNull(); // no longer a no-op
+		} finally {
+			v2.close();
+		}
 	});
 });
 
@@ -730,77 +723,153 @@ describe("pickDailyReco — v2 scoring adapter vs. v1 wrapper (TRA-137/D2b, flag
 	});
 });
 
-describe("idsToPickerSlugs / mergePickerSelectionIntoV2 — old picker adapter (TRA-137/D2b, criteria 6 & 7)", () => {
+// A picker slug that expands to several ids (an old family slug) -- exercises B1 without
+// needing the real cache's full 16/8-id families. Only legacySelectionBySlug is read here.
+const rockJazzTaxonomy: GenreTaxonomyProjection = {
+	version: 2,
+	families: [],
+	genres: [],
+	legacySelectionBySlug: {
+		"genre:rock": ["local:rock-1", "local:rock-2", "local:rock-3"],
+		"genre:jazz": ["local:jazz-1", "local:jazz-2"],
+		"genre:techno": ["local:techno"],
+	},
+};
+
+describe("idsToPickerSlugs — old picker checkbox state (TRA-251, review B1 & B4)", () => {
 	it("marks a picker slug 'on' only when its resolved id is selected -- ids and slugs are never compared directly", () => {
 		const on = win.idsToPickerSlugs(
 			["local:techno"],
+			[],
 			["genre:techno", "genre:house", "genre:idm"],
 			taxonomy.legacySelectionBySlug,
 		);
-		// Compared as an array: `on` is a Set constructed in the jsdom realm, and cross-realm
-		// Set instances don't compare equal under toEqual.
+		// `on` is a Set built in the jsdom realm -- cross-realm Sets don't compare via toEqual.
 		expect([...on]).toEqual(["genre:techno"]);
 	});
 
 	it("shows no checkbox for a selected id the picker can't represent (a merged/off-picker choice)", () => {
 		const on = win.idsToPickerSlugs(
 			["local:off-picker-choice"],
+			[],
 			["genre:techno"],
 			taxonomy.legacySelectionBySlug,
 		);
 		expect(on.size).toBe(0);
 	});
 
-	it("returns null without a usable taxonomy -- v2 is never written without one (criterion 2)", () => {
-		const current: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
-		const merged = win.mergePickerSelectionIntoV2(
-			current,
-			["genre:house"],
-			["genre:techno", "genre:house"],
-			undefined,
+	it("B1: a family/multi-id slug is 'on' only once every one of its ids is selected, never on a partial match", () => {
+		// One of three rock ids selected (the real-world "Blues rock without Q379033" report).
+		const partial = win.idsToPickerSlugs(
+			["local:rock-1"],
+			[],
+			["genre:rock"],
+			rockJazzTaxonomy.legacySelectionBySlug,
 		);
-		expect(merged).toBeNull();
+		expect(partial.size).toBe(0);
+		const complete = win.idsToPickerSlugs(
+			["local:rock-1", "local:rock-2", "local:rock-3"],
+			[],
+			["genre:rock"],
+			rockJazzTaxonomy.legacySelectionBySlug,
+		);
+		expect([...complete]).toEqual(["genre:rock"]);
 	});
 
-	it("adds a newly checked picker slug and drops an unchecked one, both via legacySelectionBySlug", () => {
-		const current: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
-		// techno unchecked, house checked -- the picker offered only techno/house this round.
-		const next = win.mergePickerSelectionIntoV2(
-			current,
-			["genre:house"],
-			["genre:techno", "genre:house"],
-			taxonomy,
+	it("B4: a slug the taxonomy can't resolve at all is 'on' when tracked in unresolvedGenreSlugs", () => {
+		const on = win.idsToPickerSlugs(
+			[],
+			["genre:pop"],
+			["genre:pop", "genre:techno"],
+			taxonomy.legacySelectionBySlug,
 		);
-		expect(next?.genres.slice().sort()).toEqual(["local:house"]);
+		expect([...on]).toEqual(["genre:pop"]);
+	});
+});
+
+describe("mergePickerSelectionIntoV2 — delta-only save (TRA-251, review B1 & B4)", () => {
+	it("returns null without a usable taxonomy -- v2 is never written without one (criterion 2)", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
+		expect(
+			win.mergePickerSelectionIntoV2(current, ["genre:house"], ["genre:house", "genre:techno"], undefined),
+		).toBeNull();
+	});
+
+	it("B1: an untouched save changes nothing, even for a partially-selected family (reproduces the Blues rock report)", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:rock-1", "local:techno"] };
+		const initial = win.idsToPickerSlugs(
+			current.genres,
+			[],
+			["genre:rock", "genre:techno"],
+			rockJazzTaxonomy.legacySelectionBySlug,
+		);
+		const next = win.mergePickerSelectionIntoV2(current, initial, initial, rockJazzTaxonomy); // no toggles this round
+		expect(next?.genres.slice().sort()).toEqual(["local:rock-1", "local:techno"]);
+	});
+
+	it("B1: checking a family slug adds every one of its ids; unchecking another removes only its own, leaving an untouched partial family alone", () => {
+		const current: MigratedProfile = { name: "Raph", genres: ["local:rock-1", "local:techno"] };
+		const initial = win.idsToPickerSlugs(
+			current.genres,
+			[],
+			["genre:rock", "genre:jazz", "genre:techno"],
+			rockJazzTaxonomy.legacySelectionBySlug,
+		);
+		expect([...initial]).toEqual(["genre:techno"]); // rock starts partial (unchecked), jazz unchecked
+
+		const final = new Set(["genre:jazz"]); // check jazz, uncheck techno; rock untouched
+		const next = win.mergePickerSelectionIntoV2(current, initial, final, rockJazzTaxonomy);
+		expect(next?.genres.slice().sort()).toEqual(["local:jazz-1", "local:jazz-2", "local:rock-1"]);
 	});
 
 	it("keeps an id the picker never offered a checkbox for untouched (criterion 7: choices outside the v1 picker)", () => {
 		const current: MigratedProfile = { name: "Raph", genres: ["local:techno", "local:off-picker-choice"] };
-		// This round's picker candidates don't include anything resolving to the off-picker id.
 		const next = win.mergePickerSelectionIntoV2(current, ["genre:techno"], ["genre:techno"], taxonomy);
 		expect(next?.genres.slice().sort()).toEqual(["local:off-picker-choice", "local:techno"]);
 	});
 
-	it("carries forward existing unresolvedGenreSlugs untouched -- the old picker has no control for them yet", () => {
+	it("B4: carries forward existing unresolvedGenreSlugs untouched, and drops one once its checkbox is unchecked", () => {
 		const current: MigratedProfile = {
 			name: "Raph",
 			genres: ["local:techno"],
-			unresolvedGenreSlugs: ["genre:long-gone"],
+			unresolvedGenreSlugs: ["genre:long-gone", "genre:pop"],
 		};
-		const next = win.mergePickerSelectionIntoV2(current, ["genre:techno"], ["genre:techno"], taxonomy);
+		// genre:pop started checked (it's in unresolvedGenreSlugs); this session unchecks it.
+		const next = win.mergePickerSelectionIntoV2(
+			current,
+			["genre:techno", "genre:pop"],
+			["genre:techno"],
+			taxonomy,
+		);
 		expect(next?.unresolvedGenreSlugs).toEqual(["genre:long-gone"]);
 	});
 
-	it("adds a picker selection that still fails to resolve to unresolvedGenreSlugs instead of silently dropping it", () => {
+	it("adds a newly checked slug that still fails to resolve to unresolvedGenreSlugs instead of silently dropping it", () => {
 		const current: MigratedProfile = { name: "Raph", genres: [] };
-		const next = win.mergePickerSelectionIntoV2(
-			current,
-			["genre:discontinued"], // explicitly excluded by the migration table -- resolves to []
-			["genre:discontinued"],
-			taxonomy,
-		);
+		const next = win.mergePickerSelectionIntoV2(current, [], ["genre:discontinued"], taxonomy);
 		expect(next?.genres).toEqual([]);
 		expect(next?.unresolvedGenreSlugs).toEqual(["genre:discontinued"]);
+	});
+});
+
+describe("pickDailyReco — B4: recommendable through unresolved slugs with no resolved id", () => {
+	it("still scores when every pick is an unresolved-but-graph-existing slug", () => {
+		const v2 = newV2Window();
+		try {
+			const noIdV2: MigratedProfile = { name: "Raph", genres: [], unresolvedGenreSlugs: ["genre:pop"] };
+			v2.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(noIdV2));
+			v2.loadActiveProfile(taxonomy);
+
+			const resolveSpy = vi.fn(() => []);
+			v2.resolveScoringChoices = resolveSpy;
+			v2.pickDailyReco();
+
+			// Reaches the scoring adapter at all -- before the fix, genres.length === 0 bailed
+			// out before resolveScoringChoices (which would have found genre:pop) ever ran.
+			expect(resolveSpy).toHaveBeenCalledTimes(1);
+		} finally {
+			v2.close();
+		}
 	});
 });
 
