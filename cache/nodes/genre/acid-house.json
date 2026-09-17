@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:41:58.745Z",
   "type": "genre",
   "editorial_definition": "A subgenre of house music born in mid-80s Chicago, defined by its hypnotic, minimalist sound and the aggressive, squelching basslines produced by the Roland TB-303 synthesizer.",
+  "qid": "Q341364",
   "era": "Mid-1980s–Present",
   "origin": "Chicago, U.S.",
   "parent_genres": [
@@ -53,6 +54,12 @@
       "type": "genre",
       "name": "Trance",
       "qid": "Q170435"
+    },
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
     }
   ],
   "key_artists": [
@@ -86,6 +93,5 @@
       "name": "Acid Tracks"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q341364"
+  "landmark_tracks": []
 }

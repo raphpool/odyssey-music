@@ -1,0 +1,737 @@
+{
+  "slug": "artist:dj-paul-elstak",
+  "name": "DJ Paul Elstak",
+  "editorial_article": "Born in The Hague in 1966, DJ Paul Elstak is a foundational architect of Dutch gabber, mainstream hardcore, and happy hardcore. He launched Offensive Records in 2001 to distinguish his output, marking a departure from his early alias-based approach where he used 'Paul Elstak' for happy hardcore and 'DJ Paul' for gabber productions. His career highlights include the 1995 release of 'Rainbow in the Sky' and a 2024 production credit on Joost Klein’s Eurovision entry 'Europapa'. Recent efforts have seen him bridge generational gaps in the scene, including a 2024 collaboration with techno artist Reinier Zonneveld on 'XTCWTF' via the label Filth On Acid. In 2025, he revisited his own catalog, releasing a reimagined version of his 1997 classic 'Luv U More' alongside Scooter and Joost Klein.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Paul_Elstak",
+      "title": "DJ Paul Elstak - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:30.431Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Dutch producer and DJ central to the evolution of hardcore, gabber, and happy hardcore since 1987.",
+  "origin": "The Hague, Netherlands",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:offensive-records",
+      "type": "label",
+      "name": "Offensive Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hit-the-speakers",
+      "type": "project",
+      "name": "Hit The Speakers",
+      "mbid": "a2832eca-4de9-4017-8213-094139bf3d41",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-the-stars",
+      "type": "project",
+      "name": "To the Stars",
+      "mbid": "9fb242ce-fe13-4512-bfae-6b1476960466",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gabber-baller-man",
+      "type": "project",
+      "name": "Gabber Baller Man",
+      "mbid": "1315f5e2-18d8-426e-893b-bc6c3555d83c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:right-now",
+      "type": "project",
+      "name": "Right Now",
+      "mbid": "b4466833-f8cb-4f92-a2f3-277836e88848",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sound-the-alarm",
+      "type": "project",
+      "name": "Sound the Alarm",
+      "mbid": "a0a0924a-0fbc-49f0-ac42-38964a17da27",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heavy-kickdrum",
+      "type": "project",
+      "name": "Heavy Kickdrum",
+      "mbid": "a481f90a-b2c3-4313-924e-80406cfcc20a",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:annihilati-n",
+      "type": "project",
+      "name": "Annihilatiøn",
+      "mbid": "98242d08-bde3-4411-b000-4d2d8c99d0da",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:internet-hooligan",
+      "type": "project",
+      "name": "Internet Hooligan",
+      "mbid": "92252fee-4463-42fc-96b2-3c703fa9b9b5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thrillseeka",
+      "type": "project",
+      "name": "Thrillseeka (Hard Techno Mix)",
+      "mbid": "38e28cf9-86ba-4a2c-834a-60ccd3e45ca0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-u-more",
+      "type": "project",
+      "name": "Luv U More",
+      "mbid": "e2c0b48e-a336-4efb-a795-c1ff3f47327e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-it-to-the-limit",
+      "type": "project",
+      "name": "Push It to the Limit",
+      "mbid": "be6316a5-21e5-48b8-b309-bdadda748945",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breek-de-tent-af",
+      "type": "project",
+      "name": "Breek De Tent Af",
+      "mbid": "4c165524-963d-4b71-80ef-0fb7e5abb2a4",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-comes-the-prozac",
+      "type": "project",
+      "name": "Here Comes the Prozac (Dione’s Gabber remix)",
+      "mbid": "3c2fb13f-8cbb-45fb-ab2e-934cde843f46",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:louder-is-the-game",
+      "type": "project",
+      "name": "Louder Is The Game",
+      "mbid": "10962aa8-0c46-4f37-8ffa-eea0e2eb4bab",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:xtcwtf",
+      "type": "project",
+      "name": "XTCWTF",
+      "mbid": "a5ee906a-278d-4e10-9e67-ba615c536ace",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oh-my",
+      "type": "project",
+      "name": "Oh My (Dimitri K Remix)",
+      "mbid": "07420f1b-2d5d-43e7-819a-dad1f3f336c0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:raveheart",
+      "type": "project",
+      "name": "Raveheart",
+      "mbid": "94fd1473-888f-417f-bcd7-4909ebfaa410",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vet-en-hard",
+      "type": "project",
+      "name": "Vet En Hard",
+      "mbid": "71382931-5023-481f-8fa9-bb6a9b78ca37",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-me-away",
+      "type": "project",
+      "name": "TAKE ME AWAY",
+      "mbid": "20012dbd-8c2a-45df-bcff-9ddb97f7411b",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ik-kom-harder",
+      "type": "project",
+      "name": "Ik Kom Harder",
+      "mbid": "abb3b1d0-3bdc-4f0b-98dd-13d49e45365e",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-way",
+      "type": "project",
+      "name": "My Way",
+      "mbid": "ba2dde7c-9507-4721-8c65-9a075952e432",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:welcome-to-my-nightmare",
+      "type": "project",
+      "name": "Welcome to My Nightmare",
+      "mbid": "70cd4745-ef2e-4b7d-9051-0f26f9bf391a",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-till-i-die",
+      "type": "project",
+      "name": "Party Till I Die",
+      "mbid": "c3e27c31-217e-436c-b2c0-aa926aee2cc9",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:attack",
+      "type": "project",
+      "name": "Attack",
+      "mbid": "f2d60572-e92a-43e0-bcd2-393f22429d5f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gabber-girl",
+      "type": "project",
+      "name": "Gabber Girl",
+      "mbid": "56f1bccc-c641-4445-8c91-7a6a4cf114c2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crazy-mega-cool",
+      "type": "project",
+      "name": "Crazy Mega Cool",
+      "mbid": "0d6f1334-529d-4a94-af27-40e0688aa7e1",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-sampler-vol-1",
+      "type": "project",
+      "name": "Hardcore Sampler, Vol. 1",
+      "mbid": "c55198c5-8df2-4e36-8f79-f8f831b26720",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:toxic-people",
+      "type": "project",
+      "name": "Toxic People",
+      "mbid": "50f0e1a3-ab12-4b8d-a64d-429edcfde3e8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-rinse-repeat",
+      "type": "project",
+      "name": "Rave, Rinse, Repeat",
+      "mbid": "96bb1d74-66d2-4e6e-9c98-5b1fb4383d2b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warhorn",
+      "type": "project",
+      "name": "WARHORN (Hardcore Mix)",
+      "mbid": "8266fed8-33cc-491f-a337-8be5fd9eae12",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warhorn",
+      "type": "project",
+      "name": "WARHORN (E1: To War We Go)",
+      "mbid": "4ede1ee8-5309-46b5-ad1d-5295f775c106",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:without-sin",
+      "type": "project",
+      "name": "Without Sin",
+      "mbid": "0a87fb65-5b6d-4937-b9e2-b0ff5f71e3a6",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-live-forever",
+      "type": "project",
+      "name": "We Live Forever",
+      "mbid": "a1266647-3616-4c54-9c55-c410c46113d7",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bull-kick",
+      "type": "project",
+      "name": "Bull Kick",
+      "mbid": "99428c4b-8be5-4b6b-bd44-ba9abb0a1363",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:memories",
+      "type": "project",
+      "name": "Memories",
+      "mbid": "3e22bc7a-52fa-4ba1-8d37-ca30a79f74c2",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-ultimate-paul-elstak-mash-up",
+      "type": "project",
+      "name": "The Ultimate Paul Elstak Mash-Up",
+      "mbid": "44c31c21-bc2e-48c9-aa1d-bbbf280381c8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beyond-your-control",
+      "type": "project",
+      "name": "Beyond Your Control",
+      "mbid": "4011bbe5-148c-40fb-875e-da06a22e04e6",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soldaat",
+      "type": "project",
+      "name": "Soldaat",
+      "mbid": "61f5d196-1f1e-4a46-b8f8-1315ee57c346",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:offensive-remix-pack",
+      "type": "project",
+      "name": "Offensive Remix Pack",
+      "mbid": "dc364c70-5c0b-4cfb-be98-d61e58654f7c",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:flipside",
+      "type": "project",
+      "name": "Flipside",
+      "mbid": "d6877058-b9f2-4e1f-a40f-e1bf7fff5137",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:demons",
+      "type": "project",
+      "name": "Demons",
+      "mbid": "56a492d7-ab66-4628-8987-c0cfb221e9e0",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:foolish-for-life",
+      "type": "project",
+      "name": "Foolish for Life (Official Foolish NYE 2017 OST)",
+      "mbid": "b32679f2-c1ca-4c03-b7e5-4dc18837811d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:engeltje",
+      "type": "project",
+      "name": "Engeltje",
+      "mbid": "5195e16a-5bff-4eb3-bc7d-89f81f6a497a",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:helium",
+      "type": "project",
+      "name": "Helium",
+      "mbid": "e16493c8-b5ec-4b91-acf5-26c0b6a9e5fd",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-offensive-mini-album",
+      "type": "project",
+      "name": "The Offensive Mini Album",
+      "mbid": "d5166e83-9d6d-4b8e-958a-eec99698c92d",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-shades",
+      "type": "project",
+      "name": "The Dark Shades (Official Nightmare Anthem 2015)",
+      "mbid": "ffd0181d-cba0-4911-8f9d-ec9fa5e3a2d3",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:louder",
+      "type": "project",
+      "name": "Louder",
+      "mbid": "35c87e25-689f-4239-9cd0-38e878f0ba6c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fokking-hard-ep",
+      "type": "project",
+      "name": "Fokking Hard EP",
+      "mbid": "2e0cb7e9-d237-4c79-97af-59601e56b8d3",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fokking-hard-ep",
+      "type": "project",
+      "name": "Fokking Hard EP",
+      "mbid": "3d85029b-0f31-467a-9813-d0a04a8eb4a5",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pussy-lounge-e-p",
+      "type": "project",
+      "name": "Pussy Lounge E.P.",
+      "mbid": "696546dd-418a-43e8-be10-b00cb9356263",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:offensive-sampler-2013",
+      "type": "project",
+      "name": "Offensive Sampler 2013",
+      "mbid": "676146d8-23be-46ae-bf06-7b1265786420",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-from-the-dead",
+      "type": "project",
+      "name": "Back From The Dead",
+      "mbid": "613e0275-23c2-482f-bd0c-144aeb8446fd",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nightmare-create-the-future",
+      "type": "project",
+      "name": "Nightmare - Create The Future",
+      "mbid": "c2eba3a6-d98d-465a-b60a-1bb5d9402a97",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turbo",
+      "type": "project",
+      "name": "Turbo",
+      "mbid": "73279354-d630-4e2b-b568-ace57da5eda5",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angels-deserve-to-die",
+      "type": "project",
+      "name": "Angels Deserve To Die",
+      "mbid": "ed9ff3d3-736d-4834-bc9e-ae65e97f647d",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beat-the-system",
+      "type": "project",
+      "name": "Beat the System",
+      "mbid": "286242bc-2cbc-4ab4-9122-d4548f9b1581",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:offensive-sampler-volume-3",
+      "type": "project",
+      "name": "Offensive Sampler, Volume 3",
+      "mbid": "a8a7abda-3c40-4447-b230-cbc46bf0a75b",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:show-no-fear",
+      "type": "project",
+      "name": "Show No Fear",
+      "mbid": "565ad579-2e36-3f24-b87a-95d557a7044b",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:offensive-floorkillaz-volume-2",
+      "type": "project",
+      "name": "Offensive Floorkillaz - Volume 2",
+      "mbid": "dc7bf5a2-b880-4d33-aeb1-5e08c9ce05ea",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hardcore-by-nature",
+      "type": "project",
+      "name": "Hardcore by Nature",
+      "mbid": "2f864770-bd7b-4c54-89c8-46c05a81824a",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:furious-anger",
+      "type": "project",
+      "name": "Furious Anger",
+      "mbid": "d5a2cee6-a381-482e-b30b-127ea6237200",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-day-we-kill-em-all",
+      "type": "project",
+      "name": "One Day We Kill’em All",
+      "mbid": "f6bfcccd-710f-4701-8428-86a6654ca81e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:danger-danger",
+      "type": "project",
+      "name": "Danger Danger",
+      "mbid": "c1c7319e-c594-3af1-8faf-1ceb54414912",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-comes-the-prozac",
+      "type": "project",
+      "name": "Here Comes the Prozac",
+      "mbid": "8e8311bb-ba47-32b7-a3f1-22709736c336",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:offensive-floorkillaz-volume-1",
+      "type": "project",
+      "name": "Offensive Floorkillaz - Volume 1",
+      "mbid": "831b03b3-2545-4d11-8f82-8d86d17af549",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-taste-of-fear",
+      "type": "project",
+      "name": "A Taste Of Fear",
+      "mbid": "45cb81b1-587e-4727-b883-e4d3a33e61bf",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:offensive-remix-project-part-2",
+      "type": "project",
+      "name": "Offensive Remix Project, Part 2",
+      "mbid": "b66c0244-a411-3e3b-b04d-e7b22bbed75d",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-hardcore-state-of-mind",
+      "type": "project",
+      "name": "A Hardcore State of Mind",
+      "mbid": "2fcd8629-1dd6-3c35-bacf-007db16188c0",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-hardcore-state-of-mind",
+      "type": "project",
+      "name": "A Hardcore State of Mind",
+      "mbid": "b0a22f78-fed6-3a37-8395-d2da9db4c541",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-am-darkness",
+      "type": "project",
+      "name": "I Am Darkness",
+      "mbid": "db5fbd3d-4846-4ace-bf93-aac486c30543",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:offensive-remix-project-part-1",
+      "type": "project",
+      "name": "Offensive Remix Project, Part 1",
+      "mbid": "e37b3dc5-eeea-3a39-8090-d4b1a58dac69",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ready-for-judgement-day",
+      "type": "project",
+      "name": "Ready for Judgement Day",
+      "mbid": "c4470710-e540-36fa-91f4-85aa643d103f",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bombing-eardrumz",
+      "type": "project",
+      "name": "Bombing Eardrumz",
+      "mbid": "5ed3d006-3fc4-45fe-9c5d-a4a3100973ec",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ready-for-judgement-day",
+      "type": "project",
+      "name": "Ready for Judgement Day",
+      "mbid": "14185aa8-a534-3f21-997f-668aa2b21da1",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enemies-4-life",
+      "type": "project",
+      "name": "Enemies 4 Life",
+      "mbid": "adb29de4-7e1c-4adc-b26e-333acc07ae1b",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-s-wrong-with-my-brain",
+      "type": "project",
+      "name": "What’s Wrong With My Brain",
+      "mbid": "75130c5c-7207-3851-8422-751ab8d8a1fc",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:offensive",
+      "type": "project",
+      "name": "Offensive",
+      "mbid": "16905515-5891-360d-9d92-60e72a3e0823",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-shall-not-be-moved",
+      "type": "project",
+      "name": "We Shall Not Be Moved",
+      "mbid": "0ae23c50-094d-4d86-a6a7-5a946b19d5a6",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:demonic-state",
+      "type": "project",
+      "name": "Demonic State",
+      "mbid": "9f8389c0-6399-4099-abc3-0a2fcb88ee90",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:may-the-forze-be-with-you",
+      "type": "project",
+      "name": "May the Forze Be With You",
+      "mbid": "94e8bbe7-788d-3000-8e40-57b7591d4fb4",
+      "year": "1995",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:rainbow-in-the-sky",
+      "type": "track",
+      "name": "Rainbow in the Sky"
+    },
+    {
+      "slug": "track:luv-u-more",
+      "type": "track",
+      "name": "Luv U More"
+    },
+    {
+      "slug": "track:europapa",
+      "type": "track",
+      "name": "Europapa"
+    },
+    {
+      "slug": "track:xtcwtf",
+      "type": "track",
+      "name": "XTCWTF"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:joost-klein",
+      "type": "artist",
+      "name": "Joost Klein"
+    },
+    {
+      "slug": "artist:reinier-zonneveld",
+      "type": "artist",
+      "name": "Reinier Zonneveld"
+    },
+    {
+      "slug": "artist:scooter",
+      "type": "artist",
+      "name": "Scooter"
+    },
+    {
+      "slug": "artist:jebroer",
+      "type": "artist",
+      "name": "Jebroer"
+    },
+    {
+      "slug": "artist:dr-phunk",
+      "type": "artist",
+      "name": "Dr Phunk"
+    },
+    {
+      "slug": "artist:rotterdam-terror-corps",
+      "type": "artist",
+      "name": "Rotterdam Terror Corps"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:rotterdam-terror-corps",
+      "type": "artist",
+      "name": "Rotterdam Terror Corps"
+    }
+  ]
+}

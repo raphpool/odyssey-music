@@ -1,0 +1,375 @@
+{
+  "slug": "artist:kai-tracid",
+  "name": "Kai Tracid",
+  "editorial_article": "Born Kai Franz in Frankfurt in 1972, the producer rose to international prominence in 1998 with the trance hit Liquid Skies. His moniker is a portmanteau representing his foundational sound, which fuses trance melodies with the sharper edges of acid. He achieved his first top-ten success on the German single charts in 2001 with Life Is Too Short. Beyond his solo work, he has utilized aliases such as A*S*Y*S and Warmduscher to explore diverse electronic textures. After a decade-long hiatus starting in 2009 to focus on his yoga center, he returned to the scene in 2020 by collaborating with Moguai on the track DT64. His discography includes studio albums such as Skywalker 1999 and the 2002 release Trance & Acid, with music distributed through his own labels Tracid Traxxx and Tracid Digital.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kai_Tracid",
+      "title": "Kai Tracid - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:54:42.167Z",
+  "type": "artist",
+  "editorial_bio": "A German trance DJ and producer known for his signature fusion of melodic trance and acid, famously active under numerous aliases like A*S*Y*S.",
+  "origin": "Frankfurt, Germany",
+  "active_years": "1997-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    },
+    {
+      "slug": "genre:hard-trance",
+      "type": "genre",
+      "name": "Hard Trance",
+      "qid": "Q832665"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tracid-traxxx",
+      "type": "label",
+      "name": "Tracid Traxxx"
+    },
+    {
+      "slug": "label:tracid-digital",
+      "type": "label",
+      "name": "Tracid Digital"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:africa",
+      "type": "project",
+      "name": "Africa",
+      "mbid": "9ae95c66-3029-4625-92a8-4d5e8d0d70d6",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bam-bam-tschak",
+      "type": "project",
+      "name": "BAM BAM TSCHAK (We Will Rock You Mix)",
+      "mbid": "2d9247f0-fc0c-4837-b54d-5f95c2d1fc87",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tracid",
+      "type": "project",
+      "name": "Tracid",
+      "mbid": "594fb0ef-6194-442a-9dc2-6c50f73aedbf",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tracid",
+      "type": "project",
+      "name": "Tracid (Extended Mix)",
+      "mbid": "8e927a32-5a39-4195-9bcb-9218821a37c6",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mockmoon",
+      "type": "project",
+      "name": "Mockmoon (Peace, Love, XTC)",
+      "mbid": "fe13ec40-8e8f-4fa4-92e3-ebf6cd7f3d5a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-the-planet-supporter-series",
+      "type": "project",
+      "name": "Rave The Planet: Supporter Series",
+      "mbid": "7cb4f041-8769-429c-9f77-e7b4a17371b5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-the-planet-supporter-series-vol-009",
+      "type": "project",
+      "name": "Rave the Planet: Supporter Series, Vol. 009",
+      "mbid": "dcb1f8b9-a660-43d9-95f4-6edea12e1128",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wrong-or-right",
+      "type": "project",
+      "name": "Wrong or Right (Acid Rain over Berlin Mix)",
+      "mbid": "14092e8b-2217-4f4c-8f53-1559f671e04b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:303-state",
+      "type": "project",
+      "name": "303 State",
+      "mbid": "cb04e9a3-91f4-42a4-9acb-449f92f841cd",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom-of-expression",
+      "type": "project",
+      "name": "Freedom Of Expression (Dark Acid mix)",
+      "mbid": "f2acdfc6-8dd4-4fb0-ba9d-5d7603785eaf",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dt64",
+      "type": "project",
+      "name": "DT64",
+      "mbid": "74286d49-08d0-4152-aa7f-3fc431d0d81b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-the-change",
+      "type": "project",
+      "name": "Be The Change",
+      "mbid": "c06f3b82-8719-47db-9ea6-2b5539616ce6",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-what-it-s-all-about",
+      "type": "project",
+      "name": "This Is What It's All About",
+      "mbid": "0a672e30-ddb7-4c28-88e1-d40a41f1e7b8",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:liquid-skies",
+      "type": "project",
+      "name": "Liquid Skies",
+      "mbid": "1817c936-b056-4d68-8edb-e2da191b6d45",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:your-own-reality",
+      "type": "project",
+      "name": "Your Own Reality",
+      "mbid": "4d81e0b8-2c70-465c-8aa0-7049535955b2",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:depressive-mood-discreet-charm",
+      "type": "project",
+      "name": "Depressive Mood / Discreet Charm",
+      "mbid": "51a64d15-f7dd-436f-aed1-dd469d4c1cc7",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inflator-aural-border",
+      "type": "project",
+      "name": "Inflator / Aural Border",
+      "mbid": "0dbad63f-a9b8-44e1-870a-e89cb7d3ff93",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobita-aktionsradius",
+      "type": "project",
+      "name": "Nobita / Aktionsradius",
+      "mbid": "92c4ce64-8b66-4884-9499-76f8be786d5e",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kapt-n-timewarp",
+      "type": "project",
+      "name": "Käpt'n / Timewarp",
+      "mbid": "43ddaf01-7f42-4381-87f0-280d440d3e67",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deeper-perfecto",
+      "type": "project",
+      "name": "Deeper / Perfecto",
+      "mbid": "e446e51a-e08e-4ef6-aa2a-8d41d6c24d75",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:conscious",
+      "type": "project",
+      "name": "Conscious",
+      "mbid": "c4effa1d-cfde-3d83-ae72-fdd785f3fd40",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:contemplate",
+      "type": "project",
+      "name": "Contemplate (The Reason You Exist)",
+      "mbid": "0f95ee65-a707-3fbe-a639-613f69d4a4ff",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:4-just-1-day",
+      "type": "project",
+      "name": "4 Just 1 Day",
+      "mbid": "91fad905-8550-3b68-bc40-d8d9c7ba0389",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trance-and-acid",
+      "type": "project",
+      "name": "Trance & Acid",
+      "mbid": "d5f50afa-49eb-3e2b-9873-ef831bc287d4",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trance-and-acid",
+      "type": "project",
+      "name": "Trance & Acid",
+      "mbid": "469709c2-8d36-3734-a447-684818851ffa",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trance-and-acid",
+      "type": "project",
+      "name": "Trance & Acid",
+      "mbid": "0f2360e0-1636-4e84-a782-f1b72a360f9f",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:life-is-too-short",
+      "type": "project",
+      "name": "Life Is Too Short",
+      "mbid": "4a85336c-ef8d-33b7-909a-3bade099d1cc",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-many-times",
+      "type": "project",
+      "name": "Too Many Times",
+      "mbid": "9aeb5b9f-1b2b-348c-ab0c-6f8fd1df8f59",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-many-times",
+      "type": "project",
+      "name": "Too Many Times",
+      "mbid": "44b77337-9fc4-4c48-a6c4-5b8c87f4ea51",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tiefenrausch",
+      "type": "project",
+      "name": "Tiefenrausch (The Deep Blue)",
+      "mbid": "c8312efa-5498-3237-95d7-f9a8c0b51114",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:destiny-s-path",
+      "type": "project",
+      "name": "Destiny's Path",
+      "mbid": "afc24767-01a5-3efb-aa08-5028f09f1c80",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skywalker-1999",
+      "type": "project",
+      "name": "Skywalker 1999",
+      "mbid": "a552ee95-eba7-3e88-9c0c-5c18b73bcae9",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:liquid-skies",
+      "type": "project",
+      "name": "Liquid Skies",
+      "mbid": "f6822fb9-6b1b-3934-b81d-3e0ebb91a5ea",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dance-for-eternity",
+      "type": "project",
+      "name": "Dance for Eternity",
+      "mbid": "9f651ec9-9706-3cb3-8957-184a9618236f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:your-own-reality",
+      "type": "project",
+      "name": "Your Own Reality",
+      "mbid": "26f5edad-e73a-3c1f-8b44-fa1f81956d2c",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-just-1-day",
+      "type": "project",
+      "name": "4 Just 1 Day",
+      "mbid": "60be0971-ea17-381c-a345-40f9ade9a872",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:your-own-reality",
+      "type": "track",
+      "name": "Your Own Reality"
+    },
+    {
+      "slug": "track:liquid-skies",
+      "type": "track",
+      "name": "Liquid Skies"
+    },
+    {
+      "slug": "track:life-is-too-short",
+      "type": "track",
+      "name": "Life Is Too Short"
+    },
+    {
+      "slug": "track:dt64",
+      "type": "track",
+      "name": "DT64"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:moguai",
+      "type": "artist",
+      "name": "Moguai"
+    },
+    {
+      "slug": "artist:a-s-y-s",
+      "type": "artist",
+      "name": "A*S*Y*S"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

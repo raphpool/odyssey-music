@@ -1,0 +1,348 @@
+{
+  "slug": "artist:dj-icey",
+  "name": "DJ Icey",
+  "editorial_article": "Born Eddie Pappa, the Orlando-based producer rose to prominence while DJing at the now-defunct club The Edge from 1991 to 1996. Recognized as a founder of the Florida Breaks sound, he launched his own label, Zone, in 1993 to emulate the output of UK labels like O-Zone and D-Zone. Billboard cited his work alongside contemporaries like The Crystal Method and DJ Micro, noting his expert ability to blend Chicago hip house with English breakbeat traditions. His 1998 single 'This Is How My Drummer Drums' reached #21 on the Hot Dance Music/Maxi-Singles Sales chart, while his 2003 album 'Different Day' peaked at #8 on the Top Electronic Albums chart. Throughout his career, he has provided remixes for artists including Groove Armada, Paul Oakenfold, and Kosheen.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Icey",
+      "title": "DJ Icey - Wikipedia"
+    },
+    {
+      "url": "https://www.electriclove.dance/dj-icey",
+      "title": "DJ Icey - Electric Love Music Festival"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:43.006Z",
+  "type": "artist",
+  "editorial_bio": "Florida-based producer and DJ Eddie Pappa is a pioneer of the Florida Breaks sound and founder of the Zone record label.",
+  "origin": "Orlando, Florida",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:zone",
+      "type": "label",
+      "name": "Zone"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:take-a-little-take-a-lot",
+      "type": "project",
+      "name": "Take A Little Take A Lot",
+      "mbid": "07493092-d76b-452c-85df-9593a53ac68a",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ride-mountain-ride",
+      "type": "project",
+      "name": "Ride Mountain Ride",
+      "mbid": "d462c4b5-ade0-47be-a9e1-4119585e8510",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trackotron-2",
+      "type": "project",
+      "name": "Trackotron 2",
+      "mbid": "2e4fc3a6-db45-449a-a83e-3f240c04295a",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trackotron",
+      "type": "project",
+      "name": "Trackotron",
+      "mbid": "22394a49-b97e-4b78-831e-82ca777ffa91",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-big-room",
+      "type": "project",
+      "name": "One Big Room",
+      "mbid": "e4b29bda-e70d-4be8-9cc2-ca2f606ffd9b",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e-stands-4-everything",
+      "type": "project",
+      "name": "E Stands 4 Everything",
+      "mbid": "efb35da4-3e08-47e4-bb27-75ff6ba0ae04",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flash-the-message",
+      "type": "project",
+      "name": "Flash the Message",
+      "mbid": "edae717e-69f4-4c69-b351-a232bd4c498d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-you-feel",
+      "type": "project",
+      "name": "What You Feel",
+      "mbid": "ee7a7c0a-cb66-48ac-bec3-99086c03ec3b",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bassline-hookers",
+      "type": "project",
+      "name": "Bassline Hookers",
+      "mbid": "f547a1e7-2fe0-4565-bc8c-16b160f2e58d",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:offshore-jedi",
+      "type": "project",
+      "name": "Offshore Jedi",
+      "mbid": "ec6134be-3b4e-4b6b-bb4d-bb6654251944",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:through-the-door",
+      "type": "project",
+      "name": "Through The Door",
+      "mbid": "dea4b0c7-a4fd-42f0-a363-c1f25a6d599e",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twisted",
+      "type": "project",
+      "name": "Twisted",
+      "mbid": "b9143504-0098-4c76-9d0e-5eed56c636cb",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:searching",
+      "type": "project",
+      "name": "Searching",
+      "mbid": "8d90add5-4375-4aea-8003-03d0908cf9a9",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:different-day",
+      "type": "project",
+      "name": "Different Day",
+      "mbid": "75a1f50f-9f7d-3661-8d57-afcc8d20ec63",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-little-louder",
+      "type": "project",
+      "name": "A Little Louder",
+      "mbid": "d52b5e85-0d22-3991-becd-522a08d82589",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bust-off-the-bass",
+      "type": "project",
+      "name": "Bust Off the Bass",
+      "mbid": "abcc0786-f823-463a-b32b-a3c4363b5302",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beats-and-tracks-volume-12",
+      "type": "project",
+      "name": "Beats & Tracks Volume 12",
+      "mbid": "dd79b2e4-56ac-47df-8a66-a53830b09ad0",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-year-s-day-mashup",
+      "type": "project",
+      "name": "New Year's Day Mashup",
+      "mbid": "60a6df73-b97a-4adb-bade-e7038f222397",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:essential-mix-sampler",
+      "type": "project",
+      "name": "Essential Mix Sampler",
+      "mbid": "80d8cef9-b949-45de-9dd3-9813db7caf5a",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:continuous-play",
+      "type": "project",
+      "name": "Continuous Play",
+      "mbid": "004a39e7-ff67-3b12-bd7a-a1cff475981c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beats-and-tracks-volume-10",
+      "type": "project",
+      "name": "Beats & Tracks Volume 10",
+      "mbid": "8ac36dfb-7fd8-4ce3-b68f-96f0faee4dbd",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beats-and-tracks-volume-8",
+      "type": "project",
+      "name": "Beats & Tracks Volume 8",
+      "mbid": "d5f92958-1b28-4cd8-9d9a-52c083da0833",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:generate",
+      "type": "project",
+      "name": "Generate",
+      "mbid": "3769098a-2324-38be-aeba-4e0c7207f1b1",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:city-of-groove",
+      "type": "project",
+      "name": "City Of Groove",
+      "mbid": "458b0b7f-af93-43d3-8d40-fa1838c26704",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:selection",
+      "type": "project",
+      "name": "Selection",
+      "mbid": "51f72529-fcec-3569-8365-8ec41706f2bb",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-how-my-drummer-drums",
+      "type": "project",
+      "name": "This Is How My Drummer Drums",
+      "mbid": "c4c55540-b656-3314-b2b9-fe766b9a6d40",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-what",
+      "type": "project",
+      "name": "Say What",
+      "mbid": "f059a0d9-5c46-4bb4-9fc9-d013a7fdff47",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-to-the-dance",
+      "type": "project",
+      "name": "Break to the Dance",
+      "mbid": "730e1d3c-f517-36fb-9a93-bc43035dd68c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-ditch-galaxo",
+      "type": "project",
+      "name": "Big Ditch / Galaxo",
+      "mbid": "d5ac68a5-7d33-4cf6-bf95-1156812b8b63",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beats-a-rockin",
+      "type": "project",
+      "name": "Beats-A-Rockin",
+      "mbid": "f1efeee4-1e1b-45f4-a1f4-5c866a9b0736",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:energy-traxx-vol-1",
+      "type": "project",
+      "name": "Energy Traxx Vol. 1",
+      "mbid": "c846872c-3ffa-424d-8feb-96e13d38ca32",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beats-a-rockin",
+      "type": "project",
+      "name": "Beats-A-Rockin",
+      "mbid": "6ed87f24-860a-46d1-ae7f-b53a8e62b3bf",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:this-is-how-my-drummer-drums",
+      "type": "track",
+      "name": "This Is How My Drummer Drums"
+    },
+    {
+      "slug": "track:not-a-test",
+      "type": "track",
+      "name": "Not a Test"
+    },
+    {
+      "slug": "track:city-of-groove",
+      "type": "track",
+      "name": "City of Groove"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:groove-armada",
+      "type": "artist",
+      "name": "Groove Armada"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold"
+    },
+    {
+      "slug": "artist:kosheen",
+      "type": "artist",
+      "name": "Kosheen"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:city-wide-allstars",
+      "type": "artist",
+      "name": "City-Wide Allstars"
+    }
+  ],
+  "members": []
+}

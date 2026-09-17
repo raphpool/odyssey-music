@@ -1,0 +1,531 @@
+{
+  "slug": "artist:a-s-y-s",
+  "name": "A*S*Y*S",
+  "editorial_article": "A*S*Y*S is a German music project, established by producers Frank Ellrich and Kai Franz, that specializes in a hybrid of techno, acid, and hardtechno. The project, often associated with the alias Frank Ellrich, has been active in the dance music scene with various releases found on platforms like Discogs. Their work frequently incorporates hard-hitting rhythmic structures and acid synthesis. A*S*Y*S has garnered attention through a range of remixes and original productions, collaborating with artists including Alex Kidd, Audiofreq, and Kai Tracid. The project has also explored reinterpretations of classic material, including a notable cover of a track originally released in the early 1980s by the Berlin indie-punk group Ideal.",
+  "citations": [
+    {
+      "url": "https://edm.fandom.com/wiki/A*S*Y*S",
+      "title": "A*S*Y*S - EDM Wiki"
+    },
+    {
+      "url": "https://www.facebook.com/asysofficial/",
+      "title": "A*S*Y*S - Facebook"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:54:48.751Z",
+  "type": "artist",
+  "editorial_bio": "A German production project founded by Frank Ellrich and Kai Franz, blending techno, acid, and hardtechno influences.",
+  "origin": "Germany",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
+    },
+    {
+      "slug": "genre:hardtechno",
+      "type": "genre",
+      "name": "Hardtechno",
+      "qid": "Q3084222"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fe-records",
+      "type": "label",
+      "name": "Fe Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:discoteca",
+      "type": "project",
+      "name": "Discoteca",
+      "mbid": "71e6102d-6eec-46ef-a8e0-fddec2e13859",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:count-on-acid",
+      "type": "project",
+      "name": "Count on Acid",
+      "mbid": "99f961ca-e4a4-4fd3-b27d-4917922a7097",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:africa",
+      "type": "project",
+      "name": "Africa",
+      "mbid": "9ae95c66-3029-4625-92a8-4d5e8d0d70d6",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-name",
+      "type": "project",
+      "name": "My Name",
+      "mbid": "0214b0d3-21de-4975-a6da-17a48fc08b03",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:das-pixel",
+      "type": "project",
+      "name": "Das Pixel (Kalt Mix)",
+      "mbid": "32451042-cb3d-428e-a4cc-05c50389d57b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-greatest",
+      "type": "project",
+      "name": "The Greatest",
+      "mbid": "4dc28838-3b49-4625-83d5-246cc46970a8",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bam-bam-tschak",
+      "type": "project",
+      "name": "BAM BAM TSCHAK (We Will Rock You Mix)",
+      "mbid": "2d9247f0-fc0c-4837-b54d-5f95c2d1fc87",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:give-me-acid",
+      "type": "project",
+      "name": "Give Me Acid",
+      "mbid": "47cc88e0-c56f-4de3-b506-e702e841f357",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-phase",
+      "type": "project",
+      "name": "Acid Phase",
+      "mbid": "cd220883-55f2-4075-8b0c-573e49a9412e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elysium",
+      "type": "project",
+      "name": "Elysium",
+      "mbid": "71e24d98-488c-4a0c-85ac-83265ac98e3a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:body-mind-and-soul",
+      "type": "project",
+      "name": "Body Mind & Soul (Original Mix)",
+      "mbid": "bf1ca886-b5a9-4bbc-8294-f3dada1c16bd",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ethereal-303",
+      "type": "project",
+      "name": "Ethereal 303",
+      "mbid": "0ee7aaf8-834b-4d60-8190-1d34b649e11a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-gotta-say-yes-to-another-excess",
+      "type": "project",
+      "name": "You Gotta Say Yes to Another Excess (Excess Mix)",
+      "mbid": "deef805b-beb2-4b99-b372-e3736d7dd448",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reminiscence",
+      "type": "project",
+      "name": "Reminiscence",
+      "mbid": "36e68f72-238e-42a0-b275-ac25bf734e73",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-revolution",
+      "type": "project",
+      "name": "La Revolution",
+      "mbid": "9a087c87-d518-4d14-b39a-19fafa740507",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-robot",
+      "type": "project",
+      "name": "Acid Robot (Original Mix)",
+      "mbid": "8e95ce7f-d87c-43d2-99f8-a92161c5dd84",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bionatops",
+      "type": "project",
+      "name": "Bionatops",
+      "mbid": "71756922-ca89-4bdd-abf7-843ae5b6603f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweat-and-tears",
+      "type": "project",
+      "name": "Sweat & Tears",
+      "mbid": "836d8a23-43ae-497a-8990-b6eca140a6cf",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-the-planet-supporter-series",
+      "type": "project",
+      "name": "Rave The Planet: Supporter Series",
+      "mbid": "7cb4f041-8769-429c-9f77-e7b4a17371b5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-the-planet-supporter-series-vol-009",
+      "type": "project",
+      "name": "Rave the Planet: Supporter Series, Vol. 009",
+      "mbid": "dcb1f8b9-a660-43d9-95f4-6edea12e1128",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-drill",
+      "type": "project",
+      "name": "Acid Drill",
+      "mbid": "1fc367b5-2a3d-4b79-9bc7-63240ee27f55",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:light-my-fire",
+      "type": "project",
+      "name": "Light My Fire",
+      "mbid": "e6be5133-435e-4ed1-aa70-fb83d43b3b2e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wrong-or-right",
+      "type": "project",
+      "name": "Wrong or Right (Acid Rain over Berlin Mix)",
+      "mbid": "14092e8b-2217-4f4c-8f53-1559f671e04b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:macid",
+      "type": "project",
+      "name": "Macid",
+      "mbid": "b2820fb5-e5c1-44a4-a114-5e271f08172c",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dragon-walker",
+      "type": "project",
+      "name": "Dragon Walker",
+      "mbid": "5c8389c0-25c7-48c4-bdfb-d42da4872abb",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:injection",
+      "type": "project",
+      "name": "Injection",
+      "mbid": "dad50bfc-8db4-4685-87f0-f6842dadb0c1",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom-of-expression",
+      "type": "project",
+      "name": "Freedom Of Expression (Dark Acid mix)",
+      "mbid": "f2acdfc6-8dd4-4fb0-ba9d-5d7603785eaf",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-wall",
+      "type": "project",
+      "name": "Acid Wall",
+      "mbid": "9dad8069-b5ea-4ade-b98f-5f9cdf303172",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-acid",
+      "type": "project",
+      "name": "The Acid (Alex Stein Remix)",
+      "mbid": "664f8eb1-83cf-4de5-9acd-087a2775ee19",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ac-id",
+      "type": "project",
+      "name": "AC/ID",
+      "mbid": "f6a81a61-ba75-4fa8-9a0b-46c2889d1bbb",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-acid",
+      "type": "project",
+      "name": "The Acid",
+      "mbid": "fda142cb-9dbe-4dcc-af34-efc618cb65f0",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:destruction",
+      "type": "project",
+      "name": "Destruction",
+      "mbid": "f52c3334-4da1-4b9e-aff9-d5039b7bdd26",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:grand-theft-acid-part-ii",
+      "type": "project",
+      "name": "Grand Theft Acid, Part II",
+      "mbid": "9dc7c212-2ef3-4a60-b008-99cf972bd46c",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grand-theft-acid",
+      "type": "project",
+      "name": "Grand Theft Acid",
+      "mbid": "3268e53b-83eb-4f2a-9ead-0264ce02d80f",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-nightmare-dj-s-nightmare",
+      "type": "project",
+      "name": "Acid Nightmare / DJ's Nightmare",
+      "mbid": "d62cbea8-d772-4f1a-8868-74cfea6a823c",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mad",
+      "type": "project",
+      "name": "MAD",
+      "mbid": "fe979a29-344b-4139-82a1-cfdc04ce8147",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bpm-is-dead",
+      "type": "project",
+      "name": "BPM Is Dead",
+      "mbid": "98515c9c-c697-4f11-8ff8-355adceb6df5",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-glitch",
+      "type": "project",
+      "name": "Acid Glitch (Organ Donors Remix)",
+      "mbid": "082c740a-669d-46e4-a3a7-5bf847d8d6f4",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-glitch",
+      "type": "project",
+      "name": "Acid Glitch",
+      "mbid": "de6d4d85-8e65-4479-96db-d944861e1961",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-zombie",
+      "type": "project",
+      "name": "Acid Zombie",
+      "mbid": "cc352418-dc24-4a84-8c51-2ffc4484bede",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:klick-klack-wtf",
+      "type": "project",
+      "name": "Klick Klack WTF",
+      "mbid": "604b3b3a-428c-4b85-a8ce-b967b695ff8b",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-headcracker-2010",
+      "type": "project",
+      "name": "Acid Headcracker 2010",
+      "mbid": "d79f24f9-4a62-479d-b252-fcecd7cce8aa",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-in-acid",
+      "type": "project",
+      "name": "Lost In Acid",
+      "mbid": "f5caf2c5-df82-47c9-b8c8-cea74b6e9b7b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cheers",
+      "type": "project",
+      "name": "Cheers",
+      "mbid": "cc44f7ea-458c-4210-ae66-7404cb20d612",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-nightmare-2006",
+      "type": "project",
+      "name": "Acid Nightmare 2006",
+      "mbid": "4a1e623f-74a4-49d1-b565-544c623881e5",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-flash",
+      "type": "project",
+      "name": "Acid Flash",
+      "mbid": "7e807daf-2cc8-4b60-b54d-16a5b8a64452",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-save-your-soul",
+      "type": "project",
+      "name": "Acid Save Your Soul",
+      "mbid": "825e5fc1-2fdc-3d89-9cb6-b0fafb386ce9",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-more-fucking-rock-n-roll",
+      "type": "project",
+      "name": "No More Fucking Rock 'n' Roll",
+      "mbid": "8fe30710-2b54-3bfb-9736-58e167b7cd61",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:from-past-to-phuture",
+      "type": "project",
+      "name": "From Past To Phuture",
+      "mbid": "cf076913-c1fc-4ccb-99da-53e0310b38e9",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-nightmare-dj-s-nightmare",
+      "type": "project",
+      "name": "Acid Nightmare / DJ's Nightmare",
+      "mbid": "de4e4cb5-0376-4a2b-8731-c75b7fda0f9e",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-head-cracker",
+      "type": "project",
+      "name": "Acid Head Cracker",
+      "mbid": "0f0c902f-d3c5-4664-b6e4-7e6dca87cf15",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-save-your-soul",
+      "type": "project",
+      "name": "Acid Save Your Soul",
+      "mbid": "be021263-ef96-4118-b4d0-4518fa51a950",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-squid",
+      "type": "project",
+      "name": "Acid Squid",
+      "mbid": "b3abac54-2330-4386-9aa3-da5ca27320be",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-train-sweat-room",
+      "type": "project",
+      "name": "Acid Train / Sweat Room",
+      "mbid": "3d9c5980-d6c3-47f6-8939-a1acf7ea1e57",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bassface",
+      "type": "project",
+      "name": "Bassface",
+      "mbid": "ab873ee2-af01-44a0-9227-4485a8a53a53",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:acid-nightmare",
+      "type": "track",
+      "name": "Acid Nightmare"
+    },
+    {
+      "slug": "track:wicked",
+      "type": "track",
+      "name": "Wicked"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:frank-ellrich",
+      "type": "artist",
+      "name": "Frank Ellrich"
+    },
+    {
+      "slug": "artist:kai-franz",
+      "type": "artist",
+      "name": "Kai Franz"
+    },
+    {
+      "slug": "artist:kai-tracid",
+      "type": "artist",
+      "name": "Kai Tracid"
+    },
+    {
+      "slug": "artist:alex-kidd",
+      "type": "artist",
+      "name": "Alex Kidd"
+    },
+    {
+      "slug": "artist:audiofreq",
+      "type": "artist",
+      "name": "Audiofreq"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

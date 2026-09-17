@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { CrawlOptions } from "../src/crawler.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
-import type { GenreNode, Slug } from "../src/types.js";
+import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-28 review: missing wiring test (i) -- crawl() (src/crawler.ts) builds its own GenreRegistry
@@ -58,6 +58,28 @@ function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string })
 		key_labels: [],
 		landmark_projects: [],
 		landmark_tracks: [],
+		...overrides,
+	};
+}
+
+function artistNode(overrides: Partial<ArtistNode> & { slug: Slug; name: string }): ArtistNode {
+	return {
+		type: "artist",
+		editorial_article: "A real long article about this artist, well past the eighty character floor. ".repeat(
+			2,
+		),
+		editorial_bio: "A short bio.",
+		citations: [{ url: "https://example.com/artist" }],
+		materialized_at: new Date().toISOString(),
+		genres: [],
+		labels: [],
+		discography: [],
+		notable_tracks: [],
+		influences: [],
+		influenced: [],
+		collaborators: [],
+		aliases: [],
+		members: [],
 		...overrides,
 	};
 }
@@ -195,6 +217,127 @@ describe("crawlGenreSeeds() (TRA-61)", () => {
 		TIMEOUT_MS,
 	);
 
+	it(
+		"attaches the folder's genre edge to a target the drafted node doesn't already cite (TRA-263)",
+		async () => {
+			// The folder's genre is pre-seeded in the cache (as its own earlier "genre" stage run
+			// would have left it), so this run's only pipeline call is the target itself.
+			// artistDraftFixture()'s genres field is [{ type: "genre", name: "Techno" }] -- it never
+			// mentions "Gabber", the folder's own genre, reproducing the reported bug: the pipeline
+			// draft cites a genre it independently found, but not the one this dossier already
+			// verified for this target.
+			const cache = new NodeCache(dir);
+			await cache.write(genreNode({ slug: "genre:gabber", name: "Gabber", qid: "Q1085907" }));
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const { crawlGenreSeeds } = await loadCrawl();
+			const seeds: GenreSeeds = {
+				Q1085907: {
+					genre: { slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+					anchors: [],
+					targets: [{ type: "artist", name: "Fixture Artist", slug: "artist:fixture-artist" }],
+				},
+			};
+
+			const result = await crawlGenreSeeds(
+				{
+					seed: "artist:unused",
+					maxDepth: 0,
+					maxNodes: 2,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+				},
+				seeds,
+			);
+
+			expect(result).toMatchObject({ calls: 1, consumed: 1, failed: 0, refused: 1 });
+			const written = await cache.get("artist:fixture-artist");
+			if (written.type !== "artist") throw new Error("expected artist node");
+			expect(written.genres).toEqual(
+				expect.arrayContaining([{ type: "genre", slug: "genre:gabber", name: "Gabber", qid: "Q1085907" }]),
+			);
+			// The drafted genre (Techno, independently found by the pipeline) is untouched --
+			// this only adds the folder's own verified link, never replaces existing edges.
+			expect(written.genres.some((edge) => edge.slug === "genre:techno")).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"does not duplicate the folder's genre edge when the drafted target already cites it",
+		async () => {
+			const cache = new NodeCache(dir);
+			await cache.write(genreNode({ slug: "genre:gabber", name: "Gabber", qid: "Q1085907" }));
+			installPipelineMocks({
+				draft: artistDraftFixture({ genres: [{ type: "genre", name: "Gabber" }] }),
+			});
+			const { crawlGenreSeeds } = await loadCrawl();
+			const seeds: GenreSeeds = {
+				Q1085907: {
+					genre: { slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+					anchors: [],
+					targets: [{ type: "artist", name: "Fixture Artist", slug: "artist:fixture-artist" }],
+				},
+			};
+
+			await crawlGenreSeeds(
+				{
+					seed: "artist:unused",
+					maxDepth: 0,
+					maxNodes: 2,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+				},
+				seeds,
+			);
+
+			const written = await cache.get("artist:fixture-artist");
+			if (written.type !== "artist") throw new Error("expected artist node");
+			expect(written.genres.filter((edge) => edge.slug === "genre:gabber")).toHaveLength(1);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"never attaches a genre edge whose folder genre failed to materialize in this same run (no dangling reference)",
+		async () => {
+			// A single artist-shaped draft is reused for every call: the "genre" stage (input.type
+			// "genre") fails schema validation against it and is never written, while the "target"
+			// stage (input.type "artist") succeeds -- the folder's genre is not pre-seeded, so it
+			// genuinely doesn't exist anywhere in the cache when the target is written.
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const { crawlGenreSeeds } = await loadCrawl();
+			const cache = new NodeCache(dir);
+			const seeds: GenreSeeds = {
+				Q1085907: {
+					genre: { slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+					anchors: [],
+					targets: [{ type: "artist", name: "Fixture Artist", slug: "artist:fixture-artist" }],
+				},
+			};
+
+			const result = await crawlGenreSeeds(
+				{
+					seed: "artist:unused",
+					maxDepth: 0,
+					maxNodes: 2,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+				},
+				seeds,
+			);
+
+			expect(result).toMatchObject({ calls: 2, consumed: 2, failed: 1, refused: 0 });
+			expect(await cache.has("genre:gabber")).toBe(false);
+			const written = await cache.get("artist:fixture-artist");
+			if (written.type !== "artist") throw new Error("expected artist node");
+			expect(written.genres.some((edge) => edge.slug === "genre:gabber")).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
 	it("reuses an existing genre by QID instead of materializing a second node", async () => {
 		const cache = new NodeCache(dir);
 		await cache.write(genreNode({ slug: "genre:cached-trap", name: "Trap Hip-Hop", qid: "Q2913982" }));
@@ -225,6 +368,104 @@ describe("crawlGenreSeeds() (TRA-61)", () => {
 		expect(result.refused).toBe(1);
 		expect(logs.some((line) => line.includes("skip cached genre genre:Trap Hip-Hop"))).toBe(true);
 		expect(await cache.has("genre:trap-hip-hop")).toBe(false);
+	});
+});
+
+describe("backfillSeedGenres() (TRA-263)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-crawler-backfill-e2e-"));
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	function seeds(): GenreSeeds {
+		return {
+			Q1085907: {
+				genre: { slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+				anchors: [],
+				targets: [{ type: "artist", name: "Fixture Artist", slug: "artist:fixture-artist" }],
+			},
+		};
+	}
+
+	it(
+		"rewrites a cached target missing the folder's genre edge, byte-identical otherwise, and links the second run to 0 writes",
+		async () => {
+			const cache = new NodeCache(dir);
+			await cache.write(genreNode({ slug: "genre:gabber", name: "Gabber", qid: "Q1085907" }));
+			const original = artistNode({
+				slug: "artist:fixture-artist",
+				name: "Fixture Artist",
+				genres: [{ type: "genre", slug: "genre:rave", name: "Rave" }],
+			});
+			await cache.write(original);
+			const { backfillSeedGenres } = await loadCrawl();
+
+			const result = await backfillSeedGenres(
+				{
+					seed: "genre-seeds",
+					maxDepth: 0,
+					maxNodes: 10,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+				},
+				seeds(),
+			);
+
+			expect(result).toEqual({ backfilled: 1, alreadyLinked: 0, missing: 0 });
+			const relinked = await cache.get("artist:fixture-artist");
+			if (relinked.type !== "artist") throw new Error("expected artist node");
+			expect(relinked.genres).toEqual([
+				{ type: "genre", slug: "genre:rave", name: "Rave" },
+				{ type: "genre", slug: "genre:gabber", name: "Gabber", qid: "Q1085907" },
+			]);
+			// Nothing else moved -- same values. toEqual compares object identity, not raw JSON
+			// text, so it's unaffected by NodeCache.replace() re-serializing the node through
+			// nodePayloadSchema (which can reorder keys on disk without changing any value).
+			expect(relinked).toEqual({ ...original, genres: relinked.genres });
+
+			// Idempotence: a second run finds the edge already there and writes nothing.
+			const second = await backfillSeedGenres(
+				{
+					seed: "genre-seeds",
+					maxDepth: 0,
+					maxNodes: 10,
+					concurrency: 1,
+					out: dir,
+					deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+				},
+				seeds(),
+			);
+			expect(second).toEqual({ backfilled: 0, alreadyLinked: 1, missing: 0 });
+			expect(await cache.get("artist:fixture-artist")).toEqual(relinked);
+		},
+		TIMEOUT_MS,
+	);
+
+	it("counts a target not yet present in the cache as missing, without writing anything", async () => {
+		const cache = new NodeCache(dir);
+		await cache.write(genreNode({ slug: "genre:gabber", name: "Gabber", qid: "Q1085907" }));
+		const { backfillSeedGenres } = await loadCrawl();
+
+		const result = await backfillSeedGenres(
+			{
+				seed: "genre-seeds",
+				maxDepth: 0,
+				maxNodes: 10,
+				concurrency: 1,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			},
+			seeds(),
+		);
+
+		expect(result).toEqual({ backfilled: 0, alreadyLinked: 0, missing: 1 });
+		expect(await cache.has("artist:fixture-artist")).toBe(false);
 	});
 });
 
@@ -426,6 +667,23 @@ describe("CLI genre seed mode (TRA-62)", () => {
 			resolveCliMode({ genreSeeds: genreSeedsPath, genreId: "Q1", family: "house-techno" }),
 		).toThrow("exactly one of --genre-id or --family");
 		expect(() => resolveCliMode({ family: "house-techno" })).toThrow("require --genre-seeds");
+	});
+
+	// TRA-263: --backfill-seed-genres only rewrites nodes already read from a --genre-seeds
+	// plan -- it has no seed source of its own, so it can't run without one.
+	it("rejects --backfill-seed-genres without --genre-seeds", async () => {
+		const { resolveCliMode } = await loadCli();
+
+		expect(() => resolveCliMode({ backfillSeedGenres: true, genreId: "Q1" })).toThrow(
+			"--backfill-seed-genres requires --genre-seeds",
+		);
+		expect(() =>
+			resolveCliMode({
+				genreSeeds: "data/genre-seeds.json",
+				genreId: "Q1",
+				backfillSeedGenres: true,
+			}),
+		).not.toThrow();
 	});
 });
 

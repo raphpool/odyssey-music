@@ -1,0 +1,634 @@
+{
+  "slug": "artist:hardfloor",
+  "name": "Hardfloor",
+  "editorial_article": "German duo Hardfloor, comprised of Oliver Bondzio and Ramon Zenker, emerged in 1991 from Cologne to become leaders of the acid house sound. Their reputation rests on their mastery of the Roland TB-303, often utilizing up to six of these bass synthesizers simultaneously in their studio work. The duo gained mainstream attention with the 1992 hit \"Hardtrance Acperience,\" a track that Feargal Sharkey later highlighted as one of his 'Inheritance Tracks' on BBC Radio 4. Their reach extends to high-profile remix work, including versions of New Order's \"Blue Monday\" in 1995, Mory Kante's \"Yé ké yé ké,\" and Depeche Mode's \"It's No Good.\" Beyond their core output on the Harthouse label, they explore chillout and lounge genres under the pseudonym Da Damn Phreak Noize Phunk.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hardfloor",
+      "title": "Hardfloor"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:54:27.612Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering German electronic duo defined by their intricate, multi-machine manipulation of the Roland TB-303 synthesizer to create definitive acid house and trance.",
+  "origin": "Cologne, Germany",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:hard-trance",
+      "type": "genre",
+      "name": "Hard Trance",
+      "qid": "Q832665"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:harthouse",
+      "type": "label",
+      "name": "Harthouse"
+    },
+    {
+      "slug": "label:eye-q-records",
+      "type": "label",
+      "name": "Eye Q Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hflp04-re",
+      "type": "project",
+      "name": "HFLP04_RE",
+      "mbid": "52cb10cd-91a1-4a60-a317-16eb9249f21f",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acperience-6-acperience-7",
+      "type": "project",
+      "name": "Acperience 6 / Acperience 7",
+      "mbid": "c7be8516-ba0e-43aa-8d9a-85348b8a8d70",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:still-lost-in-the-silver-box",
+      "type": "project",
+      "name": "Still Lost in the Silver Box",
+      "mbid": "34cd348c-38bc-488c-ab9c-5bd4cb110086",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:data-mining-volume-five",
+      "type": "project",
+      "name": "Data Mining Volume Five",
+      "mbid": "ace44d4e-5c46-45d0-8a57-b0b5d8f44e9a",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:data-mining-volume-four",
+      "type": "project",
+      "name": "Data Mining, Volume Four",
+      "mbid": "8ac35e75-9d36-425e-b13b-755dc24106b9",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:data-mining-volume-three",
+      "type": "project",
+      "name": "Data Mining, Volume Three",
+      "mbid": "3996d8d7-df8d-40fa-9224-1d530f22d61f",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:data-mining-volume-two",
+      "type": "project",
+      "name": "Data Mining, Volume Two",
+      "mbid": "61f6a686-808e-497e-8d8b-a4a68bd1d185",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:data-mining-volume-one",
+      "type": "project",
+      "name": "Data Mining, Volume One",
+      "mbid": "b1926070-e051-473d-bd75-c3ac01135561",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:versus-series-6",
+      "type": "project",
+      "name": "Versus Series 6",
+      "mbid": "3194ef44-43a3-4c57-aa49-32beb8f9026b",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:versus-series-5",
+      "type": "project",
+      "name": "Versus Series 5",
+      "mbid": "a698a5cd-488d-4c63-af3e-09ced906f88e",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-schuck-ab-good-lack-scharm",
+      "type": "project",
+      "name": "All Schuck Ab / Good Lack Scharm",
+      "mbid": "bf0bb729-e9e2-4cc0-91ff-a3dbbc588857",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-business-of-basslines",
+      "type": "project",
+      "name": "The Business of Basslines",
+      "mbid": "0d73c585-81a7-485a-bfeb-10e08b3471aa",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-bassline-business",
+      "type": "project",
+      "name": "More Bassline Business",
+      "mbid": "c8f0ba47-ee26-4699-a73c-242f3dac24a1",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:25-gyeahrs-make-acid-great-again",
+      "type": "project",
+      "name": "25 Gyeahrs / Make Acid Great Again",
+      "mbid": "88c8b02d-d560-49dc-b5f8-529d9f56739d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:versus-series-4",
+      "type": "project",
+      "name": "Versus Series 4",
+      "mbid": "d65ef9c8-09d9-4ebd-ada3-956dddce5b88",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:versus-series-3",
+      "type": "project",
+      "name": "Versus Series 3",
+      "mbid": "6e477fdb-e25e-4c61-8ab3-cdf573bfa55c",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-ll-never-stop-programming-this-way",
+      "type": "project",
+      "name": "We'll Never Stop Programming This Way",
+      "mbid": "614a721e-7426-4a52-a8fd-45c1c5ed9ec1",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:p-e-l-f",
+      "type": "project",
+      "name": "P.E.L.F.",
+      "mbid": "8b209f90-157b-45e0-a775-9af879deb02b",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-art-of-acid",
+      "type": "project",
+      "name": "The Art of Acid",
+      "mbid": "f5657066-889b-4d67-a019-555904db01c5",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tweakend",
+      "type": "project",
+      "name": "Tweakend",
+      "mbid": "f0cbbadc-5543-4338-bf21-2c7696a7c880",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acperience-1-two-decades-edition",
+      "type": "project",
+      "name": "Acperience 1 Two Decades Edition",
+      "mbid": "1a23746e-01a9-4f8e-83ad-382f59af15fc",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:t-d-o-h-eternal-tweak",
+      "type": "project",
+      "name": "T.D.O.H. / Eternal Tweak",
+      "mbid": "d695d24c-a145-4584-b0c3-5347a9b1fb3d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4th-dimension-of-the-5th-ward",
+      "type": "project",
+      "name": "4th Dimension Of The 5th Ward",
+      "mbid": "fb1ccd76-20b0-4ea0-88a5-2a4f10af41c4",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:you-know-the-score",
+      "type": "project",
+      "name": "You Know The Score",
+      "mbid": "5f1f18f8-c298-44a0-a717-9b19c4106bc6",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:two-guys-three-boxes",
+      "type": "project",
+      "name": "Two Guys Three Boxes",
+      "mbid": "0c11aa72-86c9-45c4-88dc-c19a71bc41d4",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:silver-submarine",
+      "type": "project",
+      "name": "Silver Submarine",
+      "mbid": "3de0ad49-0a52-4899-838c-2d9ea6d56a12",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-life-we-choose",
+      "type": "project",
+      "name": "The Life We Choose",
+      "mbid": "6adcd6a7-53b5-3d64-b298-f38dce5ae390",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:versus-series-2",
+      "type": "project",
+      "name": "Versus Series 2",
+      "mbid": "4adf9dd4-3b02-415b-9fb7-272b41fd088d",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:versus-series-1",
+      "type": "project",
+      "name": "Versus Series 1",
+      "mbid": "6abb79f9-0feb-46ab-b367-530d72d81b86",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tugger-butterflies-in-bottermelk",
+      "type": "project",
+      "name": "Tugger / Butterflies In Bottermelk",
+      "mbid": "f87dc9e1-43ef-415d-beb6-c0fd4bdba49c",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:screwdriva-murano",
+      "type": "project",
+      "name": "Screwdriva / Murano",
+      "mbid": "fd7fd21b-8fd3-4f85-99b8-e7c2a460098b",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:devils-and-donuts-who-took-da-box",
+      "type": "project",
+      "name": "Devils & Donuts/ Who Took Da Box",
+      "mbid": "697d5c61-cf87-4cbc-840a-009d7214861b",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:soulful-spirit",
+      "type": "project",
+      "name": "Soulful Spirit",
+      "mbid": "7da62564-3d4b-3008-a634-c649248b481e",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:four-out-of-five-aliens-recommend-this",
+      "type": "project",
+      "name": "Four Out of Five Aliens Recommend This",
+      "mbid": "87b5d5c2-261e-3a43-9346-73fe9ae8cf0a",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:groupie-love-plasticacid-jack-the-house",
+      "type": "project",
+      "name": "Groupie Love / Plasticacid / Jack the House",
+      "mbid": "295d049d-ff90-47e6-b477-4741d0b4b248",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kill-brique-bundle",
+      "type": "project",
+      "name": "KIll Brique Bundle",
+      "mbid": "c04608c9-77a6-46d2-ae56-295de6163a7a",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:murano-joppiemuffler",
+      "type": "project",
+      "name": "Murano / Joppiemuffler",
+      "mbid": "e3f392d8-0f13-43b2-9f33-89842fc3b469",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:t-2-da-c",
+      "type": "project",
+      "name": "T 2 Da C (Da Remixes)",
+      "mbid": "a26faebd-2acc-4a47-b709-0883b05f53f6",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:soulful-spirit-mrs-broflovski",
+      "type": "project",
+      "name": "Soulful Spirit/Mrs. Broflovski",
+      "mbid": "3c23b136-e9ff-4c84-9548-ca51156ab274",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-revival",
+      "type": "project",
+      "name": "Da Revival",
+      "mbid": "2de5c59f-3bf8-3cce-b738-81d31b503ac3",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alphabetical-received-files-me-too",
+      "type": "project",
+      "name": "Alphabetical / Received Files / ...Me Too",
+      "mbid": "8d5bb20f-bef0-4f52-80d7-c17e29091825",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:communication-to-none",
+      "type": "project",
+      "name": "Communication to None",
+      "mbid": "6163c5ef-98fd-30ab-ab8e-49f061e70558",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:underexposed-above-average",
+      "type": "project",
+      "name": "Underexposed Above Average",
+      "mbid": "65952ecb-1796-3969-ac12-9526975941bc",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-what",
+      "type": "project",
+      "name": "So What?!",
+      "mbid": "cc544c64-f31a-445b-b8ab-b701864854ff",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smash-the-gnat",
+      "type": "project",
+      "name": "Smash The Gnat",
+      "mbid": "2dfeb0ba-8644-4ffe-ad74-e454ee8df11f",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:skill-shot",
+      "type": "project",
+      "name": "Skill Shot",
+      "mbid": "a2ea1df0-bf4a-3f6c-9f36-976c70bd657f",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-targets-down",
+      "type": "project",
+      "name": "All Targets Down",
+      "mbid": "d35d9b62-15cc-3858-b5b4-dff411d73bac",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-targets-down",
+      "type": "project",
+      "name": "All Targets Down",
+      "mbid": "cf7aa7b5-c5f6-4f2c-b968-c1a3d73dd489",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hardfloor-will-survive",
+      "type": "project",
+      "name": "Hardfloor Will Survive",
+      "mbid": "0ac44f5b-8763-4d27-80b4-9cfe15e390c9",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:volume-2",
+      "type": "project",
+      "name": "Volume 2",
+      "mbid": "fdfb13eb-0250-3ef7-92f1-57c02ebd96c9",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beavis-at-bat",
+      "type": "project",
+      "name": "Beavis at Bat",
+      "mbid": "bac298f0-c6dc-346c-9276-fec1ef26e3e1",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home-run",
+      "type": "project",
+      "name": "Home Run",
+      "mbid": "1bbd6eb1-183d-3ba3-834c-9bf8007dfaf2",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strikeout",
+      "type": "project",
+      "name": "Strikeout",
+      "mbid": "b51f3930-0c22-3ccc-a7f0-fa1ec175096d",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dadamnphreaknoizphunk",
+      "type": "project",
+      "name": "Dadamnphreaknoizphunk?",
+      "mbid": "3ad2ddac-4921-32ca-908a-43ba685dfe77",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mahogany-roots",
+      "type": "project",
+      "name": "Mahogany Roots",
+      "mbid": "b1a734a4-d66d-3767-9881-f8422502d050",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-anderson-fish-and-chips",
+      "type": "project",
+      "name": "Mr. Anderson / Fish & Chips",
+      "mbid": "184d02bf-64da-34be-bdbe-a8167c9a61f0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funalogue",
+      "type": "project",
+      "name": "Funalogue",
+      "mbid": "6deaed1e-6eb4-313d-9318-fa1205d2f061",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:respect",
+      "type": "project",
+      "name": "Respect",
+      "mbid": "b4f626ae-8ee4-31a9-b46c-91311b008e36",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tb-resuscitation",
+      "type": "project",
+      "name": "TB Resuscitation",
+      "mbid": "edbf5d08-a064-302f-92a9-8821e8990c71",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acperience",
+      "type": "project",
+      "name": "Acperience",
+      "mbid": "b62bc10f-6b91-3a67-9916-31b8885bae7f",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:trancescript-mixes",
+      "type": "project",
+      "name": "Trancescript Mixes",
+      "mbid": "062c149e-ea59-4bfa-871b-178a02452149",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trancescript",
+      "type": "project",
+      "name": "Trancescript",
+      "mbid": "358e0b4f-8f7e-4bb8-9497-93b57f8de80a",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drugoverlord",
+      "type": "project",
+      "name": "Drugoverlord",
+      "mbid": "ebfe7545-1f0d-3bfe-aa5d-7525a2ad2c15",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardtrance-acperience-e-p",
+      "type": "project",
+      "name": "Hardtrance Acperience E.P.",
+      "mbid": "d958708c-f085-39e2-b5e8-dbc9b800167b",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-da-bass-go",
+      "type": "project",
+      "name": "Let da Bass Go",
+      "mbid": "26e0e556-dec9-307c-b06f-237c68805330",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acid-energy-who-took-da-box",
+      "type": "project",
+      "name": "Acid Energy / Who Took Da Box?",
+      "mbid": "1f069d88-533b-3c50-9f77-e17256e429ea",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:acperience-1",
+      "type": "track",
+      "name": "Acperience 1"
+    },
+    {
+      "slug": "track:hardtrance-acperience",
+      "type": "track",
+      "name": "Hardtrance Acperience"
+    },
+    {
+      "slug": "track:trancescript",
+      "type": "track",
+      "name": "Trancescript"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:da-damn-phreak-noize-phunk",
+      "type": "artist",
+      "name": "Da Damn Phreak Noize Phunk"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:oliver-bondzio",
+      "type": "artist",
+      "name": "Oliver Bondzio"
+    },
+    {
+      "slug": "artist:ramon-zenker",
+      "type": "artist",
+      "name": "Ramon Zenker"
+    }
+  ]
+}

@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "A high-energy genre of electronic dance music originating in late-1980s Europe, defined by its blend of house, techno, and hip-hop elements, characterized by rapid tempos, melodic synth hooks, and a signature vocal structure featuring both male rappers and female vocalists.",
+  "qid": "Q216961",
   "era": "1980s-1990s",
   "origin": "Western Europe",
   "parent_genres": [
@@ -87,6 +88,12 @@
       "type": "genre",
       "name": "Eurobeat",
       "qid": "Q848852"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
     }
   ],
   "key_artists": [
@@ -146,6 +153,5 @@
       "type": "track",
       "name": "Rhythm Is a Dancer"
     }
-  ],
-  "qid": "Q216961"
+  ]
 }
