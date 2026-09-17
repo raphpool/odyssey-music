@@ -1,0 +1,675 @@
+{
+  "slug": "artist:neophyte",
+  "name": "Neophyte",
+  "editorial_article": "Neophyte formed in 1992 in Rotterdam after Jeroen Streunding and Danny Greten met at a local party and began experimenting with tracks on an Amiga computer using Protracker software. Initially dismissed by DJ Paul Elstak as 'pure noise', the group eventually earned a contract with his Rotterdam Records label to release early EPs like The Three Amiga's and Noise Is The Message. The trio, which included Robin van Roon until his departure in 1995 for studies, frequently operated under aliases such as Bodylotion and Masters of Ceremony. Their influence on the gabber scene expanded significantly through the launch of their own imprint, Neophyte Records, which has housed artists like Evil Activities and Tha Playah. Their 2005 compilation 13 Jaar Terreur reached number 29 on the Dutch Album Top 100, marking a transition from their early underground roots to a decade of influence in hardcore techno. The group has integrated live elements into their performances, notably adding guitarist Jarno Butter to replace van Roon for live sets. Throughout their career, they have maintained a consistent presence in hardcore with anthems such as 'Always Hardcore' and 'Execute', alongside high-profile collaborations with artists like Angerfist and Promo.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Neophyte_(band)",
+      "title": "Neophyte (band) - Wikipedia"
+    },
+    {
+      "url": "https://www.last.fm/music/Neophyte/+wiki",
+      "title": "Neophyte biography | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:40.371Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Dutch hardcore and gabber group formed in Rotterdam, known for their early use of Amiga Protracker software and extensive influence on the gabber scene.",
+  "origin": "Rotterdam, Netherlands",
+  "active_years": "1992-present",
+  "genres": [
+    {
+      "slug": "genre:gabber",
+      "type": "genre",
+      "name": "Gabber",
+      "qid": "Q820049"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rotterdam-records",
+      "type": "label",
+      "name": "Rotterdam Records"
+    },
+    {
+      "slug": "label:neophyte-records",
+      "type": "label",
+      "name": "Neophyte Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hit-the-speakers",
+      "type": "project",
+      "name": "Hit The Speakers",
+      "mbid": "a2832eca-4de9-4017-8213-094139bf3d41",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:anthem-of-power",
+      "type": "project",
+      "name": "Anthem of Power",
+      "mbid": "e0c0025d-ed05-4c81-92c5-22148ec859cb",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-dimension",
+      "type": "project",
+      "name": "Another Dimension",
+      "mbid": "eb841c2b-a5aa-448b-ae7e-91185ddbc805",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:original-noise",
+      "type": "project",
+      "name": "Original Noise",
+      "mbid": "6c57e6dc-93bc-47d9-94a0-ec85b7600e15",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:muil-houwe",
+      "type": "project",
+      "name": "Muil Houwe (Jeroen’s 2025 Remix)",
+      "mbid": "b80a76ef-bfed-4006-ac7f-6f8e83409013",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skullcrusher",
+      "type": "project",
+      "name": "Skullcrusher",
+      "mbid": "a987a59c-eb08-4744-b977-7d8c574e1155",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:catastrophy",
+      "type": "project",
+      "name": "Catastrophy (Neophyte & Karun remix)",
+      "mbid": "b348f95a-9c40-478c-bf7f-20215363802b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-independent",
+      "type": "project",
+      "name": "Be Independent",
+      "mbid": "ce7fd167-98ab-4565-9325-ef527ea56060",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn",
+      "type": "project",
+      "name": "Burn",
+      "mbid": "3d3d6566-b6bb-4137-8692-8f5c0a4ab67e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-protest",
+      "type": "project",
+      "name": "The Protest",
+      "mbid": "2ac7a729-38be-4398-a920-ffad766a3e18",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rockin",
+      "type": "project",
+      "name": "Rockin’ (Neophyte & Drokz Remix)",
+      "mbid": "565819de-9ca5-4dbf-99cf-ffb8b6294f4c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:30-years-of-neophyte-the-remixes",
+      "type": "project",
+      "name": "30 Years of Neophyte - The Remixes",
+      "mbid": "af06e569-37aa-44b3-8e2a-68c5c5c149ef",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brainstorm",
+      "type": "project",
+      "name": "Brainstorm",
+      "mbid": "602b172c-7222-4629-b721-cd06e8e2f58d",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-shakespeare",
+      "type": "project",
+      "name": "Like Shakespeare",
+      "mbid": "9c2ac3c5-abf4-4633-9336-6c8572234d20",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:braincracking",
+      "type": "project",
+      "name": "Braincracking (Nosferatu Remix)",
+      "mbid": "96751be7-6064-4c04-844d-36515ef3855f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2-much-junk",
+      "type": "project",
+      "name": "2 Much Junk",
+      "mbid": "999c4de6-98d0-4d98-ba87-b8f7da2a5090",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:collab-one",
+      "type": "project",
+      "name": "Collab One",
+      "mbid": "ef73b792-3745-4194-a8fd-3cba95470dc5",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mainiak-hellsystem-remix-extended",
+      "type": "project",
+      "name": "Mainiak - Hellsystem Remix Extended",
+      "mbid": "d99d8ea3-f045-41f1-9ce9-c0f5614f4fd7",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-ultimate-sound",
+      "type": "project",
+      "name": "The Ultimate Sound",
+      "mbid": "b9f34782-3b9d-4754-b57a-82a5cc0569d3",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strictly-underground",
+      "type": "project",
+      "name": "Strictly Underground",
+      "mbid": "df33f4d3-c644-421b-9daf-033e05e96533",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dit-is-mijn-leven",
+      "type": "project",
+      "name": "Dit is mijn leven",
+      "mbid": "754da3c8-54ba-4a3d-9114-4340f5cc93db",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:original-gangster",
+      "type": "project",
+      "name": "Original Gangster",
+      "mbid": "2018cd4f-4ff4-42ee-abe9-b03b81d747b7",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:onkruid",
+      "type": "project",
+      "name": "Onkruid",
+      "mbid": "b62e18d5-4934-442e-92be-abf7c1685c29",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:masterpiece",
+      "type": "project",
+      "name": "Masterpiece",
+      "mbid": "eef59e56-0d34-4373-907b-ce23d5ba3bba",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-can-t-kill-me",
+      "type": "project",
+      "name": "You Can't Kill Me",
+      "mbid": "6373f379-baff-497d-ac35-2a5f45dceee3",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fucking-maximaal",
+      "type": "project",
+      "name": "Fucking Maximaal",
+      "mbid": "ee95c498-9627-43aa-b9e0-235156e1c182",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gas-erop",
+      "type": "project",
+      "name": "Gas erop! (Angernoizer remix)",
+      "mbid": "b0c19b1e-9d6f-4667-92cb-4c8739b930eb",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wrath-of-warlords",
+      "type": "project",
+      "name": "Wrath Of Warlords",
+      "mbid": "d3bc671c-fc5b-4025-911d-873275b34334",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:foolish-for-life",
+      "type": "project",
+      "name": "Foolish for Life (Official Foolish NYE 2017 OST)",
+      "mbid": "b32679f2-c1ca-4c03-b7e5-4dc18837811d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wie-de-fok",
+      "type": "project",
+      "name": "Wie De Fok?",
+      "mbid": "df281706-6226-4eeb-8196-2d44c3033155",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:insane",
+      "type": "project",
+      "name": "Insane",
+      "mbid": "d2315c12-3b41-4b02-a1ca-3e6e165eb18d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alle-remmen-los",
+      "type": "project",
+      "name": "Alle Remmen Los!",
+      "mbid": "d592bf57-786b-47d6-85e4-a4d19ce42968",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exodus",
+      "type": "project",
+      "name": "Exodus (Official Exodus 2016 Anthem)",
+      "mbid": "258edc51-60bb-452d-9a4b-1ec977ccdc18",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rebel-dizz-tih",
+      "type": "project",
+      "name": "Rebel Dizz #TiH (Extended Mix)",
+      "mbid": "4a5147d6-626f-4e62-a267-9dbd89dc1610",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-aid",
+      "type": "project",
+      "name": "First Aid",
+      "mbid": "8e8f4a90-8deb-45ed-9b9a-0d7ce965b675",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:master-this",
+      "type": "project",
+      "name": "Master This!",
+      "mbid": "d7a6b5e2-7e6c-42ee-8d98-3170816edf71",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coming-at-you-strong",
+      "type": "project",
+      "name": "Coming at You Strong",
+      "mbid": "dd5d7aa1-7985-414e-a84d-e3b6df217d2e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mainiak-chapter-2",
+      "type": "project",
+      "name": "Mainiak Chapter.2",
+      "mbid": "53a32cff-7b14-42cc-9602-46c67e75b5e5",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-this-or-die",
+      "type": "project",
+      "name": "Get This or Die!",
+      "mbid": "bff4aacc-76bc-4ec1-80bf-e908e748d7c4",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:timebomb",
+      "type": "project",
+      "name": "Timebomb",
+      "mbid": "51d38fff-dc01-432f-b0aa-5cfed1148e00",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peace",
+      "type": "project",
+      "name": "Peace",
+      "mbid": "25ab96c9-6496-4b7c-9aba-4ea25c6373f9",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mainiak",
+      "type": "project",
+      "name": "Mainiak",
+      "mbid": "503b87e2-ebf2-42be-a0ff-90707cab9043",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mainiak-chapter-1",
+      "type": "project",
+      "name": "Mainiak Chapter 1",
+      "mbid": "fa692423-cf35-4d58-9c5b-a7ae90bcadd8",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-and-loud",
+      "type": "project",
+      "name": "Live and Loud",
+      "mbid": "1520a265-7c20-4ab6-8794-bc7259e26ac0",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sloop-die-speakers",
+      "type": "project",
+      "name": "Sloop die speakers!",
+      "mbid": "615f77ae-515f-428c-b6d6-0acd97cbe6f9",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:invasion",
+      "type": "project",
+      "name": "Invasion",
+      "mbid": "339702e2-9960-3f8e-9d23-7bdf15dbc045",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:invasion",
+      "type": "project",
+      "name": "Invasion",
+      "mbid": "920c789f-73bd-40b2-9f8b-65b4c021d82a",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:recht-uit-de-ondergrond",
+      "type": "project",
+      "name": "Recht Uit De Ondergrond",
+      "mbid": "5248eeed-c93a-4705-9893-90c2307ff860",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rechtoe-rechtaan",
+      "type": "project",
+      "name": "Rechtoe rechtaan",
+      "mbid": "07538450-c2dc-4aff-ab1e-1026bd0071bd",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:our-thing-e-p-part-1",
+      "type": "project",
+      "name": "Our Thing E.P. Part 1",
+      "mbid": "8bd3ecc4-cf28-4edf-8d11-ba02f4fec56c",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hardcore-a-new-beginning",
+      "type": "project",
+      "name": "Hardcore: A New Beginning",
+      "mbid": "ae6d5ba4-79cb-4bb8-b8c9-eead11eee1f3",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neighbourhood-crime",
+      "type": "project",
+      "name": "Neighbourhood Crime",
+      "mbid": "f608ce40-321e-431f-9e43-b141abe47879",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nation-of-domination",
+      "type": "project",
+      "name": "Nation Of Domination",
+      "mbid": "38953cab-d99c-4ca6-a2ab-1e083bd31e43",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loud-and-proud",
+      "type": "project",
+      "name": "Loud & Proud",
+      "mbid": "c749376a-27a8-473c-9242-00854c5704d7",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:at-war",
+      "type": "project",
+      "name": "At War",
+      "mbid": "185c9d68-a32e-3418-bcda-a63b816bedcf",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drugs",
+      "type": "project",
+      "name": "Drugs",
+      "mbid": "90d70b78-7e0a-4566-b3fd-4867f20d8149",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-final-bodylotion-pt-ii",
+      "type": "project",
+      "name": "The Final Bodylotion Pt. II",
+      "mbid": "83ded80b-810f-4ff0-838b-a8bc5455609e",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:number-one-fan",
+      "type": "project",
+      "name": "Number One Fan",
+      "mbid": "443243f8-ce3f-4686-9fca-9389e375511a",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:anybody-out-there",
+      "type": "project",
+      "name": "Anybody Out There",
+      "mbid": "adf8d6b5-0901-4506-96c6-c0eba7624abc",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:real-hardcore",
+      "type": "project",
+      "name": "Real Hardcore",
+      "mbid": "8bbc8e22-7372-4f24-ba9f-bf50af520bff",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-final-bodylotion",
+      "type": "project",
+      "name": "The Final Bodylotion",
+      "mbid": "78f9b386-af67-4fa1-bdea-9850b5f170dd",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:army-of-hardcore",
+      "type": "project",
+      "name": "Army Of Hardcore",
+      "mbid": "9778478c-9972-488a-b7f3-bae9bf86717c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neophyte-hardcore",
+      "type": "project",
+      "name": "Neophyte Hardcore",
+      "mbid": "1e95c82e-d770-321b-8d0a-7cf95b4294c2",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:none-of-ya-left",
+      "type": "project",
+      "name": "None of Ya Left",
+      "mbid": "f9929548-0140-4fbe-8784-e36e3d2e2c86",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:always-hardcore",
+      "type": "project",
+      "name": "Always Hardcore",
+      "mbid": "8aa1ab9d-f10f-45da-849b-8db0ff1b401f",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bodylotion-iv",
+      "type": "project",
+      "name": "Bodylotion IV",
+      "mbid": "144ae324-674f-4bd7-b0e5-3cb938dbad32",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:execute",
+      "type": "project",
+      "name": "Execute",
+      "mbid": "790cf353-1a37-4a4a-8064-16c919b0c97c",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:get-this-motherfucker",
+      "type": "project",
+      "name": "Get This Motherfucker",
+      "mbid": "d4f9de58-c12e-4099-914f-0ccf1ed25df0",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:noise-is-the-message",
+      "type": "project",
+      "name": "Noise Is The Message",
+      "mbid": "08a7769b-6444-4162-a555-16d537a53503",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bodylotion-ii",
+      "type": "project",
+      "name": "Bodylotion II",
+      "mbid": "2f19454c-5850-45dc-88cf-59e22184b692",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-three-amiga-s-e-p",
+      "type": "project",
+      "name": "The Three Amiga's E.P.",
+      "mbid": "4773337c-f83f-47c2-b874-f093088ebff7",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ik-wil-hakke",
+      "type": "project",
+      "name": "Ik Wil Hakke!",
+      "mbid": "72f5f245-e4cd-479f-a95f-d5d4903a6efc",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:protracker-e-p",
+      "type": "project",
+      "name": "Protracker E.P.",
+      "mbid": "c56b287b-38e8-3ef3-ae37-b8b9e556e5e0",
+      "year": "1993",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:execute",
+      "type": "track",
+      "name": "Execute"
+    },
+    {
+      "slug": "track:always-hardcore",
+      "type": "track",
+      "name": "Always Hardcore"
+    },
+    {
+      "slug": "track:hardcore-to-da-bone",
+      "type": "track",
+      "name": "Hardcore To Da Bone"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:rotterdam-terror-corps",
+      "type": "artist",
+      "name": "Rotterdam Terror Corps"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jeroen-streunding",
+      "type": "artist",
+      "name": "Jeroen Streunding"
+    },
+    {
+      "slug": "artist:danny-greten",
+      "type": "artist",
+      "name": "Danny Greten"
+    },
+    {
+      "slug": "artist:jarno-butter",
+      "type": "artist",
+      "name": "Jarno Butter"
+    }
+  ]
+}

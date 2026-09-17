@@ -1,0 +1,219 @@
+{
+  "slug": "artist:phuture",
+  "name": "Phuture",
+  "editorial_article": "Founded in Chicago in 1985 by Nathaniel 'DJ Pierre' Jones, Earl 'Spanky' Smith Jr., and Herbert 'Herb J' Jackson, Phuture invented the acid house genre by manipulating the Roland TB-303 bass synthesizer. Their 1987 debut 12-minute instrumental, 'Acid Tracks', was originally recorded to tape and gained notoriety through play by DJ Ron Hardy at the Music Box nightclub. The group utilized the resonant, squelchy output of the TB-303 along with Roland TR-707 and TR-727 drum machines to build a gloomy, monotonous sound. Later releases like 1987's 'Your Only Friend' introduced sparse, socially-conscious lyrics addressing cocaine addiction, moving beyond purely instrumental compositions. Throughout the 1990s, the ensemble evolved to include members such as Roy Davis Jr. and DJ Skull, maintaining a steady output of maxi-singles on labels like Trax Records.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Phuture",
+      "title": "Phuture - Wikipedia"
+    },
+    {
+      "url": "https://peel.fandom.com/wiki/Phuture",
+      "title": "Phuture | John Peel Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:54:22.521Z",
+  "type": "artist",
+  "editorial_bio": "Chicago pioneers of acid house, founded in 1985 by DJ Pierre, Spanky, and Herb J, who defined the genre's squelchy sound using the Roland TB-303.",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "1985-present",
+  "genres": [
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house",
+      "qid": "Q874038"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:trax-records",
+      "type": "label",
+      "name": "Trax Records"
+    },
+    {
+      "slug": "label:strictly-rhythm",
+      "type": "label",
+      "name": "Strictly Rhythm"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:we-are-phuture",
+      "type": "project",
+      "name": "We Are Phuture (Ricardo Villalobos Phutur I - IV Remixes)",
+      "mbid": "2b280b8f-9fab-42f8-9a59-76f338e3f69a",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:washing-machine-got-the-bug",
+      "type": "project",
+      "name": "Washing Machine / Got The Bug",
+      "mbid": "4c434733-58c6-4f66-b0e8-1e139c491539",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mental-breakdown",
+      "type": "project",
+      "name": "Mental Breakdown",
+      "mbid": "a50bfa20-6737-452c-90cb-11a50e926bfa",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spirit",
+      "type": "project",
+      "name": "Spirit",
+      "mbid": "45bef491-141a-4a32-a5d9-da12489128fd",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise-from-your-grave-remixes",
+      "type": "project",
+      "name": "Rise From Your Grave : Remixes",
+      "mbid": "aa913ea5-eaec-4bbd-afe2-750403811548",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:inside-out",
+      "type": "project",
+      "name": "Inside Out",
+      "mbid": "d0e08801-1a6b-3e8c-9d49-22f9365faa8d",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise-from-your-grave",
+      "type": "project",
+      "name": "Rise From Your Grave",
+      "mbid": "68a7cc5b-0afa-30d0-804c-3a710c1f9996",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-you-wanna-get-funky",
+      "type": "project",
+      "name": "Do You Wanna Get Funky",
+      "mbid": "e9824784-9abc-333a-a6fa-534ac0f7aa28",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-are-phuture",
+      "type": "project",
+      "name": "We Are Phuture",
+      "mbid": "38bec4a4-4b4e-3a69-88d1-c0961a5063f4",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acid-tracks",
+      "type": "project",
+      "name": "Acid Tracks",
+      "mbid": "1f8b74ce-9f1e-3e3c-8651-609bfe3b6676",
+      "year": "1987",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:acid-tracks",
+      "type": "track",
+      "name": "Acid Tracks"
+    },
+    {
+      "slug": "track:your-only-friend",
+      "type": "track",
+      "name": "Your Only Friend"
+    },
+    {
+      "slug": "track:spirit",
+      "type": "track",
+      "name": "Spirit"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    },
+    {
+      "slug": "artist:earl-smith-jr",
+      "type": "artist",
+      "name": "Earl Smith Jr."
+    },
+    {
+      "slug": "artist:roy-davis-jr",
+      "type": "artist",
+      "name": "Roy Davis Jr."
+    },
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:phortune",
+      "type": "artist",
+      "name": "Phortune"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre"
+    },
+    {
+      "slug": "artist:earl-smith-jr",
+      "type": "artist",
+      "name": "Earl Smith Jr."
+    },
+    {
+      "slug": "artist:herbert-jackson",
+      "type": "artist",
+      "name": "Herbert Jackson"
+    },
+    {
+      "slug": "artist:roy-davis-jr",
+      "type": "artist",
+      "name": "Roy Davis Jr."
+    },
+    {
+      "slug": "artist:ron-maney",
+      "type": "artist",
+      "name": "Ron Maney"
+    }
+  ]
+}

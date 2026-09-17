@@ -1,0 +1,165 @@
+{
+  "slug": "artist:opolopo",
+  "name": "Opolopo",
+  "editorial_article": "Born in Zirc, Hungary and raised in Stockholm, Sweden, Peter Major performs under the moniker Opolopo, a Yoruban term meaning \"plenty\" or \"much.\" His production work frequently navigates the intersections of funk, boogie, soul, and various shades of house. In 2022, he released the funk-oriented record X Machine, while his 2020 project You Got To Have Freedom demonstrates his commitment to deep, groove-driven arrangements. Beyond his solo output, he has collaborated with artists like Angela Johnson on the album Best Of Both Worlds, which saw release through Reel People Music. As a touring DJ, he moves between international club circuits in cities ranging from London to Tokyo, focusing on warm disco-boogie textures and rhythmic complexity.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/artist/208298-Opolopo?srsltid=AU7gw4U2UnujKNJ9oJakAYOFP3xrmn6gfSLsJ5CcneWjLAvDvgrMwmx5",
+      "title": "Opolopo Discography: Vinyl, CDs, & More | Discogs"
+    },
+    {
+      "url": "https://ra.co/dj/opolopo/biography",
+      "title": "Opolopo · Biography - Resident Advisor"
+    },
+    {
+      "url": "https://www.facebook.com/opoloposweden/",
+      "title": "OPOLOPO (@opoloposweden) - Facebook"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:04.730Z",
+  "type": "artist",
+  "editorial_bio": "Peter Major, the producer known as Opolopo, creates funk, soul, and house music characterized by deep grooves and disco-boogie influences.",
+  "origin": "Stockholm, Sweden",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:reel-people-music",
+      "type": "label",
+      "name": "Reel People Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:situationship",
+      "type": "project",
+      "name": "Situationship",
+      "mbid": "6e09129e-bc0a-430d-80b6-1ac8f1814d3e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:best-of-both-worlds",
+      "type": "project",
+      "name": "Best Of Both Worlds",
+      "mbid": "4004c383-a477-4440-82cf-34c26e8c1f9c",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:buffalo",
+      "type": "project",
+      "name": "Buffalo",
+      "mbid": "9a957b7c-f037-4368-8de1-c463a670ed3f",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-ones-you-love",
+      "type": "project",
+      "name": "The Ones You Love",
+      "mbid": "aded5926-45a3-4548-ba90-d8aeeef61e41",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beats-n-pieces-ep",
+      "type": "project",
+      "name": "Beats N Pieces EP",
+      "mbid": "f458c74a-f0c9-4312-83b8-605edad624e9",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:if-it-aint-jazz-volume-2",
+      "type": "project",
+      "name": "If It Aint Jazz Volume 2",
+      "mbid": "e10d7162-ca0c-4e66-986f-1526971dfe5e",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bits-n-bobs-ep",
+      "type": "project",
+      "name": "Bits n Bobs EP",
+      "mbid": "b8ac9be1-9b93-4b5d-ad17-b1dd89436513",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:superconductor",
+      "type": "project",
+      "name": "Superconductor",
+      "mbid": "2d882269-52e2-41af-95cd-34252749b7cb",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mutants",
+      "type": "project",
+      "name": "Mutants",
+      "mbid": "19cb4cb8-4be6-4d5a-a2ee-45aef2b06da7",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voltage-controlled-feelings",
+      "type": "project",
+      "name": "Voltage Controlled Feelings",
+      "mbid": "7192b43d-af37-4f17-8c0b-2db7a916afa2",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beyond-jipangu",
+      "type": "project",
+      "name": "Beyond Jipangu",
+      "mbid": "60f1bb58-6c30-45b7-914c-19d055d27035",
+      "year": "2009",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:no-more-lies",
+      "type": "track",
+      "name": "No More Lies"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:angela-johnson",
+      "type": "artist",
+      "name": "Angela Johnson"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

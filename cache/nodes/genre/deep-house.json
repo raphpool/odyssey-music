@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:40:22.142Z",
   "type": "genre",
   "editorial_definition": "Deep house is a sophisticated subgenre of house music characterized by its fusion of soul, jazz, and funk influences with electronic rhythms, typically operating between 110 and 124 beats per minute. Originally emerging from the Chicago house scene in the mid-1980s, it emphasizes atmospheric textures, complex chord progressions, and warmth, often utilizing electric pianos and synthesizers to create a smooth, hypnotic aesthetic that bridges the gap between deep club culture and emotive, melodic songwriting.",
+  "qid": "Q874038",
   "era": "1985–present",
   "origin": "Chicago, Illinois, USA",
   "parent_genres": [],
@@ -39,6 +40,12 @@
       "type": "genre",
       "name": "Jazz",
       "qid": "Q8341"
+    },
+    {
+      "slug": "genre:balearic-house",
+      "type": "genre",
+      "name": "Balearic House",
+      "qid": "Q2866725"
     }
   ],
   "key_artists": [
@@ -103,6 +110,5 @@
       "type": "track",
       "name": "Can You Feel It"
     }
-  ],
-  "qid": "Q874038"
+  ]
 }

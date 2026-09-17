@@ -78,6 +78,11 @@
       "slug": "artist:barbara-tucker",
       "type": "artist",
       "name": "Barbara Tucker"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
     }
   ],
   "aliases": [
@@ -92,5 +97,11 @@
       "name": "Pierre's Pfantasy Club"
     }
   ],
-  "members": []
+  "members": [
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture"
+    }
+  ]
 }
