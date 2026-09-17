@@ -1,0 +1,108 @@
+{
+  "slug": "artist:victor-uwaifo",
+  "name": "Victor Uwaifo",
+  "editorial_article": "Born in Benin City in 1941, Victor Uwaifo became the first Nigerian musician to be awarded a gold disc in Africa for his 1965 hit 'Joromi.' A polymath who studied fine arts at Yaba College of Technology, he invented musical instruments and developed distinct rhythmic styles including Akwete, the Shadow beat, and the Benin-inspired Ekassa. His musical roots lay in Spanish and Latin American records, which influenced his guitar playing before he gained prominence as a bandleader in Lagos alongside contemporaries like Segun Bucknor. Throughout his career, Uwaifo recorded with his group, the Melody Maestros, and established the Joromi Organization in Benin City to manage his recording and television ventures. His national contribution was formally recognized in 1983 when he became the first professional musician in Nigeria to receive the Member of the Order of the Niger (MON) distinction. He held a PhD in architectural sculpture and taught at the University of Benin, maintaining a prolific output that spanned from 1960 until his passing in 2021.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Victor_Uwaifo",
+      "title": "Victor Uwaifo - Wikipedia"
+    },
+    {
+      "url": "https://www.afropop.org/articles/uwaifo",
+      "title": "Sir Victor Uwaifo, Superstar: In His Own Words | Afropop Worldwide"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:18.492Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Nigerian highlife musician, sculptor, and inventor who revolutionized the sound of the 1960s with hits like 'Joromi.'",
+  "origin": "Benin City, Nigeria",
+  "active_years": "1960-2021",
+  "genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hypertek-digital",
+      "type": "label",
+      "name": "Hypertek Digital"
+    },
+    {
+      "slug": "label:960-music-group",
+      "type": "label",
+      "name": "960 Music Group"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:big-sound",
+      "type": "project",
+      "name": "Big Sound",
+      "mbid": "1c087ca8-c3ac-4ff3-bbcf-51813b1c38b9",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-palava-delicate-lover",
+      "type": "project",
+      "name": "No Palava - Delicate Lover",
+      "mbid": "483b7e4e-2ded-4939-ae1f-4e4e868dace3",
+      "year": "1984",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:joromi",
+      "type": "track",
+      "name": "Joromi"
+    },
+    {
+      "slug": "track:guitar-boy",
+      "type": "track",
+      "name": "Guitar Boy"
+    },
+    {
+      "slug": "track:arabade",
+      "type": "track",
+      "name": "Arabade"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:victor-olaiya",
+      "type": "artist",
+      "name": "Victor Olaiya"
+    },
+    {
+      "slug": "artist:segun-bucknor",
+      "type": "artist",
+      "name": "Segun Bucknor"
+    },
+    {
+      "slug": "artist:stephen-osadebe",
+      "type": "artist",
+      "name": "Stephen Osadebe"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:guitar-boy",
+      "type": "artist",
+      "name": "Guitar boy"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:victor-uwaifo",
+      "type": "artist",
+      "name": "Victor Uwaifo"
+    }
+  ]
+}

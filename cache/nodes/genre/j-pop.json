@@ -1,0 +1,109 @@
+{
+  "slug": "genre:j-pop",
+  "name": "J-Pop",
+  "editorial_article": "J-pop emerged as a distinct market category in the early 1990s, replacing the older kayōkyoku (lyric singing music) style. The term functions as a broad blanket for Japanese popular music, tracing its roots to the 1960s influence of Western rock bands like The Beatles and The Beach Boys on local groups such as Happy End. During the 1970s and 1980s, the genre evolved through the city pop of Tatsuro Yamashita and the groundbreaking electropop of Yellow Magic Orchestra. The 1990s saw massive commercial growth driven by the 'Being System' and producer Tetsuya Komuro, whose 'Komuro family' of artists like Namie Amuro dominated the charts with million-selling dance and techno-influenced hits. Unlike traditional Japanese music, the genre adopts Western-style pronunciations and standard occidental musical scales.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/J-pop",
+      "title": "J-pop - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/j-pop?srsltid=AU7gw4XN5fCjF8wCtqgZWDDOHcaiXx1SjUr_TpuuqIPrNIQNkTsmL3tC",
+      "title": "J-pop Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:09:52.250Z",
+  "type": "genre",
+  "editorial_definition": "A blanket term for Japanese popular music that gained mainstream usage in the 1990s, blending Western pop and rock influences with domestic traditions.",
+  "qid": "Q131578",
+  "era": "1990s to present",
+  "origin": "Japan",
+  "sonic_markers": "Western-influenced pop and rock structures, major-scale harmonies, frequent use of synthesizers, and specific vocal pronunciation patterns.",
+  "parent_genres": [
+    {
+      "slug": "genre:a-pop",
+      "type": "genre",
+      "name": "A Pop",
+      "qid": "Q10730335"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:city-pop",
+      "type": "genre",
+      "name": "City pop",
+      "qid": "Q11307326"
+    },
+    {
+      "slug": "genre:technopop",
+      "type": "genre",
+      "name": "Technopop",
+      "qid": "Q11319210"
+    },
+    {
+      "slug": "genre:japanese-hip-hop",
+      "type": "genre",
+      "name": "Japanese hip hop",
+      "qid": "Q1683348"
+    },
+    {
+      "slug": "genre:kawaii-metal",
+      "type": "genre",
+      "name": "Kawaii metal",
+      "qid": "Q16096634"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
+    },
+    {
+      "slug": "artist:namie-amuro",
+      "type": "artist",
+      "name": "Namie Amuro"
+    },
+    {
+      "slug": "artist:b-z",
+      "type": "artist",
+      "name": "B'z"
+    },
+    {
+      "slug": "artist:southern-all-stars",
+      "type": "artist",
+      "name": "Southern All Stars"
+    },
+    {
+      "slug": "artist:tetsuya-komuro",
+      "type": "artist",
+      "name": "Tetsuya Komuro"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:avex-trax",
+      "type": "label",
+      "name": "Avex Trax"
+    },
+    {
+      "slug": "label:sony-music-entertainment-japan",
+      "type": "label",
+      "name": "Sony Music Entertainment Japan"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:ue-wo-muite-aruko",
+      "type": "track",
+      "name": "Ue wo Muite Arukō"
+    },
+    {
+      "slug": "track:can-you-celebrate",
+      "type": "track",
+      "name": "Can You Celebrate?"
+    }
+  ]
+}

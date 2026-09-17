@@ -1,0 +1,159 @@
+{
+  "slug": "genre:soukous",
+  "name": "Soukous",
+  "editorial_article": "Soukous emerged in the 1960s as a high-tempo evolution of Congolese rumba, originating from the Democratic Republic of the Congo and the Republic of the Congo. The genre is defined by intricate, arpeggiated electric guitar solos and a brisk 4/4 or 12/8 time signature that prioritizes the 'sebene'—the climactic, improvisational instrumental section. During the 1980s, the style gained international prominence as Kinshasa musicians relocated to Paris and Brussels, often integrating synths and drum machines. Pioneering groups like Zaïko Langa Langa popularized the 'cavacha' rhythm and the role of the 'atalaku' or animateur, a hype-man who became a staple of live performances. The music frequently utilizes I-IV-V chord progressions, with lead guitarists navigating the higher registers of the fretboard to produce energetic, repetitive motifs. Beyond its Central African roots, the genre significantly influenced regional styles, including Kenya's benga and Colombia's champeta, the latter of which flourished after mechanics imported Congolese 45 rpm records in the 1970s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Soukous",
+      "title": "Soukous - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:48.341Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy genre of Congolese dance music derived from rumba, noted for rapid-fire electric guitar solos and the climactic instrumental 'sebene' section.",
+  "qid": "Q1752683",
+  "era": "1960s to present",
+  "origin": "Democratic Republic of the Congo and Republic of the Congo",
+  "sonic_markers": "12/8 or 4/4 time, prominent electric guitar improvisation, cavacha percussion rhythm, syncopated basslines",
+  "parent_genres": [
+    {
+      "slug": "genre:congolese-rumba",
+      "type": "genre",
+      "name": "Congolese Rumba",
+      "qid": "Q3453150"
+    },
+    {
+      "slug": "genre:music-of-central-africa",
+      "type": "genre",
+      "name": "Music Of Central Africa",
+      "qid": "Q106588687"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:congolese-rumba",
+      "type": "genre",
+      "name": "Congolese rumba",
+      "qid": "Q3453150"
+    },
+    {
+      "slug": "genre:muziki-wa-dansi",
+      "type": "genre",
+      "name": "Muziki wa dansi",
+      "qid": "Q3868787"
+    },
+    {
+      "slug": "genre:ndombolo",
+      "type": "genre",
+      "name": "Ndombolo",
+      "qid": "Q3337494"
+    },
+    {
+      "slug": "genre:champeta",
+      "type": "genre",
+      "name": "Champeta",
+      "qid": "Q1061165"
+    },
+    {
+      "slug": "genre:benga-music",
+      "type": "genre",
+      "name": "Benga music",
+      "qid": "Q6301761"
+    },
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    },
+    {
+      "slug": "genre:music-of-central-africa",
+      "type": "genre",
+      "name": "Music of Central Africa",
+      "qid": "Q106588687"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:franco-luambo",
+      "type": "artist",
+      "name": "Franco Luambo"
+    },
+    {
+      "slug": "artist:tabu-ley-rochereau",
+      "type": "artist",
+      "name": "Tabu Ley Rochereau"
+    },
+    {
+      "slug": "artist:papa-wemba",
+      "type": "artist",
+      "name": "Papa Wemba"
+    },
+    {
+      "slug": "artist:zaiko-langa-langa",
+      "type": "artist",
+      "name": "Zaïko Langa Langa"
+    },
+    {
+      "slug": "artist:kanda-bongo-man",
+      "type": "artist",
+      "name": "Kanda Bongo Man"
+    },
+    {
+      "slug": "artist:diblo-dibala",
+      "type": "artist",
+      "name": "Diblo Dibala"
+    },
+    {
+      "slug": "artist:sam-mangwana",
+      "type": "artist",
+      "name": "Sam Mangwana"
+    },
+    {
+      "slug": "artist:mbilia-bel",
+      "type": "artist",
+      "name": "Mbilia Bel"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:pathe-marconi-emi",
+      "type": "label",
+      "name": "Pathé Marconi EMI"
+    },
+    {
+      "slug": "label:shanachie-records",
+      "type": "label",
+      "name": "Shanachie Records"
+    },
+    {
+      "slug": "label:rounder-records",
+      "type": "label",
+      "name": "Rounder Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:marie-louise",
+      "type": "track",
+      "name": "Marie-Louise"
+    },
+    {
+      "slug": "track:kiri-kiri-mabina-ya-sika",
+      "type": "track",
+      "name": "Kiri-Kiri Mabina Ya Sika"
+    },
+    {
+      "slug": "track:double-double",
+      "type": "track",
+      "name": "Doublé Doublé"
+    },
+    {
+      "slug": "track:suzana-coulibaly",
+      "type": "track",
+      "name": "Suzana Coulibaly"
+    }
+  ]
+}
