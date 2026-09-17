@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:12:39.461Z",
   "type": "genre",
   "editorial_definition": "A seminal style of electronic dance music originating in early 1980s Chicago, characterized by its repetitive 4/4 house beat, raw electronic percussion, and heavy use of synthesizers and drum machines as a successor to disco.",
+  "qid": "Q1071961",
   "era": "Early 1980s to present",
   "origin": "Chicago, U.S.",
   "parent_genres": [],
@@ -64,6 +65,12 @@
       "type": "genre",
       "name": "Deep house",
       "qid": "Q874038"
+    },
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto House",
+      "qid": "Q2748817"
     }
   ],
   "key_artists": [
@@ -127,6 +134,5 @@
       "type": "track",
       "name": "Acid Tracks"
     }
-  ],
-  "qid": "Q1071961"
+  ]
 }

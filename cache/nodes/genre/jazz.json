@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:42:53.426Z",
   "type": "genre",
   "editorial_definition": "Jazz is a music genre characterized by complex harmony, syncopated rhythm, and an emphasis on improvisation, originating from African-American traditions in New Orleans.",
+  "qid": "Q8341",
   "era": "Late 19th century to present",
   "origin": "New Orleans, U.S.",
   "parent_genres": [],
@@ -36,6 +37,12 @@
       "type": "genre",
       "name": "Hard Bop",
       "qid": "Q181010"
+    },
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethiopian Jazz",
+      "qid": "Q3591962"
     }
   ],
   "related_genres": [
@@ -56,6 +63,42 @@
       "type": "genre",
       "name": "Soul",
       "qid": "Q131272"
+    },
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa Nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethiopian Jazz",
+      "qid": "Q3591962"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
     }
   ],
   "key_artists": [
@@ -93,6 +136,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q8341"
+  "landmark_tracks": []
 }

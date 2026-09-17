@@ -104,6 +104,11 @@
       "slug": "artist:chico-hamilton",
       "type": "artist",
       "name": "Chico Hamilton"
+    },
+    {
+      "slug": "artist:astor-piazzolla",
+      "type": "artist",
+      "name": "Astor Piazzolla"
     }
   ],
   "aliases": [],

@@ -1,0 +1,108 @@
+{
+  "slug": "genre:southeast-asian-classical-music",
+  "name": "Southeast Asian classical music",
+  "editorial_article": "Southeast Asian classical music encompasses diverse court and religious traditions, including Thai ensembles like the piphat and Cambodian court music performed by the Pinpeat Orchestra. These traditions are historically rooted in Buddhism and Hinduism, often functioning as centralized components of ritual and royal life across the subregion. In Thailand, subgenres such as khrueang sai and piphat define specific instrumentation and performance practices. While modern urbanization poses challenges to these ancient forms, countries maintain distinct regional musical languages that reflect centuries of cultural development. Recordings such as the 1986 anthology of Southeast Asian music document these specialized folk and classical styles for international audiences.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_of_Southeast_Asia",
+      "title": "Music of Southeast Asia - Wikipedia"
+    },
+    {
+      "url": "https://musicbrainz.org/genre/ed927354-2410-484e-823d-e2f10910226f",
+      "title": "thai classical - Genre information - MusicBrainz.org"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:09:19.747Z",
+  "type": "genre",
+  "editorial_definition": "A broad category of refined musical traditions spanning Southeast Asian nations, characterized by courtly ensembles, religious significance, and distinct regional instrumentation.",
+  "qid": "Q106586998",
+  "era": "Pre-modern to present",
+  "origin": "Southeast Asia, including Thailand, Cambodia, Indonesia, and Myanmar.",
+  "sonic_markers": "Use of gong-chime ensembles, metallophones, complex polyphonic textures, and heterophonic melodic layers.",
+  "parent_genres": [
+    {
+      "slug": "genre:art-music",
+      "type": "genre",
+      "name": "Art Music",
+      "qid": "Q1583807"
+    },
+    {
+      "slug": "genre:music-of-southeast-asia",
+      "type": "genre",
+      "name": "Music Of Southeast Asia",
+      "qid": "Q10838732"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:piphat",
+      "type": "genre",
+      "name": "Piphat",
+      "qid": "Q478176"
+    },
+    {
+      "slug": "genre:khrueang-sai",
+      "type": "genre",
+      "name": "Khrueang sai",
+      "qid": "Q6629917"
+    },
+    {
+      "slug": "genre:fon-leb",
+      "type": "genre",
+      "name": "Fon leb",
+      "qid": "Q13018408"
+    },
+    {
+      "slug": "genre:gamelan",
+      "type": "genre",
+      "name": "Gamelan",
+      "qid": "Q194492"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:thai-classical-music",
+      "type": "genre",
+      "name": "Thai classical music",
+      "qid": "Q13025600"
+    },
+    {
+      "slug": "genre:cambodian-classical-music",
+      "type": "genre",
+      "name": "Cambodian classical music",
+      "qid": "Q106877947"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:the-pinpeat-orchestra",
+      "type": "artist",
+      "name": "The Pinpeat Orchestra"
+    },
+    {
+      "slug": "artist:alain-danielou",
+      "type": "artist",
+      "name": "Alain Daniélou"
+    },
+    {
+      "slug": "artist:ros-serey-sothea",
+      "type": "artist",
+      "name": "Ros Serey Sothea"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:unesco",
+      "type": "label",
+      "name": "UNESCO"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:an-anthology-of-south-east-asian-music",
+      "type": "track",
+      "name": "An Anthology of South-East Asian Music"
+    }
+  ]
+}

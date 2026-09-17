@@ -49,6 +49,12 @@
       "type": "genre",
       "name": "Hardcore techno",
       "qid": "Q388906"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
     }
   ],
   "key_artists": [

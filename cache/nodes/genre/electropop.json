@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:43:56.962Z",
   "type": "genre",
   "editorial_definition": "A hybrid genre fusing synthesizer-driven electronic production with catchy, radio-friendly pop hooks and song structures.",
+  "qid": "Q188450",
   "era": "1980s–present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -46,6 +47,12 @@
       "type": "genre",
       "name": "Electroclash",
       "qid": "Q861823"
+    },
+    {
+      "slug": "genre:a-pop",
+      "type": "genre",
+      "name": "A-pop",
+      "qid": "Q10730335"
     }
   ],
   "key_artists": [
@@ -82,6 +89,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q188450"
+  "landmark_tracks": []
 }

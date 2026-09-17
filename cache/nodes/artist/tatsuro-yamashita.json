@@ -1,0 +1,153 @@
+{
+  "slug": "artist:tatsuro-yamashita",
+  "name": "Tatsurō Yamashita",
+  "editorial_article": "Tatsurō Yamashita is a Tokyo-born singer-songwriter and producer whose 1980 breakthrough with the song \"Ride on Time\" propelled him to stardom and defined the sound of Japanese city pop. A technical perfectionist known as a \"sound craftsman,\" he frequently records entire tracks himself, including guitar, percussion, and layered vocal harmonies. His 1983 single \"Christmas Eve,\" which first appeared on the album \"Melodies,\" became the best-selling Japanese single of the 1980s and has famously charted on the Oricon weekly top 100 every single year for over three decades. Yamashita began his career as a member of the band Sugar Babe, which featured Taeko Onuki and Kunio Muramatsu, releasing their only studio album \"Songs\" in 1975. Beyond his solo work, he is recognized for ongoing collaborations with his wife, singer-songwriter Mariya Takeuchi, and his partnership with American songwriter Alan O'Day, who provided English-language lyrics for tracks like \"Your Eyes\" and \"Magic Ways.\" He remains the most commercially successful Japanese male solo recording artist, having sold approximately 9 million albums throughout his career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tatsuro_Yamashita",
+      "title": "Tatsuro Yamashita - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Tatsuro_Yamashita_discography",
+      "title": "Tatsuro Yamashita discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:08:46.797Z",
+  "type": "artist",
+  "editorial_bio": "A seminal figure of Japanese city pop, Tatsurō Yamashita is a multi-instrumentalist and producer known for his meticulous studio craftsmanship and long-charting hits.",
+  "origin": "Ikebukuro, Toshima, Tokyo, Japan",
+  "active_years": "1975-present",
+  "genres": [
+    {
+      "slug": "genre:city-pop",
+      "type": "genre",
+      "name": "City Pop",
+      "qid": "Q11307326"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca",
+      "type": "label",
+      "name": "RCA"
+    },
+    {
+      "slug": "label:moon-records",
+      "type": "label",
+      "name": "Moon Records"
+    },
+    {
+      "slug": "label:warner-music-japan",
+      "type": "label",
+      "name": "Warner Music Japan"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:circus-town",
+      "type": "project",
+      "name": "Circus Town"
+    },
+    {
+      "slug": "project:ride-on-time",
+      "type": "project",
+      "name": "Ride on Time"
+    },
+    {
+      "slug": "project:for-you",
+      "type": "project",
+      "name": "For You"
+    },
+    {
+      "slug": "project:melodies",
+      "type": "project",
+      "name": "Melodies"
+    },
+    {
+      "slug": "project:artisan",
+      "type": "project",
+      "name": "Artisan"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:christmas-eve",
+      "type": "track",
+      "name": "Christmas Eve"
+    },
+    {
+      "slug": "track:ride-on-time",
+      "type": "track",
+      "name": "Ride on Time"
+    },
+    {
+      "slug": "track:your-eyes",
+      "type": "track",
+      "name": "Your Eyes"
+    },
+    {
+      "slug": "track:magic-ways",
+      "type": "track",
+      "name": "Magic Ways"
+    },
+    {
+      "slug": "track:sparkle",
+      "type": "track",
+      "name": "Sparkle"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mariya-takeuchi",
+      "type": "artist",
+      "name": "Mariya Takeuchi"
+    },
+    {
+      "slug": "artist:alan-o-day",
+      "type": "artist",
+      "name": "Alan O'Day"
+    },
+    {
+      "slug": "artist:taeko-onuki",
+      "type": "artist",
+      "name": "Taeko Onuki"
+    },
+    {
+      "slug": "artist:eiichi-ohtaki",
+      "type": "artist",
+      "name": "Eiichi Ohtaki"
+    },
+    {
+      "slug": "artist:minako-yoshida",
+      "type": "artist",
+      "name": "Minako Yoshida"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tatsu-yamashita",
+      "type": "artist",
+      "name": "Tatsu Yamashita"
+    },
+    {
+      "slug": "artist:tats-yamashita",
+      "type": "artist",
+      "name": "Tats Yamashita"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "Tatsurō Yamashita"
+    }
+  ]
+}

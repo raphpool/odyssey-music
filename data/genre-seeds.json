@@ -1170,6 +1170,40 @@
 			}
 		]
 	},
+	"Q474027": {
+		"genre": {
+			"slug": "genre:dancehall",
+			"name": "Dancehall",
+			"qid": "Q474027"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Yellowman",
+				"slug": "artist:yellowman",
+				"mbid": "870ec051-e50e-4bf9-b704-6098fe0e0297"
+			},
+			{
+				"type": "artist",
+				"name": "Vybz Kartel",
+				"slug": "artist:vybz-kartel",
+				"mbid": "7cc385f3-333c-48de-b341-3d728de74973"
+			},
+			{
+				"type": "artist",
+				"name": "Popcaan",
+				"slug": "artist:popcaan",
+				"mbid": "d7641934-7dfb-49ea-b948-da0b12816b12"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:reggae",
+				"name": "Reggae",
+				"qid": "Q9794"
+			}
+		]
+	},
 	"Q85741139": {
 		"genre": {
 			"slug": "genre:amapiano",
@@ -1204,11 +1238,46 @@
 			}
 		]
 	},
+	"Q1931130": {
+		"genre": {
+			"slug": "genre:baile-funk",
+			"name": "Baile Funk",
+			"qid": "Q1931130"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Tati Quebra Barraco",
+				"slug": "artist:tati-quebra-barraco",
+				"mbid": "2205086e-8286-4600-844c-1be8a5e20512"
+			},
+			{
+				"type": "artist",
+				"name": "Deize Tigrona",
+				"slug": "artist:deize-tigrona",
+				"mbid": "d71b56b6-fea1-4300-8a69-94c78feeb4aa"
+			},
+			{
+				"type": "artist",
+				"name": "Valesca Popozuda",
+				"slug": "artist:valesca-popozuda",
+				"mbid": "86074988-4a29-46f5-936e-1437ad71c04c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-brazil",
+				"name": "Music of Brazil",
+				"qid": "Q899215"
+			}
+		]
+	},
 	"Q25099840": {
 		"genre": {
 			"slug": "genre:afrobeats",
 			"name": "Afrobeats",
-			"qid": "Q25099840"
+			"qid": "Q25099840",
+			"disambiguator": "2000s–2010s West African pop, distinct from Fela Kuti's Afrobeat"
 		},
 		"targets": [
 			{

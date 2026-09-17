@@ -1,0 +1,134 @@
+{
+  "slug": "genre:k-pop",
+  "name": "K-Pop",
+  "editorial_article": "Originating in South Korea during the early 1990s, K-pop emerged as a distinct youth subculture following the 1992 debut of Seo Taiji and Boys on an MBC talent show. The trio introduced American-style rap, techno, and hip-hop conventions that modernized the local music industry, setting the foundation for the idol trainee system later institutionalized by SM Entertainment founder Lee Soo-man. Characterized by melodic pop structures combined with intricate, synchronized 'point' choreography, the genre relies on intense managerial oversight and rigorous performer training. Throughout the 2010s, international reach accelerated via the Korean Wave and social media, establishing companies like YG, JYP, and Hybe as dominant industry forces. Music production frequently integrates global influences—ranging from R&B and electronic dance to Afrobeats—often employing international songwriters alongside domestic producers to craft hybrid soundscapes tailored for a globalized market.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/K-pop",
+      "title": "K-pop - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/k-pop?srsltid=AU7gw4ULMWUO3NtmL7S8qdmWxyQWoQVlQTZ7FXutlFJjkQRhzkFyPT3T",
+      "title": "K-pop Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:11:04.653Z",
+  "type": "genre",
+  "editorial_definition": "A South Korean popular music form defined by idol group culture, synchronized performance choreography, and high-production value, hybrid pop compositions.",
+  "qid": "Q213665",
+  "era": "1990s to present",
+  "origin": "South Korea",
+  "sonic_markers": "Dance-pop, R&B, hip-hop, and electronic beats; emphasizes high-quality production, melodic hooks, and synchronized vocal-dance performances.",
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop music",
+      "qid": "Q37073"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music",
+      "qid": "Q851213"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:seo-taiji-and-boys",
+      "type": "artist",
+      "name": "Seo Taiji and Boys"
+    },
+    {
+      "slug": "artist:h-o-t",
+      "type": "artist",
+      "name": "H.O.T."
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "Blackpink"
+    },
+    {
+      "slug": "artist:boa",
+      "type": "artist",
+      "name": "BoA"
+    },
+    {
+      "slug": "artist:tvxq",
+      "type": "artist",
+      "name": "TVXQ"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sm-entertainment",
+      "type": "label",
+      "name": "SM Entertainment"
+    },
+    {
+      "slug": "label:yg-entertainment",
+      "type": "label",
+      "name": "YG Entertainment"
+    },
+    {
+      "slug": "label:jyp-entertainment",
+      "type": "label",
+      "name": "JYP Entertainment"
+    },
+    {
+      "slug": "label:hybe-corporation",
+      "type": "label",
+      "name": "Hybe Corporation"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-know",
+      "type": "track",
+      "name": "I Know"
+    },
+    {
+      "slug": "track:candy",
+      "type": "track",
+      "name": "Candy"
+    },
+    {
+      "slug": "track:sorry-sorry",
+      "type": "track",
+      "name": "Sorry, Sorry"
+    },
+    {
+      "slug": "track:abracadabra",
+      "type": "track",
+      "name": "Abracadabra"
+    }
+  ]
+}

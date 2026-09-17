@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "An internet-native music genre and aesthetic that emerged in the early 2010s, characterized by the manipulation of 1980s and 1990s pop, lounge, and corporate music into surreal, nostalgic, and often ironic soundscapes.",
+  "qid": "Q15733887",
   "era": "Early 2010s to present",
   "origin": "Internet culture",
   "parent_genres": [],
@@ -141,6 +142,5 @@
       "name": "Floral Shoppe"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q15733887"
+  "landmark_tracks": []
 }

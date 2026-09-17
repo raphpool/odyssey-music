@@ -1,0 +1,102 @@
+{
+  "slug": "artist:junko-ohashi",
+  "name": "Junko Ōhashi",
+  "editorial_article": "Junko Ōhashi debuted with her 1974 album Feeling Now and rose to prominence as a vital voice in the Japanese city pop and soul landscape. Her 1978 hit single Tasogare My Love, the theme for the TBS drama Shishi no Gotoku, earned her a Gold Award at the 20th Japan Record Awards. Following a transition from initial hard rock interests, she adopted a soul-infused style inspired by Sérgio Mendes and Janis Joplin. In 1981, she reached number 7 on the Oricon Singles Chart with the track Silhouette Romance, which sold over 500,000 copies and secured a victory at the 24th Japan Record Awards. Throughout her career, she fronted the band Junko Ōhashi & Minoya Central Station, known for balancing intense vocal delivery with tight ensemble arrangements on recordings like the album Rainbow. She remained a fixture in Japanese popular music, appearing in Kōhaku Uta Gassen since 1979 and resuming her career after cancer treatments in 2019 until her death in 2023.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Junko_Ohashi",
+      "title": "Junko Ohashi - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:09:04.772Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Japanese vocalist celebrated for her powerful range and seminal contributions to city pop and soul throughout the late 1970s and 80s.",
+  "origin": "Yūbari, Hokkaido, Japan",
+  "active_years": "1974-2023",
+  "genres": [
+    {
+      "slug": "genre:city-pop",
+      "type": "genre",
+      "name": "City Pop",
+      "qid": "Q11307326"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:philips-records",
+      "type": "label",
+      "name": "Philips Records"
+    },
+    {
+      "slug": "label:epic-records-japan",
+      "type": "label",
+      "name": "Epic Records Japan"
+    },
+    {
+      "slug": "label:vap",
+      "type": "label",
+      "name": "VAP"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:feeling-now",
+      "type": "project",
+      "name": "Feeling Now"
+    },
+    {
+      "slug": "project:paper-moon",
+      "type": "project",
+      "name": "Paper Moon"
+    },
+    {
+      "slug": "project:rainbow",
+      "type": "project",
+      "name": "Rainbow"
+    },
+    {
+      "slug": "project:magical",
+      "type": "project",
+      "name": "Magical"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tasogare-my-love",
+      "type": "track",
+      "name": "Tasogare My Love"
+    },
+    {
+      "slug": "track:silhouette-romance",
+      "type": "track",
+      "name": "Silhouette Romance"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:sergio-mendes",
+      "type": "artist",
+      "name": "Sérgio Mendes"
+    },
+    {
+      "slug": "artist:janis-joplin",
+      "type": "artist",
+      "name": "Janis Joplin"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ken-sato",
+      "type": "artist",
+      "name": "Ken Sato"
+    },
+    {
+      "slug": "artist:kiyohiko-ozaki",
+      "type": "artist",
+      "name": "Kiyohiko Ozaki"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

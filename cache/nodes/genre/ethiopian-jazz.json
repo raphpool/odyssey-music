@@ -1,0 +1,116 @@
+{
+  "slug": "genre:ethiopian-jazz",
+  "name": "Ethiopian Jazz",
+  "editorial_article": "Emerging in Addis Ababa during the late 1960s, Ethio-jazz fuses traditional Ethiopian scales and modes with American jazz, Latin, and funk influences. Mulatu Astatke, the genre's primary architect, developed this sound by integrating vibraphone and conga drums into Ethiopian popular music after his studies at Berklee College of Music. The movement gained global attention through the Éthiopiques compilation series on the French label Buda Musique, which restored Amha Eshete’s 1970s master tapes. Production often features instrumental arrangements that prioritize vibraphone, organ, and percussion, blending Arabic scales with Western jazz-funk aesthetics. Key artists include Mahmoud Ahmed and Hailu Mergia, while the sound remains widely sampled in modern hip-hop by producers like Madlib and Cut Chemist.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mulatu_Astatke",
+      "title": "Mulatu Astatke - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:45.383Z",
+  "type": "genre",
+  "editorial_definition": "A distinctive fusion of traditional Ethiopian scales with jazz, Latin, and funk, pioneered in the 1960s by arranger Mulatu Astatke.",
+  "qid": "Q3591962",
+  "era": "late 1960s to present",
+  "origin": "Addis Ababa, Ethiopia",
+  "sonic_markers": "Vibraphone, conga drums, organ, modal melodies, Arabic scales, jazz-funk rhythms.",
+  "parent_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:world-music",
+      "type": "genre",
+      "name": "World Music",
+      "qid": "Q205049"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:latin-jazz",
+      "type": "genre",
+      "name": "Latin Jazz",
+      "qid": "Q837389"
+    },
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-Funk",
+      "qid": "Q38656"
+    },
+    {
+      "slug": "genre:afro-cuban-jazz",
+      "type": "genre",
+      "name": "Afro-Cuban Jazz",
+      "qid": "Q3163340"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:mulatu-astatke",
+      "type": "artist",
+      "name": "Mulatu Astatke"
+    },
+    {
+      "slug": "artist:mahmoud-ahmed",
+      "type": "artist",
+      "name": "Mahmoud Ahmed"
+    },
+    {
+      "slug": "artist:hailu-mergia",
+      "type": "artist",
+      "name": "Hailu Mergia"
+    },
+    {
+      "slug": "artist:walias-band",
+      "type": "artist",
+      "name": "Walias Band"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:amha-records",
+      "type": "label",
+      "name": "Amha Records"
+    },
+    {
+      "slug": "label:buda-musique",
+      "type": "label",
+      "name": "Buda Musique"
+    },
+    {
+      "slug": "label:strut-records",
+      "type": "label",
+      "name": "Strut Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:tezeta",
+      "type": "track",
+      "name": "Tezeta"
+    },
+    {
+      "slug": "track:musicawi-silt",
+      "type": "track",
+      "name": "Musicawi Silt"
+    },
+    {
+      "slug": "track:maskaram-setaba",
+      "type": "track",
+      "name": "Maskaram Setaba"
+    }
+  ]
+}
