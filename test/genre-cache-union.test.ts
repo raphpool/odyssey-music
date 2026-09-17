@@ -12,6 +12,7 @@ import {
 	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
+import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
 
@@ -177,6 +178,21 @@ describe("countUnionProblems", () => {
 		).toBeGreaterThan(0);
 	});
 
+	// 2026-09-17, review of #239: the whole of droppedEdges used to be excluded from this count, so
+	// the edge-resolution filter eating 8389 of the committed cache's 15689 slug-bearing edges left
+	// every signal at zero. The split is the delta rule (see DroppedEdge): a target that resolved
+	// nowhere is the never-materialized baseline and still counts for nothing; a target that DID
+	// resolve in a source is a reference the union broke, and counts.
+	it("ignores a dropped edge whose target resolved nowhere, but counts one that resolved in a source", () => {
+		const baseline = { slug: "artist:a" as Slug, field: "labels", target: "label:never" as Slug };
+		expect(countUnionProblems(manifest({ droppedEdges: [baseline, baseline] }))).toBe(0);
+		expect(
+			countUnionProblems(
+				manifest({ droppedEdges: [baseline, { ...baseline, target: "label:gone", resolvedIn: ["repo"] }] }),
+			),
+		).toBe(1);
+	});
+
 	// Isolates redirectsConflicts's own contribution -- see PR #213 review / diffGenreRedirects.
 	it("is non-zero for redirectsConflicts alone, with no conflict and a healthy entries list", () => {
 		expect(
@@ -297,6 +313,43 @@ async function fingerprint(dir: string, sub = ""): Promise<string> {
 		hash.update(e.isDirectory() ? await fingerprint(dir, rel) : await readFile(join(dir, rel)));
 	}
 	return hash.digest("hex");
+}
+
+function hasSlug(value: unknown): boolean {
+	return (
+		typeof value === "object" && value !== null && typeof (value as { slug?: unknown }).slug === "string"
+	);
+}
+
+/** Every slug-bearing edge in a cache tree, totalled and broken down per field via the canonical
+ * node-spec lists. A node's type comes from the directory it sits in (nodes/<type>/<body>.json),
+ * readCacheNodes's own rule, never from the `type` field inside the untrusted file. */
+async function countEdges(cacheDir: string): Promise<{ total: number; byField: Record<string, number> }> {
+	const byField: Record<string, number> = {};
+	let total = 0;
+	const nodesDir = join(cacheDir, "nodes");
+	for (const typeDir of await readdir(nodesDir, { withFileTypes: true })) {
+		if (!typeDir.isDirectory()) continue;
+		const type = typeDir.name as NodeType;
+		for (const file of await readdir(join(nodesDir, type))) {
+			if (!file.endsWith(".json")) continue;
+			const node = JSON.parse(await readFile(join(nodesDir, type, file), "utf8")) as Record<string, unknown>;
+			const edges = [
+				...LIST_EDGES_BY_TYPE[type].flatMap((field) =>
+					(Array.isArray(node[field]) ? (node[field] as unknown[]) : []).map(
+						(edge) => [field, edge] as const,
+					),
+				),
+				...SINGULAR_EDGES_BY_TYPE[type].map((field) => [field, node[field]] as const),
+			];
+			for (const [field, edge] of edges) {
+				if (!hasSlug(edge)) continue;
+				byField[field] = (byField[field] ?? 0) + 1;
+				total++;
+			}
+		}
+	}
+	return { total, byField };
 }
 
 describe("buildCacheUnion", () => {
@@ -508,14 +561,28 @@ describe("buildCacheUnion", () => {
 
 	// TRA-245 acceptance criterion: the real committed cache, unioned against itself with the
 	// real committed redirects table on both sides, must never false-flag a conflict.
-	it("unions the real committed cache against itself with the real data/genre-redirects.json on both sides, cleanly", async () => {
-		const { manifest } = await buildCacheUnion("cache", "cache", {
+	//
+	// 2026-09-17, review of #239: it must not silently EAT anything either. Every slug on both
+	// sides is "kept" here, so every edge is one the winner already carried and the union is the
+	// identity -- yet the resolution filter used to run over the whole merged list and took 8389 of
+	// the 15689 slug-bearing edges with it (artist:1-2-3 lost label:ooh-la-la-records and both its
+	// notable_tracks), with this very test green. The requirement is that the count never
+	// DECREASES; equality per field is the strict form of it, and pinpoints which field regressed.
+	it("unions the real committed cache against itself with the real data/genre-redirects.json on both sides, cleanly and without losing a single edge", async () => {
+		const before = await countEdges("cache");
+		const { outputDir, manifest } = await buildCacheUnion("cache", "cache", {
 			redirectsPath: "data/genre-redirects.json",
 			serverRedirectsPath: "data/genre-redirects.json",
 			onboardingSlugs: [],
 		});
 		expect(manifest.redirectsConflicts).toBeUndefined();
 		expect(countUnionProblems(manifest)).toBe(0);
+
+		const after = await countEdges(outputDir);
+		expect(before.total).toBeGreaterThan(0);
+		expect(after.byField).toEqual(before.byField);
+		expect(after.total).toBe(before.total);
+		expect(manifest.droppedEdges).toEqual([]);
 	});
 
 	// B6a-3 / TRA-268: a "kept" (same-slug-both-sides) node used to be written as a byte-identical
@@ -524,6 +591,10 @@ describe("buildCacheUnion", () => {
 	// review of #221, 2026-09-17). These tests cover the fix: list edges are unioned and
 	// deduplicated by slug, an edge that no longer resolves in the union is dropped and reported,
 	// and the written file goes through real schema validation instead of a raw copy.
+	//
+	// The filtering is a DELTA, and only ever applies to what the LOSER brings (2026-09-17, review
+	// of #239): the winner's own list passes through exactly as copyNode used to copy it, dangling
+	// targets and pre-existing self-loops included.
 	describe("edge union for a kept slug", () => {
 		it("keeps a server-only edge (the exact verified bug: edge lost, text from the newer repo side)", async () => {
 			await seed(
@@ -628,6 +699,130 @@ describe("buildCacheUnion", () => {
 			expect(countUnionProblems(manifest)).toBe(0);
 		});
 
+		// 2026-09-17, review of #239: the filter above used to run over the WHOLE merged list, so an
+		// edge the WINNER already carried towards a never-materialized node was eaten with it -- 15689
+		// slug-bearing edges in, 7222 out on a self-union of the committed cache. Those edges are this
+		// cache's normal baseline and are exactly what top-up-dangling.ts reads to choose what to
+		// materialize next; only an edge that STOPS resolving is a regression (delta, never absolute).
+		it("keeps an edge the winner already had towards a never-materialized target", async () => {
+			const label = { slug: "label:ooh-la-la-records", type: "label", name: "Ooh La La Records" };
+			const track = { slug: "track:confetti", type: "track", name: "Confetti" };
+			// Neither target is seeded on either side -- the real artist:1-2-3 case from the review.
+			await seed(
+				repoDir,
+				artistNode({
+					slug: "artist:1-2-3",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					labels: [label],
+					notable_tracks: [track],
+				}),
+			);
+			await seed(
+				serverDir,
+				artistNode({ slug: "artist:1-2-3", qid: "Q1", materialized_at: "2026-08-01T00:00:00.000Z" }),
+			);
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "artist", "1-2-3.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.labels).toEqual([label]);
+			expect(written.notable_tracks).toEqual([track]);
+			expect(manifest.droppedEdges).toEqual([]);
+			expect(countUnionProblems(manifest)).toBe(0);
+		});
+
+		// Every other test in this block has the REPO as the newer side. A real sync leaves the SERVER
+		// newer -- it is the side that kept crawling since the last push -- so `loser = repoFile` is the
+		// expected configuration and went unexercised until this test (2026-09-17, review of #239).
+		it("keeps the server winner's own dangling edge, merges the repo loser's resolvable one, and drops only the repo loser's dangling one", async () => {
+			const dangling = { slug: "track:never-materialized", type: "track", name: "Never Materialized" };
+			const resolvable = { slug: "label:live", type: "label", name: "Live" };
+			const ghost = { slug: "track:repo-ghost", type: "track", name: "Repo Ghost" };
+			await seed(
+				serverDir,
+				artistNode({
+					slug: "artist:shared",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					name: "Shared (server)",
+					notable_tracks: [dangling],
+				}),
+			);
+			await seed(
+				repoDir,
+				artistNode({
+					slug: "artist:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					name: "Shared (repo)",
+					labels: [resolvable],
+					notable_tracks: [ghost],
+				}),
+			);
+			// Repo-only, so it is "copied" rather than "kept" -- live in the union without having to
+			// satisfy the schema, like the other edge targets seeded in this block.
+			await seed(repoDir, { slug: "label:live", type: "label", name: "Live" });
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "artist", "shared.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.name).toBe("Shared (server)");
+			// The winner's own edge survives even though nothing materializes it...
+			expect(written.notable_tracks).toEqual([dangling]);
+			// ...while the loser's resolvable edge is pulled in, and its dangling one is not.
+			expect(written.labels).toEqual([resolvable]);
+			expect(manifest.entries).toEqual(
+				expect.arrayContaining([
+					{ decision: "kept", from: "server", slug: "artist:shared", tie: false, mergedEdgeCount: 1 },
+				]),
+			);
+			expect(manifest.droppedEdges).toEqual([
+				{ slug: "artist:shared", field: "notable_tracks", target: "track:repo-ghost" },
+			]);
+			expect(countUnionProblems(manifest)).toBe(0);
+		});
+
+		// The decision behind countUnionProblems's new droppedEdges term (2026-09-17, review of #239):
+		// a target that resolved in a source and no longer resolves in the union is a reference the
+		// union really did break, unlike the never-materialized baseline above. Isolated from the
+		// qid conflict that causes it by comparing against the same manifest with no dropped edges.
+		it("counts a dropped edge whose target resolved in both sources but is conflict-excluded from the union", async () => {
+			const gone = { slug: "genre:gone", type: "genre", name: "Gone" };
+			// Live on both sides, but with two different qids -- refused, so no live node in the union.
+			await seed(repoDir, node({ slug: "genre:gone", qid: "Q-REPO" }));
+			await seed(serverDir, node({ slug: "genre:gone", qid: "Q-SERVER" }));
+			await seed(
+				repoDir,
+				node({ slug: "genre:shared", qid: "Q1", materialized_at: "2026-09-01T00:00:00.000Z" }),
+			);
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:shared",
+					qid: "Q1",
+					materialized_at: "2026-08-01T00:00:00.000Z",
+					related_genres: [gone],
+				}),
+			);
+
+			const { manifest } = await union();
+
+			expect(manifest.droppedEdges).toEqual([
+				{
+					slug: "genre:shared",
+					field: "related_genres",
+					target: "genre:gone",
+					resolvedIn: ["repo", "server"],
+				},
+			]);
+			expect(countUnionProblems(manifest)).toBe(countUnionProblems({ ...manifest, droppedEdges: [] }) + 1);
+		});
+
 		it("still refuses a qid conflict even when the losing side carries edges", async () => {
 			await seed(
 				repoDir,
@@ -715,14 +910,47 @@ describe("buildCacheUnion", () => {
 			]);
 		});
 
-		it("clears a self-referencing singular edge on the winner, and lists it in the manifest", async () => {
+		// 2026-09-17, review of #239: dropping a self-loop is about the one union MINTS, above. A
+		// self-loop the winner already carried is pre-existing data -- artist:tyree lists itself in
+		// `aliases`, the single occurrence in the committed cache -- and removing it is out of this
+		// ticket's scope, so the winner's list passes through untouched here too.
+		it("leaves a self-referencing list edge the winner already had alone", async () => {
+			const selfLoop = { slug: "artist:tyree", type: "artist", name: "Tyree" };
+			await seed(
+				repoDir,
+				artistNode({
+					slug: "artist:tyree",
+					qid: "Q1",
+					materialized_at: "2026-09-01T00:00:00.000Z",
+					aliases: [selfLoop],
+				}),
+			);
+			await seed(
+				serverDir,
+				artistNode({ slug: "artist:tyree", qid: "Q1", materialized_at: "2026-08-01T00:00:00.000Z" }),
+			);
+
+			const { outputDir, manifest } = await union();
+
+			const written = JSON.parse(
+				await readFile(join(outputDir, "nodes", "artist", "tyree.json"), "utf8"),
+			) as Record<string, unknown>;
+			expect(written.aliases).toEqual([selfLoop]);
+			expect(manifest.droppedEdges).toEqual([]);
+		});
+
+		// Same rule, singular cardinality -- and there it is the ONLY possible case: mergeUnionEdges
+		// never merges a singular field, so its value always comes from the winner and clearing it
+		// could only ever destroy pre-existing data (2026-09-17, review of #239).
+		it("leaves a self-referencing singular edge the winner already had alone", async () => {
 			// track.remix_of is the one singular field whose target type is the same as its owner.
+			const selfLoop = { slug: "track:shared", type: "track", name: "Shared" };
 			await seed(
 				repoDir,
 				trackNode({
 					slug: "track:shared",
 					materialized_at: "2026-09-01T00:00:00.000Z",
-					remix_of: { slug: "track:shared", type: "track", name: "Shared" },
+					remix_of: selfLoop,
 				}),
 			);
 			await seed(serverDir, trackNode({ slug: "track:shared", materialized_at: "2026-08-01T00:00:00.000Z" }));
@@ -732,10 +960,8 @@ describe("buildCacheUnion", () => {
 			const written = JSON.parse(
 				await readFile(join(outputDir, "nodes", "track", "shared.json"), "utf8"),
 			) as Record<string, unknown>;
-			expect(written.remix_of).toBeUndefined();
-			expect(manifest.droppedEdges).toEqual([
-				{ slug: "track:shared", field: "remix_of", target: "track:shared" },
-			]);
+			expect(written.remix_of).toEqual(selfLoop);
+			expect(manifest.droppedEdges).toEqual([]);
 		});
 
 		// Review finding: a schema violation in a merged node used to throw a raw ZodError out of
