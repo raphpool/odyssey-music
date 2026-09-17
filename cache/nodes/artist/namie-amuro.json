@@ -1,0 +1,139 @@
+{
+  "slug": "artist:namie-amuro",
+  "name": "Namie Amuro",
+  "editorial_article": "Namie Amuro made her professional debut in 1992 as the lead singer of the group Super Monkey's under the Toshiba EMI label. In 1995, she transitioned to a solo career with the single 'Taiyou no Season' and subsequently released her debut solo album, 'Dance Tracks Vol.1', which topped the Oricon weekly chart and sold over 2,000,000 copies. Following a move to the Avex Trax label, she achieved massive commercial success with her 1996 album 'Sweet 19 Blues', which sold over 3 million units in Japan. Her 1997 single 'Can You Celebrate?' became the best-selling single by a female solo artist in Japanese chart history. Amuro's later discography includes projects like 'Queen of Hip-Pop' and the 2008 greatest hits compilation 'Best Fiction', which spent six consecutive weeks at number one on the Oricon charts. Her work with collaborators like Verbal and M-Flo on the Suite Chic project marked a notable shift in her musical scope during her multi-decade career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Namie_Amuro_discography",
+      "title": "Namie Amuro discography - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Namie_Amuro",
+      "title": "Namie Amuro - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:10:44.377Z",
+  "type": "artist",
+  "editorial_bio": "Japanese pop icon and record-breaking solo artist who rose to prominence as a teen idol before establishing herself as a leading figure in J-pop.",
+  "origin": "Japan",
+  "active_years": "1992-2018",
+  "genres": [
+    {
+      "slug": "genre:j-pop",
+      "type": "genre",
+      "name": "J-Pop",
+      "qid": "Q131578"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-Pop",
+      "qid": "Q211756"
+    },
+    {
+      "slug": "genre:eurobeat",
+      "type": "genre",
+      "name": "Eurobeat",
+      "qid": "Q848852"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:toshiba-emi",
+      "type": "label",
+      "name": "Toshiba EMI"
+    },
+    {
+      "slug": "label:avex-trax",
+      "type": "label",
+      "name": "Avex Trax"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dance-tracks-vol-1",
+      "type": "project",
+      "name": "Dance Tracks Vol.1"
+    },
+    {
+      "slug": "project:sweet-19-blues",
+      "type": "project",
+      "name": "Sweet 19 Blues"
+    },
+    {
+      "slug": "project:concentration-20",
+      "type": "project",
+      "name": "Concentration 20"
+    },
+    {
+      "slug": "project:genius-2000",
+      "type": "project",
+      "name": "Genius 2000"
+    },
+    {
+      "slug": "project:queen-of-hip-pop",
+      "type": "project",
+      "name": "Queen of Hip-Pop"
+    },
+    {
+      "slug": "project:play",
+      "type": "project",
+      "name": "Play"
+    },
+    {
+      "slug": "project:best-fiction",
+      "type": "project",
+      "name": "Best Fiction"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:taiyou-no-season",
+      "type": "track",
+      "name": "Taiyou no Season"
+    },
+    {
+      "slug": "track:body-feels-exit",
+      "type": "track",
+      "name": "Body Feels Exit"
+    },
+    {
+      "slug": "track:can-you-celebrate",
+      "type": "track",
+      "name": "Can You Celebrate?"
+    },
+    {
+      "slug": "track:mint",
+      "type": "track",
+      "name": "Mint"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:verbal",
+      "type": "artist",
+      "name": "Verbal"
+    },
+    {
+      "slug": "artist:ryosuke-imai",
+      "type": "artist",
+      "name": "Ryosuke Imai"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:namie-amuro",
+      "type": "artist",
+      "name": "Namie Amuro"
+    }
+  ]
+}

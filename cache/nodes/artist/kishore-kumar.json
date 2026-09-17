@@ -1,0 +1,110 @@
+{
+  "slug": "artist:kishore-kumar",
+  "name": "Kishore Kumar",
+  "editorial_article": "Born Abhas Kumar Ganguly in 1929 in Khandwa, British India, Kishore Kumar became one of the most influential figures in Indian playback singing, recording over 2,500 songs in multiple languages. His breakthrough as a singer came after music director Khemchand Prakash cast him in the 1948 film Ziddi. Kumar developed a distinctive style characterized by yodelling—a technique inspired by Tex Morton and Jimmie Rodgers—which he notably employed on tracks like \"Zindagi Ek Safar Hai Suhana\" and \"Chala Jata Hoon.\" His acting career included roles in 22 films between 1946 and 1955, and he later produced and directed the 1964 film Door Gagan Ki Chhaon Mein, where he starred alongside his son, Amit Kumar. Collaborating frequently with music directors like S. D. Burman and R. D. Burman, Kumar established a record for receiving the Filmfare Award for Best Male Playback Singer eight times, including a sweep of all four nominations in 1985 for the film Sharaabi. Beyond his playback work, he was a versatile performer known for his ability to sing in both male and female voices, as demonstrated in the duet \"Aake Seedhi Lagi Dil Pe\" for the 1962 film Half Ticket.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kishore_Kumar",
+      "title": "Kishore Kumar - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Kishore-Kumar",
+      "title": "Kishore Kumar | Biography, Movies, Songs, & Facts - Britannica"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:08:16.953Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Indian playback singer and actor known for his versatile voice, yodelling technique, and a prolific career spanning four decades.",
+  "origin": "Khandwa, Madhya Pradesh, India",
+  "active_years": "1946–1987",
+  "genres": [
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Filmi",
+      "qid": "Q544440"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hmv",
+      "type": "label",
+      "name": "HMV"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chalti-ka-naam-gaadi",
+      "type": "project",
+      "name": "Chalti Ka Naam Gaadi"
+    },
+    {
+      "slug": "project:aradhana",
+      "type": "project",
+      "name": "Aradhana"
+    },
+    {
+      "slug": "project:padosan",
+      "type": "project",
+      "name": "Padosan"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mere-sapnon-ki-rani",
+      "type": "track",
+      "name": "Mere Sapnon Ki Rani"
+    },
+    {
+      "slug": "track:roop-tera-mastana",
+      "type": "track",
+      "name": "Roop Tera Mastana"
+    },
+    {
+      "slug": "track:gaata-rahe-mera-dil",
+      "type": "track",
+      "name": "Gaata Rahe Mera Dil"
+    },
+    {
+      "slug": "track:ek-ladki-bheegi-bhaagi-si",
+      "type": "track",
+      "name": "Ek Ladki Bheegi Bhaagi Si"
+    },
+    {
+      "slug": "track:zindagi-ek-safar-hai-suhana",
+      "type": "track",
+      "name": "Zindagi Ek Safar Hai Suhana"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:s-d-burman",
+      "type": "artist",
+      "name": "S. D. Burman"
+    },
+    {
+      "slug": "artist:rahul-dev-burman",
+      "type": "artist",
+      "name": "Rahul Dev Burman"
+    },
+    {
+      "slug": "artist:lata-mangeshkar",
+      "type": "artist",
+      "name": "Lata Mangeshkar"
+    },
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    },
+    {
+      "slug": "artist:rajesh-khanna",
+      "type": "artist",
+      "name": "Rajesh Khanna"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

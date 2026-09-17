@@ -1,0 +1,139 @@
+{
+  "slug": "genre:indian-film-music",
+  "name": "Indian Film Music",
+  "editorial_article": "Indian film music—often termed Bollywood music—dates back to the 1931 sound film 'Alam Ara,' which featured seven songs recorded by the Saregama label. These compositions act as a central narrative device rather than simple Western musical interludes, routinely serving to accentuate moods or internal monologues. Beyond their cinematic role, these tracks have shaped the nation's popular culture, with soundtracks accounting for approximately 80% of India's music revenue. The industry historically drew on Urdu ghazal poetry and classical forms, while modern output increasingly incorporates Hinglish and diverse global influences like electronic disco. The 1980s saw significant experimentation, such as Charanjit Singh’s 1982 album 'Synthesizing: Ten Ragas to a Disco Beat,' which used the Roland TR-808 and TB-303 to bridge traditional ragas with early house structures.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hindi_film_music",
+      "title": "Hindi film music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:07:37.616Z",
+  "type": "genre",
+  "editorial_definition": "A foundational element of Indian popular culture, featuring songs integrated directly into film plots and dance sequences.",
+  "qid": "Q544440",
+  "era": "1931 to present",
+  "origin": "India, predominantly within the Bollywood cinema industry",
+  "sonic_markers": "Eclectic instrumentation ranging from traditional ragas, sitars, and tabla to synthesizers, drum machines, and electronic disco elements.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-india",
+      "type": "genre",
+      "name": "Music Of India",
+      "qid": "Q531426"
+    },
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack",
+      "qid": "Q107736421"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:ghazal",
+      "type": "genre",
+      "name": "Ghazal",
+      "qid": "Q281111"
+    },
+    {
+      "slug": "genre:qawwali",
+      "type": "genre",
+      "name": "Qawwali",
+      "qid": "Q512410"
+    },
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:mohammed-rafi",
+      "type": "artist",
+      "name": "Mohammed Rafi"
+    },
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    },
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman"
+    },
+    {
+      "slug": "artist:bappi-lahiri",
+      "type": "artist",
+      "name": "Bappi Lahiri"
+    },
+    {
+      "slug": "artist:r-d-burman",
+      "type": "artist",
+      "name": "R. D. Burman"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:saregama",
+      "type": "label",
+      "name": "Saregama"
+    },
+    {
+      "slug": "label:t-series",
+      "type": "label",
+      "name": "T-Series"
+    },
+    {
+      "slug": "label:sony-music-india",
+      "type": "label",
+      "name": "Sony Music India"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:aap-jaisa-koi",
+      "type": "track",
+      "name": "Aap Jaisa Koi"
+    },
+    {
+      "slug": "track:dum-maro-dum",
+      "type": "track",
+      "name": "Dum Maro Dum"
+    },
+    {
+      "slug": "track:kajra-re",
+      "type": "track",
+      "name": "Kajra Re"
+    },
+    {
+      "slug": "track:yaad-aa-raha-hai",
+      "type": "track",
+      "name": "Yaad Aa Raha Hai"
+    }
+  ]
+}

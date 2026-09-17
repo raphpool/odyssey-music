@@ -143,6 +143,15 @@
         "type": "artist",
         "name": "Ornette Coleman"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hassan-hakmoun",
+        "type": "artist",
+        "name": "Hassan Hakmoun"
+      }
     }
   ],
   "artist:attila-csihar": [
@@ -781,6 +790,15 @@
         "slug": "artist:astor-piazzolla",
         "type": "artist",
         "name": "Astor Piazzolla"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
       }
     }
   ],
@@ -1920,6 +1938,15 @@
         "slug": "artist:sophie",
         "type": "artist",
         "name": "SOPHIE"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
       }
     }
   ],
@@ -3704,6 +3731,15 @@
         "slug": "artist:a-guy-called-gerald",
         "type": "artist",
         "name": "A Guy Called Gerald"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
       }
     }
   ],
@@ -6260,6 +6296,16 @@
         "name": "Bossa Nova",
         "qid": "Q486263"
       }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:a-pop",
+        "type": "genre",
+        "name": "A-pop",
+        "qid": "Q10730335"
+      }
     }
   ],
   "genre:latin-jazz": [
@@ -7385,6 +7431,26 @@
         "name": "Music of West Africa",
         "qid": "Q6942329"
       }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-north-africa",
+        "type": "genre",
+        "name": "Music of North Africa",
+        "qid": "Q11400811"
+      }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-central-africa",
+        "type": "genre",
+        "name": "Music of Central Africa",
+        "qid": "Q106588687"
+      }
     }
   ],
   "genre:afrobeats": [
@@ -7735,6 +7801,1536 @@
         "slug": "artist:akale-wube",
         "type": "artist",
         "name": "Akalé Wubé"
+      }
+    }
+  ],
+  "genre:arabic-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-north-africa",
+        "type": "genre",
+        "name": "Music of North Africa",
+        "qid": "Q11400811"
+      }
+    }
+  ],
+  "genre:andalusian-classical-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-north-africa",
+        "type": "genre",
+        "name": "Music of North Africa",
+        "qid": "Q11400811"
+      }
+    }
+  ],
+  "genre:rai": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-north-africa",
+        "type": "genre",
+        "name": "Music of North Africa",
+        "qid": "Q11400811"
+      }
+    }
+  ],
+  "genre:chaabi": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:music-of-north-africa",
+        "type": "genre",
+        "name": "Music of North Africa",
+        "qid": "Q11400811"
+      }
+    }
+  ],
+  "artist:pharoah-sanders": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:peter-brotzmann": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:hamid-drake": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:mahmoud-gania": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:houssam-guinia": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:mokhtar-gania": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mahmoud-guinia",
+        "type": "artist",
+        "name": "Mahmoud Guinia"
+      }
+    }
+  ],
+  "artist:joe-zawinul": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hamid-el-kasri",
+        "type": "artist",
+        "name": "Hamid El Kasri"
+      }
+    }
+  ],
+  "artist:karim-ziad": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hamid-el-kasri",
+        "type": "artist",
+        "name": "Hamid El Kasri"
+      }
+    }
+  ],
+  "artist:snarky-puppy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hamid-el-kasri",
+        "type": "artist",
+        "name": "Hamid El Kasri"
+      }
+    }
+  ],
+  "artist:jacob-collier": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hamid-el-kasri",
+        "type": "artist",
+        "name": "Hamid El Kasri"
+      }
+    }
+  ],
+  "artist:adam-rudolph": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hassan-hakmoun",
+        "type": "artist",
+        "name": "Hassan Hakmoun"
+      }
+    }
+  ],
+  "artist:peter-gabriel": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hassan-hakmoun",
+        "type": "artist",
+        "name": "Hassan Hakmoun"
+      }
+    }
+  ],
+  "artist:paula-cole": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hassan-hakmoun",
+        "type": "artist",
+        "name": "Hassan Hakmoun"
+      }
+    }
+  ],
+  "artist:dee-dee-bridgewater": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hassan-hakmoun",
+        "type": "artist",
+        "name": "Hassan Hakmoun"
+      }
+    }
+  ],
+  "genre:african-folk-music": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:gnawa",
+        "type": "genre",
+        "name": "Gnawa",
+        "qid": "Q2000173"
+      }
+    }
+  ],
+  "artist:victor-olaiya": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:e-t-mensah",
+        "type": "artist",
+        "name": "E.T. Mensah"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:victor-uwaifo",
+        "type": "artist",
+        "name": "Victor Uwaifo"
+      }
+    }
+  ],
+  "artist:louis-armstrong": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:e-t-mensah",
+        "type": "artist",
+        "name": "E.T. Mensah"
+      }
+    }
+  ],
+  "artist:yebuah-mensah": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:e-t-mensah",
+        "type": "artist",
+        "name": "E.T. Mensah"
+      }
+    }
+  ],
+  "artist:segun-bucknor": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:victor-uwaifo",
+        "type": "artist",
+        "name": "Victor Uwaifo"
+      }
+    }
+  ],
+  "artist:stephen-osadebe": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:victor-uwaifo",
+        "type": "artist",
+        "name": "Victor Uwaifo"
+      }
+    }
+  ],
+  "artist:guitar-boy": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:victor-uwaifo",
+        "type": "artist",
+        "name": "Victor Uwaifo"
+      }
+    }
+  ],
+  "artist:smart-nkansah": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-b-crentsil",
+        "type": "artist",
+        "name": "A.B. Crentsil"
+      }
+    }
+  ],
+  "genre:congolese-rumba": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    }
+  ],
+  "genre:muziki-wa-dansi": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    }
+  ],
+  "genre:ndombolo": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    }
+  ],
+  "genre:champeta": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    }
+  ],
+  "genre:benga-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:soukous",
+        "type": "genre",
+        "name": "Soukous",
+        "qid": "Q1752683"
+      }
+    }
+  ],
+  "artist:diblo-dibala": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kanda-bongo-man",
+        "type": "artist",
+        "name": "Kanda Bongo Man"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "artist:tabu-ley": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kanda-bongo-man",
+        "type": "artist",
+        "name": "Kanda Bongo Man"
+      }
+    }
+  ],
+  "artist:nyboma": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:papy-tex": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:dilu-dilumona": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:verckys-kiamuangana-mateta": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:manu-lima": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:lokassa-ya-mbongo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pepe-kalle",
+        "type": "artist",
+        "name": "Pépé Kallé"
+      }
+    }
+  ],
+  "artist:mav-cacharel": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "artist:dally-kimoko": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "artist:awilo-longomba": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "artist:rigo-star": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "artist:benoit-aurelien-miatsonama": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:aurlus-mabele",
+        "type": "artist",
+        "name": "Aurlus Mabélé"
+      }
+    }
+  ],
+  "genre:music-of-india": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:indian-film-music",
+        "type": "genre",
+        "name": "Indian Film Music",
+        "qid": "Q544440"
+      }
+    }
+  ],
+  "genre:ghazal": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:indian-film-music",
+        "type": "genre",
+        "name": "Indian Film Music",
+        "qid": "Q544440"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bollywood",
+        "type": "genre",
+        "name": "Bollywood",
+        "qid": "Q6942022"
+      }
+    }
+  ],
+  "genre:qawwali": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:indian-film-music",
+        "type": "genre",
+        "name": "Indian Film Music",
+        "qid": "Q544440"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bollywood",
+        "type": "genre",
+        "name": "Bollywood",
+        "qid": "Q6942022"
+      }
+    }
+  ],
+  "genre:indian-pop-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bollywood",
+        "type": "genre",
+        "name": "Bollywood",
+        "qid": "Q6942022"
+      }
+    }
+  ],
+  "artist:noor-jehan": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:mohammed-rafi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:hridaynath-mangeshkar": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:salil-chowdhury": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:naushad-ali": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:madan-mohan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:lata-didi": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:swar-kokila": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:anandghan": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lata-mangeshkar",
+        "type": "artist",
+        "name": "Lata Mangeshkar"
+      }
+    }
+  ],
+  "artist:deenanath-mangeshkar": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:bill-haley": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:r-d-burman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:o-p-nayyar": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:a-r-rahman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:mohammad-rafi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:gulzar": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:asha-mangeshkar": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:asha-bhosle",
+        "type": "artist",
+        "name": "Asha Bhosle"
+      }
+    }
+  ],
+  "artist:s-d-burman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kishore-kumar",
+        "type": "artist",
+        "name": "Kishore Kumar"
+      }
+    }
+  ],
+  "artist:rahul-dev-burman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kishore-kumar",
+        "type": "artist",
+        "name": "Kishore Kumar"
+      }
+    }
+  ],
+  "artist:rajesh-khanna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kishore-kumar",
+        "type": "artist",
+        "name": "Kishore Kumar"
+      }
+    }
+  ],
+  "genre:music-of-japan": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:city-pop",
+        "type": "genre",
+        "name": "City Pop",
+        "qid": "Q11307326"
+      }
+    }
+  ],
+  "genre:future-funk": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:city-pop",
+        "type": "genre",
+        "name": "City Pop",
+        "qid": "Q11307326"
+      }
+    }
+  ],
+  "genre:aor": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:city-pop",
+        "type": "genre",
+        "name": "City Pop",
+        "qid": "Q11307326"
+      }
+    }
+  ],
+  "artist:alan-o-day": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:taeko-onuki": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:eiichi-ohtaki": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:minako-yoshida": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:tatsu-yamashita": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:tats-yamashita": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tatsuro-yamashita",
+        "type": "artist",
+        "name": "Tatsurō Yamashita"
+      }
+    }
+  ],
+  "artist:anri": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mariya-takeuchi",
+        "type": "artist",
+        "name": "Mariya Takeuchi"
+      }
+    }
+  ],
+  "artist:tetsuji-hayashi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mariya-takeuchi",
+        "type": "artist",
+        "name": "Mariya Takeuchi"
+      }
+    }
+  ],
+  "artist:miyabi": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mariya-takeuchi",
+        "type": "artist",
+        "name": "Mariya Takeuchi"
+      }
+    }
+  ],
+  "artist:mako": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mariya-takeuchi",
+        "type": "artist",
+        "name": "Mariya Takeuchi"
+      }
+    }
+  ],
+  "artist:sergio-mendes": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:junko-ohashi",
+        "type": "artist",
+        "name": "Junko Ōhashi"
+      }
+    }
+  ],
+  "artist:janis-joplin": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:junko-ohashi",
+        "type": "artist",
+        "name": "Junko Ōhashi"
+      }
+    }
+  ],
+  "artist:ken-sato": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:junko-ohashi",
+        "type": "artist",
+        "name": "Junko Ōhashi"
+      }
+    }
+  ],
+  "artist:kiyohiko-ozaki": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:junko-ohashi",
+        "type": "artist",
+        "name": "Junko Ōhashi"
+      }
+    }
+  ],
+  "genre:art-music": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:music-of-southeast-asia": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:piphat": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:khrueang-sai": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:fon-leb": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:thai-classical-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "genre:cambodian-classical-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:southeast-asian-classical-music",
+        "type": "genre",
+        "name": "Southeast Asian classical music",
+        "qid": "Q106586998"
+      }
+    }
+  ],
+  "artist:bagong-kussudiardjo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "artist:robert-e-brown": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "artist:jody-diamond": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "artist:k-p-h-notoprojo": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "artist:tjokrowasito": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "artist:wasitodipuro": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:k-r-t-wasitodiningrat",
+        "type": "artist",
+        "name": "K.R.T. Wasitodiningrat"
+      }
+    }
+  ],
+  "genre:music-of-asia": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:a-pop",
+        "type": "genre",
+        "name": "A-pop",
+        "qid": "Q10730335"
+      }
+    }
+  ],
+  "genre:amapiano": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:a-pop",
+        "type": "genre",
+        "name": "A-pop",
+        "qid": "Q10730335"
+      }
+    }
+  ],
+  "genre:african-popular-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:a-pop",
+        "type": "genre",
+        "name": "A-pop",
+        "qid": "Q10730335"
+      }
+    }
+  ],
+  "genre:contemporary-r-and-b": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:a-pop",
+        "type": "genre",
+        "name": "A-pop",
+        "qid": "Q10730335"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:k-pop",
+        "type": "genre",
+        "name": "K-Pop",
+        "qid": "Q213665"
+      }
+    }
+  ],
+  "genre:technopop": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:j-pop",
+        "type": "genre",
+        "name": "J-Pop",
+        "qid": "Q131578"
+      }
+    }
+  ],
+  "genre:japanese-hip-hop": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:j-pop",
+        "type": "genre",
+        "name": "J-Pop",
+        "qid": "Q131578"
+      }
+    }
+  ],
+  "genre:kawaii-metal": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:j-pop",
+        "type": "genre",
+        "name": "J-Pop",
+        "qid": "Q131578"
+      }
+    }
+  ],
+  "artist:poo-bear": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:floating-points": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:ringo-sheena": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:cubic-u": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:hikki": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:utada": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hikaru-utada",
+        "type": "artist",
+        "name": "Hikaru Utada"
+      }
+    }
+  ],
+  "artist:max-matsuura": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ayumi-hamasaki",
+        "type": "artist",
+        "name": "Ayumi Hamasaki"
+      }
+    }
+  ],
+  "artist:keiko-yamada": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ayumi-hamasaki",
+        "type": "artist",
+        "name": "Ayumi Hamasaki"
+      }
+    }
+  ],
+  "artist:ayu": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ayumi-hamasaki",
+        "type": "artist",
+        "name": "Ayumi Hamasaki"
+      }
+    }
+  ],
+  "artist:crea": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ayumi-hamasaki",
+        "type": "artist",
+        "name": "Ayumi Hamasaki"
+      }
+    }
+  ],
+  "artist:verbal": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:namie-amuro",
+        "type": "artist",
+        "name": "Namie Amuro"
+      }
+    }
+  ],
+  "artist:ryosuke-imai": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:namie-amuro",
+        "type": "artist",
+        "name": "Namie Amuro"
+      }
+    }
+  ],
+  "artist:jin": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:suga": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:j-hope": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:rm": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:jimin": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:v": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:jung-kook": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bts",
+        "type": "artist",
+        "name": "BTS"
+      }
+    }
+  ],
+  "artist:g-dragon": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bigbang",
+        "type": "artist",
+        "name": "BIGBANG"
+      }
+    }
+  ],
+  "artist:taeyang": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bigbang",
+        "type": "artist",
+        "name": "BIGBANG"
+      }
+    }
+  ],
+  "artist:daesung": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:bigbang",
+        "type": "artist",
+        "name": "BIGBANG"
+      }
+    }
+  ],
+  "artist:jisoo": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:blackpink",
+        "type": "artist",
+        "name": "BLACKPINK"
+      }
+    }
+  ],
+  "artist:jennie": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:blackpink",
+        "type": "artist",
+        "name": "BLACKPINK"
+      }
+    }
+  ],
+  "artist:rose": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:blackpink",
+        "type": "artist",
+        "name": "BLACKPINK"
+      }
+    }
+  ],
+  "artist:lisa": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:blackpink",
+        "type": "artist",
+        "name": "BLACKPINK"
       }
     }
   ]

@@ -1,0 +1,98 @@
+{
+  "slug": "artist:hamid-el-kasri",
+  "name": "Hamid El Kasri",
+  "editorial_article": "Born in 1961 in Ksar El Kebir, Morocco, Hamid El Kasri is a master maâlem known for blending Northern and Southern Moroccan Gnawa rhythms. He began his formal training at age seven under maâlems Abdelouahed Stitou and Alouane, specializing in the distinct Chemeli style. His deep vocal register and mastery of the guembri—a three-stringed bass instrument—have made him a prominent figure at the Gnaoua World Music Festival. He has expanded his reach through international collaborations, including a 2018 opening performance with Snarky Puppy at the Gnaoua World Music Festival and a feature on Jacob Collier’s 2018 album Djesse Vol. 1, where he appears on the track \"Everlasting Motion.\"",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hamid_El_Kasri",
+      "title": "Hamid El Kasri - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:36.178Z",
+  "type": "artist",
+  "editorial_bio": "A celebrated Moroccan Gnawa master musician and guembri player known for his deep, intense vocal style and cross-cultural collaborations.",
+  "origin": "Ksar El Kebir, Morocco",
+  "active_years": "1968-present",
+  "genres": [
+    {
+      "slug": "genre:gnawa-music",
+      "type": "genre",
+      "name": "Gnawa music",
+      "qid": "Q2000173"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hajmir",
+      "type": "label",
+      "name": "Hajmir"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:roots-and-plugged",
+      "type": "project",
+      "name": "Roots & Plugged",
+      "mbid": "7a1de477-6b28-49d1-be29-29ba31d62a76",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:salam",
+      "type": "project",
+      "name": "Salam",
+      "mbid": "3bdd4da5-2578-4984-b800-3499176122c5",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yobadi",
+      "type": "project",
+      "name": "Yobadi",
+      "mbid": "a5b805dc-11b7-4f55-a40b-29dd07c6a28e",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bouhala-gnawa",
+      "type": "project",
+      "name": "Bouhala Gnawa",
+      "mbid": "d8292e26-0371-444e-9740-9043a820c54d",
+      "year": "2007",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:everlasting-motion",
+      "type": "track",
+      "name": "Everlasting Motion"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:joe-zawinul",
+      "type": "artist",
+      "name": "Joe Zawinul"
+    },
+    {
+      "slug": "artist:karim-ziad",
+      "type": "artist",
+      "name": "Karim Ziad"
+    },
+    {
+      "slug": "artist:snarky-puppy",
+      "type": "artist",
+      "name": "Snarky Puppy"
+    },
+    {
+      "slug": "artist:jacob-collier",
+      "type": "artist",
+      "name": "Jacob Collier"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,102 @@
+{
+  "slug": "artist:k-r-t-wasitodiningrat",
+  "name": "K.R.T. Wasitodiningrat",
+  "editorial_article": "Born Wasi Jolodoro in 1909 in Yogyakarta, Central Java, K.R.T. Wasitodiningrat became the most celebrated exponent of the Javanese gamelan tradition in the twentieth century. He served as the musical director for the Paku Alaman palace gamelan starting in 1962, a position he inherited from his father. His compositions for the gamelan were uniquely influential, including the piece Puspawarna, which was selected for the Voyager Golden Record launched into space in 1977. Beyond his work in Indonesia, he spent over two decades teaching at the California Institute of the Arts from 1971 to 1992, formalizing his knowledge through the publication of vocal notation for nearly 300 traditional pieces. His collaborative efforts included the 1994 album The Music of K.R.T. Wasitodiningrat, recorded by Gamelan Sekar Tunjung for CMP Records. Throughout his career, he worked with choreographers like Bagong Kussudiardjo and maintained a deep influence on the performance of Javanese court music through his leadership of various radio gamelan ensembles.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/K._P._H._Notoprojo",
+      "title": "K. P. H. Notoprojo"
+    },
+    {
+      "url": "https://music.apple.com/us/album/the-music-of-k-r-t-wasitodiningrat/1833216361",
+      "title": "The Music Of K.R.T. Wasitodiningrat - Album by Gamelan Sekar Tunjung"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:09:34.944Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Javanese gamelan master and composer whose work reached space via the Voyager Golden Record.",
+  "origin": "Yogyakarta, Indonesia",
+  "active_years": "1914-2007",
+  "genres": [
+    {
+      "slug": "genre:javanese-gamelan",
+      "type": "genre",
+      "name": "Javanese Gamelan",
+      "qid": "Q11215782"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:cmp-records",
+      "type": "label",
+      "name": "CMP Records"
+    },
+    {
+      "slug": "label:nonesuch-records",
+      "type": "label",
+      "name": "Nonesuch Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-music-of-k-r-t-wasitodiningrat",
+      "type": "project",
+      "name": "The Music of K.R.T. Wasitodiningrat",
+      "mbid": "db3826cf-a36e-4708-b7fb-0aa2d44f4d73",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:javanese-court-gamelan-from-the-pura-paku-alaman-jogyakarta",
+      "type": "project",
+      "name": "Javanese Court Gamelan from the Pura Paku Alaman, Jogyakarta",
+      "mbid": "ba42a2f5-0b8c-36ee-bfbb-c78f7b232a79",
+      "year": "1971",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:puspawarna",
+      "type": "track",
+      "name": "Puspawarna"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bagong-kussudiardjo",
+      "type": "artist",
+      "name": "Bagong Kussudiardjo"
+    },
+    {
+      "slug": "artist:robert-e-brown",
+      "type": "artist",
+      "name": "Robert E. Brown"
+    },
+    {
+      "slug": "artist:jody-diamond",
+      "type": "artist",
+      "name": "Jody Diamond"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:k-p-h-notoprojo",
+      "type": "artist",
+      "name": "K. P. H. Notoprojo"
+    },
+    {
+      "slug": "artist:tjokrowasito",
+      "type": "artist",
+      "name": "Tjokrowasito"
+    },
+    {
+      "slug": "artist:wasitodipuro",
+      "type": "artist",
+      "name": "Wasitodipuro"
+    }
+  ],
+  "members": []
+}

@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:41:58.336Z",
   "type": "genre",
   "editorial_definition": "A beat-driven style of popular dance music characterized by four-on-the-floor rhythms, syncopated basslines, and orchestral instrumentation, which emerged from the underground nightlife of late 1960s and 1970s urban America.",
+  "qid": "Q58339",
   "era": "1960s–1980s",
   "origin": "United States (New York City, Philadelphia)",
   "parent_genres": [],
@@ -72,6 +73,24 @@
       "type": "genre",
       "name": "Eurodisco",
       "qid": "Q1374731"
+    },
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Indian Film Music",
+      "qid": "Q544440"
+    },
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
+    },
+    {
+      "slug": "genre:city-pop",
+      "type": "genre",
+      "name": "City Pop",
+      "qid": "Q11307326"
     }
   ],
   "key_artists": [
@@ -130,6 +149,5 @@
       "name": "C'est Chic"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q58339"
+  "landmark_tracks": []
 }

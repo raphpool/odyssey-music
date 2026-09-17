@@ -1,0 +1,126 @@
+{
+  "slug": "artist:blackpink",
+  "name": "BLACKPINK",
+  "editorial_article": "Formed in 2016 by YG Entertainment, the South Korean girl group BLACKPINK made their debut with the single album Square One, which featured the songs Whistle and Boombayah. The group solidified their international presence with the 2018 EP Square Up, which peaked at number 40 on the Billboard 200 and contained the record-breaking single Ddu-Du Ddu-Du. Their debut studio album, The Album, was released in 2020 through YG and Interscope, eventually selling over 1 million copies in its first month and reaching number two on the Billboard 200. Throughout their career, the quartet has collaborated with prominent Western artists including Dua Lipa on the track Kiss and Make Up, Lady Gaga on Sour Candy, and Selena Gomez on the single Ice Cream. Their 2022 studio album, Born Pink, achieved historic chart success by becoming the first album by a K-pop girl group to top the UK Albums Chart and debuting at number one on the Billboard 200. The group has also explored individual projects, with members Jisoo, Jennie, Rosé, and Lisa each maintaining distinct solo discographies.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Blackpink_discography",
+      "title": "Blackpink discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Album_(Blackpink_album)",
+      "title": "The Album (Blackpink album)"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:11:46.886Z",
+  "type": "artist",
+  "editorial_bio": "A global K-pop powerhouse, BLACKPINK is known for high-charting studio albums and major cross-genre collaborations with artists like Lady Gaga and Selena Gomez.",
+  "origin": "Seoul, South Korea",
+  "active_years": "2016-present",
+  "genres": [
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:yg-entertainment",
+      "type": "label",
+      "name": "YG Entertainment"
+    },
+    {
+      "slug": "label:interscope-records",
+      "type": "label",
+      "name": "Interscope Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-album",
+      "type": "project",
+      "name": "The Album"
+    },
+    {
+      "slug": "project:born-pink",
+      "type": "project",
+      "name": "Born Pink"
+    },
+    {
+      "slug": "project:square-up",
+      "type": "project",
+      "name": "Square Up"
+    },
+    {
+      "slug": "project:kill-this-love",
+      "type": "project",
+      "name": "Kill This Love"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:whistle",
+      "type": "track",
+      "name": "Whistle"
+    },
+    {
+      "slug": "track:boombayah",
+      "type": "track",
+      "name": "Boombayah"
+    },
+    {
+      "slug": "track:ddu-du-ddu-du",
+      "type": "track",
+      "name": "Ddu-Du Ddu-Du"
+    },
+    {
+      "slug": "track:how-you-like-that",
+      "type": "track",
+      "name": "How You Like That"
+    },
+    {
+      "slug": "track:pink-venom",
+      "type": "track",
+      "name": "Pink Venom"
+    },
+    {
+      "slug": "track:shut-down",
+      "type": "track",
+      "name": "Shut Down"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jisoo",
+      "type": "artist",
+      "name": "Jisoo"
+    },
+    {
+      "slug": "artist:jennie",
+      "type": "artist",
+      "name": "Jennie"
+    },
+    {
+      "slug": "artist:rose",
+      "type": "artist",
+      "name": "Rosé"
+    },
+    {
+      "slug": "artist:lisa",
+      "type": "artist",
+      "name": "Lisa"
+    }
+  ]
+}
