@@ -1,0 +1,292 @@
+{
+  "slug": "artist:49ers",
+  "name": "49ers",
+  "editorial_article": "Formed in 1988 in Brescia, Italy, by producer Gianfranco Bortolotti, the 49ers project became a significant force in the international Italo house scene. The group, named after the American football team, achieved major chart success in 1990 with the singles \"Touch Me\" and \"Don't You Love Me,\" both of which reached number-one on the Billboard Hot Dance Club Play chart. Their debut single, \"Die Walküre,\" utilized a vocal sample from Freeez's \"I.O.U.\" while \"Touch Me\" incorporated a sample from Aretha Franklin's \"Rock-a-Lott.\" The group's vocal identity was complex, with models and singers like Dawn Mitchell and Alysha Warren fronting the act, often lip-syncing or providing uncredited studio performances. By 1992, they released their second album, \"Playing with My Heart,\" before eventually disbanding in 1998, though they later returned for a 2010 single featuring samples from Charlie Chaplin's 1936 film \"Modern Times.\"",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/49ers_(group)",
+      "title": "49ers (group) - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/49ers_(album)",
+      "title": "49ers (album) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:02.992Z",
+  "type": "artist",
+  "editorial_bio": "An influential Italian house and Eurodance act known for chart-topping dance hits and early 90s Italo house production techniques.",
+  "origin": "Brescia, Italy",
+  "active_years": "1988-1998",
+  "genres": [
+    {
+      "slug": "genre:italo-house",
+      "type": "genre",
+      "name": "Italo house",
+      "qid": "Q2702280"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:media-records",
+      "type": "label",
+      "name": "Media Records"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:4th-and-b-way-records",
+      "type": "label",
+      "name": "4th & B'way Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:i-got-the-music-aka-i-got-it",
+      "type": "project",
+      "name": "I Got the Music aka I Got It",
+      "mbid": "23121500-b995-4c69-a39c-c656f8b9cb36",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-i-m-yours",
+      "type": "project",
+      "name": "Baby, I'm Yours",
+      "mbid": "2d020960-3bb9-3402-8ddc-29c40359c032",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lovin-you",
+      "type": "project",
+      "name": "Lovin' You",
+      "mbid": "54962abb-fd57-33f0-ba36-8ae035babeb7",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rockin-my-body",
+      "type": "project",
+      "name": "Rockin' My Body",
+      "mbid": "c00261f4-2d92-3661-a077-5204740f8c4d",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everything",
+      "type": "project",
+      "name": "Everything",
+      "mbid": "30560045-5760-482e-a0f6-66bffa9c9135",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-your-love",
+      "type": "project",
+      "name": "Keep Your Love",
+      "mbid": "32486f8e-92ef-4aca-a5e9-a99c2ca8eeec",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-your-love",
+      "type": "project",
+      "name": "Keep Your Love",
+      "mbid": "5d3e6cdb-5d0e-4279-94ed-2e5d5cfcd4d8",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:move-your-feet",
+      "type": "project",
+      "name": "Move Your Feet",
+      "mbid": "55a9dbfd-cd3a-49aa-9b5c-8b24cefcdd2b",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:playing-with-my-heart",
+      "type": "project",
+      "name": "Playing With My Heart",
+      "mbid": "a21fb85f-d64f-32c4-b052-5ecad1f6355b",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-message",
+      "type": "project",
+      "name": "The Message",
+      "mbid": "3e623fb4-5d5d-489a-9b8f-f9c068c2f780",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:got-to-be-free",
+      "type": "project",
+      "name": "Got To Be Free",
+      "mbid": "e19571bd-0fb3-444f-bb47-d517d3e2075b",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-remixes",
+      "type": "project",
+      "name": "The Remixes",
+      "mbid": "72f485ba-9c68-4ff5-b35a-a1fc3619ab33",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-remix-album",
+      "type": "project",
+      "name": "The Remix Album",
+      "mbid": "61ac77d3-17b5-4b23-82ab-41a3f2a54132",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:girl-to-girl",
+      "type": "project",
+      "name": "Girl to Girl",
+      "mbid": "007af7d1-3b31-4090-acae-8bcfdca4d578",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:49ers",
+      "type": "project",
+      "name": "49ers",
+      "mbid": "8c35707f-59ab-3eb2-af43-74276bfc0eaa",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-walkure",
+      "type": "project",
+      "name": "Die Walküre (remix)",
+      "mbid": "8a06fb21-f0c4-4270-b62c-2cb2d4b91c34",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-longer",
+      "type": "project",
+      "name": "How Longer",
+      "mbid": "92dddcb8-6531-4ccd-9422-ba7575712e9a",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-you",
+      "type": "project",
+      "name": "I Need You",
+      "mbid": "968cbbb4-f053-4fba-ad56-1df7f3dbc250",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-you-love-me",
+      "type": "project",
+      "name": "Don't You Love Me",
+      "mbid": "cfa26821-c04c-3492-9daf-901ce91bf74c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shadows",
+      "type": "project",
+      "name": "Shadows",
+      "mbid": "2e18449b-32be-4d8a-9a08-8ddcfe17a1d9",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:touch-me",
+      "type": "project",
+      "name": "Touch Me",
+      "mbid": "4ae5e1ae-527c-3957-9410-987c29e55f65",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:die-walkure",
+      "type": "project",
+      "name": "Die Walküre",
+      "mbid": "7e5aa87c-3f5e-40bb-959c-60e2a6553f2c",
+      "year": "1988",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:touch-me",
+      "type": "track",
+      "name": "Touch Me"
+    },
+    {
+      "slug": "track:don-t-you-love-me",
+      "type": "track",
+      "name": "Don't You Love Me"
+    },
+    {
+      "slug": "track:die-walkure",
+      "type": "track",
+      "name": "Die Walküre"
+    },
+    {
+      "slug": "track:girl-to-girl",
+      "type": "track",
+      "name": "Girl to Girl"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:gianfranco-bortolotti",
+      "type": "artist",
+      "name": "Gianfranco Bortolotti"
+    },
+    {
+      "slug": "artist:luca-cittadini",
+      "type": "artist",
+      "name": "Luca Cittadini"
+    },
+    {
+      "slug": "artist:diego-leoni",
+      "type": "artist",
+      "name": "Diego Leoni"
+    },
+    {
+      "slug": "artist:pieradis-rossini",
+      "type": "artist",
+      "name": "Pieradis Rossini"
+    },
+    {
+      "slug": "artist:ann-marie-smith",
+      "type": "artist",
+      "name": "Ann-Marie Smith"
+    },
+    {
+      "slug": "artist:dawn-mitchell",
+      "type": "artist",
+      "name": "Dawn Mitchell"
+    },
+    {
+      "slug": "artist:alysha-warren",
+      "type": "artist",
+      "name": "Alysha Warren"
+    }
+  ]
+}

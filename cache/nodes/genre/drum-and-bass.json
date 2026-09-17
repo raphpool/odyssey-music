@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:35:41.807Z",
   "type": "genre",
   "editorial_definition": "A high-energy electronic genre defined by fast breakbeat drum patterns and heavy, syncopated basslines originating in the 1990s UK rave scene.",
+  "qid": "Q188994",
   "era": "1990s–present",
   "origin": "United Kingdom",
   "sonic_markers": "165-185 BPM, fast breakbeats, complex syncopation, heavy sub-bass lines, synthetic textures, sampling culture",
@@ -50,6 +51,18 @@
       "type": "genre",
       "name": "House",
       "qid": "Q20502"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat",
+      "qid": "Q2406633"
     }
   ],
   "key_artists": [
@@ -87,6 +100,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q188994"
+  "landmark_tracks": []
 }

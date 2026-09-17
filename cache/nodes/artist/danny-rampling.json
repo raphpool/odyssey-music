@@ -1,0 +1,102 @@
+{
+  "slug": "artist:danny-rampling",
+  "name": "Danny Rampling",
+  "editorial_article": "Born in 1961 in Streatham, London, Danny Rampling is a central figure in the development of the British house music scene. He gained foundational inspiration during a 1987 trip to Ibiza, where he visited the Amnesia nightclub and witnessed DJ Alfredo playing eclectic house tracks. Following this experience, he co-founded the Shoom club in a Southwark gym, a pivotal venue for the emergence of acid house in the UK. Rampling later became a high-profile radio host, presenting the 'Love Groove Dance Party' on BBC Radio 1 from 1994 to 2002. He was the first recipient of the 'World's No 1 DJ' award from DJ Magazine in 1991 and has also led the music project The Millionaire Hippies.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Danny_Rampling",
+      "title": "Danny Rampling - Wikipedia"
+    },
+    {
+      "url": "https://mn2s.com/booking-agency/dj-roster/danny-rampling/",
+      "title": "Danny Rampling | Booking Agent | DJ Roster - MN2S"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/danny-rampling-mn0000544493",
+      "title": "Danny Rampling — Biography, Discography, Albums & Expert"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:17.596Z",
+  "type": "artist",
+  "editorial_bio": "Pioneering English DJ and club owner credited as a foundational architect of the UK's acid house and rave scene.",
+  "origin": "Streatham, London, England",
+  "active_years": "1980s-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:balearic-house",
+      "type": "genre",
+      "name": "Balearic beat",
+      "qid": "Q2866725"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:maverick",
+      "type": "label",
+      "name": "Maverick"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:strobelight",
+      "type": "project",
+      "name": "Strobelight",
+      "mbid": "80f86764-ccf6-4322-880c-175f2385b8e2",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-voyage-into-trance",
+      "type": "project",
+      "name": "A Voyage Into Trance",
+      "mbid": "cefa3ea1-cf1d-40b0-9cfb-5e2e2c411cfd",
+      "year": "1996",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-groove-dance-party",
+      "type": "track",
+      "name": "Love Groove Dance Party"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold"
+    },
+    {
+      "slug": "artist:nicky-holloway",
+      "type": "artist",
+      "name": "Nicky Holloway"
+    },
+    {
+      "slug": "artist:norman-jay",
+      "type": "artist",
+      "name": "Norman Jay"
+    },
+    {
+      "slug": "artist:alfredo-fiorito",
+      "type": "artist",
+      "name": "Alfredo Fiorito"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

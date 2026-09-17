@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:35:35.458Z",
   "type": "genre",
   "editorial_definition": "A genre of electronic dance music characterized by a repetitive 4/4 'four-on-the-floor' beat, typically ranging from 115 to 130 beats per minute, which emerged in Chicago in the early 1980s.",
+  "qid": "Q20502",
   "era": "1980s–present",
   "origin": "Chicago, Illinois, U.S.",
   "sonic_markers": "Four-on-the-floor kick drum pattern, 115–130 BPM tempo, heavy use of drum machines (TR-808/909) and synthesizers (TB-303), repetitive melodic loops, syncopated hi-hats.",
@@ -62,6 +63,12 @@
       "type": "genre",
       "name": "Progressive House",
       "qid": "Q915152"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
     }
   ],
   "related_genres": [
@@ -88,6 +95,24 @@
       "type": "genre",
       "name": "Acid House",
       "qid": "Q341364"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat",
+      "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
     }
   ],
   "key_artists": [
@@ -162,6 +187,5 @@
       "type": "track",
       "name": "I've Lost Control"
     }
-  ],
-  "qid": "Q20502"
+  ]
 }

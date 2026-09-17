@@ -1,0 +1,106 @@
+{
+  "slug": "genre:balearic-house",
+  "name": "Balearic House",
+  "editorial_article": "Emerging from the Ibizan nightclub scene in the mid-1980s, Balearic House was popularized at the Amnesia club by resident DJ Alfredo Fiorito. The style represents an eclectic approach to DJing rather than a rigid genre, encompassing varied sounds like the indie grooves of The Woodentops, rock by The Waterboys, and pop oddities from Peter Gabriel. In 1987, British DJs Paul Oakenfold and Trevor Fung visited Ibiza and imported this inclusive musical philosophy to London, attempting to launch the style at venues like the Project Club and later the Spectrum event. While often produced with a Roland TR-909 drum machine, tracks frequently favored soul, Latin, and funk affectations. Critics note the style remains a quintessential expression of dancefloor freedom, prioritizing the movement of the groove over genre purity, a sentiment crystallized in a 1990 Mixmag editorial.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Balearic_beat",
+      "title": "Balearic beat - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:00.713Z",
+  "type": "genre",
+  "editorial_definition": "A sun-drenched, eclectic style of dance music defined by its origins in 1980s Ibizan club culture and a 'no-rules' philosophy toward mixing disparate genres.",
+  "qid": "Q2866725",
+  "era": "mid-1980s to mid-1990s",
+  "origin": "Ibiza, Spain",
+  "sonic_markers": "Eclectic, laid-back, 100-120 BPM, Roland TR-909 percussion, organic instrumentation",
+  "parent_genres": [
+    {
+      "slug": "genre:chill-out-music",
+      "type": "genre",
+      "name": "Chill Out Music",
+      "qid": "Q757143"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:italo-house",
+      "type": "genre",
+      "name": "Italo house",
+      "qid": "Q2702280"
+    },
+    {
+      "slug": "genre:chill-out-music",
+      "type": "genre",
+      "name": "Chill out",
+      "qid": "Q757143"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:alfredo-fiorito",
+      "type": "artist",
+      "name": "Alfredo Fiorito"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold"
+    },
+    {
+      "slug": "artist:trevor-fung",
+      "type": "artist",
+      "name": "Trevor Fung"
+    },
+    {
+      "slug": "artist:nancy-noise",
+      "type": "artist",
+      "name": "Nancy Noise"
+    },
+    {
+      "slug": "artist:jose-padilla",
+      "type": "artist",
+      "name": "José Padilla"
+    },
+    {
+      "slug": "artist:danny-rampling",
+      "type": "artist",
+      "name": "Danny Rampling"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sequoia-records",
+      "type": "label",
+      "name": "Sequoia Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:aaj-shanibar",
+      "type": "track",
+      "name": "Aaj Shanibar"
+    }
+  ]
+}

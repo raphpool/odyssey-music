@@ -1,0 +1,385 @@
+{
+  "slug": "artist:2-unlimited",
+  "name": "2 Unlimited",
+  "editorial_article": "Founded in 1991 in Antwerp, Belgium, by producers Jean-Paul De Coster and Phil Wilde, 2 Unlimited rose to global prominence as a seminal Eurodance act. The project initially featured an instrumental foundation before incorporating the vocals of Ray Slijngaard and Anita Doth. Their breakthrough hit, 'Get Ready for This', reached the top ten in multiple countries, eventually charting on the U.S. Billboard Hot 100 three years after its initial 1991 release. Across their career, they secured sixteen international hits, including the chart-topping 'No Limit', which achieved platinum certification in Germany. Despite facing criticism from the British press, the duo maintained a dominant presence in dance music, winning three consecutive World Music Awards for Best-Selling Benelux Artist between 1993 and 1995. Following the departure of Doth and Slijngaard in 1996, De Coster continued the project with various vocalists, eventually reuniting with the original members in 2012 for live performances and updated remixes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/2_Unlimited",
+      "title": "2 Unlimited - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:12.210Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Belgian-Dutch Eurodance act fronted by Ray Slijngaard and Anita Doth, known for worldwide hits like 'No Limit'.",
+  "origin": "Antwerp, Belgium",
+  "active_years": "1991-1996, 1998-1999, 2001-2006, 2012-present",
+  "genres": [
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:byte-records",
+      "type": "label",
+      "name": "Byte Records"
+    },
+    {
+      "slug": "label:pwl-continental",
+      "type": "label",
+      "name": "PWL Continental"
+    },
+    {
+      "slug": "label:zyx-music",
+      "type": "label",
+      "name": "ZYX Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:control-your-body",
+      "type": "project",
+      "name": "Control Your Body (Hardwell edit)",
+      "mbid": "81e08536-1863-443c-aeaa-871f9c20208c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-limit",
+      "type": "project",
+      "name": "No Limit (Remixes, Pt. 3)",
+      "mbid": "218b0604-6f03-412a-ace9-84edb2154187",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fan-collection",
+      "type": "project",
+      "name": "Fan Collection",
+      "mbid": "b76b137c-f0b3-4fcb-85aa-57283f717b80",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-ready",
+      "type": "project",
+      "name": "Get Ready (Steve Aoki Radio Mixes)",
+      "mbid": "0b74a32c-f108-4287-9325-2850599f1359",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-ready-for-this",
+      "type": "project",
+      "name": "Get Ready For This (Yves Deruyter Remix)",
+      "mbid": "a8f03ff3-824f-4e8f-916c-b8ceb515febf",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:edge-of-heaven",
+      "type": "project",
+      "name": "Edge of Heaven",
+      "mbid": "5879fe2a-60be-37d8-8346-111005ada05a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wanna-get-up",
+      "type": "project",
+      "name": "Wanna Get Up",
+      "mbid": "50f53cc1-ca4f-4ea4-91b5-e8b8e5fa899d",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ii",
+      "type": "project",
+      "name": "II",
+      "mbid": "950eecef-c234-3880-b1cf-b7c65c158f2f",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:never-surrender",
+      "type": "project",
+      "name": "Never Surrender",
+      "mbid": "be8f1f57-c741-3497-8dfd-092f4ee62b5f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jump-for-joy",
+      "type": "project",
+      "name": "Jump for Joy",
+      "mbid": "279fa68b-1bd4-340d-be35-31421cf8338e",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spread-your-love",
+      "type": "project",
+      "name": "Spread Your Love",
+      "mbid": "a9bd610f-8c9f-3014-a90b-e018baf70f0b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-what-s-good-for-me",
+      "type": "project",
+      "name": "Do What’s Good for Me",
+      "mbid": "c5def550-1419-40fd-9c07-314da45474f6",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-i-go-nothing-like-the-rain",
+      "type": "project",
+      "name": "Here I Go / Nothing Like the Rain",
+      "mbid": "df58f34b-c86f-4029-82dc-f0459121116f",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-like-the-rain",
+      "type": "project",
+      "name": "Nothing Like the Rain",
+      "mbid": "2e0265d6-b29a-3a24-a4d9-f44fe3e1828c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kids-like-you-and-me",
+      "type": "project",
+      "name": "Kids Like You And Me",
+      "mbid": "566146d0-ab14-474a-8029-263082806271",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-i-go",
+      "type": "project",
+      "name": "Here I Go",
+      "mbid": "97891d2f-90ba-328d-9880-a2c3ad4100f6",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-one",
+      "type": "project",
+      "name": "No One",
+      "mbid": "e50d1b69-df45-35af-a647-43cf065a23a9",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-things",
+      "type": "project",
+      "name": "Real Things",
+      "mbid": "5c4ccd76-3974-3b58-8bf6-35bfd9346776",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-real-thing",
+      "type": "project",
+      "name": "The Real Thing",
+      "mbid": "01968850-3374-36a0-91ae-1142d5712b96",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sin-limites",
+      "type": "project",
+      "name": "Sin limites",
+      "mbid": "55f5c885-041d-378e-a1b4-edcba4f57c77",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:throw-the-groove-down-no-limit-94",
+      "type": "project",
+      "name": "Throw The Groove Down / No Limit '94 (The U.S. Remixes)",
+      "mbid": "f771340d-07c1-42ad-ac0a-3c91d0467d37",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maximum-overdrive",
+      "type": "project",
+      "name": "Maximum Overdrive",
+      "mbid": "8dc56c8e-39ce-3884-9c06-4017d62d7712",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:faces",
+      "type": "project",
+      "name": "Faces",
+      "mbid": "63047dec-c533-365c-b62a-6ae80c43a6c9",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-limits",
+      "type": "project",
+      "name": "No Limits!",
+      "mbid": "de7dfb46-b90c-3571-b88d-6e89b54e8284",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tribal-dance",
+      "type": "project",
+      "name": "Tribal Dance",
+      "mbid": "8d01f3f1-ec29-3800-8144-1a6680b2e9af",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-limit-mini-album",
+      "type": "project",
+      "name": "No Limit: Mini Album",
+      "mbid": "29dc4001-5571-3281-994b-7230aaaf8274",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-the-beat-control-your-body",
+      "type": "project",
+      "name": "Let the Beat Control Your Body",
+      "mbid": "6fdf5ca6-ac8c-4f76-9524-d31f929b8501",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-magic-friend",
+      "type": "project",
+      "name": "The Magic Friend",
+      "mbid": "7d54a813-28ca-3e13-ba4d-4b18b9c8270e",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:workaholic",
+      "type": "project",
+      "name": "Workaholic",
+      "mbid": "d5c76faa-8c2a-3ba8-afac-e704e43dc86b",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-ready",
+      "type": "project",
+      "name": "Get Ready!",
+      "mbid": "613fec41-371c-3887-954b-95f2876a025e",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twilight-zone",
+      "type": "project",
+      "name": "Twilight Zone",
+      "mbid": "652faa63-5048-38c3-a419-b955fe2156f9",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:megamix",
+      "type": "project",
+      "name": "Megamix",
+      "mbid": "c0e2851e-7905-410a-aeb8-02c3e5277302",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-limit",
+      "type": "project",
+      "name": "No Limit",
+      "mbid": "b1b986e2-d16f-352e-b8be-416675de530a",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-ready-for-this",
+      "type": "project",
+      "name": "Get Ready for This",
+      "mbid": "ae8a4697-54c8-3729-b8ad-64f2bb67ad6f",
+      "year": "1991",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:get-ready-for-this",
+      "type": "track",
+      "name": "Get Ready for This"
+    },
+    {
+      "slug": "track:twilight-zone",
+      "type": "track",
+      "name": "Twilight Zone"
+    },
+    {
+      "slug": "track:no-limit",
+      "type": "track",
+      "name": "No Limit"
+    },
+    {
+      "slug": "track:tribal-dance",
+      "type": "track",
+      "name": "Tribal Dance"
+    },
+    {
+      "slug": "track:faces",
+      "type": "track",
+      "name": "Faces"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:ray-slijngaard",
+      "type": "artist",
+      "name": "Ray Slijngaard"
+    },
+    {
+      "slug": "artist:anita-doth",
+      "type": "artist",
+      "name": "Anita Doth"
+    },
+    {
+      "slug": "artist:michele-karamat-ali",
+      "type": "artist",
+      "name": "Michèle Karamat Ali"
+    },
+    {
+      "slug": "artist:jean-paul-de-coster",
+      "type": "artist",
+      "name": "Jean-Paul De Coster"
+    },
+    {
+      "slug": "artist:phil-wilde",
+      "type": "artist",
+      "name": "Phil Wilde"
+    }
+  ]
+}
