@@ -7,9 +7,11 @@ import {
 	buildCacheUnion,
 	countUnionProblems,
 	decideSameIdentity,
+	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
 import { parseSlug } from "../src/slug.js";
+import type { Slug } from "../src/types.js";
 
 describe("decideSameIdentity", () => {
 	it("decides which side wins on materialized_at (repo wins a tie, flags a qid known on only one side), and refuses a qid conflict or an unusable timestamp", () => {
@@ -41,6 +43,18 @@ function manifest(overrides: Partial<UnionManifest> = {}): UnionManifest {
 	};
 }
 
+describe("slugResolves", () => {
+	it("resolves a live slug directly, a redirect only when its target is live, and nothing else", () => {
+		const live = new Set<Slug>(["genre:country"]);
+		const redirects = new Map<Slug, Slug>([["genre:country-music", "genre:country"]]);
+		expect(slugResolves("genre:country", live, redirects)).toBe(true);
+		expect(slugResolves("genre:country-music", live, redirects)).toBe(true);
+		expect(slugResolves("genre:never-materialized", live, redirects)).toBe(false);
+		const danglingRedirect = new Map<Slug, Slug>([["genre:x", "genre:gone"]]);
+		expect(slugResolves("genre:x", live, danglingRedirect)).toBe(false);
+	});
+});
+
 describe("countUnionProblems", () => {
 	it("is 0 for a healthy union and for a qid kept by its own bearer, non-zero for a conflict, a skipped file, or a qid dropped by the losing side", () => {
 		expect(countUnionProblems(manifest())).toBe(0);
@@ -61,6 +75,19 @@ describe("countUnionProblems", () => {
 			countUnionProblems(
 				manifest({
 					entries: [{ decision: "kept", from: "repo", slug: "genre:x", tie: false, qidOnlyOn: "server" }],
+				}),
+			),
+		).toBeGreaterThan(0);
+	});
+
+	// Isolates referenceRegressions's own contribution: no conflict, no dropped qid, nothing else
+	// wrong -- only a non-empty referenceRegressions should make this non-zero.
+	it("is non-zero for referenceRegressions alone, with no conflict and a healthy entries list", () => {
+		expect(
+			countUnionProblems(
+				manifest({
+					entries: [{ decision: "copied", from: "repo", slug: "genre:x" }],
+					referenceRegressions: [{ slug: "genre:gone", resolvedIn: ["server"] }],
 				}),
 			),
 		).toBeGreaterThan(0);
@@ -116,8 +143,8 @@ describe("buildCacheUnion", () => {
 		await rm(serverDir, { recursive: true, force: true });
 	});
 
-	function union() {
-		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [] });
+	function union(extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[] } = {}) {
+		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
 	}
 
 	it("copies a slug present on only one side, byte-identical", async () => {
@@ -206,8 +233,8 @@ describe("buildCacheUnion", () => {
 				{ decision: "copied", from: "server", slug: "genre:country" },
 			]),
 		);
-		expect(manifest.migrationPreview.groupsFound).toBe(1);
-		expect(manifest.migrationPreview.exitCode).toBe(0);
+		expect(manifest.migrationPreview?.groupsFound).toBe(1);
+		expect(manifest.migrationPreview?.exitCode).toBe(0);
 		// Preview only: neither slug is deleted from the union artifact.
 		expect(await readFile(join(outputDir, "nodes", "genre", "country-music.json"), "utf8")).toBeTruthy();
 		expect(await readFile(join(outputDir, "nodes", "genre", "country.json"), "utf8")).toBeTruthy();
@@ -215,5 +242,146 @@ describe("buildCacheUnion", () => {
 		expect(await fingerprint(repoDir)).toBe(repoFingerprintBefore);
 		expect(await fingerprint(serverDir)).toBe(serverFingerprintBefore);
 		expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
+	});
+
+	describe("--apply-merge", () => {
+		it("applies the merge, archives every pre-migration node, and persists the applied report/deletedCount in the manifest -- without touching either source or the source redirects file", async () => {
+			await seed(
+				repoDir,
+				node({ slug: "genre:country-music", qid: "Q1", materialized_at: "2026-01-01T00:00:00.000Z" }),
+			);
+			await seed(
+				serverDir,
+				node({ slug: "genre:country", qid: "Q1", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			const repoFingerprintBefore = await fingerprint(repoDir);
+			const serverFingerprintBefore = await fingerprint(serverDir);
+			const redirectsBefore = await readFile(redirectsPath, "utf8");
+
+			const { outputDir, manifest } = await union({ applyMerge: true });
+
+			expect(manifest.migrationApply).toEqual(
+				expect.objectContaining({
+					applied: true,
+					groupsFound: 1,
+					deletedCount: 1,
+					exitCode: 0,
+					archivedNodeCount: 2,
+				}),
+			);
+			expect(manifest.migrationApply?.report.length).toBeGreaterThan(0);
+			expect(countUnionProblems(manifest)).toBe(0);
+			// The manifest must describe the FINAL state, not the union step's now-stale decision --
+			// the loser is no longer "copied", it's removedByMigration, with the winner it redirects to.
+			expect(manifest.migrationApply?.removedByMigration).toEqual([
+				{ slug: "genre:country-music", redirectsTo: "genre:country" },
+			]);
+
+			// The loser (older materialized_at) is gone from nodes/, but both variants survive
+			// under archive/pre-migration/ -- the exact B6a review gap this ticket closes.
+			await expect(
+				readFile(join(outputDir, "nodes", "genre", "country-music.json"), "utf8"),
+			).rejects.toThrow();
+			expect(await readFile(join(outputDir, "nodes", "genre", "country.json"), "utf8")).toBeTruthy();
+			expect(
+				await readFile(join(outputDir, "archive", "pre-migration", "genre", "country-music.json"), "utf8"),
+			).toBeTruthy();
+			expect(
+				await readFile(join(outputDir, "archive", "pre-migration", "genre", "country.json"), "utf8"),
+			).toBeTruthy();
+
+			expect(await fingerprint(repoDir)).toBe(repoFingerprintBefore);
+			expect(await fingerprint(serverDir)).toBe(serverFingerprintBefore);
+			expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
+		});
+
+		it("captures the migration's refusal (an onboarding-protected loser) as applied:false + refusalReason, instead of a report indistinguishable from a successful merge", async () => {
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-IDM" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-IDM", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+
+			// Both candidate slugs protected, so whichever the election picks as the loser is covered
+			// without depending on knowing the election's exact tie-break order.
+			const { manifest } = await union({ applyMerge: true, onboardingSlugs: ["genre:idm", "genre:idm-alt"] });
+
+			expect(manifest.migrationApply).toEqual(
+				expect.objectContaining({ applied: false, exitCode: 1, deletedCount: 0 }),
+			);
+			expect(manifest.migrationApply?.refusalReason).toMatch(/onboarding genre slug/);
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		it("re-reads the union's post-migration redirects (not the pre-existing source table): a reference to a loser with NO pre-existing redirect must not false-positive as broken", async () => {
+			await seed(repoDir, node({ slug: "genre:ambient-techno", qid: "Q-AT" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:ambient", qid: "Q-AT", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:idm-witness",
+					related_genres: [{ slug: "genre:ambient-techno", type: "genre", name: "Ambient Techno" }],
+				}),
+			);
+
+			const { outputDir, manifest } = await union({ applyMerge: true });
+
+			expect(manifest.migrationApply?.deletedCount).toBe(1);
+			expect(manifest.referenceRegressions).toEqual([]);
+
+			const [atSurvives, ambSurvives] = await Promise.all(
+				["ambient-techno", "ambient"].map((body) =>
+					readFile(join(outputDir, "nodes", "genre", `${body}.json`), "utf8").then(
+						() => true,
+						() => false,
+					),
+				),
+			);
+			expect(atSurvives).not.toBe(ambSurvives);
+			const loserSlug = atSurvives ? "genre:ambient" : "genre:ambient-techno";
+			expect(manifest.migrationApply?.removedByMigration).toEqual([
+				expect.objectContaining({ slug: loserSlug, redirectsTo: expect.any(String) }),
+			]);
+		});
+
+		it("flags references genuinely broken by the union (conflict-excluded slugs), scanning edges from BOTH sources, but not a reference that was never materialized anywhere", async () => {
+			await seed(repoDir, node({ slug: "genre:conflict", qid: "Q1" }));
+			await seed(serverDir, node({ slug: "genre:conflict", qid: "Q2" }));
+			await seed(repoDir, node({ slug: "genre:conflict-2", qid: "QA" }));
+			await seed(serverDir, node({ slug: "genre:conflict-2", qid: "QB" }));
+			await seed(
+				repoDir,
+				node({
+					slug: "genre:witness",
+					related_genres: [
+						{ slug: "genre:conflict", type: "genre", name: "Conflict" },
+						{ slug: "genre:never-materialized", type: "genre", name: "Nowhere" },
+					],
+				}),
+			);
+			// This edge exists ONLY on the server side -- a "repo edges only" mutant would never
+			// even consider genre:conflict-2 a candidate reference, missing this regression.
+			await seed(
+				serverDir,
+				node({
+					slug: "genre:server-witness",
+					related_genres: [{ slug: "genre:conflict-2", type: "genre", name: "Conflict 2" }],
+				}),
+			);
+
+			const { manifest } = await union({ applyMerge: true });
+
+			expect(manifest.referenceRegressions).toEqual(
+				expect.arrayContaining([
+					{ slug: "genre:conflict", resolvedIn: expect.arrayContaining(["repo", "server"]) },
+					{ slug: "genre:conflict-2", resolvedIn: expect.arrayContaining(["repo", "server"]) },
+				]),
+			);
+			expect(manifest.referenceRegressions).toHaveLength(2);
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
 	});
 });
