@@ -1186,16 +1186,26 @@ function pickDailyReco({ reroll = false } = {}) {
 }
 
 // Which of the user's genres this node actually matches — powers the "why" line.
+// TRA-137/D2b: a v2 profile's genres are taxonomy ids ("local:techno"), never graph slugs,
+// so they can't be matched against node.edges.genres directly. Resolve through the same
+// resolveScoringChoices(…, resolveId) pickDailyReco scores against, then match its flattened
+// source slugs instead -- keeps the "why" line working post-migration, not just scoring.
 function recoReasons(node) {
-  if (!Profile.data) return [];
-  const mine = new Set(Profile.data.genres);
+  const profile = currentProfile();
+  if (!profile) return [];
+  const mineSlugs = activeV2
+    ? resolveScoringChoices(activeV2.genres, TAXONOMY, activeV2.unresolvedGenreSlugs, byId, resolveId).flatMap(
+        (c) => c.slugs,
+      )
+    : profile.genres;
+  const mine = new Set(mineSlugs);
   const hits = [];
   for (const r of (node.edges && node.edges.genres) || []) {
     if (mine.has(r.slug) && !hits.some((h) => h.slug === r.slug)) hits.push(r);
   }
   if (hits.length) return hits.slice(0, 3);
   // Curated pick (landmark / key artist): find which selected genre pointed at it.
-  for (const g of Profile.data.genres) {
+  for (const g of mineSlugs) {
     const gn = byId.get(g);
     if (!gn) continue;
     for (const kind of ["landmark_projects", "landmark_tracks", "key_artists"]) {

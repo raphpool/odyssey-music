@@ -33,6 +33,7 @@ interface MigratedProfile {
 // script): just enough of a VizNode for scoreAffinityFromChoices to read.
 interface GraphEdgeRef {
 	slug: string;
+	name?: string;
 }
 type GraphEdgeKind =
 	| "subgenres"
@@ -83,6 +84,7 @@ type OdysseyWindow = Window &
 		openOnboarding: (opts?: { mode?: "signup" | "edit" }) => void;
 		genrePickList: () => string[];
 		renderGenreGrid: () => void;
+		recoReasons: (node: GraphNode) => GraphEdgeRef[];
 	};
 
 function makeGraph(nodes: GraphNode[]): ScoringGraph {
@@ -825,5 +827,44 @@ describe("reload preserves every genre after a v2 save (TRA-137/D2b, criterion 5
 		const reloaded = win.loadActiveProfile(taxonomy);
 		expect(reloaded?.genres.slice().sort()).toEqual(merged?.genres.slice().sort());
 		expect(reloaded?.genres).toContain("local:off-picker-choice");
+	});
+});
+
+describe("recoReasons — the 'why' line stays populated for a v2 profile (TRA-137/D2b regression)", () => {
+	it("matches a v2 profile's chosen genre against a recommended node (bug: comparing ids, not source slugs, always misses)", () => {
+		// A v2 record with no v1 backing at all (decision 4's "profil v2 existant" case) --
+		// recoReasons must resolve "local:techno" through the taxonomy to reach the graph slug
+		// "genre:techno" that actually tags nodes, the same way pickDailyReco scores against it.
+		// Before the fix, recoReasons only ever read Profile.data (v1), which is null here, so
+		// this returned [] unconditionally regardless of what the v2 profile chose.
+		const existingV2: MigratedProfile = { name: "Raph", genres: ["local:techno"] };
+		win.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+		win.loadActiveProfile(taxonomy);
+
+		const node: GraphNode = {
+			id: "artist:hero",
+			type: "artist",
+			edges: { genres: [{ slug: "genre:techno", name: "Techno" }] },
+		};
+		const reasons = win.recoReasons(node);
+
+		expect(reasons.length).toBeGreaterThan(0);
+		expect(reasons[0]?.slug).toBe("genre:techno");
+	});
+
+	it("still matches for a v1 profile (unchanged behavior)", () => {
+		const { win: w } = newWindowWithV1(["genre:techno"]);
+		try {
+			const node: GraphNode = {
+				id: "artist:hero",
+				type: "artist",
+				edges: { genres: [{ slug: "genre:techno", name: "Techno" }] },
+			};
+			const reasons = w.recoReasons(node);
+			expect(reasons.length).toBeGreaterThan(0);
+			expect(reasons[0]?.slug).toBe("genre:techno");
+		} finally {
+			w.close();
+		}
 	});
 });
