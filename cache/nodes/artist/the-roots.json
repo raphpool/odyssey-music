@@ -1,0 +1,399 @@
+{
+  "slug": "artist:the-roots",
+  "name": "The Roots",
+  "editorial_article": "Formed in 1987 at the Philadelphia High School for the Creative and Performing Arts, The Roots evolved from the street-corner busking duo of drummer Ahmir \"Questlove\" Thompson and rapper Tariq \"Black Thought\" Trotter into a critically acclaimed, live-instrumentation hip-hop band. Their debut independent album, Organix (1993), was recorded following a short stint in London, but it was the 1996 release Illadelph Halflife that established their critical standing, featuring the hit \"What They Do.\" The group helped pioneer the neo-soul sound through their membership in the collective Soulquarians, collaborating with D'Angelo, Common, and Erykah Badu. Their 1999 breakthrough album, Things Fall Apart, achieved platinum certification and included the Grammy-winning single \"You Got Me.\" Known for their long-standing role as the house band for Jimmy Fallon, first on Late Night and subsequently on The Tonight Show, the ensemble has maintained an eclectic approach to music that incorporates jazz, alternative rap, and experimental production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Roots",
+      "title": "The Roots - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/the-roots-mn0000415906",
+      "title": "The Roots — Biography, Discography, Albums ... - AllMusic"
+    },
+    {
+      "url": "https://rapandhiphop.fandom.com/wiki/The_Roots",
+      "title": "The Roots | Rap/Hiphop Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:00:59.044Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Philadelphia-based hip-hop band known for their live instrumentation and long-running tenure as the house band for The Tonight Show Starring Jimmy Fallon.",
+  "origin": "Philadelphia, Pennsylvania",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-jam",
+      "type": "label",
+      "name": "Def Jam"
+    },
+    {
+      "slug": "label:mca",
+      "type": "label",
+      "name": "MCA"
+    },
+    {
+      "slug": "label:interscope",
+      "type": "label",
+      "name": "Interscope"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:new-year-s-eve-polka",
+      "type": "project",
+      "name": "New Year’s Eve Polka (5‐4‐3‐2‐1)",
+      "mbid": "acdb5fa9-b9a2-4350-bd9d-a9af02f0f05a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel-it",
+      "type": "project",
+      "name": "Feel It (You Got It)",
+      "mbid": "f0be068d-bdcc-4c33-b079-864dbd546f19",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wonderful-christmastime-jesus-christ",
+      "type": "project",
+      "name": "Wonderful Christmastime / Jesus Christ",
+      "mbid": "9aa9eee0-73e4-4608-aa3b-80b9468716e6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:champion",
+      "type": "project",
+      "name": "Champion",
+      "mbid": "04847f12-a438-4f97-9575-6f7fdf975cef",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:and-then-you-shoot-your-cousin",
+      "type": "project",
+      "name": "…and Then You Shoot Your Cousin",
+      "mbid": "351f932e-220d-4551-ada3-69a68bad0eb2",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wise-up-ghost",
+      "type": "project",
+      "name": "Wise Up Ghost",
+      "mbid": "cabe5850-425b-497b-8324-d1be9bcdd93b",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-best-friend",
+      "type": "project",
+      "name": "My Best Friend (Paul Walker Tribute Song)",
+      "mbid": "0888c9cc-193f-4e20-9342-006c3a3f70e9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:undun",
+      "type": "project",
+      "name": "undun",
+      "mbid": "3d5c691e-61bd-4235-999b-31ebea927227",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:betty-wright-the-movie",
+      "type": "project",
+      "name": "Betty Wright: The Movie",
+      "mbid": "faae6fdd-343d-4a1f-a568-ed8786e03268",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wake-up",
+      "type": "project",
+      "name": "Wake Up",
+      "mbid": "b20631a0-ae8d-4cc3-b087-b31b18b76db6",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wake-up",
+      "type": "project",
+      "name": "Wake Up!",
+      "mbid": "563d758b-aa16-4e35-8986-6d402ea3cef8",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wake-up-everybody",
+      "type": "project",
+      "name": "Wake Up Everybody",
+      "mbid": "db58628e-5b39-482a-aae3-c18e5ded122b",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-i-got-over",
+      "type": "project",
+      "name": "How I Got Over",
+      "mbid": "9b643b98-ea0d-4c17-9dd1-8cfe2a92248f",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:late-night-with-jimmy-fallon-sandwiches-ep",
+      "type": "project",
+      "name": "Late Night With Jimmy Fallon Sandwiches EP",
+      "mbid": "9f627b82-7e7f-4ad3-8df4-7006e74aaa1a",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rising-down",
+      "type": "project",
+      "name": "Rising Down",
+      "mbid": "2576da0c-5002-3af1-a420-e5fea9d0efbc",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:game-theory",
+      "type": "project",
+      "name": "Game Theory",
+      "mbid": "28f24dc6-8fd8-3635-a1cb-5a394fcf542d",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-feel-right",
+      "type": "project",
+      "name": "Don't Feel Right",
+      "mbid": "63dfc02a-09a4-4fa4-bba3-ceefbcaecc56",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-tipping-point",
+      "type": "project",
+      "name": "The Tipping Point",
+      "mbid": "b27a6c72-6b57-3e53-8c8f-e6a52c4697b4",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-don-t-care",
+      "type": "project",
+      "name": "I Don’t Care",
+      "mbid": "60a4c9da-eb2a-4256-bb3a-fa20bbb04647",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-say-nuthin",
+      "type": "project",
+      "name": "Don't Say Nuthin",
+      "mbid": "d06e6e2b-28ff-4d3e-a110-deeeab373740",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-seed",
+      "type": "project",
+      "name": "The Seed (2.0)",
+      "mbid": "5b5f09e0-c7b8-48f0-9e9f-cbf58dec3b48",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phrenology",
+      "type": "project",
+      "name": "Phrenology",
+      "mbid": "98277141-0f63-3796-894a-11409d1377c4",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:break-you-off",
+      "type": "project",
+      "name": "Break You Off",
+      "mbid": "632e1722-e074-3a6f-ba62-61609d8a1be4",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-legendary",
+      "type": "project",
+      "name": "The Legendary",
+      "mbid": "6708cd7d-e7e8-3380-875f-69a805803e4a",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:things-fall-apart",
+      "type": "project",
+      "name": "Things Fall Apart",
+      "mbid": "8f341430-85b9-3a66-875f-ed1202868393",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-alive",
+      "type": "project",
+      "name": "Come Alive (Clean Album Sampler)",
+      "mbid": "7aecff32-d9c5-4152-9742-b63451e01b41",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:you-got-me",
+      "type": "project",
+      "name": "You Got Me",
+      "mbid": "3308ee1e-a432-3bb8-8129-0b4519f97090",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-next-movement",
+      "type": "project",
+      "name": "The Next Movement",
+      "mbid": "d950915e-4ed7-3bde-bbb7-623db22dab52",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:retour-aux-sources",
+      "type": "project",
+      "name": "Retour aux sources",
+      "mbid": "15ab7884-22a6-48bc-b540-d834043715e7",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:illadelph-halflife",
+      "type": "project",
+      "name": "Illadelph Halflife",
+      "mbid": "6bb001e8-78e1-37bf-9aac-9e47f7dbe8f9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clones-section",
+      "type": "project",
+      "name": "Clones / Section",
+      "mbid": "1e3424fd-d689-416f-a156-3df81d705a47",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-they-do",
+      "type": "project",
+      "name": "What They Do",
+      "mbid": "4c168f26-c3b9-3ff6-85a0-6fa6e6a6f04d",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:silent-treatment",
+      "type": "project",
+      "name": "Silent Treatment",
+      "mbid": "da6259b6-2d6d-4bd0-8752-05f8b4e5f8a0",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:proceed-ii",
+      "type": "project",
+      "name": "Proceed II",
+      "mbid": "fcf94e3f-a1a6-45b5-aa9f-a0497108a7f4",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-you-want-more",
+      "type": "project",
+      "name": "Do You Want More?!!!??!",
+      "mbid": "8db4c09a-eeaf-3887-96fa-144ac1723651",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-roots-from-the-ground-up",
+      "type": "project",
+      "name": "The Roots From the Ground Up",
+      "mbid": "02b54372-e399-33af-953a-6d8112868559",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:distortion-to-static-the-lesson",
+      "type": "project",
+      "name": "Distortion to Static / The Lesson",
+      "mbid": "cd68d6d5-691a-4850-b878-e9dacc2bb4ae",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:organix",
+      "type": "project",
+      "name": "Organix",
+      "mbid": "8f21622f-6076-3f69-add5-c5d26c28bb2d",
+      "year": "1993",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:you-got-me",
+      "type": "track",
+      "name": "You Got Me"
+    },
+    {
+      "slug": "track:what-they-do",
+      "type": "track",
+      "name": "What They Do"
+    },
+    {
+      "slug": "track:the-seed-2-0",
+      "type": "track",
+      "name": "The Seed 2.0"
+    },
+    {
+      "slug": "track:here-i-come",
+      "type": "track",
+      "name": "Here I Come"
+    },
+    {
+      "slug": "track:proceed",
+      "type": "track",
+      "name": "Proceed"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

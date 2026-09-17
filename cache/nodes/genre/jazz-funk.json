@@ -72,6 +72,12 @@
       "type": "genre",
       "name": "Broken Beat",
       "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethiopian Jazz",
+      "qid": "Q3591962"
     }
   ],
   "key_artists": [

@@ -1,0 +1,121 @@
+{
+  "slug": "genre:tango",
+  "name": "Tango",
+  "editorial_article": "Tango music emerged in the late 19th century in Argentina and Uruguay, evolving from a fusion of European immigrant traditions like polka and mazurka with local milonga, candombe, and payada. Initially associated with brothels and the underclass, the genre found early definition through the 'orquesta típica' ensemble—typically featuring two violins, piano, double bass, and two bandoneóns. Angel Villoldo’s 1903 composition 'El Choclo' stands as a foundational early recording, while the 1916 instrumental march 'La Cumparsita' by Gerardo Matos Rodríguez remains its most widely known melody. During the 1930s-1950s Golden Age, leaders like Juan d'Arienzo and Aníbal Troilo refined the rhythm for the ballroom. Later, Ástor Piazzolla introduced 'nuevo tango' in the 1950s, weaving in jazz and academic avant-garde influences, a shift further expanded in the 21st century by neotango artists like Gotan Project and Bajofondo Tango Club who blend these traditions with electronic production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tango_music",
+      "title": "Tango music - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/tango?srsltid=AU7gw4VzHc9x4M41PJfTmMQnFcf24DU6YnFAkeh2kgIzUO-04TLMqU_D",
+      "title": "Tango Music - Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:30.050Z",
+  "type": "genre",
+  "editorial_definition": "A style of music and dance rooted in 19th-century Argentina and Uruguay, characterized by a driving 2/4 or 4/4 rhythm and the prominent use of the bandoneón.",
+  "qid": "Q14390274",
+  "era": "late 19th century to present",
+  "origin": "Argentina and Uruguay",
+  "sonic_markers": "2/4 or 4/4 time signature, dominant bandoneón, violin, piano, double bass, syncopated rhythms",
+  "parent_genres": [
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance Music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:latin-music",
+      "type": "genre",
+      "name": "Latin Music",
+      "qid": "Q18345375"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music Of Latin America",
+      "qid": "Q727781"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:neotango",
+      "type": "genre",
+      "name": "Neotango",
+      "qid": "Q16979361"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:milonga",
+      "type": "genre",
+      "name": "Milonga",
+      "qid": "Q942955"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music of Latin America",
+      "qid": "Q727781"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:astor-piazzolla",
+      "type": "artist",
+      "name": "Ástor Piazzolla"
+    },
+    {
+      "slug": "artist:carlos-gardel",
+      "type": "artist",
+      "name": "Carlos Gardel"
+    },
+    {
+      "slug": "artist:juan-d-arienzo",
+      "type": "artist",
+      "name": "Juan d'Arienzo"
+    },
+    {
+      "slug": "artist:anibal-troilo",
+      "type": "artist",
+      "name": "Aníbal Troilo"
+    },
+    {
+      "slug": "artist:osvaldo-pugliese",
+      "type": "artist",
+      "name": "Osvaldo Pugliese"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:tango-recordings",
+      "type": "label",
+      "name": "Tango Recordings"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:el-choclo",
+      "type": "track",
+      "name": "El Choclo"
+    },
+    {
+      "slug": "track:la-cumparsita",
+      "type": "track",
+      "name": "La Cumparsita"
+    },
+    {
+      "slug": "track:adios-nonino",
+      "type": "track",
+      "name": "Adiós Nonino"
+    }
+  ]
+}

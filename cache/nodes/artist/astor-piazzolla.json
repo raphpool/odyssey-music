@@ -1,0 +1,135 @@
+{
+  "slug": "artist:astor-piazzolla",
+  "name": "Astor Piazzolla",
+  "editorial_article": "Born in Mar del Plata in 1921, Astor Piazzolla evolved from a child prodigy bandoneon player in New York to the architect of 'nuevo tango,' a revolutionary genre that integrated classical counterpoint and jazz improvisation. Following his 1954 studies with Nadia Boulanger in Paris—where she identified his inherent talent for tango over classical composition—Piazzolla returned to Buenos Aires to dismantle the rigid traditions of the orquesta típica. His 1955 Octeto Buenos Aires pioneered a chamber-music-like approach that featured electric guitar and eliminated the singer, triggering intense controversy among traditionalists. Throughout his career, Piazzolla directed legendary ensembles including his first and second quintets, and the nonet Conjunto 9. His extensive discography includes the 1974 album Libertango, recorded in Milan during a productive period in Italy. A prolific composer of film scores and orchestral works, he collaborated with figures like Gerry Mulligan on the 1974 record Summit and writer Jorge Luis Borges on the 1965 album El Tango. Before his death in 1992, he recorded his final studio project, Five Tango Sensations, with the Kronos Quartet.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Astor_Piazzolla",
+      "title": "Astor Piazzolla"
+    },
+    {
+      "url": "https://www.nonesuch.com/artists/astor-piazzolla",
+      "title": "Astor Piazzolla - Nonesuch Records"
+    },
+    {
+      "url": "https://www.indianapolissymphony.org/profile/astor-piazzolla/",
+      "title": "Astor Piazzolla | Indianapolis Symphony Orchestra"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:55.527Z",
+  "type": "artist",
+  "editorial_bio": "An Argentine virtuoso who transformed tango into a sophisticated, jazz-inflected global art form known as nuevo tango.",
+  "origin": "Mar del Plata, Argentina",
+  "active_years": "1933–1990",
+  "genres": [
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    },
+    {
+      "slug": "genre:nuevo-tango",
+      "type": "genre",
+      "name": "Nuevo Tango",
+      "qid": "Q1632601"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:american-clave",
+      "type": "label",
+      "name": "American Clavé"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:libertango",
+      "type": "project",
+      "name": "Libertango"
+    },
+    {
+      "slug": "project:summit",
+      "type": "project",
+      "name": "Summit"
+    },
+    {
+      "slug": "project:el-tango",
+      "type": "project",
+      "name": "El Tango"
+    },
+    {
+      "slug": "project:la-camorra",
+      "type": "project",
+      "name": "La Camorra"
+    },
+    {
+      "slug": "project:five-tango-sensations",
+      "type": "project",
+      "name": "Five Tango Sensations"
+    },
+    {
+      "slug": "project:maria-de-buenos-aires",
+      "type": "project",
+      "name": "María de Buenos Aires"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:adios-nonino",
+      "type": "track",
+      "name": "Adiós Nonino"
+    },
+    {
+      "slug": "track:libertango",
+      "type": "track",
+      "name": "Libertango"
+    },
+    {
+      "slug": "track:balada-para-un-loco",
+      "type": "track",
+      "name": "Balada para un loco"
+    },
+    {
+      "slug": "track:oblivion",
+      "type": "track",
+      "name": "Oblivion"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:gerry-mulligan",
+      "type": "artist",
+      "name": "Gerry Mulligan"
+    },
+    {
+      "slug": "artist:jorge-luis-borges",
+      "type": "artist",
+      "name": "Jorge Luis Borges"
+    },
+    {
+      "slug": "artist:anibal-troilo",
+      "type": "artist",
+      "name": "Aníbal Troilo"
+    },
+    {
+      "slug": "artist:kronos-quartet",
+      "type": "artist",
+      "name": "Kronos Quartet"
+    },
+    {
+      "slug": "artist:milva",
+      "type": "artist",
+      "name": "Milva"
+    },
+    {
+      "slug": "artist:horacio-ferrer",
+      "type": "artist",
+      "name": "Horacio Ferrer"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

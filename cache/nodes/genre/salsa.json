@@ -1,0 +1,140 @@
+{
+  "slug": "genre:salsa",
+  "name": "Salsa",
+  "editorial_article": "Salsa crystallized in 1970s New York City as a pan-Latino cultural phenomenon, fundamentally anchored in the Afro-Cuban son montuno traditions of Arsenio Rodríguez and the horn-driven arrangements of the Palladium Ballroom era. Fania Records co-founders Johnny Pacheco and Jerry Masucci popularized the label to market a diverse array of Caribbean sounds, including bomba, plena, mambo, and rumba, under a single commercial banner. Central to the genre's structure is the clave rhythm, typically played on wooden sticks, which dictates the rhythmic interplay between congas, timbales, and the bass. The evolution of the sound includes the 1980s expansion into salsa romántica, marked by the 1984 José Alberto 'El Canario' album Noches Calientes, and the later rise of Cuba's timba scene, which modernized the genre through funk and jazz-influenced harmonic complexity found in the work of NG La Banda and Los Van Van.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Salsa_music",
+      "title": "Salsa music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:17.899Z",
+  "type": "genre",
+  "editorial_definition": "A vibrant style of dance music emerging from 1970s New York, fusing Afro-Cuban rhythms like son montuno with diverse Caribbean influences into a unifying pan-Latino identity.",
+  "qid": "Q208239",
+  "era": "1960s to present",
+  "origin": "New York City (US), Havana (Cuba), Puerto Rico",
+  "sonic_markers": "160-220 BPM, clave-based percussion (congas, timbales, bongos), horn sections, call-and-response montuno sections",
+  "parent_genres": [
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance Music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:tropical-music",
+      "type": "genre",
+      "name": "Tropical Music",
+      "qid": "Q3328778"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:son-cubano",
+      "type": "genre",
+      "name": "Son cubano",
+      "qid": "Q4428744"
+    },
+    {
+      "slug": "genre:mambo",
+      "type": "genre",
+      "name": "Mambo",
+      "qid": "Q1646666"
+    },
+    {
+      "slug": "genre:timba",
+      "type": "genre",
+      "name": "Timba",
+      "qid": "Q371745"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:rumba",
+      "type": "genre",
+      "name": "Rumba",
+      "qid": "Q21684437"
+    },
+    {
+      "slug": "genre:tropical-music",
+      "type": "genre",
+      "name": "Tropical music",
+      "qid": "Q3328778"
+    },
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music of Latin America",
+      "qid": "Q727781"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:celia-cruz",
+      "type": "artist",
+      "name": "Celia Cruz"
+    },
+    {
+      "slug": "artist:willie-colon",
+      "type": "artist",
+      "name": "Willie Colón"
+    },
+    {
+      "slug": "artist:hector-lavoe",
+      "type": "artist",
+      "name": "Héctor Lavoe"
+    },
+    {
+      "slug": "artist:johnny-pacheco",
+      "type": "artist",
+      "name": "Johnny Pacheco"
+    },
+    {
+      "slug": "artist:eddie-palmieri",
+      "type": "artist",
+      "name": "Eddie Palmieri"
+    },
+    {
+      "slug": "artist:ruben-blades",
+      "type": "artist",
+      "name": "Rubén Blades"
+    },
+    {
+      "slug": "artist:tito-puente",
+      "type": "artist",
+      "name": "Tito Puente"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:fania-records",
+      "type": "label",
+      "name": "Fania Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:echale-salsita",
+      "type": "track",
+      "name": "Échale salsita"
+    },
+    {
+      "slug": "track:la-gozadera",
+      "type": "track",
+      "name": "La Gozadera"
+    }
+  ]
+}
