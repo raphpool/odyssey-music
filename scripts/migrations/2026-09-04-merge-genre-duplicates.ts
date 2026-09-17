@@ -537,7 +537,10 @@ export async function runMigration(
 		onboardingSlugs = [...options.onboardingSlugs];
 	} else {
 		const webIndexPath = options.webIndexPath ?? join(defaultDataDir(), "..", "web", "index.html");
-		const html = await readTextOrDefault(webIndexPath, "");
+		// 2026-09-17 (2nd review): only a file that EXISTS and no longer names the constant is the
+		// planned D3 retirement. A missing web/index.html is a wrong path or a broken checkout, and
+		// reading it as an empty string used to disarm the v1 protection with exitCode 0.
+		const html = await readFile(webIndexPath, "utf8");
 		onboardingSlugs = /\bONBOARDING_GENRES\b/.test(html)
 			? await loadOnboardingGenreSlugs(webIndexPath)
 			: undefined;

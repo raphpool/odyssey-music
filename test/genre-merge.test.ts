@@ -897,6 +897,39 @@ describe("runMigration (disk integration)", () => {
 			).rejects.toThrow();
 		});
 
+		it("2026-09-17 regression: a missing web/index.html fails loudly instead of disarming the v1 guard", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			const taxonomyPath = join(dir, "taxonomy.json");
+			await writeFile(
+				taxonomyPath,
+				JSON.stringify({
+					version: 2,
+					families: [{ key: "house-techno", label: "House / Techno", order: 1 }],
+					genres: [
+						{
+							id: "Q1",
+							name: "Electronic",
+							family: "house-techno",
+							sourceSlugs: ["genre:electronic"],
+							published: true,
+						},
+					],
+				}),
+				"utf8",
+			);
+
+			// A valid taxonomy alone used to mask the missing file: no refusal, no warning, exit 0.
+			await expect(
+				runMigration(dir, true, {
+					catalogNames,
+					redirectsPath,
+					webIndexPath: join(dir, "does-not-exist.html"),
+					taxonomyPath,
+				}),
+			).rejects.toThrow();
+			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
+		});
+
 		it("2026-09-17 regression: ONBOARDING_GENRES present but reformatted (Object.freeze) still fails loudly, not exit 0", async () => {
 			// The exact shape flagged in independent review: the identifier is still in the file,
 			// but wrapped so the array-literal regex no longer matches -- must never be treated as
