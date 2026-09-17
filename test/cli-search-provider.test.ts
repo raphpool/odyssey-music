@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { resolveSearchProvider } from "../src/cli.js";
+import { buildCrawlDeps, resolveSearchProvider } from "../src/cli.js";
+import type { ApiEnv } from "../src/env.js";
 
 // TRA-242: --search-provider is validated before loadEnv()/any network call. Only "tavily"
 // and "firecrawl" are accepted; anything else is refused with a clear message.
@@ -19,5 +20,31 @@ describe("resolveSearchProvider", () => {
 
 	it("rejects an empty string", () => {
 		expect(() => resolveSearchProvider("")).toThrow(/--search-provider/);
+	});
+});
+
+// TRA-242 review: the CLI action inlined the `deps` object literal it hands to
+// crawl/crawlGenreSeeds/refreshGenre, so nothing asserted on it directly — dropping the
+// `searchProvider` field from that literal left all 464 tests green. buildCrawlDeps is the
+// action's own wiring, extracted so this exact regression has a test.
+describe("buildCrawlDeps", () => {
+	const env: ApiEnv = {
+		GEMINI_API_KEY: "gemini-key",
+		TAVILY_API_KEY: "tavily-key",
+		FIRECRAWL_API_KEY: "firecrawl-key",
+	};
+
+	it('carries searchProvider "firecrawl" through into deps', () => {
+		const deps = buildCrawlDeps("firecrawl", env);
+
+		expect(deps.searchProvider).toBe("firecrawl");
+		expect(deps.tavilyApiKey).toBe("tavily-key");
+		expect(deps.firecrawlApiKey).toBe("firecrawl-key");
+	});
+
+	it('carries searchProvider "tavily" through into deps', () => {
+		const deps = buildCrawlDeps("tavily", env);
+
+		expect(deps.searchProvider).toBe("tavily");
 	});
 });

@@ -164,10 +164,11 @@ export interface InstallPipelineMocksOptions {
  * fetchEntityGenresMb) — every other MB export stays throwing, on purpose, until a future
  * ticket's test needs it.
  *
- * Both search boundaries (tavilySearch and firecrawlSearch, TRA-242) are armed with the
- * same fixture results — runPipeline only ever calls the one selected by
- * `deps.searchProvider`, so a test asserting which provider was used should check the
- * OTHER mock's call count stayed at zero rather than relying on one of them throwing.
+ * tavilySearch is armed with the fixture results (the default provider); firecrawlSearch
+ * (TRA-242) is reset back to throwing "unexpected call" like the unused MB exports — a test
+ * exercising `deps.searchProvider: "firecrawl"` must arm it itself, so an accidental
+ * fallback to Tavily in a firecrawl-provider test still fails loudly, and every other
+ * suite keeps proving firecrawlSearch is never called.
  */
 export function installPipelineMocks(options: InstallPipelineMocksOptions): void {
 	const mbGenres = options.mbGenres ?? DEFAULT_MB_GENRES;
@@ -176,9 +177,7 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 		.mockReset()
 		.mockImplementation(async () => FIXTURE_SEARCH_RESULTS);
 
-	vi.mocked(firecrawlSearch)
-		.mockReset()
-		.mockImplementation(async () => FIXTURE_SEARCH_RESULTS);
+	resetToUnexpected(firecrawlSearch, "firecrawlSearch");
 
 	vi.mocked(localFetch)
 		.mockReset()

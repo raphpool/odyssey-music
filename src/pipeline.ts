@@ -726,8 +726,9 @@ async function researchTarget(
 	}
 	const tSearch = Date.now();
 	const searchQuery = buildSearchQuery(input) + queryHint;
+	const searchProvider = deps.searchProvider ?? "tavily";
 	const searchResultsRaw =
-		deps.searchProvider === "firecrawl"
+		searchProvider === "firecrawl"
 			? await firecrawlSearch(deps.firecrawlApiKey, searchQuery, { max_results: SEARCH_RESULTS })
 			: await tavilySearch(deps.tavilyApiKey, searchQuery, {
 					max_results: SEARCH_RESULTS,
@@ -739,7 +740,7 @@ async function researchTarget(
 	if (!searchResults.length) {
 		throw new Error(`No search results for ${input.type}:${input.name}`);
 	}
-	log(`[pipeline] search ${searchMs}ms results=${searchResults.length}`);
+	log(`[pipeline] search provider=${searchProvider} ${searchMs}ms results=${searchResults.length}`);
 
 	const hasWiki = searchResults.slice(0, 4).some((r) => /(^|\.)wikipedia\.org/i.test(safeHost(r.url)));
 	const fetchK = hasWiki ? FETCH_TOP_K_WITH_WIKI : FETCH_TOP_K_NO_WIKI;
