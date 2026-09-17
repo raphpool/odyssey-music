@@ -1,0 +1,172 @@
+{
+  "slug": "artist:cartola",
+  "name": "Cartola",
+  "editorial_article": "Born Angenor de Oliveira in 1908 in Rio de Janeiro, Cartola earned his professional name as a bricklayer, wearing a bowler hat to protect his hair from cement. A fundamental architect of the Estação Primeira de Mangueira samba school founded in 1928, he emerged as a central figure in Brazilian music despite frequent career interruptions. His work is characterized by non-trivial musical choices, including the use of tritone substitutions and modulations like I to bVI in songs such as 'Aconteceu'. Throughout the 1960s, his Zicartola restaurant served as a vital cultural intersection, bridging traditional sambistas like Pixinguinha and Nélson Cavaquinho with the emerging Bossa Nova scene. Though he recorded solo albums only late in his life beginning in 1974, his compositions, including 'O Mundo é Um Moinho' and 'As Rosas não Falam', remain cornerstones of the samba repertoire.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cartola",
+      "title": "Cartola - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:56.602Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Brazilian composer, guitarist, and co-founder of the Estação Primeira de Mangueira, recognized for his profound influence on the development of samba.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "1927-1980",
+  "genres": [
+    {
+      "slug": "genre:samba",
+      "type": "genre",
+      "name": "Samba",
+      "qid": "Q11403"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:discos-marcus-pereira",
+      "type": "label",
+      "name": "Discos Marcus Pereira"
+    },
+    {
+      "slug": "label:rca-victor",
+      "type": "label",
+      "name": "RCA Victor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tempos-idos",
+      "type": "project",
+      "name": "Tempos Idos",
+      "mbid": "7a3d1121-561c-48df-a7c6-e4d4d02aca80",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:documento-inedito",
+      "type": "project",
+      "name": "Documento inédito",
+      "mbid": "86987e20-e2c5-3734-9b6d-f3cd6483e7f3",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cartola-70-anos",
+      "type": "project",
+      "name": "Cartola 70 anos",
+      "mbid": "94cd4e56-e53f-3eb3-b703-3f12334009bd",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verde-que-te-quero-rosa",
+      "type": "project",
+      "name": "Verde que te quero rosa",
+      "mbid": "f3f4f93b-0db9-34bb-bced-4a4cbbf1e34a",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cartola",
+      "type": "project",
+      "name": "Cartola",
+      "mbid": "4d1bd640-e295-37c7-839e-e000c4e93910",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cartola",
+      "type": "project",
+      "name": "Cartola",
+      "mbid": "4a58c393-a455-3aa9-8bc1-6641f9873dd9",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fala-mangueira",
+      "type": "project",
+      "name": "Fala Mangueira!",
+      "mbid": "e6421a42-b481-3bfb-a8e9-6b3de5533ac2",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:o-divino-cartola",
+      "type": "project",
+      "name": "O Divino Cartola (Com a Escola de Samba de Almeidinha)",
+      "mbid": "e260eb33-8224-43e7-9c5a-6b75ee55cc96",
+      "year": "1964",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:o-sol-nascera",
+      "type": "track",
+      "name": "O Sol Nascerá"
+    },
+    {
+      "slug": "track:o-mundo-e-um-moinho",
+      "type": "track",
+      "name": "O Mundo é Um Moinho"
+    },
+    {
+      "slug": "track:as-rosas-nao-falam",
+      "type": "track",
+      "name": "As Rosas não Falam"
+    },
+    {
+      "slug": "track:corra-e-olhe-o-ceu",
+      "type": "track",
+      "name": "Corra e Olhe o Céu"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:carlos-cachaca",
+      "type": "artist",
+      "name": "Carlos Cachaça"
+    },
+    {
+      "slug": "artist:nelson-cavaquinho",
+      "type": "artist",
+      "name": "Nelson Cavaquinho"
+    },
+    {
+      "slug": "artist:pixinguinha",
+      "type": "artist",
+      "name": "Pixinguinha"
+    },
+    {
+      "slug": "artist:beth-carvalho",
+      "type": "artist",
+      "name": "Beth Carvalho"
+    },
+    {
+      "slug": "artist:paulinho-da-viola",
+      "type": "artist",
+      "name": "Paulinho da Viola"
+    },
+    {
+      "slug": "artist:noel-rosa",
+      "type": "artist",
+      "name": "Noel Rosa"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:angenor-de-oliveira",
+      "type": "artist",
+      "name": "Angenor de Oliveira"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:cartola",
+      "type": "artist",
+      "name": "Cartola"
+    }
+  ]
+}

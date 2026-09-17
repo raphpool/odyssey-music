@@ -1,0 +1,106 @@
+{
+  "slug": "genre:samba",
+  "name": "Samba",
+  "editorial_article": "Emerging from Afro-Brazilian communities in Bahia during the late 19th century, samba transitioned into a modern urban musical genre in 1920s Rio de Janeiro. The 1917 song 'Pelo Telefone,' recorded by Baiano, is widely recognized as the landmark debut of samba in the Brazilian recording industry. By the late 1920s, musicians in the Estácio neighborhood, including Ismael Silva, innovated a syncopated rhythmic structure often described by the onomatopoeia 'bum bum paticumbum pugurumdum.' This Estácio paradigm replaced the earlier 'samba-maxixe' style and established the foundation for modern samba schools. Traditional instrumentation includes the pandeiro, cuíca, tamborim, ganzá, and surdo, often complemented by classical guitar and cavaquinho. In 2005, UNESCO declared the regional 'samba de roda' an Intangible Cultural Heritage of Humanity, while the Brazilian government later granted similar status to Carioca samba and its sub-variants, such as partido-alto and samba de enredo.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Samba",
+      "title": "Samba - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:51.100Z",
+  "type": "genre",
+  "editorial_definition": "A foundational Brazilian music genre and dance style rooted in Afro-Brazilian percussion and rural rhythms, emerging as a major cultural symbol in early 20th-century Rio de Janeiro.",
+  "qid": "Q11403",
+  "era": "late 19th century to present",
+  "origin": "Bahia and Rio de Janeiro, Brazil",
+  "sonic_markers": "2/4 time signature, syncopated rhythm, instrumentation including surdo, pandeiro, cuíca, tambourim, cavaquinho, and classical guitar.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-brazil",
+      "type": "genre",
+      "name": "Music Of Brazil",
+      "qid": "Q899215"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:choro",
+      "type": "genre",
+      "name": "Choro",
+      "qid": "Q1076539"
+    },
+    {
+      "slug": "genre:maxixe",
+      "type": "genre",
+      "name": "Maxixe",
+      "qid": "Q430075"
+    },
+    {
+      "slug": "genre:pagode",
+      "type": "genre",
+      "name": "Pagode",
+      "qid": "Q3360459"
+    },
+    {
+      "slug": "genre:music-of-brazil",
+      "type": "genre",
+      "name": "Music of Brazil",
+      "qid": "Q899215"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ismael-silva",
+      "type": "artist",
+      "name": "Ismael Silva"
+    },
+    {
+      "slug": "artist:donga",
+      "type": "artist",
+      "name": "Donga"
+    },
+    {
+      "slug": "artist:noel-rosa",
+      "type": "artist",
+      "name": "Noel Rosa"
+    },
+    {
+      "slug": "artist:carmen-miranda",
+      "type": "artist",
+      "name": "Carmen Miranda"
+    },
+    {
+      "slug": "artist:pixinguinha",
+      "type": "artist",
+      "name": "Pixinguinha"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:casa-edison",
+      "type": "label",
+      "name": "Casa Edison"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:pelo-telefone",
+      "type": "track",
+      "name": "Pelo Telefone"
+    },
+    {
+      "slug": "track:na-pavuna",
+      "type": "track",
+      "name": "Na Pavuna"
+    }
+  ]
+}

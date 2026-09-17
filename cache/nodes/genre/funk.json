@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:59:27.408Z",
   "type": "genre",
   "editorial_definition": "Funk is a rhythm-heavy musical genre characterized by syncopated basslines, emphasis on the first beat of a measure ('the one'), and an infectious, danceable groove. Rooted in 1960s soul and R&B, it became a transformative force that paved the way for disco, hip-hop, and modern electronic dance music.",
+  "qid": "Q164444",
   "era": "Mid-1960s to 1980s (and beyond)",
   "origin": "African-American communities, United States",
   "parent_genres": [
@@ -57,6 +58,12 @@
       "type": "genre",
       "name": "Hip-Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
     }
   ],
   "key_artists": [
@@ -98,6 +105,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q164444"
+  "landmark_tracks": []
 }

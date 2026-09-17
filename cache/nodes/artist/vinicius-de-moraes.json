@@ -1,0 +1,410 @@
+{
+  "slug": "artist:vinicius-de-moraes",
+  "name": "Vinicius de Moraes",
+  "editorial_article": "Born in Rio de Janeiro in 1913, the diplomat-poet Vinicius de Moraes became an unlikely architect of the bossa nova movement by applying his literary sensibilities to samba rhythms. Following his initial collaboration with Antonio Carlos Jobim on the 1956 musical 'Orfeu da Conceição', his lyrics for the seminal Elizete Cardoso album 'Canção do Amor Demais' helped formalize the genre's shift toward intimate, syncopated songcraft. Moraes later toured Europe with Chico Buarque and Nara Leão, performing his trademark 'pocket-shows' while seated at a table with a bottle of whiskey. His enduring partnership with the guitarist Toquinho yielded numerous popular albums throughout the 1970s, including their collaborative release 'La voglia, la pazzia, l'incoscienza, l'allegria' in 1976.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Vinicius_de_Moraes",
+      "title": "Vinicius de Moraes - Wikipedia"
+    },
+    {
+      "url": "https://music.apple.com/us/artist/vinicius-de-moraes/298218",
+      "title": "Vinicius De Moraes - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:40.783Z",
+  "type": "artist",
+  "editorial_bio": "A foundational poet and diplomat whose lyrical contributions provided the heartbeat for the bossa nova movement.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "1933-1980",
+  "genres": [
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa Nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:samba",
+      "type": "genre",
+      "name": "Samba",
+      "qid": "Q11403"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:odeon",
+      "type": "label",
+      "name": "Odeon"
+    },
+    {
+      "slug": "label:elenco",
+      "type": "label",
+      "name": "Elenco"
+    },
+    {
+      "slug": "label:rge",
+      "type": "label",
+      "name": "RGE"
+    },
+    {
+      "slug": "label:philips",
+      "type": "label",
+      "name": "Philips"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cancoes-de-amor",
+      "type": "project",
+      "name": "Canções de Amor",
+      "mbid": "4ce078f1-1c8d-4f46-aeff-6df941646888",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:um-encontro-no-au-bon-gourmet",
+      "type": "project",
+      "name": "Um Encontro no Au Bon Gourmet (Live 1962)",
+      "mbid": "1c5fe111-94af-40ed-a6f7-f448e1ea8aba",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:em-portugal",
+      "type": "project",
+      "name": "em Portugal",
+      "mbid": "72478370-fe61-4c5d-98ea-1bd9407221d3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:favourites",
+      "type": "project",
+      "name": "Favourites",
+      "mbid": "348fa727-46d4-4453-9c46-0dcb802576aa",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lances-de-vinicius",
+      "type": "project",
+      "name": "Lances De Vinícius",
+      "mbid": "4239b5da-8acb-3857-a9c8-998ffd24cf56",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:arca-de-noe-2",
+      "type": "project",
+      "name": "Arca de Noé 2",
+      "mbid": "ca5182e0-2513-4b95-898f-c702320fce3b",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toquinho-and-vinicius",
+      "type": "project",
+      "name": "Toquinho & Vinícius",
+      "mbid": "88e3307b-f869-3056-881b-db34cd56eea1",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-felicidade",
+      "type": "project",
+      "name": "A felicidade",
+      "mbid": "1e497df7-1b7c-32fb-aa67-7c89983d1615",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-girl-from-ipanema",
+      "type": "project",
+      "name": "The Girl From Ipanema",
+      "mbid": "b96678e0-cc33-348e-8609-e414729ef280",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-musique-et-la-poesie-de-vinicius-de-moraes",
+      "type": "project",
+      "name": "La musique et la poesie de Vinicius de Moraes",
+      "mbid": "18fdac87-653c-400c-99b7-3d6d1bd91ca0",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:um-pouco-de-ilusao",
+      "type": "project",
+      "name": "Um pouco de ilusão",
+      "mbid": "58c22e1c-e2f3-3e6c-b48b-18910f9727ba",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-arca-de-noe",
+      "type": "project",
+      "name": "A arca de Noé",
+      "mbid": "98b19346-b1e3-3b77-872c-4ec9f4f28e69",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deus-lhe-pague",
+      "type": "project",
+      "name": "Deus lhe Pague",
+      "mbid": "0016ebe9-e473-37af-87a6-b24cd82ecd40",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-voglia-la-pazzia-l-incoscienza-l-allegria",
+      "type": "project",
+      "name": "La voglia, la pazzia, l'incoscienza, l'allegria",
+      "mbid": "f81a8c55-00a6-3b2d-a067-bef408ee5244",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-toquinho",
+      "type": "project",
+      "name": "Vinicius / Toquinho",
+      "mbid": "25030844-19ec-42bf-8f3a-e225605539e7",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:o-poeta-e-o-violao",
+      "type": "project",
+      "name": "O poeta e o violão",
+      "mbid": "d70a5319-3f6b-31c8-96fd-b1650016c863",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sarava-vinicius",
+      "type": "project",
+      "name": "Saravá Vinicius!",
+      "mbid": "167ef1de-c37a-3f63-9f99-a08856050ae0",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fogo-sobre-terra",
+      "type": "project",
+      "name": "Fogo Sobre Terra",
+      "mbid": "8de25f37-0d5c-3551-90db-7468fe458cb9",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-and-toquinho",
+      "type": "project",
+      "name": "Vinícius & Toquinho",
+      "mbid": "8df141bb-a85c-4296-92ed-758c12faebc8",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toquinho-vinicius-and-amigos",
+      "type": "project",
+      "name": "Toquinho/Vinicius & Amigos",
+      "mbid": "60d22dbe-e3bf-448c-86ea-1510245f9000",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sao-demais-os-perigos-desta-vida",
+      "type": "project",
+      "name": "São demais os perigos desta vida...",
+      "mbid": "6aaaf02b-39c9-4522-bf23-c6b95c0c1bfc",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toquinho-e-vinicius",
+      "type": "project",
+      "name": "Toquinho e Vinicius",
+      "mbid": "7cded536-6479-33b1-a707-6c6b7bdb4208",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eu-sei-que-vou-te-amar",
+      "type": "project",
+      "name": "Eu sei que vou te amar…",
+      "mbid": "b1ebd401-0930-46d2-b61a-87f6e4f3e5b0",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-arca",
+      "type": "project",
+      "name": "L'arca",
+      "mbid": "fcfa76e6-b808-40a9-8018-0dd6c5ae2c3e",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:como-dizia-o-poeta",
+      "type": "project",
+      "name": "Como dizia o poeta",
+      "mbid": "a573eb6b-ba0e-321c-a932-f8aef1fdcde0",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:afro-samba",
+      "type": "project",
+      "name": "Afro-Samba",
+      "mbid": "9af409ab-b816-454f-8bec-2c99fbcc0dbe",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:os-afro-sambas",
+      "type": "project",
+      "name": "Os afro-sambas",
+      "mbid": "08527a53-d886-312f-a2dc-9bdab46d48d5",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-poesia-e-cancao",
+      "type": "project",
+      "name": "Vinícius: Poesia e Canção",
+      "mbid": "49e19786-bfdc-4034-aeb9-bd1205869ce5",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-poesia-e-cancao-vol-ii",
+      "type": "project",
+      "name": "Vinícius: Poesia e canção, Vol. II",
+      "mbid": "6573f9d4-0af5-4cac-96d2-1da911a322c9",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-e-caymmi-no-zum-zum",
+      "type": "project",
+      "name": "Vinicius e Caymmi no Zum Zum",
+      "mbid": "fc4a2c17-b5a9-4eae-9f48-9b548ee773af",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vinicius-and-odette-lara",
+      "type": "project",
+      "name": "Vinicius & Odette Lara",
+      "mbid": "0b7b7ed8-4748-3e98-872b-d2506512537c",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:agua-de-beber-lamento-no-morro",
+      "type": "project",
+      "name": "Água de beber / Lamento no morro",
+      "mbid": "3fa9652c-b39c-301f-86a8-8c89ebbd4037",
+      "year": "1961",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brasilia-sinfonia-da-alvorada",
+      "type": "project",
+      "name": "Brasília: Sinfonia da Alvorada",
+      "mbid": "ef8b88e0-8ef1-428a-baa1-9a8a5b5b42cc",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:convite-para-ouvir",
+      "type": "project",
+      "name": "Convite para ouvir",
+      "mbid": "39fe5b00-b1ef-346a-9cf3-1e7786896662",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:minha-historia",
+      "type": "project",
+      "name": "Minha História",
+      "mbid": "f96751b3-ff01-4ab4-9a6a-34f6ca2c92fb",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-girl-from-ipanema",
+      "type": "track",
+      "name": "The Girl from Ipanema"
+    },
+    {
+      "slug": "track:samba-da-bencao",
+      "type": "track",
+      "name": "Samba da Benção"
+    },
+    {
+      "slug": "track:a-felicidade",
+      "type": "track",
+      "name": "A Felicidade"
+    },
+    {
+      "slug": "track:chega-de-saudade",
+      "type": "track",
+      "name": "Chega de Saudade"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim"
+    },
+    {
+      "slug": "artist:toquinho",
+      "type": "artist",
+      "name": "Toquinho"
+    },
+    {
+      "slug": "artist:baden-powell",
+      "type": "artist",
+      "name": "Baden Powell"
+    },
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto"
+    },
+    {
+      "slug": "artist:chico-buarque",
+      "type": "artist",
+      "name": "Chico Buarque"
+    },
+    {
+      "slug": "artist:nara-leao",
+      "type": "artist",
+      "name": "Nara Leão"
+    },
+    {
+      "slug": "artist:elizete-cardoso",
+      "type": "artist",
+      "name": "Elizete Cardoso"
+    },
+    {
+      "slug": "artist:edu-lobo",
+      "type": "artist",
+      "name": "Edu Lobo"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:o-poetinha",
+      "type": "artist",
+      "name": "O Poetinha"
+    }
+  ],
+  "members": []
+}
