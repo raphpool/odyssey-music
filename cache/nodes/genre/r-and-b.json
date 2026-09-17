@@ -40,6 +40,12 @@
       "type": "genre",
       "name": "Boogie",
       "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
     }
   ],
   "related_genres": [

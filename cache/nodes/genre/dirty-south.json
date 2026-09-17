@@ -1,0 +1,113 @@
+{
+  "slug": "genre:dirty-south",
+  "name": "Dirty South",
+  "editorial_article": "Emerging from a late-1980s club-oriented culture in the United States, Southern hip hop developed a distinct regional sound characterized by bass-heavy production and specific vernacular. The style gained significant traction through the 1990s as hubs like Atlanta and Miami defined the aesthetic. Artists such as Goodie Mob helped codify the scene, with tracks like \"Dirty South\" capturing the subculture's raw energy. Producers often favored heavy electronic bass, electro-influenced rhythms, and crunk beats that contrasted with the East and West Coast dominance of the era. The sound remains defined by its rhythmic focus and high-energy club arrangements, influencing decades of rap production that prioritized danceability and local pride.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/lists/Dirty-South--Southern-Hip-Hop-and-Rap/129912?srsltid=AU7gw4WQrTdD2SOrL7o4NhktcSg3kDY4Jwo32BmMGd2oo8SrptpLaYrf",
+      "title": "Dirty South // Southern Hip-Hop and Rap by Musique_Concrete - Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dirty_South_(song)",
+      "title": "Dirty South (song) - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/1810119-Various-Dirty-South-Bass?srsltid=AU7gw4VNMnkn4o5ce-oeQ9afsBiHNzdjqEiZFWI9vmzj59f0XtrX1he3",
+      "title": "Various – Dirty South Bass"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:29.701Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of American hip hop originating in the late 1980s, characterized by distinct regional production, heavy bass, and high-energy club-oriented rhythms.",
+  "qid": "Q8560269",
+  "era": "late 1980s to present",
+  "origin": "United States, particularly Atlanta and the Southern region",
+  "sonic_markers": "Heavy electronic bass, 808-driven drum patterns, crunk elements, and high-tempo club-oriented arrangements.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:miami-bass",
+      "type": "genre",
+      "name": "Miami Bass",
+      "qid": "Q546206"
+    },
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:goodie-mob",
+      "type": "artist",
+      "name": "Goodie Mob"
+    },
+    {
+      "slug": "artist:lil-jon",
+      "type": "artist",
+      "name": "Lil Jon"
+    },
+    {
+      "slug": "artist:rasheeda",
+      "type": "artist",
+      "name": "Rasheeda"
+    },
+    {
+      "slug": "artist:pastor-troy",
+      "type": "artist",
+      "name": "Pastor Troy"
+    },
+    {
+      "slug": "artist:bone-crusher",
+      "type": "artist",
+      "name": "Bone Crusher"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:laface",
+      "type": "label",
+      "name": "LaFace"
+    },
+    {
+      "slug": "label:d-lo",
+      "type": "label",
+      "name": "D-Lo"
+    },
+    {
+      "slug": "label:motown",
+      "type": "label",
+      "name": "Motown"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:dirty-south",
+      "type": "track",
+      "name": "Dirty South"
+    }
+  ]
+}

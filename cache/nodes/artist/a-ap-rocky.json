@@ -1,0 +1,804 @@
+{
+  "slug": "artist:a-ap-rocky",
+  "name": "A$AP Rocky",
+  "editorial_article": "Born Rakim Athelston Mayers in Harlem, A$AP Rocky gained widespread attention in 2011 after his self-produced single 'Peso' leaked online, triggering a high-profile bidding war. He joined the A$AP Mob collective in 2007, an influential Harlem-based crew co-founded by A$AP Yams, A$AP Bari, and A$AP Illz. His debut mixtape 'Live. Love. A$AP' arrived in 2011 under the Polo Grounds Music and RCA Records umbrella. Rocky's studio work often utilizes distinct production collaborators, including Clams Casino, Danger Mouse, and Metro Boomin. His 2013 debut album 'Long. Live. A$AP' topped the Billboard 200, followed by subsequent number-one records including 2015's 'At. Long. Last. A$AP' and his 2026 project 'Don't Be Dumb'. Beyond his music, he founded the creative agency AWGE in 2014, bridging the gap between hip-hop and high fashion through collaborations with labels like JW Anderson and brands such as Puma. His career is marked by his evolution from a cloud rap pioneer in the early 2010s to a global cultural figure, balancing his work as a rapper, actor, and creative director for various commercial campaigns.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/ASAP_Rocky",
+      "title": "ASAP Rocky"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/ASAP_Rocky_discography",
+      "title": "ASAP Rocky discography"
+    },
+    {
+      "url": "https://genius.com/artists/A-ap-rocky/albums",
+      "title": "A$AP Rocky Albums and Discography - Genius"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:14.264Z",
+  "type": "artist",
+  "editorial_bio": "Rakim Athelston Mayers is a Harlem-born rapper and creative director who spearheaded the cloud rap movement and founded the creative collective AWGE.",
+  "origin": "Harlem, New York City, U.S.",
+  "active_years": "2007-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:asap-worldwide",
+      "type": "label",
+      "name": "ASAP Worldwide"
+    },
+    {
+      "slug": "label:awge",
+      "type": "label",
+      "name": "AWGE"
+    },
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:flackito-jodye",
+      "type": "project",
+      "name": "FLACKITO JODYE",
+      "mbid": "5111f0b1-2f53-4abf-9880-276b9ad826d6",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-mile",
+      "type": "project",
+      "name": "ALL $MILE$",
+      "mbid": "9ba6f467-d94e-40d2-9bb6-1ee5e38c7830",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-be-dumb",
+      "type": "project",
+      "name": "Don’t Be Dumb",
+      "mbid": "132f6b97-eb7b-44d4-9b34-97014e1e9039",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-end",
+      "type": "project",
+      "name": "THE END",
+      "mbid": "17c6827a-e044-4e11-a853-0679a9d251d9",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stfu",
+      "type": "project",
+      "name": "STFU",
+      "mbid": "966ee882-686a-4403-91f2-48ae320d25a2",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fish-n-steak",
+      "type": "project",
+      "name": "FISH N STEAK (WHAT IT IS)",
+      "mbid": "9c975200-8e95-4b12-9c73-b49d1da7f496",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stay-here-4-life",
+      "type": "project",
+      "name": "STAY HERE 4 LIFE",
+      "mbid": "a2c7828d-ddfa-4e1b-8942-3d6e45d695af",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stole-ya-flow",
+      "type": "project",
+      "name": "STOLE YA FLOW",
+      "mbid": "c45e2b98-a37b-48df-a683-395f6e7e533f",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-demarco",
+      "type": "project",
+      "name": "BLACK DEMARCO",
+      "mbid": "f4cf10ab-d6e4-4df1-8860-7fd0ebd3c92a",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whiskey",
+      "type": "project",
+      "name": "WHISKEY (RELEASE ME)",
+      "mbid": "f6c7f91f-d584-42d4-a738-a6174b439579",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:helicopter",
+      "type": "project",
+      "name": "HELICOPTER",
+      "mbid": "3797b226-ce0d-4f09-b040-2f1baa0cbdd0",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:punk-rocky",
+      "type": "project",
+      "name": "PUNK ROCKY",
+      "mbid": "8a115047-6cd8-4738-9091-7d9a436d4471",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pray4dagang",
+      "type": "project",
+      "name": "pray4dagang",
+      "mbid": "75ed0b7e-22fa-4467-90b5-4c8b002b0e2b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ruby-rosary",
+      "type": "project",
+      "name": "Ruby Rosary",
+      "mbid": "138de7f9-9a4e-4a43-84ed-8fc93c114490",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tailor-swif",
+      "type": "project",
+      "name": "Tailor Swif",
+      "mbid": "68a310ad-5a00-4fa2-ac60-961ff13bd528",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:highjack",
+      "type": "project",
+      "name": "HIGHJACK",
+      "mbid": "86a59e72-2fe3-4c15-9c5d-1c03b19c11f5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hoodlumz",
+      "type": "project",
+      "name": "HOODLUMZ",
+      "mbid": "491665b1-6c5b-439c-b3ae-cf2d35cea301",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta",
+      "type": "project",
+      "name": "Gangsta",
+      "mbid": "48c09a0a-a8af-4df2-99e2-41fa1ea33e67",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:riot",
+      "type": "project",
+      "name": "RIOT (Rowdy Pipe'n)",
+      "mbid": "1c8ce787-6698-4af7-9785-9c9417336624",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:same-problems",
+      "type": "project",
+      "name": "Same Problems?",
+      "mbid": "f8bb9ccf-59eb-4fca-90ec-bec9d7ac7fed",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chit-chat",
+      "type": "project",
+      "name": "Chit Chat",
+      "mbid": "f6906ce2-d11e-4e95-94a9-280032c16ab8",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mamacita",
+      "type": "project",
+      "name": "Mamacita",
+      "mbid": "f12e4445-bcfe-4fc9-8ce5-5b3939b4dcb1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d-m-b",
+      "type": "project",
+      "name": "D.M.B.",
+      "mbid": "7df43913-fc43-41d5-a360-98539ca83670",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doja",
+      "type": "project",
+      "name": "Doja",
+      "mbid": "4fe0d3dd-4f4e-45d1-b90b-102ca3478779",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:arya",
+      "type": "project",
+      "name": "Arya",
+      "mbid": "349ff99a-01e0-4b60-97fc-f5cc4ae9a0fe",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-unit-rice",
+      "type": "project",
+      "name": "G-Unit Rice",
+      "mbid": "62c6c079-7ef6-448a-8ae8-c1af2e46c835",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mazza",
+      "type": "project",
+      "name": "MAZZA",
+      "mbid": "bf403d79-737c-4cc5-bf9a-7e917d24d2b2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twisted",
+      "type": "project",
+      "name": "Twisted",
+      "mbid": "923e1276-66d0-4579-90b6-f34c6c86c69a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:babushka-boi",
+      "type": "project",
+      "name": "Babushka Boi",
+      "mbid": "2563a4c5-f3e5-4c09-81a3-e11e0a3dfedf",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-fast",
+      "type": "project",
+      "name": "Live Fast (PUBGM)",
+      "mbid": "d2527b91-412e-4fe4-8ebc-19f0b12c3742",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-god",
+      "type": "project",
+      "name": "On GOD",
+      "mbid": "e2768984-1d3b-4b24-bce0-b2959f17ff25",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pups",
+      "type": "project",
+      "name": "Pups",
+      "mbid": "5899de9a-8a27-4789-8df2-499e2c6acf3c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:energy",
+      "type": "project",
+      "name": "Energy",
+      "mbid": "680cbb47-3817-46e5-8937-bdbbec5a475e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kid-kudi",
+      "type": "project",
+      "name": "Kid Kudi",
+      "mbid": "c28d214a-4193-4d66-8973-23730eec844a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sundress",
+      "type": "project",
+      "name": "Sundress",
+      "mbid": "33ac64a9-f6e2-464a-aa94-f402ac4eafa8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chewing-gum",
+      "type": "project",
+      "name": "Chewing Gum",
+      "mbid": "6facfdb6-15f4-451c-bca9-755e76d75697",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:potato-salad",
+      "type": "project",
+      "name": "Potato Salad",
+      "mbid": "3bac2945-ebd3-4800-93b8-7f54eba20d60",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:praise-the-lord",
+      "type": "project",
+      "name": "Praise the Lord (Da Shine)",
+      "mbid": "3e8fccb0-6fc2-4ee1-9614-aef91084d575",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:testing",
+      "type": "project",
+      "name": "TESTING",
+      "mbid": "a82cafe6-d3df-4d76-be85-60a757ad2687",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-ap-forever",
+      "type": "project",
+      "name": "A$AP Forever",
+      "mbid": "45b62c3e-4b95-4dc0-a05e-de3e91b5d203",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-company",
+      "type": "project",
+      "name": "Bad Company",
+      "mbid": "268c05a3-587b-4409-86d5-5394855633b8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-track-mind",
+      "type": "project",
+      "name": "One Track Mind",
+      "mbid": "f11bf413-4246-46bd-b6c9-133bb77f3fa8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cocky",
+      "type": "project",
+      "name": "Cocky",
+      "mbid": "d3691277-dcfa-4522-b285-9392e22e91e5",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-bags-freestyle",
+      "type": "project",
+      "name": "MONEY BAGS FREESTYLE (DEAN BLUNT MEDITATION)",
+      "mbid": "960e3abf-40e1-4d58-8d0f-be8b3be7785a",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:above",
+      "type": "project",
+      "name": "ABOVE",
+      "mbid": "5a94906c-8ed4-443e-9979-3556a20742a3",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5ive-tar",
+      "type": "project",
+      "name": "5IVE $TAR$",
+      "mbid": "a3882bf2-acb1-479c-a6b1-f5fd3e472d52",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whiskey",
+      "type": "project",
+      "name": "Whiskey",
+      "mbid": "05712fa5-d7ef-4951-a407-e36d21c2dd05",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-limit",
+      "type": "project",
+      "name": "No Limit",
+      "mbid": "f84bfe3d-1a9a-49cc-b196-05ff6981eb7c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:east-coast-remix",
+      "type": "project",
+      "name": "East Coast REMIX",
+      "mbid": "470125be-8272-4a93-9b6d-15c59dbc6aec",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:groupie-love",
+      "type": "project",
+      "name": "Groupie Love",
+      "mbid": "7c6f0e53-c81b-4f3b-9c31-2d1842779809",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-bummer",
+      "type": "project",
+      "name": "Summer Bummer",
+      "mbid": "7e7ebf43-5635-44bf-8d63-5851e14745cd",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wrong",
+      "type": "project",
+      "name": "Wrong",
+      "mbid": "17ce0a35-b3d8-4a2e-acee-64760df6cc54",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gilligan",
+      "type": "project",
+      "name": "Gilligan",
+      "mbid": "cc276f4b-da91-4278-a5ac-345868a43d49",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:telephone-calls",
+      "type": "project",
+      "name": "Telephone Calls",
+      "mbid": "fc34d17b-b0ba-4b81-ab11-4cb23fe0dffa",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blended-family",
+      "type": "project",
+      "name": "Blended Family (What You Do for Love)",
+      "mbid": "a3e99f01-f4b9-402a-bd7c-b1f8c2617159",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crazy-brazy",
+      "type": "project",
+      "name": "CRAZY BRAZY",
+      "mbid": "091fd0bf-27c2-48f2-b3aa-df3581e14882",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-ick",
+      "type": "project",
+      "name": "Love$ick",
+      "mbid": "c4c09f89-bf12-474a-be78-977022299f1f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:long-live",
+      "type": "project",
+      "name": "long live.",
+      "mbid": "3417b9f5-ac97-42ef-9cd6-afbf9b86fabc",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:presidents",
+      "type": "project",
+      "name": "PRESIDENTS",
+      "mbid": "25ea4277-ccf3-4104-89d7-451663308056",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phantogram-freestyle",
+      "type": "project",
+      "name": "PHANTOGRAM FREESTYLE",
+      "mbid": "d1eb990c-cca1-485e-8dc8-d78c71d13452",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:superheroes",
+      "type": "project",
+      "name": "Superheroes",
+      "mbid": "c66584d0-42de-4dba-a1a1-3a697e25cba4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hear-me",
+      "type": "project",
+      "name": "Hear Me",
+      "mbid": "f7a419bb-0c4a-4edf-a196-8543d5342fbd",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-for-you",
+      "type": "project",
+      "name": "Good for You",
+      "mbid": "35bd81a7-3398-44a3-860e-2502483c46f4",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:at-long-last-a-ap",
+      "type": "project",
+      "name": "AT.LONG.LAST.A$AP",
+      "mbid": "10a526a7-9d24-463f-8c0b-16ac98027460",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-d",
+      "type": "project",
+      "name": "L$D",
+      "mbid": "3982b1aa-cc50-4c4a-95b7-eb5281b317dd",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everyday",
+      "type": "project",
+      "name": "Everyday",
+      "mbid": "3c6d3c23-3cf5-495e-b29b-8c980361b9d5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:m",
+      "type": "project",
+      "name": "M'$",
+      "mbid": "f9a1dca3-6891-4bc5-9922-a772513bb0ad",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lord-pretty-flacko-jodye-2",
+      "type": "project",
+      "name": "Lord Pretty Flacko Jodye 2 (LPFJ2)",
+      "mbid": "5f2e1b5e-e456-4e04-8a83-ebce5b8dc34c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:multiply",
+      "type": "project",
+      "name": "Multiply",
+      "mbid": "1ba45234-55e8-44dd-a765-7f103b3e89aa",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-rest-for-the-wicked",
+      "type": "project",
+      "name": "No Rest for the Wicked",
+      "mbid": "29045819-41f2-4cfc-bde3-7378cc43ba0b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shabba",
+      "type": "project",
+      "name": "Shabba",
+      "mbid": "01ea5b9f-2514-473c-8d3f-6ac44ccde4e9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fashion-killa",
+      "type": "project",
+      "name": "Fashion Killa",
+      "mbid": "9e3f75a6-49d2-4ded-a82d-a8d8a80d2a4b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:long-live-a-ap",
+      "type": "project",
+      "name": "LONG.LIVE.A$AP",
+      "mbid": "c0eb54b5-757a-452a-a248-d7dbdb39cd18",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fuckin-problems",
+      "type": "project",
+      "name": "Fuckin’ Problems",
+      "mbid": "77f31747-5b7a-42da-95b6-07d7a160272a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goldie",
+      "type": "project",
+      "name": "Goldie",
+      "mbid": "8fcc5a86-cabd-468e-a5e2-20ff382d92a7",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hands-on-the-wheel",
+      "type": "project",
+      "name": "Hands on the Wheel",
+      "mbid": "718b1f1b-a869-44f1-a4fa-a0b076f495d0",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wild-for-the-night",
+      "type": "project",
+      "name": "Wild for the Night",
+      "mbid": "5d9e1a17-8a19-4241-acf0-a97f8fbd207e",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pretty-flacko",
+      "type": "project",
+      "name": "Pretty Flacko",
+      "mbid": "3ba2eb0c-c2a7-470c-8f1f-6a331bd66f69",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:purple-swag",
+      "type": "project",
+      "name": "Purple Swag",
+      "mbid": "4fc68aa2-c185-460c-b422-51a341186ad5",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peso",
+      "type": "project",
+      "name": "Peso",
+      "mbid": "b6956b26-8f68-479e-a08c-4e1902d3eb63",
+      "year": "2011",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:peso",
+      "type": "track",
+      "name": "Peso"
+    },
+    {
+      "slug": "track:fuckin-problems",
+      "type": "track",
+      "name": "Fuckin' Problems"
+    },
+    {
+      "slug": "track:goldie",
+      "type": "track",
+      "name": "Goldie"
+    },
+    {
+      "slug": "track:l-d",
+      "type": "track",
+      "name": "L$D"
+    },
+    {
+      "slug": "track:asap-forever",
+      "type": "track",
+      "name": "ASAP Forever"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:the-diplomats",
+      "type": "artist",
+      "name": "The Diplomats"
+    },
+    {
+      "slug": "artist:mobb-deep",
+      "type": "artist",
+      "name": "Mobb Deep"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK"
+    },
+    {
+      "slug": "artist:wu-tang-clan",
+      "type": "artist",
+      "name": "Wu-Tang Clan"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:asap-mob",
+      "type": "artist",
+      "name": "ASAP Mob"
+    },
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, the Creator"
+    },
+    {
+      "slug": "artist:metro-boomin",
+      "type": "artist",
+      "name": "Metro Boomin"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:lord-flacko",
+      "type": "artist",
+      "name": "Lord Flacko"
+    },
+    {
+      "slug": "artist:pretty-flacko",
+      "type": "artist",
+      "name": "Pretty Flacko"
+    }
+  ],
+  "members": []
+}

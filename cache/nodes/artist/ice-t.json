@@ -1,0 +1,449 @@
+{
+  "slug": "artist:ice-t",
+  "name": "Ice-T",
+  "editorial_article": "Born Tracy Lauren Marrow, the Newark-raised artist moved to Los Angeles where he became a foundational architect of West Coast gangsta rap. After debuting with the 1983 electro track 'Cold Wind Madness' on Saturn Records, he gained mainstream attention with 'Reckless,' a 1984 single produced by Chris 'The Glove' Taylor for the breakdance film Breakin'. His debut studio album, 1987's Rhyme Pays, featured production by Afrika Islam and secured a deal with Sire Records. In 1990, he introduced his heavy metal band Body Count on the O.G. Original Gangster album track of the same name. His 1993 album Home Invasion, distributed via Priority Records, contained the original version of '99 Problems.' Beyond his music, he has maintained a long-term role as Detective Odafin Tutuola on Law & Order: Special Victims Unit.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ice-T",
+      "title": "Ice-T - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ice-T_discography",
+      "title": "Ice-T discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:20.706Z",
+  "type": "artist",
+  "editorial_bio": "A legendary figure who bridged gangsta rap and heavy metal, Ice-T is an influential rapper, producer, and long-running television actor.",
+  "origin": "Newark, New Jersey; Los Angeles, California",
+  "active_years": "1982-present",
+  "genres": [
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious Hip Hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sire-records",
+      "type": "label",
+      "name": "Sire Records"
+    },
+    {
+      "slug": "label:warner-bros-records",
+      "type": "label",
+      "name": "Warner Bros. Records"
+    },
+    {
+      "slug": "label:priority-records",
+      "type": "label",
+      "name": "Priority Records"
+    },
+    {
+      "slug": "label:rhyme-syndicate",
+      "type": "label",
+      "name": "Rhyme Syndicate"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:criminal-migraine",
+      "type": "project",
+      "name": "Criminal Migraine",
+      "mbid": "c44b357a-3446-4d24-b41e-8da35152c0a1",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nightmare-walking",
+      "type": "project",
+      "name": "Nightmare Walking",
+      "mbid": "c956c34f-4d38-439a-8388-342709339811",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-n-the-mornin",
+      "type": "project",
+      "name": "6 ’n the Mornin’ (GMX)",
+      "mbid": "e33f3665-4c26-4a69-85a5-c2bccb7c98a2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hustler",
+      "type": "project",
+      "name": "Hustler",
+      "mbid": "28c56139-5230-4878-ad80-8a731955182d",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:miami-2014-stoned-pupillos-sampler",
+      "type": "project",
+      "name": "Miami 2014 Stoned Pupillos Sampler",
+      "mbid": "2da9d6bf-46e7-4cdd-bfee-00c8e54877a3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:urban-legends",
+      "type": "project",
+      "name": "Urban Legends",
+      "mbid": "5ef533a4-e098-4047-884b-b64eb497cf93",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gangsta-rap",
+      "type": "project",
+      "name": "Gangsta Rap",
+      "mbid": "4c51e244-c9c5-3763-856c-5954fafdcb24",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:valuable-game",
+      "type": "project",
+      "name": "Valuable Game",
+      "mbid": "06468e53-dcec-4cad-9d79-983568d17624",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:7th-deadly-sin",
+      "type": "project",
+      "name": "7th Deadly Sin",
+      "mbid": "38e0085c-7e29-3ed2-a72e-4ad850cb6969",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-real-one",
+      "type": "project",
+      "name": "The Real One",
+      "mbid": "6522d02e-64f7-439e-8ece-b4c764916fad",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vi-return-of-the-real",
+      "type": "project",
+      "name": "VI: Return of the Real",
+      "mbid": "8e1417c2-0175-3d7d-81d1-c972f81b2459",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-lane",
+      "type": "project",
+      "name": "The Lane",
+      "mbid": "6bf3cc69-acd4-3846-b6d2-fb21054aa0b2",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-must-stand",
+      "type": "project",
+      "name": "I Must Stand",
+      "mbid": "7b3c9e4c-f921-3601-832d-9f7aed141026",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home-invasion",
+      "type": "project",
+      "name": "Home Invasion",
+      "mbid": "feaa9595-952f-38af-8ad8-ccdaf93b6e60",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-ain-t-new-ta-this",
+      "type": "project",
+      "name": "I Ain’t New ta This",
+      "mbid": "11ffa853-e72f-472a-ac6f-7a55d9657034",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-how-i-m-livin",
+      "type": "project",
+      "name": "That’s How I’m Livin’",
+      "mbid": "8853b465-a2da-327e-818e-8556340ea5f4",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gotta-lotta-love",
+      "type": "project",
+      "name": "Gotta Lotta Love",
+      "mbid": "ec6dd198-bf5d-3eb3-bea3-38c28e108635",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-g-original-gangster",
+      "type": "project",
+      "name": "O.G. Original Gangster",
+      "mbid": "5efcd612-f7d0-3eaa-bd04-b712b80f25af",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ricochet",
+      "type": "project",
+      "name": "Ricochet",
+      "mbid": "582d7ff6-43c1-4f1e-a9e4-1605d43f3cc3",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-jack-hustler",
+      "type": "project",
+      "name": "New Jack Hustler (Nino’s Theme)",
+      "mbid": "70806550-5557-4a24-8c91-fd667c304757",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-g-original-gangster",
+      "type": "project",
+      "name": "O.G. Original Gangster",
+      "mbid": "9b83e003-a420-4f59-a669-37d5b045d6c1",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-played-yourself",
+      "type": "project",
+      "name": "You Played Yourself",
+      "mbid": "fd40b5ea-0f20-4e65-a5c9-f4c8a85dd25a",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lifestyles-of-the-rich-and-infamous",
+      "type": "project",
+      "name": "Lifestyles of the Rich and Infamous",
+      "mbid": "0bdcf962-0534-3ea3-b0dd-784d3be5ffd2",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-ya-wanna-do",
+      "type": "project",
+      "name": "What Ya Wanna Do?",
+      "mbid": "1c6d9176-f6da-466c-bcc9-9287576d9933",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:superfly-1990",
+      "type": "project",
+      "name": "Superfly 1990",
+      "mbid": "5ea1654c-2bcd-4233-acd2-c40e1f090e24",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dick-tracy",
+      "type": "project",
+      "name": "Dick Tracy",
+      "mbid": "a011793b-755f-4457-87f5-59c010dda2be",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:midnight-body-count-escape-from-the-killing-fields",
+      "type": "project",
+      "name": "Midnight/Body Count/Escape From the Killing Fields",
+      "mbid": "ad06fe2b-181a-3133-87e5-fa3b72bbfefc",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-iceberg-freedom-of-speech-just-watch-what-you-say",
+      "type": "project",
+      "name": "The Iceberg / Freedom of Speech… Just Watch What You Say",
+      "mbid": "2a9da4ed-49a5-34e6-87f8-d99e5ceac6e5",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:high-rollers",
+      "type": "project",
+      "name": "High Rollers",
+      "mbid": "c3768f07-15e9-4828-a490-27f1ebdf7dfc",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lethal-weapon",
+      "type": "project",
+      "name": "Lethal Weapon",
+      "mbid": "d40515e2-8e5a-481d-8b5c-b4a261c50062",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:power",
+      "type": "project",
+      "name": "Power",
+      "mbid": "c5a315b3-1a56-30a1-939f-21343ae97636",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:colors",
+      "type": "project",
+      "name": "Colors",
+      "mbid": "2d73fb9c-a512-447d-a0d1-bcc38a70f6ce",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-your-pusher",
+      "type": "project",
+      "name": "I’m Your Pusher",
+      "mbid": "8bd48ee2-d6ea-37bd-8e87-1231df20de55",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rhyme-pays",
+      "type": "project",
+      "name": "Rhyme Pays",
+      "mbid": "999771bd-aefa-3df9-8398-e557e2352322",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dog-n-the-wax",
+      "type": "project",
+      "name": "Dog’n the Wax",
+      "mbid": "478dfb6d-c1fe-4063-bda6-04ff40f26739",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ya-don-t-quit",
+      "type": "project",
+      "name": "Ya Don’t Quit",
+      "mbid": "5c1830f3-f3ae-41ab-9bb0-c1dc581c98ce",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:killers-body-rock",
+      "type": "project",
+      "name": "Killers / Body Rock",
+      "mbid": "d9f97f37-e205-3b35-829f-0374375f3898",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-hottest-beat-the-coldest-rap",
+      "type": "project",
+      "name": "The Hottest Beat / The Coldest Rap",
+      "mbid": "ac5e5797-1688-4068-bd78-acc8bcd21416",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reckless-tibetan-jam",
+      "type": "project",
+      "name": "Reckless / Tibetan Jam",
+      "mbid": "caa65234-c03e-3700-83a3-0ae81afc3929",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-coldest-rap-cold-wind-madness",
+      "type": "project",
+      "name": "The Coldest Rap / Cold Wind‐Madness",
+      "mbid": "4625e19f-607f-3735-8624-2e238abd2736",
+      "year": "1983",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:6-in-the-mornin",
+      "type": "track",
+      "name": "6 in the Mornin'"
+    },
+    {
+      "slug": "track:cop-killer",
+      "type": "track",
+      "name": "Cop Killer"
+    },
+    {
+      "slug": "track:colors",
+      "type": "track",
+      "name": "Colors"
+    },
+    {
+      "slug": "track:reckless",
+      "type": "track",
+      "name": "Reckless"
+    },
+    {
+      "slug": "track:99-problems",
+      "type": "track",
+      "name": "99 Problems"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:afrika-islam",
+      "type": "artist",
+      "name": "Afrika Islam"
+    },
+    {
+      "slug": "artist:chris-the-glove-taylor",
+      "type": "artist",
+      "name": "Chris 'The Glove' Taylor"
+    },
+    {
+      "slug": "artist:quincy-jones",
+      "type": "artist",
+      "name": "Quincy Jones"
+    },
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

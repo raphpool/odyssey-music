@@ -4782,6 +4782,24 @@
         "type": "artist",
         "name": "Daft Punk"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
     }
   ],
   "artist:matt-goss": [
@@ -5433,6 +5451,16 @@
         "name": "Ghettotech",
         "qid": "Q1521688"
       }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
     }
   ],
   "genre:miami-bass": [
@@ -5444,6 +5472,16 @@
         "type": "genre",
         "name": "Ghettotech",
         "qid": "Q1521688"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:dirty-south",
+        "type": "genre",
+        "name": "Dirty South",
+        "qid": "Q8560269"
       }
     }
   ],
@@ -5987,6 +6025,15 @@
         "slug": "artist:daft-punk",
         "type": "artist",
         "name": "Daft Punk"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
       }
     }
   ],
@@ -8993,28 +9040,6 @@
       }
     }
   ],
-  "genre:contemporary-r-and-b": [
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:a-pop",
-        "type": "genre",
-        "name": "A-pop",
-        "qid": "Q10730335"
-      }
-    },
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:k-pop",
-        "type": "genre",
-        "name": "K-Pop",
-        "qid": "Q213665"
-      }
-    }
-  ],
   "genre:technopop": [
     {
       "field": "related_genres",
@@ -10025,6 +10050,15 @@
         "type": "artist",
         "name": "Wizkid"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
     }
   ],
   "artist:banky-w": [
@@ -10520,6 +10554,1321 @@
         "type": "genre",
         "name": "American hip-hop",
         "qid": "Q3135787"
+      }
+    }
+  ],
+  "genre:southern-hip-hop": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:cloud-rap",
+        "type": "genre",
+        "name": "Cloud Rap",
+        "qid": "Q16829781"
+      }
+    }
+  ],
+  "genre:crunk": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:dirty-south",
+        "type": "genre",
+        "name": "Dirty South",
+        "qid": "Q8560269"
+      }
+    }
+  ],
+  "genre:drill": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
+    }
+  ],
+  "genre:latin-trap": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
+    }
+  ],
+  "genre:rage": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:trap-hip-hop",
+        "type": "genre",
+        "name": "Trap",
+        "qid": "Q2913982"
+      }
+    }
+  ],
+  "artist:zaytoven": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    }
+  ],
+  "artist:young-thug": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    },
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:waka-flocka-flame": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    }
+  ],
+  "artist:chief-keef": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    },
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:future": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:metro-boomin": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:guwop": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    }
+  ],
+  "artist:mr-zone-6": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    }
+  ],
+  "artist:east-atlanta-santa": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:gucci-mane",
+        "type": "artist",
+        "name": "Gucci Mane"
+      }
+    }
+  ],
+  "artist:lil-wayne": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "artist:rihanna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:justin-timberlake": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "artist:b-o-b": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "artist:iggy-azalea": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "artist:tip": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "artist:t-i-p": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:t-i",
+        "type": "artist",
+        "name": "T.I."
+      }
+    }
+  ],
+  "genre:west-coast-hip-hop": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:g-funk",
+        "type": "genre",
+        "name": "G-Funk",
+        "qid": "Q1045541"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hardcore-hip-hop",
+        "type": "genre",
+        "name": "Hardcore hip-hop",
+        "qid": "Q966564"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:gangsta-rap",
+        "type": "genre",
+        "name": "Gangsta Rap",
+        "qid": "Q753679"
+      }
+    }
+  ],
+  "genre:mobb-music": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:g-funk",
+        "type": "genre",
+        "name": "G-Funk",
+        "qid": "Q1045541"
+      }
+    }
+  ],
+  "artist:snoop-dogg": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dr-dre",
+        "type": "artist",
+        "name": "Dr. Dre"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:nate-dogg",
+        "type": "artist",
+        "name": "Nate Dogg"
+      }
+    }
+  ],
+  "artist:eminem": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dr-dre",
+        "type": "artist",
+        "name": "Dr. Dre"
+      }
+    }
+  ],
+  "artist:ice-cube": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dr-dre",
+        "type": "artist",
+        "name": "Dr. Dre"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:n-w-a",
+        "type": "artist",
+        "name": "N.W.A"
+      }
+    }
+  ],
+  "artist:2pac": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dr-dre",
+        "type": "artist",
+        "name": "Dr. Dre"
+      }
+    }
+  ],
+  "artist:kurupt": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:nate-dogg",
+        "type": "artist",
+        "name": "Nate Dogg"
+      }
+    }
+  ],
+  "artist:50-cent": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:nate-dogg",
+        "type": "artist",
+        "name": "Nate Dogg"
+      }
+    }
+  ],
+  "artist:andre-3000": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:outkast",
+        "type": "artist",
+        "name": "OutKast"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
+      }
+    }
+  ],
+  "artist:big-boi": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:outkast",
+        "type": "artist",
+        "name": "OutKast"
+      }
+    }
+  ],
+  "artist:pimp-c": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ugk",
+        "type": "artist",
+        "name": "UGK"
+      }
+    }
+  ],
+  "artist:bun-b": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ugk",
+        "type": "artist",
+        "name": "UGK"
+      }
+    }
+  ],
+  "artist:shawnna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
+    }
+  ],
+  "artist:lil-jon": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
+    }
+  ],
+  "artist:usher": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
+    }
+  ],
+  "artist:young-jeezy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
+    }
+  ],
+  "artist:chris-lova-lova": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ludacris",
+        "type": "artist",
+        "name": "Ludacris"
+      }
+    }
+  ],
+  "genre:witch-house": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:cloud-rap",
+        "type": "genre",
+        "name": "Cloud Rap",
+        "qid": "Q16829781"
+      }
+    }
+  ],
+  "genre:digicore": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:cloud-rap",
+        "type": "genre",
+        "name": "Cloud Rap",
+        "qid": "Q16829781"
+      }
+    }
+  ],
+  "artist:kendrick-lamar": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sza",
+        "type": "artist",
+        "name": "SZA"
+      }
+    }
+  ],
+  "artist:tyler-the-creator": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
+      }
+    }
+  ],
+  "artist:playboi-carti": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
+      }
+    }
+  ],
+  "artist:lil-yachty": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:earl-sweatshirt": [
+    {
+      "field": "influences",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:soulja-boy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:chance-the-rapper": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:keyboard-kid": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:terror-jr": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:the-basedgod": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:lil-b-the-basedgod": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:brandon-christopher-mccartney": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-b",
+        "type": "artist",
+        "name": "Lil B"
+      }
+    }
+  ],
+  "artist:the-diplomats": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:mobb-deep": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:three-6-mafia": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:wu-tang-clan": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:asap-mob": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:juicy-j": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:lord-flacko": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:pretty-flacko": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:a-ap-rocky",
+        "type": "artist",
+        "name": "A$AP Rocky"
+      }
+    }
+  ],
+  "artist:bladee": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:yung-gud": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:yung-sherman": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:thaiboy-digital": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:ecco2k": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:jonatan-leandoer96": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yung-lean",
+        "type": "artist",
+        "name": "Yung Lean"
+      }
+    }
+  ],
+  "artist:ishmael-butler": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:digable-planets",
+        "type": "artist",
+        "name": "Digable Planets"
+      }
+    }
+  ],
+  "artist:craig-irving": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:digable-planets",
+        "type": "artist",
+        "name": "Digable Planets"
+      }
+    }
+  ],
+  "artist:mariana-vieira": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:digable-planets",
+        "type": "artist",
+        "name": "Digable Planets"
+      }
+    }
+  ],
+  "artist:malay": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
+      }
+    }
+  ],
+  "artist:christopher-breaux": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
+      }
+    }
+  ],
+  "artist:lonny-breaux": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:frank-ocean",
+        "type": "artist",
+        "name": "Frank Ocean"
+      }
+    }
+  ],
+  "artist:doja-cat": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sza",
+        "type": "artist",
+        "name": "SZA"
+      }
+    }
+  ],
+  "artist:don-toliver": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sza",
+        "type": "artist",
+        "name": "SZA"
+      }
+    }
+  ],
+  "artist:maroon-5": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:sza",
+        "type": "artist",
+        "name": "SZA"
+      }
+    }
+  ],
+  "artist:afrika-islam": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ice-t",
+        "type": "artist",
+        "name": "Ice-T"
+      }
+    }
+  ],
+  "artist:chris-the-glove-taylor": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ice-t",
+        "type": "artist",
+        "name": "Ice-T"
+      }
+    }
+  ],
+  "artist:quincy-jones": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ice-t",
+        "type": "artist",
+        "name": "Ice-T"
+      }
+    }
+  ],
+  "artist:slayer": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:ice-t",
+        "type": "artist",
+        "name": "Ice-T"
+      }
+    }
+  ],
+  "artist:bone-thugs-n-harmony": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:eazy-e",
+        "type": "artist",
+        "name": "Eazy-E"
+      }
+    }
+  ],
+  "artist:above-the-law": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:eazy-e",
+        "type": "artist",
+        "name": "Eazy-E"
+      }
+    }
+  ],
+  "artist:arabian-prince": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:n-w-a",
+        "type": "artist",
+        "name": "N.W.A"
+      }
+    }
+  ],
+  "artist:dj-yella": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:n-w-a",
+        "type": "artist",
+        "name": "N.W.A"
+      }
+    }
+  ],
+  "artist:mc-ren": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:n-w-a",
+        "type": "artist",
+        "name": "N.W.A"
+      }
+    }
+  ],
+  "artist:lil-tracy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:ilovemakonnen": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:smokeasac": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:bexey": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:trap-goose": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:gustav-elijah-ahr": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:lil-peep",
+        "type": "artist",
+        "name": "Lil Peep"
+      }
+    }
+  ],
+  "artist:marshmello": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:lil-bibby": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:nick-mira": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:the-kid-laroi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:xxxtentacion": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:ski-mask-the-slump-god": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:juicethekidd": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:juice-wrld",
+        "type": "artist",
+        "name": "Juice WRLD"
+      }
+    }
+  ],
+  "artist:travis-scott": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
+      }
+    }
+  ],
+  "artist:lil-wop": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
+      }
+    }
+  ],
+  "artist:travis-barker": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
+      }
+    }
+  ],
+  "artist:mgk": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
+      }
+    }
+  ],
+  "artist:1400": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:trippie-redd",
+        "type": "artist",
+        "name": "Trippie Redd"
       }
     }
   ]

@@ -1,0 +1,132 @@
+{
+  "slug": "genre:cloud-rap",
+  "name": "Cloud Rap",
+  "editorial_article": "Cloud rap emerged in the late 2000s, rooted in the Southern United States and defined by the production aesthetic of artists like Lil B and producer Clams Casino. The term was coined in 2010 by blogger Walker 'Walkmasterflex' Chambliss to describe the music of Squadda B of Main Attrakionz, later solidified by the compilation 3 Years Ahead: The Cloud Rap Tape. Characterized by reverb-heavy, ethereal soundscapes, the genre incorporates chopped samples from disparate sources like J-pop, anime, and video game music. Early proponents such as SpaceGhostPurrp and Friendzone helped build a movement centered on internet distribution through platforms like SoundCloud. The sound gained wider recognition in 2011 with A$AP Rocky's debut mixtape Live. Love. ASAP, which featured collaborations with Clams Casino and Main Attrakionz. By the 2010s, collectives like Sad Boys, led by Yung Lean, and Seshollowaterboyz further evolved the genre, blending its mellow, atmospheric production with themes of alienation. Cloud rap's influence later rippled into digital-native styles like emo rap, digicore, and rage.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cloud_rap",
+      "title": "Cloud rap - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:58.039Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by ethereal, reverb-heavy production, ambient textures, and a dreamlike aesthetic that emerged from the internet-based Southern hip-hop scene.",
+  "qid": "Q16829781",
+  "era": "late 2000s to 2010s",
+  "origin": "Southern United States",
+  "sonic_markers": "reverb-heavy beats, ethereal vocal samples, trap-style drums, distorted ambient synths, lo-fi processing",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern hip-hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave",
+      "qid": "Q2626684"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo rap",
+      "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:witch-house",
+      "type": "genre",
+      "name": "Witch house",
+      "qid": "Q1840167"
+    },
+    {
+      "slug": "genre:digicore",
+      "type": "genre",
+      "name": "Digicore",
+      "qid": "Q107515261"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B"
+    },
+    {
+      "slug": "artist:clams-casino",
+      "type": "artist",
+      "name": "Clams Casino"
+    },
+    {
+      "slug": "artist:main-attrakionz",
+      "type": "artist",
+      "name": "Main Attrakionz"
+    },
+    {
+      "slug": "artist:spaceghostpurrp",
+      "type": "artist",
+      "name": "SpaceGhostPurrp"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky"
+    },
+    {
+      "slug": "artist:yung-lean",
+      "type": "artist",
+      "name": "Yung Lean"
+    },
+    {
+      "slug": "artist:bones",
+      "type": "artist",
+      "name": "Bones"
+    },
+    {
+      "slug": "artist:friendzone",
+      "type": "artist",
+      "name": "Friendzone"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:space-age-hustle",
+      "type": "label",
+      "name": "Space Age Hustle"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:peso",
+      "type": "track",
+      "name": "Peso"
+    },
+    {
+      "slug": "track:purple-swag",
+      "type": "track",
+      "name": "Purple Swag"
+    },
+    {
+      "slug": "track:ginseng-strip-2002",
+      "type": "track",
+      "name": "Ginseng Strip 2002"
+    }
+  ]
+}

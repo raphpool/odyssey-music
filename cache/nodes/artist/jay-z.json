@@ -68,7 +68,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    }
+  ],
   "aliases": [],
   "members": []
 }

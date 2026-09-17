@@ -1,0 +1,107 @@
+{
+  "slug": "genre:gangsta-rap",
+  "name": "Gangsta Rap",
+  "editorial_article": "Gangsta rap, often termed reality rap by its performers, is a subgenre of hip hop that emerged to depict the harsh social environments and criminal realities of urban American life. The movement gained significant visibility in the late 1980s, particularly through the West Coast scene, focusing on lyrics that emphasize gang-related activity and street survival. The genre's thematic depth often explores the cycle of poverty and the consequences of systemic neglect in inner-city communities. Musicians like Ice-T helped define the sound, which relies on hard-hitting drum programming and samples that lean into a darker, more confrontational aesthetic. While the label 'gangsta' has been applied to various commercial releases, the core of the genre remains grounded in the firsthand narratives of its artists who provide a localized, often raw perspective on life outside mainstream societal norms.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gangsta_Rap_(album)",
+      "title": "Gangsta Rap (album) - Wikipedia"
+    },
+    {
+      "url": "https://hip-hop-music.fandom.com/wiki/Gangsta_rap",
+      "title": "Gangsta rap - Hip Hop Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:13.882Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip hop music characterized by lyrics and themes that emphasize the realities of the gangsta lifestyle and urban street culture.",
+  "qid": "Q753679",
+  "era": "late 1980s to present",
+  "origin": "United States, primarily West Coast hip hop scene",
+  "sonic_markers": "Heavy use of samples, sub-bass, aggressive lyrical delivery, and mid-tempo rhythmic structures.",
+  "parent_genres": [
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast hip hop",
+      "qid": "Q429264"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore hip hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious hip hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:ice-t",
+      "type": "artist",
+      "name": "Ice-T"
+    },
+    {
+      "slug": "artist:n-w-a",
+      "type": "artist",
+      "name": "N.W.A"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ruthless-records",
+      "type": "label",
+      "name": "Ruthless Records"
+    },
+    {
+      "slug": "label:death-row-records",
+      "type": "label",
+      "name": "Death Row Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:6-n-the-mornin",
+      "type": "track",
+      "name": "6 n the Mornin'"
+    }
+  ]
+}
