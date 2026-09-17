@@ -1,0 +1,162 @@
+{
+  "slug": "artist:jose-padilla",
+  "name": "José Padilla",
+  "editorial_article": "Born in Barcelona in 1955 and relocating to Ibiza in 1975, José Padilla became a fixture of the island's club culture through his long-term residency at Café del Mar. Starting in 1991, he sold mixtapes at the venue before eventually compiling the influential first 'Café del Mar' album for London's React label in 1994. His debut solo album, 'Souvenir', arrived in 1998 on Mercury Records and featured collaborative work with ambient artists Lenny Ibizarre and Paco Fernández. His 2001 follow-up, 'Navigator', earned a Latin Grammy nomination for Best Instrumental Album. In 2015, he shifted his release strategy by making 'So Many Colours' available for streaming before its general issue via International Feel. That same year, he performed a two-hour \"Masters\" set for BBC Radio 1's Essential Mix, marking his return to the show after a two-decade hiatus.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jos%C3%A9_Padilla_(DJ)",
+      "title": "José Padilla (DJ) - Wikipedia"
+    },
+    {
+      "url": "https://codamusic.me/artists/jose-padilla/",
+      "title": "Jose Padilla - Biography, Discography & Albums | Coda Music"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:05.563Z",
+  "type": "artist",
+  "editorial_bio": "Spanish DJ and ambient producer renowned for shaping the chill-out sound through his long-standing residency at Ibiza's Café del Mar.",
+  "origin": "Barcelona, Spain",
+  "active_years": "1978-2020",
+  "genres": [
+    {
+      "slug": "genre:chill-out",
+      "type": "genre",
+      "name": "Chill-out",
+      "qid": "Q757143"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:balearic-house",
+      "type": "genre",
+      "name": "Balearic beat",
+      "qid": "Q2866725"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:cafe-del-mar",
+      "type": "label",
+      "name": "Café del Mar"
+    },
+    {
+      "slug": "label:mercury-records",
+      "type": "label",
+      "name": "Mercury Records"
+    },
+    {
+      "slug": "label:international-feel",
+      "type": "label",
+      "name": "International Feel"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:desde-casa-hagamosunafiesta-con-amigos",
+      "type": "project",
+      "name": "Desde Casa: #Hagamosunafiesta Con Amigos",
+      "mbid": "0cb8a825-3409-4276-b79c-500209316c04",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-many-colours",
+      "type": "project",
+      "name": "So Many Colours",
+      "mbid": "4c1a43de-3f23-43c2-aa67-24783e89832a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:day-one",
+      "type": "project",
+      "name": "Day One",
+      "mbid": "52a4c169-03fc-4b33-ab77-e983bab747b5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:binary-sun",
+      "type": "project",
+      "name": "Binary Sun",
+      "mbid": "89857ecd-5237-4c74-9f68-fb9f058adc5d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:helios",
+      "type": "project",
+      "name": "Helios",
+      "mbid": "4d98c74a-9e89-4728-bb08-46a331e1400b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:navigator",
+      "type": "project",
+      "name": "Navigator",
+      "mbid": "6fa24872-75cf-320c-bcf3-7d0e1d12e297",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:something",
+      "type": "project",
+      "name": "Something",
+      "mbid": "56965696-8ef7-46fa-946a-eabaa611edde",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:adios-ayer",
+      "type": "project",
+      "name": "Adios Ayer",
+      "mbid": "a5e01b03-4d4f-4a52-9a54-58cdf765ab11",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:souvenir",
+      "type": "project",
+      "name": "Souvenir",
+      "mbid": "152bf780-ea78-39c1-80bb-7f659468a9a8",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-do-you-love",
+      "type": "project",
+      "name": "Who Do You Love",
+      "mbid": "963da706-8645-3aae-ba6c-d89523f18db7",
+      "year": "1998",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cafe-del-mar",
+      "type": "track",
+      "name": "Café del Mar"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:lenny-ibizarre",
+      "type": "artist",
+      "name": "Lenny Ibizarre"
+    },
+    {
+      "slug": "artist:paco-fernandez",
+      "type": "artist",
+      "name": "Paco Fernández"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

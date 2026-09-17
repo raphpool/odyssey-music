@@ -1,0 +1,111 @@
+{
+  "slug": "genre:broken-beat",
+  "name": "Broken Beat",
+  "editorial_article": "Emerging in late 1990s West London, Broken Beat—often called \"bruk\"—is a rhythm-forward style characterized by the deliberate avoidance of traditional four-on-the-floor kick drums in favor of syncopated, choppy patterns. Centered around Ladbroke Grove studios, the genre was defined by the collective output of Bugz in the Attic members like Afronaut and Mark Force, alongside producers such as IG Culture. Musically, the scene bridged 1970s jazz-funk with contemporary club sensibilities, often integrating extended jazz chords and lush voicings. Crucial momentum came from 4hero's 1998 album Two Pages, which helped pivot producers from drum and bass toward this more abstract, fusion-heavy experimentalism. The movement solidified through regular club nights like Co-op, which migrated from the Velvet Rooms to Plastic People, providing a weekly focal point for the scene. Artists drew deep influence from the Mizell Brothers' productions and Lonnie Liston Smith, resulting in an eclectic hybrid that sampled funk and soul while maintaining a distinctly UK-centric, break-heavy pulse. By the mid-2000s, the scene had expanded through labels like People Music, creating a distinct aesthetic that prioritized groove-based innovation over rigid grid-quantization.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Broken_beat",
+      "title": "Broken beat - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:55:49.898Z",
+  "type": "genre",
+  "editorial_definition": "A West London-born electronic genre defined by syncopated, non-four-on-the-floor rhythms and heavy integration of jazz-funk instrumentation.",
+  "qid": "Q2406633",
+  "era": "late 1990s to late 2000s",
+  "origin": "West London, UK",
+  "sonic_markers": "Syncopated rhythms, avoidance of four-on-the-floor, jazz-funk chord voicings, heavy use of samplers and live instrumentation.",
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-funk",
+      "qid": "Q38656"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid jazz",
+      "qid": "Q221772"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:bugz-in-the-attic",
+      "type": "artist",
+      "name": "Bugz in the Attic"
+    },
+    {
+      "slug": "artist:ig-culture",
+      "type": "artist",
+      "name": "IG Culture"
+    },
+    {
+      "slug": "artist:4hero",
+      "type": "artist",
+      "name": "4hero"
+    },
+    {
+      "slug": "artist:afronaut",
+      "type": "artist",
+      "name": "Afronaut"
+    },
+    {
+      "slug": "artist:mark-force",
+      "type": "artist",
+      "name": "Mark Force"
+    },
+    {
+      "slug": "artist:kirk-degiorgio",
+      "type": "artist",
+      "name": "Kirk Degiorgio"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:people-music",
+      "type": "label",
+      "name": "People Music"
+    },
+    {
+      "slug": "label:reinforced",
+      "type": "label",
+      "name": "Reinforced"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:two-pages",
+      "type": "track",
+      "name": "Two Pages"
+    }
+  ]
+}

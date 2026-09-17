@@ -1,0 +1,145 @@
+{
+  "slug": "genre:gabber",
+  "name": "Gabber",
+  "editorial_article": "Emerging in early 1990s Rotterdam, gabber defined the Dutch hardcore scene through aggressive tempos ranging from 140 to 190 BPM and heavy, distorted kickdrums. Pioneered by producers like Paul Elstak and Marc Acardipane, the music found early homes on labels such as Rotterdam Records and Mokum Records. Tracks like T99's 1991 release 'Anasthasia' provided early structural foundations for the style, which often integrated film samples with house-style breakbeats. The subculture developed its own distinct visual markers, including Australian brand tracksuits, Nike Air Max, and the hakken dance, while growing into a massive movement through events like ID&T's Thunderdome. While the genre faced associations with right-wing fringe elements, labels like Mokum actively pushed back with releases such as DJ Chosen Few's 'Chosen Anthem (Against Racism)'. By 1997, Billboard magazine identified gabber as the Netherlands' first homegrown youth culture, even as its popularity led to commercialized parodies like Gabber Piet's 'Hakke & Zage'.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gabber",
+      "title": "Gabber"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:56:25.006Z",
+  "type": "genre",
+  "editorial_definition": "A high-energy, distorted subgenre of hardcore techno originating in 1990s Rotterdam, characterized by relentless BPMs and a distinctive youth subculture.",
+  "qid": "Q820049",
+  "era": "early 1990s to present",
+  "origin": "Rotterdam, Netherlands",
+  "sonic_markers": "140-190 BPM, heavily distorted kickdrums, rapid-fire synthesizers, sample-heavy production, breakbeat integration.",
+  "parent_genres": [
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:mainstream-hardcore",
+      "type": "genre",
+      "name": "Mainstream hardcore",
+      "qid": "Q1983750"
+    },
+    {
+      "slug": "genre:speedcore",
+      "type": "genre",
+      "name": "Speedcore",
+      "qid": "Q848457"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:speedcore",
+      "type": "genre",
+      "name": "Speedcore",
+      "qid": "Q848457"
+    },
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy hardcore",
+      "qid": "Q339906"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:paul-elstak",
+      "type": "artist",
+      "name": "Paul Elstak"
+    },
+    {
+      "slug": "artist:marc-acardipane",
+      "type": "artist",
+      "name": "Marc Acardipane"
+    },
+    {
+      "slug": "artist:the-prophet",
+      "type": "artist",
+      "name": "The Prophet"
+    },
+    {
+      "slug": "artist:lenny-dee",
+      "type": "artist",
+      "name": "Lenny Dee"
+    },
+    {
+      "slug": "artist:rotterdam-termination-source",
+      "type": "artist",
+      "name": "Rotterdam Termination Source"
+    },
+    {
+      "slug": "artist:angerfist",
+      "type": "artist",
+      "name": "Angerfist"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rotterdam-records",
+      "type": "label",
+      "name": "Rotterdam Records"
+    },
+    {
+      "slug": "label:mokum-records",
+      "type": "label",
+      "name": "Mokum Records"
+    },
+    {
+      "slug": "label:industrial-strength-records",
+      "type": "label",
+      "name": "Industrial Strength Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:anasthasia",
+      "type": "track",
+      "name": "Anasthasia"
+    },
+    {
+      "slug": "track:hakke-and-zage",
+      "type": "track",
+      "name": "Hakke & Zage"
+    },
+    {
+      "slug": "track:chosen-anthem",
+      "type": "track",
+      "name": "Chosen Anthem (Against Racism)"
+    }
+  ]
+}

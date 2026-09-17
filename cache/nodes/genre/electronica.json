@@ -11,10 +11,18 @@
   "materialized_at": "2026-05-13T12:44:29.589Z",
   "type": "genre",
   "editorial_definition": "A broad, flexible term for electronic music designed primarily for listening rather than peak-time dancing, often synthesizing elements from ambient, downtempo, and various club genres.",
+  "qid": "Q817138",
   "era": "1990s–Present",
   "origin": "Global (primarily popularized in the United States/United Kingdom in the 1990s)",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat",
+      "qid": "Q2406633"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:idm",
@@ -66,6 +74,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q817138"
+  "landmark_tracks": []
 }

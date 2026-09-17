@@ -532,12 +532,6 @@
 			"published": true
 		},
 		{
-			"id": "local:garage",
-			"name": "Garage",
-			"family": "uk-dance-grime",
-			"published": false
-		},
-		{
 			"id": "Q1166726",
 			"name": "Grime",
 			"family": "uk-dance-grime",
@@ -629,9 +623,10 @@
 			"published": false
 		},
 		{
-			"id": "local:baile-funk",
+			"id": "Q1931130",
 			"name": "Baile Funk",
 			"family": "new-club",
+			"qid": "Q1931130",
 			"published": false
 		},
 		{
@@ -957,13 +952,6 @@
 			"published": false
 		},
 		{
-			"id": "local:abstract-electronic",
-			"name": "Abstract Electronic",
-			"family": "electronica-downtempo",
-			"sourceSlugs": ["genre:abstract-electronic"],
-			"published": true
-		},
-		{
 			"id": "Q2187392",
 			"name": "Alternative Dance",
 			"family": "electronica-downtempo",
@@ -977,13 +965,6 @@
 			"family": "electronica-downtempo",
 			"qid": "Q112176170",
 			"published": false
-		},
-		{
-			"id": "local:braindance",
-			"name": "Braindance",
-			"family": "electronica-downtempo",
-			"sourceSlugs": ["genre:braindance"],
-			"published": true
 		},
 		{
 			"id": "Q2626684",
@@ -1038,7 +1019,8 @@
 			"name": "IDM",
 			"family": "electronica-downtempo",
 			"qid": "Q660984",
-			"sourceSlugs": ["genre:idm"],
+			"sourceSlugs": ["genre:idm", "genre:braindance"],
+			"aliases": ["Braindance"],
 			"published": true
 		},
 		{
@@ -1072,14 +1054,6 @@
 			"qid": "Q205560",
 			"sourceSlugs": ["genre:trip-hop"],
 			"published": true
-		},
-		{
-			"id": "Q106369996",
-			"name": "Wave",
-			"family": "electronica-downtempo",
-			"qid": "Q106369996",
-			"sourceSlugs": ["genre:wave"],
-			"published": false
 		},
 		{
 			"id": "Q1840167",
@@ -1141,7 +1115,8 @@
 			"name": "Experimental Electronic",
 			"family": "avant-garde",
 			"qid": "Q105763581",
-			"sourceSlugs": ["genre:experimental-electronic"],
+			"sourceSlugs": ["genre:experimental-electronic", "genre:abstract-electronic"],
+			"aliases": ["Abstract Electronic"],
 			"published": true
 		},
 		{
@@ -1922,7 +1897,7 @@
 		},
 		{
 			"id": "Q483352",
-			"name": "Thrash",
+			"name": "Thrash Metal",
 			"family": "metal",
 			"qid": "Q483352",
 			"published": false
@@ -2036,6 +2011,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q11401",
 			"sourceSlugs": ["genre:hip-hop"],
+			"aliases": ["Rap"],
 			"published": true
 		},
 		{
@@ -2056,7 +2032,7 @@
 		},
 		{
 			"id": "Q6010117",
-			"name": "Memphis",
+			"name": "Memphis Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q6010117",
 			"published": false
@@ -2073,12 +2049,6 @@
 			"name": "New Jack Swing",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q840065",
-			"published": false
-		},
-		{
-			"id": "local:rap",
-			"name": "Rap",
-			"family": "hip-hop-r-n-b",
 			"published": false
 		},
 		{
@@ -2222,12 +2192,6 @@
 			"published": false
 		},
 		{
-			"id": "local:classic-disco",
-			"name": "Classic Disco",
-			"family": "disco-boogie",
-			"published": false
-		},
-		{
 			"id": "Q336567",
 			"name": "Cosmic Disco",
 			"family": "disco-boogie",
@@ -2240,6 +2204,7 @@
 			"family": "disco-boogie",
 			"qid": "Q58339",
 			"sourceSlugs": ["genre:disco"],
+			"aliases": ["Classic Disco"],
 			"published": true
 		},
 		{
@@ -2703,12 +2668,6 @@
 			"published": false
 		},
 		{
-			"id": "local:south-american-indigenous-music",
-			"name": "South American Indigenous Music",
-			"family": "latin-brazilian",
-			"published": false
-		},
-		{
 			"id": "Q14390274",
 			"name": "Tango",
 			"family": "latin-brazilian",
@@ -2730,16 +2689,10 @@
 			"published": false
 		},
 		{
-			"id": "Q15623112",
+			"id": "Q2464939",
 			"name": "Zapateado",
 			"family": "latin-brazilian",
-			"qid": "Q15623112",
-			"published": false
-		},
-		{
-			"id": "local:bashment",
-			"name": "Bashment",
-			"family": "caribbean",
+			"qid": "Q2464939",
 			"published": false
 		},
 		{
@@ -2783,12 +2736,14 @@
 			"family": "caribbean",
 			"qid": "Q474027",
 			"sourceSlugs": ["genre:dancehall"],
+			"aliases": ["Bashment"],
 			"published": false
 		},
 		{
-			"id": "local:dembow",
+			"id": "Q16491869",
 			"name": "Dembow",
 			"family": "caribbean",
+			"qid": "Q16491869",
 			"published": false
 		},
 		{
@@ -2910,9 +2865,10 @@
 			"published": false
 		},
 		{
-			"id": "local:steel-drum",
+			"id": "Q100330639",
 			"name": "Steel Drum",
 			"family": "caribbean",
+			"qid": "Q100330639",
 			"published": false
 		},
 		{
@@ -3070,12 +3026,6 @@
 			"published": false
 		},
 		{
-			"id": "local:ethiopiques",
-			"name": "Ethiopiques",
-			"family": "african-middle-eastern",
-			"published": false
-		},
-		{
 			"id": "Q3509353",
 			"name": "Fuji",
 			"family": "african-middle-eastern",
@@ -3103,9 +3053,10 @@
 			"published": false
 		},
 		{
-			"id": "local:griot",
+			"id": "Q107123896",
 			"name": "Griot",
 			"family": "african-middle-eastern",
+			"qid": "Q107123896",
 			"published": false
 		},
 		{
@@ -3113,18 +3064,6 @@
 			"name": "Gumbe",
 			"family": "african-middle-eastern",
 			"qid": "Q5618068",
-			"published": false
-		},
-		{
-			"id": "local:gyil",
-			"name": "Gyil",
-			"family": "african-middle-eastern",
-			"published": false
-		},
-		{
-			"id": "local:halay",
-			"name": "Halay",
-			"family": "african-middle-eastern",
 			"published": false
 		},
 		{
@@ -3188,12 +3127,6 @@
 			"name": "Kizomba",
 			"family": "african-middle-eastern",
 			"qid": "Q1597549",
-			"published": false
-		},
-		{
-			"id": "local:kora",
-			"name": "Kora",
-			"family": "african-middle-eastern",
 			"published": false
 		},
 		{
@@ -3277,12 +3210,6 @@
 			"published": false
 		},
 		{
-			"id": "local:mizmar",
-			"name": "Mizmar",
-			"family": "african-middle-eastern",
-			"published": false
-		},
-		{
 			"id": "Q502535",
 			"name": "Morna",
 			"family": "african-middle-eastern",
@@ -3311,12 +3238,6 @@
 			"published": false
 		},
 		{
-			"id": "local:rababa",
-			"name": "Rababa",
-			"family": "african-middle-eastern",
-			"published": false
-		},
-		{
 			"id": "Q839029",
 			"name": "Raï",
 			"family": "african-middle-eastern",
@@ -3324,10 +3245,10 @@
 			"published": false
 		},
 		{
-			"id": "Q21684437",
+			"id": "Q3453150",
 			"name": "Rumba",
 			"family": "african-middle-eastern",
-			"qid": "Q21684437",
+			"qid": "Q3453150",
 			"published": false
 		},
 		{
@@ -3446,12 +3367,6 @@
 			"published": false
 		},
 		{
-			"id": "local:zukra",
-			"name": "Zukra",
-			"family": "african-middle-eastern",
-			"published": false
-		},
-		{
 			"id": "local:afghan-traditional-music",
 			"name": "Afghan Traditional Music",
 			"family": "asia",
@@ -3559,9 +3474,10 @@
 			"published": false
 		},
 		{
-			"id": "local:filipino-folk",
+			"id": "Q7185310",
 			"name": "Filipino Folk",
 			"family": "asia",
+			"qid": "Q7185310",
 			"published": false
 		},
 		{
@@ -3601,7 +3517,7 @@
 		},
 		{
 			"id": "Q1055871",
-			"name": "J Rock",
+			"name": "J-Rock",
 			"family": "asia",
 			"qid": "Q1055871",
 			"published": false
@@ -3621,9 +3537,10 @@
 			"published": false
 		},
 		{
-			"id": "local:japanese-traditional",
+			"id": "Q7832297",
 			"name": "Japanese Traditional",
 			"family": "asia",
+			"qid": "Q7832297",
 			"published": false
 		},
 		{
@@ -3771,12 +3688,6 @@
 			"published": false
 		},
 		{
-			"id": "local:saung",
-			"name": "Saung",
-			"family": "asia",
-			"published": false
-		},
-		{
 			"id": "Q3091180",
 			"name": "Shashmaqam",
 			"family": "asia",
@@ -3869,22 +3780,6 @@
 			"published": true
 		},
 		{
-			"id": "Q612024",
-			"name": "Contemporary Classical",
-			"family": "classical-opera",
-			"qid": "Q612024",
-			"sourceSlugs": ["genre:contemporary-classical"],
-			"published": false
-		},
-		{
-			"id": "Q12183214",
-			"name": "Minimal music",
-			"family": "classical-opera",
-			"qid": "Q12183214",
-			"sourceSlugs": ["genre:minimal-music"],
-			"published": false
-		},
-		{
 			"id": "Q572901",
 			"name": "Minimalism",
 			"family": "classical-opera",
@@ -3898,6 +3793,7 @@
 			"family": "classical-opera",
 			"qid": "Q65937946",
 			"sourceSlugs": ["genre:modern-classical"],
+			"aliases": ["Contemporary Classical"],
 			"published": false
 		},
 		{
@@ -3963,12 +3859,6 @@
 			"published": false
 		},
 		{
-			"id": "local:celtic-folk",
-			"name": "Celtic Folk",
-			"family": "other",
-			"published": false
-		},
-		{
 			"id": "Q1092553",
 			"name": "Celtic fusion",
 			"family": "other",
@@ -3982,6 +3872,7 @@
 			"family": "other",
 			"qid": "Q854451",
 			"sourceSlugs": ["genre:celtic-music"],
+			"aliases": ["Celtic Folk"],
 			"published": false
 		},
 		{
@@ -4089,12 +3980,6 @@
 			"name": "Joik",
 			"family": "other",
 			"qid": "Q744327",
-			"published": false
-		},
-		{
-			"id": "local:keiji-haino-music",
-			"name": "Keiji Haino Music",
-			"family": "other",
 			"published": false
 		},
 		{
@@ -4218,24 +4103,11 @@
 			"published": false
 		},
 		{
-			"id": "local:spoken-word",
-			"name": "Spoken Word",
-			"family": "other",
-			"published": false
-		},
-		{
 			"id": "Q739138",
 			"name": "Teen pop",
 			"family": "other",
 			"qid": "Q739138",
 			"sourceSlugs": ["genre:teen-pop"],
-			"published": false
-		},
-		{
-			"id": "Q1062702",
-			"name": "Video Game Music",
-			"family": "other",
-			"qid": "Q1062702",
 			"published": false
 		}
 	]
