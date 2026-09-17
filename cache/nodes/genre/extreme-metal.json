@@ -1,0 +1,119 @@
+{
+  "slug": "genre:extreme-metal",
+  "name": "Extreme metal",
+  "editorial_article": "Extreme metal emerged in the early 1980s as a decentralized movement across the United States and Europe, defined by an aggressive departure from the blues-based structures of traditional heavy metal. The UK band Venom provided an early blueprint for the genre's aesthetic with their 1981 debut 'Welcome to Hell' and 1982 album 'Black Metal', which introduced the raw, occult-focused imagery that would come to define the movement. Musicians in this scene frequently utilize high-intensity techniques such as death growls, blast beats, and rapid double-bass drumming, often pushing tempos into the 150-250 BPM range. Ethnograper Keith Kahn-Harris identifies the genre as a transgressive cluster of subgenres—primarily death, black, thrash, and doom metal—that prioritizes authenticity and rejects commercial mainstream alignment. While early pioneers like Metallica and Slayer helped codify the thrash metal sound with foundational 1983-1984 releases, the genre has since splintered into complex fusion categories, including deathgrind, blackgaze, and funeral doom, maintaining its foundation in grassroots, independent record labels.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Extreme_metal",
+      "title": "Extreme metal - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:05.291Z",
+  "type": "genre",
+  "editorial_definition": "An underground umbrella term for heavy metal subgenres that emphasize extreme sonic aggression, transgressive lyrical themes, and a rejection of mainstream commercial structures.",
+  "qid": "Q465978",
+  "era": "early 1980s to present",
+  "origin": "United States and Europe",
+  "sonic_markers": "150-250 BPM, blast beats, double bass drumming, death growls, heavily distorted guitars, non-blues song structures",
+  "parent_genres": [
+    {
+      "slug": "genre:metal-music",
+      "type": "genre",
+      "name": "Metal Music",
+      "qid": "Q12326776"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal",
+      "qid": "Q132438"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:thrash-metal",
+      "type": "genre",
+      "name": "Thrash metal",
+      "qid": "Q483352"
+    },
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black metal",
+      "qid": "Q132438"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal",
+      "qid": "Q186170"
+    },
+    {
+      "slug": "genre:grindcore",
+      "type": "genre",
+      "name": "Grindcore",
+      "qid": "Q188534"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk",
+      "qid": "Q10922"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:venom",
+      "type": "artist",
+      "name": "Venom"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica"
+    },
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer"
+    },
+    {
+      "slug": "artist:death",
+      "type": "artist",
+      "name": "Death"
+    },
+    {
+      "slug": "artist:bathory",
+      "type": "artist",
+      "name": "Bathory"
+    },
+    {
+      "slug": "artist:celtic-frost",
+      "type": "artist",
+      "name": "Celtic Frost"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:independent-record-labels",
+      "type": "label",
+      "name": "Independent record labels"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:welcome-to-hell",
+      "type": "track",
+      "name": "Welcome to Hell"
+    }
+  ]
+}

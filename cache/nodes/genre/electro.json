@@ -78,6 +78,18 @@
       "type": "genre",
       "name": "Ghettotech",
       "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
     }
   ],
   "key_artists": [

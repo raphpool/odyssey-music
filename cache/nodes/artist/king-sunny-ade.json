@@ -74,7 +74,13 @@
       "name": "Tunde Nightingale"
     }
   ],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
+    }
+  ],
   "collaborators": [],
   "aliases": [],
   "members": []

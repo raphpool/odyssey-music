@@ -36,6 +36,12 @@
       "type": "genre",
       "name": "Hip-House",
       "qid": "Q601235"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
     }
   ],
   "related_genres": [

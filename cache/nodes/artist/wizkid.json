@@ -1,0 +1,605 @@
+{
+  "slug": "artist:wizkid",
+  "name": "Wizkid",
+  "editorial_article": "Ayodeji Ibrahim Balogun, known as Wizkid, began his music career at 11 in Lagos, Nigeria, recording early material as Lil Prinz before finding prominence with his 2011 debut album Superstar on Empire Mates Entertainment. His international breakout arrived in 2016 when he featured on Drake’s One Dance, a global number-one hit that established him as a key figure in modern Afrobeats. Subsequent work, including the 2020 album Made in Lagos, saw the artist reach new heights with the single Essence, featuring Tems, which became the first Nigerian song to chart on the Billboard Hot 100. Over his career, Wizkid has bridged global pop with African rhythmic foundations, collaborating with artists ranging from Beyoncé on The Lion King: The Gift to Justin Bieber and Brent Faiyaz, while managing his own imprint, Starboy Entertainment.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Wizkid",
+      "title": "Wizkid - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:14:26.091Z",
+  "type": "artist",
+  "editorial_bio": "A Nigerian singer and songwriter who helped bring Afrobeats to a global audience through hits like 'One Dance' and 'Essence'.",
+  "origin": "Lagos, Nigeria",
+  "active_years": "2001-present",
+  "genres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:starboy-records",
+      "type": "label",
+      "name": "Starboy Records"
+    },
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:empire-mates-entertainment",
+      "type": "label",
+      "name": "Empire Mates Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:coca-body",
+      "type": "project",
+      "name": "COCA BODY",
+      "mbid": "12dd5eea-eae9-4589-b228-5bffd580e79c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alive",
+      "type": "project",
+      "name": "Alive",
+      "mbid": "3ef11c38-b51b-4c21-ab07-4d2aebb797d4",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-vol-1",
+      "type": "project",
+      "name": "REAL, Vol. 1",
+      "mbid": "347e8de0-2e7d-4031-a78e-a460d070c417",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jogodo",
+      "type": "project",
+      "name": "Jogodo",
+      "mbid": "bb7db8b5-664e-482f-9ec8-f356e8845475",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lighter",
+      "type": "project",
+      "name": "Lighter (Wizkid Extended)",
+      "mbid": "2b0a0524-3fb8-4844-aad0-3e29283db570",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-condition",
+      "type": "project",
+      "name": "One Condition",
+      "mbid": "06d83cb1-f5f4-46b1-959d-4faf18f46639",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dynamite",
+      "type": "project",
+      "name": "DYNAMITE",
+      "mbid": "49fcf2d4-2772-4e57-9ab0-a8241df9ad83",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lighter",
+      "type": "project",
+      "name": "Lighter",
+      "mbid": "b0578e28-bc5b-44c9-aa02-b01426c7fc6a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gimme-dat",
+      "type": "project",
+      "name": "Gimme Dat",
+      "mbid": "6efabc58-8441-4090-8aac-e6b079f346b5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:morayo",
+      "type": "project",
+      "name": "Morayo",
+      "mbid": "276f9457-a02c-4efd-80e3-b213dfc7490b",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kese",
+      "type": "project",
+      "name": "Kese (Dance)",
+      "mbid": "e40c6b20-3ce6-40e9-b87a-5efe8c73b335",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:piece-of-my-heart",
+      "type": "project",
+      "name": "Piece of My Heart",
+      "mbid": "49b35114-c625-4927-b008-8fa999245432",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:s2",
+      "type": "project",
+      "name": "S2",
+      "mbid": "5a77bddd-f134-4f8d-b5cb-cbaee16e9b4e",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blessings",
+      "type": "project",
+      "name": "Blessings",
+      "mbid": "51568723-8ac6-4ba9-a105-f396f2300214",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-for-love",
+      "type": "project",
+      "name": "All For Love",
+      "mbid": "0fd86806-d7f0-43e8-a1cd-e975468b84ce",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-love-less-ego",
+      "type": "project",
+      "name": "More Love, Less Ego",
+      "mbid": "a48f907f-3f59-4310-8874-74b8c58f5e96",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:money-and-love",
+      "type": "project",
+      "name": "Money & Love",
+      "mbid": "c177f2d9-12eb-4020-ac0f-4278cd422cd3",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-to-me",
+      "type": "project",
+      "name": "Bad to Me",
+      "mbid": "edfd35f8-753b-49d7-beed-361b4410977e",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:call-me-every-day",
+      "type": "project",
+      "name": "Call Me Every Day",
+      "mbid": "ef702a84-a756-4106-8544-7109df5cbb5d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:b-d-or",
+      "type": "project",
+      "name": "B. D'OR",
+      "mbid": "ea469dfa-6388-4f3d-8af3-5c28d3d29ef8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:system",
+      "type": "project",
+      "name": "System",
+      "mbid": "4bc07c7b-baa1-432e-b172-cb6aaaf9527b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:made-in-lagos",
+      "type": "project",
+      "name": "Made in Lagos",
+      "mbid": "a29e4711-741e-4576-af2d-bf00ab8a5538",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:essence",
+      "type": "project",
+      "name": "Essence",
+      "mbid": "d9b2b2db-b194-4c52-b64d-e21f537daeb8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cool-me-down",
+      "type": "project",
+      "name": "Cool Me Down",
+      "mbid": "49013e88-09e1-43d2-ba07-b85ccd144736",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smile",
+      "type": "project",
+      "name": "Smile",
+      "mbid": "07ec8d64-c166-46a1-8351-d922ca1ba01d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:escape",
+      "type": "project",
+      "name": "Escape",
+      "mbid": "f1457c8f-ab00-4aac-9227-5601bd174986",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundman-vol-1",
+      "type": "project",
+      "name": "SoundMan Vol. 1",
+      "mbid": "ceb53a09-9621-4f5f-b5b3-03ca65d9f7f8",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:joro",
+      "type": "project",
+      "name": "Joro",
+      "mbid": "4211e01e-9d65-40b0-9900-e795eed5d87b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghetto-love",
+      "type": "project",
+      "name": "Ghetto Love",
+      "mbid": "5b2d06c3-7336-42dc-a92d-57d89f8a2773",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:totori",
+      "type": "project",
+      "name": "Totori",
+      "mbid": "bc0f29ae-6cdc-49aa-af0c-e60dd4bb5ead",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fever",
+      "type": "project",
+      "name": "Fever",
+      "mbid": "96b8bdd8-7b17-472d-9204-8857938c3d52",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bella",
+      "type": "project",
+      "name": "Bella",
+      "mbid": "63989aff-6d52-4ec9-b87c-e9c2a91d8846",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drogba",
+      "type": "project",
+      "name": "Drogba (Joanna)",
+      "mbid": "a4fef2a9-7d4e-4d82-a222-f4e7c8125186",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:energy",
+      "type": "project",
+      "name": "Energy (Stay Far Away)",
+      "mbid": "396d99a5-7133-45da-8abb-84e539961840",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-you",
+      "type": "project",
+      "name": "For You",
+      "mbid": "f4f3b92e-cb1f-4eb0-9214-c2896e84c2b6",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kana",
+      "type": "project",
+      "name": "KANA",
+      "mbid": "2456f352-8aa1-4873-b5f5-66c7e5380c88",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nowo",
+      "type": "project",
+      "name": "Nowo",
+      "mbid": "3c379275-5787-4e3b-b52a-4c156bc47846",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soco",
+      "type": "project",
+      "name": "Soco",
+      "mbid": "96b72bb5-c0d4-435e-b002-e98db70384fb",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-believe",
+      "type": "project",
+      "name": "Can’t Believe",
+      "mbid": "06733827-82a7-4f68-853a-f62a721d0160",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sounds-from-the-other-side",
+      "type": "project",
+      "name": "Sounds From the Other Side",
+      "mbid": "e6ec8a6c-7c20-4f58-8052-afe6c4bb07d4",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naughty-ride",
+      "type": "project",
+      "name": "Naughty Ride",
+      "mbid": "91bf14d0-4657-40b7-b60a-28aab89e7605",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-closer",
+      "type": "project",
+      "name": "Come Closer",
+      "mbid": "000d0202-4b53-4e5a-ba4a-ecaded0ff591",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daddy-yo",
+      "type": "project",
+      "name": "Daddy Yo",
+      "mbid": "16f0ad06-8a10-48b3-96d4-5c661af5b197",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-don-t-know",
+      "type": "project",
+      "name": "U Don't Know",
+      "mbid": "3b9ce712-e7a9-4df3-b960-56a32468a414",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-this",
+      "type": "project",
+      "name": "Like This",
+      "mbid": "4594e93c-b6a1-4650-90b7-a7f71490173b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mamacita",
+      "type": "project",
+      "name": "Mamacita",
+      "mbid": "428ddd1b-21d2-45a2-bc34-a781dd98a8da",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-dance",
+      "type": "project",
+      "name": "One Dance",
+      "mbid": "626d569f-adaf-4fff-a326-9adc0158a01f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-life",
+      "type": "project",
+      "name": "One Life",
+      "mbid": "08075b24-a6a5-4cea-b591-6256db74f08b",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ayo",
+      "type": "project",
+      "name": "Ayo",
+      "mbid": "3348cf7b-4511-4849-815f-be84cfa2c6d0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feel-me",
+      "type": "project",
+      "name": "Feel Me",
+      "mbid": "7b91702d-99ba-47aa-9c87-cf9317e2203a",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jaiye-jaiye",
+      "type": "project",
+      "name": "Jaiye Jaiye",
+      "mbid": "c1adf1a3-c9d0-4c8f-a003-9103cf6e5b78",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-you",
+      "type": "project",
+      "name": "Love You",
+      "mbid": "cb5d5f79-d85a-4801-9265-edc512019321",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-bounce",
+      "type": "project",
+      "name": "New Bounce",
+      "mbid": "7d0a061e-5de5-4ae7-9cda-f09d13b3214c",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-matter",
+      "type": "project",
+      "name": "The Matter",
+      "mbid": "06f34845-d68a-4859-933f-c8f628adb56c",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beat-of-life",
+      "type": "project",
+      "name": "Beat of Life",
+      "mbid": "5e249784-5084-450e-ba26-8dac77a9ca03",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zombie",
+      "type": "project",
+      "name": "Zombie",
+      "mbid": "ec53d8b3-e136-4c3e-b558-aeca2a7a7f81",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:superstar",
+      "type": "project",
+      "name": "Superstar",
+      "mbid": "2ae3eb0a-6f6a-4da8-9c7f-be5e3db62033",
+      "year": "2011",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:holla-at-your-boy",
+      "type": "track",
+      "name": "Holla at Your Boy"
+    },
+    {
+      "slug": "track:ojuelegba",
+      "type": "track",
+      "name": "Ojuelegba"
+    },
+    {
+      "slug": "track:essence",
+      "type": "track",
+      "name": "Essence"
+    },
+    {
+      "slug": "track:brown-skin-girl",
+      "type": "track",
+      "name": "Brown Skin Girl"
+    },
+    {
+      "slug": "track:come-closer",
+      "type": "track",
+      "name": "Come Closer"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    },
+    {
+      "slug": "artist:king-sunny-ade",
+      "type": "artist",
+      "name": "King Sunny Ade"
+    },
+    {
+      "slug": "artist:bob-marley",
+      "type": "artist",
+      "name": "Bob Marley"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake"
+    },
+    {
+      "slug": "artist:tems",
+      "type": "artist",
+      "name": "Tems"
+    },
+    {
+      "slug": "artist:beyonce",
+      "type": "artist",
+      "name": "Beyoncé"
+    },
+    {
+      "slug": "artist:justin-bieber",
+      "type": "artist",
+      "name": "Justin Bieber"
+    },
+    {
+      "slug": "artist:banky-w",
+      "type": "artist",
+      "name": "Banky W"
+    },
+    {
+      "slug": "artist:femi-kuti",
+      "type": "artist",
+      "name": "Femi Kuti"
+    },
+    {
+      "slug": "artist:chris-brown",
+      "type": "artist",
+      "name": "Chris Brown"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:lil-prinz",
+      "type": "artist",
+      "name": "Lil Prinz"
+    },
+    {
+      "slug": "artist:starboy",
+      "type": "artist",
+      "name": "Starboy"
+    },
+    {
+      "slug": "artist:big-wiz",
+      "type": "artist",
+      "name": "Big Wiz"
+    }
+  ],
+  "members": []
+}

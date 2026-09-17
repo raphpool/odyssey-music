@@ -99,6 +99,12 @@
       "type": "genre",
       "name": "Gnawa",
       "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
     }
   ],
   "key_artists": [

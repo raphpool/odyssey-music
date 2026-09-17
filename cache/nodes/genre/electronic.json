@@ -87,6 +87,12 @@
       "type": "genre",
       "name": "Electroacoustic music",
       "qid": "Q1326777"
+    },
+    {
+      "slug": "genre:popular-music",
+      "type": "genre",
+      "name": "Popular music",
+      "qid": "Q373342"
     }
   ],
   "key_artists": [

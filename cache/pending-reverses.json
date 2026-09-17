@@ -163,6 +163,15 @@
         "type": "artist",
         "name": "Sunn O)))"
       }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mayhem",
+        "type": "artist",
+        "name": "Mayhem"
+      }
     }
   ],
   "artist:lemon-interupt": [
@@ -1479,6 +1488,15 @@
         "slug": "artist:peter-tosh",
         "type": "artist",
         "name": "Peter Tosh"
+      }
+    },
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
       }
     }
   ],
@@ -6286,28 +6304,6 @@
       }
     }
   ],
-  "genre:popular-music": [
-    {
-      "field": "subgenres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:bossa-nova",
-        "type": "genre",
-        "name": "Bossa Nova",
-        "qid": "Q486263"
-      }
-    },
-    {
-      "field": "subgenres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:a-pop",
-        "type": "genre",
-        "name": "A-pop",
-        "qid": "Q10730335"
-      }
-    }
-  ],
   "genre:latin-jazz": [
     {
       "field": "related_genres",
@@ -7473,6 +7469,16 @@
         "name": "Afrobeat",
         "qid": "Q388296"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
     }
   ],
   "genre:palm-wine-music": [
@@ -7518,6 +7524,15 @@
         "slug": "artist:tony-allen",
         "type": "artist",
         "name": "Tony Allen"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
       }
     }
   ],
@@ -8966,18 +8981,6 @@
       }
     }
   ],
-  "genre:amapiano": [
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:a-pop",
-        "type": "genre",
-        "name": "A-pop",
-        "qid": "Q10730335"
-      }
-    }
-  ],
   "genre:african-popular-music": [
     {
       "field": "related_genres",
@@ -9331,6 +9334,1192 @@
         "slug": "artist:blackpink",
         "type": "artist",
         "name": "BLACKPINK"
+      }
+    }
+  ],
+  "genre:post-disco": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:boogie",
+        "type": "genre",
+        "name": "Boogie",
+        "qid": "Q4942839"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:boogie",
+        "type": "genre",
+        "name": "Boogie",
+        "qid": "Q4942839"
+      }
+    }
+  ],
+  "artist:wallace-scott": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:leaveil-degree": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:walter-scott": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:nicholas-caldwell": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:marcus-hutson": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:gordy-harmon": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-whispers",
+        "type": "artist",
+        "name": "The Whispers"
+      }
+    }
+  ],
+  "artist:jocelyn-brown": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:inner-life",
+        "type": "artist",
+        "name": "Inner Life"
+      }
+    }
+  ],
+  "artist:leroy-burgess": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:inner-life",
+        "type": "artist",
+        "name": "Inner Life"
+      }
+    }
+  ],
+  "artist:patrick-adams": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:inner-life",
+        "type": "artist",
+        "name": "Inner Life"
+      }
+    }
+  ],
+  "artist:hubert-eaves-iii": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:d-train",
+        "type": "artist",
+        "name": "D-Train"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:d-train",
+        "type": "artist",
+        "name": "D-Train"
+      }
+    }
+  ],
+  "artist:paul-hardcastle": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:d-train",
+        "type": "artist",
+        "name": "D-Train"
+      }
+    }
+  ],
+  "artist:james-d-train-williams": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:d-train",
+        "type": "artist",
+        "name": "D-Train"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:d-train",
+        "type": "artist",
+        "name": "D-Train"
+      }
+    }
+  ],
+  "artist:doreen-shaffer": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:tommy-mccook": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:rolando-alphonso": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:don-drummond": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:lloyd-knibb": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:lloyd-brevett": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:lester-sterling": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:jackie-mittoo": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-skatalites",
+        "type": "artist",
+        "name": "The Skatalites"
+      }
+    }
+  ],
+  "artist:the-clovers": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:prince-buster",
+        "type": "artist",
+        "name": "Prince Buster"
+      }
+    }
+  ],
+  "artist:ernest-ranglin": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:prince-buster",
+        "type": "artist",
+        "name": "Prince Buster"
+      }
+    }
+  ],
+  "artist:rico-rodriguez": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:prince-buster",
+        "type": "artist",
+        "name": "Prince Buster"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:elvis-costello": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:dick-cuthell": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:rhoda-dakar": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:the-special-a-k-a": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:the-coventry-automatics": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:terry-hall": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:jerry-dammers": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:lynval-golding": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:horace-panter": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:neville-staple": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:john-bradbury": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "artist:roddy-radiation": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:the-specials",
+        "type": "artist",
+        "name": "The Specials"
+      }
+    }
+  ],
+  "genre:private-school-piano": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:afropiano": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:popiano": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:bongopiano": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:ojapiano": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:kwaito": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "genre:gqom": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:amapiano",
+        "type": "genre",
+        "name": "Amapiano",
+        "qid": "Q85741139"
+      }
+    }
+  ],
+  "artist:dj-maphorisa": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:uncle-waffles",
+        "type": "artist",
+        "name": "Uncle Waffles"
+      }
+    }
+  ],
+  "artist:tresor": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    }
+  ],
+  "artist:young-stunna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:uncle-waffles",
+        "type": "artist",
+        "name": "Uncle Waffles"
+      }
+    }
+  ],
+  "artist:ami-faku": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    }
+  ],
+  "artist:kwesta": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    }
+  ],
+  "artist:mthunzi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:kabza-de-small",
+        "type": "artist",
+        "name": "Kabza De Small"
+      }
+    }
+  ],
+  "artist:focalistic": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:uncle-waffles",
+        "type": "artist",
+        "name": "Uncle Waffles"
+      }
+    }
+  ],
+  "artist:tony-duardo": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:uncle-waffles",
+        "type": "artist",
+        "name": "Uncle Waffles"
+      }
+    }
+  ],
+  "artist:dj-euphonik": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:killer-kau",
+        "type": "artist",
+        "name": "Killer Kau"
+      }
+    }
+  ],
+  "artist:mpura": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:killer-kau",
+        "type": "artist",
+        "name": "Killer Kau"
+      }
+    }
+  ],
+  "artist:drake": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:tems": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:beyonce": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:justin-bieber": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:banky-w": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:chris-brown": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:lil-prinz": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:starboy": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:big-wiz": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wizkid",
+        "type": "artist",
+        "name": "Wizkid"
+      }
+    }
+  ],
+  "artist:d-prince": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "artist:don-jazzy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "artist:selena-gomez": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "artist:alpha-p": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "artist:shallipopi": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "artist:odumodublvck": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:rema",
+        "type": "artist",
+        "name": "Rema"
+      }
+    }
+  ],
+  "genre:metal-music": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:extreme-metal",
+        "type": "genre",
+        "name": "Extreme metal",
+        "qid": "Q465978"
+      }
+    }
+  ],
+  "genre:thrash-metal": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:extreme-metal",
+        "type": "genre",
+        "name": "Extreme metal",
+        "qid": "Q465978"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:black-metal",
+        "type": "genre",
+        "name": "Black Metal",
+        "qid": "Q132438"
+      }
+    }
+  ],
+  "genre:grindcore": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:extreme-metal",
+        "type": "genre",
+        "name": "Extreme metal",
+        "qid": "Q465978"
+      }
+    }
+  ],
+  "genre:dungeon-synth": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:black-metal",
+        "type": "genre",
+        "name": "Black Metal",
+        "qid": "Q132438"
+      }
+    }
+  ],
+  "genre:symphonic-black-metal": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:black-metal",
+        "type": "genre",
+        "name": "Black Metal",
+        "qid": "Q132438"
+      }
+    }
+  ],
+  "artist:necrobutcher": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mayhem",
+        "type": "artist",
+        "name": "Mayhem"
+      }
+    }
+  ],
+  "artist:hellhammer": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mayhem",
+        "type": "artist",
+        "name": "Mayhem"
+      }
+    }
+  ],
+  "artist:teloch": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mayhem",
+        "type": "artist",
+        "name": "Mayhem"
+      }
+    }
+  ],
+  "artist:ghul": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:mayhem",
+        "type": "artist",
+        "name": "Mayhem"
+      }
+    }
+  ],
+  "artist:fenriz": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:darkthrone",
+        "type": "artist",
+        "name": "Darkthrone"
+      }
+    }
+  ],
+  "artist:nocturno-culto": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:darkthrone",
+        "type": "artist",
+        "name": "Darkthrone"
+      }
+    }
+  ],
+  "artist:trey-azagthoth": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:steve-tucker": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:david-vincent": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:pete-sandoval": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:mike-browning": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:erik-rutan": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:ice": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:heretic": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:dan-vadim-von": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:charlie-koryn": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:morbid-angel",
+        "type": "artist",
+        "name": "Morbid Angel"
+      }
+    }
+  ],
+  "artist:james-murphy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:ralph-santolla": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:executioner": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:xecutioner": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:john-tardy": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:donald-tardy": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:trevor-peres": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:terry-butler": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "artist:ken-andrews": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:obituary",
+        "type": "artist",
+        "name": "Obituary"
+      }
+    }
+  ],
+  "genre:music-of-the-united-states": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:american-hip-hop",
+        "type": "genre",
+        "name": "American hip-hop",
+        "qid": "Q3135787"
       }
     }
   ]

@@ -1,0 +1,134 @@
+{
+  "slug": "artist:death",
+  "name": "Death",
+  "editorial_article": "Founded in 1983 in Altamonte Springs, Florida, by guitarist and vocalist Chuck Schuldiner, Death stands as a primary architect of the death metal genre. Their 1987 debut, Scream Bloody Gore, is widely recognized as a foundational template for the style, capturing a raw, gore-focused sound captured by producer Randy Burns at The Music Grinder in Los Angeles. Over time, the band shifted toward a more progressive and technical approach, culminating in works like 1991's Human and 1998's The Sound of Perseverance. This evolution integrated complex time signatures and melodic song structures, heavily influenced by Schuldiner’s admiration for artists like Iron Maiden and Rush. The group operated under a shifting roster of musicians, with Schuldiner as the sole consistent member until his death in 2001 from complications of glioma and pneumonia. Notable contributors over their lifespan included bassist Steve Di Giorgio, drummers Gene Hoglan and Sean Reinert, and guitarists Paul Masvidal and Rick Rozz. Beyond their studio catalog, Death’s influence is frequently cited by bands ranging from Obituary and Cannibal Corpse to Slipknot and Gojira.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Death_(metal_band)",
+      "title": "Death (metal band) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:48.096Z",
+  "type": "artist",
+  "editorial_bio": "Pioneering Florida death metal band led by visionary guitarist and vocalist Chuck Schuldiner, instrumental in shaping the technical and progressive metal landscape.",
+  "origin": "Altamonte Springs, Florida, U.S.",
+  "active_years": "1983-1995, 1997-2001",
+  "genres": [
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:technical-death-metal",
+      "type": "genre",
+      "name": "Technical Death Metal",
+      "qid": "Q1076092"
+    },
+    {
+      "slug": "genre:progressive-metal",
+      "type": "genre",
+      "name": "Progressive Metal",
+      "qid": "Q484344"
+    },
+    {
+      "slug": "genre:metal",
+      "type": "genre",
+      "name": "Metal",
+      "qid": "Q12326776"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:combat-records",
+      "type": "label",
+      "name": "Combat Records"
+    },
+    {
+      "slug": "label:roadrunner-records",
+      "type": "label",
+      "name": "Roadrunner Records"
+    },
+    {
+      "slug": "label:nuclear-blast",
+      "type": "label",
+      "name": "Nuclear Blast"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-sound-of-perseverance",
+      "type": "project",
+      "name": "The Sound of Perseverance",
+      "mbid": "0cd38da9-90a9-3e0b-bef6-e70036c8a619",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:symbolic",
+      "type": "project",
+      "name": "Symbolic",
+      "mbid": "bd675025-abcb-3536-9e19-ba3204c0183d",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:individual-thought-patterns",
+      "type": "project",
+      "name": "Individual Thought Patterns",
+      "mbid": "94554b6c-2d9e-3174-89f0-94aec0b285e9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:human",
+      "type": "project",
+      "name": "Human",
+      "mbid": "6346903b-4480-3b0f-adef-90fe0b338509",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spiritual-healing",
+      "type": "project",
+      "name": "Spiritual Healing",
+      "mbid": "ecc036f3-d7c6-3594-a19f-e6ca76c15f29",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:leprosy",
+      "type": "project",
+      "name": "Leprosy",
+      "mbid": "e4f11dc7-ed0c-4fb2-bdf7-b1a6240bd167",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scream-bloody-gore",
+      "type": "project",
+      "name": "Scream Bloody Gore",
+      "mbid": "4b2378ca-9617-3b4a-bac3-dcc23a0467bf",
+      "year": "1987",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lack-of-comprehension",
+      "type": "track",
+      "name": "Lack of Comprehension"
+    },
+    {
+      "slug": "track:the-philosopher",
+      "type": "track",
+      "name": "The Philosopher"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

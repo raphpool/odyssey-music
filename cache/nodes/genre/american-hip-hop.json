@@ -1,0 +1,142 @@
+{
+  "slug": "genre:american-hip-hop",
+  "name": "American hip-hop",
+  "editorial_article": "Emerging from early 1970s block parties in the Bronx, American hip-hop coalesced as a cultural response to disenfranchisement among African-American and Afro-Caribbean communities. DJ Kool Herc's August 11, 1973 back-to-school rent party at 1520 Sedgwick Avenue is frequently cited as its foundational moment, where he used two turntables to isolate and extend instrumental breaks from disco and funk records. The genre's evolution was driven by regional innovation, spanning New York's boom bap to Southern scenes in Atlanta, Houston, and Memphis. Early commercialization arrived with The Sugarhill Gang's 1979 hit 'Rapper's Delight', followed by Kurtis Blow's 'The Breaks' (1980), the first gold-certified rap single. Beyond music, the scene integrated turntablism, breakdancing, and graffiti art, with artists like Grandmaster Flash refining needle-dropping techniques that became fundamental to hip-hop production. Technological shifts in the 1980s, specifically the adoption of the Roland TR-808 drum machine, further diversified the sound, enabling the rise of electro and the subsequent golden age between the mid-1980s and mid-1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hip-hop",
+      "title": "Hip-hop - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/lists/Dirty-South--Southern-Hip-Hop-and-Rap/129912?srsltid=AU7gw4XxLo9r_1jb5vaEbaMwFTZhDJM0SCvEv3eRh3lkFm38-5K7HlR9",
+      "title": "Dirty South // Southern Hip-Hop and Rap by Musique_Concrete - Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:16:27.673Z",
+  "type": "genre",
+  "editorial_definition": "A foundational African-American music genre characterized by rapping, turntablism, and sampling that emerged from 1970s New York City block parties.",
+  "qid": "Q3135787",
+  "era": "early 1970s to present",
+  "origin": "The Bronx, New York City, U.S.",
+  "sonic_markers": "Turntablism, scratching, beatboxing, drum machine sequencing, heavy sampling, vocal rapping",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:music-of-the-united-states",
+      "type": "genre",
+      "name": "Music Of The United States",
+      "qid": "Q2267955"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-kool-herc",
+      "type": "artist",
+      "name": "DJ Kool Herc"
+    },
+    {
+      "slug": "artist:grandmaster-flash",
+      "type": "artist",
+      "name": "Grandmaster Flash"
+    },
+    {
+      "slug": "artist:afrika-bambaataa",
+      "type": "artist",
+      "name": "Afrika Bambaataa"
+    },
+    {
+      "slug": "artist:kurtis-blow",
+      "type": "artist",
+      "name": "Kurtis Blow"
+    },
+    {
+      "slug": "artist:the-sugarhill-gang",
+      "type": "artist",
+      "name": "The Sugarhill Gang"
+    },
+    {
+      "slug": "artist:ll-cool-j",
+      "type": "artist",
+      "name": "LL Cool J"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sugar-hill-records",
+      "type": "label",
+      "name": "Sugar Hill Records"
+    },
+    {
+      "slug": "label:mercury-records",
+      "type": "label",
+      "name": "Mercury Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:rapper-s-delight",
+      "type": "track",
+      "name": "Rapper's Delight"
+    },
+    {
+      "slug": "track:the-breaks",
+      "type": "track",
+      "name": "The Breaks"
+    },
+    {
+      "slug": "track:planet-rock",
+      "type": "track",
+      "name": "Planet Rock"
+    },
+    {
+      "slug": "track:king-tim-iii",
+      "type": "track",
+      "name": "King Tim III (Personality Jock)"
+    }
+  ]
+}

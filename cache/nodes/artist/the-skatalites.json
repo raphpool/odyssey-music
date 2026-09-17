@@ -1,0 +1,469 @@
+{
+  "slug": "artist:the-skatalites",
+  "name": "The Skatalites",
+  "editorial_article": "Formed in early 1964 at The Odeon Theatre in Kingston, Jamaica, The Skatalites unified the top studio musicians who had been backing local hits for years without credit. The group initially operated between 1963 and 1965, recording iconic tracks like 'Guns of Navarone' and performing on Bob Marley & The Wailers' debut single, 'Simmer Down'. Producers including Coxsone Dodd, Duke Reid, and Prince Buster tapped the band's collective talent, which featured founding members like Tommy McCook, Don Drummond, and Lloyd Knibb. The band played their first public performance in May 1964 at the Hi-Hat Club on Water Lane. Following a hiatus, the ensemble reunited for the 1983 Reggae Sunsplash festival in Montego Bay, a move orchestrated by festival director Ronnie Burke despite years of internal tension among members. Throughout their extensive career, they have collaborated with artists such as Toots and the Maytals and Ben Harper, contributing to the Grammy-winning 2004 album 'True Love'. Their discography includes the 1964 Studio One release 'Ska Authentic' and later works like the 2016 album 'Platinum Ska'.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Skatalites",
+      "title": "The Skatalites - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:27.223Z",
+  "type": "artist",
+  "editorial_bio": "Pioneering Jamaican ska band formed in 1964, known for backing foundational reggae and rocksteady acts before achieving international acclaim through decades of touring.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1964–1965, 1983–present",
+  "genres": [
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:studio-one",
+      "type": "label",
+      "name": "Studio One"
+    },
+    {
+      "slug": "label:treasure-isle",
+      "type": "label",
+      "name": "Treasure Isle"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:shanachie-records",
+      "type": "label",
+      "name": "Shanachie Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-skatalites-in-dub",
+      "type": "project",
+      "name": "The Skatalites in Dub",
+      "mbid": "1f766215-464b-4d64-9b28-b1d3e1104d55",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-from-ja-ska",
+      "type": "project",
+      "name": "Music from Ja: Ska",
+      "mbid": "29b18fad-0c50-40c9-8e6a-8dbaa28ceb8f",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:history-of-ska-rocksteady-and-reggae",
+      "type": "project",
+      "name": "History of Ska, Rocksteady and Reggae",
+      "mbid": "4ca9c0a1-a7d2-4798-8cdc-27af1498a962",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walk-with-me",
+      "type": "project",
+      "name": "Walk With Me",
+      "mbid": "02527ebf-e591-442b-b1b8-f27fd931bb61",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:play-ska",
+      "type": "project",
+      "name": "Play Ska",
+      "mbid": "35ed828f-7745-485d-a641-afc79ac698e3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:independent-ska",
+      "type": "project",
+      "name": "Independent Ska",
+      "mbid": "ba699864-25e6-469b-bd3d-e6cddad5681f",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-the-right-track",
+      "type": "project",
+      "name": "On the Right Track",
+      "mbid": "22a23011-52e2-3dcd-be18-c8bba652c6de",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-clash-of-the-ska-titans",
+      "type": "project",
+      "name": "The Clash of the Ska Titans",
+      "mbid": "7a009738-a322-3cb3-8f6e-8819e348f926",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-legendary-skatalites-in-dub",
+      "type": "project",
+      "name": "The Legendary Skatalites in Dub",
+      "mbid": "e1edc438-c60f-3485-ab45-7df5dcf4e64d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-celebration-time",
+      "type": "project",
+      "name": "More Celebration Time",
+      "mbid": "a831271e-3abf-4472-8942-b3f29dc6b374",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bashaka",
+      "type": "project",
+      "name": "Bashaka",
+      "mbid": "bd4de08a-35fe-3c0d-921e-4ea6b3fd8e95",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:musical-communion",
+      "type": "project",
+      "name": "Musical Communion",
+      "mbid": "e4f2f141-dcd5-33ff-a2ea-1bd4a69f40f9",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heroes-of-reggae-in-dub",
+      "type": "project",
+      "name": "Heroes of Reggae in Dub",
+      "mbid": "4ea41542-d365-3429-919f-6b70791b9be1",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-titans",
+      "type": "project",
+      "name": "Ska Titans",
+      "mbid": "adf42bfa-5d70-314d-bcc2-be69e4741c2b",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:skatalites-and-friends-at-randy-s",
+      "type": "project",
+      "name": "Skatalites & Friends at Randy's",
+      "mbid": "3ee0ca13-9553-3324-96cd-14a2e881b34f",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ball-of-fire",
+      "type": "project",
+      "name": "Ball of Fire",
+      "mbid": "c9fdca9d-e1a4-3fda-9b0a-f1967b81ffcc",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-skatalite",
+      "type": "project",
+      "name": "The Skatalite!",
+      "mbid": "d742ad79-6ac3-34dd-9278-453acc45e5c7",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:surrender",
+      "type": "project",
+      "name": "Surrender",
+      "mbid": "f1ccbab6-e6e6-4939-8b77-456f4c6f62bb",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:greetings-from-skamania",
+      "type": "project",
+      "name": "Greetings From Skamania",
+      "mbid": "9312bcfa-f29d-34c4-aa54-208ae4759700",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:skamania",
+      "type": "project",
+      "name": "Skamania",
+      "mbid": "7e027a9b-e2d3-4975-a81f-9afabe98b68b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hi-bop-ska",
+      "type": "project",
+      "name": "Hi-Bop Ska",
+      "mbid": "dd610c1b-5dfc-3318-9b67-2e0292a0e972",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-voovee",
+      "type": "project",
+      "name": "Ska Voovee",
+      "mbid": "04cda666-77f6-3a73-91b0-13f1f790fcec",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-mood-for-ska",
+      "type": "project",
+      "name": "In the Mood for Ska",
+      "mbid": "0277f114-a056-4e65-b578-ca18c4c49a4d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-long-hot-summer",
+      "type": "project",
+      "name": "The Long Hot Summer",
+      "mbid": "64b551a8-b201-312a-96dd-bfc872f190f0",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stretching-out",
+      "type": "project",
+      "name": "Stretching Out",
+      "mbid": "11dad3be-1ded-4dac-82f0-cd07da0a89c5",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:return-of-the-big-guns",
+      "type": "project",
+      "name": "Return of the Big Guns",
+      "mbid": "3ffd3aff-c7aa-3c32-ab88-93568999d944",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-skatalites-with-sly-and-robbie-and-the-taxi-gang",
+      "type": "project",
+      "name": "The Skatalites With Sly and Robbie and the Taxi Gang",
+      "mbid": "58f8b18d-16cb-37df-a4bb-15b7726a6970",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scattered-lights",
+      "type": "project",
+      "name": "Scattered Lights",
+      "mbid": "909c647d-524c-3e4d-921b-223213e0f51f",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:african-roots",
+      "type": "project",
+      "name": "African Roots",
+      "mbid": "e88f62b2-b31d-357e-8c2b-05310295667c",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:herb-dub-collie-dub",
+      "type": "project",
+      "name": "Herb Dub - Collie Dub",
+      "mbid": "2639b03f-6f9c-4b40-86ad-0b1ff0c48308",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-legendary-skatalites",
+      "type": "project",
+      "name": "The Legendary Skatalites",
+      "mbid": "9973c2d5-d6b7-3681-ab83-0ca316aeced3",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:war-and-friction-franco-nero",
+      "type": "project",
+      "name": "War and Friction / Franco Nero",
+      "mbid": "5d4fe545-3eb9-45fa-b6e2-2e7a801f8e98",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:celebration-time",
+      "type": "project",
+      "name": "Celebration Time",
+      "mbid": "df1dd223-8537-3405-97d7-29b0193bb1f3",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-authentic-volume-2",
+      "type": "project",
+      "name": "Ska Authentic, Volume 2",
+      "mbid": "5b5592c5-87c1-4596-8459-33f6367f6c20",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guns-of-navarone",
+      "type": "project",
+      "name": "Guns of Navarone",
+      "mbid": "b3b2509b-1094-3a1d-83cd-0be57a7105bd",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rape-bait-sly-mongoose",
+      "type": "project",
+      "name": "Rape Bait / Sly Mongoose",
+      "mbid": "ecf0566f-7ddf-4d0c-a47d-1076799113a3",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:latin-goes-ska",
+      "type": "project",
+      "name": "Latin Goes Ska",
+      "mbid": "090e64d8-1c5d-4633-b2a0-4fb322c55168",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-authentic",
+      "type": "project",
+      "name": "Ska Authentic",
+      "mbid": "4f967d4c-68b4-306c-bc83-d9b66a3dd93f",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vacation-occupation",
+      "type": "project",
+      "name": "Vacation / Occupation",
+      "mbid": "35bcf860-9e79-469f-acff-02846b9155a2",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-daily-food-one-look",
+      "type": "project",
+      "name": "My Daily Food / One Look",
+      "mbid": "8ac9826c-ebb7-3181-8285-647f4144dac6",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:over-the-river-corner-stone",
+      "type": "project",
+      "name": "Over the river / Corner stone",
+      "mbid": "9104b327-3078-46dd-9d50-08a436cb1089",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:confucius",
+      "type": "project",
+      "name": "Confucius",
+      "mbid": "b9e80039-1e83-43c7-9baa-f6b0d6ab28a6",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-world-ska",
+      "type": "project",
+      "name": "Le World...Ska...",
+      "mbid": "7bb22f71-0100-4400-92af-a460b0ac1cf4",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-legenday-skatalites-rebirth-herb-dub-collie-dub",
+      "type": "project",
+      "name": "The Legenday Skatalites - Rebirth / Herb Dub, Collie Dub",
+      "mbid": "81829759-b081-4381-aeb3-bb89e03ac23f",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stretching-out",
+      "type": "project",
+      "name": "Stretching Out",
+      "mbid": "8a55bb27-95d6-357d-9f41-6c1fe63ab2e9",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:guns-of-navarone",
+      "type": "track",
+      "name": "Guns of Navarone"
+    },
+    {
+      "slug": "track:simmer-down",
+      "type": "track",
+      "name": "Simmer Down"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:prince-buster",
+      "type": "artist",
+      "name": "Prince Buster"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:doreen-shaffer",
+      "type": "artist",
+      "name": "Doreen Shaffer"
+    },
+    {
+      "slug": "artist:tommy-mccook",
+      "type": "artist",
+      "name": "Tommy McCook"
+    },
+    {
+      "slug": "artist:rolando-alphonso",
+      "type": "artist",
+      "name": "Rolando Alphonso"
+    },
+    {
+      "slug": "artist:don-drummond",
+      "type": "artist",
+      "name": "Don Drummond"
+    },
+    {
+      "slug": "artist:lloyd-knibb",
+      "type": "artist",
+      "name": "Lloyd Knibb"
+    },
+    {
+      "slug": "artist:lloyd-brevett",
+      "type": "artist",
+      "name": "Lloyd Brevett"
+    },
+    {
+      "slug": "artist:lester-sterling",
+      "type": "artist",
+      "name": "Lester Sterling"
+    },
+    {
+      "slug": "artist:jackie-mittoo",
+      "type": "artist",
+      "name": "Jackie Mittoo"
+    }
+  ]
+}
