@@ -523,46 +523,57 @@ export async function runMigration(
 
 	// --- Genre protections (TRA-138, D6a) -----------------------------------------------------
 	// v1 reads ONBOARDING_GENRES out of web/index.html by regex; it stays in force exactly as
-	// before, as long as that constant exists. D3 (TRA-211) will remove it -- loadOnboardingGenreSlugs
-	// then throws its own specific "no slugs found" error, which alone means "retired on purpose"
-	// and is swallowed into `undefined` (protection inactive). Any *other* failure (a genuinely
-	// unreadable web/index.html, say) is not this planned retirement and must still fail loudly,
-	// same as before this ticket.
+	// before, as long as that constant exists. D3 (TRA-211) will remove the whole identifier --
+	// only that ("no ONBOARDING_GENRES anywhere in the file") means "retired on purpose", and
+	// is swallowed into `undefined` (protection inactive). The identifier still being present
+	// but loadOnboardingGenreSlugs failing anyway (e.g. reformatted to `Object.freeze([...])`,
+	// which the array-literal regex doesn't match) is a *different*, broken shape -- not this
+	// planned retirement -- so it must still fail loudly, per that function's own docstring.
+	// Checked by reading the file directly rather than trusting loadOnboardingGenreSlugs's error
+	// message, which is identical in both cases (2026-09-17 review: a prior version conflated
+	// them, silently disabling v1 whenever the regex merely failed to match).
 	let onboardingSlugs: string[] | undefined;
 	if (options.onboardingSlugs) {
 		onboardingSlugs = [...options.onboardingSlugs];
 	} else {
-		try {
-			onboardingSlugs = await loadOnboardingGenreSlugs(options.webIndexPath);
-		} catch (e) {
-			if (e instanceof Error && e.message.startsWith("no ONBOARDING_GENRES slugs found")) {
-				onboardingSlugs = undefined;
-			} else {
-				throw e;
-			}
-		}
+		const webIndexPath = options.webIndexPath ?? join(defaultDataDir(), "..", "web", "index.html");
+		const html = await readTextOrDefault(webIndexPath, "");
+		onboardingSlugs = /\bONBOARDING_GENRES\b/.test(html)
+			? await loadOnboardingGenreSlugs(webIndexPath)
+			: undefined;
 	}
 
 	// The taxonomy-era protection (A4b): every source slug of a `published: true` entry,
-	// already resolved through existing redirects and QID lookup by the canonical loader. Not
-	// shipped yet (file missing, checked with `stat` rather than sniffing loadGenreTaxonomy's
-	// error text) is likewise treated as `undefined`; an existing-but-broken file is a hard
-	// error instead -- corruption is never silently treated as "no taxonomy". Default path is a
-	// sibling of `cacheDir`, not of the repo's own data/ (loadGenreTaxonomy's own cacheRootFor
-	// mirrors this): the header above documents this same migration running against the
-	// *server's* cache, at a different path than the repo's -- this keeps the two aligned
-	// whenever cacheDir follows the usual cache/data sibling layout; pass `taxonomyPath`
-	// explicitly for a cache directory that doesn't.
+	// already resolved through existing redirects and QID lookup by the canonical loader.
+	// Three distinct outcomes, kept separate rather than collapsed into one boolean: not shipped
+	// yet (ENOENT on the path itself) is silently `undefined`; the path existing but unreadable
+	// for another reason (permissions, say) and the file existing but failing to parse/validate
+	// are both hard errors, with distinct messages -- corruption is never silently treated as
+	// "no taxonomy". Default path is a sibling of `cacheDir`, not of the repo's own data/
+	// (loadGenreTaxonomy's own cacheRootFor mirrors this): the header above documents this same
+	// migration running against the *server's* cache, at a different path than the repo's --
+	// this keeps the two aligned whenever cacheDir follows the usual cache/data sibling layout;
+	// pass `taxonomyPath` explicitly for a cache directory that doesn't.
 	let taxonomySources: string[] | undefined;
+	let taxonomyAbsent = false;
 	if (options.taxonomy) {
 		taxonomySources = options.taxonomy.genres.filter((g) => g.published).flatMap((g) => g.sourceSlugs ?? []);
 	} else {
 		const taxonomyPath = options.taxonomyPath ?? join(dirname(cacheDir), "data", "genre-taxonomy.json");
-		const taxonomyExists = await stat(taxonomyPath).then(
-			() => true,
-			() => false,
-		);
-		if (taxonomyExists) {
+		let taxonomyPathReadable = true;
+		try {
+			await stat(taxonomyPath);
+		} catch (e) {
+			taxonomyPathReadable = false;
+			if ((e as NodeJS.ErrnoException).code === "ENOENT") {
+				taxonomyAbsent = true;
+			} else {
+				errors.push(
+					`genre taxonomy path unreadable: ${taxonomyPath}: ${e instanceof Error ? e.message : String(e)}`,
+				);
+			}
+		}
+		if (taxonomyPathReadable) {
 			try {
 				const taxonomy = await loadGenreTaxonomy(taxonomyPath);
 				taxonomySources = taxonomy.genres.filter((g) => g.published).flatMap((g) => g.sourceSlugs ?? []);
@@ -572,10 +583,22 @@ export async function runMigration(
 		}
 	}
 
+	// A taxonomy that loads but publishes nothing would otherwise silently disarm this whole
+	// protection (2026-09-17 review, nit 5) -- exactly the "empty check that lets everything
+	// through" criterion 3 already forbids for the "both missing" case below.
+	if (taxonomySources !== undefined && taxonomySources.length === 0) {
+		errors.push("genre taxonomy loaded but publishes no genres -- refusing rather than protecting nothing");
+		taxonomySources = undefined;
+	}
+
 	if (onboardingSlugs === undefined && taxonomySources === undefined) {
 		errors.push(
 			"no genre protection available: both ONBOARDING_GENRES and the genre taxonomy are missing -- " +
 				"refusing rather than merging unchecked",
+		);
+	} else if (taxonomyAbsent && onboardingSlugs !== undefined) {
+		process.stderr.write(
+			"warning: genre taxonomy not found -- proceeding with v1 (ONBOARDING_GENRES) protection alone\n",
 		);
 	}
 
