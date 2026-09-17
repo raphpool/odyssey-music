@@ -88,6 +88,18 @@
       "type": "genre",
       "name": "Contemporary R&B",
       "qid": "Q850412"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
     }
   ],
   "key_artists": [

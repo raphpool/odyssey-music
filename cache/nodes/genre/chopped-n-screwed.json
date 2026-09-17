@@ -1,0 +1,90 @@
+{
+  "slug": "genre:chopped-n-screwed",
+  "name": "Chopped N Screwed",
+  "editorial_article": "Pioneered by DJ Screw in the early 1990s within the Houston hip-hop scene, the Chopped N Screwed technique manipulates audio by slowing track tempos to between 60 and 70 beats per minute while integrating scratching and stop-time edits. Houston-based manager Charles Washington noted the style likely emerged during informal apartment hangouts in the late 1980s, eventually becoming synonymous with the city's local subculture. Beyond simple speed reduction, the technique relies on what producers call chopping: reconfiguring segments of a break or phrase into a new order. While early critics linked the aesthetic to the regional use of codeine-based lean, DJ Screw consistently maintained that the music was intended for a broad audience, including families who did not consume substances. Following his death in 2000, his influence expanded globally, fueling contemporary internet-based subgenres like future screw and slowed and reverb.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chopped_and_screwed",
+      "title": "Chopped and screwed - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:17.885Z",
+  "type": "genre",
+  "editorial_definition": "A Houston-born hip-hop remixing technique characterized by slowed-down tempos, pitch-shifted vocals, and reordered rhythmic segments.",
+  "qid": "Q2261628",
+  "era": "early 1990s to present",
+  "origin": "Houston, Texas, United States",
+  "sonic_markers": "60-70 BPM, record scratching, pitch-shifted vocals, stop-time, heavy bass emphasis",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern hip hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:vaporwave",
+      "type": "genre",
+      "name": "Vaporwave",
+      "qid": "Q15733887"
+    },
+    {
+      "slug": "genre:phonk",
+      "type": "genre",
+      "name": "Phonk",
+      "qid": "Q90568328"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-screw",
+      "type": "artist",
+      "name": "DJ Screw"
+    },
+    {
+      "slug": "artist:michael-5000-watts",
+      "type": "artist",
+      "name": "Michael '5000' Watts"
+    },
+    {
+      "slug": "artist:og-ron-c",
+      "type": "artist",
+      "name": "OG Ron C"
+    },
+    {
+      "slug": "artist:dj-candlestick",
+      "type": "artist",
+      "name": "DJ Candlestick"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:swishahouse-records",
+      "type": "label",
+      "name": "Swishahouse Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:screwed-for-life",
+      "type": "track",
+      "name": "Screwed For Life"
+    }
+  ]
+}

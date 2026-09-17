@@ -11,9 +11,17 @@
   "materialized_at": "2026-05-13T12:37:55.343Z",
   "type": "genre",
   "editorial_definition": "Experimental music is a wide-ranging, philosophy-driven approach to sound and performance that deliberately challenges conventional musical structure, instrumentation, and composition to prioritize innovation and process over commercial or stylistic adherence.",
+  "qid": "Q1640319",
   "origin": "United States and France, mid-20th century",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    }
+  ],
   "related_genres": [],
   "key_artists": [
     {
@@ -65,6 +73,5 @@
       "name": "In C"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1640319"
+  "landmark_tracks": []
 }

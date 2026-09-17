@@ -1,0 +1,122 @@
+{
+  "slug": "genre:memphis",
+  "name": "Memphis Rap",
+  "editorial_article": "Originating in Memphis during the mid-to-late 1980s, this regional hip-hop subgenre coalesced as a low-budget, grass-roots alternative to the dominant New York and Los Angeles scenes. Pioneers like DJ Spanish Fly bridged 1980s electro-funk with a harder gangsta sound, utilizing Roland TR-808 drum machines to establish a signature aesthetic defined by cowbells, sharp digital snares, and heavy sub-bass. Artists frequently recorded in bedroom studios, distributing music through independent cassette networks rather than mainstream channels. The sound is often marked by dark, graphic lyrical themes, repetitive vocal hooks, and a lo-fi approach to sampling that incorporates funk, soul, and horror film scores. Key foundational works include Three 6 Mafia’s Mystic Stylez and Lil Noid’s Paranoid Funk, the latter of which captured the raw, DIY ethos of the city's underground cassette culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Memphis_rap",
+      "title": "Memphis rap"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:29.608Z",
+  "type": "genre",
+  "editorial_definition": "A regional, underground subgenre of Southern hip-hop defined by DIY cassette production, dark horrorcore themes, and the prominent use of Roland TR-808 drum machines.",
+  "qid": "Q6010117",
+  "era": "mid-1980s to present",
+  "origin": "Memphis, Tennessee",
+  "sonic_markers": "Lo-fi production, Roland TR-808 percussion, heavy cowbell, dark atmosphere, chopped samples, double-time and triplet flows.",
+  "parent_genres": [
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American Hip Hop",
+      "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:us-bass-music",
+      "type": "genre",
+      "name": "Us Bass Music",
+      "qid": "Q114880124"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:horrorcore",
+      "type": "genre",
+      "name": "Horrorcore",
+      "qid": "Q1139136"
+    },
+    {
+      "slug": "genre:phonk",
+      "type": "genre",
+      "name": "Phonk",
+      "qid": "Q90568328"
+    },
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap music",
+      "qid": "Q2913982"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-spanish-fly",
+      "type": "artist",
+      "name": "DJ Spanish Fly"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia"
+    },
+    {
+      "slug": "artist:8ball-and-mjg",
+      "type": "artist",
+      "name": "8Ball & MJG"
+    },
+    {
+      "slug": "artist:tommy-wright-iii",
+      "type": "artist",
+      "name": "Tommy Wright III"
+    },
+    {
+      "slug": "artist:lil-noid",
+      "type": "artist",
+      "name": "Lil Noid"
+    },
+    {
+      "slug": "artist:playa-fly",
+      "type": "artist",
+      "name": "Playa Fly"
+    },
+    {
+      "slug": "artist:gangsta-boo",
+      "type": "artist",
+      "name": "Gangsta Boo"
+    },
+    {
+      "slug": "artist:project-pat",
+      "type": "artist",
+      "name": "Project Pat"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:real-rap-records",
+      "type": "label",
+      "name": "Real Rap Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:paranoid-funk",
+      "type": "track",
+      "name": "Paranoid Funk"
+    }
+  ]
+}

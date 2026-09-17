@@ -730,7 +730,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-premier",
+      "type": "artist",
+      "name": "DJ Premier"
+    }
+  ],
   "aliases": [],
   "members": []
 }

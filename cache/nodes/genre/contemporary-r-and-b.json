@@ -66,6 +66,12 @@
       "type": "genre",
       "name": "K-Pop",
       "qid": "Q213665"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
     }
   ],
   "key_artists": [

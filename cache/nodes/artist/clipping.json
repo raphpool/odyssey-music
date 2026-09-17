@@ -1,0 +1,338 @@
+{
+  "slug": "artist:clipping",
+  "name": "clipping.",
+  "editorial_article": "Formed in Los Angeles in 2009 as a remix project, clipping. evolved into an experimental hip-hop trio featuring Daveed Diggs, William Hutson, and Jonathan Snipes. Their early output utilized a cappella vocals from mainstream rap artists layered over power electronics and noise compositions. Since signing to Sub Pop in 2013, the group has developed a distinct methodology, favoring field recordings and found-sound samples—such as breaking glass or metal—over traditional instrumentation. Diggs employs a strict songwriting constraint where the first-person perspective is banned, focusing instead on third-person narratives. Their 2016 concept album Splendor & Misery earned a Hugo Award nomination for best dramatic presentation, highlighting their integration of science fiction themes. Recent projects like the 2025 album Dead Channel Sky incorporate cyberpunk aesthetics, while tracks such as 'La Mala Ordina' feature guests like Benny the Butcher alongside abrasive noise production from collaborator The Rita.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Clipping_(band)",
+      "title": "Clipping (band)"
+    },
+    {
+      "url": "https://www.subpop.com/artists/clipping",
+      "title": "clipping. on Sub Pop Records"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:35.913Z",
+  "type": "artist",
+  "editorial_bio": "An experimental Los Angeles hip-hop trio known for abrasive, noise-influenced production and strict third-person lyricism.",
+  "origin": "Los Angeles, California",
+  "active_years": "2009-present",
+  "genres": [
+    {
+      "slug": "genre:industrial-hip-hop",
+      "type": "genre",
+      "name": "Industrial Hip Hop",
+      "qid": "Q2004156"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:horrorcore",
+      "type": "genre",
+      "name": "Horrorcore",
+      "qid": "Q1139136"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:sub-pop",
+      "type": "label",
+      "name": "Sub Pop"
+    },
+    {
+      "slug": "label:deathbomb-arc",
+      "type": "label",
+      "name": "Deathbomb Arc"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:forever-war",
+      "type": "project",
+      "name": "Forever War",
+      "mbid": "23ede299-f94f-4c6c-a359-01d70941e9fb",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:night-of-heaven",
+      "type": "project",
+      "name": "Night of Heaven",
+      "mbid": "5f369418-7bfa-4613-b3f1-bc01fe50105b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dominator",
+      "type": "project",
+      "name": "Dominator",
+      "mbid": "eab8df13-9378-439b-bdfb-52fb93c6bfed",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dead-channel-sky",
+      "type": "project",
+      "name": "Dead Channel Sky",
+      "mbid": "dc8005ec-e1ef-44fb-a1d6-ccb5083bc132",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:welcome-home-warrior",
+      "type": "project",
+      "name": "Welcome Home Warrior",
+      "mbid": "71735dfa-226d-462e-ac11-e248ab2bff94",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:change-the-channel",
+      "type": "project",
+      "name": "Change the Channel",
+      "mbid": "70eccaa9-ad38-46cc-a343-77d15b3b3806",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-pushing",
+      "type": "project",
+      "name": "Keep Pushing",
+      "mbid": "054b11d5-b6b4-43bb-a4b5-c4b226e8e456",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-it",
+      "type": "project",
+      "name": "Run It",
+      "mbid": "c236f4be-5cb8-47e4-a731-12f4e2e70181",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tipsy-b-w-midnight",
+      "type": "project",
+      "name": "Tipsy b/w Midnight",
+      "mbid": "168bd59c-b74c-456a-ba42-47fa85fdbe46",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sheared",
+      "type": "project",
+      "name": "Sheared (Pinking Shears rework)",
+      "mbid": "2eb8db98-de16-4159-a4e2-b8e4db16c976",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:till-the-sun-down",
+      "type": "project",
+      "name": "Till the Sun Down",
+      "mbid": "6bd0390b-b980-453d-8e69-dc7d46f96196",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:visions-of-bodies-being-burned",
+      "type": "project",
+      "name": "Visions of Bodies Being Burned",
+      "mbid": "8e5a1df1-2cb8-4a7e-985c-f78919c2c9b2",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:say-the-name",
+      "type": "project",
+      "name": "Say the Name",
+      "mbid": "5dcdb5a9-d108-479f-8c01-8209d0f83094",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chapter-319",
+      "type": "project",
+      "name": "Chapter 319",
+      "mbid": "ff3dbd4d-c1d5-4364-a60d-bd958715e8b9",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:there-existed-an-addiction-to-blood",
+      "type": "project",
+      "name": "There Existed an Addiction to Blood",
+      "mbid": "16af6d23-9d40-49a6-952b-5631d4ec7981",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blood-of-the-fang",
+      "type": "project",
+      "name": "Blood of the Fang",
+      "mbid": "b88a9412-b686-4c9b-8789-50de4280f381",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-mala-ordina",
+      "type": "project",
+      "name": "La Mala Ordina",
+      "mbid": "8116d26a-ff42-489f-8bbe-b31dc654624e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stab-him-in-the-throat",
+      "type": "project",
+      "name": "Stab Him in the Throat",
+      "mbid": "4d4dd3c8-8d33-4aa7-87d5-559170c585fa",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:escalator-teeth-on-and-on-club-down",
+      "type": "project",
+      "name": "Escalator Teeth/On and On / Club Down",
+      "mbid": "0a9dde19-5a1a-4a66-a8d0-02ea58f245ec",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-deep",
+      "type": "project",
+      "name": "The Deep",
+      "mbid": "2881363b-de55-4d3e-af65-52383e1e6064",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fat-fingers",
+      "type": "project",
+      "name": "Fat Fingers (30 Days, 30 Songs)",
+      "mbid": "2a6554a0-a2a2-42ff-b8c9-51554c1ceca7",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:splendor-and-misery",
+      "type": "project",
+      "name": "Splendor & Misery",
+      "mbid": "b5c6b555-6d29-465d-ae82-71519dcfae39",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wriggle",
+      "type": "project",
+      "name": "Wriggle",
+      "mbid": "d11d8ee3-745c-4149-9dca-979d22bf52f5",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-they-don-t-know-b-w-mouth",
+      "type": "project",
+      "name": "Something They Don’t Know b/w Mouth",
+      "mbid": "21e1ed37-24e0-4bd1-a053-3f7cf2cafc2c",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ends",
+      "type": "project",
+      "name": "Ends",
+      "mbid": "7a7dcde3-0dfe-48c2-9e84-57f5833989f4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:clppng",
+      "type": "project",
+      "name": "CLPPNG",
+      "mbid": "13339a16-754a-464b-ae86-592314d80561",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chain-jump",
+      "type": "project",
+      "name": "Chain / Jump",
+      "mbid": "664af790-9ccd-41b8-894c-6bc9c3da4fbb",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:face",
+      "type": "project",
+      "name": "Face",
+      "mbid": "770c44e3-7856-4b2a-b917-865cfd649af1",
+      "year": "2012",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:nothing-is-safe",
+      "type": "track",
+      "name": "Nothing Is Safe"
+    },
+    {
+      "slug": "track:la-mala-ordina",
+      "type": "track",
+      "name": "La Mala Ordina"
+    },
+    {
+      "slug": "track:say-the-name",
+      "type": "track",
+      "name": "Say the Name"
+    },
+    {
+      "slug": "track:blood-of-the-fang",
+      "type": "track",
+      "name": "Blood of the Fang"
+    },
+    {
+      "slug": "track:run-it",
+      "type": "track",
+      "name": "Run It"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:daveed-diggs",
+      "type": "artist",
+      "name": "Daveed Diggs"
+    },
+    {
+      "slug": "artist:william-hutson",
+      "type": "artist",
+      "name": "William Hutson"
+    },
+    {
+      "slug": "artist:jonathan-snipes",
+      "type": "artist",
+      "name": "Jonathan Snipes"
+    }
+  ]
+}

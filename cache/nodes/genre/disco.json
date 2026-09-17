@@ -109,6 +109,12 @@
       "type": "genre",
       "name": "Contemporary R&B",
       "qid": "Q850412"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
     }
   ],
   "key_artists": [

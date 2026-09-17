@@ -1,0 +1,589 @@
+{
+  "slug": "artist:ll-cool-j",
+  "name": "LL Cool J",
+  "editorial_article": "James Todd Smith, known professionally as LL Cool J, is a Queens-born rapper who debuted in 1987 on the Def Jam and Columbia labels. His prolific career spans over 14 studio albums, including the 2024 release The Force, which features production rooted in boom bap and jazzy hip-hop aesthetics. Throughout his tenure, he has collaborated with artists ranging from Jennifer Lopez on the 2002 chart-topping single All I Have to Brad Paisley on the 2013 track Accidental Racist. His discography highlights include influential records like 1990's Mama Said Knock You Out, with music videos frequently directed by Hype Williams and Paris Barclay. Across his career, he has appeared on numerous soundtracks and joint projects, contributing to compilations such as the Violator albums and participating in high-profile collective efforts like the 2010 charity single We Are the World 25 for Haiti.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/LL_Cool_J_discography",
+      "title": "LL Cool J discography - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/LL_Cool_J",
+      "title": "LL Cool J - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:08.106Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Queens rapper and Def Jam pioneer, LL Cool J has maintained a multi-decade career bridging hip-hop with pop culture and television.",
+  "origin": "Queens, New York City",
+  "active_years": "1984-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:def-jam",
+      "type": "label",
+      "name": "Def Jam"
+    },
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-force",
+      "type": "project",
+      "name": "The FORCE",
+      "mbid": "e22e9cc4-87c5-46db-9c95-c6e7db9e68f2",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:murdergram-deux",
+      "type": "project",
+      "name": "Murdergram Deux",
+      "mbid": "193e7057-5e02-413e-b348-6c717405fe86",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:proclivities",
+      "type": "project",
+      "name": "Proclivities",
+      "mbid": "fd0d58e0-274e-443b-bd56-63bcd89d5b38",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saturday-night-special",
+      "type": "project",
+      "name": "Saturday Night Special",
+      "mbid": "63ff7133-bb6f-4f88-9a0c-a86ba9a84bc6",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:around-the-way-girl",
+      "type": "project",
+      "name": "Around the Way Girl (Total M extended Fendi Bag edit)",
+      "mbid": "2a957cae-2d98-4eb3-bbd7-92704d73ec7f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-came-to-party",
+      "type": "project",
+      "name": "We Came to Party",
+      "mbid": "9e1f6349-f8f2-4ea5-b5e8-ec956c4cb67f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whaddup",
+      "type": "project",
+      "name": "Whaddup",
+      "mbid": "1f367b48-37af-472f-b6d7-3a82183df0ed",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:authentic",
+      "type": "project",
+      "name": "Authentic",
+      "mbid": "dd26925b-dabb-4245-8c7d-683c1e9eb92a",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:year-of-the-hip-hop",
+      "type": "project",
+      "name": "Year of the Hip Hop",
+      "mbid": "47333c34-7d16-4495-bd30-9817ecc7b762",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:killin-em",
+      "type": "project",
+      "name": "Killin ’Em",
+      "mbid": "73174c7a-5254-4b18-966c-e1fbf6377df1",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:billie-jean-dream",
+      "type": "project",
+      "name": "Billie Jean Dream",
+      "mbid": "10866880-ab70-435c-a91f-31f57b9deb5d",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exit-13",
+      "type": "project",
+      "name": "Exit 13",
+      "mbid": "bd117669-6fb9-38f5-9265-e3f3681f8ee1",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:control-myself",
+      "type": "project",
+      "name": "Control Myself",
+      "mbid": "f9a203ce-c931-4d2d-92b9-e87812894ca4",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:todd-smith",
+      "type": "project",
+      "name": "Todd Smith",
+      "mbid": "0b3296f5-4445-3e8c-aef5-edfb65979234",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:control-myself",
+      "type": "project",
+      "name": "Control Myself (Remixes)",
+      "mbid": "6c39bd62-414b-308a-aef2-4c48272d6308",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-re-gonna-make-it",
+      "type": "project",
+      "name": "We’re Gonna Make It",
+      "mbid": "2059ae3c-d4c1-39bf-b2e1-9b0e616bef4f",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bump-this",
+      "type": "project",
+      "name": "Bump This",
+      "mbid": "bf6d2bb8-9909-404b-9173-ba0822a0b9c9",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hush",
+      "type": "project",
+      "name": "Hush",
+      "mbid": "cff3011e-cbd5-44d5-8168-ec71d936cf41",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headsprung",
+      "type": "project",
+      "name": "Headsprung",
+      "mbid": "6ea75df8-cd66-3f66-a69b-96ac020dce24",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-definition",
+      "type": "project",
+      "name": "THE DEFinition",
+      "mbid": "9a43e713-767b-3d96-8e3c-378b7a45c096",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-i-have",
+      "type": "project",
+      "name": "All I Have",
+      "mbid": "bf4a6686-f25c-3530-a5bd-3b2ed9aa2c41",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paradise",
+      "type": "project",
+      "name": "Paradise",
+      "mbid": "c51bc052-3afc-3f1d-a21e-e6276fb3abf6",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:10",
+      "type": "project",
+      "name": "10",
+      "mbid": "1510944a-3476-354b-83ae-4d8cc0dcbd45",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:amazin",
+      "type": "project",
+      "name": "Amazin'",
+      "mbid": "4bc6a826-915c-41dd-ad20-28109a0af875",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-u-better",
+      "type": "project",
+      "name": "Luv U Better",
+      "mbid": "6fd438c2-fe8c-4ae7-b03b-cd6c8de641f6",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fatty-girl",
+      "type": "project",
+      "name": "Fatty Girl",
+      "mbid": "91761abd-29a8-37f1-909c-3e5ddce2c20d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-o-a-t-featuring-james-t-smith-the-greatest-of-all-time",
+      "type": "project",
+      "name": "G.O.A.T. Featuring James T. Smith: The Greatest of All Time",
+      "mbid": "46448099-b14d-36b7-a2fb-5b59588048d7",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deepest-bluest",
+      "type": "project",
+      "name": "Deepest Bluest (Shark’s Fin)",
+      "mbid": "7a166aea-ddc7-3c3b-94e9-66ab65c1451b",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zoom",
+      "type": "project",
+      "name": "Zoom",
+      "mbid": "d98e3dd3-86fb-4178-b12e-90b56f78900c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-ripper-strikes-back",
+      "type": "project",
+      "name": "The Ripper Strikes Back",
+      "mbid": "0204cbb1-c2d2-4c61-9da3-9b63e0917e53",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dear-mallika",
+      "type": "project",
+      "name": "Dear Mallika",
+      "mbid": "94124357-1164-3d34-8522-6c6ca528730c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:incredible",
+      "type": "project",
+      "name": "Incredible",
+      "mbid": "b04169b8-ce22-403d-ba87-bccd34bbb517",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phenomenon",
+      "type": "project",
+      "name": "Phenomenon",
+      "mbid": "31e242cf-faaa-300e-8178-3f7b4948a02d",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:4-3-2-1",
+      "type": "project",
+      "name": "4, 3, 2, 1",
+      "mbid": "068ffde3-d148-3337-a507-c88937a07cb8",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-make-my-own-rules",
+      "type": "project",
+      "name": "I Make My Own Rules",
+      "mbid": "07665fcd-309d-40c9-a669-4c4b9eab7627",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phenomenon",
+      "type": "project",
+      "name": "Phenomenon",
+      "mbid": "6416435a-a17a-457a-ba2c-314aaa8b5fe0",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-hot-hot",
+      "type": "project",
+      "name": "Hot, Hot, Hot",
+      "mbid": "bbe28830-b1da-4ac1-ab62-ffd4bb6b4c6d",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:father",
+      "type": "project",
+      "name": "Father",
+      "mbid": "db32a27f-0f26-326f-b46e-64dab5bf8c3b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-nobody",
+      "type": "project",
+      "name": "Ain’t Nobody",
+      "mbid": "002a3fd9-8e38-3f50-91f0-686354597136",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loungin",
+      "type": "project",
+      "name": "Loungin’",
+      "mbid": "cabf582b-668d-37e5-a0c0-48e2b60fe2ee",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doin-it",
+      "type": "project",
+      "name": "Doin It",
+      "mbid": "1695650d-447d-4b88-a234-6d00b7f04b57",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-love-mama-said-knock-you-out",
+      "type": "project",
+      "name": "I Need Love / Mama Said Knock You Out",
+      "mbid": "7bd23983-acd5-4efe-bc97-ac6cca1e8ef2",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hit-em-high",
+      "type": "project",
+      "name": "Hit ‘em High (The Monstars’ Anthem)",
+      "mbid": "dfead125-5b30-32a4-b8d5-f7a5d4acfc08",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-smith",
+      "type": "project",
+      "name": "Mr. Smith",
+      "mbid": "6f8c92de-6217-314b-84d9-28857f831a34",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hey-lover",
+      "type": "project",
+      "name": "Hey Lover",
+      "mbid": "b87f913b-cbc3-455c-961e-c07ddddd908b",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:14-shots-to-the-dome",
+      "type": "project",
+      "name": "14 Shots to the Dome",
+      "mbid": "7acef7c8-34fe-3eae-8c1e-7264a7f12675",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:how-i-m-comin",
+      "type": "project",
+      "name": "How I’m Comin’",
+      "mbid": "295c380d-4aa9-3ccf-9bba-104a659db5b7",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pink-cookies-in-a-plastic-bag-getting-crushed-by-buildings",
+      "type": "project",
+      "name": "Pink Cookies in a Plastic Bag Getting Crushed by Buildings",
+      "mbid": "89c20f37-9517-435d-a44f-eb75343234bc",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strictly-business",
+      "type": "project",
+      "name": "Strictly Business",
+      "mbid": "1fdd2d1d-ac15-45ec-a798-23e847cbb679",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mama-said-knock-you-out",
+      "type": "project",
+      "name": "Mama Said Knock You Out",
+      "mbid": "0a458415-3667-3a61-ac39-f0c3235149f2",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:around-the-way-girl",
+      "type": "project",
+      "name": "Around the Way Girl",
+      "mbid": "2079841a-12f0-412a-8aec-ca99bc5ff181",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mama-said-knock-you-out",
+      "type": "project",
+      "name": "Mama Said Knock You Out",
+      "mbid": "a1440823-4a3f-38c3-8649-a346a86fe1ec",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jingling-baby",
+      "type": "project",
+      "name": "Jingling Baby",
+      "mbid": "f574c986-fbc0-4c87-805b-9676c807b44b",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-boomin-system",
+      "type": "project",
+      "name": "The Boomin' System",
+      "mbid": "7c024eaa-042c-47c5-811d-4cd9f4bcdc58",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walking-with-a-panther",
+      "type": "project",
+      "name": "Walking With a Panther",
+      "mbid": "e16023f3-4c69-38b7-9988-047a8b96dfcf",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-that-type-of-guy",
+      "type": "project",
+      "name": "I’m That Type of Guy",
+      "mbid": "7f75d718-1fac-4b15-a9a2-cb49184d9162",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-ole-butt",
+      "type": "project",
+      "name": "Big Ole Butt",
+      "mbid": "8fb17d14-df1b-4feb-a262-9f648d8ea1b8",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigger-and-deffer",
+      "type": "project",
+      "name": "Bigger and Deffer",
+      "mbid": "c1952092-24a2-3a1e-8597-0dad68d7ab51",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-bad",
+      "type": "project",
+      "name": "I'm Bad",
+      "mbid": "bbe761ea-088d-4bc5-8387-7b430857092b",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:going-back-to-cali",
+      "type": "project",
+      "name": "Going Back to Cali",
+      "mbid": "946ad0ab-55dc-3816-aa2e-24e35f5aeb1e",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-love",
+      "type": "project",
+      "name": "I Need Love",
+      "mbid": "9eae9c6f-61bc-4d8c-a66b-71ee4be51127",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:radio",
+      "type": "project",
+      "name": "Radio",
+      "mbid": "32511a9b-a392-35ce-8173-b4b262229fc4",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-the-bells",
+      "type": "project",
+      "name": "Rock the Bells",
+      "mbid": "b75c2107-c4d8-4a0c-b391-51555bf68039",
+      "year": "1985",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-m-bad",
+      "type": "track",
+      "name": "I'm Bad"
+    },
+    {
+      "slug": "track:i-need-love",
+      "type": "track",
+      "name": "I Need Love"
+    },
+    {
+      "slug": "track:mama-said-knock-you-out",
+      "type": "track",
+      "name": "Mama Said Knock You Out"
+    },
+    {
+      "slug": "track:all-i-have",
+      "type": "track",
+      "name": "All I Have"
+    },
+    {
+      "slug": "track:doin-it",
+      "type": "track",
+      "name": "Doin' It"
+    },
+    {
+      "slug": "track:around-the-way-girl",
+      "type": "track",
+      "name": "Around the Way Girl"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

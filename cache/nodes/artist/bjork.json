@@ -93,7 +93,13 @@
     }
   ],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:jpegmafia",
+      "type": "artist",
+      "name": "JPEGMAFIA"
+    }
+  ],
   "collaborators": [
     {
       "slug": "artist:markus-popp",

@@ -537,6 +537,11 @@
       "slug": "artist:nate-dogg",
       "type": "artist",
       "name": "Nate Dogg"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
     }
   ],
   "aliases": [],
