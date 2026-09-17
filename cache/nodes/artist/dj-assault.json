@@ -1,0 +1,401 @@
+{
+  "slug": "artist:dj-assault",
+  "name": "DJ Assault",
+  "editorial_article": "Craig De Shan Adams, born in 1977, established his career as a Detroit-based electronic producer who pioneered the booty music and ghettotech genres. Starting his DJ practice at age 12, Adams drew from the radio broadcasts of the Electrifying Mojo on WMXD and later integrated influences from the Atlanta bass scene during his college years. He rose to international attention in the mid-1990s through singles such as 'Sex on the Beach' and 'Ass and Titties,' released alongside producer Mr. De' on labels like Electrofunk and Assault Rifle. Adams founded the label Jefferson Ave in the mid-2000s to self-release his projects. Known for his comedic and sexually explicit lyrical style, he has cited Jeff Mills, Farley Jackmaster Funk, and Bad Boy Bill as core influences on his musical output.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Assault",
+      "title": "DJ Assault - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:43.455Z",
+  "type": "artist",
+  "editorial_bio": "Detroit electronic music pioneer and architect of the ghettotech sound, known for his high-energy, explicit boot-bass productions.",
+  "origin": "Detroit, Michigan",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jefferson-ave",
+      "type": "label",
+      "name": "Jefferson Ave"
+    },
+    {
+      "slug": "label:electrofunk-records",
+      "type": "label",
+      "name": "Electrofunk Records"
+    },
+    {
+      "slug": "label:assault-rifle-records",
+      "type": "label",
+      "name": "Assault Rifle Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:booty-house-bangers-vol-1",
+      "type": "project",
+      "name": "Booty House Bangers Vol.1",
+      "mbid": "c6e01245-c986-4956-aad6-1b82bc7ee551",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nymphomaniacs-ep",
+      "type": "project",
+      "name": "Nymphomaniacs EP",
+      "mbid": "53b5e97d-271b-408d-a4f9-b9b6ee0eb7b5",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:full-frontal-nudity-ep",
+      "type": "project",
+      "name": "Full Frontal Nudity EP",
+      "mbid": "97bc5b32-a680-4b04-aaec-3dc6792d215b",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:everybody-fuck-ep",
+      "type": "project",
+      "name": "Everybody Fuck EP",
+      "mbid": "6f6c04ed-ed02-4ad1-85b8-6bdbc9fac6e9",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sex-in-the-city-ep",
+      "type": "project",
+      "name": "Sex in the City EP",
+      "mbid": "89143f25-e8d6-4a2b-8c6c-ea9ad8c6c2e8",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sunshine",
+      "type": "project",
+      "name": "SunShine",
+      "mbid": "f20610a1-7445-4008-bc6c-c0fa0ad934f8",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-over-the-place",
+      "type": "project",
+      "name": "All Over the Place (LP)",
+      "mbid": "50d7a75e-3d77-4d1c-90db-4a9d596ca4ca",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gimme",
+      "type": "project",
+      "name": "Gimme",
+      "mbid": "61c89695-9625-4dd4-91d0-48ec193a2ee2",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ace-of-spades-night-moods",
+      "type": "project",
+      "name": "Ace of Spades / Night Moods",
+      "mbid": "725b74e5-7b61-4c15-9f8b-b65820eb2078",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:night-moves",
+      "type": "project",
+      "name": "Night Moves",
+      "mbid": "cead0f06-0bdf-43d8-8a3b-d4ecfd820d06",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-booty-house-collection",
+      "type": "project",
+      "name": "The Booty House Collection",
+      "mbid": "f1d6b22f-8c95-4353-a7a1-a9d185c6b349",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:passport-player",
+      "type": "project",
+      "name": "Passport Player",
+      "mbid": "ef472d6e-26b7-432f-8e6a-6b50ccd46730",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-after-party-ep",
+      "type": "project",
+      "name": "The After Party EP",
+      "mbid": "ea842621-9359-4b1a-b38a-5616a04d7d3b",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jungle-love-ep",
+      "type": "project",
+      "name": "Jungle Love EP",
+      "mbid": "28dee425-ea9d-33c1-8c6b-62d075d6702c",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:purple-ep",
+      "type": "project",
+      "name": "Purple EP",
+      "mbid": "379f9925-6fde-3e05-9021-1d88f0396d09",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-ghetto-shit-e-p",
+      "type": "project",
+      "name": "The Ghetto Shit E.P.",
+      "mbid": "6b80a4df-cc3f-4192-aac9-6692dbafcb80",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sex-in-the-city-ep",
+      "type": "project",
+      "name": "Sex in the City EP",
+      "mbid": "922e0acc-e0db-49e8-8fd5-cc29ea437340",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-nigga-music-e-p",
+      "type": "project",
+      "name": "The Nigga Music E.P.",
+      "mbid": "b9ba2a13-04cf-46cf-a720-180eba5350c7",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freaky-bitches",
+      "type": "project",
+      "name": "Freaky Bitches",
+      "mbid": "2bae5cf9-7c16-4394-9b9b-5dd72392db1d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ass-n-titties",
+      "type": "project",
+      "name": "Ass-N-Titties",
+      "mbid": "6414f1a6-73ed-3eca-9fa6-9b43b575f765",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sumthin-2-shake-yo-azz-2-ep",
+      "type": "project",
+      "name": "Sumthin' 2 Shake Yo' Azz 2 EP",
+      "mbid": "8b779000-9010-4e38-bae9-0f75198bfa8f",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jefferson-ave",
+      "type": "project",
+      "name": "Jefferson Ave.",
+      "mbid": "cd793f9c-cc13-3d9a-8425-f2caebb643f4",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ass-n-titties-2001",
+      "type": "project",
+      "name": "Ass-N-Titties 2001",
+      "mbid": "ca173fa9-0541-33d0-b987-27381f76e243",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:strickly-4-the-tricks",
+      "type": "project",
+      "name": "Strickly 4 the Tricks",
+      "mbid": "d169852c-b170-37c6-b263-7efd6538e419",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hoes-get-naked",
+      "type": "project",
+      "name": "Hoes Get Naked",
+      "mbid": "b7d8935f-864a-4f1e-9ddd-4a780826f76f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-hot-shit-ep",
+      "type": "project",
+      "name": "The Hot Shit Ep",
+      "mbid": "01f1418b-c7d4-4493-9998-a0241f51aae7",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mixpilation-ep",
+      "type": "project",
+      "name": "Mixpilation Ep",
+      "mbid": "6014e95d-380c-4ae2-b342-d96d20e2d037",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:assaultland",
+      "type": "project",
+      "name": "AssaultLand",
+      "mbid": "717e8a38-7550-34fe-8ebe-aff09b893924",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tear-the-club-up-ep",
+      "type": "project",
+      "name": "Tear The Club Up EP",
+      "mbid": "adb3b8b2-653b-4cb8-8d4b-8e3919040361",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:da-lockdown-ep",
+      "type": "project",
+      "name": "Da' Lockdown Ep",
+      "mbid": "8f3d800e-3b98-481d-9ec3-362e4d6b7a83",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-fuckadancemania-e-p",
+      "type": "project",
+      "name": "The Fuckadancemania E.P.",
+      "mbid": "2f80dd95-0aec-4a49-beb6-c8a9ad7cf6eb",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:terrortec-revisited-ep",
+      "type": "project",
+      "name": "Terrortec Revisited EP",
+      "mbid": "cbdc2d48-bbb0-49ad-adba-3867d3975f69",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-ass-n-titties-ep",
+      "type": "project",
+      "name": "The Ass-N-Titties EP",
+      "mbid": "f2ce1c73-76a8-49ff-91c2-70409a8a584c",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:big-ballin-ep",
+      "type": "project",
+      "name": "Big Ballin EP",
+      "mbid": "7d8a1742-3df0-460a-be12-fc3e5c3106b8",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-unfuckwitable-ep",
+      "type": "project",
+      "name": "The Unfuckwitable EP",
+      "mbid": "282fdc1f-f843-408d-b006-19ff54fc8b3e",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:numerals-ep",
+      "type": "project",
+      "name": "Numerals EP",
+      "mbid": "577382dc-ee7d-4c9c-b61b-521ddd57361f",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:terror-tec-e-p",
+      "type": "project",
+      "name": "Terror Tec E.P.",
+      "mbid": "6bdbf192-bc7f-43e2-8620-d4bef986b1b7",
+      "year": "1996",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sex-on-the-beach",
+      "type": "track",
+      "name": "Sex on the Beach"
+    },
+    {
+      "slug": "track:ass-and-titties",
+      "type": "track",
+      "name": "Ass and Titties"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk"
+    },
+    {
+      "slug": "artist:bad-boy-bill",
+      "type": "artist",
+      "name": "Bad Boy Bill"
+    },
+    {
+      "slug": "artist:mike-hitman-wilson",
+      "type": "artist",
+      "name": "Mike Hitman Wilson"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:mr-de",
+      "type": "artist",
+      "name": "Mr. De'"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:craig-diamonds",
+      "type": "artist",
+      "name": "Craig Diamonds"
+    }
+  ],
+  "members": []
+}

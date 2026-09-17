@@ -1,0 +1,337 @@
+{
+  "slug": "artist:dj-godfather",
+  "name": "DJ Godfather",
+  "editorial_article": "Based in Detroit, Michigan, DJ Godfather is a producer and DJ credited with popularizing the high-energy electronic subgenre known as Ghettotech. He has maintained a long-term presence in the Detroit dance scene, with his influence extending to early collaborations with the late Ann Arbor-based producer Disco D. Throughout his career, he has utilized his own label, Databass Records, to release various projects that highlight the rhythmic and percussive nature of the Detroit electronic sound. Beyond his own solo work, his reputation as an influential figure is grounded in his commitment to the local music scene that developed from the legacy of pioneering Detroit DJs like Ken Collier. His contributions remain foundational to the evolution of the city's dance music output.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Disco_D",
+      "title": "Disco D - Wikipedia"
+    },
+    {
+      "url": "https://grayarea.co/magazine/the-past-present-and-future-of-ghettotech-with-dj-godfather",
+      "title": "The Past, Present, and Future of Ghettotech with Dj Godfather"
+    },
+    {
+      "url": "https://www.facebook.com/djgodfatherdetroit/videos/dj-godfather-king-of-the-circleoff-of-my-full-album-electro-beats-for-freaks-on-/1533428157224517/",
+      "title": "DJ Godfather - King Of The Circle"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:51.150Z",
+  "type": "artist",
+  "editorial_bio": "A seminal figure in Detroit's Ghettotech scene, DJ Godfather has shaped the city's electronic landscape for decades as a prolific producer and DJ.",
+  "origin": "Detroit, Michigan",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:databass-records",
+      "type": "label",
+      "name": "Databass Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:time-is-just-beginning",
+      "type": "project",
+      "name": "Time Is Just Beginning",
+      "mbid": "2805b50c-e33c-4de1-b2f0-ae3e32cb66af",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:electro-pulse",
+      "type": "project",
+      "name": "Electro Pulse",
+      "mbid": "2c173149-bd74-49cc-bc2c-974528f3d55f",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oh-no-ep",
+      "type": "project",
+      "name": "Oh No EP",
+      "mbid": "737897ad-c090-4022-bf58-95520777eee7",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-next-100",
+      "type": "project",
+      "name": "The Next 100",
+      "mbid": "0c529a54-6b54-42fd-acce-5beef4858e5c",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-d-theme",
+      "type": "project",
+      "name": "The D Theme",
+      "mbid": "2562c9b9-77b1-4190-988c-852836eb95d3",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-killshot",
+      "type": "project",
+      "name": "The Killshot",
+      "mbid": "37563419-9b3b-4bcc-91f4-630d23d0c7c4",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:that-booty-ep",
+      "type": "project",
+      "name": "That Booty EP",
+      "mbid": "521f841f-941b-4171-9a34-e67272990812",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hypnotized-ep",
+      "type": "project",
+      "name": "Hypnotized EP",
+      "mbid": "99e36902-e7a8-489a-94c8-aa56e1e6e9a8",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:that-electro-shit-ep",
+      "type": "project",
+      "name": "That Electro Shit EP",
+      "mbid": "885b09c6-b552-453a-a085-e513b7e99e7e",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hold-up-ep",
+      "type": "project",
+      "name": "Hold Up EP",
+      "mbid": "9b84cdd2-81c6-4a9c-9dab-06f58b5a2bcc",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:checkmate-ep",
+      "type": "project",
+      "name": "Checkmate EP",
+      "mbid": "1de7ae6a-c4e3-4ae1-9473-a94203b7fb62",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:warehouse-musik-ep",
+      "type": "project",
+      "name": "Warehouse Musik EP",
+      "mbid": "a629cb10-3521-4dbe-a1ca-c2320c7dabec",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:d3t-3l3ctr0",
+      "type": "project",
+      "name": "D3T.3L3CTR0",
+      "mbid": "9767877a-8732-4d30-bd02-c47eb4e1b569",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-detroit-thing-of-ours",
+      "type": "project",
+      "name": "This Detroit Thing of Ours",
+      "mbid": "d268c438-850f-4581-9daf-be50cd8c9438",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loud-mouth-ep",
+      "type": "project",
+      "name": "Loud Mouth EP",
+      "mbid": "58fbaf86-0284-4acd-b548-5c60862e24eb",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:electro-beats-for-freaks",
+      "type": "project",
+      "name": "Electro Beats for Freaks",
+      "mbid": "02428c80-9380-4548-846d-df5df872009e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bounce-dat-ass-ep",
+      "type": "project",
+      "name": "Bounce Dat Ass EP",
+      "mbid": "a9eaab58-9a24-467e-b549-07e7e06ebd84",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-detroit",
+      "type": "project",
+      "name": "New Detroit",
+      "mbid": "6e91b247-bea1-4338-899f-5087ebd59607",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dirty-rats-booms-n-claps",
+      "type": "project",
+      "name": "Dirty Rats, Booms N Claps",
+      "mbid": "62b22c60-e921-4406-a313-3015a0307390",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:detroit-booty-callin-ep",
+      "type": "project",
+      "name": "Detroit Booty Callin EP",
+      "mbid": "57e81aec-939b-445b-8af4-9e21cd468368",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-to-the-roots-ep",
+      "type": "project",
+      "name": "Back To The Roots EP",
+      "mbid": "fb8c7b9a-9854-4413-b223-01adbb351dec",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:from-a-mile-away",
+      "type": "project",
+      "name": "From A Mile Away",
+      "mbid": "299de338-c9b7-4d9f-ab95-f15255175a4f",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:makin-me-hot",
+      "type": "project",
+      "name": "Makin' Me Hot",
+      "mbid": "5d3487d9-21d8-4c98-8ca9-70dad32b7dbe",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-down-ep",
+      "type": "project",
+      "name": "What Down EP",
+      "mbid": "89828346-df17-4fee-8d00-64e6b004583c",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trash-bag-ho",
+      "type": "project",
+      "name": "Trash Bag Ho",
+      "mbid": "577f5f93-ceaa-4ddf-af1a-c23ccd7da6dd",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freaky-bitches",
+      "type": "project",
+      "name": "Freaky Bitches",
+      "mbid": "2bae5cf9-7c16-4394-9b9b-5dd72392db1d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freak-em-down",
+      "type": "project",
+      "name": "Freak Em' Down",
+      "mbid": "0c709f16-cf85-4f43-863a-919706223a79",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:aliens-got-my-808",
+      "type": "project",
+      "name": "Aliens Got My 808",
+      "mbid": "5383f139-a4fa-4abb-8c03-203e0e012f32",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:player-haters-in-dis-house",
+      "type": "project",
+      "name": "Player Haters in Dis House",
+      "mbid": "abd98416-9cbf-4072-abca-1c766cc022fc",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:player-haters-in-dis-house",
+      "type": "project",
+      "name": "Player Haters in Dis House",
+      "mbid": "0df8033a-deb5-39ca-9b73-fbed0b03717b",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-bomb-volume-1",
+      "type": "project",
+      "name": "Da Bomb Volume 1",
+      "mbid": "16711608-5c4a-445c-a9da-118781ff5fad",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:work-that",
+      "type": "project",
+      "name": "Work That!",
+      "mbid": "4f1c4fcf-3763-4853-a5e4-c8c9ad8831dc",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pump",
+      "type": "project",
+      "name": "Pump",
+      "mbid": "8116b417-0d84-4851-87f3-ff832751c1de",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:late-nite",
+      "type": "project",
+      "name": "Late Nite",
+      "mbid": "8a77fd24-28a5-37f6-901e-8a821e244cfa",
+      "year": "1996",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:king-of-the-circle",
+      "type": "track",
+      "name": "King Of The Circle"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

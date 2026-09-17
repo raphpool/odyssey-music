@@ -2403,6 +2403,15 @@
         "type": "artist",
         "name": "Bernard Edwards"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
     }
   ],
   "artist:tony-thompson": [
@@ -2543,6 +2552,15 @@
         "slug": "artist:vince-lawrence",
         "type": "artist",
         "name": "Vince Lawrence"
+      }
+    },
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-assault",
+        "type": "artist",
+        "name": "DJ Assault"
       }
     }
   ],
@@ -2719,17 +2737,6 @@
         "slug": "artist:ghetts",
         "type": "artist",
         "name": "Ghetts"
-      }
-    }
-  ],
-  "artist:daft-punk": [
-    {
-      "field": "collaborators",
-      "cardinality": "list",
-      "edge": {
-        "slug": "artist:todd-edwards",
-        "type": "artist",
-        "name": "Todd Edwards"
       }
     }
   ],
@@ -4705,6 +4712,15 @@
         "type": "artist",
         "name": "Paul Oakenfold"
       }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
     }
   ],
   "artist:matt-goss": [
@@ -5048,18 +5064,6 @@
       }
     }
   ],
-  "genre:hardstyle": [
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:hardcore-techno",
-        "type": "genre",
-        "name": "Hardcore techno",
-        "qid": "Q388906"
-      }
-    }
-  ],
   "genre:mainstream-hardcore": [
     {
       "field": "parent_genres",
@@ -5083,18 +5087,6 @@
         "qid": "Q820049"
       }
     },
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:gabber",
-        "type": "genre",
-        "name": "Gabber",
-        "qid": "Q820049"
-      }
-    }
-  ],
-  "genre:happy-hardcore": [
     {
       "field": "related_genres",
       "cardinality": "list",
@@ -5323,6 +5315,898 @@
         "slug": "artist:49ers",
         "type": "artist",
         "name": "49ers"
+      }
+    }
+  ],
+  "genre:juke": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghetto-house",
+        "type": "genre",
+        "name": "Ghetto House",
+        "qid": "Q2748817"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghetto-house",
+        "type": "genre",
+        "name": "Ghetto House",
+        "qid": "Q2748817"
+      }
+    }
+  ],
+  "genre:footwork": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghetto-house",
+        "type": "genre",
+        "name": "Ghetto House",
+        "qid": "Q2748817"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghetto-house",
+        "type": "genre",
+        "name": "Ghetto House",
+        "qid": "Q2748817"
+      }
+    }
+  ],
+  "genre:us-bass-music": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghettotech",
+        "type": "genre",
+        "name": "Ghettotech",
+        "qid": "Q1521688"
+      }
+    }
+  ],
+  "genre:miami-bass": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:ghettotech",
+        "type": "genre",
+        "name": "Ghettotech",
+        "qid": "Q1521688"
+      }
+    }
+  ],
+  "artist:bad-boy-bill": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-assault",
+        "type": "artist",
+        "name": "DJ Assault"
+      }
+    }
+  ],
+  "artist:mike-hitman-wilson": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-assault",
+        "type": "artist",
+        "name": "DJ Assault"
+      }
+    }
+  ],
+  "artist:mr-de": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-assault",
+        "type": "artist",
+        "name": "DJ Assault"
+      }
+    }
+  ],
+  "artist:craig-diamonds": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dj-assault",
+        "type": "artist",
+        "name": "DJ Assault"
+      }
+    }
+  ],
+  "genre:uk-hardcore": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:happy-hardcore",
+        "type": "genre",
+        "name": "Happy Hardcore",
+        "qid": "Q339906"
+      }
+    }
+  ],
+  "artist:oliver-froning": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:jens-oettrich": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:bernd-burhoff": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:verena-von-strenge": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:vanessa-horster": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:tina-lacebal": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dune",
+        "type": "artist",
+        "name": "Dune"
+      }
+    }
+  ],
+  "artist:dj-sharkey": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hixxy",
+        "type": "artist",
+        "name": "Hixxy"
+      }
+    }
+  ],
+  "artist:dj-dougal": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hixxy",
+        "type": "artist",
+        "name": "Hixxy"
+      }
+    }
+  ],
+  "artist:darren-styles": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hixxy",
+        "type": "artist",
+        "name": "Hixxy"
+      }
+    }
+  ],
+  "artist:mark-breeze": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hixxy",
+        "type": "artist",
+        "name": "Hixxy"
+      }
+    }
+  ],
+  "artist:scott-brown": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:hixxy",
+        "type": "artist",
+        "name": "Hixxy"
+      }
+    }
+  ],
+  "artist:gammer": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dougal",
+        "type": "artist",
+        "name": "Dougal"
+      }
+    }
+  ],
+  "artist:paul-arnold-clarke": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:dougal",
+        "type": "artist",
+        "name": "Dougal"
+      }
+    }
+  ],
+  "genre:hard-dance": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hardstyle",
+        "type": "genre",
+        "name": "Hardstyle",
+        "qid": "Q223840"
+      }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:makina",
+        "type": "genre",
+        "name": "Makina",
+        "qid": "Q3048168"
+      }
+    }
+  ],
+  "genre:hard-trance": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hardstyle",
+        "type": "genre",
+        "name": "Hardstyle",
+        "qid": "Q223840"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:makina",
+        "type": "genre",
+        "name": "Makina",
+        "qid": "Q3048168"
+      }
+    }
+  ],
+  "genre:hard-techno": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hardstyle",
+        "type": "genre",
+        "name": "Hardstyle",
+        "qid": "Q223840"
+      }
+    },
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:makina",
+        "type": "genre",
+        "name": "Makina",
+        "qid": "Q3048168"
+      }
+    }
+  ],
+  "genre:big-room-house": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hardstyle",
+        "type": "genre",
+        "name": "Hardstyle",
+        "qid": "Q223840"
+      }
+    }
+  ],
+  "artist:the-prophet": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:headhunterz",
+        "type": "artist",
+        "name": "Headhunterz"
+      }
+    }
+  ],
+  "artist:vertile": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:headhunterz",
+        "type": "artist",
+        "name": "Headhunterz"
+      }
+    }
+  ],
+  "artist:nasty-d-tuners": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:headhunterz",
+        "type": "artist",
+        "name": "Headhunterz"
+      }
+    }
+  ],
+  "artist:project-one": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:headhunterz",
+        "type": "artist",
+        "name": "Headhunterz"
+      }
+    }
+  ],
+  "artist:willem-rebergen": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:headhunterz",
+        "type": "artist",
+        "name": "Headhunterz"
+      }
+    }
+  ],
+  "artist:brennan-heart": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:max-enforcer": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:hardwell": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:audiotricz": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:seizure": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:joram-metekohy": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:wildstylez",
+        "type": "artist",
+        "name": "Wildstylez"
+      }
+    }
+  ],
+  "artist:bass-modulators": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "artist:showtek": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "artist:atmozfears": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "artist:sander-van-doorn": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "artist:bas-oskam": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "artist:arjan-terpstra": [
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:noisecontrollers",
+        "type": "artist",
+        "name": "Noisecontrollers"
+      }
+    }
+  ],
+  "genre:rapping": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:hip-house",
+        "type": "genre",
+        "name": "Hip-House",
+        "qid": "Q601235"
+      }
+    }
+  ],
+  "artist:kool-rock-steady": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tyree",
+        "type": "artist",
+        "name": "Tyree Cooper"
+      }
+    }
+  ],
+  "artist:fast-eddie": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tyree",
+        "type": "artist",
+        "name": "Tyree Cooper"
+      }
+    }
+  ],
+  "artist:marc-romboy": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tyree",
+        "type": "artist",
+        "name": "Tyree Cooper"
+      }
+    }
+  ],
+  "artist:sebastian-krieg": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tyree",
+        "type": "artist",
+        "name": "Tyree Cooper"
+      }
+    }
+  ],
+  "genre:leftfield-electronic": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:leftfield-house",
+        "type": "genre",
+        "name": "Leftfield House",
+        "qid": "Q105636940"
+      }
+    }
+  ],
+  "artist:kanye-west": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:the-weeknd": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:julian-casablancas": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:dj-falcon": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:thomas-bangalter": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:guy-manuel-de-homem-christo": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    },
+    {
+      "field": "members",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:daft-punk",
+        "type": "artist",
+        "name": "Daft Punk"
+      }
+    }
+  ],
+  "artist:dj-shadow": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:afrika-bambaataa": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:man-parrish": [
+    {
+      "field": "influenced",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:moxie": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:poison-anna": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:beau-nox": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:tyson": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:leon-vynehall",
+        "type": "artist",
+        "name": "Leon Vynehall"
+      }
+    }
+  ],
+  "artist:sumatran-black": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:camomile-dawn",
+        "type": "artist",
+        "name": "Camomile Dawn"
+      }
+    }
+  ],
+  "artist:ben-sims": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "artist:christian-wunsch": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "artist:umwelt": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "artist:dr-smoke": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "artist:trolley-route": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "artist:infamous-monster": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:oscar-mulero",
+        "type": "artist",
+        "name": "Oscar Mulero"
+      }
+    }
+  ],
+  "genre:bouncy-techno": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:makina",
+        "type": "genre",
+        "name": "Makina",
+        "qid": "Q3048168"
+      }
+    }
+  ],
+  "artist:david-pamies-sabates": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pastis",
+        "type": "artist",
+        "name": "Pastis"
+      }
+    }
+  ],
+  "artist:dj-skudero": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pastis",
+        "type": "artist",
+        "name": "Pastis"
+      }
+    }
+  ],
+  "artist:xavi-metralla": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:pastis",
+        "type": "artist",
+        "name": "Pastis"
+      }
+    },
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:skudero",
+        "type": "artist",
+        "name": "Skudero"
       }
     }
   ]
