@@ -88,6 +88,9 @@ describe("TRA-216 prescribed genre proposals", () => {
 		const entries = new Map(taxonomy.genres.map((entry) => [entry.id, entry]));
 		for (const target of PRESCRIBED_GENRES) {
 			expect(entries.get(target.id)?.name, target.id).toBe(target.name);
+			// 2026-09-17 (TRA-264): a T attachment added sourceSlugs to the taxonomy but not to this list,
+			// and validateGenreSeedProposalInputs compares them strictly.
+			expect(entries.get(target.id)?.sourceSlugs ?? [], target.id).toEqual(target.sourceSlugs);
 			const dossier = dossiers[target.id];
 			if (dossier !== undefined) {
 				expect(dossier.genre.name, target.id).toBe(target.name);

@@ -97,7 +97,7 @@ export const PRESCRIBED_GENRES: readonly PrescribedGenre[] = [
 	prescribed("B4e", 24, "Q223840", "Hardstyle"),
 	prescribed("B4e", 25, "Q601235", "Hip-House"),
 	prescribed("B4e", 28, "Q105636940", "Leftfield House"),
-	prescribed("B4e", 29, "local:leftfield-techno", "Leftfield Techno"),
+	prescribed("B4e", 29, "local:leftfield-techno", "Leftfield Techno", "genre:leftfield-techno"),
 	prescribed("B4e", 30, "Q3048168", "Makina"),
 	prescribed("B4f", 238, "Q438503", "Alternative hip-hop", "genre:alternative-hip-hop", 1),
 	prescribed("B4f", 240, "Q529742", "Boom bap", "genre:boom-bap", 1),
