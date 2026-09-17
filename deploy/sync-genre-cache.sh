@@ -10,10 +10,9 @@ set -euo pipefail
 # writer, re-check nothing wrote to the server between the snapshot and the stop, transfer,
 # restart, smoke test. Rollback = the printed archive.
 #
-# "Additive" here means file-additive: rsync never passes --delete, so no node file on the server
-# is removed. A node present on both sides is still OVERWRITTEN in place by the union's version,
-# so a field or an edge that only the server had is lost unless the union preserved it. The
-# archive, not the transfer mode, is what makes that recoverable.
+# "Additive" here is file-additive: rsync never passes --delete, so no node file is removed, but a
+# node present on both sides is OVERWRITTEN in place -- a field or an edge only the server had is
+# lost unless the union preserved it. The archive, not the transfer mode, makes that recoverable.
 #
 # No personal SSH key: this relies on the caller's ssh-agent (same as deploy-server.sh / the
 # `deploy` job on the self-hosted runner) and never writes to $HOME/.ssh or $HOME/.
@@ -23,11 +22,9 @@ set -euo pipefail
 #     relevé/arrêt race and writer-left-down gaps in the --apply path below (a stop or the smoke
 #     test failing can leave odyssey-server stopped).
 #   - TRA-268: the union keeps the winning file whole when a slug exists on both sides, so an edge
-#     that only the server carries is dropped by the transfer -- reproduced on a node present in
-#     both caches, where a server-only `related_genres` entry disappeared with exit code 0 and an
-#     empty `referenceRegressions` (the dropped target is still a live node, so the union's own
-#     reference check sees nothing). That is data the repo never had, and it is silent.
-# Preview-only usage (no --apply) is unaffected by both.
+#     only the server carries is dropped -- reproduced on a shared node, where a server-only
+#     `related_genres` entry vanished with exit code 0 and an empty `referenceRegressions` (the
+#     target is still a live node, so the union's own check sees nothing). Preview-only is safe.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -147,10 +144,7 @@ restart_writer() {
 on_failure() {
 	local code=$?
 	restart_writer
-	# 2026-09-17 (review of TRA-67): this used to claim "no data was removed" because rsync never
-	# passes --delete. An operator reading that concludes no restore is needed -- wrong: node files
-	# present on both sides are overwritten in place, so a partial transfer leaves a mix of old and
-	# new node files. The archive is the only recovery, and the message must say so.
+	# 2026-09-17 (review of TRA-67): claiming "no data was removed" here skipped a needed restore.
 	echo "ERROR: sync failed -- the writer was restarted, but node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH" >&2
 	exit "$code"
 }

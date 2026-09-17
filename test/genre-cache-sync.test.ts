@@ -401,11 +401,8 @@ describe("sync-genre-cache.sh", () => {
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toMatch(/Restore from the archive/);
 		expect(result.stderr).toContain(serverBackupDir.replace(/\/$/, ""));
-		// 2026-09-17 (review of TRA-67): the message used to read "server left in a safe state
-		// (rsync never used --delete, so no data was removed)". rsync deletes nothing, but it
-		// overwrites node files present on both sides, so a half-finished transfer leaves a mix of
-		// old and new files -- an operator who reads "no data was removed" skips a restore they
-		// need. The failure path must never make that claim again.
+		// 2026-09-17 (review of TRA-67): "safe state (... no data was removed)" talked an operator
+		// out of a restore they need -- a partial transfer leaves a mix of old and new node files.
 		expect(result.stderr).not.toMatch(/no data was removed/);
 		expect(result.stderr).not.toMatch(/safe state/);
 		// The writer was restarted despite the failed transfer.
