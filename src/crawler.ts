@@ -1,4 +1,5 @@
 import { NodeCache } from "./cache.js";
+import { isSameEntityName } from "./entity-name.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadGenreRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
@@ -373,6 +374,18 @@ export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Pr
 			try {
 				log(`[seed] materialize ${entry.stage} ${describeInput(entry.input, entry.input.slug as Slug)}`);
 				const result = await runPipeline(entry.input, { ...opts.deps, genreRegistry });
+				// Identity guard (TRA-XXX, 2026-09-17): researchTarget searches by name, and
+				// canonicalizeDraft lets the LLM-authored name overwrite the requested one while
+				// keeping the requested slug — so a homonym in the search results can silently
+				// materialize the wrong real-world entity under the right slug (e.g.
+				// artist:tracy-onne, a Spanish makina DJ, got written as Tracy Lawrence, the US
+				// country singer). Refuse to write when the drafted name isn't plausibly the same
+				// entity as requested, rather than trusting the slug alone.
+				if (!isSameEntityName(entry.input.name, result.node.name)) {
+					failed++;
+					log(`[seed] identity drift: requested "${entry.input.name}", drafted "${result.node.name}"`);
+					continue;
+				}
 				if (await cache.has(result.slug)) {
 					refused++;
 					log(`[seed] dedup ${result.slug}`);
@@ -435,7 +448,15 @@ export async function refreshGenre(opts: CrawlOptions, slug: Slug): Promise<Genr
 		try {
 			log(`[refresh] materialize genre ${describeInput(input, input.slug as Slug)}`);
 			const result = await runPipeline(input, { ...opts.deps, genreRegistry });
-			await cache.replace(result.node);
+			// Identity guard (TRA-XXX, 2026-09-17) — see the matching comment in
+			// crawlGenreSeeds above: refuse a refresh whose drafted name isn't plausibly the
+			// same entity as the cached one (e.g. genre:afrobeats drifting to "Afrobeat").
+			if (!isSameEntityName(input.name, result.node.name)) {
+				failed++;
+				log(`[refresh] identity drift: requested "${input.name}", drafted "${result.node.name}"`);
+			} else {
+				await cache.replace(result.node);
+			}
 		} catch (error) {
 			failed++;
 			const message = error instanceof Error ? error.message : String(error);
