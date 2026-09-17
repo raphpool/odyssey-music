@@ -7,6 +7,7 @@ import {
 	buildCacheUnion,
 	countUnionProblems,
 	decideSameIdentity,
+	diffGenreRedirects,
 	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
@@ -55,6 +56,53 @@ describe("slugResolves", () => {
 	});
 });
 
+describe("diffGenreRedirects", () => {
+	it("flags a same-source entry that diverges, and an exact reversal, but never an entry present on only one side", () => {
+		const repo = new Map<Slug, Slug>([
+			["genre:country-music", "genre:country"],
+			["genre:electronic-music", "genre:electronic"],
+			["genre:idm-alt", "genre:idm"],
+			["genre:repo-only", "genre:repo-only-target"],
+		]);
+		const server = new Map<Slug, Slug>([
+			// Same loser, different canonical target than the repo -- the "wrong winner" case.
+			["genre:country-music", "genre:country-and-western"],
+			// No divergence: identical entry on both sides.
+			["genre:electronic-music", "genre:electronic"],
+			// Exact reversal of the repo's genre:idm-alt -> genre:idm.
+			["genre:idm", "genre:idm-alt"],
+			["genre:server-only", "genre:server-only-target"],
+		]);
+
+		expect(diffGenreRedirects(repo, server)).toEqual(
+			expect.arrayContaining([
+				{
+					reason: "diverged-target",
+					repoFrom: "genre:country-music",
+					repoTo: "genre:country",
+					serverFrom: "genre:country-music",
+					serverTo: "genre:country-and-western",
+				},
+				{
+					reason: "inverted-pair",
+					repoFrom: "genre:idm-alt",
+					repoTo: "genre:idm",
+					serverFrom: "genre:idm",
+					serverTo: "genre:idm-alt",
+				},
+			]),
+		);
+		expect(diffGenreRedirects(repo, server)).toHaveLength(2);
+	});
+
+	it("is empty for identical tables and for two tables with no overlapping keys", () => {
+		const table = new Map<Slug, Slug>([["genre:country-music", "genre:country"]]);
+		expect(diffGenreRedirects(table, new Map(table))).toEqual([]);
+		expect(diffGenreRedirects(table, new Map())).toEqual([]);
+		expect(diffGenreRedirects(new Map(), table)).toEqual([]);
+	});
+});
+
 describe("countUnionProblems", () => {
 	it("is 0 for a healthy union and for a qid kept by its own bearer, non-zero for a conflict, a skipped file, or a qid dropped by the losing side", () => {
 		expect(countUnionProblems(manifest())).toBe(0);
@@ -88,6 +136,26 @@ describe("countUnionProblems", () => {
 				manifest({
 					entries: [{ decision: "copied", from: "repo", slug: "genre:x" }],
 					referenceRegressions: [{ slug: "genre:gone", resolvedIn: ["server"] }],
+				}),
+			),
+		).toBeGreaterThan(0);
+	});
+
+	// Isolates redirectsConflicts's own contribution -- see PR #213 review / diffGenreRedirects.
+	it("is non-zero for redirectsConflicts alone, with no conflict and a healthy entries list", () => {
+		expect(
+			countUnionProblems(
+				manifest({
+					entries: [{ decision: "copied", from: "repo", slug: "genre:x" }],
+					redirectsConflicts: [
+						{
+							reason: "diverged-target",
+							repoFrom: "genre:country-music",
+							repoTo: "genre:country",
+							serverFrom: "genre:country-music",
+							serverTo: "genre:country-and-western",
+						},
+					],
 				}),
 			),
 		).toBeGreaterThan(0);
@@ -143,7 +211,9 @@ describe("buildCacheUnion", () => {
 		await rm(serverDir, { recursive: true, force: true });
 	});
 
-	function union(extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[] } = {}) {
+	function union(
+		extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[]; serverRedirectsPath?: string } = {},
+	) {
 		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
 	}
 
@@ -242,6 +312,41 @@ describe("buildCacheUnion", () => {
 		expect(await fingerprint(repoDir)).toBe(repoFingerprintBefore);
 		expect(await fingerprint(serverDir)).toBe(serverFingerprintBefore);
 		expect(await readFile(redirectsPath, "utf8")).toBe(redirectsBefore);
+	});
+
+	// PR #213 review (B6a-2): a real duplicate group where the server already elected a
+	// different winner than the repo's redirect table must be refused explicitly, not silently
+	// resolved by only ever reading the committed table -- see diffGenreRedirects.
+	it("refuses when the server's own redirects table diverges from the repo's, with the reason in the manifest -- and never when serverRedirectsPath is omitted", async () => {
+		const serverRedirectsPath = join(
+			await mkdtemp(join(tmpdir(), "odyssey-union-server-data-")),
+			"genre-redirects.json",
+		);
+		await writeFile(
+			serverRedirectsPath,
+			// Same loser (genre:country-music) as redirectsPath's table, but a different winner --
+			// the server already resolved this duplicate group differently than the repo.
+			JSON.stringify({ redirects: { "genre:country-music": "genre:country-and-western" } }),
+			"utf8",
+		);
+
+		const { manifest } = await union({ serverRedirectsPath });
+		expect(manifest.redirectsConflicts).toEqual([
+			{
+				reason: "diverged-target",
+				repoFrom: "genre:country-music",
+				repoTo: "genre:country",
+				serverFrom: "genre:country-music",
+				serverTo: "genre:country-and-western",
+			},
+		]);
+		expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+
+		// Without serverRedirectsPath (existing callers, e.g. the CLI without the new flag), the
+		// same repo table never gets flagged against itself.
+		const { manifest: withoutServerTable } = await union();
+		expect(withoutServerTable.redirectsConflicts).toBeUndefined();
+		expect(countUnionProblems(withoutServerTable)).toBe(0);
 	});
 
 	describe("--apply-merge", () => {
