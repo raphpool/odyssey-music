@@ -1,0 +1,125 @@
+{
+  "slug": "genre:baile-funk",
+  "name": "Baile Funk",
+  "editorial_article": "Born in the favelas of Rio de Janeiro during the mid-1980s, Baile Funk emerged as a distinct, hip-hop-influenced genre shaped by the availability of American records like Afrika Bambaataa's 1982 single Planet Rock. Early compositions were built on loops of electronic drums from Miami bass and freestyle records, eventually integrating the signature tamborzão rhythm as the genre's foundational beat. Artists like DJ Marlboro helped document the scene early on, which often utilizes sampled horn stabs and accordion hits. The movement expanded globally in the early 2000s through European labels and compilations, including the 2004 Slum Dunk Presents Funk Carioca mixed by Tetine and releases by Berlin-based Man Recordings. Modern iterations have splintered into subgenres such as the high-BPM rave funk, the raw and minimalist funk mandelão, and the aggressive, horror-influenced funk bruxaria.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Funk_carioca",
+      "title": "Funk carioca"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:59:11.494Z",
+  "type": "genre",
+  "editorial_definition": "A Brazilian music genre from Rio de Janeiro's favelas that blends hip hop, Miami bass, and local electronic rhythms.",
+  "qid": "Q1931130",
+  "era": "mid-1980s to present",
+  "origin": "Rio de Janeiro, Brazil",
+  "sonic_markers": "Heavy use of drum machines, samplers, and rhythmic loops, ranging from classic Miami bass beats to 150 BPM and experimental metallic textures.",
+  "parent_genres": [
+    {
+      "slug": "genre:brazilian-funk",
+      "type": "genre",
+      "name": "Brazilian Funk",
+      "qid": "Q117745223"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:miami-bass",
+      "type": "genre",
+      "name": "Miami bass",
+      "qid": "Q546206"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:gqom",
+      "type": "genre",
+      "name": "Gqom",
+      "qid": "Q29973057"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-marlboro",
+      "type": "artist",
+      "name": "DJ Marlboro"
+    },
+    {
+      "slug": "artist:anitta",
+      "type": "artist",
+      "name": "Anitta"
+    },
+    {
+      "slug": "artist:kevin-o-chris",
+      "type": "artist",
+      "name": "Kevin O Chris"
+    },
+    {
+      "slug": "artist:dj-k",
+      "type": "artist",
+      "name": "DJ K"
+    },
+    {
+      "slug": "artist:deize-tigrona",
+      "type": "artist",
+      "name": "Deize Tigrona"
+    },
+    {
+      "slug": "artist:bibi-babydoll",
+      "type": "artist",
+      "name": "Bibi Babydoll"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:man-recordings",
+      "type": "label",
+      "name": "Man Recordings"
+    },
+    {
+      "slug": "label:mr-bongo-records",
+      "type": "label",
+      "name": "Mr Bongo Records"
+    },
+    {
+      "slug": "label:irma-records",
+      "type": "label",
+      "name": "Irma Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:ela-e-do-tipo",
+      "type": "track",
+      "name": "Ela É Do Tipo"
+    },
+    {
+      "slug": "track:automotivo-bibi-fogosa",
+      "type": "track",
+      "name": "Automotivo Bibi Fogosa"
+    },
+    {
+      "slug": "track:fuleragem",
+      "type": "track",
+      "name": "Fuleragem"
+    },
+    {
+      "slug": "track:sao-paulo",
+      "type": "track",
+      "name": "São Paulo"
+    }
+  ]
+}

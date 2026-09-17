@@ -1,0 +1,394 @@
+{
+  "slug": "artist:valesca-popozuda",
+  "name": "Valesca Popozuda",
+  "editorial_article": "Born Valesca Reis Santos in the Irajá neighborhood of Rio de Janeiro, this Brazilian icon rose to prominence in the early 2000s as a founding member of the influential funk carioca group Gaiola das Popozudas. The collective achieved significant recognition with high-energy tracks such as 'Late que eu tô passando', 'Agora eu tô solteira', and the uncensored 'Agora eu virei puta'. Her solo career continued to explore the boundaries of the scene, including the 2017 single 'Pimenta', released through K2L, and a 2023 collaboration with Gloria Groove and Anitta titled 'Proibidona'. Known for a distinctively hoarse vocal delivery, she remains a central figure in Brazilian music, blending traditional rhythms with contemporary elements of pop and electronic production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Valesca_Popozuda",
+      "title": "Valesca Popozuda - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:59:53.124Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering figure of Brazilian funk carioca, Valesca Popozuda rose to fame with Gaiola das Popozudas before establishing a prominent solo career.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "2000-present",
+  "genres": [
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Funk carioca",
+      "qid": "Q1931130"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:favela-funk",
+      "type": "genre",
+      "name": "Favela Funk"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:k2l",
+      "type": "label",
+      "name": "K2L"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:segredinho",
+      "type": "project",
+      "name": "Segredinho",
+      "mbid": "4b2c622e-0d1a-4562-97ba-14901eda9dba",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bota-esse-caralho-aqui",
+      "type": "project",
+      "name": "Bota Esse Caralho Aqui",
+      "mbid": "f0ccce3d-f4bb-4ee7-9147-84de0841b23c",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:poesia-custica",
+      "type": "project",
+      "name": "Poesia Cústica",
+      "mbid": "8c8caf8f-f563-4d38-8894-844168bb865a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-volta-pra-gaiola-amor-de-verdade-e-amor",
+      "type": "project",
+      "name": "De Volta Pra Gaiola: Amor de Verdade e Amor",
+      "mbid": "b38186b1-02ea-4f29-83a3-913514b20d10",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:de-volta-pra-gaiola-amor-de-verdade",
+      "type": "project",
+      "name": "De Volta Pra Gaiola: Amor de Verdade",
+      "mbid": "2a64115d-caf8-435c-9eb3-3c3fa94b915a",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:xerecao-no-chao",
+      "type": "project",
+      "name": "Xerecão no Chão",
+      "mbid": "c475aa64-c610-40f8-b112-5dffd0698e58",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eu-vou-pro-baile-tacar",
+      "type": "project",
+      "name": "Eu vou pro baile tacar",
+      "mbid": "27e02a20-d053-4f9b-84a6-fffe31c65d92",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mo-negocao",
+      "type": "project",
+      "name": "Mó Negoção",
+      "mbid": "8484151b-e136-488e-a783-b5be483fad71",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encapa-o-boneco",
+      "type": "project",
+      "name": "Encapa o Boneco",
+      "mbid": "5ca46a50-3f2c-48b6-9660-9cb3ce593551",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:proibidona",
+      "type": "project",
+      "name": "PROIBIDONA",
+      "mbid": "1d85f435-77aa-48b8-8306-e8bd1b09abcf",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:popo-girando",
+      "type": "project",
+      "name": "Popo Girando",
+      "mbid": "1f0a402f-03f3-40d8-90cd-879798297323",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:entrega-tudo",
+      "type": "project",
+      "name": "Entrega Tudo",
+      "mbid": "57a78337-560a-4b1f-bb04-8a5d20ee8b03",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quem-manda-deu-baile",
+      "type": "project",
+      "name": "Quem Manda - Deu Baile",
+      "mbid": "453450a4-74cb-40f7-8ecb-1fd6e5326f14",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:faz-direito",
+      "type": "project",
+      "name": "Faz Direito",
+      "mbid": "abe96f3b-3371-4968-9004-b33beb2876df",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-come-e-some",
+      "type": "project",
+      "name": "Me Come e Some",
+      "mbid": "8f363f0f-ace5-4cc1-97ed-e585bc51a344",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:calma-calma",
+      "type": "project",
+      "name": "Calma Calma",
+      "mbid": "c127473b-f85f-457f-ac91-56078980dc8b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paypau",
+      "type": "project",
+      "name": "Paypau",
+      "mbid": "58938d1e-416d-4085-8ebb-d47f6ad7f936",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:presentinho",
+      "type": "project",
+      "name": "Presentinho",
+      "mbid": "b9132ad1-d6ff-422d-bda3-e95ed1c49b64",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-doidinha-pra-te-dar",
+      "type": "project",
+      "name": "To doidinha pra te Dar (Jc do Nova Remix)",
+      "mbid": "d77bd288-58dd-4b75-a540-123599fb4e98",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:furduncinho",
+      "type": "project",
+      "name": "Furduncinho",
+      "mbid": "93490450-388b-455e-9468-5e11ac9e227b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fada-madrinha",
+      "type": "project",
+      "name": "Fada Madrinha",
+      "mbid": "d36f6681-e98a-4b68-9805-d4530a656d37",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-volta-pra-gaiola",
+      "type": "project",
+      "name": "De volta pra Gaiola",
+      "mbid": "1b44a5a2-64e2-456b-94b3-e95cf63f1352",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:meu-ex",
+      "type": "project",
+      "name": "Meu Ex",
+      "mbid": "95fc83c7-2c44-49a5-a6c9-85ca70c07311",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:meu-ex",
+      "type": "project",
+      "name": "Meu Ex",
+      "mbid": "33c95109-8841-4346-8ee8-c85a598573d8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voltei",
+      "type": "project",
+      "name": "Voltei",
+      "mbid": "7cb5ebc8-fefa-4f75-a803-72ae00d14e5c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-levin",
+      "type": "project",
+      "name": "De levin",
+      "mbid": "365760a3-b124-4d93-8533-3901f4ba4109",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quero-te-dar",
+      "type": "project",
+      "name": "Quero Te Dar",
+      "mbid": "d0b26255-465a-4f53-90c4-748d428e4e81",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:desce-um-gin",
+      "type": "project",
+      "name": "Desce um Gin",
+      "mbid": "ac623239-e9b5-40a8-8ee4-bc4b87388788",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-solteira-de-novo",
+      "type": "project",
+      "name": "Tô Solteira de Novo",
+      "mbid": "0c2013fc-9699-4b59-9af5-19632c2c24e8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pimenta",
+      "type": "project",
+      "name": "Pimenta",
+      "mbid": "9277d2c1-908d-40ed-af80-9b3b874456b9",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:viado",
+      "type": "project",
+      "name": "Viado",
+      "mbid": "f4f625fa-4031-424a-98df-b5cc223b79bb",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boy-magia",
+      "type": "project",
+      "name": "Boy magia",
+      "mbid": "14e0d87b-c930-4193-9995-6ac6bb34d618",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sou-dessas",
+      "type": "project",
+      "name": "Sou dessas",
+      "mbid": "ce160f98-c1ff-4ff0-9526-bb8c7343c1a3",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:valesca-popozuda",
+      "type": "project",
+      "name": "Valesca Popozuda",
+      "mbid": "a84888c6-3273-4c24-8bde-ae0b5aec9631",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:eu-sou-a-diva-que-voce-quer-copiar",
+      "type": "project",
+      "name": "Eu sou a diva que você quer copiar",
+      "mbid": "343dc535-100b-4706-8214-c94d12919ead",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ta-pra-nascer-homem-que-vai-mandar-em-mim",
+      "type": "project",
+      "name": "Tá pra nascer homem que vai mandar em mim",
+      "mbid": "502c5a66-9014-4c52-a53b-0df3f6a79e9e",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-ama",
+      "type": "project",
+      "name": "Me ama (Mama)",
+      "mbid": "5d5a5e19-18cc-4593-876c-d6907e8aebd2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:valesca-popozuda",
+      "type": "project",
+      "name": "Valesca Popozuda",
+      "mbid": "6e51f423-b2c9-42d2-af66-7a2bde05cb77",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beijinho-no-ombro",
+      "type": "project",
+      "name": "Beijinho no ombro",
+      "mbid": "c501b65b-588e-4f36-9b34-f0452ecbbb4f",
+      "year": "2013",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:late-que-eu-to-passando",
+      "type": "track",
+      "name": "Late que eu tô passando"
+    },
+    {
+      "slug": "track:agora-eu-to-solteira",
+      "type": "track",
+      "name": "Agora eu tô solteira"
+    },
+    {
+      "slug": "track:agora-eu-virei-puta",
+      "type": "track",
+      "name": "Agora eu virei puta"
+    },
+    {
+      "slug": "track:quero-te-dar",
+      "type": "track",
+      "name": "Quero te dar"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:gloria-groove",
+      "type": "artist",
+      "name": "Gloria Groove"
+    },
+    {
+      "slug": "artist:anitta",
+      "type": "artist",
+      "name": "Anitta"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

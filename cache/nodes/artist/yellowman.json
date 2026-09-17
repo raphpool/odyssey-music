@@ -1,0 +1,540 @@
+{
+  "slug": "artist:yellowman",
+  "name": "Yellowman",
+  "editorial_article": "Winston Foster, better known as Yellowman or King Yellowman, rose from Kingston's sound-system scene in the early 1980s as a pivotal dancehall deejay. After finishing second in the 1978 Tastee Talent Contest, he won the competition the following year, which launched his professional career. He is widely credited with helping define the coarse, direct sound of modern dancehall. In 1981, he became the first dancehall artist signed to a major American label, Columbia Records. Throughout the early 1980s, he maintained a prolific output, frequently collaborating with producer Henry 'Junjo' Lawes and performing alongside deejay Fathead. His 1982 track 'Zungguzungguguzungguzeng', built on the 'Diseases' riddim, became a cornerstone of dancehall culture and has been sampled extensively across reggae and hip-hop. Despite undergoing invasive jaw surgery for cancer in the mid-1980s, he returned to the stage by 1987. His career includes two Grammy Award nominations for Best Reggae Album and a 2018 Order of Distinction from the Jamaican government.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Yellowman",
+      "title": "Yellowman - Wikipedia"
+    },
+    {
+      "url": "https://www.reggaeville.com/artist-details/yellowman/about/",
+      "title": "Biography: Yellowman - Reggaeville.com"
+    },
+    {
+      "url": "https://www.discogs.com/artist/96316?srsltid=AU7gw4UYZ4l2v0f73RTStiZWzJQ9tFH2Q2_MINp6uauUMWMBbLRQMGod",
+      "title": "Yellowman Discography: Vinyl, CDs, & More - Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:58:00.924Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Jamaican dancehall deejay who rose to international prominence in the 1980s with a distinctively direct, rhythmic style.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1974-present",
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall",
+      "qid": "Q474027"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:greensleeves-records",
+      "type": "label",
+      "name": "Greensleeves Records"
+    },
+    {
+      "slug": "label:vp-records",
+      "type": "label",
+      "name": "VP Records"
+    },
+    {
+      "slug": "label:ras-records",
+      "type": "label",
+      "name": "RAS Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:frankie-paul-meets-yellowman",
+      "type": "project",
+      "name": "Frankie Paul Meets Yellowman",
+      "mbid": "60201bcd-3a01-4dcc-a5ba-149f0b144c84",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zungguzungguguzungguzeng",
+      "type": "project",
+      "name": "Zungguzungguguzungguzeng (Horsepower Productions Remix)",
+      "mbid": "5460926e-d0a4-4667-b8bd-6892accb4e7a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-york",
+      "type": "project",
+      "name": "New York",
+      "mbid": "102f83fc-aee2-3fc6-94d2-1aa4133e8a5a",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-very-very-yellow-christmas",
+      "type": "project",
+      "name": "A Very, Very Yellow Christmas",
+      "mbid": "46215a75-e6a8-3696-8037-2cdc34dc731c",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellow-fever",
+      "type": "project",
+      "name": "Yellow Fever",
+      "mbid": "61371863-48af-38cf-9dc7-a902472b6c24",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chronic",
+      "type": "project",
+      "name": "Chronic",
+      "mbid": "4a9b4513-0f37-3141-b328-35c0fcbdd17d",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freedom-of-speech",
+      "type": "project",
+      "name": "Freedom of Speech",
+      "mbid": "8740c8d5-813d-3dd6-a2f4-78c3c201c545",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellowman-meets-the-paragons",
+      "type": "project",
+      "name": "Yellowman Meets the Paragons",
+      "mbid": "c5612380-6037-3d26-a83b-fdd4ee7d093f",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kiss-me",
+      "type": "project",
+      "name": "Kiss Me",
+      "mbid": "1010588e-264c-4642-8022-7990bb3572fd",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:message-to-the-world",
+      "type": "project",
+      "name": "Message to the World",
+      "mbid": "e0e1b870-44ab-3f64-bd1a-876753cccf4c",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellowman-s-good-sex-guide",
+      "type": "project",
+      "name": "Yellowman's Good Sex Guide",
+      "mbid": "f240dd0f-e679-3e9e-8f42-4e3016612d20",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prayer",
+      "type": "project",
+      "name": "Prayer",
+      "mbid": "9cd0dd12-66f7-3489-ad4f-dce1f71c15a2",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mello-yellow",
+      "type": "project",
+      "name": "Mello Yellow",
+      "mbid": "b4d45d36-5f77-4a96-b943-ac7841160706",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reggae-on-top",
+      "type": "project",
+      "name": "Reggae On Top",
+      "mbid": "0e261b94-1b5f-4e03-aa00-b33ce2e5a5c5",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-man-you-want",
+      "type": "project",
+      "name": "A Man You Want",
+      "mbid": "223157b9-cef1-4b6d-9bf7-967de8a62bc5",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-bed-with-yellowman",
+      "type": "project",
+      "name": "In Bed With Yellowman",
+      "mbid": "4d7faf89-fb04-304f-afe5-309806a19e45",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fantastic-yellowman",
+      "type": "project",
+      "name": "Fantastic Yellowman",
+      "mbid": "656b5cb2-eb16-46e2-ab92-c598c0a9ba8f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reggae-on-the-move",
+      "type": "project",
+      "name": "Reggae on the Move",
+      "mbid": "b4995bbb-3aba-4b16-b14c-8f60184d5a67",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:life-in-the-ghetto",
+      "type": "project",
+      "name": "Life in the Ghetto",
+      "mbid": "9b4aac54-a73c-3669-9626-525650c2f3f7",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mi-hot",
+      "type": "project",
+      "name": "Mi Hot",
+      "mbid": "c31f05fd-f593-42a6-9452-f2116ea434c1",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party",
+      "type": "project",
+      "name": "Party",
+      "mbid": "fc28a700-7b45-45da-b754-d89bc69cbd11",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bad-boy-skanking",
+      "type": "project",
+      "name": "Bad Boy Skanking",
+      "mbid": "26a4a550-cf6b-3902-87af-e6b2bf57c63e",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-feast-of-yellow-dub",
+      "type": "project",
+      "name": "A Feast of Yellow Dub",
+      "mbid": "4434bdf9-f172-3558-8000-8cb4e3f5f452",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-the-dancehall",
+      "type": "project",
+      "name": "King of the Dancehall",
+      "mbid": "3901f6fc-ac4f-481b-b017-bcbcb5968013",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strikes-again",
+      "type": "project",
+      "name": "Strikes Again",
+      "mbid": "8cc06c05-c2c6-4d64-8c0e-e67306d2b106",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-burn-it-down",
+      "type": "project",
+      "name": "Don't Burn It Down",
+      "mbid": "04d5cf93-fccb-341e-8c77-a6ce71f46cc7",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-reggae-calypso-encounter",
+      "type": "project",
+      "name": "A Reggae Calypso Encounter",
+      "mbid": "8d2075f3-d220-4d0f-b862-aba6a0199f5c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellowman-rides-again",
+      "type": "project",
+      "name": "Yellowman Rides Again",
+      "mbid": "c0316000-9df4-46de-8cf5-5a021c89567c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellow-like-cheese",
+      "type": "project",
+      "name": "Yellow Like Cheese",
+      "mbid": "11f20112-8dc8-373c-83fd-ea5f429b11d4",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blueberry-hill",
+      "type": "project",
+      "name": "Blueberry Hill",
+      "mbid": "8f9d1e73-f9fe-30c2-8eb8-3659c773b7c7",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-berry-hill",
+      "type": "project",
+      "name": "Blue Berry Hill",
+      "mbid": "22718ff5-677d-4641-9b07-8fdbbce5cac1",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rambo",
+      "type": "project",
+      "name": "Rambo",
+      "mbid": "3b8ab4a3-6408-4935-9499-ce8cd1ab08d1",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:going-to-the-chapel",
+      "type": "project",
+      "name": "Going to the Chapel",
+      "mbid": "fc4c621e-fc56-395b-b0f1-d067e276fb23",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:galong-galong-galong",
+      "type": "project",
+      "name": "Galong Galong Galong",
+      "mbid": "9b0a038c-063d-447a-abb6-e908bf310f6a",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:under-mi-fat-thing",
+      "type": "project",
+      "name": "Under Mi Fat Thing",
+      "mbid": "b7b24300-094e-4f67-a2fa-bb600d06d421",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-is-santa-claus-happy-merry-christmas",
+      "type": "project",
+      "name": "Where Is Santa Claus / Happy Merry Christmas",
+      "mbid": "5a81a4bb-a6a7-4b8b-bd8b-9069d6b29b76",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobody-move-nobody-get-hurt",
+      "type": "project",
+      "name": "Nobody Move Nobody Get Hurt",
+      "mbid": "366a04d7-ed3c-33d3-bad5-e7eae41da6d9",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-yellowman",
+      "type": "project",
+      "name": "King Yellowman",
+      "mbid": "91ca13b8-4061-3115-860f-bd7e861923b2",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-giants-clash",
+      "type": "project",
+      "name": "Two Giants Clash",
+      "mbid": "ef4e0a95-7df3-3ab6-96cf-96edfac49046",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strong-me-strong",
+      "type": "project",
+      "name": "Strong Me Strong",
+      "mbid": "2a4c8d22-0135-4720-a020-1ee2eb8f71a4",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:divorced",
+      "type": "project",
+      "name": "Divorced! (For Your Eyes Only)",
+      "mbid": "a29dea19-136e-48b4-90af-be8a7d3141ca",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zungguzungguguzungguzeng",
+      "type": "project",
+      "name": "Zungguzungguguzungguzeng!",
+      "mbid": "ae134daa-48e5-3d94-8e89-f81d8a86d07d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:confessions",
+      "type": "project",
+      "name": "Confessions",
+      "mbid": "c5cc0832-0b1d-421f-86c5-d6983a0d1a46",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sensemilla",
+      "type": "project",
+      "name": "Sensemilla",
+      "mbid": "b3039e5d-c606-44ad-9384-eff3861da9d2",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-yellow-the-purple-the-nancy",
+      "type": "project",
+      "name": "The Yellow, The Purple, The Nancy",
+      "mbid": "01f4efae-97b6-4884-88ac-28a43108a9c0",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mister-yellowman",
+      "type": "project",
+      "name": "Mister Yellowman",
+      "mbid": "102f7bdd-3565-33ff-9183-92e65cd2a58a",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:them-a-mad-over-me",
+      "type": "project",
+      "name": "Them a Mad Over Me",
+      "mbid": "2969377d-a571-4155-8ff7-5fe97e28b2f8",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-cool",
+      "type": "project",
+      "name": "Just Cool",
+      "mbid": "64eb0845-20ec-4523-b4d7-5dbb685ce78e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duppy-or-gunman",
+      "type": "project",
+      "name": "Duppy or Gunman",
+      "mbid": "75de6e6b-f102-3d03-bf0c-a76e62d76e52",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jack-sprat",
+      "type": "project",
+      "name": "Jack Sprat",
+      "mbid": "82b28ad3-e7cf-4f80-8bbb-42e35d141c62",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hotter-reggae",
+      "type": "project",
+      "name": "Hotter Reggae",
+      "mbid": "ab7fafb5-76ad-4c25-8919-575e566b43a4",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:operation-radication",
+      "type": "project",
+      "name": "Operation Radication",
+      "mbid": "bb08ee92-2693-3ed7-8029-804ced2b1ace",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-yellowman",
+      "type": "project",
+      "name": "One Yellowman",
+      "mbid": "f82c3404-6abd-403d-9cd3-5c4ba2005949",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soldier-take-over",
+      "type": "project",
+      "name": "Soldier Take Over",
+      "mbid": "852cb621-5630-4cbb-a24c-e1bb2f12deb9",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sings-the-blues",
+      "type": "project",
+      "name": "Sings The Blues",
+      "mbid": "715f74cb-eb3a-4841-b46f-ed3fd3696d6f",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:zungguzungguguzungguzeng",
+      "type": "track",
+      "name": "Zungguzungguguzungguzeng"
+    },
+    {
+      "slug": "track:mad-over-me",
+      "type": "track",
+      "name": "Mad Over Me"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:henry-lawes",
+      "type": "artist",
+      "name": "Henry Lawes"
+    },
+    {
+      "slug": "artist:fathead",
+      "type": "artist",
+      "name": "Fathead"
+    },
+    {
+      "slug": "artist:kareema-foster",
+      "type": "artist",
+      "name": "Kareema Foster"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:king-yellowman",
+      "type": "artist",
+      "name": "King Yellowman"
+    }
+  ],
+  "members": []
+}
