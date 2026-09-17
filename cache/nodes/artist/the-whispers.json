@@ -1,0 +1,410 @@
+{
+  "slug": "artist:the-whispers",
+  "name": "The Whispers",
+  "editorial_article": "Formed in 1963 in Watts, California, The Whispers evolved from a local vocal group into a foundational R&B act. They relocated to the San Francisco Bay Area in 1966 at the invitation of Sly Stone, honing their live act before finding label success. Their mid-1970s period saw them recording in Philadelphia, where songwriters like Allan Felder and Norman Harris contributed tracks such as 'A Mother for My Children'. The group later signed to Dick Griffey's SOLAR Records in 1978, securing their first R&B chart-topper with 'And the Beat Goes On' in 1979. They continued their success throughout the 1980s with the 1987 R&B hit 'Rock Steady'. With fifteen top-ten R&B singles, the group remains a central figure in R&B history, having been inducted into the National Rhythm and Blues Hall of Fame in 2014.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Whispers",
+      "title": "The Whispers - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:12:03.838Z",
+  "type": "artist",
+  "editorial_bio": "An influential American R&B vocal group from California known for hit singles like 'And the Beat Goes On' and 'Rock Steady'.",
+  "origin": "Fresno, California",
+  "active_years": "1963-present",
+  "genres": [
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:smooth-soul",
+      "type": "genre",
+      "name": "Smooth Soul",
+      "qid": "Q3963051"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:soul-clock",
+      "type": "label",
+      "name": "Soul Clock"
+    },
+    {
+      "slug": "label:janus",
+      "type": "label",
+      "name": "Janus"
+    },
+    {
+      "slug": "label:solar",
+      "type": "label",
+      "name": "Solar"
+    },
+    {
+      "slug": "label:capitol",
+      "type": "label",
+      "name": "Capitol"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:maybe-the-fire-isn-t-out",
+      "type": "project",
+      "name": "Maybe the Fire Isn't Out",
+      "mbid": "471cd805-55d1-4c67-8b06-5273ca9596aa",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:praise-his-holy-name",
+      "type": "project",
+      "name": "Praise His Holy Name (remix)",
+      "mbid": "7e368a3e-8737-405f-b1dc-118006cbc493",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-a-love-thing",
+      "type": "project",
+      "name": "It's A Love Thing (Extended Rework Dr Packer Edit)",
+      "mbid": "4ea784ad-33e5-4323-a5d0-dc803dd61cd5",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:christmas-with-the-whispers",
+      "type": "project",
+      "name": "Christmas With the Whispers",
+      "mbid": "ebb6245d-313f-4e26-9f82-01f30857d574",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thankful",
+      "type": "project",
+      "name": "Thankful",
+      "mbid": "5d4a80da-7754-4453-ad63-da05c275837f",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-mellow-side",
+      "type": "project",
+      "name": "The Mellow Side",
+      "mbid": "a9643670-2fc9-4a54-9f1c-a86d225b0c90",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:for-your-ears-only",
+      "type": "project",
+      "name": "For Your Ears Only",
+      "mbid": "39963020-b7a6-3ea9-853a-c3888f4ddbd0",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:song-book-volume-1-the-songs-of-babyface",
+      "type": "project",
+      "name": "Song Book, Volume 1: The Songs of Babyface",
+      "mbid": "4c3421c5-61fb-3863-8c36-96e02bcdcd5b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toast-to-the-ladies",
+      "type": "project",
+      "name": "Toast to the Ladies",
+      "mbid": "b59712e5-a084-33d0-815e-02a09895a058",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-moments",
+      "type": "project",
+      "name": "Christmas Moments",
+      "mbid": "7e67ef77-9e1f-3ddf-a2ba-10ab23dc8dcb",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-of-the-night",
+      "type": "project",
+      "name": "More of the Night",
+      "mbid": "5034e9c3-3f29-36e1-b9cd-a18d53bd6767",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vintage",
+      "type": "project",
+      "name": "Vintage",
+      "mbid": "5d61c223-549e-43dd-838f-6147f00ca7e6",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-gets-better-with-time",
+      "type": "project",
+      "name": "Just Gets Better With Time",
+      "mbid": "1c4c2835-415b-39aa-898a-fe0afec1234d",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-steady",
+      "type": "project",
+      "name": "Rock Steady",
+      "mbid": "1ee981ef-5d3f-4856-828b-d32cd68687d8",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-good",
+      "type": "project",
+      "name": "So Good",
+      "mbid": "f18ac150-290b-450c-a2de-ad628a57128c",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-for-love",
+      "type": "project",
+      "name": "Love for Love",
+      "mbid": "664904a3-b75a-3bd4-bbbe-bcfe5f14e23f",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-is-where-you-find-it",
+      "type": "project",
+      "name": "Love Is Where You Find It",
+      "mbid": "94eb9753-a813-3da8-a198-48b9a7ec2ff7",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-kind-of-lovin",
+      "type": "project",
+      "name": "This Kind of Lovin'",
+      "mbid": "64877ed3-007e-4e5f-bb81-3c84b671dc5a",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-can-make-it-better",
+      "type": "project",
+      "name": "I Can Make It Better",
+      "mbid": "9a75b8b8-73ca-4552-b4f2-8aa203ddb3cb",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:imagination",
+      "type": "project",
+      "name": "Imagination",
+      "mbid": "6400bdce-ace6-34a9-8682-e2c9fe7a8757",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-a-love-thing-girl-i-need-you",
+      "type": "project",
+      "name": "It’s a Love Thing / Girl I Need You",
+      "mbid": "d9d65743-f065-48bb-9335-f836cf6bcba4",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-whispers",
+      "type": "project",
+      "name": "The Whispers",
+      "mbid": "c6818401-5444-328e-ab58-e17f0af6745e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:happy-holidays-to-you",
+      "type": "project",
+      "name": "Happy Holidays to You",
+      "mbid": "4c255303-b0d3-38bc-b060-60ea6006642c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whisper-in-your-ear",
+      "type": "project",
+      "name": "Whisper in Your Ear",
+      "mbid": "866ae4e6-a050-49fb-bb35-03ea7e04f387",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:and-the-beat-goes-on",
+      "type": "project",
+      "name": "And the Beat Goes On",
+      "mbid": "13fc512c-fd7f-3599-8d01-863a0eaca346",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:and-the-beat-goes-on-can-you-do-the-boogie",
+      "type": "project",
+      "name": "And the Beat Goes On / Can You Do the Boogie",
+      "mbid": "27146c4a-ab62-40ec-b800-0810bb91c31c",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headlights",
+      "type": "project",
+      "name": "Headlights",
+      "mbid": "f988db17-f4f6-4e75-b1ce-78364196b698",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:open-up-your-love",
+      "type": "project",
+      "name": "Open Up Your Love",
+      "mbid": "b4eb23e6-639c-4954-bee6-b2d6d2694b2b",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-for-the-money",
+      "type": "project",
+      "name": "One for the Money",
+      "mbid": "b33ceb55-8aa9-4571-a769-a0b5a6530b6c",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bingo",
+      "type": "project",
+      "name": "Bingo",
+      "mbid": "ebc9ae71-1926-45ab-865b-a3327819a42b",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:life-and-breath",
+      "type": "project",
+      "name": "Life and Breath",
+      "mbid": "47e36011-0fd5-47e6-afa8-83483056bd22",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-whispers-love-story",
+      "type": "project",
+      "name": "The Whispers' Love Story",
+      "mbid": "543b95fd-f946-4466-92b0-c54965567904",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:planets-of-life",
+      "type": "project",
+      "name": "Planets of Life",
+      "mbid": "375c865a-b756-35c3-a665-be18e67c296b",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-i-sit-here",
+      "type": "project",
+      "name": "As I Sit Here",
+      "mbid": "447c3066-e653-4a63-8259-7b6e95514046",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:got-no-time-your-ever-lovin-slick",
+      "type": "project",
+      "name": "Got No Time / Your Ever Lovin' Slick",
+      "mbid": "f052e315-81e9-40c4-ad18-844b87e14737",
+      "year": "1950",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:and-the-beat-goes-on",
+      "type": "track",
+      "name": "And the Beat Goes On"
+    },
+    {
+      "slug": "track:rock-steady",
+      "type": "track",
+      "name": "Rock Steady"
+    },
+    {
+      "slug": "track:seems-like-i-got-to-do-wrong",
+      "type": "track",
+      "name": "Seems Like I Got to Do Wrong"
+    },
+    {
+      "slug": "track:it-s-a-love-thing",
+      "type": "track",
+      "name": "It's a Love Thing"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:wallace-scott",
+      "type": "artist",
+      "name": "Wallace Scott"
+    },
+    {
+      "slug": "artist:leaveil-degree",
+      "type": "artist",
+      "name": "Leaveil Degree"
+    },
+    {
+      "slug": "artist:walter-scott",
+      "type": "artist",
+      "name": "Walter Scott"
+    },
+    {
+      "slug": "artist:nicholas-caldwell",
+      "type": "artist",
+      "name": "Nicholas Caldwell"
+    },
+    {
+      "slug": "artist:marcus-hutson",
+      "type": "artist",
+      "name": "Marcus Hutson"
+    },
+    {
+      "slug": "artist:gordy-harmon",
+      "type": "artist",
+      "name": "Gordy Harmon"
+    }
+  ]
+}

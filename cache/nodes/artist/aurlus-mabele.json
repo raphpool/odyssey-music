@@ -1,0 +1,145 @@
+{
+  "slug": "artist:aurlus-mabele",
+  "name": "Aurlus Mabélé",
+  "editorial_article": "Born in Poto-Poto, Brazzaville in 1953, Aurlus Mabélé became a central force in the Paris-based Congolese music scene after relocating to France in 1981. He co-founded the influential band Loketo in 1986 alongside lead guitarist Diblo Dibala, Mav Cacharel, Blondin Wabacha, and John Boxingo Macaire. The group modernized soukous by stripping away traditional slow introductions in favor of immediate, high-energy, guitar-driven sebene passages. Mabélé was instrumental in popularizing dances like the kwassa kwassa and collaborated with producers such as Jimmy Houetinou on successful albums like 1986's Africa Mousso (Femme d'Afrique). Known as the King of Soukous, Mabélé performed at major international venues including SOB's in New York City and New Morning in Paris. His prolific career saw him release numerous records, including the 1991 hit Embargo and 1992's Stop, Arrêtez!, before his death in Eaubonne in 2020.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Aurlus_Mab%C3%A9l%C3%A9",
+      "title": "Aurlus Mabélé"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:07:30.774Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Congolese singer, bandleader, and the King of Soukous who brought the genre to global dance floors from his base in Paris.",
+  "origin": "Republic of the Congo",
+  "active_years": "1974-2019",
+  "genres": [
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    },
+    {
+      "slug": "genre:congolese-rumba",
+      "type": "genre",
+      "name": "Congolese rumba",
+      "qid": "Q3453150"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jimmy-s-international-production",
+      "type": "label",
+      "name": "Jimmy's International Production"
+    },
+    {
+      "slug": "label:debs-music",
+      "type": "label",
+      "name": "Debs Music"
+    },
+    {
+      "slug": "label:totem-music",
+      "type": "label",
+      "name": "Totem Music"
+    },
+    {
+      "slug": "label:afro-rythmes",
+      "type": "label",
+      "name": "Afro Rythmes"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:ca-va-ce-savoir",
+      "type": "project",
+      "name": "Ca Va Ce Savoir?",
+      "mbid": "4ebe4b7b-5ca2-4ead-9e05-abd28de89619",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:africa-mousso",
+      "type": "project",
+      "name": "Africa Mousso",
+      "mbid": "4d97ac15-0452-3ace-ab51-5143f9f37d5f",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-retour-de-la-sape",
+      "type": "project",
+      "name": "Le retour de la SAPE (Live in Paris 1995)",
+      "mbid": "fc2a1502-5eee-42e4-a73c-469283bf5c29",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soukouss-la-terreur",
+      "type": "project",
+      "name": "Soukouss La Terreur",
+      "mbid": "a232c934-452e-459c-b68b-59fe47fbe7ba",
+      "year": "1989",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:betty",
+      "type": "track",
+      "name": "Betty"
+    },
+    {
+      "slug": "track:loketo",
+      "type": "track",
+      "name": "Loketo"
+    },
+    {
+      "slug": "track:femme-ivoirienne",
+      "type": "track",
+      "name": "Femme Ivoirienne"
+    },
+    {
+      "slug": "track:waka-waka",
+      "type": "track",
+      "name": "Waka Waka"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:diblo-dibala",
+      "type": "artist",
+      "name": "Diblo Dibala"
+    },
+    {
+      "slug": "artist:mav-cacharel",
+      "type": "artist",
+      "name": "Mav Cacharel"
+    },
+    {
+      "slug": "artist:dally-kimoko",
+      "type": "artist",
+      "name": "Dally Kimoko"
+    },
+    {
+      "slug": "artist:awilo-longomba",
+      "type": "artist",
+      "name": "Awilo Longomba"
+    },
+    {
+      "slug": "artist:rigo-star",
+      "type": "artist",
+      "name": "Rigo Star"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:benoit-aurelien-miatsonama",
+      "type": "artist",
+      "name": "Benoit Aurélien Miatsonama"
+    }
+  ],
+  "members": []
+}

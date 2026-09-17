@@ -1,0 +1,405 @@
+{
+  "slug": "artist:dune",
+  "name": "Dune",
+  "editorial_article": "Founded in 1995 in Münster, Germany, by Oliver Froning, Jens Oettrich, and Bernd Burhoff, the electronic act Dune emerged as a significant force in the mid-90s happy hardcore scene. The trio named the project after the 1984 film adaptation of the Frank Herbert novel. Their debut single, \"Hardcore Vibes,\" featured spoken word vocals by Froning's niece, while the third single, \"Can't Stop Raving,\" utilized heavily pitched-up vocals from singer Tina Lagao. In 1996, dancer Verena von Strenge joined as the group's primary vocalist, featuring on the album \"Expedicion,\" which included the Star Trek-inspired single \"Million Miles from Home.\" By 1997, the band partnered with the London Session Orchestra to record a cover of Queen's \"Who Wants to Live Forever,\" reaching the second position on the German charts. Internal friction later led to the departure of von Strenge and the eventual cancellation of the 1999 \"Reunion\" album following legal action from A7 regarding the single \"Heaven.\"",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dune_(band)",
+      "title": "Dune (band) - Wikipedia"
+    },
+    {
+      "url": "https://www.theaudiodb.com/artist/111498-Dune",
+      "title": "Dune | TheAudioDB.com"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:07.925Z",
+  "type": "artist",
+  "editorial_bio": "A German electronic group influential in the 1990s happy hardcore and trance scenes, founded by Oliver Froning, Jens Oettrich, and Bernd Burhoff.",
+  "origin": "Münster, Germany",
+  "active_years": "1995-present",
+  "genres": [
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore",
+      "qid": "Q339906"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:motor-music",
+      "type": "label",
+      "name": "Motor Music"
+    },
+    {
+      "slug": "label:urban-records",
+      "type": "label",
+      "name": "Urban Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:chemistry",
+      "type": "project",
+      "name": "Chemistry",
+      "mbid": "c4830483-7fef-4948-ab55-949214f9425d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-vibes",
+      "type": "project",
+      "name": "Hardcore Vibes (Dimitri K & D-Fence remix)",
+      "mbid": "a28d094d-3dfd-41a1-a69b-44a7761002fc",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:evolution",
+      "type": "project",
+      "name": "Evolution",
+      "mbid": "5f2e4fff-9712-4156-812c-6dc02cfc8d0d",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-young",
+      "type": "project",
+      "name": "Forever Young (Kaylene Sc@r Remix)",
+      "mbid": "4083d730-62ad-48e4-ad8b-8d48db27a261",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oldies",
+      "type": "project",
+      "name": "Oldies",
+      "mbid": "8890730e-bb11-4f6b-b55e-a8cea1ae7a89",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unspeakable",
+      "type": "project",
+      "name": "Unspeakable",
+      "mbid": "2ea72460-7839-47bc-b8e9-6bc852a70674",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-got-what-u-like",
+      "type": "project",
+      "name": "I Got What U Like",
+      "mbid": "2ccfa709-eb50-4446-9b2e-788c71f6e2e1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-young",
+      "type": "project",
+      "name": "Forever Young",
+      "mbid": "b79dbe0e-7222-4b09-ac0e-0db8698e40fd",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fight-for-love",
+      "type": "project",
+      "name": "Fight for Love",
+      "mbid": "cb4a48f3-f92a-4f1a-a4d6-35116ee6af5f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:synthesize",
+      "type": "project",
+      "name": "Synthesize",
+      "mbid": "34893afa-1e35-40c6-8b44-3c6a747d0df4",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-muzik-038",
+      "type": "project",
+      "name": "Rave Muzik 038",
+      "mbid": "eb21f3c9-3e1d-4239-bd25-8e572d278c17",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:utopia",
+      "type": "project",
+      "name": "Utopia",
+      "mbid": "6108afa9-15fa-493e-8092-ad48fe7ac441",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:starchild",
+      "type": "project",
+      "name": "Starchild (Chapter One - First Contact / Chris Kilroy Remix)",
+      "mbid": "10469c93-ce8d-47c3-9c2d-5e9d6b31b114",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:are-you-ready-2-fly",
+      "type": "project",
+      "name": "Are You Ready 2 Fly (The Viper & Furyan 2013 Remix)",
+      "mbid": "741e790b-97a8-49ad-b509-8ed4ae97d5e7",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-vibes",
+      "type": "project",
+      "name": "Hardcore Vibes (The Viper's Mashup Mix)",
+      "mbid": "677dc332-4519-4996-8d25-0cd1724a965b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-vibes",
+      "type": "project",
+      "name": "Hardcore Vibes",
+      "mbid": "4f8b6fbc-458a-40d1-8b9e-49ffa697bfe8",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rainbow-to-the-stars-2003",
+      "type": "project",
+      "name": "Rainbow to the Stars 2003",
+      "mbid": "95959289-ce8d-3d63-8c90-9beb2ffc4b36",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-vibes",
+      "type": "project",
+      "name": "Hardcore Vibes",
+      "mbid": "a3deaa49-96d5-34fc-877e-c7ac4f3716b0",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dark-side-of-the-moon",
+      "type": "project",
+      "name": "Dark Side of the Moon",
+      "mbid": "4b9a4e03-b582-3ebf-b36c-10797561bc8b",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-and-ever",
+      "type": "project",
+      "name": "Forever and Ever",
+      "mbid": "31104465-6ea8-3247-aac9-d15f07607dcb",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-of-us",
+      "type": "project",
+      "name": "One of Us",
+      "mbid": "33c7c026-fa84-3479-8858-dc59e10c4589",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:electric-heaven",
+      "type": "project",
+      "name": "Electric Heaven",
+      "mbid": "1e8216c7-5385-3953-b980-c87611f3a314",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-the-secret",
+      "type": "project",
+      "name": "Keep the Secret",
+      "mbid": "39473f9a-43ce-3fe0-a9ae-d12219814444",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever",
+      "type": "project",
+      "name": "Forever",
+      "mbid": "f37d0513-bb87-33d6-93c9-6ab6f1a25404",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:somebody",
+      "type": "project",
+      "name": "Somebody",
+      "mbid": "8ffa7a48-8c60-4b01-9c93-dd5729f291cc",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-compares-2-u",
+      "type": "project",
+      "name": "Nothing Compares 2 U",
+      "mbid": "dea26eb3-ec2c-3174-9e24-e8890ea1d220",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-wants-to-live-forever",
+      "type": "project",
+      "name": "Who Wants to Live Forever",
+      "mbid": "98ee873b-1b56-3bf9-b918-f63d1221e258",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:million-miles-from-home",
+      "type": "project",
+      "name": "Million Miles From Home",
+      "mbid": "48f5d1ae-a3d9-332a-9263-9837fee361d6",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:expedicion",
+      "type": "project",
+      "name": "Expedicion",
+      "mbid": "68dff5f8-8467-3a67-8d3b-1ccc84bcf7bb",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hand-in-hand",
+      "type": "project",
+      "name": "Hand in Hand",
+      "mbid": "eee66d80-6f04-30e4-82d1-d8a61b7c2c67",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rainbow-to-the-stars",
+      "type": "project",
+      "name": "Rainbow to the Stars",
+      "mbid": "6fbd8b3f-c936-3a57-8a59-f6263bdd0c43",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-stop-raving",
+      "type": "project",
+      "name": "Can't Stop Raving",
+      "mbid": "d8e4624c-4618-3721-b558-1ea9cf82d1f0",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dune",
+      "type": "project",
+      "name": "Dune",
+      "mbid": "163669bc-54ae-3188-be19-b28cd827c50b",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hardcore-vibes",
+      "type": "project",
+      "name": "Hardcore Vibes",
+      "mbid": "c089f45b-0086-30f8-befb-09909f02bd63",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:are-you-ready-to-fly",
+      "type": "project",
+      "name": "Are You Ready to Fly",
+      "mbid": "d0017eb4-5c9e-3016-b5b1-cf910ad8c69e",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rainbow-to-the-stars-2003",
+      "type": "project",
+      "name": "Rainbow to the Stars 2003 (Best)",
+      "mbid": "5056f467-495d-4d79-a6ce-696af7a1e504",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heaven",
+      "type": "project",
+      "name": "Heaven",
+      "mbid": "070ea9c3-ce65-368c-af45-9b656c7e2dda",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hardcore-vibes",
+      "type": "track",
+      "name": "Hardcore Vibes"
+    },
+    {
+      "slug": "track:can-t-stop-raving",
+      "type": "track",
+      "name": "Can't Stop Raving"
+    },
+    {
+      "slug": "track:are-you-ready-to-fly",
+      "type": "track",
+      "name": "Are You Ready to Fly"
+    },
+    {
+      "slug": "track:rainbow-to-the-stars",
+      "type": "track",
+      "name": "Rainbow to the Stars"
+    },
+    {
+      "slug": "track:who-wants-to-live-forever",
+      "type": "track",
+      "name": "Who Wants to Live Forever"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:oliver-froning",
+      "type": "artist",
+      "name": "Oliver Froning"
+    },
+    {
+      "slug": "artist:jens-oettrich",
+      "type": "artist",
+      "name": "Jens Oettrich"
+    },
+    {
+      "slug": "artist:bernd-burhoff",
+      "type": "artist",
+      "name": "Bernd Burhoff"
+    },
+    {
+      "slug": "artist:verena-von-strenge",
+      "type": "artist",
+      "name": "Verena von Strenge"
+    },
+    {
+      "slug": "artist:vanessa-horster",
+      "type": "artist",
+      "name": "Vanessa Hörster"
+    },
+    {
+      "slug": "artist:tina-lacebal",
+      "type": "artist",
+      "name": "Tina Lacebal"
+    }
+  ]
+}

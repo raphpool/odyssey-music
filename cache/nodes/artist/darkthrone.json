@@ -1,0 +1,367 @@
+{
+  "slug": "artist:darkthrone",
+  "name": "Darkthrone",
+  "editorial_article": "Formed in 1986 as a death metal band named Black Death in Kolbotn, Norway, Darkthrone evolved into a fundamental force in the early Norwegian black metal scene by 1991. The duo, consisting of multi-instrumentalist Fenriz and vocalist Nocturno Culto, gained critical acclaim for their 'Unholy Trinity' of records: A Blaze in the Northern Sky (1992), Under a Funeral Moon (1993), and Transilvanian Hunger (1994). Their sound shifted dramatically in the 2000s, incorporating crust punk, speed metal, and traditional doom metal influences on albums like The Cult Is Alive and Eternal Hails......, reflecting an ongoing rejection of mainstream metal production standards. The band has famously opted out of live performances since 1996, focusing exclusively on studio output released through labels such as Peaceville and Moonfog Productions.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Darkthrone",
+      "title": "Darkthrone - Wikipedia"
+    },
+    {
+      "url": "https://www.metal-archives.com/bands/darkthrone/146",
+      "title": "Darkthrone - Encyclopaedia Metallum"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:25.308Z",
+  "type": "artist",
+  "editorial_bio": "An influential Norwegian metal duo from Kolbotn known for their pivotal role in black metal and their later shifts into crust punk and traditional heavy metal.",
+  "origin": "Kolbotn, Norway",
+  "active_years": "1986-present",
+  "genres": [
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal",
+      "qid": "Q132438"
+    },
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy Metal",
+      "qid": "Q38848"
+    },
+    {
+      "slug": "genre:speed-metal",
+      "type": "genre",
+      "name": "Speed Metal",
+      "qid": "Q211723"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:peaceville-records",
+      "type": "label",
+      "name": "Peaceville Records"
+    },
+    {
+      "slug": "label:moonfog-productions",
+      "type": "label",
+      "name": "Moonfog Productions"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:pre-historic-metal",
+      "type": "project",
+      "name": "Pre‐Historic Metal",
+      "mbid": "597bcce2-5e06-4753-9f8b-822d058a174c",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pre-historic-metal",
+      "type": "project",
+      "name": "Pre‐Historic Metal",
+      "mbid": "e16bf76d-6cf1-47b4-9ce7-50975d7636df",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-beckons-us-all",
+      "type": "project",
+      "name": "It Beckons Us All",
+      "mbid": "fe629a38-a88e-4e15-b426-ef858419a0b4",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-dawn-affiliation",
+      "type": "project",
+      "name": "Black Dawn Affiliation",
+      "mbid": "1d6ac07d-c140-4a7b-9045-e5801ba1433b",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goatlord-original",
+      "type": "project",
+      "name": "Goatlord: Original",
+      "mbid": "6644850c-c120-4d38-b0bb-44f9c8d09897",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:astral-fortress",
+      "type": "project",
+      "name": "Astral Fortress",
+      "mbid": "cd62895e-6f2b-435a-bf2d-97bb6521c70b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:caravan-of-broken-ghosts",
+      "type": "project",
+      "name": "Caravan of Broken Ghosts",
+      "mbid": "f4caaefc-03d8-498e-96fe-101b987feefa",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eternal-hails",
+      "type": "project",
+      "name": "Eternal Hails......",
+      "mbid": "43fd1f55-35a0-413d-856f-2939b7ecae46",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hate-cloak",
+      "type": "project",
+      "name": "Hate Cloak",
+      "mbid": "6a22fca1-2321-4c60-82b2-13e26eb95c79",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:old-star",
+      "type": "project",
+      "name": "Old Star",
+      "mbid": "72372bea-19a3-41a4-bca6-eee55b44a52d",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hardship-of-the-scots",
+      "type": "project",
+      "name": "The Hardship of the Scots",
+      "mbid": "57a982ec-c8a5-4252-8a6e-442169123ffd",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burial-bliss-visual-aggression",
+      "type": "project",
+      "name": "Burial Bliss / Visual Aggression",
+      "mbid": "3ee64531-f8e9-4bd3-9266-7bc07d2f8f66",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:arctic-thunder",
+      "type": "project",
+      "name": "Arctic Thunder",
+      "mbid": "508d34cd-4b92-45d8-bfbf-eec9bc41c90c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-underground-resistance",
+      "type": "project",
+      "name": "The Underground Resistance",
+      "mbid": "b119ab25-29ae-4a29-81ea-52596ca6cd1b",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:circle-the-wagons",
+      "type": "project",
+      "name": "Circle the Wagons",
+      "mbid": "92202c68-3c25-4cb4-bbb0-9fb0de0148f5",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dark-thrones-and-black-flags",
+      "type": "project",
+      "name": "Dark Thrones and Black Flags",
+      "mbid": "f0a13972-15c7-3109-b833-119d0927224e",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:f-o-a-d",
+      "type": "project",
+      "name": "F.O.A.D.",
+      "mbid": "a25080f5-366f-36af-9e94-2c34e4457516",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nwobhm-new-wave-of-black-heavy-metal",
+      "type": "project",
+      "name": "NWOBHM: New Wave of Black Heavy Metal",
+      "mbid": "5130c365-9fd1-3146-893c-5680b55dab56",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:forebyggende-krig",
+      "type": "project",
+      "name": "Forebyggende krig",
+      "mbid": "cf96dc48-0cb4-3802-8b62-fadcbf8fce3f",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-cult-is-alive",
+      "type": "project",
+      "name": "The Cult Is Alive",
+      "mbid": "223bb067-927c-364b-9c61-32d52854a83c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:too-old-too-cold",
+      "type": "project",
+      "name": "Too Old Too Cold",
+      "mbid": "9fef68e6-d85d-3b6d-a70f-ed9a86886620",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:under-beskyttelse-av-m-rke",
+      "type": "project",
+      "name": "Under beskyttelse av mørke",
+      "mbid": "b0ee8e0b-6d42-3dba-900b-c3da3b3f0296",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sardonic-wrath",
+      "type": "project",
+      "name": "Sardonic Wrath",
+      "mbid": "1c4c8693-f604-3d8a-9d9b-1efd3e2f74c6",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hate-them",
+      "type": "project",
+      "name": "Hate Them",
+      "mbid": "ef2f78b9-5925-3b0a-8a78-3060c476a15b",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crossing-the-triangle-of-flames",
+      "type": "project",
+      "name": "Crossing the Triangle of Flames",
+      "mbid": "8a64f937-8000-30a1-8056-2c50b12de1aa",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plaguewielder",
+      "type": "project",
+      "name": "Plaguewielder",
+      "mbid": "29ebc7c8-f20a-3ab5-a912-06135dd3edc2",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ravishing-grimness",
+      "type": "project",
+      "name": "Ravishing Grimness",
+      "mbid": "3f210f1f-e460-3c43-9c98-69ab569e5e5a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:goatlord",
+      "type": "project",
+      "name": "Goatlord",
+      "mbid": "b4a20f34-a3dc-3343-b0b1-7de0543d78ed",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:total-death",
+      "type": "project",
+      "name": "Total Death",
+      "mbid": "021f995a-36ae-3a3e-9381-3c16328842d9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:panzerfaust",
+      "type": "project",
+      "name": "Panzerfaust",
+      "mbid": "4df5fc7d-52fd-3a03-ac15-6cf7693c7ff8",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:transilvanian-hunger",
+      "type": "project",
+      "name": "Transilvanian Hunger",
+      "mbid": "bc9a4ab3-2ce0-3a49-b48f-3742169d0636",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:under-a-funeral-moon",
+      "type": "project",
+      "name": "Under a Funeral Moon",
+      "mbid": "f388f4e5-e63d-3659-897e-55165eed4df5",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-blaze-in-the-northern-sky",
+      "type": "project",
+      "name": "A Blaze in the Northern Sky",
+      "mbid": "3ab57384-506c-33ff-9ecc-e5a6134e17bd",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soulside-journey",
+      "type": "project",
+      "name": "Soulside Journey",
+      "mbid": "7d4f11c8-0409-325e-a584-94c0812118c5",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cromlech-spectres-over-gorgoroth",
+      "type": "project",
+      "name": "Cromlech / Spectres Over Gorgoroth",
+      "mbid": "12afb705-f36c-486a-9fb8-539a02686913",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:too-old-too-cold",
+      "type": "track",
+      "name": "Too Old, Too Cold"
+    },
+    {
+      "slug": "track:high-on-cold-war",
+      "type": "track",
+      "name": "High on Cold War"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:fenriz",
+      "type": "artist",
+      "name": "Fenriz"
+    },
+    {
+      "slug": "artist:nocturno-culto",
+      "type": "artist",
+      "name": "Nocturno Culto"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "slug": "artist:killer-kau",
+  "name": "Killer Kau",
+  "editorial_article": "Born Sakhile Hlatshwayo in Soweto, South Africa, Killer Kau emerged as a prominent figure in the Amapiano scene after his 2017 viral video singing 'Tholukuthi Hey' caught the attention of DJ Euphonik. Before his professional music career, he developed his vocal skills singing baritone in the Stay PC church choir and the African Heavenly Soul Singers. His work in the genre earned him accolades, including a win for Best Amapiano Record at the 2019 Dance Music Awards South Africa. In 2021, he received the Best Amapiano Collaboration award at the SA Amapiano Music Awards. His career was cut short when he died in a 9 August 2021 car crash near Rustenburg while traveling to a performance alongside fellow artist Mpura.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Killer_Kau",
+      "title": "Killer Kau - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/killer-kau",
+      "title": "Killer Kau Albums: songs, discography, biography, and listening guide"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/killer-kau-mn0003692667",
+      "title": "Killer Kau — Biography, Discography, Albums & Expert Reviews - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:14:10.369Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Soweto-born Amapiano artist known for his viral breakthrough 'Tholukuthi Hey' and his formative years in church choirs.",
+  "origin": "Soweto, South Africa",
+  "active_years": "2016-2021",
+  "genres": [
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:independent",
+      "type": "label",
+      "name": "Independent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:amaneighbour",
+      "type": "project",
+      "name": "Amaneighbour",
+      "mbid": "c6a9c5a5-20e5-4e61-ba70-61a97d670aaf",
+      "year": "2021",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tholukuthi-hey",
+      "type": "track",
+      "name": "Tholukuthi Hey"
+    },
+    {
+      "slug": "track:amaneighbour",
+      "type": "track",
+      "name": "Amaneighbour"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-euphonik",
+      "type": "artist",
+      "name": "DJ Euphonik"
+    },
+    {
+      "slug": "artist:mpura",
+      "type": "artist",
+      "name": "Mpura"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

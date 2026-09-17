@@ -1,0 +1,771 @@
+{
+  "slug": "artist:lil-peep",
+  "name": "Lil Peep",
+  "editorial_article": "Born Gustav Elijah Åhr in Allentown, Pennsylvania, Lil Peep moved to Long Beach, New York, as a toddler before eventually settling in Los Angeles in 2016 to pursue a music career. His debut studio album, Come Over When You're Sober, Pt. 1, was released on August 15, 2017, via First Access Entertainment and AWAL. Known as a pioneer of the emo rap genre, he combined trap production with influences from punk bands such as The Cure and Blink-182. His breakthrough mixtapes, Crybaby and Hellboy, featured DIY production he often mastered himself. He died on November 15, 2017, in Tucson, Arizona, from an accidental overdose of fentanyl and alprazolam. Following his death, his estate oversaw posthumous releases including the 2018 album Come Over When You're Sober, Pt. 2, which peaked at number four on the Billboard 200.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lil_Peep",
+      "title": "Lil Peep"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lil_Peep_discography",
+      "title": "Lil Peep discography"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:54.919Z",
+  "type": "artist",
+  "editorial_bio": "American rapper and singer-songwriter who emerged as a leading figure in the emo rap movement through his viral SoundCloud releases.",
+  "origin": "Long Beach, New York",
+  "active_years": "2014-2017",
+  "genres": [
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo",
+      "qid": "Q10926"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:first-access-entertainment",
+      "type": "label",
+      "name": "First Access Entertainment"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:awal",
+      "type": "label",
+      "name": "AWAL"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:don-t-panic",
+      "type": "project",
+      "name": "DON'T PANIC",
+      "mbid": "f3bc44cf-a42d-4881-91f7-d6aad9c7ad61",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:getting-money-still-sad-too",
+      "type": "project",
+      "name": "getting money still sad too",
+      "mbid": "bd2523a3-8d7f-43ee-84d3-3747e9f83855",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-letter",
+      "type": "project",
+      "name": "love letter",
+      "mbid": "adc9ceca-ebce-403b-907e-3b040bbec94e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coke-nails",
+      "type": "project",
+      "name": "coke nails",
+      "mbid": "c8d3653b-19df-44e1-8090-f363ff0e3d09",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-in-case",
+      "type": "project",
+      "name": "JUST IN CASE",
+      "mbid": "7f3ad16d-cb42-42e5-aa92-6fd7d429cd64",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chase-my-racecar",
+      "type": "project",
+      "name": "Chase My Racecar",
+      "mbid": "573e80bd-55e7-460c-9d8a-4706fbcb1da0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:latitude",
+      "type": "project",
+      "name": "Latitude",
+      "mbid": "6b3a7e00-cd59-4949-8607-667fff8af655",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lil-angel",
+      "type": "project",
+      "name": "Lil Angel",
+      "mbid": "4fb4cdab-1130-44ab-a6d5-80c43fced64d",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-me",
+      "type": "project",
+      "name": "HATE ME",
+      "mbid": "06cb2b65-2ee0-480d-a796-0b91e3c24563",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:diamonds",
+      "type": "project",
+      "name": "DIAMONDS",
+      "mbid": "ac44b641-6e79-4180-a4a8-28b2f42f2b30",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:november",
+      "type": "project",
+      "name": "November",
+      "mbid": "b9207bdc-4ce1-4fe3-8c78-aab3457161df",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes",
+      "mbid": "09d2f54b-d03a-4ec7-b1ce-bbb0bea6889a",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:runaway",
+      "type": "project",
+      "name": "runaway (OG Version)",
+      "mbid": "ad73d6c7-0c6e-4009-98ce-266f60e85be4",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:butterfly-kisses",
+      "type": "project",
+      "name": "Butterfly Kisses",
+      "mbid": "b99a450c-0453-4292-9199-cd2f95bb7e73",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-fashion",
+      "type": "project",
+      "name": "HIGH FASHION",
+      "mbid": "7aa60848-fdc3-4a5d-873e-ee2228c65a15",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lil-yung",
+      "type": "project",
+      "name": "Lil Yung",
+      "mbid": "61a98ace-8e91-461a-8740-37f6afb78a67",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:friends",
+      "type": "project",
+      "name": "Friends",
+      "mbid": "4756fcd8-1c29-4e8a-a8cd-d157662095ee",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-kronik",
+      "type": "project",
+      "name": "The Kronik",
+      "mbid": "db7a8d21-256a-4887-9c8f-9210db6c000d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-and-you",
+      "type": "project",
+      "name": "Me and You",
+      "mbid": "0935989c-c1fc-4da0-8bd7-a342347f1438",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unbreakable",
+      "type": "project",
+      "name": "Unbreakable",
+      "mbid": "ad62ce9e-25e0-4e68-a8cd-1916d4f0d73d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pictures-2",
+      "type": "project",
+      "name": "Pictures 2",
+      "mbid": "9b632d5b-9a51-47f6-886b-de2bac72a5fb",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:falling-down",
+      "type": "project",
+      "name": "Falling Down (Travis Barker Remix)",
+      "mbid": "ace20d8b-7eb2-482b-b2a9-42b90b4583d9",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-ve-been-waiting",
+      "type": "project",
+      "name": "I’ve Been Waiting",
+      "mbid": "a5847337-5afd-42a1-b45a-be47f28c67df",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-over-when-you-re-sober-pt-2",
+      "type": "project",
+      "name": "Come Over When You’re Sober, Pt. 2",
+      "mbid": "339fd654-20e9-4329-bb24-1d25149bedf2",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:falling-down",
+      "type": "project",
+      "name": "Falling Down",
+      "mbid": "b48db28e-49a9-4757-9466-dbb49536f71d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunlight-on-your-skin",
+      "type": "project",
+      "name": "Sunlight On Your Skin",
+      "mbid": "5c1100d6-cedf-4d9d-b2d8-4320ca1b5b12",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-gold-chains",
+      "type": "project",
+      "name": "4 Gold Chains",
+      "mbid": "cfa95996-eb60-43df-9c4d-2863d7c363d0",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreams-x-nightmares",
+      "type": "project",
+      "name": "Dreams x Nightmares",
+      "mbid": "3c8794cf-5a8a-4d45-b338-8693481e2ed2",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spotlight",
+      "type": "project",
+      "name": "Spotlight",
+      "mbid": "87163daa-14f8-4b5a-bffc-84fbf0b1cc31",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goth-angel-sinner",
+      "type": "project",
+      "name": "Goth Angel Sinner",
+      "mbid": "2131cd89-cd1b-4085-a92c-60ca9fdb96fc",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fuck-batmane",
+      "type": "project",
+      "name": "FUCK BATMANE",
+      "mbid": "1878f822-0f21-4c20-87b7-56514e55d788",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neverland",
+      "type": "project",
+      "name": "Neverland",
+      "mbid": "80b0084d-657d-42a2-8d5c-daaf0c927c2d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:downtown",
+      "type": "project",
+      "name": "Downtown",
+      "mbid": "8afde13c-a1e8-4cdd-834b-d907cb036297",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crying",
+      "type": "project",
+      "name": "Crying",
+      "mbid": "c5d704b8-e6e7-4214-8460-a8d666f62156",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:avoid",
+      "type": "project",
+      "name": "Avoid",
+      "mbid": "0fba18cd-f107-4e6a-95f4-3bdbafaff448",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nightslayer",
+      "type": "project",
+      "name": "Nightslayer",
+      "mbid": "53005624-dcce-404d-9e98-fa2fcb93db2b",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:benz-truck-pt-2",
+      "type": "project",
+      "name": "Benz Truck, Pt. 2",
+      "mbid": "bce81bde-70aa-4864-a575-274b816a1c29",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:supernova-reflection",
+      "type": "project",
+      "name": "Supernova / Reflection",
+      "mbid": "2b36aeaf-58ce-4ac0-9833-b94ebbe30afb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-over-when-you-re-sober-pt-1",
+      "type": "project",
+      "name": "Come Over When You’re Sober, Pt. 1",
+      "mbid": "e8f9e703-e2ad-4289-bf7a-43dd9568d712",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:man-down",
+      "type": "project",
+      "name": "Man Down",
+      "mbid": "3f864146-9f7d-4f8b-a1f7-4d9ae4972a56",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-me",
+      "type": "project",
+      "name": "Kiss Me",
+      "mbid": "de376eb2-b96d-43bc-9337-c1944572b308",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:benz-truck",
+      "type": "project",
+      "name": "Benz Truck (гелик)",
+      "mbid": "97a54072-b8d9-403b-a919-834f3bc764cb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beamer-boy",
+      "type": "project",
+      "name": "Beamer Boy",
+      "mbid": "02ce9e7f-7782-4ae3-b976-12ada4b01831",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:absolute-in-doubt",
+      "type": "project",
+      "name": "absolute in doubt",
+      "mbid": "af7b9c27-fbdd-4092-a98d-3264ba8602a5",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:honestly",
+      "type": "project",
+      "name": "Honestly",
+      "mbid": "d9fb89ab-06f2-4e45-b33a-a1cb5ecdcd2e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-wine",
+      "type": "project",
+      "name": "White Wine",
+      "mbid": "e3960c98-f075-4e23-985d-0741b2caa7e1",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-respect-freestyle",
+      "type": "project",
+      "name": "no respect freestyle",
+      "mbid": "e0cfb495-ebcb-41a2-84ec-f042af7ead20",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lil-peep-lil-tracy",
+      "type": "project",
+      "name": "lil peep lil tracy",
+      "mbid": "6b817e27-9ae5-4f1c-8c51-8b14d1920770",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unify",
+      "type": "project",
+      "name": "Unify",
+      "mbid": "e0389e07-835c-478c-bb99-88155fe9d395",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:witchblades",
+      "type": "project",
+      "name": "witchblades",
+      "mbid": "ff434fe6-4717-46b3-b5d2-12b3113d4636",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hollywood-dreaming",
+      "type": "project",
+      "name": "Hollywood Dreaming",
+      "mbid": "deefca74-4fa6-4f5c-9a42-e08dfa54ad28",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:castles-ii",
+      "type": "project",
+      "name": "CÅSTLES II",
+      "mbid": "0995d4f0-54dd-410a-aa45-83c3b46b271a",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stop-the-car",
+      "type": "project",
+      "name": "stop the car",
+      "mbid": "1d1ffa98-3b09-4574-b6da-b4900b64e1d6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pineapple-soda",
+      "type": "project",
+      "name": "Pineapple soda",
+      "mbid": "f895f9be-1719-4e1a-a1ec-c258efbb2bf8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kisses-in-the-wind",
+      "type": "project",
+      "name": "kisses in the wind",
+      "mbid": "5a7e3260-d4a5-4d79-8cee-497894c110bb",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burnt-diary",
+      "type": "project",
+      "name": "BURNT DIARY",
+      "mbid": "e912e85c-b170-4dea-a999-e359d062a80b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-crash-u-crash",
+      "type": "project",
+      "name": "i crash, u crash",
+      "mbid": "c37f8baa-8f08-4b87-9571-3c3bb9de7cc1",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:giving-girls-cocaine",
+      "type": "project",
+      "name": "Giving Girls Cocaine",
+      "mbid": "614e7056-a255-495b-b4a5-c0d0442be04c",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:right-here",
+      "type": "project",
+      "name": "right here",
+      "mbid": "c25f8377-0496-4dad-a2bd-7c1b614ca624",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:backseat",
+      "type": "project",
+      "name": "backseat",
+      "mbid": "26e3f18f-08db-473d-8b08-1cc9e0843ffa",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-letter",
+      "type": "project",
+      "name": "Love Letter",
+      "mbid": "421be910-a4a8-4382-9caa-beab6456d108",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss",
+      "type": "project",
+      "name": "Kiss",
+      "mbid": "c18d0df4-e756-4e6c-bb20-c6ad7e622803",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:about-u",
+      "type": "project",
+      "name": "about u",
+      "mbid": "dda1225b-5a7d-4c46-94e6-45efcf2848d6",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:running-out-of-time",
+      "type": "project",
+      "name": "Running Out of Time (R.O.O.T.)",
+      "mbid": "905c4580-f7b3-46ca-8223-c19447c31680",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuck-fame",
+      "type": "project",
+      "name": "fuck fame",
+      "mbid": "467f17cc-e73b-4f6f-9ec9-2493e6d8585b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-love",
+      "type": "project",
+      "name": "No Love",
+      "mbid": "ef639884-dbe5-4152-b8c2-c0c8e537f5dc",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-my-life",
+      "type": "project",
+      "name": "hate my life",
+      "mbid": "ebf66c21-41ca-4ab4-837c-827350832ff4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gods",
+      "type": "project",
+      "name": "GODS",
+      "mbid": "f593f02c-36db-4c8f-b34d-ffe12ecfa471",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sex",
+      "type": "project",
+      "name": "sex [last nite]",
+      "mbid": "a57aab81-5043-4916-a08f-2a26256d4d83",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:castles",
+      "type": "project",
+      "name": "Castles",
+      "mbid": "6f1c4025-ef10-4b44-a0ee-8572e9c9df97",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tears",
+      "type": "project",
+      "name": "tears",
+      "mbid": "efac0d0b-deb7-4a13-828f-f1f1d651e603",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:teen-romance",
+      "type": "project",
+      "name": "Teen Romance",
+      "mbid": "150890ff-7142-425b-9f9d-dcd60ee71f44",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blueberry-lemonade",
+      "type": "project",
+      "name": "Blueberry Lemonade",
+      "mbid": "5e790563-a4d7-4da9-b40d-06a26ef677f6",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dead-broke",
+      "type": "project",
+      "name": "Dead Broke",
+      "mbid": "d8bd750d-f83d-4874-8a98-fb2bd7483aa9",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:flexin",
+      "type": "project",
+      "name": "Flexin",
+      "mbid": "9e2f7415-34b0-4808-a7cb-32314a94cd8b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-run",
+      "type": "project",
+      "name": "On the Run",
+      "mbid": "da1b5705-47f5-4191-9de7-9cd50d0d50af",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:homecoming",
+      "type": "project",
+      "name": "Homecoming",
+      "mbid": "81191def-7948-4036-9654-a20bbe2d66bb",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gym-class",
+      "type": "project",
+      "name": "Gym Class",
+      "mbid": "fd574887-3c81-4bfd-8c14-abea8b427ddd",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crying-diamonds",
+      "type": "project",
+      "name": "Crying Diamonds",
+      "mbid": "754dc902-cca6-4727-a09d-cc1676a27c35",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lets-get-it",
+      "type": "project",
+      "name": "Lets Get It",
+      "mbid": "b2b1ae64-56fb-4107-8291-e4b7fe14e9a8",
+      "year": "2016",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:star-shopping",
+      "type": "track",
+      "name": "Star Shopping"
+    },
+    {
+      "slug": "track:awful-things",
+      "type": "track",
+      "name": "Awful Things"
+    },
+    {
+      "slug": "track:falling-down",
+      "type": "track",
+      "name": "Falling Down"
+    },
+    {
+      "slug": "track:spotlight",
+      "type": "track",
+      "name": "Spotlight"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:lil-tracy",
+      "type": "artist",
+      "name": "Lil Tracy"
+    },
+    {
+      "slug": "artist:ilovemakonnen",
+      "type": "artist",
+      "name": "iLoveMakonnen"
+    },
+    {
+      "slug": "artist:smokeasac",
+      "type": "artist",
+      "name": "Smokeasac"
+    },
+    {
+      "slug": "artist:bexey",
+      "type": "artist",
+      "name": "Bexey"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:trap-goose",
+      "type": "artist",
+      "name": "Trap Goose"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:gustav-elijah-ahr",
+      "type": "artist",
+      "name": "Gustav Elijah Åhr"
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "slug": "artist:antonio-carlos-jobim",
+  "name": "Antônio Carlos Jobim",
+  "editorial_article": "Born 25 January 1927 in Rio de Janeiro, Antônio Carlos Jobim emerged as a central architect of bossa nova by blending the rhythmic foundations of samba with the sophisticated structures of cool jazz. His early career included working as an arranger at Continental Studio, where his first recorded composition, 'Incerteza,' was captured by Mauricy Moura in 1953. Jobim gained international prominence through his work with lyricist Vinicius de Moraes on 'Orfeu da Conceição' (1956), which helped pave the way for his pivotal role in the bossa nova explosion of the early 1960s. His 1964 collaboration with Stan Getz and João Gilberto, 'Getz/Gilberto,' garnered three Grammy Awards, with his composition 'The Girl from Ipanema' becoming a global standard. Influenced heavily by Ary Barroso and the atonal techniques of Hans-Joachim Koellreutter, Jobim's later career saw significant artistic partnerships, including the 1974 'Elis & Tom' album with singer Elis Regina. He continued to write until his death in 1994, with his final studio effort, 'Antônio Brasileiro,' released posthumously.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ant%C3%B4nio_Carlos_Jobim",
+      "title": "Antônio Carlos Jobim - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/ant%C3%B4nio-carlos-jobim-mn0000781837",
+      "title": "Antônio Carlos Jobim — Biography, Discography, Albums ... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:35.013Z",
+  "type": "artist",
+  "editorial_bio": "A towering figure of 20th-century music, Jobim pioneered the bossa nova genre and authored some of the most recorded jazz standards in history.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "1945-1994",
+  "genres": [
+    {
+      "slug": "genre:bossa-nova",
+      "type": "genre",
+      "name": "Bossa Nova",
+      "qid": "Q486263"
+    },
+    {
+      "slug": "genre:latin-jazz",
+      "type": "genre",
+      "name": "Latin Jazz",
+      "qid": "Q837389"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:latin",
+      "type": "genre",
+      "name": "Latin",
+      "qid": "Q18345375"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:verve",
+      "type": "label",
+      "name": "Verve"
+    },
+    {
+      "slug": "label:warner-bros",
+      "type": "label",
+      "name": "Warner Bros."
+    },
+    {
+      "slug": "label:cti",
+      "type": "label",
+      "name": "CTI"
+    },
+    {
+      "slug": "label:philips",
+      "type": "label",
+      "name": "Philips"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:deluxe-edition",
+      "type": "project",
+      "name": "Deluxe Edition",
+      "mbid": "62dd322c-0890-47d1-b0ad-04cfce1c71ba",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:caminhos-cruzados",
+      "type": "project",
+      "name": "Caminhos Cruzados",
+      "mbid": "3713d95b-e27a-4bb1-8c43-641e62ce1e26",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:simplesmente-jobim",
+      "type": "project",
+      "name": "Simplesmente Jobim",
+      "mbid": "065a97ec-918d-4f8f-9457-b91a4b06b47b",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:um-encontro-no-au-bon-gourmet",
+      "type": "project",
+      "name": "Um Encontro no Au Bon Gourmet (Live 1962)",
+      "mbid": "1c5fe111-94af-40ed-a6f7-f448e1ea8aba",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:birth-of-the-bossa",
+      "type": "project",
+      "name": "Birth Of The Bossa!",
+      "mbid": "264f5946-0a1f-4cbf-bc8c-2ddcdf754722",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aquarela-do-brasil",
+      "type": "project",
+      "name": "Aquarela do Brasil",
+      "mbid": "f4fc2a84-d025-49d0-b863-4de97c2ee675",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brazila-kolekto",
+      "type": "project",
+      "name": "Brazila kolekto",
+      "mbid": "73c34323-5342-4072-9d96-441cdeef5c24",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quiet-now-nights-of-quiet-stars",
+      "type": "project",
+      "name": "Quiet Now: Nights Of Quiet Stars",
+      "mbid": "44854e35-44f2-3a3c-805f-d3b2dd0e2877",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:antonio-brasileiro",
+      "type": "project",
+      "name": "Antonio Brasileiro",
+      "mbid": "770e74dc-5641-3ec0-83e1-6b95365cdbca",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:encontro",
+      "type": "project",
+      "name": "Encontro",
+      "mbid": "b6ae7e60-c4b2-315b-b2f2-1bbf50a42586",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:passarim",
+      "type": "project",
+      "name": "Passarim",
+      "mbid": "18cb18c9-4f1e-333c-9859-4b2a5f4f5583",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inedito",
+      "type": "project",
+      "name": "Inédito",
+      "mbid": "5c55a7c2-cf9a-32d3-84a4-76b6b4f8b49e",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:edu-and-tom",
+      "type": "project",
+      "name": "Edu & Tom",
+      "mbid": "d977eb6c-0704-3845-9858-c006f88ccb99",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:terra-brasilis",
+      "type": "project",
+      "name": "Terra Brasilis",
+      "mbid": "e86a1aea-bbcd-3623-8918-0e4aff2992c0",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miucha-and-tom-jobim",
+      "type": "project",
+      "name": "Miucha & Tom Jobim",
+      "mbid": "b2fa07aa-8d8d-3106-8934-918f20d6b82d",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miucha-and-antonio-carlos-jobim",
+      "type": "project",
+      "name": "Miucha & Antonio Carlos Jobim",
+      "mbid": "13f2d5d8-0870-4449-8e97-de0942893922",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:urubu",
+      "type": "project",
+      "name": "Urubu",
+      "mbid": "8305685b-6c6a-33ff-9aad-3f673be11854",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elis-and-tom",
+      "type": "project",
+      "name": "Elis & Tom",
+      "mbid": "f9520003-6075-310e-b650-bbaa8aaeab4d",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:matita-pere",
+      "type": "project",
+      "name": "Matita Perê",
+      "mbid": "e894164e-204d-416e-a572-cd7e19fd2a47",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jobim",
+      "type": "project",
+      "name": "Jobim",
+      "mbid": "a8e27598-6f50-39b2-87f1-2bcb6c9ad30b",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:o-tom-de-antonio-carlos-jobim-e-o-tal-de-joao-bosco",
+      "type": "project",
+      "name": "O tom de Antonio Carlos Jobim e o tal de João Bosco",
+      "mbid": "a43fe12f-35d5-44c3-9cf8-2a321290f075",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tide",
+      "type": "project",
+      "name": "Tide",
+      "mbid": "27d85194-e2e9-3d86-b6c2-53fc3d7eb15c",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brazil",
+      "type": "project",
+      "name": "Brazil",
+      "mbid": "e3173e94-9f0a-425e-a6a9-82042d4b8429",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stone-flower",
+      "type": "project",
+      "name": "Stone Flower",
+      "mbid": "e749dd10-8be4-3c2c-abda-22102a2d7003",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:francis-albert-sinatra-and-antonio-carlos-jobim",
+      "type": "project",
+      "name": "Francis Albert Sinatra & Antônio Carlos Jobim",
+      "mbid": "943461cc-377c-3f96-9d89-4d3ff5b03d25",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-certain-mr-jobim",
+      "type": "project",
+      "name": "A Certain Mr. Jobim",
+      "mbid": "5ef12b44-4d9e-4813-a955-efbf12f1cdf9",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wave",
+      "type": "project",
+      "name": "Wave",
+      "mbid": "935fccc4-064a-339c-ba4c-b0acee6ff5eb",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:antonio-carlos-jobim-and-sergio-mendes",
+      "type": "project",
+      "name": "Antonio Carlos Jobim & Sérgio Mendes",
+      "mbid": "bd2d1864-f84e-402b-baa4-3ab848cfea4c",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tom-jobim-apresenta",
+      "type": "project",
+      "name": "Tom Jobim apresenta",
+      "mbid": "cc058406-882a-4d63-a94a-f14b47b5dca7",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-swinger-from-rio",
+      "type": "project",
+      "name": "The Swinger From Rio",
+      "mbid": "e4b780f1-8741-3520-b093-351378dd3abd",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-wonderful-world-of-antonio-carlos-jobim",
+      "type": "project",
+      "name": "The Wonderful World of Antonio Carlos Jobim",
+      "mbid": "970b8169-76a1-317e-b04b-f979a3572d22",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:getz-gilberto",
+      "type": "project",
+      "name": "Getz / Gilberto",
+      "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:caymmi-visita-tom",
+      "type": "project",
+      "name": "Caymmi visita Tom",
+      "mbid": "608b1c11-9f3c-3f1f-9f2e-3cc4f6c76390",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-composer-of-desafinado-plays",
+      "type": "project",
+      "name": "The Composer of Desafinado, Plays",
+      "mbid": "ff43f179-c079-3ca8-b9e8-f9852ecff712",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brasilia-sinfonia-da-alvorada",
+      "type": "project",
+      "name": "Brasília: Sinfonia da Alvorada",
+      "mbid": "ef8b88e0-8ef1-428a-baa1-9a8a5b5b42cc",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sinfonia-do-rio-de-janeiro",
+      "type": "project",
+      "name": "Sinfonia do Rio de Janeiro",
+      "mbid": "03f9d867-f737-447e-a3ee-1732e6159c95",
+      "year": "1954",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-world-we-knew-studio-sessions",
+      "type": "project",
+      "name": "The World We Knew Studio Sessions",
+      "mbid": "4410870d-975d-4fb8-9688-266bd616ae69",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-girl-from-ipanema",
+      "type": "track",
+      "name": "The Girl from Ipanema"
+    },
+    {
+      "slug": "track:desafinado",
+      "type": "track",
+      "name": "Desafinado"
+    },
+    {
+      "slug": "track:chega-de-saudade",
+      "type": "track",
+      "name": "Chega de Saudade"
+    },
+    {
+      "slug": "track:aguas-de-marco",
+      "type": "track",
+      "name": "Aguas de Março"
+    },
+    {
+      "slug": "track:corcovado",
+      "type": "track",
+      "name": "Corcovado"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:vinicius-de-moraes",
+      "type": "artist",
+      "name": "Vinicius de Moraes"
+    },
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto"
+    },
+    {
+      "slug": "artist:elis-regina",
+      "type": "artist",
+      "name": "Elis Regina"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
+    },
+    {
+      "slug": "artist:astrud-gilberto",
+      "type": "artist",
+      "name": "Astrud Gilberto"
+    },
+    {
+      "slug": "artist:edu-lobo",
+      "type": "artist",
+      "name": "Edu Lobo"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tom-jobim",
+      "type": "artist",
+      "name": "Tom Jobim"
+    }
+  ],
+  "members": []
+}

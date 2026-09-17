@@ -1,0 +1,155 @@
+{
+  "slug": "artist:inner-life",
+  "name": "Inner Life",
+  "editorial_article": "Formed in 1979 in New York, the studio project Inner Life became a pillar of the club-oriented soul and disco scene under the production of Patrick Adams. The project's debut hit, \"I'm Caught Up (In a One Night Love Affair),\" was released on Prelude Records and reached number 7 on the US Dance charts. Later recordings featured vocals by Jocelyn Brown and Leroy Burgess, the latter previously a member of Black Ivory. The 1981 version of \"Ain't No Mountain High Enough\" gained significant club play through a remix by DJ Larry Levan. Engineering duties for the group's sessions were handled by Bob Blank and Joe Arlotta, with tracks overseen by executive producer Greg Carmichael for Red Greg Records and Salsoul Records. Their output includes three full-length studio albums, with \"Moment of My Life\" appearing in 1982.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Inner_Life",
+      "title": "Inner Life - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/inner-life-mn0000076375",
+      "title": "Inner Life — Biography, Discography, Albums & Expert Reviews | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:12:18.152Z",
+  "type": "artist",
+  "editorial_bio": "An influential 1979 New York studio project led by producer Patrick Adams and featuring vocalists Jocelyn Brown and Leroy Burgess.",
+  "origin": "New York, NY",
+  "active_years": "1979-1986",
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:salsoul-records",
+      "type": "label",
+      "name": "Salsoul Records"
+    },
+    {
+      "slug": "label:prelude-records",
+      "type": "label",
+      "name": "Prelude Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:no-way",
+      "type": "project",
+      "name": "No Way",
+      "mbid": "2c9b688b-d59e-4f89-9073-75920b7c64ab",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inner-life-ii",
+      "type": "project",
+      "name": "Inner Life II",
+      "mbid": "8f33ac7e-5612-361f-8a1f-a11578b13836",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moment-of-my-life",
+      "type": "project",
+      "name": "Moment of my Life",
+      "mbid": "fdb648a8-0b4f-4344-9fa8-7b1cee8e18a9",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inner-life",
+      "type": "project",
+      "name": "Inner Life",
+      "mbid": "a7783694-6d20-450e-bd24-f193206016db",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ain-t-no-mountain-high-enough",
+      "type": "project",
+      "name": "Ain't No Mountain High Enough",
+      "mbid": "2dea534f-74c4-4497-a88f-786bd0503f84",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-caught-up",
+      "type": "project",
+      "name": "I'm Caught Up (In a One Night Love Affair)",
+      "mbid": "e64edfcf-ed5c-42e5-a5b2-ad3378da850c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-caught-up",
+      "type": "project",
+      "name": "I'm Caught Up (In a One Night Love Affair)",
+      "mbid": "3ccf3a63-647f-4dc9-b61e-7d4ed094cc76",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:12-classics",
+      "type": "project",
+      "name": "12\" Classics",
+      "mbid": "80f3ae0d-12c2-3753-a8e2-f78fb5cf123e",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:i-m-caught-up",
+      "type": "track",
+      "name": "I'm Caught Up (In a One Night Love Affair)"
+    },
+    {
+      "slug": "track:ain-t-no-mountain-high-enough",
+      "type": "track",
+      "name": "Ain't No Mountain High Enough"
+    },
+    {
+      "slug": "track:moment-of-my-life",
+      "type": "track",
+      "name": "Moment of My Life"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jocelyn-brown",
+      "type": "artist",
+      "name": "Jocelyn Brown"
+    },
+    {
+      "slug": "artist:leroy-burgess",
+      "type": "artist",
+      "name": "Leroy Burgess"
+    },
+    {
+      "slug": "artist:patrick-adams",
+      "type": "artist",
+      "name": "Patrick Adams"
+    }
+  ]
+}

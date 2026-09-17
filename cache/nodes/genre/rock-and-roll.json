@@ -34,11 +34,19 @@
   },
   "type": "genre",
   "editorial_definition": "A foundational genre of popular music that emerged in the U.S. in the late 1940s and early 1950s, synthesizing African-American musical styles like rhythm and blues, gospel, and jazz with country and boogie-woogie. Characterized by a high-energy dance beat, prominent backbeat, and the eventual dominance of the electric guitar, it became a transformative force in global culture and a precursor to modern rock music.",
+  "qid": "Q7749",
   "era": "Late 1940s to mid-1960s",
   "origin": "United States",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:popular-music",
+      "type": "genre",
+      "name": "Popular music",
+      "qid": "Q373342"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:chuck-berry",
@@ -68,6 +76,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q7749"
+  "landmark_tracks": []
 }

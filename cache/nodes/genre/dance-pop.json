@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "Dance-pop is an uptempo, electronic-influenced genre that combines the club-ready, beat-driven structures of dance music with the catchy, melody-focused songwriting of mainstream pop.",
+  "qid": "Q211756",
   "era": "Late 1970s to present",
   "origin": "United States and United Kingdom",
   "parent_genres": [
@@ -69,6 +70,12 @@
       "type": "genre",
       "name": "Post-disco",
       "qid": "Q1190485"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
     }
   ],
   "key_artists": [
@@ -100,6 +107,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q211756"
+  "landmark_tracks": []
 }

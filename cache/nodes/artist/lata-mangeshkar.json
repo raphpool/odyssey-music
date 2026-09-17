@@ -1,0 +1,192 @@
+{
+  "slug": "artist:lata-mangeshkar",
+  "name": "Lata Mangeshkar",
+  "editorial_article": "Lata Mangeshkar, born in 1929 in Indore, emerged as the definitive playback singer of Indian cinema, beginning her professional journey in 1942 Marathi musical theater. After moving to Mumbai in 1945, she studied Hindustani classical music under Ustad Aman Ali Khan. Her breakthrough as a star arrived in 1949 with the song 'Aayega Aanewaala' from the film Mahal, composed by Khemchand Prakash. She famously demanded playback singers receive their own category at the Filmfare Awards, leading to its introduction in 1959. In 1963, she moved Prime Minister Jawaharlal Nehru to tears performing the patriotic 'Aye Mere Watan Ke Logo,' written by Kavi Pradeep. Known for recording barefoot out of respect for the studio, she collaborated extensively with composers Laxmikant–Pyarelal, S. D. Burman, and Madan Mohan, defining the sound of Hindi cinema for over seven decades. She held the record for most recorded artist in the Guinness World Records before being succeeded by her sister, Asha Bhosle.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lata_Mangeshkar",
+      "title": "Lata Mangeshkar"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Lata-Mangeshkar",
+      "title": "Lata Mangeshkar | Biography, Songs, Awards, Career, & Facts"
+    },
+    {
+      "url": "https://www.imdb.com/name/nm0542196/",
+      "title": "Lata Mangeshkar (1929-2022)"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:07:53.757Z",
+  "type": "artist",
+  "editorial_bio": "An iconic Indian playback singer and composer whose career spanned eight decades, earning her titles like the Queen of Melody and Voice of the Millennium.",
+  "origin": "Indore, India",
+  "active_years": "1942-2022",
+  "genres": [
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Filmi",
+      "qid": "Q544440"
+    },
+    {
+      "slug": "genre:indian-classical-music",
+      "type": "genre",
+      "name": "Indian classical music",
+      "qid": "Q1323698"
+    },
+    {
+      "slug": "genre:bhajan",
+      "type": "genre",
+      "name": "Bhajan",
+      "qid": "Q854775"
+    },
+    {
+      "slug": "genre:ghazal",
+      "type": "genre",
+      "name": "Ghazal",
+      "qid": "Q281111"
+    },
+    {
+      "slug": "genre:sufi",
+      "type": "genre",
+      "name": "Sufi",
+      "qid": "Q1755959"
+    },
+    {
+      "slug": "genre:bollywood",
+      "type": "genre",
+      "name": "Bollywood",
+      "qid": "Q6942022"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hmv",
+      "type": "label",
+      "name": "HMV"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:mahal",
+      "type": "project",
+      "name": "Mahal"
+    },
+    {
+      "slug": "project:madhumati",
+      "type": "project",
+      "name": "Madhumati"
+    },
+    {
+      "slug": "project:mughal-e-azam",
+      "type": "project",
+      "name": "Mughal-e-Azam"
+    },
+    {
+      "slug": "project:guide",
+      "type": "project",
+      "name": "Guide"
+    },
+    {
+      "slug": "project:pakeezah",
+      "type": "project",
+      "name": "Pakeezah"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:aayega-aanewaala",
+      "type": "track",
+      "name": "Aayega Aanewaala"
+    },
+    {
+      "slug": "track:pyar-kiya-to-darna-kya",
+      "type": "track",
+      "name": "Pyar Kiya To Darna Kya"
+    },
+    {
+      "slug": "track:lag-jaa-gale",
+      "type": "track",
+      "name": "Lag Jaa Gale"
+    },
+    {
+      "slug": "track:aye-mere-watan-ke-logo",
+      "type": "track",
+      "name": "Aye Mere Watan Ke Logo"
+    },
+    {
+      "slug": "track:ajeeb-dastaan-hai-yeh",
+      "type": "track",
+      "name": "Ajeeb Dastaan Hai Yeh"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:noor-jehan",
+      "type": "artist",
+      "name": "Noor Jehan"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    },
+    {
+      "slug": "artist:kishore-kumar",
+      "type": "artist",
+      "name": "Kishore Kumar"
+    },
+    {
+      "slug": "artist:mohammed-rafi",
+      "type": "artist",
+      "name": "Mohammed Rafi"
+    },
+    {
+      "slug": "artist:hridaynath-mangeshkar",
+      "type": "artist",
+      "name": "Hridaynath Mangeshkar"
+    },
+    {
+      "slug": "artist:salil-chowdhury",
+      "type": "artist",
+      "name": "Salil Chowdhury"
+    },
+    {
+      "slug": "artist:naushad-ali",
+      "type": "artist",
+      "name": "Naushad Ali"
+    },
+    {
+      "slug": "artist:madan-mohan",
+      "type": "artist",
+      "name": "Madan Mohan"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:lata-didi",
+      "type": "artist",
+      "name": "Lata Didi"
+    },
+    {
+      "slug": "artist:swar-kokila",
+      "type": "artist",
+      "name": "Swar Kokila"
+    },
+    {
+      "slug": "artist:anandghan",
+      "type": "artist",
+      "name": "Anandghan"
+    }
+  ],
+  "members": []
+}

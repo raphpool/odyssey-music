@@ -1,0 +1,779 @@
+{
+  "slug": "artist:ludacris",
+  "name": "Ludacris",
+  "editorial_article": "Born Christopher Brian Bridges in Champaign, Illinois, Ludacris relocated to Atlanta, Georgia, to begin his career as a radio DJ and intern at Hot 97.5 under the name Chris Lova Lova. He gained early industry attention through a feature on Timbaland's 1998 track 'Phat Rabbit' before launching his independent label, Disturbing tha Peace, in the late 1990s. His 1999 debut 'Incognegro' was re-packaged by Def Jam South as his 2000 major-label arrival 'Back for the First Time,' which reached number four on the Billboard 200. He secured mainstream status with the Kanye West-produced 'Stand Up' in 2003, his first number-one single as a lead artist. His output frequently collaborated with Southern contemporaries like Lil Jon, Shawnna, and Young Jeezy, while his later career included an pivot into voice acting and film, including his long-running role as Tej Parker in the Fast & Furious franchise. He notably received an honorary Bachelor of Science degree in Music Management from Georgia State University in 2022.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ludacris",
+      "title": "Ludacris - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Ludacris_discography",
+      "title": "Ludacris discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:49.002Z",
+  "type": "artist",
+  "editorial_bio": "An influential Southern rapper and actor, Ludacris emerged from Atlanta's radio scene to define the 2000s with multi-platinum, genre-crossing hits.",
+  "origin": "Atlanta, Georgia",
+  "active_years": "1998-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:disturbing-tha-peace",
+      "type": "label",
+      "name": "Disturbing tha Peace"
+    },
+    {
+      "slug": "label:def-jam-recordings",
+      "type": "label",
+      "name": "Def Jam Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:real-hustla",
+      "type": "project",
+      "name": "Real Hustla",
+      "mbid": "f3f76f9a-a1dc-4b09-966c-b619d6556266",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pull-over",
+      "type": "project",
+      "name": "Pull Over",
+      "mbid": "61eedf0a-6e59-4acb-9e16-8c9525d37e2d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:44-bars",
+      "type": "project",
+      "name": "44 Bars",
+      "mbid": "e89631ad-fdfe-4286-82b8-7ef5898e2b41",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:buying-all-black",
+      "type": "project",
+      "name": "Buying All Black",
+      "mbid": "a3777b00-8480-41f6-810e-dcd01c490986",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-said-what-i-said",
+      "type": "project",
+      "name": "I Said What I Said",
+      "mbid": "933e8625-6ff3-48f3-b0e6-a97f2d44263c",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dick",
+      "type": "project",
+      "name": "Dick",
+      "mbid": "0c103310-42b6-476a-825d-360c0965fec7",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:butter-atl",
+      "type": "project",
+      "name": "Butter.ATL",
+      "mbid": "0318fbd7-4a92-4005-8097-e58d8c99c506",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:found-you",
+      "type": "project",
+      "name": "Found You",
+      "mbid": "235b99ad-e6cb-4ab3-aee3-2069d46376a8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:s-o-t-l",
+      "type": "project",
+      "name": "S.O.T.L. (Silence of the Lambs)",
+      "mbid": "8fa4cd04-2d01-4053-95d0-73815e008d34",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sexbeat",
+      "type": "project",
+      "name": "SexBeat",
+      "mbid": "846bd1ca-6e84-4fd9-852d-1cfbe6b684ef",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quiero-saber",
+      "type": "project",
+      "name": "Quiero saber",
+      "mbid": "eaa15da2-5d15-4dd0-8dc7-6e5b45e15bb0",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-champion",
+      "type": "project",
+      "name": "The Champion",
+      "mbid": "10eb582e-9b76-475b-a594-0c09ab3c4359",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vices",
+      "type": "project",
+      "name": "Vices",
+      "mbid": "a6552f23-b092-42b6-888f-44de032db3d4",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vitamin-d",
+      "type": "project",
+      "name": "Vitamin D",
+      "mbid": "17a78e94-4784-4f83-8339-e17861ed7511",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ludaversal",
+      "type": "project",
+      "name": "Ludaversal",
+      "mbid": "c9e448eb-58a0-455d-b615-4bb4910f54c6",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:burning-bridges",
+      "type": "project",
+      "name": "Burning Bridges",
+      "mbid": "52d9740e-8ff5-4bc9-b93d-0438000d3d6d",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:party-girls",
+      "type": "project",
+      "name": "Party Girls",
+      "mbid": "3362ece7-aa96-4105-814e-2d8173d743a2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:helluva-night",
+      "type": "project",
+      "name": "Helluva Night",
+      "mbid": "4937031f-9b19-4f07-8d06-cb8897d9d73f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-best-friend",
+      "type": "project",
+      "name": "My Best Friend (Paul Walker Tribute Song)",
+      "mbid": "0888c9cc-193f-4e20-9342-006c3a3f70e9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rest-of-my-life",
+      "type": "project",
+      "name": "Rest of My Life",
+      "mbid": "6bdbe8b6-2a4a-429a-bd2c-cf9f30e8a3bb",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:representin",
+      "type": "project",
+      "name": "Representin",
+      "mbid": "48cfee0c-c374-456b-98b2-d8415a02787b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-around-the-world",
+      "type": "project",
+      "name": "All Around the World",
+      "mbid": "e0a26cb8-ec32-470d-8040-bc550cd91564",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jingalin",
+      "type": "project",
+      "name": "Jingalin",
+      "mbid": "214a0c7c-ed40-4c10-b856-0e913bf6abbb",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonight",
+      "type": "project",
+      "name": "Tonight (Best You Ever Had)",
+      "mbid": "f234ba28-12df-44d3-83ac-f790d5d2a72e",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:little-bad-girl",
+      "type": "project",
+      "name": "Little Bad Girl",
+      "mbid": "a6225c88-466c-4112-93d9-e7ca7abb7474",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drop-down",
+      "type": "project",
+      "name": "Drop Down",
+      "mbid": "eec69840-ff18-4174-b848-88f911b3e7df",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonight",
+      "type": "project",
+      "name": "Tonight (I'm Fuckin' You)",
+      "mbid": "6edcabec-848f-4140-bc53-f8bda8d54acc",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:body-shots",
+      "type": "project",
+      "name": "Body Shots",
+      "mbid": "107ad6a2-8f5b-4f25-88e6-a550360f4c3a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ride",
+      "type": "project",
+      "name": "Ride",
+      "mbid": "b26d21d8-e7f1-468e-b3b5-f6a5c3757ece",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:battle-of-the-sexes",
+      "type": "project",
+      "name": "Battle of the Sexes",
+      "mbid": "53319b86-2bac-4e89-b311-be36f53c1500",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-chick-bad",
+      "type": "project",
+      "name": "My Chick Bad",
+      "mbid": "1af4068c-076f-4977-9854-b12c743f9009",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hey-ho",
+      "type": "project",
+      "name": "Hey Ho",
+      "mbid": "c5a501cb-ef81-4cd1-9945-fdcb26dae59b",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-low",
+      "type": "project",
+      "name": "How Low (remix)",
+      "mbid": "09e05b4a-c109-4288-a73f-1cb95d116028",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-i-do-is-win",
+      "type": "project",
+      "name": "All I Do Is Win",
+      "mbid": "70a2ba7f-3cc4-485a-b33a-be39447df998",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby",
+      "type": "project",
+      "name": "Baby",
+      "mbid": "2b0521b0-6de9-43e2-90e0-6797ef5707d0",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:regret",
+      "type": "project",
+      "name": "Regret",
+      "mbid": "25fcde8f-e202-4f69-843f-1d699c5e3e46",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-low",
+      "type": "project",
+      "name": "How Low",
+      "mbid": "3124263f-cecf-4aa9-a9a6-2352824f7c35",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bulletproof",
+      "type": "project",
+      "name": "Bulletproof",
+      "mbid": "ceb5e765-01a7-448a-96e2-bbbf86f0397c",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-your-heart",
+      "type": "project",
+      "name": "Break Your Heart",
+      "mbid": "eb71314b-dd33-445e-a2ae-6e921cbf8595",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nasty-girl",
+      "type": "project",
+      "name": "Nasty Girl",
+      "mbid": "5dbfa442-fcae-44a1-9d33-6b23466b5a60",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:addicted-to-money",
+      "type": "project",
+      "name": "Addicted to Money",
+      "mbid": "78231c26-1285-4216-8bba-7b90a3a8893a",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:theater-of-the-mind",
+      "type": "project",
+      "name": "Theater of the Mind",
+      "mbid": "cc045269-3953-3c30-aef8-2092524ad8f3",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-more-drink",
+      "type": "project",
+      "name": "One More Drink",
+      "mbid": "7d22147f-fb12-447b-925c-5844ab04a446",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:undisputed",
+      "type": "project",
+      "name": "Undisputed",
+      "mbid": "2d987918-c6fb-4c16-b44e-320e9ae184ed",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wish-you-would",
+      "type": "project",
+      "name": "Wish You Would",
+      "mbid": "0f1cf257-b409-419a-b743-9eb448d692cd",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-we-do-it",
+      "type": "project",
+      "name": "How We Do It (Around My Way)",
+      "mbid": "372e8c9a-899a-454f-bfac-6ecf650a8c20",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-them-girls-like",
+      "type": "project",
+      "name": "What Them Girls Like",
+      "mbid": "0730685e-e027-433c-ac11-57ee2dd85f78",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:creepin",
+      "type": "project",
+      "name": "Creepin’ (Solo)",
+      "mbid": "c3f72be0-161c-4a4e-8fd2-dbf5c45e499d",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:grippin",
+      "type": "project",
+      "name": "Grippin'",
+      "mbid": "f7e948bb-631a-4dc0-8372-a6772e3ffbd3",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ludacrismas",
+      "type": "project",
+      "name": "Ludacrismas",
+      "mbid": "e0fffdd1-8b9e-47c8-8442-9132a61c8825",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:glamorous",
+      "type": "project",
+      "name": "Glamorous",
+      "mbid": "21a03913-d3bd-3253-a12b-2a6c1d202f62",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-in-the-dirty",
+      "type": "project",
+      "name": "Down in the Dirty",
+      "mbid": "2f626eb1-2859-49cf-b423-78c12a279630",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slap",
+      "type": "project",
+      "name": "Slap",
+      "mbid": "6a695059-6078-4c67-9abb-8cb9e044d2e0",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:release-therapy",
+      "type": "project",
+      "name": "Release Therapy",
+      "mbid": "6c622874-8df9-36db-b1b4-49d45b07de99",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:need-a-boss",
+      "type": "project",
+      "name": "Need a Boss",
+      "mbid": "756b1e4f-aeb8-4711-b18b-f3f982228348",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:grew-up-a-screw-up",
+      "type": "project",
+      "name": "Grew Up a Screw Up",
+      "mbid": "7ee388cc-ab9c-44f7-b332-81e3cbd65dab",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-can-believe-it",
+      "type": "project",
+      "name": "U Can Believe It",
+      "mbid": "ac89c259-a419-4058-849b-72e20daecfbf",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:runaway-love",
+      "type": "project",
+      "name": "Runaway Love",
+      "mbid": "d0b15f99-2bd2-467e-87b5-d40618f13474",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:georgia",
+      "type": "project",
+      "name": "Georgia",
+      "mbid": "79729730-e8a7-4f48-b76a-bfbe17d0c369",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oh",
+      "type": "project",
+      "name": "Oh",
+      "mbid": "e2549fb5-6a65-3a6b-90d6-7b25a57f78a3",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-potion",
+      "type": "project",
+      "name": "The Potion",
+      "mbid": "e732f204-098a-437a-9ea8-eeefd80c8558",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-maker",
+      "type": "project",
+      "name": "Money Maker",
+      "mbid": "899bb410-74c9-32cb-b44f-b9ce2c40830e",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pimpin-all-over-the-world",
+      "type": "project",
+      "name": "Pimpin’ All Over the World",
+      "mbid": "d86bfb0d-1994-4d9d-96e9-f20e32f843f1",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-red-light-district",
+      "type": "project",
+      "name": "The Red Light District",
+      "mbid": "64fd9d46-df1c-30b9-9d56-29c2c40607a6",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shake-that-sh",
+      "type": "project",
+      "name": "Shake That Sh**",
+      "mbid": "e1f69665-1ea1-4253-b234-5b90395557f7",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:diamond-in-the-back",
+      "type": "project",
+      "name": "Diamond in the Back",
+      "mbid": "09dca314-aa15-46b3-8c84-27ae70149045",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yeah",
+      "type": "project",
+      "name": "Yeah!",
+      "mbid": "5f9288b9-4d5d-335c-90ee-c7359db7c5f0",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sugar",
+      "type": "project",
+      "name": "Sugar (Gimme Some)",
+      "mbid": "230729d2-e15a-495b-b076-b9f160caa381",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stomp",
+      "type": "project",
+      "name": "Stomp",
+      "mbid": "5f4317d7-f0f4-47b3-a7a7-709cb4077018",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:r-p-m",
+      "type": "project",
+      "name": "R.P.M.",
+      "mbid": "a1bee61f-52df-4404-8bd7-eddb4d770895",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-back",
+      "type": "project",
+      "name": "Get Back",
+      "mbid": "ab5c6338-789c-484f-9ca0-a34c0bdc9455",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blow-it-out",
+      "type": "project",
+      "name": "Blow It Out",
+      "mbid": "d1dd06a3-a3b2-4e6c-84cc-6661e08201da",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:number-one-spot",
+      "type": "project",
+      "name": "Number One Spot",
+      "mbid": "d2dcd1be-78d2-3894-a576-3e9e8a726106",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:splash-waterfalls",
+      "type": "project",
+      "name": "Splash Waterfalls",
+      "mbid": "bc399032-6578-4031-a6f3-66b46226d3c9",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chicken-n-beer",
+      "type": "project",
+      "name": "Chicken-N-Beer",
+      "mbid": "051851cb-d955-3d41-86a9-a43df7d518a4",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holidae-in",
+      "type": "project",
+      "name": "Holidae In",
+      "mbid": "cfd3f956-a4c2-464e-a77b-5fb73e035ff0",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:act-a-fool",
+      "type": "project",
+      "name": "Act a Fool",
+      "mbid": "dc4d9992-2b94-4e9d-aca2-0b43806e7539",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:word-of-mouf",
+      "type": "project",
+      "name": "Word of Mouf",
+      "mbid": "ebc3e2cf-a96a-3bb6-aa3d-282d35155518",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-for-the-first-time",
+      "type": "project",
+      "name": "Back for the First Time",
+      "mbid": "280243c1-f6e1-3a57-8ed9-cda8373def33",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:incognegro",
+      "type": "project",
+      "name": "Incognegro",
+      "mbid": "6d2d9bc2-e46c-367f-9d67-3adbb85ab8d2",
+      "year": "2000",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:what-s-your-fantasy",
+      "type": "track",
+      "name": "What's Your Fantasy"
+    },
+    {
+      "slug": "track:southern-hospitality",
+      "type": "track",
+      "name": "Southern Hospitality"
+    },
+    {
+      "slug": "track:area-codes",
+      "type": "track",
+      "name": "Area Codes"
+    },
+    {
+      "slug": "track:stand-up",
+      "type": "track",
+      "name": "Stand Up"
+    },
+    {
+      "slug": "track:money-maker",
+      "type": "track",
+      "name": "Money Maker"
+    },
+    {
+      "slug": "track:yeah",
+      "type": "track",
+      "name": "Yeah!"
+    },
+    {
+      "slug": "track:baby",
+      "type": "track",
+      "name": "Baby"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:shawnna",
+      "type": "artist",
+      "name": "Shawnna"
+    },
+    {
+      "slug": "artist:lil-jon",
+      "type": "artist",
+      "name": "Lil Jon"
+    },
+    {
+      "slug": "artist:pharrell-williams",
+      "type": "artist",
+      "name": "Pharrell Williams"
+    },
+    {
+      "slug": "artist:usher",
+      "type": "artist",
+      "name": "Usher"
+    },
+    {
+      "slug": "artist:young-jeezy",
+      "type": "artist",
+      "name": "Young Jeezy"
+    },
+    {
+      "slug": "artist:justin-bieber",
+      "type": "artist",
+      "name": "Justin Bieber"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:chris-lova-lova",
+      "type": "artist",
+      "name": "Chris Lova Lova"
+    }
+  ],
+  "members": []
+}

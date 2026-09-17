@@ -1,0 +1,73 @@
+{
+  "slug": "artist:towdee-mac",
+  "name": "Towdee Mac",
+  "editorial_article": "Towdee Mac, born Lerothodi Moagi, is a South African music producer, songwriter, and composer recognized for his contributions to the local hip-hop landscape, particularly the Motswako movement. His work involves collaborations with artists such as foi and Uncle Jorddy, notably featured on the track 'Never Alone'. In addition to his creative output, he has appeared on platforms like The Tswyza Show to discuss the evolving state of South African hip hop. Beyond production and songwriting, he advocates for the education of South African youth regarding music rights, frequently sharing insights on the mechanics of music production through media platforms.",
+  "citations": [
+    {
+      "url": "https://musicinafrica.net/directory/towdeemac/",
+      "title": "Towdeemac - Music In Africa"
+    },
+    {
+      "url": "https://www.instagram.com/p/DPyBE1ijRrq/",
+      "title": "Motswako Returns Through Towdeemac's Appearance on The Tswyza Show"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=dHSNFq-8U5k",
+      "title": "Towdee Mac on the production of music and the importance of educating the youth on music rights"
+    },
+    {
+      "url": "https://www.tiktok.com/@towdeemac/video/7615552777342799112",
+      "title": "Discovering 'Never Alone' by Njoza: A Musical Journey"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:26:06.422Z",
+  "type": "artist",
+  "editorial_bio": "Lerothodi Moagi, known as Towdee Mac, is a South African music producer, songwriter, and composer rooted in the Motswako hip-hop scene.",
+  "origin": "South Africa",
+  "active_years": "2000s-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:independent",
+      "type": "label",
+      "name": "Independent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:never-alone",
+      "type": "project",
+      "name": "Never Alone"
+    },
+    {
+      "slug": "project:the-tswyza-show",
+      "type": "project",
+      "name": "The Tswyza Show"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:never-alone",
+      "type": "track",
+      "name": "Never Alone"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,424 @@
+{
+  "slug": "artist:dougal",
+  "name": "Dougal",
+  "editorial_article": "Born in Northampton on 14 April 1975, Paul Arnold Clarke began his career in the UK happy hardcore scene by setting up sound systems for early acid house parties at age 15. Clarke eventually became a resident DJ at major rave institutions including Dreamscape, Helter Skelter, and Equinox Milwaukees. His production work is characterized by a mix of euphoric hardcore and uplifting vocals, frequently collaborating with artists like Hixxy and Gammer. Together with Hixxy, he established the Essential Platinum label. Clarke played a significant role in the commercial success of the Bonkers compilation series, which achieved gold certification in the UK. Five of these compilations featuring his mixes reached the top 20 of the UK albums chart. He continues to perform, including appearances at the Bang Face Weekender alongside Hixxy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Dougal",
+      "title": "DJ Dougal - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:18.936Z",
+  "type": "artist",
+  "editorial_bio": "British happy hardcore pioneer and record producer known for his residency at classic UK raves and his pivotal role in the Bonkers compilation series.",
+  "origin": "Northampton, England",
+  "active_years": "1989-present",
+  "genres": [
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore",
+      "qid": "Q339906"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:essential-platinum",
+      "type": "label",
+      "name": "Essential Platinum"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:just-be-good-to-me",
+      "type": "project",
+      "name": "Just Be Good to Me",
+      "mbid": "063dc560-1679-4e1d-b7ea-0c89d1f55ea1",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-tribe",
+      "type": "project",
+      "name": "The Tribe",
+      "mbid": "28d0506f-e80e-4be1-84c1-5bc6fbf16532",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ocho",
+      "type": "project",
+      "name": "Ocho",
+      "mbid": "1cd2a42c-cc38-4c2d-9db5-e1946bef90af",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweetheart",
+      "type": "project",
+      "name": "Sweetheart (Piano Mix)",
+      "mbid": "5f66a8fc-5ce6-4796-b10f-578547335735",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweetheart",
+      "type": "project",
+      "name": "Sweetheart",
+      "mbid": "531438b0-8599-4723-82ef-bfbd7e83e426",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bassline-drop",
+      "type": "project",
+      "name": "Bassline Drop",
+      "mbid": "80a9d3de-6548-4026-a6d1-6f546e62a148",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ravers-in-harmony",
+      "type": "project",
+      "name": "Ravers In Harmony",
+      "mbid": "0434d9fd-d6bd-4d57-992f-7473b5fe85e2",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pow",
+      "type": "project",
+      "name": "Pow",
+      "mbid": "a7e3fbc7-f38f-4b93-95f5-bffadbd0186a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pop-drop",
+      "type": "project",
+      "name": "Pop Drop",
+      "mbid": "51b97166-d874-4b69-b0c7-49e2336b6257",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-up",
+      "type": "project",
+      "name": "High Up",
+      "mbid": "fd3199ff-ae58-4c15-ab23-e77af515e4e8",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-time",
+      "type": "project",
+      "name": "Party Time (Eufeion remix)",
+      "mbid": "1739f9a4-2e40-4e64-9765-dbbdbd280779",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can-t-forget-you",
+      "type": "project",
+      "name": "I Can’t Forget You",
+      "mbid": "9654c87a-398a-4a00-afb7-695cedf41edc",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-essential-mega-muffin",
+      "type": "project",
+      "name": "The Essential Mega Muffin",
+      "mbid": "d9d6c305-5451-4f44-ac07-76948410b433",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:supercharged",
+      "type": "project",
+      "name": "Supercharged",
+      "mbid": "a2c389fc-49bc-424f-85b9-34e15646605b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home",
+      "type": "project",
+      "name": "Home",
+      "mbid": "532999d0-577c-42db-9a17-76198a79d10f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burning-up",
+      "type": "project",
+      "name": "Burning Up",
+      "mbid": "7a509d5d-3cd6-4ff1-872c-73a6a0b46cb1",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-don-t-stop",
+      "type": "project",
+      "name": "Party Don’t Stop",
+      "mbid": "6bb8f325-cfe0-469d-b7f7-eedacfb30cab",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-love-japan",
+      "type": "project",
+      "name": "We Love Japan",
+      "mbid": "17787776-37ec-4ac3-a685-de146d4fdef5",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-the-house",
+      "type": "project",
+      "name": "Rock The House",
+      "mbid": "f440d60e-2edd-40dc-a238-4cbc10943d57",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dougal-and-gammer-ep-vol-2",
+      "type": "project",
+      "name": "Dougal & Gammer EP Vol. 2",
+      "mbid": "93cf6a55-0df6-4782-aac9-1d4120cbd3fb",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:turn-up-the-bass",
+      "type": "project",
+      "name": "Turn Up The Bass",
+      "mbid": "8d07921c-31d7-4fc6-ad4b-e10e776a6557",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-quiet",
+      "type": "project",
+      "name": "Be Quiet",
+      "mbid": "5aff42f5-699f-4079-957d-a1636deef55a",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:heaven-sent-you",
+      "type": "project",
+      "name": "Heaven Sent You",
+      "mbid": "b7a7f218-6f3b-4e20-ada7-7e315ce61fd0",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:horns-of-jericho-don-t-want-this-night-to-end",
+      "type": "project",
+      "name": "Horns Of Jericho / Don't Want This Night To End",
+      "mbid": "bf0af8f8-0243-4808-b09a-eac37195bd23",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:discos-revenge-something-good",
+      "type": "project",
+      "name": "Discos Revenge / Something Good",
+      "mbid": "18d8a725-9550-40bf-9f7a-e988f771f13b",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drive-me-crazy",
+      "type": "project",
+      "name": "Drive Me Crazy",
+      "mbid": "52d06ea9-d51d-4673-b43c-1c07620b9169",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid",
+      "type": "project",
+      "name": "Acid",
+      "mbid": "cd01e904-a2fc-4e36-ae63-17a1ddfe90d0",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-world-of-dougal",
+      "type": "project",
+      "name": "The World of Dougal",
+      "mbid": "b538776d-b2fd-44db-b0d0-8ab551dff547",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-breeze-dance-with-destiny",
+      "type": "project",
+      "name": "Night Breeze / Dance With Destiny",
+      "mbid": "9ab5b334-491d-4380-9c0d-5501dd77aaf8",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tranquility-tears-in-your-eyes",
+      "type": "project",
+      "name": "Tranquility / Tears In Your Eyes",
+      "mbid": "25c5e438-6c00-41d9-9db9-229138735ea7",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dj-dougal-takes-control",
+      "type": "project",
+      "name": "DJ Dougal Takes Control",
+      "mbid": "d21efc2d-15c2-4d68-a385-b484004de296",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fireworks-zurich-remix",
+      "type": "project",
+      "name": "Fireworks / Zurich Remix",
+      "mbid": "911a16d5-c092-4632-ad4f-4427ea9fef54",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bang-9-heaven-sent",
+      "type": "project",
+      "name": "Bang 9 / Heaven Sent",
+      "mbid": "a6a2d5a6-70b2-3137-a7eb-edf1ca40e3ba",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:innervation-seven-ways",
+      "type": "project",
+      "name": "Innervation / Seven Ways",
+      "mbid": "646f0f1f-0bbf-4959-a9c5-ff460b28c73c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:emerald-power-within",
+      "type": "project",
+      "name": "Emerald / Power Within",
+      "mbid": "830ba5a8-cae5-3156-81dd-d394be2c8d50",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-time",
+      "type": "project",
+      "name": "Party Time",
+      "mbid": "f708974d-4ef9-4408-af1a-87b9933275fe",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel-free",
+      "type": "project",
+      "name": "Feel Free",
+      "mbid": "1385e3e7-fc54-4bd8-883f-10c31d486c04",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-gonna-get-you-love-is-the-power",
+      "type": "project",
+      "name": "I'm Gonna Get You / Love Is the Power",
+      "mbid": "799a164c-a212-4b56-95e4-6f2ca2c6a092",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heaven-waits-virtual-reality",
+      "type": "project",
+      "name": "Heaven Waits / Virtual Reality",
+      "mbid": "521db0ae-f000-479c-9920-8bd2c25a847d",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:y-know-what-y-want-near-miss",
+      "type": "project",
+      "name": "Y'Know (What Y' Want) / Near Miss",
+      "mbid": "391c7cd3-a0f3-4494-9d53-ac2c9eb257bf",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:two-hearts",
+      "type": "project",
+      "name": "Two Hearts",
+      "mbid": "2a9a0d90-fd4b-4e07-892e-b746e6018c7e",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reflections",
+      "type": "project",
+      "name": "Reflections",
+      "mbid": "3079cf56-cb15-4c24-b1a1-47df8e003521",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shine-on-you",
+      "type": "project",
+      "name": "Shine on You",
+      "mbid": "45efcef5-60ee-4ad4-8014-f7ad668a1177",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-me-away",
+      "type": "project",
+      "name": "Take Me Away",
+      "mbid": "7bec6a77-8330-45d5-8cbc-d645ebf6dc73",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-be-alone",
+      "type": "project",
+      "name": "Never Be Alone",
+      "mbid": "e6f75f8d-7b50-4ce0-bee7-aa2205ee6a20",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-not-over",
+      "type": "project",
+      "name": "It’s Not Over (remix)",
+      "mbid": "ef57e8a5-0ffb-4a1c-9c72-a4a7bc82c25f",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:dj-dougal-takes-control",
+      "type": "track",
+      "name": "DJ Dougal Takes Control"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:hixxy",
+      "type": "artist",
+      "name": "Hixxy"
+    },
+    {
+      "slug": "artist:gammer",
+      "type": "artist",
+      "name": "Gammer"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:paul-arnold-clarke",
+      "type": "artist",
+      "name": "Paul Arnold Clarke"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,532 @@
+{
+  "slug": "artist:central-cee",
+  "name": "Central Cee",
+  "editorial_article": "Born Oakley Neil Caesar-Su in 1998, this Shepherd's Bush native rose to prominence during the 2020 lockdown with the UK drill singles 'Day in the Life' and 'Loading'. After an early career performing trapwave and auto-tuned hip-hop, he transitioned to a melodic, upbeat approach to UK drill that secured his 2021 debut mixtape 'Wild West' a number two spot on the UK Albums Chart. His second mixtape '23', released in 2022, reached number one, while his 2023 collaboration with Dave on 'Sprinter' broke records as the longest-running number-one rap single in UK history. Central Cee has garnered international recognition through partnerships with Lil Baby on 'Band4Band', which charted at number 18 on the Billboard Hot 100, and his 2025 debut studio album 'Can't Rush Greatness', which entered the Billboard 200 at number nine. Beyond music, he founded the streetwear brand Syna World in 2023, utilizing guerrilla marketing techniques that earned comparisons to labels like Corteiz and Trapstar.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Central_Cee",
+      "title": "Central Cee - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:33.870Z",
+  "type": "artist",
+  "editorial_bio": "A leading figure in UK rap from Shepherd's Bush, Central Cee evolved from trapwave beginnings to achieve massive international success with chart-topping drill-inspired hits.",
+  "origin": "Shepherd's Bush, London, England",
+  "active_years": "2014–present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:uk-drill",
+      "type": "genre",
+      "name": "Uk Drill",
+      "qid": "Q65943851"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    },
+    {
+      "slug": "label:cc4l",
+      "type": "label",
+      "name": "CC4L"
+    },
+    {
+      "slug": "label:live-yours",
+      "type": "label",
+      "name": "Live Yours"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-team",
+      "type": "project",
+      "name": "The Team",
+      "mbid": "ef82aa54-8b21-4665-bb0e-4829f1c9bc31",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-roads-lead-home",
+      "type": "project",
+      "name": "ALL ROADS LEAD HOME",
+      "mbid": "9a1bc19b-c317-4314-9ef9-dbbfa78ae76e",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:slaughter",
+      "type": "project",
+      "name": "SLAUGHTER",
+      "mbid": "8ebf8a79-e15f-4a51-9387-7f289ac06ec8",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booga",
+      "type": "project",
+      "name": "Booga",
+      "mbid": "7eaead9e-d5b2-446d-b7f1-52487c777f08",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:which-one",
+      "type": "project",
+      "name": "Which One",
+      "mbid": "d9ad78cf-a66e-4fe8-b2a2-d26f409e2ebd",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:guilt-trippin",
+      "type": "project",
+      "name": "GUILT TRIPPIN",
+      "mbid": "8e5fc1c9-6756-40c9-b0dd-fc6d16fb22d7",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-rush-greatness",
+      "type": "project",
+      "name": "CAN’T RUSH GREATNESS",
+      "mbid": "19eb98ff-d741-4ec2-9137-905654b6e722",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gbp",
+      "type": "project",
+      "name": "GBP",
+      "mbid": "c9e8f31a-b5d9-494e-8265-952869d03d73",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-by-one",
+      "type": "project",
+      "name": "One by One",
+      "mbid": "4b16b2d0-1afc-4111-a133-89c38e83e756",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moi",
+      "type": "project",
+      "name": "Moi",
+      "mbid": "b8b13bd9-a644-46c8-95a1-b16fb5d80433",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bolide-noir",
+      "type": "project",
+      "name": "Bolide Noir",
+      "mbid": "c3bb1e57-c6cf-45a0-a87d-35ffd1c56bc8",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gen-z-luv",
+      "type": "project",
+      "name": "Gen Z Luv",
+      "mbid": "72fa4bf5-ae9e-46a9-b100-1aa8464f979f",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:did-it-first",
+      "type": "project",
+      "name": "Did It First",
+      "mbid": "a7ec614a-836e-4062-90c0-2563c01245e1",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wave",
+      "type": "project",
+      "name": "Wave",
+      "mbid": "f881ca51-b9d5-43dd-9d09-ae14086d22b6",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:band4band",
+      "type": "project",
+      "name": "BAND4BAND",
+      "mbid": "ac3a7d23-559e-4ca5-9bc4-b752ab414121",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-will",
+      "type": "project",
+      "name": "I Will",
+      "mbid": "dea9d2c3-dbf6-4876-8707-a482fccd5a2b",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:entrapreneur",
+      "type": "project",
+      "name": "Entrapreneur",
+      "mbid": "5178838d-8f25-442b-a1e4-1ac09ae74bf0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nice-to-meet-you",
+      "type": "project",
+      "name": "Nice to meet you",
+      "mbid": "062d79a5-da8e-4c23-a4b0-595fa884f543",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-much",
+      "type": "project",
+      "name": "TOO MUCH",
+      "mbid": "5d72691d-4233-4ef2-a031-27f4c2b33fb2",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-radar-freestyle",
+      "type": "project",
+      "name": "On the Radar Freestyle",
+      "mbid": "c0804c98-7de4-4a50-b6ce-794cbf97e2bb",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:split-decision",
+      "type": "project",
+      "name": "Split Decision",
+      "mbid": "45982c06-25b3-4865-a455-a73e0f0136bf",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sprinter",
+      "type": "project",
+      "name": "Sprinter",
+      "mbid": "cd3bde26-2929-4404-86ef-4623e57b66cd",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:anthracite",
+      "type": "project",
+      "name": "Anthracite",
+      "mbid": "8355b8ed-3a15-40b7-807e-75161b4e4ac4",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-go",
+      "type": "project",
+      "name": "LET GO",
+      "mbid": "acbe99b2-8ad2-479a-9ef4-a2089da93887",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-more-leaks",
+      "type": "project",
+      "name": "No More Leaks",
+      "mbid": "79785cc9-6fa0-485e-8a2e-52066a18abe2",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-up",
+      "type": "project",
+      "name": "One Up",
+      "mbid": "d06a1972-4b95-406b-a754-df27569cf67b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-leakers-freestyle",
+      "type": "project",
+      "name": "LA Leakers Freestyle",
+      "mbid": "608f5c15-c77a-46a3-9ac0-75b2b728ec6f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-leakers-freestyle",
+      "type": "project",
+      "name": "LA Leakers Freestyle",
+      "mbid": "b71e0eff-0b5d-4ff9-a335-065545cd37ec",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doja",
+      "type": "project",
+      "name": "Doja",
+      "mbid": "cc9f90f7-705b-45c3-ab11-1b951839bdf1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:straight-back-to-it",
+      "type": "project",
+      "name": "Straight Back to It",
+      "mbid": "3f9133c9-0eec-4b7a-885f-8fa9c33eabb1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eurovision",
+      "type": "project",
+      "name": "Eurovision",
+      "mbid": "8c030982-c7fc-41ef-ae0a-0e05a5434b47",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:khabib",
+      "type": "project",
+      "name": "Khabib",
+      "mbid": "05734305-e600-4af3-8325-319f1bf1f513",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cold-shoulder",
+      "type": "project",
+      "name": "Cold Shoulder",
+      "mbid": "a2b8c201-ddbe-4f3e-9470-38a2ee13d81d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:retail-therapy",
+      "type": "project",
+      "name": "Retail Therapy",
+      "mbid": "9ede81e9-246a-43cb-b5a9-2b9c087efa16",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daily-duppy",
+      "type": "project",
+      "name": "Daily Duppy",
+      "mbid": "d2ecdb20-f806-4375-a7a9-893042aacd30",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:overseas",
+      "type": "project",
+      "name": "Overseas",
+      "mbid": "caf2b6dc-98fd-4f18-9741-e1f0cabeeed1",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:obsessed-with-you",
+      "type": "project",
+      "name": "Obsessed With You",
+      "mbid": "1f3d6eda-c227-49b6-a8e6-2ac870a7686b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:little-bit-of-this",
+      "type": "project",
+      "name": "Little Bit of This",
+      "mbid": "03b45068-dbb2-4ba0-b4f9-fea124e7d91c",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:meant-to-be",
+      "type": "project",
+      "name": "Meant To Be (Clean Version)",
+      "mbid": "4eaf5706-0345-498b-b085-56ff5c4f0810",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-great-escape",
+      "type": "project",
+      "name": "The Great Escape",
+      "mbid": "eefd47c2-6bc7-4b0e-95ad-6413f52d3de2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-for-6",
+      "type": "project",
+      "name": "6 For 6",
+      "mbid": "f1f5ea21-fbc2-454b-aa4d-bde6187afe4b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:commitment-issues",
+      "type": "project",
+      "name": "Commitment Issues",
+      "mbid": "912aac52-2a91-4bdb-868f-f465ed0828ca",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pinging",
+      "type": "project",
+      "name": "Pinging (6 Figures)",
+      "mbid": "d2e2ad79-5c56-4dae-88ee-9c9cefaea7c4",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loading",
+      "type": "project",
+      "name": "Loading",
+      "mbid": "3cb23dd1-a51d-4ca5-b9bd-2c5d802e12b4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:molly",
+      "type": "project",
+      "name": "Molly",
+      "mbid": "117e36c4-8608-4cee-a7f2-e22dd7b7864c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:day-in-the-life",
+      "type": "project",
+      "name": "Day in the Life",
+      "mbid": "e42cc9bc-da81-45b8-8fd1-2779a76e0bd1",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-up-s2-e39",
+      "type": "project",
+      "name": "Next Up – S2-E39",
+      "mbid": "b25425f0-1025-4f7a-9d17-59a27a1344b1",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back2back",
+      "type": "project",
+      "name": "Back2back",
+      "mbid": "944fae8a-aac6-4b4c-a9be-8ad70f94f816",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-and-you",
+      "type": "project",
+      "name": "Me & You",
+      "mbid": "8676e231-9954-400b-b4cd-714620402b47",
+      "year": "2017",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:loading",
+      "type": "track",
+      "name": "Loading"
+    },
+    {
+      "slug": "track:doja",
+      "type": "track",
+      "name": "Doja"
+    },
+    {
+      "slug": "track:sprinter",
+      "type": "track",
+      "name": "Sprinter"
+    },
+    {
+      "slug": "track:band4band",
+      "type": "track",
+      "name": "Band4Band"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta"
+    },
+    {
+      "slug": "artist:youngboy-never-broke-again",
+      "type": "artist",
+      "name": "YoungBoy Never Broke Again"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    },
+    {
+      "slug": "artist:j-cole",
+      "type": "artist",
+      "name": "J. Cole"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "Jay-Z"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dave",
+      "type": "artist",
+      "name": "Dave"
+    },
+    {
+      "slug": "artist:lil-baby",
+      "type": "artist",
+      "name": "Lil Baby"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake"
+    },
+    {
+      "slug": "artist:j-hus",
+      "type": "artist",
+      "name": "J Hus"
+    },
+    {
+      "slug": "artist:21-savage",
+      "type": "artist",
+      "name": "21 Savage"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:cench",
+      "type": "artist",
+      "name": "Cench"
+    }
+  ],
+  "members": []
+}

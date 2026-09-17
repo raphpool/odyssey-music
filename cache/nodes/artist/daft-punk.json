@@ -1,0 +1,570 @@
+{
+  "slug": "artist:daft-punk",
+  "name": "Daft Punk",
+  "editorial_article": "Formed in Paris in 1993 by Thomas Bangalter and Guy-Manuel de Homem-Christo, this electronic duo emerged from the ashes of the indie rock band Darlin' to become cornerstones of the French house movement. Their 1997 debut, 'Homework' (Virgin), introduced a sound that relied on both original compositions and a 'magpie-like' approach to sampling, as seen on tracks like 'Da Funk.' With 2001's 'Discovery,' they adopted their iconic robot personas, integrating 1970s disco influences and collaborating with figures like Romanthony and Todd Edwards. The duo later directed the 2006 film 'Electroma' and composed the orchestral-electronic hybrid score for 'Tron: Legacy' (2010) with orchestrator Joseph Trapanese. In 2013, they transitioned to Columbia Records for the 'Random Access Memories' project, which utilized rhythm players including Nathan East and Omar Hakim and featured Pharrell Williams and Nile Rodgers on the massive hit 'Get Lucky.' The duo announced their amicable split in 2021 after 28 years.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Daft_Punk",
+      "title": "Daft Punk - Wikipedia"
+    },
+    {
+      "url": "https://www.theguardian.com/music/2021/feb/22/daft-punk-french-electronic-music-duo-split-up-after-28-years",
+      "title": "Daft Punk, French electronic music duo, split up after 28 years"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:24.261Z",
+  "type": "artist",
+  "editorial_bio": "A legendary French electronic duo consisting of Thomas Bangalter and Guy-Manuel de Homem-Christo, known for pioneering French house and for their signature robotic visual identity.",
+  "origin": "Paris, France",
+  "active_years": "1993–2021",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:french-house",
+      "type": "genre",
+      "name": "French House",
+      "qid": "Q1455292"
+    },
+    {
+      "slug": "genre:dance",
+      "type": "genre",
+      "name": "Dance",
+      "qid": "Q11787389"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House",
+      "qid": "Q627906"
+    },
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:soma-quality-recordings",
+      "type": "label",
+      "name": "Soma Quality Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:veridis-quo",
+      "type": "project",
+      "name": "Veridis Quo",
+      "mbid": "70fdfa1b-f1ed-4a6b-b52c-c96020e3bf21",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-writing-of-fragments-of-time",
+      "type": "project",
+      "name": "The Writing of Fragments of Time",
+      "mbid": "1f8c7f41-c3f1-4b0c-a151-943a3583f202",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:discovery",
+      "type": "project",
+      "name": "Discovery (Sample Bandit Bootlegs)",
+      "mbid": "df7d1104-7543-4868-b6c4-92ab83ad27f3",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:phantom-robot",
+      "type": "project",
+      "name": "Phantom Robot (Kiivas’ “Soulwax” Mashup)",
+      "mbid": "0d072998-0c29-45c6-94a1-dd20bf7123e6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-feel-it-coming",
+      "type": "project",
+      "name": "I Feel It Coming",
+      "mbid": "0f813c16-1663-49fa-8316-fb32766dd554",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:starboy",
+      "type": "project",
+      "name": "Starboy",
+      "mbid": "985a7746-4207-45ba-9400-49796eaaaf72",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doin-it-right",
+      "type": "project",
+      "name": "Doin’ It Right",
+      "mbid": "b42e3163-b4f5-4e6d-acee-363d6a2ad7ad",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:give-life-back-to-music",
+      "type": "project",
+      "name": "Give Life Back to Music",
+      "mbid": "111e4cc8-e7b6-437a-af02-a42c757e4e17",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-yourself-to-dance",
+      "type": "project",
+      "name": "Lose Yourself to Dance",
+      "mbid": "44041ba2-b490-47d1-9106-83f6b0e3a205",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:random-access-memories",
+      "type": "project",
+      "name": "Random Access Memories",
+      "mbid": "aa997ea0-2936-40bd-884d-3af8a0e064dc",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-lucky",
+      "type": "project",
+      "name": "Get Lucky",
+      "mbid": "9b7ce16c-8310-4cc5-aad5-09893a5a8297",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:instant-crush",
+      "type": "project",
+      "name": "Instant Crush",
+      "mbid": "9cd86d09-7a91-45ba-bbe6-5b4e76f4c8f0",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:human-after-all",
+      "type": "project",
+      "name": "Human After All (Medley)",
+      "mbid": "00eb1335-7ff0-4dd6-8cee-51f395b06fd3",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-more-time-daft-punk-swoon",
+      "type": "project",
+      "name": "One More Time (Daft Punk) / Swoon (Chemical Brothers)",
+      "mbid": "1d0bfca6-4252-4fab-8e9f-3746c93dece4",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:louis-vuitton-runway-show-mix",
+      "type": "project",
+      "name": "Louis Vuitton Runway Show Mix (Spring / Summer 2008)",
+      "mbid": "025a0ba5-5271-4927-840f-90e2a6231527",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:harder-better-faster-stronger-2008-alive-club-mix-touch-it-technologic",
+      "type": "project",
+      "name": "Harder Better Faster Stronger 2008 (Alive club mix) / Touch It Technologic (Alive club mix)",
+      "mbid": "5fc50b4a-e46e-38cf-a189-cdde7590dc43",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:complete-reboot",
+      "type": "project",
+      "name": "Complete Reboot",
+      "mbid": "705400b0-c66f-42df-80c3-21051a7f17b5",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-more-time-alive-2008-new-da-funk-alive-2008",
+      "type": "project",
+      "name": "One More Time Alive 2008 / New Da Funk Alive 2008",
+      "mbid": "40825f0c-d53c-401f-b029-99503c8b4810",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prime-time-of-your-life",
+      "type": "project",
+      "name": "Prime Time of Your Life",
+      "mbid": "f9b52398-c578-32c4-95a6-b2e4a9bdc472",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:musique-mix",
+      "type": "project",
+      "name": "Musique Mix",
+      "mbid": "eeaaf34f-ffa2-47ce-bfdb-4721d2e19002",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:human-after-all",
+      "type": "project",
+      "name": "Human After All",
+      "mbid": "14d335b6-71e9-43a3-9ad8-cf8367990c23",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:technologic",
+      "type": "project",
+      "name": "Technologic",
+      "mbid": "8a8ca5fc-4eff-3aa8-939b-9c064ba73d7f",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:human-after-all",
+      "type": "project",
+      "name": "Human After All",
+      "mbid": "f9e8042a-674e-3f01-80ec-7f0ab1c537df",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:robot-rock",
+      "type": "project",
+      "name": "Robot Rock",
+      "mbid": "da00fcb0-4c72-3612-8a14-4ba083505fe2",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-around-da-world-el-segundo-1nce-again",
+      "type": "project",
+      "name": "Kiss / Around Da World / El Segundo / 1nce Again",
+      "mbid": "f3d5e1e8-c7e4-473c-bdee-eaba708bbd30",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-remixes-volume-3",
+      "type": "project",
+      "name": "The Remixes, Volume 3",
+      "mbid": "2548c1e0-7fc2-4f6a-896c-52367c68e010",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-about-us-love-theme-from-interstella-5555",
+      "type": "project",
+      "name": "Something About Us: Love Theme From Interstella 5555",
+      "mbid": "13ba6204-83e8-3bf2-aeb4-05b14acc9167",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:underground-2003",
+      "type": "project",
+      "name": "Underground 2003 (Da Automatic Funk)",
+      "mbid": "6e0abf7a-839f-4cc4-a005-b1e558421a3e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:face-to-face",
+      "type": "project",
+      "name": "Face to Face",
+      "mbid": "c5afe0db-56f0-3af8-bc00-bf8b2aeaa40e",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:harder-better-faster-stronger",
+      "type": "project",
+      "name": "Harder, Better, Faster, Stronger",
+      "mbid": "aa5b9bea-dcdf-4911-838f-8f90b0fc1171",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:digital-love",
+      "type": "project",
+      "name": "Digital Love",
+      "mbid": "3888f64b-f8ce-3e3d-a2f7-23d83697f43d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aerodynamic",
+      "type": "project",
+      "name": "Aerodynamic",
+      "mbid": "c265ac4b-aa80-3f8b-83f7-47b81d8175c0",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:discovery",
+      "type": "project",
+      "name": "Discovery",
+      "mbid": "48117b90-a16e-34ca-a514-19c702df1158",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aerodynamite",
+      "type": "project",
+      "name": "Aerodynamite",
+      "mbid": "6350b399-fa05-4361-b01e-4851f3cb0c96",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-more-time",
+      "type": "project",
+      "name": "One More Time",
+      "mbid": "1f63ade9-c584-37c3-84b2-930a7d5c353b",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stronger",
+      "type": "project",
+      "name": "Stronger",
+      "mbid": "e50a2822-49b6-4ec1-b883-cf671aa7fdcb",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burnin",
+      "type": "project",
+      "name": "Burnin’",
+      "mbid": "8dfbd2f1-be5d-3b42-9d7a-8ab3a6d66cb6",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:homework",
+      "type": "project",
+      "name": "Homework",
+      "mbid": "00054665-89fa-33d5-a8f0-1728ea8c32c3",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:assault",
+      "type": "project",
+      "name": "Assault",
+      "mbid": "73569814-a0a7-3969-be46-b88de57297b9",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:indo-silver-club",
+      "type": "project",
+      "name": "Indo Silver Club",
+      "mbid": "af768bc7-cd05-342a-8e9f-c53b3881278f",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:revolution-909",
+      "type": "project",
+      "name": "Revolution 909",
+      "mbid": "4a25766d-f1ab-30de-9599-e0e0920df0a4",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:around-the-world",
+      "type": "project",
+      "name": "Around the World",
+      "mbid": "5b1c02ac-8608-3857-a9b6-62e056177d96",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-funk",
+      "type": "project",
+      "name": "Da Funk",
+      "mbid": "d86198a6-29e6-3748-93a8-1a4a0fadef57",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:musique-l-ombelico-del-mondo-make-it-funky",
+      "type": "project",
+      "name": "Musique / L'ombelico del mondo / Make It Funky",
+      "mbid": "5dd37d7e-a5da-412e-8e69-169fd0389ff0",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-new-wave",
+      "type": "project",
+      "name": "The New Wave",
+      "mbid": "35a4f900-60c1-3f79-8cdb-193941b78768",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:discovery",
+      "type": "project",
+      "name": "Discovery (Beta Version)",
+      "mbid": "84216190-e46f-4cf1-8a28-76910183be38",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-monday-alive",
+      "type": "project",
+      "name": "Blue Monday Alive",
+      "mbid": "5b7d00d7-dbaf-30ce-ab32-1a2ee383ac00",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:technologic-remix",
+      "type": "project",
+      "name": "Technologic remix",
+      "mbid": "a55ec9fa-61c2-4fb8-bb0b-61eea3657682",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:da-funk",
+      "type": "track",
+      "name": "Da Funk"
+    },
+    {
+      "slug": "track:around-the-world",
+      "type": "track",
+      "name": "Around the World"
+    },
+    {
+      "slug": "track:one-more-time",
+      "type": "track",
+      "name": "One More Time"
+    },
+    {
+      "slug": "track:harder-better-faster-stronger",
+      "type": "track",
+      "name": "Harder, Better, Faster, Stronger"
+    },
+    {
+      "slug": "track:get-lucky",
+      "type": "track",
+      "name": "Get Lucky"
+    },
+    {
+      "slug": "track:starboy",
+      "type": "track",
+      "name": "Starboy"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:pharrell-williams",
+      "type": "artist",
+      "name": "Pharrell Williams"
+    },
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers"
+    },
+    {
+      "slug": "artist:todd-edwards",
+      "type": "artist",
+      "name": "Todd Edwards"
+    },
+    {
+      "slug": "artist:kanye-west",
+      "type": "artist",
+      "name": "Kanye West"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd"
+    },
+    {
+      "slug": "artist:julian-casablancas",
+      "type": "artist",
+      "name": "Julian Casablancas"
+    },
+    {
+      "slug": "artist:giorgio-moroder",
+      "type": "artist",
+      "name": "Giorgio Moroder"
+    },
+    {
+      "slug": "artist:dj-falcon",
+      "type": "artist",
+      "name": "DJ Falcon"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:thomas-bangalter",
+      "type": "artist",
+      "name": "Thomas Bangalter"
+    },
+    {
+      "slug": "artist:guy-manuel-de-homem-christo",
+      "type": "artist",
+      "name": "Guy-Manuel de Homem-Christo"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:thomas-bangalter",
+      "type": "artist",
+      "name": "Thomas Bangalter"
+    },
+    {
+      "slug": "artist:guy-manuel-de-homem-christo",
+      "type": "artist",
+      "name": "Guy-Manuel de Homem-Christo"
+    }
+  ]
+}

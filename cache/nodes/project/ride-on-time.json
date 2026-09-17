@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Diva house",
       "qid": "Q3032212"
+    },
+    {
+      "slug": "genre:euro-house",
+      "type": "genre",
+      "name": "Euro House",
+      "qid": "Q30917612"
     }
   ],
   "tracklist": [

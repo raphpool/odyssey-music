@@ -1,0 +1,136 @@
+{
+  "slug": "genre:bollywood",
+  "name": "Bollywood",
+  "editorial_article": "Bollywood music refers to songs featured in Hindi cinema, a central pillar of Indian popular culture that encompasses film-integrated song and dance sequences. Originating with the first Indian talkie 'Alam Ara' in 1931, the form traditionally employs playback singers who record tracks that actors later lip-synch onscreen. Music directors in this industry maintain a broad creative role, often composing music, producing tracks, and curating licensed elements for films. The genre has evolved through diverse influences, including the ghazal tradition of Urdu poetry, rock fusion during the 1970s, and a significant electronic disco surge in the early 1980s. Producers such as Biddu and Bappi Lahiri were instrumental in integrating synthesizers and disco beats, with Charanjit Singh’s 1982 album 'Synthesizing: Ten Ragas to a Disco Beat' famously anticipating the sounds of acid house. Today, the industry is largely dominated by labels like T-Series and Sony Music India, with soundtracks accounting for approximately 80% of India's music revenue.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hindi_film_music",
+      "title": "Hindi film music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:07:42.859Z",
+  "type": "genre",
+  "editorial_definition": "Bollywood music is a globally influential genre of film-integrated songs and dance numbers that forms the foundation of India's popular music industry.",
+  "qid": "Q6942022",
+  "era": "1931 to present",
+  "origin": "India, Hindi cinema",
+  "sonic_markers": "Features playback singing, rich orchestral arrangements, diverse linguistic influences (Hindi, Urdu, Hinglish), and frequent fusion of traditional ragas with disco, electronic, and pop production.",
+  "parent_genres": [
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Filmi Music",
+      "qid": "Q544440"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Filmi",
+      "qid": "Q544440"
+    },
+    {
+      "slug": "genre:ghazal",
+      "type": "genre",
+      "name": "Ghazal",
+      "qid": "Q281111"
+    },
+    {
+      "slug": "genre:qawwali",
+      "type": "genre",
+      "name": "Qawwali",
+      "qid": "Q512410"
+    },
+    {
+      "slug": "genre:indian-pop-music",
+      "type": "genre",
+      "name": "Indian pop music",
+      "qid": "Q3535998"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman"
+    },
+    {
+      "slug": "artist:mohammed-rafi",
+      "type": "artist",
+      "name": "Mohammed Rafi"
+    },
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    },
+    {
+      "slug": "artist:r-d-burman",
+      "type": "artist",
+      "name": "R. D. Burman"
+    },
+    {
+      "slug": "artist:bappi-lahiri",
+      "type": "artist",
+      "name": "Bappi Lahiri"
+    },
+    {
+      "slug": "artist:nazia-hassan",
+      "type": "artist",
+      "name": "Nazia Hassan"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:t-series",
+      "type": "label",
+      "name": "T-Series"
+    },
+    {
+      "slug": "label:saregama",
+      "type": "label",
+      "name": "Saregama"
+    },
+    {
+      "slug": "label:sony-music-india",
+      "type": "label",
+      "name": "Sony Music India"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:aap-jaisa-koi",
+      "type": "track",
+      "name": "Aap Jaisa Koi"
+    },
+    {
+      "slug": "track:dum-maro-dum",
+      "type": "track",
+      "name": "Dum Maro Dum"
+    },
+    {
+      "slug": "track:kajra-re",
+      "type": "track",
+      "name": "Kajra Re"
+    },
+    {
+      "slug": "track:chamma-chamma",
+      "type": "track",
+      "name": "Chamma Chamma"
+    },
+    {
+      "slug": "track:yaad-aa-raha-hai",
+      "type": "track",
+      "name": "Yaad Aa Raha Hai"
+    }
+  ]
+}

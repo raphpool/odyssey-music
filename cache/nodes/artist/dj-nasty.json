@@ -1,0 +1,113 @@
+{
+  "slug": "artist:dj-nasty",
+  "name": "DJ Nasty",
+  "editorial_article": "DJ Nasty is an electronic dance music producer based in Detroit, known for contributions to the city's ghettotech movement. His discography includes records dating back to the mid-1990s, with a focus on high-energy electro, house, and drum n bass. In 2005, he released the mixed compilation King of Beats, which features tracks such as \"Pussy Hole,\" \"Ghetto Bass,\" and \"St. Andrews.\" His work is frequently discussed alongside other Detroit ghettotech figures, noted for a diligent approach to the scene's distinctive sound.",
+  "citations": [
+    {
+      "url": "https://www.instagram.com/reel/BljbKLIF9rH/",
+      "title": "Detroit's Filthiest on Instagram: \"DJ Nasty - Hydraulic Style\""
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:55.890Z",
+  "type": "artist",
+  "editorial_bio": "Detroit-based producer and ghettotech pioneer known for his mid-90s releases and high-energy electronic dance music.",
+  "origin": "Detroit, United States",
+  "active_years": "1990s-present",
+  "genres": [
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:chocolate-city",
+      "type": "label",
+      "name": "Chocolate City"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:double-deuce-deuce",
+      "type": "project",
+      "name": "Double Deuce Deuce",
+      "mbid": "e11de43e-4d04-4721-9259-f0587bfbb478",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1st-round-draft-pick",
+      "type": "project",
+      "name": "1st. Round Draft Pick",
+      "mbid": "542bcde6-b028-4c9f-ad28-d24a2f57368c",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:100-hood-certified",
+      "type": "project",
+      "name": "100% Hood Certified",
+      "mbid": "ff044537-606e-4b2b-a802-a2cca7a5f376",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oral-sex-ep",
+      "type": "project",
+      "name": "Oral Sex EP",
+      "mbid": "2a9864a0-bb24-47dd-920d-3f77bf680521",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dirty-debutant-volume-1",
+      "type": "project",
+      "name": "Dirty Debutant, Volume 1",
+      "mbid": "478b00de-c8d6-4ca0-8a76-fd7a34a59189",
+      "year": "1999",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pussy-hole",
+      "type": "track",
+      "name": "Pussy Hole"
+    },
+    {
+      "slug": "track:ghetto-bass",
+      "type": "track",
+      "name": "Ghetto Bass"
+    },
+    {
+      "slug": "track:st-andrews",
+      "type": "track",
+      "name": "St. Andrews"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

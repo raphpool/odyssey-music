@@ -1,0 +1,215 @@
+{
+  "slug": "artist:d-train",
+  "name": "D-Train",
+  "editorial_article": "Active in New York City between 1980 and 1985, D-Train functioned as an influential post-disco and R&B duo featuring vocalist James D-Train Williams and keyboardist Hubert Eaves III. The pair met in high school before Eaves spent the 1970s playing with the band Mtume, eventually reuniting with Williams to record for the Prelude label. Their debut 1981 single, \"You're the One for Me,\" reached number one on the US Hot Dance Club Play chart and was later remixed by Paul Hardcastle. Beyond their original 1980s catalog, the group's legacy endures through the Roland Corporation M-DC1 sound expansion module; the unit's \"Aaaah! (169)\" vocal patch, sampled from Williams's 1986 solo single \"Misunderstanding,\" has appeared in hip-hop records by Nelly, Migos, and Travis Scott.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/D_Train_(group)",
+      "title": "D Train (group) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:12:37.191Z",
+  "type": "artist",
+  "editorial_bio": "An influential 1980s post-disco and R&B duo from Brooklyn, known for chart-topping dance hits and a widely sampled vocal legacy.",
+  "origin": "Brooklyn, New York City",
+  "active_years": "1980-1985",
+  "genres": [
+    {
+      "slug": "genre:post-disco",
+      "type": "genre",
+      "name": "Post-disco",
+      "qid": "Q1190485"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:dance",
+      "type": "genre",
+      "name": "Dance",
+      "qid": "Q8195422"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:prelude",
+      "type": "label",
+      "name": "Prelude"
+    },
+    {
+      "slug": "label:columbia",
+      "type": "label",
+      "name": "Columbia"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:time-has-come-today",
+      "type": "project",
+      "name": "Time Has Come Today",
+      "mbid": "377bac33-28de-47fe-ab73-99938365e367",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-on",
+      "type": "project",
+      "name": "Keep On (mikeandtess edit 4 mix)",
+      "mbid": "5ad845a3-b9f8-45b7-8a7c-b71fa07d9e0a",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-you-feel-what-love-has",
+      "type": "project",
+      "name": "When You Feel What Love Has",
+      "mbid": "79f0cd50-c4bc-4cf2-8781-a4a7245722c1",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:raise-your-hands",
+      "type": "project",
+      "name": "Raise Your Hands",
+      "mbid": "b00193c6-6cb9-4519-b02d-f59d640123c5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d-train-theme-dub-tryin-to-get-over",
+      "type": "project",
+      "name": "\"D\" Train (Theme) (dub) / Tryin' to Get Over",
+      "mbid": "1c809b5e-bf68-4749-9727-a5c29b0393c1",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-s-on-your-mind",
+      "type": "project",
+      "name": "Something's on Your Mind",
+      "mbid": "c3246e57-2c43-369a-9c75-7c7aac7f6a05",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music",
+      "type": "project",
+      "name": "Music",
+      "mbid": "a3d1df5f-ca94-3fd6-be51-5bc889410603",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keep-giving-me-love",
+      "type": "project",
+      "name": "Keep Giving Me Love",
+      "mbid": "0a179b36-3ad2-4c67-b807-07c6fb93e6e7",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music",
+      "type": "project",
+      "name": "Music",
+      "mbid": "3e839c63-2f15-40c0-9ec1-caba4f16b6e9",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-re-the-one-for-me",
+      "type": "project",
+      "name": "You’re the One for Me",
+      "mbid": "3f5ba858-84c5-3094-b0bb-5a1a3ca52648",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keep-on-walk-on-by",
+      "type": "project",
+      "name": "Keep On / Walk On By",
+      "mbid": "06ad7257-a58e-4ef7-9da2-21578c0cfc33",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-on",
+      "type": "project",
+      "name": "Keep On",
+      "mbid": "63344a13-1892-4748-b6e8-cc30439208f9",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-re-the-one-for-me",
+      "type": "project",
+      "name": "You’re the One for Me",
+      "mbid": "a52e8936-9fba-436a-bf4d-edd35c670744",
+      "year": "1981",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:you-re-the-one-for-me",
+      "type": "track",
+      "name": "You're the One for Me"
+    },
+    {
+      "slug": "track:keep-on",
+      "type": "track",
+      "name": "Keep On"
+    },
+    {
+      "slug": "track:something-s-on-your-mind",
+      "type": "track",
+      "name": "Something's on Your Mind"
+    },
+    {
+      "slug": "track:misunderstanding",
+      "type": "track",
+      "name": "Misunderstanding"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:hubert-eaves-iii",
+      "type": "artist",
+      "name": "Hubert Eaves III"
+    },
+    {
+      "slug": "artist:paul-hardcastle",
+      "type": "artist",
+      "name": "Paul Hardcastle"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:james-d-train-williams",
+      "type": "artist",
+      "name": "James D-Train Williams"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:james-d-train-williams",
+      "type": "artist",
+      "name": "James D-Train Williams"
+    },
+    {
+      "slug": "artist:hubert-eaves-iii",
+      "type": "artist",
+      "name": "Hubert Eaves III"
+    }
+  ]
+}

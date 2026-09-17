@@ -1,0 +1,186 @@
+{
+  "slug": "artist:jpegmafia",
+  "name": "JPEGMAFIA",
+  "editorial_article": "Born Barrington DeVaughn Hendricks in Brooklyn and later based in Baltimore, the producer and rapper known as JPEGMAFIA released his debut album Black Ben Carson independently in 2016. His 2018 project Veteran marked a shift into more experimental territory, leading to his first Billboard 200 entry with 2019's All My Heroes Are Cornballs. Following a move to Los Angeles, he signed with Republic Records for his 2021 album LP!. He often produces his own material, frequently incorporating noise rap, industrial, and vaporwave elements alongside trap beats. Beyond his solo work, he teamed with Danny Brown for the 2023 collaborative album Scaring the Hoes, and contributed production to tracks on ¥$’s Vultures 1 and Vultures 2. His discography has since expanded with 2024's I Lay Down My Life for You and 2026's Experimental Rap.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/JPEGMafia",
+      "title": "JPEGMafia - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/2352019-JPEGMAFIA-LP?srsltid=AU7gw4XZiagB-nK_cxjHW1szNwPm_-7M64PQ2IHnnpKbZo-t3FJcGphu",
+      "title": "JPEGMAFIA – LP! | Releases - Discogs"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/c42e60f4-4520-4954-b6e4-82bbdf532c11",
+      "title": "JPEGMAFIA - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:43.080Z",
+  "type": "artist",
+  "editorial_bio": "American rapper and producer known for his experimental approach to hip-hop, blending noise, trap, and industrial sounds.",
+  "origin": "Baltimore, Maryland",
+  "active_years": "2007-present",
+  "genres": [
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:industrial-hip-hop",
+      "type": "genre",
+      "name": "Industrial Hip Hop",
+      "qid": "Q2004156"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:republic",
+      "type": "label",
+      "name": "Republic"
+    },
+    {
+      "slug": "label:awal",
+      "type": "label",
+      "name": "AWAL"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:black-ben-carson",
+      "type": "project",
+      "name": "Black Ben Carson"
+    },
+    {
+      "slug": "project:veteran",
+      "type": "project",
+      "name": "Veteran"
+    },
+    {
+      "slug": "project:all-my-heroes-are-cornballs",
+      "type": "project",
+      "name": "All My Heroes Are Cornballs"
+    },
+    {
+      "slug": "project:lp",
+      "type": "project",
+      "name": "LP!"
+    },
+    {
+      "slug": "project:scaring-the-hoes",
+      "type": "project",
+      "name": "Scaring the Hoes"
+    },
+    {
+      "slug": "project:i-lay-down-my-life-for-you",
+      "type": "project",
+      "name": "I Lay Down My Life for You"
+    },
+    {
+      "slug": "project:experimental-rap",
+      "type": "project",
+      "name": "Experimental Rap"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:jesus-forgive-me-i-am-a-thot",
+      "type": "track",
+      "name": "Jesus Forgive Me, I Am a Thot"
+    },
+    {
+      "slug": "track:lean-beef-patty",
+      "type": "track",
+      "name": "Lean Beef Patty"
+    },
+    {
+      "slug": "track:bald",
+      "type": "track",
+      "name": "Bald!"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:kanye-west",
+      "type": "artist",
+      "name": "Kanye West"
+    },
+    {
+      "slug": "artist:mf-doom",
+      "type": "artist",
+      "name": "MF Doom"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:danny-brown",
+      "type": "artist",
+      "name": "Danny Brown"
+    },
+    {
+      "slug": "artist:flume",
+      "type": "artist",
+      "name": "Flume"
+    },
+    {
+      "slug": "artist:kenny-beats",
+      "type": "artist",
+      "name": "Kenny Beats"
+    },
+    {
+      "slug": "artist:vince-staples",
+      "type": "artist",
+      "name": "Vince Staples"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:devon-hendryx",
+      "type": "artist",
+      "name": "Devon Hendryx"
+    },
+    {
+      "slug": "artist:peggy",
+      "type": "artist",
+      "name": "Peggy"
+    }
+  ],
+  "members": []
+}

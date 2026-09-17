@@ -1,0 +1,86 @@
+{
+  "slug": "genre:music-of-central-africa",
+  "name": "Music of Central Africa",
+  "editorial_article": "Traditional music in the Central African Republic is marked by the complex polyphony and counterpoint of Pygmy traditions, which utilize cyclical patterns that resemble passacaglia structures. The Banda people contribute a distinct trumpet-based music, employing 'ongo' trumpets crafted from wood or antelope horns for initiation rites, a style UNESCO has identified as a major musicological discovery. Instrumental practices also include the Ngbaka 'mbela'—a mouth-amplified string bow—and the 'liquindi' water drumming style. Contemporary nationwide popular music mirrors broader African trends, with significant influence from soukous and Afrobeat, while the national anthem 'La Renaissance' was composed by Herbert Pepper alongside the country's first president, Barthélémy Boganda.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_of_the_Central_African_Republic",
+      "title": "Music of the Central African Republic - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:43.535Z",
+  "type": "genre",
+  "editorial_definition": "A diverse musical landscape ranging from ancient Pygmy polyphonic traditions and Banda horn rituals to modern regional genres like soukous.",
+  "qid": "Q106588687",
+  "era": "Pre-colonial to present",
+  "origin": "Central African Republic",
+  "sonic_markers": "Polyphonic vocal structures, cyclical rhythmic variations, water drumming, trumpet ensembles, and string-bow amplification.",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-africa",
+      "type": "genre",
+      "name": "Music Of Africa",
+      "qid": "Q369820"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk music",
+      "qid": "Q43343"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:barthelemy-boganda",
+      "type": "artist",
+      "name": "Barthélémy Boganda"
+    },
+    {
+      "slug": "artist:herbert-pepper",
+      "type": "artist",
+      "name": "Herbert Pepper"
+    },
+    {
+      "slug": "artist:banda-people",
+      "type": "artist",
+      "name": "Banda people"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:unesco",
+      "type": "label",
+      "name": "UNESCO"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:la-renaissance",
+      "type": "track",
+      "name": "La Renaissance"
+    }
+  ]
+}

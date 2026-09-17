@@ -11,11 +11,19 @@
   "materialized_at": "2026-05-13T12:42:26.077Z",
   "type": "genre",
   "editorial_definition": "A rapid, syncopated, 140 BPM electronic genre originating in early 2000s East London, known for its jagged, aggressive sound and strong foundation in MC culture and pirate radio.",
+  "qid": "Q1166726",
   "era": "Early 2000s - present",
   "origin": "East London, UK",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:wiley",
@@ -62,6 +70,5 @@
       "type": "track",
       "name": "Pulse X"
     }
-  ],
-  "qid": "Q1166726"
+  ]
 }

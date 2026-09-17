@@ -1,0 +1,324 @@
+{
+  "slug": "artist:queen-latifah",
+  "name": "Queen Latifah",
+  "editorial_article": "Born Dana Elaine Owens in 1970, Queen Latifah established her foundation in the late 1980s hip-hop scene, eventually earning the title Queen of Jazz Rap. Her third studio album, 1993's Black Reign, achieved gold certification in the United States and peaked at number 15 on the US R&B charts. Throughout her career, she has transitioned between rap-focused projects like Nature of a Sista' and jazz-inflected releases such as 2004's The Dana Owens Album and 2007's Trav'lin' Light. She has maintained a prolific collaborative history, appearing on tracks ranging from the 1994 remix of Brandy's I Wanna Be Down to a 2011 Grammy-winning arrangement of Who Can I Turn To (When Nobody Needs Me) with Tony Bennett. Her work has appeared on numerous soundtracks, including New Jack City, Chicago, and Hairspray, while her 2009 Persona album was released through Flavor Unit and Universal Records.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Queen_Latifah_discography",
+      "title": "Queen Latifah discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Queen_Latifah",
+      "title": "Queen Latifah"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:14.905Z",
+  "type": "artist",
+  "editorial_bio": "An influential rapper, jazz singer, and actress who helped define the sound of golden age hip-hop and later pivoted to acclaimed jazz vocal work.",
+  "origin": "Newark, New Jersey",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:flavor-unit",
+      "type": "label",
+      "name": "Flavor Unit"
+    },
+    {
+      "slug": "label:verve-records",
+      "type": "label",
+      "name": "Verve Records"
+    },
+    {
+      "slug": "label:universal-records",
+      "type": "label",
+      "name": "Universal Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:king-king",
+      "type": "project",
+      "name": "King King",
+      "mbid": "30fcdd8f-59fc-4185-b096-8ebf34221dd0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:persona",
+      "type": "project",
+      "name": "Persona",
+      "mbid": "05d2684f-9c81-41d8-8c3e-23dab38cad07",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walk-the-dinosaur",
+      "type": "project",
+      "name": "Walk the Dinosaur",
+      "mbid": "2d5b23c9-e4a7-4767-a1ea-2d7e7487b056",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trav-lin-light",
+      "type": "project",
+      "name": "Trav’lin’ Light",
+      "mbid": "c7a634e8-3cfa-4843-b0ea-8f5747231a32",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dana-owens-album",
+      "type": "project",
+      "name": "The Dana Owens Album",
+      "mbid": "e71579a6-cfd7-37a6-8a56-e223e3388a42",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-can-do-too",
+      "type": "project",
+      "name": "I Can Do Too (original version + the Neptunes Remixes)",
+      "mbid": "37b205a6-300b-461e-ac8f-34b1592d2133",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lay-down",
+      "type": "project",
+      "name": "Lay Down (Candles in the Rain)",
+      "mbid": "fb09d89e-9521-475f-81e5-00203ca1fbb9",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:order-in-the-court",
+      "type": "project",
+      "name": "Order in the Court",
+      "mbid": "fd7bda5b-eafc-38cf-971d-8e3c5f8b9a08",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wrath-of-my-madness",
+      "type": "project",
+      "name": "Wrath of My Madness (Premier remix)",
+      "mbid": "0cb6265d-f9f4-4122-bed5-059e11d0b67b",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-alright",
+      "type": "project",
+      "name": "It's Alright",
+      "mbid": "f1f63a4c-472d-41b5-a2db-4f7ace75078e",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:queen-latifah-and-the-original-flavor-unit",
+      "type": "project",
+      "name": "Queen Latifah and the Original Flavor Unit",
+      "mbid": "63aea3cc-7b7f-47d8-8184-15143eafd1a5",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-big-stuff",
+      "type": "project",
+      "name": "Mr. Big Stuff",
+      "mbid": "6670a547-0e0e-4e6c-ab8e-9966967e9d90",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-at-you-elements-i-m-among",
+      "type": "project",
+      "name": "Back at You / Elements I'm Among",
+      "mbid": "a5831d2b-e4e9-40bf-bfb8-64a1c54797a8",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rough",
+      "type": "project",
+      "name": "Rough",
+      "mbid": "12dfa1e6-afc9-443b-b58e-bc8d3ba00993",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:just-another-day",
+      "type": "project",
+      "name": "Just Another Day",
+      "mbid": "bb913e53-621c-3ebc-be4d-c75e1d64b80c",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-tough",
+      "type": "project",
+      "name": "So Tough",
+      "mbid": "cd333829-59e2-47b9-ae9a-165f1cfa4331",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-reign",
+      "type": "project",
+      "name": "Black Reign",
+      "mbid": "bea628ac-c2e5-35cb-9b73-f7681c74c02a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:u-n-i-t-y",
+      "type": "project",
+      "name": "U.N.I.T.Y.",
+      "mbid": "7097e108-870b-40f2-b0bc-775b2afe56b9",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-cha-gonna-do",
+      "type": "project",
+      "name": "What’cha Gonna Do?",
+      "mbid": "a5bb0533-1957-49c0-b6ce-d5c05e9b52ef",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nature-of-a-sista",
+      "type": "project",
+      "name": "Nature of a Sista’",
+      "mbid": "29934195-4a25-3589-9e7c-ec4129e96a15",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:latifah-s-had-it-up-2-here",
+      "type": "project",
+      "name": "Latifah’s Had It Up 2 Here",
+      "mbid": "19af18e1-2094-3407-a422-a7e7e93b8b85",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fly-girl",
+      "type": "project",
+      "name": "Fly Girl",
+      "mbid": "42d062e1-fae6-3842-93b8-2a645ff0d91a",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-into-my-house",
+      "type": "project",
+      "name": "Come Into My House",
+      "mbid": "00a62830-efa6-47ed-92d7-20f88985e703",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ladies-first",
+      "type": "project",
+      "name": "Ladies First",
+      "mbid": "c97f6245-824e-36ef-b13a-1683131caa23",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mama-gave-birth-to-the-soul-children",
+      "type": "project",
+      "name": "Mama Gave Birth to the Soul Children",
+      "mbid": "ccb0dfb5-0db6-3a59-a2a8-618f56f108bd",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-hail-the-queen",
+      "type": "project",
+      "name": "All Hail the Queen",
+      "mbid": "7416a063-8697-37a5-af06-af4da329c398",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ladies-first",
+      "type": "project",
+      "name": "Ladies First",
+      "mbid": "087229dd-0400-4543-a749-1d673090812e",
+      "year": "1989",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:u-n-i-t-y",
+      "type": "track",
+      "name": "U.N.I.T.Y."
+    },
+    {
+      "slug": "track:just-another-day",
+      "type": "track",
+      "name": "Just Another Day..."
+    },
+    {
+      "slug": "track:latifah-s-had-it-up-2-here",
+      "type": "track",
+      "name": "Latifah's Had It Up 2 Here"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:the-45-king",
+      "type": "artist",
+      "name": "The 45 King"
+    },
+    {
+      "slug": "artist:tony-bennett",
+      "type": "artist",
+      "name": "Tony Bennett"
+    },
+    {
+      "slug": "artist:naughty-by-nature",
+      "type": "artist",
+      "name": "Naughty by Nature"
+    },
+    {
+      "slug": "artist:mc-lyte",
+      "type": "artist",
+      "name": "MC Lyte"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,147 @@
+{
+  "slug": "genre:hip-house",
+  "name": "Hip-House",
+  "editorial_article": "Emerging in the mid-to-late 1980s across London and Chicago, hip-house fused the rhythmic drive of house music with the vocal delivery of hip-hop. The Beatmasters and Cookie Crew’s 1986 track \"Rok da House\" is frequently cited as a foundational recording, though Tyree Cooper and Kool Rock Steady later contested the genre's earliest claim with \"Turn Up the Bass\" in 1988. The style quickly gained traction in warehouse acid house scenes, pushed by figures like DJ Chad Jackson and compilers at Telstar Records. Producers like Fast Eddie with \"Yo Yo Get Funky!\" and groups such as Rob Base and DJ E-Z Rock with \"It Takes Two\" established the formula, which later influenced breakbeat hardcore and the burgeoning UK rave scene. By the 2000s, the genre evolved into electro hop, seeing mainstream success from artists like LMFAO, Pitbull, and David Guetta, who incorporated rap vocals over polished dancefloor-oriented production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hip_house",
+      "title": "Hip house - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/hip-house?srsltid=AU7gw4XafA393n66xDqQ97DXWvJ0Ooq1th4tCUaZB802ZaZYT3YH8kEl",
+      "title": "Hip-House Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:53.667Z",
+  "type": "genre",
+  "editorial_definition": "A musical genre from the mid-1980s that overlays rap vocals onto house music beats.",
+  "qid": "Q601235",
+  "era": "mid-1980s to 2010s",
+  "origin": "London, UK and Chicago, USA",
+  "sonic_markers": "House music 4/4 beats, rap vocal delivery, sample-heavy production, syncopated rhythm loops.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House Music",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:rapping",
+      "type": "genre",
+      "name": "Rapping",
+      "qid": "Q6010"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:beatmasters",
+      "type": "artist",
+      "name": "Beatmasters"
+    },
+    {
+      "slug": "artist:cookie-crew",
+      "type": "artist",
+      "name": "Cookie Crew"
+    },
+    {
+      "slug": "artist:tyree-cooper",
+      "type": "artist",
+      "name": "Tyree Cooper"
+    },
+    {
+      "slug": "artist:fast-eddie",
+      "type": "artist",
+      "name": "Fast Eddie"
+    },
+    {
+      "slug": "artist:rob-base-and-dj-e-z-rock",
+      "type": "artist",
+      "name": "Rob Base and DJ E-Z Rock"
+    },
+    {
+      "slug": "artist:lmfao",
+      "type": "artist",
+      "name": "LMFAO"
+    },
+    {
+      "slug": "artist:david-guetta",
+      "type": "artist",
+      "name": "David Guetta"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:telstar-records",
+      "type": "label",
+      "name": "Telstar Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:rok-da-house",
+      "type": "track",
+      "name": "Rok da House"
+    },
+    {
+      "slug": "track:turn-up-the-bass",
+      "type": "track",
+      "name": "Turn Up the Bass"
+    },
+    {
+      "slug": "track:yo-yo-get-funky",
+      "type": "track",
+      "name": "Yo Yo Get Funky!"
+    },
+    {
+      "slug": "track:it-takes-two",
+      "type": "track",
+      "name": "It Takes Two"
+    },
+    {
+      "slug": "track:gonna-make-you-sweat",
+      "type": "track",
+      "name": "Gonna Make You Sweat"
+    }
+  ]
+}

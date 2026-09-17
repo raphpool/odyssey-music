@@ -30,13 +30,152 @@
   "era": "1970s–Present",
   "origin": "The Bronx, New York City, USA",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore hip-hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped N Screwed",
+      "qid": "Q2261628"
+    },
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:breaks",
       "type": "genre",
       "name": "Breaks",
       "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
+    },
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    },
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Baile Funk",
+      "qid": "Q1931130"
     }
   ],
   "key_artists": [

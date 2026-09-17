@@ -1,0 +1,407 @@
+{
+  "slug": "artist:sza",
+  "name": "SZA",
+  "editorial_article": "Born in St. Louis and raised in New Jersey, Solána Imani Rowe debuted as SZA with the 2012 EP See.SZA.Run before signing to Top Dawg Entertainment as the label’s first woman artist in 2013. Her 2017 debut album Ctrl reached number two on Billboard's Top R&B/Hip-Hop Albums chart and maintained a presence on the Billboard 200 for over five years. Collaborating frequently within the TDE orbit, she contributed to Kendrick Lamar's Black Panther soundtrack with All the Stars and later achieved significant streaming records with her 2022 album SOS. The project's single Kill Bill became the third best-selling song of 2023, while the 2024 reissue Lana added top-10 songs to her discography, including the Don Toliver-featured track Joni. Her output reflects a persistent tension regarding her creative process, specifically noting that she often loses confidence in the quality of her music once tracks are leaked online.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/SZA",
+      "title": "SZA - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/SZA_discography",
+      "title": "SZA discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:01.568Z",
+  "type": "artist",
+  "editorial_bio": "An influential American singer-songwriter and first female signee to Top Dawg Entertainment, known for her record-breaking albums Ctrl and SOS.",
+  "origin": "St. Louis, Missouri",
+  "active_years": "2012-present",
+  "genres": [
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:top-dawg-entertainment",
+      "type": "label",
+      "name": "Top Dawg Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:is-it-cool",
+      "type": "project",
+      "name": "is it cool?",
+      "mbid": "41953313-f7b2-4e9f-a555-65e753405c7d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boy-in-red",
+      "type": "project",
+      "name": "BOY IN RED",
+      "mbid": "4142d883-5893-4a8f-a3d0-6c57e2fc43d9",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-get-up",
+      "type": "project",
+      "name": "girl, get up.",
+      "mbid": "7ce52482-5f17-427c-892e-124011af0635",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pt-cruiser",
+      "type": "project",
+      "name": "PT Cruiser",
+      "mbid": "7ee0855b-dacf-44da-b67b-72f3f5718ed5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pt-cruiser",
+      "type": "project",
+      "name": "PT Cruiser",
+      "mbid": "dc365116-a907-40e4-8834-867e6a03d246",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saturn",
+      "type": "project",
+      "name": "Saturn",
+      "mbid": "3718f50a-c913-4920-ab66-e523e8bcbc43",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-szns",
+      "type": "project",
+      "name": "NO SZNS",
+      "mbid": "55071971-c98c-4580-aff9-7735d88d70a6",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slime-you-out",
+      "type": "project",
+      "name": "Slime You Out",
+      "mbid": "7821897c-7f3a-46a5-a775-d3577569711e",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snooze",
+      "type": "project",
+      "name": "Snooze (acoustic)",
+      "mbid": "02e60293-3891-4ace-865b-d1590b628f5b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snooze",
+      "type": "project",
+      "name": "Snooze",
+      "mbid": "14cb0ff3-0b86-46d4-a907-b2764ce39b2b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kill-bill",
+      "type": "project",
+      "name": "Kill Bill (acoustic)",
+      "mbid": "239f5ce8-5933-4b56-a20f-835417e9b493",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kill-bill",
+      "type": "project",
+      "name": "Kill Bill",
+      "mbid": "4bf388c5-bdef-45c1-8e27-7c1359797a47",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sos",
+      "type": "project",
+      "name": "SOS",
+      "mbid": "1646286a-d0ad-4288-bfab-34b0fb7b22c1",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shirt",
+      "type": "project",
+      "name": "Shirt",
+      "mbid": "e61140be-b315-4e0f-800a-59715668a34b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beautiful",
+      "type": "project",
+      "name": "BEAUTIFUL",
+      "mbid": "36d4c80c-a866-4fd1-8717-5e4c01bde82c",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tread-carefully",
+      "type": "project",
+      "name": "Tread Carefully",
+      "mbid": "48a30c03-bc62-4afc-8747-60f0b347dcc5",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-hate-u",
+      "type": "project",
+      "name": "I Hate U",
+      "mbid": "f91dd7b7-2c87-4cb9-ab00-514773b6da0d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fue-mejor",
+      "type": "project",
+      "name": "fue mejor",
+      "mbid": "87988813-c20b-4f0a-86c6-203511cb1d0e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-anonymous-ones",
+      "type": "project",
+      "name": "The Anonymous Ones",
+      "mbid": "7e731ce2-3825-45d1-9622-1bde82988eba",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-me-more",
+      "type": "project",
+      "name": "Kiss Me More",
+      "mbid": "dc8fa7e4-3f00-41e1-874e-6cbb1f1d8366",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-me-more",
+      "type": "project",
+      "name": "Kiss Me More",
+      "mbid": "e58f35f5-0ac7-4de2-bfed-8586cf83dedd",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-days",
+      "type": "project",
+      "name": "Good Days",
+      "mbid": "a815eeeb-3b59-4dbd-bc34-5a9381c547b8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hit-different",
+      "type": "project",
+      "name": "Hit Different",
+      "mbid": "84129e6c-82ff-467a-b918-59267b5f5693",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-us",
+      "type": "project",
+      "name": "Just Us",
+      "mbid": "eed0dd71-0a56-4bc7-92b7-2df016b3b0ed",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-lovers-do",
+      "type": "project",
+      "name": "What Lovers Do",
+      "mbid": "3968c1c3-ad7e-48b1-b200-eb64af17e2fb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:julia",
+      "type": "project",
+      "name": "Julia / (Tender)",
+      "mbid": "071b41c3-7d1b-4bb2-8164-4e01c82bc976",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ctrl",
+      "type": "project",
+      "name": "Ctrl",
+      "mbid": "8f892c1b-0709-4cf4-9711-493892a9eb9b",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:broken-clocks",
+      "type": "project",
+      "name": "Broken Clocks",
+      "mbid": "93d69227-71a7-4a24-a7c1-feb25fe4681d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-galore",
+      "type": "project",
+      "name": "Love Galore",
+      "mbid": "ad0468a5-0f65-4174-b17b-a33916f58f0c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drew-barrymore",
+      "type": "project",
+      "name": "Drew Barrymore",
+      "mbid": "b980bb62-ac5f-47fa-9b6f-d6722e652212",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lies",
+      "type": "project",
+      "name": "Lies",
+      "mbid": "4c140f35-994f-4d09-a18b-bcce37b64127",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twoam",
+      "type": "project",
+      "name": "twoAM",
+      "mbid": "c273d91a-0233-4d23-8441-67dc1c6a7234",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sobriety",
+      "type": "project",
+      "name": "Sobriety",
+      "mbid": "4fe38bb5-c124-40e0-8dc1-c25bd5973244",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:z",
+      "type": "project",
+      "name": "Z",
+      "mbid": "9f485525-4d5d-433d-ae7f-5514f8adf461",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:childs-play",
+      "type": "project",
+      "name": "Childs Play",
+      "mbid": "62b66a01-86b2-43a6-8443-2b4b14f495c4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:s",
+      "type": "project",
+      "name": "S",
+      "mbid": "40035d98-27d5-42a0-b66b-2b790d3a69cf",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ice-moon",
+      "type": "project",
+      "name": "Ice Moon",
+      "mbid": "f8932b65-a4e9-4ded-8a2c-c9d7e9667ee8",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:see-sza-run",
+      "type": "project",
+      "name": "See.SZA.Run",
+      "mbid": "819706ff-4eea-4022-b639-5020c81e9e31",
+      "year": "2012",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:love-galore",
+      "type": "track",
+      "name": "Love Galore"
+    },
+    {
+      "slug": "track:the-weekend",
+      "type": "track",
+      "name": "The Weekend"
+    },
+    {
+      "slug": "track:all-the-stars",
+      "type": "track",
+      "name": "All the Stars"
+    },
+    {
+      "slug": "track:kill-bill",
+      "type": "track",
+      "name": "Kill Bill"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    },
+    {
+      "slug": "artist:doja-cat",
+      "type": "artist",
+      "name": "Doja Cat"
+    },
+    {
+      "slug": "artist:don-toliver",
+      "type": "artist",
+      "name": "Don Toliver"
+    },
+    {
+      "slug": "artist:maroon-5",
+      "type": "artist",
+      "name": "Maroon 5"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

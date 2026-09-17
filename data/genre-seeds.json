@@ -1238,11 +1238,46 @@
 			}
 		]
 	},
+	"Q1931130": {
+		"genre": {
+			"slug": "genre:baile-funk",
+			"name": "Baile Funk",
+			"qid": "Q1931130"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Tati Quebra Barraco",
+				"slug": "artist:tati-quebra-barraco",
+				"mbid": "2205086e-8286-4600-844c-1be8a5e20512"
+			},
+			{
+				"type": "artist",
+				"name": "Deize Tigrona",
+				"slug": "artist:deize-tigrona",
+				"mbid": "d71b56b6-fea1-4300-8a69-94c78feeb4aa"
+			},
+			{
+				"type": "artist",
+				"name": "Valesca Popozuda",
+				"slug": "artist:valesca-popozuda",
+				"mbid": "86074988-4a29-46f5-936e-1437ad71c04c"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:music-of-brazil",
+				"name": "Music of Brazil",
+				"qid": "Q899215"
+			}
+		]
+	},
 	"Q25099840": {
 		"genre": {
 			"slug": "genre:afrobeats",
 			"name": "Afrobeats",
-			"qid": "Q25099840"
+			"qid": "Q25099840",
+			"disambiguator": "2000s–2010s West African pop, distinct from Fela Kuti's Afrobeat"
 		},
 		"targets": [
 			{

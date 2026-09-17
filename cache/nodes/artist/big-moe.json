@@ -1,0 +1,156 @@
+{
+  "slug": "artist:big-moe",
+  "name": "Big Moe",
+  "editorial_article": "Born Kenneth Doniell Moore in 1974, the Houston native became a definitive voice of the Third Ward by rising through the ranks of the legendary Screwed Up Click. Signing to Wreckshop Records, he released his debut City of Syrup in 2000, which featured the single Mann! as a regional retort to the East Coast club sound of Black Rob. His second studio album, 2002's Purple World, climbed to No. 3 on the Billboard Top R&B/Hip-Hop Albums chart, propelled by the success of the single Purple Stuff and its accompanying Willy Wonka-themed music video. Moe was a key figure in regional culture, often referencing the practice of codeine-laced syrup consumption which became a focal point of his visual and lyrical presentation. Following his final studio release, Moe Life in 2003, his career was cut short by his death in 2007 at the age of 33, leaving behind a legacy recognized for its impact on the development of Southern hip-hop.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Big_Moe",
+      "title": "Big Moe - Wikipedia"
+    },
+    {
+      "url": "https://kutx.org/this-week-in-texas-music-history/the-birth-of-big-moe/",
+      "title": "The Birth of Big Moe - KUTX"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:30.918Z",
+  "type": "artist",
+  "editorial_bio": "A founding member of Houston's Screwed Up Click, Big Moe was a pivotal figure in the Southern hip-hop scene, best known for his 2002 hit Purple Stuff.",
+  "origin": "Houston, Texas",
+  "active_years": "1993-2007",
+  "genres": [
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern hip hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped and screwed",
+      "qid": "Q2261628"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:wreckshop-records",
+      "type": "label",
+      "name": "Wreckshop Records"
+    },
+    {
+      "slug": "label:koch-records",
+      "type": "label",
+      "name": "Koch Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bar-yar-yar",
+      "type": "project",
+      "name": "Bar Yar Yar",
+      "mbid": "839b7742-3b00-436a-81b6-1772851910a8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unfinished-business",
+      "type": "project",
+      "name": "Unfinished Business",
+      "mbid": "1b3193c6-e9f7-373a-8f55-75120070a8fe",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lost-tracks",
+      "type": "project",
+      "name": "Lost Tracks",
+      "mbid": "b9c1f3a1-2e7c-48ed-81d9-9a17463caf08",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moe-life",
+      "type": "project",
+      "name": "Moe Life",
+      "mbid": "43a80582-9300-314e-90a1-0f9ef30f6925",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:purple-world",
+      "type": "project",
+      "name": "Purple World",
+      "mbid": "45e9acf5-7a76-3941-bee9-ec02588960d0",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:city-of-syrup",
+      "type": "project",
+      "name": "City of Syrup",
+      "mbid": "be8760fa-3efb-3f3b-8553-759430365d91",
+      "year": "2000",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mann",
+      "type": "track",
+      "name": "Mann!"
+    },
+    {
+      "slug": "track:purple-stuff",
+      "type": "track",
+      "name": "Purple Stuff"
+    },
+    {
+      "slug": "track:just-a-dog",
+      "type": "track",
+      "name": "Just a Dog"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-screw",
+      "type": "artist",
+      "name": "DJ Screw"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:barre-baby",
+      "type": "artist",
+      "name": "Barre Baby"
+    },
+    {
+      "slug": "artist:drank-baby",
+      "type": "artist",
+      "name": "Drank Baby"
+    },
+    {
+      "slug": "artist:moyo",
+      "type": "artist",
+      "name": "MoYo"
+    },
+    {
+      "slug": "artist:modeine",
+      "type": "artist",
+      "name": "Modeine"
+    },
+    {
+      "slug": "artist:motorola",
+      "type": "artist",
+      "name": "Motorola"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:dj-screw",
+      "type": "artist",
+      "name": "DJ Screw"
+    }
+  ]
+}

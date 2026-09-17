@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Deep house",
       "qid": "Q874038"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
     }
   ],
   "labels": [

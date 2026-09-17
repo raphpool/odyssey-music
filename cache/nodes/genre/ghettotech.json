@@ -1,0 +1,105 @@
+{
+  "slug": "genre:ghettotech",
+  "name": "Ghettotech",
+  "editorial_article": "Emerging from the Detroit underground in the early 1990s, ghettotech—also known as Detroit club—fuses the rapid, four-on-the-floor rhythms of local techno with the repetitive, explicit vocal delivery of ghetto house. The genre was cultivated by influential figures like DJ Assault and DJ Funk, who drew inspiration from the eclectic radio broadcasts of The Electrifying Mojo and the technical turntablism of Jeff Mills. Tracks typically operate between 145 and 160 BPM, favoring raw, unpolished drum machine textures over refined studio production. Beyond the music, the genre is intrinsically linked to the 'jit' dance style, a form of high-speed footwork that traces its origins back to 1970s Detroit jitterbug culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ghettotech",
+      "title": "Ghettotech - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/ghettotech?srsltid=AU7gw4WHYOY0gH4XwRly6gtIpfD2z-KG5H0CNjWi6dkU5DEM5Y5cc75C",
+      "title": "Ghettotech Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:57:38.588Z",
+  "type": "genre",
+  "editorial_definition": "A high-tempo, raw electronic dance genre from Detroit characterized by rapid, aggressive beats and explicit, repetitive vocal hooks.",
+  "qid": "Q1521688",
+  "era": "Early 1990s to present",
+  "origin": "Detroit, Michigan, United States",
+  "sonic_markers": "145-160 BPM, four-on-the-floor kicks, raw synthesis, pornographic vocal samples, fast-paced turntablism.",
+  "parent_genres": [
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto House",
+      "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:us-bass-music",
+      "type": "genre",
+      "name": "Us Bass Music",
+      "qid": "Q114880124"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto house",
+      "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno",
+      "qid": "Q526463"
+    },
+    {
+      "slug": "genre:miami-bass",
+      "type": "genre",
+      "name": "Miami bass",
+      "qid": "Q546206"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault"
+    },
+    {
+      "slug": "artist:dj-funk",
+      "type": "artist",
+      "name": "DJ Funk"
+    },
+    {
+      "slug": "artist:dj-godfather",
+      "type": "artist",
+      "name": "DJ Godfather"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    },
+    {
+      "slug": "label:twilight-76-records",
+      "type": "label",
+      "name": "Twilight 76 Records"
+    },
+    {
+      "slug": "label:databass-records",
+      "type": "label",
+      "name": "Databass Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:ass-n-titties",
+      "type": "track",
+      "name": "Ass-N-Titties"
+    }
+  ]
+}

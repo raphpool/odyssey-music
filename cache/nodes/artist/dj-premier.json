@@ -1,0 +1,551 @@
+{
+  "slug": "artist:dj-premier",
+  "name": "DJ Premier",
+  "editorial_article": "Born Christopher Edward Martin in 1966 and raised in Brooklyn, this Houston native defined the New York boom-bap sound through his work with Gang Starr alongside rapper Guru. His production method relies heavily on sampling jazz, funk, and soul, famously chopping records—including previous works by artists he is currently producing—to construct new arrangements. Premier's technical skill extends to scratching, where he utilizes an encyclopedic memory of hip-hop lyrics to manipulate vocal samples into entirely new hooks. Beyond his foundational work with the Gang Starr Foundation and artists like M.O.P. and Jeru the Damaja, he has reached mainstream audiences through chart-topping collaborations, including Christina Aguilera's 2006 single Ain't No Other Man. He founded Year Round Records in 2010 and later formed the duo PRhyme with Royce da 5'9\" in 2014, continuing to curate hip-hop production across generations.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/DJ_Premier",
+      "title": "DJ Premier"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:16.501Z",
+  "type": "artist",
+  "editorial_bio": "An influential American producer and DJ, Christopher Edward Martin, known as DJ Premier, shaped the boom-bap sound as a member of Gang Starr.",
+  "origin": "Houston, Texas",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom bap",
+      "qid": "Q529742"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:year-round",
+      "type": "label",
+      "name": "Year Round"
+    },
+    {
+      "slug": "label:mass-appeal",
+      "type": "label",
+      "name": "Mass Appeal"
+    },
+    {
+      "slug": "label:wild-pitch",
+      "type": "label",
+      "name": "Wild Pitch"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:for-the-gig",
+      "type": "project",
+      "name": "For The Gig",
+      "mbid": "da7c4a5a-e008-4727-900c-7497a21f418b",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:light-years",
+      "type": "project",
+      "name": "Light‐Years",
+      "mbid": "0c76c4d4-ce74-49f7-a7a8-ed98cee682f2",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-reinvention",
+      "type": "project",
+      "name": "The Reinvention",
+      "mbid": "b367171f-dc07-4fa2-a86c-34787ffe2791",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-coldest-profession",
+      "type": "project",
+      "name": "The Coldest Profession",
+      "mbid": "1ebb9d02-5c90-4cc7-bd1f-746183ff9c77",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prayer-hands",
+      "type": "project",
+      "name": "Prayer Hands",
+      "mbid": "fbe90798-2bf6-434b-8cea-0af240b41bd6",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gonna-be-me",
+      "type": "project",
+      "name": "Gonna Be Me (J-Vibe Version)",
+      "mbid": "af45ed00-da55-48de-856b-fd3146a1024a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:armani-section",
+      "type": "project",
+      "name": "Armani Section",
+      "mbid": "6eefc403-09d8-414c-9f40-56ccf386cbe2",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:plaza-con-prada",
+      "type": "project",
+      "name": "Plaza Con Prada",
+      "mbid": "c5e2886a-19a4-455f-98a6-5a59c5a720bd",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ya-don-t-stop",
+      "type": "project",
+      "name": "Ya Don’t Stop",
+      "mbid": "eb349196-6569-49b9-bbd4-91645022ecab",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:together",
+      "type": "project",
+      "name": "Together",
+      "mbid": "8593347d-3873-4bc6-b7a4-e45bf4242bdb",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:define-my-name",
+      "type": "project",
+      "name": "Define My Name",
+      "mbid": "ed253382-987a-4efc-b1b8-7f8db10352c0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-u-dig-that-pt-2",
+      "type": "project",
+      "name": "Can U Dig That? Pt. 2",
+      "mbid": "8e1c2adb-8099-4f34-b345-8acba5862b3f",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-u-dig-that",
+      "type": "project",
+      "name": "Can U Dig That?",
+      "mbid": "7a65fa57-831b-4a8f-8468-bd939f0d02e7",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:work-this-out",
+      "type": "project",
+      "name": "Work This Out",
+      "mbid": "4f371742-0d20-4284-9984-b5dc7b0cb89f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-moe",
+      "type": "project",
+      "name": "In Moe (Speculation)",
+      "mbid": "c35be94f-b3a9-4708-9e82-888b8e832320",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beats-that-collected-dust-vol-3",
+      "type": "project",
+      "name": "Beats That Collected Dust, Vol. 3 (Instrumental)",
+      "mbid": "1300630c-9bde-4401-92cd-931e63957645",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aeao",
+      "type": "project",
+      "name": "AEAO",
+      "mbid": "4752159b-954d-4418-8e12-af348c92d025",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:runway",
+      "type": "project",
+      "name": "Runway",
+      "mbid": "c540baf0-f837-46c7-ac2d-0949f1fdd6e7",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hostile-takeover",
+      "type": "project",
+      "name": "Hostile Takeover",
+      "mbid": "b1c7aa9b-813d-4964-afd4-37e53d5f391b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heroes",
+      "type": "project",
+      "name": "HEROES",
+      "mbid": "8ea30a06-bc14-4396-9bd7-4a2f86ac0ef9",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walk-out",
+      "type": "project",
+      "name": "Walk Out",
+      "mbid": "cfc14185-4259-4c26-8eb2-bf4b61f54810",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hip-hop-50-vol-1",
+      "type": "project",
+      "name": "Hip Hop 50, Vol. 1",
+      "mbid": "a58219c5-fe97-4307-adeb-63c2a1ec3fae",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:life-in-the-feds",
+      "type": "project",
+      "name": "Life in the FEDS (Instrumental)",
+      "mbid": "7195a66c-e989-4c96-a7c3-adddbd66a956",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-narcissist",
+      "type": "project",
+      "name": "The Narcissist",
+      "mbid": "90a75333-e3db-4e40-8a66-92d95c364dc3",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:100",
+      "type": "project",
+      "name": "100%",
+      "mbid": "6a10f4fe-6e89-4007-aa04-fbbaf6ce569f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ooh-la-la",
+      "type": "project",
+      "name": "Ooh La La",
+      "mbid": "3f81d73e-d5f1-48ba-a1c3-788ef9268a6e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:payday-instrumentals",
+      "type": "project",
+      "name": "Payday Instrumentals",
+      "mbid": "eac5b0e8-3f54-4351-bdb7-45cdb6a135d4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headlines",
+      "type": "project",
+      "name": "Headlines",
+      "mbid": "94f96f56-750c-4e30-8c90-ac74e9787394",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fullblast-radio-presents-the-don-premier-album",
+      "type": "project",
+      "name": "Fullblast Radio presents... The Don Premier Album",
+      "mbid": "5d56ce2b-302e-4cca-993f-d51a695c6e64",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wut-u-said",
+      "type": "project",
+      "name": "WUT U SAID?",
+      "mbid": "2fb47752-ff98-4e3a-91f5-94a45326ce2b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:our-streets",
+      "type": "project",
+      "name": "Our Streets",
+      "mbid": "5caaf610-c3e4-4640-bcc8-62f60834b5d2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-space-baby",
+      "type": "project",
+      "name": "My Space Baby",
+      "mbid": "333dea79-fdb9-44a2-b39f-52e2e88e7d11",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:represent-like-this",
+      "type": "project",
+      "name": "Represent Like This",
+      "mbid": "f2bf017b-ca79-4108-8b0d-4a03d01ef0eb",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2-lovin-u",
+      "type": "project",
+      "name": "2 Lovin U",
+      "mbid": "593e689c-c74d-4713-b0f1-796a1372c706",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-giant-step",
+      "type": "project",
+      "name": "A Giant Step",
+      "mbid": "9aae0415-8d7d-44ff-80ba-b418ab612900",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:28-bars-of-kane",
+      "type": "project",
+      "name": "28 Bars of Kane",
+      "mbid": "7b42e231-ddf6-44e8-82f8-c6d5751a62f2",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kolexxxion",
+      "type": "project",
+      "name": "KoleXXXion",
+      "mbid": "9e924a66-5923-4f1d-bbf1-9a27dc34dfe9",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stoodiotyme",
+      "type": "project",
+      "name": "StOoDiOtYmE",
+      "mbid": "cfadf636-1ce8-4049-8bed-678004c0e16c",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:weare-at-war",
+      "type": "project",
+      "name": "wEaRe aT WaR",
+      "mbid": "d7ce0afd-66c4-4a2e-9d33-da87ab29a43a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beats-that-collected-dust-volume-2",
+      "type": "project",
+      "name": "Beats That Collected Dust, Volume 2",
+      "mbid": "5f6c6560-22dd-47c7-90fb-eff2f0df7de9",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:b-a-p",
+      "type": "project",
+      "name": "B.A.P.",
+      "mbid": "a6a03310-91e3-4267-9b35-1ed1870ed0c9",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:project-boy",
+      "type": "project",
+      "name": "Project Boy",
+      "mbid": "eb2b0119-11ba-4a08-b6f8-94c1bf58de18",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beats-that-collected-dust",
+      "type": "project",
+      "name": "Beats That Collected Dust",
+      "mbid": "d9a7737f-b613-3c06-a62e-6cd6fdfaefbd",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-gonna-ill-poet-s-comin",
+      "type": "project",
+      "name": "We Gonna Ill / Poet’s Comin’",
+      "mbid": "8fbec907-e19a-404c-9c78-3ff43fe4bdf7",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:primo-s-bakery",
+      "type": "project",
+      "name": "Primo's Bakery",
+      "mbid": "1813b639-d244-4251-9797-5f8fdcc4057a",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:collabo-ep",
+      "type": "project",
+      "name": "Collabo EP",
+      "mbid": "e98ad551-1073-3ee7-b112-a95b5ef0a4e3",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beats-2-blaze-mics-to",
+      "type": "project",
+      "name": "Beats 2 Blaze Mics To",
+      "mbid": "20d6fdd8-1e42-4806-bb3a-4e0b236125a0",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-2-chill",
+      "type": "project",
+      "name": "Time 2 Chill",
+      "mbid": "4cb72972-3da6-36c1-826f-a00a855a41bc",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:set-me-free",
+      "type": "project",
+      "name": "SET ME FREE",
+      "mbid": "62a389b3-4761-4faa-9f7e-a7eb94b84fc5",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unreleased-instrumentals-vol-8",
+      "type": "project",
+      "name": "Unreleased Instrumentals, Vol.# 8",
+      "mbid": "068f67bf-8e9b-360b-824a-5f62ba5bb887",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:planet-of-the-beats",
+      "type": "project",
+      "name": "Planet of the Beats",
+      "mbid": "4c0eaaac-8161-3ee8-b6a7-0ef5948ae1f4",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mass-appeal",
+      "type": "track",
+      "name": "Mass Appeal"
+    },
+    {
+      "slug": "track:you-know-my-steez",
+      "type": "track",
+      "name": "You Know My Steez"
+    },
+    {
+      "slug": "track:nas-is-like",
+      "type": "track",
+      "name": "Nas Is Like"
+    },
+    {
+      "slug": "track:ain-t-no-other-man",
+      "type": "track",
+      "name": "Ain't No Other Man"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:marley-marl",
+      "type": "artist",
+      "name": "Marley Marl"
+    },
+    {
+      "slug": "artist:jam-master-jay",
+      "type": "artist",
+      "name": "Jam Master Jay"
+    },
+    {
+      "slug": "artist:grandmaster-flash",
+      "type": "artist",
+      "name": "Grandmaster Flash"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:guru",
+      "type": "artist",
+      "name": "Guru"
+    },
+    {
+      "slug": "artist:royce-da-5-9",
+      "type": "artist",
+      "name": "Royce da 5'9\""
+    },
+    {
+      "slug": "artist:jeru-the-damaja",
+      "type": "artist",
+      "name": "Jeru the Damaja"
+    },
+    {
+      "slug": "artist:m-o-p",
+      "type": "artist",
+      "name": "M.O.P."
+    },
+    {
+      "slug": "artist:christina-aguilera",
+      "type": "artist",
+      "name": "Christina Aguilera"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:afu-ra",
+      "type": "artist",
+      "name": "Afu-Ra"
+    },
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:preemo",
+      "type": "artist",
+      "name": "Preemo"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:christopher-edward-martin",
+      "type": "artist",
+      "name": "Christopher Edward Martin"
+    }
+  ]
+}

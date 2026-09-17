@@ -1,0 +1,137 @@
+{
+  "slug": "artist:bts",
+  "name": "BTS",
+  "editorial_article": "Formed in 2010 by Big Hit Entertainment CEO Bang Si-hyuk in Seoul, BTS debuted in 2013 with the single album 2 Cool 4 Skool. The group initially utilized a 1990s old-school hip-hop sound on tracks like 'No More Dream' and 'N.O.', which addressed student anxiety and societal pressures in South Korea. Members RM, Suga, and J-Hope provided the group's early creative core, eventually expanding their style to incorporate pop, R&B, and EDM. Their 2018 album Love Yourself: Tear reached number one on the Billboard 200, the first K-pop album to do so. In 2020, their English-language single 'Dynamite' hit number one on the Billboard Hot 100, marking their status as a global pop force. The group has historically addressed themes of self-love, mental health, and philosophy, including a conceptual alternate universe storyline woven through their discography.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/BTS",
+      "title": "BTS"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/RM_(musician)",
+      "title": "RM (musician)"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:11:13.503Z",
+  "type": "artist",
+  "editorial_bio": "A South Korean boy band that grew from a hip-hop-focused idol group into a global pop phenomenon, known for their lyrical focus on self-love and mental health.",
+  "origin": "Seoul, South Korea",
+  "active_years": "2013-present",
+  "genres": [
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:dance",
+      "type": "genre",
+      "name": "Dance",
+      "qid": "Q11787389"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bighit-music",
+      "type": "label",
+      "name": "BigHit Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:2-cool-4-skool",
+      "type": "project",
+      "name": "2 Cool 4 Skool"
+    },
+    {
+      "slug": "project:dark-and-wild",
+      "type": "project",
+      "name": "Dark & Wild"
+    },
+    {
+      "slug": "project:wings",
+      "type": "project",
+      "name": "Wings"
+    },
+    {
+      "slug": "project:love-yourself-tear",
+      "type": "project",
+      "name": "Love Yourself: Tear"
+    },
+    {
+      "slug": "project:map-of-the-soul-7",
+      "type": "project",
+      "name": "Map of the Soul: 7"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:no-more-dream",
+      "type": "track",
+      "name": "No More Dream"
+    },
+    {
+      "slug": "track:dynamite",
+      "type": "track",
+      "name": "Dynamite"
+    },
+    {
+      "slug": "track:butter",
+      "type": "track",
+      "name": "Butter"
+    },
+    {
+      "slug": "track:blood-sweat-and-tears",
+      "type": "track",
+      "name": "Blood Sweat & Tears"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:jin",
+      "type": "artist",
+      "name": "Jin"
+    },
+    {
+      "slug": "artist:suga",
+      "type": "artist",
+      "name": "Suga"
+    },
+    {
+      "slug": "artist:j-hope",
+      "type": "artist",
+      "name": "J-Hope"
+    },
+    {
+      "slug": "artist:rm",
+      "type": "artist",
+      "name": "RM"
+    },
+    {
+      "slug": "artist:jimin",
+      "type": "artist",
+      "name": "Jimin"
+    },
+    {
+      "slug": "artist:v",
+      "type": "artist",
+      "name": "V"
+    },
+    {
+      "slug": "artist:jung-kook",
+      "type": "artist",
+      "name": "Jung Kook"
+    }
+  ]
+}

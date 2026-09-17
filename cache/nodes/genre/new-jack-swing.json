@@ -1,0 +1,147 @@
+{
+  "slug": "genre:new-jack-swing",
+  "name": "New Jack Swing",
+  "editorial_article": "Coined by writer Barry Michael Cooper in an October 18, 1987 profile for the Village Voice, new jack swing emerged in the United States as a high-energy hybrid of R&B, hip hop, and funk. Producers like Teddy Riley and the team of Jimmy Jam and Terry Lewis defined the genre by utilizing digital synthesizers including the Yamaha DX7 and Roland D50, paired with the syncopated, swung rhythmic patterns of drum machines like the Roland TR-808. Records such as Keith Sweat's 1987 hit I Want Her and Bobby Brown's My Prerogative established the genre's mainstream viability, bridging the gap between urban radio and pop charts. Beyond its late 1980s peak, the production technique influenced Michael Jackson's multi-platinum album Dangerous and later permeated crossover pop hits, remaining a rhythmic foundation that artists from Aaliyah to Bruno Mars have reinterpreted.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/New_jack_swing",
+      "title": "New jack swing - Wikipedia"
+    },
+    {
+      "url": "https://electronicmusic.fandom.com/wiki/New_Jack_Swing",
+      "title": "New Jack Swing - Electronic Music Wiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:55.957Z",
+  "type": "genre",
+  "editorial_definition": "A rhythmic fusion genre of the late 1980s and early 1990s that merged hip hop production, R&B melodies, and swung percussion.",
+  "qid": "Q840065",
+  "era": "late 1980s to early 1990s",
+  "origin": "United States",
+  "sonic_markers": "16th note triplets, swung rhythms, synthesized basslines, sampled drum machine patterns, melodic R&B vocals",
+  "parent_genres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:hip-hop-soul",
+      "type": "genre",
+      "name": "Hip-hop soul",
+      "qid": "Q2256407"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop",
+      "qid": "Q211756"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:teddy-riley",
+      "type": "artist",
+      "name": "Teddy Riley"
+    },
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    },
+    {
+      "slug": "artist:keith-sweat",
+      "type": "artist",
+      "name": "Keith Sweat"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:janet-jackson",
+      "type": "artist",
+      "name": "Janet Jackson"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:mca-records",
+      "type": "label",
+      "name": "MCA Records"
+    },
+    {
+      "slug": "label:uptown-records",
+      "type": "label",
+      "name": "Uptown Records"
+    },
+    {
+      "slug": "label:a-and-m-records",
+      "type": "label",
+      "name": "A&M Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-want-her",
+      "type": "track",
+      "name": "I Want Her"
+    },
+    {
+      "slug": "track:my-prerogative",
+      "type": "track",
+      "name": "My Prerogative"
+    },
+    {
+      "slug": "track:poison",
+      "type": "track",
+      "name": "Poison"
+    },
+    {
+      "slug": "track:motownphilly",
+      "type": "track",
+      "name": "Motownphilly"
+    },
+    {
+      "slug": "track:remember-the-time",
+      "type": "track",
+      "name": "Remember the Time"
+    }
+  ]
+}

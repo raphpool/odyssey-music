@@ -1,0 +1,208 @@
+{
+  "slug": "project:cosmic-the-original",
+  "name": "Cosmic - The Original",
+  "editorial_article": "Released in 2007 as a double-disc compilation, Cosmic - The Original 1979–1984 curates the specific, hypnotic selection of records popularized by Daniele Baldelli at the Italian club Cosmic. The set captures the atmosphere of his residencies in Lazise, where Baldelli pioneered a style mixing funk, electro, jazz fusion, and Brazilian music at deliberately adjusted speeds. He frequently played 45 RPM records at 33 RPM, or vice versa, to force tracks into a 90–110 BPM range, creating a psychedelic and churning soundscape. This collection documents the era where Baldelli utilized flangers and equalizers to transform textures, often layering percussive African tracks over electronic compositions to build his unique mix of tribal and mechanical sound. The compilation remains a primary archival reference for the influence of the Northern Italian 'cosmic sound' on modern space disco.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Afro/cosmic_music",
+      "title": "Afro/cosmic music"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:15.695Z",
+  "type": "project",
+  "editorial_pitch": "A curated dive into the experimental mixing style of Daniele Baldelli, documenting the psychedelic dance sounds of Northern Italy's Cosmic Club from 1979 to 1984.",
+  "year": "2007",
+  "release_type": "album",
+  "bpm": "90-110 BPM",
+  "inspirations": "African percussion, funk, Brazilian music, jazz fusion, German electronic music, disco",
+  "artists": [
+    {
+      "slug": "artist:daniele-baldelli",
+      "type": "artist",
+      "name": "Daniele Baldelli",
+      "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
+    }
+  ],
+  "label": {
+    "slug": "label:amarkord",
+    "type": "label",
+    "name": "Amarkord",
+    "mbid": "4fbce3ff-fc3e-4536-a1ac-47682005b05d"
+  },
+  "genres": [
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo-Disco",
+      "qid": "Q744417"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:donkeys-bearing-cups",
+      "type": "track",
+      "name": "Donkeys Bearing Cups",
+      "mbid": "09f3c87f-dbb5-4552-89ec-20110c43217c"
+    },
+    {
+      "slug": "track:while-you-wait",
+      "type": "track",
+      "name": "While You Wait",
+      "mbid": "44891c17-53bc-4fd5-8af6-ca776faaf1de"
+    },
+    {
+      "slug": "track:touch",
+      "type": "track",
+      "name": "Touch",
+      "mbid": "35ab9c4d-8028-44b5-aa79-2c4d607e4bbf"
+    },
+    {
+      "slug": "track:murder-rap-trap",
+      "type": "track",
+      "name": "Murder Rap Trap",
+      "mbid": "89eb1d7a-7522-4979-9b66-04dd37f9ea44"
+    },
+    {
+      "slug": "track:my-blues-is-you",
+      "type": "track",
+      "name": "My Blues Is You (Slow dub)",
+      "mbid": "9d8d817a-9635-418d-b6b5-ea0319ccda41"
+    },
+    {
+      "slug": "track:african-rapness",
+      "type": "track",
+      "name": "African Rapness",
+      "mbid": "df8f4c18-736c-41a4-b476-4041c0355aca"
+    },
+    {
+      "slug": "track:cosmic-parsley",
+      "type": "track",
+      "name": "Cosmic Parsley",
+      "mbid": "f499f5d0-e773-44f3-8d2d-454755cb04ae"
+    },
+    {
+      "slug": "track:pagaia",
+      "type": "track",
+      "name": "Pagaia",
+      "mbid": "07f3816c-28e4-45e7-9041-2da79ae97edd"
+    },
+    {
+      "slug": "track:state-of-the-nation",
+      "type": "track",
+      "name": "State of the Nation",
+      "mbid": "d073b549-5e6e-403d-9fa0-3e3756040ab0"
+    },
+    {
+      "slug": "track:pages",
+      "type": "track",
+      "name": "Pages",
+      "mbid": "3ef6127e-f7d9-4575-83a8-7f0f908d3c01"
+    },
+    {
+      "slug": "track:naturliche-liebe",
+      "type": "track",
+      "name": "Natürliche Liebe",
+      "mbid": "be463f67-1bc6-4968-975a-8b2e1df15296"
+    },
+    {
+      "slug": "track:maccaroni-radio",
+      "type": "track",
+      "name": "Maccaroni Radio",
+      "mbid": "046a3148-eef0-4336-918a-2081ef8b5098"
+    },
+    {
+      "slug": "track:ouadou",
+      "type": "track",
+      "name": "Ouadou",
+      "mbid": "af9ab1f0-8576-4c5b-8e99-7e9e6ce43069"
+    },
+    {
+      "slug": "track:the-right-man",
+      "type": "track",
+      "name": "The Right Man",
+      "mbid": "8e9fbf82-0bac-4657-819e-88b4a7a58a7a"
+    },
+    {
+      "slug": "track:jamaica-running",
+      "type": "track",
+      "name": "Jamaica Running",
+      "mbid": "736ddaae-0d94-41b3-a444-782d62ebb2df"
+    },
+    {
+      "slug": "track:chinese-revenge",
+      "type": "track",
+      "name": "Chinese Revenge (7\" version)",
+      "mbid": "d9010a33-ec46-40fe-abac-5dda21bffca0"
+    },
+    {
+      "slug": "track:this-man",
+      "type": "track",
+      "name": "This Man",
+      "mbid": "86ce1d88-5f1b-40f8-b4eb-dff994b108b4"
+    },
+    {
+      "slug": "track:endless-race",
+      "type": "track",
+      "name": "Endless Race",
+      "mbid": "a5ce7738-c23c-4b57-9f1c-b28f09cfcf40"
+    },
+    {
+      "slug": "track:lescudjack",
+      "type": "track",
+      "name": "Lescudjack",
+      "mbid": "5bdfaea2-2c6f-4ee2-a5db-9b6f1727d1a0"
+    },
+    {
+      "slug": "track:xr-7",
+      "type": "track",
+      "name": "XR 7",
+      "mbid": "d356153d-c167-463d-a802-576e12c4a44d"
+    },
+    {
+      "slug": "track:touch",
+      "type": "track",
+      "name": "Touch (Part 4)",
+      "mbid": "dd044a9d-296b-4cef-8cac-58cc4667687a"
+    },
+    {
+      "slug": "track:maccaroni-radio",
+      "type": "track",
+      "name": "Maccaroni Radio (Instrumental Version)",
+      "mbid": "dea2ae69-845d-4a26-bedb-b626c3af43aa"
+    },
+    {
+      "slug": "track:chinese-revenge",
+      "type": "track",
+      "name": "Chinese Revenge (Dub Version)",
+      "mbid": "52d95108-4433-48f2-8c0f-af6983412127"
+    }
+  ],
+  "producers": [],
+  "personnel": [
+    {
+      "slug": "artist:daniele-baldelli",
+      "type": "artist",
+      "name": "Daniele Baldelli",
+      "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
+    }
+  ],
+  "related_projects": []
+}

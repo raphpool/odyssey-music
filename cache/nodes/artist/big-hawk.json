@@ -1,0 +1,190 @@
+{
+  "slug": "artist:big-hawk",
+  "name": "Big Hawk",
+  "editorial_article": "Born John Edward Hawkins in Houston, Texas, on November 15, 1969, Big Hawk became a seminal voice in the southern hip-hop landscape after meeting DJ Screw in 1992. Alongside his brother Fat Pat, Lil' Keke, and DJ Screw, he helped establish the Screwed Up Click and Dead End Records. His 2002 self-titled solo album 'HAWK' reached number 45 on the Billboard Top R&B/Hip-Hop Albums chart, driven by the success of his single 'U Already Know.' Often referred to as the 'Five Star General of the Screwed Up Click,' he maintained the group's legacy through independent releases like 'A Bad Azz Mix Tape Vol. II' and collaborations with artists such as Lil' Flip and Trae tha Truth. In 2006, he appeared on a Nike-sponsored track with Clint Dempsey titled 'Don't Tread.' He died in Houston on May 1, 2006, in an unsolved shooting.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Big_Hawk",
+      "title": "Big Hawk - Wikipedia"
+    },
+    {
+      "url": "https://www.tshaonline.org/handbook/entries/hawkins-john-edward-big-hawk",
+      "title": "Hawkins, John Edward [Big Hawk] - Texas State Historical Association"
+    },
+    {
+      "url": "https://kutx.org/this-week-in-texas-music-history/big-hawk-born-in-houston/",
+      "title": "Big Hawk born in Houston - KUTX"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:42.416Z",
+  "type": "artist",
+  "editorial_bio": "A founding member of the Screwed Up Click and a pivotal figure in Houston's hip-hop scene, known for his work with DJ Screw.",
+  "origin": "Houston, Texas",
+  "active_years": "1992-2006",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped N Screwed",
+      "qid": "Q2261628"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dead-end-records",
+      "type": "label",
+      "name": "Dead End Records"
+    },
+    {
+      "slug": "label:ghetto-dreams-entertainment",
+      "type": "label",
+      "name": "Ghetto Dreams Entertainment"
+    },
+    {
+      "slug": "label:game-face-records",
+      "type": "label",
+      "name": "Game Face Records"
+    },
+    {
+      "slug": "label:presidential-records",
+      "type": "label",
+      "name": "Presidential Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:endangered-species",
+      "type": "project",
+      "name": "Endangered Species",
+      "mbid": "22630763-bfd7-4f30-bf61-e8a36bc6e353",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-incredible-hawk-undaground-volume-2",
+      "type": "project",
+      "name": "The Incredible Hawk Undaground Volume 2",
+      "mbid": "6406e77e-6cbe-40cb-bf0c-c702b3e71aa8",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-incredible-hawk-undaground-volume-1",
+      "type": "project",
+      "name": "The Incredible Hawk Undaground Volume 1",
+      "mbid": "bb6c32b0-6359-407c-b9c8-c94930245107",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hawk",
+      "type": "project",
+      "name": "HAWK",
+      "mbid": "57c58382-d749-3aa5-a585-b7ea6239fb03",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:under-h-a-w-k-s-wings",
+      "type": "project",
+      "name": "Under H.A.W.K.’s Wings",
+      "mbid": "f4cfefd3-77a0-48e6-b284-e0272b299e99",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wanna-be-a-baller",
+      "type": "project",
+      "name": "Wanna Be a Baller",
+      "mbid": "e98dac81-5aea-45ad-9cf2-ee879a9ff674",
+      "year": "1999",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:wanna-be-a-baller",
+      "type": "track",
+      "name": "Wanna Be A Baller"
+    },
+    {
+      "slug": "track:u-already-know",
+      "type": "track",
+      "name": "U Already Know"
+    },
+    {
+      "slug": "track:back-back",
+      "type": "track",
+      "name": "Back Back"
+    },
+    {
+      "slug": "track:swang",
+      "type": "track",
+      "name": "Swang"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-screw",
+      "type": "artist",
+      "name": "DJ Screw"
+    },
+    {
+      "slug": "artist:fat-pat",
+      "type": "artist",
+      "name": "Fat Pat"
+    },
+    {
+      "slug": "artist:lil-keke",
+      "type": "artist",
+      "name": "Lil' Keke"
+    },
+    {
+      "slug": "artist:lil-flip",
+      "type": "artist",
+      "name": "Lil' Flip"
+    },
+    {
+      "slug": "artist:trae-tha-truth",
+      "type": "artist",
+      "name": "Trae tha Truth"
+    },
+    {
+      "slug": "artist:big-pokey",
+      "type": "artist",
+      "name": "Big Pokey"
+    },
+    {
+      "slug": "artist:bun-b",
+      "type": "artist",
+      "name": "Bun B"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:h-a-w-k",
+      "type": "artist",
+      "name": "H.A.W.K."
+    },
+    {
+      "slug": "artist:hawk",
+      "type": "artist",
+      "name": "Hawk"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:screwed-up-click",
+      "type": "artist",
+      "name": "Screwed Up Click"
+    }
+  ]
+}

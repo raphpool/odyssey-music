@@ -46,6 +46,17 @@
       "type": "genre",
       "name": "Breaks",
       "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
     }
   ],
   "key_artists": [

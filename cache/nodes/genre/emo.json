@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A genre of rock music that evolved from 1980s hardcore punk into a diverse spectrum of sounds defined by melodic intensity and introspective, confessional lyricism.",
+  "qid": "Q10926",
   "era": "1980s to present",
   "origin": "Washington, D.C., United States",
   "parent_genres": [
@@ -160,6 +161,5 @@
       "name": "American Football"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q10926"
+  "landmark_tracks": []
 }

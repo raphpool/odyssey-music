@@ -1,0 +1,109 @@
+{
+  "slug": "genre:classic-hip-hop",
+  "name": "Classic Hip Hop",
+  "editorial_article": "Emerging in The Bronx, New York, during the early 1970s, old-school hip-hop represents the foundational era of the genre, traditionally defined by the period between 1973 and 1983. Initially termed disco-rap, the style frequently utilized live bands to perform covers of popular 1970s breaks, a technique famously documented on The Sugarhill Gang's 1979 hit, 'Rapper's Delight'. Following the 1982 release of Afrika Bambaataa's 'Planet Rock', production shifted toward electronic sounds, incorporating the Roland TR-808 drum machine and Afrofuturist themes. Rapping during this era was characterized by straightforward delivery and party-centric subject matter, though tracks like Grandmaster Flash and the Furious Five's 1982 song 'The Message' introduced social commentary to the format. Battle rap also played a crucial role in the development of the MC, notably during the December 1981 clash between Kool Moe Dee and Busy Bee Starski, which signaled a shift from crowd-pleasing humor toward storytelling and lyrical complexity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Old-school_hip-hop",
+      "title": "Old-school hip-hop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:01.268Z",
+  "type": "genre",
+  "editorial_definition": "The earliest commercially recorded era of hip-hop music originating in the 1970s Bronx, characterized by live-band breakbeat covers and party-oriented lyrical flows.",
+  "qid": "Q19879476",
+  "era": "1973 to 1983",
+  "origin": "The Bronx, New York City",
+  "sonic_markers": "Moderate tempo, simple rhyming techniques, live band instrumentation, early TR-808 electronic percussion, and heavy reliance on disco and funk breaks.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:grandmaster-flash",
+      "type": "artist",
+      "name": "Grandmaster Flash"
+    },
+    {
+      "slug": "artist:afrika-bambaataa",
+      "type": "artist",
+      "name": "Afrika Bambaataa"
+    },
+    {
+      "slug": "artist:kool-moe-dee",
+      "type": "artist",
+      "name": "Kool Moe Dee"
+    },
+    {
+      "slug": "artist:kurtis-blow",
+      "type": "artist",
+      "name": "Kurtis Blow"
+    },
+    {
+      "slug": "artist:the-sugarhill-gang",
+      "type": "artist",
+      "name": "The Sugarhill Gang"
+    },
+    {
+      "slug": "artist:doug-e-fresh",
+      "type": "artist",
+      "name": "Doug E. Fresh"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sugar-hill-records",
+      "type": "label",
+      "name": "Sugar Hill Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:rapper-s-delight",
+      "type": "track",
+      "name": "Rapper's Delight"
+    },
+    {
+      "slug": "track:the-message",
+      "type": "track",
+      "name": "The Message"
+    },
+    {
+      "slug": "track:planet-rock",
+      "type": "track",
+      "name": "Planet Rock"
+    },
+    {
+      "slug": "track:light-years-away",
+      "type": "track",
+      "name": "Light Years Away"
+    }
+  ]
+}
