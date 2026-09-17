@@ -514,6 +514,41 @@ export async function fetchLabelEntityMb(labelMbid: string): Promise<MbLabelEnti
 }
 
 /**
+ * Fetch the artist entity itself — name, country/area, disambiguation. Mirrors
+ * fetchLabelEntityMb above; added for TRA-XXX (2026-09-17) after a --genre-seeds crawl
+ * wrote several homonym mismatches under artist slugs (e.g. artist:tracy-onne, a Spanish
+ * makina DJ per MB's disambiguation, got materialized as Tracy Lawrence, the US country
+ * singer). Country/area and disambiguation let researchTarget pin the search query to the
+ * exact artist the MBID names, the same way the label block already does. Returns null on
+ * lookup failure — caller treats as soft (non-fatal).
+ */
+export interface MbArtistEntity {
+	mbid: string;
+	name: string;
+	country: string | null;
+	area: string | null;
+	disambiguation: string | null;
+}
+export async function fetchArtistEntityMb(artistMbid: string): Promise<MbArtistEntity | null> {
+	interface ArtistEntityResp {
+		id: string;
+		name: string;
+		country?: string;
+		area?: { name?: string };
+		disambiguation?: string;
+	}
+	const data = await mbFetch<ArtistEntityResp>(`/artist/${artistMbid}`, {});
+	if (!data?.id) return null;
+	return {
+		mbid: data.id,
+		name: data.name,
+		country: data.country ?? null,
+		area: data.area?.name ?? null,
+		disambiguation: data.disambiguation ?? null,
+	};
+}
+
+/**
  * Browse artists released on a label and release-groups under that label.
  * /artist?label= and /release-group?label= each paginate at limit=100.
  */
