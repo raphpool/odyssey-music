@@ -1,0 +1,110 @@
+{
+  "slug": "artist:bigbang",
+  "name": "BIGBANG",
+  "editorial_article": "Formed by YG Entertainment in 2006, the South Korean boy band BIGBANG became a leading force in the Korean Wave through their blend of hip hop, R&B, and electronic production. Their breakout single, the 2007 track 'Lies' composed by leader G-Dragon, dominated South Korean charts for a record-breaking six consecutive weeks and secured the group a foothold as pioneers of the K-pop genre. Throughout their career, the members maintained significant creative control, writing and producing their own material, which expanded from early hip-hop roots to include diverse influences such as rock and experimental dance. Following a period of hiatus and lineup transitions, the group reunited for a surprise performance at the 2024 MAMA Awards in Osaka. In 2026, the trio announced their 20th-anniversary XX: COSMOS world tour, marking two decades since their debut at Seoul's Olympic Gymnastics Arena.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/BigBang_(South_Korean_band)",
+      "title": "BigBang (South Korean band) - Wikipedia"
+    },
+    {
+      "url": "https://bigbangkpop.fandom.com/wiki/Discography",
+      "title": "Discography | BIGBANG Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:11:35.076Z",
+  "type": "artist",
+  "editorial_bio": "An influential South Korean boy band renowned for their self-produced experimental pop, hip-hop, and R&B sounds.",
+  "origin": "Seoul, South Korea",
+  "active_years": "2006–2018, 2022–present",
+  "genres": [
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:yg-entertainment",
+      "type": "label",
+      "name": "YG Entertainment"
+    },
+    {
+      "slug": "label:universal-music-japan",
+      "type": "label",
+      "name": "Universal Music Japan"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bigbang-vol-1",
+      "type": "project",
+      "name": "BigBang Vol. 1"
+    },
+    {
+      "slug": "project:remember",
+      "type": "project",
+      "name": "Remember"
+    },
+    {
+      "slug": "project:alive",
+      "type": "project",
+      "name": "Alive"
+    },
+    {
+      "slug": "project:made",
+      "type": "project",
+      "name": "Made"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lies",
+      "type": "track",
+      "name": "Lies"
+    },
+    {
+      "slug": "track:haru-haru",
+      "type": "track",
+      "name": "Haru Haru"
+    },
+    {
+      "slug": "track:fantastic-baby",
+      "type": "track",
+      "name": "Fantastic Baby"
+    },
+    {
+      "slug": "track:bang-bang-bang",
+      "type": "track",
+      "name": "Bang Bang Bang"
+    },
+    {
+      "slug": "track:still-life",
+      "type": "track",
+      "name": "Still Life"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:g-dragon",
+      "type": "artist",
+      "name": "G-Dragon"
+    },
+    {
+      "slug": "artist:taeyang",
+      "type": "artist",
+      "name": "Taeyang"
+    },
+    {
+      "slug": "artist:daesung",
+      "type": "artist",
+      "name": "Daesung"
+    }
+  ]
+}

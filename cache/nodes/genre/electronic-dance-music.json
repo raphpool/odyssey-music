@@ -103,6 +103,12 @@
       "type": "genre",
       "name": "Drum and Bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
     }
   ],
   "key_artists": [

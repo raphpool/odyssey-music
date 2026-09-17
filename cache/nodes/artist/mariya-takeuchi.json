@@ -1,0 +1,157 @@
+{
+  "slug": "artist:mariya-takeuchi",
+  "name": "Mariya Takeuchi",
+  "editorial_article": "Mariya Takeuchi is a Japanese singer-songwriter often cited as the \"Queen of City Pop,\" with over 16 million records sold throughout her career. Born in 1955 in Izumo, Shimane Prefecture, she began her musical journey after studying as an exchange student in Rock Falls, Illinois, and joining a music club at Keio University. Takeuchi signed with RCA in 1978 and achieved early success with hits like \"September\" and \"Fushigi na Peach Pie.\" After a brief hiatus, her 1984 album Variety, released through Moon Records, marked her transition into a prominent self-producing songwriter. Internationally, her 1985 track \"Plastic Love\" gained renewed attention in the 2010s through the vaporwave and future funk scenes, eventually surpassing 67 million views on YouTube. Beyond her solo work, she has composed extensively for other Japanese artists including Akina Nakamori, Naoko Kawai, and Hiroko Yakushimaru. Her 2021 collaboration with Anri, \"Watching Over You,\" marked a new creative chapter under the duo name Peach & Apricot.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mariya_Takeuchi",
+      "title": "Mariya Takeuchi - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:08:54.143Z",
+  "type": "artist",
+  "editorial_bio": "An influential Japanese singer-songwriter and producer central to the evolution of city pop since the late 1970s.",
+  "origin": "Izumo, Shimane Prefecture, Japan",
+  "active_years": "1978-present",
+  "genres": [
+    {
+      "slug": "genre:city-pop",
+      "type": "genre",
+      "name": "City Pop",
+      "qid": "Q11307326"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca",
+      "type": "label",
+      "name": "RCA"
+    },
+    {
+      "slug": "label:moon-records",
+      "type": "label",
+      "name": "Moon Records"
+    },
+    {
+      "slug": "label:warner-music-japan",
+      "type": "label",
+      "name": "Warner Music Japan"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:beginning",
+      "type": "project",
+      "name": "Beginning"
+    },
+    {
+      "slug": "project:love-songs",
+      "type": "project",
+      "name": "Love Songs"
+    },
+    {
+      "slug": "project:variety",
+      "type": "project",
+      "name": "Variety"
+    },
+    {
+      "slug": "project:request",
+      "type": "project",
+      "name": "Request"
+    },
+    {
+      "slug": "project:quiet-life",
+      "type": "project",
+      "name": "Quiet Life"
+    },
+    {
+      "slug": "project:impressions",
+      "type": "project",
+      "name": "Impressions"
+    },
+    {
+      "slug": "project:denim",
+      "type": "project",
+      "name": "Denim"
+    },
+    {
+      "slug": "project:trad",
+      "type": "project",
+      "name": "Trad"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:september",
+      "type": "track",
+      "name": "September"
+    },
+    {
+      "slug": "track:fushigi-na-peach-pie",
+      "type": "track",
+      "name": "Fushigi na Peach Pie"
+    },
+    {
+      "slug": "track:plastic-love",
+      "type": "track",
+      "name": "Plastic Love"
+    },
+    {
+      "slug": "track:eki",
+      "type": "track",
+      "name": "Eki"
+    },
+    {
+      "slug": "track:single-again",
+      "type": "track",
+      "name": "Single Again"
+    },
+    {
+      "slug": "track:junai-rhapsody",
+      "type": "track",
+      "name": "Junai Rhapsody"
+    },
+    {
+      "slug": "track:camouflage",
+      "type": "track",
+      "name": "Camouflage"
+    },
+    {
+      "slug": "track:inochi-no-uta",
+      "type": "track",
+      "name": "Inochi no Uta"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "Tatsuro Yamashita"
+    },
+    {
+      "slug": "artist:anri",
+      "type": "artist",
+      "name": "Anri"
+    },
+    {
+      "slug": "artist:tetsuji-hayashi",
+      "type": "artist",
+      "name": "Tetsuji Hayashi"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:miyabi",
+      "type": "artist",
+      "name": "Miyabi"
+    },
+    {
+      "slug": "artist:mako",
+      "type": "artist",
+      "name": "MAKO"
+    }
+  ],
+  "members": []
+}

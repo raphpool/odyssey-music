@@ -1,0 +1,166 @@
+{
+  "slug": "artist:asha-bhosle",
+  "name": "Asha Bhosle",
+  "editorial_article": "Born in 1933 in the princely state of Sangli, Indian playback singer Asha Bhosle recorded her first film song, \"Chala Chala Nav Bala,\" for the 1943 Marathi film Majha Bal. Over a career spanning eight decades, she became known for an exceptional vocal range and versatility, transitioning from early playback work in low-budget films to becoming the definitive voice for stars like Helen and Urmila Matondkar. Her pivotal partnership with composer R.D. Burman produced iconic cabaret and rock-infused numbers like \"Piya Tu Ab To Aaja\" and \"Dum Maro Dum.\" She also explored ghazals in the 1980s under Khayyam, notably for the film Umrao Jaan. A Guinness World Record holder as one of the most prolific artists in history, she later collaborated with global acts like Kronos Quartet and Cornershop, who honored her with the hit \"Brimful of Asha.\" Bhosle continued to evolve, recording the album 82 at that age, while maintaining a deep commitment to daily riyaaz.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Asha_Bhosle",
+      "title": "Asha Bhosle - Wikipedia"
+    },
+    {
+      "url": "https://www.britannica.com/biography/Asha-Bhosle",
+      "title": "Asha Bhosle | Indian Singer, Songs, Career, Early Life, Biography, & Age"
+    },
+    {
+      "url": "https://m.imdb.com/name/nm0080427/",
+      "title": "Asha Bhosle (1933-2026) - IMDb"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:08:10.328Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Indian playback singer and actress whose career spanned eight decades and over 10,000 recorded songs across multiple languages.",
+  "origin": "Sangli State, British India",
+  "active_years": "1943-2026",
+  "genres": [
+    {
+      "slug": "genre:indian-film-music",
+      "type": "genre",
+      "name": "Filmi",
+      "qid": "Q544440"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:saregama",
+      "type": "label",
+      "name": "Saregama"
+    },
+    {
+      "slug": "label:emi",
+      "type": "label",
+      "name": "EMI"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dil-padosi-hai",
+      "type": "project",
+      "name": "Dil Padosi Hai"
+    },
+    {
+      "slug": "project:janam-samjha-karo",
+      "type": "project",
+      "name": "Janam Samjha Karo"
+    },
+    {
+      "slug": "project:you-ve-stolen-my-heart-songs-from-r-d-burman-s-bollywood",
+      "type": "project",
+      "name": "You've Stolen My Heart: Songs from R.D. Burman's Bollywood"
+    },
+    {
+      "slug": "project:82",
+      "type": "project",
+      "name": "82"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:piya-tu-ab-to-aaja",
+      "type": "track",
+      "name": "Piya Tu Ab To Aaja"
+    },
+    {
+      "slug": "track:dum-maro-dum",
+      "type": "track",
+      "name": "Dum Maro Dum"
+    },
+    {
+      "slug": "track:chura-liya-hai-tumne",
+      "type": "track",
+      "name": "Chura Liya Hai Tumne"
+    },
+    {
+      "slug": "track:dil-cheez-kya-hai",
+      "type": "track",
+      "name": "Dil Cheez Kya Hai"
+    },
+    {
+      "slug": "track:aaja-aaja",
+      "type": "track",
+      "name": "Aaja Aaja"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:deenanath-mangeshkar",
+      "type": "artist",
+      "name": "Deenanath Mangeshkar"
+    },
+    {
+      "slug": "artist:lata-mangeshkar",
+      "type": "artist",
+      "name": "Lata Mangeshkar"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley"
+    },
+    {
+      "slug": "artist:bill-haley",
+      "type": "artist",
+      "name": "Bill Haley"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:r-d-burman",
+      "type": "artist",
+      "name": "R. D. Burman"
+    },
+    {
+      "slug": "artist:o-p-nayyar",
+      "type": "artist",
+      "name": "O. P. Nayyar"
+    },
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman"
+    },
+    {
+      "slug": "artist:kishore-kumar",
+      "type": "artist",
+      "name": "Kishore Kumar"
+    },
+    {
+      "slug": "artist:mohammad-rafi",
+      "type": "artist",
+      "name": "Mohammad Rafi"
+    },
+    {
+      "slug": "artist:gulzar",
+      "type": "artist",
+      "name": "Gulzar"
+    },
+    {
+      "slug": "artist:kronos-quartet",
+      "type": "artist",
+      "name": "Kronos Quartet"
+    },
+    {
+      "slug": "artist:lata-mangeshkar",
+      "type": "artist",
+      "name": "Lata Mangeshkar"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:asha-mangeshkar",
+      "type": "artist",
+      "name": "Asha Mangeshkar"
+    }
+  ],
+  "members": []
+}

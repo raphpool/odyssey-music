@@ -1,0 +1,153 @@
+{
+  "slug": "artist:hassan-hakmoun",
+  "name": "Hassan Hakmoun",
+  "editorial_article": "Born in Marrakesh in 1963, Hassan Hakmoun rose to prominence as a master of Gnawa music before relocating to New York in 1987. His U.S. debut occurred at Lincoln Center with the Trio Gna & Nomadas dance group. He later gained wider recognition after performing at the Knitting Factory, where attendees included Miles Davis and Daniel Lanois. His 1991 album Gift of the Gnawa, recorded with jazz trumpeter Don Cherry and percussionist Adam Rudolph, helped introduce the Moroccan sintir-based sound to American rock and fusion audiences. In 1992, he joined Peter Gabriel's WOMAD project, subsequently recording the 1993 album Trance at Real World Studios in Bath, England. His work often integrates traditional trance-based Gnawa ceremonies with electric instrumentation and collaborative sessions with artists such as Paula Cole and Dee Dee Bridgewater.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hassan_Hakmoun",
+      "title": "Hassan Hakmoun - Wikipedia"
+    },
+    {
+      "url": "https://realworldrecords.com/artists/hassan-hakmoun/",
+      "title": "Hassan Hakmoun - Real World Records"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:47.972Z",
+  "type": "artist",
+  "editorial_bio": "A Moroccan-American musician and master of the Gnawa tradition, known for bridging trance-based Moroccan rhythms with American jazz and fusion.",
+  "origin": "Marrakesh, Morocco",
+  "active_years": "1970s-present",
+  "genres": [
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:world-fusion",
+      "type": "genre",
+      "name": "World fusion",
+      "qid": "Q4020968"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:healing-records",
+      "type": "label",
+      "name": "Healing Records"
+    },
+    {
+      "slug": "label:real-world-records",
+      "type": "label",
+      "name": "Real World Records"
+    },
+    {
+      "slug": "label:flying-fish-records",
+      "type": "label",
+      "name": "Flying Fish Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:unity",
+      "type": "project",
+      "name": "Unity",
+      "mbid": "15fa2f6d-f82f-43af-9a27-c6b53887b2f6",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:footsteps-in-africa",
+      "type": "project",
+      "name": "Footsteps in Africa",
+      "mbid": "42de2443-2a23-4908-8eec-b3533185ff0d",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-gift",
+      "type": "project",
+      "name": "The Gift",
+      "mbid": "b381b5ab-25f8-3411-b6ad-818e658670b5",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:life-around-the-world",
+      "type": "project",
+      "name": "Life Around the World",
+      "mbid": "d4cf2d05-96b5-3a3c-8cfe-eba866035e89",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fire-within-gnawa-music-of-morocco",
+      "type": "project",
+      "name": "The Fire Within: Gnawa Music of Morocco",
+      "mbid": "5842199f-efa7-3e57-8125-881a25b13719",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trance",
+      "type": "project",
+      "name": "Trance",
+      "mbid": "1920b8a1-ab9d-308c-bc8a-01a71ef5a82e",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gift-of-the-gnawa",
+      "type": "project",
+      "name": "Gift of the Gnawa",
+      "mbid": "a5f9bbc3-9d12-3f6a-ac3b-ddc879556fb8",
+      "year": "1991",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:this-gift",
+      "type": "track",
+      "name": "This Gift"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:adam-rudolph",
+      "type": "artist",
+      "name": "Adam Rudolph"
+    },
+    {
+      "slug": "artist:don-cherry",
+      "type": "artist",
+      "name": "Don Cherry"
+    },
+    {
+      "slug": "artist:peter-gabriel",
+      "type": "artist",
+      "name": "Peter Gabriel"
+    },
+    {
+      "slug": "artist:paula-cole",
+      "type": "artist",
+      "name": "Paula Cole"
+    },
+    {
+      "slug": "artist:dee-dee-bridgewater",
+      "type": "artist",
+      "name": "Dee Dee Bridgewater"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

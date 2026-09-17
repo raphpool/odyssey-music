@@ -1,0 +1,59 @@
+{
+  "slug": "artist:a-b-crentsil",
+  "name": "A.B. Crentsil",
+  "editorial_article": "Born in Prestea in 1943, Alfred Benjamin Crentsil rose to prominence as one of the 'big three' contemporary Ghanaian vocalists. His early career saw him work as an electrical apprentice in Takoradi before transitioning to professional music, joining groups including the Strollers Band and the El Dorados. During the 1970s, he co-led the Super Sweet Talks, which served as the resident band at the Talk Of The Town Hotel in Tema. He later established his own 16-track recording studio in 1990 to manage his productions. Among his most recognized recordings is the track 'Devil', which has been cited in sociological research concerning Ghanaian cultural expression. Crentsil remained an active figure in the Highlife scene until his death on 13 July 2022.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/A._B._Crentsil",
+      "title": "A. B. Crentsil - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:37.454Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Ghanaian Highlife musician and lead vocalist renowned for his work with the Super Sweet Talks and his extensive solo discography.",
+  "origin": "Ghana",
+  "active_years": "1960s-2022",
+  "genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:essiebons",
+      "type": "label",
+      "name": "Essiebons"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:hollywood-highlife-party-moses",
+      "type": "project",
+      "name": "Hollywood Highlife Party / Moses",
+      "mbid": "aa4d1534-14e4-3a7e-a9bf-4c91b1b286c2",
+      "year": "2000",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:devil",
+      "type": "track",
+      "name": "Devil"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:smart-nkansah",
+      "type": "artist",
+      "name": "Smart Nkansah"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

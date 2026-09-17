@@ -93,6 +93,12 @@
       "type": "genre",
       "name": "Ethiopian Jazz",
       "qid": "Q3591962"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
     }
   ],
   "key_artists": [

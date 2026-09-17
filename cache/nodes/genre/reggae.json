@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:54:28.524Z",
   "type": "genre",
   "editorial_definition": "Reggae is a Jamaican popular music genre characterized by its offbeat phrasing, heavy, melodic basslines, and lyrical focus on social consciousness and spiritual themes.",
+  "qid": "Q9794",
   "era": "Late 1960s–Present",
   "origin": "Jamaica",
   "parent_genres": [
@@ -67,6 +68,12 @@
       "type": "genre",
       "name": "Lovers Rock",
       "qid": "Q1872505"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
     }
   ],
   "key_artists": [
@@ -120,6 +127,5 @@
       "name": "The Harder They Come"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q9794"
+  "landmark_tracks": []
 }

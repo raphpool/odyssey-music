@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:47:47.775Z",
   "type": "genre",
   "editorial_definition": "Folk music is a genre defined by traditional, orally transmitted music rooted in rural culture and community rituals, which evolved in the 20th century into a contemporary genre characterized by narrative storytelling, acoustic instrumentation, and social or political resonance.",
+  "qid": "Q43343",
   "era": "Antiquity to present",
   "origin": "Global (primarily rural/community-based)",
   "parent_genres": [],
@@ -49,6 +50,18 @@
       "type": "genre",
       "name": "Americana",
       "qid": "Q2407862"
+    },
+    {
+      "slug": "genre:music-of-central-africa",
+      "type": "genre",
+      "name": "Music of Central Africa",
+      "qid": "Q106588687"
+    },
+    {
+      "slug": "genre:gamelan",
+      "type": "genre",
+      "name": "Gamelan",
+      "qid": "Q194492"
     }
   ],
   "key_artists": [
@@ -80,6 +93,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q43343"
+  "landmark_tracks": []
 }

@@ -1,0 +1,168 @@
+{
+  "slug": "artist:hikaru-utada",
+  "name": "Hikaru Utada",
+  "editorial_article": "Born in New York City in 1983 to enka singer Keiko Fuji and record producer Teruzane Utada, Hikaru Utada rose to prominence as a central figure in Japanese R&B and dance-pop. Their 1999 Japanese debut album First Love sold over eight million units, holding the record for the highest-selling album in Japan. Utada expanded their reach into global markets with their 2004 English-language album Exodus, released via Island Def Jam, and later became known internationally for Kingdom Hearts theme songs like Simple and Clean and Face My Fears, the latter co-produced with Skrillex and Poo Bear. Throughout their career, Utada has navigated label transitions from Toshiba-EMI and Universal to Sony Music Japan, while experimenting with acoustic-driven sounds on records like Fantôme. In 2022, they released their bilingual studio album Bad Mode, which featured production contributions from A. G. Cook and Sam Shepherd, and marked their first performance at the Coachella Valley Music and Arts Festival.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hikaru_Utada",
+      "title": "Hikaru Utada - Wikipedia"
+    },
+    {
+      "url": "https://www.instagram.com/reel/DZrgrotx80r/?hl=en",
+      "title": "Japanese singer-songwriter Hikaru Utada is a global pop ... - Instagram"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/This_Is_the_One",
+      "title": "This Is the One - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:10:00.367Z",
+  "type": "artist",
+  "editorial_bio": "A genre-defining Japanese-American singer-songwriter and producer who helped bridge J-pop and international R&B.",
+  "origin": "Tokyo, Japan",
+  "active_years": "1996-present",
+  "genres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-Pop",
+      "qid": "Q211756"
+    },
+    {
+      "slug": "genre:j-pop",
+      "type": "genre",
+      "name": "J-Pop",
+      "qid": "Q131578"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:eastworld",
+      "type": "label",
+      "name": "Eastworld"
+    },
+    {
+      "slug": "label:island-records",
+      "type": "label",
+      "name": "Island Records"
+    },
+    {
+      "slug": "label:epic-records-japan",
+      "type": "label",
+      "name": "Epic Records Japan"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:first-love",
+      "type": "project",
+      "name": "First Love"
+    },
+    {
+      "slug": "project:distance",
+      "type": "project",
+      "name": "Distance"
+    },
+    {
+      "slug": "project:deep-river",
+      "type": "project",
+      "name": "Deep River"
+    },
+    {
+      "slug": "project:exodus",
+      "type": "project",
+      "name": "Exodus"
+    },
+    {
+      "slug": "project:fantome",
+      "type": "project",
+      "name": "Fantôme"
+    },
+    {
+      "slug": "project:bad-mode",
+      "type": "project",
+      "name": "Bad Mode"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:automatic",
+      "type": "track",
+      "name": "Automatic"
+    },
+    {
+      "slug": "track:simple-and-clean",
+      "type": "track",
+      "name": "Simple and Clean"
+    },
+    {
+      "slug": "track:flavor-of-life",
+      "type": "track",
+      "name": "Flavor of Life"
+    },
+    {
+      "slug": "track:face-my-fears",
+      "type": "track",
+      "name": "Face My Fears"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex"
+    },
+    {
+      "slug": "artist:poo-bear",
+      "type": "artist",
+      "name": "Poo Bear"
+    },
+    {
+      "slug": "artist:a-g-cook",
+      "type": "artist",
+      "name": "A. G. Cook"
+    },
+    {
+      "slug": "artist:floating-points",
+      "type": "artist",
+      "name": "Floating Points"
+    },
+    {
+      "slug": "artist:ringo-sheena",
+      "type": "artist",
+      "name": "Ringo Sheena"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:cubic-u",
+      "type": "artist",
+      "name": "Cubic U"
+    },
+    {
+      "slug": "artist:hikki",
+      "type": "artist",
+      "name": "Hikki"
+    },
+    {
+      "slug": "artist:utada",
+      "type": "artist",
+      "name": "Utada"
+    }
+  ],
+  "members": []
+}

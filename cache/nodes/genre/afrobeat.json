@@ -54,6 +54,12 @@
       "type": "genre",
       "name": "Music of West Africa",
       "qid": "Q6942329"
+    },
+    {
+      "slug": "genre:music-of-central-africa",
+      "type": "genre",
+      "name": "Music of Central Africa",
+      "qid": "Q106588687"
     }
   ],
   "key_artists": [

@@ -69,7 +69,13 @@
     }
   ],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle"
+    }
+  ],
   "collaborators": [],
   "aliases": [],
   "members": []

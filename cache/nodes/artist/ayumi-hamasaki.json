@@ -1,0 +1,147 @@
+{
+  "slug": "artist:ayumi-hamasaki",
+  "name": "Ayumi Hamasaki",
+  "editorial_article": "Rising to prominence in the Japanese music industry following her 1998 debut single \"Poker Face,\" Ayumi Hamasaki quickly established herself as the Heisei era's most commercially significant solo artist. Working closely with producer Max Matsuura, she gained widespread recognition for writing her own lyrics, which resonated with listeners due to their introspection and honest depiction of millennial life. Her 1999 album \"A Song for XX\" topped the Oricon charts for five weeks, while her 2000 follow-up \"Duty\" remains her best-selling studio record. Throughout her career, she has consistently experimented with diverse sounds ranging from Eurobeat and trance remixes to rock and classical arrangements. As an artist often involved in the visual and artistic direction of her projects, she holds unique distinction for producing some of the most expensive music videos in the world. Hamasaki is also a celebrated figure in the LGBTQ community, credited with normalizing themes of same-sex love in Japanese pop music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ayumi_Hamasaki",
+      "title": "Ayumi Hamasaki - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:10:17.404Z",
+  "type": "artist",
+  "editorial_bio": "An influential Japanese singer-songwriter and cultural icon known for her massive commercial success, self-penned lyrics, and chameleonic approach to music and fashion.",
+  "origin": "Fukuoka, Japan",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:j-pop",
+      "type": "genre",
+      "name": "J-Pop",
+      "qid": "Q131578"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:avex-trax",
+      "type": "label",
+      "name": "Avex Trax"
+    },
+    {
+      "slug": "label:nippon-columbia",
+      "type": "label",
+      "name": "Nippon Columbia"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:a-song-for-xx",
+      "type": "project",
+      "name": "A Song for XX"
+    },
+    {
+      "slug": "project:duty",
+      "type": "project",
+      "name": "Duty"
+    },
+    {
+      "slug": "project:loveppears",
+      "type": "project",
+      "name": "Loveppears"
+    },
+    {
+      "slug": "project:i-am",
+      "type": "project",
+      "name": "I Am..."
+    },
+    {
+      "slug": "project:rainbow",
+      "type": "project",
+      "name": "Rainbow"
+    },
+    {
+      "slug": "project:my-story",
+      "type": "project",
+      "name": "My Story"
+    },
+    {
+      "slug": "project:guilty",
+      "type": "project",
+      "name": "Guilty"
+    },
+    {
+      "slug": "project:next-level",
+      "type": "project",
+      "name": "Next Level"
+    },
+    {
+      "slug": "project:party-queen",
+      "type": "project",
+      "name": "Party Queen"
+    },
+    {
+      "slug": "project:made-in-japan",
+      "type": "project",
+      "name": "Made in Japan"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:poker-face",
+      "type": "track",
+      "name": "Poker Face"
+    },
+    {
+      "slug": "track:m",
+      "type": "track",
+      "name": "M"
+    },
+    {
+      "slug": "track:seasons",
+      "type": "track",
+      "name": "Seasons"
+    },
+    {
+      "slug": "track:mirrorcle-world",
+      "type": "track",
+      "name": "Mirrorcle World"
+    },
+    {
+      "slug": "track:inspire",
+      "type": "track",
+      "name": "Inspire"
+    },
+    {
+      "slug": "track:evolution",
+      "type": "track",
+      "name": "Evolution"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:max-matsuura",
+      "type": "artist",
+      "name": "Max Matsuura"
+    },
+    {
+      "slug": "artist:keiko-yamada",
+      "type": "artist",
+      "name": "Keiko Yamada"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:ayu",
+      "type": "artist",
+      "name": "Ayu"
+    },
+    {
+      "slug": "artist:crea",
+      "type": "artist",
+      "name": "Crea"
+    }
+  ],
+  "members": []
+}
