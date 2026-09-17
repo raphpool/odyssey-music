@@ -138,11 +138,19 @@ export async function loadTaxonomyOrStatus(path: string): Promise<TaxonomyLoadRe
 
 /** Tolerant wrapper around loadOnboardingGenreSlugs: once D3 deletes ONBOARDING_GENRES (or the
  * file itself can't be read), that's "the v1 guard is retired", not a crash -- the taxonomy
- * guard above is what's left to protect the slug. */
+ * guard above is what's left to protect the slug. Still warns loudly on the fallback (2026-09-17
+ * review): the same catch also covers a still-in-use constant broken by an unrelated regression
+ * (a renamed variable, a stale regex), which must not silently disable the v1 guard without a
+ * trace -- only the taxonomy result decides whether that's still safe overall.
+ */
 async function loadOnboardingSlugsOrAbsent(webIndexPath?: string): Promise<string[] | undefined> {
 	try {
 		return await loadOnboardingGenreSlugs(webIndexPath);
-	} catch {
+	} catch (e) {
+		process.stderr.write(
+			`warning: ONBOARDING_GENRES unreadable (${e instanceof Error ? e.message : String(e)}) -- ` +
+				"falling back to the genre-taxonomy guard alone\n",
+		);
 		return undefined;
 	}
 }
@@ -182,13 +190,12 @@ export function findLostTaxonomyResolutions(
 	const errors: TaxonomyResolutionError[] = [];
 	for (const genre of taxonomy.genres) {
 		if (!genre.published) continue;
+		// Union, not fallback (2026-09-17 review): src/genre-taxonomy.ts's loadSources always
+		// combines explicit sourceSlugs with the qid-index hit, deduplicated -- never one or the
+		// other -- so a family-umbrella entry that *also* carries curated sourceSlugs is checked
+		// on both, same as the real loader would resolve it.
 		const qidSource = genre.qid ? qidIndex.get(genre.qid) : undefined;
-		const sources =
-			genre.sourceSlugs && genre.sourceSlugs.length > 0
-				? genre.sourceSlugs
-				: qidSource
-					? [qidSource as Slug]
-					: [];
+		const sources = [...new Set([...(genre.sourceSlugs ?? []), ...(qidSource ? [qidSource as Slug] : [])])];
 		if (sources.length === 0) {
 			errors.push({ genreId: genre.id, source: "(none)", reason: "no source resolves after the rename" });
 			continue;

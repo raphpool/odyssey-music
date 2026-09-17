@@ -326,6 +326,81 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
 	});
 
+	it("blocks an otherwise-safe rename over an unrelated published genre with a dangling source (deliberate: the whole taxonomy is checked, not just from/to)", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify({
+				version: 2,
+				families: [{ key: "test-family", label: "Test Family", order: 0 }],
+				genres: [
+					{
+						id: "Q47781397",
+						qid: "Q47781397",
+						name: "Trap (EDM)",
+						family: "test-family",
+						sourceSlugs: [FROM],
+						published: true,
+					},
+					{
+						id: "local:unrelated-stale-entry",
+						name: "Unrelated Stale Entry",
+						family: "test-family",
+						sourceSlugs: ["genre:unrelated-and-gone" as Slug],
+						published: true,
+					},
+				],
+			}),
+			"utf8",
+		);
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+
+		// The rename itself would be safe (Trap resolves fine via the redirect); it's refused
+		// anyway because the unrelated entry's source can't resolve -- a full post-condition
+		// scan, not scoped to from/to, per the plan's "toutes les sources publiées" wording.
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+	});
+
+	it("warns on stderr but still runs the taxonomy guard when ONBOARDING_GENRES is unreadable", async () => {
+		await seedTrapNode();
+		await writeFile(
+			taxonomyPath,
+			JSON.stringify(
+				taxonomyOf({
+					id: "Q47781397",
+					qid: "Q47781397",
+					name: "Trap (EDM)",
+					family: "test-family",
+					sourceSlugs: [FROM],
+					published: true,
+				}),
+			),
+			"utf8",
+		);
+		const warnings: string[] = [];
+		const originalWrite = process.stderr.write.bind(process.stderr);
+		process.stderr.write = ((chunk: string) => {
+			warnings.push(String(chunk));
+			return true;
+		}) as typeof process.stderr.write;
+
+		let result: Awaited<ReturnType<typeof runRename>>;
+		try {
+			result = await runRename(dir, FROM, TO, true, {
+				redirectsPath,
+				taxonomyPath,
+				webIndexPath: join(dir, "no-such-index.html"),
+			});
+		} finally {
+			process.stderr.write = originalWrite;
+		}
+
+		expect(result.exitCode).toBe(0);
+		expect(warnings.some((w) => w.includes("ONBOARDING_GENRES unreadable"))).toBe(true);
+	});
+
 	it("keeps a family-umbrella genre resolved by qid (no explicit sourceSlugs) findable after the rename", async () => {
 		await seedTrapNode();
 		await writeFile(
