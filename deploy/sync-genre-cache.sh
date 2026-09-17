@@ -83,7 +83,10 @@ fi
 echo "==> Manifest: $UNION_DIR/manifest.json"
 cat "$UNION_DIR/manifest.json"
 
-if [[ $UNION_EXIT -ne 0 ]]; then
+# Belt-and-suspenders (TRA-245 review): never rely on the exit code alone -- a non-empty
+# redirectsConflicts (diverged-target / inverted-pair / cycle / dangling) is refused explicitly
+# even if a future change to the union's own exit-code logic ever missed counting it.
+if [[ $UNION_EXIT -ne 0 ]] || grep -q '"redirectsConflicts"' "$UNION_DIR/manifest.json"; then
 	echo "ERROR: cache union reported problems (conflicts/regressions/redirects, see manifest above) -- refusing." >&2
 	exit 1
 fi
