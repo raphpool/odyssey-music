@@ -1208,7 +1208,8 @@
 		"genre": {
 			"slug": "genre:afrobeats",
 			"name": "Afrobeats",
-			"qid": "Q25099840"
+			"qid": "Q25099840",
+			"disambiguator": "2000s–2010s West African pop, distinct from Fela Kuti's Afrobeat"
 		},
 		"targets": [
 			{
