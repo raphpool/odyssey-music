@@ -1,11 +1,11 @@
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
-	findLostTaxonomyResolutions,
 	parseCliArgs,
 	runRename,
+	stillResolves,
 } from "../scripts/migrations/2026-09-10-rename-genre-node.js";
 import type { GenreTaxonomy, GenreTaxonomyEntry } from "../src/genre-taxonomy.js";
 import { parseSlug } from "../src/slug.js";
@@ -44,8 +44,8 @@ const TO = "genre:edm-trap" as Slug;
 describe("runRename (disk integration)", () => {
 	let dir: string;
 	let redirectsPath: string;
-	// Deliberately never written unless a test says so: loadTaxonomyOrStatus then reports
-	// "absent", so pre-existing tests (which don't care about the D6b taxonomy guard) keep
+	// Deliberately never written unless a test says so: taxonomyPath resolves to "absent"
+	// (ENOENT), so pre-existing tests (which don't care about the D6b taxonomy guard) keep
 	// exercising only the v1 ONBOARDING_GENRES guard, exactly as before this ticket.
 	let taxonomyPath: string;
 
@@ -250,7 +250,27 @@ describe("runRename (disk integration)", () => {
 });
 
 // TRA-139/D6b: the taxonomy (v2) guard, additive to (and eventually a replacement for) the
-// ONBOARDING_GENRES (v1) check exercised above.
+// ONBOARDING_GENRES (v1) check exercised above. Converged (2026-09-17 review) on the same rules
+// as 2026-09-04-merge-genre-duplicates.ts's own TRA-138/D6a protection -- see runRename's header
+// comment for the policy; tests below mirror D6a's own test suite for the same scenarios.
+describe("stillResolves", () => {
+	it("a slug that is not a redirect key resolves to itself", () => {
+		expect(stillResolves("genre:x", {}, new Set(["genre:x"]))).toBe(true);
+		expect(stillResolves("genre:x", {}, new Set(["genre:y"]))).toBe(false);
+	});
+
+	it("follows a single redirect hop to its target when the key itself is no longer a live node", () => {
+		const redirects = { "genre:old": "genre:new" };
+		expect(stillResolves("genre:old", redirects, new Set(["genre:new"]))).toBe(true);
+		expect(stillResolves("genre:old", redirects, new Set(["genre:unrelated"]))).toBe(false);
+	});
+
+	it("an existing node wins over a stale redirect entry (resolveReadSlug's rule 2)", () => {
+		const redirects = { "genre:old": "genre:gone" };
+		expect(stillResolves("genre:old", redirects, new Set(["genre:old"]))).toBe(true);
+	});
+});
+
 describe("runRename -- genre-taxonomy protection (D6b)", () => {
 	let dir: string;
 	let redirectsPath: string;
@@ -279,24 +299,20 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		);
 	}
 
+	// options.taxonomy bypasses the disk loader entirely (same as D6a's own tests), so these
+	// exercise the taxonomySources/protectedSlugs plumbing without needing a real cache/ sibling.
 	it("admits a safe rename: a published genre's explicit source still resolves via the redirect", async () => {
 		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify(
-				taxonomyOf({
-					id: "Q47781397",
-					qid: "Q47781397",
-					name: "Trap (EDM)",
-					family: "test-family",
-					sourceSlugs: [FROM],
-					published: true,
-				}),
-			),
-			"utf8",
-		);
+		const taxonomy = taxonomyOf({
+			id: "Q47781397",
+			qid: "Q47781397",
+			name: "Trap (EDM)",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
 
 		expect(result.exitCode).toBe(0);
 		expect(result.applied).toBe(true);
@@ -304,21 +320,15 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 
 	it("refuses a rename that would lose resolution for a published genre's source", async () => {
 		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify(
-				taxonomyOf({
-					id: "local:ghost-genre",
-					name: "Ghost Genre",
-					family: "test-family",
-					sourceSlugs: ["genre:ghost" as Slug],
-					published: true,
-				}),
-			),
-			"utf8",
-		);
+		const taxonomy = taxonomyOf({
+			id: "local:ghost-genre",
+			name: "Ghost Genre",
+			family: "test-family",
+			sourceSlugs: ["genre:ghost" as Slug],
+			published: true,
+		});
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
 
 		expect(result.exitCode).toBe(1);
 		expect(result.applied).toBe(false);
@@ -326,123 +336,129 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
 	});
 
-	it("blocks an otherwise-safe rename over an unrelated published genre with a dangling source (deliberate: the whole taxonomy is checked, not just from/to)", async () => {
+	it("resolves a local-id entry whose sourceSlugs point at the renamed slug", async () => {
 		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify({
-				version: 2,
-				families: [{ key: "test-family", label: "Test Family", order: 0 }],
-				genres: [
-					{
-						id: "Q47781397",
-						qid: "Q47781397",
-						name: "Trap (EDM)",
-						family: "test-family",
-						sourceSlugs: [FROM],
-						published: true,
-					},
-					{
-						id: "local:unrelated-stale-entry",
-						name: "Unrelated Stale Entry",
-						family: "test-family",
-						sourceSlugs: ["genre:unrelated-and-gone" as Slug],
-						published: true,
-					},
-				],
-			}),
-			"utf8",
-		);
+		const taxonomy = taxonomyOf({
+			id: "local:something-local",
+			name: "Something Local",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
 
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
 
-		// The rename itself would be safe (Trap resolves fine via the redirect); it's refused
-		// anyway because the unrelated entry's source can't resolve -- a full post-condition
-		// scan, not scoped to from/to, per the plan's "toutes les sources publiées" wording.
-		expect(result.exitCode).toBe(1);
-		expect(result.applied).toBe(false);
+		expect(result.exitCode).toBe(0);
+		expect(result.applied).toBe(true);
 	});
 
-	it("warns on stderr but still runs the taxonomy guard when ONBOARDING_GENRES is unreadable", async () => {
+	it("blocks an otherwise-safe rename over an unrelated published genre with a dangling source (deliberate: the whole taxonomy is checked, not just from/to)", async () => {
 		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify(
-				taxonomyOf({
+		const taxonomy: GenreTaxonomy = {
+			version: 2,
+			families: [{ key: "test-family", label: "Test Family", order: 0 }],
+			genres: [
+				{
 					id: "Q47781397",
 					qid: "Q47781397",
 					name: "Trap (EDM)",
 					family: "test-family",
 					sourceSlugs: [FROM],
 					published: true,
-				}),
-			),
+				},
+				{
+					id: "local:unrelated-stale-entry",
+					name: "Unrelated Stale Entry",
+					family: "test-family",
+					sourceSlugs: ["genre:unrelated-and-gone" as Slug],
+					published: true,
+				},
+			],
+		};
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
+
+		// The rename itself would be safe (Trap resolves fine via the redirect); it's refused
+		// anyway because the unrelated entry's source can't resolve -- a full post-condition
+		// scan, not scoped to from/to.
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+	});
+
+	it("refuses when a pre-existing redirect key no longer resolves, even for a rename that doesn't touch it (D6a review item 3)", async () => {
+		await seedTrapNode();
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:old-stale": "genre:vanished" } }),
 			"utf8",
 		);
-		const warnings: string[] = [];
-		const originalWrite = process.stderr.write.bind(process.stderr);
-		process.stderr.write = ((chunk: string) => {
-			warnings.push(String(chunk));
-			return true;
-		}) as typeof process.stderr.write;
+		const taxonomy = taxonomyOf({
+			id: "Q47781397",
+			qid: "Q47781397",
+			name: "Trap (EDM)",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
 
-		let result: Awaited<ReturnType<typeof runRename>>;
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+		const redirects = JSON.parse(await readFile(redirectsPath, "utf8")) as {
+			redirects: Record<string, string>;
+		};
+		expect(redirects.redirects).toEqual({ "genre:old-stale": "genre:vanished" });
+	});
+
+	it("refuses when the only published entry contributes no source (no sourceSlugs, no qid)", async () => {
+		await seedTrapNode();
+		const taxonomy = taxonomyOf({
+			id: "local:no-source-genre",
+			name: "No Source Genre",
+			family: "test-family",
+			published: true,
+		});
+
+		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomy });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
+	});
+
+	it("still fails loudly on an unexpected ONBOARDING_GENRES read error, not just a retired constant", async () => {
+		await seedTrapNode();
+		await expect(
+			runRename(dir, FROM, TO, true, { redirectsPath, taxonomyPath, webIndexPath: dir }),
+		).rejects.toThrow();
+	});
+
+	it("2026-09-17 regression: ONBOARDING_GENRES present but reformatted (Object.freeze) still fails loudly, not exit 0", async () => {
+		await seedTrapNode();
+		const webIndexPath = join(dir, "reformatted-index.html");
+		await writeFile(webIndexPath, 'const ONBOARDING_GENRES = Object.freeze(["genre:trap"]);', "utf8");
+
+		await expect(
+			runRename(dir, FROM, TO, true, { redirectsPath, taxonomyPath, webIndexPath }),
+		).rejects.toThrow(/no ONBOARDING_GENRES slugs found/);
+	});
+
+	it("warns on stderr, but still succeeds, when the taxonomy is absent and v1 alone protects the rename", async () => {
+		await seedTrapNode();
+		const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
 		try {
-			result = await runRename(dir, FROM, TO, true, {
+			const result = await runRename(dir, FROM, TO, true, {
 				redirectsPath,
+				onboardingSlugs: [],
 				taxonomyPath,
-				webIndexPath: join(dir, "no-such-index.html"),
 			});
+			expect(result.exitCode).toBe(0);
+			expect(stderrSpy.mock.calls.some(([chunk]) => String(chunk).includes("v1 (ONBOARDING_GENRES)"))).toBe(
+				true,
+			);
 		} finally {
-			process.stderr.write = originalWrite;
+			stderrSpy.mockRestore();
 		}
-
-		expect(result.exitCode).toBe(0);
-		expect(warnings.some((w) => w.includes("ONBOARDING_GENRES unreadable"))).toBe(true);
-	});
-
-	it("keeps a family-umbrella genre resolved by qid (no explicit sourceSlugs) findable after the rename", async () => {
-		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify(
-				taxonomyOf({
-					id: "Q47781397",
-					qid: "Q47781397",
-					name: "Trap (EDM) Umbrella",
-					family: "test-family",
-					published: true,
-				}),
-			),
-			"utf8",
-		);
-
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
-
-		expect(result.exitCode).toBe(0);
-		expect(result.applied).toBe(true);
-	});
-
-	it("resolves a local-id entry whose sourceSlugs point at the renamed slug", async () => {
-		await seedTrapNode();
-		await writeFile(
-			taxonomyPath,
-			JSON.stringify(
-				taxonomyOf({
-					id: "local:something-local",
-					name: "Something Local",
-					family: "test-family",
-					sourceSlugs: [FROM],
-					published: true,
-				}),
-			),
-			"utf8",
-		);
-
-		const result = await runRename(dir, FROM, TO, true, { redirectsPath, onboardingSlugs: [], taxonomyPath });
-
-		expect(result.exitCode).toBe(0);
-		expect(result.applied).toBe(true);
 	});
 
 	it("refuses outright when neither the taxonomy nor ONBOARDING_GENRES is available", async () => {
@@ -457,7 +473,7 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 
 		expect(result.exitCode).toBe(1);
 		expect(result.applied).toBe(false);
-		expect(result.report).not.toContain("DRY RUN"); // (an applied=false run, but not the empty-check silently passing)
+		expect(result.report).toContain("no genre protection available");
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
 	});
 
@@ -475,31 +491,126 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		expect(result.applied).toBe(false);
 		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
 	});
-});
 
-describe("findLostTaxonomyResolutions (pure)", () => {
-	it("flags a published entry whose source neither exists nor redirects anywhere", () => {
-		const taxonomy = taxonomyOf({
-			id: "local:ghost-genre",
-			name: "Ghost Genre",
-			family: "test-family",
-			sourceSlugs: ["genre:ghost" as Slug],
-			published: true,
+	it("refuses on a taxonomy path stat failure that isn't ENOENT (a path segment isn't a directory)", async () => {
+		await seedTrapNode();
+		const notADir = join(dir, "not-a-directory");
+		await writeFile(notADir, "just a file", "utf8");
+		const badTaxonomyPath = join(notADir, "genre-taxonomy.json");
+
+		const result = await runRename(dir, FROM, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath: badTaxonomyPath,
 		});
-		const errors = findLostTaxonomyResolutions(taxonomy, [], new Map());
-		expect(errors).toHaveLength(1);
-		expect(errors[0]?.genreId).toBe("local:ghost-genre");
+
+		expect(result.exitCode).toBe(1);
+		expect(result.applied).toBe(false);
 	});
 
-	it("ignores an unpublished (reserve) entry with the same dangling source", () => {
-		const taxonomy = taxonomyOf({
-			id: "local:ghost-genre",
-			name: "Ghost Genre",
-			family: "test-family",
-			sourceSlugs: ["genre:ghost" as Slug],
-			published: false,
+	// Real loader path (2026-09-17 review, D6a items 2/4/6): the tests above all bypass
+	// loadGenreTaxonomy via options.taxonomy -- these exercise the production path instead, a
+	// real data/genre-taxonomy.json at the *default* location (a sibling of cacheDir), resolved
+	// through the same canonical loader (and its QID index / contradiction check) runMigration
+	// (D6a) uses.
+	describe("via the real canonical loader, default path", () => {
+		let prodDir: string;
+		let prodCacheDir: string;
+		let prodTaxonomyPath: string;
+		let prodRedirectsPath: string;
+
+		beforeEach(async () => {
+			prodDir = await mkdtemp(join(tmpdir(), "odyssey-rename-taxonomy-prod-path-"));
+			prodCacheDir = join(prodDir, "cache");
+			prodTaxonomyPath = join(prodDir, "data", "genre-taxonomy.json");
+			prodRedirectsPath = join(prodDir, "data", "genre-redirects.json");
+			await mkdir(join(prodCacheDir, "nodes", "genre"), { recursive: true });
+			await mkdir(dirname(prodTaxonomyPath), { recursive: true });
 		});
-		expect(findLostTaxonomyResolutions(taxonomy, [], new Map())).toEqual([]);
+		afterEach(async () => {
+			await rm(prodDir, { recursive: true, force: true });
+		});
+
+		// loadGenreTaxonomy resolves sources through NodeCache.get() (Zod-validated), unlike the
+		// migration's own readCacheNodes (raw JSON) -- these two tests need a schema-valid node,
+		// not the minimal fixture the rest of this file uses for unchecked reads.
+		function genreNode(overrides: RawNode & { slug: string }): RawNode {
+			return {
+				type: "genre",
+				name: "Test Genre",
+				editorial_definition: "A test genre definition.",
+				editorial_article: "A real long article about the test genre. ".repeat(4),
+				citations: [{ url: "https://example.com/test-genre", title: "Test Genre" }],
+				materialized_at: new Date().toISOString(),
+				parent_genres: [],
+				subgenres: [],
+				related_genres: [],
+				key_artists: [],
+				key_labels: [],
+				landmark_projects: [],
+				landmark_tracks: [],
+				...overrides,
+			};
+		}
+
+		async function writeProdNode(n: RawNode): Promise<void> {
+			const { body } = parseSlug(n.slug as string);
+			await writeFile(join(prodCacheDir, "nodes", "genre", `${body}.json`), JSON.stringify(n), "utf8");
+		}
+
+		it("keeps a family-umbrella genre resolved only by qid (no explicit sourceSlugs) findable after the rename", async () => {
+			await writeProdNode(genreNode({ slug: FROM, name: "Trap (EDM)", qid: "Q47781397" }));
+			await writeFile(
+				prodTaxonomyPath,
+				JSON.stringify(
+					taxonomyOf({
+						id: "Q47781397",
+						qid: "Q47781397",
+						name: "Trap (EDM) Umbrella",
+						family: "test-family",
+						published: true,
+					}),
+				),
+				"utf8",
+			);
+
+			// No taxonomyPath override: dirname(cacheDir)/data/genre-taxonomy.json is prodTaxonomyPath.
+			const result = await runRename(prodCacheDir, FROM, TO, true, {
+				redirectsPath: prodRedirectsPath,
+				onboardingSlugs: [],
+			});
+
+			expect(result.exitCode).toBe(0);
+			expect(result.applied).toBe(true);
+		});
+
+		it("refuses on a genuine contradictory-qid source, surfaced by the canonical loader", async () => {
+			await writeProdNode(genreNode({ slug: FROM, name: "Trap (EDM)", qid: "Q99" }));
+			await writeProdNode(genreNode({ slug: "genre:a", name: "A", qid: "Q1" }));
+			await writeProdNode(genreNode({ slug: "genre:b", name: "B", qid: "Q2" }));
+			await writeFile(
+				prodTaxonomyPath,
+				JSON.stringify(
+					taxonomyOf({
+						id: "local:contradiction-genre",
+						name: "Contradiction Genre",
+						family: "test-family",
+						sourceSlugs: ["genre:a" as Slug, "genre:b" as Slug],
+						published: true,
+					}),
+				),
+				"utf8",
+			);
+
+			const result = await runRename(prodCacheDir, FROM, TO, true, {
+				redirectsPath: prodRedirectsPath,
+				onboardingSlugs: [],
+			});
+
+			expect(result.exitCode).toBe(1);
+			expect(result.applied).toBe(false);
+			expect(result.report).toContain("genre taxonomy failed to load");
+		});
 	});
 });
 
