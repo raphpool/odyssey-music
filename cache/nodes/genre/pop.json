@@ -67,12 +67,6 @@
       "type": "genre",
       "name": "Contemporary R&B",
       "qid": "Q850412"
-    },
-    {
-      "slug": "genre:afrobeats",
-      "type": "genre",
-      "name": "Afrobeats",
-      "qid": "Q25099840"
     }
   ],
   "related_genres": [

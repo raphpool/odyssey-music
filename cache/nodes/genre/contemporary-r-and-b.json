@@ -72,12 +72,6 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
-    },
-    {
-      "slug": "genre:afrobeats",
-      "type": "genre",
-      "name": "Afrobeats",
-      "qid": "Q25099840"
     }
   ],
   "key_artists": [

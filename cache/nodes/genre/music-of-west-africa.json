@@ -29,12 +29,6 @@
       "type": "genre",
       "name": "Afrobeat",
       "qid": "Q388296"
-    },
-    {
-      "slug": "genre:afrobeats",
-      "type": "genre",
-      "name": "Afrobeats",
-      "qid": "Q25099840"
     }
   ],
   "related_genres": [
