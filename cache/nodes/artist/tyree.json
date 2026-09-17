@@ -1,0 +1,366 @@
+{
+  "slug": "artist:tyree",
+  "name": "Tyree Cooper",
+  "editorial_article": "Chicago-born producer Tyree Cooper launched his career in 1986 with the track \"I Fear the Night\" on DJ International Records, helping establish the foundational house music sound of his home city. A pioneer of the hip house subgenre, he rose to international recognition when his 1988 track \"Turn Up the Bass,\" featuring rapper Kool Rock Steady, reached number 12 on the UK Singles Chart. His 1987 release \"Acid Over\" remains a core artifact of the classic acid house era. Beyond his early club successes, Cooper has remained a fixture of the global scene, collaborating with artists including Fast Eddie, Marc Romboy, and Sebastian Krieg across labels such as Dance Mania, Ovum Recordings, and Frisbee Tracks.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tyree_Cooper",
+      "title": "Tyree Cooper - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:59.835Z",
+  "type": "artist",
+  "editorial_bio": "An architect of Chicago hip house and a classic acid house producer who helped bring the Chicago sound to international dance floors.",
+  "origin": "Chicago, Illinois, US",
+  "active_years": "1986-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip house",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:dj-international-records",
+      "type": "label",
+      "name": "DJ International Records"
+    },
+    {
+      "slug": "label:dance-mania",
+      "type": "label",
+      "name": "Dance Mania"
+    },
+    {
+      "slug": "label:ovum-recordings",
+      "type": "label",
+      "name": "Ovum Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:turn-up-the-bass",
+      "type": "project",
+      "name": "Turn Up the Bass",
+      "mbid": "47202ddb-8036-48ed-8da1-449f2f42303a",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-crash-hardcore-hip-house",
+      "type": "project",
+      "name": "Acid Crash / Hardcore Hip House",
+      "mbid": "ea24aa6e-3880-4640-97fc-1b0e60ab8921",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ya-ll-want-some-mo-ep",
+      "type": "project",
+      "name": "Ya'll Want Some Mo EP",
+      "mbid": "0f2e4a5b-aca1-4327-bd11-c938b3d6954f",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:side-a",
+      "type": "project",
+      "name": "Side A",
+      "mbid": "5d6de226-2981-4ba9-bbff-89338ad98b07",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:da-soul-revival-classics-vol-1",
+      "type": "project",
+      "name": "Da Soul Revival Classics Vol.1",
+      "mbid": "119e66da-d543-4308-afb0-f192ccdd5f04",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nuthin-wrong",
+      "type": "project",
+      "name": "Nuthin Wrong",
+      "mbid": "b5480e22-7123-4b22-8dea-c6d7ecfb6943",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:that-s-house-music",
+      "type": "project",
+      "name": "That's House Music",
+      "mbid": "499ec4fa-4561-460f-82d1-745ab8e1d798",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:podcast-feature-five",
+      "type": "project",
+      "name": "Podcast Feature | Five",
+      "mbid": "a014e3dd-b15b-493b-988f-ceec00319edd",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hip-housin",
+      "type": "project",
+      "name": "Hip Housin'",
+      "mbid": "7bf79012-6161-40dd-895c-32068f0d46aa",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lost",
+      "type": "project",
+      "name": "Lost",
+      "mbid": "08128f53-846b-4976-b254-99a74f1daf1f",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:turn-up-the-bass",
+      "type": "project",
+      "name": "Turn Up the Bass (The '99 Mixes)",
+      "mbid": "bb1362cf-4546-3a73-99d0-6c6f5f3c8b35",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:welcome-to-ty-z-house",
+      "type": "project",
+      "name": "Welcome To Ty'z House",
+      "mbid": "2538502f-bd1a-4a85-9e9a-98a06baa07bd",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cultivation-e-p",
+      "type": "project",
+      "name": "Cultivation E.P.",
+      "mbid": "07c7c74a-8c01-3c67-85d3-a091755adf0f",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cultivation-ii-still-growing",
+      "type": "project",
+      "name": "Cultivation II: Still Growing",
+      "mbid": "9ae509c8-a403-39ac-9209-e54c3bc1eadf",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mari-wanna-ep",
+      "type": "project",
+      "name": "Mari Wanna EP",
+      "mbid": "b524f7ff-767a-3bbb-af9c-33d29521d309",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:way-you-move",
+      "type": "project",
+      "name": "Way You Move",
+      "mbid": "f81f4bb1-9b38-347a-8636-704e7b05e23a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:future-recooped",
+      "type": "project",
+      "name": "Future Recooped",
+      "mbid": "38d451d8-62b4-3541-82af-5d51245436ce",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:still-smoking-2-dis-ii",
+      "type": "project",
+      "name": "Still Smoking 2 Dis II",
+      "mbid": "74e23d58-4b02-42bf-ab90-54575961941a",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-2-jack-ep",
+      "type": "project",
+      "name": "Back 2 Jack EP",
+      "mbid": "93db878b-ec94-4acb-a8ce-7b1e30fb099b",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:da-soul-revival-3",
+      "type": "project",
+      "name": "Da Soul Revival #3",
+      "mbid": "b0f67a2e-05d1-34f1-a304-ded19fc8a3a2",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:smoke-2-dis-ep",
+      "type": "project",
+      "name": "Smoke 2 Dis EP",
+      "mbid": "ec093e04-a61d-38df-8801-1446cd16c2fb",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:da-soul-revival-ep",
+      "type": "project",
+      "name": "Da Soul Revival EP",
+      "mbid": "6c61ae9d-062b-3591-a5e3-374ca7079a23",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-time-iz-now",
+      "type": "project",
+      "name": "The Time Iz Now!",
+      "mbid": "64a8f915-d5e3-469c-ae24-a9ea691f27b0",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-the-music-take-control",
+      "type": "project",
+      "name": "Let the Music Take Control",
+      "mbid": "266d1eb1-7813-3f9e-b3d8-9b87ade30968",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-hip-house",
+      "type": "project",
+      "name": "Hardcore Hip House",
+      "mbid": "45a01dd0-a507-49c9-b36b-2743d35ef8e6",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nation-of-hip-house",
+      "type": "project",
+      "name": "Nation of Hip House",
+      "mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:move-your-body",
+      "type": "project",
+      "name": "Move Your Body",
+      "mbid": "59eb9c32-fe6b-39e8-94a5-b4c2019c8cbb",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-crash-red-hot",
+      "type": "project",
+      "name": "Acid Crash / Red Hot",
+      "mbid": "32ac0938-4038-36ba-a3e1-8e8f12ca16c2",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tyree-s-got-a-brand-new-house",
+      "type": "project",
+      "name": "Tyree's Got a Brand New House",
+      "mbid": "7316a3a9-4217-3cd1-b6a4-7042e5d1260b",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turn-up-the-bass",
+      "type": "project",
+      "name": "Turn Up the Bass",
+      "mbid": "0b1a98a9-6ca7-35c2-bf00-a249449d9e1b",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:video-crash",
+      "type": "project",
+      "name": "Video Crash",
+      "mbid": "cd147f3d-6f80-4ee2-82f5-f028424cb985",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-over",
+      "type": "project",
+      "name": "Acid Over",
+      "mbid": "76957f20-8053-4263-9905-636d62fcf305",
+      "year": "1987",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:turn-up-the-bass",
+      "type": "track",
+      "name": "Turn Up the Bass"
+    },
+    {
+      "slug": "track:acid-over",
+      "type": "track",
+      "name": "Acid Over"
+    },
+    {
+      "slug": "track:i-fear-the-night",
+      "type": "track",
+      "name": "I Fear the Night"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:kool-rock-steady",
+      "type": "artist",
+      "name": "Kool Rock Steady"
+    },
+    {
+      "slug": "artist:fast-eddie",
+      "type": "artist",
+      "name": "Fast Eddie"
+    },
+    {
+      "slug": "artist:marc-romboy",
+      "type": "artist",
+      "name": "Marc Romboy"
+    },
+    {
+      "slug": "artist:sebastian-krieg",
+      "type": "artist",
+      "name": "Sebastian Krieg"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree"
+    }
+  ],
+  "members": []
+}

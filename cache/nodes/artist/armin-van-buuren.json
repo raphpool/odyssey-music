@@ -115,7 +115,13 @@
   ],
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:wildstylez",
+      "type": "artist",
+      "name": "Wildstylez"
+    }
+  ],
   "aliases": [
     {
       "slug": "artist:rising-star",

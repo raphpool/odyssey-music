@@ -1170,6 +1170,40 @@
 			}
 		]
 	},
+	"Q474027": {
+		"genre": {
+			"slug": "genre:dancehall",
+			"name": "Dancehall",
+			"qid": "Q474027"
+		},
+		"targets": [
+			{
+				"type": "artist",
+				"name": "Yellowman",
+				"slug": "artist:yellowman",
+				"mbid": "870ec051-e50e-4bf9-b704-6098fe0e0297"
+			},
+			{
+				"type": "artist",
+				"name": "Vybz Kartel",
+				"slug": "artist:vybz-kartel",
+				"mbid": "7cc385f3-333c-48de-b341-3d728de74973"
+			},
+			{
+				"type": "artist",
+				"name": "Popcaan",
+				"slug": "artist:popcaan",
+				"mbid": "d7641934-7dfb-49ea-b948-da0b12816b12"
+			}
+		],
+		"anchors": [
+			{
+				"slug": "genre:reggae",
+				"name": "Reggae",
+				"qid": "Q9794"
+			}
+		]
+	},
 	"Q85741139": {
 		"genre": {
 			"slug": "genre:amapiano",

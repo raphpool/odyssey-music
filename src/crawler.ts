@@ -1,5 +1,6 @@
 import { NodeCache } from "./cache.js";
 import { isSameEntityName } from "./entity-name.js";
+import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadGenreRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
@@ -70,6 +71,15 @@ export interface GenreSeedCrawlResult extends CrawlResult {
 		failed: number;
 		refused: number;
 	};
+}
+
+export interface BackfillSeedGenresResult {
+	/** Cached targets rewritten because they were missing their folder's genre edge. */
+	backfilled: number;
+	/** Cached targets that already carried the folder's genre edge -- left untouched. */
+	alreadyLinked: number;
+	/** Targets declared in a seed folder but not yet present in the cache. */
+	missing: number;
 }
 
 interface FrontierEntry {
@@ -345,6 +355,37 @@ export async function buildGenreSeedPlan(
 	];
 }
 
+/** A node type that carries a `genres` edge list (every seed target type: artist/project/track,
+ * plus label). Used to attach the folder's own genre onto a target node (TRA-263). */
+type GenreLinkedNode = Extract<NodePayload, { genres: EdgeRef[] }>;
+
+function hasGenresField(node: NodePayload): node is GenreLinkedNode {
+	return "genres" in node;
+}
+
+/**
+ * Attaches a seed folder's own genre to one of its targets, when the target doesn't already
+ * cite it. Returns the same object reference, unchanged, when there's nothing to add -- callers
+ * use that identity to tell a real change from a no-op (see backfillSeedGenres's idempotence).
+ *
+ * TRA-263 (2026-09-17): each seed folder's target -> genre link is already established by the
+ * dossier's own MusicBrainz/Wikidata evidence (verified by the folder's own S-task), but the
+ * LLM draft for a target frequently cites only genres it independently found, so the folder's
+ * curated genre link never lands on disk (e.g. artist:dj-paul-elstak drafted with only
+ * genre:rave, missing the Gabber folder's genre:gabber). Never duplicates an existing edge to
+ * the same slug, even one recorded under a different display name.
+ */
+// Exported for test/crawler.test.ts: pure, synchronous, and shared by both crawlGenreSeeds and
+// backfillSeedGenres, so it's cheaper to unit-test directly than only through the full e2e path.
+export function attachFolderGenre(node: NodePayload, folderGenre: PipelineInput): NodePayload {
+	if (!hasGenresField(node) || !folderGenre.slug) return node;
+	const slug = folderGenre.slug;
+	if (node.genres.some((edge) => edge.slug === slug)) return node;
+	const edge: EdgeRef = { type: "genre", name: folderGenre.name, slug };
+	if (folderGenre.qid) edge.qid = folderGenre.qid;
+	return { ...node, genres: [...node.genres, edge] };
+}
+
 /**
  * Materializes curated seed folders sequentially. This keeps the cache's QID index authoritative
  * between folders and makes the reported maxNodes consumption deterministic.
@@ -364,6 +405,9 @@ export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Pr
 	for (const folder of Object.values(seeds)) {
 		const plan = await buildGenreSeedPlan(folder, genreRegistry);
 		total += plan.length;
+		// TRA-263: the folder's own "genre" stage entry carries the already-canonicalized
+		// {name, slug, qid} used below to attach the target -> genre edge.
+		const genrePlanEntry = plan.find((planEntry) => planEntry.stage === "genre");
 		for (const entry of plan) {
 			if (await cache.has(entry.input.slug as Slug)) {
 				refused++;
@@ -398,7 +442,17 @@ export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Pr
 					log(`[seed] dedup ${result.slug}`);
 					continue;
 				}
-				await cache.write(result.node);
+				// Only attach when the folder's genre is actually on disk: crawlGenreSeeds never
+				// retries a failed "genre" stage entry within the same run (no frontier expansion
+				// here, by design -- see buildGenreSeedPlan's docstring), so attaching
+				// unconditionally would leave a target citing a genre slug that was never written
+				// (e.g. the genre stage hit the identity guard or a pipeline error earlier in this
+				// same folder).
+				const nodeToWrite =
+					entry.stage === "target" && genrePlanEntry && (await cache.has(genrePlanEntry.input.slug as Slug))
+						? attachFolderGenre(result.node, genrePlanEntry.input)
+						: result.node;
+				await cache.write(nodeToWrite);
 			} catch (error) {
 				failed++;
 				const message = error instanceof Error ? error.message : String(error);
@@ -417,6 +471,57 @@ export async function crawlGenreSeeds(opts: CrawlOptions, seeds: GenreSeeds): Pr
 		refused,
 		coverage: { total, written: cache.stats.written, failed, refused },
 	};
+}
+
+/**
+ * Catches up seed targets that were materialized before the fix above (TRA-263) and so are
+ * missing their folder's genre edge. Pure cache maintenance: no pipeline run, no search, and no
+ * write at all for a target that already carries the edge or isn't cached yet -- the folder's
+ * target -> genre link was already verified by the seed dossier's own MusicBrainz/Wikidata
+ * evidence, so relinking it needs no re-materialization.
+ */
+export async function backfillSeedGenres(
+	opts: CrawlOptions,
+	seeds: GenreSeeds,
+): Promise<BackfillSeedGenresResult> {
+	const log = opts.logger ?? (() => undefined);
+	const cache = new NodeCache(opts.out);
+	const genreRegistry = await getGenreRegistry(cache, opts.deps.genreRegistry);
+	let backfilled = 0;
+	let alreadyLinked = 0;
+	let missing = 0;
+
+	log(`[backfill] maxNodes=${opts.maxNodes}`);
+	for (const folder of Object.values(seeds)) {
+		const plan = await buildGenreSeedPlan(folder, genreRegistry);
+		const genrePlanEntry = plan.find((planEntry) => planEntry.stage === "genre");
+		if (!genrePlanEntry) continue;
+		for (const entry of plan) {
+			if (entry.stage !== "target") continue;
+			const slug = entry.input.slug as Slug;
+			// A single get() -- rather than has() then get() -- avoids reading the same file
+			// twice; get() already throws NotFoundError on a missing node (cache.ts).
+			let existing: NodePayload;
+			try {
+				existing = await cache.get(slug);
+			} catch (error) {
+				if (!isNotFoundError(error)) throw error;
+				missing++;
+				log(`[backfill] missing ${slug}`);
+				continue;
+			}
+			const updated = attachFolderGenre(existing, genrePlanEntry.input);
+			if (updated === existing) {
+				alreadyLinked++;
+				continue;
+			}
+			await cache.replace(updated);
+			backfilled++;
+			log(`[backfill] linked ${slug} -> ${genrePlanEntry.input.slug}`);
+		}
+	}
+
+	return { backfilled, alreadyLinked, missing };
 }
 
 /**

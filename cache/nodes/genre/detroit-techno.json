@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:41:34.606Z",
   "type": "genre",
   "editorial_definition": "A foundational genre of electronic dance music originating in Detroit in the 1980s, defined by the integration of futuristic synthetic textures with funk-inspired rhythmic foundations.",
+  "qid": "Q526463",
   "era": "Mid-1980s to present",
   "origin": "Detroit, Michigan, USA",
   "parent_genres": [],
@@ -37,6 +38,12 @@
       "type": "genre",
       "name": "Techno",
       "qid": "Q170611"
+    },
+    {
+      "slug": "genre:ghettotech",
+      "type": "genre",
+      "name": "Ghettotech",
+      "qid": "Q1521688"
     }
   ],
   "key_artists": [
@@ -100,6 +107,5 @@
       "name": "Techno! The New Dance Sound of Detroit"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q526463"
+  "landmark_tracks": []
 }

@@ -1,0 +1,77 @@
+{
+  "slug": "artist:camomile-dawn",
+  "name": "Camomile Dawn",
+  "editorial_article": "Camomile Dawn is an Istanbul-based electronic artist whose work explores lo-fi house and techno textures. Operating as a project of the artist also known as Sumatran Black, the producer maintains a presence on Bandcamp where EPs such as The Ghosts of Seoul/London were released. The music is characterized by bedroom-produced house rhythms and synthesized atmospheres. His output has garnered attention from digital music platforms, including features on Bandcamp's monthly electronic music roundups.",
+  "citations": [
+    {
+      "url": "https://camomiledawn.bandcamp.com/",
+      "title": "Camomile Dawn: Music"
+    },
+    {
+      "url": "https://www.facebook.com/camomiledawn/photos/httpscamomiledawnbandcampcomalbumthe-ghosts-of-seoul-london/3203652146362390/",
+      "title": "Camomile Dawn - Facebook"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:35.116Z",
+  "type": "artist",
+  "editorial_bio": "Istanbul-based producer specializing in lo-fi house and electronic rhythms.",
+  "origin": "Istanbul, Turkey",
+  "active_years": "2010s-present",
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:independent",
+      "type": "label",
+      "name": "Independent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:bruttissimo",
+      "type": "project",
+      "name": "Bruttissimo",
+      "mbid": "602c7fb9-01b5-474f-8127-bfb9c1a88dfb",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:le-rohmer-lp",
+      "type": "project",
+      "name": "Le Rohmer LP",
+      "mbid": "4c0e91c3-e9a9-449d-b817-dd76221a0f1b",
+      "year": "2019",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:bruttissimo",
+      "type": "track",
+      "name": "Bruttissimo"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [
+    {
+      "slug": "artist:sumatran-black",
+      "type": "artist",
+      "name": "Sumatran Black"
+    }
+  ],
+  "members": []
+}
