@@ -644,6 +644,34 @@ describe("sync-genre-cache.sh", () => {
 		expect(calls).toContain("systemctl stop odyssey-server.service");
 		expect(calls).not.toMatch(/rsync[^\n]*nodes\/$/m);
 	});
+
+	// PR #255 review, finding 1: on a fatal shell-level error (unbound variable under `set -u`,
+	// invalid `$(( ))`), bash resets $? to 0 before an EXIT trap runs (reproduced on bash 3.2) --
+	// the old `on_exit` did `local code=$?; ...; exit "$code"` unconditionally, so this class of
+	// crash reported success. TEST_FORCE_FATAL_ERROR triggers exactly that class of error.
+	it("does not report success on a fatal shell-level error (review finding 1: EXIT trap swallowed $?)", () => {
+		const { result } = run({ env: { TEST_FORCE_FATAL_ERROR: "1" } });
+		expect(result.status).not.toBe(0);
+	});
+
+	// PR #255 review, finding 2: BACKUP_RETENTION_COUNT was never validated. "ten" fed the
+	// unbound-variable bug above via `$((BACKUP_RETENTION_COUNT + 1))` (bash arithmetic treats a
+	// bareword as a nested variable reference); 0 made `tail -n +1` re-list (and delete) every
+	// archive, including the one this run just made -- reproduced by the reviewer with 3
+	// pre-existing archives: backup dir left empty, transfer still applied, status 0.
+	it("refuses when BACKUP_RETENTION_COUNT is not a positive integer (review finding 2)", () => {
+		const zero = run({ apply: true, preexistingBackups: 3, env: { BACKUP_RETENTION_COUNT: "0" } });
+		expect(zero.result.status).not.toBe(0);
+		expect(zero.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
+		// Refused before anything destructive: no archive made, nothing pruned, no transfer.
+		expect(zero.calls).not.toContain("tar czf");
+		expect(readdirSync(zero.serverBackupDir)).toHaveLength(3);
+
+		const nonNumeric = run({ apply: true, env: { BACKUP_RETENTION_COUNT: "ten" } });
+		expect(nonNumeric.result.status).not.toBe(0);
+		expect(nonNumeric.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
+		expect(nonNumeric.calls).not.toContain("tar czf");
+	});
 });
 
 describe("sync-genre-cache.sh -- branch/clean-tree guard (TRA-271 point 5 nit, reused from deploy-server.sh:34-43)", () => {
@@ -665,16 +693,33 @@ describe("sync-genre-cache.sh -- branch/clean-tree guard (TRA-271 point 5 nit, r
 		return dir;
 	}
 
+	// 2026-09-18 (independent review of this PR): the guard used to run before argument parsing,
+	// so it applied to the read-only preview too -- which the script's own Usage comment documents
+	// as safe to run from a branch. It's now gated on --apply (the only path that touches the
+	// server), so exercising it here means always passing --apply.
 	function runFixture(dir: string, env: Record<string, string> = {}) {
 		// SERVER points at an address that refuses instantly rather than the real production host --
 		// belt and suspenders in case a guard regression ever lets the script run past this point.
-		return spawnSync("bash", [join(dir, "deploy", "sync-genre-cache.sh")], {
+		return spawnSync("bash", [join(dir, "deploy", "sync-genre-cache.sh"), "--apply"], {
 			encoding: "utf8",
 			env: { ...process.env, SERVER: "unused@127.0.0.1", ...env },
 		});
 	}
 
-	it("refuses to run from a non-main branch", () => {
+	it("does not apply the guard to the read-only preview (no --apply)", () => {
+		const dir = fixtureRepo();
+		execFileSync("git", ["checkout", "-q", "-b", "feature"], { cwd: dir });
+		writeFileSync(join(dir, "README.md"), "dirty\n");
+		const result = spawnSync("bash", [join(dir, "deploy", "sync-genre-cache.sh")], {
+			encoding: "utf8",
+			env: { ...process.env, SERVER: "unused@127.0.0.1" },
+		});
+		// Non-main AND dirty, but no --apply: the guard must not even run. It fails later, for an
+		// unrelated reason (no real server), never on "expected main" or "dirty".
+		expect(result.stderr).not.toMatch(/expected main|working tree is dirty/);
+	});
+
+	it("refuses to apply from a non-main branch", () => {
 		const dir = fixtureRepo();
 		execFileSync("git", ["checkout", "-q", "-b", "feature"], { cwd: dir });
 		const result = runFixture(dir);
@@ -682,9 +727,21 @@ describe("sync-genre-cache.sh -- branch/clean-tree guard (TRA-271 point 5 nit, r
 		expect(result.stderr).toMatch(/expected main/);
 	});
 
-	it("refuses when the working tree is dirty", () => {
+	it("refuses to apply when the working tree is dirty", () => {
 		const dir = fixtureRepo();
 		writeFileSync(join(dir, "README.md"), "dirty\n");
+		const result = runFixture(dir, { SYNC_ALLOW_NON_MAIN: "1" });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/dirty/i);
+	});
+
+	// 2026-09-18 (independent review of this PR): `git diff` / `git diff --cached` both ignore
+	// untracked files, so an uncommitted cache/nodes/genre/foo.json -- which enters REPO_CACHE_DIR
+	// and the union regardless of git's index -- shipped to prod while this guard still called the
+	// tree clean. `git status --short` (used now) lists untracked files too.
+	it("refuses to apply when there are untracked files, not just tracked changes", () => {
+		const dir = fixtureRepo();
+		writeFileSync(join(dir, "untracked.txt"), "not added to git\n");
 		const result = runFixture(dir, { SYNC_ALLOW_NON_MAIN: "1" });
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toMatch(/dirty/i);

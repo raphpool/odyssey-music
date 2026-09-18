@@ -46,27 +46,23 @@ SERVER_HEALTH_URL="${SERVER_HEALTH_URL:-https://dropcliffs.com/api/odyssey/healt
 SERVER_VERSION_URL="${SERVER_VERSION_URL:-https://dropcliffs.com/api/odyssey/version}"
 # How many archives to keep in SERVER_BACKUP_DIR (TRA-269 runs this on a recurring schedule, so
 # the directory needs a retention policy or it grows unbounded -- PR #221 review).
+# 2026-09-18 (independent review of this PR): unvalidated, a non-numeric value fed straight into
+# the remote `tail -n +...` below would just fail there (a normal, non-fatal refusal) -- but this
+# same value used to reach a local `$((BACKUP_RETENTION_COUNT + 1))` before the fix below existed,
+# where bash arithmetic treats a bareword like "ten" as an unset nested variable under `set -u`,
+# a fatal shell error class this PR's on_exit fix (see below) had to be hardened against on its
+# own. And 0 made the prune re-list (and, without the belt-and-suspenders exclusion below) delete
+# every archive, including the one this very run just made. Reject both eagerly, before anything
+# destructive can happen -- clearer error, and one less path into the fatal-error class entirely.
 BACKUP_RETENTION_COUNT="${BACKUP_RETENTION_COUNT:-10}"
+if ! [[ "$BACKUP_RETENTION_COUNT" =~ ^[0-9]+$ ]] || [[ "$BACKUP_RETENTION_COUNT" -lt 1 ]]; then
+	echo "ERROR: BACKUP_RETENTION_COUNT must be a positive integer (got '$BACKUP_RETENTION_COUNT')." >&2
+	exit 1
+fi
 # tsx can take 5-10s to warm up after a restart (same constant as deploy/deploy-server.sh's own
 # health-check retry loop); retry instead of a single shot.
 SMOKE_RETRY_COUNT="${SMOKE_RETRY_COUNT:-10}"
 SMOKE_RETRY_DELAY="${SMOKE_RETRY_DELAY:-3}"
-
-# 2026-09-18 (TRA-271, deferred as a nit on TRA-67 to keep that diff under the CI gate): same
-# branch/clean-tree discipline as deploy/deploy-server.sh:34-43, reused verbatim in spirit. Kept
-# as env-var overrides (not flags) so the test harness can run the script from this repo's own
-# worktree/branch without faking an entire git checkout for every scenario.
-BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)"
-if [[ "$BRANCH" != "main" && "${SYNC_ALLOW_NON_MAIN:-0}" != "1" ]]; then
-	echo "ERROR: refusing to sync from branch '$BRANCH' (expected main) -- merge to main first, or set SYNC_ALLOW_NON_MAIN=1." >&2
-	exit 1
-fi
-if { ! git -C "$REPO_ROOT" diff --quiet || ! git -C "$REPO_ROOT" diff --cached --quiet; } \
-	&& [[ "${SYNC_ALLOW_DIRTY:-0}" != "1" ]]; then
-	echo "ERROR: working tree is dirty -- commit or stash first, or set SYNC_ALLOW_DIRTY=1." >&2
-	git -C "$REPO_ROOT" status --short >&2
-	exit 1
-fi
 
 APPLY=0
 for arg in "$@"; do
@@ -79,6 +75,32 @@ for arg in "$@"; do
 	esac
 done
 
+# 2026-09-18 (TRA-271, deferred as a nit on TRA-67 to keep that diff under the CI gate): same
+# branch/clean-tree discipline as deploy/deploy-server.sh:34-43, reused verbatim in spirit. Kept
+# as env-var overrides (not flags) so the test harness can run the script from this repo's own
+# worktree/branch without faking an entire git checkout for every scenario.
+#
+# 2026-09-18 (independent review of this PR): this guard used to run before argument parsing, so
+# it applied even to the read-only --apply-less preview -- which the Usage comment above still
+# documents as safe to run from a feature branch with a curated cache/. Gate it on --apply, the
+# only path that can actually touch the server. And check `git status --short` (not `git diff` /
+# `git diff --cached`, which both ignore untracked files) so an uncommitted
+# cache/nodes/genre/foo.json -- which enters REPO_CACHE_DIR and the union regardless -- doesn't
+# ship to prod while this guard still calls the tree clean.
+if [[ $APPLY -eq 1 ]]; then
+	BRANCH="$(git -C "$REPO_ROOT" rev-parse --abbrev-ref HEAD 2>/dev/null || echo unknown)"
+	if [[ "$BRANCH" != "main" && "${SYNC_ALLOW_NON_MAIN:-0}" != "1" ]]; then
+		echo "ERROR: refusing to sync from branch '$BRANCH' (expected main) -- merge to main first, or set SYNC_ALLOW_NON_MAIN=1." >&2
+		exit 1
+	fi
+	DIRTY_STATUS="$(git -C "$REPO_ROOT" status --short)"
+	if [[ -n "$DIRTY_STATUS" && "${SYNC_ALLOW_DIRTY:-0}" != "1" ]]; then
+		echo "ERROR: working tree is dirty (including untracked files) -- commit or stash first, or set SYNC_ALLOW_DIRTY=1." >&2
+		echo "$DIRTY_STATUS" >&2
+		exit 1
+	fi
+fi
+
 WORKDIR="$(mktemp -d)"
 SNAPSHOT_DIR="$WORKDIR/server-cache-snapshot"
 SNAPSHOT_REDIRECTS="$WORKDIR/server-genre-redirects.json"
@@ -86,6 +108,7 @@ UNION_DIR=""
 ARCHIVE_PATH=""
 STOPPED=0
 WRITER_WAS_STOPPED=0
+SYNC_SUCCEEDED=0
 
 # Removes WORKDIR and the union's own mktemp output under os.tmpdir(), which
 # prepare-genre-cache-union.ts never removes itself.
@@ -117,14 +140,34 @@ on_exit() {
 	local code=$?
 	restart_writer
 	cleanup
+	if [[ $SYNC_SUCCEEDED -eq 1 ]]; then
+		exit 0
+	fi
 	if [[ $code -ne 0 && $WRITER_WAS_STOPPED -eq 1 ]]; then
 		echo "ERROR: sync failed -- the writer was restarted if it could be, but any node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH" >&2
 	fi
-	exit "$code"
+	# 2026-09-18 (independent review of this PR, reproduced on bash 3.2): on a fatal shell-level
+	# error -- an unbound variable under `set -u`, a bad `$(( ))` -- bash resets $? to 0 before this
+	# trap even runs, so `code` above can read 0 despite the script failing; re-exiting with that
+	# value would report success. We only reach this branch when SYNC_SUCCEEDED was never set, so
+	# always exit non-zero: use `code` when it IS non-zero (the reliable, common case -- an
+	# explicit `exit N` from one of this script's own refusals, or an ordinary failing command
+	# under `set -e`), otherwise fall back to a generic failure code instead of the misleading 0.
+	if [[ $code -ne 0 ]]; then
+		exit "$code"
+	fi
+	exit 1
 }
 trap on_exit EXIT
 trap 'exit 130' INT
 trap 'exit 143' TERM
+
+# Test-only hook (independent review of this PR): deliberately triggers the exact fatal-shell-error
+# class (an unbound variable read under `set -u`) that used to make on_exit's old `exit "$code"`
+# report success -- see the trap's own comment above. Never set outside test/genre-cache-sync.test.ts.
+if [[ "${TEST_FORCE_FATAL_ERROR:-0}" == "1" ]]; then
+	echo "$__TEST_TRIGGER_UNBOUND_VARIABLE_FOR_FATAL_ERROR_TEST"
+fi
 
 # Content fingerprint of the server's cache tree, computed ON the server (not from a local copy,
 # which can't change) so two calls at different times reflect the server's real state. `find |
@@ -183,6 +226,7 @@ fi
 
 if [[ $APPLY -eq 0 ]]; then
 	echo "==> Preview only (pass --apply to sync the server). No server write performed."
+	SYNC_SUCCEEDED=1
 	exit 0
 fi
 
@@ -228,7 +272,12 @@ ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
 echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
 
 echo "==> Pruning old backup archives (keeping the $BACKUP_RETENTION_COUNT most recent)"
-ssh "$SERVER" "cd '$SERVER_BACKUP_DIR' && ls -1t genre-cache-*.tar.gz 2>/dev/null | tail -n +$((BACKUP_RETENTION_COUNT + 1)) | while read -r f; do rm -f -- \"\$f\"; done"
+# Belt-and-suspenders (independent review of this PR): BACKUP_RETENTION_COUNT is validated >= 1
+# above, so the archive just made -- always the newest by mtime -- already survives the `tail`
+# offset below on its own. Excluding it from the candidate list by name too means a future change
+# to the retention arithmetic can't ever delete the one archive this very run depends on for
+# rollback, the same discipline as the redirectsConflicts double-check earlier in this script.
+ssh "$SERVER" "cd '$SERVER_BACKUP_DIR' && ls -1t genre-cache-*.tar.gz 2>/dev/null | grep -v -F -x '$(basename "$ARCHIVE_PATH")' | tail -n +$BACKUP_RETENTION_COUNT | while read -r f; do rm -f -- \"\$f\"; done"
 
 echo "==> Stopping odyssey-server.service (writer)"
 STOPPED=1
@@ -285,4 +334,5 @@ echo "$SMOKE_OUTPUT"
 curl -fsS "$SERVER_VERSION_URL"
 echo
 
+SYNC_SUCCEEDED=1
 echo "==> Sync complete. Rollback archive if needed: $SERVER:$ARCHIVE_PATH"
