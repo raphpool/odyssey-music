@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Art rock",
       "qid": "Q217467"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -61,9 +67,40 @@
       "type": "genre",
       "name": "New Romantic",
       "qid": "Q597240"
+    },
+    {
+      "slug": "genre:minimal-wave",
+      "type": "genre",
+      "name": "Minimal wave",
+      "qid": "Q6865341"
+    },
+    {
+      "slug": "genre:cold-wave",
+      "type": "genre",
+      "name": "Cold wave",
+      "qid": "Q2343562"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-punk",
+      "qid": "Q598929"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art rock",
+      "qid": "Q217467"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:blondie",
@@ -89,6 +126,11 @@
       "slug": "artist:the-cars",
       "type": "artist",
       "name": "The Cars"
+    },
+    {
+      "slug": "artist:gary-numan",
+      "type": "artist",
+      "name": "Gary Numan"
     }
   ],
   "key_labels": [
