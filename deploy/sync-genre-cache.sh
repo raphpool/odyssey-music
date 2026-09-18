@@ -25,6 +25,8 @@ set -euo pipefail
 #     only the server carries is dropped -- reproduced on a shared node, where a server-only
 #     `related_genres` entry vanished with exit code 0 and an empty `referenceRegressions` (the
 #     target is still a live node, so the union's own check sees nothing). Preview-only is safe.
+# A third gap -- the union's own deletions and merged redirects table, which an additive
+# transfer cannot propagate -- is refused outright below rather than left to prose.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -117,6 +119,20 @@ fi
 if [[ $APPLY -eq 0 ]]; then
 	echo "==> Preview only (pass --apply to sync the server). No server write performed."
 	exit 0
+fi
+
+# 2026-09-18 (review of TRA-67): the union runs the merge migration with --apply-merge, which
+# DELETES the losing file of a duplicate-QID group from the artifact and writes the merged
+# genre-redirects.json. The transfer below ships only nodes/, never with --delete: a duplicate that
+# already exists on the server therefore survives there and keeps being served, while the validated
+# union declares it merged -- and the redirects table that would point at the winner is never sent.
+# Nothing else catches it: deletedCount is not part of countUnionProblems, so the union exits 0 and
+# the run would end on "Sync complete". Refuse instead, before touching the server at all.
+# Propagating deletions and the redirects table is B6c's job (TRA-269), not this ticket's.
+DELETED_COUNT="$(node -e 'const m=require(process.argv[1]);const a=m.migrationApply;process.stdout.write(String((a?.deletedCount ?? 0) + (a?.removedByMigration?.length ?? 0)))' "$UNION_DIR/manifest.json")"
+if [[ "$DELETED_COUNT" != "0" ]]; then
+	echo "ERROR: the union merged duplicate nodes (deletedCount + removedByMigration = $DELETED_COUNT) -- an additive transfer cannot propagate those deletions nor the merged redirects table, so the server would keep serving the merged-away duplicates. Refusing before any server write." >&2
+	exit 1
 fi
 
 echo "==> Checking for an active crawl lock on the server"

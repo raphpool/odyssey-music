@@ -61,8 +61,33 @@ function seedServerCache(dir: string, slug = "only-server"): void {
 	);
 }
 
+/** Two server-side genre nodes sharing one QID. The union's --apply-merge merges them and deletes
+ * the loser from its artifact -- the deletion an additive transfer cannot propagate. */
+function seedDuplicateOnServer(dir: string): void {
+	mkdirSync(join(dir, "nodes", "genre"), { recursive: true });
+	for (const [slug, when] of [
+		["dancehall", "2026-02-01T00:00:00.000Z"],
+		["dance-hall", "2026-01-01T00:00:00.000Z"],
+	] as const) {
+		writeFileSync(
+			join(dir, "nodes", "genre", `${slug}.json`),
+			// The duplicate report skips any genre node without a `slug` (report-genre-duplicates.ts:98),
+			// so these two carry one -- unlike the single-node helpers above, which never need it.
+			JSON.stringify({
+				type: "genre",
+				slug: `genre:${slug}`,
+				name: slug,
+				qid: "Q474027",
+				materialized_at: when,
+			}),
+		);
+	}
+}
+
 interface RunOptions {
 	apply?: boolean;
+	/** Seed the server cache with a duplicate-QID pair, so the union has a merge to apply. */
+	duplicateOnServer?: boolean;
 	env?: Record<string, string>;
 	seedServer?: boolean;
 	seedRedirects?: string;
@@ -93,6 +118,7 @@ function run(options: RunOptions = {}) {
 		mkdirSync(join(serverRoot, "data"), { recursive: true });
 		writeFileSync(serverRedirectsRemote, options.seedRedirects ?? JSON.stringify({ redirects: {} }));
 	}
+	if (options.duplicateOnServer) seedDuplicateOnServer(serverCacheRemote);
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
 
@@ -327,6 +353,26 @@ describe("sync-genre-cache.sh", () => {
 		expect(result.stderr).toContain("reported problems");
 		expect(result.stdout).toContain("diverged-target");
 		expect(existsSync(serverBackupDir)).toBe(false);
+	});
+
+	// 2026-09-18 (review of TRA-67): the union runs the merge migration with --apply-merge, which
+	// deletes the loser of a duplicate-QID group from its artifact and writes the merged redirects
+	// table. The transfer ships only nodes/, never with --delete, so a duplicate already on the
+	// server survives there and keeps being served while the validated union calls it merged away.
+	// Nothing else catches it -- deletedCount sits outside countUnionProblems, so the union exits 0
+	// and the run used to end on "Sync complete".
+	it("refuses when the union merged duplicate nodes, before any server write", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote } = run({
+			apply: true,
+			duplicateOnServer: true,
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/merged duplicate nodes/);
+		// The refusal lands before the archive, the stop and the transfer: nothing on the server moved,
+		// and the loser the union wanted gone is still there -- which is exactly why we refuse.
+		expect(existsSync(serverBackupDir)).toBe(false);
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
 	});
 
 	it("archives the server cache before any apply, verifies it with gzip -t, and prints the rollback archive path", () => {
