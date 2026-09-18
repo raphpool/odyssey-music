@@ -111,7 +111,7 @@
 			"name": "Acid",
 			"family": "house-techno",
 			"qid": "Q106528337",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q341364",
@@ -135,7 +135,7 @@
 			"family": "house-techno",
 			"qid": "Q481900",
 			"sourceSlugs": ["genre:acid-trance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9149801",
@@ -150,21 +150,21 @@
 			"name": "Balearic House",
 			"family": "house-techno",
 			"qid": "Q2866725",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q65937774",
 			"name": "Breaks",
 			"family": "house-techno",
 			"qid": "Q65937774",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2406633",
 			"name": "Broken Beat",
 			"family": "house-techno",
 			"qid": "Q2406633",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1071961",
@@ -227,7 +227,7 @@
 			"name": "Euro House",
 			"family": "house-techno",
 			"qid": "Q30917612",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q216961",
@@ -235,7 +235,7 @@
 			"family": "house-techno",
 			"qid": "Q216961",
 			"sourceSlugs": ["genre:eurodance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q105636937",
@@ -250,7 +250,7 @@
 			"name": "Gabber",
 			"family": "house-techno",
 			"qid": "Q820049",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q928825",
@@ -265,35 +265,35 @@
 			"name": "Ghetto House",
 			"family": "house-techno",
 			"qid": "Q2748817",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1521688",
 			"name": "Ghettotech",
 			"family": "house-techno",
 			"qid": "Q1521688",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q339906",
 			"name": "Happy Hardcore",
 			"family": "house-techno",
 			"qid": "Q339906",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q223840",
 			"name": "Hardstyle",
 			"family": "house-techno",
 			"qid": "Q223840",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q601235",
 			"name": "Hip-House",
 			"family": "house-techno",
 			"qid": "Q601235",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q20502",
@@ -316,21 +316,21 @@
 			"name": "Leftfield House",
 			"family": "house-techno",
 			"qid": "Q105636940",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:leftfield-techno",
 			"name": "Leftfield Techno",
 			"family": "house-techno",
 			"sourceSlugs": ["genre:leftfield-techno"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3048168",
 			"name": "Makina",
 			"family": "house-techno",
 			"qid": "Q3048168",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1931555",
@@ -1909,7 +1909,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q438503",
 			"sourceSlugs": ["genre:alternative-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7118426",
@@ -1925,28 +1925,28 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q529742",
 			"sourceSlugs": ["genre:boom-bap"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2261628",
 			"name": "Chopped N Screwed",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q2261628",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q19879476",
 			"name": "Classic Hip Hop",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q19879476",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q16829781",
 			"name": "Cloud Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q16829781",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q141459",
@@ -1954,21 +1954,21 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q141459",
 			"sourceSlugs": ["genre:conscious-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q8560269",
 			"name": "Dirty South",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q8560269",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q15697534",
 			"name": "Drill",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q15697534",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q876171",
@@ -1983,28 +1983,28 @@
 			"name": "Emo Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q12362064",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q5421158",
 			"name": "Experimental Hip Hop",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q5421158",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1045541",
 			"name": "G-Funk",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q1045541",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q753679",
 			"name": "Gangsta Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q753679",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11401",
@@ -2021,7 +2021,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q255406",
 			"sourceSlugs": ["genre:jazz-rap"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q97265899",
@@ -2029,28 +2029,28 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q97265899",
 			"sourceSlugs": ["genre:lofi-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q6010117",
 			"name": "Memphis Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q6010117",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q6918602",
 			"name": "Motswako",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q6918602",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q840065",
 			"name": "New Jack Swing",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q840065",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q138020",
@@ -2066,7 +2066,7 @@
 			"name": "RnB",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q850412",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2913982",
@@ -2448,7 +2448,7 @@
 			"name": "Bossa Nova",
 			"family": "latin-brazilian",
 			"qid": "Q486263",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:brasillica",
@@ -2489,7 +2489,7 @@
 			"name": "Cumbia",
 			"family": "latin-brazilian",
 			"qid": "Q723418",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9764",
@@ -2659,21 +2659,21 @@
 			"name": "Salsa",
 			"family": "latin-brazilian",
 			"qid": "Q208239",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11403",
 			"name": "Samba",
 			"family": "latin-brazilian",
 			"qid": "Q11403",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q14390274",
 			"name": "Tango",
 			"family": "latin-brazilian",
 			"qid": "Q14390274",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3392209",
@@ -2897,7 +2897,7 @@
 			"name": "Afrobeat",
 			"family": "african-middle-eastern",
 			"qid": "Q388296",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3328601",
@@ -3011,7 +3011,7 @@
 			"name": "Ethiopian Jazz",
 			"family": "african-middle-eastern",
 			"qid": "Q3591962",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q109586004",
@@ -3051,7 +3051,7 @@
 			"name": "Gnawa",
 			"family": "african-middle-eastern",
 			"qid": "Q2000173",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q107123896",
@@ -3080,7 +3080,7 @@
 			"family": "african-middle-eastern",
 			"qid": "Q963061",
 			"sourceSlugs": ["genre:highlife"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q12193614",
@@ -3304,7 +3304,7 @@
 			"name": "Soukous",
 			"family": "african-middle-eastern",
 			"qid": "Q1752683",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7565881",
@@ -3405,7 +3405,7 @@
 			"name": "Bollywood",
 			"family": "asia",
 			"qid": "Q6942022",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q100922002",
@@ -3459,7 +3459,7 @@
 			"name": "City Pop",
 			"family": "asia",
 			"qid": "Q11307326",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:dan-ca",
@@ -3486,7 +3486,7 @@
 			"name": "Gamelan",
 			"family": "asia",
 			"qid": "Q194492",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q281111",
@@ -3528,7 +3528,7 @@
 			"name": "J-Pop",
 			"family": "asia",
 			"qid": "Q131578",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3160589",
@@ -3549,7 +3549,7 @@
 			"name": "K-Pop",
 			"family": "asia",
 			"qid": "Q213665",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1930107",

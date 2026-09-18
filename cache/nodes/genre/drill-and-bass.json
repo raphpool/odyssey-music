@@ -1,26 +1,61 @@
 {
   "slug": "genre:drill-and-bass",
   "name": "Drill and Bass",
-  "editorial_article": "Drill and Bass, also widely known as Drill 'n' Bass, is an experimental subgenre of electronic music that emerged in the mid-1990s as a high-octane, rhythmically complex derivation of drum and bass. While the parent genre relied on established breakbeat conventions, drill and bass took these foundations and pushed them into a hyperkinetic, often parodic territory. Characterized by intricate, splintered, and frenzied drum programming, the sound often features rapidly spliced breakbeats, erratic snare rushes, and aggressive digital artifacts that mimic the repetitive, jarring noise of machinery—hence the \"drill\" moniker. Unlike the dancefloor-oriented ethos of its source material, drill and bass was primarily designed for home listening, becoming a cornerstone of the burgeoning IDM (Intelligent Dance Music) movement.\n\nThe genre’s aesthetic was defined by early innovators such as Aphex Twin (frequently under his AFX and other aliases), Squarepusher, and Plug, who began releasing seminal EPs in 1995 that challenged listeners with their density and frantic energy. Where drum and bass sought coherence and groove, drill and bass prioritized complexity, deconstruction, and technological maximalism. While it remained a niche sonic exploration for much of its lifespan, it gained significant cultural recognition as figures like Aphex Twin incorporated these sounds into more widely reaching, though still challenging, albums. Drill and bass is distinct from the related genre of breakcore, lacking the latter's prominent hardcore/punk sampling and intense focus on sonic aggression, though artists have often traversed the boundaries between the two. The legacy of the genre persists as a testament to the mid-90s fascination with digital manipulation, representing a pivotal moment where breakbeat rhythm was stripped of its dancefloor function to serve as an abstract, virtuosic sonic medium.",
+  "editorial_article": "Emerging in the United Kingdom during the mid-1990s, drill and bass is a subgenre of drum and bass defined by IDM artists experimenting with jungle and breakbeat textures. Producers utilized digital audio software to sequence frenzied, irregular rhythms that often rejected traditional dance-floor accessibility. Critic Simon Reynolds described the style as jungle made by non-junglists for non-junglists, characterized by sampladelic collage and mutant bass lines. Luke Vibert pioneered the sound with his 1995 EPs under the Plug alias, beginning with the release of Plug 1: Visible Crater Funk. Aphex Twin furthered the style with the 1995 AFX EPs titled Hangable Auto Bulb, while Squarepusher contributed the 1996 LP Feed Me Weird Things. The genre also includes μ-Ziq’s 1997 album Lunatic Harness, which The Quietus identified as an immaculate example of this experimental approach. By the late 1990s, the style had largely dissipated, eventually helping to spawn the more frenetic breakcore.",
   "citations": [
     {
-      "url": "https://www.melodigging.com/genre/drill-and-bass",
-      "title": "Drill And Bass - Melodigging"
-    },
-    {
-      "url": "https://rateyourmusic.com/genre/drill-and-bass/",
-      "title": "Drill and Bass - Music genre - Rate Your Music"
+      "url": "https://en.wikipedia.org/wiki/Drill_%27n%27_bass",
+      "title": "Drill 'n' bass - Wikipedia"
     }
   ],
-  "materialized_at": "2026-05-13T13:03:50.493Z",
+  "materialized_at": "2026-09-17T21:27:55.596Z",
   "type": "genre",
-  "editorial_definition": "A frenzied, rhythmically complex subgenre of electronic music that emerged in the mid-1990s, characterized by highly manipulated, chopped-up breakbeats and an abstract, non-dancefloor approach to drum and bass rhythms.",
-  "era": "Mid-1990s to present",
+  "editorial_definition": "A mid-1990s offshoot of drum and bass that repurposed jungle elements into complex, non-danceable electronic compositions.",
+  "qid": "Q1259016",
+  "era": "mid-1990s",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "sonic_markers": "Frenzied, irregular breakbeats, heavy sub-bass, sampladelic collage, experimental digital manipulation.",
+  "parent_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "Intelligent Dance Music",
+      "qid": "Q660984"
+    }
+  ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "Intelligent dance music",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore",
+      "qid": "Q903735"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    }
+  ],
   "key_artists": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert"
+    },
     {
       "slug": "artist:aphex-twin",
       "type": "artist",
@@ -32,6 +67,16 @@
       "name": "Squarepusher"
     },
     {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
+    },
+    {
+      "slug": "artist:amon-tobin",
+      "type": "artist",
+      "name": "Amon Tobin"
+    },
+    {
       "slug": "artist:plug",
       "type": "artist",
       "name": "Plug"
@@ -40,31 +85,21 @@
       "slug": "artist:venetian-snares",
       "type": "artist",
       "name": "Venetian Snares"
-    },
-    {
-      "slug": "artist:ziq",
-      "type": "artist",
-      "name": "µ-Ziq"
     }
   ],
-  "key_labels": [],
-  "landmark_projects": [
+  "key_labels": [
     {
-      "slug": "project:drukqs",
-      "type": "project",
-      "name": "Drukqs"
-    },
-    {
-      "slug": "project:feed-me-weird-things",
-      "type": "project",
-      "name": "Feed Me Weird Things"
-    },
-    {
-      "slug": "project:hangable-auto-bulb-ep",
-      "type": "project",
-      "name": "Hangable Auto Bulb EP"
+      "slug": "label:rephlex-records",
+      "type": "label",
+      "name": "Rephlex Records"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1259016"
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:plug-1-visible-crater-funk",
+      "type": "track",
+      "name": "Plug 1: Visible Crater Funk"
+    }
+  ]
 }

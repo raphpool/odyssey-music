@@ -15,7 +15,14 @@
   "era": "1990s-Present",
   "origin": "Germany and the Netherlands",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:techno",
@@ -40,6 +47,12 @@
       "type": "genre",
       "name": "Acid",
       "qid": "Q106528337"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
     }
   ],
   "key_artists": [
