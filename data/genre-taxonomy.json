@@ -371,7 +371,7 @@
 			"family": "house-techno",
 			"qid": "Q622871",
 			"sourceSlugs": ["genre:psytrance"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q898709",
@@ -657,7 +657,7 @@
 			"family": "new-club",
 			"qid": "Q96740854",
 			"sourceSlugs": ["genre:bass-music"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q108297194",
