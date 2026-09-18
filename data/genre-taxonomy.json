@@ -614,7 +614,7 @@
 			"name": "Amapiano",
 			"family": "new-club",
 			"qid": "Q85741139",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2863648",
@@ -1816,7 +1816,7 @@
 			"name": "Black Metal",
 			"family": "metal",
 			"qid": "Q132438",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q483251",
@@ -1824,7 +1824,7 @@
 			"family": "metal",
 			"qid": "Q483251",
 			"sourceSlugs": ["genre:death-metal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q186170",
@@ -1909,7 +1909,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q438503",
 			"sourceSlugs": ["genre:alternative-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7118426",
@@ -1917,7 +1917,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q7118426",
 			"sourceSlugs": ["genre:alternative-r-and-b"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q529742",
@@ -1925,28 +1925,28 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q529742",
 			"sourceSlugs": ["genre:boom-bap"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2261628",
 			"name": "Chopped N Screwed",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q2261628",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q19879476",
 			"name": "Classic Hip Hop",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q19879476",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q16829781",
 			"name": "Cloud Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q16829781",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q141459",
@@ -1954,21 +1954,21 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q141459",
 			"sourceSlugs": ["genre:conscious-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q8560269",
 			"name": "Dirty South",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q8560269",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q15697534",
 			"name": "Drill",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q15697534",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q876171",
@@ -1976,35 +1976,35 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q876171",
 			"sourceSlugs": ["genre:east-coast-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q12362064",
 			"name": "Emo Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q12362064",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q5421158",
 			"name": "Experimental Hip Hop",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q5421158",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1045541",
 			"name": "G-Funk",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q1045541",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q753679",
 			"name": "Gangsta Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q753679",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11401",
@@ -2021,7 +2021,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q255406",
 			"sourceSlugs": ["genre:jazz-rap"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q97265899",
@@ -2029,28 +2029,28 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q97265899",
 			"sourceSlugs": ["genre:lofi-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q6010117",
 			"name": "Memphis Rap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q6010117",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q6918602",
 			"name": "Motswako",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q6918602",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q840065",
 			"name": "New Jack Swing",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q840065",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q138020",
@@ -2066,14 +2066,14 @@
 			"name": "RnB",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q850412",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2913982",
 			"name": "Trap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q2913982",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9759",
@@ -2184,7 +2184,7 @@
 			"name": "Boogie",
 			"family": "disco-boogie",
 			"qid": "Q4942839",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:bubblegum",
@@ -2197,7 +2197,7 @@
 			"name": "Cosmic Disco",
 			"family": "disco-boogie",
 			"qid": "Q336567",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q58339",
@@ -2738,7 +2738,7 @@
 			"qid": "Q474027",
 			"sourceSlugs": ["genre:dancehall"],
 			"aliases": ["Bashment"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q16491869",
@@ -2856,7 +2856,7 @@
 			"family": "caribbean",
 			"qid": "Q54365",
 			"sourceSlugs": ["genre:ska"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1051735",
@@ -3786,7 +3786,7 @@
 			"family": "classical-opera",
 			"qid": "Q572901",
 			"sourceSlugs": ["genre:minimalism"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q65937946",
@@ -3795,7 +3795,7 @@
 			"qid": "Q65937946",
 			"sourceSlugs": ["genre:modern-classical"],
 			"aliases": ["Contemporary Classical"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1344",
