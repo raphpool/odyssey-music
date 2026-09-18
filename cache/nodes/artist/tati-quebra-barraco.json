@@ -1,0 +1,100 @@
+{
+  "slug": "artist:tati-quebra-barraco",
+  "name": "Tati Quebra Barraco",
+  "editorial_article": "Born Tatiana dos Santos Lourenço in Rio de Janeiro in 1979, Tati Quebra Barraco emerged as a foundational figure in the Brazilian funk carioca scene. Her stage name, which translates to \"shack-wrecker,\" reflects her roots in the Cidade de Deus favela and her defiant approach to working-class identity. Her 2004 anthem \"Boladona\" became a significant success, later seeing a reissue through Link Records. Her music frequently addresses gender dynamics and the stigma surrounding favela culture, utilizing her platform to demand equality for women. Tati has sold millions of CDs throughout her career and famously coined the lyric \"sou feia, mas tô na moda,\" which later served as the title for a documentary exploring Brazilian nightlife. Her work has featured collaborations with artists such as YURI, MC Fornalha, and MC Serginho, grounding her music in the collaborative environment of the Baile funk circuit.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tati_Quebra_Barraco",
+      "title": "Tati Quebra Barraco - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:59:16.200Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Brazilian singer and songwriter who rose from the Cidade de Deus favela to become a central figure in the global popularization of funk carioca.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "1995-present",
+  "genres": [
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Funk carioca",
+      "qid": "Q1931130"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:link-records",
+      "type": "label",
+      "name": "Link Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:faz-direito",
+      "type": "project",
+      "name": "Faz Direito",
+      "mbid": "abe96f3b-3371-4968-9004-b33beb2876df",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mamae-da-putaria",
+      "type": "project",
+      "name": "Mamãe da Putaria",
+      "mbid": "b2740391-4430-4e20-ae4a-a398dc715558",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boladona",
+      "type": "project",
+      "name": "Boladona",
+      "mbid": "e33860bf-2b3f-37c5-96dc-5af6277b44f2",
+      "year": "2004",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:boladona",
+      "type": "track",
+      "name": "Boladona"
+    },
+    {
+      "slug": "track:demole",
+      "type": "track",
+      "name": "Demole"
+    },
+    {
+      "slug": "track:se-marcar",
+      "type": "track",
+      "name": "Se Marcar"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:yuri",
+      "type": "artist",
+      "name": "YURI"
+    },
+    {
+      "slug": "artist:mc-fornalha",
+      "type": "artist",
+      "name": "MC Fornalha"
+    },
+    {
+      "slug": "artist:mc-serginho",
+      "type": "artist",
+      "name": "MC Serginho"
+    },
+    {
+      "slug": "artist:deize-tigrona",
+      "type": "artist",
+      "name": "Deize Tigrona"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -32,6 +32,12 @@
       "type": "genre",
       "name": "A-pop",
       "qid": "Q10730335"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music",
+      "qid": "Q96740854"
     }
   ],
   "related_genres": [

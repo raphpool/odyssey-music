@@ -70,6 +70,12 @@
       "type": "genre",
       "name": "Drill",
       "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music",
+      "qid": "Q96740854"
     }
   ],
   "key_artists": [

@@ -1,40 +1,87 @@
 {
   "slug": "genre:bass-music",
   "name": "Bass Music",
-  "editorial_article": "Bass Music is a expansive, umbrella term describing a vast ecosystem of electronic music genres unified by their focus on low-frequency sound. Emerging from the underground club scenes of London and Bristol in the late 1990s, the movement draws deep inspiration from sound system culture, reggae, dub, UK garage, and drum and bass. At its core, the genre is defined by the physical impact of sub-bass frequencies, which typically inhabit the 20-100 Hz range, transforming music from a purely auditory experience into a visceral, bodily sensation. \n\nThe evolution of Bass Music is characterized by its restless experimentation and technical sophistication. It is not a singular sound, but a framework that accommodates the half-time crunch of Dubstep, the melodic complexity of Future Bass, the frantic energy of Drum and Bass, and the hybrid experimentation of Global Bass. This versatility has allowed Bass Music to permeate mainstream festival culture while maintaining a vibrant underground core driven by DIY production, sound design innovation, and community-led initiatives. As technology has democratized high-fidelity production, Bass Music continues to expand, integrating everything from hip-hop and jazz to avant-garde synthesis. Its legacy is one of constant renewal—a genre that thrives on subverting expectations and pushing the limits of what a sound system can achieve.",
+  "editorial_article": "Bass music functions as an expansive umbrella term for electronic and hip hop genres that emerged from the 1980s, prioritized by their focus on prominent basslines or low-frequency percussion. Producers frequently utilize the Roland TR-808 drum machine or software synthesizers like Xfer Serum to craft these low-end textures. The term encompasses a wide range of styles, from Miami bass in the US hip hop scene to UK-born movements like UK garage and drum and bass. Modern critics and scene participants often apply the label to emphasize the weight of sub-frequencies, covering diverse sub-genres such as dubstep, Gqom, footwork, and moombahton.",
   "citations": [
     {
-      "url": "https://bassgorilla.com/bass-music/",
-      "title": "Bass Music: A Deep Dive into the Sonic Underground - BassGorilla.com"
-    },
-    {
-      "url": "https://edm.fandom.com/wiki/Bass_Music",
-      "title": "Bass Music - EDM Wiki - Fandom"
+      "url": "https://en.wikipedia.org/wiki/Bass_music",
+      "title": "Bass music - Wikipedia"
     }
   ],
-  "materialized_at": "2026-05-13T12:59:49.678Z",
+  "materialized_at": "2026-09-18T08:39:26.083Z",
   "type": "genre",
-  "editorial_definition": "A broad umbrella term for electronic music genres characterized by a primary emphasis on low-frequency sub-bass, syncopated rhythms, and innovative sound design, deeply rooted in UK sound system culture.",
-  "era": "1990s–Present",
-  "origin": "United Kingdom",
-  "parent_genres": [],
+  "editorial_definition": "An umbrella term for electronic and hip hop genres defined by heavy emphasis on sub-bass frequencies and low-end production.",
+  "qid": "Q96740854",
+  "era": "1980s to present",
+  "origin": "United States and United Kingdom",
+  "sonic_markers": "Heavy sub-bass, Roland TR-808 drum machines, syncopated rhythms, sub-bass focus",
+  "parent_genres": [
+    {
+      "slug": "genre:popular-music",
+      "type": "genre",
+      "name": "Popular Music",
+      "qid": "Q373342"
+    }
+  ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and Bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:miami-bass",
+      "type": "genre",
+      "name": "Miami Bass",
+      "qid": "Q546206"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork",
+      "qid": "Q5466607"
+    }
+  ],
   "key_artists": [
-    {
-      "slug": "artist:skream",
-      "type": "artist",
-      "name": "Skream"
-    },
-    {
-      "slug": "artist:benga",
-      "type": "artist",
-      "name": "Benga"
-    },
     {
       "slug": "artist:skrillex",
       "type": "artist",
       "name": "Skrillex"
+    },
+    {
+      "slug": "artist:burial",
+      "type": "artist",
+      "name": "Burial"
+    },
+    {
+      "slug": "artist:dj-rashad",
+      "type": "artist",
+      "name": "DJ Rashad"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
     },
     {
       "slug": "artist:goldie",
@@ -44,33 +91,38 @@
   ],
   "key_labels": [
     {
-      "slug": "label:tempa",
-      "type": "label",
-      "name": "Tempa"
-    },
-    {
       "slug": "label:hyperdub",
       "type": "label",
       "name": "Hyperdub"
     },
     {
+      "slug": "label:hospital-records",
+      "type": "label",
+      "name": "Hospital Records"
+    },
+    {
       "slug": "label:owsla",
       "type": "label",
       "name": "OWSLA"
+    },
+    {
+      "slug": "label:tempa",
+      "type": "label",
+      "name": "Tempa"
     }
   ],
   "landmark_projects": [
-    {
-      "slug": "project:untrue",
-      "type": "project",
-      "name": "Untrue"
-    },
     {
       "slug": "project:skream",
       "type": "project",
       "name": "Skream!"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q96740854"
+  "landmark_tracks": [
+    {
+      "slug": "track:scary-monsters-and-nice-sprites",
+      "type": "track",
+      "name": "Scary Monsters and Nice Sprites"
+    }
+  ]
 }

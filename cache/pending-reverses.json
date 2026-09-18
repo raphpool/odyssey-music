@@ -5449,6 +5449,16 @@
         "name": "Drill",
         "qid": "Q15697534"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bass-music",
+        "type": "genre",
+        "name": "Bass Music",
+        "qid": "Q96740854"
+      }
     }
   ],
   "genre:us-bass-music": [
@@ -5512,6 +5522,26 @@
         "type": "genre",
         "name": "Dirty South",
         "qid": "Q8560269"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:baile-funk",
+        "type": "genre",
+        "name": "Baile Funk",
+        "qid": "Q1931130"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bass-music",
+        "type": "genre",
+        "name": "Bass Music",
+        "qid": "Q96740854"
       }
     }
   ],
@@ -9946,6 +9976,16 @@
         "name": "Amapiano",
         "qid": "Q85741139"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:baile-funk",
+        "type": "genre",
+        "name": "Baile Funk",
+        "qid": "Q1931130"
+      }
     }
   ],
   "artist:dj-maphorisa": [
@@ -12463,6 +12503,15 @@
         "type": "artist",
         "name": "KRS-One"
       }
+    },
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
     }
   ],
   "artist:the-blastmaster": [
@@ -13666,6 +13715,289 @@
         "slug": "artist:hip-hop-pantsula",
         "type": "artist",
         "name": "Hip Hop Pantsula"
+      }
+    }
+  ],
+  "artist:henry-lawes": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellowman",
+        "type": "artist",
+        "name": "Yellowman"
+      }
+    }
+  ],
+  "artist:fathead": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellowman",
+        "type": "artist",
+        "name": "Yellowman"
+      }
+    }
+  ],
+  "artist:kareema-foster": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellowman",
+        "type": "artist",
+        "name": "Yellowman"
+      }
+    }
+  ],
+  "artist:king-yellowman": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:yellowman",
+        "type": "artist",
+        "name": "Yellowman"
+      }
+    }
+  ],
+  "artist:bounty-killer": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "artist:spice": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "artist:major-lazer": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "artist:tommy-lee-sparta": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "artist:worl-boss": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "artist:addi-innocent": [
+    {
+      "field": "aliases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:vybz-kartel",
+        "type": "artist",
+        "name": "Vybz Kartel"
+      }
+    }
+  ],
+  "genre:brazilian-funk": [
+    {
+      "field": "subgenres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:baile-funk",
+        "type": "genre",
+        "name": "Baile Funk",
+        "qid": "Q1931130"
+      }
+    }
+  ],
+  "artist:yuri": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tati-quebra-barraco",
+        "type": "artist",
+        "name": "Tati Quebra Barraco"
+      }
+    }
+  ],
+  "artist:mc-fornalha": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tati-quebra-barraco",
+        "type": "artist",
+        "name": "Tati Quebra Barraco"
+      }
+    }
+  ],
+  "artist:mc-serginho": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:tati-quebra-barraco",
+        "type": "artist",
+        "name": "Tati Quebra Barraco"
+      }
+    }
+  ],
+  "artist:m-i-a": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:deize-tigrona",
+        "type": "artist",
+        "name": "Deize Tigrona"
+      }
+    }
+  ],
+  "artist:greymatter": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:deize-tigrona",
+        "type": "artist",
+        "name": "Deize Tigrona"
+      }
+    }
+  ],
+  "artist:gloria-groove": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:valesca-popozuda",
+        "type": "artist",
+        "name": "Valesca Popozuda"
+      }
+    }
+  ],
+  "artist:anitta": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:valesca-popozuda",
+        "type": "artist",
+        "name": "Valesca Popozuda"
+      }
+    }
+  ],
+  "genre:dark-psytrance": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:full-on": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:progressive-psytrance": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:suomisaundi": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:psybient": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:psydub": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:goa-trance": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
       }
     }
   ]

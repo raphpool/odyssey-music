@@ -1,0 +1,137 @@
+{
+  "slug": "artist:deize-tigrona",
+  "name": "Deize Tigrona",
+  "editorial_article": "Born Deize Maria Gonçalves da Silva in 1979 in the São Conrado neighborhood of Rio de Janeiro, this funk carioca pioneer worked as a house cleaner before becoming a major voice in the baile funk scene. Her breakout track \"Injeção\" (2004) famously samples the brass horns from the Bill Conti theme \"Gonna Fly Now\" used in the Rocky film series. The song appeared on the Mr Bongo label compilation Slum Dunk Presents Funk Carioca, curated by Tetine members Bruno Verner and Eliete Mejorado. \"Injeção\" became an international reference point when M.I.A. used it as the foundational beat for her 2005 track \"Bucky Done Gun.\" While Tigrona faced local criticism for the sexually explicit lyrics found in songs like \"Sex-o-matic\" and \"Injeção,\" she has maintained that the music is primarily meant for dancing. She later expanded her reach by collaborating with British dance producer Greymatter on the 2010 song \"Eu Fomo.\"",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Deize_Tigrona",
+      "title": "Deize Tigrona - Wikipedia"
+    },
+    {
+      "url": "https://www.whosampled.com/Deize-Tigrona/",
+      "title": "Deize Tigrona - Samples, Covers and Remixes - WhoSampled"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:59:42.333Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Brazilian funk carioca artist from Rio de Janeiro whose work became a cornerstone of global baile funk fusion.",
+  "origin": "Rio de Janeiro, Brazil",
+  "active_years": "2002-2006, 2012-present",
+  "genres": [
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Funk carioca",
+      "qid": "Q1931130"
+    },
+    {
+      "slug": "genre:tamborzao",
+      "type": "genre",
+      "name": "Tamborzão",
+      "qid": "Q119438481"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mr-bongo",
+      "type": "label",
+      "name": "Mr Bongo"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:nao-tem-role-tranquilo",
+      "type": "project",
+      "name": "NÃO TEM ROLÊ TRANQUILO",
+      "mbid": "36a557fa-d90f-4ba4-8e70-9601f08e541f",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:foi-eu-que-fiz",
+      "type": "project",
+      "name": "Foi Eu Que Fiz",
+      "mbid": "66d6a29e-a14d-47d2-994d-9c488d7b4e94",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sexo-internet-and-funk",
+      "type": "project",
+      "name": "Sexo, Internet & Funk",
+      "mbid": "0c02d75a-0463-4c3f-9913-98917b334165",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vagabundo",
+      "type": "project",
+      "name": "Vagabundo",
+      "mbid": "c6801bc9-0de4-4981-a744-fa6b5ce2cba4",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eu-fumo",
+      "type": "project",
+      "name": "Eu fumo",
+      "mbid": "59b56341-22ee-4de8-8dc4-6a2f7e578238",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:prostituto",
+      "type": "project",
+      "name": "Prostituto",
+      "mbid": "b280e2b1-dcde-4f4d-ac6e-89f5c82f6335",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funk-mundial-7",
+      "type": "project",
+      "name": "Funk Mundial #7",
+      "mbid": "385f3878-2c40-43f6-8a1d-b936214b9f72",
+      "year": "2008",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:injecao",
+      "type": "track",
+      "name": "Injeção"
+    },
+    {
+      "slug": "track:sex-o-matic",
+      "type": "track",
+      "name": "Sex-o-matic"
+    },
+    {
+      "slug": "track:sadomasoquista",
+      "type": "track",
+      "name": "Sadomasoquista (Vem de Chicote)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:m-i-a",
+      "type": "artist",
+      "name": "M.I.A."
+    },
+    {
+      "slug": "artist:tati-quebra-barraco",
+      "type": "artist",
+      "name": "Tati Quebra Barraco"
+    },
+    {
+      "slug": "artist:greymatter",
+      "type": "artist",
+      "name": "Greymatter"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}
