@@ -63,6 +63,18 @@
       "type": "genre",
       "name": "Broken Beat",
       "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music",
+      "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:drill-and-bass",
+      "type": "genre",
+      "name": "Drill and Bass",
+      "qid": "Q1259016"
     }
   ],
   "key_artists": [

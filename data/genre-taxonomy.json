@@ -2448,7 +2448,7 @@
 			"name": "Bossa Nova",
 			"family": "latin-brazilian",
 			"qid": "Q486263",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:brasillica",
@@ -2489,7 +2489,7 @@
 			"name": "Cumbia",
 			"family": "latin-brazilian",
 			"qid": "Q723418",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9764",
@@ -2659,21 +2659,21 @@
 			"name": "Salsa",
 			"family": "latin-brazilian",
 			"qid": "Q208239",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q11403",
 			"name": "Samba",
 			"family": "latin-brazilian",
 			"qid": "Q11403",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q14390274",
 			"name": "Tango",
 			"family": "latin-brazilian",
 			"qid": "Q14390274",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3392209",
@@ -2897,7 +2897,7 @@
 			"name": "Afrobeat",
 			"family": "african-middle-eastern",
 			"qid": "Q388296",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3328601",
@@ -3011,7 +3011,7 @@
 			"name": "Ethiopian Jazz",
 			"family": "african-middle-eastern",
 			"qid": "Q3591962",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q109586004",
@@ -3051,7 +3051,7 @@
 			"name": "Gnawa",
 			"family": "african-middle-eastern",
 			"qid": "Q2000173",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q107123896",
@@ -3080,7 +3080,7 @@
 			"family": "african-middle-eastern",
 			"qid": "Q963061",
 			"sourceSlugs": ["genre:highlife"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q12193614",
@@ -3304,7 +3304,7 @@
 			"name": "Soukous",
 			"family": "african-middle-eastern",
 			"qid": "Q1752683",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q7565881",
@@ -3405,7 +3405,7 @@
 			"name": "Bollywood",
 			"family": "asia",
 			"qid": "Q6942022",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q100922002",
@@ -3459,7 +3459,7 @@
 			"name": "City Pop",
 			"family": "asia",
 			"qid": "Q11307326",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:dan-ca",
@@ -3486,7 +3486,7 @@
 			"name": "Gamelan",
 			"family": "asia",
 			"qid": "Q194492",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q281111",
@@ -3528,7 +3528,7 @@
 			"name": "J-Pop",
 			"family": "asia",
 			"qid": "Q131578",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q3160589",
@@ -3549,7 +3549,7 @@
 			"name": "K-Pop",
 			"family": "asia",
 			"qid": "Q213665",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1930107",

@@ -1,0 +1,776 @@
+{
+  "slug": "artist:vybz-kartel",
+  "name": "Vybz Kartel",
+  "editorial_article": "Born Adidja Azim Palmer in Kingston, Jamaica, Vybz Kartel launched his professional music career in 1993 with the debut single 'Love Fat Woman' released on the One Heart label. A central figure in the Jamaican dancehall scene, Kartel became a protege of Bounty Killer before forming his own collective, the Portmore Empire. Throughout his career, he has collaborated with artists including Major Lazer, Rihanna, Missy Elliott, and Travis Scott. His 2016 album 'King of the Dancehall' peaked at number two on the Billboard Reggae Chart and featured the hit single 'Fever', which was certified Gold in the United Kingdom in 2026. Kartel is known for his business ventures, including the launch of Street Vybz Rum and his own footwear line, Addi's.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Vybz_Kartel",
+      "title": "Vybz Kartel - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/523939-Vybz-Kartel-Timeless?srsltid=AU7gw4Uxh30AB6dnVF0wrzspsFLVUFXosdfCE4x-ax79JJeGak_8Mc_h",
+      "title": "Vybz Kartel - Timeless | Releases - Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/1969909-Vybz-Kartel-JMT?srsltid=AU7gw4X2Mf93COs3ZLWRnPm2BLHdq6h4eW8hhwSyMXkthgydPmvksyYI",
+      "title": "Vybz Kartel - J.M.T. - Vinyl (LP, Album), 2006"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:58:15.917Z",
+  "type": "artist",
+  "editorial_bio": "Jamaican dancehall artist and entrepreneur known for hits like 'Fever' and his influential role in the Kingston music scene.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1993-present",
+  "genres": [
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall",
+      "qid": "Q474027"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:adidjahiem-records",
+      "type": "label",
+      "name": "Adidjahiem Records"
+    },
+    {
+      "slug": "label:greensleeves-records",
+      "type": "label",
+      "name": "Greensleeves Records"
+    },
+    {
+      "slug": "label:mixpak",
+      "type": "label",
+      "name": "Mixpak"
+    },
+    {
+      "slug": "label:short-boss-muzik",
+      "type": "label",
+      "name": "Short Boss Muzik"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:just-love",
+      "type": "project",
+      "name": "Just Love",
+      "mbid": "b424734e-d43a-4416-9073-1bb7024b2b94",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:god-and-time",
+      "type": "project",
+      "name": "God and Time",
+      "mbid": "ea3296fa-aeb9-4dc7-9be7-f9569f4fd637",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:talk-to-me-nuh",
+      "type": "project",
+      "name": "Talk to Me Nuh",
+      "mbid": "dd45b1cb-b401-4678-a9d2-a248e89b0635",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-love-again",
+      "type": "project",
+      "name": "In Love Again",
+      "mbid": "43802a6c-d49c-407a-a4ce-496a41f5f67f",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:panic",
+      "type": "project",
+      "name": "Panic",
+      "mbid": "f7a1bca0-33be-4ffb-975d-c048816c6639",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:xrated",
+      "type": "project",
+      "name": "Xrated",
+      "mbid": "72e72aac-2db4-44ca-83c4-4769b36f3a74",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nawmal-again",
+      "type": "project",
+      "name": "Nawmal Again",
+      "mbid": "72220ba1-b25e-42d3-aa90-066d54b83cab",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:upside-down",
+      "type": "project",
+      "name": "Upside Down",
+      "mbid": "aceb27fc-da99-4e43-9aea-3b80a3d9d97a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pon-time-again",
+      "type": "project",
+      "name": "PON TIME AGAIN",
+      "mbid": "95cd2a58-9643-44eb-bc70-227b94a23545",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heart-and-soul",
+      "type": "project",
+      "name": "Heart & Soul",
+      "mbid": "e8f4d5be-4917-4e46-aa26-0981ecc9336a",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:amout",
+      "type": "project",
+      "name": "Amout",
+      "mbid": "502be17d-3781-4bed-a441-2f339354e569",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:str8-vybz",
+      "type": "project",
+      "name": "Str8 Vybz",
+      "mbid": "f4dec1bf-c3ba-4a6d-906b-9e1ce368cc18",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobody-move",
+      "type": "project",
+      "name": "Nobody Move",
+      "mbid": "ff1bb7df-72af-4391-ab69-0c1692eff5ed",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:john-john-dancehall-riddims-cash-register",
+      "type": "project",
+      "name": "John John Dancehall Riddims: Cash Register",
+      "mbid": "4e5925d5-7b28-4bd2-95a5-4a35df09e486",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:john-john-dancehall-riddims-target",
+      "type": "project",
+      "name": "John John Dancehall Riddims: Target",
+      "mbid": "3a9fc181-bad5-4668-a854-f190c71705bd",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:party-with-me",
+      "type": "project",
+      "name": "Party With Me",
+      "mbid": "34727609-d154-4c96-baa4-4323ec7236bf",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-back-home",
+      "type": "project",
+      "name": "Come Back Home",
+      "mbid": "dd98ad25-679c-4080-a6d5-bfbd2b563f85",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tequila-shots",
+      "type": "project",
+      "name": "Tequila Shots",
+      "mbid": "608481ba-77f1-4c94-8dc2-f20bd2e36a32",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:clarks-de-mixtape",
+      "type": "project",
+      "name": "Clarks de Mixtape (DJ Wayne remix)",
+      "mbid": "f802ac2d-3f21-411b-845e-0ab46386e8a1",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:numb",
+      "type": "project",
+      "name": "Numb",
+      "mbid": "c287f632-ac51-46bd-a522-8293ebf93d94",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:true-religion",
+      "type": "project",
+      "name": "True Religion",
+      "mbid": "1c951d98-9447-4ecb-9221-516d10fe99af",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white-house",
+      "type": "project",
+      "name": "White House",
+      "mbid": "0f02843d-e893-4257-bfc3-06bf1723b75a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:usain-bolt-presents-9-58-riddim",
+      "type": "project",
+      "name": "Usain Bolt Presents: 9.58 Riddim",
+      "mbid": "4e388c7f-c807-44c4-8df4-e1de59a95246",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:likkle-bit-so",
+      "type": "project",
+      "name": "Likkle Bit So",
+      "mbid": "5e214e4a-b955-424b-a056-282b7792fe14",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ramp-ruff",
+      "type": "project",
+      "name": "Ramp Ruff",
+      "mbid": "65ed7370-c51f-4ca6-aef2-5db87175140a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dancehall-hits",
+      "type": "project",
+      "name": "DANCEHALL HITS",
+      "mbid": "b360f1ae-2c66-4b75-9137-884e92e211af",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ride-it",
+      "type": "project",
+      "name": "Ride It",
+      "mbid": "19462a9b-a2a1-424c-987a-b48683166847",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:born-fi-dis",
+      "type": "project",
+      "name": "Born Fi Dis (Prelude)",
+      "mbid": "81fdfda0-6585-4b7b-98be-16e45a2b6e66",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tad-s-dancehall-matrixx-vol-1",
+      "type": "project",
+      "name": "Tad’s Dancehall Matrixx, Vol. 1",
+      "mbid": "c1bc687e-f870-41c0-8595-0460838fbd0a",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:x-rated",
+      "type": "project",
+      "name": "X‐Rated",
+      "mbid": "73204ff0-4b78-4d59-af24-2039e178ee12",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancehall-royalty",
+      "type": "project",
+      "name": "Dancehall Royalty",
+      "mbid": "e9ba4c76-ce0f-4823-9825-9c2639248a33",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-don-and-the-boss",
+      "type": "project",
+      "name": "The Don & The Boss",
+      "mbid": "04c70047-ef71-4963-b6c6-666e5cdfe948",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:international-criminal",
+      "type": "project",
+      "name": "International Criminal",
+      "mbid": "609a7c34-735c-48e0-9d5a-a704640e7441",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-best-of-romeich-ent",
+      "type": "project",
+      "name": "The Best of Romeich Ent",
+      "mbid": "a3ee4781-503a-4c6e-bb90-c89e819db9a4",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:of-dons-and-divas",
+      "type": "project",
+      "name": "Of Dons & Divas",
+      "mbid": "b52e39d8-27f1-4429-840c-55f41b1423d0",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:to-tanesha",
+      "type": "project",
+      "name": "To Tanesha",
+      "mbid": "467c9786-92b3-4f48-8108-a05d6c40df6a",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reggae-jamdown-triplets-vol-3",
+      "type": "project",
+      "name": "Reggae Jamdown Triplets - Vol. 3",
+      "mbid": "a60a258e-327c-4757-a2ae-271b327e2625",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:massive-b-presents-pandora",
+      "type": "project",
+      "name": "Massive B Presents: Pandora",
+      "mbid": "5caa3d6c-6f76-4054-b9d4-a0410a69553b",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dancehall-vybz-kartel",
+      "type": "project",
+      "name": "Dancehall: Vybz Kartel",
+      "mbid": "ff8b0d04-41c1-410c-a349-c7639db76047",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wine-to-the-top",
+      "type": "project",
+      "name": "Wine To The Top",
+      "mbid": "c871b3e4-b5f8-44e4-acbb-2ad557fedd1e",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party",
+      "type": "project",
+      "name": "Party",
+      "mbid": "0eebeec1-042c-4475-b9e8-b0ac425d9c40",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-fck",
+      "type": "project",
+      "name": "Christmas Fck",
+      "mbid": "1ec62a11-45d7-457a-9537-5c83342ed792",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dancehall-tide-riddim",
+      "type": "project",
+      "name": "Dancehall Tide Riddim",
+      "mbid": "7bd57e90-eb23-4446-8340-2bfa401a4752",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:movie",
+      "type": "project",
+      "name": "Movie (Loodi Remix)",
+      "mbid": "250a76b3-affd-41c8-933e-f9e6a782e3e2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:movie",
+      "type": "project",
+      "name": "Movie (Loodi DJ Septik remix)",
+      "mbid": "64483d70-0bba-45ea-9051-0fe1dffece07",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girlfriend",
+      "type": "project",
+      "name": "Girlfriend",
+      "mbid": "dfd22d21-c85b-45b2-aa55-4ff3f57bd5ae",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vices",
+      "type": "project",
+      "name": "Vices",
+      "mbid": "db431e3a-935d-476c-b007-f08cdaba3a95",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:party-ep",
+      "type": "project",
+      "name": "Party EP",
+      "mbid": "f32138a7-d5f1-4923-8070-4263db78e7f1",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:can-t-dweet-like-we",
+      "type": "project",
+      "name": "Can't Dweet Like We",
+      "mbid": "d12cc7cc-7239-445d-ad14-ee921833f420",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vybz-kartel-selects-reggae-dancehall",
+      "type": "project",
+      "name": "Vybz Kartel Selects Reggae Dancehall",
+      "mbid": "fb0db0eb-2f83-4463-b3a4-d67f1533066f",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:remember-me",
+      "type": "project",
+      "name": "Remember Me",
+      "mbid": "02dfef0f-d08e-4532-8642-e9dad0579223",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-and-white",
+      "type": "project",
+      "name": "Black & White",
+      "mbid": "cf98c7a9-5856-4b1a-b9c8-531e3d49698a",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-the-dancehall",
+      "type": "project",
+      "name": "King of the Dancehall",
+      "mbid": "58a9b486-379a-4bd5-81cb-f2d0463c296b",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancehall-hero-raw",
+      "type": "project",
+      "name": "Dancehall Hero Raw (Deluxe)",
+      "mbid": "01f8b6f3-1b19-44d1-84f9-ccf3ea5c18f1",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:viking",
+      "type": "project",
+      "name": "Viking (Vybz Is King)",
+      "mbid": "06e4058f-417e-4b10-a9d4-f14093a16c1e",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reggae-greats-vol-2",
+      "type": "project",
+      "name": "Reggae Greats, Vol. 2",
+      "mbid": "34bc9fc6-4b98-4fdb-9476-458d25f774e4",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reggae-love-songs",
+      "type": "project",
+      "name": "Reggae Love Songs",
+      "mbid": "5b9f395d-8ee7-44e2-9efb-2e3e5f8449e7",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duet",
+      "type": "project",
+      "name": "Duet",
+      "mbid": "9e1653c8-c0a1-44b5-9d1a-2cda6c9eabe6",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:john-john-presents",
+      "type": "project",
+      "name": "John John Presents",
+      "mbid": "a9d60317-0fbc-4561-a320-8e1f1e40779a",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-trend-setterz-vol-1",
+      "type": "project",
+      "name": "The Trend Setterz Vol. 1",
+      "mbid": "b05c2c41-f842-4679-ade9-6bacf8e2266a",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-voice-of-the-jamaican-ghetto-incarcerated-but-not-silenced",
+      "type": "project",
+      "name": "The Voice of the Jamaican Ghetto - Incarcerated But Not Silenced (Roots & Culture)",
+      "mbid": "a343e83c-d831-4ffb-9679-b18b103ca17f",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rvssian-presents-free-worl-boss",
+      "type": "project",
+      "name": "Rvssian Presents Free Worl Boss",
+      "mbid": "b919a930-5076-4152-ad9c-9b4370bc9ccb",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unstoppable",
+      "type": "project",
+      "name": "Unstoppable",
+      "mbid": "6cbde655-ed94-4a49-a034-ddeedb97b6ea",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kartel-forever-trilogy",
+      "type": "project",
+      "name": "Kartel Forever: Trilogy",
+      "mbid": "c1f4d9f2-891b-48f5-a138-1e37ca88fcab",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gaza-4-life",
+      "type": "project",
+      "name": "Gaza 4 Life",
+      "mbid": "d9547535-a8c8-48b9-93db-c94657eac0bf",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gaza-man-crazy",
+      "type": "project",
+      "name": "Gaza Man Crazy",
+      "mbid": "5a09f4c0-6ce9-49a5-b577-c1434f0fdc3d",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mentally-free",
+      "type": "project",
+      "name": "Mentally Free",
+      "mbid": "e0c428fb-21c6-49b9-aac1-be1e75fa0b91",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stronger-we-get",
+      "type": "project",
+      "name": "Stronger We Get",
+      "mbid": "72f389a0-e15e-4203-8d7b-d9eca6283e4e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kingston-story",
+      "type": "project",
+      "name": "Kingston Story",
+      "mbid": "5e7dda32-6cd9-42c0-a933-ffddc5107020",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-gaza-don",
+      "type": "project",
+      "name": "The Gaza Don",
+      "mbid": "ef0c4ebb-149c-46dd-8f92-ab7cd71db2fe",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gaza-slim",
+      "type": "project",
+      "name": "Gaza Slim",
+      "mbid": "c05ac797-a91d-427c-b4ca-9e4605bedef0",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancehall-hero-raw",
+      "type": "project",
+      "name": "Dancehall Hero Raw",
+      "mbid": "e7fbb59b-68e9-4eb9-a611-d80a5aedd48a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pon-di-gaza-2-0",
+      "type": "project",
+      "name": "Pon Di Gaza 2.0",
+      "mbid": "67fce1fc-4caa-43c9-b2d4-cb23c3a2d240",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pon-di-gaza",
+      "type": "project",
+      "name": "Pon Di Gaza",
+      "mbid": "6235575b-3c67-40d3-aa24-a39a3c3360e4",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:most-wanted",
+      "type": "project",
+      "name": "Most Wanted",
+      "mbid": "e2563f6d-4ef8-47da-8eb8-02e619688f4a",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-teacher-s-back",
+      "type": "project",
+      "name": "The Teacher's Back",
+      "mbid": "35bc06bf-01b3-42fd-bf32-c465a6f85514",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:j-m-t",
+      "type": "project",
+      "name": "J.M.T.",
+      "mbid": "12b3b845-5043-3665-a9b9-8ca1d630d3d2",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-up-2-di-time",
+      "type": "project",
+      "name": "More Up 2 Di Time",
+      "mbid": "d5492a7e-ed6b-45c7-bda5-69735adaa16f",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:timeless",
+      "type": "project",
+      "name": "Timeless",
+      "mbid": "d983a460-854f-3d95-8926-8926c4889cf7",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-2-di-time",
+      "type": "project",
+      "name": "Up 2 Di Time",
+      "mbid": "5e874ce3-2ca8-394e-8a0a-83d95a76654c",
+      "year": "2003",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:romping-shop",
+      "type": "track",
+      "name": "Romping Shop"
+    },
+    {
+      "slug": "track:dancehall-hero",
+      "type": "track",
+      "name": "Dancehall Hero"
+    },
+    {
+      "slug": "track:clarks",
+      "type": "track",
+      "name": "Clarks"
+    },
+    {
+      "slug": "track:summer-time",
+      "type": "track",
+      "name": "Summer Time"
+    },
+    {
+      "slug": "track:fever",
+      "type": "track",
+      "name": "Fever"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bounty-killer",
+      "type": "artist",
+      "name": "Bounty Killer"
+    },
+    {
+      "slug": "artist:popcaan",
+      "type": "artist",
+      "name": "Popcaan"
+    },
+    {
+      "slug": "artist:spice",
+      "type": "artist",
+      "name": "Spice"
+    },
+    {
+      "slug": "artist:major-lazer",
+      "type": "artist",
+      "name": "Major Lazer"
+    },
+    {
+      "slug": "artist:tommy-lee-sparta",
+      "type": "artist",
+      "name": "Tommy Lee Sparta"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:worl-boss",
+      "type": "artist",
+      "name": "Worl' Boss"
+    },
+    {
+      "slug": "artist:teacha",
+      "type": "artist",
+      "name": "Teacha"
+    },
+    {
+      "slug": "artist:addi-innocent",
+      "type": "artist",
+      "name": "Addi Innocent"
+    }
+  ],
+  "members": []
+}
