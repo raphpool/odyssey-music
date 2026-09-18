@@ -614,7 +614,7 @@
 			"name": "Amapiano",
 			"family": "new-club",
 			"qid": "Q85741139",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q2863648",
@@ -1816,7 +1816,7 @@
 			"name": "Black Metal",
 			"family": "metal",
 			"qid": "Q132438",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q483251",
@@ -1824,7 +1824,7 @@
 			"family": "metal",
 			"qid": "Q483251",
 			"sourceSlugs": ["genre:death-metal"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q186170",
@@ -1917,7 +1917,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q7118426",
 			"sourceSlugs": ["genre:alternative-r-and-b"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q529742",
@@ -1976,7 +1976,7 @@
 			"family": "hip-hop-r-n-b",
 			"qid": "Q876171",
 			"sourceSlugs": ["genre:east-coast-hip-hop"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q12362064",
@@ -2073,7 +2073,7 @@
 			"name": "Trap",
 			"family": "hip-hop-r-n-b",
 			"qid": "Q2913982",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q9759",
