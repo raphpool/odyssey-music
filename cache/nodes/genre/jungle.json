@@ -60,6 +60,12 @@
       "type": "genre",
       "name": "Breaks",
       "qid": "Q65937774"
+    },
+    {
+      "slug": "genre:drill-and-bass",
+      "type": "genre",
+      "name": "Drill and Bass",
+      "qid": "Q1259016"
     }
   ],
   "key_artists": [

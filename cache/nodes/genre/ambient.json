@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:34:23.550Z",
   "type": "genre",
   "editorial_definition": "A genre of music emphasizing atmospheric texture and tone over traditional musical structures, designed to create a sense of place or mood through unobtrusive soundscapes.",
+  "qid": "Q193207",
   "era": "1970s–present",
   "origin": "United Kingdom / Germany",
   "parent_genres": [
@@ -73,6 +74,12 @@
       "type": "genre",
       "name": "Minimalism",
       "qid": "Q572901"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
     }
   ],
   "key_artists": [
@@ -121,6 +128,5 @@
       "name": "Selected Ambient Works 85–92"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q193207"
+  "landmark_tracks": []
 }
