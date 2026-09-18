@@ -374,17 +374,10 @@ describe("rewritePendingReverses", () => {
 });
 
 describe("loadOnboardingGenreSlugs", () => {
-	it("extracts exactly the 34 slugs from the real web/index.html, all present in cache/nodes/genre", async () => {
-		const slugs = await loadOnboardingGenreSlugs();
-		expect(slugs).toHaveLength(34);
-		expect(new Set(slugs).size).toBe(34);
-		for (const slug of slugs) {
-			await expect(
-				readFile(`cache/nodes/genre/${slug.slice("genre:".length)}.json`, "utf8"),
-			).resolves.toBeTruthy();
-		}
-	});
-
+	// The "extracts the real slugs from web/index.html" case that used to live here asserted
+	// against ONBOARDING_GENRES in the real web/index.html, which TRA-211 (D3a) removes by
+	// design -- that guarantee about production content no longer applies. The regex-parsing
+	// behavior itself is still exercised below, against a local fixture rather than the repo file.
 	it("throws instead of returning an empty list when the regex no longer matches", async () => {
 		const dir = await mkdtemp(join(tmpdir(), "odyssey-onboarding-"));
 		const path = join(dir, "index.html");
@@ -457,7 +450,11 @@ describe("runMigration (disk integration)", () => {
 			redirects: await readFile(redirectsPath, "utf8"),
 		};
 
-		const result = await runMigration(dir, false, { catalogNames, redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): this test exercises the dry-run plan itself,
+		// not genre protection, so it must not depend on ONBOARDING_GENRES's presence in the real
+		// web/index.html (TRA-211, D3a, removes that constant). An empty list still counts as
+		// "protection available" -- it's `undefined`, not `[]`, that means "missing".
+		const result = await runMigration(dir, false, { catalogNames, redirectsPath, onboardingSlugs: [] });
 
 		expect(result.exitCode).toBe(0);
 		expect(result.groupsFound).toBe(1);
@@ -479,7 +476,8 @@ describe("runMigration (disk integration)", () => {
 			],
 		});
 
-		const first = await runMigration(dir, true, { catalogNames, redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): see the dry-run test above for why.
+		const first = await runMigration(dir, true, { catalogNames, redirectsPath, onboardingSlugs: [] });
 		expect(first.exitCode).toBe(0);
 		expect(first.deletedCount).toBe(1);
 		expect(first.report).not.toContain("DRY RUN");
@@ -514,7 +512,8 @@ describe("runMigration (disk integration)", () => {
 		// End-to-end confirmation of rewriteNodeEdges's own guarantee (unit-tested above): no
 		// black-box fixture can violate this without a bug in that function itself.
 		const { loserPath } = await seedElectronicGroup();
-		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): see the dry-run test above for why.
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath, onboardingSlugs: [] });
 		expect(result.exitCode).toBe(0);
 
 		const { nodes } = await readCacheNodes(dir);
@@ -833,9 +832,16 @@ describe("runMigration (disk integration)", () => {
 
 		it("warns on stderr, but still succeeds, when the taxonomy is absent and v1 alone protects the merge", async () => {
 			await seedElectronicGroup();
+			// Local fixture (TRA-274), not the real web/index.html: this test's point is that v1
+			// alone (protection present, taxonomy absent) still lets a safe merge through with a
+			// warning -- it must not depend on ONBOARDING_GENRES's presence in the real file, which
+			// TRA-211 (D3a) removes by design. "genre:unrelated" only needs to make the regex match;
+			// it must not be either member of the seeded group under test.
+			const webIndexPath = join(dir, "index.html");
+			await writeFile(webIndexPath, 'const ONBOARDING_GENRES = ["genre:unrelated"];', "utf8");
 			const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
 			try {
-				const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+				const result = await runMigration(dir, true, { catalogNames, redirectsPath, webIndexPath });
 				expect(result.exitCode).toBe(0);
 				expect(stderrSpy.mock.calls.some(([chunk]) => String(chunk).includes("v1 (ONBOARDING_GENRES)"))).toBe(
 					true,
