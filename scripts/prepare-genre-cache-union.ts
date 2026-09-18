@@ -27,12 +27,13 @@ import { copyFile, cp, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promi
 import { tmpdir } from "node:os";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
-import { NodeCache } from "../src/cache.js";
+import { atomicWriteJson, NodeCache } from "../src/cache.js";
 import type { GenreRedirects } from "../src/genre-registry.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../src/genre-registry.js";
-import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
-import type { Slug } from "../src/types.js";
+import type { NodePayload, Slug } from "../src/types.js";
 import {
 	isRecord,
 	looksLikeCacheDir,
@@ -47,8 +48,49 @@ type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 // one `slug` field is all either variant needs.
 export type UnionEntry =
 	| { decision: "copied"; from: "repo" | "server"; slug: Slug }
-	| { decision: "kept"; from: "repo" | "server"; slug: Slug; tie: boolean; qidOnlyOn?: "repo" | "server" }
+	| {
+			decision: "kept";
+			from: "repo" | "server";
+			slug: Slug;
+			tie: boolean;
+			qidOnlyOn?: "repo" | "server";
+			// Count of list edges pulled in from the OTHER side that weren't already on the winner
+			// (B6a-3 / TRA-268) -- omitted, like qidOnlyOn above, when there was nothing to add, so
+			// every pre-existing "kept" fixture in the test suite stays valid without updating it.
+			mergedEdgeCount?: number;
+	  }
 	| { decision: "conflict"; slug: Slug; reason: "qid" | "timestamp" };
+
+// An edge the LOSING side contributed that the merge refused to carry over: it targets the merged
+// node itself (a self-loop union must not mint), or it no longer resolves against the union's own
+// live-slug/redirect state (see slugResolves) and would be written dangling. Reported here instead
+// of silently vanishing (the B6a-3 / TRA-268 review finding: a server-only reverse edge added by
+// applyReverseToTarget used to be lost with no trace when the repo's copy of the same slug won on
+// materialized_at). Edges the WINNER already carried are never listed here -- they pass through
+// mergeUnionEdges verbatim.
+//
+// `resolvedIn` names the sources where the target still resolved BEFORE the union, and is omitted
+// when there are none. Omitted is the tolerated baseline -- an edge towards a never-materialized
+// node is this cache's normal steady state, and what top-up-dangling.ts consumes to choose what to
+// materialize next -- so countUnionProblems ignores it. Present means the union actually broke a
+// reference that used to work, which it does count (2026-09-17, review of #239).
+export interface DroppedEdge {
+	slug: Slug;
+	field: string;
+	target: Slug;
+	resolvedIn?: ("repo" | "server")[];
+}
+
+// A "kept" (both-sides) node whose merged content writeValidatedNode refused to write: either a
+// genuine nodePayloadSchema violation, or a mismatch between the slug the file was found under
+// and the node's own claimed `slug` field (review finding -- see writeValidatedNode). The union
+// degrades and keeps going rather than crashing mid-build with no manifest at all: this slug
+// simply has no live node in the union's own nodes/ tree, the same as a slug omitted for any
+// other reason.
+export interface InvalidMergedNode {
+	slug: Slug;
+	reason: string;
+}
 
 // A reference that resolved in a source before the union but no longer resolves after the
 // (applied) migration -- see `slugResolves` and the reference-delta block in `buildCacheUnion`.
@@ -103,6 +145,14 @@ export interface UnionManifest {
 	serverCacheDir: string;
 	entries: UnionEntry[];
 	skipped: { source: "repo" | "server"; path: string; error: string }[];
+	// Edges the losing side of a "kept" (both-sides) node contributed and the merge refused -- see
+	// DroppedEdge. Always present (like `skipped`), independent of --apply-merge. Only the entries
+	// carrying `resolvedIn` are counted by countUnionProblems.
+	droppedEdges: DroppedEdge[];
+	// "Kept" nodes whose merged content failed to write -- see InvalidMergedNode. Always present,
+	// independent of --apply-merge; counted in countUnionProblems (unlike droppedEdges) since an
+	// invalid node is a real invariant violation, not a tolerated baseline.
+	invalidMergedNodes: InvalidMergedNode[];
 	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
 	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
 	// the one that actually describes the artifact's final state.
@@ -223,6 +273,111 @@ async function copyNode(baseDir: string, file: NodeFile): Promise<void> {
 	await copyFile(file.path, dest);
 }
 
+/** Pure: merges every list-edge field of `type` between the winning ("kept") node and the other
+ * side's. The winner's OWN list passes through verbatim -- exactly what copyNode wrote before this
+ * ticket, duplicates and unresolvable targets included. Only what the LOSER contributes is
+ * filtered: deduped by slug against the winner's list (unionListField's "first occurrence wins"
+ * rule, applied here to the loser's side alone), dropped when it targets `ownSlug` (two variants
+ * commonly cross-link as "related", and union must not mint a self-loop), and dropped when it no
+ * longer resolves against the union's own live-slug/redirect state (slugResolves -- same rule as
+ * resolveReadSlug) rather than written dangling. Every drop is reported via `dropped` (see
+ * DroppedEdge) instead of vanishing silently -- the bug this function fixes (B6a-3 / TRA-268
+ * review finding).
+ *
+ * 2026-09-17, review of #239: that resolution filter used to run over the merged list as a WHOLE,
+ * so an edge the winner already carried towards a never-materialized node was eaten too --
+ * 15689 slug-bearing edges in, 7222 out on a self-union of the committed cache, artist:1-2-3
+ * losing label:ooh-la-la-records and both its notable_tracks, all of them top-up targets. Those
+ * edges ARE this cache's steady state (top-up-dangling.ts reads them to pick what to materialize
+ * next). References are validated in DELTA, never in absolute (see this file's header): an edge
+ * becomes unacceptable when it STOPS resolving, never because it never did.
+ *
+ * `ownSlug` is the loop's own key, never `winner.slug`/`loser.slug` -- readCacheNodes never
+ * validates cache content, so a node's claimed slug is untrusted like any other field. Every other
+ * field, singular edges included, is left exactly as the winner had it -- including a self-loop the
+ * winner ALREADY had (artist:tyree lists itself in `aliases`), which is pre-existing data and out
+ * of this ticket's scope. `mergedEdgeCount` only counts edges the LOSER contributed that weren't
+ * already on the winner -- the signal worth surfacing in the manifest. */
+export function mergeUnionEdges(
+	winner: Record<string, unknown>,
+	loser: Record<string, unknown>,
+	type: NodeType,
+	ownSlug: Slug,
+	liveSlugs: ReadonlySet<Slug>,
+	redirects: ReadonlyMap<Slug, Slug>,
+): { node: Record<string, unknown>; mergedEdgeCount: number; dropped: Omit<DroppedEdge, "slug">[] } {
+	const merged: Record<string, unknown> = { ...winner };
+	let mergedEdgeCount = 0;
+	const dropped: Omit<DroppedEdge, "slug">[] = [];
+	for (const field of LIST_EDGES_BY_TYPE[type]) {
+		const winnerList = Array.isArray(winner[field]) ? (winner[field] as unknown[]) : [];
+		const loserList = Array.isArray(loser[field]) ? (loser[field] as unknown[]) : [];
+		const seen = new Set<string>(
+			winnerList
+				.filter((e): e is Record<string, unknown> => isRecord(e) && typeof e.slug === "string")
+				.map((e) => e.slug as string),
+		);
+		const kept: unknown[] = [...winnerList];
+		for (const edge of loserList) {
+			const edgeSlug = isRecord(edge) && typeof edge.slug === "string" ? (edge.slug as Slug) : undefined;
+			// No slug: nothing to dedupe by and nothing to resolve -- appended as-is, unionListField's
+			// own rule for a slugless entry.
+			if (edgeSlug === undefined) {
+				kept.push(edge);
+				continue;
+			}
+			// Marked seen before the filters below, so a slug the loser repeats is examined (and, if
+			// refused, reported) exactly once.
+			if (seen.has(edgeSlug)) continue;
+			seen.add(edgeSlug);
+			if (edgeSlug === ownSlug || !slugResolves(edgeSlug, liveSlugs, redirects)) {
+				dropped.push({ field, target: edgeSlug });
+				continue;
+			}
+			kept.push(edge);
+			mergedEdgeCount++;
+		}
+		merged[field] = kept;
+	}
+	return { node: merged, mergedEdgeCount, dropped };
+}
+
+/** Writes a "kept" node through the same schema every real read/write in this codebase goes
+ * through (nodePayloadSchema) -- unlike copyNode's raw byte copy, this node was just
+ * reconstructed in memory by mergeUnionEdges, so it must be proven valid before it's trusted
+ * again (ticket contract: "pas d'écriture brute non validée"). Never throws: this file's idiom
+ * for a per-item problem is degrade-with-report (skippedEntry, redirectsConflicts), not an
+ * uncaught exception killing the whole build before manifest.json is written (InvalidMergedNode,
+ * review finding). Also returns `ok: false` when `expectedSlug` (from the FILENAME, via
+ * readCacheNodes) disagrees with the validated node's own `slug` field (untrusted cache content,
+ * same category as any other field) -- writing it under the wrong path would silently mint a
+ * stray file instead of surfacing the mismatch (review finding). Uses atomicWriteJson directly
+ * rather than NodeCache.write(): the latter also emits reverse edges to OTHER nodes, a side
+ * effect this offline, order-independent pass must not trigger. */
+async function writeValidatedNode(
+	nodesDir: string,
+	expectedSlug: Slug,
+	node: Record<string, unknown>,
+): Promise<{ ok: true } | { ok: false; reason: string }> {
+	let validated: NodePayload;
+	try {
+		validated = nodePayloadSchema.parse(node) as NodePayload;
+	} catch (e) {
+		return { ok: false, reason: e instanceof Error ? e.message : String(e) };
+	}
+	if (validated.slug !== expectedSlug) {
+		return {
+			ok: false,
+			reason: `validated node's own slug "${validated.slug}" does not match the expected slug "${expectedSlug}"`,
+		};
+	}
+	const { type, body } = parseSlug(validated.slug as Slug);
+	const dest = join(nodesDir, type, `${body}.json`);
+	await mkdir(dirname(dest), { recursive: true });
+	await atomicWriteJson(dest, validated);
+	return { ok: true };
+}
+
 /** readCacheNodes's own `invalid` entries build `path` as `join(root, "nodes", slug)` -- not a
  * real file (the real one is `nodes/<type>/<body>.json`). Rebuilds the real path from that same
  * slug when it parses; falls back to the bogus path (still useful to locate the entry in the
@@ -278,10 +433,26 @@ export function countUnionProblems(manifest: UnionManifest): number {
 		(e) => e.decision === "kept" && e.qidOnlyOn !== undefined && e.qidOnlyOn !== e.from,
 	).length;
 	const regressions = manifest.referenceRegressions?.length ?? 0;
+	// A dropped edge whose target still resolved in a source: the union really did break a working
+	// reference, so it counts (2026-09-17, review of #239 -- the whole of droppedEdges used to be
+	// excluded, which is how a filter eating 8389 of 15689 slug-bearing edges on a self-union of the
+	// committed cache stayed invisible with all 40 tests green). An edge that resolved nowhere keeps
+	// its `resolvedIn` omitted and stays at zero here: that's the never-materialized baseline, not a
+	// regression (see DroppedEdge). May double up with a referenceRegression naming the same target
+	// under --apply-merge -- one is per-edge, the other per-target; both report the same real
+	// breakage and this number is only ever read as "> 0 means the union needs attention".
+	const brokenEdges = manifest.droppedEdges.filter((e) => (e.resolvedIn?.length ?? 0) > 0).length;
 	const redirectsConflicts = manifest.redirectsConflicts?.length ?? 0;
 	const migrationExitCode = manifest.migrationApply?.exitCode ?? manifest.migrationPreview?.exitCode ?? 0;
 	return (
-		conflicts + droppedQid + manifest.skipped.length + migrationExitCode + regressions + redirectsConflicts
+		conflicts +
+		droppedQid +
+		manifest.skipped.length +
+		manifest.invalidMergedNodes.length +
+		migrationExitCode +
+		regressions +
+		brokenEdges +
+		redirectsConflicts
 	);
 }
 
@@ -344,10 +515,48 @@ export async function buildCacheUnion(
 	const serverBySlug = new Map(serverNodes.map((f) => [f.slug, f]));
 	const allSlugs = new Set([...repoBySlug.keys(), ...serverBySlug.keys()]);
 
+	// Identity decided for every two-sided slug BEFORE any node is written (B6a-3 / TRA-268): a
+	// "kept" node's list edges are unioned against the FINAL union membership below, which depends
+	// on every slug's own decision (a conflicting slug never gets a live node in the union) --
+	// not knowable mid-loop if conflicts and writes stayed interleaved as before this ticket.
+	type IdentityDecision = ReturnType<typeof decideSameIdentity>;
+	const decisionBySlug = new Map<Slug, IdentityDecision>();
+	for (const slug of allSlugs) {
+		const repoFile = repoBySlug.get(slug);
+		const serverFile = serverBySlug.get(slug);
+		if (repoFile && serverFile) {
+			decisionBySlug.set(slug as Slug, decideSameIdentity(repoFile.node, serverFile.node));
+		}
+	}
+	const unionLiveSlugs = new Set<Slug>(
+		[...allSlugs].filter((slug) => {
+			const decision = decisionBySlug.get(slug as Slug);
+			return !decision || !("reason" in decision);
+		}) as Slug[],
+	);
+	// The union's OWN redirects table (see combinedRedirects above), as a Map for slugResolves --
+	// built here, ahead of writing `redirectsPath` below, since "kept" nodes need it mid-loop.
+	const unionRedirects = new Map(Object.entries(combinedRedirects)) as Map<Slug, Slug>;
+
+	// Each source's own PRE-union resolution state -- its live nodes plus its own redirect table
+	// (the server's when one was loaded, finding 5; the repo's otherwise). Hoisted above the write
+	// loop because a dropped edge has to be classified baseline-vs-regression as it is dropped; the
+	// post-migration reference-delta block below reuses the same two sets.
+	const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
+	const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
+	const resolvedInSources = (target: Slug): ("repo" | "server")[] => [
+		...(slugResolves(target, repoLiveSlugs, sourceRedirects) ? (["repo"] as const) : []),
+		...(slugResolves(target, serverLiveSlugs, serverRedirects ?? sourceRedirects)
+			? (["server"] as const)
+			: []),
+	];
+
 	const outputDir = await mkdtemp(join(options.outputRoot ?? tmpdir(), "odyssey-genre-union-"));
 	const nodesDir = join(outputDir, "nodes");
 	const archiveDir = join(outputDir, "archive");
 	const entries: UnionEntry[] = [];
+	const droppedEdges: DroppedEdge[] = [];
+	const invalidMergedNodes: InvalidMergedNode[] = [];
 
 	for (const slug of allSlugs) {
 		const repoFile = repoBySlug.get(slug);
@@ -355,18 +564,51 @@ export async function buildCacheUnion(
 		if (repoFile && serverFile) {
 			await copyNode(join(archiveDir, "repo"), repoFile);
 			await copyNode(join(archiveDir, "server"), serverFile);
-			const decision = decideSameIdentity(repoFile.node, serverFile.node);
+			const decision = decisionBySlug.get(slug as Slug) as IdentityDecision;
 			if ("reason" in decision) {
 				entries.push({ decision: "conflict", slug: slug as Slug, reason: decision.reason });
 				continue;
 			}
 			const winner = decision.from === "repo" ? repoFile : serverFile;
-			await copyNode(nodesDir, winner);
+			const loser = decision.from === "repo" ? serverFile : repoFile;
+			// Text/scalar fields and singular edges follow the winner untouched (ticket contract);
+			// only list edges are unioned -- see mergeUnionEdges.
+			const {
+				node: mergedNode,
+				mergedEdgeCount,
+				dropped,
+			} = mergeUnionEdges(winner.node, loser.node, winner.type, slug as Slug, unionLiveSlugs, unionRedirects);
+			const written = await writeValidatedNode(nodesDir, slug as Slug, mergedNode);
+			if (!written.ok) {
+				// Degrade and keep going (review finding): no "kept" entry, no live node under this
+				// slug -- same as any other slug this union couldn't produce. Known gap: unionLiveSlugs
+				// was fixed BEFORE this loop (see above), so another node's edge to this same slug can
+				// still be judged "resolves" even though nothing was actually written for it here --
+				// rare (this only fires on genuinely malformed source data) and not worth a second
+				// full pass to close.
+				invalidMergedNodes.push({ slug: slug as Slug, reason: written.reason });
+				continue;
+			}
+			for (const d of dropped) {
+				// A target that STILL resolves in the union was refused for another reason (a self-loop),
+				// so it is never a broken reference; only a target the union can no longer reach is
+				// weighed against what the sources could reach -- see DroppedEdge.
+				const resolvedIn = slugResolves(d.target, unionLiveSlugs, unionRedirects)
+					? []
+					: resolvedInSources(d.target);
+				droppedEdges.push({
+					slug: slug as Slug,
+					field: d.field,
+					target: d.target,
+					...(resolvedIn.length > 0 ? { resolvedIn } : {}),
+				});
+			}
 			entries.push({
 				decision: "kept",
 				from: decision.from,
 				slug: slug as Slug,
 				tie: decision.tie,
+				...(mergedEdgeCount > 0 ? { mergedEdgeCount } : {}),
 				...(decision.qidOnlyOn ? { qidOnlyOn: decision.qidOnlyOn } : {}),
 			});
 		} else {
@@ -454,21 +696,14 @@ export async function buildCacheUnion(
 				migrationApply = { ...migrationApply, applied: false };
 			}
 
-			// Delta validation: never absolute (see file header). "Resolvable in a source" uses that
-			// source's OWN live nodes plus the PRE-migration redirect table (what that source actually
-			// had); "resolvable in the union" uses the re-read post-migration state above.
-			const repoLiveSlugs = new Set(repoNodes.map((f) => f.slug as Slug));
-			const serverLiveSlugs = new Set(serverNodes.map((f) => f.slug as Slug));
+			// Delta validation: never absolute (see file header). "Resolvable in a source" is
+			// resolvedInSources above -- that source's OWN live nodes plus the PRE-migration redirect
+			// table (what that source actually had); "resolvable in the union" uses the re-read
+			// post-migration state above.
 			const referenced = collectReferencedSlugs([...repoNodes, ...serverNodes]);
 
 			referenceRegressions = [...referenced].flatMap((slug) => {
-				const resolvedIn: ("repo" | "server")[] = [
-					...(slugResolves(slug, repoLiveSlugs, sourceRedirects) ? (["repo"] as const) : []),
-					// The server's OWN table when one was loaded (finding 5); sourceRedirects otherwise.
-					...(slugResolves(slug, serverLiveSlugs, serverRedirects ?? sourceRedirects)
-						? (["server"] as const)
-						: []),
-				];
+				const resolvedIn = resolvedInSources(slug);
 				if (resolvedIn.length === 0 || slugResolves(slug, unionLiveSlugs, unionRedirects)) return [];
 				return [{ slug, resolvedIn }];
 			});
@@ -481,6 +716,8 @@ export async function buildCacheUnion(
 		serverCacheDir,
 		entries,
 		skipped,
+		droppedEdges,
+		invalidMergedNodes,
 		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
 		// FINAL-state) migration field -- see its type doc.
 		...(migrationApply
