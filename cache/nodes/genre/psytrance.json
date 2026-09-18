@@ -1,109 +1,148 @@
 {
   "slug": "genre:psytrance",
   "name": "Psytrance",
-  "editorial_article": "Psytrance, or psychedelic trance, is an electronic music genre that evolved from the early 1990s Goa trance scene, characterized by its hypnotic, high-tempo, and often complex layered textures. Emerging primarily out of London, UK, in the mid-1990s, the genre was pioneered by labels such as Dragonfly Records and Blue Room Released. While its roots are firmly planted in the mystical, atmospheric soundscapes of Goa, India—where travelers and DJs pioneered a distinct fusion of acid house, techno, and Eastern-influenced melodies—psytrance sought to push these boundaries further. By the late 1990s, as the original Goa sound matured, the genre began to incorporate tighter, more digital-forward basslines and sophisticated sound design, leading to the development of distinct subgenres like Full-On, Progressive, and the darker, more experimental variations often termed \"Darkpsy\" or \"Forest.\"\\n\\nThe sonic signature of psytrance is defined by a relentless, rhythmic drive—typically between 125 and 150 BPM—interwoven with repetitive, synthetic melodies and an intense use of digital signal processing (DSP) to create immersive, multi-timbral textures. Unlike the traditional \"morning trance\" of its predecessor, modern psytrance frequently abandons the organic, raga-inspired melodies in favor of futuristic, minor-key arpeggios and science-fiction-derived samples. The global footprint of the genre is massive, with significant hubs in Israel, Germany, Scandinavia, Japan, and Brazil. It is more than just a musical style; it is a profound cultural movement deeply tied to outdoor festival culture, spiritual exploration, and the pursuit of altered states through auditory experience, continuing to influence electronic dance music production techniques to this day.",
+  "editorial_article": "Psytrance originated from the 1990s Goa trance scene in India, evolving through the integration of electronic dance music into the regional party culture. Producers like Martin Freeland (Man With No Name) and Hallucinogen helped define the sound on early compilations like 1993's Project II Trance. Tracks are structured with constant, pounding bass lines and complex, layered rhythms that shift every eight bars, often stretching between six and ten minutes. The genre diverged into numerous branches, including Dark psytrance, which emerged in Germany and Russia after 2003 with an occult-influenced aesthetic, and Full-on, known for high-energy 140–148 BPM peaks. Global festivals like Portugal’s Boom Festival and Hungary’s Ozora Festival serve as primary hubs for the scene, which is closely linked to the multimedia psychedelic arts.",
   "citations": [
     {
-      "url": "http://www.isratrance.com/articles/short-history-of-psytrance-a15.html",
-      "title": "Short History of Psytrance / by PsYak"
+      "url": "https://en.wikipedia.org/wiki/Psychedelic_trance",
+      "title": "Psychedelic trance - Wikipedia"
     }
   ],
-  "materialized_at": "2026-05-13T13:48:55.529Z",
-  "_metrics": {
-    "input_tokens": 11865,
-    "output_tokens": 768,
-    "cache_read_tokens": 0,
-    "cache_write_tokens": 0,
-    "cost_usd": 0.004118,
-    "llm_calls": 3,
-    "search_calls": 1,
-    "fetch_calls": 1,
-    "turns": 3,
-    "emit_attempts": 1,
-    "agent_ms": 9949,
-    "model_id": "gemini-3.1-flash-lite-preview",
-    "search_provider": "tavily"
-  },
+  "materialized_at": "2026-09-17T21:26:43.380Z",
   "type": "genre",
-  "editorial_definition": "A high-tempo subgenre of trance music defined by repetitive, complex, hypnotic synthesizer melodies, driving, precise basslines, and a deep emphasis on immersive, psychedelic sound design.",
-  "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "editorial_definition": "A high-tempo subgenre of trance music defined by layered, psychedelic synth-riffs and a relentless, driving bass line.",
+  "qid": "Q622871",
+  "era": "early 1990s to present",
+  "origin": "Goa, India and Europe",
+  "sonic_markers": "125-150 BPM, constant driving bass, 8-bar rhythmic cycles, atmospheric layering",
+  "parent_genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic dance music",
+      "qid": "Q851213"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dark-psytrance",
+      "type": "genre",
+      "name": "Dark psytrance",
+      "qid": "Q2452152"
+    },
+    {
+      "slug": "genre:full-on",
+      "type": "genre",
+      "name": "Full-on",
+      "qid": "Q10286190"
+    },
+    {
+      "slug": "genre:progressive-psytrance",
+      "type": "genre",
+      "name": "Progressive psytrance",
+      "qid": "Q2385862"
+    },
+    {
+      "slug": "genre:suomisaundi",
+      "type": "genre",
+      "name": "Suomisaundi",
+      "qid": "Q2497323"
+    },
+    {
+      "slug": "genre:psybient",
+      "type": "genre",
+      "name": "Psybient",
+      "qid": "Q749475"
+    },
+    {
+      "slug": "genre:psydub",
+      "type": "genre",
+      "name": "Psydub",
+      "qid": "Q24077837"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:goa-trance",
+      "type": "genre",
+      "name": "Goa trance",
+      "qid": "Q835131"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
   "key_artists": [
+    {
+      "slug": "artist:goa-gil",
+      "type": "artist",
+      "name": "Goa Gil"
+    },
+    {
+      "slug": "artist:martin-freeland",
+      "type": "artist",
+      "name": "Martin Freeland"
+    },
     {
       "slug": "artist:hallucinogen",
       "type": "artist",
       "name": "Hallucinogen"
     },
     {
-      "slug": "artist:juno-reactor",
+      "slug": "artist:ajja",
       "type": "artist",
-      "name": "Juno Reactor"
+      "name": "Ajja"
     },
     {
-      "slug": "artist:total-eclipse",
+      "slug": "artist:tristan",
       "type": "artist",
-      "name": "Total Eclipse"
+      "name": "Tristan"
+    },
+    {
+      "slug": "artist:xenomorph",
+      "type": "artist",
+      "name": "Xenomorph"
     },
     {
       "slug": "artist:astrix",
       "type": "artist",
       "name": "Astrix"
-    },
-    {
-      "slug": "artist:atmos",
-      "type": "artist",
-      "name": "Atmos"
-    },
-    {
-      "slug": "artist:man-with-no-name",
-      "type": "artist",
-      "name": "Man With No Name"
     }
   ],
   "key_labels": [
     {
-      "slug": "label:dragonfly-records",
-      "type": "label",
-      "name": "Dragonfly Records"
-    },
-    {
-      "slug": "label:blue-room-released",
-      "type": "label",
-      "name": "Blue Room Released"
-    },
-    {
-      "slug": "label:tip-records",
-      "type": "label",
-      "name": "TIP Records"
-    },
-    {
       "slug": "label:matsuri-productions",
       "type": "label",
       "name": "Matsuri Productions"
-    },
-    {
-      "slug": "label:flying-rhino-records",
-      "type": "label",
-      "name": "Flying Rhino Records"
     }
   ],
-  "landmark_projects": [
+  "landmark_projects": [],
+  "landmark_tracks": [
     {
-      "slug": "project:twisted",
-      "type": "project",
-      "name": "Twisted"
-    },
-    {
-      "slug": "project:bible-of-dreams",
-      "type": "project",
-      "name": "Bible of Dreams"
-    },
-    {
-      "slug": "project:violent-relaxation",
-      "type": "project",
-      "name": "Violent Relaxation"
+      "slug": "track:project-ii-trance",
+      "type": "track",
+      "name": "Project II Trance"
     }
-  ],
-  "landmark_tracks": []
+  ]
 }

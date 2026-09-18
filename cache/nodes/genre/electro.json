@@ -102,6 +102,12 @@
       "type": "genre",
       "name": "Classic Hip Hop",
       "qid": "Q19879476"
+    },
+    {
+      "slug": "genre:baile-funk",
+      "type": "genre",
+      "name": "Baile Funk",
+      "qid": "Q1931130"
     }
   ],
   "key_artists": [
