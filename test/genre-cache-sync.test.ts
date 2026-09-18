@@ -654,6 +654,24 @@ describe("sync-genre-cache.sh", () => {
 		expect(result.status).not.toBe(0);
 	});
 
+	// Second independent review of PR #255: the rollback pointer was gated on `$code -ne 0` -- the
+	// value the sentinel exists because bash resets it to 0 on a fatal shell error. Reproduced by
+	// the reviewer: writer stopped, transfer DONE, fatal error, and the operator never sees where
+	// the archive is. The gate is now "the writer was stopped", i.e. the transfer step was reached.
+	it("points at the rollback archive when a fatal shell error hits after the transfer", () => {
+		const { result, calls, serverBackupDir } = run({
+			apply: true,
+			env: { TEST_FORCE_FATAL_ERROR: "after-transfer" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/Restore from the archive/);
+		const archives = readdirSync(serverBackupDir);
+		expect(archives).toHaveLength(1);
+		expect(result.stderr).toContain(join(serverBackupDir, archives[0]!));
+		// The transfer really did happen before the crash -- otherwise this asserts nothing.
+		expect(calls).toContain("systemctl stop odyssey-server.service");
+	});
+
 	// PR #255 review, finding 2: BACKUP_RETENTION_COUNT was never validated. "ten" fed the
 	// unbound-variable bug above via `$((BACKUP_RETENTION_COUNT + 1))` (bash arithmetic treats a
 	// bareword as a nested variable reference); 0 made `tail -n +1` re-list (and delete) every

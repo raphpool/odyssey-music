@@ -143,7 +143,12 @@ on_exit() {
 	if [[ $SYNC_SUCCEEDED -eq 1 ]]; then
 		exit 0
 	fi
-	if [[ $code -ne 0 && $WRITER_WAS_STOPPED -eq 1 ]]; then
+	# 2026-09-18 (second independent review): this used to be gated on `$code -ne 0`, the very value
+	# the sentinel above exists because it cannot be trusted -- a fatal shell error AFTER the
+	# transfer left the operator with no pointer to the archive, in the one state where they need
+	# it. We are already past the success branch, so the writer having been stopped is the whole
+	# condition: it means the transfer step was reached.
+	if [[ $WRITER_WAS_STOPPED -eq 1 ]]; then
 		echo "ERROR: sync failed -- the writer was restarted if it could be, but any node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH" >&2
 	fi
 	# 2026-09-18 (independent review of this PR, reproduced on bash 3.2): on a fatal shell-level
@@ -333,6 +338,12 @@ fi
 echo "$SMOKE_OUTPUT"
 curl -fsS "$SERVER_VERSION_URL"
 echo
+
+# Same test-only hook as above, fired here instead so a test can reach the failure path with the
+# transfer already done -- the state where the archive pointer matters.
+if [[ "${TEST_FORCE_FATAL_ERROR:-0}" == "after-transfer" ]]; then
+	echo "$__TEST_TRIGGER_UNBOUND_VARIABLE_FOR_FATAL_ERROR_TEST"
+fi
 
 SYNC_SUCCEEDED=1
 echo "==> Sync complete. Rollback archive if needed: $SERVER:$ARCHIVE_PATH"
