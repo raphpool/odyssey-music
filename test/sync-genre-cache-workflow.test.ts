@@ -65,6 +65,15 @@ describe("sync-genre-cache workflow", () => {
 		expect(deployConcurrencyBlock).toMatch(/group:\s*deploy-prod/);
 	});
 
+	it("pins the job timeout above deploy.yml's 15, to cover the doubled preview+apply invocation", () => {
+		// Not previously pinned by any test (code-review finding): apply runs the whole
+		// snapshot+union sequence twice in one job (once for the preview artifact, once again
+		// inside --apply), against a real remote host and a cache/ tree that only grows, so 15
+		// minutes -- fine for deploy.yml's single deploy-server.sh call -- is tight here.
+		const jobBlock = workflow.slice(workflow.indexOf("\njobs:"), workflow.indexOf("\n    steps:"));
+		expect(jobBlock).toMatch(/timeout-minutes:\s*30/);
+	});
+
 	it("reuses the deploy job's ssh-agent + known_hosts wrapper step verbatim", () => {
 		const ours = findStep(steps, "Set up SSH");
 		const theirs = findStep(deploySteps, "Set up SSH");
@@ -83,16 +92,43 @@ describe("sync-genre-cache workflow", () => {
 		expect(workflow).not.toMatch(/SERVER[A-Z_]*\s*=\s*.*inputs\./);
 	});
 
+	it("never sources a step-level env: value from an input, under any variable name", () => {
+		// The SERVER*-named check above misses indirection: a step could set an *arbitrarily named*
+		// env key from an input (`env: TARGET_HOST: ${{ inputs.apply }}`) and only build the actual
+		// SERVER value from that variable inside its run: body (`export SERVER="root@$TARGET_HOST"`)
+		// -- no literal "SERVER...inputs." substring ever appears, so the check above can't see it
+		// (code-review mutation, confirmed to pass all 11 prior tests). None of this workflow's
+		// steps need an input-derived env value at all (only `secrets.DEPLOY_SSH_KEY` is consumed),
+		// so the safe, closed invariant is: no `<key>: ${{ ... inputs. ... }}` mapping anywhere,
+		// except a step's own `if:` (the one place an input is legitimately read, evaluated by the
+		// runner rather than substituted into a shell string).
+		const keyValueFromInputs = /^(?! *if:)[ \t]*[A-Za-z_][A-Za-z0-9_]*:[ \t]*\$\{\{[^}]*\binputs\./m;
+		expect(workflow).not.toMatch(keyValueFromInputs);
+	});
+
 	it("never interpolates the apply input directly inside a run: step body", () => {
 		// Same forbidden-pattern check as test/top-up-genres-workflow.test.ts: an `${{ inputs.* }}`
 		// or `${{ github.event.inputs.* }}` expression must only ever appear in a step-level `if:`
 		// (evaluated by the runner), never substituted into a shell string a step executes.
+		//
+		// A step written as a single line (`- run: npm ci`, no `name:`) has its `run:` key at the
+		// very start of the sliced step string, not preceded by `\n        ` the way a multi-line
+		// `name: X\n        run: |` step's is -- the old `indexOf("\n        run:")` silently
+		// skipped every such step (code-review mutation: `- run: npm ci` -> `- run: npm ci
+		// --registry "${{ inputs.apply }}"` passed all 11 tests). Match `run:` at the start of the
+		// step or after a newline, at any indentation, to cover both forms.
+		expect(steps.length).toBeGreaterThan(0);
+		let stepsWithRunBody = 0;
 		for (const step of steps) {
-			const runIndex = step.indexOf("\n        run:");
-			if (runIndex === -1) continue;
-			const body = step.slice(runIndex);
+			const runMatch = step.match(/(?:^|\n) *run:([\s\S]*)/);
+			if (!runMatch) continue;
+			stepsWithRunBody++;
+			const body = runMatch[1] ?? "";
 			expect(body).not.toMatch(/\$\{\{[^}]*\binputs\./);
 		}
+		// Guards the guard: if the extraction regex ever stops matching anything (e.g. the workflow's
+		// indentation changes), this test would silently check zero steps and always pass.
+		expect(stepsWithRunBody).toBeGreaterThanOrEqual(7);
 	});
 
 	it("always builds and publishes the preview before any apply step can run", () => {
@@ -132,25 +168,61 @@ describe("sync-genre-cache workflow", () => {
 		expect(apply).toMatch(/genre-cache-sync-apply\.log/);
 	});
 
-	it("publishes the apply log as an artifact even if --apply fails partway", () => {
+	it("publishes the apply log as an artifact even if --apply fails partway, but not when apply never ran", () => {
+		const apply = findStep(steps, "Apply genre-cache sync");
+		expect(apply).toMatch(/^\s*id:\s*apply\s*$/m);
+
 		const upload = findStep(steps, "Upload apply artifact");
-		// `inputs.apply` (not just always()) so this step doesn't try to upload a log that was
-		// never created because --apply was never requested.
-		expect(upload).toMatch(/if:\s*always\(\)\s*&&\s*inputs\.apply/);
+		// Keyed on the Apply step's own outcome (via its `id: apply` above), not `always() &&
+		// inputs.apply`: an `if:` with no status-check function is implicitly ANDed with success(),
+		// so when Preview fails, Apply is skipped (outcome "skipped") -- the old condition still
+		// tried to upload here, found no log, and failed on if-no-files-found: error, adding a
+		// second, confusing failure to an already-red job (code-review finding). Verified by
+		// mutation: reverting to `always() && inputs.apply` here passes this repo's own
+		// test/genre-cache-sync.test.ts-style reasoning but not this assertion.
+		expect(upload).toMatch(
+			/if:\s*\$\{\{\s*!cancelled\(\)\s*&&\s*steps\.apply\.outcome\s*!=\s*'skipped'\s*\}\}/,
+		);
+		expect(upload).not.toMatch(/if:\s*always\(\)\s*&&\s*inputs\.apply/);
 		expect(upload).toMatch(/uses:\s*actions\/upload-artifact@v4/);
 		expect(upload).toMatch(/if-no-files-found:\s*error/);
 		expect(upload).toMatch(/genre-cache-sync-apply\.log/);
 	});
 
-	it("verifies the server's data.json after a real apply, gated the same way as apply itself", () => {
+	it("verifies the server's data.json taxonomy after a real apply, computed from data/genre-taxonomy.json, not hardcoded", () => {
 		const dataJsonSmoke = findStep(steps, "Smoke - server data.json");
 		expect(dataJsonSmoke).toMatch(/if:\s*\$\{\{\s*inputs\.apply\s*\}\}/);
 		expect(dataJsonSmoke).toMatch(/curl -fsS https:\/\/dropcliffs\.com\/api\/odyssey\/data\.json/);
-		// Non-empty-array check, not a hardcoded choice count: the taxonomy's published count moves
-		// with every publish PR (e.g. TRA-204/TRA-210), so a literal number here would go stale on
-		// the very next seed lot.
+		// Base structural check (kept): the endpoint actually responds with a real nodes array.
 		expect(dataJsonSmoke).toMatch(/\.nodes \| type\) == "array" and \(\.nodes \| length > 0\)/);
-		expect(dataJsonSmoke).not.toMatch(/\b(201|210)\b/);
+
+		// The real outcome this ticket ships: a `nodes`-only check already passes today, before any
+		// sync ever runs -- prod serves ~1600 unrelated nodes and 0 published genre choices
+		// (code-review finding, measured against the live server). `taxonomy` is entirely absent
+		// from the response whenever src/graph.ts's "degrade" mode fails to project it, so the smoke
+		// must assert on `.taxonomy.genres` specifically, with a floor computed IN THIS STEP from
+		// data/genre-taxonomy.json -- the exact file deploy-server.sh ships -- never a literal count
+		// (the published total moves with every publish PR, e.g. TRA-204/TRA-210, and again here).
+		expect(dataJsonSmoke).toMatch(
+			/EXPECTED_CHOICES="\$\(jq '\[\.genres\[\] \| select\(\.published == true\)\] \| length' data\/genre-taxonomy\.json\)"/,
+		);
+		expect(dataJsonSmoke).toMatch(/--argjson expected "\$EXPECTED_CHOICES"/);
+		expect(dataJsonSmoke).toMatch(
+			/\(\.taxonomy\.genres \| type\) == "array" and \(\.taxonomy\.genres \| length\) >= \$expected/,
+		);
+
+		// The two exhaustive families (house-techno, hip-hop-r-n-b) get the same dynamically
+		// computed floor, per family, so a regression in one family can't hide behind the aggregate.
+		expect(dataJsonSmoke).toMatch(/for FAMILY in house-techno hip-hop-r-n-b; do/);
+		expect(dataJsonSmoke).toMatch(
+			/\.taxonomy\.genres \| map\(select\(\.family == \$f\)\) \| length\) >= \$expected/,
+		);
+
+		// No hardcoded choice count anywhere in this step: the previous version of this assertion
+		// (`not.toMatch(/\b(201|210)\b/)`) was vacuous -- the step contained no numbers at all, so it
+		// could never fail (code-review finding). It's meaningful now that the step is long enough
+		// for a future edit to plausibly reintroduce a literal instead of the computed $expected.
+		expect(dataJsonSmoke).not.toMatch(/\b(201|210|39|23)\b/);
 	});
 
 	it("stops the ssh-agent unconditionally at the end of the job", () => {
