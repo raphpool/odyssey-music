@@ -884,7 +884,7 @@ describe("buildCacheUnion", () => {
 		// Review finding on this ticket: mergeGenreEdges (the sibling duplicate-merge migration)
 		// explicitly drops a self-loop introduced by union so two variants don't end up "related to
 		// themselves" -- mergeUnionEdges must do the same, on both cardinalities.
-		it("filters a self-referencing list edge (from either side), and lists it in the manifest like any other dropped edge", async () => {
+		it("filters a self-referencing list edge the loser brings, and lists it in the manifest like any other dropped edge", async () => {
 			await seed(
 				repoDir,
 				node({ slug: "genre:shared", qid: "Q1", materialized_at: "2026-09-01T00:00:00.000Z" }),
