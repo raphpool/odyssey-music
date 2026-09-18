@@ -176,6 +176,12 @@
       "type": "genre",
       "name": "Baile Funk",
       "qid": "Q1931130"
+    },
+    {
+      "slug": "genre:bass-music",
+      "type": "genre",
+      "name": "Bass Music",
+      "qid": "Q96740854"
     }
   ],
   "key_artists": [
