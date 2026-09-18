@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Progressive House",
       "qid": "Q915152"
+    },
+    {
+      "slug": "genre:breaks",
+      "type": "genre",
+      "name": "Breaks",
+      "qid": "Q65937774"
     }
   ],
   "labels": [

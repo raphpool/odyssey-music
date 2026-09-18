@@ -87,6 +87,18 @@
       "type": "genre",
       "name": "Electroacoustic music",
       "qid": "Q1326777"
+    },
+    {
+      "slug": "genre:popular-music",
+      "type": "genre",
+      "name": "Popular music",
+      "qid": "Q373342"
+    },
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
     }
   ],
   "key_artists": [

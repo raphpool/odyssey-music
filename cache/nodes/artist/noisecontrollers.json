@@ -1,0 +1,768 @@
+{
+  "slug": "artist:noisecontrollers",
+  "name": "Noisecontrollers",
+  "editorial_article": "Bas Oskam, the Dutch producer behind the Noisecontrollers project, began his career in 2005 alongside Arjan Terpstra, establishing himself as a pioneer of technical and melodic hardstyle. The duo initially emulated the sound of the group Donkey Rollers, a move that helped secure their early signing to Fusion Records. Oskam’s production approach evolved significantly after collaborative sessions with Headhunterz and Wildstylez at the Scantraxx studios, which resulted in the influential 2009 track \"Tonight.\" In 2010, Oskam took a more central role in studio operations, leading to the creation of the anthem \"CTRL.ALT.DEL\" for In Qontrol, where he debuted a deep, pitch-shifted kick drum technique he would utilize for years. Following Terpstra’s departure in 2013, Oskam continued as a solo act, exploring diverse sounds including big room house and dubstep on the collaboration \"Get Loose\" with Showtek. Throughout his career, he has founded several labels, including Digital:Age, Spirit of Hardstyle, and contributed to the Art of Creation collective. Oskam’s 2012 debut studio album, E=Nc² (The Science Of Hardstyle), remains a notable body of work in the genre, distinct for its conceptual focus on science.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Noisecontrollers",
+      "title": "Noisecontrollers - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:45.813Z",
+  "type": "artist",
+  "editorial_bio": "Bas Oskam is a Dutch DJ and producer who helped define the technical and euphoric sound of modern hardstyle.",
+  "origin": "Veenendaal, Netherlands",
+  "active_years": "2005-present",
+  "genres": [
+    {
+      "slug": "genre:hardstyle",
+      "type": "genre",
+      "name": "Hardstyle",
+      "qid": "Q223840"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fusion-records",
+      "type": "label",
+      "name": "Fusion Records"
+    },
+    {
+      "slug": "label:scantraxx",
+      "type": "label",
+      "name": "Scantraxx"
+    },
+    {
+      "slug": "label:q-dance",
+      "type": "label",
+      "name": "Q-Dance"
+    },
+    {
+      "slug": "label:spirit-of-hardstyle",
+      "type": "label",
+      "name": "Spirit of Hardstyle"
+    },
+    {
+      "slug": "label:art-of-creation",
+      "type": "label",
+      "name": "Art of Creation"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-lost-gods",
+      "type": "project",
+      "name": "The Lost Gods",
+      "mbid": "a24546ec-8f65-466c-915d-fbb9ee3f9ac6",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-drops",
+      "type": "project",
+      "name": "Summer Drops",
+      "mbid": "de7d7485-ed60-4d59-98c6-519a99ad8d3c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-love",
+      "type": "project",
+      "name": "Music = Love",
+      "mbid": "e18756b2-a5b4-4e3d-94fb-40e5200efe6b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:light-up-your-eardrums",
+      "type": "project",
+      "name": "Light Up Your Eardrums",
+      "mbid": "f0191235-6ae5-4933-b741-9844c3bfcb81",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:end-of-our-light",
+      "type": "project",
+      "name": "End of Our Light",
+      "mbid": "5b6f4976-ab18-4b8f-8f19-c80f77c3106d",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:think-about-it",
+      "type": "project",
+      "name": "Think About It",
+      "mbid": "c506bd23-d857-42e5-9b50-d540f996a0e0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dying-for-a-light",
+      "type": "project",
+      "name": "Dying For A Light",
+      "mbid": "e19072a8-90b5-4b58-977d-648d2d39a2da",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dying-for-a-light",
+      "type": "project",
+      "name": "Dying for a Light",
+      "mbid": "e3c2d877-52b6-4399-9fdd-367c65baa579",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:harmony-be-free-ep",
+      "type": "project",
+      "name": "Harmony / Be Free EP",
+      "mbid": "b65345b6-5791-4afc-a9e9-be02b3163947",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:daydream",
+      "type": "project",
+      "name": "Daydream",
+      "mbid": "ce2e22cd-9505-4b32-8014-8f58134ef641",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:youngblood",
+      "type": "project",
+      "name": "Youngblood (Luveni)",
+      "mbid": "becd40af-1043-4019-93be-764c644b1182",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:they-pretend",
+      "type": "project",
+      "name": "They Pretend",
+      "mbid": "93ebfccb-9d70-4083-827d-2ffdf0174e72",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-the-future",
+      "type": "project",
+      "name": "To the Future",
+      "mbid": "a05243b0-0589-4f65-a591-148ff07bdaa7",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:remix-ep",
+      "type": "project",
+      "name": "Remix EP",
+      "mbid": "1343b6a3-b8cb-43f6-8da6-5f13fbc4f78f",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:das-boot",
+      "type": "project",
+      "name": "Das Boot",
+      "mbid": "bb463db7-261b-46fa-8025-85f5798b75e2",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:200-dreams-ep",
+      "type": "project",
+      "name": "200 Dreams EP",
+      "mbid": "479fe2ef-aea2-4a41-9a8d-46276b665ee4",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-approach",
+      "type": "project",
+      "name": "The Approach",
+      "mbid": "2e71f34c-0c44-4c22-a9f1-87a6360348af",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shine",
+      "type": "project",
+      "name": "Shine",
+      "mbid": "bd2f3f71-2889-492c-ad0e-48d4ea2fb0ac",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pyramid",
+      "type": "project",
+      "name": "Pyramid",
+      "mbid": "cf4bc91e-ce63-4755-8714-8b1f6c557f02",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headlights",
+      "type": "project",
+      "name": "Headlights",
+      "mbid": "03cf7220-c5af-4011-b6f2-84f986fa647b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-time-has-come",
+      "type": "project",
+      "name": "The Time Has Come",
+      "mbid": "d85cb438-2312-4187-8ab5-7831c0cec8d9",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-last-formation",
+      "type": "project",
+      "name": "The Last Formation (Official Hard Bass Anthem 2019)",
+      "mbid": "9af82b57-ece3-4cba-a40b-1bbdf814a6d4",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vampire",
+      "type": "project",
+      "name": "Vampire",
+      "mbid": "2d074747-7b38-41fb-bddb-a5091d15ea01",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-night",
+      "type": "project",
+      "name": "The Night",
+      "mbid": "763c328c-ee57-42ad-a63b-f135bcfc5df7",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-our-world",
+      "type": "project",
+      "name": "This Is Our World",
+      "mbid": "49ea1a6a-59cc-4962-8aad-5a62194a2baf",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mumbai",
+      "type": "project",
+      "name": "Mumbai",
+      "mbid": "a1d24917-1771-4c10-b07d-ae3d42589620",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-know-i-like-it",
+      "type": "project",
+      "name": "You Know I Like It",
+      "mbid": "bd6ae4dd-46e3-48b1-a7b4-ddc6c4d6cbf7",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whose-plan-is-it",
+      "type": "project",
+      "name": "Whose Plan Is It",
+      "mbid": "6cc8d024-3ec1-4005-9890-815074bb4119",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:electric-solar",
+      "type": "project",
+      "name": "Electric Solar",
+      "mbid": "ee698db1-cb18-4222-9af6-2cbeaf43f368",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strike-as-a-die-hard",
+      "type": "project",
+      "name": "Strike as a Die Hard (Official Q-Base Anthem 2017)",
+      "mbid": "367f10dc-a4aa-4df8-aa96-1b8392474c5f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-eternity",
+      "type": "project",
+      "name": "This Is Eternity",
+      "mbid": "88c99e66-e17e-45f3-aeac-9e52f315d4e2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spirit-of-hardstyle",
+      "type": "project",
+      "name": "Spirit of Hardstyle",
+      "mbid": "8d6d6cdd-c08e-43e8-b7ba-d471561256d9",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:het-gevoel-van",
+      "type": "project",
+      "name": "Het Gevoel Van (Language Pack)",
+      "mbid": "bcdfd7b7-43a6-474c-96b4-6ab001c787db",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bad-habits",
+      "type": "project",
+      "name": "Bad Habits",
+      "mbid": "b779904f-e190-4652-9276-3b595dc69745",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-won-t-get-enough",
+      "type": "project",
+      "name": "Just Won't Get Enough",
+      "mbid": "bb2bcfb4-e2ab-45e4-a1be-8563817c0351",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:see-the-light",
+      "type": "project",
+      "name": "See The Light (Pavelow Remix)",
+      "mbid": "9e2e52a4-5737-43f8-aa3a-919382196742",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:savannah",
+      "type": "project",
+      "name": "Savannah",
+      "mbid": "420a1b68-22c4-4e8d-82fc-322f6e2116e8",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:see-the-light",
+      "type": "project",
+      "name": "See The Light",
+      "mbid": "f0b23739-bcf9-4723-9113-0eed601c4d62",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chapter-one",
+      "type": "project",
+      "name": "Chapter One",
+      "mbid": "4f6c8dcd-bd41-4e4e-8761-4b93fe47b17a",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:holding-on",
+      "type": "project",
+      "name": "Holding On",
+      "mbid": "6b0827b0-d8ac-483e-9302-bc2f5bcb7e39",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-game",
+      "type": "project",
+      "name": "The Game",
+      "mbid": "2e3fef64-fbe8-41a6-bf1b-cf1882fe32fa",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:glitch",
+      "type": "project",
+      "name": "Glitch",
+      "mbid": "be46087b-ae29-4268-bb4b-82a4cc20dc27",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hands-up",
+      "type": "project",
+      "name": "Hands Up!",
+      "mbid": "38dffd4b-eceb-4600-acad-2853affadc11",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solar",
+      "type": "project",
+      "name": "Solar",
+      "mbid": "86d2b31e-f31d-42c3-b60f-6d70889b732b",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-we-go",
+      "type": "project",
+      "name": "Here We Go",
+      "mbid": "1d16f058-ae70-4b0c-9747-af205d36ce72",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-you",
+      "type": "project",
+      "name": "Only You",
+      "mbid": "01759e3b-679b-4b78-90c5-d60f43f47091",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:destruction",
+      "type": "project",
+      "name": "Destruction",
+      "mbid": "d01809e2-8055-4aac-8b61-fe5d3fda40b4",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wolfs",
+      "type": "project",
+      "name": "Wolfs",
+      "mbid": "fe4a1b2b-286b-4cbe-bbaf-290bcad99500",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shreek",
+      "type": "project",
+      "name": "Shreek (Re-Shreeked by Max Enforcer)",
+      "mbid": "0a8afc6d-bd81-4229-90cc-e920f92ea319",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-night-long",
+      "type": "project",
+      "name": "All Night Long (Collected Studio Material 2013-2015)",
+      "mbid": "e59f6945-e147-4a7d-83cd-a8493a2792b0",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:infinity",
+      "type": "project",
+      "name": "Infinity",
+      "mbid": "156ec854-1e9e-465f-8bce-6df19e379489",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-night-long",
+      "type": "project",
+      "name": "All Night Long",
+      "mbid": "27588cbe-b15e-419d-9599-e6046e6b50fd",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rocked-up",
+      "type": "project",
+      "name": "Rocked Up",
+      "mbid": "23fc020a-c0d9-4cde-a12d-425790e4278f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-around-e-p-2",
+      "type": "project",
+      "name": "All Around E.P 2",
+      "mbid": "0427e8f7-4dfe-409d-aaf9-04287495ad57",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-around-e-p-1",
+      "type": "project",
+      "name": "All Around E.P 1",
+      "mbid": "f73a10f1-ae49-46eb-b176-2efa3d496460",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-day",
+      "type": "project",
+      "name": "The Day",
+      "mbid": "6bd11d30-6b02-4ea7-96ea-eb540d2b4339",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-source-code-of-creation",
+      "type": "project",
+      "name": "The Source Code of Creation (Qlimax Anthem 2014)",
+      "mbid": "9287ee2f-6abd-448d-aef7-38b1c6f558b4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:have-you",
+      "type": "project",
+      "name": "Have You",
+      "mbid": "0cd3f508-7057-4884-ad01-f4a19356d923",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:robot-s-dream-club-bizarre",
+      "type": "project",
+      "name": "Robot's Dream / Club Bizarre",
+      "mbid": "48b65621-2076-4478-ab8c-2ccebff184d0",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:light",
+      "type": "project",
+      "name": "Light",
+      "mbid": "845b06c7-a0ff-4911-9983-5efb99b23bb1",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:static",
+      "type": "project",
+      "name": "Static",
+      "mbid": "115b5498-5b92-46cd-a7c6-9867c543a25e",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-down",
+      "type": "project",
+      "name": "Down Down",
+      "mbid": "8ae371b9-b351-40d0-8dbd-cbc1990c9d89",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shout",
+      "type": "project",
+      "name": "Shout (Vocal Edit)",
+      "mbid": "45ed62a8-0414-4d15-8bcf-c99e73b4c2d7",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:attack-again",
+      "type": "project",
+      "name": "Attack Again (Thrillogy Edit)",
+      "mbid": "ac419f26-0d71-4706-a3bb-1b9ee5256f5e",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pillars-of-astral",
+      "type": "project",
+      "name": "Pillars Of Astral",
+      "mbid": "70f09a45-19fd-4d27-983d-c9abc2f11937",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-me-stay",
+      "type": "project",
+      "name": "Make Me Stay",
+      "mbid": "f07cbc92-54ca-4c89-ab4c-25172c6bddb8",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cats-jets-and-breaks",
+      "type": "project",
+      "name": "Cats, Jets & Breaks",
+      "mbid": "686dc335-77bf-48c3-af68-20c3776b88b2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what",
+      "type": "project",
+      "name": "What?!",
+      "mbid": "478f22e0-9181-4f0d-97df-6487f8351db2",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-around-the-world",
+      "type": "project",
+      "name": "All Around The World",
+      "mbid": "e6208e58-adfa-4434-a944-8950d941fea6",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel-so-good-trick-or-treat",
+      "type": "project",
+      "name": "Feel So Good / Trick or Treat",
+      "mbid": "2cfda303-a04a-4762-8c4d-12614822c074",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:craving-for-the-beat",
+      "type": "project",
+      "name": "Craving for the Beat (official Decibel 2013 anthem)",
+      "mbid": "0e8e644c-3fee-4233-ada3-ec43db5ffe2d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:destroyer-of-worlds",
+      "type": "project",
+      "name": "Destroyer of Worlds",
+      "mbid": "284ab551-e4df-4a72-ad73-8bc2f3d00484",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-loose",
+      "type": "project",
+      "name": "Get Loose",
+      "mbid": "59958207-4c35-4fd0-94cb-a2be120e7ef5",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:experience-the-beyond",
+      "type": "project",
+      "name": "Experience the Beyond (Official IQON 2013 Anthem)",
+      "mbid": "93dc077c-e4bb-4ef2-a5a5-e8a7d4a4bf68",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-are-the-noisecontrollers",
+      "type": "project",
+      "name": "We Are The Noisecontrollers",
+      "mbid": "100480fd-12a7-4dbe-913b-94e356cec1b5",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:set-u-free",
+      "type": "project",
+      "name": "Set U Free (DJ Tool)",
+      "mbid": "54f4272a-a10d-481e-bf23-8f2dffd0ddc2",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shrump",
+      "type": "project",
+      "name": "Shrump (Dj Tool)",
+      "mbid": "65950633-c181-46af-8d57-9e85762b0d1d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:furybox",
+      "type": "project",
+      "name": "Furybox",
+      "mbid": "d439e239-45a9-4e97-accc-99175337011b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-the-show-sludge",
+      "type": "project",
+      "name": "Break The Show / Sludge",
+      "mbid": "ca7a8dbd-c586-40fb-9297-d2603c31a449",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:e-nc2",
+      "type": "project",
+      "name": "E = NC² (The Science of Hardstyle)",
+      "mbid": "5f38ecb9-42d8-4199-ad86-030aee95394f",
+      "year": "2012",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tonight",
+      "type": "track",
+      "name": "Tonight"
+    },
+    {
+      "slug": "track:ctrl-alt-del",
+      "type": "track",
+      "name": "CTRL.ALT.DEL"
+    },
+    {
+      "slug": "track:get-loose",
+      "type": "track",
+      "name": "Get Loose"
+    },
+    {
+      "slug": "track:solar",
+      "type": "track",
+      "name": "Solar"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:wildstylez",
+      "type": "artist",
+      "name": "Wildstylez"
+    },
+    {
+      "slug": "artist:headhunterz",
+      "type": "artist",
+      "name": "Headhunterz"
+    },
+    {
+      "slug": "artist:bass-modulators",
+      "type": "artist",
+      "name": "Bass Modulators"
+    },
+    {
+      "slug": "artist:showtek",
+      "type": "artist",
+      "name": "Showtek"
+    },
+    {
+      "slug": "artist:atmozfears",
+      "type": "artist",
+      "name": "Atmozfears"
+    },
+    {
+      "slug": "artist:sander-van-doorn",
+      "type": "artist",
+      "name": "Sander van Doorn"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:bas-oskam",
+      "type": "artist",
+      "name": "Bas Oskam"
+    },
+    {
+      "slug": "artist:arjan-terpstra",
+      "type": "artist",
+      "name": "Arjan Terpstra"
+    }
+  ]
+}

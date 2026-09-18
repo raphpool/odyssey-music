@@ -1,0 +1,132 @@
+{
+  "slug": "artist:pepe-kalle",
+  "name": "Pépé Kallé",
+  "editorial_article": "Born Jean-Baptiste Kabasele Yampanya wa ba Mulanga on 30 November 1951 in Kinshasa, the Congolese singer-songwriter rose to international prominence as the founder of the band Empire Bakuba. Known for his robust baritone, Kallé started his career in the late 1960s with Orchestre Bamboula and later contributed vocals to Verckys Kiamuangana Mateta's hit 'Nakomitunaka'. In 1973, he co-founded Empire Bakuba with Papy Tex and Dilu Dilumona, developing a sound that integrated rumba, sebene guitar sections, and theatrical performance art. His 1986 collaboration 'Zouke Zouke' with Nyboma helped popularize soukous throughout the French Caribbean, while his 1991 album 'Gérant' featured production by Manu Lima and a tribute to footballer Roger Milla. Often referred to as 'La Bombe Atomique', Kallé was known for his massive stature, which contrasted visually with the performances of his dwarf dancer Emoro. He remained a central figure in Kinshasa until his death from a heart attack on 29 November 1998.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/P%C3%A9p%C3%A9_Kall%C3%A9",
+      "title": "Pépé Kallé - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:07:04.384Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Congolese bandleader and vocalist, Pépé Kallé was a primary architect of modern soukous and a key figure in the global reach of Congolese rumba.",
+  "origin": "Kinshasa, Democratic Republic of the Congo",
+  "active_years": "1966–1998",
+  "genres": [
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    },
+    {
+      "slug": "genre:congolese-rumba",
+      "type": "genre",
+      "name": "Congolese rumba",
+      "qid": "Q3453150"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:editions-veve-international",
+      "type": "label",
+      "name": "Éditions Vévé International"
+    },
+    {
+      "slug": "label:syllart-records",
+      "type": "label",
+      "name": "Syllart Records"
+    },
+    {
+      "slug": "label:sonodisc",
+      "type": "label",
+      "name": "SonoDisc"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:zouke-zouke",
+      "type": "project",
+      "name": "Zouke Zouke"
+    },
+    {
+      "slug": "project:gerant",
+      "type": "project",
+      "name": "Gérant"
+    },
+    {
+      "slug": "project:moyibi",
+      "type": "project",
+      "name": "Moyibi"
+    },
+    {
+      "slug": "project:bombe-atomique",
+      "type": "project",
+      "name": "Bombe Atomique"
+    },
+    {
+      "slug": "project:cocktail",
+      "type": "project",
+      "name": "Cocktail"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:nakomitunaka",
+      "type": "track",
+      "name": "Nakomitunaka"
+    },
+    {
+      "slug": "track:zabolo",
+      "type": "track",
+      "name": "Zabolo"
+    },
+    {
+      "slug": "track:article-15-beta-libanga",
+      "type": "track",
+      "name": "Article 15 Beta Libanga"
+    },
+    {
+      "slug": "track:roger-milla",
+      "type": "track",
+      "name": "Roger Milla"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:nyboma",
+      "type": "artist",
+      "name": "Nyboma"
+    },
+    {
+      "slug": "artist:papy-tex",
+      "type": "artist",
+      "name": "Papy Tex"
+    },
+    {
+      "slug": "artist:dilu-dilumona",
+      "type": "artist",
+      "name": "Dilu Dilumona"
+    },
+    {
+      "slug": "artist:verckys-kiamuangana-mateta",
+      "type": "artist",
+      "name": "Verckys Kiamuangana Mateta"
+    },
+    {
+      "slug": "artist:manu-lima",
+      "type": "artist",
+      "name": "Manu Lima"
+    },
+    {
+      "slug": "artist:lokassa-ya-mbongo",
+      "type": "artist",
+      "name": "Lokassa Ya Mbongo"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

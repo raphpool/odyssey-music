@@ -1,0 +1,386 @@
+{
+  "slug": "artist:earl-sweatshirt",
+  "name": "Earl Sweatshirt",
+  "editorial_article": "Born Thebe Neruda Kgositsile in Chicago in 1994, Earl Sweatshirt began his career in 2008 as Sly Tendencies before Tyler, the Creator recruited him into the alternative hip-hop collective Odd Future in 2009. His debut mixtape Earl, released in 2010, drew critical acclaim for its horrorcore influence and dense lyricism, shortly preceding his year-and-a-half stay at a therapeutic boarding school in Samoa. Returning to Los Angeles in 2012, he shifted toward abstract and jazz rap, later collaborating with producer The Alchemist on the joint project Voir Dire. His 2018 album Some Rap Songs, which explored themes regarding his late father, poet Keorapetse Kgositsile, adopted a lo-fi, loop-driven production style influenced by the New York underground collective sLUms and rapper Mike. He has consistently utilized the production alias randomblackdude, contributing to his own critically acclaimed releases such as Doris and I Don't Like Shit, I Don't Go Outside.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Earl_Sweatshirt",
+      "title": "Earl Sweatshirt - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:50.826Z",
+  "type": "artist",
+  "editorial_bio": "American rapper and producer known for his introspective lyrics, complex rhyme schemes, and pioneering contributions to the abstract and underground hip-hop scenes.",
+  "origin": "Santa Monica, California",
+  "active_years": "2007-2010, 2012-present",
+  "genres": [
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:abstract-hip-hop",
+      "type": "genre",
+      "name": "Abstract Hip Hop",
+      "qid": "Q98528482"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative Hip Hop",
+      "qid": "Q438503"
+    },
+    {
+      "slug": "genre:drumless-hip-hop",
+      "type": "genre",
+      "name": "Drumless Hip Hop",
+      "qid": "Q109303336"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tan-cressida",
+      "type": "label",
+      "name": "Tan Cressida"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    },
+    {
+      "slug": "label:warner-records",
+      "type": "label",
+      "name": "Warner Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:leadbelly",
+      "type": "project",
+      "name": "Leadbelly",
+      "mbid": "602e21cc-7707-4d0f-b4f4-a5937cc7f438",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pompeii-utility",
+      "type": "project",
+      "name": "POMPEII // UTILITY",
+      "mbid": "37555d75-e56f-4d10-8c29-f10f067baae6",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:minty",
+      "type": "project",
+      "name": "Minty",
+      "mbid": "4e6deec1-3d8e-4bd6-a8cf-7c86e608809c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:earth",
+      "type": "project",
+      "name": "Earth",
+      "mbid": "7a0339f6-018b-436b-bae9-f236ae81113b",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-laugh-love",
+      "type": "project",
+      "name": "Live Laugh Love",
+      "mbid": "4cfc8830-0de7-4617-b886-ce9507f7580d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:landgrab",
+      "type": "project",
+      "name": "Landgrab",
+      "mbid": "d8545b53-eb78-4a66-abf0-e9176f8a3428",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:words2liveby",
+      "type": "project",
+      "name": "Words2LiveBy",
+      "mbid": "8be9c980-f8cc-4d23-90bb-2d1714dd30cf",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walkonby",
+      "type": "project",
+      "name": "WalkOnBy",
+      "mbid": "294920aa-8647-43f1-9046-487b2459cbf7",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voir-dire",
+      "type": "project",
+      "name": "VOIR DIRE",
+      "mbid": "51cd0596-d07e-42cf-a6c4-3cf4df9ed4df",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sentry",
+      "type": "project",
+      "name": "Sentry",
+      "mbid": "402800b6-6d4b-4d8f-aba8-456180afe94c",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:making-the-band",
+      "type": "project",
+      "name": "Making the Band (Danity Kane)",
+      "mbid": "72ec4544-cbea-4239-b07f-5aba42e0e2a5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-fruit",
+      "type": "project",
+      "name": "BAD FRUIT*",
+      "mbid": "e947010e-5c15-4234-8d97-f690886dc0d2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sick",
+      "type": "project",
+      "name": "SICK!",
+      "mbid": "691c7eb4-b8b1-479c-bfa2-21ff1cee120f",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2010",
+      "type": "project",
+      "name": "2010",
+      "mbid": "698eab1f-6723-4b5a-88d8-5733e4c39c74",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wind-in-my-sails",
+      "type": "project",
+      "name": "Wind in My Sails",
+      "mbid": "86456e46-3849-4b6d-8bd3-475e0f5c2f16",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whole-world",
+      "type": "project",
+      "name": "WHOLE WORLD",
+      "mbid": "b8245464-826a-4f03-959b-1e3da45b08bf",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:farm",
+      "type": "project",
+      "name": "Farm",
+      "mbid": "b09230b6-41ad-4256-b08b-dc72a21dfe4e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nu-stogie",
+      "type": "project",
+      "name": "Nu Stogie",
+      "mbid": "587008ac-061a-4191-9d94-91ca7cb9d8f7",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:some-rap-songs",
+      "type": "project",
+      "name": "Some Rap Songs",
+      "mbid": "9ba97882-489e-41c1-a0b4-a7c7749716e7",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-mint",
+      "type": "project",
+      "name": "The Mint",
+      "mbid": "52ba8185-bb4e-47ad-a9f8-da74aff34e4f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nowhere2go",
+      "type": "project",
+      "name": "Nowhere2go",
+      "mbid": "6ccce647-2578-4218-998b-a2449937d0cd",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:balance",
+      "type": "project",
+      "name": "Balance",
+      "mbid": "e6fca7a2-adb3-4f34-ae42-a1c953ab3d6e",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-don-t-like-shit-i-don-t-go-outside-an-album-by-earl-sweatshirt",
+      "type": "project",
+      "name": "I Don’t Like Shit, I Don’t Go Outside: An Album by Earl Sweatshirt",
+      "mbid": "ef7f33ed-4266-4987-a3b2-8239046bf9c9",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:between-villains",
+      "type": "project",
+      "name": "Between Villains",
+      "mbid": "ee515ffa-6f63-4809-ad75-0db671b9642b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doris",
+      "type": "project",
+      "name": "Doris",
+      "mbid": "6de45ac3-5eca-44c4-8b71-cdc60c41bf5d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whoa",
+      "type": "project",
+      "name": "Whoa",
+      "mbid": "90666e82-c0ee-4064-9195-2d3d2c550c30",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chum",
+      "type": "project",
+      "name": "Chum",
+      "mbid": "8491bd2d-65c0-4105-a3c6-514aa62fbbe9",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuck-this-christmas",
+      "type": "project",
+      "name": "Fuck This Christmas",
+      "mbid": "a970e807-1fe8-4a07-96da-7c452359d678",
+      "year": "2010",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:chum",
+      "type": "track",
+      "name": "Chum"
+    },
+    {
+      "slug": "track:hive",
+      "type": "track",
+      "name": "Hive"
+    },
+    {
+      "slug": "track:grief",
+      "type": "track",
+      "name": "Grief"
+    },
+    {
+      "slug": "track:nowhere2go",
+      "type": "track",
+      "name": "Nowhere2go"
+    },
+    {
+      "slug": "track:2010",
+      "type": "track",
+      "name": "2010"
+    },
+    {
+      "slug": "track:sentry",
+      "type": "track",
+      "name": "Sentry"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, the Creator"
+    },
+    {
+      "slug": "artist:the-alchemist",
+      "type": "artist",
+      "name": "The Alchemist"
+    },
+    {
+      "slug": "artist:mike",
+      "type": "artist",
+      "name": "Mike"
+    },
+    {
+      "slug": "artist:vince-staples",
+      "type": "artist",
+      "name": "Vince Staples"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    },
+    {
+      "slug": "artist:armand-hammer",
+      "type": "artist",
+      "name": "Armand Hammer"
+    },
+    {
+      "slug": "artist:zelooperz",
+      "type": "artist",
+      "name": "Zelooperz"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:sly-tendencies",
+      "type": "artist",
+      "name": "Sly Tendencies"
+    },
+    {
+      "slug": "artist:randomblackdude",
+      "type": "artist",
+      "name": "randomblackdude"
+    },
+    {
+      "slug": "artist:dar-qness",
+      "type": "artist",
+      "name": "dar Qness"
+    }
+  ],
+  "members": []
+}

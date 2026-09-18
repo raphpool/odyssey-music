@@ -1,0 +1,97 @@
+{
+  "slug": "artist:pastis",
+  "name": "Pastis",
+  "editorial_article": "David Álvarez Tudela, better known as Pastis, rose to prominence as a central figure in the Barcelona mákina scene during the early 1990s. He began his deejaying career in 1992 and eventually gained widespread recognition as a resident DJ at the famous club Xque. Throughout his career, he collaborated extensively with David Pàmies Sabatés as the duo Pastis & Buenri, releasing tracks on labels such as DJ's At Work, Uptempo, and Xque Records. Their influence on the Spanish rave circuit culminated in high-profile media appearances, including a notable performance on the TVE1 program Música Sí in the early 2000s alongside DJ Skudero and Xavi Metralla. Pastis is often credited with holding a significant stake in the popularity of the bakalao sound in Catalonia during the peak of its club culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pastis_%26_Buenri",
+      "title": "Pastis & Buenri - Wikipedia"
+    },
+    {
+      "url": "https://www.primaverasound.com/en/artist/dj-pastis",
+      "title": "Dj Pastis (ES) - Primavera Sound"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:00:09.072Z",
+  "type": "artist",
+  "editorial_bio": "Spanish DJ and producer David Álvarez Tudela was a foundational architect of the 1990s Barcelona mákina and hard trance scene.",
+  "origin": "Girona, Spain",
+  "active_years": "1992-present",
+  "genres": [
+    {
+      "slug": "genre:makina",
+      "type": "genre",
+      "name": "Mákina",
+      "qid": "Q3048168"
+    },
+    {
+      "slug": "genre:hard-trance",
+      "type": "genre",
+      "name": "Hard Trance",
+      "qid": "Q832665"
+    },
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore",
+      "qid": "Q388906"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:xque-records",
+      "type": "label",
+      "name": "Xque Records"
+    },
+    {
+      "slug": "label:dj-s-at-work",
+      "type": "label",
+      "name": "DJ's At Work"
+    },
+    {
+      "slug": "label:bit-music",
+      "type": "label",
+      "name": "Bit Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dj-makina-vol-3",
+      "type": "project",
+      "name": "DJ Makina Vol. 3"
+    },
+    {
+      "slug": "project:pastis-and-buenri",
+      "type": "project",
+      "name": "Pastis & Buenri"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:musica-si",
+      "type": "track",
+      "name": "Música Sí"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:david-pamies-sabates",
+      "type": "artist",
+      "name": "David Pàmies Sabatés"
+    },
+    {
+      "slug": "artist:dj-skudero",
+      "type": "artist",
+      "name": "DJ Skudero"
+    },
+    {
+      "slug": "artist:xavi-metralla",
+      "type": "artist",
+      "name": "Xavi Metralla"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

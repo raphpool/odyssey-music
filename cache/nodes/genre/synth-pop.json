@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:35:42.808Z",
   "type": "genre",
   "editorial_definition": "A genre of pop music that emerged in the late 1970s, characterized by the synthesizer as the dominant instrument, replacing traditional rock band instrumentation with synthesized textures, programmed rhythms, and electronic sequencing.",
+  "qid": "Q1298934",
   "era": "Late 1970s–1980s (Golden Age); 2000s–present (Revivals)",
   "origin": "Germany, Japan, and the United Kingdom",
   "sonic_markers": "Prominent use of synthesizers, drum machines, and sequencers; rejection of blues-based guitar structures; synthetic textures; programmed, repetitive beats; minimalist production styles; robotic or sterile vocal delivery.",
@@ -60,7 +61,20 @@
       "qid": "Q828243"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:cosmic-disco",
+      "type": "genre",
+      "name": "Cosmic Disco",
+      "qid": "Q336567"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:kraftwerk",
@@ -105,6 +119,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q1298934"
+  "landmark_tracks": []
 }

@@ -1,0 +1,101 @@
+{
+  "slug": "genre:gnawa",
+  "name": "Gnawa",
+  "editorial_article": "Emerging in Morocco during the 16th and 17th centuries, Gnawa music represents a sacred body of ritual song and rhythm rooted in the historical experience of enslaved West African populations. The tradition is centered on the lila, an all-night healing ceremony guided by a maâlem, or master musician, who anchors the performance using the guembri—a three-stringed box lute. Players accompany these rhythmic suites with heavy iron castanets called qraqab while chanting to call upon mlouk, or spirits, to negotiate balance within the human body. In recent decades, the genre has transitioned into profane spaces, most notably through the Gnaoua World Music Festival in Essaouira, which has hosted jazz, blues, and rock figures like Randy Weston, Pharoah Sanders, and The Wailers. This fusion of indigenous Moroccan ritual with international contemporary styles continues to preserve the community's ancestral memory while adapting to new global audiences.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gnawa_music",
+      "title": "Gnawa music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:58.426Z",
+  "type": "genre",
+  "editorial_definition": "A Moroccan tradition of ritual religious songs and trance-inducing rhythms, traditionally performed during all-night healing ceremonies called lilas.",
+  "qid": "Q2000173",
+  "era": "16th century to present",
+  "origin": "Morocco, rooted in West African diaspora traditions",
+  "sonic_markers": "Interplay between triple and duple meters, repetitive call-response chants, guembri bass drone, metallic qraqab percussion, and vocal pitch-flattening.",
+  "parent_genres": [
+    {
+      "slug": "genre:african-folk-music",
+      "type": "genre",
+      "name": "African Folk Music",
+      "qid": "Q98528185"
+    },
+    {
+      "slug": "genre:music-of-north-africa",
+      "type": "genre",
+      "name": "Music Of North Africa",
+      "qid": "Q11400811"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:mahmoud-guinia",
+      "type": "artist",
+      "name": "Mahmoud Guinia"
+    },
+    {
+      "slug": "artist:hamid-el-kasri",
+      "type": "artist",
+      "name": "Hamid El Kasri"
+    },
+    {
+      "slug": "artist:hassan-hakmoun",
+      "type": "artist",
+      "name": "Hassan Hakmoun"
+    },
+    {
+      "slug": "artist:abdellah-el-gourd",
+      "type": "artist",
+      "name": "Abdellah El Gourd"
+    },
+    {
+      "slug": "artist:mohamed-errebbaa",
+      "type": "artist",
+      "name": "Mohamed Errebbaa"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:not-applicable",
+      "type": "label",
+      "name": "Not applicable"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:night-spirit-masters",
+      "type": "track",
+      "name": "Night Spirit Masters"
+    }
+  ]
+}

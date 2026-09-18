@@ -1,0 +1,126 @@
+{
+  "slug": "genre:g-funk",
+  "name": "G-Funk",
+  "editorial_article": "G-funk emerged from the West Coast hip-hop scene during the early 1990s, defined by its reliance on 1970s funk, most notably the synthesizer-heavy sound of Parliament-Funkadelic. Dr. Dre, who produced early touchstones like N.W.A.'s 'Niggaz4Life' (1991), is often credited as the architect of the genre's aesthetic, which frequently utilizes live musicians to replay sampled records rather than direct copies. Musically, G-funk is characterized by a 90-100 BPM range, a high-pitched portamento saw wave synthesizer lead, and deep bass lines. Major commercial milestones include Dr. Dre's 'The Chronic' (1992), Snoop Dogg's 'Doggystyle' (1993), and 2Pac's 'All Eyez on Me' (1996), which solidified the genre's smooth, laid-back melodic identity in contrast to the aggressive East Coast hardcore rap scene of the same era. While primarily a California movement, the sound was adopted by regional artists such as Ohio's Bone Thugs-n-Harmony and Houston's Geto Boys.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/G-funk",
+      "title": "G-funk - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:17:47.295Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of gangsta rap defined by its melodic, sample-heavy production, deep bass, and heavy reliance on 1970s P-Funk synth tones.",
+  "qid": "Q1045541",
+  "era": "early 1990s to late 1990s",
+  "origin": "West Coast, California",
+  "sonic_markers": "90-100 BPM, P-Funk samples, portamento saw wave leads, deep bass, female backing vocals",
+  "parent_genres": [
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast hip-hop",
+      "qid": "Q429264"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:mobb-music",
+      "type": "genre",
+      "name": "Mobb music",
+      "qid": "Q17995961"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:dr-dre",
+      "type": "artist",
+      "name": "Dr. Dre"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G"
+    },
+    {
+      "slug": "artist:nate-dogg",
+      "type": "artist",
+      "name": "Nate Dogg"
+    },
+    {
+      "slug": "artist:tupac-shakur",
+      "type": "artist",
+      "name": "Tupac Shakur"
+    },
+    {
+      "slug": "artist:ice-cube",
+      "type": "artist",
+      "name": "Ice Cube"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:death-row-records",
+      "type": "label",
+      "name": "Death Row Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:nuthin-but-a-g-thang",
+      "type": "track",
+      "name": "Nuthin' but a 'G' Thang"
+    },
+    {
+      "slug": "track:gin-and-juice",
+      "type": "track",
+      "name": "Gin and Juice"
+    },
+    {
+      "slug": "track:regulate",
+      "type": "track",
+      "name": "Regulate"
+    },
+    {
+      "slug": "track:california-love",
+      "type": "track",
+      "name": "California Love"
+    },
+    {
+      "slug": "track:it-was-a-good-day",
+      "type": "track",
+      "name": "It Was a Good Day"
+    }
+  ]
+}

@@ -1,0 +1,330 @@
+{
+  "slug": "artist:dj-screw",
+  "name": "DJ Screw",
+  "editorial_article": "Born Robert Earl Davis Jr. in 1971, the Houston-based producer pioneered the chopped and screwed style, a technique characterized by slowing down records and manipulating samples to create a lethargic, syrupy aesthetic. He founded the influential collective known as the Screwed Up Click, which included prominent regional artists such as Big Moe, Fat Pat, and Lil' Keke. His 1995 compilation album '3 'n the Mornin' (Part Two), released on Bigtyme Recordz, serves as a seminal document of this sound, layering Dirty South rap vocals over his signature slow-motion production. Recorded at Samplified Digital in Houston, the project highlights his role as both a curator and remixer, incorporating guest appearances from artists like E.S.G. and the Botany Boyz. Before gaining widespread recognition, Screw acknowledged the influence of Texas DJ Darryl Scott on his approach to mixtape culture. His work remains synonymous with the identity of Houston hip hop, and he maintained a consistent creative output until his death in 2000.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/3_%27n_the_Mornin%27_(Part_Two)",
+      "title": "3 'n the Mornin' (Part Two) - Wikipedia"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/d0dd58c4-ab66-41c4-9883-4f493ef6653f",
+      "title": "DJ Screw - MusicBrainz"
+    },
+    {
+      "url": "https://snobhop.substack.com/p/the-legend-of-dj-screw-the-creator",
+      "title": "The Legend of DJ Screw: The Creator of Chopped & Screwed Music"
+    },
+    {
+      "url": "https://pressbooks.pub/ourstory/chapter/houston/",
+      "title": "Houston – Our Story: An Ancillary to US History"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:23.032Z",
+  "type": "artist",
+  "editorial_bio": "DJ Screw was a pioneering Houston artist who created the chopped and screwed production technique and founded the Screwed Up Click.",
+  "origin": "Houston, Texas",
+  "active_years": "1990-2000",
+  "genres": [
+    {
+      "slug": "genre:chopped-n-screwed",
+      "type": "genre",
+      "name": "Chopped And Screwed",
+      "qid": "Q2261628"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bigtyme-recordz",
+      "type": "label",
+      "name": "Bigtyme Recordz"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:diary-of-the-originator-chapter-366",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 366 (Flow '96)",
+      "mbid": "051aee89-b636-40eb-a541-5f9b1e959b72",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-365-home-sweet-home-95-3rd-ward-freestyle-94",
+      "type": "project",
+      "name": "Diary of the Originator, Chapter 365: Home Sweet Home '95/3rd Ward Freestyle '94",
+      "mbid": "69ebb05f-f260-4ac7-b9a4-2b4534d54e7c",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:banging",
+      "type": "project",
+      "name": "Banging",
+      "mbid": "4bb49218-80fb-481f-a0a6-19269927e96a",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3-n-the-mornin-mix-pt-1-3-n-the-mornin-mix-pt-2",
+      "type": "project",
+      "name": "3 ‘N the Mornin’ Mix, Pt. 1 / 3 ‘N the Mornin’ Mix, Pt. 2",
+      "mbid": "f61eb459-7a26-46a3-8afb-51ffefb469c9",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stressed-out",
+      "type": "project",
+      "name": "Stressed Out",
+      "mbid": "67a64966-6c5f-4dc9-8146-0dc4babe8f2f",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-the-world-turns-slow",
+      "type": "project",
+      "name": "As the World Turns Slow",
+      "mbid": "7ece5c1a-c543-4cc7-9d4d-5917d505361f",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:screw-tape-in-the-deck-pt-3-the-final-chapter",
+      "type": "project",
+      "name": "Screw Tape in the Deck, Pt 3: The Final Chapter",
+      "mbid": "dabbb513-15a7-4e55-a94d-05ff6aefbb99",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soldiers-united-4-cash-platinum-edition",
+      "type": "project",
+      "name": "Soldiers United 4 Cash: Platinum Edition",
+      "mbid": "38adedff-0b6d-49d1-875a-e2ee709a1419",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:11-16-09",
+      "type": "project",
+      "name": "11 • 16 • 09",
+      "mbid": "fd6b45ca-700d-4d35-ba35-bef217205339",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:11-16-00-volume-3",
+      "type": "project",
+      "name": "11 • 16 • 00 Volume 3",
+      "mbid": "694ce643-2fed-4777-aded-3b2c76ab2161",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fallen-soldiers",
+      "type": "project",
+      "name": "Fallen Soldiers",
+      "mbid": "70951e7c-80d2-45e9-8deb-15c1da72e3c4",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:11-16-00-volume-2",
+      "type": "project",
+      "name": "11 • 16 • 00 Volume 2",
+      "mbid": "dd5c3777-add0-4546-a337-45d109176a62",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anniversary-day",
+      "type": "project",
+      "name": "Anniversary Day",
+      "mbid": "f7064dd7-b754-41e5-aa7d-07be2e0861f5",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:june-27-limited-edition-3-disc-set",
+      "type": "project",
+      "name": "June 27 - Limited Edition 3 Disc Set",
+      "mbid": "b4f4318b-5f99-4d62-9761-c041c6bfb69b",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:best-of-the-best-volume-2",
+      "type": "project",
+      "name": "Best of the Best Volume 2",
+      "mbid": "df01c4ef-2b36-4e62-8201-b1f92a140a9d",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:playaz-nite",
+      "type": "project",
+      "name": "Playaz Nite",
+      "mbid": "df3dd98f-7e16-4ba4-bca4-6653279c0792",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:11-16-00",
+      "type": "project",
+      "name": "11 • 16 • 00",
+      "mbid": "36a487f4-6e69-4f32-bbe3-51cc961c1bb5",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-356",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 356 (It takes a Bankroll '95)",
+      "mbid": "4fcf882d-b881-44fe-b9b5-0df6c9160bfa",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-355",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 355 (The Bull 2000)",
+      "mbid": "9cdf1b29-1e7c-4308-87ec-270b6974a8df",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-353",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 353 (Baytown '94)",
+      "mbid": "b2660bb0-1653-4cc7-98e5-e27386956ccc",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-work-no-play-vol-2",
+      "type": "project",
+      "name": "All Work No Play, Vol. 2",
+      "mbid": "d5817b9a-647f-4984-8ee6-ad3c78a86215",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sentimental-value",
+      "type": "project",
+      "name": "Sentimental Value",
+      "mbid": "af17deb0-e38f-3c0c-81e9-9a599aa2aff7",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-legend",
+      "type": "project",
+      "name": "The Legend",
+      "mbid": "d6d22a1b-a34b-3264-b6f6-d0c91b19238c",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:screwed-up-texas",
+      "type": "project",
+      "name": "Screwed Up Texas",
+      "mbid": "d0126ea8-7a98-4c6a-a744-be3031f7719b",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-work-no-play",
+      "type": "project",
+      "name": "All Work No Play",
+      "mbid": "a6160882-bd4a-33c1-99e4-d05624c8ae26",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-wanna-get-high-with-da-blanksta",
+      "type": "project",
+      "name": "I Wanna Get High With Da Blanksta",
+      "mbid": "ea24a794-e64d-4a1a-88d3-7e5622a9374a",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-354",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 354 (Comin Out That 4 '95)",
+      "mbid": "f4e834d7-e057-41c4-be0c-a8f73abbd473",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:riches-over-bitches",
+      "type": "project",
+      "name": "Riches Over Bitches",
+      "mbid": "2ffea1d7-97ab-4462-9c2c-f2ca7d636c16",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:7717-cullen-blvd-volume-1",
+      "type": "project",
+      "name": "7717 Cullen Blvd. Volume 1",
+      "mbid": "d6eb51de-bd8b-41ab-a80c-8fbbafa88a88",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:watch-yo-screw",
+      "type": "track",
+      "name": "Watch Yo Screw"
+    },
+    {
+      "slug": "track:sailin-da-south",
+      "type": "track",
+      "name": "Sailin' Da South"
+    },
+    {
+      "slug": "track:pimp-tha-pen",
+      "type": "track",
+      "name": "Pimp Tha Pen"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:big-moe",
+      "type": "artist",
+      "name": "Big Moe"
+    },
+    {
+      "slug": "artist:big-hawk",
+      "type": "artist",
+      "name": "Big Hawk"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:big-moe",
+      "type": "artist",
+      "name": "Big Moe"
+    },
+    {
+      "slug": "artist:fat-pat",
+      "type": "artist",
+      "name": "Fat Pat"
+    },
+    {
+      "slug": "artist:lil-keke",
+      "type": "artist",
+      "name": "Lil' Keke"
+    }
+  ]
+}

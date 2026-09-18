@@ -15,11 +15,31 @@
   "materialized_at": "2026-05-13T12:47:43.151Z",
   "type": "genre",
   "editorial_definition": "Highlife is a West African genre characterized by a fusion of traditional Akan rhythms and folklore with Western jazz, horn arrangements, and guitar-led melodies. It originated in Ghana in the early 20th century as a sophisticated, danceable style played in urban clubs and has since profoundly influenced modern African popular music.",
+  "qid": "Q963061",
   "era": "1920s–present",
   "origin": "Ghana",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:music-of-west-africa",
+      "type": "genre",
+      "name": "Music of West Africa",
+      "qid": "Q6942329"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:e-t-mensah",
@@ -44,6 +64,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q963061"
+  "landmark_tracks": []
 }

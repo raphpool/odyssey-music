@@ -72,7 +72,13 @@
     }
   ],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee"
+    }
+  ],
   "collaborators": [],
   "aliases": [],
   "members": []

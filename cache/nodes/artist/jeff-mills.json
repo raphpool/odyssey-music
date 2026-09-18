@@ -68,12 +68,23 @@
   ],
   "notable_tracks": [],
   "influences": [],
-  "influenced": [],
+  "influenced": [
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault"
+    }
+  ],
   "collaborators": [
     {
       "slug": "artist:robert-hood",
       "type": "artist",
       "name": "Robert Hood"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
     }
   ],
   "aliases": [

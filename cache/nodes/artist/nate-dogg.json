@@ -1,0 +1,444 @@
+{
+  "slug": "artist:nate-dogg",
+  "name": "Nate Dogg",
+  "editorial_article": "Nathaniel Dwayne Hale, better known as Nate Dogg, was a quintessential voice in 1990s G-Funk, defined by his ability to bridge soulful melodies with the hard-edged realism of West Coast gangsta rap. Making his initial mark in 1993 on Indo Smoke with Warren G and Mista Grimm, he cemented his status in 1994 with the multi-platinum single Regulate. Throughout his career, he functioned as the premier hook man for the Death Row and post-Death Row era, lending his baritone to iconic tracks like Dr. Dre's The Next Episode, 50 Cent's 21 Questions, and Ludacris' Area Codes. He was an active member of the trio 213 alongside Snoop Dogg and Warren G, releasing the 2004 album The Hard Way. His discography as a lead artist includes studio albums G-Funk Classics, Vol. 1 & 2, Music & Me, and his self-titled 2003 release. He passed away in 2011, leaving behind a legacy as one of the most sought-after guest vocalists in hip-hop history, appearing on over 100 guest records.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Nate_Dogg",
+      "title": "Nate Dogg - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Nate_Dogg_discography",
+      "title": "Nate Dogg discography - Wikipedia"
+    },
+    {
+      "url": "https://hip-hop-music.fandom.com/wiki/Nate_Dogg",
+      "title": "Nate Dogg | Hip Hop Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:23.203Z",
+  "type": "artist",
+  "editorial_bio": "A legendary R&B and hip-hop vocalist whose smooth, melodic hooks became the signature sound of West Coast G-Funk.",
+  "origin": "Long Beach, California",
+  "active_years": "1991-2011",
+  "genres": [
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:death-row-records",
+      "type": "label",
+      "name": "Death Row Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:i-got-love",
+      "type": "project",
+      "name": "I Got Love",
+      "mbid": "dfba83aa-ea1d-4dd2-969b-252e18d139ae",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:liquor-store",
+      "type": "project",
+      "name": "Liquor Store",
+      "mbid": "5595f050-b286-4437-93e4-a9f0d8716821",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pick-up-the-phone",
+      "type": "project",
+      "name": "Pick Up the Phone",
+      "mbid": "85910449-518f-4ffa-b30d-b8af654d2123",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-in-the-morning",
+      "type": "project",
+      "name": "6 in the Morning",
+      "mbid": "05bb6d21-fff9-4aa8-b597-2c3d96711f31",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-got-love",
+      "type": "project",
+      "name": "I Got Love",
+      "mbid": "86a9fc2d-2f15-4584-ac42-becc398a869f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta-walk",
+      "type": "project",
+      "name": "Gangsta Walk",
+      "mbid": "d79484c3-79d5-4f39-8bd7-88e58a80246c",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-house",
+      "type": "project",
+      "name": "My House",
+      "mbid": "a899a1ec-8cc2-4ab0-a725-48bc91805340",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bubblin",
+      "type": "project",
+      "name": "Bubblin’",
+      "mbid": "27c7119f-75cc-46b3-a93e-5a8611ac51d5",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-we-will-throw-now",
+      "type": "project",
+      "name": "Party We Will Throw Now!",
+      "mbid": "60ea1487-8bfb-4e4f-a219-fa9a29cac26d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-funk-classics-vol-2",
+      "type": "project",
+      "name": "G‐Funk Classics, Vol. 2",
+      "mbid": "b464c835-6f7f-4278-a658-842b005db7a2",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boss-life",
+      "type": "project",
+      "name": "Boss’ Life",
+      "mbid": "6b4ae40f-de01-4034-a541-ccf619f3df74",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-that",
+      "type": "project",
+      "name": "Shake That",
+      "mbid": "7bac4bf9-a93d-3648-87f4-4df7c7bc1db0",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta-party",
+      "type": "project",
+      "name": "Gangsta Party",
+      "mbid": "d5397c5f-a207-309c-a8b2-03bf95eb07d2",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-mercedes",
+      "type": "project",
+      "name": "Black Mercedes",
+      "mbid": "e2ddb14f-a8bd-43df-b80a-5d6d31604351",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thugs-get-lonely-too",
+      "type": "project",
+      "name": "Thugs Get Lonely Too",
+      "mbid": "78fa2009-eb61-4fab-b53c-7bda83d230d3",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ooh-wee",
+      "type": "project",
+      "name": "Ooh Wee",
+      "mbid": "5152a0b2-6d08-3428-9fa1-f1d3754ec603",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ooh-wee-on-the-run",
+      "type": "project",
+      "name": "Ooh Wee / On the Run",
+      "mbid": "bc76915e-64b4-44d6-8a16-cfc72c1050c2",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nate-dogg",
+      "type": "project",
+      "name": "Nate Dogg",
+      "mbid": "67db054a-0ca5-393f-a26b-427184460c89",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-night-stand",
+      "type": "project",
+      "name": "One Night Stand",
+      "mbid": "2d79b2ba-6178-4f86-9e35-035727e973cd",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-up",
+      "type": "project",
+      "name": "Get Up",
+      "mbid": "32424384-3f95-40cc-aa55-8a35e45c50a7",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-streets",
+      "type": "project",
+      "name": "The Streets",
+      "mbid": "ccedb945-0695-30b8-9992-7608b813ad53",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:your-woman-has-just-been-sighted",
+      "type": "project",
+      "name": "Your Woman Has Just Been Sighted (Ring the Alarm)",
+      "mbid": "e46e6afb-d05b-42d6-a5d5-eddb739f547b",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-and-me",
+      "type": "project",
+      "name": "Music & Me",
+      "mbid": "9f515c2f-a584-36be-95b4-c05802228bc0",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-i-wanna-be",
+      "type": "project",
+      "name": "Where I Wanna Be",
+      "mbid": "6f7cd80b-cfe9-4968-8af6-f9912b8b9bbc",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-episode",
+      "type": "project",
+      "name": "Next Episode (Pikachu Tear Up Mix)",
+      "mbid": "a225ee71-eebd-48a3-93b2-ff81682f3d7e",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:area-codes",
+      "type": "project",
+      "name": "Area Codes",
+      "mbid": "12fdf086-fbbb-3bf4-9209-b1bdc22732ad",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ballin-out-of-control",
+      "type": "project",
+      "name": "Ballin’ Out of Control",
+      "mbid": "364a214c-3cbe-4ce7-b132-7f546c1e1c78",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-it-g-a-n-g-s-t-a",
+      "type": "project",
+      "name": "Keep It G.A.N.G.S.T.A.",
+      "mbid": "45031bd0-c56b-4e02-8f3d-7c59a9794b42",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lay-low",
+      "type": "project",
+      "name": "Lay Low",
+      "mbid": "5498700a-3fc5-4615-b045-0500eb2c1e11",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:been-a-long-time",
+      "type": "project",
+      "name": "Been a Long Time",
+      "mbid": "647bb677-696e-4040-8387-e863f5029c91",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-got-love",
+      "type": "project",
+      "name": "I Got Love",
+      "mbid": "b0d50b2e-6d48-4856-a3bf-1ec18c78ef92",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-goodlife",
+      "type": "project",
+      "name": "The Goodlife",
+      "mbid": "e5519501-66e4-4625-80c7-e17b5af9ecd8",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-come-down",
+      "type": "project",
+      "name": "High Come Down",
+      "mbid": "fb39c6c7-d742-4de9-a0f2-0f0d3a0954a7",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bitch-please-ii",
+      "type": "project",
+      "name": "Bitch Please II",
+      "mbid": "4b3aba84-ccd2-4815-b65a-3e996508acac",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oh-no",
+      "type": "project",
+      "name": "Oh No",
+      "mbid": "75ca8fac-7e48-4da0-91eb-e86b3258979f",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-funk-classics-vol-1-and-2",
+      "type": "project",
+      "name": "G‐Funk Classics, Vol. 1 & 2",
+      "mbid": "e4ba7199-f5fa-39c2-903f-3e42f69e5362",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nobody-does-it-better",
+      "type": "project",
+      "name": "Nobody Does It Better",
+      "mbid": "fcd5c2fa-fbb3-3965-9ce9-5eee0c6bd7dd",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-funk-classics-vol-1",
+      "type": "project",
+      "name": "G‐Funk Classics, Vol. 1",
+      "mbid": "3e5e98ad-5217-437d-8272-f03e71782713",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:these-days",
+      "type": "project",
+      "name": "These Days",
+      "mbid": "bf32cfe3-848e-4673-b318-df0d85c637fb",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-leave-me-alone",
+      "type": "project",
+      "name": "Never Leave Me Alone",
+      "mbid": "a141a57d-e04a-30e9-8991-adb88d8db753",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-long-will-they-mourn-me",
+      "type": "project",
+      "name": "How Long Will They Mourn Me?",
+      "mbid": "5e9d6573-bd70-48fc-921a-074ca683c6e2",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:regulate",
+      "type": "project",
+      "name": "Regulate",
+      "mbid": "44a050fd-a335-3297-bdd2-8e2222805ef9",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta-walk",
+      "type": "project",
+      "name": "Gangsta Walk",
+      "mbid": "9c60390b-6907-45a6-9f71-da575dd5c91f",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:regulate",
+      "type": "track",
+      "name": "Regulate"
+    },
+    {
+      "slug": "track:i-got-love",
+      "type": "track",
+      "name": "I Got Love"
+    },
+    {
+      "slug": "track:nobody-does-it-better",
+      "type": "track",
+      "name": "Nobody Does It Better"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G"
+    },
+    {
+      "slug": "artist:dr-dre",
+      "type": "artist",
+      "name": "Dr. Dre"
+    },
+    {
+      "slug": "artist:kurupt",
+      "type": "artist",
+      "name": "Kurupt"
+    },
+    {
+      "slug": "artist:50-cent",
+      "type": "artist",
+      "name": "50 Cent"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

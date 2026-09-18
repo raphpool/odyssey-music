@@ -1,0 +1,112 @@
+{
+  "slug": "artist:hyph11e",
+  "name": "Hyph11E",
+  "editorial_article": "Shanghai-based artist Tess Sun, known as Hyph11E, anchors her work in the experimental electronic scene and is a key affiliate of the Chinese underground music collective SVBKVLT. Her debut album, Aperture, was released in 2020 and explores textures within the breakcore and experimental electronic genres. Prior to this full-length debut, she released the EP Vanishing Cinema in 2017. Her music incorporates warped metal, futuristic jungle influences, and detailed sound design. On the 2020 Aperture project, mastering was handled by Raphaël Valensi, with additional artwork contributed by Wang Newone.",
+  "citations": [
+    {
+      "url": "https://codamusic.me/artists/hyph11e/",
+      "title": "Hyph11e - Biography, Discography & Albums | Coda Music"
+    },
+    {
+      "url": "https://djmag.com/features/fresh-kicks-122-hyph11e",
+      "title": "Fresh Kicks 122: Hyph11E | DJ Mag"
+    },
+    {
+      "url": "https://www.instagram.com/hyph11e/",
+      "title": "(@hyph11e) • Instagram photos and videos"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:51.570Z",
+  "type": "artist",
+  "editorial_bio": "Shanghai-based electronic producer and SVBKVLT affiliate known for aggressive, post-industrial club music and experimental sound design.",
+  "origin": "Shanghai, China",
+  "active_years": "2017-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:breakcore",
+      "type": "genre",
+      "name": "Breakcore",
+      "qid": "Q903735"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:svbkvlt",
+      "type": "label",
+      "name": "SVBKVLT"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:aperture",
+      "type": "project",
+      "name": "Aperture",
+      "mbid": "29c5bc93-e719-45ba-88a4-cf9ca83de14b",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:barnacles",
+      "type": "project",
+      "name": "Barnacles",
+      "mbid": "9e1f220d-c355-4eb0-b8be-ad9b18885bc9",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slip-b",
+      "type": "project",
+      "name": "Slip B",
+      "mbid": "2b4fae0e-e58a-4b8e-a626-b56571e7ac5a",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vanishing-cinema",
+      "type": "project",
+      "name": "Vanishing Cinema",
+      "mbid": "b7574556-9144-45d8-9385-c61a8d4fb933",
+      "year": "2017",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:encrust",
+      "type": "track",
+      "name": "Encrust"
+    },
+    {
+      "slug": "track:accretion",
+      "type": "track",
+      "name": "Accretion"
+    },
+    {
+      "slug": "track:black-pepper",
+      "type": "track",
+      "name": "Black Pepper"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

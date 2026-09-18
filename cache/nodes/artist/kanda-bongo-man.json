@@ -1,0 +1,174 @@
+{
+  "slug": "artist:kanda-bongo-man",
+  "name": "Kanda Bongo Man",
+  "editorial_article": "Born in Inongo in 1955, Kanda Bongo Man launched his career in 1973 as a singer for the Belle Mambo band before moving to Paris in 1979 to establish his solo career. He fundamentally altered soukous music by discarding the tradition of waiting for a single guitar solo at the end of a track; instead, he integrated soloing after every verse and even at the song's opening. This innovation underpinned the kwassa kwassa dance rhythm, where dancers synchronize hip movements with the melodic flow. His early solo hits, 1981's Iyole and 1982's Djessy, propelled his international reach. Throughout his tenure, he cultivated an entourage of musicians, including the notable guitarist Diblo Dibala, known as \"Machine Gun,\" who provided crucial instrumentation for releases like Kwassa Kwassa and Amour Fou. His influence has extended to major festival stages, including his 2005 performance at the Live 8 Africa Calling concert in Cornwall and multiple appearances at the Africa Oyé festival in Liverpool.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kanda_Bongo_Man",
+      "title": "Kanda Bongo Man"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:06:52.939Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Congolese soukous musician whose structural innovations and kwassa kwassa dance rhythm transformed African popular music.",
+  "origin": "Inongo, Democratic Republic of the Congo",
+  "active_years": "1973-present",
+  "genres": [
+    {
+      "slug": "genre:soukous",
+      "type": "genre",
+      "name": "Soukous",
+      "qid": "Q1752683"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:bongo-man",
+      "type": "label",
+      "name": "Bongo Man"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:kekete-bue",
+      "type": "project",
+      "name": "Kekete bue",
+      "mbid": "118a4570-8bc9-4833-bce6-5e9f289ba08e",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soukous-time",
+      "type": "project",
+      "name": "Soukous Time",
+      "mbid": "0bc90dea-54fc-3098-8136-90180b07f7d0",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:swalati",
+      "type": "project",
+      "name": "Swalati",
+      "mbid": "25cf0281-e53c-4704-8e91-1f896fcc4346",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:balobi",
+      "type": "project",
+      "name": "Balobi",
+      "mbid": "66d4340e-d34f-32fb-9bf4-85b7f74f9c5a",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-rendez-vous-des-stades",
+      "type": "project",
+      "name": "Le Rendez-Vous Des Stades",
+      "mbid": "155aeef5-75f3-3f73-a34d-d0d87048ba7c",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soukous-in-central-park",
+      "type": "project",
+      "name": "Soukous in Central Park",
+      "mbid": "5c895ea6-6b55-324e-b705-eff714a8bf11",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sango",
+      "type": "project",
+      "name": "Sango",
+      "mbid": "4a20503c-71dc-3f28-8347-1d4730c0874c",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zing-zong",
+      "type": "project",
+      "name": "Zing-Zong",
+      "mbid": "ef93b984-95b4-370e-b7af-3f42003eb25c",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kwassa-kwassa",
+      "type": "project",
+      "name": "Kwassa Kwassa",
+      "mbid": "2e9ff17b-10e9-33c2-86f7-27a8bc79efe3",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:amour-fou-crazy-love",
+      "type": "project",
+      "name": "Amour Fou / Crazy Love",
+      "mbid": "308565c2-605a-374f-8f1a-514c5290eb52",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sai-liza",
+      "type": "project",
+      "name": "Sai-Liza",
+      "mbid": "e9aee3b1-d1ee-41d8-a9c9-e4b0f63f3afc",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:non-stop-non-stop",
+      "type": "project",
+      "name": "Non Stop Non Stop",
+      "mbid": "a0523a4a-dc14-48ab-bc6a-364af259bf48",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:iyole-mazina",
+      "type": "project",
+      "name": "Iyole / Mazina",
+      "mbid": "1e197717-bab3-412e-954f-2b5b27b4c710",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:welcome-to-south-africa",
+      "type": "project",
+      "name": "Welcome To South Africa",
+      "mbid": "24ea778e-7e55-35e1-9961-712f57fd98cc",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet",
+      "type": "project",
+      "name": "Sweet",
+      "mbid": "774a6659-1acd-33c8-9ea1-5138c92dc2d0",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:kwassa-kwassa",
+      "type": "track",
+      "name": "Kwassa Kwassa"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:diblo-dibala",
+      "type": "artist",
+      "name": "Diblo Dibala"
+    },
+    {
+      "slug": "artist:tabu-ley",
+      "type": "artist",
+      "name": "Tabu Ley"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

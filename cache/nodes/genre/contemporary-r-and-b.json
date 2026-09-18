@@ -1,0 +1,149 @@
+{
+  "slug": "genre:contemporary-r-and-b",
+  "name": "Contemporary R&B",
+  "editorial_article": "Contemporary R&B emerged from North America in the late 1970s and early 1980s, blending rhythm and blues with the textures of pop, funk, and electronic music. Michael Jackson and Quincy Jones pioneered a smoother, dance-oriented aesthetic on the 1979 album Off the Wall, shifting away from disco toward a more synthetic sound. By the mid-1980s, Janet Jackson's Control, produced by Jimmy Jam and Terry Lewis, introduced a fusion of funk and disco with a distinct rap sensibility. Teddy Riley's subsequent new jack swing movement further integrated hip-hop rhythmic structures into the genre's production. In the 1990s, artists like Boyz II Men and Mariah Carey established a commercial dominance that included landmark collaborations, such as Carey's remix of Fantasy featuring Ol' Dirty Bastard. Critics like Robert Christgau have noted that the style prioritizes texture and mood, often emphasizing vocal-plus-sound arrangements over traditional song structures. Since the 2010s, the genre has evolved to incorporate trap influences and electronic textures, while artists like Bryson Tiller and Beyoncé have utilized the genre to explore increasingly hybrid soundscapes.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Contemporary_R%26B",
+      "title": "Contemporary R&B - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:44.553Z",
+  "type": "genre",
+  "editorial_definition": "A hybrid popular music genre that synthesizes rhythm and blues with pop, hip-hop, and electronic production techniques.",
+  "qid": "Q850412",
+  "era": "late 1970s to present",
+  "origin": "North America, African-American music scenes",
+  "sonic_markers": "Polished production, drum machine-backed beats, melismatic vocals, synthesizers, and integration of hip-hop rhythms.",
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop Music",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "Rhythm And Blues",
+      "qid": "Q45981"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:a-pop",
+      "type": "genre",
+      "name": "A-pop",
+      "qid": "Q10730335"
+    },
+    {
+      "slug": "genre:k-pop",
+      "type": "genre",
+      "name": "K-Pop",
+      "qid": "Q213665"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson"
+    },
+    {
+      "slug": "artist:janet-jackson",
+      "type": "artist",
+      "name": "Janet Jackson"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:usher",
+      "type": "artist",
+      "name": "Usher"
+    },
+    {
+      "slug": "artist:beyonce",
+      "type": "artist",
+      "name": "Beyoncé"
+    },
+    {
+      "slug": "artist:alicia-keys",
+      "type": "artist",
+      "name": "Alicia Keys"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:motown",
+      "type": "label",
+      "name": "Motown"
+    },
+    {
+      "slug": "label:virgin-records",
+      "type": "label",
+      "name": "Virgin Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:one-sweet-day",
+      "type": "track",
+      "name": "One Sweet Day"
+    },
+    {
+      "slug": "track:fantasy",
+      "type": "track",
+      "name": "Fantasy"
+    },
+    {
+      "slug": "track:yeah",
+      "type": "track",
+      "name": "Yeah!"
+    },
+    {
+      "slug": "track:we-belong-together",
+      "type": "track",
+      "name": "We Belong Together"
+    },
+    {
+      "slug": "track:fallin",
+      "type": "track",
+      "name": "Fallin'"
+    }
+  ]
+}

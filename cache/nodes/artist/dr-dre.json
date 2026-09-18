@@ -1,0 +1,555 @@
+{
+  "slug": "artist:dr-dre",
+  "name": "Dr. Dre",
+  "editorial_article": "Dr. Dre began his trajectory in the 1980s as a member of World Class Wreckin' Cru before rising to prominence with N.W.A from 1987 to 1991. After leaving the group, he launched a solo career in 1992 under Death Row Records with the triple-platinum album The Chronic. The record featured key collaborations with Snoop Dogg on singles like 'Nuthin' but a 'G' Thang' and 'Fuck wit Dre Day'. In 1996, he founded his own imprint, Aftermath Entertainment, which served as the home for his second solo album, 1999's 2001. That project achieved six-times platinum certification and included hits such as 'Forgot About Dre' and 'The Next Episode'. During the 2000s, his work shifted heavily toward production for artists including Eminem, contributing to tracks like 'Encore' and 'Crack a Bottle'. His 2015 studio album Compton, which served as a soundtrack for the N.W.A biopic, debuted at number two on the Billboard 200.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dr._Dre",
+      "title": "Dr. Dre"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dr._Dre_discography",
+      "title": "Dr. Dre discography"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:06.105Z",
+  "type": "artist",
+  "editorial_bio": "An influential producer and rapper who defined West Coast hip-hop through N.W.A and his seminal solo works under Death Row and Aftermath.",
+  "origin": "Compton, California, United States",
+  "active_years": "1985-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    },
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:death-row-records",
+      "type": "label",
+      "name": "Death Row Records"
+    },
+    {
+      "slug": "label:aftermath-entertainment",
+      "type": "label",
+      "name": "Aftermath Entertainment"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:someday-has-begun-pt-1",
+      "type": "project",
+      "name": "Someday Has Begun, Pt. 1",
+      "mbid": "06b441f7-a13e-4447-8a24-d3115eb4ff23",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:leave-me-alone",
+      "type": "project",
+      "name": "Leave Me Alone",
+      "mbid": "7fb1af6f-7f3e-4ad3-8e0b-721510986a0f",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-part-of-me",
+      "type": "project",
+      "name": "Another Part of Me",
+      "mbid": "8bcdf0de-b246-429f-ac0a-979c195e9fbe",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:outta-da-blue",
+      "type": "project",
+      "name": "Outta da Blue",
+      "mbid": "31e6cb1c-05c3-40f4-8127-ace283b6f2b5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gorgeous",
+      "type": "project",
+      "name": "Gorgeous",
+      "mbid": "37639791-9a7a-4305-a1c2-132535954d9a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gin-and-juice",
+      "type": "project",
+      "name": "Gin & Juice (Another Shot from Dr. Dre)",
+      "mbid": "bd47c508-121d-4ffb-98bf-99e5f07f248a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-contract-ep",
+      "type": "project",
+      "name": "The Contract EP",
+      "mbid": "17124271-e6b0-4af5-b88b-cdac484d8850",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:legendary",
+      "type": "project",
+      "name": "Legendary",
+      "mbid": "fade9d86-5c8c-405c-bcd8-d7664b0bae4b",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fist-full-of-dollars",
+      "type": "project",
+      "name": "Fist Full Of Dollars",
+      "mbid": "74f2e8d7-3845-4efd-84f1-b04d137e2118",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gunfiyah",
+      "type": "project",
+      "name": "Gunfiyah",
+      "mbid": "50ec1bbe-9bf3-47ad-af85-93111a6e2dc8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shady-beats",
+      "type": "project",
+      "name": "Shady Beats",
+      "mbid": "5a6a5a1b-9686-4c78-8c4c-f44adf3435fd",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:compton",
+      "type": "project",
+      "name": "Compton",
+      "mbid": "0f7a9bb0-c99a-48ea-93fb-ecdcc0ed636e",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:still-d-r-e",
+      "type": "project",
+      "name": "Still D.R.E (Traumtherapie edit)",
+      "mbid": "0f1a562f-f951-49fd-81d6-8349c82a60e6",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-to-the-basics",
+      "type": "project",
+      "name": "Back to the Basics",
+      "mbid": "a862d9cd-c1af-4b54-ac95-126cf9a8212f",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:detox-nation",
+      "type": "project",
+      "name": "Detox Nation",
+      "mbid": "c523413d-fb08-4bd0-a0ff-161f643b0faf",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-day",
+      "type": "project",
+      "name": "New Day",
+      "mbid": "4e90809b-198d-43d5-a03b-0122a205c607",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-recipe",
+      "type": "project",
+      "name": "The Recipe",
+      "mbid": "810d5a88-69e6-42d8-902d-80d57b03429b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-a-doctor",
+      "type": "project",
+      "name": "I Need a Doctor",
+      "mbid": "683e3f34-d2c2-4216-bccf-4634918591f2",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kush",
+      "type": "project",
+      "name": "Kush",
+      "mbid": "5dd40eb5-5779-43dc-b569-e070b92134c8",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hell-breaks-loose",
+      "type": "project",
+      "name": "Hell Breaks Loose",
+      "mbid": "85c0bec6-9d41-472c-bbef-6bec94c9e019",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crack-a-bottle",
+      "type": "project",
+      "name": "Crack a Bottle",
+      "mbid": "1e43f60e-c401-3963-a444-fa288661c662",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:re-edits-classics",
+      "type": "project",
+      "name": "Re-Edits Classics",
+      "mbid": "1ee40e50-4f63-39bd-b5b9-78ab88c4429a",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:west-coast-pop-lock-scratchin-100-speakers",
+      "type": "project",
+      "name": "West Coast Pop Lock / Scratchin’ 100 Speakers",
+      "mbid": "8d2b9a89-2b94-4061-9327-135732b8c579",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encore",
+      "type": "project",
+      "name": "Encore",
+      "mbid": "3aa049e2-497f-4733-a702-2f39935de692",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4x4-refix-ep",
+      "type": "project",
+      "name": "4x4 Refix EP",
+      "mbid": "a58e5f2f-bdf2-40e4-9f40-fc0eb4a3651e",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-next-episode",
+      "type": "project",
+      "name": "The Next Episode (Remixes)",
+      "mbid": "f64218e3-2d19-4b30-ad12-029f49d2a98d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghetto-r-and-b-collabo-ep",
+      "type": "project",
+      "name": "Ghetto R&B Collabo EP",
+      "mbid": "d446358c-672e-4afc-9a3a-8e2bdb04001b",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bad-intentions",
+      "type": "project",
+      "name": "Bad Intentions",
+      "mbid": "200656c1-83ee-30a6-96a3-595b8c18131b",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-episode",
+      "type": "project",
+      "name": "Next Episode (Pikachu Tear Up Mix)",
+      "mbid": "a225ee71-eebd-48a3-93b2-ff81682f3d7e",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-watcher",
+      "type": "project",
+      "name": "The Watcher",
+      "mbid": "098eee0d-6f67-4219-b61f-7a9258154d21",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bitch-please-ii",
+      "type": "project",
+      "name": "Bitch Please II",
+      "mbid": "4b3aba84-ccd2-4815-b65a-3e996508acac",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hello",
+      "type": "project",
+      "name": "Hello",
+      "mbid": "834d1910-d841-4f4c-b30a-049cc9486db7",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2001",
+      "type": "project",
+      "name": "2001",
+      "mbid": "f28e065d-fd56-3929-b0a4-6aa1b4c78bdb",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guilty-conscience",
+      "type": "project",
+      "name": "Guilty Conscience",
+      "mbid": "602fc20f-0ea4-3039-a9b0-4e716a22ae12",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-classic-collection",
+      "type": "project",
+      "name": "The Classic Collection",
+      "mbid": "c91222b5-5674-496a-835d-052e756c7c2f",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guilty-conscience-i-m-shady",
+      "type": "project",
+      "name": "Guilty Conscience / I’m Shady",
+      "mbid": "1d835264-b1f3-414b-a15b-bf74dcba8cb1",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuck-you-xxplosive",
+      "type": "project",
+      "name": "Fuck You / Xxplosive",
+      "mbid": "3a4b9bb0-66c9-4268-bd66-a712a9b6ba3c",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-d-r-e",
+      "type": "project",
+      "name": "Still D.R.E.",
+      "mbid": "88a858ed-c369-40d0-ad84-28a7d082a579",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forgot-about-dre",
+      "type": "project",
+      "name": "Forgot About Dre",
+      "mbid": "aa43c6aa-19f2-314a-ac3f-1723c22473ab",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-next-episode",
+      "type": "project",
+      "name": "The Next Episode",
+      "mbid": "b5a4a93f-9485-4e57-b7df-9ad65af28787",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zoom",
+      "type": "project",
+      "name": "Zoom",
+      "mbid": "d98e3dd3-86fb-4178-b12e-90b56f78900c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:game-over",
+      "type": "project",
+      "name": "Game Over",
+      "mbid": "9b917782-2e6d-357d-84fe-a260bcd14476",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-diggity",
+      "type": "project",
+      "name": "No Diggity",
+      "mbid": "cddfccfd-cf2f-3127-94ad-2473d1cd31fd",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:been-there-done-that",
+      "type": "project",
+      "name": "Been There, Done That",
+      "mbid": "66fc5c63-0ae0-48f2-8a76-a896ad8d65ce",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-their-heads-ringin",
+      "type": "project",
+      "name": "Keep Their Heads Ringin’",
+      "mbid": "9af070a6-5368-3b7c-9369-eaf836f7622b",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:california-love",
+      "type": "project",
+      "name": "California Love",
+      "mbid": "c1cbd46a-4cfe-365a-925f-d254722704d6",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:natural-born-killaz",
+      "type": "project",
+      "name": "Natural Born Killaz",
+      "mbid": "cccefd51-6bae-4e07-b60d-1dca8308adbe",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nuthin-but-a-g-thang-let-me-ride",
+      "type": "project",
+      "name": "Nuthin’ but a ‘G’ Thang / Let Me Ride",
+      "mbid": "a4a3b99b-5f21-49a4-8f5e-af1ca0434c15",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-me-ride",
+      "type": "project",
+      "name": "Let Me Ride",
+      "mbid": "b93095f5-1e0f-4f5b-a147-2eb1688adcb5",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-chronic",
+      "type": "project",
+      "name": "The Chronic",
+      "mbid": "ad444843-7160-33d7-b0c9-fc99f2c14a99",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nuthin-but-a-g-thang",
+      "type": "project",
+      "name": "Nuthin’ but a “G” Thang",
+      "mbid": "0ca9620a-fc44-326e-a84f-3a6050c0f2ca",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lil-ghetto-boy",
+      "type": "project",
+      "name": "Lil' Ghetto Boy",
+      "mbid": "78d5e9f9-1baf-4139-8a7d-be10096fe4fa",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dre-day",
+      "type": "project",
+      "name": "Dre Day",
+      "mbid": "f53cb33a-405f-326f-9ae8-4f04af4f3a26",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:talking-to-my-diary",
+      "type": "project",
+      "name": "Talking To My Diary",
+      "mbid": "25e5edaf-d729-49f2-9143-3ff41913d7f4",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:nuthin-but-a-g-thang",
+      "type": "track",
+      "name": "Nuthin' but a 'G' Thang"
+    },
+    {
+      "slug": "track:still-d-r-e",
+      "type": "track",
+      "name": "Still D.R.E."
+    },
+    {
+      "slug": "track:forgot-about-dre",
+      "type": "track",
+      "name": "Forgot About Dre"
+    },
+    {
+      "slug": "track:the-next-episode",
+      "type": "track",
+      "name": "The Next Episode"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem"
+    },
+    {
+      "slug": "artist:ice-cube",
+      "type": "artist",
+      "name": "Ice Cube"
+    },
+    {
+      "slug": "artist:2pac",
+      "type": "artist",
+      "name": "2Pac"
+    },
+    {
+      "slug": "artist:nate-dogg",
+      "type": "artist",
+      "name": "Nate Dogg"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:n-w-a",
+      "type": "artist",
+      "name": "N.W.A"
+    }
+  ]
+}

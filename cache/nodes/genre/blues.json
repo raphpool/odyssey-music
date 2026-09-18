@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T13:17:40.231Z",
   "type": "genre",
   "editorial_definition": "A secular vocal and instrumental genre originating in the American South, characterized by its twelve-bar structure, AAB lyrical pattern, and the use of 'blue notes' to convey deep personal expression and struggle.",
+  "qid": "Q9759",
   "era": "1890s-present",
   "origin": "Deep South, United States",
   "parent_genres": [],
@@ -43,6 +44,18 @@
       "type": "genre",
       "name": "Country music",
       "qid": "Q83440"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:american-hip-hop",
+      "type": "genre",
+      "name": "American hip-hop",
+      "qid": "Q3135787"
     }
   ],
   "key_artists": [
@@ -74,6 +87,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q9759"
+  "landmark_tracks": []
 }

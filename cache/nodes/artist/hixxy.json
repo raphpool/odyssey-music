@@ -1,0 +1,354 @@
+{
+  "slug": "artist:hixxy",
+  "name": "Hixxy",
+  "editorial_article": "Born Ian Hicks in 1975, this Portsmouth-based DJ rose to prominence in the UK happy hardcore scene after he and DJ Sharkey released the 1995 track Toy Town on React Music. The track featured a mix of scruffy breaks and sugar-sweet vocals that critics identified as a turning point in rave history. Hixxy gained further reach as a foundational contributor to the Bonkers compilation series, which spawned 19 volumes and helped define the commercial trajectory of the genre. By 2004, his evolution into mainstream trance elements caught the attention of BBC Radio 1 DJ John Peel, who invited him for a guest mix later released as an official album. Alongside collaborators like Darren Styles and Mark Breeze, Hixxy initiated the Clubland X-Treme Hardcore compilation series in 2005, which yielded multiple gold-certified releases in the UK. He continues to perform at events like the Bang Face Weekender, often reuniting with long-time stage partner DJ Dougal.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hixxy",
+      "title": "Hixxy - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:58:13.427Z",
+  "type": "artist",
+  "editorial_bio": "British DJ and producer Ian Hicks is a pioneer of the happy hardcore sound, best known for his influential role in the Bonkers and Clubland X-Treme Hardcore series.",
+  "origin": "Portsmouth, United Kingdom",
+  "active_years": "1990-present",
+  "genres": [
+    {
+      "slug": "genre:happy-hardcore",
+      "type": "genre",
+      "name": "Happy Hardcore",
+      "qid": "Q339906"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:raver-baby",
+      "type": "label",
+      "name": "Raver Baby"
+    },
+    {
+      "slug": "label:react-music",
+      "type": "label",
+      "name": "React Music"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:wanting-to-get-high",
+      "type": "project",
+      "name": "Wanting to Get High",
+      "mbid": "088dd38d-93da-4af1-956e-5c683be8e3ed",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:metro",
+      "type": "project",
+      "name": "Metro",
+      "mbid": "ecca813c-5f42-43a9-9ea4-041ba1f6a81e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:losing-my-religion",
+      "type": "project",
+      "name": "Losing My Religion",
+      "mbid": "8df3e319-36e8-4f13-9531-eaf556a6e582",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-follow-rivers",
+      "type": "project",
+      "name": "I Follow Rivers (Deep Sea Baby)",
+      "mbid": "d44602f4-5aa7-4a47-ba97-bfe7d58710c1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nightlife-never-be-alone",
+      "type": "project",
+      "name": "Nightlife / Never Be Alone",
+      "mbid": "daa629f2-f367-4e47-b3ff-fd842a04617a",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:superhuman",
+      "type": "project",
+      "name": "Superhuman (Technikore & JTS remix)",
+      "mbid": "258244db-68ee-4c60-b091-6fe893942211",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sacrifice",
+      "type": "project",
+      "name": "Sacrifice",
+      "mbid": "5e10f998-35ca-41da-801e-a14edf4fe963",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:please-be-good-mdma-vip-hide-seek-rock-this-joint",
+      "type": "project",
+      "name": "Please Be Good / MDMA (VIP) / Hide + Seek / Rock This Joint",
+      "mbid": "6d8c2570-c096-47de-b8fb-9b5610116376",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-1-mad-house-when-i-close-my-eyes-everything-you-do",
+      "type": "project",
+      "name": "No. 1 / Mad House / When I Close My Eyes / Everything You Do (Remix)",
+      "mbid": "34149b91-2805-4b46-bfe4-8ec7667d5ad4",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:slow-and-steady-rush-get-up-get-on-your-feet",
+      "type": "project",
+      "name": "Slow And Steady Rush / Get Up Get On Your Feet",
+      "mbid": "5136a2e7-fac9-4dea-b8a2-80d9ee04e095",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:brother-guiding-light-face-in-the-crowd",
+      "type": "project",
+      "name": "Brother (Guiding Light) / Face In The Crowd",
+      "mbid": "09364dd9-65e0-4266-84bf-c4ded4f1c15d",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deep-in-the-night-now-that-i-found-you",
+      "type": "project",
+      "name": "Deep In The Night / Now That I Found You",
+      "mbid": "9b8308ce-0c50-4700-b893-083e9c23b960",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:take-me-to-heaven-more-and-more",
+      "type": "project",
+      "name": "Take Me To Heaven / More And More",
+      "mbid": "3309e51e-777d-4add-b080-0adb93f02dfa",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-just-can-t-get-enough-the-music-i-love",
+      "type": "project",
+      "name": "I Just Can't Get Enough / The Music I Love (Sy's Re-Rub)",
+      "mbid": "bf995c62-042f-4f7c-97e0-64ea46884ac7",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phaze-2-phaze-hot-lookin-babes",
+      "type": "project",
+      "name": "Phaze 2 Phaze / Hot Lookin Babes",
+      "mbid": "ad259296-1839-4a8f-aed8-5a9d73dc7e05",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sacrifice",
+      "type": "project",
+      "name": "Sacrifice",
+      "mbid": "d845e422-57ca-40a3-93d3-8671f08dedfb",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dance-with-me-the-clit-commander-need-your-lovin-ere-we-fuckin-go",
+      "type": "project",
+      "name": "Dance With Me / The Clit Commander / Need Your Lovin / Ere We Fuckin Go",
+      "mbid": "05b17df6-2311-4063-9c63-5f18505af30e",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1000-kisses-beat-drop-power-of-love-come-alive",
+      "type": "project",
+      "name": "1000 Kisses / Beat Drop / Power Of Love / Come Alive",
+      "mbid": "07167fed-cc90-448d-a23c-22c5a5be26f0",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hixxy-and-styles-ep",
+      "type": "project",
+      "name": "Hixxy & Styles EP",
+      "mbid": "b20b61fb-90fd-4edd-b75e-262aee6e111c",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hixxy-ep",
+      "type": "project",
+      "name": "Hixxy EP",
+      "mbid": "c84c5bd9-e45d-493d-ad6e-6f161740d980",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:alternative",
+      "type": "project",
+      "name": "Alternative",
+      "mbid": "5c6de9a8-af5b-4cd0-ac40-ad14abf55dda",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-time-feel-it-in-the-air",
+      "type": "project",
+      "name": "Only Time / Feel It In The Air",
+      "mbid": "64ba3086-7626-45c9-a0e1-a32855a42234",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:together-with-a-smile-odimok",
+      "type": "project",
+      "name": "Together With a Smile / Odimok",
+      "mbid": "a0fd72b5-3257-47a5-9fa4-3470c9ad3a8a",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:toy-town",
+      "type": "project",
+      "name": "Toy Town (vocal mix)",
+      "mbid": "8208cfa5-5c82-4d59-8121-ccc80ccac853",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-splif-let-your-mind-be-free",
+      "type": "project",
+      "name": "One Splif / Let Your Mind Be Free",
+      "mbid": "b4a0d9fc-845f-4b08-8f55-522a528bb45f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warehouse-return-of-mr-x",
+      "type": "project",
+      "name": "Warehouse / Return of Mr. X",
+      "mbid": "53da54f6-8e74-3e38-a37b-86acb8cc6043",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lullaby",
+      "type": "project",
+      "name": "Lullaby",
+      "mbid": "47509767-d242-376f-aac8-26f5b7fef7cb",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wanting-to-get-high-boom-boom-bang-bang",
+      "type": "project",
+      "name": "Wanting To Get High / Boom, Boom, Bang, Bang!",
+      "mbid": "7b1400c2-6b13-45a9-9d10-c874599cd7a2",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spaceman-saturday-night",
+      "type": "project",
+      "name": "Spaceman / Saturday Night",
+      "mbid": "bd77929a-9c72-40fb-b868-33704d4a6105",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-yes-yes-and-er-yes",
+      "type": "project",
+      "name": "Forever / Yes, Yes & Er Yes",
+      "mbid": "ea00081c-55d2-4e90-9587-fc2df50064a3",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:set-me-free-feel-so-good",
+      "type": "project",
+      "name": "Set Me Free / Feel So Good",
+      "mbid": "1990b74e-8e76-4568-851d-18fb0be339ee",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:toy-town",
+      "type": "project",
+      "name": "Toy Town",
+      "mbid": "e030b0b8-59b7-47d8-aa4b-8f1bc0a72d00",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sacrifice",
+      "type": "project",
+      "name": "Sacrifice (Ben Defekt & Olly P Remix)",
+      "mbid": "65bf883d-2e3f-4ee7-af44-03c8907546a2",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:toy-town",
+      "type": "track",
+      "name": "Toy Town"
+    },
+    {
+      "slug": "track:lullaby",
+      "type": "track",
+      "name": "Lullaby"
+    },
+    {
+      "slug": "track:get-into-love",
+      "type": "track",
+      "name": "Get into Love"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-sharkey",
+      "type": "artist",
+      "name": "DJ Sharkey"
+    },
+    {
+      "slug": "artist:dj-dougal",
+      "type": "artist",
+      "name": "DJ Dougal"
+    },
+    {
+      "slug": "artist:darren-styles",
+      "type": "artist",
+      "name": "Darren Styles"
+    },
+    {
+      "slug": "artist:mark-breeze",
+      "type": "artist",
+      "name": "Mark Breeze"
+    },
+    {
+      "slug": "artist:scott-brown",
+      "type": "artist",
+      "name": "Scott Brown"
+    },
+    {
+      "slug": "artist:dougal",
+      "type": "artist",
+      "name": "Dougal"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

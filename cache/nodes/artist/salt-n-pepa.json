@@ -1,0 +1,396 @@
+{
+  "slug": "artist:salt-n-pepa",
+  "name": "Salt-N-Pepa",
+  "editorial_article": "Formed in New York City in 1985 by nursing students Cheryl James and Sandra Denton, the trio rose to prominence after their debut album, Hot, Cool & Vicious, became the first by a female rap act to achieve platinum certification. They initially operated under the name Super Nature, recording the answer record 'The Showstopper' for a class project produced by Hurby Azor. Throughout the 1990s, the group gained critical and commercial success with tracks like 'Shoop' and the En Vogue-assisted 'Whatta Man', eventually winning a 1995 Grammy for 'None of Your Business'. By challenging industry norms surrounding female sexuality in hip-hop, they secured their status as pioneering figures, leading to their 2025 induction into the Rock and Roll Hall of Fame for Musical Influence.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Salt-N-Pepa",
+      "title": "Salt-N-Pepa - Wikipedia"
+    },
+    {
+      "url": "https://hip-hop-music.fandom.com/wiki/Salt-n-Pepa",
+      "title": "Salt-n-Pepa - Hip Hop Wiki - Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:22.243Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering American hip-hop trio formed in New York City in 1985, recognized for being the first female rap act to earn platinum certification.",
+  "origin": "New York City, U.S.",
+  "active_years": "1985-2002, 2005-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    },
+    {
+      "slug": "genre:classic-hip-hop",
+      "type": "genre",
+      "name": "Classic Hip Hop",
+      "qid": "Q19879476"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:next-plateau",
+      "type": "label",
+      "name": "Next Plateau"
+    },
+    {
+      "slug": "label:london-records",
+      "type": "label",
+      "name": "London Records"
+    },
+    {
+      "slug": "label:red-ant",
+      "type": "label",
+      "name": "Red Ant"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It! (rework)",
+      "mbid": "1d95ffde-53d0-4ef5-8197-872b4170c80c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shoop-re-recorded",
+      "type": "project",
+      "name": "Shoop (Re‐Recorded) [Sped Up]",
+      "mbid": "908f4f1d-3804-425a-8a77-56b1749fd479",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It (Re-Recorded - Sped Up)",
+      "mbid": "e20fa76b-b805-4bea-865f-fc39e72bd90f",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It",
+      "mbid": "49f48f61-f391-4ca6-92b9-65d7dce94760",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It [Again]",
+      "mbid": "d6c3b7cc-477c-40ab-b166-b66abec85e7f",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-brick-track-versus-gitty-up",
+      "type": "project",
+      "name": "The Brick Track Versus Gitty Up",
+      "mbid": "bb372a64-d47a-4c0b-88e7-b11449a12a83",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gitty-up",
+      "type": "project",
+      "name": "Gitty Up",
+      "mbid": "e9e0b93d-1648-4e36-a193-fc4c47553105",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brand-new",
+      "type": "project",
+      "name": "Brand New",
+      "mbid": "09ae4cc8-d81e-32d8-82b9-1688fffdbdb3",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:r-u-ready",
+      "type": "project",
+      "name": "R U Ready",
+      "mbid": "a8b0ff9f-2de6-387c-854f-2952d317ad3a",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:champagne",
+      "type": "project",
+      "name": "Champagne",
+      "mbid": "0b37b177-7023-34e3-aeff-e8eabfabf146",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-nuthin-but-a-she-thing",
+      "type": "project",
+      "name": "Ain’t Nuthin’ but a She Thing",
+      "mbid": "9e89b209-1034-3d9b-95ec-7fbe7e42afc3",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:none-of-your-business",
+      "type": "project",
+      "name": "None of Your Business",
+      "mbid": "fa6c52d3-42ea-3271-a8fc-9c3146fd5fd5",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heaven-n-hell",
+      "type": "project",
+      "name": "Heaven ’n Hell",
+      "mbid": "87dfbe96-ddec-44a2-926a-06efe36f1dad",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:very-necessary",
+      "type": "project",
+      "name": "Very Necessary",
+      "mbid": "4ec41ccd-e2b5-3e7a-8a4b-33d143b601d9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shoop",
+      "type": "project",
+      "name": "Shoop",
+      "mbid": "f1f6a433-fef9-3ea8-8256-26a188c488b5",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whatta-man",
+      "type": "project",
+      "name": "Whatta Man",
+      "mbid": "3bd882dd-bf83-3ea8-abe9-ada9d71dc5f4",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:expression",
+      "type": "project",
+      "name": "Expression",
+      "mbid": "1cf892de-696c-437e-9c61-f522389f023c",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:start-me-up",
+      "type": "project",
+      "name": "Start Me Up",
+      "mbid": "acd08ebd-98e5-49ba-96de-806eaa05be65",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-you-want-me",
+      "type": "project",
+      "name": "Do You Want Me",
+      "mbid": "f8abd2e3-5ad6-407a-9639-f67736104188",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:backyard",
+      "type": "project",
+      "name": "Backyard",
+      "mbid": "8d913983-ff43-4cf8-b311-370cf400a433",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-talk-about-sex",
+      "type": "project",
+      "name": "Let’s Talk About Sex",
+      "mbid": "1a314175-74f6-34e6-a9ab-9721a11e0f29",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-talk-about-sex",
+      "type": "project",
+      "name": "Let's Talk About Sex (The Power Mix)",
+      "mbid": "8bd3d0d2-639b-41d2-b062-de0f61bcad42",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-showed-me",
+      "type": "project",
+      "name": "You Showed Me",
+      "mbid": "e45c11ff-d4e7-4f1c-9610-c9e8ef445a5c",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blacks-magic",
+      "type": "project",
+      "name": "Blacks’ Magic",
+      "mbid": "1530b3d2-8819-3662-96c5-73f92fa91923",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-salt-with-a-deadly-pepa",
+      "type": "project",
+      "name": "A Salt With a Deadly Pepa",
+      "mbid": "9c2051e3-7fbf-3c09-9bf4-4a0bb7e686c2",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-up-everybody-twist-and-shout",
+      "type": "project",
+      "name": "Get Up Everybody / Twist and Shout",
+      "mbid": "16ac2577-0b5f-4cc2-a0e9-0818c8fe7e89",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It",
+      "mbid": "335bab00-edc1-44b6-8ac3-5c741b02a53f",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twist-and-shout",
+      "type": "project",
+      "name": "Twist And Shout",
+      "mbid": "c19deddb-7fdd-4b68-857e-46adb7ef59fd",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-your-thang-spinderella-s-not-a-fella",
+      "type": "project",
+      "name": "Shake Your Thang / Spinderella’s Not a Fella (But a Girl DJ)",
+      "mbid": "c2b6de9c-f1fc-4a03-a4ef-397b126f0ad3",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-it",
+      "type": "project",
+      "name": "Push It",
+      "mbid": "76ab9454-a57c-3694-baaa-43a20881241c",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tramp",
+      "type": "project",
+      "name": "Tramp (remix)",
+      "mbid": "ebf6e73e-16b1-4875-94af-276a53ad8dad",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-cool-and-vicious",
+      "type": "project",
+      "name": "Hot, Cool & Vicious",
+      "mbid": "064a787b-9619-3b66-b5f6-606396df0354",
+      "year": "1986",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:push-it",
+      "type": "track",
+      "name": "Push It"
+    },
+    {
+      "slug": "track:shoop",
+      "type": "track",
+      "name": "Shoop"
+    },
+    {
+      "slug": "track:whatta-man",
+      "type": "track",
+      "name": "Whatta Man"
+    },
+    {
+      "slug": "track:let-s-talk-about-sex",
+      "type": "track",
+      "name": "Let's Talk About Sex"
+    },
+    {
+      "slug": "track:none-of-your-business",
+      "type": "track",
+      "name": "None of Your Business"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:en-vogue",
+      "type": "artist",
+      "name": "En Vogue"
+    },
+    {
+      "slug": "artist:hurby-azor",
+      "type": "artist",
+      "name": "Hurby Azor"
+    },
+    {
+      "slug": "artist:kid-n-play",
+      "type": "artist",
+      "name": "Kid 'n Play"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:super-nature",
+      "type": "artist",
+      "name": "Super Nature"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:cheryl-james",
+      "type": "artist",
+      "name": "Cheryl James"
+    },
+    {
+      "slug": "artist:sandra-denton",
+      "type": "artist",
+      "name": "Sandra Denton"
+    },
+    {
+      "slug": "artist:deidra-roper",
+      "type": "artist",
+      "name": "Deidra Roper"
+    },
+    {
+      "slug": "artist:latoya-hanson",
+      "type": "artist",
+      "name": "Latoya Hanson"
+    }
+  ]
+}

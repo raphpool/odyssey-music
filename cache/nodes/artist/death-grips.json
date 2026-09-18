@@ -1,0 +1,224 @@
+{
+  "slug": "artist:death-grips",
+  "name": "Death Grips",
+  "editorial_article": "Formed in Sacramento during the summer of 2010, Death Grips began their experimental hip-hop career with the December 2010 track \"Full Moon (Death Classic),\" which they noted coincided with a total lunar eclipse and the winter solstice. The trio—Stefan Burnett (MC Ride), Zach Hill, and Andy Morin—developed a reputation for chaotic, abrasive sound design and aggressive, high-energy performances. After signing with Epic Records in 2012, the band gained notoriety for leaking their second album, No Love Deep Web, via BitTorrent in defiance of the label's release schedule, ultimately leading to their departure from the company. Their discography is characterized by self-released mixtapes and albums often featuring unconventional sampling; for instance, Niggas on the Moon utilizes \"found object\" vocal samples from Björk, while the track \"Birds\" contains a guitar performance by Robert Pattinson recorded on an iPhone. Following a purported disbandment in 2014, the group returned to release records like 2016's Bottomless Pit and 2018's Year of the Snitch. In 2025, the band confirmed their continued activity, explicitly refuting rumors of a permanent break-up after an internal leak, and announced work on a new studio album in November of that year.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Death_Grips",
+      "title": "Death Grips"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:09.477Z",
+  "type": "artist",
+  "editorial_bio": "An experimental, industrial hip-hop trio from Sacramento known for their abrasive sound, cryptic release strategies, and anti-establishment approach to the music industry.",
+  "origin": "Sacramento, California",
+  "active_years": "2010-2014, 2015-present",
+  "genres": [
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:experimental-hip-hop",
+      "type": "genre",
+      "name": "Experimental Hip Hop",
+      "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial",
+      "qid": "Q487965"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:glitch-hop",
+      "type": "genre",
+      "name": "Glitch Hop",
+      "qid": "Q3108920"
+    },
+    {
+      "slug": "genre:industrial-hip-hop",
+      "type": "genre",
+      "name": "Industrial Hip Hop",
+      "qid": "Q2004156"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:third-worlds",
+      "type": "label",
+      "name": "Third Worlds"
+    },
+    {
+      "slug": "label:harvest",
+      "type": "label",
+      "name": "Harvest"
+    },
+    {
+      "slug": "label:epic",
+      "type": "label",
+      "name": "Epic"
+    },
+    {
+      "slug": "label:deathbomb-arc",
+      "type": "label",
+      "name": "Deathbomb Arc"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gmail-and-the-restraining-orders",
+      "type": "project",
+      "name": "Gmail and the Restraining Orders",
+      "mbid": "1a3bc18a-6d50-4a40-ad99-559740b2d29e",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:year-of-the-snitch",
+      "type": "project",
+      "name": "Year of the Snitch",
+      "mbid": "80172a28-bd94-4c89-b0a4-343fb0f9f6c2",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fashion-leaks-the-lost-tapes",
+      "type": "project",
+      "name": "Fashion Leaks - The Lost Tapes",
+      "mbid": "beb4582f-43c5-474a-ba1a-1c5a016d1d0f",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bottomless-pit",
+      "type": "project",
+      "name": "Bottomless Pit",
+      "mbid": "dd2012b3-3a21-4150-aff1-fcff86b409c9",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-powers-that-b",
+      "type": "project",
+      "name": "The Powers That B",
+      "mbid": "6a1c9684-18c6-4b43-bd15-6badbbdc0600",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:niggas-on-the-moon",
+      "type": "project",
+      "name": "Niggas on the Moon",
+      "mbid": "31b64b24-f7e1-4b20-b200-1d4de92993f6",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:government-plates",
+      "type": "project",
+      "name": "Government Plates",
+      "mbid": "a3136431-78ae-4a4e-845e-b0b39fd6f465",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-love-deep-web",
+      "type": "project",
+      "name": "No Love Deep Web",
+      "mbid": "dcdee807-7a10-44c6-8e33-36625d8579ba",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-money-store",
+      "type": "project",
+      "name": "The Money Store",
+      "mbid": "aa0b4e86-358e-4c92-aecd-94f5f59233f7",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:death-grips",
+      "type": "project",
+      "name": "Death Grips",
+      "mbid": "d5d08921-9397-49f6-a881-03788bb8daba",
+      "year": "2011",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:full-moon",
+      "type": "track",
+      "name": "Full Moon (Death Classic)"
+    },
+    {
+      "slug": "track:birds",
+      "type": "track",
+      "name": "Birds"
+    },
+    {
+      "slug": "track:hahaha",
+      "type": "track",
+      "name": "Hahaha"
+    },
+    {
+      "slug": "track:black-paint",
+      "type": "track",
+      "name": "Black Paint"
+    },
+    {
+      "slug": "track:streaky",
+      "type": "track",
+      "name": "Streaky"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:stefan-burnett",
+      "type": "artist",
+      "name": "Stefan Burnett"
+    },
+    {
+      "slug": "artist:zach-hill",
+      "type": "artist",
+      "name": "Zach Hill"
+    },
+    {
+      "slug": "artist:andy-morin",
+      "type": "artist",
+      "name": "Andy Morin"
+    }
+  ]
+}

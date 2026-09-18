@@ -1,0 +1,348 @@
+{
+  "slug": "artist:prince-buster",
+  "name": "Prince Buster",
+  "editorial_article": "Born Cecil Bustamente Campbell in Kingston, Jamaica, in 1938, Prince Buster became a central architect of ska and rocksteady music through his early production of tracks like the Folkes Brothers' 1961 hit 'Oh Carolina'. During the 1960s, he operated the 'Voice of the People' sound system and released influential singles on his own imprints, including the Blue Beat and Fab labels, featuring musicians like Ernest Ranglin and Rico Rodriguez. His UK chart presence was marked by the 1967 success of 'Al Capone', which reached number 18, and the 1998 hit 'Whine and Grine'. His output profoundly shaped the UK ska revival, with Madness deriving their name from his 1963 track 'Madness' and The Specials utilizing his compositions for their own work. In 2001, he received the Order of Distinction from the Jamaican government for his contributions to the country's musical heritage.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Prince_Buster",
+      "title": "Prince Buster - Wikipedia"
+    },
+    {
+      "url": "http://reggaelicious.pbworks.com/w/page/8800022/Prince%20Buster",
+      "title": "Reggaepedia / Prince Buster - PBworks"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:33.425Z",
+  "type": "artist",
+  "editorial_bio": "Jamaican singer, songwriter, and producer who helped define the sound of ska and rocksteady, leaving an enduring legacy on global music.",
+  "origin": "Kingston, Jamaica",
+  "active_years": "1961-2016",
+  "genres": [
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:blue-beat",
+      "type": "label",
+      "name": "Blue Beat"
+    },
+    {
+      "slug": "label:fab",
+      "type": "label",
+      "name": "Fab"
+    },
+    {
+      "slug": "label:melodisc",
+      "type": "label",
+      "name": "Melodisc"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:funky-jamaica",
+      "type": "project",
+      "name": "Funky Jamaica",
+      "mbid": "cecf12a7-6313-4886-855c-be803273390d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roll-on-charles-street",
+      "type": "project",
+      "name": "Roll on Charles Street",
+      "mbid": "2c1f00a7-d4b6-4dd5-a4d7-f707c59b02ec",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-and-rocksteady-collection-vol-11",
+      "type": "project",
+      "name": "Ska and Rocksteady Collection, Vol. 11",
+      "mbid": "568ba378-5738-4db4-b8de-a10800732771",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-rocksteady-collection-vol-8",
+      "type": "project",
+      "name": "Ska / Rocksteady Collection, Vol. 8",
+      "mbid": "6a88a816-65e6-433e-8311-cc46dfbc7c1c",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-rocksteady-collection-vol-7",
+      "type": "project",
+      "name": "Ska / Rocksteady Collection, Vol. 7",
+      "mbid": "30f3e16d-7fd6-43e2-a14a-794aa53da4a5",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sister-big-stuff",
+      "type": "project",
+      "name": "Sister Big Stuff",
+      "mbid": "817218f8-e172-4960-a7d4-61aab3b25dc9",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-feel-the-spirit",
+      "type": "project",
+      "name": "I Feel The Spirit",
+      "mbid": "7b81400e-f204-4c1c-9b88-098a6d112ffb",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whine-and-grine",
+      "type": "project",
+      "name": "Whine and Grine",
+      "mbid": "2c83af01-8988-35dc-a135-76c0c693698f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:judge-dread-rock-steady-she-was-a-rough-rider",
+      "type": "project",
+      "name": "Judge Dread Rock Steady / She Was a Rough Rider",
+      "mbid": "192340d1-f203-324a-9257-070a54f9dd8e",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:judge-dread-rock-steady",
+      "type": "project",
+      "name": "Judge Dread Rock Steady",
+      "mbid": "a68598d2-a071-4c9f-a524-805d78aa5107",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wreck-a-pum-pum",
+      "type": "project",
+      "name": "Wreck a Pum Pum",
+      "mbid": "2559f040-120d-3b28-82ba-13905fb48509",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sister-big-stuff",
+      "type": "project",
+      "name": "Sister Big Stuff",
+      "mbid": "3f440b9b-3e52-4cc8-9ca4-5b9ae0656710",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-message-dub-wise",
+      "type": "project",
+      "name": "The Message Dub Wise",
+      "mbid": "57fdd32d-cc3c-4404-abd6-fde96703f1d2",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-five",
+      "type": "project",
+      "name": "Big Five",
+      "mbid": "8e782569-bd8f-48f3-bda2-0636f45ab1bf",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-outlaw",
+      "type": "project",
+      "name": "The Outlaw",
+      "mbid": "c5920d89-e2cd-4c98-955e-af41a57b0ca1",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:she-was-a-rough-rider",
+      "type": "project",
+      "name": "She Was a Rough Rider",
+      "mbid": "18eba506-f79c-31f9-90ab-fb3da039b2f0",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tutti-frutti",
+      "type": "project",
+      "name": "Tutti Frutti",
+      "mbid": "4279bb1f-9205-4c3e-85b3-2705d8ba74c1",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jamaica-s-pride-rock-steady-hush-up",
+      "type": "project",
+      "name": "Jamaica’s Pride (Rock Steady) Hush Up",
+      "mbid": "4015f016-dce3-4ec8-b5c9-c48ebe10e2a4",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-a-hard-man-fe-dead",
+      "type": "project",
+      "name": "What a Hard Man Fe Dead",
+      "mbid": "d390446b-5938-3994-ae8e-6d3ae31247e6",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shaking-up-orange-street-black-girl",
+      "type": "project",
+      "name": "Shaking Up Orange Street / Black Girl",
+      "mbid": "a7d5eef8-1e4e-496d-92cf-b10ccc2eb49f",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rum-and-coca-cola-and-i-love-her",
+      "type": "project",
+      "name": "Rum And Coca Cola / And I Love Her (Tenderly)",
+      "mbid": "dbc2a063-94a9-4f5c-b680-df5ae7cbdffc",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:national-ska-pain-in-my-belly",
+      "type": "project",
+      "name": "National Ska: Pain In My Belly",
+      "mbid": "4472fe7f-9652-4ca5-bc85-996064094eea",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:old-lady-dayo-ska",
+      "type": "project",
+      "name": "Old Lady / Dayo Ska",
+      "mbid": "5c22f615-2e48-4e59-a2a0-f187041ea1a6",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-loves-me-healing",
+      "type": "project",
+      "name": "She Loves Me / Healing",
+      "mbid": "6192a008-61e7-41f0-a1cb-ef30bc474e4d",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-feel-the-spirit",
+      "type": "project",
+      "name": "I Feel the Spirit",
+      "mbid": "fa540f9e-4f56-43b6-9d21-a81a47b7be24",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-longer-than-rope-believe-kill-believe-cure",
+      "type": "project",
+      "name": "Time Longer Than Rope / Believe Kill Believe Cure",
+      "mbid": "0ea359cf-1617-4563-8292-33fb5bfa84fe",
+      "year": "1962",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-longer-than-rope-fake-king",
+      "type": "project",
+      "name": "Time Longer Than Rope / Fake King",
+      "mbid": "92e49ca5-21b1-408f-968b-301fa8a1d2b8",
+      "year": "1962",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:africa-islam-revolution",
+      "type": "project",
+      "name": "Africa - Islam - Revolution",
+      "mbid": "3a2f1212-5c5d-44a1-8528-d751bc457b82",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-feel-the-spirit",
+      "type": "project",
+      "name": "I Feel The Spirit",
+      "mbid": "ce656eb4-442c-4c3c-ba6a-bdf84ec99e22",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:al-capone",
+      "type": "track",
+      "name": "Al Capone"
+    },
+    {
+      "slug": "track:one-step-beyond",
+      "type": "track",
+      "name": "One Step Beyond"
+    },
+    {
+      "slug": "track:madness",
+      "type": "track",
+      "name": "Madness"
+    },
+    {
+      "slug": "track:whine-and-grine",
+      "type": "track",
+      "name": "Whine and Grine"
+    },
+    {
+      "slug": "track:wash-wash",
+      "type": "track",
+      "name": "Wash Wash"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:the-clovers",
+      "type": "artist",
+      "name": "The Clovers"
+    },
+    {
+      "slug": "artist:fats-domino",
+      "type": "artist",
+      "name": "Fats Domino"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:ernest-ranglin",
+      "type": "artist",
+      "name": "Ernest Ranglin"
+    },
+    {
+      "slug": "artist:rico-rodriguez",
+      "type": "artist",
+      "name": "Rico Rodriguez"
+    },
+    {
+      "slug": "artist:the-skatalites",
+      "type": "artist",
+      "name": "The Skatalites"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:prince-buster",
+      "type": "artist",
+      "name": "Prince Buster"
+    }
+  ]
+}

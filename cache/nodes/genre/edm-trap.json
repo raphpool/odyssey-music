@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A high-energy electronic dance music subgenre that fuses the rhythmic and percussive vocabulary of Southern hip-hop with the structural tropes and maximalist production techniques of EDM.",
+  "qid": "Q47781397",
   "era": "2011–present",
   "origin": "USA and France",
   "parent_genres": [],
@@ -57,6 +58,18 @@
       "type": "genre",
       "name": "Bass House",
       "qid": "Q27345019"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:drill",
+      "type": "genre",
+      "name": "Drill",
+      "qid": "Q15697534"
     }
   ],
   "key_artists": [
@@ -120,6 +133,5 @@
       "type": "track",
       "name": "Get Low"
     }
-  ],
-  "qid": "Q47781397"
+  ]
 }

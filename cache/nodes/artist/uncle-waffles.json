@@ -1,0 +1,159 @@
+{
+  "slug": "artist:uncle-waffles",
+  "name": "Uncle Waffles",
+  "editorial_article": "Swazi-born DJ and producer Lungelihle Zwane, known professionally as Uncle Waffles, rose to international prominence after a video of her dancing to Young Stunna's 'Adiwele' went viral in October 2021. Based in South Africa, she emerged from the local amapiano scene after practicing on fifteen-year-old decks at Eswatini TV, where she once worked as a presenter. Her debut single 'Tanzania', released in March 2022, reached number one in South Africa and earned seven platinum certifications. In April 2023, she became the first amapiano artist to perform at the Coachella Valley Music and Arts Festival. Her discography includes the EPs 'Red Dragon' (2022), 'Asylum' (2023), and 'Solace' (2023), with 'Asylum' achieving gold status from the Recording Industry of South Africa within a week of its release.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Uncle_Waffles",
+      "title": "Uncle Waffles - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:14:04.661Z",
+  "type": "artist",
+  "editorial_bio": "Swazi-born DJ and producer recognized as a global ambassador for the South African amapiano genre.",
+  "origin": "Eswatini",
+  "active_years": "2020-present",
+  "genres": [
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:afro-house",
+      "type": "genre",
+      "name": "Afro House",
+      "qid": "Q388100"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:kreativekornerr",
+      "type": "label",
+      "name": "Kreativekornerr"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:4-da-streets",
+      "type": "project",
+      "name": "4 Da Streets!",
+      "mbid": "b85ceadc-aef6-475a-9c1d-30e891c2d440",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:4-da-ho-s",
+      "type": "project",
+      "name": "4 Da Ho's",
+      "mbid": "b49a3cb1-7972-424d-8a98-d8a8cde5f4cd",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wadibusa",
+      "type": "project",
+      "name": "Wadibusa",
+      "mbid": "0445dcde-f550-458c-a70d-9906165f5f0c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tanzania",
+      "type": "project",
+      "name": "Tanzania (Rampa Remix)",
+      "mbid": "7c7b9646-ef81-45b8-a8bf-eb40f20e7164",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solace",
+      "type": "project",
+      "name": "Solace",
+      "mbid": "a996dfdb-e80c-423e-95ca-30cbe2afd3e4",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asylum",
+      "type": "project",
+      "name": "ASYLUM",
+      "mbid": "dc13dfca-4513-422b-b13f-4f98c751e7c9",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yahyuppiyah",
+      "type": "project",
+      "name": "Yahyuppiyah",
+      "mbid": "6b14b2f0-05d9-4015-be66-bde26e8bccdf",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-dragon-ep",
+      "type": "project",
+      "name": "Red Dragon - EP",
+      "mbid": "104e432d-2c62-4981-a136-f211b5524055",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tanzania",
+      "type": "project",
+      "name": "Tanzania",
+      "mbid": "1a4e5cc5-2a0f-4744-b277-0f4c3d8c7df1",
+      "year": "2022",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tanzania",
+      "type": "track",
+      "name": "Tanzania"
+    },
+    {
+      "slug": "track:yahyuppiyah",
+      "type": "track",
+      "name": "Yahyuppiyah"
+    },
+    {
+      "slug": "track:echoes",
+      "type": "track",
+      "name": "Echoes"
+    },
+    {
+      "slug": "track:wadibusa",
+      "type": "track",
+      "name": "Wadibusa"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:young-stunna",
+      "type": "artist",
+      "name": "Young Stunna"
+    },
+    {
+      "slug": "artist:dj-maphorisa",
+      "type": "artist",
+      "name": "DJ Maphorisa"
+    },
+    {
+      "slug": "artist:focalistic",
+      "type": "artist",
+      "name": "Focalistic"
+    },
+    {
+      "slug": "artist:tony-duardo",
+      "type": "artist",
+      "name": "Tony Duardo"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

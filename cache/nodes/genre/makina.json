@@ -1,0 +1,109 @@
+{
+  "slug": "genre:makina",
+  "name": "Makina",
+  "editorial_article": "Mákina emerged in early 1990s Valencia, Spain, as a high-tempo evolution of the local bakalao scene, blending elements of bouncy techno, hard trance, and Eurodance. Producers frequently utilize synthesizers, sequencers, and samplers to achieve its characteristic 150-180 BPM energy. The genre achieved mainstream chart success in Spain during the mid-1990s with hits like Chimo Bayo's 1991 anthem 'Así me gusta a mí' and EX-3's chart-topping singles 'Extres' and 'Ex-P-Cial'. While rooted in Mediterranean club culture, the sound underwent a distinct cultural transplantation to the United Kingdom, becoming a staple of the rave scenes in North East England and Scotland. Its international visibility was further expanded when Newton's track 'Streamline' was featured in a 2006 Pepsi television advertisement starring Jimmy Fallon.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/M%C3%A1kina",
+      "title": "Mákina - Wikipedia"
+    },
+    {
+      "url": "https://harddance.fandom.com/wiki/Makina",
+      "title": "Makina - Hard Dance Wiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:00:03.370Z",
+  "type": "genre",
+  "editorial_definition": "A high-tempo electronic dance genre originating in Spain, characterized by bouncy, euphoric melodies and 150-180 BPM rhythms.",
+  "qid": "Q3048168",
+  "era": "early 1990s to present",
+  "origin": "Valencia, Spain",
+  "sonic_markers": "150-180 BPM, synthesizer-heavy, over-the-top happy melodies, hard trance influence",
+  "parent_genres": [
+    {
+      "slug": "genre:hard-dance",
+      "type": "genre",
+      "name": "Hard Dance",
+      "qid": "Q1033912"
+    },
+    {
+      "slug": "genre:hard-techno",
+      "type": "genre",
+      "name": "Hard Techno",
+      "qid": "Q3084222"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hardcore-techno",
+      "type": "genre",
+      "name": "Hardcore techno"
+    },
+    {
+      "slug": "genre:bouncy-techno",
+      "type": "genre",
+      "name": "Bouncy techno",
+      "qid": "Q3066180"
+    },
+    {
+      "slug": "genre:hard-trance",
+      "type": "genre",
+      "name": "Hard trance",
+      "qid": "Q832665"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:chimo-bayo",
+      "type": "artist",
+      "name": "Chimo Bayo"
+    },
+    {
+      "slug": "artist:ex-3",
+      "type": "artist",
+      "name": "EX-3"
+    },
+    {
+      "slug": "artist:newton",
+      "type": "artist",
+      "name": "Newton"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:bit-music",
+      "type": "label",
+      "name": "Bit Music"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:asi-me-gusta-a-mi",
+      "type": "track",
+      "name": "Así me gusta a mí"
+    },
+    {
+      "slug": "track:extres",
+      "type": "track",
+      "name": "Extres"
+    },
+    {
+      "slug": "track:ex-p-cial",
+      "type": "track",
+      "name": "Ex-P-Cial"
+    },
+    {
+      "slug": "track:streamline",
+      "type": "track",
+      "name": "Streamline"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "slug": "artist:khuli-chana",
+  "name": "Khuli Chana",
+  "editorial_article": "Born in Mmabatho in 1982, Khuli Chana rose to prominence as a central figure in the Motswako movement, a hip-hop style defined by its blend of English and Setswana. He initially gained recognition as a member of the rap group Morafe before embarking on a solo career that yielded the acclaimed album Motswakoriginator. His work frequently centers on this specific Mahikeng-born cultural sound. In 2013, he survived a high-profile incident involving the South African police, which led to a legal settlement. Beyond his studio output, he has functioned as an ambassador for brands like Absolut and performed as an opening act for international artists, including Drake.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Khuli_Chana",
+      "title": "Khuli Chana - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:54.303Z",
+  "type": "artist",
+  "editorial_bio": "Khuli Chana is a pioneering Motswako rapper from Mahikeng, South Africa, known for blending English and Setswana across his influential discography.",
+  "origin": "Mmabatho, South Africa",
+  "active_years": "1992-present",
+  "genres": [
+    {
+      "slug": "genre:motswako",
+      "type": "genre",
+      "name": "Motswako",
+      "qid": "Q6918602"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mythrone-records",
+      "type": "label",
+      "name": "Mythrone Records"
+    },
+    {
+      "slug": "label:raw-x-studios",
+      "type": "label",
+      "name": "Raw X Studios"
+    },
+    {
+      "slug": "label:blurg-sa",
+      "type": "label",
+      "name": "BLURG_SA"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:money",
+      "type": "project",
+      "name": "Money",
+      "mbid": "66691562-9460-4d1c-984c-69936c8b6956",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baddest",
+      "type": "project",
+      "name": "Baddest",
+      "mbid": "d21aef4a-dfdd-4544-9abd-c8c7e48dc694",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-lie",
+      "type": "project",
+      "name": "No Lie",
+      "mbid": "97c01c21-7aec-44a1-a44f-40019f4d6897",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mahamba-yedwa",
+      "type": "project",
+      "name": "Mahamba Yedwa",
+      "mbid": "44f9451d-9d8e-4847-a9bf-64a8ba16e124",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hape-le-hape-pt-2",
+      "type": "project",
+      "name": "Hape Le Hape, Pt. 2",
+      "mbid": "5e54efc1-522a-440c-bba7-d014bebf822b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-in-time",
+      "type": "project",
+      "name": "Lost in Time",
+      "mbid": "796f2fe6-28a4-40ae-96db-145bb73b0465",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hazzadazmove",
+      "type": "project",
+      "name": "HazzadazMove",
+      "mbid": "38813fcb-6dda-4b54-be36-71577fa971c7",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-mostwakoriginator-e-s-t-2009",
+      "type": "project",
+      "name": "The MostwakOriginator e.s.t. 2009",
+      "mbid": "9cc10fa0-19e1-4677-ac26-37e4a579c01b",
+      "year": "2010",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:hape-le-hape-2-1",
+      "type": "track",
+      "name": "Hape Le Hape 2.1"
+    },
+    {
+      "slug": "track:never-grow-up",
+      "type": "track",
+      "name": "Never Grow Up"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:da-l-e-s",
+      "type": "artist",
+      "name": "Da L.E.S"
+    },
+    {
+      "slug": "artist:magesh",
+      "type": "artist",
+      "name": "Magesh"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -1,0 +1,636 @@
+{
+  "slug": "artist:de-la-soul",
+  "name": "De La Soul",
+  "editorial_article": "Formed in 1988 in the Amityville area of Long Island, New York, the hip-hop trio De La Soul gained early acclaim for their eccentric lyrics and eclectic sampling. Comprising Kelvin 'Posdnuos' Mercer, David 'Trugoy the Dove' Jolicoeur, and Vincent 'Maseo' Mason, the group captured the attention of producer Prince Paul with a demo tape of their track 'Plug Tunin''. Their debut studio album, 1989's 3 Feet High and Rising, remains a defining piece of alternative hip-hop, featuring the hit 'Me Myself and I'. A vital component of the Native Tongues Posse, the trio helped push jazz rap forward while maintaining a distinct, constantly shifting style. Over their lengthy career, they have released 10 studio albums, including the cult classic De La Soul Is Dead, which famously signaled the end of their 'D.A.I.S.Y. Age' imagery. In 2006, they earned their first Grammy Award for their collaboration with Gorillaz on the track 'Feel Good Inc.'. Despite long-standing legal disputes with Tommy Boy Records that kept their catalog off streaming services for years, the group regained ownership of their masters and achieved a major digital re-release in 2023. Their 2025 release, Cabin in the Sky, features collaborations with artists including Common, Black Thought, and Nas.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/De_La_Soul",
+      "title": "De La Soul - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:30.237Z",
+  "type": "artist",
+  "editorial_bio": "An influential East Coast hip-hop trio from Long Island known for their creative sampling, jazz rap experimentation, and long-standing membership in the Native Tongues collective.",
+  "origin": "Amityville, Long Island, New York",
+  "active_years": "1988-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious Hip Hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom Bap",
+      "qid": "Q529742"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:tommy-boy",
+      "type": "label",
+      "name": "Tommy Boy"
+    },
+    {
+      "slug": "label:mass-appeal",
+      "type": "label",
+      "name": "Mass Appeal"
+    },
+    {
+      "slug": "label:chrysalis",
+      "type": "label",
+      "name": "Chrysalis"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:cabin-in-the-sky",
+      "type": "project",
+      "name": "Cabin in the Sky",
+      "mbid": "05e414ac-82dd-4fbd-bd85-a6d294c8a1df",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:day-in-the-sun",
+      "type": "project",
+      "name": "Day in the Sun (Gettin’ Wit U)",
+      "mbid": "6110f457-990b-4a7d-b1f8-a91b29af0f05",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-package",
+      "type": "project",
+      "name": "The Package",
+      "mbid": "9b246ab1-9346-4a2a-9edf-ed6de05142e4",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigger-respect",
+      "type": "project",
+      "name": "Bigger / Respect",
+      "mbid": "a98be2c9-5d1d-4519-9afd-ec9639fdac41",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:doo-good-in-church",
+      "type": "project",
+      "name": "Doo Good in Church (skit)",
+      "mbid": "5a6064eb-68aa-4465-aa69-bf54438d64b5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigger",
+      "type": "project",
+      "name": "Bigger",
+      "mbid": "5b37c13f-6ed9-4143-8513-71fb14d3c06e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom-of-speak",
+      "type": "project",
+      "name": "Freedom of Speak (We Got Three Minutes)",
+      "mbid": "55a2055a-accd-41ec-94d7-2892b5d883c6",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:long-in-the-tooth",
+      "type": "project",
+      "name": "LONG in the tOOth",
+      "mbid": "d1f20a12-4a5f-428f-b0e9-6f4e7decb277",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trying-people",
+      "type": "project",
+      "name": "Trying People (Single Mix)",
+      "mbid": "17ac9f12-63f6-40f1-8464-1722fda9ebf3",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:buddy",
+      "type": "project",
+      "name": "Buddy",
+      "mbid": "8fff6f08-508a-4cca-9116-bc97490a6e02",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-magic-number",
+      "type": "project",
+      "name": "The Magic Number",
+      "mbid": "a091cadd-d1ba-48aa-9848-8f3a6e8bda62",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:remove-45",
+      "type": "project",
+      "name": "Remove 45",
+      "mbid": "b1d2e3d7-dda1-4a73-8144-b5c3c657be6e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-like-that",
+      "type": "project",
+      "name": "It's Like That",
+      "mbid": "91bf9447-b6b3-47e9-9ece-4da636fc2775",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rocket-fuel",
+      "type": "project",
+      "name": "Rocket Fuel",
+      "mbid": "277d92a7-09d3-4d4c-8782-3cb0b097e9f3",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-runs-through-me",
+      "type": "project",
+      "name": "It Runs Through Me",
+      "mbid": "5d7ea257-ff15-45f4-9100-740d0e2ed263",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:greyhounds",
+      "type": "project",
+      "name": "Greyhounds",
+      "mbid": "04be7619-95c6-457e-9b37-a22deef1cda8",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:and-the-anonymous-nobody",
+      "type": "project",
+      "name": "and the Anonymous Nobody…",
+      "mbid": "35a495da-d003-4457-87e0-934de0274351",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:action",
+      "type": "project",
+      "name": "Action!",
+      "mbid": "25255b1f-71b0-4ce4-8600-6ac7154e6b99",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pain",
+      "type": "project",
+      "name": "Pain",
+      "mbid": "0a236182-96c0-452c-8f03-349091e0922d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sho-nuff",
+      "type": "project",
+      "name": "Sho Nuff",
+      "mbid": "d7340e40-972e-4c39-9ea1-d5116579ab6e",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-your-pain-and-suffering",
+      "type": "project",
+      "name": "For Your Pain & Suffering",
+      "mbid": "4bd83232-dcf3-4081-982c-5b8ea6d9c588",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:god-it",
+      "type": "project",
+      "name": "God It",
+      "mbid": "d9943837-3801-464c-a6fd-3f573504313f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-people",
+      "type": "project",
+      "name": "The People",
+      "mbid": "23fee4e4-9db4-4e58-ba6a-3dc82ef9fd52",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-away",
+      "type": "project",
+      "name": "Get Away",
+      "mbid": "6d8cd243-2ba8-4a7b-92f6-607b959d77ea",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-impossible-mission-tv-series-part-1",
+      "type": "project",
+      "name": "The Impossible: Mission TV Series, Part 1",
+      "mbid": "253c5cba-72f0-302f-89e0-4033a2caa200",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:forever",
+      "type": "project",
+      "name": "Forever",
+      "mbid": "38ffbdfb-ad4f-4051-98d8-06ba2396ca7d",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-co-kane-flow",
+      "type": "project",
+      "name": "Rock Co.Kane Flow",
+      "mbid": "52010dbd-a491-3346-b4e5-8e4aeabdcd84",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shopping-bags",
+      "type": "project",
+      "name": "Shopping Bags (She Got From You)",
+      "mbid": "c288a37b-7bc1-3850-951a-76979852a07f",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-grind-date",
+      "type": "project",
+      "name": "The Grind Date",
+      "mbid": "07813cf3-f9bc-3ace-8f19-bf70027e990c",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:days-off",
+      "type": "project",
+      "name": "Days Off",
+      "mbid": "64b9e472-f8d4-3e7e-b72f-36e80a038415",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-grind-date",
+      "type": "project",
+      "name": "The Grind Date",
+      "mbid": "7cc268c4-354e-45a2-95a2-8309ae352742",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-you-gotta-believe",
+      "type": "project",
+      "name": "Say You Gotta Believe",
+      "mbid": "711e0538-b249-31a5-a1b8-513d73ed0ce0",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aoi-bionix",
+      "type": "project",
+      "name": "AOI: Bionix",
+      "mbid": "9da4af15-91a8-3296-b06e-09dfc0741ca5",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thru-ya-city",
+      "type": "project",
+      "name": "Thru Ya City",
+      "mbid": "61bbb8bd-38df-4404-b171-4e39c8d3113a",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-phat",
+      "type": "project",
+      "name": "Baby Phat",
+      "mbid": "a45fc49d-7aab-437f-95b9-e8aba04d33f8",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:art-official-intelligence-mosaic-thump",
+      "type": "project",
+      "name": "Art Official Intelligence: Mosaic Thump",
+      "mbid": "890ffb8b-1bee-3d47-a961-25af50cb2468",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oooh",
+      "type": "project",
+      "name": "Oooh.",
+      "mbid": "12cd363e-8362-491e-90e4-14f6a77ad1b3",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-on",
+      "type": "project",
+      "name": "Keep On",
+      "mbid": "d8168697-befa-3550-a110-2998d8d1236a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-good",
+      "type": "project",
+      "name": "All Good?",
+      "mbid": "32ce4274-8667-33e2-943d-e20dce69b95a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:squat",
+      "type": "project",
+      "name": "Squat!",
+      "mbid": "7aae1e22-e01d-44c1-bd88-9b5a477def51",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-than-u-know",
+      "type": "project",
+      "name": "More Than U Know",
+      "mbid": "a59a3959-191e-4154-a210-f1706e584822",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:itzsoweezee",
+      "type": "project",
+      "name": "Itzsoweezee (Hot)",
+      "mbid": "2e6a2676-4ee1-4c50-8142-5aadd40222cb",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stakes-is-high",
+      "type": "project",
+      "name": "Stakes Is High",
+      "mbid": "2a6020bf-93bf-384f-8378-af380159261d",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-supa-sweet-stakes-baby",
+      "type": "project",
+      "name": "More Supa Sweet Stakes, Baby",
+      "mbid": "c1f79e51-4010-45fa-8f38-a8850172ed94",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stakes-is-high",
+      "type": "project",
+      "name": "Stakes Is High",
+      "mbid": "77ee68c1-d0bc-3315-a296-a3cee977d1e3",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-more",
+      "type": "project",
+      "name": "4 More",
+      "mbid": "b4d749d2-ff09-4e82-9d61-c99b130a622e",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:clear-lake-audiotorium",
+      "type": "project",
+      "name": "Clear Lake Audiotorium",
+      "mbid": "3b426413-5b99-36b4-9ee9-19064b1a144c",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ego-trippin",
+      "type": "project",
+      "name": "Ego Trippin' (Part Two)",
+      "mbid": "721d737e-8d5d-3db2-ac0b-1f062d9b6f28",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:buhloone-mind-state",
+      "type": "project",
+      "name": "Buhlo͞one Mind State",
+      "mbid": "898a6a79-9ff1-3913-814a-4514bfbff609",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:breakadawn-lovely-how-i-let-my-mind-float",
+      "type": "project",
+      "name": "Breakadawn / Lovely How I Let My Mind Float",
+      "mbid": "31e1227d-4cda-451c-8688-73f170e5be83",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fallin",
+      "type": "project",
+      "name": "Fallin'",
+      "mbid": "87eaf675-d579-3ef6-b631-859e858e6310",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breakadawn",
+      "type": "project",
+      "name": "Breakadawn",
+      "mbid": "d8aa751a-acfd-3768-8c9a-d17890a3f439",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:millie-pulled-a-pistol-on-santa-keepin-the-faith",
+      "type": "project",
+      "name": "Millie Pulled a Pistol on Santa / Keepin’ the Faith",
+      "mbid": "edb59327-f0bc-4c7a-8089-d38722ce6c42",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keepin-the-faith",
+      "type": "project",
+      "name": "Keepin' the Faith",
+      "mbid": "3f1fb212-9eee-4376-b5f4-43ad46dc9871",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-roller-skating-jam-named-saturdays",
+      "type": "project",
+      "name": "A Roller Skating Jam Named “Saturdays”",
+      "mbid": "fff47feb-b24b-35ce-83d4-008d4b0a8573",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-la-soul-is-dead",
+      "type": "project",
+      "name": "De La Soul Is Dead",
+      "mbid": "0be4cdd5-ed37-3842-82ba-7f9983a34473",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ring-ring-ring",
+      "type": "project",
+      "name": "Ring Ring Ring (Ha Ha Hey)",
+      "mbid": "61850cd3-0c11-3ec3-868f-85d44df4897c",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mama-gave-birth-to-the-soul-children",
+      "type": "project",
+      "name": "Mama Gave Birth to the Soul Children",
+      "mbid": "ccb0dfb5-0db6-3a59-a2a8-618f56f108bd",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-magic-number-buddy",
+      "type": "project",
+      "name": "The Magic Number / Buddy",
+      "mbid": "7d99eddf-6a2b-43eb-8629-33c2f83bd630",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eye-know",
+      "type": "project",
+      "name": "Eye Know",
+      "mbid": "3e0815e2-efea-4b26-8249-1850002d141f",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-no-go",
+      "type": "project",
+      "name": "Say No Go",
+      "mbid": "6385f196-83ec-33b3-8860-bf6647d44f86",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3-feet-high-and-rising",
+      "type": "project",
+      "name": "3 Feet High and Rising",
+      "mbid": "5243f39c-c344-3989-a0f6-2a2f75a9d827",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:buddy-ghetto-thang",
+      "type": "project",
+      "name": "Buddy / Ghetto Thang",
+      "mbid": "00f3344e-9e88-34b2-af47-d4a7160c5d13",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-myself-and-i",
+      "type": "project",
+      "name": "Me Myself and I",
+      "mbid": "3e045e1a-6622-38e6-8839-8df620d8f685",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:plug-tunin-freedom-of-speak",
+      "type": "project",
+      "name": "Plug Tunin’ / Freedom of Speak",
+      "mbid": "7bd77e8e-fc62-3cfb-b7e3-b592aadfdc46",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jenifa-taught-me-potholes-in-my-lawn",
+      "type": "project",
+      "name": "Jenifa (Taught Me) / Potholes in My Lawn",
+      "mbid": "bd159324-3922-43cd-b024-8922a33910a1",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gems",
+      "type": "project",
+      "name": "Gems",
+      "mbid": "2c2e0911-7e79-37bb-9913-e7e30a468ae2",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:name-and-number",
+      "type": "project",
+      "name": "Name and Number",
+      "mbid": "d471d295-a7d3-425d-92c6-41329393435c",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:me-myself-and-i",
+      "type": "track",
+      "name": "Me Myself and I"
+    },
+    {
+      "slug": "track:ring-ring-ring",
+      "type": "track",
+      "name": "Ring Ring Ring (Ha Ha Hey)"
+    },
+    {
+      "slug": "track:feel-good-inc",
+      "type": "track",
+      "name": "Feel Good Inc."
+    },
+    {
+      "slug": "track:stakes-is-high",
+      "type": "track",
+      "name": "Stakes Is High"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

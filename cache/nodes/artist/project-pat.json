@@ -1,0 +1,449 @@
+{
+  "slug": "artist:project-pat",
+  "name": "Project Pat",
+  "editorial_article": "Born Patrick Earl Houston in 1973 in North Memphis, Tennessee, this pivotal figure in the Southern hip-hop landscape emerged as a core affiliate of Three 6 Mafia. His debut studio album Ghetty Green arrived in 1999 via his brother Juicy J's label Hypnotize Minds. He gained significant national recognition in 2000 by providing the hook for the Three 6 Mafia hit single Sippin' on Some Syrup. His 2001 release Mista Don't Play: Everythangs Workin featured the radio singles Chickenhead and Don't Save Her, which earned rotation on BET and MTV. Beyond his discography, Houston is an active philanthropist who leads the Collierville-based Go Foundation and conducts prison ministry sessions at facilities like the West TN State Penitentiary. In 2021, his contribution to Drake's Certified Lover Boy on the track Knife Talk reached number 4 on the Billboard Hot 100 chart. He has recorded across a wide array of labels including Loud, E1, and Taylor Gang, while maintaining his roots in the Memphis rap sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Project_Pat",
+      "title": "Project Pat - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:41.642Z",
+  "type": "artist",
+  "editorial_bio": "A cornerstone of Memphis rap and an influential member of the Hypnotize Camp Posse, Project Pat is known for his signature flow and collaborations with Three 6 Mafia.",
+  "origin": "Memphis, Tennessee",
+  "active_years": "1991-present",
+  "genres": [
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hypnotize-minds",
+      "type": "label",
+      "name": "Hypnotize Minds"
+    },
+    {
+      "slug": "label:loud-records",
+      "type": "label",
+      "name": "Loud Records"
+    },
+    {
+      "slug": "label:e1-music",
+      "type": "label",
+      "name": "E1 Music"
+    },
+    {
+      "slug": "label:taylor-gang-records",
+      "type": "label",
+      "name": "Taylor Gang Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dem-goats",
+      "type": "project",
+      "name": "Dem Goats",
+      "mbid": "2a4a8fc5-773e-4c5b-be4d-8cfb034c8cec",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:psychward",
+      "type": "project",
+      "name": "PSYCHWARD",
+      "mbid": "9a0e9bb5-7c97-4f3a-bd4a-733bdfc3e609",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:flashlight",
+      "type": "project",
+      "name": "Flashlight",
+      "mbid": "90911168-aae7-4f1e-87a3-d4a9b84e3e3f",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iced-tea",
+      "type": "project",
+      "name": "ICED TEA",
+      "mbid": "e2136205-0516-48aa-a871-94e9957a6664",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-the-god-law",
+      "type": "project",
+      "name": "THAT'S THE GOD LAW",
+      "mbid": "66cbfa8b-aac4-4725-8329-db38eb0c027d",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:f-o-f",
+      "type": "project",
+      "name": "F.O.F.",
+      "mbid": "4ab59120-b6b7-4e78-a76a-bab30136d5ba",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:guns-n-roses-reloaded",
+      "type": "project",
+      "name": "Guns n Roses Reloaded",
+      "mbid": "b7c3861c-aded-4198-8163-526b2a164c55",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-stealer",
+      "type": "project",
+      "name": "SOUL STEALER",
+      "mbid": "eb37269e-b4ad-47ae-8b85-835678c27cac",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-story",
+      "type": "project",
+      "name": "My Story",
+      "mbid": "47d60d45-97d7-487e-9645-4523ec6988a6",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:backseat",
+      "type": "project",
+      "name": "Backseat",
+      "mbid": "8ad34bed-9e3f-4300-b00a-24595d0636aa",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:krazy",
+      "type": "project",
+      "name": "Krazy",
+      "mbid": "c52fed0f-4086-40df-a1e1-596cf1efa0bc",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:carolina-blue",
+      "type": "project",
+      "name": "Carolina Blue",
+      "mbid": "7372a1f6-2116-46ac-98a9-e7eb2813444b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-these-plays",
+      "type": "project",
+      "name": "Make These Plays",
+      "mbid": "57445d6e-5d69-4296-81a4-82e95c2c87d8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stacking-my-bread",
+      "type": "project",
+      "name": "Stacking My Bread",
+      "mbid": "0132b787-6eb4-47c0-8252-0f4bd3787351",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trouvaille",
+      "type": "project",
+      "name": "Trouvaille",
+      "mbid": "cf21db92-cdfe-4ea4-b59e-e3b4ae0d5629",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:clientele",
+      "type": "project",
+      "name": "Clientele",
+      "mbid": "68dd83f2-8030-40d3-a68d-2b4392db2a56",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dat-work",
+      "type": "project",
+      "name": "Dat Work",
+      "mbid": "a875cd12-8b1b-4eaf-9951-66621b340171",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-swear",
+      "type": "project",
+      "name": "I Swear",
+      "mbid": "98a039aa-0167-4d36-91ec-700c6ed5f8ae",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hallows-ep",
+      "type": "project",
+      "name": "Hallows EP",
+      "mbid": "500445a4-a546-48ed-a8c6-96b482fa17b0",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-coronaaa",
+      "type": "project",
+      "name": "No Coronaaa",
+      "mbid": "7b406109-9801-4680-9099-2a4f992eaaa4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-fuck",
+      "type": "project",
+      "name": "Hate Fuck",
+      "mbid": "6fb3d9f4-714b-4abb-a787-62e289692115",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hottest-in-the-city",
+      "type": "project",
+      "name": "Hottest in the City",
+      "mbid": "1523290c-5456-4033-ac37-e9d9c3da474c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chewing-gum",
+      "type": "project",
+      "name": "Chewing Gum",
+      "mbid": "6facfdb6-15f4-451c-bca9-755e76d75697",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:m-o-b",
+      "type": "project",
+      "name": "M.O.B.",
+      "mbid": "71f397f3-6894-420e-a205-424599e1c103",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:give-me-that-bottle",
+      "type": "project",
+      "name": "Give Me That Bottle",
+      "mbid": "1ee47352-43bc-43de-a54a-0f710c53f325",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mista-don-t-play-2-everythangs-money",
+      "type": "project",
+      "name": "Mista Don’t Play 2: Everythangs Money",
+      "mbid": "1fbd7fc7-80cb-45f6-8ef1-3fcbd7cad784",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blacked-out",
+      "type": "project",
+      "name": "Blacked Out",
+      "mbid": "533d1c5f-e406-469e-9083-8314a3b8a2e3",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-can-do-it",
+      "type": "project",
+      "name": "U Can Do It",
+      "mbid": "39bc7db8-5aae-4b6f-bf28-65100d20c002",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loud-pack",
+      "type": "project",
+      "name": "Loud Pack",
+      "mbid": "6ffe8d66-45b4-4b98-ad72-463b3fb01b9a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twerk",
+      "type": "project",
+      "name": "Twerk",
+      "mbid": "90a65a4d-0a8e-4ca7-b461-779951bd5a7b",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ugh-ugh-ugh",
+      "type": "project",
+      "name": "Ugh Ugh Ugh",
+      "mbid": "b79be499-f386-4e4a-83ff-32877081b5d4",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:30-inches",
+      "type": "project",
+      "name": "30 Inches",
+      "mbid": "a0b6f7d5-9e3a-4323-aad5-af92e5952b1d",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-recognize-real",
+      "type": "project",
+      "name": "Real Recognize Real",
+      "mbid": "d1eb7381-c919-33a0-b9e0-a5d1eb06bdfe",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walkin-bank-roll",
+      "type": "project",
+      "name": "Walkin' Bank Roll",
+      "mbid": "b7220751-b8be-34d9-9367-2e0fabacf215",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crook-by-da-book-the-fed-story",
+      "type": "project",
+      "name": "Crook by da Book: The Fed Story",
+      "mbid": "03572bc0-5a90-3054-9d66-347e897563dd",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:layin-da-smack-down",
+      "type": "project",
+      "name": "Layin da Smack Down",
+      "mbid": "2ba6b2eb-580c-495c-a87b-e540efa84581",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mista-don-t-play-everythangs-workin",
+      "type": "project",
+      "name": "Mista Don’t Play: Everythangs Workin",
+      "mbid": "b152bfee-6f34-3dbb-bed7-8c4657f1172b",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ooh-nuthin",
+      "type": "project",
+      "name": "Ooh Nuthin’",
+      "mbid": "22708f6a-539e-4524-b118-bc0f4cc347de",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghetty-green",
+      "type": "project",
+      "name": "Ghetty Green",
+      "mbid": "f9f6c3c4-5c9d-32d1-9c92-0b6f0920bc3d",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ballers",
+      "type": "project",
+      "name": "Ballers",
+      "mbid": "26412d94-e385-4eea-96e6-19b909511bb6",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:represent-it-ballers",
+      "type": "project",
+      "name": "Represent It / Ballers",
+      "mbid": "890c5bf2-d0a1-4983-ac5d-c5224df60a4b",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solo-tape",
+      "type": "project",
+      "name": "Solo Tape",
+      "mbid": "5be73036-a5e9-4ce6-bc99-a94c4854f171",
+      "year": "1994",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sippin-on-some-syrup",
+      "type": "track",
+      "name": "Sippin' on Some Syrup"
+    },
+    {
+      "slug": "track:chickenhead",
+      "type": "track",
+      "name": "Chickenhead"
+    },
+    {
+      "slug": "track:don-t-save-her",
+      "type": "track",
+      "name": "Don't Save Her"
+    },
+    {
+      "slug": "track:knife-talk",
+      "type": "track",
+      "name": "Knife Talk"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J"
+    },
+    {
+      "slug": "artist:dj-paul",
+      "type": "artist",
+      "name": "DJ Paul"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake"
+    },
+    {
+      "slug": "artist:oj-da-juiceman",
+      "type": "artist",
+      "name": "OJ da Juiceman"
+    },
+    {
+      "slug": "artist:doe-b",
+      "type": "artist",
+      "name": "Doe B"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

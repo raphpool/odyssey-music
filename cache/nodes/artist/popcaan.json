@@ -1,0 +1,432 @@
+{
+  "slug": "artist:popcaan",
+  "name": "Popcaan",
+  "editorial_article": "Born Andrae Hugh Sutherland in Saint Thomas Parish, Jamaica, in 1988, Popcaan rose to prominence in 2008 after joining Vybz Kartel's Gaza Music Empire. His 2010 breakout hit \"Clarks,\" featuring Kartel, triggered a national spike in sales for the British footwear brand. Popcaan transitioned to international acclaim through his 2014 debut album, \"Where We Come From,\" which was executive produced by Dre Skull and released via Mixpak Records. Known for collaborations ranging from Drake to Gorillaz, he has also been featured on Jamie xx’s 2015 track \"I Know There's Gonna Be (Good Times)\" alongside Young Thug. In 2026, he was traditionally honored in Ghana with the chieftaincy title \"Nana Arkoh Kese I\" as Aboafohen of the Apagyahen Division in the Asebu area.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Popcaan",
+      "title": "Popcaan - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/popcaan-mn0002518003",
+      "title": "Popcaan — Biography, Discography, Albums & Expert Reviews | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T20:58:29.182Z",
+  "type": "artist",
+  "editorial_bio": "Jamaican dancehall artist who emerged from Vybz Kartel's Gaza Music Empire to achieve global recognition through collaborations with artists like Drake and Gorillaz.",
+  "origin": "Portmore, Jamaica",
+  "active_years": "2007-present",
+  "genres": [
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall",
+      "qid": "Q474027"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mixpak-records",
+      "type": "label",
+      "name": "Mixpak Records"
+    },
+    {
+      "slug": "label:ovo-sound",
+      "type": "label",
+      "name": "OVO Sound"
+    },
+    {
+      "slug": "label:warner-records",
+      "type": "label",
+      "name": "Warner Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gyalentines-ii",
+      "type": "project",
+      "name": "Gyalentines II",
+      "mbid": "99ff1bcf-76fc-4e12-a368-0c39fa442ea5",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nothing-without-god",
+      "type": "project",
+      "name": "Nothing Without God",
+      "mbid": "edf08484-8201-4269-b8e4-020995e5199a",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vex",
+      "type": "project",
+      "name": "Vex",
+      "mbid": "bdf83acd-a663-485f-8817-9a36e3895748",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feeling-alive",
+      "type": "project",
+      "name": "Feeling Alive (Up Yuhself)",
+      "mbid": "c64c61e4-2f22-4eaa-9b3a-6fc4cbfa431f",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tequila-shots",
+      "type": "project",
+      "name": "Tequila Shots",
+      "mbid": "608481ba-77f1-4c94-8dc2-f20bd2e36a32",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:great-is-he",
+      "type": "project",
+      "name": "Great Is He",
+      "mbid": "3833b806-f8da-435d-983a-b3b2aa59d810",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-caa-done",
+      "type": "project",
+      "name": "We Caa Done",
+      "mbid": "e31f8c0e-0fdd-4aed-a3f9-cae13ed37eba",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-to-me",
+      "type": "project",
+      "name": "Next To Me",
+      "mbid": "40d74e2c-1df3-4e61-949f-d365df31b0c5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:1-tec",
+      "type": "project",
+      "name": "1 Tec",
+      "mbid": "1ffd5b6f-7d9b-49e7-9ee0-51c1b9328b0b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elevate",
+      "type": "project",
+      "name": "Elevate",
+      "mbid": "a92c1694-4bbe-4dc8-8a7d-adf714697c07",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:block-traffic",
+      "type": "project",
+      "name": "Block Traffic",
+      "mbid": "e15dbd1e-adb7-41db-bd78-43c1d88f5618",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:solid-focus-riddim",
+      "type": "project",
+      "name": "Solid Focus Riddim",
+      "mbid": "646e8c49-2218-4633-92d7-3c6356a32471",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gyalentine-s",
+      "type": "project",
+      "name": "Gyalentine’s",
+      "mbid": "ce7ea343-a406-4319-a76e-b669cf780b09",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:link-up",
+      "type": "project",
+      "name": "Link Up",
+      "mbid": "40820654-4226-4fe7-ac3e-fa6bc2b01f19",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-over",
+      "type": "project",
+      "name": "Come Over",
+      "mbid": "91595de8-c9d0-4cbc-be55-b2ccd8dcbbb6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twist-and-turn",
+      "type": "project",
+      "name": "TWIST & TURN",
+      "mbid": "333a6595-4b3b-47e1-bd8c-211247a62977",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:risky",
+      "type": "project",
+      "name": "Risky",
+      "mbid": "72249749-5ef0-40ba-ae47-27bfd0b47115",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever",
+      "type": "project",
+      "name": "Forever",
+      "mbid": "c2738300-84b9-494a-853b-2f838a510263",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:run-these-streets",
+      "type": "project",
+      "name": "Run These Streets",
+      "mbid": "ffc9096c-164d-4a6e-a714-3a7ab5a22485",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bullet-proof",
+      "type": "project",
+      "name": "Bullet Proof",
+      "mbid": "58f484f3-45b8-4b9b-a38d-fd17605c023e",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-a-prayer",
+      "type": "project",
+      "name": "Say a Prayer",
+      "mbid": "f8ad3140-512d-48a8-87d8-5ff819e450a1",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-ain-t-mine",
+      "type": "project",
+      "name": "You Ain't Mine",
+      "mbid": "e934be81-ff5c-44fc-94ec-e4ad2352e8ee",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:up-forever",
+      "type": "project",
+      "name": "Up Forever",
+      "mbid": "ec6f5028-4301-47ff-af1d-6c83586a00e8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-feel-good",
+      "type": "project",
+      "name": "Still Feel Good",
+      "mbid": "acd130c1-e87d-4520-823f-069c017ecca9",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-you-love",
+      "type": "project",
+      "name": "One You Love",
+      "mbid": "0a0c950c-5cb3-4a46-9079-2a1e0dd853b6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-mi-party",
+      "type": "project",
+      "name": "When Mi Party",
+      "mbid": "2b94f3fc-891e-4b31-b9d6-91bf3985345a",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:saturnz-barz",
+      "type": "project",
+      "name": "Saturnz Barz",
+      "mbid": "884c2723-f906-4cb2-b37e-e1a1a1702ff5",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:frass-box",
+      "type": "project",
+      "name": "Frass Box",
+      "mbid": "e6a62b84-2bab-4d05-9a3a-10f15b54ed68",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:should-ve-been-me",
+      "type": "project",
+      "name": "Should've Been Me",
+      "mbid": "ab647e65-246f-4105-8a48-b64d650098b0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ova-dweet",
+      "type": "project",
+      "name": "Ova Dweet",
+      "mbid": "39fb7bff-eca4-45da-9450-c3baa770af03",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-me-a-study",
+      "type": "project",
+      "name": "Money Me A Study",
+      "mbid": "86958566-eb1d-4756-bd1c-c26fca9a23b9",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-in-control",
+      "type": "project",
+      "name": "I’m in Control",
+      "mbid": "5028091f-7e2a-4047-85e0-174b3d2f9cd5",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feeling-right",
+      "type": "project",
+      "name": "Feeling Right (Everything Is Nice)",
+      "mbid": "0a646638-9ba0-4436-b3d4-a3cd9d209bed",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:party-shot",
+      "type": "project",
+      "name": "Party Shot (Reissue)",
+      "mbid": "e2e584ca-6473-4d56-8366-2da34ac8a209",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reggae-greats-vol-2",
+      "type": "project",
+      "name": "Reggae Greats, Vol. 2",
+      "mbid": "34bc9fc6-4b98-4fdb-9476-458d25f774e4",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kisses-for-breakfast",
+      "type": "project",
+      "name": "Kisses for Breakfast",
+      "mbid": "4e782b9b-22aa-4a2d-9ac9-cbc1b895779b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:where-we-come-from",
+      "type": "project",
+      "name": "Where We Come From",
+      "mbid": "f82aafbf-1c72-4348-bcc0-5740cdb7ec10",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bay-badnesss",
+      "type": "project",
+      "name": "Bay Badnesss",
+      "mbid": "b4effe87-806d-4ba0-abb3-7db76820fe3c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unruly",
+      "type": "project",
+      "name": "Unruly",
+      "mbid": "b2078004-89cc-4e77-a772-3eb9ec6faa8e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party-shot",
+      "type": "project",
+      "name": "Party Shot",
+      "mbid": "410eb9ff-e00c-462b-8372-c8845a97bec0",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-man-she-want-ep",
+      "type": "project",
+      "name": "Only Man She Want - EP",
+      "mbid": "1b431a6f-2b07-437a-aa63-22de1ef16254",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:only-man-she-want",
+      "type": "project",
+      "name": "Only Man She Want",
+      "mbid": "42993089-fae6-4292-8aaa-b2dafb9f8d5a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-never-fear-dem",
+      "type": "project",
+      "name": "We Never Fear Dem",
+      "mbid": "d3a412a7-98eb-4485-9964-d2451f77bf9a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hott-grabba",
+      "type": "project",
+      "name": "Hott Grabba",
+      "mbid": "7c898c90-94e2-403f-b588-269ea4a21954",
+      "year": "2010",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:clarks",
+      "type": "track",
+      "name": "Clarks"
+    },
+    {
+      "slug": "track:only-man-she-want",
+      "type": "track",
+      "name": "Only Man She Want"
+    },
+    {
+      "slug": "track:everything-nice",
+      "type": "track",
+      "name": "Everything Nice"
+    },
+    {
+      "slug": "track:ova-dweet",
+      "type": "track",
+      "name": "Ova Dweet"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:vybz-kartel",
+      "type": "artist",
+      "name": "Vybz Kartel"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

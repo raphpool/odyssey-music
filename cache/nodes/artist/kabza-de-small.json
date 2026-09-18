@@ -1,0 +1,242 @@
+{
+  "slug": "artist:kabza-de-small",
+  "name": "Kabza De Small",
+  "editorial_article": "Born Kabelo Petrus Motha in eMalahleni and based in Pretoria, Kabza De Small is a pivotal force in the global rise of amapiano, a jazzy, piano-driven South African house subgenre. He broke through to the mainstream with the 2018 single \"Umshove\" featuring Leehleza. His prolific output includes the high-charting album \"I Am the King of Amapiano: Sweet & Dust\" (2020), which achieved double platinum status in South Africa. As a key collaborator alongside DJ Maphorisa, he operates under the Scorpion Kings moniker, releasing successful projects like \"The Return of the Scorpion Kings\" and the collaborative \"Rumble in the Jungle\" with Tresor. A multifaceted producer and multi-instrumentalist who plays piano, synthesizers, and drum machines, he founded the label Piano Hub. In 2024, he broke performance records by selling out his Red Bull Symphonic shows with the Symphonic Orchestra at Johannesburg's Lyric Theatre in hours. His 2025 album \"Bab' Motha\" reached number nine on the Spotify Global Top Album Charts, marking a career milestone. He has earned seventeen South African Music Awards and holds extensive recognition for his role in transforming South African dance music culture.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kabza_de_Small",
+      "title": "Kabza de Small - Wikipedia"
+    },
+    {
+      "url": "https://music.apple.com/ky/artist/kabza-de-small/1021730955",
+      "title": "Kabza de Small - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:54.173Z",
+  "type": "artist",
+  "editorial_bio": "South African DJ and producer instrumental in establishing amapiano as a dominant force in modern electronic and house music.",
+  "origin": "Pretoria, South Africa",
+  "active_years": "2011-present",
+  "genres": [
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:piano-hub",
+      "type": "label",
+      "name": "Piano Hub"
+    },
+    {
+      "slug": "label:bestbyfar",
+      "type": "label",
+      "name": "Bestbyfar"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:kings-will-rise",
+      "type": "project",
+      "name": "Kings Will Rise",
+      "mbid": "0d0cb8eb-3ea2-4be5-822f-c63325bdb8e8",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bab-motha",
+      "type": "project",
+      "name": "Bab'Motha",
+      "mbid": "434cec9c-7441-4c53-b721-de6c1deac60a",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-z",
+      "type": "project",
+      "name": "A-Z (Yashi Moto)",
+      "mbid": "7f831f4a-febc-4c4a-9aab-21fdaea4cbc4",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:isimo",
+      "type": "project",
+      "name": "Isimo",
+      "mbid": "a0e6776d-55ed-4ad2-b34a-4b0fc38a740f",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gangnam-style",
+      "type": "project",
+      "name": "Gangnam Style",
+      "mbid": "2c8a15b4-fae6-4a2b-bec0-2255bcc44ab0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rekere",
+      "type": "project",
+      "name": "REKERE",
+      "mbid": "1c88c797-a543-448c-a363-56039ded4ef3",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:speak-n-vrostaan",
+      "type": "project",
+      "name": "Speak N Vrostaan",
+      "mbid": "af81fdb2-6f78-4493-add4-1de611581354",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:koa-ii-part-1",
+      "type": "project",
+      "name": "KOA II, Part 1",
+      "mbid": "9beb1008-2916-49e9-a558-fd4c54dcc52f",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ziwangale-ep",
+      "type": "project",
+      "name": "Ziwangale EP",
+      "mbid": "33472bc3-c0be-44c3-84b3-e6856a47a4d9",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ebusuku",
+      "type": "project",
+      "name": "Ebusuku",
+      "mbid": "b88c19bd-e80a-4f62-83eb-5b5a9cbd89e1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pretty-girls-love-amapiano-3",
+      "type": "project",
+      "name": "Pretty Girls Love Amapiano 3",
+      "mbid": "3fa44af8-bb72-488e-aa33-6675e9419850",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asibe-happy",
+      "type": "project",
+      "name": "Asibe Happy",
+      "mbid": "754d226a-0cbd-4bb1-9d1a-d57d0de066d8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:abalele",
+      "type": "project",
+      "name": "Abalele",
+      "mbid": "1c3e5136-d30c-4220-a3a8-58e3109c91e6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:once-upon-a-time-in-lockdown",
+      "type": "project",
+      "name": "Once Upon a Time in Lockdown",
+      "mbid": "585c880e-03d4-40c8-9458-10c3a5248ac8",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-return-of-the-scorpion-kings",
+      "type": "project",
+      "name": "The Return of the Scorpion Kings",
+      "mbid": "8dd4b02e-687c-4e55-b17f-3a49710d4c95",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scorpion-kings",
+      "type": "project",
+      "name": "Scorpion Kings",
+      "mbid": "a1f7ded2-8c2a-455c-bc86-a15597c23fbd",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:avenue-sounds",
+      "type": "project",
+      "name": "Avenue Sounds",
+      "mbid": "f7282779-f0b4-4573-9c79-f5e3b5d486d2",
+      "year": "2016",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:umshove",
+      "type": "track",
+      "name": "Umshove"
+    },
+    {
+      "slug": "track:abalele",
+      "type": "track",
+      "name": "Abalele"
+    },
+    {
+      "slug": "track:khusela",
+      "type": "track",
+      "name": "Khusela"
+    },
+    {
+      "slug": "track:kabza-chant",
+      "type": "track",
+      "name": "Kabza Chant"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:dj-maphorisa",
+      "type": "artist",
+      "name": "DJ Maphorisa"
+    },
+    {
+      "slug": "artist:tresor",
+      "type": "artist",
+      "name": "Tresor"
+    },
+    {
+      "slug": "artist:young-stunna",
+      "type": "artist",
+      "name": "Young Stunna"
+    },
+    {
+      "slug": "artist:ami-faku",
+      "type": "artist",
+      "name": "Ami Faku"
+    },
+    {
+      "slug": "artist:kwesta",
+      "type": "artist",
+      "name": "Kwesta"
+    },
+    {
+      "slug": "artist:mthunzi",
+      "type": "artist",
+      "name": "Mthunzi"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

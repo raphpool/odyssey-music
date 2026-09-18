@@ -1,0 +1,142 @@
+{
+  "slug": "genre:amapiano",
+  "name": "Amapiano",
+  "editorial_article": "Emerging from South African townships like Pretoria and Soweto in the mid-2010s, Amapiano is a hybrid of kwaito, deep house, jazz, and soul defined by its wide, percussive log drum basslines. The word itself translates from isiZulu to \"pianos,\" reflecting the genre's foundational use of melodic synth keys. Producers like Kabza De Small and MDU aka TRP are central to its development, with the latter widely credited for popularizing the signature electronic log drum sound. The genre has since splintered into variants like the soulful \"Private School Piano,\" championed by Kelvin Momo, and the Nigerian-blended \"Afropiano.\" Its international reach expanded significantly following the viral success of Tyla's 2023 hit \"Water,\" which propelled the genre onto the Billboard Hot 100.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Amapiano",
+      "title": "Amapiano - Wikipedia"
+    },
+    {
+      "url": "https://splice.com/blog/what-is-amapiano-music/",
+      "title": "What is Amapiano Music? Artists, Instruments, BPM, and More"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:13:47.797Z",
+  "type": "genre",
+  "editorial_definition": "A South African electronic genre that blends deep house, jazz, and kwaito, characterized by prominent piano melodies and a distinctive, percussive log drum bassline.",
+  "qid": "Q85741139",
+  "era": "mid-2010s to present",
+  "origin": "South Africa (Johannesburg/Pretoria/Soweto)",
+  "sonic_markers": "Electronic log drum (bassline), piano melodies, synthesizers, shakers, deep house rhythms",
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House music",
+      "qid": "Q20502"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:private-school-piano",
+      "type": "genre",
+      "name": "Private School Piano"
+    },
+    {
+      "slug": "genre:afropiano",
+      "type": "genre",
+      "name": "Afropiano",
+      "qid": "Q116745991"
+    },
+    {
+      "slug": "genre:popiano",
+      "type": "genre",
+      "name": "Popiano"
+    },
+    {
+      "slug": "genre:bongopiano",
+      "type": "genre",
+      "name": "Bongopiano"
+    },
+    {
+      "slug": "genre:ojapiano",
+      "type": "genre",
+      "name": "Ojapiano"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep house",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:kwaito",
+      "type": "genre",
+      "name": "Kwaito",
+      "qid": "Q956717"
+    },
+    {
+      "slug": "genre:gqom",
+      "type": "genre",
+      "name": "Gqom",
+      "qid": "Q29973057"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:a-pop",
+      "type": "genre",
+      "name": "A-pop",
+      "qid": "Q10730335"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:kabza-de-small",
+      "type": "artist",
+      "name": "Kabza De Small"
+    },
+    {
+      "slug": "artist:dj-maphorisa",
+      "type": "artist",
+      "name": "DJ Maphorisa"
+    },
+    {
+      "slug": "artist:kelvin-momo",
+      "type": "artist",
+      "name": "Kelvin Momo"
+    },
+    {
+      "slug": "artist:tyla",
+      "type": "artist",
+      "name": "Tyla"
+    },
+    {
+      "slug": "artist:dj-lag",
+      "type": "artist",
+      "name": "DJ Lag"
+    },
+    {
+      "slug": "artist:mdu-aka-trp",
+      "type": "artist",
+      "name": "MDU aka TRP"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:beatport",
+      "type": "label",
+      "name": "Beatport"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:water",
+      "type": "track",
+      "name": "Water"
+    },
+    {
+      "slug": "track:trust-fund",
+      "type": "track",
+      "name": "Trust Fund"
+    }
+  ]
+}

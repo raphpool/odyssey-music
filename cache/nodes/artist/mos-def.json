@@ -1,0 +1,443 @@
+{
+  "slug": "artist:mos-def",
+  "name": "Mos Def",
+  "editorial_article": "Born Dante Terrell Smith in 1973 Brooklyn, Mos Def first gained widespread attention in 1996 by forming the duo Black Star alongside Talib Kweli. Their 1998 debut, \"Mos Def & Talib Kweli Are Black Star,\" featured the production work of Hi-Tek and became a pillar of conscious hip-hop. The following year, he released his solo debut \"Black on Both Sides\" through Rawkus Records, an album defined by tracks like \"Ms. Fat Booty.\" Throughout the 2000s, his career spanned eclectic territory, from contributing to the 2009 \"Blakroc\" project with The Black Keys and Damon Dash to his work on the Gorillaz hit \"Stylo\" alongside Bobby Womack. He is also a celebrated actor, having received an Emmy nomination for his portrayal of Vivien Thomas in the 2004 HBO film \"Something the Lord Made.\" In 2011, the artist declared he had changed his name to Yasiin Bey, an identity he had used privately since 1999.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Yasiin_Bey",
+      "title": "Yasiin Bey - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/release/4948161-Mos-Def-Black-On-Both-Sides?srsltid=AU7gw4Xb4SPolPl5pvFfWmAA6mPtz30JH8XsXCUSIOLH6-MQT05_s9oe",
+      "title": "Mos Def – Black On Both Sides – CD (Album), 1999 [r4948161] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:08.568Z",
+  "type": "artist",
+  "editorial_bio": "An influential rapper and versatile actor from Brooklyn, known for his work in Black Star and his critically acclaimed solo debut Black on Both Sides.",
+  "origin": "Brooklyn, New York City",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious hip-hop",
+      "qid": "Q141459"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rawkus-records",
+      "type": "label",
+      "name": "Rawkus Records"
+    },
+    {
+      "slug": "label:good-music",
+      "type": "label",
+      "name": "GOOD Music"
+    },
+    {
+      "slug": "label:geffen-records",
+      "type": "label",
+      "name": "Geffen Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:damascus",
+      "type": "project",
+      "name": "Damascus",
+      "mbid": "c68ab111-3c7d-4aab-b9cb-d6901647053f",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bang-bien",
+      "type": "project",
+      "name": "Bang Bien",
+      "mbid": "5ba93cd9-f1e2-43c8-8c11-6b1aa47c72d2",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-very-best",
+      "type": "project",
+      "name": "The Very Best",
+      "mbid": "57e8b4b3-ab65-4ad6-8a54-a0aac1a2fe83",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:negus",
+      "type": "project",
+      "name": "Negus",
+      "mbid": "a21322f8-4415-41f8-b1bd-50ad32c12497",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sensei-on-the-block",
+      "type": "project",
+      "name": "Sensei on the Block",
+      "mbid": "0a37ad46-00de-4081-8ad1-483b841fa46c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-are-undeniable",
+      "type": "project",
+      "name": "You Are Undeniable (Amerigo remix)",
+      "mbid": "b9118051-02f9-46af-aeba-5036f21f3c04",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pride-n-joy",
+      "type": "project",
+      "name": "Pride N Joy",
+      "mbid": "954b3f48-2215-48ac-a799-0cea118f7688",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sirens-in-the-distance",
+      "type": "project",
+      "name": "Sirens in the Distance",
+      "mbid": "ffbf1501-e791-48d1-b9b8-4662850734a4",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-look-down",
+      "type": "project",
+      "name": "Don’t Look Down",
+      "mbid": "7b599e2d-ab5a-4bb6-a42a-8b401ec16288",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lord-lord-lord",
+      "type": "project",
+      "name": "Lord Lord Lord",
+      "mbid": "717f9a09-8be4-4102-be3e-d7710205022e",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:different",
+      "type": "project",
+      "name": "Different",
+      "mbid": "97bb0553-3810-4ce7-886d-984eef269a6e",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-ecstatic",
+      "type": "project",
+      "name": "The Ecstatic",
+      "mbid": "5e98b9bd-af24-4bc4-bbd9-51dcc2d43f50",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:life-in-marvelous-times",
+      "type": "project",
+      "name": "Life in Marvelous Times",
+      "mbid": "e08c53e5-b804-4187-b4e0-69494e1f9af3",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hey-baby",
+      "type": "project",
+      "name": "Hey Baby",
+      "mbid": "2f7be0d9-2464-3180-9841-a0dd11fc7e9d",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-magic",
+      "type": "project",
+      "name": "True Magic",
+      "mbid": "a30287c1-5582-3cef-9f0c-5c30468a8896",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:undeniable-there-is-a-way",
+      "type": "project",
+      "name": "Undeniable / There Is a Way",
+      "mbid": "cf107ce2-5d31-3a1f-b16c-bd5e899c09c5",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ah-ha-bright-as-the-stars",
+      "type": "project",
+      "name": "Ah Ha / Bright as the Stars",
+      "mbid": "c307dffb-ac61-3f4c-826a-69df6bddcd27",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-new-danger",
+      "type": "project",
+      "name": "The New Danger",
+      "mbid": "4d0fd091-18c3-3c0d-8161-017296db71e9",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sex-love-and-money-ghetto-rock",
+      "type": "project",
+      "name": "Sex, Love & Money / Ghetto Rock",
+      "mbid": "4e057485-d182-42aa-b21c-16cda1e02959",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mos-def-ep",
+      "type": "project",
+      "name": "Mos Def EP",
+      "mbid": "7e995f64-ac07-39df-87cb-b19908f75b75",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ooh-wee-on-the-run",
+      "type": "project",
+      "name": "Ooh Wee / On the Run",
+      "mbid": "bc76915e-64b4-44d6-8a16-cfc72c1050c2",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beef-monster-music",
+      "type": "project",
+      "name": "Beef / Monster Music (G.H.E.T.T.O.)",
+      "mbid": "007391fd-a3bb-40d7-9cec-460f45772ab9",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:close-edge",
+      "type": "project",
+      "name": "Close Edge",
+      "mbid": "4524cefb-81eb-4011-bb17-59a73b8450e5",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wylin-out",
+      "type": "project",
+      "name": "Wylin Out",
+      "mbid": "82d77e54-95cb-30d6-84cd-e0fd83fac5b1",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brown-sugar",
+      "type": "project",
+      "name": "Brown Sugar (Extra Sweet)",
+      "mbid": "fe0579d8-d881-4293-8e38-e12b505f4677",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-against-i",
+      "type": "project",
+      "name": "I Against I",
+      "mbid": "21d7fb51-3f99-3332-9b93-56d631df9969",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jam-on-it",
+      "type": "project",
+      "name": "Jam on It",
+      "mbid": "3f53996d-bfb5-3e4e-8a88-71057545e81f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jam-on-it",
+      "type": "project",
+      "name": "Jam On It",
+      "mbid": "76aa349c-7346-485d-a346-12afb985aa7d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-u-c-the-pride-in-the-panther",
+      "type": "project",
+      "name": "Can U C the Pride in the Panther",
+      "mbid": "16272cde-ce8a-4a07-b8ad-5f6d9661231b",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:umi-says",
+      "type": "project",
+      "name": "Umi Says",
+      "mbid": "40b4fdfd-4979-4192-b517-2985ec032903",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oh-no",
+      "type": "project",
+      "name": "Oh No",
+      "mbid": "75ca8fac-7e48-4da0-91eb-e86b3258979f",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-on-both-sides",
+      "type": "project",
+      "name": "Black on Both Sides",
+      "mbid": "d6658b47-463a-390e-9417-99c818aea004",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:next-universe-patriotism-when-it-pours-it-rains",
+      "type": "project",
+      "name": "Next Universe / Patriotism / When It Pours It Rains",
+      "mbid": "705c7a7a-d993-4b15-8c91-3bdc0e5f7ba2",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ms-fat-booty-mathematics",
+      "type": "project",
+      "name": "Ms. Fat Booty / Mathematics",
+      "mbid": "64963934-162b-30d6-a6b5-2c0306dbafe9",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:b-boy-document-99-chaos",
+      "type": "project",
+      "name": "B‐Boy Document ’99 / Chaos",
+      "mbid": "8910ac83-6885-4bac-8509-be7a34bdc3f1",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:body-rock",
+      "type": "project",
+      "name": "Body Rock",
+      "mbid": "e344ae0d-7984-3190-96b9-a48d3ceae168",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:c-i-a-talkin-to-you",
+      "type": "project",
+      "name": "C.I.A. / Talkin' to You",
+      "mbid": "863655b0-7852-477d-9b77-1295020fbea7",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-drama-pt-3-the-search-for-2",
+      "type": "project",
+      "name": "High Drama, Pt. 3: The Search For 2",
+      "mbid": "a5efc522-723d-4118-9cdd-0fbbb478bfd9",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:universal-magnetic",
+      "type": "project",
+      "name": "Universal Magnetic",
+      "mbid": "9184ac7f-664b-3e0b-bd6f-58f4e9ae69fa",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-love-song",
+      "type": "project",
+      "name": "The Love Song",
+      "mbid": "090ce124-70db-42e2-b1d4-e618894e36fe",
+      "year": "1996",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:ms-fat-booty",
+      "type": "track",
+      "name": "Ms. Fat Booty"
+    },
+    {
+      "slug": "track:definition",
+      "type": "track",
+      "name": "Definition"
+    },
+    {
+      "slug": "track:respiration",
+      "type": "track",
+      "name": "Respiration"
+    },
+    {
+      "slug": "track:stylo",
+      "type": "track",
+      "name": "Stylo"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:lupe-fiasco",
+      "type": "artist",
+      "name": "Lupe Fiasco"
+    },
+    {
+      "slug": "artist:kid-cudi",
+      "type": "artist",
+      "name": "Kid Cudi"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:talib-kweli",
+      "type": "artist",
+      "name": "Talib Kweli"
+    },
+    {
+      "slug": "artist:kanye-west",
+      "type": "artist",
+      "name": "Kanye West"
+    },
+    {
+      "slug": "artist:pharoahe-monch",
+      "type": "artist",
+      "name": "Pharoahe Monch"
+    },
+    {
+      "slug": "artist:robert-glasper",
+      "type": "artist",
+      "name": "Robert Glasper"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:yasiin-bey",
+      "type": "artist",
+      "name": "Yasiin Bey"
+    }
+  ],
+  "members": []
+}

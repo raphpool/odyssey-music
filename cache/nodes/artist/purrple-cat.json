@@ -1,0 +1,529 @@
+{
+  "slug": "artist:purrple-cat",
+  "name": "Purrple Cat",
+  "editorial_article": "Purrple Cat is the music project of American producer and animator Emma Wilson, established in October 2018. Based in Los Angeles, the project focuses on lo-fi hip hop and downtempo soundscapes. Wilson integrates her background in visual art and animation into the project's identity, frequently distributing her music for use in online creative communities. Her discography includes numerous releases from 2019 alone, such as the full-length projects Now or Never, Indigo Dreams, Brain Fog, and Nostalgia and Moving On. The music is recognized for its relaxed, instrumental composition style suitable for study or background listening.",
+  "citations": [
+    {
+      "url": "https://www.wikidata.org/wiki/Q105741577",
+      "title": "Purrple Cat - Wikidata"
+    },
+    {
+      "url": "https://www.last.fm/music/Purrple+Cat/+wiki",
+      "title": "Purrple Cat biography - Last.fm"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/purrple-cat",
+      "title": "Purrple Cat discography - Rate Your Music"
+    },
+    {
+      "url": "https://djsuniverseq.fandom.com/wiki/Purrple_Cat",
+      "title": "Purrple Cat - DJ S Universe Q Wiki | Fandom"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:33.272Z",
+  "type": "artist",
+  "editorial_bio": "Purrple Cat is the musical project of Los Angeles-based producer and animator Emma Wilson, known for her prolific output of lo-fi hip hop.",
+  "origin": "Los Angeles, USA",
+  "active_years": "2018-present",
+  "genres": [
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave",
+      "qid": "Q2626684"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:chillout",
+      "type": "genre",
+      "name": "Chillout",
+      "qid": "Q757143"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-Fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:instrumental-hip-hop",
+      "type": "genre",
+      "name": "Instrumental Hip Hop",
+      "qid": "Q1077172"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lo-Fi Hip Hop",
+      "qid": "Q97265899"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:independent",
+      "type": "label",
+      "name": "Independent"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:city-nights-3",
+      "type": "project",
+      "name": "City Nights 3",
+      "mbid": "47d80e2c-adb2-49fe-ba0f-e594e897d80e",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleep-tight",
+      "type": "project",
+      "name": "Sleep Tight",
+      "mbid": "59ba86fd-0c56-4f77-91fd-77dc776efe9a",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:multiverse-2",
+      "type": "project",
+      "name": "Multiverse 2",
+      "mbid": "801867cf-aacc-4b1e-9e20-de19f9c3b2d2",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cypress-manor",
+      "type": "project",
+      "name": "Cypress Manor",
+      "mbid": "c2d62e70-d965-4898-8669-83e7f7414533",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memories",
+      "type": "project",
+      "name": "Memories",
+      "mbid": "df5df19a-f733-4636-9dbb-301e3621798b",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ice-palace",
+      "type": "project",
+      "name": "Ice Palace",
+      "mbid": "f921e2ee-b7d8-417b-bc4b-24a7502db908",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dino-land",
+      "type": "project",
+      "name": "Dino Land",
+      "mbid": "9f31a5d6-a2ce-4d09-9938-47414d20a948",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eye-of-the-storm",
+      "type": "project",
+      "name": "Eye of the Storm",
+      "mbid": "1e0d0169-6497-4e0e-9cde-589ef8689c7b",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:happy-place",
+      "type": "project",
+      "name": "Happy Place",
+      "mbid": "18b6f37c-fba0-43c8-ba99-2abe31778e95",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:distant-worlds-4",
+      "type": "project",
+      "name": "Distant Worlds 4",
+      "mbid": "a745ec5d-3705-4e46-babd-8e1b39d3b303",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sands-of-time",
+      "type": "project",
+      "name": "Sands of Time",
+      "mbid": "6ae2ff0e-52b9-4839-9f3b-ff3cc68b7ecf",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:city-nights-2",
+      "type": "project",
+      "name": "City Nights 2",
+      "mbid": "7bce3654-ccb3-4863-9908-01e4b11dc7f7",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sea-of-stars-2",
+      "type": "project",
+      "name": "Sea of Stars 2",
+      "mbid": "b96e6aae-7f35-4319-9ef5-7998adc7af78",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tranquil-trails",
+      "type": "project",
+      "name": "Tranquil Trails",
+      "mbid": "54d2d610-aad0-4566-9fe5-843efc6192c2",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-train",
+      "type": "project",
+      "name": "Night Train",
+      "mbid": "14a89452-771f-4ca0-aa27-ca169555e14d",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ripples",
+      "type": "project",
+      "name": "Ripples",
+      "mbid": "9d6e9f25-9096-4ae5-ab0b-343820d0e335",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:please-hold-me",
+      "type": "project",
+      "name": "Please Hold Me",
+      "mbid": "3185a815-5c33-4c7b-b68d-b0655a4141be",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:winter-morning",
+      "type": "project",
+      "name": "Winter Morning",
+      "mbid": "fc7a08ba-1751-48f4-8710-79046dee06f1",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:distant-worlds-iii",
+      "type": "project",
+      "name": "Distant Worlds III",
+      "mbid": "2071b217-c181-4bd9-b5f9-6313aed8e93c",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:multiverse",
+      "type": "project",
+      "name": "Multiverse",
+      "mbid": "e1f00fc4-d6c6-4cbb-adfd-e2ceb4bfcbe9",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:signs-of-life",
+      "type": "project",
+      "name": "Signs of Life",
+      "mbid": "70b9a0e8-f372-46c5-920a-10662dd392a6",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sea-of-stars",
+      "type": "project",
+      "name": "Sea of Stars",
+      "mbid": "1ce2e8d5-c56f-4f2b-9c1d-091e243aa0e2",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:distant-worlds-ii",
+      "type": "project",
+      "name": "Distant Worlds II",
+      "mbid": "702ef64e-a157-4f80-8eb4-714ecbca886a",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:house-in-the-woods",
+      "type": "project",
+      "name": "House in the Woods",
+      "mbid": "6b59a816-c835-4e18-8003-c5185ccd7450",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sky-lake",
+      "type": "project",
+      "name": "Sky Lake",
+      "mbid": "1d4dd865-1896-4118-8089-5ebcbf442085",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oasis",
+      "type": "project",
+      "name": "Oasis",
+      "mbid": "60fab8ce-0b36-4108-8e31-93e4af3421b5",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adventure-island",
+      "type": "project",
+      "name": "Adventure Island",
+      "mbid": "23ec3633-9cf2-412c-8573-57435b8523a8",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleeping-cat",
+      "type": "project",
+      "name": "Sleeping Cat",
+      "mbid": "17f35708-db50-4bf1-9ab6-5278cfc788e1",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:city-nights",
+      "type": "project",
+      "name": "City Nights",
+      "mbid": "2cb2bca1-bf51-4c58-94a1-db0fa26449d1",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:floating-castle",
+      "type": "project",
+      "name": "Floating Castle",
+      "mbid": "381eaf45-82b4-402b-91ff-857ee1dbbc82",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:distant-worlds",
+      "type": "project",
+      "name": "Distant Worlds",
+      "mbid": "e1b89b70-e483-449f-9561-e3e9421640cf",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleepy-eyes",
+      "type": "project",
+      "name": "Sleepy Eyes",
+      "mbid": "4fc93239-dfec-4326-8999-37f33a6e4e39",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:above-the-clouds",
+      "type": "project",
+      "name": "Above The Clouds",
+      "mbid": "be1222ae-b635-43ee-a67b-200107d56198",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:far-from-home",
+      "type": "project",
+      "name": "Far From Home",
+      "mbid": "dcb6cca2-33f2-4a0a-8043-15239ebe457a",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mellow-skies",
+      "type": "project",
+      "name": "Mellow Skies",
+      "mbid": "c4e09a08-fc2b-4fc8-9ba8-f9e470ebce77",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:melting-snow-growing-leaves-and-the-sound-of-spring",
+      "type": "project",
+      "name": "Melting Snow, Growing Leaves, and the Sound of Spring",
+      "mbid": "a5b67ad4-7a16-43f2-a06e-1afdebbe1faf",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweet-dreams",
+      "type": "project",
+      "name": "Sweet Dreams",
+      "mbid": "ae2aad8a-0bc7-47af-b59c-2869eeeb92e8",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bloom",
+      "type": "project",
+      "name": "Bloom",
+      "mbid": "527ccbaf-c9b9-40c3-b2a0-6821db439bcd",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mono-no-aware",
+      "type": "project",
+      "name": "Mono no Aware",
+      "mbid": "d5c154a1-020a-4364-b473-e2838093a037",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snowbound",
+      "type": "project",
+      "name": "Snowbound",
+      "mbid": "657027f8-673b-49c7-b5e4-e794718489e8",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reading-during-a-thunder-storm",
+      "type": "project",
+      "name": "Reading During a Thunder Storm",
+      "mbid": "65d12790-3b37-4be8-9576-c138a548e1d8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feelin-fresh",
+      "type": "project",
+      "name": "Feelin’ Fresh",
+      "mbid": "07019943-dd86-40a6-b560-80c13566fdfc",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cat-nap",
+      "type": "project",
+      "name": "Cat Nap",
+      "mbid": "7d713b4f-5602-43f0-898c-1fee02db5d70",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pelagic-journey",
+      "type": "project",
+      "name": "Pelagic Journey",
+      "mbid": "29777a5d-11f0-4cd1-92ee-d9f2d5bffd80",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:whispers-in-the-dark",
+      "type": "project",
+      "name": "Whispers in the Dark",
+      "mbid": "cbca8b38-f0da-471b-9d25-40ad1d15e94a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-good-book",
+      "type": "project",
+      "name": "A Good Book",
+      "mbid": "0acf7a88-9470-499e-b74c-f4721d2b40df",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:floating-to-my-bedroom",
+      "type": "project",
+      "name": "floating to my bedroom",
+      "mbid": "f05f3e07-449b-46bc-bf1b-0c917fce42c8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-relax",
+      "type": "project",
+      "name": "Just Relax",
+      "mbid": "a6c4e3ca-8842-41d3-9b2d-715f7d62e81d",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nostalgia-and-moving-on",
+      "type": "project",
+      "name": "Nostalgia and Moving On",
+      "mbid": "07f774d6-c66c-4bd4-887f-c3d1dd43c63b",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brain-fog",
+      "type": "project",
+      "name": "Brain Fog",
+      "mbid": "cb1df27b-fb2a-44fa-8cca-cbf30a5d93cc",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:indigo-dreams",
+      "type": "project",
+      "name": "Indigo Dreams",
+      "mbid": "f3df94cb-12b8-4813-aec7-a90b08b30cdc",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:now-or-never",
+      "type": "project",
+      "name": "Now or Never",
+      "mbid": "cb812d84-717e-42d2-b8cb-576ff6db3e0c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-all-night",
+      "type": "project",
+      "name": "Up All Night",
+      "mbid": "93b630df-a724-41ac-955f-1bd270a44029",
+      "year": "2018",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:1-a-m-study-session",
+      "type": "track",
+      "name": "1 A.M Study Session"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:emma-wilson",
+      "type": "artist",
+      "name": "Emma Wilson"
+    }
+  ]
+}

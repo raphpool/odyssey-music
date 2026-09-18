@@ -1,0 +1,211 @@
+{
+  "slug": "artist:toto-la-momposina",
+  "name": "Totó la Momposina",
+  "editorial_article": "Born Sonia Bazanta Vides in the northern Colombian town of Talaigua Nuevo in 1940, the singer reached global audiences through her 1993 album La Candela Viva, issued on Peter Gabriel's Real World Records. Descended from four generations of musicians, her work preserved Afro-Colombian and Indigenous musical traditions including cumbia, bullerengue, and porro. In 1982, she traveled as part of a cultural delegation to perform during the Nobel Prize in Literature ceremony for Gabriel García Márquez. Her songs, such as 'El Pescador' and 'Curura', gained renewed prominence through samples in tracks by artists including Major Lazer, J Balvin, and Jay-Z. In 2013, she received the Latin Grammy Lifetime Achievement Award before passing away in 2026.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tot%C3%B3_la_Momposina",
+      "title": "Totó la Momposina - Wikipedia"
+    },
+    {
+      "url": "https://realworldrecords.com/artists/toto-la-momposina/",
+      "title": "Totó la Momposina - Real World Records"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:59.127Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Colombian singer who brought the traditional rhythms of the Caribbean coastline to the international stage through her preservation of Afro-Colombian folk music.",
+  "origin": "Talaigua Nuevo, Colombia",
+  "active_years": "1964-2022",
+  "genres": [
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    },
+    {
+      "slug": "genre:bullerengue",
+      "type": "genre",
+      "name": "Bullerengue",
+      "qid": "Q4996773"
+    },
+    {
+      "slug": "genre:porro",
+      "type": "genre",
+      "name": "Porro",
+      "qid": "Q3069904"
+    },
+    {
+      "slug": "genre:afro-colombian",
+      "type": "genre",
+      "name": "Afro-Colombian",
+      "qid": "Q110312968"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:real-world-records",
+      "type": "label",
+      "name": "Real World Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:la-luna",
+      "type": "project",
+      "name": "La Luna",
+      "mbid": "c1ed23e4-c174-4e52-b363-8473a915820e",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-playita",
+      "type": "project",
+      "name": "La Playita",
+      "mbid": "bdd0dec9-32a7-4b8d-9819-cb4488e3a348",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oye-manita",
+      "type": "project",
+      "name": "Oye Manita",
+      "mbid": "7cb387fa-41ae-4744-89f5-2839bdb34dab",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fuego",
+      "type": "project",
+      "name": "Fuego",
+      "mbid": "f1f0d767-cf3b-4683-8673-7300eee3d1af",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tu-tambor",
+      "type": "project",
+      "name": "Tu Tambor",
+      "mbid": "567028ae-8689-47f8-8504-90931cdc13f9",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-luna",
+      "type": "project",
+      "name": "La Luna",
+      "mbid": "5c314df4-129f-4985-b71b-eb9683c9d866",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-garabato-sessions",
+      "type": "project",
+      "name": "The Garabato Sessions (Remixes)",
+      "mbid": "e97877c9-92ed-4c51-a100-56fbe9a8631a",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:el-asunto",
+      "type": "project",
+      "name": "El Asunto",
+      "mbid": "1ac9595e-763c-4d30-897a-d4fc3584e725",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tambores-y-cantos",
+      "type": "project",
+      "name": "Tambores y Cantos",
+      "mbid": "73331e0b-0e8e-4c67-9168-6ff3ce6a99d8",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-candela-viva",
+      "type": "project",
+      "name": "La candela viva",
+      "mbid": "7fdc2849-403e-4631-9f11-abcc17dd05a9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zapata-se-queda",
+      "type": "project",
+      "name": "Zapata se queda",
+      "mbid": "10ca2d53-6268-44a7-8281-3e286e6ed9a3",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-mezcla-pt-2",
+      "type": "project",
+      "name": "La Mezcla, Pt. 2",
+      "mbid": "8ee007e5-5710-4047-9f70-2950e282d1bd",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-mezcla",
+      "type": "project",
+      "name": "La Mezcla",
+      "mbid": "210d90aa-1ae8-360c-93c8-3358ef3b6722",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-bodega",
+      "type": "project",
+      "name": "La Bodega",
+      "mbid": "a34345c9-f6d5-4053-91d1-3951b910893a",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pacanto",
+      "type": "project",
+      "name": "Pacantó",
+      "mbid": "a0b6f5ad-7098-4b87-a24e-f794f5082c7f",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carmelina",
+      "type": "project",
+      "name": "Carmelina",
+      "mbid": "4e64240c-1f3d-33fb-8b76-18b20ada15d7",
+      "year": "1997",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:el-pescador",
+      "type": "track",
+      "name": "El Pescador"
+    },
+    {
+      "slug": "track:curura",
+      "type": "track",
+      "name": "Curura"
+    },
+    {
+      "slug": "track:la-verdolaga",
+      "type": "track",
+      "name": "La Verdolaga"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:calle-13",
+      "type": "artist",
+      "name": "Calle 13"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

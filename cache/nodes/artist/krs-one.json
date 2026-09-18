@@ -1,0 +1,638 @@
+{
+  "slug": "artist:krs-one",
+  "name": "KRS-One",
+  "editorial_article": "Born Lawrence Parker in 1965, the Bronx-based MC first gained national prominence in 1987 as the lead voice of Boogie Down Productions on the seminal album Criminal Minded. Following the murder of his partner DJ Scott La Rock later that year, he pivoted toward the socially conscious lyricism that defined his 1988 follow-up By All Means Necessary. His 1993 solo debut Return of the Boom Bap featured production from DJ Premier and Showbiz, the latter contributing the enduring single Sound of da Police. Throughout the 1990s, he balanced mainstream commercial successes like the number three Billboard 200 album I Got Next with militant activism, notably establishing the Stop the Violence Movement to address regional tensions. His 2009 collaborative project with Buckshot, Survival Skills, debuted at number 62 on the Billboard 200, receiving praise for its uncompromising production and lyrical chemistry.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/KRS-One",
+      "title": "KRS-One - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:22:23.882Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Bronx MC and conscious rap icon who rose to fame with Boogie Down Productions before embarking on an influential, decades-spanning solo career.",
+  "origin": "The Bronx, New York City",
+  "active_years": "1986-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom Bap",
+      "qid": "Q529742"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious Hip Hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast Hip Hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jive-records",
+      "type": "label",
+      "name": "Jive Records"
+    },
+    {
+      "slug": "label:duck-down-records",
+      "type": "label",
+      "name": "Duck Down Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:temple-of-hip-hop-global-awareness",
+      "type": "project",
+      "name": "Temple of Hip Hop: Global Awareness",
+      "mbid": "fa0d16c2-ef14-4d58-ac95-4942c52a4eee",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wanna-leave",
+      "type": "project",
+      "name": "Wanna Leave",
+      "mbid": "6b6fc196-7baa-43ef-b7ab-f7b2cd7319e9",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spit",
+      "type": "project",
+      "name": "Spit",
+      "mbid": "ae955182-a0e1-40ea-aca6-537569a3b709",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-away",
+      "type": "project",
+      "name": "Run Away",
+      "mbid": "7ca2a6bd-37fe-4cea-883f-fefaa224597f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boom-bap-3-16",
+      "type": "project",
+      "name": "Boom Bap 3:16",
+      "mbid": "0cb6efc6-1365-42f9-9b15-95f1e054a3b9",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-a-m-c-r-u-1-2",
+      "type": "project",
+      "name": "I M A M C R U 1 2",
+      "mbid": "b1d0bdd3-b338-44fd-8b62-d54b3bae3a4a",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:krazy",
+      "type": "project",
+      "name": "Krazy",
+      "mbid": "2e9e53b8-9ade-4492-89fb-1b7232b05a8f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:between-da-protests",
+      "type": "project",
+      "name": "Between da Protests",
+      "mbid": "bd0c32fb-e67d-4728-a6c1-c6aeb2f19f44",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:street-light-first-edition",
+      "type": "project",
+      "name": "Street Light |FIRST EDITION|",
+      "mbid": "3c2d7eb9-85d4-4e25-9116-daaddb66e509",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-world-is-mind",
+      "type": "project",
+      "name": "The World Is MIND",
+      "mbid": "882cf342-0db2-4341-9606-fc0d31c09ff1",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-real-hiphop",
+      "type": "project",
+      "name": "The Real HipHop",
+      "mbid": "da9fed28-1742-4032-91c4-9bd457dc8fe1",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-the-ol-skool",
+      "type": "project",
+      "name": "King of the Ol’ Skool",
+      "mbid": "e41e01d0-dfe8-43d9-98a9-30fb9c4ea1e7",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:now-hear-this",
+      "type": "project",
+      "name": "Now Hear This",
+      "mbid": "eb97bf70-b37b-4895-b506-36ec9ecd44c5",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:never-forget",
+      "type": "project",
+      "name": "Never Forget",
+      "mbid": "5144dc84-711b-43fe-80a3-16733a131cb8",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-bdp-album",
+      "type": "project",
+      "name": "The BDP Album",
+      "mbid": "b68b8a8f-65b3-455b-a5e7-4e782db98390",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:royalty-check",
+      "type": "project",
+      "name": "Royalty Check",
+      "mbid": "9b6fd530-b974-4188-9f66-25257e1cf2ca",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:godsville",
+      "type": "project",
+      "name": "Godsville",
+      "mbid": "1bf7a235-0663-444a-8fc7-9fe1d5e1b58b",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meta-historical",
+      "type": "project",
+      "name": "Meta‐Historical",
+      "mbid": "eb73c2dc-b682-451f-bbde-2318e419e8a7",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-just-ice-and-krs-one-ep-volume-1",
+      "type": "project",
+      "name": "The Just‐Ice and KRS‐One EP, Volume 1",
+      "mbid": "49d7f7ed-aba4-4219-b107-8aa3cad4cf67",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-to-the-l-a-b",
+      "type": "project",
+      "name": "Back to the L.A.B. (Lyrical Ass Beating)",
+      "mbid": "df5cf6d5-72a7-417d-b9a3-433d56dda441",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:times-up",
+      "type": "project",
+      "name": "Times Up",
+      "mbid": "d694eb6a-8c0f-4b87-92f1-e0a84ec6cb8a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:survival-skills",
+      "type": "project",
+      "name": "Survival Skills",
+      "mbid": "f864012f-45c3-4ed8-996b-19fa9be87384",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:robot-the-dj",
+      "type": "project",
+      "name": "Robot / The DJ",
+      "mbid": "4b69aae6-066d-401b-9a2a-57b24bde3fc2",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maximum-strength-two-thousand-eight",
+      "type": "project",
+      "name": "Maximum Strength Two Thousand Eight",
+      "mbid": "6b0bb38d-d1f4-38a8-ac63-4cd92c031472",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adventures-in-emceein",
+      "type": "project",
+      "name": "Adventures in Emceein",
+      "mbid": "a713166e-f4ef-36f1-a589-b2eb6913d915",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:criminal-minded-08-the-light-08-midnight-08",
+      "type": "project",
+      "name": "Criminal Minded '08 / The Light '08 / Midnight '08",
+      "mbid": "cf721b42-27f4-40b8-a9e2-54cdec63d34d",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hip-hop-lives",
+      "type": "project",
+      "name": "Hip Hop Lives",
+      "mbid": "ed7db5a9-87db-3716-952c-a2b9ba893fe5",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-will-rock-you",
+      "type": "project",
+      "name": "We Will Rock You",
+      "mbid": "ba3b9cc6-9470-4805-ab84-3a0338d9103e",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:classic",
+      "type": "project",
+      "name": "Classic (Better Than I’ve Ever Been)",
+      "mbid": "e88ed7cf-6c3f-3373-a50b-5c0f98b1c53a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life",
+      "type": "project",
+      "name": "Life",
+      "mbid": "ad5f7703-5f1d-33b3-b0f9-e3615a3d6cdc",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keep-right",
+      "type": "project",
+      "name": "Keep Right",
+      "mbid": "d8a014d2-86ec-358d-b4ce-71f1c82e6346",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kristyles",
+      "type": "project",
+      "name": "Kristyles",
+      "mbid": "5c6d1c10-8213-35bc-b0b0-49b02ea5f159",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-kristyle",
+      "type": "project",
+      "name": "The Kristyle",
+      "mbid": "b63776c8-2f0a-34b8-a985-5dd594772fa7",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spiritual-minded",
+      "type": "project",
+      "name": "Spiritual Minded",
+      "mbid": "0c00f4fd-3a68-36bd-99cd-8d00d599868d",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sound-of-da-police-mad-izm",
+      "type": "project",
+      "name": "Sound of Da Police / Mad Izm",
+      "mbid": "ddc02074-c845-3b7b-a202-5576a3f27317",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strickly-for-da-breakdancers-and-emceez",
+      "type": "project",
+      "name": "Strickly for da Breakdancers & Emceez",
+      "mbid": "d505e04b-a6be-39e8-bb96-446145aa74a8",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sneak-attack",
+      "type": "project",
+      "name": "The Sneak Attack",
+      "mbid": "f9aea970-6f73-3a72-9d50-ed8b2c9b36a6",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-mind",
+      "type": "project",
+      "name": "The Mind",
+      "mbid": "572f8b3e-1eae-401c-aacd-f454d7f9a4a4",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-your-self-up",
+      "type": "project",
+      "name": "Get Your Self Up (remix)",
+      "mbid": "99a73ec7-c4bb-3b7a-94af-6252842439aa",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:return-of-hip-hop",
+      "type": "project",
+      "name": "Return of Hip Hop (Ooh, Ooh)",
+      "mbid": "aa3fea6e-55f8-48d4-85d7-d3dcf488518c",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:symphony-2000",
+      "type": "project",
+      "name": "Symphony 2000",
+      "mbid": "47709f4a-c4db-4066-b9f3-3e6a628084cb",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bulworth",
+      "type": "project",
+      "name": "Bulworth (They Talk About It When We Live It)",
+      "mbid": "c01f370b-8b7a-4a8e-bb4b-5bddfe74b264",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:c-i-a-talkin-to-you",
+      "type": "project",
+      "name": "C.I.A. / Talkin' to You",
+      "mbid": "863655b0-7852-477d-9b77-1295020fbea7",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5-boroughs",
+      "type": "project",
+      "name": "5 Boroughs",
+      "mbid": "9a815e3d-c6b0-38ca-87c1-c84c01fca7fb",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:digital",
+      "type": "project",
+      "name": "Digital",
+      "mbid": "f63f24aa-fc37-35ba-845d-63e8e3d89c32",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:men-of-steel",
+      "type": "project",
+      "name": "Men of Steel (Theme from \"Steel'')",
+      "mbid": "86436957-19ef-4921-9c9f-5b5cacde9388",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-got-next",
+      "type": "project",
+      "name": "I Got Next",
+      "mbid": "b6787784-634c-3486-af38-e8caa880fa5e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:step-into-a-world",
+      "type": "project",
+      "name": "Step Into a World (Rapture’s Delight)",
+      "mbid": "4e29f871-0372-324f-9a41-21ce1802ff4d",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:step-into-a-world-rapture-s-delight-ep",
+      "type": "project",
+      "name": "Step Into A World (Rapture's Delight) EP",
+      "mbid": "0313dd7d-109b-4497-87a0-5afb7d3f2150",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-friend-heartbeat",
+      "type": "project",
+      "name": "A Friend / Heartbeat",
+      "mbid": "b0f4e53a-d3d6-3ab0-9bd2-1dc7a818fdac",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rappaz-r-n-dainja",
+      "type": "project",
+      "name": "Rappaz R. N. Dainja",
+      "mbid": "e4c4217f-9e11-41c3-aa62-912d99c22ba8",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-stop-won-t-stop-the-mc-word-perfect",
+      "type": "project",
+      "name": "Can't Stop, Won't Stop / The MC / Word Perfect",
+      "mbid": "87628549-bd2c-4a4e-9312-ff269e5e74d1",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:krs-one",
+      "type": "project",
+      "name": "KRS‐ONE",
+      "mbid": "2de75ea8-8e4d-31cd-a26e-298d3831859a",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:free-mumia",
+      "type": "project",
+      "name": "Free Mumia",
+      "mbid": "0577d1a7-2ec3-4680-9568-47a504b7330e",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mc-s-act-like-they-don-t-know",
+      "type": "project",
+      "name": "MC’s Act Like They Don’t Know",
+      "mbid": "834b23e8-6adb-3212-b9e1-5414b3c45578",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:return-of-the-boom-bap-mortal-thought",
+      "type": "project",
+      "name": "Return Of The Boom Bap / Mortal Thought (I Must Rock The Mic)",
+      "mbid": "032b50ea-360e-47ee-9df5-b6c1db7acbb0",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:break-the-chain",
+      "type": "project",
+      "name": "Break the Chain (Psychosonic Comic!)",
+      "mbid": "573a1a0b-91bd-468d-be96-ad653a065527",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:return-of-the-boom-bap",
+      "type": "project",
+      "name": "Return of the Boom Bap",
+      "mbid": "a03a1ce3-3e3e-31b1-92e5-9f142ba2ad0c",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sound-of-da-police",
+      "type": "project",
+      "name": "Sound of da Police",
+      "mbid": "30a28262-0035-30e7-92fa-f21960e75da2",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:outta-here",
+      "type": "project",
+      "name": "Outta Here",
+      "mbid": "cc8455f4-f86c-4c0f-a240-d5c1d6b732a3",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-jam",
+      "type": "project",
+      "name": "The Jam",
+      "mbid": "35ab8b64-d9b6-4c29-b97b-737f559f9ddf",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise-n-shine",
+      "type": "project",
+      "name": "Rise ’n’ Shine",
+      "mbid": "f407d852-f74d-4142-9e5f-a03f002d1819",
+      "year": "1991",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sound-of-da-police",
+      "type": "track",
+      "name": "Sound of da Police"
+    },
+    {
+      "slug": "track:my-philosophy",
+      "type": "track",
+      "name": "My Philosophy"
+    },
+    {
+      "slug": "track:the-bridge-is-over",
+      "type": "track",
+      "name": "The Bridge Is Over"
+    },
+    {
+      "slug": "track:south-bronx",
+      "type": "track",
+      "name": "South Bronx"
+    },
+    {
+      "slug": "track:self-destruction",
+      "type": "track",
+      "name": "Self Destruction"
+    },
+    {
+      "slug": "track:step-into-a-world",
+      "type": "track",
+      "name": "Step into a World (Rapture's Delight)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:scott-la-rock",
+      "type": "artist",
+      "name": "Scott La Rock"
+    },
+    {
+      "slug": "artist:dj-premier",
+      "type": "artist",
+      "name": "DJ Premier"
+    },
+    {
+      "slug": "artist:buckshot",
+      "type": "artist",
+      "name": "Buckshot"
+    },
+    {
+      "slug": "artist:marley-marl",
+      "type": "artist",
+      "name": "Marley Marl"
+    },
+    {
+      "slug": "artist:d-nice",
+      "type": "artist",
+      "name": "D-Nice"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:teacha",
+      "type": "artist",
+      "name": "Teacha"
+    },
+    {
+      "slug": "artist:the-blastmaster",
+      "type": "artist",
+      "name": "The Blastmaster"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One"
+    }
+  ]
+}

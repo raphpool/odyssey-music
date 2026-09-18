@@ -1,0 +1,354 @@
+{
+  "slug": "artist:lil-b",
+  "name": "Lil B",
+  "editorial_article": "Born Brandon Christopher McCartney in Berkeley, California, on August 17, 1989, Lil B first gained attention as a member of the hyphy-era hip hop group The Pack. The group's 2006 single 'Vans' became a surprise hit and their only appearance on the Billboard Hot 100. As a solo artist, McCartney pioneered 'cloud rap' and coined the term 'based,' defining it as a positive and bold lifestyle. His 2011 album 'I'm Gay (I'm Happy)' peaked at number 56 on the Top R&B/Hip-Hop Albums chart. Across an expansive discography, he has explored diverse genres from comedy hip-hop to jazz, including the 2022 release 'Afrikantis.' His influential internet-based career has inspired numerous artists, including Kendrick Lamar, Tyler, the Creator, and Young Thug. Beyond music, he has gained notoriety for public feuds with NBA stars like Kevin Durant and James Harden, often playfully claiming to place them under a 'Based God curse.'",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lil_B",
+      "title": "Lil B - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Lil_B_discography",
+      "title": "Lil B discography - Wikipedia"
+    },
+    {
+      "url": "https://musicbrainz.org/artist/1550f952-c91b-40d7-9b4d-d26a259ee932",
+      "title": "Lil B - MusicBrainz"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:05.939Z",
+  "type": "artist",
+  "editorial_bio": "An influential Berkeley-born rapper and producer known for pioneering internet rap and his 'Based' lifestyle philosophy.",
+  "origin": "Berkeley, California, U.S.",
+  "active_years": "2004-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud Rap",
+      "qid": "Q16829781"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:basedworld",
+      "type": "label",
+      "name": "BasedWorld"
+    },
+    {
+      "slug": "label:permanent-marks",
+      "type": "label",
+      "name": "Permanent Marks"
+    },
+    {
+      "slug": "label:amalgam-digital",
+      "type": "label",
+      "name": "Amalgam Digital"
+    },
+    {
+      "slug": "label:sodmg-entertainment",
+      "type": "label",
+      "name": "SODMG Entertainment"
+    },
+    {
+      "slug": "label:weird-forest",
+      "type": "label",
+      "name": "Weird Forest"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:r-u-ok",
+      "type": "project",
+      "name": "R u ok?",
+      "mbid": "ac1e2e42-972e-430f-9a18-089c42c026d2",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lluvia-rain",
+      "type": "project",
+      "name": "Lluvia Rain",
+      "mbid": "33968b98-263b-4e93-9cc4-73d3d78a1f18",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quemar-quemar-o-ohh",
+      "type": "project",
+      "name": "Quemar Quemar O Ohh",
+      "mbid": "7ecf6396-bebb-4d5b-a6b0-4fb16f6dfdeb",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:swag-like-ohio-pt-2",
+      "type": "project",
+      "name": "SWAG LIKE OHIO PT. 2",
+      "mbid": "6f16fc45-01e7-441f-a586-84688681c9dc",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:afrikantis",
+      "type": "project",
+      "name": "Afrikantis",
+      "mbid": "f80e9584-7f0c-4fbc-af60-b290d2bd9276",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:life-is-awesome",
+      "type": "project",
+      "name": "Life Is Awesome",
+      "mbid": "99047ab2-7236-4c28-9539-ada3300c7882",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-not-enough",
+      "type": "project",
+      "name": "That’s Not Enough",
+      "mbid": "b8246381-1cb0-478c-ba84-721135f6c2f4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:line-em-up",
+      "type": "project",
+      "name": "LINE EM UP",
+      "mbid": "1b9eb473-6fb7-4003-82dc-afc8df750b4b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fair-chance",
+      "type": "project",
+      "name": "Fair Chance",
+      "mbid": "dfab28ba-966d-499b-98df-d4f4d4ca5360",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:idol",
+      "type": "project",
+      "name": "IDOL",
+      "mbid": "686613a9-4bda-4762-91f4-6c4475b9fbff",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:waiting-here",
+      "type": "project",
+      "name": "Waiting Here",
+      "mbid": "ad24e763-c135-4c8c-9929-65f8e7472840",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-my-life",
+      "type": "project",
+      "name": "Live My Life",
+      "mbid": "6c4046f9-5623-4447-ac60-0e5139cde67b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:free-love",
+      "type": "project",
+      "name": "Free Love",
+      "mbid": "e51ac36c-ee4c-49a4-8ef2-44b2dc038c5f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:murder-rate",
+      "type": "project",
+      "name": "Murder Rate",
+      "mbid": "0bd4a207-da84-4e8c-ad76-07944a3fa349",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tears-4-god",
+      "type": "project",
+      "name": "Tears 4 God",
+      "mbid": "3aa6d618-2b7c-4884-a52d-3f2606851264",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:california-boy",
+      "type": "project",
+      "name": "California Boy",
+      "mbid": "d639b3c7-86c7-44f5-8d0c-06c10a16a75d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-my-eyes-open-2",
+      "type": "project",
+      "name": "Keep My Eyes Open 2",
+      "mbid": "121195a4-dec2-4993-8e1e-f45b6427841e",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-gay",
+      "type": "project",
+      "name": "I’m Gay (I’m Happy)",
+      "mbid": "1fb883a7-bed9-467e-a345-38617ec3e5d8",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angels-exodus",
+      "type": "project",
+      "name": "Angels Exodus",
+      "mbid": "80528636-62e7-4c00-88ea-43591b84419e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wonton-soup",
+      "type": "project",
+      "name": "Wonton Soup",
+      "mbid": "a4413307-4701-4251-8f51-5c4308ae0cba",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rain-in-england",
+      "type": "project",
+      "name": "Rain in England",
+      "mbid": "3c522788-818e-4041-98b1-031f0f44c263",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paint",
+      "type": "project",
+      "name": "Paint",
+      "mbid": "3284bea5-efe1-4efb-9543-43e1f1443290",
+      "year": "2010",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:vans",
+      "type": "track",
+      "name": "Vans"
+    },
+    {
+      "slug": "track:like-a-martian",
+      "type": "track",
+      "name": "Like A Martian"
+    },
+    {
+      "slug": "track:wonton-soup",
+      "type": "track",
+      "name": "Wonton Soup"
+    },
+    {
+      "slug": "track:i-m-god",
+      "type": "track",
+      "name": "I'm God"
+    },
+    {
+      "slug": "track:fuck-kd",
+      "type": "track",
+      "name": "Fuck KD"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, the Creator"
+    },
+    {
+      "slug": "artist:young-thug",
+      "type": "artist",
+      "name": "Young Thug"
+    },
+    {
+      "slug": "artist:playboi-carti",
+      "type": "artist",
+      "name": "Playboi Carti"
+    },
+    {
+      "slug": "artist:lil-yachty",
+      "type": "artist",
+      "name": "Lil Yachty"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef"
+    },
+    {
+      "slug": "artist:yung-lean",
+      "type": "artist",
+      "name": "Yung Lean"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:soulja-boy",
+      "type": "artist",
+      "name": "Soulja Boy"
+    },
+    {
+      "slug": "artist:chance-the-rapper",
+      "type": "artist",
+      "name": "Chance the Rapper"
+    },
+    {
+      "slug": "artist:keyboard-kid",
+      "type": "artist",
+      "name": "Keyboard Kid"
+    },
+    {
+      "slug": "artist:terror-jr",
+      "type": "artist",
+      "name": "Terror Jr"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:the-basedgod",
+      "type": "artist",
+      "name": "The BasedGod"
+    },
+    {
+      "slug": "artist:lil-b-the-basedgod",
+      "type": "artist",
+      "name": "Lil B the BasedGod"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:brandon-christopher-mccartney",
+      "type": "artist",
+      "name": "Brandon Christopher McCartney"
+    }
+  ]
+}

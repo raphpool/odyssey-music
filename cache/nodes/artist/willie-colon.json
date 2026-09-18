@@ -1,0 +1,439 @@
+{
+  "slug": "artist:willie-colon",
+  "name": "Willie Colón",
+  "editorial_article": "Born in the South Bronx in 1950, Willie Colón became a foundational architect of salsa music after signing with Fania Records at age 15. A trombonist influenced by the hard-edged playing style of Barry Rogers, he rose to prominence as a duo with Héctor Lavoe, eventually recording best-selling collaborations with artists like Rubén Blades and Celia Cruz. His work often explored the diaspora experience, most notably on the 1971 album Asalto Navideño, which utilized traditional rhythms from Puerto Rico, Cuba, and Brazil to challenge the cultural boundaries of his New York base. Throughout his career, he balanced musical innovation—such as adopting a gangster image for his record covers—with a lifelong commitment to civil rights activism and New York City politics.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Willie_Col%C3%B3n",
+      "title": "Willie Colón - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:32.049Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Nuyorican trombonist and salsa pioneer who transformed the genre through his production and decades-long career with Fania Records.",
+  "origin": "New York City, U.S.",
+  "active_years": "1967-2026",
+  "genres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:bolero",
+      "type": "genre",
+      "name": "Bolero",
+      "qid": "Q489913"
+    },
+    {
+      "slug": "genre:latin",
+      "type": "genre",
+      "name": "Latin",
+      "qid": "Q18345375"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fania-records",
+      "type": "label",
+      "name": "Fania Records"
+    },
+    {
+      "slug": "label:sonografica",
+      "type": "label",
+      "name": "Sonográfica"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:guaracha",
+      "type": "project",
+      "name": "Güaracha (remastered 2026)",
+      "mbid": "15cf63f0-8833-45aa-9b37-aa7f68d78803",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:amor-verdadero",
+      "type": "project",
+      "name": "Amor verdadero",
+      "mbid": "7ed731fa-81e3-4fa2-a96b-57e4feec4bbf",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:los-olores-del-amor",
+      "type": "project",
+      "name": "Los olores del amor",
+      "mbid": "fedccd7d-9d54-4724-8880-737b8b4974ef",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:estar-lejos",
+      "type": "project",
+      "name": "Estar lejos",
+      "mbid": "a9d4df54-be39-4fb2-9edb-4ed14f1ac211",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:el-malo-vol-ii-prisioneros-del-mambo",
+      "type": "project",
+      "name": "El malo vol. II: Prisioneros del mambo",
+      "mbid": "33ee1427-1eb2-340c-8335-c7461d646b91",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:idilio",
+      "type": "project",
+      "name": "Idilio",
+      "mbid": "43a44c55-e0ec-4b27-bc87-0e43e84e0337",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:y-vuelve-otra-vez",
+      "type": "project",
+      "name": "Y vuelve otra vez",
+      "mbid": "4413533e-eec7-344b-8549-c95c6b65ef08",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tras-la-tormenta",
+      "type": "project",
+      "name": "Tras la tormenta",
+      "mbid": "924ba7c8-dbe7-35dd-bfd4-c1e0b4629775",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hecho-en-puerto-rico",
+      "type": "project",
+      "name": "Hecho en Puerto Rico",
+      "mbid": "18a88be3-e11a-3229-b7d1-7f515f5fe645",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asalto-navideno",
+      "type": "project",
+      "name": "Asalto navideño",
+      "mbid": "c3b869d3-8c27-4922-a78d-21c7f04b5c23",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:honra-y-cultura",
+      "type": "project",
+      "name": "Honra y cultura",
+      "mbid": "e89228ce-811b-33d2-9c54-3c27b018bbdf",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:color-americano",
+      "type": "project",
+      "name": "Color americano",
+      "mbid": "e2c65953-bf76-34a2-ab57-3c5dcc657db6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:top-secrets",
+      "type": "project",
+      "name": "Top Secrets",
+      "mbid": "ad6cb20a-5ee6-40a1-ad39-ba21ce6ac7d9",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-winners",
+      "type": "project",
+      "name": "The Winners",
+      "mbid": "449536f3-54bd-3a58-820f-d73c9039e8a5",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:contrabando",
+      "type": "project",
+      "name": "Contrabando",
+      "mbid": "d720b0c6-dda4-48f9-bd9b-32984fee0333",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:set-fire-to-me",
+      "type": "project",
+      "name": "Set Fire to Me",
+      "mbid": "7c14a05b-979a-4977-91d3-426af9ad8cf3",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tiempo-pa-matar",
+      "type": "project",
+      "name": "Tiempo pa' matar",
+      "mbid": "9b13c851-702c-354d-ab8e-b190cf2ff816",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:criollo",
+      "type": "project",
+      "name": "Criollo",
+      "mbid": "e941eebd-51ab-351c-9d82-dd25b05e4889",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vigilante",
+      "type": "project",
+      "name": "Vigilante",
+      "mbid": "0e34b8e1-ff6f-34ce-8916-18fff825a04d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:corazon-guerrero",
+      "type": "project",
+      "name": "Corazón guerrero",
+      "mbid": "6e2c517e-d648-4453-befc-30ab614fc100",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:canciones-del-solar-de-los-aburridos",
+      "type": "project",
+      "name": "Canciones del solar de los aburridos",
+      "mbid": "ded3169e-9ce8-3463-ac65-a307cbcf858d",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fantasmas",
+      "type": "project",
+      "name": "Fantasmas",
+      "mbid": "918436ae-daed-31e9-ac33-22b71133669f",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:celia-y-willie",
+      "type": "project",
+      "name": "Celia y Willie",
+      "mbid": "c02c132f-ef0f-375f-b81e-771a4bdbdcd3",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:doble-energia",
+      "type": "project",
+      "name": "Doble energía",
+      "mbid": "30e66d3c-7528-49b8-b081-95c400a76ed8",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solo",
+      "type": "project",
+      "name": "Solo",
+      "mbid": "8a320bd8-4b59-3223-a98b-1ec9721b8cb1",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:siembra",
+      "type": "project",
+      "name": "Siembra",
+      "mbid": "0efd12a2-2d31-3fa8-a76c-5f8af6613fca",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metiendo-mano",
+      "type": "project",
+      "name": "Metiendo mano",
+      "mbid": "26019fee-7182-3a4c-88e3-3c2905737941",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-baquine-de-angelitos-negros",
+      "type": "project",
+      "name": "El baquiné de angelitos negros",
+      "mbid": "aa87dbcd-93fa-330a-99da-596cf15d16bc",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:only-they-could-have-made-this-album",
+      "type": "project",
+      "name": "Only They Could Have Made This Album",
+      "mbid": "efc504e7-9017-3ffe-bd5d-b8e3570ab84e",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-good-the-bad-the-ugly",
+      "type": "project",
+      "name": "The Good, the Bad, the Ugly",
+      "mbid": "7487c610-e3ca-3aec-8931-722b47ab2e16",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:there-goes-the-neighborhood-se-chavo-el-vecindario",
+      "type": "project",
+      "name": "There Goes the Neighborhood: Se chavó el vecindario",
+      "mbid": "d2649842-d2d5-3534-8d59-c5b234789139",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asalto-navideno-vol-ii",
+      "type": "project",
+      "name": "Asalto navideño, vol. II",
+      "mbid": "83f5905a-b6a9-363f-88cb-fb4caab57808",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lo-mato",
+      "type": "project",
+      "name": "Lo mato (Si no compra este LP)",
+      "mbid": "e82d46ec-eb25-3234-be7c-b071ad185ea4",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-dia-de-suerte",
+      "type": "project",
+      "name": "El Dia De Suerte",
+      "mbid": "cff7bbad-740f-4bc6-9188-7a6741569187",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:asalto-navideno",
+      "type": "project",
+      "name": "Asalto navideño",
+      "mbid": "66cc792a-ca36-3f44-be44-a898337ba396",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-juicio",
+      "type": "project",
+      "name": "El juicio",
+      "mbid": "772e1744-a6f0-3202-9665-a701c3acc758",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-big-break-la-gran-fuga",
+      "type": "project",
+      "name": "The Big Break - La gran fuga",
+      "mbid": "8684d2dd-dfbd-34b8-9b85-8b47ea9f99c1",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guisando",
+      "type": "project",
+      "name": "Guisando (Doing a Job)",
+      "mbid": "1f8d79aa-1979-327a-8ec1-4850e4e59a03",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cosa-nuestra",
+      "type": "project",
+      "name": "Cosa nuestra",
+      "mbid": "e828464d-c6fc-357f-b976-1d895120b8d6",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hustler",
+      "type": "project",
+      "name": "The Hustler",
+      "mbid": "564cfbc7-e46a-335d-b555-ba19d2154a20",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-malo",
+      "type": "project",
+      "name": "El malo",
+      "mbid": "dc03a8cb-3dc1-395d-961c-44513d94d27e",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:americano-latino",
+      "type": "project",
+      "name": "Americano latino",
+      "mbid": "4ca9eec6-cd7f-4a45-a860-ba6aade1c616",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:aguanile",
+      "type": "track",
+      "name": "Aguanilé"
+    },
+    {
+      "slug": "track:tiburon",
+      "type": "track",
+      "name": "Tiburón"
+    },
+    {
+      "slug": "track:el-gran-varon",
+      "type": "track",
+      "name": "El gran varón"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:hector-lavoe",
+      "type": "artist",
+      "name": "Héctor Lavoe"
+    },
+    {
+      "slug": "artist:ruben-blades",
+      "type": "artist",
+      "name": "Rubén Blades"
+    },
+    {
+      "slug": "artist:celia-cruz",
+      "type": "artist",
+      "name": "Celia Cruz"
+    },
+    {
+      "slug": "artist:johnny-pacheco",
+      "type": "artist",
+      "name": "Johnny Pacheco"
+    },
+    {
+      "slug": "artist:mon-rivera",
+      "type": "artist",
+      "name": "Mon Rivera"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:willie-colon",
+      "type": "artist",
+      "name": "Willie Colón"
+    }
+  ]
+}

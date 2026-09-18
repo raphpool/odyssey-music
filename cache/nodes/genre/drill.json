@@ -1,0 +1,132 @@
+{
+  "slug": "genre:drill",
+  "name": "Drill",
+  "editorial_article": "Emerging in Chicago's Parkway Gardens during the early 2010s, drill music is a genre defined by grim, nihilistic lyrics and confrontational energy. Pioneering artists like Chief Keef, Lil Durk, and Fredo Santana used a skeletal, trap-influenced production style, heavily shaped by the bell and synth brass-driven beats of producer Young Chop. Unlike the wealth-focused themes common in mainstream hip-hop at the time, the genre focuses on the stark, often fatalistic realities of gang rivalries, with many early tracks serving as direct responses to violence within Chicago's South Side. The subgenre's global reach expanded through the UK drill scene—centered in Brixton—where artists like 67 moved away from Chicago-centric influences to develop a faster, more syncopated rhythm characterized by 808 slides and sped-up hi-hat patterns. This unique production shift later heavily influenced the New York City scene, where artists like Pop Smoke and Fivio Foreign integrated the UK-influenced aesthetic to reach international prominence. Critics and sociologists continue to debate the genre's role in documenting societal decay, as authorities in both the US and UK frequently attempt to censor drill music over claims that its explicit lyrical content fuels real-world retaliation.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Drill_music",
+      "title": "Drill music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:11.812Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by aggressive, nihilistic lyrics and a trap-derived, high-tension production style that originated in Chicago.",
+  "qid": "Q15697534",
+  "era": "early 2010s to present",
+  "origin": "Chicago, Illinois, United States",
+  "sonic_markers": "Heavy use of Roland TR-808s, syncopated drum machine patterns, dark synth brass and bells, and, in later iterations, sliding 808 basslines.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:us-bass-music",
+      "type": "genre",
+      "name": "Us Bass Music",
+      "qid": "Q114880124"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime",
+      "qid": "Q1166726"
+    },
+    {
+      "slug": "genre:footwork",
+      "type": "genre",
+      "name": "Footwork",
+      "qid": "Q5466607"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef"
+    },
+    {
+      "slug": "artist:lil-durk",
+      "type": "artist",
+      "name": "Lil Durk"
+    },
+    {
+      "slug": "artist:pop-smoke",
+      "type": "artist",
+      "name": "Pop Smoke"
+    },
+    {
+      "slug": "artist:king-von",
+      "type": "artist",
+      "name": "King Von"
+    },
+    {
+      "slug": "artist:fivio-foreign",
+      "type": "artist",
+      "name": "Fivio Foreign"
+    },
+    {
+      "slug": "artist:67",
+      "type": "artist",
+      "name": "67"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:interscope-records",
+      "type": "label",
+      "name": "Interscope Records"
+    },
+    {
+      "slug": "label:epic-records",
+      "type": "label",
+      "name": "Epic Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:i-don-t-like",
+      "type": "track",
+      "name": "I Don't Like"
+    },
+    {
+      "slug": "track:love-sosa",
+      "type": "track",
+      "name": "Love Sosa"
+    },
+    {
+      "slug": "track:welcome-to-the-party",
+      "type": "track",
+      "name": "Welcome to the Party"
+    },
+    {
+      "slug": "track:suburban",
+      "type": "track",
+      "name": "Suburban"
+    }
+  ]
+}

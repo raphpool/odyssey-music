@@ -1,0 +1,240 @@
+{
+  "slug": "artist:carlos-gardel",
+  "name": "Carlos Gardel",
+  "editorial_article": "Born in Toulouse, France, in 1890, Carlos Gardel migrated to Buenos Aires in 1893 where he became the most influential icon in the history of tango. He rose to prominence as a singer, actor, and composer, notably creating the tango-canción genre with his 1917 recording of Mi noche triste, a work composed by Pascual Contursi and Samuel Castriota. Over his career, he sold 70,000 records in Paris alone during a 1928 visit and performed in various Paramount Pictures films, including the 1935 production El día que me quieras. His songwriting partnership with lyricist Alfredo Le Pera resulted in classics such as Volver and Por una cabeza. Gardel remained a dominant cultural force until his 1935 death in an airplane crash in Medellín, Colombia, which triggered widespread mourning throughout Latin America. He is remembered for a wide vocal range, dramatic phrasing, and for embodying the soul of the tango style, with his likeness still appearing across Buenos Aires in public spaces and murals.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Carlos_Gardel",
+      "title": "Carlos Gardel - Wikipedia"
+    },
+    {
+      "url": "https://www.classicals.de/gardel",
+      "title": "Carlos Gardel - Biography & Compositions - Classicals.de"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:03:35.507Z",
+  "type": "artist",
+  "editorial_bio": "French-born Argentine singer and actor who became the quintessential global icon of tango music in the early 20th century.",
+  "origin": "Buenos Aires, Argentina",
+  "active_years": "1917–1935",
+  "genres": [
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:paramount",
+      "type": "label",
+      "name": "Paramount"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:now-s-the-time",
+      "type": "project",
+      "name": "Now's the Time",
+      "mbid": "5e91023c-a1ed-4080-a3f4-52a19c8047f3",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tango",
+      "type": "project",
+      "name": "Tango",
+      "mbid": "edc37b24-f540-4133-8afd-ea1944ebd437",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guitarra-mia-tangos-by-gardel-and-piazzolla",
+      "type": "project",
+      "name": "Guitarra mía: Tangos by Gardel and Piazzolla",
+      "mbid": "252a3f96-af26-4f13-bb5d-878012743c90",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sus-50-mejores-tangos",
+      "type": "project",
+      "name": "Sus 50 Mejores Tangos",
+      "mbid": "d28fb635-80f2-4d90-a21c-6c9edff29558",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jose-van-dam-meets-carlos-gardel",
+      "type": "project",
+      "name": "José van Dam Meets Carlos Gardel",
+      "mbid": "9466ee7d-e443-480e-b102-fa3038a3461a",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inolvidables-del-tango-vol-1",
+      "type": "project",
+      "name": "Inolvidables del tango vol.1",
+      "mbid": "9618819d-15b0-49e8-be9a-c72aa175f396",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gardel-remixed",
+      "type": "project",
+      "name": "Gardel Remixed",
+      "mbid": "1ff056df-a4ee-4444-a198-65f9f9bb033a",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interpreta-a-cadicamo",
+      "type": "project",
+      "name": "Interpreta a Cadícamo",
+      "mbid": "c1e67715-395a-4494-8c19-8b9e9717252b",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adios-muchachos",
+      "type": "project",
+      "name": "Adiós muchachos",
+      "mbid": "0b8e3bc5-5941-4d6c-8446-a9f520e19ea6",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:todo-gardel-12",
+      "type": "project",
+      "name": "Todo Gardel 12 (1923-1924)",
+      "mbid": "815b9bbc-cdd5-444f-88f9-3447736d4595",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tango-es",
+      "type": "project",
+      "name": "Tango es...",
+      "mbid": "6403fd19-2fc3-460d-b146-5105ca6ba225",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-tango-king",
+      "type": "project",
+      "name": "The Tango King",
+      "mbid": "9fe44e75-666a-4104-ac7e-906bd52af310",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carlos-gardel",
+      "type": "project",
+      "name": "Carlos Gardel",
+      "mbid": "263039ad-fa96-3bb7-9493-2c7b8357568e",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tango-argentino",
+      "type": "project",
+      "name": "Tango argentino",
+      "mbid": "c5783dc0-cd5f-4150-86ff-43711dbc73c3",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tangos",
+      "type": "project",
+      "name": "Tangos",
+      "mbid": "3c2eff10-94bf-3c9a-90a6-1dd1dcabb339",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-dia-que-me-quieras-volvio-una-noche",
+      "type": "project",
+      "name": "El día que me quieras / Volvió una noche",
+      "mbid": "4728fc77-405c-309f-b33d-3db9208adf2e",
+      "year": "1935",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yira-yira-incurable",
+      "type": "project",
+      "name": "Yira... Yira... / Incurable",
+      "mbid": "32b4c028-1be9-40ec-b2d3-5def3b0ae331",
+      "year": "1931",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coleccion-aniversario",
+      "type": "project",
+      "name": "Colección aniversario",
+      "mbid": "4e1167ba-69d5-3ec9-b3ae-db5d878697fc",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coleccion-buenos-aires-tango-carlos-gardel",
+      "type": "project",
+      "name": "Colección Buenos Aires Tango: Carlos Gardel",
+      "mbid": "a74c93cf-3051-4f1c-ae65-f9a1f9fdbbf0",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:mi-noche-triste",
+      "type": "track",
+      "name": "Mi noche triste"
+    },
+    {
+      "slug": "track:volver",
+      "type": "track",
+      "name": "Volver"
+    },
+    {
+      "slug": "track:por-una-cabeza",
+      "type": "track",
+      "name": "Por una cabeza"
+    },
+    {
+      "slug": "track:mi-buenos-aires-querido",
+      "type": "track",
+      "name": "Mi Buenos Aires querido"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:alfredo-le-pera",
+      "type": "artist",
+      "name": "Alfredo Le Pera"
+    },
+    {
+      "slug": "artist:jose-razzano",
+      "type": "artist",
+      "name": "José Razzano"
+    },
+    {
+      "slug": "artist:francisco-martino",
+      "type": "artist",
+      "name": "Francisco Martino"
+    },
+    {
+      "slug": "artist:guillermo-barbieri",
+      "type": "artist",
+      "name": "Guillermo Barbieri"
+    },
+    {
+      "slug": "artist:angel-domingo-riverol",
+      "type": "artist",
+      "name": "Ángel Domingo Riverol"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

@@ -69,6 +69,30 @@
       "type": "genre",
       "name": "Euro House",
       "qid": "Q30917612"
+    },
+    {
+      "slug": "genre:ghetto-house",
+      "type": "genre",
+      "name": "Ghetto House",
+      "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:leftfield-house",
+      "type": "genre",
+      "name": "Leftfield House",
+      "qid": "Q105636940"
+    },
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
     }
   ],
   "related_genres": [
@@ -113,6 +137,18 @@
       "type": "genre",
       "name": "Euro House",
       "qid": "Q30917612"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip-House",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
     }
   ],
   "key_artists": [

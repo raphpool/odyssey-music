@@ -1,0 +1,826 @@
+{
+  "slug": "artist:kendrick-lamar",
+  "name": "Kendrick Lamar",
+  "editorial_article": "Born in Compton, California, on June 17, 1987, Kendrick Lamar Duckworth debuted his commercial career after signing with Top Dawg Entertainment in 2005. His breakthrough arrived with his 2012 sophomore project, Good Kid, M.A.A.D City, which utilized producers such as Pharrell Williams and Hit-Boy to craft a narrative-driven gangsta rap record. By 2015, Lamar reached number one on the Billboard 200 with To Pimp a Butterfly, an album that integrated jazz, funk, and soul influences with the help of collaborators like Thundercat and Terrace Martin. In 2018, he became the first rapper to win the Pulitzer Prize for Music. Beyond his solo work, Lamar co-founded the creative company PGLang and famously engaged in a public musical feud with Drake that culminated in 2024's chart-topping singles like 'Not Like Us'.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Kendrick_Lamar",
+      "title": "Kendrick Lamar - Wikipedia"
+    },
+    {
+      "url": "https://genius.com/artists/Kendrick-lamar/albums",
+      "title": "Kendrick Lamar Albums and Discography - Genius"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:53.467Z",
+  "type": "artist",
+  "editorial_bio": "A Pulitzer Prize-winning Compton rapper known for dense, introspective lyricism and the integration of jazz and funk into modern hip-hop.",
+  "origin": "Compton, California",
+  "active_years": "2003-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious Hip Hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip Hop",
+      "qid": "Q966564"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative Hip Hop",
+      "qid": "Q438503"
+    },
+    {
+      "slug": "genre:pop-rap",
+      "type": "genre",
+      "name": "Pop Rap",
+      "qid": "Q2572585"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:top-dawg-entertainment",
+      "type": "label",
+      "name": "Top Dawg Entertainment"
+    },
+    {
+      "slug": "label:aftermath-entertainment",
+      "type": "label",
+      "name": "Aftermath Entertainment"
+    },
+    {
+      "slug": "label:interscope-records",
+      "type": "label",
+      "name": "Interscope Records"
+    },
+    {
+      "slug": "label:pglang",
+      "type": "label",
+      "name": "PGLang"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gnx",
+      "type": "project",
+      "name": "GNX",
+      "mbid": "32cb822c-a14e-49ce-a169-f209c5f31e0f",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:watch-the-party-die",
+      "type": "project",
+      "name": "Watch the Party Die",
+      "mbid": "30067d1b-d45e-4a6b-8b36-7d553425cd2f",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:not-like-us",
+      "type": "project",
+      "name": "Not Like Us",
+      "mbid": "564b9cea-cde5-46b5-bc66-2eb707920ee1",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-16-in-la",
+      "type": "project",
+      "name": "6:16 in LA",
+      "mbid": "3f429571-4b49-4625-8cc3-de2b6ae2bc18",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:meet-the-grahams",
+      "type": "project",
+      "name": "meet the grahams",
+      "mbid": "7c255aa4-3e1e-46c0-858c-431c185c1ba7",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:euphoria",
+      "type": "project",
+      "name": "euphoria",
+      "mbid": "9b7669e5-172c-4420-aee4-2a5c659cee3c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drake-type-beat",
+      "type": "project",
+      "name": "Drake Type Beat",
+      "mbid": "14851452-3ebb-471c-8c18-125e6784eb7c",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-hillbillies",
+      "type": "project",
+      "name": "The Hillbillies",
+      "mbid": "5cd89311-85b4-461d-9f6a-14608cc7f07f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:compton-cowboys",
+      "type": "project",
+      "name": "Compton Cowboys",
+      "mbid": "c08b45f4-2f10-435c-92fc-2af71b3837be",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rich-spirit",
+      "type": "project",
+      "name": "Rich Spirit",
+      "mbid": "a9e22926-2265-48e5-a402-2f26ce3d5ce7",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:n95",
+      "type": "project",
+      "name": "N95",
+      "mbid": "1714d9f7-07ff-484a-a449-f60e1bdf2c4d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-morale-and-the-big-steppers",
+      "type": "project",
+      "name": "Mr. Morale & the Big Steppers",
+      "mbid": "6bd70eee-bd46-4738-851a-f50c19d8d6db",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-heart-part-5",
+      "type": "project",
+      "name": "The Heart, Part 5",
+      "mbid": "f8b154ec-1f40-4d30-9b63-ab09d91a6578",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:family-ties",
+      "type": "project",
+      "name": "family ties",
+      "mbid": "196b4d88-1543-4c00-9be4-703001fb00d3",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-over-your-shoulder",
+      "type": "project",
+      "name": "Look Over Your Shoulder",
+      "mbid": "7516d8de-4289-45c8-8e41-09c7f0325b7c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prayer",
+      "type": "project",
+      "name": "Prayer",
+      "mbid": "55888ea3-7d01-434a-abf0-f1c164223912",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hair-down",
+      "type": "project",
+      "name": "Hair Down",
+      "mbid": "0f410409-91d4-40c2-bd83-0e555422a5dc",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-mantra",
+      "type": "project",
+      "name": "The Mantra",
+      "mbid": "54a6a323-9474-49ec-8101-86e67dad7365",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tints",
+      "type": "project",
+      "name": "Tints",
+      "mbid": "0af84a93-af4b-4dc1-9e6d-f21bea920872",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-kid-chill-city",
+      "type": "project",
+      "name": "Bad Kid Chill City",
+      "mbid": "b3ed5743-834a-4f6e-ba76-47cf99b697d1",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pray-for-me",
+      "type": "project",
+      "name": "Pray for Me (Ramirez & Rakurs remix)",
+      "mbid": "b2e11b57-5765-4ba7-93be-8f3d523bebd8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dedication",
+      "type": "project",
+      "name": "Dedication",
+      "mbid": "7a730f27-5e7c-45f3-9180-7b98ba312fb2",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-don-t-do-it",
+      "type": "project",
+      "name": "Don't Don't Do It!",
+      "mbid": "f04e4174-fcb1-49c8-8e01-92cf31d95b5e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-freezer",
+      "type": "project",
+      "name": "New Freezer",
+      "mbid": "f685934d-4af1-4075-9836-c67065cfc15f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:damn",
+      "type": "project",
+      "name": "DAMN.",
+      "mbid": "b88655ba-7469-48b8-a296-b9011ab73ef3",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:humble",
+      "type": "project",
+      "name": "HUMBLE.",
+      "mbid": "6985c51b-7c0c-4339-8001-0cad8114aa58",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-heart-part-4",
+      "type": "project",
+      "name": "The Heart Part 4",
+      "mbid": "601dedeb-e8c3-456e-94bf-70234a242003",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goosebumps",
+      "type": "project",
+      "name": "Goosebumps",
+      "mbid": "0cd1baa5-560d-4809-bc57-e337d0bc6089",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-wanna-know",
+      "type": "project",
+      "name": "Don't Wanna Know",
+      "mbid": "68d40905-82f7-4004-bb0a-4acbf8f7e013",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom",
+      "type": "project",
+      "name": "Freedom",
+      "mbid": "ca625054-d2d0-4b4b-835d-7e910c2619ff",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-greatest",
+      "type": "project",
+      "name": "The Greatest",
+      "mbid": "cc15b9a3-3f2c-47c2-b207-266fb2951875",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:untitled-07-l-levitate",
+      "type": "project",
+      "name": "untitled 07 l levitate",
+      "mbid": "954426fb-0d24-43ca-8772-b0e73809eec4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-overground-hell-road",
+      "type": "project",
+      "name": "THE OVERGROUND HELL ROAD",
+      "mbid": "c5941657-7767-423f-98b3-483ec16f0667",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:these-walls",
+      "type": "project",
+      "name": "These Walls",
+      "mbid": "6740c2ae-8d7b-4a0e-9ea3-c2a6df4b4340",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-pimp-a-butterfly",
+      "type": "project",
+      "name": "To Pimp a Butterfly",
+      "mbid": "d9103c72-3807-4378-9ce7-b6f3e8fdd547",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alright",
+      "type": "project",
+      "name": "Alright",
+      "mbid": "16aad3d2-aad0-480a-90db-03dcc3766e4a",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:county-building-blues",
+      "type": "project",
+      "name": "County Building Blues",
+      "mbid": "7cd65d8b-461b-4822-bb55-6d228d46eb95",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-blacker-the-berry",
+      "type": "project",
+      "name": "The Blacker the Berry",
+      "mbid": "f6271826-9571-4a34-a0bc-ce37d711a9ed",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heaven-help-dem",
+      "type": "project",
+      "name": "Heaven Help Dem",
+      "mbid": "2e0d2336-b335-4ff9-b211-ee6c03b50857",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pay-for-it",
+      "type": "project",
+      "name": "Pay for It",
+      "mbid": "e0f2901e-0dff-497c-b517-301872b1e1f3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i",
+      "type": "project",
+      "name": "i",
+      "mbid": "11b714d1-9a96-431e-ae54-13275dba70b3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-catch-me",
+      "type": "project",
+      "name": "Never Catch Me",
+      "mbid": "ad43d778-6dff-40d0-b832-3e9216c9324f",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-the-girlfriends",
+      "type": "project",
+      "name": "For the Girlfriends",
+      "mbid": "4bf79639-6b42-4f0b-86c6-7b13c031b728",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:backstreet-freestyle",
+      "type": "project",
+      "name": "Backstreet Freestyle (Truth remix)",
+      "mbid": "b437f97e-423a-4711-b620-d8915b45d1f4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:two-presidents",
+      "type": "project",
+      "name": "Two Presidents",
+      "mbid": "863a999f-39f6-48d7-a92d-af03f9ff123e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nosetalgia",
+      "type": "project",
+      "name": "Nosetalgia",
+      "mbid": "2139b81f-7aac-417c-8e4a-2471255f0854",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:control",
+      "type": "project",
+      "name": "Control",
+      "mbid": "532dd0d5-ea39-4919-b0c3-0d3c8a0614f6",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fragile",
+      "type": "project",
+      "name": "Fragile",
+      "mbid": "7b2e7550-52e8-4066-9555-515ee6136d4c",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3-minutes-of-watts",
+      "type": "project",
+      "name": "3 Minutes of Watts",
+      "mbid": "3d6b9a8d-0c8a-44f2-9519-42dbf6143fa0",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:collard-greens",
+      "type": "project",
+      "name": "Collard Greens",
+      "mbid": "32dcd754-b6e4-4e15-9f74-333af3bab3dd",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:looks-good-with-trouble",
+      "type": "project",
+      "name": "Looks Good With Trouble",
+      "mbid": "5957a1f4-6ab5-4804-bfb3-ae8aaad688ce",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:memories-back-then",
+      "type": "project",
+      "name": "Memories Back Then",
+      "mbid": "fda1cf4b-e673-4a23-ac90-9b7237a260d7",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-up",
+      "type": "project",
+      "name": "We Up",
+      "mbid": "2ba4f8a6-77d0-4b3f-8885-2bc7ae57de5a",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yolo",
+      "type": "project",
+      "name": "YOLO",
+      "mbid": "7c582611-da4f-4cd6-9a64-8cbed5bc05a5",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bitch-don-t-kill-my-vibe",
+      "type": "project",
+      "name": "Bitch, Don’t Kill My Vibe",
+      "mbid": "a9ce57bb-63f7-48d4-a067-b7a669d31dbf",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dedicated",
+      "type": "project",
+      "name": "Dedicated",
+      "mbid": "99071cbc-22c2-47c1-ac08-f82a8a91421e",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:give-it-2-u",
+      "type": "project",
+      "name": "Give It 2 U",
+      "mbid": "4c6a6f6b-6de4-4c35-a770-691cc4a865bc",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-us-move-on",
+      "type": "project",
+      "name": "Let Us Move On",
+      "mbid": "44e73dec-5d21-419d-b7b4-a2a8ff308fe1",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-jig-is-up",
+      "type": "project",
+      "name": "The Jig Is Up (Dump’n)",
+      "mbid": "4e2dcae6-d5fd-47c3-8be2-4b70d3ee9971",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuckin-problems",
+      "type": "project",
+      "name": "Fuckin’ Problems",
+      "mbid": "77f31747-5b7a-42da-95b6-07d7a160272a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-kid-m-a-a-d-city",
+      "type": "project",
+      "name": "good kid, m.A.A.d city",
+      "mbid": "499c19c8-0dab-4824-884b-6191d145e95b",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-heart-pt-3",
+      "type": "project",
+      "name": "The Heart, Pt. 3 (Will You Let It Die?)",
+      "mbid": "8cec8272-bdc6-48b2-b05f-fe0045df7ba8",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:westside-right-on-time",
+      "type": "project",
+      "name": "Westside, Right on Time",
+      "mbid": "c3916bc2-fa38-4f86-9f22-54bba0c031e1",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-thru",
+      "type": "project",
+      "name": "Push Thru",
+      "mbid": "27ab08a1-6b1f-494a-a366-c001739e31c3",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:swimming-pools",
+      "type": "project",
+      "name": "Swimming Pools (Drank)",
+      "mbid": "29aa40a5-3630-4bbe-b5e8-30490bb181cc",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:b-boyz",
+      "type": "project",
+      "name": "B‐Boyz",
+      "mbid": "a0bba15d-86fc-43be-b09b-20ecd9c943c2",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:illuminate",
+      "type": "project",
+      "name": "ILLuminate",
+      "mbid": "12aa1430-3669-451d-8802-3ca22a280f15",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-recipe",
+      "type": "project",
+      "name": "The Recipe",
+      "mbid": "810d5a88-69e6-42d8-902d-80d57b03429b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cartoon-and-cereal",
+      "type": "project",
+      "name": "Cartoon & Cereal",
+      "mbid": "dd19e8dc-960e-4bc8-bcbe-015f1a9f2d02",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:section-80",
+      "type": "project",
+      "name": "Section.80",
+      "mbid": "ceccd668-a928-4041-a3c3-99a5ce880de9",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hol-up",
+      "type": "project",
+      "name": "Hol’ Up",
+      "mbid": "84c5124c-8bda-4645-9b1d-aeaed301a6d7",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hood-gone-love-it",
+      "type": "project",
+      "name": "Hood Gone Love It",
+      "mbid": "a04e7bda-b8fa-46c3-aaa2-6a13426c427c",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ronald-reagan-era",
+      "type": "project",
+      "name": "Ronald Reagan Era",
+      "mbid": "d755eff8-8eb9-43e1-8c33-da0f1367ec01",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sex-with-society",
+      "type": "project",
+      "name": "Sex With Society",
+      "mbid": "6ae221b9-e898-447d-9d95-e60848d52170",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hiiipower",
+      "type": "project",
+      "name": "HiiiPoWeR",
+      "mbid": "7a9b9bbc-19e0-4af2-8a56-e2cb51d769ae",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rapper-shit",
+      "type": "project",
+      "name": "Rapper Shit",
+      "mbid": "d8ec74ad-7ecf-48b8-bac1-9e25a9e53661",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moscato",
+      "type": "project",
+      "name": "Moscato",
+      "mbid": "517a5e56-383c-4ec1-9b5c-258956fb8d18",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vanity-slave-pt-2",
+      "type": "project",
+      "name": "Vanity Slave, Pt. 2",
+      "mbid": "63e51eaa-52db-4ad4-b455-c2c443ba4cab",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-7-freestyle",
+      "type": "project",
+      "name": "6’7’ Freestyle",
+      "mbid": "0557d657-55e1-4e73-a5b9-29923ea63f61",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-out-for-detox",
+      "type": "project",
+      "name": "Look Out for Detox",
+      "mbid": "a6422c32-6f71-45a1-ad76-4128aec73184",
+      "year": "2010",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:swimming-pools",
+      "type": "track",
+      "name": "Swimming Pools (Drank)"
+    },
+    {
+      "slug": "track:alright",
+      "type": "track",
+      "name": "Alright"
+    },
+    {
+      "slug": "track:humble",
+      "type": "track",
+      "name": "Humble"
+    },
+    {
+      "slug": "track:not-like-us",
+      "type": "track",
+      "name": "Not Like Us"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Mos Def"
+    }
+  ],
+  "influenced": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:dr-dre",
+      "type": "artist",
+      "name": "Dr. Dre"
+    },
+    {
+      "slug": "artist:jay-rock",
+      "type": "artist",
+      "name": "Jay Rock"
+    },
+    {
+      "slug": "artist:sza",
+      "type": "artist",
+      "name": "SZA"
+    },
+    {
+      "slug": "artist:baby-keem",
+      "type": "artist",
+      "name": "Baby Keem"
+    },
+    {
+      "slug": "artist:thundercat",
+      "type": "artist",
+      "name": "Thundercat"
+    },
+    {
+      "slug": "artist:terrace-martin",
+      "type": "artist",
+      "name": "Terrace Martin"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:k-dot",
+      "type": "artist",
+      "name": "K.Dot"
+    },
+    {
+      "slug": "artist:oklama",
+      "type": "artist",
+      "name": "Oklama"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:black-hippy",
+      "type": "artist",
+      "name": "Black Hippy"
+    }
+  ]
+}

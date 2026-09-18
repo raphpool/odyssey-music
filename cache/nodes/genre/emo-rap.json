@@ -1,0 +1,136 @@
+{
+  "slug": "genre:emo-rap",
+  "name": "Emo Rap",
+  "editorial_article": "Emerging in the mid-2010s through the online SoundCloud rap scene, emo rap synthesizes trap music-style drum programming with the angst-ridden, confessional lyrical tropes of 2000s emo and pop punk. The genre is frequently built upon samples of guitar-driven tracks, a technique popularized by early pioneers such as Bones, the collective GothBoiClique, and Black Kray. Artists like Lil Peep, XXXTentacion, and Juice Wrld brought the style into the mainstream by centering their vocal delivery on themes of depression, substance abuse, and existential nihilism. While critics often identify the movement by its blend of sing-rapping and rock-indie aesthetics, figures like Atmosphere's Slug claim to have coined the term as early as 1997. The style's rise to prominence saw unprecedented chart success in 2018, with the year seeing the genre identified as the fastest-growing on Spotify, culminating in major labels later signing second-wave artists like 24kGoldn and The Kid Laroi.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Emo_rap",
+      "title": "Emo rap - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:48.404Z",
+  "type": "genre",
+  "editorial_definition": "A fusion of hip hop, trap production, and emo, characterized by confessional, emotionally raw lyricism and frequent use of pop punk or indie rock samples.",
+  "qid": "Q12362064",
+  "era": "mid-2010s to early 2020s",
+  "origin": "United States, SoundCloud rap scene",
+  "sonic_markers": "Trap-style beats, sing-rapping vocals, melodic hooks, 2000s pop punk/emo samples, guitar-driven instrumentation",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap music",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo",
+      "qid": "Q10926"
+    },
+    {
+      "slug": "genre:cloud-rap",
+      "type": "genre",
+      "name": "Cloud rap",
+      "qid": "Q16829781"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop punk",
+      "qid": "Q487914"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    },
+    {
+      "slug": "artist:xxxtentacion",
+      "type": "artist",
+      "name": "XXXTentacion"
+    },
+    {
+      "slug": "artist:juice-wrld",
+      "type": "artist",
+      "name": "Juice Wrld"
+    },
+    {
+      "slug": "artist:bones",
+      "type": "artist",
+      "name": "Bones"
+    },
+    {
+      "slug": "artist:lil-tracy",
+      "type": "artist",
+      "name": "Lil Tracy"
+    },
+    {
+      "slug": "artist:trippie-redd",
+      "type": "artist",
+      "name": "Trippie Redd"
+    },
+    {
+      "slug": "artist:wicca-phase-springs-eternal",
+      "type": "artist",
+      "name": "Wicca Phase Springs Eternal"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:goth-money-records",
+      "type": "label",
+      "name": "Goth Money Records"
+    },
+    {
+      "slug": "label:dcd2-records",
+      "type": "label",
+      "name": "DCD2 Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:xo-tour-llif3",
+      "type": "track",
+      "name": "XO Tour Llif3"
+    },
+    {
+      "slug": "track:sad",
+      "type": "track",
+      "name": "SAD!"
+    },
+    {
+      "slug": "track:lucid-dreams",
+      "type": "track",
+      "name": "Lucid Dreams"
+    },
+    {
+      "slug": "track:awful-things",
+      "type": "track",
+      "name": "Awful Things"
+    },
+    {
+      "slug": "track:death-bed",
+      "type": "track",
+      "name": "Death Bed (Coffee for Your Head)"
+    }
+  ]
+}

@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "Dance music is a broad musical category encompassing any composition specifically designed to facilitate or accompany physical movement and social dancing. It spans from ancient folk traditions and Baroque court suites to modern electronic club culture and popular chart-topping anthems.",
+  "qid": "Q316930",
   "era": "Ancient to contemporary",
   "origin": "Worldwide/Ancient civilizations",
   "parent_genres": [],
@@ -63,6 +64,18 @@
       "type": "genre",
       "name": "Funk",
       "qid": "Q164444"
+    },
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
     }
   ],
   "related_genres": [
@@ -104,6 +117,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q316930"
+  "landmark_tracks": []
 }
