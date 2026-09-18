@@ -11,11 +11,19 @@
   "materialized_at": "2026-05-13T13:02:11.246Z",
   "type": "genre",
   "editorial_definition": "A volatile and complex form of electronic dance music characterized by high-speed, intricately cut-up breakbeats and a chaotic, sample-heavy aesthetic that draws from a wide array of musical influences.",
+  "qid": "Q903735",
   "era": "1990s–Present",
   "origin": "Australia, Europe, UK",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:drill-and-bass",
+      "type": "genre",
+      "name": "Drill and Bass",
+      "qid": "Q1259016"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:venetian-snares",
@@ -62,6 +70,5 @@
       "name": "Songs About My Cats"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q903735"
+  "landmark_tracks": []
 }
