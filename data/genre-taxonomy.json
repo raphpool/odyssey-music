@@ -822,9 +822,10 @@
 			"published": false
 		},
 		{
-			"id": "local:street-hop",
+			"id": "Q127606451",
 			"name": "Street Hop",
 			"family": "new-club",
+			"qid": "Q127606451",
 			"published": false
 		},
 		{
@@ -2636,9 +2637,10 @@
 			"published": false
 		},
 		{
-			"id": "local:quechua",
+			"id": "Q106876717",
 			"name": "Quechua",
 			"family": "latin-brazilian",
+			"qid": "Q106876717",
 			"published": false
 		},
 		{
@@ -2914,9 +2916,10 @@
 			"published": false
 		},
 		{
-			"id": "local:arabian-bellydance",
+			"id": "Q108107602",
 			"name": "Arabian Bellydance",
 			"family": "african-middle-eastern",
+			"qid": "Q108107602",
 			"published": false
 		},
 		{
@@ -3151,9 +3154,10 @@
 			"published": false
 		},
 		{
-			"id": "local:malagasy-folk",
+			"id": "Q109271585",
 			"name": "Malagasy Folk",
 			"family": "african-middle-eastern",
+			"qid": "Q109271585",
 			"published": false
 		},
 		{
@@ -3415,9 +3419,10 @@
 			"published": false
 		},
 		{
-			"id": "local:burmese-folk",
+			"id": "Q108297190",
 			"name": "Burmese Folk",
 			"family": "asia",
+			"qid": "Q108297190",
 			"published": false
 		},
 		{
@@ -3559,9 +3564,10 @@
 			"published": false
 		},
 		{
-			"id": "local:khmer-pop",
+			"id": "Q108297206",
 			"name": "Khmer Pop",
 			"family": "asia",
+			"qid": "Q108297206",
 			"published": false
 		},
 		{
@@ -3579,15 +3585,17 @@
 			"published": false
 		},
 		{
-			"id": "local:kyrgyz-folk",
+			"id": "Q13170510",
 			"name": "Kyrgyz Folk",
 			"family": "asia",
+			"qid": "Q13170510",
 			"published": false
 		},
 		{
-			"id": "local:lao-traditional",
+			"id": "Q109270949",
 			"name": "Lao Traditional",
 			"family": "asia",
+			"qid": "Q109270949",
 			"published": false
 		},
 		{
@@ -3677,9 +3685,10 @@
 			"published": false
 		},
 		{
-			"id": "local:rajasthani-folk",
+			"id": "Q109914703",
 			"name": "Rajasthani Folk",
 			"family": "asia",
+			"qid": "Q109914703",
 			"published": false
 		},
 		{
@@ -3743,9 +3752,10 @@
 			"published": false
 		},
 		{
-			"id": "local:vietnamese-traditional",
+			"id": "Q10757361",
 			"name": "Vietnamese Traditional",
 			"family": "asia",
+			"qid": "Q10757361",
 			"published": false
 		},
 		{
@@ -3835,9 +3845,10 @@
 			"published": true
 		},
 		{
-			"id": "local:balkan-pop",
+			"id": "Q20825943",
 			"name": "Balkan Pop",
 			"family": "other",
+			"qid": "Q20825943",
 			"published": false
 		},
 		{
@@ -3854,9 +3865,10 @@
 			"published": false
 		},
 		{
-			"id": "local:bulgarian-traditional",
+			"id": "Q12274232",
 			"name": "Bulgarian Traditional",
 			"family": "other",
+			"qid": "Q12274232",
 			"published": false
 		},
 		{
@@ -4031,15 +4043,17 @@
 			"published": false
 		},
 		{
-			"id": "local:northumbrian-folk",
+			"id": "Q109303634",
 			"name": "Northumbrian Folk",
 			"family": "other",
+			"qid": "Q109303634",
 			"published": false
 		},
 		{
-			"id": "local:norwegian-folk",
+			"id": "Q11992449",
 			"name": "Norwegian Folk",
 			"family": "other",
+			"qid": "Q11992449",
 			"aliases": ["Norweigan Folk"],
 			"published": false
 		},
