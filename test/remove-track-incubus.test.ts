@@ -11,9 +11,8 @@ import {
 import type { PendingReverse } from "../src/cache.js";
 import { parseSlug } from "../src/slug.js";
 
-// Raw records, not typed against src/types.ts: readCacheNodes reads unchecked JSON (see its own
-// docstring), and dropEdgesToSlug only looks at the edge fields a given test actually wires up --
-// same latitude test/genre-rename.test.ts:25-29 relies on for the same reason.
+// Raw records, not typed against src/types.ts: readCacheNodes reads unchecked JSON, and
+// dropEdgesToSlug only looks at the fields a given test wires up (test/genre-rename.test.ts:25-29).
 type RawNode = Record<string, unknown>;
 
 function node(overrides: RawNode & { slug: string; type: string }): RawNode {
@@ -131,9 +130,8 @@ describe("runMigration (disk integration)", () => {
 		return path;
 	}
 
-	// Mirrors the real cache: the target itself, plus other nodes wired up to it the way a
-	// genuine incoming edge would be -- a genre's landmark_tracks (list), and another track's
-	// remix_of (single), so both cardinalities are exercised end-to-end.
+	// The target, plus referrers wired up like real incoming edges: a genre's landmark_tracks
+	// (list) and another track's remix_of (single) -- both cardinalities exercised.
 	async function seedTargetGroup() {
 		const targetPath = await writeNodeFile(
 			node({ slug: TARGET_SLUG, type: "track", name: "Incubus", genres: [], artists: [] }),
@@ -285,5 +283,24 @@ describe("runMigration (disk integration)", () => {
 		await expect(
 			readFile(join(dir, "nodes", "track", `${parseSlug(TARGET_SLUG).body}.json`), "utf8"),
 		).resolves.toBeTruthy();
+	});
+
+	it("refuses on a pending-reverses.json that parses but has the wrong shape, writing nothing", async () => {
+		const { targetPath, genrePath } = await seedTargetGroup();
+		const pendingPath = join(dir, "pending-reverses.json");
+		// Valid JSON, wrong shape (a value that isn't an array) -- must be refused, not crash.
+		await writeFile(pendingPath, JSON.stringify({ [TARGET_SLUG]: { field: "genres" } }), "utf8");
+		const before = {
+			target: await readFile(targetPath, "utf8"),
+			genre: await readFile(genrePath, "utf8"),
+			pending: await readFile(pendingPath, "utf8"),
+		};
+
+		const result = await runMigration(dir, true);
+
+		expect(result.exitCode).toBe(1);
+		expect(await readFile(targetPath, "utf8")).toBe(before.target);
+		expect(await readFile(genrePath, "utf8")).toBe(before.genre);
+		expect(await readFile(pendingPath, "utf8")).toBe(before.pending);
 	});
 });
