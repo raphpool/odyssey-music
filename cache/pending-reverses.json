@@ -7584,38 +7584,6 @@
       }
     }
   ],
-  "genre:afrobeats": [
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:music-of-west-africa",
-        "type": "genre",
-        "name": "Music of West Africa",
-        "qid": "Q6942329"
-      }
-    },
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:afrobeat",
-        "type": "genre",
-        "name": "Afrobeat",
-        "qid": "Q388296"
-      }
-    },
-    {
-      "field": "related_genres",
-      "cardinality": "list",
-      "edge": {
-        "slug": "genre:amapiano",
-        "type": "genre",
-        "name": "Amapiano",
-        "qid": "Q85741139"
-      }
-    }
-  ],
   "genre:palm-wine-music": [
     {
       "field": "related_genres",
@@ -13998,6 +13966,30 @@
         "type": "genre",
         "name": "Psytrance",
         "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:hiplife": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:afrobeats",
+        "type": "genre",
+        "name": "Afrobeats",
+        "qid": "Q25099840"
+      }
+    }
+  ],
+  "genre:afroswing": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:afrobeats",
+        "type": "genre",
+        "name": "Afrobeats",
+        "qid": "Q25099840"
       }
     }
   ]

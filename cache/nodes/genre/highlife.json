@@ -38,6 +38,12 @@
       "type": "genre",
       "name": "Soukous",
       "qid": "Q1752683"
+    },
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
     }
   ],
   "key_artists": [

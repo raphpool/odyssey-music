@@ -1,0 +1,160 @@
+{
+  "slug": "genre:afrobeats",
+  "name": "Afrobeats",
+  "editorial_article": "Afrobeats is an umbrella term for contemporary West African pop music that emerged from Nigeria and Ghana in the early 2000s, popularized internationally through the UK by figures like DJ Abrantee. Distinct from the 1970s Afrobeat genre pioneered by Fela Kuti, this modern sound fuses local styles like hiplife, jùjú, and highlife with global dancehall, R&B, and house music influences. The genre is characterized by signature, driving drum rhythms often following a 3–2 or 2–3 clave pattern that serves as the song's primary momentum. Global mainstream recognition accelerated in the late 2010s, evidenced by the 550% growth in Spotify streams between 2017 and 2022. Key production techniques include the integration of local pidgin English and dialects, as well as high-profile collaborations with international stars like Drake, who featured on the 'Ojuelegba' remix and 'One Dance'. By 2024, the Grammys established a category for Best African Music Performance, marking the genre's significant influence on the worldwide music landscape.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Afrobeats",
+      "title": "Afrobeats - Wikipedia"
+    },
+    {
+      "url": "https://www.grammy.com/news/afrobeats-evolution-wizkid-rema-wande-coal-olamide-asake/",
+      "title": "The Evolution Of Afrobeats In 10 Songs: From “African Queen” To ..."
+    }
+  ],
+  "materialized_at": "2026-09-18T20:32:43.012Z",
+  "disambiguator": "Nigerian and Ghanaian chart pop of the 2000s onward, the sound of Wizkid, Davido, Burna Boy and Tiwa Savage",
+  "type": "genre",
+  "editorial_definition": "An umbrella term for contemporary West African pop music that fuses traditional rhythms with hip hop, R&B, and dancehall influences.",
+  "qid": "Q25099840",
+  "era": "2000s to 2020s",
+  "origin": "Nigeria and Ghana",
+  "sonic_markers": "4/4 time signature, 3-2 or 2-3 clave rhythm, driving electronic/instrumental drums, syncopated melodies, R&B-infused vocal delivery",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-west-africa",
+      "type": "genre",
+      "name": "Music Of West Africa",
+      "qid": "Q6942329"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop Music",
+      "qid": "Q37073"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    },
+    {
+      "slug": "genre:hiplife",
+      "type": "genre",
+      "name": "Hiplife",
+      "qid": "Q1619932"
+    },
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall",
+      "qid": "Q474027"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:afroswing",
+      "type": "genre",
+      "name": "Afroswing",
+      "qid": "Q85740017"
+    },
+    {
+      "slug": "genre:music-of-west-africa",
+      "type": "genre",
+      "name": "Music of West Africa",
+      "qid": "Q6942329"
+    },
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:amapiano",
+      "type": "genre",
+      "name": "Amapiano",
+      "qid": "Q85741139"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
+    },
+    {
+      "slug": "artist:burna-boy",
+      "type": "artist",
+      "name": "Burna Boy"
+    },
+    {
+      "slug": "artist:davido",
+      "type": "artist",
+      "name": "Davido"
+    },
+    {
+      "slug": "artist:tiwa-savage",
+      "type": "artist",
+      "name": "Tiwa Savage"
+    },
+    {
+      "slug": "artist:mr-eazi",
+      "type": "artist",
+      "name": "Mr Eazi"
+    },
+    {
+      "slug": "artist:rema",
+      "type": "artist",
+      "name": "Rema"
+    },
+    {
+      "slug": "artist:tems",
+      "type": "artist",
+      "name": "Tems"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:rca-records",
+      "type": "label",
+      "name": "RCA Records"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:oliver-twist",
+      "type": "track",
+      "name": "Oliver Twist"
+    },
+    {
+      "slug": "track:essence",
+      "type": "track",
+      "name": "Essence"
+    },
+    {
+      "slug": "track:calm-down",
+      "type": "track",
+      "name": "Calm Down"
+    },
+    {
+      "slug": "track:fall",
+      "type": "track",
+      "name": "Fall"
+    }
+  ]
+}
