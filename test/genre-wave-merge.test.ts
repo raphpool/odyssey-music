@@ -218,6 +218,30 @@ describe("runMigration (disk integration)", () => {
 		expect(result.report).toContain("Already merged");
 	});
 
+	// Code review (2026-09-18): the script's hardest fail-fast invariant -- pending-reverses.json is
+	// parsed BEFORE the first write, so a truncated file stops the run with nothing touched. It was
+	// the one invariant no test pinned down, on a file that holds 283 KB of queued reverse edges in
+	// the real cache: a regression there would surface as a half-migrated cache, not as an error.
+	it("refuses a truncated pending-reverses.json without writing anything", async () => {
+		const { wavePath, newWavePath, staleLabelPath } = await seedWaveGroup();
+		const pendingPath = join(dir, "pending-reverses.json");
+		await writeFile(pendingPath, '{"genre:wave": [{"field":"key_labels","cardinal', "utf8");
+		const before = await Promise.all(
+			[wavePath, newWavePath, staleLabelPath, pendingPath].map((f) => readFile(f, "utf8")),
+		);
+
+		const result = await runMigration(dir, true, { redirectsPath });
+
+		expect(result.exitCode).toBe(1);
+		// Every file byte-identical, and the redirects table never created: the refusal lands before
+		// the first write, not halfway through.
+		const after = await Promise.all(
+			[wavePath, newWavePath, staleLabelPath, pendingPath].map((f) => readFile(f, "utf8")),
+		);
+		expect(after).toEqual(before);
+		await expect(readFile(redirectsPath, "utf8")).rejects.toThrow();
+	});
+
 	// Code review (2026-09-18): a corrupt file on disk used to read exactly like an absent slug,
 	// so the idempotence check could mistake it for "already merged" and silently do nothing.
 	it("refuses, rather than treating it as absent, when genre:wave's file exists but fails to parse", async () => {
