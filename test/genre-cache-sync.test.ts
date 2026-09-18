@@ -7,6 +7,7 @@ import {
 	readdirSync,
 	readFileSync,
 	rmSync,
+	utimesSync,
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -96,6 +97,21 @@ interface RunOptions {
 	omitRedirects?: boolean;
 	crawlLock?: boolean;
 	serviceActive?: boolean;
+	/** Seed this many pre-existing backup archives (older mtimes), for the retention test. */
+	preexistingBackups?: number;
+}
+
+/** Pre-existing backup archives with staggered mtimes, oldest first, so `ls -1t` ordering (what
+ * the retention prune relies on) is deterministic regardless of how fast the test runs. */
+function seedOldBackups(dir: string, count: number): void {
+	mkdirSync(dir, { recursive: true });
+	const now = Date.now() / 1000;
+	for (let i = 0; i < count; i++) {
+		const p = join(dir, `genre-cache-19990101T00000${i}Z.tar.gz`);
+		writeFileSync(p, "old-archive");
+		const mtime = now - (count - i) * 3600;
+		utimesSync(p, mtime, mtime);
+	}
 }
 
 function run(options: RunOptions = {}) {
@@ -121,6 +137,7 @@ function run(options: RunOptions = {}) {
 	if (options.duplicateOnServer) seedDuplicateOnServer(serverCacheRemote);
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
+	if (options.preexistingBackups) seedOldBackups(serverBackupDir, options.preexistingBackups);
 
 	// Fake ssh: runs the remote command locally via bash -c, since every remote path the script
 	// builds already points at a real local dir (see file header). systemctl and the sha256sum
@@ -136,11 +153,22 @@ if [[ "\${TEST_SSH_FAIL:-0}" == "1" ]]; then
 fi
 host="$1"; shift
 cmd="$*"
+# Fails only the ONE remote command whose text contains this substring (e.g. "systemctl stop",
+# ".crawl-lock", "is-active"), simulating a transport drop for just that call -- the rest of the
+# run proceeds normally, which a blanket TEST_SSH_FAIL can't exercise.
+if [[ -n "\${TEST_SSH_FAIL_MATCH:-}" && "$cmd" == *"\${TEST_SSH_FAIL_MATCH}"* ]]; then
+  echo "ssh: simulated connection failure for matched command" >&2
+  exit 255
+fi
 case "$cmd" in
   *"systemctl stop odyssey-server.service"*)
     if [[ "\${TEST_STOP_NOOP:-0}" != "1" ]]; then rm -f "$TEST_SERVICE_MARKER"; fi
     ;;
   *"systemctl start odyssey-server.service"*)
+    if [[ "\${TEST_START_FAIL:-0}" == "1" ]]; then
+      echo "systemctl: simulated start failure" >&2
+      exit 1
+    fi
     touch "$TEST_SERVICE_MARKER"
     ;;
   *"systemctl is-active --quiet odyssey-server.service"*)
@@ -222,6 +250,17 @@ if [[ "\${TEST_CURL_FAIL:-0}" == "1" ]]; then
   echo "curl: simulated smoke-test failure" >&2
   exit 7
 fi
+# Fails the first N calls then succeeds, simulating tsx's 5-10s warm-up window that the smoke
+# test's retry loop is meant to ride out.
+if [[ -n "\${TEST_CURL_FAIL_COUNT:-}" ]]; then
+  count_file="$TEST_CALLS.curl_count"
+  n=$(( $(cat "$count_file" 2>/dev/null || echo 0) + 1 ))
+  echo "$n" > "$count_file"
+  if [[ "$n" -le "\${TEST_CURL_FAIL_COUNT}" ]]; then
+    echo "curl: simulated smoke-test failure (warming up)" >&2
+    exit 7
+  fi
+fi
 echo "ok"
 `,
 	);
@@ -242,6 +281,12 @@ echo "ok"
 			TEST_CALLS: callsLog,
 			TEST_SERVICE_MARKER: serviceMarker,
 			REAL_RSYNC: realRsync,
+			// This suite runs the real script against this repo's own worktree (REPO_ROOT is derived
+			// from the script's real on-disk path), which is never actually branch "main" or clean in
+			// dev/CI -- bypass the branch/clean-tree guard here; it has its own dedicated tests below
+			// against an isolated git fixture.
+			SYNC_ALLOW_NON_MAIN: "1",
+			SYNC_ALLOW_DIRTY: "1",
 			...options.env,
 		},
 	});
@@ -318,6 +363,8 @@ describe("sync-genre-cache.sh", () => {
 				SERVER_CRAWL_LOCK: join(serverRoot, ".crawl-lock"),
 				TEST_CALLS: callsLog,
 				REAL_RSYNC: realRsync,
+				SYNC_ALLOW_NON_MAIN: "1",
+				SYNC_ALLOW_DIRTY: "1",
 			},
 		});
 		expect(result.status).not.toBe(0);
@@ -456,5 +503,273 @@ describe("sync-genre-cache.sh", () => {
 		// Nothing was removed from the (untouched, since the transfer itself failed) server cache.
 		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
 		expect(readdirSync(serverBackupDir)).toHaveLength(1);
+	});
+
+	// TRA-271 point 1 (independent review of TRA-67): the fingerprint used to be taken AFTER the
+	// snapshot rsync, so a write landing on the server mid-copy entered the reference fingerprint
+	// without ever reaching the copy -- and the post-stop recheck, comparing against that same
+	// tainted reference, would not catch it. Every ssh/rsync call lands in the same TEST_CALLS log
+	// in execution order, so the fix is verifiable directly: the fingerprinting ssh call (its
+	// remote command contains "sha256sum") must precede the snapshot-pulling rsync call.
+	it("fingerprints the server cache before the snapshot copy (point 1: relevé/arrêt race)", () => {
+		const { result, calls } = run();
+		expect(result.status).toBe(0);
+		const lines = calls.split("\n").filter(Boolean);
+		const fingerprintIdx = lines.findIndex((l) => l.includes("sha256sum"));
+		const snapshotRsyncIdx = lines.findIndex((l) => l.startsWith("rsync "));
+		expect(fingerprintIdx).toBeGreaterThanOrEqual(0);
+		expect(snapshotRsyncIdx).toBeGreaterThanOrEqual(0);
+		expect(fingerprintIdx).toBeLessThan(snapshotRsyncIdx);
+	});
+
+	// TRA-271 point 2a: STOPPED must flip to 1 BEFORE the stop command runs, not after it succeeds
+	// -- otherwise a stop call that itself fails never triggers a restart attempt. TEST_SSH_FAIL_MATCH
+	// fails only the "systemctl stop" call (not every ssh call), so the run still fails, but the
+	// restart must still be attempted.
+	it("still attempts to restart the writer when the stop command itself fails (point 2: STOPPED before stop)", () => {
+		const { result, calls } = run({ apply: true, env: { TEST_SSH_FAIL_MATCH: "systemctl stop" } });
+		expect(result.status).not.toBe(0);
+		expect(calls).toContain("systemctl start odyssey-server.service");
+	});
+
+	// TRA-271 point 2b: the recovery path used to trap ERR only, which never fires for a signal --
+	// a SIGTERM or Ctrl-C mid-transfer left the writer stopped with nothing to bring it back.
+	// Driving a real signal through a spawned bash process is inherently timing-sensitive (signal
+	// delivery to a shell blocked on a foreground child is not guaranteed to preempt promptly, and
+	// differs across bash builds), so this is verified at the source level instead: the script must
+	// register an EXIT trap (reachable from a restart) plus explicit INT and TERM traps.
+	it("registers EXIT, INT and TERM traps so a signal still restarts the writer (point 2: trap coverage)", () => {
+		const src = readFileSync(script, "utf8");
+		expect(src).toMatch(/trap\s+\S*on_exit\S*\s+EXIT/);
+		expect(src).toMatch(/trap\s+\S*exit \d+\S*\s+INT\b/);
+		expect(src).toMatch(/trap\s+\S*exit \d+\S*\s+TERM\b/);
+	});
+
+	// TRA-271 point 3a: tsx takes 5-10s to warm up after a restart under Type=simple, so the smoke
+	// test needs a retry loop (same pattern as deploy/deploy-server.sh's own health check) instead
+	// of a single shot that fails almost every time and prints a misleading rollback message.
+	it("retries the smoke test while the server warms up, succeeding once it responds (point 3: smoke retry)", () => {
+		const { result, calls } = run({
+			apply: true,
+			env: { TEST_CURL_FAIL_COUNT: "2", SMOKE_RETRY_DELAY: "0" },
+		});
+		expect(result.status).toBe(0);
+		expect(result.stdout).toContain("Sync complete");
+		const curlHealthCalls = calls
+			.split("\n")
+			.filter((l) => l.startsWith("curl") && l.includes("health")).length;
+		// Failed twice, then succeeded: 3 calls to the health endpoint before "ok" from the loop.
+		expect(curlHealthCalls).toBeGreaterThanOrEqual(3);
+	});
+
+	it("gives up and refuses after exhausting smoke-test retries (point 3: smoke retry)", () => {
+		const { result, calls } = run({
+			apply: true,
+			env: { TEST_CURL_FAIL: "1", SMOKE_RETRY_DELAY: "0", SMOKE_RETRY_COUNT: "3" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/did not respond/);
+		// The writer was still restarted (transfer succeeded) even though the smoke test never did.
+		expect(calls).toContain("systemctl start odyssey-server.service");
+	});
+
+	// TRA-271 point 3b: `ssh ... systemctl start || true` used to swallow a failed restart outright
+	// -- the script would fall through into a doomed smoke test instead of failing loud immediately.
+	it("does not swallow a failed restart: exits before the smoke test instead (point 3: don't swallow start)", () => {
+		const { result, calls } = run({ apply: true, env: { TEST_START_FAIL: "1" } });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/failed to restart/);
+		expect(calls).toContain("systemctl start odyssey-server.service");
+		expect(calls).not.toMatch(/^curl /m);
+	});
+
+	// TRA-271 point 4: TEST_SSH_FAIL (a blanket ssh transport failure) must actually be exercised by
+	// a test, not just supported by the fake -- an ssh outage must refuse cleanly, not partially run.
+	it("refuses cleanly when ssh cannot reach the server at all (point 4: TEST_SSH_FAIL exercised)", () => {
+		const { result, calls } = run({ env: { TEST_SSH_FAIL: "1" } });
+		expect(result.status).not.toBe(0);
+		expect(calls).not.toContain("rsync ");
+	});
+
+	// TRA-271 point 5 (nit): the remote fingerprint pipeline must run under `set -o pipefail` (a
+	// failed read of one file must not be silently swallowed by the pipe's last exit code) and must
+	// exclude the youtube/ and links/ sidecar directories (CLAUDE.md: resolver sidecars are
+	// derived/regenerable, so churn there must not trip the "cache changed" refusal). Asserted on
+	// the actual remote command text sent over ssh, so removing either flag turns this red.
+	it("computes the remote fingerprint under pipefail, excluding youtube/ and links/ sidecars (point 5: fingerprint nits)", () => {
+		const { result, calls } = run();
+		expect(result.status).toBe(0);
+		const fingerprintCall = calls.split("\n").find((l) => l.includes("sha256sum"));
+		expect(fingerprintCall).toBeDefined();
+		expect(fingerprintCall).toMatch(/\bpipefail\b/);
+		expect(fingerprintCall).toMatch(/-not -path[^|]*youtube/);
+		expect(fingerprintCall).toMatch(/-not -path[^|]*links/);
+	});
+
+	// TRA-271 point 5 (nit) + PR #221 review remark: TRA-269 runs this script on a recurring
+	// schedule, so /opt/odyssey-music-backups grows unbounded without a retention policy.
+	it("prunes old backup archives, keeping only the BACKUP_RETENTION_COUNT most recent (point 5: retention)", () => {
+		const { result, calls, serverBackupDir } = run({
+			apply: true,
+			preexistingBackups: 3,
+			env: { BACKUP_RETENTION_COUNT: "2" },
+		});
+		expect(result.status).toBe(0);
+		expect(calls).toContain("ls -1t genre-cache-");
+		const [, thisRunArchive] = /Rollback archive: [^:]+:(\S+)/.exec(result.stdout) ?? [];
+		if (!thisRunArchive) throw new Error("could not find the rollback archive path in stdout");
+		// 3 pre-existing + this run's own = 4 candidates; keeping 2 must still keep the one just made.
+		expect(existsSync(thisRunArchive)).toBe(true);
+		expect(readdirSync(serverBackupDir)).toHaveLength(2);
+	});
+
+	// PR #221 review remark: the crawl-lock and is-active guards used `if ssh ...; then`, so an SSH
+	// transport failure (exit 255) read the same as "false" (no lock / not active) and the script
+	// continued as if it were safe -- fail-open. The redirects-table guard above already fails
+	// closed on ANY non-zero exit because both failure modes want the same outcome there; these two
+	// guards want DIFFERENT outcomes for "ssh answered no" vs "ssh couldn't even ask", so they must
+	// tell the two apart and refuse specifically on the transport failure.
+	it("fails closed when checking the crawl lock: an ssh failure refuses rather than reading as 'no lock' (review: fail-open)", () => {
+		const { result, calls } = run({ apply: true, env: { TEST_SSH_FAIL_MATCH: ".crawl-lock" } });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/crawl lock/i);
+		expect(calls).not.toContain("tar czf");
+	});
+
+	it("fails closed when confirming the writer stopped: an ssh failure refuses rather than reading as 'not active' (review: fail-open)", () => {
+		const { result, calls } = run({ apply: true, env: { TEST_SSH_FAIL_MATCH: "is-active" } });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/could not confirm/i);
+		// The stop call itself succeeded; only the confirmation check's own ssh call failed.
+		expect(calls).toContain("systemctl stop odyssey-server.service");
+		expect(calls).not.toMatch(/rsync[^\n]*nodes\/$/m);
+	});
+
+	// PR #255 review, finding 1: on a fatal shell-level error (unbound variable under `set -u`,
+	// invalid `$(( ))`), bash resets $? to 0 before an EXIT trap runs (reproduced on bash 3.2) --
+	// the old `on_exit` did `local code=$?; ...; exit "$code"` unconditionally, so this class of
+	// crash reported success. TEST_FORCE_FATAL_ERROR triggers exactly that class of error.
+	it("does not report success on a fatal shell-level error (review finding 1: EXIT trap swallowed $?)", () => {
+		const { result } = run({ env: { TEST_FORCE_FATAL_ERROR: "1" } });
+		expect(result.status).not.toBe(0);
+	});
+
+	// Second independent review of PR #255: the rollback pointer was gated on `$code -ne 0` -- the
+	// value the sentinel exists because bash resets it to 0 on a fatal shell error. Reproduced by
+	// the reviewer: writer stopped, transfer DONE, fatal error, and the operator never sees where
+	// the archive is. The gate is now "the writer was stopped", i.e. the transfer step was reached.
+	it("points at the rollback archive when a fatal shell error hits after the transfer", () => {
+		const { result, calls, serverBackupDir } = run({
+			apply: true,
+			env: { TEST_FORCE_FATAL_ERROR: "after-transfer" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/Restore from the archive/);
+		const archives = readdirSync(serverBackupDir);
+		expect(archives).toHaveLength(1);
+		expect(result.stderr).toContain(join(serverBackupDir, archives[0]!));
+		// The transfer really did happen before the crash -- otherwise this asserts nothing.
+		expect(calls).toContain("systemctl stop odyssey-server.service");
+	});
+
+	// PR #255 review, finding 2: BACKUP_RETENTION_COUNT was never validated. "ten" fed the
+	// unbound-variable bug above via `$((BACKUP_RETENTION_COUNT + 1))` (bash arithmetic treats a
+	// bareword as a nested variable reference); 0 made `tail -n +1` re-list (and delete) every
+	// archive, including the one this run just made -- reproduced by the reviewer with 3
+	// pre-existing archives: backup dir left empty, transfer still applied, status 0.
+	it("refuses when BACKUP_RETENTION_COUNT is not a positive integer (review finding 2)", () => {
+		const zero = run({ apply: true, preexistingBackups: 3, env: { BACKUP_RETENTION_COUNT: "0" } });
+		expect(zero.result.status).not.toBe(0);
+		expect(zero.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
+		// Refused before anything destructive: no archive made, nothing pruned, no transfer.
+		expect(zero.calls).not.toContain("tar czf");
+		expect(readdirSync(zero.serverBackupDir)).toHaveLength(3);
+
+		const nonNumeric = run({ apply: true, env: { BACKUP_RETENTION_COUNT: "ten" } });
+		expect(nonNumeric.result.status).not.toBe(0);
+		expect(nonNumeric.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
+		expect(nonNumeric.calls).not.toContain("tar czf");
+	});
+});
+
+describe("sync-genre-cache.sh -- branch/clean-tree guard (TRA-271 point 5 nit, reused from deploy-server.sh:34-43)", () => {
+	/** An isolated git repo with just the real script committed into it, so the guard's own git
+	 * calls (branch name, dirty check) resolve against a repo this suite fully controls -- never
+	 * against the actual dev checkout, which must never be mutated by a test. */
+	function fixtureRepo(): string {
+		const dir = tmp("sync-guard-repo-");
+		execFileSync("git", ["init", "-q", "-b", "main"], { cwd: dir });
+		execFileSync("git", ["config", "user.email", "test@test.invalid"], { cwd: dir });
+		execFileSync("git", ["config", "user.name", "Test"], { cwd: dir });
+		mkdirSync(join(dir, "deploy"), { recursive: true });
+		const scriptCopy = join(dir, "deploy", "sync-genre-cache.sh");
+		writeFileSync(scriptCopy, readFileSync(script, "utf8"));
+		chmodSync(scriptCopy, 0o755);
+		writeFileSync(join(dir, "README.md"), "fixture\n");
+		execFileSync("git", ["add", "-A"], { cwd: dir });
+		execFileSync("git", ["commit", "-q", "-m", "init"], { cwd: dir });
+		return dir;
+	}
+
+	// 2026-09-18 (independent review of this PR): the guard used to run before argument parsing,
+	// so it applied to the read-only preview too -- which the script's own Usage comment documents
+	// as safe to run from a branch. It's now gated on --apply (the only path that touches the
+	// server), so exercising it here means always passing --apply.
+	function runFixture(dir: string, env: Record<string, string> = {}) {
+		// SERVER points at an address that refuses instantly rather than the real production host --
+		// belt and suspenders in case a guard regression ever lets the script run past this point.
+		return spawnSync("bash", [join(dir, "deploy", "sync-genre-cache.sh"), "--apply"], {
+			encoding: "utf8",
+			env: { ...process.env, SERVER: "unused@127.0.0.1", ...env },
+		});
+	}
+
+	it("does not apply the guard to the read-only preview (no --apply)", () => {
+		const dir = fixtureRepo();
+		execFileSync("git", ["checkout", "-q", "-b", "feature"], { cwd: dir });
+		writeFileSync(join(dir, "README.md"), "dirty\n");
+		const result = spawnSync("bash", [join(dir, "deploy", "sync-genre-cache.sh")], {
+			encoding: "utf8",
+			env: { ...process.env, SERVER: "unused@127.0.0.1" },
+		});
+		// Non-main AND dirty, but no --apply: the guard must not even run. It fails later, for an
+		// unrelated reason (no real server), never on "expected main" or "dirty".
+		expect(result.stderr).not.toMatch(/expected main|working tree is dirty/);
+	});
+
+	it("refuses to apply from a non-main branch", () => {
+		const dir = fixtureRepo();
+		execFileSync("git", ["checkout", "-q", "-b", "feature"], { cwd: dir });
+		const result = runFixture(dir);
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/expected main/);
+	});
+
+	it("refuses to apply when the working tree is dirty", () => {
+		const dir = fixtureRepo();
+		writeFileSync(join(dir, "README.md"), "dirty\n");
+		const result = runFixture(dir, { SYNC_ALLOW_NON_MAIN: "1" });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/dirty/i);
+	});
+
+	// 2026-09-18 (independent review of this PR): `git diff` / `git diff --cached` both ignore
+	// untracked files, so an uncommitted cache/nodes/genre/foo.json -- which enters REPO_CACHE_DIR
+	// and the union regardless of git's index -- shipped to prod while this guard still called the
+	// tree clean. `git status --short` (used now) lists untracked files too.
+	it("refuses to apply when there are untracked files, not just tracked changes", () => {
+		const dir = fixtureRepo();
+		writeFileSync(join(dir, "untracked.txt"), "not added to git\n");
+		const result = runFixture(dir, { SYNC_ALLOW_NON_MAIN: "1" });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/dirty/i);
+	});
+
+	it("proceeds past the guard on main with a clean tree", () => {
+		const dir = fixtureRepo();
+		const result = runFixture(dir, {});
+		// No fakes on PATH here, so it fails as soon as it hits a real ssh/rsync call against
+		// 127.0.0.1 -- the point is that it gets PAST the guard, not that the sync itself succeeds.
+		expect(result.stderr).not.toMatch(/expected main|working tree is dirty/);
 	});
 });
