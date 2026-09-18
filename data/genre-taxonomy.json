@@ -2184,7 +2184,7 @@
 			"name": "Boogie",
 			"family": "disco-boogie",
 			"qid": "Q4942839",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "local:bubblegum",
@@ -2197,7 +2197,7 @@
 			"name": "Cosmic Disco",
 			"family": "disco-boogie",
 			"qid": "Q336567",
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q58339",
@@ -2738,7 +2738,7 @@
 			"qid": "Q474027",
 			"sourceSlugs": ["genre:dancehall"],
 			"aliases": ["Bashment"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q16491869",
@@ -2856,7 +2856,7 @@
 			"family": "caribbean",
 			"qid": "Q54365",
 			"sourceSlugs": ["genre:ska"],
-			"published": false
+			"published": true
 		},
 		{
 			"id": "Q1051735",
