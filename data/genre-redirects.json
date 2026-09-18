@@ -1,6 +1,6 @@
 {
-  "source": "genre node rename",
-  "generated_at": "2026-09-11T13:33:03.384Z",
+  "source": "genre:wave -> genre:new-wave merge (TRA-248)",
+  "generated_at": "2026-09-18T10:07:09.732Z",
   "redirects": {
     "genre:ambient-music": "genre:ambient",
     "genre:avant-garde-music": "genre:avant-garde",
@@ -23,6 +23,7 @@
     "genre:rock-music": "genre:rock",
     "genre:soul-music": "genre:soul",
     "genre:synthpop": "genre:synth-pop",
-    "genre:trap": "genre:edm-trap"
+    "genre:trap": "genre:edm-trap",
+    "genre:wave": "genre:new-wave"
   }
 }
