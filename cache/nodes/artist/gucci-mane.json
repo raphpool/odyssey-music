@@ -1,0 +1,785 @@
+{
+  "slug": "artist:gucci-mane",
+  "name": "Gucci Mane",
+  "editorial_article": "Born Radric Delantic Davis in Bessemer, Alabama, the Atlanta-based rapper rose to prominence by pioneering the trap music genre for mainstream audiences during the 2000s. His independent 2005 debut album Trap House, released via Big Cat Records, reached the Billboard Heatseekers chart and established his influence in the Southern hip-hop scene. He achieved his first chart-topping success as a featured artist on the 2016 Rae Sremmurd single Black Beatles, which held the number one spot on the Billboard Hot 100 for seven non-consecutive weeks. Through his 1017 Records imprint, founded in 2007, he has fostered the careers of artists such as Young Thug, Waka Flocka Flame, and Chief Keef. Known for a prolific recording pace, his career has spanned over 16 studio albums and 71 mixtapes, often produced by longtime collaborator Zaytoven, with whom he crafted his seminal underground sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gucci_Mane",
+      "title": "Gucci Mane - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Gucci_Mane_discography",
+      "title": "Gucci Mane discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:17:00.960Z",
+  "type": "artist",
+  "editorial_bio": "A foundational architect of the Atlanta trap movement whose prolific output and 1017 Records label have shaped modern Southern hip-hop for over two decades.",
+  "origin": "Atlanta, Georgia",
+  "active_years": "2001-present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:trap-hip-hop",
+      "type": "genre",
+      "name": "Trap",
+      "qid": "Q2913982"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:1017-records",
+      "type": "label",
+      "name": "1017 Records"
+    },
+    {
+      "slug": "label:atlantic-records",
+      "type": "label",
+      "name": "Atlantic Records"
+    },
+    {
+      "slug": "label:big-cat-records",
+      "type": "label",
+      "name": "Big Cat Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:episodes",
+      "type": "project",
+      "name": "Episodes",
+      "mbid": "a05ec3d7-f4c7-4070-abab-f2427b9f1336",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-cooking",
+      "type": "project",
+      "name": "Back Cooking",
+      "mbid": "27e2082c-0a64-46d8-986c-f625bca87c83",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-time",
+      "type": "project",
+      "name": "Only Time",
+      "mbid": "f0639da7-f595-417e-8d09-43dca256983b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-you",
+      "type": "project",
+      "name": "I Need You",
+      "mbid": "b2f07b30-fb1b-468c-bffc-120a4c1db0f2",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voices-psycho",
+      "type": "project",
+      "name": "Voices / Psycho",
+      "mbid": "df0f212a-2f67-4249-849b-73f47dfc5f9e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-don-t-love-me",
+      "type": "project",
+      "name": "You Don’t Love Me",
+      "mbid": "f43bc937-f246-4f88-9e74-500762aaaac3",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:greatest-of-all-trappers",
+      "type": "project",
+      "name": "Greatest of All Trappers (Gangsta Grillz Edition)",
+      "mbid": "eddbec60-68a3-4257-9bdc-1bbac997f1d6",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chanel-bag",
+      "type": "project",
+      "name": "Chanel Bag",
+      "mbid": "51ff2f42-05e7-4682-bf65-ebc590d2cb40",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:takedat",
+      "type": "project",
+      "name": "TakeDat",
+      "mbid": "e96230ec-ff27-4a04-9743-929e66fdbc4e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:choppers-and-bricks",
+      "type": "project",
+      "name": "Choppers & Bricks",
+      "mbid": "3a9bf19e-081e-4fa6-bc3b-5beece5c7d64",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:arab-bricks",
+      "type": "project",
+      "name": "Arab Bricks",
+      "mbid": "c536c644-4b58-464a-b744-dc93a1fe1c7a",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cold",
+      "type": "project",
+      "name": "Cold",
+      "mbid": "57916eb5-5305-4b2f-a986-1830fcb52590",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:glizock-and-wizop",
+      "type": "project",
+      "name": "Glizock & Wizop",
+      "mbid": "9bb9bb36-f3fd-4426-b731-7b3dd3f5c9fd",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breath-of-fresh-air",
+      "type": "project",
+      "name": "Breath of Fresh Air",
+      "mbid": "9f16d3cb-8dcc-4b31-ae01-8980d86eeb9c",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:too-much",
+      "type": "project",
+      "name": "Too Much",
+      "mbid": "0b9f67de-77a3-4cd6-ab4d-0d1ecbbe2485",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brrr-b",
+      "type": "project",
+      "name": "BRRR B",
+      "mbid": "504ff0ad-476f-464c-8075-f5d8efddac5a",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:there-i-go",
+      "type": "project",
+      "name": "There I Go",
+      "mbid": "57cbc37a-e957-498f-9820-0dbbcc55cdd1",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-it-up",
+      "type": "project",
+      "name": "Run It Up",
+      "mbid": "33b95b01-2b2f-41a5-86a3-4d361e702186",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bluffin",
+      "type": "project",
+      "name": "Bluffin",
+      "mbid": "ec29e9e4-a733-48b4-8236-6d54e11a7a28",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-to-me",
+      "type": "project",
+      "name": "Money To Me",
+      "mbid": "c2accef3-c50c-4730-be2f-29d01412bd44",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pissy",
+      "type": "project",
+      "name": "Pissy",
+      "mbid": "d0db3ab0-e751-47e4-a561-ba9f46ed4efa",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:06-gucci",
+      "type": "project",
+      "name": "06 Gucci",
+      "mbid": "c149c061-70a2-4008-b676-f52401dc9bcc",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:1017-up-next",
+      "type": "project",
+      "name": "1017 Up Next",
+      "mbid": "f663390c-45f7-465f-9900-1141a284397b",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:didn-t-believe",
+      "type": "project",
+      "name": "Didn’t Believe",
+      "mbid": "52d19fd1-4856-42f5-ad83-d1527b1a68c3",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feeling-like-wop",
+      "type": "project",
+      "name": "Feeling Like Wop",
+      "mbid": "2ac0756a-97ba-45c0-abbe-2a0ad4da1bfa",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trappin-n-rappin",
+      "type": "project",
+      "name": "Trappin n Rappin",
+      "mbid": "5b0ee7d8-7ea1-4863-9f29-1d617e57be2e",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-snipe",
+      "type": "project",
+      "name": "King Snipe",
+      "mbid": "9bd92eed-76f1-4f5b-9959-b51af0f81ce3",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hitting",
+      "type": "project",
+      "name": "Hitting",
+      "mbid": "1b168ce1-e8e8-4707-b87a-9282c6f188f6",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-many",
+      "type": "project",
+      "name": "Too Many",
+      "mbid": "fdbbdff0-bb9c-4e5e-8be4-f1ed23073a0c",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobody",
+      "type": "project",
+      "name": "Nobody",
+      "mbid": "c7813b3d-33bf-42f2-9ad6-4003e448eb33",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slicin",
+      "type": "project",
+      "name": "Slicin",
+      "mbid": "c3bed9b3-be6d-4371-ba1b-f8192e7637dc",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:letter-to-takeoff",
+      "type": "project",
+      "name": "Letter to Takeoff",
+      "mbid": "dd324352-b2bd-448b-94ee-676ccdfda2d7",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spin",
+      "type": "project",
+      "name": "Spin",
+      "mbid": "4ed327f5-ebe8-4311-91f0-4d23b53f6eec",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-icy-boyz-22",
+      "type": "project",
+      "name": "So Icy Boyz 22",
+      "mbid": "e95f988b-dc11-45dc-ade4-7572ab41496e",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:issa-photoshoot",
+      "type": "project",
+      "name": "Issa Photoshoot",
+      "mbid": "833e3590-8366-4c54-bd94-af3d06305973",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-out-dat-cake",
+      "type": "project",
+      "name": "Break Out Dat Cake",
+      "mbid": "fcb5f49d-4279-4d24-8a8a-693529d0e3b5",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gucci-flow",
+      "type": "project",
+      "name": "Gucci Flow",
+      "mbid": "7b0c1024-d080-4df3-9f3f-aa904437a276",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:geeked-up",
+      "type": "project",
+      "name": "Geeked Up",
+      "mbid": "da66f203-0dce-4aa7-8fe8-af766e09fb7b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-solid",
+      "type": "project",
+      "name": "Real Solid",
+      "mbid": "aa05f185-b25f-49c1-a4c6-18f051d0497d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-flag",
+      "type": "project",
+      "name": "Red Flag",
+      "mbid": "4f0f5e55-6e67-476c-b7c8-aaaf11b0e1af",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-ma-i-did-it",
+      "type": "project",
+      "name": "Look Ma I Did It",
+      "mbid": "2f5d8a81-6c21-4cd6-a3c1-77c8632883b6",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gelati",
+      "type": "project",
+      "name": "Gelati",
+      "mbid": "a9aeeedf-a13d-47f1-9e0e-f23692a86de2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ceo",
+      "type": "project",
+      "name": "CEO",
+      "mbid": "41219b4e-b063-4e54-be5a-1dce715e5dfc",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:us-vs-them",
+      "type": "project",
+      "name": "Us vs. Them",
+      "mbid": "89a18d35-6177-4edd-b5a1-ff3b338a0c98",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dissin-the-dead",
+      "type": "project",
+      "name": "Dissin the Dead",
+      "mbid": "8bd495b8-d56a-4fa4-81a4-9b9abde66904",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-dz-chainz",
+      "type": "project",
+      "name": "All Dz Chainz",
+      "mbid": "43a177d5-22c6-4b7e-8f83-dc211c086f07",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:know-what-i-mean",
+      "type": "project",
+      "name": "Know What I Mean",
+      "mbid": "08bf0c99-6d2e-4424-bbba-ceb34fbdc6d2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shiesty-way",
+      "type": "project",
+      "name": "Shiesty Way",
+      "mbid": "37cbbbb9-f3c6-4fc2-83ba-8e8f5a2e611c",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blow-the-deposit",
+      "type": "project",
+      "name": "Blow the Deposit",
+      "mbid": "426bfd2c-aed3-4a8c-95cc-4d61d2d99cd4",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yeah-whoa",
+      "type": "project",
+      "name": "Yeah Whoa",
+      "mbid": "70b5c593-ed56-4b48-a747-0d01ba175e8e",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:large-amounts",
+      "type": "project",
+      "name": "Large Amounts",
+      "mbid": "d14b5514-8fcc-4035-9492-95efbcdb1147",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mrs-davis",
+      "type": "project",
+      "name": "Mrs. Davis",
+      "mbid": "762b6506-6709-489b-8aca-9ad26059626a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-up",
+      "type": "project",
+      "name": "Next Up",
+      "mbid": "e8f888ab-5ccd-4f8c-8103-23a2fb222312",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:serial-killers",
+      "type": "project",
+      "name": "Serial Killers",
+      "mbid": "a8fc5201-a8d2-4009-b2a4-ebe1de6f1d2d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blood-all-on-it",
+      "type": "project",
+      "name": "Blood All on It",
+      "mbid": "2e8eea46-4148-487e-9210-68c3a9bbb199",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ice-daddy",
+      "type": "project",
+      "name": "Ice Daddy",
+      "mbid": "ab2286d6-b7ed-4f9c-9c4c-46c5db74efe4",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:east-atlanta-santa-3",
+      "type": "project",
+      "name": "East Atlanta Santa 3",
+      "mbid": "bbae2549-539e-43f8-b247-b64b170be64a",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woptober-ii",
+      "type": "project",
+      "name": "Woptober II",
+      "mbid": "e0df92df-58a4-4e08-9742-8330080ae35d",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:delusions-of-grandeur",
+      "type": "project",
+      "name": "Delusions of Grandeur",
+      "mbid": "9a10dbbd-8dfb-4fdc-9ce9-ed377ff35fc2",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:evil-genius",
+      "type": "project",
+      "name": "Evil Genius",
+      "mbid": "05facc7c-1296-46fa-8bb6-9df145e3d254",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-davis",
+      "type": "project",
+      "name": "Mr. Davis",
+      "mbid": "d5c520e0-62ca-40f3-b3fd-c316e96d8738",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ralo-laflare",
+      "type": "project",
+      "name": "Ralo LaFlare",
+      "mbid": "eb40a0b1-0190-48dd-a516-c5ca598a62b7",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-return-of-east-atlanta-santa",
+      "type": "project",
+      "name": "The Return of East Atlanta Santa",
+      "mbid": "d6ba0209-93e8-4435-bca3-6a495a3965af",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woptober",
+      "type": "project",
+      "name": "WOPTOBER",
+      "mbid": "5abb7f14-7cf3-4a89-8b1d-13825acbf03e",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woptober",
+      "type": "project",
+      "name": "WOPTOBER",
+      "mbid": "827727c4-b17c-4fd8-a61e-ac4fb0517f60",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everybody-looking",
+      "type": "project",
+      "name": "Everybody Looking",
+      "mbid": "23bb86ee-8a1f-42a4-a9e7-71c20cda9c37",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mane-attraction",
+      "type": "project",
+      "name": "Mane Attraction",
+      "mbid": "13ddfc48-e4ae-4670-9a47-240c2e6513c6",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:east-atlanta-santa",
+      "type": "project",
+      "name": "East Atlanta Santa",
+      "mbid": "0eb96ae0-7f79-436b-847f-e06698983f66",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-state-vs-radric-davis-ii-the-caged-bird-sings",
+      "type": "project",
+      "name": "The State vs. Radric Davis II: The Caged Bird Sings",
+      "mbid": "cd36eb22-85fd-4335-8914-6e724fe64b2f",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trap-house-iii",
+      "type": "project",
+      "name": "Trap House III",
+      "mbid": "de66b159-4345-4be0-a20b-718d3e8623f7",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:baytl",
+      "type": "project",
+      "name": "BAYTL",
+      "mbid": "3104e7b0-659c-4d3b-8c53-646091c1aa51",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ferrari-boyz",
+      "type": "project",
+      "name": "Ferrari Boyz",
+      "mbid": "206f368a-b9ae-45b3-bc42-25d3512407d7",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-return-of-mr-zone-6",
+      "type": "project",
+      "name": "The Return of Mr. Zone 6",
+      "mbid": "a7f9fd22-d4ee-4b79-807c-bebd25c7c5bd",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-framed-radric-davis",
+      "type": "project",
+      "name": "Who Framed Radric Davis",
+      "mbid": "7bfdebfe-2e1f-4a8c-9bda-ecfcb21dce43",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-appeal-georgia-s-most-wanted",
+      "type": "project",
+      "name": "The Appeal: Georgia’s Most Wanted",
+      "mbid": "388703fc-4439-46cb-aa98-bf48d8300c98",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-state-vs-radric-davis",
+      "type": "project",
+      "name": "The State vs. Radric Davis",
+      "mbid": "dfb7aedc-7a99-4ef3-a442-fe19c4e4a795",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-to-the-traphouse",
+      "type": "project",
+      "name": "Back to the Traphouse",
+      "mbid": "18b6e058-4fef-38e5-a8d4-5d7c6d584502",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trap-a-thon",
+      "type": "project",
+      "name": "Trap‐a‐Thon",
+      "mbid": "8a4657ad-9bdc-3f29-971b-4a52a2846270",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hard-to-kill",
+      "type": "project",
+      "name": "Hard to Kill",
+      "mbid": "7e7a11fc-35c9-3805-b34b-283d5da87aea",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trap-house",
+      "type": "project",
+      "name": "Trap House",
+      "mbid": "d566cfdc-c6dc-3755-b693-55af67d81f9a",
+      "year": "2005",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lemonade",
+      "type": "track",
+      "name": "Lemonade"
+    },
+    {
+      "slug": "track:freaky-gurl",
+      "type": "track",
+      "name": "Freaky Gurl"
+    },
+    {
+      "slug": "track:i-get-the-bag",
+      "type": "track",
+      "name": "I Get the Bag"
+    },
+    {
+      "slug": "track:black-beatles",
+      "type": "track",
+      "name": "Black Beatles"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:zaytoven",
+      "type": "artist",
+      "name": "Zaytoven"
+    },
+    {
+      "slug": "artist:young-thug",
+      "type": "artist",
+      "name": "Young Thug"
+    },
+    {
+      "slug": "artist:waka-flocka-flame",
+      "type": "artist",
+      "name": "Waka Flocka Flame"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef"
+    },
+    {
+      "slug": "artist:future",
+      "type": "artist",
+      "name": "Future"
+    },
+    {
+      "slug": "artist:metro-boomin",
+      "type": "artist",
+      "name": "Metro Boomin"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:guwop",
+      "type": "artist",
+      "name": "Guwop"
+    },
+    {
+      "slug": "artist:mr-zone-6",
+      "type": "artist",
+      "name": "Mr. Zone 6"
+    },
+    {
+      "slug": "artist:east-atlanta-santa",
+      "type": "artist",
+      "name": "East Atlanta Santa"
+    }
+  ],
+  "members": []
+}

@@ -1,0 +1,255 @@
+{
+  "slug": "artist:eazy-e",
+  "name": "Eazy-E",
+  "editorial_article": "Born Eric Lynn Wright in Compton, California, Eazy-E founded the foundational hip hop group N.W.A in 1986. His debut solo album Eazy-Duz-It, released in 1988, reached number 41 on the Billboard 200 and eventually moved over 2.5 million copies in the United States by 1994. The 1993 EP It's On (Dr. Dre) 187um Killa peaked at number five on the Billboard 200 and remains the only hip hop EP to achieve multi-platinum status. His final studio album, the posthumous Str8 off tha Streetz of Muthaphukkin Compton, reached number three on the Billboard 200 in 1995. Throughout his career, he released music through labels including Ruthless Records, Priority Records, Relativity Records, and Epic Records.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Eazy-E_discography",
+      "title": "Eazy-E discography"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Eazy-E",
+      "title": "Eazy-E"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:32.430Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering figure in gangsta rap, Eazy-E gained prominence as a member of N.W.A before achieving significant solo success in the late 1980s and early 1990s.",
+  "origin": "Compton, California",
+  "active_years": "1986-1995",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:g-funk",
+      "type": "genre",
+      "name": "G-Funk",
+      "qid": "Q1045541"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ruthless-records",
+      "type": "label",
+      "name": "Ruthless Records"
+    },
+    {
+      "slug": "label:priority-records",
+      "type": "label",
+      "name": "Priority Records"
+    },
+    {
+      "slug": "label:relativity-records",
+      "type": "label",
+      "name": "Relativity Records"
+    },
+    {
+      "slug": "label:epic-records",
+      "type": "label",
+      "name": "Epic Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:merry-muthafuckin-xmas-niggaz-my-height-don-t-fight",
+      "type": "project",
+      "name": "Merry Muthafuckin’ Xmas / Niggaz My Height Don’t Fight",
+      "mbid": "04b389e8-0f3d-4759-895e-480bc12ebe3f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:switchez",
+      "type": "project",
+      "name": "Switchez",
+      "mbid": "9b39ae15-b592-4913-afdf-05307a195744",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-nigga-killa",
+      "type": "project",
+      "name": "Black Nigga Killa",
+      "mbid": "1a289249-836a-43fd-87af-5c22bbfefc60",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:b-n-k",
+      "type": "project",
+      "name": "B.N.K.",
+      "mbid": "e677e502-5b07-4d70-b7d5-438d5e248a12",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:24-hrs-to-live",
+      "type": "project",
+      "name": "24 HRS to Live",
+      "mbid": "f6a492dd-4b42-430f-8105-76adc6ac3b5f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sippin-on-a-40",
+      "type": "project",
+      "name": "Sippin’ on a 40",
+      "mbid": "78cd9c17-7e4a-4e54-9d28-8307c41794a1",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-tah-let-u-know",
+      "type": "project",
+      "name": "Just tah Let U Know",
+      "mbid": "62f85fff-c74b-4a30-aaf9-28a364f7f4a1",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:str8-off-tha-streetz-of-muthaphukkin-compton",
+      "type": "project",
+      "name": "Str8 off tha Streetz of Muthaphukkin’ Compton",
+      "mbid": "cd55ab56-fcdf-33e9-9fac-c09204662a41",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:any-last-werdz",
+      "type": "project",
+      "name": "Any Last Werdz",
+      "mbid": "61caff84-4c34-4b2e-9ffa-1ef63fe8e767",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:luv-4-dem-gangsta-z",
+      "type": "project",
+      "name": "Luv 4 Dem Gangsta’z",
+      "mbid": "ce7bdc9d-5915-467f-b6d6-b0e9dafb83d4",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-on-dr-dre-187um-killa",
+      "type": "project",
+      "name": "It’s On (Dr. Dre) 187um Killa",
+      "mbid": "2f63eb24-7fde-3123-9b83-d5eaa38339df",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:real-compton-city-g-s",
+      "type": "project",
+      "name": "Real Compton City G’s",
+      "mbid": "25bc2682-7ca6-49fe-ac4e-4e4337d8c440",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-muthaphuckkin-g-s",
+      "type": "project",
+      "name": "Real Muthaphuckkin’ G’s",
+      "mbid": "df5aee42-759d-40c4-8ef8-a04e61a29533",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5150-home-4-tha-sick",
+      "type": "project",
+      "name": "5150: Home 4 tha Sick",
+      "mbid": "74d68217-1dc8-357d-a07a-6af2c972ed4c",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:eazy-duz-it",
+      "type": "project",
+      "name": "Eazy‐Duz‐It",
+      "mbid": "9c32d266-006d-3301-94b0-da3ca5daf3a9",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eazy-duz-it-ruthless-villain-radio",
+      "type": "project",
+      "name": "Eazy‐Duz‐It / Ruthless Villain / Radio",
+      "mbid": "60258657-4e91-468b-9174-1fddcc063c8a",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-boyz-n-the-hood",
+      "type": "project",
+      "name": "The Boyz-N-The Hood",
+      "mbid": "b2b52002-bdb3-3fb6-b7a3-b3b94b682319",
+      "year": "1987",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:eazy-er-said-than-dunn",
+      "type": "track",
+      "name": "Eazy-er Said Than Dunn"
+    },
+    {
+      "slug": "track:we-want-eazy",
+      "type": "track",
+      "name": "We Want Eazy"
+    },
+    {
+      "slug": "track:real-muthaphuckkin-g-s",
+      "type": "track",
+      "name": "Real Muthaphuckkin G's"
+    },
+    {
+      "slug": "track:any-last-werdz",
+      "type": "track",
+      "name": "Any Last Werdz"
+    },
+    {
+      "slug": "track:just-tah-let-u-know",
+      "type": "track",
+      "name": "Just tah Let U Know"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:bone-thugs-n-harmony",
+      "type": "artist",
+      "name": "Bone Thugs-n-Harmony"
+    },
+    {
+      "slug": "artist:above-the-law",
+      "type": "artist",
+      "name": "Above the Law"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:n-w-a",
+      "type": "artist",
+      "name": "N.W.A"
+    }
+  ]
+}

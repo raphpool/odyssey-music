@@ -1,0 +1,770 @@
+{
+  "slug": "artist:juice-wrld",
+  "name": "Juice WRLD",
+  "editorial_article": "Born Jarad Higgins in Chicago, this artist became a pivotal figure in the emo rap and SoundCloud rap movements of the late 2010s. His 2018 diamond-certified single 'Lucid Dreams', produced by Nick Mira, peaked at number two on the Billboard Hot 100 and helped define his melodic, emotionally raw output. Influenced by artists as diverse as Billy Idol, Black Sabbath, and Kanye West, Higgins recorded his debut studio album 'Goodbye & Good Riddance' (2018) via Grade A Productions and Interscope. His second album, 'Death Race for Love' (2019), reached number one on the Billboard 200, featuring the hit 'Robbery'. Following his death from a drug overdose in December 2019, posthumous releases like 'Legends Never Die' and 'Fighting Demons' maintained his chart dominance, with 'Legends Never Die' matching records for most U.S. top-ten entries from a single album.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Juice_Wrld",
+      "title": "Juice Wrld - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Juice_Wrld_discography",
+      "title": "Juice Wrld discography - Wikipedia"
+    },
+    {
+      "url": "https://excellentmusic.miraheze.org/wiki/Juice_Wrld",
+      "title": "Juice Wrld - Excellent Music Wiki"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:21:03.327Z",
+  "type": "artist",
+  "editorial_bio": "An influential Chicago rapper and singer who defined the emo rap sound of the late 2010s before his untimely death in 2019.",
+  "origin": "Chicago, Illinois, U.S.",
+  "active_years": "2015-2019",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:emo-rap",
+      "type": "genre",
+      "name": "Emo Rap",
+      "qid": "Q12362064"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:grade-a-productions",
+      "type": "label",
+      "name": "Grade A Productions"
+    },
+    {
+      "slug": "label:interscope",
+      "type": "label",
+      "name": "Interscope"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:we-don-t-get-along",
+      "type": "project",
+      "name": "We Don’t Get Along",
+      "mbid": "4ef3119f-6d26-4346-bd44-9a302e14e391",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-way",
+      "type": "project",
+      "name": "The Way",
+      "mbid": "196760dc-f242-43fc-b3cf-abe0b56aec7e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-party-never-ends",
+      "type": "project",
+      "name": "The Party Never Ends",
+      "mbid": "f48c062a-639e-487c-b75c-87f382f2d26d",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:celebrate",
+      "type": "project",
+      "name": "Celebrate",
+      "mbid": "1248fd30-dd1d-422b-bbea-f0ddb3aac516",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:best-friend",
+      "type": "project",
+      "name": "Best Friend",
+      "mbid": "237a2ef7-b97b-4ef4-b8cd-9309cf257ccd",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:agats2",
+      "type": "project",
+      "name": "AGATS2 (Insecure)",
+      "mbid": "1c37f7e6-771f-4c0c-91ba-84baee57cba6",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unreleased-vol-2",
+      "type": "project",
+      "name": "Unreleased, Vol 2",
+      "mbid": "a2a17586-c253-4359-a243-45d54112f321",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-pre-party",
+      "type": "project",
+      "name": "The Pre‐Party",
+      "mbid": "8ae4e12f-d9bb-4c52-aaab-53eb49e408f1",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lace-it",
+      "type": "project",
+      "name": "Lace It",
+      "mbid": "112f6ea2-2817-4d18-9ecd-d2146722523f",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money",
+      "type": "project",
+      "name": "Money",
+      "mbid": "577de87f-7377-4254-984c-ada2028b6cdd",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doomsday",
+      "type": "project",
+      "name": "Doomsday",
+      "mbid": "a0c861b1-63b0-4bbb-b036-1b356bea6dd9",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-good",
+      "type": "project",
+      "name": "No Good",
+      "mbid": "730f5aaf-5cc6-4fbd-a813-f230cee32787",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-light",
+      "type": "project",
+      "name": "The Light",
+      "mbid": "bd6cc7f9-cf1d-494e-abf9-a5824c354cab",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:knight-crawler",
+      "type": "project",
+      "name": "KNIGHT CRAWLER",
+      "mbid": "0b5d396e-687d-4692-a2ed-ec8c027eb57c",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:willia-e-viado-pt-2",
+      "type": "project",
+      "name": "Willia é Viado pt. 2",
+      "mbid": "5803292b-c0e5-4ae2-87f3-3139f901cf8d",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:face-2-face",
+      "type": "project",
+      "name": "Face 2 Face",
+      "mbid": "a104c4bb-9082-44a9-b884-19e351a77e80",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-my-head",
+      "type": "project",
+      "name": "In My Head",
+      "mbid": "947e72e0-e334-4511-8671-b7fc7fbd2d66",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rush-hour",
+      "type": "project",
+      "name": "Rush Hour",
+      "mbid": "ba37d6df-6eb4-4e79-abff-e4c431d0b81a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bye-bye",
+      "type": "project",
+      "name": "Bye Bye",
+      "mbid": "3fc59186-702f-4a66-86e5-87287064c7ef",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cigarettes",
+      "type": "project",
+      "name": "Cigarettes",
+      "mbid": "86ec1c55-3f98-4aea-b9c4-5e7ec583a57a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fighting-demons",
+      "type": "project",
+      "name": "Fighting Demons",
+      "mbid": "bcc30c6a-85fb-4376-b300-1dbd93c9eba5",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wandered-to-la",
+      "type": "project",
+      "name": "Wandered to LA",
+      "mbid": "573acef0-a849-433c-af62-4018f6385039",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:already-dead",
+      "type": "project",
+      "name": "Already Dead",
+      "mbid": "5e6c678b-bfbe-4963-b04c-a3d11d0f57a4",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:matt-hardy-999",
+      "type": "project",
+      "name": "Matt Hardy 999",
+      "mbid": "ff737d7a-7c6e-4f78-9360-7593010701ca",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-s-a-mess-ii",
+      "type": "project",
+      "name": "Life’s a Mess II",
+      "mbid": "ded204f7-f40a-4283-a8c3-0a25bb7ba56f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-boy",
+      "type": "project",
+      "name": "Bad Boy",
+      "mbid": "02d449c4-50e5-4536-ab23-ad1518f426ca",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reminds-me-of-you",
+      "type": "project",
+      "name": "Reminds Me of You",
+      "mbid": "fc395765-2d45-4cff-b3ed-e6de1eb692ed",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:real-shit",
+      "type": "project",
+      "name": "Real Shit",
+      "mbid": "4ce3204d-774c-4be8-a028-6d1257b844ed",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blastoff",
+      "type": "project",
+      "name": "Blastoff",
+      "mbid": "3e086658-1815-4fd7-8703-4710a98cc0db",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smile",
+      "type": "project",
+      "name": "Smile",
+      "mbid": "6dc53c16-0b2c-4681-906f-04c44a6cc1bc",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wishing-well",
+      "type": "project",
+      "name": "Wishing Well",
+      "mbid": "d03f3153-92eb-4235-be64-36db60c4eb3e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:legends-never-die",
+      "type": "project",
+      "name": "Legends Never Die",
+      "mbid": "a77ca67d-a946-4582-b365-0fac3fa1bb10",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-and-go",
+      "type": "project",
+      "name": "Come & Go",
+      "mbid": "dc242ef4-7180-4c12-9fbb-69d73526ebd0",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-s-a-mess",
+      "type": "project",
+      "name": "Life’s a Mess",
+      "mbid": "75434d3f-4e84-4d0b-9c59-84447226d6bc",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go",
+      "type": "project",
+      "name": "GO",
+      "mbid": "89e13dea-606e-4151-89e3-3cbf719de942",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-me-u-luv-me",
+      "type": "project",
+      "name": "Tell Me U Luv Me",
+      "mbid": "01264abb-83fe-42cc-a476-1949d59471a6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:righteous",
+      "type": "project",
+      "name": "Righteous",
+      "mbid": "6814c58b-b912-454c-907a-0d527061ec2d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-me-ame",
+      "type": "project",
+      "name": "No me ame",
+      "mbid": "0c53c96f-1353-40e9-9d50-a9bb399a47d4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:godzilla",
+      "type": "project",
+      "name": "Godzilla",
+      "mbid": "9d04b5ef-7e93-45fa-8c3a-d49cebf6555c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-me-know",
+      "type": "project",
+      "name": "Let Me Know (I Wonder Why Freestyle)",
+      "mbid": "20e8a7d9-2453-456a-8702-cbfece167b40",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bandit",
+      "type": "project",
+      "name": "Bandit",
+      "mbid": "5f7487f2-be11-4604-bc77-2ef4270b53c3",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:graduation",
+      "type": "project",
+      "name": "Graduation",
+      "mbid": "82d41b99-c4da-4525-a1bf-d156f5f4f9a1",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:juice-wrld-unreleased",
+      "type": "project",
+      "name": "Juice WRLD Unreleased",
+      "mbid": "404f27c9-e659-4a22-8ade-cd5814ecf067",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:demon-love",
+      "type": "project",
+      "name": "Demon Love",
+      "mbid": "83e5fcaa-92a4-4ec3-9ecc-481154bc4648",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run",
+      "type": "project",
+      "name": "RUN",
+      "mbid": "d5888a39-8bd3-4dd8-bcfc-1ba3a113e898",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hate-me",
+      "type": "project",
+      "name": "Hate Me",
+      "mbid": "3f2a8bea-ee99-43bf-a34d-11b5cd67638a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kick-me-2-the-curb",
+      "type": "project",
+      "name": "Kick Me 2 The Curb",
+      "mbid": "87b0e4a3-250c-4b03-a0f7-d902f27f2224",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:death-race-for-love",
+      "type": "project",
+      "name": "Death Race for Love",
+      "mbid": "e856dbb8-18c3-45f5-abe3-0983c64372cc",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:robbery",
+      "type": "project",
+      "name": "Robbery",
+      "mbid": "47537057-89f6-4cf8-aa1a-ba58d4384e0e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:double-r-bargain-dark-tints",
+      "type": "project",
+      "name": "Double R (Bargain) (Dark Tints) (JW3)",
+      "mbid": "2c12b0bb-6fbc-40a6-9740-7f787efb4b83",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spaceships-invasion",
+      "type": "project",
+      "name": "Spaceships (Invasion) (DRFL)",
+      "mbid": "4f02e456-9928-4058-8d9d-3e8037e88469",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigger-biscotti-in-the-air",
+      "type": "project",
+      "name": "Bigger (Biscotti In The Air) (JW3)",
+      "mbid": "82c93486-7449-45ea-ac33-3d12943b381d",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-low-what-i-need",
+      "type": "project",
+      "name": "On The Low (What I Need) (DRFL)",
+      "mbid": "8c6aafb0-7fa3-4b40-b563-efcfe2c92af3",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-here-in-the-mix-not-supposed-to-be-here",
+      "type": "project",
+      "name": "Be Here (In The Mix) (Not Supposed To Be Here) (DRFL)",
+      "mbid": "929d8313-63d8-456c-9fcd-5b0d8bb55098",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bel-air-fresh-air-this-year",
+      "type": "project",
+      "name": "Bel-Air (Fresh Air) (This Year) (JW3)",
+      "mbid": "97124f37-9514-4a37-980b-e98fa4a6f456",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drive-me-crazy",
+      "type": "project",
+      "name": "Drive Me Crazy (JW3)",
+      "mbid": "b5c6a6bf-a500-4547-9d46-6f35331950dd",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:uncanny-my-year",
+      "type": "project",
+      "name": "Uncanny (My Year) (JW3)",
+      "mbid": "c2d5eac7-cf90-426e-a336-afb2014b190d",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rob-and-scam",
+      "type": "project",
+      "name": "Rob & Scam (JW3)",
+      "mbid": "ce7668d8-df1c-4238-a499-19d36d94f115",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:racks-remaster",
+      "type": "project",
+      "name": "Racks (Remaster) (JW3)",
+      "mbid": "d65bb2b2-6072-4d9b-9c52-0d84687c4d85",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-my-mind-hourglass",
+      "type": "project",
+      "name": "Lost My Mind (Hourglass) (JW3)",
+      "mbid": "e3bd7bb9-c27f-451b-9d3c-6faa92e14540",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-zone-inspired-us",
+      "type": "project",
+      "name": "Time Zone (Inspired Us) (DRFL)",
+      "mbid": "f07ec0c3-9972-4d5d-851b-2752218d5904",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cold-winters-mrs-fifa",
+      "type": "project",
+      "name": "Cold Winters (Mrs. Fifa) (JW3)",
+      "mbid": "f803e65a-271d-4877-a540-a7cc3941f081",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hide",
+      "type": "project",
+      "name": "Hide",
+      "mbid": "3e5a14fa-4d46-4b07-a572-426ecf7f2a6a",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moshpit",
+      "type": "project",
+      "name": "MoshPit",
+      "mbid": "ff14a371-ce9c-4137-9a78-fb0379655820",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roses",
+      "type": "project",
+      "name": "Roses",
+      "mbid": "f6ee50dd-6912-4295-b0be-d43b9176bdf9",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fine-china",
+      "type": "project",
+      "name": "Fine China",
+      "mbid": "c1b51970-c08d-4acc-9264-2a4f9e593ff9",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:armed-and-dangerous",
+      "type": "project",
+      "name": "Armed and Dangerous",
+      "mbid": "417bf305-babd-4119-8d53-f8364b897ee6",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:play-fair",
+      "type": "project",
+      "name": "Play Fair",
+      "mbid": "e4b69c0c-2eb7-47eb-979f-7fcae2873a0c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wasted",
+      "type": "project",
+      "name": "Wasted",
+      "mbid": "6e9bd7b9-b0b9-4d05-b0a3-dc850f3d0fc4",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rich-and-blind",
+      "type": "project",
+      "name": "Rich and Blind",
+      "mbid": "e219d588-3249-4513-b824-4aedca2b7c18",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:legends",
+      "type": "project",
+      "name": "Legends",
+      "mbid": "f4873b29-aef3-4361-81e9-87daceaf22af",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-soon",
+      "type": "project",
+      "name": "Too Soon…",
+      "mbid": "1bfc32e5-ec9f-45fe-9023-96513afc8204",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blink-182",
+      "type": "project",
+      "name": "Blink 182",
+      "mbid": "b5b5d92b-be2f-403d-a9ec-d17dee64122d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goodbye-and-good-riddance",
+      "type": "project",
+      "name": "Goodbye & Good Riddance",
+      "mbid": "8bd7dded-24ea-488c-a3e3-3c7158ea12ee",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lean-wit-me",
+      "type": "project",
+      "name": "Lean Wit Me",
+      "mbid": "956ced1e-3443-4bde-957d-d1d3ae75bfa5",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-this-bitch",
+      "type": "project",
+      "name": "IN THIS BITCH",
+      "mbid": "ecf6a3bc-6cbc-4ec2-8bad-3e58bbfe55c5",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-on-my-own",
+      "type": "project",
+      "name": "All on My Own",
+      "mbid": "259ac2fa-3797-49d6-b07f-e80af0889c89",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:contained-leave-me-dead-change",
+      "type": "project",
+      "name": "Contained (Leave Me Dead) (Change) (DRFL)",
+      "mbid": "35503786-7f89-432a-a325-581eb686867b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:benjamin-rick-ross",
+      "type": "project",
+      "name": "Benjamin (Rick Ross) (WOD)",
+      "mbid": "6366c836-2873-465d-932d-8fcd5d723ebd",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:outsiders",
+      "type": "project",
+      "name": "Outsiders (Sessions)",
+      "mbid": "2722933e-e925-4062-a4bd-bc4e42cfaa53",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lucid-dreams",
+      "type": "track",
+      "name": "Lucid Dreams"
+    },
+    {
+      "slug": "track:all-girls-are-the-same",
+      "type": "track",
+      "name": "All Girls Are the Same"
+    },
+    {
+      "slug": "track:robbery",
+      "type": "track",
+      "name": "Robbery"
+    },
+    {
+      "slug": "track:armed-and-dangerous",
+      "type": "track",
+      "name": "Armed and Dangerous"
+    },
+    {
+      "slug": "track:come-and-go",
+      "type": "track",
+      "name": "Come & Go"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:future",
+      "type": "artist",
+      "name": "Future"
+    },
+    {
+      "slug": "artist:marshmello",
+      "type": "artist",
+      "name": "Marshmello"
+    },
+    {
+      "slug": "artist:lil-bibby",
+      "type": "artist",
+      "name": "Lil Bibby"
+    },
+    {
+      "slug": "artist:nick-mira",
+      "type": "artist",
+      "name": "Nick Mira"
+    },
+    {
+      "slug": "artist:the-kid-laroi",
+      "type": "artist",
+      "name": "the Kid Laroi"
+    },
+    {
+      "slug": "artist:xxxtentacion",
+      "type": "artist",
+      "name": "XXXTentacion"
+    },
+    {
+      "slug": "artist:ski-mask-the-slump-god",
+      "type": "artist",
+      "name": "Ski Mask the Slump God"
+    },
+    {
+      "slug": "artist:trippie-redd",
+      "type": "artist",
+      "name": "Trippie Redd"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:juicethekidd",
+      "type": "artist",
+      "name": "JuicetheKidd"
+    }
+  ],
+  "members": []
+}

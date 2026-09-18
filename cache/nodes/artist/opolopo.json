@@ -45,6 +45,12 @@
       "type": "genre",
       "name": "Boogie",
       "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:broken-beat",
+      "type": "genre",
+      "name": "Broken Beat",
+      "qid": "Q2406633"
     }
   ],
   "labels": [

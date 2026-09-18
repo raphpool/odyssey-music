@@ -67,8 +67,20 @@
     }
   ],
   "influences": [],
-  "influenced": [],
-  "collaborators": [],
+  "influenced": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    }
+  ],
   "aliases": [],
   "members": []
 }

@@ -1,0 +1,356 @@
+{
+  "slug": "artist:bobby-brown",
+  "name": "Bobby Brown",
+  "editorial_article": "Born in 1969 in the Orchard Park Projects of Boston, Bobby Brown ascended from local talent shows to become a defining architect of new jack swing alongside producer Teddy Riley. After co-leading New Edition to 1983 chart success with the Streetwise Records hit 'Candy Girl', he departed for a solo career that broke Billboard 200 records. His 1988 sophomore album 'Don't Be Cruel' made him the youngest male artist to top the Billboard 200 with a studio album at age 19, eventually shipping over 12 million units worldwide. The project yielded five top-ten Hot 100 singles, including the Grammy-winning 'Every Little Step' and the self-penned anthem 'My Prerogative'. Beyond his musical output, Brown pioneered stage mannerisms like the 'Roger Rabbit' dance and maintained a long-term professional association with New Edition, participating in the group's 1996 'Home Again' reunion and their 2022 Culture Tour.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Bobby_Brown",
+      "title": "Bobby Brown - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:02.788Z",
+  "type": "artist",
+  "editorial_bio": "An American R&B pioneer who rose from New Edition's teenage success to become a solo superstar and a primary figure in the evolution of new jack swing.",
+  "origin": "Boston, Massachusetts",
+  "active_years": "1978-present",
+  "genres": [
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:mca",
+      "type": "label",
+      "name": "MCA"
+    },
+    {
+      "slug": "label:streetwise-records",
+      "type": "label",
+      "name": "Streetwise Records"
+    },
+    {
+      "slug": "label:geffen",
+      "type": "label",
+      "name": "Geffen"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:like-bobby",
+      "type": "project",
+      "name": "Like Bobby",
+      "mbid": "7d11f09c-0882-4bcc-b912-5e76f36c319e",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:masterpiece",
+      "type": "project",
+      "name": "Masterpiece",
+      "mbid": "91f28fb7-eff2-4fbc-890e-2a59684529b8",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beautiful",
+      "type": "project",
+      "name": "Beautiful",
+      "mbid": "3b6db464-8884-4130-8022-bf4bf948df49",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thug-lovin",
+      "type": "project",
+      "name": "Thug Lovin'",
+      "mbid": "d5e0b5ef-7dd6-4d36-a833-6cbdbf574657",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever",
+      "type": "project",
+      "name": "Forever",
+      "mbid": "110bbca3-7999-30ac-9323-e2c380f0d7fc",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feelin-inside",
+      "type": "project",
+      "name": "Feelin' Inside",
+      "mbid": "da140df6-2c05-4253-9d2b-8faec2dc350b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:humpin-around",
+      "type": "project",
+      "name": "Humpin' Around (The K Klass mixes)",
+      "mbid": "a4cda205-b9d1-3d48-a22f-151c04a28a7f",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:two-can-play-that-game",
+      "type": "project",
+      "name": "Two Can Play That Game (The K Klass Mixes)",
+      "mbid": "0a2e14c6-c848-3be2-8b8a-edb79f035891",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drop-it-on-the-one",
+      "type": "project",
+      "name": "Drop It on the One",
+      "mbid": "f3a62518-a993-4df8-bb96-b943097ed8a9",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-away",
+      "type": "project",
+      "name": "Get Away",
+      "mbid": "7dced6b8-2bdf-47b6-a859-e4848b225967",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-in-common",
+      "type": "project",
+      "name": "Something in Common",
+      "mbid": "e4d6a94e-280c-44be-a20e-4a64c46547ce",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:humpin-around",
+      "type": "project",
+      "name": "Humpin' Around",
+      "mbid": "c4643ac2-e51d-48a8-af4a-f03e7bb36606",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bobby",
+      "type": "project",
+      "name": "Bobby",
+      "mbid": "922b0164-9184-3067-92a6-cbc802cd2f7e",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-enough",
+      "type": "project",
+      "name": "Good Enough",
+      "mbid": "4964c58d-0765-406c-aeb3-3e2c7a6470e1",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:free-style-mega-mix",
+      "type": "project",
+      "name": "Free Style Mega-Mix",
+      "mbid": "7413b815-efb6-3932-ad48-40c1095adf7b",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-ain-t-worth-it",
+      "type": "project",
+      "name": "She Ain’t Worth It",
+      "mbid": "78bc8ba7-85c2-4e8a-b049-1283423649f8",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-wit-cha",
+      "type": "project",
+      "name": "Rock Wit’cha",
+      "mbid": "4fb7920b-ec36-4493-81c1-0796155af87f",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:every-little-step",
+      "type": "project",
+      "name": "Every Little Step",
+      "mbid": "f904b646-4133-4ee8-bb54-b8d0fc5ab029",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-our-own",
+      "type": "project",
+      "name": "On Our Own",
+      "mbid": "2235784d-8397-3c4b-b6d2-94672a660ab3",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:every-little-hit",
+      "type": "project",
+      "name": "Every Little Hit (Mega Mix)",
+      "mbid": "23b43819-3d58-4d67-b668-aba06252a7ce",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:every-little-hit",
+      "type": "project",
+      "name": "Every Little Hit",
+      "mbid": "84303c99-566e-438a-ac22-8804b89c1112",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-prerogative",
+      "type": "project",
+      "name": "My Prerogative",
+      "mbid": "ed63234c-9464-4baa-af1c-f05536574610",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-be-cruel",
+      "type": "project",
+      "name": "Don’t Be Cruel",
+      "mbid": "680d39dc-1142-4cc2-9f07-7b2e2f1b2656",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-be-cruel",
+      "type": "project",
+      "name": "Don’t Be Cruel",
+      "mbid": "1e735c43-2224-371c-8011-8bc1697e00a4",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roni",
+      "type": "project",
+      "name": "Roni",
+      "mbid": "71d9e640-4ef4-4c69-ac22-45a753c9d128",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-next-door",
+      "type": "project",
+      "name": "Girl Next Door",
+      "mbid": "c9602103-e624-4faa-a41c-cdc17fc17920",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seventeen",
+      "type": "project",
+      "name": "Seventeen",
+      "mbid": "68abe14d-43a3-4798-8ab4-3b2f8b41bbc0",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-of-stage",
+      "type": "project",
+      "name": "King of Stage",
+      "mbid": "82d05716-dc5d-3e50-a24c-51ef0e377ec3",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:girlfriend",
+      "type": "project",
+      "name": "Girlfriend",
+      "mbid": "332a9405-70ac-47ea-a54d-92e534c0e6cf",
+      "year": "1986",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:my-prerogative",
+      "type": "track",
+      "name": "My Prerogative"
+    },
+    {
+      "slug": "track:every-little-step",
+      "type": "track",
+      "name": "Every Little Step"
+    },
+    {
+      "slug": "track:candy-girl",
+      "type": "track",
+      "name": "Candy Girl"
+    },
+    {
+      "slug": "track:humpin-around",
+      "type": "track",
+      "name": "Humpin' Around"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:teddy-riley",
+      "type": "artist",
+      "name": "Teddy Riley"
+    },
+    {
+      "slug": "artist:babyface",
+      "type": "artist",
+      "name": "Babyface"
+    },
+    {
+      "slug": "artist:ralph-tresvant",
+      "type": "artist",
+      "name": "Ralph Tresvant"
+    },
+    {
+      "slug": "artist:michael-bivins",
+      "type": "artist",
+      "name": "Michael Bivins"
+    },
+    {
+      "slug": "artist:ricky-bell",
+      "type": "artist",
+      "name": "Ricky Bell"
+    },
+    {
+      "slug": "artist:ronnie-devoe",
+      "type": "artist",
+      "name": "Ronnie DeVoe"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "slug": "genre:tropical-music",
+  "name": "Tropical music",
+  "editorial_article": "Defined in the mid-20th century, tropical music encompasses a wide array of dance-oriented rhythmic styles originating from the Spanish-speaking Caribbean and its surrounding coastal territories. The genre emerged as a industry-facing category intended to group Caribbean styles like cumbia and son cubano, distinct from inland folk music such as norteño. Rooted in both European and African traditions, it is characterized by the binarization of ternary rhythms, a process first developed in Cuba that eventually influenced the broader Latin American music landscape. Instrumentation often centers on a blend of European-derived instruments like the piano and trumpet with African-descended elements such as congas and bongos. While traditional acoustic foundations define its history—reaching back to the 19th-century popularity of the Cuban contradanza—contemporary practitioners increasingly utilize synthesizers and drum machines to modernize the sound. The format remains a staple of Latin radio, with regional variations serving as pillars of cultural identity in countries from the Dominican Republic to Colombia.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tropical_music",
+      "title": "Tropical music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:01:47.120Z",
+  "type": "genre",
+  "editorial_definition": "A broad category of rhythmic, dance-oriented Latin music originating from the Spanish-speaking Caribbean and surrounding regions.",
+  "qid": "Q3328778",
+  "era": "19th century to present",
+  "origin": "Spanish-speaking Caribbean, including Cuba, Puerto Rico, Dominican Republic, and coastal Colombia",
+  "sonic_markers": "Syncopated polyrhythms, binarized ternary beats, dance-oriented tempos; instrumentation includes congas, bongos, tres, piano, trumpet, and increasingly synthesizers/drum machines.",
+  "parent_genres": [
+    {
+      "slug": "genre:latin-music",
+      "type": "genre",
+      "name": "Latin Music",
+      "qid": "Q18345375"
+    },
+    {
+      "slug": "genre:music-of-latin-america",
+      "type": "genre",
+      "name": "Music Of Latin America",
+      "qid": "Q727781"
+    },
+    {
+      "slug": "genre:music-of-the-caribbean",
+      "type": "genre",
+      "name": "Music Of The Caribbean",
+      "qid": "Q3394906"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:salsa",
+      "type": "genre",
+      "name": "Salsa",
+      "qid": "Q208239"
+    },
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    },
+    {
+      "slug": "genre:merengue",
+      "type": "genre",
+      "name": "Merengue",
+      "qid": "Q282131"
+    },
+    {
+      "slug": "genre:bachata",
+      "type": "genre",
+      "name": "Bachata",
+      "qid": "Q40461"
+    },
+    {
+      "slug": "genre:son-cubano",
+      "type": "genre",
+      "name": "Son cubano",
+      "qid": "Q4428744"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:quantic",
+      "type": "artist",
+      "name": "Quantic"
+    },
+    {
+      "slug": "artist:arturo-sandoval",
+      "type": "artist",
+      "name": "Arturo Sandoval"
+    },
+    {
+      "slug": "artist:martin-vejarano",
+      "type": "artist",
+      "name": "Martin Vejarano"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:tropical-music",
+      "type": "label",
+      "name": "Tropical Music"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:contradanza",
+      "type": "track",
+      "name": "Contradanza"
+    }
+  ]
+}

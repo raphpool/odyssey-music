@@ -1,0 +1,127 @@
+{
+  "slug": "genre:city-pop",
+  "name": "City Pop",
+  "editorial_article": "City Pop emerged in Japan during the mid-1970s as a loose, loosely defined form of urban-focused music that reached its peak popularity throughout the 1980s. The genre is frequently linked to Japan's era of economic prosperity, mirroring the lifestyles of wealthy urbanites through an opulent mix of pop, funk, disco, R&B, AOR, and soft rock. Producers and composers such as Tatsuro Yamashita and Toshiki Kadomatsu utilized sophisticated arrangement techniques, including jazz-inflected chords like major sevenths, to craft a distinctive, polished sound. The music was technologically driven, often incorporating electronic instruments like the Yamaha CS-80, Roland TR-808, and Casio CZ-101, alongside the widespread accessibility afforded by the Walkman and car stereo systems. While the genre experienced a decline in mainstream appeal after the 1980s, often being derided as disposable by later generations, it found a global, digital-age resurgence starting around 2010. Online interest, fueled by YouTube algorithms and music-sharing blogs, brought tracks like Miki Matsubara's 1979 single 'Mayonaka no Door (Stay with Me)' and Mariya Takeuchi's 'Plastic Love' to new international audiences. This revival solidified City Pop as a vital touchstone for modern, sample-based microgenres such as vaporwave and future funk.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/City_pop",
+      "title": "City pop - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:08:36.639Z",
+  "type": "genre",
+  "editorial_definition": "A Japanese pop genre from the 1970s and 80s that blends funk, jazz fusion, and AOR, mirroring the era's economic boom with an urban, sophisticated feel.",
+  "qid": "Q11307326",
+  "era": "mid-1970s to late 1980s",
+  "origin": "Japan (Tokyo)",
+  "sonic_markers": "Major seventh chords, lush arrangements, prominent synths, funk/disco grooves, 90-120 BPM range",
+  "parent_genres": [
+    {
+      "slug": "genre:music-of-japan",
+      "type": "genre",
+      "name": "Music Of Japan",
+      "qid": "Q257533"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop Music",
+      "qid": "Q37073"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:vaporwave",
+      "type": "genre",
+      "name": "Vaporwave",
+      "qid": "Q15733887"
+    },
+    {
+      "slug": "genre:future-funk",
+      "type": "genre",
+      "name": "Future funk",
+      "qid": "Q80725127"
+    },
+    {
+      "slug": "genre:aor",
+      "type": "genre",
+      "name": "AOR"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:j-pop",
+      "type": "genre",
+      "name": "J-Pop",
+      "qid": "Q131578"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "Tatsuro Yamashita"
+    },
+    {
+      "slug": "artist:mariya-takeuchi",
+      "type": "artist",
+      "name": "Mariya Takeuchi"
+    },
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono"
+    },
+    {
+      "slug": "artist:toshiki-kadomatsu",
+      "type": "artist",
+      "name": "Toshiki Kadomatsu"
+    },
+    {
+      "slug": "artist:miki-matsubara",
+      "type": "artist",
+      "name": "Miki Matsubara"
+    },
+    {
+      "slug": "artist:taeko-onuki",
+      "type": "artist",
+      "name": "Taeko Onuki"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:sony-music",
+      "type": "label",
+      "name": "Sony Music"
+    },
+    {
+      "slug": "label:universal-music-japan",
+      "type": "label",
+      "name": "Universal Music Japan"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:plastic-love",
+      "type": "track",
+      "name": "Plastic Love"
+    },
+    {
+      "slug": "track:mayonaka-no-door",
+      "type": "track",
+      "name": "Mayonaka no Door (Stay with Me)"
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "slug": "artist:digable-planets",
+  "name": "Digable Planets",
+  "editorial_article": "Formed in 1987 in the Philadelphia area by Ishmael Butler and Craig Irving, Digable Planets became a central voice in 1990s jazz rap. After adding Mariana Vieira to the lineup, the trio signed to Pendulum Records in 1992 and relocated to Brooklyn. Their 1993 debut album, Reachin' (A New Refutation of Time and Space), was certified gold by the RIAA, led by the crossover hit \"Rebirth of Slick (Cool Like Dat),\" which reached No. 15 on the Billboard Hot 100 and earned a Grammy Award for Best Rap Performance by a Duo or Group. The group's 1994 follow-up, Blowout Comb, shifted toward a darker, more overtly political sound, incorporating guest appearances from Jeru the Damaja, Sulaiman, and Guru of Gang Starr. Despite disbanding in 1995 due to creative differences, the members have reunited for various tours and projects, including a 2016 run that culminated in the 2017 live album, Digable Planets Live, recorded at Ardmore Music Hall.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Digable_Planets",
+      "title": "Digable Planets - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:19:37.469Z",
+  "type": "artist",
+  "editorial_bio": "An influential 1990s trio known for pioneering the jazz rap subgenre with lyrical precision and eclectic production.",
+  "origin": "Brooklyn, New York / Philadelphia, Pennsylvania",
+  "active_years": "1987–1995, 2005–2011, 2015–present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative Hip Hop",
+      "qid": "Q438503"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz",
+      "qid": "Q221772"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom Bap",
+      "qid": "Q529742"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:pendulum-records",
+      "type": "label",
+      "name": "Pendulum Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dial-7",
+      "type": "project",
+      "name": "Dial 7",
+      "mbid": "5ec01a3f-3c45-4385-a38c-ce9db0f0dae0",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blowout-comb",
+      "type": "project",
+      "name": "Blowout Comb",
+      "mbid": "ee79e536-de20-3af0-9ae8-b529503a8c3e",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:9th-wonder",
+      "type": "project",
+      "name": "9th Wonder (Blackitolism)",
+      "mbid": "5465d424-8307-49b1-ba10-a6a4aaaaa918",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:9th-wonder",
+      "type": "project",
+      "name": "9th Wonder",
+      "mbid": "87c3d254-d2f2-396a-89fd-aeb4bc933692",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reachin",
+      "type": "project",
+      "name": "Reachin’ (A New Refutation of Time and Space)",
+      "mbid": "2836fcb0-2fd3-3de8-b7cc-53141d666894",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-i-m-from",
+      "type": "project",
+      "name": "Where I’m From",
+      "mbid": "abdb8ee2-7dbb-3a1f-a5c3-57a9814dfdf7",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rebirth-of-slick",
+      "type": "project",
+      "name": "Rebirth of Slick (Cool Like Dat)",
+      "mbid": "f4f83793-ec5f-3ba2-b775-cfed3726e9c4",
+      "year": "1992",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:rebirth-of-slick",
+      "type": "track",
+      "name": "Rebirth of Slick (Cool Like Dat)"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:ishmael-butler",
+      "type": "artist",
+      "name": "Ishmael Butler"
+    },
+    {
+      "slug": "artist:craig-irving",
+      "type": "artist",
+      "name": "Craig Irving"
+    },
+    {
+      "slug": "artist:mariana-vieira",
+      "type": "artist",
+      "name": "Mariana Vieira"
+    }
+  ]
+}

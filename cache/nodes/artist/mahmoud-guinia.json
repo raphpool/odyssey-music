@@ -1,0 +1,118 @@
+{
+  "slug": "artist:mahmoud-guinia",
+  "name": "Mahmoud Guinia",
+  "editorial_article": "Born in 1951 in Essaouira, Morocco, Maâlem Mahmoud Guinia was a master of the Gnawa tradition, serving as a primary custodian of the guembri for decades. His 1994 collaboration with Pharoah Sanders, Bill Laswell, and Eric Rosenzveig, titled The Trance Of Seven Colors, remains a landmark bridge between Moroccan spiritual music and western jazz. In 2017, UK label Hive Mind Records released his 2013 studio recordings titled Colours of the Night, captured in Casablanca by producer Ali Faraoui. Guinia's performance style integrated complex guembri playing with the traditional krakebs and drums of his family ensemble. His career was marked by a commitment to the lineage of his father, Boubker Gania, and his final performance took place in May 2015 at the Gnawa Festival in Essaouira, where he passed his instrument to his son, Houssam Guinia.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mahmoud_Guinia",
+      "title": "Mahmoud Guinia - Wikipedia"
+    },
+    {
+      "url": "https://www.afropop.org/articles/moroccan-gnawa-master-mahmoud-guinea-dies",
+      "title": "Moroccan Gnawa Master Mahmoud Guinea Dies - Afropop Worldwide"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:28.190Z",
+  "type": "artist",
+  "editorial_bio": "Mahmoud Guinia was a legendary Moroccan Gnawa musician and master guembri player known for bridging traditional spiritual rhythms with global jazz collaborations.",
+  "origin": "Essaouira, Morocco",
+  "active_years": "1960-2015",
+  "genres": [
+    {
+      "slug": "genre:gnawa-music",
+      "type": "genre",
+      "name": "Gnawa music",
+      "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:gnawa",
+      "type": "genre",
+      "name": "Gnawa",
+      "qid": "Q2000173"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:fikriphone",
+      "type": "label",
+      "name": "Fikriphone"
+    },
+    {
+      "slug": "label:tichkaphone",
+      "type": "label",
+      "name": "Tichkaphone"
+    },
+    {
+      "slug": "label:hive-mind-records",
+      "type": "label",
+      "name": "Hive Mind Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:the-trance-of-seven-colors",
+      "type": "project",
+      "name": "The Trance Of Seven Colors"
+    },
+    {
+      "slug": "project:colours-of-the-night",
+      "type": "project",
+      "name": "Colours of the Night"
+    },
+    {
+      "slug": "project:aicha",
+      "type": "project",
+      "name": "Aicha"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-trance-of-seven-colors",
+      "type": "track",
+      "name": "The Trance Of Seven Colors"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:pharoah-sanders",
+      "type": "artist",
+      "name": "Pharoah Sanders"
+    },
+    {
+      "slug": "artist:bill-laswell",
+      "type": "artist",
+      "name": "Bill Laswell"
+    },
+    {
+      "slug": "artist:peter-brotzmann",
+      "type": "artist",
+      "name": "Peter Brötzmann"
+    },
+    {
+      "slug": "artist:hamid-drake",
+      "type": "artist",
+      "name": "Hamid Drake"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:mahmoud-gania",
+      "type": "artist",
+      "name": "Mahmoud Gania"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:houssam-guinia",
+      "type": "artist",
+      "name": "Houssam Guinia"
+    },
+    {
+      "slug": "artist:mokhtar-gania",
+      "type": "artist",
+      "name": "Mokhtar Gania"
+    }
+  ]
+}

@@ -1,0 +1,164 @@
+{
+  "slug": "artist:n-w-a",
+  "name": "N.W.A",
+  "editorial_article": "Formed in Compton, California, in 1987, N.W.A rose to prominence as a central figure in the emergence of gangsta rap, famously referred to themselves as the \"World's Most Dangerous Group.\" The core lineup initially featured Eazy-E, Dr. Dre, Ice Cube, Arabian Prince, and DJ Yella, with MC Ren joining in 1988. Their debut studio album, 1989's \"Straight Outta Compton\" on Priority Records and Ruthless Records, was a commercial success that famously drew the attention of the FBI due to the track \"Fuck tha Police.\" The group's production often featured the work of Dr. Dre, DJ Yella, and Arabian Prince as HighPowered Productions, while the lyrics were frequently penned by Ice Cube, MC Ren, and The D.O.C. Internal tensions led to the departures of Arabian Prince and Ice Cube before the group's dissolution following the 1991 release of their second studio album, \"Niggaz4Life.\" The group's influence later extended to their 2016 induction into the Rock and Roll Hall of Fame and a 2024 Grammy Lifetime Achievement Award.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/N.W.A",
+      "title": "N.W.A - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:40.043Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Compton hip-hop collective that defined the gangsta rap subgenre and challenged social and political norms in the late 1980s.",
+  "origin": "Compton, California",
+  "active_years": "1987-1991, 1999-2001, 2015-2016",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast Hip Hop",
+      "qid": "Q429264"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:ruthless-records",
+      "type": "label",
+      "name": "Ruthless Records"
+    },
+    {
+      "slug": "label:priority-records",
+      "type": "label",
+      "name": "Priority Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:niggaz4life",
+      "type": "project",
+      "name": "Niggaz4Life",
+      "mbid": "80347957-efcf-3d67-80d5-8575d3c31852",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alwayz-into-somethin",
+      "type": "project",
+      "name": "Alwayz Into Somethin’",
+      "mbid": "96085e1b-3e37-3f1f-a0b7-e097629bce3b",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta-gangsta",
+      "type": "project",
+      "name": "Gangsta Gangsta",
+      "mbid": "be5bd52b-39c2-4564-8ad8-0b05f509b2fb",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:100-miles-and-runnin",
+      "type": "project",
+      "name": "100 Miles and Runnin’",
+      "mbid": "9f3b1c61-de45-3d60-98ad-65b57980eef5",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:express-yourself",
+      "type": "project",
+      "name": "Express Yourself",
+      "mbid": "85070bdf-9814-4018-9761-333612750dab",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:straight-outta-compton",
+      "type": "project",
+      "name": "Straight Outta Compton",
+      "mbid": "fed1608d-80b7-38d2-aeb8-c6357f0d4c23",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:n-w-a",
+      "type": "project",
+      "name": "N.W.A.",
+      "mbid": "49cc1b18-9acd-410c-bea3-2b53005d0b6d",
+      "year": "1987",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:straight-outta-compton",
+      "type": "track",
+      "name": "Straight Outta Compton"
+    },
+    {
+      "slug": "track:fuck-tha-police",
+      "type": "track",
+      "name": "Fuck tha Police"
+    },
+    {
+      "slug": "track:gangsta-gangsta",
+      "type": "track",
+      "name": "Gangsta Gangsta"
+    },
+    {
+      "slug": "track:boyz-n-the-hood",
+      "type": "track",
+      "name": "Boyz-n-the-Hood"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:eazy-e",
+      "type": "artist",
+      "name": "Eazy-E"
+    },
+    {
+      "slug": "artist:dr-dre",
+      "type": "artist",
+      "name": "Dr. Dre"
+    },
+    {
+      "slug": "artist:ice-cube",
+      "type": "artist",
+      "name": "Ice Cube"
+    },
+    {
+      "slug": "artist:arabian-prince",
+      "type": "artist",
+      "name": "Arabian Prince"
+    },
+    {
+      "slug": "artist:dj-yella",
+      "type": "artist",
+      "name": "DJ Yella"
+    },
+    {
+      "slug": "artist:mc-ren",
+      "type": "artist",
+      "name": "MC Ren"
+    }
+  ]
+}

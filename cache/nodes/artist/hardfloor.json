@@ -43,6 +43,12 @@
       "type": "genre",
       "name": "Techno",
       "qid": "Q170611"
+    },
+    {
+      "slug": "genre:acid",
+      "type": "genre",
+      "name": "Acid",
+      "qid": "Q106528337"
     }
   ],
   "labels": [

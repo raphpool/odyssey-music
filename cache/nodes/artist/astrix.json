@@ -1,0 +1,386 @@
+{
+  "slug": "artist:astrix",
+  "name": "Astrix",
+  "editorial_article": "Born in Georgia and based in Tel Aviv, Avi Shmailov, known as Astrix, has been a major figure in the Israeli trance scene since 1997. His early studio work focused on the nitzhonot style, an offshoot of Goa trance that featured anthemic arrangements, as seen on the Ptzatzot 3 compilation featuring his tracks In Peace and Eakhis World. By 2002, he signed to the HOMmega Productions label and released his debut album, Eye to Eye. His sound is noted for solid, driving basslines and crisp, spacious acoustics, a trait highlighted by author Graham St John. In 2006, he gained global recognition by placing 41st in DJ Mag's Top 100 DJs list, climbing to 18th in 2007. Throughout his career, he has performed at international festivals including Dance Valley, Love Parade, and Creamfields. His discography includes studio albums such as 2004's Artcore, 2010's Red Means Distortion, and 2016's He.art, while his 2009 record One Step Ahead was the first from his catalog released on a USB flash drive.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Astrix",
+      "title": "Astrix - Wikipedia"
+    },
+    {
+      "url": "https://www.jewage.org/wiki/en/Article:Astrix_-_Biography",
+      "title": "Astrix - Biography - JewAge"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:24:49.324Z",
+  "type": "artist",
+  "editorial_bio": "An influential Israeli producer and DJ who helped define the progressive psychedelic trance sound through his driving basslines and expansive production.",
+  "origin": "Tel Aviv, Israel",
+  "active_years": "1995-present",
+  "genres": [
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hommega-productions",
+      "type": "label",
+      "name": "HOMmega Productions"
+    },
+    {
+      "slug": "label:spiraltrax",
+      "type": "label",
+      "name": "Spiraltrax"
+    },
+    {
+      "slug": "label:tip-world",
+      "type": "label",
+      "name": "TIP.World"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:visions",
+      "type": "project",
+      "name": "Visions",
+      "mbid": "9e76c74b-7df3-497f-9998-6458a409fb55",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:universo",
+      "type": "project",
+      "name": "Universo",
+      "mbid": "2fb07806-ec8d-4836-8a8d-c4b87bbee79c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aztechno-dream",
+      "type": "project",
+      "name": "Aztechno Dream (Version: Faders)",
+      "mbid": "a152ac1f-e141-4480-b6dc-3c118a9703fb",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yes-to-all",
+      "type": "project",
+      "name": "Yes to All",
+      "mbid": "3ae8d75b-800d-4f71-a44b-41d3fd538502",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sahara",
+      "type": "project",
+      "name": "Sahara (Bandi Bootleg)",
+      "mbid": "c368399a-e5df-463f-a516-8333ef991d98",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seven-gates",
+      "type": "project",
+      "name": "Seven Gates",
+      "mbid": "9875e952-8f8d-4d14-9ad2-77845783381b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:adhana",
+      "type": "project",
+      "name": "Adhana",
+      "mbid": "4afab5f1-a535-4927-a8f7-512c27a72509",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burning-stones",
+      "type": "project",
+      "name": "Burning Stones",
+      "mbid": "0066c472-844a-430a-a58a-61ed2742a52e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:massive-activity",
+      "type": "project",
+      "name": "Massive Activity (H2O remaster)",
+      "mbid": "5d86eda1-7e91-455d-9a77-dd5d8d0c3946",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:he-art",
+      "type": "project",
+      "name": "He.art",
+      "mbid": "3ed7d77b-1447-4902-b02c-cb6e38a1ec57",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shadows",
+      "type": "project",
+      "name": "Shadows",
+      "mbid": "d1213874-34d7-4b7d-96f1-1fd03f8b5b58",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-of-reunion",
+      "type": "project",
+      "name": "Out of Reunion (Activa Mashup)",
+      "mbid": "ebe84484-9303-4b14-99fa-324a69cc96c8",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-on-mel",
+      "type": "project",
+      "name": "High on Mel",
+      "mbid": "158cf5fd-fed7-4b4f-a90b-a240fbbe15a4",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:type-1",
+      "type": "project",
+      "name": "Type 1",
+      "mbid": "307c7c4d-babf-424c-ae32-df3a0da8c025",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stars-on-35",
+      "type": "project",
+      "name": "Stars On 35",
+      "mbid": "076b2ea5-31ff-417b-93b3-ab2e332d306c",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reunion",
+      "type": "project",
+      "name": "Reunion",
+      "mbid": "03c8c04d-2648-4692-b063-501d4e61837d",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:red-means-distortion",
+      "type": "project",
+      "name": "Red Means Distortion",
+      "mbid": "bc342afb-78ad-420a-aea5-3e3c073d3d51",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-rocker",
+      "type": "project",
+      "name": "Acid Rocker",
+      "mbid": "38dae3ac-f07f-4d78-a348-a172d854e5a0",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:day-dream",
+      "type": "project",
+      "name": "Day Dream",
+      "mbid": "bd8bbc12-9a11-4fbb-aa1a-2e7733e3bd05",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:special-td",
+      "type": "project",
+      "name": "Special TD",
+      "mbid": "9c64a9ba-ed32-4500-a348-190f787afb48",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-step-ahead",
+      "type": "project",
+      "name": "One Step Ahead",
+      "mbid": "4d6e4aaa-93b8-3866-9c08-c647450ec3f9",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:future-music",
+      "type": "project",
+      "name": "Future Music",
+      "mbid": "db3b8a49-d5f2-39a6-a1cf-ed2903768ec0",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:future-music-ep",
+      "type": "project",
+      "name": "Future Music EP",
+      "mbid": "951d56eb-74e0-40c0-b6ee-8b5b75b8efe4",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:homm-homm",
+      "type": "project",
+      "name": "Homm Homm",
+      "mbid": "04f5ed69-e087-48f0-8614-76ada34ee442",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-inside",
+      "type": "project",
+      "name": "Lost Inside",
+      "mbid": "627d689d-785d-4a78-85b1-7bf6384311be",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3rd-time-lucky",
+      "type": "project",
+      "name": "3rd Time Lucky",
+      "mbid": "36ba266b-651b-4017-8763-a29fcf99801c",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:closer-to-heaven",
+      "type": "project",
+      "name": "Closer to Heaven",
+      "mbid": "01431b13-1df9-3e0f-996f-92b22e32b772",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tel-aviv",
+      "type": "project",
+      "name": "Tel Aviv",
+      "mbid": "c630991f-643e-41ec-ae3d-202689633616",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:artcore",
+      "type": "project",
+      "name": "Artcore",
+      "mbid": "842f1301-fa38-3e36-89e6-efb338fa45cb",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coolio",
+      "type": "project",
+      "name": "Coolio",
+      "mbid": "91f95746-3cf6-3861-a29d-82f6433d3a23",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unreleased-tracks-promo",
+      "type": "project",
+      "name": "Unreleased Tracks Promo",
+      "mbid": "e58fa370-f7d6-34d2-92a1-df2fefa97a8c",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-astral-projection-ep-part-2",
+      "type": "project",
+      "name": "The Astral Projection EP, Part 2",
+      "mbid": "56d1fd5c-0cbd-33c8-a2a3-20ba0560e892",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-astral-projection-ep-part-1",
+      "type": "project",
+      "name": "The Astral Projection EP, Part 1",
+      "mbid": "6eb05efb-8af5-3018-904a-ee3a9274e7d5",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:eye-to-eye",
+      "type": "project",
+      "name": "Eye to Eye",
+      "mbid": "8fbe7056-d1bd-3adc-8232-5f55e79723d3",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pure-energy",
+      "type": "project",
+      "name": "Pure Energy",
+      "mbid": "3c720140-2068-4e31-828c-c2362409ba0a",
+      "year": "2000",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:in-peace",
+      "type": "track",
+      "name": "In Peace"
+    },
+    {
+      "slug": "track:eakhis-world",
+      "type": "track",
+      "name": "Eakhis World"
+    },
+    {
+      "slug": "track:acid-rocker",
+      "type": "track",
+      "name": "Acid Rocker"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:infected-mushroom",
+      "type": "artist",
+      "name": "Infected Mushroom"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park"
+    },
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:infected-mushroom",
+      "type": "artist",
+      "name": "Infected Mushroom"
+    },
+    {
+      "slug": "artist:michele-adamson",
+      "type": "artist",
+      "name": "Michele Adamson"
+    },
+    {
+      "slug": "artist:pixel",
+      "type": "artist",
+      "name": "Pixel"
+    },
+    {
+      "slug": "artist:gms",
+      "type": "artist",
+      "name": "GMS"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}

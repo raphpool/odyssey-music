@@ -118,7 +118,18 @@
     }
   ],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto"
+    },
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim"
+    }
+  ],
   "aliases": [],
   "members": []
 }

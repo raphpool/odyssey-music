@@ -1,0 +1,132 @@
+{
+  "slug": "artist:anibal-troilo",
+  "name": "Aníbal Troilo",
+  "editorial_article": "Born in the Abasto neighborhood of Buenos Aires on 11 July 1914, bandoneon player Aníbal Troilo became a central figure in the golden age of Argentine tango. His orquesta típica gained immense popularity with social dancers between 1940 and 1955, marked by rhythmic instrumentals and influential collaborations with vocalists such as Francisco Fiorentino and Roberto Goyeneche. Between 1939 and 1944, a young Astor Piazzolla played in and arranged for Troilo's ensemble. Following the death of his close friend, the poet Homero Manzi, in 1951, Troilo composed the tango Responso as a tribute. From 1953 through the mid-1960s, he performed in a notable duo with guitarist Roberto Grela, which later expanded into a quartet. His career spanned decades of constant studio and live performance, ending with his death in 1975 at the Italian Hospital of Buenos Aires. National Bandoneón Day is celebrated on his birthday, 11 July, in his honor.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/An%C3%ADbal_Troilo",
+      "title": "Aníbal Troilo - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:09.151Z",
+  "type": "artist",
+  "editorial_bio": "An Argentine tango master, bandleader, and the 'Supreme Bandoneón of Buenos Aires' who defined the golden age of the genre.",
+  "origin": "Buenos Aires, Argentina",
+  "active_years": "1925-1975",
+  "genres": [
+    {
+      "slug": "genre:tango",
+      "type": "genre",
+      "name": "Tango",
+      "qid": "Q14390274"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:rca-victor",
+      "type": "label",
+      "name": "RCA Victor"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tango",
+      "type": "project",
+      "name": "Tango",
+      "mbid": "edc37b24-f540-4133-8afd-ea1944ebd437",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sur",
+      "type": "project",
+      "name": "Sur",
+      "mbid": "176b3858-56d4-42f9-a4b9-893b4fcb0133",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:queras-de-bandoneon",
+      "type": "project",
+      "name": "Queras de bandoneon",
+      "mbid": "5bd3c3ac-2e1d-4221-8c40-692d86ffa6d7",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piazzolla-troilo",
+      "type": "project",
+      "name": "Piazzolla — Troilo",
+      "mbid": "f672cbc4-9cff-4ce5-bcd3-c742b6711b46",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:naranjo-en-flor",
+      "type": "project",
+      "name": "Naranjo en Flor",
+      "mbid": "a2455f26-9fb6-4195-8e51-5c2019c943bf",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:sur",
+      "type": "track",
+      "name": "Sur"
+    },
+    {
+      "slug": "track:responso",
+      "type": "track",
+      "name": "Responso"
+    },
+    {
+      "slug": "track:barrio-de-tango",
+      "type": "track",
+      "name": "Barrio de tango"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:astor-piazzolla",
+      "type": "artist",
+      "name": "Astor Piazzolla"
+    },
+    {
+      "slug": "artist:roberto-goyeneche",
+      "type": "artist",
+      "name": "Roberto Goyeneche"
+    },
+    {
+      "slug": "artist:francisco-fiorentino",
+      "type": "artist",
+      "name": "Francisco Fiorentino"
+    },
+    {
+      "slug": "artist:roberto-grela",
+      "type": "artist",
+      "name": "Roberto Grela"
+    },
+    {
+      "slug": "artist:osvaldo-pugliese",
+      "type": "artist",
+      "name": "Osvaldo Pugliese"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:pichuco",
+      "type": "artist",
+      "name": "Pichuco"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:anibal-troilo",
+      "type": "artist",
+      "name": "Aníbal Troilo"
+    }
+  ]
+}

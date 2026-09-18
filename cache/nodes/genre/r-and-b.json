@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:13:48.020Z",
   "type": "genre",
   "editorial_definition": "Rhythm and blues (R&B) is an American musical genre developed by Black artists in the 1940s, evolving from roots in gospel, jazz, and blues into a diverse soundscape that includes modern contemporary R&B.",
+  "qid": "Q45981",
   "era": "1940s–present",
   "origin": "United States",
   "parent_genres": [
@@ -33,7 +34,26 @@
       "qid": "Q8341"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:boogie",
+      "type": "genre",
+      "name": "Boogie",
+      "qid": "Q4942839"
+    },
+    {
+      "slug": "genre:contemporary-r-and-b",
+      "type": "genre",
+      "name": "Contemporary R&B",
+      "qid": "Q850412"
+    },
+    {
+      "slug": "genre:new-jack-swing",
+      "type": "genre",
+      "name": "New Jack Swing",
+      "qid": "Q840065"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:rock-and-roll",
@@ -111,6 +131,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q45981"
+  "landmark_tracks": []
 }

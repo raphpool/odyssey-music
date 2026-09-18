@@ -1,0 +1,270 @@
+{
+  "slug": "artist:ugk",
+  "name": "UGK",
+  "editorial_article": "Formed in 1987 in Port Arthur, Texas, by Chad \"Pimp C\" Butler and Bernard \"Bun B\" Freeman, UGK defined a pivotal era of Southern hip-hop. The duo gained national prominence with their 1996 studio album Ridin' Dirty, which received RIAA Gold certification. Their discography spans six studio albums, including the 2007 double album Underground Kingz. Beyond their own releases, they are known for numerous collaborations, appearing on tracks like Master P's \"Break 'Em Off Somethin'\" and Big Boi's \"Gossip.\" Their legacy remains influential in Texas music, marked by frequent appearances on soundtracks for films such as Menace II Society and I'm Bout It.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/UGK",
+      "title": "UGK - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/UGK_discography",
+      "title": "UGK discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:18:41.036Z",
+  "type": "artist",
+  "editorial_bio": "A seminal hip-hop duo from Port Arthur, Texas, known for defining the Southern gangsta and screw sound through their collaborative and studio work.",
+  "origin": "Port Arthur, Texas",
+  "active_years": "1987-2007",
+  "genres": [
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:jive-records",
+      "type": "label",
+      "name": "Jive Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:gossip",
+      "type": "project",
+      "name": "Gossip",
+      "mbid": "e9834f78-5818-4c39-b136-e9945a750bd2",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ugk-4-life",
+      "type": "project",
+      "name": "UGK 4 Life",
+      "mbid": "17b797a6-c9fe-3f41-84b6-2065eb631662",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ugk",
+      "type": "project",
+      "name": "UGK (Underground Kingz)",
+      "mbid": "cb8832ea-ff11-3135-8b9e-88dd44cf4f76",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:int-l-players-anthem",
+      "type": "project",
+      "name": "Int’l Players Anthem (I Choose You)",
+      "mbid": "87b43fc5-9be6-4441-9c65-dd5483072427",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-game-belongs-to-me",
+      "type": "project",
+      "name": "The Game Belongs to Me",
+      "mbid": "5964855d-5da6-3206-92fc-28a40bc1d515",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stop-n-go-the-game-belongs-to-me",
+      "type": "project",
+      "name": "Stop-N-Go / The Game Belongs To Me",
+      "mbid": "f23584c1-c318-42e2-8afe-43f98cf12297",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stop-n-go",
+      "type": "project",
+      "name": "Stop‐N‐Go",
+      "mbid": "cb9a2489-1408-31b1-b9d7-6873f5c806b4",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dirty-money",
+      "type": "project",
+      "name": "Dirty Money",
+      "mbid": "58f71d74-5dbf-3d67-93c8-d8c4d6d8128f",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-me-see-it",
+      "type": "project",
+      "name": "Let Me See It",
+      "mbid": "14e36e65-eb37-4de8-a192-7b8d46b76743",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-means-the-world-to-you",
+      "type": "project",
+      "name": "What Means the World to You (remix)",
+      "mbid": "54e2bf80-3c13-40ba-b5fc-c5809347f4c8",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-it-off-b-w-the-corruptor-s-execution",
+      "type": "project",
+      "name": "Take It Off B/W The Corruptor's Execution",
+      "mbid": "830f740c-0dcf-4cf6-afdc-91947e3c60e9",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ridin-dirty",
+      "type": "project",
+      "name": "Ridin’ Dirty",
+      "mbid": "d1935561-e375-317b-b49b-ddbc78c52603",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-day-ride-my-car",
+      "type": "project",
+      "name": "One Day / Ride My Car",
+      "mbid": "09a23c30-6e88-4e1f-8ca9-6a56ace75b02",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-day",
+      "type": "project",
+      "name": "One Day",
+      "mbid": "ca53d96e-6a7a-4558-902a-1453a89426eb",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:super-tight",
+      "type": "project",
+      "name": "Super Tight…",
+      "mbid": "8e0d1f4a-f7fe-3eea-9f80-0dc0a7d0a8cf",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-supposed-to-bubble",
+      "type": "project",
+      "name": "It's Supposed To Bubble",
+      "mbid": "b94511d3-03e2-4fef-9be3-912ca8f993dd",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pocket-full-of-stones",
+      "type": "project",
+      "name": "Pocket Full of Stones",
+      "mbid": "ec40d331-9367-4d69-a062-47dd5b14f946",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-hard-to-swallow",
+      "type": "project",
+      "name": "Too Hard to Swallow",
+      "mbid": "f5952f12-4c38-355c-9c94-e6bda33613fa",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:banned",
+      "type": "project",
+      "name": "Banned",
+      "mbid": "d5cadb95-1835-31f4-9d60-5528d021da1d",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-good",
+      "type": "project",
+      "name": "Something Good",
+      "mbid": "c8790b06-9e7c-4fcf-9f91-3216050ebd95",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-southern-way",
+      "type": "project",
+      "name": "The Southern Way",
+      "mbid": "6077c6fe-7976-328d-a92a-e27ea3923cbf",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tell-me-something-good-short-texas",
+      "type": "project",
+      "name": "Tell Me Something Good / Short Texas",
+      "mbid": "b3af30d1-a60e-4459-9e2c-022f94d2a8ef",
+      "year": "1992",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:pocket-full-of-stones",
+      "type": "track",
+      "name": "Pocket Full of Stones"
+    },
+    {
+      "slug": "track:break-em-off-somethin",
+      "type": "track",
+      "name": "Break 'Em Off Somethin'"
+    },
+    {
+      "slug": "track:white-gurl",
+      "type": "track",
+      "name": "White Gurl"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:pimp-c",
+      "type": "artist",
+      "name": "Pimp C"
+    },
+    {
+      "slug": "artist:bun-b",
+      "type": "artist",
+      "name": "Bun B"
+    }
+  ]
+}

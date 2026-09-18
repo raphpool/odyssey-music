@@ -1,0 +1,368 @@
+{
+  "slug": "artist:three-6-mafia",
+  "name": "Three 6 Mafia",
+  "editorial_article": "Formed in 1991 in Memphis, Tennessee, Three 6 Mafia emerged from an underground hip-hop scene that pioneered the horrorcore subgenre. Founding members DJ Paul and Juicy J established the group after crossing paths in 1991, eventually bringing in Lord Infamous, Koopsta Knicca, Gangsta Boo, and Crunchy Black to solidify their lineup. Their 1995 debut album, Mystic Stylez, gained cult status through dark production and raw lyrical themes. The group later achieved widespread commercial success with their 2005 album Most Known Unknown and the double-platinum single \"Stay Fly,\" which featured 8Ball & MJG and Young Buck. In 2006, they made history as the first hip-hop group to win the Academy Award for Best Original Song with \"It's Hard out Here for a Pimp,\" a track written for the film Hustle & Flow.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Three_6_Mafia",
+      "title": "Three 6 Mafia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:23:35.431Z",
+  "type": "artist",
+  "editorial_bio": "Memphis-based rap collective instrumental in the rise of crunk and horrorcore, known for their Oscar-winning anthem 'It's Hard out Here for a Pimp'.",
+  "origin": "Memphis, Tennessee",
+  "active_years": "1991–2012, 2019–present",
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:dirty-south",
+      "type": "genre",
+      "name": "Dirty South",
+      "qid": "Q8560269"
+    },
+    {
+      "slug": "genre:southern-hip-hop",
+      "type": "genre",
+      "name": "Southern Hip Hop",
+      "qid": "Q1253172"
+    },
+    {
+      "slug": "genre:crunk",
+      "type": "genre",
+      "name": "Crunk",
+      "qid": "Q936573"
+    },
+    {
+      "slug": "genre:memphis",
+      "type": "genre",
+      "name": "Memphis Rap",
+      "qid": "Q6010117"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:hypnotize-minds",
+      "type": "label",
+      "name": "Hypnotize Minds"
+    },
+    {
+      "slug": "label:prophet-entertainment",
+      "type": "label",
+      "name": "Prophet Entertainment"
+    },
+    {
+      "slug": "label:columbia-records",
+      "type": "label",
+      "name": "Columbia Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:drugs-and-liquor",
+      "type": "project",
+      "name": "Drugs & Liquor",
+      "mbid": "90440dc0-a324-4fdc-8065-305c0e37c69f",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:make-these-plays",
+      "type": "project",
+      "name": "Make These Plays",
+      "mbid": "57445d6e-5d69-4296-81a4-82e95c2c87d8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel-it",
+      "type": "project",
+      "name": "Feel It",
+      "mbid": "94339ac6-2555-4192-b6e6-0a2dc7a73a70",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feel-it",
+      "type": "project",
+      "name": "Feel It (Remixes)",
+      "mbid": "7e335879-dd61-4973-8410-c863b8e93150",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-my",
+      "type": "project",
+      "name": "Shake My",
+      "mbid": "c1fa5089-0a00-410a-980d-b23050b7127f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-2-walk",
+      "type": "project",
+      "name": "Last 2 Walk",
+      "mbid": "167b950d-0ba9-3727-9b88-3edd8984f71e",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lolli-lolli",
+      "type": "project",
+      "name": "Lolli Lolli (Pop That Body)",
+      "mbid": "c7c5d4f5-c532-46e9-8213-9ad740f10e36",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-money",
+      "type": "project",
+      "name": "Like Money",
+      "mbid": "f3860a77-dc3c-37de-8d02-66c632fe46a9",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doe-boy-fresh",
+      "type": "project",
+      "name": "Doe Boy Fresh",
+      "mbid": "c6e4b3e1-bebf-3c3e-afec-f1b6da33da1f",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poppin-my-collar",
+      "type": "project",
+      "name": "Poppin' My Collar",
+      "mbid": "5f6a8ecd-722d-313b-83ff-3e2f9e6dba9c",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:act-a-fool",
+      "type": "project",
+      "name": "Act a Fool",
+      "mbid": "d9e2a998-b6c7-4f58-835e-d47ad435c69c",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:most-known-unknown",
+      "type": "project",
+      "name": "Most Known Unknown",
+      "mbid": "e6277730-6528-3855-8b34-d279e723bdca",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stay-fly",
+      "type": "project",
+      "name": "Stay Fly",
+      "mbid": "a781e82a-fb71-3828-a4a6-512644b2fcfe",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-i-is",
+      "type": "project",
+      "name": "Who I Is",
+      "mbid": "02dfc69d-21f5-469a-a165-0e943e3f6ff9",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-unbreakables",
+      "type": "project",
+      "name": "Da Unbreakables",
+      "mbid": "d8a2b0a1-e8cc-3084-a41a-7c41b475c674",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:baby-mama",
+      "type": "project",
+      "name": "Baby Mama",
+      "mbid": "b03ea789-f14e-41f2-8594-f435e19a9ef4",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-the-smoke-clears-sixty-6-sixty-1",
+      "type": "project",
+      "name": "When the Smoke Clears: Sixty 6, Sixty 1",
+      "mbid": "ce2eb30e-f1ef-3b41-8899-87056d18f835",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3-6-feet-underground",
+      "type": "project",
+      "name": "3-6 Feet Underground (The Unreleased Demon)",
+      "mbid": "31476bb8-06a0-32ee-993e-3282e6ce6c54",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hypnotize-camp-posse",
+      "type": "project",
+      "name": "Hypnotize Camp Posse",
+      "mbid": "50bd5c64-29cf-3ab3-9278-26badab196bb",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memphis-instrumentals-volume-2",
+      "type": "project",
+      "name": "Memphis Instrumentals, Volume 2",
+      "mbid": "92857d99-f4d9-3305-9212-aab9b55d916a",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memphis-instrumentals-volume-1",
+      "type": "project",
+      "name": "Memphis Instrumentals, Volume 1",
+      "mbid": "ad1c1cfa-2175-308e-99fe-306f34df45bb",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tongue-ring",
+      "type": "project",
+      "name": "Tongue Ring",
+      "mbid": "26eb2bd8-30ec-4704-b46c-f059720278fc",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sippin-on-da-syrup",
+      "type": "project",
+      "name": "Sippin' On Da Syrup",
+      "mbid": "fcf9e465-df8c-495e-b021-aadc38c14095",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hit-em-motivated",
+      "type": "project",
+      "name": "Hit'Em / Motivated",
+      "mbid": "9912fd38-6bd3-4d22-a735-d3a890c82d8c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:late-nite-tip",
+      "type": "project",
+      "name": "Late Nite Tip",
+      "mbid": "2a9f1f63-b533-4c4a-9816-49113cb39241",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chapter-2-world-domination",
+      "type": "project",
+      "name": "Chapter 2: World Domination",
+      "mbid": "1be9850a-3735-3d4a-a65c-1de794b264a3",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-end",
+      "type": "project",
+      "name": "The End",
+      "mbid": "89e647d4-c31b-39dc-aa64-13c3af4dd09b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-by-yo-rep",
+      "type": "project",
+      "name": "Live by Yo Rep (B.O.N.E. Dis)",
+      "mbid": "5e0de7ff-7cb3-374f-9162-c1d336f21fd6",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mystic-stylez",
+      "type": "project",
+      "name": "Mystic Stylez",
+      "mbid": "ac6859cf-3bc7-31da-9255-b7d6a08cc6a9",
+      "year": "1995",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:stay-fly",
+      "type": "track",
+      "name": "Stay Fly"
+    },
+    {
+      "slug": "track:it-s-hard-out-here-for-a-pimp",
+      "type": "track",
+      "name": "It's Hard out Here for a Pimp"
+    },
+    {
+      "slug": "track:sippin-on-some-syrup",
+      "type": "track",
+      "name": "Sippin' on Some Syrup"
+    },
+    {
+      "slug": "track:tear-da-club-up",
+      "type": "track",
+      "name": "Tear da Club Up"
+    },
+    {
+      "slug": "track:poppin-my-collar",
+      "type": "track",
+      "name": "Poppin' My Collar"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky"
+    }
+  ],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:dj-paul",
+      "type": "artist",
+      "name": "DJ Paul"
+    },
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J"
+    },
+    {
+      "slug": "artist:crunchy-black",
+      "type": "artist",
+      "name": "Crunchy Black"
+    },
+    {
+      "slug": "artist:lord-infamous",
+      "type": "artist",
+      "name": "Lord Infamous"
+    },
+    {
+      "slug": "artist:koopsta-knicca",
+      "type": "artist",
+      "name": "Koopsta Knicca"
+    },
+    {
+      "slug": "artist:gangsta-boo",
+      "type": "artist",
+      "name": "Gangsta Boo"
+    }
+  ]
+}

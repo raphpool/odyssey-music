@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:36:30.264Z",
   "type": "genre",
   "editorial_definition": "A broad, catch-all retail and marketing classification for music originating outside the traditional Western popular or classical mainstream, encompassing both authentic regional folk traditions and contemporary fusions.",
+  "qid": "Q205049",
   "parent_genres": [],
   "subgenres": [
     {
@@ -40,12 +41,17 @@
       "type": "genre",
       "name": "Celtic music",
       "qid": "Q854451"
+    },
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethiopian Jazz",
+      "qid": "Q3591962"
     }
   ],
   "related_genres": [],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q205049"
+  "landmark_tracks": []
 }

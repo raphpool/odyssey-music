@@ -1,0 +1,148 @@
+{
+  "slug": "artist:emperor",
+  "name": "Emperor",
+  "editorial_article": "Formed in 1991 in Notodden, Norway, Emperor emerged from the creative partnership of guitarist/vocalist Ihsahn and guitarist Samoth following their time in the band Thou Shalt Suffer. They gained early underground traction with their Wrath of the Tyrant demo before releasing their self-titled EP through Candlelight Records. The band became a cornerstone of the early Norwegian black metal scene, later integrating symphonic elements and complex, progressive arrangements on seminal albums such as 1994's In the Nightside Eclipse and 1997's Anthems to the Welkin at Dusk. Their career was marked by significant upheaval, including the 1994 conviction of Samoth for arson and the incarceration of drummer Faust for the murder of Magne Andreassen. Despite several long hiatuses and member changes—with bass contributions from Mortiis and later keyboard additions by Jørgen Munkeby—the group reunited for various anniversary tours. By 2019, Ihsahn confirmed there were no intentions to record new studio material, prioritizing the integrity of the band's existing catalog over new releases.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Emperor_(Norwegian_band)",
+      "title": "Emperor (Norwegian band) - Wikipedia"
+    },
+    {
+      "url": "https://www.metal-archives.com/bands/emperor/30",
+      "title": "Emperor - Encyclopaedia Metallum: The Metal Archives"
+    },
+    {
+      "url": "https://heavyguide.no/band/emperor",
+      "title": "Emperor — Black Metal from Norway - HeavyMusicGuide"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:32.809Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering Norwegian black metal band known for symphonic complexity and progressive elements in their influential 1990s output.",
+  "origin": "Notodden, Norway",
+  "active_years": "1991-2001, 2005-2007, 2013-2014, 2016-present",
+  "genres": [
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal",
+      "qid": "Q132438"
+    },
+    {
+      "slug": "genre:symphonic-black-metal",
+      "type": "genre",
+      "name": "Symphonic Black Metal",
+      "qid": "Q1621467"
+    },
+    {
+      "slug": "genre:metal",
+      "type": "genre",
+      "name": "Metal",
+      "qid": "Q12326776"
+    },
+    {
+      "slug": "genre:symphonic-metal",
+      "type": "genre",
+      "name": "Symphonic Metal",
+      "qid": "Q486415"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:candlelight-records",
+      "type": "label",
+      "name": "Candlelight Records"
+    },
+    {
+      "slug": "label:deathlike-silence-productions",
+      "type": "label",
+      "name": "Deathlike Silence Productions"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:prometheus-the-discipline-of-fire-and-demise",
+      "type": "project",
+      "name": "Prometheus: The Discipline of Fire & Demise",
+      "mbid": "aa881868-5718-3879-b198-df04ee1b3ef8",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ix-equilibrium",
+      "type": "project",
+      "name": "IX Equilibrium",
+      "mbid": "bd07c66a-5f79-3124-b9f3-74713f78566f",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thorns-vs-emperor",
+      "type": "project",
+      "name": "Thorns vs. Emperor",
+      "mbid": "5e6b93e1-a29b-3b61-9344-13b99fb4b22b",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anthems-to-the-welkin-at-dusk",
+      "type": "project",
+      "name": "Anthems to the Welkin at Dusk",
+      "mbid": "f55aa89a-d660-3a93-a586-e6455a2f7226",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reverence",
+      "type": "project",
+      "name": "Reverence",
+      "mbid": "77cae850-9b87-39d1-991e-0b8f1b53dd02",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:in-the-nightside-eclipse",
+      "type": "project",
+      "name": "In the Nightside Eclipse",
+      "mbid": "e8170089-f81a-3103-bb22-e6f43c4fcaf9",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-the-shadows-rise",
+      "type": "project",
+      "name": "As the Shadows Rise",
+      "mbid": "f0230acb-e591-35c9-a571-3e71aecd9fa7",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emperor-hordanes-land",
+      "type": "project",
+      "name": "Emperor / Hordanes Land",
+      "mbid": "91bf603d-cf03-3cc1-bea0-f67fce3b536c",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emperor",
+      "type": "project",
+      "name": "Emperor",
+      "mbid": "d09af259-26d8-3186-95fc-6f9973d758bf",
+      "year": "1993",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:emperor",
+      "type": "track",
+      "name": "Emperor"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": []
+}

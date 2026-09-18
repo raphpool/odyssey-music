@@ -1,0 +1,99 @@
+{
+  "slug": "genre:motswako",
+  "name": "Motswako",
+  "editorial_article": "Originating in Mafikeng, South Africa, during the mid-1990s, Motswako is a hip hop style defined by the linguistic blend of Setswana and English. The genre takes its name from the Setswana word for 'mix' or 'blend,' reflecting its core practice of merging local indigenous languages with contemporary rap. Early pioneers like Stoan Seate and the group Bongo Maffin integrated traditional Tswana dance and poetry, helping establish an African-centric hip hop perspective. HHP, often called Jabba, rose to prominence after being advised by producer Chicco Twala to rap in Setswana, a decision that transformed his career. Musically, the genre relies on steady beats, occasionally employing four-on-the-floor rhythms or drum and bass elements to provide a backdrop for lyric-heavy deliveries. Themes range from socio-political commentary and local pride to celebrations of wealth and romance. While South Africa serves as the primary base, Botswana also hosts a significant community of Motswako artists, including acts like Cashless Society.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Motswako",
+      "title": "Motswako - Wikipedia"
+    },
+    {
+      "url": "https://www.melodigging.com/genre/motswako",
+      "title": "Motswako - Melodigging"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:25:48.862Z",
+  "type": "genre",
+  "editorial_definition": "A South African hip hop subgenre characterized by the fluid blending of Setswana, English, and other indigenous languages over steady, laid-back beats.",
+  "qid": "Q6918602",
+  "era": "mid-1990s to present",
+  "origin": "Mafikeng, South Africa",
+  "sonic_markers": "Smooth rap delivery, four-on-the-floor rhythms, reggae-influenced beats, minimalistic electronic textures, warm basslines.",
+  "parent_genres": [
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African Hip Hop",
+      "qid": "Q387236"
+    },
+    {
+      "slug": "genre:music-of-southern-africa",
+      "type": "genre",
+      "name": "Music Of Southern Africa",
+      "qid": "Q98528232"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:kwaito",
+      "type": "genre",
+      "name": "Kwaito",
+      "qid": "Q956717"
+    },
+    {
+      "slug": "genre:african-hip-hop",
+      "type": "genre",
+      "name": "African hip-hop",
+      "qid": "Q387236"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:hhp",
+      "type": "artist",
+      "name": "HHP"
+    },
+    {
+      "slug": "artist:cassper-nyovest",
+      "type": "artist",
+      "name": "Cassper Nyovest"
+    },
+    {
+      "slug": "artist:khuli-chana",
+      "type": "artist",
+      "name": "Khuli Chana"
+    },
+    {
+      "slug": "artist:stoan-seate",
+      "type": "artist",
+      "name": "Stoan Seate"
+    },
+    {
+      "slug": "artist:fifi-cooper",
+      "type": "artist",
+      "name": "Fifi Cooper"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:motswako-underground",
+      "type": "label",
+      "name": "Motswako Underground"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:bakae",
+      "type": "track",
+      "name": "Bakae"
+    }
+  ]
+}

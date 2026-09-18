@@ -1,0 +1,368 @@
+{
+  "slug": "artist:mayhem",
+  "name": "Mayhem",
+  "editorial_article": "Formed in Oslo in 1984 by guitarist Øystein 'Euronymous' Aarseth and bassist Jørn 'Necrobutcher' Stubberud, Mayhem became a foundational act in the early Norwegian black metal scene. The band's history is marked by extreme turbulence, including the 1991 suicide of vocalist Per Yngve 'Dead' Ohlin and the 1993 murder of Euronymous by Varg Vikernes. Despite these events, the group continued, releasing influential works such as the 1994 debut De Mysteriis Dom Sathanas and the 2007 Spellemann Award-winning album Ordo Ad Chao. Their sound has evolved from raw, punk-influenced black metal—evident on the 1987 Deathcrush EP—to more experimental and progressive compositions featured on later records like 2019's Daemon. The ensemble currently maintains a lineup featuring long-time drummer Jan Axel 'Hellhammer' Blomberg alongside vocalists and guitarists like Attila Csihar and Teloch.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Mayhem_(band)",
+      "title": "Mayhem (band) - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Early_Norwegian_black_metal_scene",
+      "title": "Early Norwegian black metal scene - Wikipedia"
+    },
+    {
+      "url": "https://www.nytimes.com/2025/03/22/arts/music/mayhem-norwegian-black-metal-anniversary.html",
+      "title": "Mayhem Has the Wildest Story in Black Metal. Somehow, It's Turning ..."
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:17.924Z",
+  "type": "artist",
+  "editorial_bio": "Mayhem is a pioneering Norwegian black metal band formed in 1984 that is renowned for its intense, controversial history and significant influence on the extreme metal genre.",
+  "origin": "Oslo, Norway",
+  "active_years": "1984-1993, 1995-present",
+  "genres": [
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal",
+      "qid": "Q132438"
+    },
+    {
+      "slug": "genre:metal",
+      "type": "genre",
+      "name": "Metal",
+      "qid": "Q12326776"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:deathlike-silence-productions",
+      "type": "label",
+      "name": "Deathlike Silence Productions"
+    },
+    {
+      "slug": "label:season-of-mist",
+      "type": "label",
+      "name": "Season of Mist"
+    },
+    {
+      "slug": "label:century-media-records",
+      "type": "label",
+      "name": "Century Media Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:agenda-ignis-disgusting-semla",
+      "type": "project",
+      "name": "Agenda Ignis / Disgusting Semla",
+      "mbid": "e86161fd-b2b8-4f35-b4bf-e9d9f539baf8",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:liturgy-of-death",
+      "type": "project",
+      "name": "Liturgy of Death",
+      "mbid": "76dcd617-995c-4abb-a4bd-916dfc8cfc63",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:realm-of-endless-misery",
+      "type": "project",
+      "name": "Realm of Endless Misery",
+      "mbid": "9234b75d-8f34-42ed-8db8-dd22e9428cee",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-is-a-corpse-you-drag",
+      "type": "project",
+      "name": "Life Is a Corpse You Drag",
+      "mbid": "41e1fbbc-30ff-4b1a-96f8-596b222fa01d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:despair",
+      "type": "project",
+      "name": "Despair",
+      "mbid": "6c069602-e179-43ce-8b6b-45b857c8bd71",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:weep-for-nothing",
+      "type": "project",
+      "name": "Weep for Nothing",
+      "mbid": "57a740d8-8874-43c8-b7e8-c49812d75d5d",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-blood",
+      "type": "project",
+      "name": "Bad Blood",
+      "mbid": "956ecf29-593a-415b-b75b-e7ec8128c9ca",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atavistic-black-disorder-kommando",
+      "type": "project",
+      "name": "Atavistic Black Disorder / Kommando",
+      "mbid": "080a7545-3ac1-43fe-89ce-a7070082e2dd",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:everlasting-dying-flame",
+      "type": "project",
+      "name": "Everlasting Dying Flame",
+      "mbid": "352f7732-17f9-4330-8646-042853812dc5",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voces-ab-alta",
+      "type": "project",
+      "name": "Voces Ab Alta",
+      "mbid": "ab53809f-519f-4322-86be-47bf7cbe9ec7",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-glass-communion",
+      "type": "project",
+      "name": "Black Glass Communion",
+      "mbid": "3fbbf2b6-3d80-48d0-83c2-ce0ba8c0cbb2",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daemon",
+      "type": "project",
+      "name": "Daemon",
+      "mbid": "35bad3dc-c7dd-4d65-8078-ebef4d994517",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:falsified-and-hated",
+      "type": "project",
+      "name": "Falsified and Hated",
+      "mbid": "66dcf750-ce3f-41e6-9aaf-8e3bba0ba538",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:of-worms-and-ruins",
+      "type": "project",
+      "name": "Of Worms and Ruins",
+      "mbid": "5d17871d-681c-4fc8-b52b-9f2f2062a332",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:worthless-abominations-destroyed",
+      "type": "project",
+      "name": "Worthless Abominations Destroyed",
+      "mbid": "31f13e20-94b0-4770-9da5-870fe679375e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sathanas-luciferi-tour-ep",
+      "type": "project",
+      "name": "Sathanas / Luciferi Tour EP",
+      "mbid": "a167f816-ab18-4021-a1e0-6cd975646762",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:esoteric-warfare",
+      "type": "project",
+      "name": "Esoteric Warfare",
+      "mbid": "1c21799e-5137-4b35-8abf-b7a438eff745",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:psywar",
+      "type": "project",
+      "name": "Psywar",
+      "mbid": "80b27757-4b19-4d8a-8484-89ab67171518",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-eternal",
+      "type": "project",
+      "name": "Life Eternal",
+      "mbid": "460aa72a-7ccd-3a5f-b5cd-c0fc56e4ec05",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vomit-from-helvete",
+      "type": "project",
+      "name": "Vomit From Helvete",
+      "mbid": "18d1bbfb-0dbd-48c0-af6a-a17bdf914aa4",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ordo-ad-chao",
+      "type": "project",
+      "name": "Ordo Ad Chao",
+      "mbid": "c19d30bb-f8e9-36d8-988b-32f13f8a3ed3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chimera",
+      "type": "project",
+      "name": "Chimera",
+      "mbid": "4a2a727d-2803-3575-b644-7bb242a3dd89",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jihad-freezing-moon",
+      "type": "project",
+      "name": "Jihad / Freezing Moon",
+      "mbid": "042cec20-08d9-3b2b-ad2f-d5981c494ded",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:grand-declaration-of-war",
+      "type": "project",
+      "name": "Grand Declaration of War",
+      "mbid": "648e4f0f-bcff-306d-bc16-bc01d0a10665",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:necrolust-total-warfare",
+      "type": "project",
+      "name": "Necrolust / Total Warfare",
+      "mbid": "d7d9e87f-aa5c-3ab3-a429-22068671780b",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wolf-s-lair-abyss",
+      "type": "project",
+      "name": "Wolf's Lair Abyss",
+      "mbid": "fa3c6ed2-bd21-38a3-bd9b-b4639f6bceac",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ancient-skin-necrolust",
+      "type": "project",
+      "name": "Ancient Skin / Necrolust",
+      "mbid": "c2d8e254-e1ef-4b6c-a25a-fa172d3fb922",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-from-the-dark",
+      "type": "project",
+      "name": "Out From the Dark",
+      "mbid": "80f88a70-9796-3d6c-ae6f-c80ad549b347",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freezing-moon",
+      "type": "project",
+      "name": "Freezing Moon",
+      "mbid": "c02c8ca6-fd88-35e4-b0e6-464ad508c13b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-mysteriis-dom-sathanas",
+      "type": "project",
+      "name": "De Mysteriis Dom Sathanas",
+      "mbid": "982634e8-cd4d-3f7c-9f90-9b6dea315589",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-darkest-past",
+      "type": "project",
+      "name": "From the Darkest Past",
+      "mbid": "0612c718-071a-332b-8dcb-b1877952acaf",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deathcrush",
+      "type": "project",
+      "name": "Deathcrush",
+      "mbid": "05f535dd-d5cf-30ba-aa3d-647f8685f3a5",
+      "year": "1987",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ha-elm-zalag",
+      "type": "project",
+      "name": "Ha-Elm Zalag",
+      "mbid": "801101d3-939c-4c8d-994b-fc161b82b9c4",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:psywar",
+      "type": "track",
+      "name": "Psywar"
+    },
+    {
+      "slug": "track:worthless-abominations-destroyed",
+      "type": "track",
+      "name": "Worthless Abominations Destroyed"
+    },
+    {
+      "slug": "track:falsified-and-hated",
+      "type": "track",
+      "name": "Falsified and Hated"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:necrobutcher",
+      "type": "artist",
+      "name": "Necrobutcher"
+    },
+    {
+      "slug": "artist:hellhammer",
+      "type": "artist",
+      "name": "Hellhammer"
+    },
+    {
+      "slug": "artist:attila-csihar",
+      "type": "artist",
+      "name": "Attila Csihar"
+    },
+    {
+      "slug": "artist:teloch",
+      "type": "artist",
+      "name": "Teloch"
+    },
+    {
+      "slug": "artist:ghul",
+      "type": "artist",
+      "name": "Ghul"
+    }
+  ]
+}

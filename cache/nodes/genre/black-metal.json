@@ -1,0 +1,110 @@
+{
+  "slug": "genre:black-metal",
+  "name": "Black Metal",
+  "editorial_article": "Emerging from the early 1980s underground, Black Metal crystallized as an extreme subgenre defined by shrieking vocals, tremolo-picked guitars, and a deliberate lo-fi aesthetic. The term originated from the 1982 album 'Black Metal' by Venom, which set the template for the genre's blasphemous imagery and transgressive themes. By the early 1990s, the second wave centered on the Norwegian scene, spearheaded by bands like Mayhem, Burzum, and Darkthrone. This era defined the genre's ethos, famously associated with the Helvete record shop in Oslo, founded by Euronymous. Musical hallmarks include blast beats, high-pitched guitar distortion, and a rejection of traditional song structures in favor of atmospheric intensity. While early pioneers like Bathory and Hellhammer established the foundations, the scene gained global notoriety through its militant opposition to institutional religion, which manifested in both musical innovation and the controversial arson of Norwegian churches during the 1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Black_metal",
+      "title": "Black metal - Wikipedia"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Early_Norwegian_black_metal_scene",
+      "title": "Early Norwegian black metal scene - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:15:11.546Z",
+  "type": "genre",
+  "editorial_definition": "An extreme metal subgenre characterized by high-pitched shrieked vocals, tremolo-picked riffs, and a raw, atmospheric production style rooted in the 1980s underground.",
+  "qid": "Q132438",
+  "era": "early 1980s to present",
+  "origin": "England and Scandinavia",
+  "sonic_markers": "BPM up to 300; high-treble distorted guitars, tremolo picking, blast beats, double-bass drumming, lo-fi recording quality.",
+  "parent_genres": [
+    {
+      "slug": "genre:extreme-metal",
+      "type": "genre",
+      "name": "Extreme Metal",
+      "qid": "Q465978"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:thrash-metal",
+      "type": "genre",
+      "name": "Thrash metal",
+      "qid": "Q483352"
+    },
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:dungeon-synth",
+      "type": "genre",
+      "name": "Dungeon synth",
+      "qid": "Q48971892"
+    },
+    {
+      "slug": "genre:symphonic-black-metal",
+      "type": "genre",
+      "name": "Symphonic black metal",
+      "qid": "Q1621467"
+    },
+    {
+      "slug": "genre:extreme-metal",
+      "type": "genre",
+      "name": "Extreme metal",
+      "qid": "Q465978"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:venom",
+      "type": "artist",
+      "name": "Venom"
+    },
+    {
+      "slug": "artist:bathory",
+      "type": "artist",
+      "name": "Bathory"
+    },
+    {
+      "slug": "artist:mayhem",
+      "type": "artist",
+      "name": "Mayhem"
+    },
+    {
+      "slug": "artist:darkthrone",
+      "type": "artist",
+      "name": "Darkthrone"
+    },
+    {
+      "slug": "artist:burzum",
+      "type": "artist",
+      "name": "Burzum"
+    },
+    {
+      "slug": "artist:gorgoroth",
+      "type": "artist",
+      "name": "Gorgoroth"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:deathlike-silence-productions",
+      "type": "label",
+      "name": "Deathlike Silence Productions"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:black-metal",
+      "type": "track",
+      "name": "Black Metal"
+    }
+  ]
+}

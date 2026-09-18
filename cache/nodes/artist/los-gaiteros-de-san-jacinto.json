@@ -1,0 +1,182 @@
+{
+  "slug": "artist:los-gaiteros-de-san-jacinto",
+  "name": "Los Gaiteros de San Jacinto",
+  "editorial_article": "Active since 1940 in the Bolívar department of Colombia, Los Gaiteros de San Jacinto serve as the definitive stewards of traditional cumbia, porro, and gaita music. The ensemble centers on the gaita flute, drawing from indigenous, Spanish, and Afro-Colombian roots to maintain a repertoire of puya and gaita corrida. Originally assembled by Miguel Antonio Hernández Vásquez, known as Toño Fernández, the group gained international recognition for their 2006 album Un Fuego de Sangre Pura, released on Smithsonian Folkways Recordings. This work earned a Latin Grammy Award in 2007 for Best Folkloric Music Album. The group's lineage involves multiple generations, with original members such as Toño García and Nicolás Hernández passing traditions to younger musicians like Gabriel Torregrosa. The ensemble has been managed by researcher Manuel Zapata Olivella and has famously performed alongside artists like Calle 13.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Los_Gaiteros_de_San_Jacinto",
+      "title": "Los Gaiteros de San Jacinto - Wikipedia"
+    },
+    {
+      "url": "https://worldmusiccentral.org/artist-profiles-los-gaiteros-de-san-jacinto/",
+      "title": "Artist Profiles: Los Gaiteros de San Jacinto - World Music Central"
+    },
+    {
+      "url": "https://www.hollywoodbowl.com/musicdb/artists/9433/los-gaiteros-de-san-jacinto",
+      "title": "Los Gaiteros de San Jacinto | Hollywood Bowl"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:02:03.933Z",
+  "type": "artist",
+  "editorial_bio": "An iconic Colombian folkloric ensemble preserving traditional gaita and cumbia rhythms since 1940.",
+  "origin": "San Jacinto, Bolívar, Colombia",
+  "active_years": "1940-present",
+  "genres": [
+    {
+      "slug": "genre:cumbia",
+      "type": "genre",
+      "name": "Cumbia",
+      "qid": "Q723418"
+    },
+    {
+      "slug": "genre:porro",
+      "type": "genre",
+      "name": "Porro",
+      "qid": "Q3069904"
+    },
+    {
+      "slug": "genre:bullerengue",
+      "type": "genre",
+      "name": "Bullerengue",
+      "qid": "Q4996773"
+    },
+    {
+      "slug": "genre:gaita",
+      "type": "genre",
+      "name": "Gaita"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:smithsonian-folkways-recordings",
+      "type": "label",
+      "name": "Smithsonian Folkways Recordings"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:las-mellas",
+      "type": "project",
+      "name": "Las Mellas (Cerrero dub mix)",
+      "mbid": "565286de-7625-4673-9e46-96367ad8db69",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tono-garcia-el-ultimo-cacique",
+      "type": "project",
+      "name": "Toño García: El último cacique",
+      "mbid": "b8197ea2-f7e1-4417-817e-21468d30462c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-de-gaita-el-fin-del-mundo-vol-ii-and-iii",
+      "type": "project",
+      "name": "Dub de Gaita (El fin del mundo) vol II & III",
+      "mbid": "04677eef-2aee-4c84-abba-3b43087bf9d6",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-de-gaita",
+      "type": "project",
+      "name": "Dub de Gaita",
+      "mbid": "508ba10c-b53b-459a-b569-1bc5eb645b22",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:los-gaiteros-de-san-jacinto",
+      "type": "project",
+      "name": "Los Gaiteros de San Jacinto",
+      "mbid": "226c2a13-1079-4211-ae69-f5a42287e29c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-de-gaita",
+      "type": "project",
+      "name": "Dub de Gaita",
+      "mbid": "246642a2-0b24-4dc0-9259-a475e08cb7c5",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:asi-tocan-los-indios",
+      "type": "project",
+      "name": "Asi tocan los indios",
+      "mbid": "7a28010f-3940-436c-b0c2-8b3a01a8c82f",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:un-fuego-de-sangre-pura",
+      "type": "project",
+      "name": "Un fuego de sangre pura",
+      "mbid": "319044a8-55ff-4461-b1e4-3e8a48691f41",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mane-mendoza",
+      "type": "project",
+      "name": "Mane Mendoza",
+      "mbid": "6990a3d7-77a2-310e-aca9-4e8a134feb3b",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:tengo-amores-con-la-gaita",
+      "type": "track",
+      "name": "Tengo Amores Con la Gaita"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:nicolas-hernandez",
+      "type": "artist",
+      "name": "Nicolás Hernández"
+    },
+    {
+      "slug": "artist:juan-fernandez",
+      "type": "artist",
+      "name": "Juan Fernández"
+    },
+    {
+      "slug": "artist:manuel-antonio-garcia",
+      "type": "artist",
+      "name": "Manuel Antonio García"
+    },
+    {
+      "slug": "artist:rafael-rodriguez",
+      "type": "artist",
+      "name": "Rafael Rodríguez"
+    },
+    {
+      "slug": "artist:gabriel-torregrosa",
+      "type": "artist",
+      "name": "Gabriel Torregrosa"
+    },
+    {
+      "slug": "artist:fredys-arrieta",
+      "type": "artist",
+      "name": "Fredys Arrieta"
+    },
+    {
+      "slug": "artist:jairo-herrera",
+      "type": "artist",
+      "name": "Jairo Herrera"
+    },
+    {
+      "slug": "artist:dionisio-yepes",
+      "type": "artist",
+      "name": "Dionisio Yepes"
+    }
+  ]
+}

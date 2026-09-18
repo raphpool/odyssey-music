@@ -1,0 +1,93 @@
+{
+  "slug": "genre:hardcore-hip-hop",
+  "name": "Hardcore hip-hop",
+  "editorial_article": "Hardcore hip-hop is defined by a gritty, aggressive aesthetic built upon hard-hitting drum patterns, dark sampling techniques, and unflinching street-level lyricism. Emerging as a distinct subgenre of rap in the late 1980s, it centers on themes of urban struggle, including criminal activity, drug culture, and violence. Groups like Cypress Hill, hailing from South Gate, California, became central figures in the genre by blending raw, psychedelic production with uncompromising narratives. Discogs identifies the style through its intentionally dirty sound beats and confrontational delivery. While early foundations were established in the late 80s, the subgenre gained widespread notoriety in the 1990s as artists prioritized realism and grit over more polished, radio-friendly formats.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/music/style/hardcore%20hip-hop?srsltid=AU7gw4XLb4YcsDjftV-LTFA8UcLx0d7u1kPZUkxKBspVxTNYWvGCi7Pu",
+      "title": "Hardcore Hip-Hop Style — 42,080 releases | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Cypress_Hill",
+      "title": "Cypress Hill - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/style/hardcore+hip-hop?srsltid=AU7gw4XAqdWunrUaJFyTCGXH8qCTtFhG0J9CuJR3kaDKVIOnGyWkpSQ9",
+      "title": "Hardcore Hip-Hop Music | Discogs"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:20:09.833Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of hip-hop characterized by aggressive, gritty production, dark samples, and starkly realistic, often violent, street-level storytelling.",
+  "qid": "Q966564",
+  "era": "late 1980s to present",
+  "origin": "United States",
+  "sonic_markers": "Hard-hitting, bass-heavy drums, dark/psychedelic sampling, aggressive vocal delivery, and gritty lo-fi textures.",
+  "parent_genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta Rap",
+      "qid": "Q753679"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:gangsta-rap",
+      "type": "genre",
+      "name": "Gangsta rap",
+      "qid": "Q753679"
+    },
+    {
+      "slug": "genre:west-coast-hip-hop",
+      "type": "genre",
+      "name": "West Coast hip-hop",
+      "qid": "Q429264"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:cypress-hill",
+      "type": "artist",
+      "name": "Cypress Hill"
+    },
+    {
+      "slug": "artist:house-of-pain",
+      "type": "artist",
+      "name": "House of Pain"
+    },
+    {
+      "slug": "artist:rawcotiks",
+      "type": "artist",
+      "name": "Rawcotiks"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:ruffhouse-records",
+      "type": "label",
+      "name": "Ruffhouse Records"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:how-i-could-just-kill-a-man",
+      "type": "track",
+      "name": "How I Could Just Kill a Man"
+    },
+    {
+      "slug": "track:insane-in-the-brain",
+      "type": "track",
+      "name": "Insane in the Brain"
+    }
+  ]
+}

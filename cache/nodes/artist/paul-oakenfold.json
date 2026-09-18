@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Electronic",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:balearic-house",
+      "type": "genre",
+      "name": "Balearic House",
+      "qid": "Q2866725"
     }
   ],
   "labels": [

@@ -1,0 +1,543 @@
+{
+  "slug": "artist:fela-kuti",
+  "name": "Fela Kuti",
+  "editorial_article": "Born in 1938 in Abeokuta, Nigeria, Fela Kuti pioneered the Afrobeat genre by fusing traditional Yoruba chants with American jazz, funk, and highlife. His ensemble, Africa 70, featured the influential drummer Tony Allen, whose technical percussion style became foundational to the genre's complex rhythms. Following a 1969 trip to Los Angeles where he encountered the Black Panther Party through Sandra Akanke Isidore, Kuti shifted his focus toward radical political critique. This transformation manifested in the 1977 album Zombie, a sharp satirical attack on the Nigerian military that prompted a government raid on his Kalakuta Republic commune. Kuti continued his protest through albums like 1989's Beasts of No Nation, using his music to challenge corruption and authoritarianism across Africa.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fela_Kuti",
+      "title": "Fela Kuti - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/artist/fela-kuti-mn0000138833",
+      "title": "Fela Kuti — Biography, Discography, Albums & Expert Reviews | AllMusic"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:26.716Z",
+  "type": "artist",
+  "editorial_bio": "Nigerian multi-instrumentalist and political activist who pioneered the Afrobeat genre.",
+  "origin": "Abeokuta, Nigeria",
+  "active_years": "1958-1997",
+  "genres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:juju",
+      "type": "genre",
+      "name": "Jùjú",
+      "qid": "Q1715700"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:knitting-factory-records",
+      "type": "label",
+      "name": "Knitting Factory Records"
+    },
+    {
+      "slug": "label:emi-nigeria",
+      "type": "label",
+      "name": "EMI Nigeria"
+    },
+    {
+      "slug": "label:wrasse-records",
+      "type": "label",
+      "name": "Wrasse Records"
+    },
+    {
+      "slug": "label:barclay-records",
+      "type": "label",
+      "name": "Barclay Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:no-nation",
+      "type": "project",
+      "name": "No Nation (Ayakata)",
+      "mbid": "f911b57a-e89b-4075-97c6-081eba1a2a5e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:b-b-c-big-blind-country",
+      "type": "project",
+      "name": "B.B.C. : Big Blind Country",
+      "mbid": "a3729bd4-cc06-4421-b274-b31703324311",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fela-fela-fela",
+      "type": "project",
+      "name": "Fela Fela Fela",
+      "mbid": "57ab45b2-da9a-4c66-b50a-19b083cf61c9",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:underground-system",
+      "type": "project",
+      "name": "Underground System",
+      "mbid": "3adcb3d5-b73b-4ddd-8b32-200cf4db244b",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-like-that",
+      "type": "project",
+      "name": "Just Like That",
+      "mbid": "d2c41189-8083-4740-bed6-8bb06ffeae14",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:confusion-break-bones",
+      "type": "project",
+      "name": "Confusion Break Bones",
+      "mbid": "14f70c1d-d326-4ebb-b0b6-02adb1724411",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beasts-of-no-nation",
+      "type": "project",
+      "name": "Beasts of No Nation",
+      "mbid": "350a980b-7dea-42df-b3db-c9f158fcc520",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:odoo",
+      "type": "project",
+      "name": "ODOO (Overtake Don Overtake Overtake)",
+      "mbid": "43457df0-4cbb-3b06-b97a-aa4881285dae",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:teacher-don-t-teach-me-nonsense",
+      "type": "project",
+      "name": "Teacher Don’t Teach Me Nonsense",
+      "mbid": "059b9151-956a-4ad8-bf26-9dfeadd624f8",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-go-shout-plenty",
+      "type": "project",
+      "name": "I Go Shout Plenty!!!",
+      "mbid": "7251fc2c-5107-4626-aef0-cffa78de3b6a",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:army-arrangement",
+      "type": "project",
+      "name": "Army Arrangement",
+      "mbid": "7b47dc66-eb6e-3ccd-8916-05bcf61a5de5",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:army-arrangement",
+      "type": "project",
+      "name": "Army Arrangement",
+      "mbid": "2870e5ba-a6dd-4f96-938b-f945bc1d0df1",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:perambulator",
+      "type": "project",
+      "name": "Perambulator",
+      "mbid": "55b4cd3e-46d5-4f78-8efb-8ce341be3075",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:original-sufferhead",
+      "type": "project",
+      "name": "Original Sufferhead",
+      "mbid": "5502f687-02d9-471a-b76d-334f866ba158",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coffin-for-head-of-state",
+      "type": "project",
+      "name": "Coffin for Head of State",
+      "mbid": "aa79a718-4a83-3ece-b3a7-a7500f82fed8",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-of-many-colours",
+      "type": "project",
+      "name": "Music of Many Colours",
+      "mbid": "d59897ff-7319-3173-a3d4-622aa67c3604",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:authority-stealing",
+      "type": "project",
+      "name": "Authority Stealing",
+      "mbid": "fb210548-1407-49ee-999e-20cacfb59dcb",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unknown-soldier",
+      "type": "project",
+      "name": "Unknown Soldier",
+      "mbid": "77a35f1d-d763-4ed8-acc6-dd03ac875b0c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:international-thief-thief",
+      "type": "project",
+      "name": "International Thief Thief (I.T.T.)",
+      "mbid": "f48a43d6-f494-481c-aae4-cb5fafcfaece",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shuffering-and-shmiling",
+      "type": "project",
+      "name": "Shuffering and Shmiling",
+      "mbid": "1586f69c-ceff-3ee5-9793-8d69a93fdebb",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sorrow-tears-and-blood",
+      "type": "project",
+      "name": "Sorrow Tears and Blood",
+      "mbid": "068b1ec1-9922-301c-b57c-8bf76a303098",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fear-not-for-man",
+      "type": "project",
+      "name": "Fear Not for Man",
+      "mbid": "0770f39d-6a9e-3d93-b9c9-f410d9c62e3e",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:opposite-people",
+      "type": "project",
+      "name": "Opposite People",
+      "mbid": "17d1970f-0442-44f2-a3ea-e91964b11991",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-agreement",
+      "type": "project",
+      "name": "No Agreement",
+      "mbid": "505c1ead-50ad-3fb8-9927-bc6a54cc5088",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stalemate",
+      "type": "project",
+      "name": "Stalemate",
+      "mbid": "b2d741b8-e43b-4040-aca2-1211c0eda31e",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kalakuta-show",
+      "type": "project",
+      "name": "Kalakuta Show",
+      "mbid": "1fb11a94-da7e-4df3-93dc-2b73c6675c3b",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zombie",
+      "type": "project",
+      "name": "Zombie",
+      "mbid": "517cbfb2-2279-4af9-8ca7-1c4c1a444925",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-side-down",
+      "type": "project",
+      "name": "Up Side Down",
+      "mbid": "56e5a668-06f7-44fe-847d-481c3416f670",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:excuse-o",
+      "type": "project",
+      "name": "Excuse O",
+      "mbid": "9ffadefa-aaa1-4159-853d-18da93df60fe",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-bread",
+      "type": "project",
+      "name": "No Bread",
+      "mbid": "d8408ac6-a9c1-442f-b46d-72ecefe73e2c",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ikoyi-blindness",
+      "type": "project",
+      "name": "Ikoyi Blindness",
+      "mbid": "e230dd4a-135a-390a-b82e-3cb445ee9f42",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellow-fever",
+      "type": "project",
+      "name": "Yellow Fever",
+      "mbid": "e4518b0c-eb54-4e74-a722-dfb5c255e2df",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everything-scatter",
+      "type": "project",
+      "name": "Everything Scatter",
+      "mbid": "2634bcd5-f6cd-436f-a0e5-dd97fc31bf33",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:before-i-jump-like-monkey-give-me-banana",
+      "type": "project",
+      "name": "Before I Jump Like Monkey Give Me Banana",
+      "mbid": "492e79ee-f84b-497d-8ebc-a8af181fec89",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:he-miss-road",
+      "type": "project",
+      "name": "He Miss Road",
+      "mbid": "5601093c-d044-31e2-97fd-5eeadc77b2d0",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:noise-for-vendor-mouth",
+      "type": "project",
+      "name": "Noise for Vendor Mouth",
+      "mbid": "99aa275b-8f00-4f4b-9672-5d48e442c907",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:expensive-shit",
+      "type": "project",
+      "name": "Expensive Shit",
+      "mbid": "b16d9280-f25e-3648-8a8e-1141efd55669",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alagbon-close",
+      "type": "project",
+      "name": "Alagbon Close",
+      "mbid": "20cbdd91-bb84-34f5-b262-d27c87e40aed",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:confusion",
+      "type": "project",
+      "name": "Confusion",
+      "mbid": "d1ce6ef8-a9de-3a81-81d5-79dc78d81c06",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:going-in-and-coming-out",
+      "type": "project",
+      "name": "Going In And Coming Out (Part 1 & 2)",
+      "mbid": "3f692b22-1501-44dc-838b-f945251f7bb3",
+      "year": "1974",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:afrodisiac",
+      "type": "project",
+      "name": "Afrodisiac",
+      "mbid": "4468fa74-f5ac-4942-a76a-7cd8e3921f5b",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gentleman",
+      "type": "project",
+      "name": "Gentleman",
+      "mbid": "d23c4512-1ef6-3adb-8c4d-f4c13ed096e2",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shakara",
+      "type": "project",
+      "name": "Shakara",
+      "mbid": "9759f00b-4ec4-45b7-8ce8-87d4b0ff2a37",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roforofo-fight",
+      "type": "project",
+      "name": "Roforofo Fight",
+      "mbid": "9d73e697-c0f6-46be-a573-dd303b76c00e",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beggar-s-song-orin-alagbe-1-and-2",
+      "type": "project",
+      "name": "Beggar's Song (Orin Alagbe) 1 & 2",
+      "mbid": "ba946e80-5b3a-4dad-8578-a2a4b9122652",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:open-and-close",
+      "type": "project",
+      "name": "Open & Close",
+      "mbid": "72fbfe84-3ba7-302e-b822-335a15eadf96",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fela-s-london-scene",
+      "type": "project",
+      "name": "Fela's London Scene",
+      "mbid": "b00a525e-9b65-4665-b83f-5f031e41cf7e",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:why-black-man-dey-suffer",
+      "type": "project",
+      "name": "Why Black Man Dey Suffer",
+      "mbid": "b0f4cb56-a934-448c-9b6f-8bcf684f891b",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:na-poi",
+      "type": "project",
+      "name": "Na Poi",
+      "mbid": "bbe4951b-3b18-4de8-9157-bd28b9708b1a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:na-fight-o-part-i-and-ii",
+      "type": "project",
+      "name": "Na Fight - O ! Part I & II",
+      "mbid": "cf6c9f05-a95f-4665-bef0-5def2538d53e",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-man-s-cry",
+      "type": "project",
+      "name": "Black man's cry",
+      "mbid": "19a6af5e-d145-4154-ab52-8ddf4fa95ac2",
+      "year": "1970",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-69-los-angeles-sessions",
+      "type": "project",
+      "name": "The ’69 Los Angeles Sessions",
+      "mbid": "4fd6a656-6f18-31c5-b920-4d8261c8fcc4",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fela-ransome-kuti-and-his-koola-lobitos",
+      "type": "project",
+      "name": "Fela Ransome Kuti and His Koola Lobitos",
+      "mbid": "1a10f958-0f93-40bb-b180-da4adbd8f0a6",
+      "year": "1965",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:zombie",
+      "type": "track",
+      "name": "Zombie"
+    },
+    {
+      "slug": "track:sorrow-tears-and-blood",
+      "type": "track",
+      "name": "Sorrow Tears and Blood"
+    },
+    {
+      "slug": "track:i-t-t",
+      "type": "track",
+      "name": "I.T.T. (International Thief Thief)"
+    },
+    {
+      "slug": "track:lady",
+      "type": "track",
+      "name": "Lady"
+    }
+  ],
+  "influences": [],
+  "influenced": [
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid"
+    }
+  ],
+  "collaborators": [
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
+    },
+    {
+      "slug": "artist:femi-kuti",
+      "type": "artist",
+      "name": "Femi Kuti"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
+    },
+    {
+      "slug": "artist:lekan-animashaun",
+      "type": "artist",
+      "name": "Lekan Animashaun"
+    }
+  ]
+}

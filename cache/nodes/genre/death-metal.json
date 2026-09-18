@@ -30,9 +30,23 @@
   },
   "type": "genre",
   "editorial_definition": "An extreme subgenre of heavy metal characterized by low-tuned, distorted guitars, guttural vocals, and aggressive percussion including blast beats.",
+  "qid": "Q483251",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:extreme-metal",
+      "type": "genre",
+      "name": "Extreme metal",
+      "qid": "Q465978"
+    },
+    {
+      "slug": "genre:black-metal",
+      "type": "genre",
+      "name": "Black Metal",
+      "qid": "Q132438"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:death",
@@ -94,6 +108,5 @@
       "name": "Seven Churches"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q483251"
+  "landmark_tracks": []
 }

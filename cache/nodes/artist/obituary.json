@@ -1,0 +1,281 @@
+{
+  "slug": "artist:obituary",
+  "name": "Obituary",
+  "editorial_article": "Formed in Tampa in 1984 as Executioner, Obituary helped define the Florida death metal sound by favoring sluggish, doom-inspired tempos over the thrash-influenced speed favored by their peers. The band, anchored by brothers John and Donald Tardy, built their reputation on heavy, groove-oriented guitar riffs and John Tardy’s distinctive, primal growls. Their 1990 sophomore album, Cause of Death, remains a pivotal entry in the genre, featuring lead guitarist James Murphy. In the mid-90s, they explored broader sonic territory; their 1997 album Back from the Dead incorporated elements of hardcore punk and, on the track 'Bullituary', even experimented with rap-metal. Following a hiatus from 1998 to 2003, the band returned with 2005's Frozen in Time and later relied on a successful 2013 Kickstarter campaign to self-release Inked in Blood before partnering with Relapse Records. Current bassist Terry Butler joined the lineup in 2010, contributing to the band's persistent output of crushing, death-metal-centric studio albums.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Obituary_(band)",
+      "title": "Obituary (band) - Wikipedia"
+    },
+    {
+      "url": "https://www.metal-archives.com/bands/Obituary/165",
+      "title": "Obituary - Encyclopaedia Metallum: The Metal Archives"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:16:10.883Z",
+  "type": "artist",
+  "editorial_bio": "A cornerstone of the Tampa death metal scene, Obituary is known for their slow, crushing grooves and the unmistakable vocal delivery of John Tardy.",
+  "origin": "Tampa, Florida",
+  "active_years": "1984-1998, 2003-present",
+  "genres": [
+    {
+      "slug": "genre:death-metal",
+      "type": "genre",
+      "name": "Death Metal",
+      "qid": "Q483251"
+    },
+    {
+      "slug": "genre:metal",
+      "type": "genre",
+      "name": "Metal",
+      "qid": "Q12326776"
+    },
+    {
+      "slug": "genre:old-school-death-metal",
+      "type": "genre",
+      "name": "Old School Death Metal",
+      "qid": "Q65943557"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:relapse-records",
+      "type": "label",
+      "name": "Relapse Records"
+    },
+    {
+      "slug": "label:roadrunner-records",
+      "type": "label",
+      "name": "Roadrunner Records"
+    },
+    {
+      "slug": "label:candlelight-records",
+      "type": "label",
+      "name": "Candlelight Records"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:dying-of-everything",
+      "type": "project",
+      "name": "Dying of Everything",
+      "mbid": "fb7d8b0e-a3d9-437b-b26c-408ba430aa17",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-will-to-live",
+      "type": "project",
+      "name": "My Will to Live",
+      "mbid": "1099eef0-18b7-416f-8508-e750d1b2c570",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dying-of-everything",
+      "type": "project",
+      "name": "Dying of Everything",
+      "mbid": "067912a7-b392-49f3-9236-0f4f9ab7bbdd",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-wrong-time",
+      "type": "project",
+      "name": "The Wrong Time",
+      "mbid": "7971c075-d004-4af5-865e-befdabfac004",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-dying-world",
+      "type": "project",
+      "name": "A Dying World",
+      "mbid": "6c930ec1-41ad-4229-ac07-3368cc0979ab",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:obituary",
+      "type": "project",
+      "name": "Obituary",
+      "mbid": "de3531b9-77a8-418d-b37b-adb37f9f5529",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no",
+      "type": "project",
+      "name": "No",
+      "mbid": "3df454a8-6bfc-41e5-bca2-5a2f8df3af18",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inked-in-blood",
+      "type": "project",
+      "name": "Inked in Blood",
+      "mbid": "30be7c55-6388-49d0-83a6-88e4b5602212",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:darkest-day",
+      "type": "project",
+      "name": "Darkest Day",
+      "mbid": "21b56f6d-6a51-4f4a-a532-7b9d8e539949",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:left-to-die",
+      "type": "project",
+      "name": "Left to Die",
+      "mbid": "e234398f-6dbe-3752-a7fc-3ade25d36f57",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:xecutioner-s-return",
+      "type": "project",
+      "name": "Xecutioner’s Return",
+      "mbid": "c0024248-29c8-3f78-8f43-fede25d56b95",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:frozen-in-time",
+      "type": "project",
+      "name": "Frozen in Time",
+      "mbid": "71c3c32f-c07a-334d-924a-0413dd8077c2",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-from-the-dead",
+      "type": "project",
+      "name": "Back From the Dead",
+      "mbid": "e4ca3dc4-4230-337d-875c-fbe159cad52b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:world-demise",
+      "type": "project",
+      "name": "World Demise",
+      "mbid": "9fc8fb3e-ce8c-3ae4-83be-36f604700b0a",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-care",
+      "type": "project",
+      "name": "Don’t Care",
+      "mbid": "9539e868-938a-3749-93df-cc6148ce68b0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-end-complete",
+      "type": "project",
+      "name": "The End Complete",
+      "mbid": "96991a22-b591-3694-885f-a79fcf87e937",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-pain",
+      "type": "project",
+      "name": "Songs of Pain",
+      "mbid": "150d7950-b53a-4a24-8277-7921b8e311ba",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cause-of-death",
+      "type": "project",
+      "name": "Cause of Death",
+      "mbid": "41418c5f-ccd5-313f-92d0-c86c149571f5",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slowly-we-rot",
+      "type": "project",
+      "name": "Slowly We Rot",
+      "mbid": "615595ba-3435-36c6-8a4b-545c6403cfb6",
+      "year": "1989",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:the-end-complete",
+      "type": "track",
+      "name": "The End Complete"
+    },
+    {
+      "slug": "track:don-t-care",
+      "type": "track",
+      "name": "Don't Care"
+    },
+    {
+      "slug": "track:the-wrong-time",
+      "type": "track",
+      "name": "The Wrong Time"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:james-murphy",
+      "type": "artist",
+      "name": "James Murphy"
+    },
+    {
+      "slug": "artist:ralph-santolla",
+      "type": "artist",
+      "name": "Ralph Santolla"
+    }
+  ],
+  "aliases": [
+    {
+      "slug": "artist:executioner",
+      "type": "artist",
+      "name": "Executioner"
+    },
+    {
+      "slug": "artist:xecutioner",
+      "type": "artist",
+      "name": "Xecutioner"
+    }
+  ],
+  "members": [
+    {
+      "slug": "artist:john-tardy",
+      "type": "artist",
+      "name": "John Tardy"
+    },
+    {
+      "slug": "artist:donald-tardy",
+      "type": "artist",
+      "name": "Donald Tardy"
+    },
+    {
+      "slug": "artist:trevor-peres",
+      "type": "artist",
+      "name": "Trevor Peres"
+    },
+    {
+      "slug": "artist:terry-butler",
+      "type": "artist",
+      "name": "Terry Butler"
+    },
+    {
+      "slug": "artist:ken-andrews",
+      "type": "artist",
+      "name": "Ken Andrews"
+    }
+  ]
+}

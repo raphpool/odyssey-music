@@ -1,0 +1,172 @@
+{
+  "slug": "artist:akale-wube",
+  "name": "Akalé Wubé",
+  "editorial_article": "Formed in Paris in 2009, the French quintet Akalé Wubé built their output on a modern reinterpretation of 1960s Ethiopian jazz and funk. Their name, meaning \"beauty of the soul\" in Amharique, defined a decade of international touring across Europe, China, and Africa. The group achieved significant acclaim for their contribution to the Buda Musique label's \"Éthiopiques\" series with the 2017 album \"Mistakes on Purpose,\" which featured the veteran Ethiopian musician Girma Bèyènè. Throughout their career, they collaborated with luminaries such as Manu Dibango and Mahmoud Ahmed. Their instrumental arrangements frequently utilized the krar, mbira, and brass sections to honor the traditions established by artists like Mulatu Astatke. The group disbanded in April 2021 after twelve years of recording and live performance.",
+  "citations": [
+    {
+      "url": "https://fr.wikipedia.org/wiki/Akal%C3%A9_Wub%C3%A9",
+      "title": "Akalé Wubé - Wikipédia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:05:10.581Z",
+  "type": "artist",
+  "editorial_bio": "A French quintet dedicated to the modern revival of Ethio-jazz, active from 2009 until 2021.",
+  "origin": "France",
+  "active_years": "2009-2021",
+  "genres": [
+    {
+      "slug": "genre:ethiopian-jazz",
+      "type": "genre",
+      "name": "Ethio-Jazz",
+      "qid": "Q3591962"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:clapson",
+      "type": "label",
+      "name": "Clapson"
+    },
+    {
+      "slug": "label:buda-musique",
+      "type": "label",
+      "name": "Buda Musique"
+    },
+    {
+      "slug": "label:nabligam",
+      "type": "label",
+      "name": "Nabligam"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:anbessa",
+      "type": "project",
+      "name": "Anbessa",
+      "mbid": "c9b090dc-ea00-4d72-8edf-99172acfbf7b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ethiopiques-30-mistakes-on-purpose",
+      "type": "project",
+      "name": "Éthiopiques 30: Mistakes on Purpose",
+      "mbid": "9f376609-e173-4fee-a58e-7c827ac85794",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memona",
+      "type": "project",
+      "name": "Mèmona (Etienne de la Sayette remix)",
+      "mbid": "2145577f-314e-4947-ae8c-cbd38ebab00d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sost",
+      "type": "project",
+      "name": "Sost",
+      "mbid": "d45138a7-34ff-4159-a3ef-e5f695ef2602",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:akale-wube-remixes",
+      "type": "project",
+      "name": "Akalé Wubé Remixes",
+      "mbid": "0262efb8-c4a1-43a6-8a07-30d0558f96bc",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mata",
+      "type": "project",
+      "name": "Mata",
+      "mbid": "80dbabbb-6642-4797-8150-e822414c757e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:akale-wube",
+      "type": "project",
+      "name": "Akalé Wubé",
+      "mbid": "4e1b4191-75f2-4cdc-a9c1-936f56dc857a",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ethiopian-groove-greatest-hits",
+      "type": "project",
+      "name": "Ethiopian Groove Greatest Hits",
+      "mbid": "65446b55-3bcd-4ca9-91c5-9c827b0acdcf",
+      "year": "2009",
+      "releaseType": "ep"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:anbessa",
+      "type": "track",
+      "name": "Anbessa"
+    }
+  ],
+  "influences": [
+    {
+      "slug": "artist:mulatu-astatke",
+      "type": "artist",
+      "name": "Mulatu Astatke"
+    },
+    {
+      "slug": "artist:mahmoud-ahmed",
+      "type": "artist",
+      "name": "Mahmoud Ahmed"
+    }
+  ],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:girma-beyene",
+      "type": "artist",
+      "name": "Girma Bèyènè"
+    },
+    {
+      "slug": "artist:manu-dibango",
+      "type": "artist",
+      "name": "Manu Dibango"
+    },
+    {
+      "slug": "artist:mahmoud-ahmed",
+      "type": "artist",
+      "name": "Mahmoud Ahmed"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:paul-bouclier",
+      "type": "artist",
+      "name": "Paul Bouclier"
+    },
+    {
+      "slug": "artist:etienne-de-la-sayette",
+      "type": "artist",
+      "name": "Étienne de la Sayette"
+    },
+    {
+      "slug": "artist:loic-rechard",
+      "type": "artist",
+      "name": "Loïc Réchard"
+    },
+    {
+      "slug": "artist:oliver-degabriele",
+      "type": "artist",
+      "name": "Oliver Degabriele"
+    },
+    {
+      "slug": "artist:david-georgelet",
+      "type": "artist",
+      "name": "David Georgelet"
+    }
+  ]
+}

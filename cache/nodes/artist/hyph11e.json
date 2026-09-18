@@ -39,6 +39,11 @@
       "type": "genre",
       "name": "Experimental",
       "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:leftfield-techno",
+      "type": "genre",
+      "name": "Leftfield Techno"
     }
   ],
   "labels": [

@@ -1,0 +1,120 @@
+{
+  "slug": "genre:cosmic-disco",
+  "name": "Cosmic Disco",
+  "editorial_article": "Cosmic Disco gained prominence in Europe during the mid-1970s, drawing on sci-fi aesthetics and the synthesizer-driven experimentation of the era. The movement emerged alongside releases like Meco’s 1977 'Star Wars Theme/Cantina Band' and Dee D. Jackson’s 1978 'Automatic Lover,' which utilized arpeggiators and futuristic, space-themed imagery. As a subset of broader European dance trends, the genre features a blend of instrumental compositions and heavy synthesizer work. Key figures such as Didier Marouani and his band Space were foundational, while Italian groups like I Signori della Galassia explored these themes with distinct glam-influenced sci-fi visuals. The genre maintains a connection to modern electronic production through the work of contemporary artists such as Lindstrøm, whose 2008 track 'I Feel Space' revived the aesthetic. Critically associated with 'space disco' and 'Afro/cosmic' music, the style emphasizes synthetic textures and extraterrestrial concepts over the traditional love narratives found in standard pop-disco. Modern record labels including Bear Funk and Prins Thomas’ Full Pupp have preserved the genre’s legacy by releasing new material that references these early experimental disco roots.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Italo_disco",
+      "title": "Italo disco - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:12:47.689Z",
+  "type": "genre",
+  "editorial_definition": "A subgenre of disco characterized by science-fiction themes, heavy use of synthesizers, and electronic, often instrumental, soundscapes.",
+  "qid": "Q336567",
+  "era": "mid-1970s to present",
+  "origin": "Europe, primarily France and Italy",
+  "sonic_markers": "Arpeggiators, heavy use of synthesizers, vocoders, space-themed sound effects, electronic drums, typically mid-tempo dance beats.",
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
+  "subgenres": [],
+  "related_genres": [
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo disco",
+      "qid": "Q744417"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    }
+  ],
+  "key_artists": [
+    {
+      "slug": "artist:didier-marouani",
+      "type": "artist",
+      "name": "Didier Marouani"
+    },
+    {
+      "slug": "artist:meco",
+      "type": "artist",
+      "name": "Meco"
+    },
+    {
+      "slug": "artist:dee-d-jackson",
+      "type": "artist",
+      "name": "Dee D. Jackson"
+    },
+    {
+      "slug": "artist:hans-peter-lindstr-m",
+      "type": "artist",
+      "name": "Hans-Peter Lindstrøm"
+    },
+    {
+      "slug": "artist:prins-thomas",
+      "type": "artist",
+      "name": "Prins Thomas"
+    }
+  ],
+  "key_labels": [
+    {
+      "slug": "label:feedelity",
+      "type": "label",
+      "name": "Feedelity"
+    },
+    {
+      "slug": "label:full-pupp",
+      "type": "label",
+      "name": "Full Pupp"
+    },
+    {
+      "slug": "label:bear-funk",
+      "type": "label",
+      "name": "Bear Funk"
+    }
+  ],
+  "landmark_projects": [],
+  "landmark_tracks": [
+    {
+      "slug": "track:star-wars-theme-cantina-band",
+      "type": "track",
+      "name": "Star Wars Theme/Cantina Band"
+    },
+    {
+      "slug": "track:automatic-lover",
+      "type": "track",
+      "name": "Automatic Lover"
+    },
+    {
+      "slug": "track:magic-fly",
+      "type": "track",
+      "name": "Magic Fly"
+    },
+    {
+      "slug": "track:i-feel-space",
+      "type": "track",
+      "name": "I Feel Space"
+    }
+  ]
+}

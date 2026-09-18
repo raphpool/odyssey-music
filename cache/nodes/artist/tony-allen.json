@@ -1,0 +1,489 @@
+{
+  "slug": "artist:tony-allen",
+  "name": "Tony Allen",
+  "editorial_article": "Born in Lagos on 20 July 1940, Tony Oladipo Allen became the foundational architect of the Afrobeat rhythm as the drummer and musical director for Fela Kuti's band, Africa '70, between 1968 and 1979. Fela famously claimed the genre could not exist without Allen, whose unique playing style blended Yoruba percussion, highlife, and jazz influences from artists like Art Blakey. After leaving Africa '70 in 1979, Allen moved to London and later Paris, where his work evolved to incorporate electronic, hip-hop, and dub elements. He later maintained a prolific collaborative career, partnering with Damon Albarn on projects such as The Good, the Bad & the Queen and Rocket Juice & the Moon. His 2006 album 'Lagos No Shaking' marked a return to traditional Afrobeat, while his final years included work with Jeff Mills and posthumous releases like 'There Is No End'.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tony_Allen_(musician)",
+      "title": "Tony Allen (musician) - Wikipedia"
+    },
+    {
+      "url": "https://www.bluenote.com/artist/tony-allen/",
+      "title": "Tony Allen - Blue Note Records"
+    }
+  ],
+  "materialized_at": "2026-09-17T13:04:33.267Z",
+  "type": "artist",
+  "editorial_bio": "A legendary Nigerian drummer and composer recognized as a co-creator of Afrobeat and a pivotal force in global percussion.",
+  "origin": "Lagos, Nigeria",
+  "active_years": "1968-2020",
+  "genres": [
+    {
+      "slug": "genre:afrobeat",
+      "type": "genre",
+      "name": "Afrobeat",
+      "qid": "Q388296"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:highlife",
+      "type": "genre",
+      "name": "Highlife",
+      "qid": "Q963061"
+    },
+    {
+      "slug": "genre:afro-funk",
+      "type": "genre",
+      "name": "Afro-funk",
+      "qid": "Q106641536"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:blue-note-records",
+      "type": "label",
+      "name": "Blue Note Records"
+    },
+    {
+      "slug": "label:world-circuit",
+      "type": "label",
+      "name": "World Circuit"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:tony-s-house",
+      "type": "project",
+      "name": "Tony’s House",
+      "mbid": "3cb8eb07-859d-4eba-aed7-8e24d255a903",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-boa-meets-tony-allen",
+      "type": "project",
+      "name": "LA BOA MEETS TONY ALLEN",
+      "mbid": "c9ab7ff1-905b-4df9-9f3e-1176f9e15874",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lagos-paris-london",
+      "type": "project",
+      "name": "Lagos Paris London",
+      "mbid": "dd78ae4f-6e49-42b7-9101-f1234ee0bc62",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rain-can-t-reach-us",
+      "type": "project",
+      "name": "Rain Can’t Reach Us",
+      "mbid": "79d5a0c1-edd2-43ae-b673-87a55c4242c4",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:under-the-strikes",
+      "type": "project",
+      "name": "Under the Strikes",
+      "mbid": "527b4167-39be-424d-a440-b30b721f71ff",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walk-through-fire",
+      "type": "project",
+      "name": "Walk Through Fire",
+      "mbid": "ec87e920-c5f5-4aae-bcbf-0464be5b5049",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oladipo",
+      "type": "project",
+      "name": "Oladipo",
+      "mbid": "a70fbaa7-ef20-4870-8f07-e8c290d1b35e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tony-allen-jid018",
+      "type": "project",
+      "name": "Tony Allen JID018",
+      "mbid": "971b2f2b-6edd-43f2-80ca-31b0b71c225c",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz-is-dead-18",
+      "type": "project",
+      "name": "Jazz Is Dead 18",
+      "mbid": "cd8b093d-00e5-4217-8374-db71962179f5",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-believe-the-dancers",
+      "type": "project",
+      "name": "Don’t Believe the Dancers",
+      "mbid": "1ce18155-a34f-438d-a185-2cafddb80141",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jakelewah",
+      "type": "project",
+      "name": "Jakelewah (Doctor L’s 3 Years In Heaven Remix)",
+      "mbid": "bd17064b-b8d8-48e0-b425-048545e0dfbd",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trippin",
+      "type": "project",
+      "name": "Trippin’",
+      "mbid": "57a30cd9-6de2-49be-8eaf-92f4728473f8",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-solution-is-restless",
+      "type": "project",
+      "name": "The Solution Is Restless",
+      "mbid": "60a7305e-6ce6-4988-a807-9bfdbd752509",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:there-is-no-end",
+      "type": "project",
+      "name": "There Is No End",
+      "mbid": "8754bbad-e0ae-47a1-a69d-77728061cc7c",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trippin-redux",
+      "type": "project",
+      "name": "Trippin' Redux",
+      "mbid": "dc9424d3-7ce1-42f3-9e72-24bd0de7b4e4",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:song-machine-how-far",
+      "type": "project",
+      "name": "Song Machine: How Far?",
+      "mbid": "443a2bfa-ae95-40f3-a92b-6e878a3352f8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rejoice",
+      "type": "project",
+      "name": "Rejoice",
+      "mbid": "d4f97406-c231-446f-a8eb-0766ff11bc2f",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-goes-up",
+      "type": "project",
+      "name": "What Goes Up (Remixed)",
+      "mbid": "4cb70cf8-3413-4f07-bee6-4323c7e244aa",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tomorrow-comes-the-harvest",
+      "type": "project",
+      "name": "Tomorrow Comes the Harvest",
+      "mbid": "00989272-6ce0-46eb-883d-2ff14628297c",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tony-allen-ricardo-villalobos-dekmantel-10-years-10-1",
+      "type": "project",
+      "name": "Tony Allen / Ricardo Villalobos – Dekmantel 10 Years 10.1",
+      "mbid": "4334b933-77ae-432c-979a-7c141ed9bb66",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dekmantel-10-years-10-1",
+      "type": "project",
+      "name": "Dekmantel 10 Years 10.1",
+      "mbid": "afafea0e-4e67-4242-a2a9-00df010fb95d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-goes-up",
+      "type": "project",
+      "name": "What Goes Up",
+      "mbid": "a0663de3-01a1-43e7-bcc3-b5bde2df228e",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-source",
+      "type": "project",
+      "name": "The Source",
+      "mbid": "f0838fc2-7e83-4bde-9196-13b80d043c70",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-tribute-to-art-blakey-and-the-jazz-messengers",
+      "type": "project",
+      "name": "A Tribute to Art Blakey & The Jazz Messengers",
+      "mbid": "1c00da93-2a78-4ba4-bcd0-077fddd3f86f",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:moanin",
+      "type": "project",
+      "name": "Moanin'",
+      "mbid": "433a3699-a9d0-4eda-955a-c3d753b0f53e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:regenmacher",
+      "type": "project",
+      "name": "Regenmacher (Afrobeat Session)",
+      "mbid": "b79f0985-bf60-43d8-95da-068860274fe6",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:disco-afro-reedit-series",
+      "type": "project",
+      "name": "Disco Afro Reedit Series",
+      "mbid": "b2559446-de7a-4ffc-bb08-2237a7e97b10",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:film-of-life",
+      "type": "project",
+      "name": "Film of Life",
+      "mbid": "3bb8bb3f-91f9-4c4d-87ab-02bb46b676fb",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alakoro",
+      "type": "project",
+      "name": "Alakorô",
+      "mbid": "d2be6199-7c3e-4bd1-9d3c-c8348b1d54cd",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lovers-mountain",
+      "type": "project",
+      "name": "Lovers Mountain",
+      "mbid": "5f1fd44f-a3ef-4e2e-9725-04e24a5bc399",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:have-faith-in-me",
+      "type": "project",
+      "name": "Have Faith in Me",
+      "mbid": "6114a067-8ebf-4323-bfc1-ed2febb6bb4d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:day-like-this-feel-loved",
+      "type": "project",
+      "name": "Day Like This / Feel Loved",
+      "mbid": "9ec415c9-2c32-4c8c-b177-7aafc2214b52",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:meus-filhos-afrobeat-rework",
+      "type": "project",
+      "name": "Meus Filhos Afrobeat Rework",
+      "mbid": "5f6f05b1-557f-4d04-b68d-de83c57b4ada",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:black-voices-re-visited",
+      "type": "project",
+      "name": "Black Voices Re-Visited",
+      "mbid": "85669582-b987-4cda-a5ed-551687509887",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inspiration-information-4",
+      "type": "project",
+      "name": "Inspiration Information, 4",
+      "mbid": "5caa3d48-9656-4b8f-be44-b2ef49584226",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:secret-agent",
+      "type": "project",
+      "name": "Secret Agent",
+      "mbid": "050974c9-94d9-4a8f-96e9-7c2995fd79c2",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kilode",
+      "type": "project",
+      "name": "Kilode",
+      "mbid": "0366f270-3820-38bd-8c94-78896b03489d",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ole",
+      "type": "project",
+      "name": "Ole",
+      "mbid": "17bf794c-bd1b-4a02-8984-2e3e39a9f019",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lagos-no-shaking",
+      "type": "project",
+      "name": "Lagos No Shaking",
+      "mbid": "202253de-54e6-3856-9f73-5595e35e7aec",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:home-cooking",
+      "type": "project",
+      "name": "Home Cooking",
+      "mbid": "46cc65fb-a476-37ae-b248-d0e2f46280ce",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-voices",
+      "type": "project",
+      "name": "Black Voices",
+      "mbid": "f5d43ab5-31b1-37b2-9190-d01e573c1eee",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:afrobeat-express",
+      "type": "project",
+      "name": "Afrobeat Express",
+      "mbid": "b4c5e30e-da71-3422-9a8a-f214695e3a5e",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-accommodation-for-lagos",
+      "type": "project",
+      "name": "No Accommodation for Lagos",
+      "mbid": "bc30397d-faee-32b6-92f1-f19ae59ee3cb",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:progress",
+      "type": "project",
+      "name": "Progress",
+      "mbid": "027e8f25-5634-4751-9a1a-0d318d8f338a",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jealousy",
+      "type": "project",
+      "name": "Jealousy",
+      "mbid": "dfa01499-4f4f-4a3d-879a-2cdd0d0152d4",
+      "year": "1975",
+      "releaseType": "album"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:yere-faga",
+      "type": "track",
+      "name": "Yere faga"
+    },
+    {
+      "slug": "track:how-far",
+      "type": "track",
+      "name": "How Far?"
+    },
+    {
+      "slug": "track:moanin",
+      "type": "track",
+      "name": "Moanin'"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    },
+    {
+      "slug": "artist:damon-albarn",
+      "type": "artist",
+      "name": "Damon Albarn"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills"
+    },
+    {
+      "slug": "artist:oumou-sangare",
+      "type": "artist",
+      "name": "Oumou Sangaré"
+    },
+    {
+      "slug": "artist:hugh-masekela",
+      "type": "artist",
+      "name": "Hugh Masekela"
+    },
+    {
+      "slug": "artist:yannis-philippakis",
+      "type": "artist",
+      "name": "Yannis Philippakis"
+    },
+    {
+      "slug": "artist:jimi-tenor",
+      "type": "artist",
+      "name": "Jimi Tenor"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    }
+  ],
+  "aliases": [],
+  "members": [
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti"
+    }
+  ]
+}
