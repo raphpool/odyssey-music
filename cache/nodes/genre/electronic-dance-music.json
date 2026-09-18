@@ -71,6 +71,12 @@
       "type": "genre",
       "name": "Hardcore techno",
       "qid": "Q388906"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
     }
   ],
   "related_genres": [

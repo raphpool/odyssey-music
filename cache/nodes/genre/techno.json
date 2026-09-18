@@ -61,6 +61,12 @@
       "type": "genre",
       "name": "Gabber",
       "qid": "Q820049"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance",
+      "qid": "Q622871"
     }
   ],
   "key_artists": [

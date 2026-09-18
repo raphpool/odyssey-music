@@ -5449,6 +5449,16 @@
         "name": "Drill",
         "qid": "Q15697534"
       }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bass-music",
+        "type": "genre",
+        "name": "Bass Music",
+        "qid": "Q96740854"
+      }
     }
   ],
   "genre:us-bass-music": [
@@ -5522,6 +5532,16 @@
         "type": "genre",
         "name": "Baile Funk",
         "qid": "Q1931130"
+      }
+    },
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:bass-music",
+        "type": "genre",
+        "name": "Bass Music",
+        "qid": "Q96740854"
       }
     }
   ],
@@ -13894,6 +13914,90 @@
         "slug": "artist:valesca-popozuda",
         "type": "artist",
         "name": "Valesca Popozuda"
+      }
+    }
+  ],
+  "genre:dark-psytrance": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:full-on": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:progressive-psytrance": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:suomisaundi": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:psybient": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:psydub": [
+    {
+      "field": "parent_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
+      }
+    }
+  ],
+  "genre:goa-trance": [
+    {
+      "field": "related_genres",
+      "cardinality": "list",
+      "edge": {
+        "slug": "genre:psytrance",
+        "type": "genre",
+        "name": "Psytrance",
+        "qid": "Q622871"
       }
     }
   ]
