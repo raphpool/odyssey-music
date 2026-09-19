@@ -1055,9 +1055,17 @@ describe("mergePickerSelectionIntoV2 fuzz — TRA-270 criterion 4: unchecking a 
 // a dominated subfamily (e.g. genre:krautrock, fully covered by a checked genre:rock) into its
 // family, but the list still rendered it as its own separate pill. Real graph (nit, don't mock
 // what we own): genre:rock's real 16-id expansion genuinely nests a real subfamily's.
+// TRA-282 (2026-09-19): gridEnabled: false -- this test exercises v2PickerChoiceSlugs()/
+// distinctPickerChoiceSlugs()'s own dedup logic (a flat-picker-slug concept: one *slug* can
+// expand to several ids, so a dominated child slug folds into its parent's). That nesting doesn't
+// exist in the grid's id space -- a grid pick is always one atomic leaf id -- so once
+// GENRE_GRID_ENABLED defaults on, showHome()/renderProfileChip() route a grid-driven profile
+// through gridChoiceChips() instead (one id, one chip, no folding: see the "grid-driven home
+// chips/badge" describe block below for that path's own coverage). This test stays pinned to the
+// flat repli to keep asserting the legacy dedup path unchanged.
 describe("home genre list vs. profile chip counter — TRA-270: same deduplicated set", () => {
 	it("renders exactly as many home chips as the profile chip's own count, collapsing a dominated subfamily", async () => {
-		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow({ gridEnabled: false });
 		try {
 			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
 			const rockIds = legacyMap["genre:rock"] ?? [];

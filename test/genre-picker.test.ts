@@ -590,11 +590,19 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 	}
 
 	it("a home genre chip opens the picker in the same state as the existing button", async () => {
-		const { w, slug, id } = await newSeededWindow();
+		const { w, id } = await newSeededWindow();
 
 		const chip = w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement;
 		expect(chip).toBeTruthy();
-		expect(chip.dataset.id).toBe(slug); // home chips stay keyed by the graph slug either way
+		// TRA-282 bug fix (2026-09-19): before the fix, showHome() rendered "Tes genres" chips by
+		// round-tripping the v2 profile's ids back through the flat-picker slug space
+		// (v2PickerChoiceSlugs()) even when the grid was the active picker -- so a home chip's
+		// data-id was the graph slug either way, and only ids reachable through genrePickList()'s
+		// 24 flat slugs rendered a chip at all. Now that gridChoiceChips() reads ids straight off
+		// TAXONOMY.genres (see the comment above v2PickerChoiceSlugs() in web/index.html), a home
+		// chip's data-id is the taxonomy id itself, not the graph slug -- D4's click handler only
+		// needs data-id present (any value) to open edit, so this doesn't break D4.
+		expect(chip.dataset.id).toBe(id);
 		chip.click();
 		// Fails before the fix: the chip still just navigates via show(), so #onb never opens.
 		expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(false);
@@ -661,5 +669,91 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 		card?.click();
 
 		expect(w.location.search).toBe(`?node=${encodeURIComponent((card as HTMLElement).dataset.id as string)}`);
+	});
+});
+
+// TRA-282 bug fix (2026-09-19): before this fix, showHome()/renderProfileChip() rendered every
+// v2 profile -- grid-driven or not -- by round-tripping its ids back through the flat-picker slug
+// space (v2PickerChoiceSlugs() -> idsToPickerSlugs(ids, ..., genrePickList(), ...)), which only
+// "sees" an id when some flat-picker slug's own legacy expansion covers it. Found on PR #275's
+// browser check: a real grid pick of Acid/Breaks/Deep House (none reachable through
+// genrePickList()'s 24-slug flat list) rendered an empty "Tes genres" list and a "0 genres" badge,
+// even though localStorage correctly held the three ids. Fixed by gridChoiceChips() (web/
+// index.html), which reads ids straight off TAXONOMY.genres instead of through the flat picker --
+// see the comment above v2PickerChoiceSlugs() there for the full explanation. This test is red
+// against the pre-fix code (empty chip list, "0 genres" badge) and green after.
+describe("grid-driven home chips and badge (TRA-282 bug fix)", () => {
+	function newWindow(data: unknown): HomeWindow {
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(data))) as unknown as typeof fetch;
+			},
+		});
+		return dom.window as unknown as HomeWindow;
+	}
+
+	it("renders a chip per id, the right badge count, and D4's edit-open still works -- for ids off genrePickList()'s 24-slug flat list", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const taxonomy = built.taxonomy as GenreTaxonomyProjection;
+		const legacyMap = taxonomy.legacySelectionBySlug as Record<string, string[]>;
+
+		// A throwaway probe just to read the real flat-picker slug list, same reasoning as the
+		// other describe blocks in this file -- not hardcoded.
+		const probe = newWindow(built);
+		await waitReady(probe);
+		const flatSlugs = probe.genrePickList();
+		probe.close();
+
+		// Any taxonomy id no flat-picker slug's own legacy expansion reaches -- idsToPickerSlugs()
+		// (the pre-fix code path) could never render a chip for one of these.
+		const reachableIds = new Set(flatSlugs.flatMap((s) => legacyMap[s] ?? []));
+		const offPicker = taxonomy.genres.filter((g) => !reachableIds.has(g.id));
+		expect(offPicker.length).toBeGreaterThanOrEqual(3); // sanity: the real taxonomy has enough
+
+		const chosen = offPicker.slice(0, 3);
+		const seededV2: MigratedProfile = { name: "Raph", genres: chosen.map((g) => g.id) };
+
+		const w = newWindow(built);
+		try {
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(seededV2));
+			await waitReady(w);
+			w.showHome();
+
+			// Badge: exactly 3, not 0 -- the bug's headline symptom.
+			const chipText = (w.document.getElementById("profile-chip") as HTMLElement).textContent ?? "";
+			expect(chipText).toContain(`${chosen.length} genres`);
+
+			// One home chip per chosen id, correct name and data-id -- not an empty <div class="chips">.
+			const homeChips = [...w.document.querySelectorAll(".home-genres .chip[data-id]")] as HTMLElement[];
+			expect(homeChips).toHaveLength(chosen.length);
+			const byDataId = new Map(homeChips.map((el) => [el.dataset.id, el]));
+			let linkedCount = 0;
+			for (const entry of chosen) {
+				const chip = byDataId.get(entry.id);
+				expect(chip, `no chip for ${entry.id} (${entry.name})`).toBeTruthy();
+				expect(chip?.textContent).toBe(entry.name);
+				if (chip?.tagName === "A") {
+					linkedCount++;
+					const url = new URL(
+						(chip as HTMLAnchorElement).getAttribute("href") as string,
+						"http://localhost/",
+					);
+					// The chip links to one of the entry's own slugs (whichever resolves to a real
+					// graph node -- gridChoiceChips() doesn't commit to which one ahead of time).
+					expect(entry.slugs).toContain(url.searchParams.get("node"));
+				}
+			}
+			// Sanity: exercises the "resolves to a real node" branch too, not just the unlinked one.
+			expect(linkedCount).toBeGreaterThan(0);
+
+			// D4: clicking one of these grid-driven chips still opens the edit picker.
+			(homeChips[0] as HTMLElement).click();
+			expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(false);
+		} finally {
+			w.close();
+		}
 	});
 });
