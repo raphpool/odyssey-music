@@ -29,7 +29,7 @@
  * Usage: tsx scripts/migrations/2026-09-10-rename-genre-node.ts <cache-dir> <from> <to>
  *        [--apply] [--redirects <path>]
  */
-import { mkdir, rm, stat } from "node:fs/promises";
+import { mkdir, readFile, rm, stat } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
@@ -162,7 +162,13 @@ export async function runRename(
 		onboardingSlugs = [...options.onboardingSlugs];
 	} else {
 		const webIndexPath = options.webIndexPath ?? join(defaultDataDir(), "..", "web", "index.html");
-		const html = await readTextOrDefault(webIndexPath, "");
+		// 2026-09-19 review of TRA-277: converged with runMigration's own hardening (2026-09-17,
+		// TRA-138) -- only a file that EXISTS and no longer names the constant is the planned D3
+		// retirement. A MISSING web/index.html is a wrong path or a broken checkout, not that, and
+		// must fail loudly; reading it as an empty string via readTextOrDefault used to disarm the
+		// v1 guard silently AND, with this ticket's own branch-3 addition, print a reassuring
+		// "considered retired" notice for what is actually a broken checkout.
+		const html = await readFile(webIndexPath, "utf8");
 		onboardingSlugs = /\bONBOARDING_GENRES\b/.test(html)
 			? await loadOnboardingGenreSlugs(webIndexPath)
 			: undefined;

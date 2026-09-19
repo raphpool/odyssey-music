@@ -157,7 +157,7 @@ export interface UnionManifest {
 	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
 	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
 	// the one that actually describes the artifact's final state.
-	migrationPreview?: { groupsFound: number; exitCode: 0 | 1; report: string };
+	migrationPreview?: { groupsFound: number; exitCode: 0 | 1; report: string; migrationWarnings?: string[] };
 	// Present only with --apply-merge: the FINAL state of the artifact after the migration
 	// actually ran (winner/criterion/losers/rewritten-edge counts live only in `report`'s free
 	// text -- MigrationResult has no structured per-group field, and the migration script is out
@@ -176,6 +176,13 @@ export interface UnionManifest {
 		// no structured failure reason, and `report` (unlike this) describes the merge plan, not
 		// why it was refused.
 		refusalReason?: string;
+		// 2026-09-19 review of TRA-277: every line runMigration wrote to stderr, present even on a
+		// SUCCESSFUL run (exitCode 0) -- unlike `refusalReason` above, which captureStderr's output
+		// only ever reached via `migrationStderr.trim()` when exitCode !== 0. Without this, the
+		// branch-3 "ONBOARDING_GENRES retired, taxonomy protection alone" notice never reached an
+		// operator on the one path production actually takes (deploy/sync-genre-cache.sh always
+		// passes --apply-merge): the migration succeeds, so its warning was silently dropped.
+		migrationWarnings?: string[];
 		// Union entries (decision "copied"/"kept") that existed right after the union step but no
 		// longer have a live node after the migration ran -- the "final state, not intermediate"
 		// gap the B6a review flagged (a merged-away node reported as still "copied").
@@ -467,6 +474,11 @@ export async function buildCacheUnion(
 		serverRedirectsPath?: string;
 		outputRoot?: string;
 		onboardingSlugs?: readonly string[];
+		// Passed through to runMigration only when `onboardingSlugs` above is omitted -- lets a
+		// caller (namely this file's own tests, 2026-09-19 review) point the "is ONBOARDING_GENRES
+		// still in web/index.html" detection at a fixture instead of the real repo file, without
+		// pre-resolving the slug list itself the way `onboardingSlugs` does.
+		webIndexPath?: string;
 		// Genre-taxonomy (v2) protection passthrough -- TRA-277. Without either of these, the
 		// merge guard below falls back to runMigration's own default, which resolves relative to
 		// `dirname(cacheDir)`: fine for the migration's own CLI (run directly against a real
@@ -646,7 +658,11 @@ export async function buildCacheUnion(
 	const { result: migration, stderr: migrationStderr } = await captureStderr(() =>
 		runMigration(outputDir, willApply, {
 			redirectsPath,
-			...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
+			...(options.onboardingSlugs
+				? { onboardingSlugs: options.onboardingSlugs }
+				: options.webIndexPath
+					? { webIndexPath: options.webIndexPath }
+					: {}),
 			// TRA-277: anchored to `repoCacheDir` -- the caller's own repo cache argument, whose
 			// sibling data/genre-taxonomy.json is the real taxonomy (deploy/sync-genre-cache.sh
 			// sets REPO_CACHE_DIR="$REPO_ROOT/cache", so this lines up with the real repo in
@@ -666,6 +682,14 @@ export async function buildCacheUnion(
 		}),
 	);
 
+	// 2026-09-19 review of TRA-277: every non-blank line of the migration's own stderr, regardless
+	// of exitCode -- see migrationApply's migrationWarnings doc for why this can't just live behind
+	// the existing `refusalReason` (exitCode !== 0 only).
+	const migrationWarnings = migrationStderr
+		.split("\n")
+		.map((line) => line.trim())
+		.filter((line) => line.length > 0);
+
 	let migrationApply: UnionManifest["migrationApply"];
 	let referenceRegressions: UnionManifest["referenceRegressions"];
 	if (options.applyMerge) {
@@ -682,6 +706,7 @@ export async function buildCacheUnion(
 				refusalReason:
 					"server redirects table diverges from the repo's -- refusing to apply the merge (see redirectsConflicts)",
 				removedByMigration: [],
+				...(migrationWarnings.length > 0 ? { migrationWarnings } : {}),
 			};
 		} else {
 			// Re-read AFTER the migration ran: the union's live nodes and its redirects, which the
@@ -706,6 +731,7 @@ export async function buildCacheUnion(
 				report: migration.report,
 				archivedNodeCount,
 				...(migration.exitCode !== 0 ? { refusalReason: migrationStderr.trim() } : {}),
+				...(migrationWarnings.length > 0 ? { migrationWarnings } : {}),
 				removedByMigration,
 			};
 
@@ -752,6 +778,7 @@ export async function buildCacheUnion(
 						groupsFound: migration.groupsFound,
 						exitCode: migration.exitCode,
 						report: migration.report,
+						...(migrationWarnings.length > 0 ? { migrationWarnings } : {}),
 					},
 				}),
 		...(migrationApply ? { migrationApply } : {}),
