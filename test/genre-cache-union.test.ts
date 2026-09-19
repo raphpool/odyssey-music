@@ -12,6 +12,7 @@ import {
 	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
+import type { GenreTaxonomy } from "../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
@@ -353,12 +354,21 @@ async function countEdges(cacheDir: string): Promise<{ total: number; byField: R
 }
 
 describe("buildCacheUnion", () => {
+	let repoRoot: string;
 	let repoDir: string;
 	let serverDir: string;
 	let redirectsPath: string;
 
 	beforeEach(async () => {
-		repoDir = await mkdtemp(join(tmpdir(), "odyssey-union-repo-"));
+		// `repoDir` is a "cache" subdir of its own fresh root (2026-09-19 review of TRA-277), not a
+		// bare mkdtemp() dir itself: buildCacheUnion's own taxonomyPath default now resolves
+		// dirname(repoCacheDir)/data/genre-taxonomy.json, and dirname() of a bare mkdtemp() dir is
+		// the shared OS tmp root -- on a self-hosted runner where /tmp is shared across jobs, a
+		// data/genre-taxonomy.json left there by anything else would silently arm taxonomy
+		// protection for every one of this file's 40+ tests. This mirrors
+		// test/genre-cache-sync.test.ts's own repoRoot/cache layout.
+		repoRoot = await mkdtemp(join(tmpdir(), "odyssey-union-repo-"));
+		repoDir = join(repoRoot, "cache");
 		serverDir = await mkdtemp(join(tmpdir(), "odyssey-union-server-"));
 		redirectsPath = join(await mkdtemp(join(tmpdir(), "odyssey-union-data-")), "genre-redirects.json");
 		await writeFile(
@@ -368,12 +378,18 @@ describe("buildCacheUnion", () => {
 		);
 	});
 	afterEach(async () => {
-		await rm(repoDir, { recursive: true, force: true });
+		await rm(repoRoot, { recursive: true, force: true });
 		await rm(serverDir, { recursive: true, force: true });
 	});
 
 	function union(
-		extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[]; serverRedirectsPath?: string } = {},
+		extra: {
+			applyMerge?: boolean;
+			onboardingSlugs?: readonly string[];
+			serverRedirectsPath?: string;
+			taxonomy?: GenreTaxonomy;
+			taxonomyPath?: string;
+		} = {},
 	) {
 		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
 	}
@@ -870,6 +886,11 @@ describe("buildCacheUnion", () => {
 			const second = await buildCacheUnion(first.outputDir, first.outputDir, {
 				redirectsPath: join(first.outputDir, "genre-redirects.json"),
 				onboardingSlugs: [],
+				// Explicit, never-written path under this test's own repoRoot (2026-09-19 review of
+				// TRA-277) -- `first.outputDir` here stands in for repoCacheDir, and its dirname is
+				// the shared OS tmp root, not this test's own isolated tree; see the beforeEach
+				// comment above for why that matters on a shared runner.
+				taxonomyPath: join(repoRoot, "unused-taxonomy.json"),
 			});
 			const secondNodes = await fingerprint(second.outputDir, "nodes");
 
@@ -1091,6 +1112,102 @@ describe("buildCacheUnion", () => {
 			);
 			expect(manifest.migrationApply?.refusalReason).toMatch(/onboarding genre slug/);
 			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		// TRA-277: buildCacheUnion used to silently drop any taxonomy option -- runMigration's own
+		// default taxonomyPath resolves relative to its `cacheDir` argument, which here is always
+		// `outputDir` (a synthetic mkdtemp() tree, no sibling data/), so the taxonomy-era guard
+		// (D6a) could never actually engage through this call path, in production too, once
+		// ONBOARDING_GENRES is retired (TRA-211) and v1 no longer covers for it. Mirrors the
+		// onboarding test just above, but for the taxonomy-era protection instead of v1.
+		it("captures the migration's refusal (a taxonomy-protected loser) as applied:false + refusalReason, once `taxonomy` is threaded through to the merge guard", async () => {
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-IDM" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-IDM", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			// Both candidate slugs published, so whichever the election picks as the loser is
+			// covered without depending on knowing the election's exact tie-break order (same
+			// reasoning as the onboarding test above).
+			const taxonomy: GenreTaxonomy = {
+				version: 2,
+				families: [{ key: "electronic", label: "Electronic", order: 0 }],
+				genres: [
+					{
+						id: "local:idm-taxonomy-fixture",
+						name: "Idm Taxonomy Fixture",
+						family: "electronic",
+						published: true,
+						sourceSlugs: ["genre:idm", "genre:idm-alt"],
+					},
+				],
+			};
+
+			const { manifest } = await union({ applyMerge: true, taxonomy });
+
+			expect(manifest.migrationApply).toEqual(
+				expect.objectContaining({ applied: false, exitCode: 1, deletedCount: 0 }),
+			);
+			expect(manifest.migrationApply?.refusalReason).toMatch(/genre taxonomy protection/);
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		// 2026-09-19 review of TRA-277: captureStderr only ever reached the manifest via
+		// `refusalReason`, which is set `migration.exitCode !== 0` only -- so on the ONE path
+		// production actually takes (deploy/sync-genre-cache.sh always passes --apply-merge), a
+		// SUCCESSFUL run's branch-3 notice ("ONBOARDING_GENRES retired, taxonomy protection alone")
+		// never reached an operator at all. `onboardingSlugs` deliberately NOT passed here (unlike
+		// every other test in this file, which always overrides it): this exercises the real
+		// "is the constant still in web/index.html" detection, via `webIndexPath` pointing at a
+		// fixture without it, not the explicit-override shortcut.
+		it("surfaces the migration's own stderr in the manifest even on a successful run (exitCode 0), not only on refusal", async () => {
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-IDM" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-IDM", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			// Untouched by the merge -- the taxonomy just needs a real, resolvable published source
+			// so it isn't itself refused as "publishes no genres" (D6a's own empty-check).
+			await seed(repoDir, node({ slug: "genre:unrelated", qid: "Q-UNREL" }));
+			const webIndexDir = await mkdtemp(join(tmpdir(), "odyssey-union-no-onboarding-"));
+			const webIndexPath = join(webIndexDir, "index.html");
+			await writeFile(webIndexPath, "<html><body>no picker here</body></html>", "utf8");
+			// A dedicated EMPTY redirects table, not the describe block's own shared `redirectsPath`
+			// (genre:country-music -> genre:country): once taxonomy protection is genuinely active,
+			// runMigration also validates every key of the source-side redirects table still
+			// resolves -- an entry this tiny union never materializes would spuriously refuse this
+			// otherwise-unrelated test (same mechanism TRA-277's own PR discovered against the real
+			// repo's committed data/genre-redirects.json).
+			const isolatedRedirectsPath = join(webIndexDir, "genre-redirects.json");
+			await writeFile(isolatedRedirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+			const taxonomy: GenreTaxonomy = {
+				version: 2,
+				families: [{ key: "electronic", label: "Electronic", order: 0 }],
+				genres: [
+					{
+						id: "local:union-taxonomy-fixture",
+						name: "Union Taxonomy Fixture",
+						family: "electronic",
+						published: true,
+						sourceSlugs: ["genre:unrelated"],
+					},
+				],
+			};
+
+			try {
+				const { manifest } = await buildCacheUnion(repoDir, serverDir, {
+					redirectsPath: isolatedRedirectsPath,
+					applyMerge: true,
+					webIndexPath,
+					taxonomy,
+				});
+
+				expect(manifest.migrationApply?.applied).toBe(true);
+				expect(manifest.migrationApply?.exitCode).toBe(0);
+				expect(manifest.migrationApply?.migrationWarnings?.some((w) => w.includes("retired"))).toBe(true);
+			} finally {
+				await rm(webIndexDir, { recursive: true, force: true });
+			}
 		});
 
 		it("re-reads the union's post-migration redirects (not the pre-existing source table): a reference to a loser with NO pre-existing redirect must not false-positive as broken", async () => {

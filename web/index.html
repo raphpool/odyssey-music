@@ -901,31 +901,20 @@ function renderProfileChip() {
 }
 
 // ─── Onboarding ───────────────────────────────────────────────────────────
-// Curated shortlist for the genre picker. The graph holds 260+ genre nodes,
-// most of them long-tail subgenres — showing them all would be a wall. These
-// are the well-connected families; any slug missing from the loaded bundle is
-// dropped, and we top up from the most-referenced genres so the grid is never
-// thin on a partial export.
-const ONBOARDING_GENRES = [
-  "genre:techno", "genre:house", "genre:ambient", "genre:idm", "genre:drum-and-bass",
-  "genre:dubstep", "genre:uk-garage", "genre:jungle", "genre:disco", "genre:electronic",
-  "genre:synth-pop", "genre:krautrock", "genre:post-punk", "genre:new-wave", "genre:shoegaze",
-  "genre:indie-rock", "genre:psychedelic-rock", "genre:progressive-rock", "genre:punk-rock", "genre:rock",
-  "genre:hip-hop", "genre:trip-hop", "genre:jazz", "genre:funk", "genre:soul",
-  "genre:r-and-b", "genre:reggae", "genre:dub", "genre:pop", "genre:soundtrack",
-  "genre:minimalism", "genre:musique-concrete", "genre:experimental", "genre:glitch",
-];
+// TRA-211/D3a: kill switch for the id-based family grid below (renderFamilyGrid). Off by
+// default -- the grid needs DATA.taxonomy (not shipped in the deployed data.json yet, see
+// loadActiveProfile) and explicit proof the API/static recommendation counts converge (B6c)
+// before it replaces the flat picker as the live default. Same pattern as PROFILE_V2_ENABLED
+// above: overridable via window.__GENRE_GRID_ENABLED__, set before this script runs.
+const GENRE_GRID_ENABLED = window.__GENRE_GRID_ENABLED__ === true;
 const MIN_GENRES = 3;
 
+// TRA-211/D3a decision 4: the flat picker fallback, used only when the id-based family grid
+// isn't active/usable (GENRE_GRID_ENABLED off, or no usable taxonomy). The old curated
+// shortlist constant was retired with the grid; this is now just the 24 most-referenced
+// genres, so the fallback is never thin on a partial export.
 function genrePickList() {
-  const picks = ONBOARDING_GENRES.filter((s) => byId.has(s));
-  if (picks.length >= 12) return picks;
-  const seen = new Set(picks);
-  for (const [slug] of genresByPopularity()) {
-    if (picks.length >= 24) break;
-    if (!seen.has(slug)) { picks.push(slug); seen.add(slug); }
-  }
-  return picks;
+  return genresByPopularity().slice(0, 24).map(([slug]) => slug);
 }
 
 // Genre slugs ordered by how many nodes reference them, most-referenced first.
@@ -947,9 +936,129 @@ function genresByPopularity() {
   return popularityCache;
 }
 
+// ─── Id-based family grid (TRA-211 / D3a) ──────────────────────────────────
+// Unlike the flat picker above, this operates directly in v2 id-space: a checkbox is one
+// taxonomy genre id, no slug/legacy translation needed. Rendered into #onb-genres, gated by
+// GENRE_GRID_ENABLED, when a usable TAXONOMY is loaded.
+let onbGridSelection = new Set();
+
+// Mutates onbGridSelection in place (never reassigns it) so wireFamilyGrid's listeners, bound
+// once per #onb-genres element, keep observing the same Set across every onboarding re-open.
+function seedGridSelection(ids) {
+  onbGridSelection.clear();
+  (ids || []).forEach((id) => onbGridSelection.add(id));
+}
+
+// The projection already contains only published-admissible entries (GenreTaxonomyProjection),
+// so this is a plain filter -- no separate admissibility check needed here.
+function familyGenres(taxonomy, familyKey) {
+  return taxonomy.genres.filter((g) => g.family === familyKey);
+}
+
+// "none" | "some" | "all", over a family's *displayed* children only. A childless family is
+// always "none" here (checked === 0 for an empty `genres`), never the vacuous-truth "all" a
+// `[].every(...)`-style check would give (criterion: parents sans enfant non cochés).
+function familyCheckState(genres, selection) {
+  const checked = genres.filter((g) => selection.has(g.id)).length;
+  if (checked === 0) return "none";
+  return checked === genres.length ? "all" : "some";
+}
+
+// The family "tout" control: a partial or empty selection is completed to the full family; a
+// fully-checked family is cleared.
+function toggleFamilySelection(genres, selection) {
+  const allChecked = familyCheckState(genres, selection) === "all";
+  genres.forEach((g) => (allChecked ? selection.delete(g.id) : selection.add(g.id)));
+}
+
+// Same off-grid-id invariant as mergePickerSelectionIntoV2 (D2b/B1), trivial in id-space: a
+// checkbox only ever adds/removes the one id it represents, so an id absent from the rendered
+// grid (unpublished, quarantined, or a stale local: pick) is simply never touched.
+function mergeGridSelectionIntoV2(current, taxonomy, selection) {
+  const onGrid = new Set(taxonomy.genres.map((g) => g.id));
+  const ids = new Set((current.genres || []).filter((id) => !onGrid.has(id)));
+  selection.forEach((id) => ids.add(id));
+  return { ...current, genres: [...ids] };
+}
+
+function updateFamilyAllControl(familyEl, genres, selection) {
+  const state = familyCheckState(genres, selection);
+  const control = familyEl.querySelector(".genre-family-all");
+  control.setAttribute("aria-checked", state === "some" ? "mixed" : String(state === "all"));
+}
+
+function renderFamilyGrid(grid, taxonomy, selection) {
+  const families = taxonomy.families
+    .map((family) => ({ family, genres: familyGenres(taxonomy, family.key) }))
+    .filter(({ genres }) => genres.length > 0); // groupes vides masqués sur cache incomplet
+
+  grid.innerHTML = families.map(({ family, genres }) => {
+    const state = familyCheckState(genres, selection);
+    const children = genres.map((g) => {
+      const on = selection.has(g.id);
+      return `<button type="button" class="genre-pick-id" role="checkbox" aria-checked="${on}" data-id="${escapeHtml(g.id)}">${escapeHtml(g.name)}</button>`;
+    }).join("");
+    return `<div class="genre-family" data-family="${escapeHtml(family.key)}">
+      <div class="genre-family-head">
+        <button type="button" class="genre-family-expand" aria-expanded="false">${escapeHtml(family.label)} (${genres.length})</button>
+        <button type="button" class="genre-family-all" role="checkbox" aria-checked="${state === "some" ? "mixed" : String(state === "all")}">tout</button>
+      </div>
+      <div class="genre-family-children" hidden>${children}</div>
+    </div>`;
+  }).join("");
+}
+
+// Wired once per #onb-genres element (guarded by dataset.gridWired): renderFamilyGrid replaces
+// innerHTML on every open, but onbGridSelection is mutated in place (seedGridSelection), so a
+// listener bound here on first render keeps observing live state across re-opens without
+// accumulating duplicate bindings on the persistent grid container.
+function wireFamilyGrid(grid, taxonomy, selection, onChange) {
+  if (grid.dataset.gridWired) return;
+  grid.dataset.gridWired = "1";
+  const onActivate = (e) => {
+    if (e.type === "keydown") {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+    }
+    const familyEl = e.target.closest(".genre-family");
+    if (!familyEl) return;
+    const genres = familyGenres(taxonomy, familyEl.dataset.family);
+    const expandBtn = e.target.closest(".genre-family-expand");
+    const allBtn = e.target.closest(".genre-family-all");
+    const pickBtn = e.target.closest(".genre-pick-id");
+    if (expandBtn) {
+      const childrenEl = familyEl.querySelector(".genre-family-children");
+      childrenEl.hidden = !childrenEl.hidden;
+      expandBtn.setAttribute("aria-expanded", String(!childrenEl.hidden));
+    } else if (allBtn) {
+      toggleFamilySelection(genres, selection);
+      familyEl.querySelectorAll(".genre-pick-id").forEach((btn) => {
+        btn.setAttribute("aria-checked", String(selection.has(btn.dataset.id)));
+      });
+      updateFamilyAllControl(familyEl, genres, selection);
+      onChange();
+    } else if (pickBtn) {
+      const id = pickBtn.dataset.id;
+      if (selection.has(id)) selection.delete(id); else selection.add(id);
+      pickBtn.setAttribute("aria-checked", String(selection.has(id)));
+      updateFamilyAllControl(familyEl, genres, selection);
+      onChange();
+    }
+  };
+  grid.addEventListener("click", onActivate);
+  grid.addEventListener("keydown", onActivate);
+}
+
 let onbSelection = new Set();
 let onbInitialSelection = new Set(); // picker state at open time -- see mergePickerSelectionIntoV2
 let onbMode = "signup";
+
+// The picker actually driving selection this session: the id-based grid's onbGridSelection when
+// active, the flat picker's onbSelection otherwise. Both #onb-count and #onb-done read this, not
+// either Set directly, so switching pickers never needs a second copy of the threshold check.
+function currentPickCount() {
+  return GENRE_GRID_ENABLED && TAXONOMY ? onbGridSelection.size : onbSelection.size;
+}
 
 function wireOnboarding() {
   const onb = document.getElementById("onb");
@@ -983,10 +1092,18 @@ function wireOnboarding() {
     // B2: defensive -- the button is disabled in this state (renderGenreGrid), but a v2
     // profile locked out by an unusable taxonomy must never fall through to a v1 write.
     if (v2EditUnavailable()) return;
-    if (onbSelection.size < MIN_GENRES) return;
+    if (currentPickCount() < MIN_GENRES) return;
     const name = nameEl.value.trim() || (currentProfile() && currentProfile().name) || "toi";
     const email = emailEl.value.trim();
-    if (activeV2) {
+    if (GENRE_GRID_ENABLED && TAXONOMY) {
+      // TRA-211: ids are native to v2 -- no legacy slug/id translation needed here. A fresh
+      // signup (no activeV2 yet) writes v2 directly instead of funnelling through the v1 shape;
+      // decision 4 reserves that funnel for the flat fallback picker below.
+      const base = activeV2
+        ? (email ? { ...activeV2, name, email } : { ...activeV2, name })
+        : { name, ...(email ? { email } : {}), genres: [] };
+      saveActiveV2(mergeGridSelectionIntoV2(base, TAXONOMY, onbGridSelection));
+    } else if (activeV2) {
       // TRA-251/B1: only translate the slugs whose checked state actually changed this
       // session (onbInitialSelection vs onbSelection) back to ids -- never overwriting an id
       // the picker didn't offer a checkbox for (criterion 7). Bails out without writing if the
@@ -1029,13 +1146,24 @@ function openOnboarding({ mode = "signup" } = {}) {
   const profile = currentProfile();
   nameEl.value = (profile && profile.name) || "";
   emailEl.value = (profile && profile.email) || "";
-  // TRA-137/D2b: seed the old picker's checkbox state from a v2 profile's ids by
-  // translating them back to slugs (criterion 6); a v1 profile's genres are already
-  // slugs and pass straight through, same as before this ticket.
-  onbSelection = activeV2 && TAXONOMY
-    ? idsToPickerSlugs(activeV2.genres, activeV2.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug)
-    : new Set((profile && profile.genres) || []);
-  onbInitialSelection = new Set(onbSelection);
+  if (GENRE_GRID_ENABLED && TAXONOMY) {
+    // TRA-211: ids seed straight from the v2 record -- no slug translation needed (unlike the
+    // flat picker below), since the grid's checkboxes are the taxonomy ids themselves. Filtered
+    // to ids actually on the grid: an off-grid id (unpublished, quarantined, stale local: pick)
+    // must stay out of onbGridSelection, or it would silently inflate the MIN_GENRES counter
+    // for a choice the user never sees a checkbox for (mergeGridSelectionIntoV2 protects it on
+    // save regardless, from `current.genres` directly).
+    const onGrid = new Set(TAXONOMY.genres.map((g) => g.id));
+    seedGridSelection(((profile && profile.genres) || []).filter((id) => onGrid.has(id)));
+  } else {
+    // TRA-137/D2b: seed the old picker's checkbox state from a v2 profile's ids by
+    // translating them back to slugs (criterion 6); a v1 profile's genres are already
+    // slugs and pass straight through, same as before this ticket.
+    onbSelection = activeV2 && TAXONOMY
+      ? idsToPickerSlugs(activeV2.genres, activeV2.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug)
+      : new Set((profile && profile.genres) || []);
+    onbInitialSelection = new Set(onbSelection);
+  }
   document.getElementById("onb-err").hidden = true;
   document.getElementById("onb-step2-kicker").textContent = mode === "edit" ? "Ton profil" : "Étape 2 / 2";
   document.getElementById("onb-back").textContent = mode === "edit" ? "annuler" : "← retour";
@@ -1061,6 +1189,12 @@ function renderGenreGrid() {
     document.getElementById("onb-done").disabled = true;
     return;
   }
+  if (GENRE_GRID_ENABLED && TAXONOMY) {
+    renderFamilyGrid(grid, TAXONOMY, onbGridSelection);
+    wireFamilyGrid(grid, TAXONOMY, onbGridSelection, refreshGenreCount);
+    refreshGenreCount();
+    return;
+  }
   grid.innerHTML = genrePickList().map((slug) => {
     const n = byId.get(slug);
     const on = onbSelection.has(slug) ? " on" : "";
@@ -1079,7 +1213,7 @@ function renderGenreGrid() {
 }
 
 function refreshGenreCount() {
-  const n = onbSelection.size;
+  const n = currentPickCount();
   const countEl = document.getElementById("onb-count");
   countEl.textContent = n < MIN_GENRES ? `${n}/${MIN_GENRES} minimum` : `${n} sélectionné${n > 1 ? "s" : ""}`;
   countEl.classList.toggle("low", n < MIN_GENRES);

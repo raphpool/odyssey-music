@@ -931,6 +931,31 @@ describe("runMigration (disk integration)", () => {
 			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
 		});
 
+		// TRA-277: the fourth branch of the D6c rule -- v1 retired (ONBOARDING_GENRES gone, TRA-211)
+		// but the genre taxonomy is loaded and non-empty -- used to fall through both `if`/`else if`
+		// below silently: the merge succeeded, but nothing told the operator v1 was gone on purpose
+		// rather than by accident. Mirrors "warns on stderr... when the taxonomy is absent and v1
+		// alone protects the merge" just above, for the opposite combination.
+		it("reports explicitly on stderr, but still succeeds, once ONBOARDING_GENRES is retired and the genre taxonomy alone protects the merge", async () => {
+			const { loserPath } = await seedElectronicGroup();
+			// The identifier itself is nowhere in the file -- the real "retired on purpose" (D3,
+			// TRA-211) shape, same fixture as the "both unavailable" test just below.
+			const webIndexPath = join(dir, "no-onboarding-with-taxonomy.html");
+			await writeFile(webIndexPath, "<html><body>no picker here</body></html>", "utf8");
+			// Untouched by this merge, isolating this test from the taxonomy-protection refusal path.
+			await writeNodeFile(genreNode({ slug: "genre:unrelated", name: "Unrelated", qid: "Q99" }));
+			const taxonomy = publishedTaxonomy(["genre:unrelated"]);
+			const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+			try {
+				const result = await runMigration(dir, true, { catalogNames, redirectsPath, webIndexPath, taxonomy });
+				expect(result.exitCode).toBe(0);
+				await expect(readFile(loserPath, "utf8")).rejects.toThrow();
+				expect(stderrSpy.mock.calls.some(([chunk]) => String(chunk).includes("retired"))).toBe(true);
+			} finally {
+				stderrSpy.mockRestore();
+			}
+		});
+
 		it("refuses explicitly when both ONBOARDING_GENRES and the genre taxonomy are unavailable", async () => {
 			const { loserPath } = await seedElectronicGroup();
 			// The identifier itself is nowhere in the file -- the actual "retired on purpose"

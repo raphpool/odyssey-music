@@ -11,7 +11,7 @@ import {
 	writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { dirname, join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 
 // deploy/sync-genre-cache.sh -- B6b (TRA-67). Real ssh/rsync/curl are never invoked: fake
@@ -43,12 +43,49 @@ function writeFakeBin(dir: string, name: string, body: string): void {
 }
 
 /** A minimal but valid repo cache: one genre node, so prepare-genre-cache-union.ts's own
- * looksLikeCacheDir guard accepts it. */
+ * looksLikeCacheDir guard accepts it. Carries an explicit `slug` field (2026-09-19, TRA-277):
+ * runMigration's taxonomy-protection guard reads a node's survival from its own `slug` field,
+ * not its filename, and `seedGenreTaxonomy` below needs this node to count as "surviving" so a
+ * published source can safely point at it. */
 function seedRepoCache(dir: string, slug = "only-repo"): void {
 	mkdirSync(join(dir, "nodes", "genre"), { recursive: true });
 	writeFileSync(
 		join(dir, "nodes", "genre", `${slug}.json`),
-		JSON.stringify({ type: "genre", name: slug, materialized_at: "2026-01-01T00:00:00.000Z" }),
+		JSON.stringify({
+			type: "genre",
+			slug: `genre:${slug}`,
+			name: slug,
+			materialized_at: "2026-01-01T00:00:00.000Z",
+		}),
+	);
+}
+
+/** A minimal, valid, published genre taxonomy next to `repoCacheDir` (TRA-277): once
+ * ONBOARDING_GENRES is retired from web/index.html (TRA-211), the union's own merge guard falls
+ * through to this taxonomy-era protection instead -- see buildCacheUnion's own taxonomyPath
+ * default, anchored to `dirname(repoCacheDir)/data/genre-taxonomy.json`, the same layout the real
+ * repo checkout has. Its one entry only protects the repo-only seed node (always present, never
+ * a duplicate-merge participant in these fixtures) -- runMigration's "every published source
+ * must still resolve" check is a whole-cache invariant, so pointing it at anything these small
+ * fixtures don't actually materialize would spuriously refuse every scenario. */
+function seedGenreTaxonomy(repoCacheDir: string): void {
+	const dataDir = join(dirname(repoCacheDir), "data");
+	mkdirSync(dataDir, { recursive: true });
+	writeFileSync(
+		join(dataDir, "genre-taxonomy.json"),
+		JSON.stringify({
+			version: 2,
+			families: [{ key: "electronic", label: "Electronic", order: 0 }],
+			genres: [
+				{
+					id: "local:sync-fixture-genre",
+					name: "Sync Fixture Genre",
+					family: "electronic",
+					published: true,
+					sourceSlugs: ["genre:only-repo"],
+				},
+			],
+		}),
 	);
 }
 
@@ -102,6 +139,38 @@ const DANCE_HALL_ALREADY_COMMITTED = JSON.stringify({
 	redirects: { ...REAL_COMMITTED_REDIRECTS.redirects, "genre:dance-hall": "genre:dancehall" },
 });
 
+/** Every redirect TARGET in the real, committed data/genre-redirects.json, materialized as a
+ * minimal live genre node in the repo fixture (2026-09-19, TRA-277). Needed only once a real
+ * duplicate group reaches runMigration's taxonomy-era protection (D6a): that check treats every
+ * key of the real repo's own committed redirects table as still-protected (same rule as an
+ * already-published taxonomy source, see runMigration's "protectedSlugs"), independently of
+ * whatever this fixture's own scoped taxonomy publishes -- and that table is loaded from the
+ * real repo unconditionally (sync-genre-cache.sh never overrides the union's source-side
+ * redirectsPath, only --server-redirects-path; see buildCacheUnion). Without a live node for
+ * every one of its targets, the protection would spuriously refuse on redirects this tiny fixture
+ * never otherwise touches. Reads the real file dynamically, like the "diverges from the repo's
+ * committed one" test below, so this stays correct as that table's content evolves. */
+function seedRealGenreRedirectTargets(repoCacheDir: string): void {
+	const committed = JSON.parse(readFileSync(resolve("data/genre-redirects.json"), "utf8")) as {
+		redirects: Record<string, string>;
+	};
+	mkdirSync(join(repoCacheDir, "nodes", "genre"), { recursive: true });
+	for (const target of new Set(Object.values(committed.redirects))) {
+		const body = target.slice("genre:".length);
+		const path = join(repoCacheDir, "nodes", "genre", `${body}.json`);
+		if (existsSync(path)) continue; // never clobber a fixture node seeded for another reason
+		writeFileSync(
+			path,
+			JSON.stringify({
+				type: "genre",
+				slug: target,
+				name: body,
+				materialized_at: "2026-01-01T00:00:00.000Z",
+			}),
+		);
+	}
+}
+
 interface RunOptions {
 	apply?: boolean;
 	/** Seed the server cache with a duplicate-QID pair, so the union has a merge to apply. */
@@ -139,11 +208,17 @@ function seedOldBackups(dir: string, count: number): void {
 function run(options: RunOptions = {}) {
 	const binDir = tmp("sync-fakes-");
 	const serverRoot = tmp("sync-fake-server-");
-	const repoCacheDir = tmp("sync-repo-cache-");
+	// A "cache" subdir of its own fresh root (2026-09-19, TRA-277), not the bare tmp dir itself:
+	// gives repoCacheDir a sibling data/ to carry the genre-taxonomy.json fixture below, mirroring
+	// the real repo's own cache/ + data/ layout (deploy/sync-genre-cache.sh's REPO_CACHE_DIR is
+	// likewise "$REPO_ROOT/cache").
+	const repoRoot = tmp("sync-repo-");
+	const repoCacheDir = join(repoRoot, "cache");
 	const callsLog = join(tmp("sync-calls-"), "calls.log");
 	writeFileSync(callsLog, "");
 
 	seedRepoCache(repoCacheDir);
+	seedGenreTaxonomy(repoCacheDir);
 	const serverCacheRemote = join(serverRoot, "cache");
 	const serverRedirectsRemote = join(serverRoot, "data", "genre-redirects.json");
 	const serverBackupDir = join(serverRoot, "backups");
@@ -156,7 +231,10 @@ function run(options: RunOptions = {}) {
 		mkdirSync(join(serverRoot, "data"), { recursive: true });
 		writeFileSync(serverRedirectsRemote, options.seedRedirects ?? JSON.stringify({ redirects: {} }));
 	}
-	if (options.duplicateOnServer) seedDuplicateOnServer(serverCacheRemote);
+	if (options.duplicateOnServer) {
+		seedDuplicateOnServer(serverCacheRemote);
+		seedRealGenreRedirectTargets(repoCacheDir);
+	}
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
 	if (options.preexistingBackups) seedOldBackups(serverBackupDir, options.preexistingBackups);
