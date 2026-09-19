@@ -13992,5 +13992,27 @@
         "qid": "Q25099840"
       }
     }
+  ],
+  "artist:berto-romero": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chimo-bayo",
+        "type": "artist",
+        "name": "Chimo Bayo"
+      }
+    }
+  ],
+  "artist:code-name": [
+    {
+      "field": "collaborators",
+      "cardinality": "list",
+      "edge": {
+        "slug": "artist:chimo-bayo",
+        "type": "artist",
+        "name": "Chimo Bayo"
+      }
+    }
   ]
 }

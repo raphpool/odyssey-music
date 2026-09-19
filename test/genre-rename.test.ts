@@ -461,14 +461,77 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		}
 	});
 
+	// 2026-09-19 review of TRA-277: runRename used to read web/index.html via
+	// readTextOrDefault(path, "") -- a MISSING file silently read as "", exactly like the array
+	// literal simply not matching, so the "v1 retired on purpose" branch (this ticket's own
+	// addition) would print a reassuring "considered retired" notice for what is actually a wrong
+	// path or a broken checkout. Converged with runMigration's own hardening (2026-09-17, TRA-138,
+	// see genre-merge.test.ts's equivalent test) -- only a file that EXISTS and no longer names the
+	// constant is the planned D3 retirement.
+	it("fails loudly on a missing web/index.html instead of treating it as v1 retired on purpose", async () => {
+		await seedTrapNode();
+		const taxonomy = taxonomyOf({
+			id: "Q47781397",
+			qid: "Q47781397",
+			name: "Trap (EDM)",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
+
+		// A valid, non-empty taxonomy alone used to mask the missing file: no refusal, no warning,
+		// exit 0 -- exactly the failure mode this test guards against.
+		await expect(
+			runRename(dir, FROM, TO, true, {
+				redirectsPath,
+				webIndexPath: join(dir, "does-not-exist.html"),
+				taxonomy,
+			}),
+		).rejects.toThrow();
+	});
+
+	// TRA-277: converged with the merge migration's own identical fix (D6c) -- v1 retired
+	// (ONBOARDING_GENRES gone, TRA-211) but the taxonomy loaded and non-empty used to fall through
+	// both branches above silently. Mirrors the "taxonomy absent, v1 alone protects" test above,
+	// for the opposite combination.
+	it("reports explicitly on stderr, but still succeeds, once ONBOARDING_GENRES is retired and the genre taxonomy alone protects the rename", async () => {
+		await seedTrapNode();
+		// The identifier itself is nowhere in the file -- the real "retired on purpose" (D3,
+		// TRA-211) shape, same fixture style as the merge migration's own equivalent test.
+		const webIndexPath = join(dir, "no-onboarding-with-taxonomy.html");
+		await writeFile(webIndexPath, "<html><body>no picker here</body></html>", "utf8");
+		const taxonomy = taxonomyOf({
+			id: "Q47781397",
+			qid: "Q47781397",
+			name: "Trap (EDM)",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
+		const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+		try {
+			const result = await runRename(dir, FROM, TO, true, { redirectsPath, webIndexPath, taxonomy });
+			expect(result.exitCode).toBe(0);
+			expect(result.applied).toBe(true);
+			expect(stderrSpy.mock.calls.some(([chunk]) => String(chunk).includes("retired"))).toBe(true);
+		} finally {
+			stderrSpy.mockRestore();
+		}
+	});
+
 	it("refuses outright when neither the taxonomy nor ONBOARDING_GENRES is available", async () => {
 		await seedTrapNode();
-		// taxonomyPath and webIndexPath both point at files that don't exist -- onboardingSlugs
-		// is left undefined so the real (in this run, unread) web/index.html is never consulted.
+		// taxonomyPath points at a file that doesn't exist (taxonomy genuinely absent). webIndexPath
+		// must point at a file that EXISTS but no longer names the constant -- the real "retired on
+		// purpose" shape (2026-09-19 review of TRA-277: a MISSING file is now fatal, per the
+		// readFile hardening above, converged with runMigration's own TRA-138 fix -- this fixture
+		// used to (incorrectly, if harmlessly before that hardening) rely on the missing-file path).
+		const webIndexPath = join(dir, "no-onboarding.html");
+		await writeFile(webIndexPath, "<html><body>no picker here</body></html>", "utf8");
 		const result = await runRename(dir, FROM, TO, true, {
 			redirectsPath,
 			taxonomyPath,
-			webIndexPath: join(dir, "no-such-index.html"),
+			webIndexPath,
 		});
 
 		expect(result.exitCode).toBe(1);
