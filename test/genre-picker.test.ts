@@ -38,6 +38,17 @@ type OdysseyWindow = Window &
 const indexHtmlPath = fileURLToPath(new URL("../web/index.html", import.meta.url));
 const indexHtml = readFileSync(indexHtmlPath, "utf8");
 
+const stylesCssPath = fileURLToPath(new URL("../web/styles.css", import.meta.url));
+const stylesCss = readFileSync(stylesCssPath, "utf8");
+
+// Finds `selector { ... }` and returns the raw declaration block, or null if the selector
+// isn't present at all. Escapes selector text so literal `[`, `"`, `.` etc. match literally.
+function declarationsFor(css: string, selector: string): string | null {
+	const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	const match = css.match(new RegExp(`${escaped}\\s*\\{([^}]*)\\}`));
+	return match ? (match[1] ?? "") : null;
+}
+
 let win: OdysseyWindow | null = null;
 
 afterEach(() => {
@@ -351,6 +362,46 @@ describe("flat picker fallback (decision 4): ONBOARDING_GENRES retired", () => {
 		expect((w.document.getElementById("onb-done") as HTMLButtonElement).disabled).toBe(true);
 	});
 });
+
+// D3b (TRA-212): CSS-only pass over the D3a grid. jsdom's getComputedStyle does not reliably
+// resolve this file's CSS custom properties (var(--genre) etc. -- verified experimentally: it
+// leaves several of them as the literal unresolved string, and can drop an entire shorthand
+// declaration that references one), so computed-style assertions against the real stylesheet
+// would be flaky rather than meaningful. Per the ticket's own allowance for what jsdom can't
+// compute, these instead assert the actual rules are present in web/styles.css -- a mutation
+// that deletes the asserted rule turns each of these red.
+describe("grid styling (TRA-212/D3b)", () => {
+	it("gives the family 'tout' toggle a mixed state visually distinct from both true and false", () => {
+		const base = declarationsFor(stylesCss, ".genre-family-all");
+		const trueState = declarationsFor(stylesCss, '.genre-family-all[aria-checked="true"]');
+		const mixedState = declarationsFor(stylesCss, '.genre-family-all[aria-checked="mixed"]');
+		expect(base).not.toBeNull();
+		expect(trueState).not.toBeNull();
+		expect(mixedState).not.toBeNull();
+		// "mixed" must override at least one visual property, and not just restate "true"'s look.
+		expect(mixedState?.trim().length).toBeGreaterThan(0);
+		expect(mixedState?.replace(/\s+/g, " ").trim()).not.toBe(trueState?.replace(/\s+/g, " ").trim());
+	});
+
+	it("gives the grid's keyboard-operable controls a visible :focus-visible outline", () => {
+		const focusRule = stylesCss.match(
+			/\.genre-family-expand:focus-visible,\s*\n?\s*\.genre-family-all:focus-visible,\s*\n?\s*\.genre-pick-id:focus-visible\s*\{([^}]*)\}/,
+		);
+		expect(focusRule).not.toBeNull();
+		expect(focusRule?.[1]).toMatch(/outline:\s*(?!none)\S/);
+	});
+
+	it("wraps grid content instead of overflowing at a 320px viewport: flex-wrap on children, min-width: 0 on grid items, max-width: 100% on picks, no nowrap labels", () => {
+		expect(declarationsFor(stylesCss, ".genre-family-children")).toMatch(/flex-wrap:\s*wrap/);
+		expect(declarationsFor(stylesCss, ".genre-family")).toMatch(/min-width:\s*0/);
+		expect(declarationsFor(stylesCss, ".genre-pick-id")).toMatch(/max-width:\s*100%/);
+		expect(declarationsFor(stylesCss, ".genre-family-expand")).not.toMatch(/white-space:\s*nowrap/);
+		expect(declarationsFor(stylesCss, ".genre-pick-id")).not.toMatch(/white-space:\s*nowrap/);
+	});
+
+	it("introduces no dependency: no @import and no url() fetch in styles.css", () => {
+		expect(stylesCss).not.toMatch(/@import/);
+		expect(stylesCss).not.toMatch(/url\(/);
 
 // TRA-213 (D4): the "Tes genres" chips on the home page now open the same edit picker as the
 // existing "modifier ma sélection" button, instead of navigating to the genre's node. Own
