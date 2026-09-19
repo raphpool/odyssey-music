@@ -30,6 +30,7 @@ import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../src/cache.js";
 import type { GenreRedirects } from "../src/genre-registry.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../src/genre-registry.js";
+import type { GenreTaxonomy } from "../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
@@ -466,6 +467,14 @@ export async function buildCacheUnion(
 		serverRedirectsPath?: string;
 		outputRoot?: string;
 		onboardingSlugs?: readonly string[];
+		// Genre-taxonomy (v2) protection passthrough -- TRA-277. Without either of these, the
+		// merge guard below falls back to runMigration's own default, which resolves relative to
+		// `dirname(cacheDir)`: fine for the migration's own CLI (run directly against a real
+		// cache/ with a sibling data/), but `cacheDir` here is always `outputDir`, a synthetic
+		// mkdtemp() tree with no sibling data/ -- so that default silently never finds anything.
+		// `taxonomyPath` below anchors it to the real repo instead (see the call site).
+		taxonomyPath?: string;
+		taxonomy?: GenreTaxonomy;
 		applyMerge?: boolean;
 	} = {},
 ): Promise<{ outputDir: string; manifest: UnionManifest }> {
@@ -638,6 +647,22 @@ export async function buildCacheUnion(
 		runMigration(outputDir, willApply, {
 			redirectsPath,
 			...(options.onboardingSlugs ? { onboardingSlugs: options.onboardingSlugs } : {}),
+			// TRA-277: anchored to `repoCacheDir` -- the caller's own repo cache argument, whose
+			// sibling data/genre-taxonomy.json is the real taxonomy (deploy/sync-genre-cache.sh
+			// sets REPO_CACHE_DIR="$REPO_ROOT/cache", so this lines up with the real repo in
+			// production) -- not to `outputDir`, see the options doc above. Deliberately NOT
+			// `defaultDataDir()` (fixed to wherever this code itself lives): that would pull in
+			// the real, full taxonomy for every caller, including every test here, whose own tiny
+			// repoDir/serverDir never contain the full genre graph -- runMigration's own
+			// "every published source must still resolve" check (D6a) is a whole-cache invariant,
+			// so it would spuriously refuse on ~200 unrelated genres never seeded, everywhere else.
+			// An explicit override still wins: `taxonomy` (in-memory, bypassing the disk loader)
+			// over `taxonomyPath`, same precedence as runMigration's own options.
+			...(options.taxonomy
+				? { taxonomy: options.taxonomy }
+				: {
+						taxonomyPath: options.taxonomyPath ?? join(dirname(repoCacheDir), "data", "genre-taxonomy.json"),
+					}),
 		}),
 	);
 

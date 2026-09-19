@@ -603,6 +603,16 @@ export async function runMigration(
 		process.stderr.write(
 			"warning: genre taxonomy not found -- proceeding with v1 (ONBOARDING_GENRES) protection alone\n",
 		);
+	} else if (onboardingSlugs === undefined && taxonomySources !== undefined) {
+		// TRA-277 (D6c): the planned D3 retirement (ONBOARDING_GENRES gone from web/index.html,
+		// TRA-211) is the nominal end state, not a corruption -- but it must still say so out loud,
+		// the same way the taxonomy-absent case above does for its own fallback, so an operator
+		// reading the run's output can tell "v1 retired on purpose" apart from "v1 silently did
+		// nothing" at a glance.
+		process.stderr.write(
+			"warning: ONBOARDING_GENRES not found in web/index.html -- v1 protection is considered " +
+				"retired (TRA-211); proceeding with the genre taxonomy protection alone\n",
+		);
 	}
 
 	// --- Plan (in memory, nothing written yet): elect, union, then rewrite every kept node.

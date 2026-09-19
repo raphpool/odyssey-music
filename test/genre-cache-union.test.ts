@@ -12,6 +12,7 @@ import {
 	slugResolves,
 	type UnionManifest,
 } from "../scripts/prepare-genre-cache-union.js";
+import type { GenreTaxonomy } from "../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
@@ -373,7 +374,13 @@ describe("buildCacheUnion", () => {
 	});
 
 	function union(
-		extra: { applyMerge?: boolean; onboardingSlugs?: readonly string[]; serverRedirectsPath?: string } = {},
+		extra: {
+			applyMerge?: boolean;
+			onboardingSlugs?: readonly string[];
+			serverRedirectsPath?: string;
+			taxonomy?: GenreTaxonomy;
+			taxonomyPath?: string;
+		} = {},
 	) {
 		return buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
 	}
@@ -1090,6 +1097,44 @@ describe("buildCacheUnion", () => {
 				expect.objectContaining({ applied: false, exitCode: 1, deletedCount: 0 }),
 			);
 			expect(manifest.migrationApply?.refusalReason).toMatch(/onboarding genre slug/);
+			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+		});
+
+		// TRA-277: buildCacheUnion used to silently drop any taxonomy option -- runMigration's own
+		// default taxonomyPath resolves relative to its `cacheDir` argument, which here is always
+		// `outputDir` (a synthetic mkdtemp() tree, no sibling data/), so the taxonomy-era guard
+		// (D6a) could never actually engage through this call path, in production too, once
+		// ONBOARDING_GENRES is retired (TRA-211) and v1 no longer covers for it. Mirrors the
+		// onboarding test just above, but for the taxonomy-era protection instead of v1.
+		it("captures the migration's refusal (a taxonomy-protected loser) as applied:false + refusalReason, once `taxonomy` is threaded through to the merge guard", async () => {
+			await seed(repoDir, node({ slug: "genre:idm", qid: "Q-IDM" }));
+			await seed(
+				serverDir,
+				node({ slug: "genre:idm-alt", qid: "Q-IDM", materialized_at: "2026-02-01T00:00:00.000Z" }),
+			);
+			// Both candidate slugs published, so whichever the election picks as the loser is
+			// covered without depending on knowing the election's exact tie-break order (same
+			// reasoning as the onboarding test above).
+			const taxonomy: GenreTaxonomy = {
+				version: 2,
+				families: [{ key: "electronic", label: "Electronic", order: 0 }],
+				genres: [
+					{
+						id: "local:idm-taxonomy-fixture",
+						name: "Idm Taxonomy Fixture",
+						family: "electronic",
+						published: true,
+						sourceSlugs: ["genre:idm", "genre:idm-alt"],
+					},
+				],
+			};
+
+			const { manifest } = await union({ applyMerge: true, taxonomy });
+
+			expect(manifest.migrationApply).toEqual(
+				expect.objectContaining({ applied: false, exitCode: 1, deletedCount: 0 }),
+			);
+			expect(manifest.migrationApply?.refusalReason).toMatch(/genre taxonomy protection/);
 			expect(countUnionProblems(manifest)).toBeGreaterThan(0);
 		});
 

@@ -461,6 +461,35 @@ describe("runRename -- genre-taxonomy protection (D6b)", () => {
 		}
 	});
 
+	// TRA-277: converged with the merge migration's own identical fix (D6c) -- v1 retired
+	// (ONBOARDING_GENRES gone, TRA-211) but the taxonomy loaded and non-empty used to fall through
+	// both branches above silently. Mirrors the "taxonomy absent, v1 alone protects" test above,
+	// for the opposite combination.
+	it("reports explicitly on stderr, but still succeeds, once ONBOARDING_GENRES is retired and the genre taxonomy alone protects the rename", async () => {
+		await seedTrapNode();
+		// The identifier itself is nowhere in the file -- the real "retired on purpose" (D3,
+		// TRA-211) shape, same fixture style as the merge migration's own equivalent test.
+		const webIndexPath = join(dir, "no-onboarding-with-taxonomy.html");
+		await writeFile(webIndexPath, "<html><body>no picker here</body></html>", "utf8");
+		const taxonomy = taxonomyOf({
+			id: "Q47781397",
+			qid: "Q47781397",
+			name: "Trap (EDM)",
+			family: "test-family",
+			sourceSlugs: [FROM],
+			published: true,
+		});
+		const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+		try {
+			const result = await runRename(dir, FROM, TO, true, { redirectsPath, webIndexPath, taxonomy });
+			expect(result.exitCode).toBe(0);
+			expect(result.applied).toBe(true);
+			expect(stderrSpy.mock.calls.some(([chunk]) => String(chunk).includes("retired"))).toBe(true);
+		} finally {
+			stderrSpy.mockRestore();
+		}
+	});
+
 	it("refuses outright when neither the taxonomy nor ONBOARDING_GENRES is available", async () => {
 		await seedTrapNode();
 		// taxonomyPath and webIndexPath both point at files that don't exist -- onboardingSlugs

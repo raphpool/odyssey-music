@@ -239,6 +239,15 @@ export async function runRename(
 		process.stderr.write(
 			"warning: genre taxonomy not found -- proceeding with v1 (ONBOARDING_GENRES) protection alone\n",
 		);
+	} else if (onboardingSlugs === undefined && taxonomySources !== undefined) {
+		// TRA-277 (D6c), converged with the merge migration's own identical fix: the planned D3
+		// retirement (ONBOARDING_GENRES gone from web/index.html, TRA-211) is the nominal end
+		// state, not a corruption -- say so explicitly, same as the taxonomy-absent branch above
+		// does for its own fallback.
+		process.stderr.write(
+			"warning: ONBOARDING_GENRES not found in web/index.html -- v1 protection is considered " +
+				"retired (TRA-211); proceeding with the genre taxonomy protection alone\n",
+		);
 	}
 
 	if (toFile) errors.push(`target slug ${to} already exists`);
