@@ -105,7 +105,7 @@ jobs:
         # condition still tried to upload here, found no log, and failed on
         # if-no-files-found: error, adding a second, confusing failure to an already-red job
         # (review finding). Excluding "skipped" keeps this step silent in that case.
-        if: ${{ !cancelled() && steps.apply.outcome != 'skipped' }}
+        if: ${{ always() && steps.apply.outcome != 'skipped' }}
         uses: actions/upload-artifact@v4
         with:
           name: genre-cache-sync-apply
