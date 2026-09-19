@@ -402,6 +402,8 @@ describe("grid styling (TRA-212/D3b)", () => {
 	it("introduces no dependency: no @import and no url() fetch in styles.css", () => {
 		expect(stylesCss).not.toMatch(/@import/);
 		expect(stylesCss).not.toMatch(/url\(/);
+	});
+});
 
 // TRA-213 (D4): the "Tes genres" chips on the home page now open the same edit picker as the
 // existing "modifier ma sélection" button, instead of navigating to the genre's node. Own
