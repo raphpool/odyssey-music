@@ -85,6 +85,23 @@ function seedDuplicateOnServer(dir: string): void {
 	}
 }
 
+/** seedDuplicateOnServer's merge elects genre:dancehall and creates a genre:dance-hall ->
+ * genre:dancehall redirect. The durability guard (see deploy/sync-genre-cache.sh) compares the
+ * union's FULL redirects table -- which always includes the real committed data/genre-redirects.json
+ * as its base, regardless of this override -- against this fixture's keys, so the fixture must carry
+ * the real committed table too (not just the new pair), or every one of its ~20 real entries would
+ * spuriously show up as "not yet committed". Most `duplicateOnServer` scenarios need this passed as
+ * `repoRedirects` to satisfy the guard and reach the behavior they actually mean to test --
+ * otherwise every one of them would now hit that guard's own refusal first. The dedicated
+ * durability tests below omit `repoRedirects` entirely instead (defaulting to the real committed
+ * file, which genuinely lacks this synthetic pair) to exercise the "missing" case. */
+const REAL_COMMITTED_REDIRECTS = JSON.parse(readFileSync(resolve("data/genre-redirects.json"), "utf8")) as {
+	redirects: Record<string, string>;
+};
+const DANCE_HALL_ALREADY_COMMITTED = JSON.stringify({
+	redirects: { ...REAL_COMMITTED_REDIRECTS.redirects, "genre:dance-hall": "genre:dancehall" },
+});
+
 interface RunOptions {
 	apply?: boolean;
 	/** Seed the server cache with a duplicate-QID pair, so the union has a merge to apply. */
@@ -92,6 +109,11 @@ interface RunOptions {
 	env?: Record<string, string>;
 	seedServer?: boolean;
 	seedRedirects?: string;
+	/** Overrides REPO_REDIRECTS_PATH -- the repo's own committed genre-redirects.json content the
+	 * "not yet committed" durability guard compares the union's table against. Omitted, the script
+	 * defaults to the real repo file, which is what almost every scenario wants (no new keys). Set
+	 * this to control whether a synthetic merge's redirect counts as "already committed". */
+	repoRedirects?: string;
 	// The server redirects table is seeded with a valid empty table by default so most scenarios
 	// don't have to think about it; set this to skip seeding entirely (the missing-table test).
 	omitRedirects?: boolean;
@@ -138,6 +160,12 @@ function run(options: RunOptions = {}) {
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
 	if (options.preexistingBackups) seedOldBackups(serverBackupDir, options.preexistingBackups);
+
+	let repoRedirectsPath: string | undefined;
+	if (options.repoRedirects !== undefined) {
+		repoRedirectsPath = join(tmp("sync-repo-redirects-"), "genre-redirects.json");
+		writeFileSync(repoRedirectsPath, options.repoRedirects);
+	}
 
 	// Fake ssh: runs the remote command locally via bash -c, since every remote path the script
 	// builds already points at a real local dir (see file header). systemctl and the sha256sum
@@ -297,6 +325,7 @@ echo "ok"
 			// against an isolated git fixture.
 			SYNC_ALLOW_NON_MAIN: "1",
 			SYNC_ALLOW_DIRTY: "1",
+			...(repoRedirectsPath ? { REPO_REDIRECTS_PATH: repoRedirectsPath } : {}),
 			...options.env,
 		},
 	});
@@ -423,6 +452,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverCacheRemote, serverRoot } = run({
 			apply: true,
 			duplicateOnServer: true,
+			repoRedirects: DANCE_HALL_ALREADY_COMMITTED,
 		});
 		expect(result.status).toBe(0);
 		expect(result.stdout).toContain("Sync complete");
@@ -462,6 +492,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			duplicateOnServer: true,
+			repoRedirects: DANCE_HALL_ALREADY_COMMITTED,
 			env: { TEST_OVERRIDE_REMOVED_SLUG: "genre:../../etc/evil" },
 		});
 		expect(result.status).not.toBe(0);
@@ -482,6 +513,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			duplicateOnServer: true,
+			repoRedirects: DANCE_HALL_ALREADY_COMMITTED,
 			env: { TEST_OVERRIDE_REMOVED_SLUG: "genre:a'; echo pwned; echo '" },
 		});
 		expect(result.status).not.toBe(0);
@@ -517,6 +549,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			duplicateOnServer: true,
+			repoRedirects: DANCE_HALL_ALREADY_COMMITTED,
 			env: { TEST_RM_SILENT_NOOP: "1" },
 		});
 		expect(result.status).not.toBe(0);
@@ -563,6 +596,44 @@ describe("sync-genre-cache.sh", () => {
 		expect(serverRedirects.redirects).toEqual({});
 	});
 
+	// 2026-09-19 (TRA-276/B6c-2, CI review): deploy-server.sh:70-76 rsyncs the repo's own data/ onto
+	// the server on EVERY app deploy (excludes cache/, not data/), so a redirect the union's table
+	// carries but the repo hasn't committed yet would survive only until the next app deploy erases
+	// it -- while the node it used to point at is already permanently `rm -f --`'d on this run.
+	// Scenario (a): no repoRedirects override -- the REAL committed data/genre-redirects.json has no
+	// entry for this synthetic merge (confirmed: it carries no dancehall/dance-hall pair at all), so
+	// --apply must refuse before any server write, naming the pair.
+	it("refuses --apply when the union created a redirect not yet committed in the repo's table, before any write", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote } = run({
+			apply: true,
+			duplicateOnServer: true,
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(result.stderr).toContain("genre:dance-hall -> genre:dancehall");
+		expect(result.stderr).toMatch(/next app deploy/);
+		// Refused before the archive and the writer stop -- and well before the node deletion.
+		expect(calls).not.toContain("tar cf");
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(serverBackupDir)).toBe(false);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
+	});
+
+	// Scenario (b): the exact same "repo table doesn't have it yet" case, but in preview -- must
+	// only warn (stderr), never refuse, and never write.
+	it("preview warns (without refusing) when the union created a redirect not yet committed in the repo's table", () => {
+		const { result, calls, serverCacheRemote } = run({
+			duplicateOnServer: true,
+		});
+		expect(result.status).toBe(0);
+		expect(result.stdout).toContain("Preview only");
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(result.stderr).toContain("genre:dance-hall -> genre:dancehall");
+		expect(calls).not.toMatch(/rm -f --/);
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
+	});
+
 	// Ticket note: a deletion failure must be handled exactly like any other post-transfer failure --
 	// restart the writer, point at the archive. TEST_SSH_FAIL_MATCH is scoped to the loser's own
 	// path (not the bare "rm -f --" substring, which the unrelated backup-retention prune also
@@ -571,6 +642,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			duplicateOnServer: true,
+			repoRedirects: DANCE_HALL_ALREADY_COMMITTED,
 			env: { TEST_SSH_FAIL_MATCH: "nodes/genre/dance-hall.json" },
 		});
 		expect(result.status).not.toBe(0);

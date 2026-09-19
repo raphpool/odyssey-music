@@ -29,7 +29,11 @@ set -euo pipefail
 # below) -- see manifest.migrationApply.removedByMigration / .deletedCount and the validation right
 # after the union-problems check. The refusal that used to block EVERY merge unconditionally (see
 # TRA-67 / TRA-269) is gone; what remains is a narrower guard that only refuses when the manifest
-# disagrees with itself or a removed path would land outside nodes/.
+# disagrees with itself or a removed path would land outside nodes/. A second guard (search
+# "not yet committed") refuses --apply outright when the union's redirects table has entries the
+# repo's own data/genre-redirects.json doesn't -- the repo, not the server, is what deploy-server.sh
+# re-syncs data/ from on every app deploy, so an uncommitted redirect would be lost right after a
+# node this script already permanently deleted.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -41,6 +45,11 @@ set -euo pipefail
 SERVER="${SERVER:-root@46.101.167.241}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 REPO_CACHE_DIR="${REPO_CACHE_DIR:-$REPO_ROOT/cache}"
+# 2026-09-19 (TRA-276/B6c-2, CI review): the repo's own committed table -- what a plain
+# `data/genre-redirects.json` read gets you, same default deploy-server.sh's own rsync of data/
+# (see the guard below) ships to prod. Overridable so the test harness can point it at a fixture
+# without faking the real committed file.
+REPO_REDIRECTS_PATH="${REPO_REDIRECTS_PATH:-$REPO_ROOT/data/genre-redirects.json}"
 SERVER_CACHE_REMOTE="${SERVER_CACHE_REMOTE:-/opt/odyssey-music/cache}"
 SERVER_REDIRECTS_REMOTE="${SERVER_REDIRECTS_REMOTE:-/opt/odyssey-music/data/genre-redirects.json}"
 SERVER_BACKUP_DIR="${SERVER_BACKUP_DIR:-/opt/odyssey-music-backups}"
@@ -232,6 +241,38 @@ cat "$UNION_DIR/manifest.json"
 if [[ $UNION_EXIT -ne 0 ]] || grep -q '"redirectsConflicts"' "$UNION_DIR/manifest.json"; then
 	echo "ERROR: cache union reported problems (conflicts/regressions/redirects, see manifest above) -- refusing." >&2
 	exit 1
+fi
+
+# 2026-09-19 (TRA-276/B6c-2, CI review): the union's genre-redirects.json (shipped to
+# SERVER_REDIRECTS_REMOTE below) is not this script's only writer of that path -- deploy-server.sh
+# rsyncs the repo's own data/ onto the server on EVERY app deploy (deploy/deploy-server.sh:70-76
+# excludes cache/ but not data/), overwriting it from whatever is committed. A redirect the merge
+# migration just created (e.g. dance-hall -> dancehall) that isn't in the repo's OWN committed
+# table would survive only until the next app deploy, which erases it -- while the node it used to
+# point at is already permanently gone from the server (rm -f --, not a reversible overwrite).
+# Before this script existed, that state was unreachable (--apply refused every merge outright);
+# shipping the union's table without also requiring it to already be committed would silently
+# reintroduce the exact dead-link/duplicate-rematerialization regression TRA-67's original refusal
+# was protecting against, on half the ticket (the redirects table, not the deletion). Compare KEYS
+# only, not values: any entry the union's table has can differ in target across a rename without
+# being "new" here, but a key entirely absent from the repo's table is a redirect the repo has
+# never seen. Preview mode only warns (nothing is written either way); --apply refuses outright,
+# before any server write, and prints the missing pairs plus the fix (a repo-side migration PR).
+NEW_REDIRECT_PAIRS="$(node -e '
+const fs = require("fs");
+const unionRedirects = JSON.parse(fs.readFileSync(process.argv[1], "utf8")).redirects ?? {};
+const repoRedirects = JSON.parse(fs.readFileSync(process.argv[2], "utf8")).redirects ?? {};
+const missing = Object.entries(unionRedirects).filter(([from]) => !(from in repoRedirects));
+process.stdout.write(missing.map(([from, to]) => from + " -> " + to).join("\n"));
+' "$UNION_DIR/genre-redirects.json" "$REPO_REDIRECTS_PATH")"
+if [[ -n "$NEW_REDIRECT_PAIRS" ]]; then
+	echo "WARNING: this union created redirect(s) not yet committed in $REPO_REDIRECTS_PATH:" >&2
+	echo "$NEW_REDIRECT_PAIRS" >&2
+	echo "deploy-server.sh rsyncs the repo's data/ onto the server on every app deploy (it excludes cache/ but not data/), so the next app deploy would erase these entries while the merged-away node stays permanently deleted. Add them to data/genre-redirects.json (a repo-side merge migration), deploy, then re-run this sync." >&2
+	if [[ $APPLY -eq 1 ]]; then
+		echo "ERROR: refusing --apply until data/genre-redirects.json is updated (see the pairs above) -- otherwise the next app deploy would erase the redirect while the node stays deleted." >&2
+		exit 1
+	fi
 fi
 
 if [[ $APPLY -eq 0 ]]; then
