@@ -166,6 +166,10 @@ describe("sync-genre-cache workflow", () => {
 		expect(apply).not.toMatch(/>\s*\/dev\/null/);
 		expect(apply).toMatch(/bash deploy\/sync-genre-cache\.sh --apply 2>&1 \| tee/);
 		expect(apply).toMatch(/genre-cache-sync-apply\.log/);
+		// Same invariant as Preview, and it was the only one of the two left unpinned (second
+		// review round): without `pipefail`, a failing --apply piped into `tee` returns tee's 0 and
+		// a half-finished sync reports success -- on the step that stops the writer.
+		expect(apply).toMatch(/set -euo pipefail/);
 	});
 
 	it("publishes the apply log as an artifact even if --apply fails partway, but not when apply never ran", () => {
@@ -177,12 +181,11 @@ describe("sync-genre-cache workflow", () => {
 		// inputs.apply`: an `if:` with no status-check function is implicitly ANDed with success(),
 		// so when Preview fails, Apply is skipped (outcome "skipped") -- the old condition still
 		// tried to upload here, found no log, and failed on if-no-files-found: error, adding a
-		// second, confusing failure to an already-red job (code-review finding). Verified by
-		// mutation: reverting to `always() && inputs.apply` here passes this repo's own
-		// test/genre-cache-sync.test.ts-style reasoning but not this assertion.
-		expect(upload).toMatch(
-			/if:\s*\$\{\{\s*!cancelled\(\)\s*&&\s*steps\.apply\.outcome\s*!=\s*'skipped'\s*\}\}/,
-		);
+		// second, confusing failure to an already-red job (code-review finding). And always(), not
+		// !cancelled() (second review round): GitHub reports a timeout-minutes overrun as a
+		// cancellation, which is the one moment this pointer matters most -- the job cut mid---apply,
+		// after the archive and the stop. !cancelled() skipped the upload exactly there.
+		expect(upload).toMatch(/if:\s*\$\{\{\s*always\(\)\s*&&\s*steps\.apply\.outcome\s*!=\s*'skipped'\s*\}\}/);
 		expect(upload).not.toMatch(/if:\s*always\(\)\s*&&\s*inputs\.apply/);
 		expect(upload).toMatch(/uses:\s*actions\/upload-artifact@v4/);
 		expect(upload).toMatch(/if-no-files-found:\s*error/);
