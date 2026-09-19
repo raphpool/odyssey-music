@@ -931,17 +931,21 @@ function renderProfileChip() {
     return;
   }
   chip.hidden = false;
-  // TRA-282 (2026-09-19): when the grid is the active picker, count ids + unresolved slugs
-  // directly -- each grid pick is already one atomic choice (no family-slug nesting to
-  // de-duplicate the way distinctPickerChoiceCount does for the flat picker below), and going
-  // through v2PickerChoiceSlugs()'s flat-picker-slug round-trip silently dropped any id outside
-  // genrePickList()'s 24 slugs (bug found on PR #275's browser check: a real grid pick of
-  // Acid/Breaks/Deep House rendered "0 genres"). "TOUT" on a family selects its genres one by
-  // one, so this count is honest about that -- no hidden folding.
+  // TRA-282 (2026-09-19): when the grid is the active picker, count gridChoiceChips() itself --
+  // not profile.genres.length + unresolvedGenreSlugs.length, which was this line's first version
+  // and regressed the TRA-270 invariant (badge count === "Tes genres" list). Found on PR #275's
+  // review: gridChoiceChips() filters out an id absent from TAXONOMY.genres (an off-grid pick --
+  // unpublished, quarantined, or a stale local: one -- mergeGridSelectionIntoV2 preserves these on
+  // save on purpose, see its own comment) and an unresolvedGenreSlugs entry absent from byId
+  // (resolveLegacyGenres never drops an unknown slug), but the raw sum counted both anyway --
+  // e.g. { genres: ["genre:house", "local:kept-choice"] } rendered "2 genres" for a single
+  // rendered chip. Deriving the count from the same list gridChoiceChipHtml() renders makes that
+  // divergence structurally impossible, same as the `else` branch already does by running
+  // distinctPickerChoiceCount/distinctPickerChoiceSlugs over the same set.
   const count = !activeV2
     ? profile.genres.length
     : GENRE_GRID_ENABLED && TAXONOMY
-      ? profile.genres.length + (profile.unresolvedGenreSlugs || []).length
+      ? gridChoiceChips(profile, TAXONOMY).length
       : distinctPickerChoiceCount(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug);
   chip.textContent = `${profile.name} · ${count} genres`;
   chip.onclick = () => openOnboarding({ mode: "edit" });

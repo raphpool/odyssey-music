@@ -756,4 +756,60 @@ describe("grid-driven home chips and badge (TRA-282 bug fix)", () => {
 			w.close();
 		}
 	});
+
+	// PR #275 review (2026-09-19): the badge's first fix summed profile.genres.length +
+	// unresolvedGenreSlugs.length raw, but gridChoiceChips() -- the list actually rendered just
+	// below -- filters out (1) an id with no matching TAXONOMY.genres entry (an off-grid pick:
+	// unpublished, quarantined, or a stale local: one, which mergeGridSelectionIntoV2 preserves on
+	// save on purpose, see its own comment) and (2) an unresolvedGenreSlugs entry absent from byId
+	// (resolveLegacyGenres never drops an unknown slug, "kept, never dropped"). The raw sum counted
+	// both anyway, regressing the TRA-270 invariant that the badge and "Tes genres" render the same
+	// set. Both entries here are deliberately off-grid/off-graph, so gridChoiceChips() renders zero
+	// chips -- the badge must say "0 genres" too, not "2".
+	it("badge count matches the rendered chip list exactly, not a raw ids+unresolved sum, when an id is off-grid and a slug is absent from the graph", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const taxonomy = built.taxonomy as GenreTaxonomyProjection;
+
+		// Same off-grid id shape used elsewhere in this file (mergeGridSelectionIntoV2's own
+		// coverage): no TAXONOMY.genres entry has this id.
+		const offGridId = "local:kept-choice";
+		expect(taxonomy.genres.some((g) => g.id === offGridId)).toBe(false); // sanity: genuinely off-grid
+
+		// A slug resolveLegacyGenres will keep in `unresolved` (absent from legacySelectionBySlug)
+		// and that also isn't a real graph node, so gridChoiceChips()'s byId.has() filter drops it.
+		const unresolvedSlug = "genre:__does-not-exist-in-graph__";
+		const legacyMap = taxonomy.legacySelectionBySlug as Record<string, string[]>;
+		expect(Object.hasOwn(legacyMap, unresolvedSlug)).toBe(false);
+
+		const seededV2: MigratedProfile = {
+			name: "Raph",
+			genres: [offGridId],
+			unresolvedGenreSlugs: [unresolvedSlug],
+		};
+
+		const w = newWindow(built);
+		try {
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(seededV2));
+			await waitReady(w);
+			w.showHome();
+
+			const homeChips = w.document.querySelectorAll(".home-genres .chip[data-id]");
+			// Sanity: both picks really are unrenderable -- otherwise the count assertion below
+			// would pass even without the fix.
+			expect(homeChips).toHaveLength(0);
+
+			// Fails before the fix: the raw sum renders "2 genres" (1 id + 1 unresolved slug) even
+			// though zero chips are on the page.
+			const chipText = (w.document.getElementById("profile-chip") as HTMLElement).textContent ?? "";
+			expect(chipText).toContain(`${homeChips.length} genres`);
+
+			// The editor agrees too: no checkbox on the grid represents either pick (openOnboarding()
+			// seeds onbGridSelection filtered to ids actually on the grid).
+			w.openOnboarding({ mode: "edit" });
+			const checked = w.document.querySelectorAll('.genre-pick-id[aria-checked="true"]');
+			expect(checked).toHaveLength(homeChips.length);
+		} finally {
+			w.close();
+		}
+	});
 });
