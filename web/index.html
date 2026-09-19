@@ -813,12 +813,23 @@ function mergePickerSelectionIntoV2(current, initialSlugs, finalSlugs, taxonomy)
   // Review B5 (2026-09-17): genre:rock's expansion nests genre:krautrock's/psychedelic-rock's --
   // unchecking rock alone used to delete its whole expansion unconditionally, wiping ids a
   // still-checked chip was also claiming. An id only leaves once no slug left in `final` covers it.
-  const stillCoveredIds = new Set();
-  for (const slug of final) resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => stillCoveredIds.add(id));
+  // TRA-270: B5's "still covered" set was computed once from every slug left in `final`,
+  // genre:rock included -- so unchecking genre:krautrock alone, with genre:rock still checked,
+  // never removed anything: rock's own completeness always "covers" krautrock's ids back, since
+  // they're a subset of it. A removed slug's ids are now protected only by a DIFFERENT
+  // still-checked slug whose expansion isn't a strict superset of the removed slug's own (an
+  // ancestor's coverage doesn't count; a sibling with genuine id overlap still does).
   for (const slug of initial) {
     if (final.has(slug)) continue; // still unchecked from before -- nothing to remove
-    resolveLegacyGenres([slug], legacyMap).genres.forEach((id) => {
-      if (!stillCoveredIds.has(id)) ids.delete(id);
+    const removedIds = resolveLegacyGenres([slug], legacyMap).genres;
+    const protectedIds = new Set();
+    for (const stillChecked of final) {
+      const coveringIds = resolveLegacyGenres([stillChecked], legacyMap).genres;
+      const isAncestor = coveringIds.length > removedIds.length && removedIds.every((id) => coveringIds.includes(id));
+      if (!isAncestor) coveringIds.forEach((id) => protectedIds.add(id));
+    }
+    removedIds.forEach((id) => {
+      if (!protectedIds.has(id)) ids.delete(id);
     });
     unresolved.delete(slug);
   }
@@ -839,18 +850,28 @@ function v2PickerChoiceSlugs(profile) {
 
 // Nit (3rd review, 2026-09-17): a checked slug's expansion can be entirely covered by another
 // checked slug's (same nesting as B5) -- counting every "on" slug then balloons the chip count
-// with no user action. Counts a slug only when no other checked slug's expansion strictly
+// with no user action. Keeps a slug only when no other checked slug's expansion strictly
 // contains its own; an unresolved slug (empty expansion) is never "contained" and always counts.
-function distinctPickerChoiceCount(onSlugs, legacyMap) {
+// TRA-270: two slugs whose expansions are the same size and set of ids used to both survive
+// (neither's length is strictly greater than the other's) -- a lexicographic tie-break now keeps
+// exactly one, so an identical-expansion pair never double-counts. Also backs the home page's
+// "Tes genres" list (TRA-270): both must render the same de-duplicated set.
+function distinctPickerChoiceSlugs(onSlugs, legacyMap) {
   const bySlug = [...onSlugs].map((slug) => ({ slug, ids: resolveLegacyGenres([slug], legacyMap).genres }));
-  let count = 0;
-  for (const a of bySlug) {
-    const dominated =
-      a.ids.length > 0 &&
-      bySlug.some((b) => b !== a && b.ids.length > a.ids.length && a.ids.every((id) => b.ids.includes(id)));
-    if (!dominated) count++;
-  }
-  return count;
+  return bySlug
+    .filter((a) => {
+      if (a.ids.length === 0) return true;
+      return !bySlug.some((b) => {
+        if (b === a || !a.ids.every((id) => b.ids.includes(id))) return false;
+        if (b.ids.length > a.ids.length) return true;
+        return b.ids.length === a.ids.length && b.slug < a.slug;
+      });
+    })
+    .map((a) => a.slug);
+}
+
+function distinctPickerChoiceCount(onSlugs, legacyMap) {
+  return distinctPickerChoiceSlugs(onSlugs, legacyMap).length;
 }
 
 function renderProfileChip() {
@@ -1364,8 +1385,14 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
 
   const node = pickDailyReco();
   // B3: a v2 profile's genres are ids, never graph slugs -- show one chip per picker choice it
-  // resolves to (v2PickerChoiceSlugs, the same set the chip's count above uses) instead.
-  const displaySlugs = activeV2 ? [...v2PickerChoiceSlugs(profile)] : profile.genres;
+  // resolves to instead. TRA-270: this used to render the raw v2PickerChoiceSlugs set while the
+  // comment claimed it matched the chip's count above -- the count already folded a dominated
+  // subfamily chip (e.g. genre:krautrock, fully covered by a checked genre:rock) into its family,
+  // but this list still rendered it as its own pill. Runs the same distinctPickerChoiceSlugs
+  // dedup so the count and the list agree on one set.
+  const displaySlugs = activeV2
+    ? distinctPickerChoiceSlugs(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
+    : profile.genres;
   const genreChips = displaySlugs
     .filter((s) => byId.has(s))
     .map((s) => `<a class="chip t-genre" href="?node=${encodeURIComponent(s)}" data-id="${escapeHtml(s)}">${escapeHtml(byId.get(s).name)}</a>`)

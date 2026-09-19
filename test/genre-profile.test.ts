@@ -71,6 +71,7 @@ type OdysseyWindow = Window &
 		v2EditUnavailable: () => boolean;
 		v2PickerChoiceSlugs: (profile: MigratedProfile) => Set<string>;
 		distinctPickerChoiceCount: (onSlugs: Iterable<string>, legacyMap: Record<string, string[]>) => number;
+		distinctPickerChoiceSlugs: (onSlugs: Iterable<string>, legacyMap: Record<string, string[]>) => string[];
 		renderProfileChip: () => void;
 		showHome: () => void;
 		idsToPickerSlugs: (
@@ -929,6 +930,24 @@ describe("mergePickerSelectionIntoV2 — delta-only save (TRA-251, review B1 & B
 			["local:house", "local:rock-1", "local:rock-2", "local:rock-3", "local:techno"].sort(),
 		);
 	});
+
+	// TRA-270 (3rd review of #237, reported as a non-blocking nit): B5 above computed
+	// stillCoveredIds once from every slug left in `final`, genre:rock included -- so unchecking
+	// genre:krautrock alone, with genre:rock still checked, removed nothing: rock's own
+	// completeness always "covers" krautrock's ids back, since they're a subset of it. The bug
+	// report's exact repro (profile holding all 16 genre:rock ids, uncheck genre:krautrock only).
+	it("TRA-270: unchecking a subfamily removes its own ids even while its family stays checked, without touching a sibling's", () => {
+		const current: MigratedProfile = {
+			name: "Raph",
+			genres: ["local:rock-1", "local:rock-2", "local:rock-3", "local:rock-4", "local:techno"],
+		};
+		const initial = new Set(["genre:rock", "genre:krautrock", "genre:psychedelic-rock", "genre:techno"]);
+		const final = new Set(["genre:rock", "genre:psychedelic-rock", "genre:techno"]); // uncheck krautrock only
+		const next = win.mergePickerSelectionIntoV2(current, initial, final, nestedRockTaxonomy);
+		// krautrock's own rock-1/rock-2 are gone; rock-3 survives (psychedelic-rock still claims
+		// it); rock-4 and techno are untouched (neither's slug left `final`).
+		expect(next?.genres.slice().sort()).toEqual(["local:rock-3", "local:rock-4", "local:techno"].sort());
+	});
 });
 
 describe("distinctPickerChoiceCount — nit (3rd review): a chip's count doesn't inflate from nested taxonomy overlap", () => {
@@ -937,6 +956,130 @@ describe("distinctPickerChoiceCount — nit (3rd review): a chip's count doesn't
 		// krautrock/psychedelic-rock are dominated by rock's expansion -> not counted. 2, not 4.
 		expect(win.distinctPickerChoiceCount(on, nestedRockTaxonomy.legacySelectionBySlug)).toBe(2);
 	});
+});
+
+// TRA-270 criterion 4: a fuzz generalizing the bug report (genre:rock's 16 ids, uncheck
+// genre:krautrock alone) across many random nested-family shapes. Two things must both hold on
+// every run: the unchecked subfamily's own ids are actually gone (criterion 1, generalized), and
+// every OTHER still-checked subfamily's ids -- plus any "pure family" id no subfamily covers --
+// are never touched. Deterministic PRNG (mulberry32, no new dependency): reproducible seed, no
+// CI flakiness, still many pseudo-random cases.
+function mulberry32(seed: number): () => number {
+	let a = seed;
+	return () => {
+		a |= 0;
+		a = (a + 0x6d2b79f5) | 0;
+		let t = Math.imul(a ^ (a >>> 15), 1 | a);
+		t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+	};
+}
+
+describe("mergePickerSelectionIntoV2 fuzz — TRA-270 criterion 4: unchecking a subfamily loses exactly its own ids", () => {
+	it("holds across 205 randomized nested families (mirrors the review's own fuzz sample size)", () => {
+		const rng = mulberry32(270);
+		for (let run = 0; run < 205; run++) {
+			// 2-4 disjoint subfamilies (like genre:krautrock/genre:psychedelic-rock: no id shared
+			// between them), each 1-3 ids, plus an optional "pure family" residual (like rock-4)
+			// covered by genre:family alone. genre:family is every id's union, always fully checked.
+			const subfamilyCount = 2 + Math.floor(rng() * 3);
+			const groups: string[][] = [];
+			let idCursor = 0;
+			for (let g = 0; g < subfamilyCount; g++) {
+				const size = 1 + Math.floor(rng() * 3);
+				const group: string[] = [];
+				for (let i = 0; i < size; i++) group.push(`local:id-${idCursor++}`);
+				groups.push(group);
+			}
+			const residualSize = rng() < 0.5 ? 1 + Math.floor(rng() * 2) : 0;
+			const residual: string[] = [];
+			for (let i = 0; i < residualSize; i++) residual.push(`local:id-${idCursor++}`);
+
+			const legacyMap: Record<string, string[]> = { "genre:family": [...groups.flat(), ...residual] };
+			groups.forEach((group, g) => {
+				legacyMap[`genre:sub-${g}`] = group;
+			});
+			const fuzzTaxonomy: GenreTaxonomyProjection = {
+				version: 2,
+				families: [],
+				genres: [],
+				legacySelectionBySlug: legacyMap,
+			};
+			const allSlugs = Object.keys(legacyMap);
+			const current: MigratedProfile = { name: "Raph", genres: legacyMap["genre:family"] as string[] };
+
+			const initial = win.idsToPickerSlugs(current.genres, [], allSlugs, legacyMap);
+			// Sanity: the full family being checked also lights up every subfamily (same nesting
+			// as B5) -- otherwise this run doesn't exercise the bug at all.
+			expect([...initial].sort()).toEqual(allSlugs.sort());
+
+			const victim = Math.floor(rng() * subfamilyCount);
+			const final = new Set([...initial].filter((slug) => slug !== `genre:sub-${victim}`));
+
+			const next = win.mergePickerSelectionIntoV2(current, initial, final, fuzzTaxonomy);
+			expect(next).not.toBeNull();
+
+			for (const id of groups[victim] as string[]) {
+				expect(
+					next?.genres,
+					`run ${run}: victim id ${id} survived unchecking genre:sub-${victim} even though genre:family stayed checked`,
+				).not.toContain(id);
+			}
+			groups.forEach((group, g) => {
+				if (g === victim) return;
+				for (const id of group) {
+					expect(next?.genres, `run ${run}: sibling id ${id} (genre:sub-${g}) was wrongly lost`).toContain(
+						id,
+					);
+				}
+			});
+			for (const id of residual) {
+				expect(next?.genres, `run ${run}: residual "pure family" id ${id} was wrongly lost`).toContain(id);
+			}
+		}
+	});
+});
+
+// TRA-270 criterion 2 (3rd review of #237): web/index.html:1367-1368 rendered showHome()'s
+// "Tes genres" list from the raw, un-deduplicated v2PickerChoiceSlugs set while its own comment
+// claimed it matched the profile chip's count above -- distinctPickerChoiceCount already folded
+// a dominated subfamily (e.g. genre:krautrock, fully covered by a checked genre:rock) into its
+// family, but the list still rendered it as its own separate pill. Real graph (nit, don't mock
+// what we own): genre:rock's real 16-id expansion genuinely nests a real subfamily's.
+describe("home genre list vs. profile chip counter — TRA-270: same deduplicated set", () => {
+	it("renders exactly as many home chips as the profile chip's own count, collapsing a dominated subfamily", async () => {
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
+		try {
+			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
+			const rockIds = legacyMap["genre:rock"] ?? [];
+			expect(rockIds.length).toBeGreaterThan(1); // sanity: a real multi-id family exists
+
+			const existingV2: MigratedProfile = { name: "Raph", genres: [...rockIds] };
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			const profile = w.loadActiveProfile(realTaxonomy);
+			expect(profile).not.toBeNull();
+
+			const onSlugs = w.v2PickerChoiceSlugs(profile as MigratedProfile);
+			const deduped = w.distinctPickerChoiceSlugs(onSlugs, legacyMap);
+			// Sanity: this profile really does exercise the nesting -- otherwise the assertions
+			// below would pass even without the fix.
+			expect(onSlugs.size).toBeGreaterThan(deduped.length);
+
+			w.renderProfileChip();
+			w.showHome();
+			const chipText = (w.document.getElementById("profile-chip") as HTMLElement).textContent ?? "";
+			const chipCount = Number(chipText.match(/(\d+) genres/)?.[1]);
+			const listedCount = w.document.querySelectorAll(".home-genres .chip[data-id]").length;
+
+			expect(chipCount).toBe(deduped.length);
+			// Mutation guard: reverting web/index.html:1368 to the raw `onSlugs` set would render
+			// onSlugs.size chips here instead, which the sanity check above already proved is
+			// strictly more than deduped.length.
+			expect(listedCount).toBe(deduped.length);
+		} finally {
+			w.close();
+		}
+	}, 20000);
 });
 
 describe("pickDailyReco — B4: recommendable through unresolved slugs with no resolved id", () => {
@@ -1151,6 +1294,40 @@ describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, crite
 			expect(saved.genres.slice().sort()).toEqual(expectedIds.sort());
 			expect(saved.unresolvedGenreSlugs).toEqual([unresolvedSlug]);
 			expect(w.v2PickerChoiceSlugs(saved).has(unresolvedSlug as string)).toBe(true);
+		} finally {
+			w.close();
+		}
+	}, 20000);
+
+	// TRA-270 (nit, 3rd review of #237): web/index.html:975's `email ? {...} : {...}` guard had no
+	// test -- a mutant deleting it (always writing `email`) passed the suite untouched.
+	it("TRA-270: an empty email field never writes an 'email' key onto a v2 record that never had one", async () => {
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
+		try {
+			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
+			const picks: string[] = [];
+			let checked = 0;
+			for (const slug of w.genrePickList()) {
+				const ids = legacyMap[slug];
+				if (Array.isArray(ids) && ids.length > 0) {
+					picks.push(...ids);
+					checked++;
+				}
+				if (checked === 3) break;
+			}
+			expect(checked).toBe(3); // sanity: enough real picks to clear MIN_GENRES
+
+			const existingV2: MigratedProfile = { name: "Raph", genres: picks }; // no `email` key at all
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(existingV2));
+			w.loadActiveProfile(realTaxonomy);
+
+			w.wireOnboarding();
+			w.openOnboarding({ mode: "edit" });
+			expect((w.document.getElementById("onb-email") as HTMLInputElement).value).toBe(""); // nothing to prefill
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click(); // untouched save, email left blank
+
+			const saved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(Object.hasOwn(saved, "email")).toBe(false);
 		} finally {
 			w.close();
 		}
