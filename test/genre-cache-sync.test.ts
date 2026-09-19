@@ -19,7 +19,7 @@ import { afterEach, describe, expect, it } from "vitest";
 // fake `gh`), and every "$SERVER:" remote path the script builds is pointed, via its own
 // SERVER_CACHE_REMOTE / SERVER_REDIRECTS_REMOTE / SERVER_BACKUP_DIR / SERVER_CRAWL_LOCK env
 // overrides, at a real local directory that stands in for "the server" -- so ssh/rsync/curl
-// commands the fakes don't special-case (test -f, mkdir -p, tar czf, cat) can just run for real
+// commands the fakes don't special-case (test -f, mkdir -p, tar cf, tar --append, cat) can just run for real
 // against that local stand-in. Only prepare-genre-cache-union.ts's own manifest logic is real,
 // per the ticket's "not the code of the manifest" boundary.
 
@@ -190,6 +190,16 @@ case "$cmd" in
       printf 'not a gzip file' > "$path"
     fi
     bash -c "$cmd"
+    ;;
+  *"&& test ! -e"*)
+    # Simulates an 'rm -f' that silently removed nothing (wrong permissions, a stale mount): only
+    # run the existence check the real command chains after it, never the removal itself -- so the
+    # file survives and the check (if the script has it) is what must catch that.
+    if [[ "\${TEST_RM_SILENT_NOOP:-0}" == "1" ]]; then
+      bash -c "\${cmd#*&& }"
+    else
+      bash -c "$cmd"
+    fi
     ;;
   *)
     bash -c "$cmd"
@@ -446,20 +456,76 @@ describe("sync-genre-cache.sh", () => {
 		expect(existsSync(serverBackupDir)).toBe(false);
 	});
 
-	// isValidSlug/parseSlug (src/slug.ts) reject neither '/' nor '..' in a slug body -- real
+	// isValidSlug/parseSlug (src/slug.ts) enforce neither '/' nor '..' in a slug body -- real
 	// defense-in-depth, exercised via a test-only override since makeSlug never produces such a slug.
-	it("refuses when a removed slug would resolve outside nodes/, before any write", () => {
+	it("refuses when a removed slug's body contains a path separator, before any write", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({
 			apply: true,
 			duplicateOnServer: true,
 			env: { TEST_OVERRIDE_REMOVED_SLUG: "genre:../../etc/evil" },
 		});
 		expect(result.status).not.toBe(0);
-		expect(result.stderr).toMatch(/outside nodes\//);
+		expect(result.stderr).toMatch(/outside the normalized slug charset/);
 		expect(calls).not.toContain("systemctl stop");
 		expect(existsSync(serverBackupDir)).toBe(false);
 		// Still there: the guard refused before the transfer step that would have removed it.
 		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
+	});
+
+	// Independent review of this PR: a blacklist of '..'/'/' alone let a shell metacharacter through
+	// undetected. This slug body is interpolated between single quotes in the remote `rm -f --`
+	// command below, so a bare apostrophe breaks the quoting -- `genre:a'; reboot; echo '` used to
+	// pass the old check (it contains neither '..' nor '/') and reach `ssh` verbatim, executing
+	// `reboot` as its own command, as root, on the real production host. The whitelist regex refuses
+	// it outright; no slash is needed to trip it.
+	it("refuses when a removed slug's body contains a shell metacharacter (e.g. a quote), before any write", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote } = run({
+			apply: true,
+			duplicateOnServer: true,
+			env: { TEST_OVERRIDE_REMOVED_SLUG: "genre:a'; echo pwned; echo '" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/outside the normalized slug charset/);
+		expect(calls).not.toContain("systemctl stop");
+		// The malicious payload never reached a remote command at all.
+		expect(calls).not.toContain("pwned");
+		expect(existsSync(serverBackupDir)).toBe(false);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
+	});
+
+	// The union always runs with --apply-merge (this script's own invocation), so a missing
+	// migrationApply section means the manifest isn't what this script expects -- a contract
+	// violation to refuse hard on, not "nothing to merge" (deletedCount:0/removedByMigration:[] are
+	// still a present migrationApply, and are exercised by the "without a duplicate" test below).
+	it("refuses when the manifest has no migrationApply section at all, before any write", () => {
+		const { result, calls, serverBackupDir } = run({
+			apply: true,
+			env: { TEST_FORCE_MISSING_MIGRATION_APPLY: "1" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/no migrationApply section/);
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(serverBackupDir)).toBe(false);
+	});
+
+	// 2026-09-19 (TRA-276/B6c-2 review): `rm -f` alone reports success even when it silently removed
+	// nothing -- exactly the "merged-away duplicate keeps being served while the run says Sync
+	// complete" failure the old blanket refusal existed to prevent. TEST_RM_SILENT_NOOP makes the
+	// fake ssh run only the `test ! -e` half of the chained remote command, never the `rm -f` half,
+	// so the file survives; the check after it must turn that into a hard failure.
+	it("verifies the deletion actually happened, not just that `rm` exited 0 (a silent no-op fails instead of reporting success)", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote } = run({
+			apply: true,
+			duplicateOnServer: true,
+			env: { TEST_RM_SILENT_NOOP: "1" },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/Restore from the archive/);
+		// The file the script believes it removed is, in fact, still there -- exactly what the check
+		// exists to catch.
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "dance-hall.json"))).toBe(true);
+		expect(calls).toContain("systemctl start odyssey-server.service");
+		expect(readdirSync(serverBackupDir)).toHaveLength(1);
 	});
 
 	// Without a duplicate to merge, behavior is unchanged: no deletion, and the redirects table is
@@ -514,10 +580,13 @@ describe("sync-genre-cache.sh", () => {
 		expect(readdirSync(serverBackupDir)).toHaveLength(1);
 	});
 
-	it("archives the server cache before any apply, verifies it with gzip -t, and prints the rollback archive path", () => {
+	it("archives the server cache AND the pre-write redirects table before any apply, verifies it with gzip -t, and prints the rollback archive path", () => {
 		const { result, calls, serverBackupDir } = run({ apply: true });
 		expect(result.status).toBe(0);
-		expect(calls).toContain("tar czf");
+		// gzip can't append to an already-compressed archive, hence the two-step tar (cache/, then
+		// the redirects file) compressed last -- see the script's own comment.
+		expect(calls).toContain("tar cf");
+		expect(calls).toContain("tar --append");
 		expect(calls).toContain("gzip -t");
 		const archives = readdirSync(serverBackupDir);
 		expect(archives).toHaveLength(1);
@@ -525,6 +594,13 @@ describe("sync-genre-cache.sh", () => {
 		expect(result.stdout).toContain(
 			`Rollback archive: test@fake-server:${join(serverBackupDir, archives[0]!)}`,
 		);
+		// "Rollback = the printed archive" (file header) must be literally true: this script writes
+		// the server's redirects table too, so its pre-write content belongs in the same archive as
+		// the cache tree -- not just cache/, which cleanup() would otherwise leave with no way back.
+		const archivePath = join(serverBackupDir, archives[0]!);
+		const entries = execFileSync("tar", ["tzf", archivePath], { encoding: "utf8" });
+		expect(entries).toMatch(/(^|\/)cache\//m);
+		expect(entries).toMatch(/(^|\/)genre-redirects\.json$/m);
 	});
 
 	// Nit: the archive is verified (gzip -t) before the script proceeds to stop the writer.
@@ -553,7 +629,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls, serverBackupDir } = run({ apply: true, crawlLock: true });
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toMatch(/crawl.*progress/i);
-		expect(calls).not.toContain("tar czf");
+		expect(calls).not.toContain("tar cf");
 		expect(existsSync(serverBackupDir)).toBe(false);
 	});
 
@@ -562,7 +638,7 @@ describe("sync-genre-cache.sh", () => {
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toContain("still active after stop");
 		// Archived (mandatory, happens before the stop) but never transferred.
-		expect(calls).toContain("tar czf");
+		expect(calls).toContain("tar cf");
 		expect(calls).not.toMatch(/rsync[^\n]*nodes\/$/m);
 	});
 
@@ -725,7 +801,7 @@ describe("sync-genre-cache.sh", () => {
 		const { result, calls } = run({ apply: true, env: { TEST_SSH_FAIL_MATCH: ".crawl-lock" } });
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toMatch(/crawl lock/i);
-		expect(calls).not.toContain("tar czf");
+		expect(calls).not.toContain("tar cf");
 	});
 
 	it("fails closed when confirming the writer stopped: an ssh failure refuses rather than reading as 'not active' (review: fail-open)", () => {
@@ -774,13 +850,13 @@ describe("sync-genre-cache.sh", () => {
 		expect(zero.result.status).not.toBe(0);
 		expect(zero.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
 		// Refused before anything destructive: no archive made, nothing pruned, no transfer.
-		expect(zero.calls).not.toContain("tar czf");
+		expect(zero.calls).not.toContain("tar cf");
 		expect(readdirSync(zero.serverBackupDir)).toHaveLength(3);
 
 		const nonNumeric = run({ apply: true, env: { BACKUP_RETENTION_COUNT: "ten" } });
 		expect(nonNumeric.result.status).not.toBe(0);
 		expect(nonNumeric.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
-		expect(nonNumeric.calls).not.toContain("tar czf");
+		expect(nonNumeric.calls).not.toContain("tar cf");
 	});
 });
 

@@ -240,21 +240,43 @@ if [[ $APPLY -eq 0 ]]; then
 	exit 0
 fi
 
-# 2026-09-19 (TRA-276/B6c-2): manifest.migrationApply.{deletedCount,removedByMigration} are always
-# present once --apply-merge ran (this script always passes it) -- only their CONTENT differs when
-# there was nothing to merge (both empty/0). Trust neither blindly: the two must agree in count
-# (deletedCount is the migration's own tally; removedByMigration is derived independently from live
-# -slug membership -- a real disagreement means the manifest is internally inconsistent, and this
-# script has no way to tell which side is right), and each removed slug's own computed path must
-# land inside nodes/ -- isValidSlug/parseSlug (src/slug.ts) reject neither '/' nor '..' in a slug
-# body, so this is real defense-in-depth, not paranoia. Refuse before any write on either failure.
+# 2026-09-19 (TRA-276/B6c-2 review): migrationApply is only ever absent when this script's own
+# invocation contract changes (it always runs the union with --apply-merge) -- a real contract
+# violation, not "nothing to merge" (that's deletedCount:0, removedByMigration:[], both still
+# present). Refuse hard instead of letting the `?? 0` / `?? []` below silently read it that way.
+HAS_MIGRATION_APPLY="$(node -e 'const m=require(process.argv[1]);process.stdout.write(m.migrationApply == null ? "0" : "1")' "$UNION_DIR/manifest.json")"
+# Test-only hook (never set outside test/genre-cache-sync.test.ts): the real union script can never
+# omit migrationApply when --apply-merge is passed (which this script always does), so the test
+# drives this refusal directly.
+if [[ "${TEST_FORCE_MISSING_MIGRATION_APPLY:-0}" == "1" ]]; then
+	HAS_MIGRATION_APPLY=0
+fi
+if [[ "$HAS_MIGRATION_APPLY" != "1" ]]; then
+	echo "ERROR: the union's manifest has no migrationApply section -- this script always runs the union with --apply-merge, so its absence means the manifest isn't what this script expects. Refusing before any write." >&2
+	exit 1
+fi
+
+# manifest.migrationApply.{deletedCount,removedByMigration} are always present once --apply-merge
+# ran (just confirmed above) -- only their CONTENT differs when there was nothing to merge (both
+# empty/0). Trust neither blindly: the two must agree in count (deletedCount is the migration's own
+# tally; removedByMigration is derived independently from live-slug membership). This is a
+# tripwire, not a proven identity -- nothing in prepare-genre-cache-union.ts guarantees the two
+# counts describe the same population beyond "both came out of one successful migration run"; if
+# that assumption ever breaks, refuse rather than guess which side is right. Each removed slug's
+# own computed path must also land inside nodes/, using the SAME charset normalizeSlugBody actually
+# produces ([a-z0-9-], no leading/trailing dash) rather than merely excluding '/' and '..' --
+# isValidSlug/parseSlug (src/slug.ts) enforce neither, so a slug body could otherwise carry a shell
+# metacharacter (an unescaped quote, `$(...)`) straight into the single-quoted remote `ssh` command
+# below (independent review of this PR: `genre:a'; reboot; echo '` passed the old '..'/'/' check and
+# broke out of the quoting). Real defense-in-depth, not paranoia: refuse before any write on any of
+# these failures.
 MIGRATION_DELETED_COUNT="$(node -e 'const m=require(process.argv[1]);process.stdout.write(String(m.migrationApply?.deletedCount ?? 0))' "$UNION_DIR/manifest.json")"
 REMOVED_SLUGS="$(node -e 'const m=require(process.argv[1]);const list=m.migrationApply?.removedByMigration ?? [];process.stdout.write(list.map((e) => e.slug).join("\n"))' "$UNION_DIR/manifest.json")"
 
 # Test-only hooks (never set outside test/genre-cache-sync.test.ts): the real union script has no
-# way to produce, on demand, a manifest where these two disagree or where a removed slug escapes
-# nodes/ -- both only guard a future bug that corrupts the manifest, so the tests drive the guard
-# below directly instead.
+# way to produce, on demand, a manifest where these two disagree or where a removed slug escapes the
+# normalized charset -- both only guard a future bug that corrupts the manifest, so the tests drive
+# the guard below directly instead.
 if [[ "${TEST_FORCE_REMOVED_COUNT_MISMATCH:-0}" == "1" ]]; then
 	MIGRATION_DELETED_COUNT=$((MIGRATION_DELETED_COUNT + 1))
 fi
@@ -281,8 +303,12 @@ if [[ -n "$REMOVED_SLUGS" ]]; then
 				exit 1
 				;;
 		esac
-		if [[ "$node_body" == *".."* || "$node_body" == */* ]]; then
-			echo "ERROR: removedByMigration slug '$slug' resolves outside nodes/ -- refusing before any write." >&2
+		# Whitelist, not a blacklist: matches exactly what normalizeSlugBody (src/slug.ts) ever
+		# produces. A blacklist of '..'/'/' alone still let a quote or a shell substitution through
+		# undetected (independent review of this PR) -- this body is interpolated between single
+		# quotes in a remote `ssh` command below.
+		if ! [[ "$node_body" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?$ ]]; then
+			echo "ERROR: removedByMigration slug '$slug' has a body outside the normalized slug charset -- refusing before any write." >&2
 			exit 1
 		fi
 		REMOVE_PATHS+=("nodes/$node_type/$node_body.json")
@@ -316,7 +342,15 @@ fi
 echo "==> Archiving server cache before writing (mandatory)"
 TIMESTAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 ARCHIVE_PATH="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar.gz"
-ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar czf '$ARCHIVE_PATH' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")'"
+# 2026-09-19 (TRA-276/B6c-2 review): "Rollback = the printed archive" (see file header) must be
+# literally true -- this script now writes SERVER_REDIRECTS_REMOTE too (see "Shipping the union's
+# redirects table" below), so its PRE-write content belongs in the same archive as the cache tree,
+# not just cache/ alone, or cleanup() removing the union's own temp copy would leave no way back to
+# it. gzip can't append to an already-compressed archive, hence the intermediate .tar built in two
+# steps (cache/, then the redirects file) and compressed last -- `gzip -f` on that .tar produces
+# exactly $ARCHIVE_PATH (…tar -> …tar.gz), so no rename is needed afterwards.
+ARCHIVE_TAR="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar"
+ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$SERVER_REDIRECTS_REMOTE")' '$(basename "$SERVER_REDIRECTS_REMOTE")' && gzip -f '$ARCHIVE_TAR'"
 echo "==> Verifying archive integrity"
 ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
 echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
@@ -371,7 +405,15 @@ rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
 if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then
 	echo "==> Removing ${#REMOVE_PATHS[@]} node file(s) merged away by the union (explicit paths, never --delete)"
 	for rel in "${REMOVE_PATHS[@]}"; do
-		ssh "$SERVER" "rm -f -- '$SERVER_CACHE_REMOTE/$rel'"
+		# 2026-09-19 (TRA-276/B6c-2 review): `rm -f` alone reports success even when it silently
+		# removed nothing (wrong permissions, a stale mount, a path that never matched what this
+		# script computed) -- exactly the "merged-away duplicate keeps being served while the run
+		# says Sync complete" failure mode the old blanket refusal existed to prevent. `test ! -e`
+		# after it turns that into a hard failure (writer restarted, archive pointed at, same as any
+		# other post-transfer failure) instead of a false success; `-f` still makes this a legitimate
+		# no-op for a loser that only ever existed in the repo (never reached the server), since
+		# `test ! -e` then trivially passes too.
+		ssh "$SERVER" "rm -f -- '$SERVER_CACHE_REMOTE/$rel' && test ! -e '$SERVER_CACHE_REMOTE/$rel'"
 	done
 fi
 
