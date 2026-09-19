@@ -992,8 +992,11 @@ function genresByPopularity() {
 
 // ─── Id-based family grid (TRA-211 / D3a) ──────────────────────────────────
 // Unlike the flat picker above, this operates directly in v2 id-space: a checkbox is one
-// taxonomy genre id, no slug/legacy translation needed. Rendered into #onb-genres, gated by
-// GENRE_GRID_ENABLED, when a usable TAXONOMY is loaded.
+// taxonomy genre id, no slug/legacy translation needed for a real grid pick. Rendered into
+// #onb-genres, gated by GENRE_GRID_ENABLED, when a usable TAXONOMY is loaded. TRA-282 (2026-09-19,
+// review #275) adds one exception: onbGridSelection can also hold a legacyGridPicks() slug (a
+// v1-derived unresolvedGenreSlugs entry the graph still has a node for) -- see that function and
+// the "Hors grille" pseudo-family below for why.
 let onbGridSelection = new Set();
 
 // Mutates onbGridSelection in place (never reassigns it) so wireFamilyGrid's listeners, bound
@@ -1001,6 +1004,38 @@ let onbGridSelection = new Set();
 function seedGridSelection(ids) {
   onbGridSelection.clear();
   (ids || []).forEach((id) => onbGridSelection.add(id));
+}
+
+// TRA-282 (2026-09-19), review #275: before this fix, a v1 profile holding a genrePickList() slug
+// absent from legacySelectionBySlug (real case: a popular-in-the-graph genre excluded from the
+// published taxonomy by editorial arbitration, e.g. genre:pop) migrated that slug into
+// unresolvedGenreSlugs (resolveLegacyGenres keeps it, "never dropped") and it stayed there
+// forever, unremovable, once the grid became the default picker -- gridChoiceChips() still
+// rendered it as a home chip and counted it in the badge, and resolveScoringChoices() still
+// weighed it in the reco, but openOnboarding()'s grid branch only ever seeded onbGridSelection
+// from profile.genres (taxonomy ids), never from unresolvedGenreSlugs, so no checkbox represented
+// it and mergeGridSelectionIntoV2() rewrote it back unchanged every save. Symptom: "legacy pick
+// visible but unremovable once the grid is the default." A slug absent from the graph (byId) is
+// never rendered by gridChoiceChips() either, so it's excluded here too -- this only surfaces
+// picks a user could actually see and act on.
+function legacyGridPicks(profile) {
+  return ((profile && profile.unresolvedGenreSlugs) || []).filter((slug) => byId.has(slug));
+}
+
+// The `else` branch of legacyGridPicks() above, i.e. the common case: nothing to show, return the
+// taxonomy unchanged. Otherwise appends one synthetic "Hors grille" family so renderFamilyGrid()/
+// wireFamilyGrid() below render and toggle these slugs with zero changes of their own -- each
+// pseudo-entry's `id` is the slug itself (a selection Set doesn't care which kind of string it's
+// checking), and mergeGridSelectionIntoV2() tells the two kinds apart by re-deriving
+// legacyGridPicks() from the same source at save time.
+function withLegacyFamily(taxonomy, legacyPicks) {
+  if (legacyPicks.length === 0) return taxonomy;
+  const legacyGenres = legacyPicks.map((slug) => ({ id: slug, name: byId.get(slug).name, family: "__legacy__" }));
+  return {
+    ...taxonomy,
+    genres: [...taxonomy.genres, ...legacyGenres],
+    families: [...taxonomy.families, { key: "__legacy__", label: "Hors grille" }],
+  };
 }
 
 // The projection already contains only published-admissible entries (GenreTaxonomyProjection),
@@ -1028,11 +1063,33 @@ function toggleFamilySelection(genres, selection) {
 // Same off-grid-id invariant as mergePickerSelectionIntoV2 (D2b/B1), trivial in id-space: a
 // checkbox only ever adds/removes the one id it represents, so an id absent from the rendered
 // grid (unpublished, quarantined, or a stale local: pick) is simply never touched.
+// TRA-282 (2026-09-19), review #275: `selection` can also hold a legacyGridPicks() slug (see that
+// function and withLegacyFamily() above) -- re-derived here from `current` itself, the same
+// source legacyGridPicks() read when openOnboarding() seeded the selection, so this always agrees
+// with what was actually rendered/checkable this session. A legacy slug still checked at save
+// time is kept in unresolvedGenreSlugs (unchanged, same as before this fix); one the user
+// unchecked is removed -- the missing half of the original bug fix, matching what
+// mergePickerSelectionIntoV2 already did for the flat picker before this ticket. Never added to
+// `ids`/`genres`: a slug is not a taxonomy id.
 function mergeGridSelectionIntoV2(current, taxonomy, selection) {
   const onGrid = new Set(taxonomy.genres.map((g) => g.id));
+  const legacyCandidates = new Set(legacyGridPicks(current));
+
   const ids = new Set((current.genres || []).filter((id) => !onGrid.has(id)));
-  selection.forEach((id) => ids.add(id));
-  return { ...current, genres: [...ids] };
+  selection.forEach((entry) => {
+    if (!legacyCandidates.has(entry)) ids.add(entry);
+  });
+
+  const unresolved = new Set(current.unresolvedGenreSlugs || []);
+  legacyCandidates.forEach((slug) => {
+    if (selection.has(slug)) unresolved.add(slug);
+    else unresolved.delete(slug);
+  });
+
+  const next = { ...current, genres: [...ids] };
+  if (unresolved.size > 0) next.unresolvedGenreSlugs = [...unresolved];
+  else delete next.unresolvedGenreSlugs;
+  return next;
 }
 
 function updateFamilyAllControl(familyEl, genres, selection) {
@@ -1207,8 +1264,14 @@ function openOnboarding({ mode = "signup" } = {}) {
     // must stay out of onbGridSelection, or it would silently inflate the MIN_GENRES counter
     // for a choice the user never sees a checkbox for (mergeGridSelectionIntoV2 protects it on
     // save regardless, from `current.genres` directly).
+    // TRA-282 (2026-09-19), review #275: also seeds any legacyGridPicks() slug -- see that
+    // function's comment -- so the "Hors grille" pseudo-family renderGenreGrid() adds below has
+    // something to render as checked, instead of the pick being invisible to every checkbox.
     const onGrid = new Set(TAXONOMY.genres.map((g) => g.id));
-    seedGridSelection(((profile && profile.genres) || []).filter((id) => onGrid.has(id)));
+    seedGridSelection([
+      ...((profile && profile.genres) || []).filter((id) => onGrid.has(id)),
+      ...legacyGridPicks(profile),
+    ]);
   } else {
     // TRA-137/D2b: seed the old picker's checkbox state from a v2 profile's ids by
     // translating them back to slugs (criterion 6); a v1 profile's genres are already
@@ -1244,8 +1307,12 @@ function renderGenreGrid() {
     return;
   }
   if (GENRE_GRID_ENABLED && TAXONOMY) {
-    renderFamilyGrid(grid, TAXONOMY, onbGridSelection);
-    wireFamilyGrid(grid, TAXONOMY, onbGridSelection, refreshGenreCount);
+    // TRA-282 (2026-09-19), review #275: appends the "Hors grille" pseudo-family (see
+    // withLegacyFamily()) when currentProfile() has a legacy pick to show -- renderFamilyGrid()/
+    // wireFamilyGrid() render and toggle it exactly like any other family, unmodified.
+    const displayTaxonomy = withLegacyFamily(TAXONOMY, legacyGridPicks(currentProfile()));
+    renderFamilyGrid(grid, displayTaxonomy, onbGridSelection);
+    wireFamilyGrid(grid, displayTaxonomy, onbGridSelection, refreshGenreCount);
     refreshGenreCount();
     return;
   }

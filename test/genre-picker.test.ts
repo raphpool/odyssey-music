@@ -813,3 +813,115 @@ describe("grid-driven home chips and badge (TRA-282 bug fix)", () => {
 		}
 	});
 });
+
+// PR #275, second review (2026-09-19): "legacy pick visible but unremovable once the grid is the
+// default." A v1 profile can hold a genrePickList() slug absent from legacySelectionBySlug --
+// real case, not theoretical: a popular-in-the-graph genre excluded from the published taxonomy
+// by editorial arbitration (e.g. genre:pop, found by the review to actually exist in this repo's
+// own cache). resolveLegacyGenres migrates it into unresolvedGenreSlugs ("kept, never dropped"),
+// and it's in byId (it came from the graph), so gridChoiceChips() rendered it as a home chip and
+// counted it in the badge, and resolveScoringChoices() weighed it in the reco -- but
+// openOnboarding()'s grid branch only ever seeded onbGridSelection from profile.genres (taxonomy
+// ids), never from unresolvedGenreSlugs, so no checkbox represented it, and
+// mergeGridSelectionIntoV2() rewrote it back into the record unchanged on every save. Fixed by
+// legacyGridPicks()/withLegacyFamily() (web/index.html): the grid editor now renders a "Hors
+// grille" pseudo-family with one checked chip per such slug, reusing renderFamilyGrid()/
+// wireFamilyGrid() unmodified, and unchecking it + saving removes it from unresolvedGenreSlugs
+// for good via mergeGridSelectionIntoV2()'s own new branch.
+describe("legacy unresolved slugs are checkable/removable in the grid editor (TRA-282, review #275)", () => {
+	function newWindow(data: unknown): HomeWindow {
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(data))) as unknown as typeof fetch;
+			},
+		});
+		return dom.window as unknown as HomeWindow;
+	}
+
+	it("migrates, renders, counts, shows checked under 'Hors grille', and removes on uncheck+save -- while a slug absent from the graph stays untouched throughout", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const taxonomy = built.taxonomy as GenreTaxonomyProjection;
+		const legacyMap = taxonomy.legacySelectionBySlug as Record<string, string[]>;
+
+		// A throwaway probe just to read the real flat-picker slug list, same reasoning as other
+		// describe blocks in this file -- not hardcoded, even though the real cache happens to
+		// reproduce the review's own example (genre:pop).
+		const probe = newWindow(built);
+		await waitReady(probe);
+		const flatSlugs = probe.genrePickList();
+		probe.close();
+
+		const legacySlug = flatSlugs.find((s) => (legacyMap[s] ?? []).length === 0);
+		expect(legacySlug).toBeDefined(); // sanity: the real cache has this case
+
+		// Never resolves (absent from legacyMap, same as legacySlug) and never in byId (unlike
+		// legacySlug) -- resolveLegacyGenres treats both the same way at migration time (it only
+		// consults legacyMap, not the graph), so seeding v1 with both exercises the "kept, never
+		// dropped" migration path identically, while everything downstream of migration (render,
+		// grid editor, save) must tell them apart.
+		const ghostSlug = "genre:__does-not-exist-in-graph__";
+
+		const w = newWindow(built);
+		try {
+			w.localStorage.setItem(
+				PROFILE_KEY,
+				JSON.stringify({ createdAt: "x", name: "Raph", genres: [legacySlug, ghostSlug] }),
+			);
+			await waitReady(w);
+
+			// Migration (criterion 1 of the ticket): both kept as unresolved, neither dropped nor
+			// turned into a bogus id.
+			const migrated = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(migrated?.unresolvedGenreSlugs?.slice().sort()).toEqual([legacySlug, ghostSlug].sort());
+			expect(migrated?.genres ?? []).toHaveLength(0);
+
+			w.showHome();
+			// legacySlug renders and counts (gridChoiceChips(), the first TRA-282 fix); ghostSlug
+			// does neither (absent from byId).
+			expect(w.document.querySelector(`.home-genres .chip[data-id="${legacySlug}"]`)).toBeTruthy();
+			expect(w.document.querySelectorAll(".home-genres .chip[data-id]")).toHaveLength(1);
+			expect((w.document.getElementById("profile-chip") as HTMLElement).textContent).toContain("1 genres");
+
+			// The grid editor: legacySlug is checked under "Hors grille"; ghostSlug has no
+			// representation anywhere in the grid (never rendered, per withLegacyFamily()).
+			w.openOnboarding({ mode: "edit" });
+			const grid = w.document.getElementById("onb-genres") as HTMLElement;
+			const legacyFamily = grid.querySelector('.genre-family[data-family="__legacy__"]');
+			expect(legacyFamily).toBeTruthy();
+			const legacyChip = legacyFamily?.querySelector(`.genre-pick-id[data-id="${legacySlug}"]`);
+			expect(legacyChip?.getAttribute("aria-checked")).toBe("true");
+			expect(grid.querySelector(`[data-id="${ghostSlug}"]`)).toBeNull();
+
+			// Three ordinary grid picks to stay at/above MIN_GENRES=3 once the legacy one below is
+			// unchecked (1 legacy + 3 real, minus 1 = 3) -- otherwise #onb-done's threshold guard
+			// would silently no-op the save this test means to exercise.
+			const realPicks = [
+				...grid.querySelectorAll('.genre-family:not([data-family="__legacy__"]) .genre-pick-id'),
+			].slice(0, 3) as HTMLElement[];
+			expect(realPicks).toHaveLength(3); // sanity: the real taxonomy has at least 3 elsewhere
+			for (const pick of realPicks) pick.click();
+
+			// Uncheck the legacy pick, then save.
+			(legacyChip as HTMLElement).click();
+			expect(legacyChip?.getAttribute("aria-checked")).toBe("false");
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+			// Fails before the fix: mergeGridSelectionIntoV2 rewrote unresolvedGenreSlugs
+			// unchanged regardless of the checkbox state, so legacySlug would still be there.
+			const saved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(saved?.unresolvedGenreSlugs ?? []).not.toContain(legacySlug);
+			// ghostSlug survives untouched -- never rendered, so never a candidate to remove.
+			expect(saved?.unresolvedGenreSlugs ?? []).toContain(ghostSlug);
+			expect(saved?.genres).toHaveLength(3); // the three real picks, now persisted as ids
+
+			// The home page and badge agree: legacySlug's chip is gone, count reflects the 3 reals.
+			expect(w.document.querySelector(`.home-genres .chip[data-id="${legacySlug}"]`)).toBeNull();
+			expect((w.document.getElementById("profile-chip") as HTMLElement).textContent).toContain("3 genres");
+		} finally {
+			w.close();
+		}
+	});
+});
