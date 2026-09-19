@@ -1,11 +1,9 @@
 import type { NodeCache } from "./cache.js";
-import { resolveReadSlug } from "./genre-registry.js";
 import type { GenreTaxonomy } from "./genre-taxonomy.js";
 import type { GraphProjection, VizNode } from "./graph.js";
 import type { Slug } from "./types.js";
 
 const REQUIRED_NEIGHBOURS = 3;
-const EMPTY_REDIRECTS = new Map<Slug, Slug>();
 export interface GenreCoverageEntry {
 	resolvedSources: Slug[];
 	missingSources: Slug[];
@@ -74,14 +72,23 @@ export async function measureGenreCoverage(
 		const candidates = new Set<Slug>(genre.sourceSlugs ?? []);
 		if (genre.qid) {
 			const qidSource = await cache.findGenreSlugByQid(genre.qid);
-			if (qidSource) candidates.add(await resolveReadSlug(qidSource, EMPTY_REDIRECTS, cache));
+			if (qidSource) candidates.add(qidSource);
 		}
 		const resolvedSources: Slug[] = [];
 		const missingSources: Slug[] = [];
 		const quarantinedSources: Slug[] = [];
 		let sourceQid: string | undefined;
-		for (const candidate of candidates) {
-			const source = await resolveReadSlug(candidate, EMPTY_REDIRECTS, cache);
+		// TRA-235 (review nit on TRA-133): candidates used to be run through resolveReadSlug with a
+		// permanently empty redirects table, which always returns its input unchanged -- a no-op
+		// dressed up as a resolution step. Removing it is behavior-neutral for every caller today:
+		// projectGenreTaxonomy always builds `taxonomy` via loadGenreTaxonomy, whose sourceSlugs are
+		// already canonicalized against the real redirects table; scripts/analyze-genre-coverage.ts
+		// validates its taxonomy without canonicalizing, so an unresolved legacy source there simply
+		// surfaces as `missingSources`, exactly as it did before this change (the removed call could
+		// never have resolved it either, since its table was always empty). If a caller ever needs
+		// real redirect resolution here, thread a `GenreRedirects` table through as a parameter
+		// instead of reintroducing a hardcoded empty one.
+		for (const source of candidates) {
 			if (!(await cache.has(source))) {
 				missingSources.push(source);
 				continue;

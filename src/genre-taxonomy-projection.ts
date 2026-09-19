@@ -109,8 +109,16 @@ export async function projectGenreTaxonomy(
 	// A redirect's old slug is a migration key only when it is itself dead. A live old slug keeps
 	// resolving to whatever it is a real source of (already indexed above, if anything) and never
 	// inherits its target's ids -- this is resolveReadSlug's "a live node always wins" rule,
-	// applied here directly rather than through measureGenreCoverage (which always sees an empty
-	// redirect table, see genre-coverage.ts's EMPTY_REDIRECTS).
+	// applied here directly rather than through measureGenreCoverage (which performs no redirect
+	// resolution of its own at all -- see genre-coverage.ts, TRA-235).
+	//
+	// TRA-235 (review nit on TRA-133): this is a single hop by design, not by oversight. A chain
+	// (a -> b -> c, b itself retired) can never reach `redirects` here: parseGenreRedirects (this
+	// table's only producer, genre-registry.ts) throws "genre-redirects.json is not flattened" the
+	// moment any value also appears as a key, before this function -- or anything else -- ever sees
+	// the table (see test/genre-registry.test.ts, "rejects a table where a value is also a key").
+	// Walking a multi-hop chain here would be defensive code against an input the loader already
+	// makes structurally impossible.
 	for (const [loser, target] of redirects) {
 		if (await cache.has(loser)) continue;
 		const targetIds = idsBySlug.get(target);
