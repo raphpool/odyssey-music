@@ -374,10 +374,49 @@ describe("rewritePendingReverses", () => {
 });
 
 describe("loadOnboardingGenreSlugs", () => {
-	// The "extracts the real slugs from web/index.html" case that used to live here asserted
-	// against ONBOARDING_GENRES in the real web/index.html, which TRA-211 (D3a) removes by
-	// design -- that guarantee about production content no longer applies. The regex-parsing
-	// behavior itself is still exercised below, against a local fixture rather than the repo file.
+	// The "extracts the real slugs from web/index.html, all present in cache/nodes/genre" case
+	// that used to live here asserted a production-content guarantee (every real ONBOARDING_GENRES
+	// slug has a matching cache file) that stops making sense once TRA-211 (D3a) removes the
+	// constant by design. That half is gone for good. The regex-parsing half is not: both tests
+	// below exercise it against a local fixture instead of the repo file, so they survive TRA-211
+	// unchanged.
+	it("parses a multi-line literal with hyphenated slugs into the exact ordered list (2026-09-19: kills the [a-z0-9-] -> [a-z] regression that silently drops every hyphenated slug)", async () => {
+		const dir = await mkdtemp(join(tmpdir(), "odyssey-onboarding-nominal-"));
+		const path = join(dir, "index.html");
+		try {
+			// Mirrors the real literal's shape (multi-line, indented, comma-separated, trailing
+			// comma) rather than a single-line minimal case -- and deliberately mixes hyphenated
+			// and non-hyphenated slugs so a regex that drops hyphenated ones changes the result.
+			await writeFile(
+				path,
+				[
+					"<html><body>",
+					"<script>",
+					"const ONBOARDING_GENRES = [",
+					'  "genre:techno", "genre:house", "genre:drum-and-bass", "genre:uk-garage",',
+					'  "genre:hip-hop", "genre:new-wave",',
+					"];",
+					"</script>",
+					"</body></html>",
+				].join("\n"),
+				"utf8",
+			);
+
+			const slugs = await loadOnboardingGenreSlugs(path);
+
+			expect(slugs).toEqual([
+				"genre:techno",
+				"genre:house",
+				"genre:drum-and-bass",
+				"genre:uk-garage",
+				"genre:hip-hop",
+				"genre:new-wave",
+			]);
+		} finally {
+			await rm(dir, { recursive: true, force: true });
+		}
+	});
+
 	it("throws instead of returning an empty list when the regex no longer matches", async () => {
 		const dir = await mkdtemp(join(tmpdir(), "odyssey-onboarding-"));
 		const path = join(dir, "index.html");
@@ -545,7 +584,11 @@ describe("runMigration (disk integration)", () => {
 		);
 		const { loserPath } = await seedElectronicGroup();
 
-		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): this test's refusal must come from the
+		// corrupted redirects table alone, not coincidentally from "no genre protection available"
+		// once ONBOARDING_GENRES is gone from the real web/index.html (TRA-211, D3a) -- otherwise
+		// it would keep passing for the wrong reason and stop actually exercising this invariant.
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath, onboardingSlugs: [] });
 
 		expect(result.exitCode).toBe(1);
 		await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
@@ -594,7 +637,12 @@ describe("runMigration (disk integration)", () => {
 		}
 		const redirectsBefore = await readFile(redirectsPath, "utf8");
 
-		const result = await runMigration(dir, true, { catalogNames: new Map(), redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): see the corrupted-redirects-table test above.
+		const result = await runMigration(dir, true, {
+			catalogNames: new Map(),
+			redirectsPath,
+			onboardingSlugs: [],
+		});
 
 		expect(result.exitCode).toBe(1);
 		for (const slug of ["a", "b", "c", "d"]) {
@@ -614,7 +662,8 @@ describe("runMigration (disk integration)", () => {
 			pending: await readFile(pendingPath, "utf8"),
 		};
 
-		const result = await runMigration(dir, true, { catalogNames, redirectsPath });
+		// Explicit empty onboardingSlugs (TRA-274): see the corrupted-redirects-table test above.
+		const result = await runMigration(dir, true, { catalogNames, redirectsPath, onboardingSlugs: [] });
 
 		expect(result.exitCode).toBe(1);
 		expect(await readFile(loserPath, "utf8")).toBe(before.loser);
@@ -836,8 +885,11 @@ describe("runMigration (disk integration)", () => {
 			// alone (protection present, taxonomy absent) still lets a safe merge through with a
 			// warning -- it must not depend on ONBOARDING_GENRES's presence in the real file, which
 			// TRA-211 (D3a) removes by design. "genre:unrelated" only needs to make the regex match;
-			// it must not be either member of the seeded group under test.
-			const webIndexPath = join(dir, "index.html");
+			// it must not be either member of the seeded group under test. Written into a sibling
+			// mkdtemp, not into `dir` itself (2026-09-19 review): `dir` is the cacheDir under test,
+			// and this fixture has nothing to do with the cache being merged.
+			const webIndexDir = await mkdtemp(join(tmpdir(), "odyssey-v1-fixture-"));
+			const webIndexPath = join(webIndexDir, "index.html");
 			await writeFile(webIndexPath, 'const ONBOARDING_GENRES = ["genre:unrelated"];', "utf8");
 			const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
 			try {
@@ -848,6 +900,7 @@ describe("runMigration (disk integration)", () => {
 				);
 			} finally {
 				stderrSpy.mockRestore();
+				await rm(webIndexDir, { recursive: true, force: true });
 			}
 		});
 
@@ -973,7 +1026,13 @@ describe("runMigration (disk integration)", () => {
 				"utf8",
 			);
 
-			const result = await runMigration(dir, true, { catalogNames, redirectsPath, taxonomyPath });
+			// Explicit empty onboardingSlugs (TRA-274): see the corrupted-redirects-table test above.
+			const result = await runMigration(dir, true, {
+				catalogNames,
+				redirectsPath,
+				taxonomyPath,
+				onboardingSlugs: [],
+			});
 
 			expect(result.exitCode).toBe(1);
 			await expect(readFile(loserPath, "utf8")).resolves.toBeTruthy();
