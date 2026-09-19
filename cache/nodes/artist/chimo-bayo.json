@@ -1,0 +1,139 @@
+{
+  "slug": "artist:chimo-bayo",
+  "name": "Chimo Bayo",
+  "editorial_article": "Joaquín Isidro Bayo Gómez, known as Chimo Bayo, emerged from the Valencia music scene to international prominence in the early 1990s. His signature track, \"Así me gusta a mí\", gained widespread recognition, reaching number one on charts in countries including Japan and Israel. Bayo's work is intrinsically linked to the \"Ruta Destroy\" phenomenon, a cultural movement he later fictionalized in his 2016 novel \"No iba a salir y me lié,\" written with journalist Emma Zafón. Beyond his production work, Bayo has participated in various Spanish television programs, including \"Tu cara me suena\" and \"Sé lo que hicisteis...\". In 2010, he attempted to represent Spain in the Eurovision Song Contest with his track \"La Fiesta del Fuego,\" produced in collaboration with the Valencia-based band Code Name, though he was ultimately disqualified by RTVE for breaking contest rules regarding prior public playback. His musical influence extends to cinema, with \"Así me gusta a mí\" appearing in the soundtrack for Bigas Luna's 1992 film \"Jamón, jamón\".",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Chimo_Bayo",
+      "title": "Chimo Bayo - Wikipedia"
+    },
+    {
+      "url": "https://rateyourmusic.com/artist/chimo_bayo",
+      "title": "Chimo Bayo discography - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-09-19T08:39:59.602Z",
+  "type": "artist",
+  "editorial_bio": "A pioneering figure in the Spanish electronic scene, Chimo Bayo rose to prominence in the 1990s as a producer and DJ central to the Ruta Destroy movement.",
+  "origin": "Valencia, Spain",
+  "active_years": "1987-present",
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:makina",
+      "type": "genre",
+      "name": "Makina",
+      "qid": "Q3048168"
+    },
+    {
+      "slug": "genre:new-beat",
+      "type": "genre",
+      "name": "New Beat",
+      "qid": "Q1890098"
+    }
+  ],
+  "labels": [
+    {
+      "slug": "label:area-international",
+      "type": "label",
+      "name": "Area International"
+    }
+  ],
+  "discography": [
+    {
+      "slug": "project:esta-si",
+      "type": "project",
+      "name": "Esta Si",
+      "mbid": "d0aa7b1d-8870-4e0d-97f6-f74c41c215fd",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:diablo",
+      "type": "project",
+      "name": "Diablo",
+      "mbid": "be231ff0-3582-42a0-8005-631d08aca3d1",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-festa-del-foc",
+      "type": "project",
+      "name": "La Festa del Foc",
+      "mbid": "afddeb18-9cdb-4e2e-ae76-8b8c88f93eee",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-fiesta-del-fuego",
+      "type": "project",
+      "name": "La fiesta del fuego",
+      "mbid": "42171a96-1111-4628-9a54-af255b90cdc4",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-tia-enriqueta",
+      "type": "project",
+      "name": "La tía Enriqueta",
+      "mbid": "736d9541-ffa7-452c-8db4-b222d06598bb",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bombas",
+      "type": "project",
+      "name": "Bombas",
+      "mbid": "ad869aae-1494-4f0a-a1fc-06baa0331bb4",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:asi-me-gusta-a-mi",
+      "type": "project",
+      "name": "Así me gusta a mí",
+      "mbid": "22e8960d-9121-335c-bfb8-4bec29feaaac",
+      "year": "1991",
+      "releaseType": "single"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:asi-me-gusta-a-mi",
+      "type": "track",
+      "name": "Así me gusta a mí"
+    },
+    {
+      "slug": "track:la-fiesta-del-fuego",
+      "type": "track",
+      "name": "La Fiesta del Fuego"
+    }
+  ],
+  "influences": [],
+  "influenced": [],
+  "collaborators": [
+    {
+      "slug": "artist:berto-romero",
+      "type": "artist",
+      "name": "Berto Romero"
+    },
+    {
+      "slug": "artist:code-name",
+      "type": "artist",
+      "name": "Code Name"
+    }
+  ],
+  "aliases": [],
+  "members": []
+}
