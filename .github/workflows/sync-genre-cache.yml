@@ -1,0 +1,150 @@
+name: sync-genre-cache
+
+# B6c (TRA-269): ships repo cache/ changes (seed lots, taxonomy publishes, migrations) onto the
+# server, which deploy.yml's own rsync deliberately excludes -- see deploy/sync-genre-cache.sh for
+# the full transfer sequence (snapshot, validated union, archive, stop, transfer, restart, smoke).
+# This always previews first; --apply only runs on an explicit dispatch input, never derived from
+# any other input, so there is no way to smuggle a server-write through this trigger.
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: >-
+          Actually sync the server cache (checked). Unchecked (default) only builds and prints the
+          union preview -- no server write, safe to run anytime to check what a real sync would do.
+        type: boolean
+        default: false
+
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  sync-genre-cache:
+    runs-on: [self-hosted, macOS, ARM64]
+    # Higher than deploy.yml's 15: an apply dispatch runs the whole snapshot+union sequence twice
+    # (once for the preview artifact below, once again inside --apply itself), on a real remote
+    # host and a cache/ tree that only grows -- a timeout mid-apply, after the writer is already
+    # stopped, is the one moment a cancellation is worst to hit (code-review finding, this PR).
+    timeout-minutes: 30
+    steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Set up SSH
+        # 2026-09-17 (TRA-243): never write the deploy key to disk. On the self-hosted runner,
+        # ~/.ssh is Raphael's personal directory (the previous step overwrote ~/.ssh/id_ed25519),
+        # and OpenSSH resolves ~/.ssh from the password database, not from $HOME. The key lives in
+        # a job-scoped ssh-agent; known_hosts lives in $RUNNER_TEMP, enforced by an `ssh` wrapper
+        # put first on PATH (deploy scripts call `ssh` and `rsync`, which calls `ssh`).
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          eval "$(ssh-agent -s)" > /dev/null
+          # A failed start would leave SSH_AUTH_SOCK pointing at the host user's own agent.
+          test -n "${SSH_AGENT_PID:-}"
+          printf '%s\n' "$DEPLOY_SSH_KEY" | ssh-add - > /dev/null
+          ssh-keyscan -H 46.101.167.241 > "$RUNNER_TEMP/known_hosts" 2> /dev/null
+          mkdir -p "$RUNNER_TEMP/bin"
+          printf '#!/bin/bash\nexec /usr/bin/ssh -o UserKnownHostsFile="%s" "$@"\n' "$RUNNER_TEMP/known_hosts" > "$RUNNER_TEMP/bin/ssh"
+          chmod 700 "$RUNNER_TEMP/bin/ssh"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          {
+            echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+            echo "SSH_AGENT_PID=$SSH_AGENT_PID"
+          } >> "$GITHUB_ENV"
+
+      - name: Preview genre-cache sync
+        # Always runs, whether or not --apply is requested below -- this is the union
+        # build+validation the script performs even without --apply. No SERVER_* variable is set
+        # here: the script's own defaults are used, so no workflow input can redirect the transfer.
+        run: |
+          set -euo pipefail
+          bash deploy/sync-genre-cache.sh 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-preview.log"
+
+      - name: Upload preview artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genre-cache-sync-preview
+          path: ${{ runner.temp }}/genre-cache-sync-preview.log
+          if-no-files-found: error
+
+      - name: Apply genre-cache sync
+        id: apply
+        # Gated on the boolean dispatch input alone, read via the `if:` condition (evaluated by the
+        # runner, never interpolated into this or any run: shell string) -- the only way to reach
+        # --apply is an explicit "apply: true" at dispatch time.
+        if: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          bash deploy/sync-genre-cache.sh --apply 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-apply.log"
+
+      - name: Upload apply artifact
+        # Durable copy of the rollback archive path, not just the ephemeral job log: if --apply
+        # fails partway (after the archive/stop/transfer sequence started), this is the one place
+        # that pointer survives for an incident response (code-review finding, this PR).
+        #
+        # Keyed on the Apply step's own outcome, not just `always() && inputs.apply`: an `if:`
+        # without a status-check function is implicitly ANDed with success(), so when the Preview
+        # step above fails, Apply is skipped outright (id: apply, outcome "skipped") -- the old
+        # condition still tried to upload here, found no log, and failed on
+        # if-no-files-found: error, adding a second, confusing failure to an already-red job
+        # (review finding). Excluding "skipped" keeps this step silent in that case.
+        if: ${{ always() && steps.apply.outcome != 'skipped' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: genre-cache-sync-apply
+          path: ${{ runner.temp }}/genre-cache-sync-apply.log
+          if-no-files-found: error
+
+      - name: Smoke - server data.json
+        # Same base check as deploy.yml's own smoke step (server responds, nodes present), plus the
+        # actual outcome this ticket ships: published genre choices reaching the server. `nodes` can
+        # already be non-empty before any sync (the server serves ~1600 unrelated nodes today) while
+        # `taxonomy` is entirely absent -- src/graph.ts's "degrade" mode logs and just omits it on
+        # any projection failure -- so `nodes`-only would stay green even if the sync moved zero
+        # choices (review finding, this PR). The expected floor is computed here from the exact file
+        # deploy-server.sh ships (data/genre-taxonomy.json), never a literal, so it can't go stale.
+        if: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          curl -fsS https://dropcliffs.com/api/odyssey/data.json -o "$RUNNER_TEMP/data.json" \
+            || { echo "Smoke failed: GET /api/odyssey/data.json did not return HTTP 200" >&2; exit 1; }
+          jq -e '(.nodes | type) == "array" and (.nodes | length > 0)' "$RUNNER_TEMP/data.json" >/dev/null \
+            || { echo "Smoke failed: /api/odyssey/data.json body has no non-empty 'nodes' array" >&2; exit 1; }
+
+          EXPECTED_CHOICES="$(jq '[.genres[] | select(.published == true)] | length' data/genre-taxonomy.json)"
+          jq -e --argjson expected "$EXPECTED_CHOICES" \
+            '(.taxonomy.genres | type) == "array" and (.taxonomy.genres | length) >= $expected' "$RUNNER_TEMP/data.json" >/dev/null \
+            || { echo "Smoke failed: /api/odyssey/data.json has no 'taxonomy.genres' with at least $EXPECTED_CHOICES published choices" >&2; exit 1; }
+
+          # The two exhaustive families (house-techno, hip-hop-r-n-b) get the same floor check --
+          # cheap, and each is its own family-coverage regression the aggregate count could hide.
+          for FAMILY in house-techno hip-hop-r-n-b; do
+            EXPECTED_FAMILY="$(jq --arg f "$FAMILY" '[.genres[] | select(.published == true and .family == $f)] | length' data/genre-taxonomy.json)"
+            jq -e --arg f "$FAMILY" --argjson expected "$EXPECTED_FAMILY" \
+              '(.taxonomy.genres | map(select(.family == $f)) | length) >= $expected' "$RUNNER_TEMP/data.json" >/dev/null \
+              || { echo "Smoke failed: /api/odyssey/data.json serves fewer than $EXPECTED_FAMILY published choices for family '$FAMILY'" >&2; exit 1; }
+          done
+          echo "data.json OK ($EXPECTED_CHOICES published choices expected, taxonomy present)"
+
+      - name: Stop SSH agent
+        # The runner host is persistent: do not leave the job's agent (and the key it holds) behind.
+        if: always()
+        run: |
+          if [ -n "${SSH_AGENT_PID:-}" ]; then ssh-agent -k > /dev/null || true; fi
