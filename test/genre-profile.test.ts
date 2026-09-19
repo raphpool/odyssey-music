@@ -209,7 +209,15 @@ function seedV1On(w: OdysseyWindow, genres: string[]): void {
 
 // Real graph + real taxonomy (same path as the D5 "shipped cache" test), for tests that must
 // exercise our own code instead of stubbing it (nit, 3rd review: don't mock what we own).
-async function newRealGraphWindow(): Promise<{ win: OdysseyWindow; taxonomy: GenreTaxonomyProjection }> {
+// TRA-282: GENRE_GRID_ENABLED now defaults true, and the real cache ships a usable taxonomy, so
+// leaving `gridEnabled` at its default renders the id-based grid, same as a real deploy. Pass
+// `gridEnabled: false` only to exercise the flat picker's own functions (mergePickerSelectionIntoV2,
+// idsToPickerSlugs) directly -- the rollback lever, no longer the default path.
+async function newRealGraphWindow({
+	gridEnabled = true,
+}: {
+	gridEnabled?: boolean;
+} = {}): Promise<{ win: OdysseyWindow; taxonomy: GenreTaxonomyProjection }> {
 	const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
 	const realTaxonomy = built.taxonomy;
 	if (!realTaxonomy) throw new Error("cache built without a taxonomy");
@@ -220,6 +228,7 @@ async function newRealGraphWindow(): Promise<{ win: OdysseyWindow; taxonomy: Gen
 		beforeParse(window) {
 			window.fetch = (async () => new Response(JSON.stringify(built))) as unknown as typeof fetch;
 			(window as unknown as Record<string, unknown>).__PROFILE_V2_ENABLED__ = true;
+			(window as unknown as Record<string, unknown>).__GENRE_GRID_ENABLED__ = gridEnabled;
 		},
 	});
 	const w = dom.window as unknown as OdysseyWindow;
@@ -1255,7 +1264,10 @@ describe("onboarding UI wiring — old picker still operates (TRA-137/D2b, crite
 	// onbInitialSelection) or an always-empty one. This one clicks for real: unchecks a checked
 	// chip, checks an off one, and saves.
 	it("a real #onb-done edit (uncheck + check) persists the delta, and open-time seeding reflects unresolvedGenreSlugs (kills the onbInitialSelection aliasing/empty-Set/ignored-unresolved mutants)", async () => {
-		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow();
+		// gridEnabled: false -- this test exercises mergePickerSelectionIntoV2's own slug-space
+		// delta logic (data-slug chips), which TRA-282 no longer runs by default; the grid's
+		// equivalent (mergeGridSelectionIntoV2) has its own id-space coverage in genre-picker.test.ts.
+		const { win: w, taxonomy: realTaxonomy } = await newRealGraphWindow({ gridEnabled: false });
 		try {
 			const legacyMap = realTaxonomy.legacySelectionBySlug as Record<string, string[]>;
 			const resolving = w.genrePickList().filter((slug) => (legacyMap[slug] ?? []).length > 0);

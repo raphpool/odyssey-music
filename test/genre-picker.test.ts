@@ -31,6 +31,7 @@ type OdysseyWindow = Window &
 		) => "none" | "some" | "all";
 		wireOnboarding: () => void;
 		openOnboarding: (opts?: { mode?: "signup" | "edit" }) => void;
+		closeOnboarding: () => void;
 		v2EditUnavailable: () => boolean;
 		loadActiveProfile: (taxonomy?: GenreTaxonomyProjection) => MigratedProfile | null;
 	};
@@ -324,16 +325,18 @@ describe("flat picker fallback (decision 4): ONBOARDING_GENRES retired", () => {
 		expect(indexHtml).not.toContain("ONBOARDING_GENRES");
 	});
 
-	it("genrePickList() is the 24 most-referenced genres via genresByPopularity(), used when the grid is off (default)", async () => {
+	it("genrePickList() is the 24 most-referenced genres via genresByPopularity(), the fallback used when the grid is off or unusable (TRA-282: no longer the default)", async () => {
 		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
-		// __GENRE_GRID_ENABLED__ is read once at parse time and left unset here -- GENRE_GRID_ENABLED
-		// defaults false, exercising the same "grid off" path a real deploy is on today.
+		// genrePickList() itself never reads GENRE_GRID_ENABLED (it's a pure function over the
+		// graph), so its own correctness holds regardless of the flag -- explicitly forced false
+		// here anyway, to document that this is the fallback path, not the TRA-282 default.
 		const dom = new JSDOM(indexHtml, {
 			url: "http://localhost/",
 			runScripts: "dangerously",
 			pretendToBeVisual: false,
 			beforeParse(window) {
 				window.fetch = (async () => new Response(JSON.stringify(built))) as unknown as typeof fetch;
+				(window as unknown as Record<string, unknown>).__GENRE_GRID_ENABLED__ = false;
 			},
 		});
 		win = dom.window as unknown as OdysseyWindow;
@@ -414,6 +417,117 @@ describe("grid styling (TRA-212/D3b)", () => {
 const PROFILE_KEY = "odyssey.profile.v1";
 const RECO_KEY = "odyssey.reco.v1";
 
+// TRA-282: flips GENRE_GRID_ENABLED's own default to true now that the sync-genre-cache
+// precondition is met (see the ticket). Every window built below sets no __GENRE_GRID_ENABLED__/
+// __PROFILE_V2_ENABLED__ override at all -- true production defaults, not the explicit-on
+// windows the rest of this file uses (newGridWindow).
+describe("GENRE_GRID_ENABLED true by default (TRA-282)", () => {
+	function newDefaultsWindow(data: unknown): OdysseyWindow {
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(data))) as unknown as typeof fetch;
+			},
+		});
+		return dom.window as unknown as OdysseyWindow;
+	}
+
+	it("criterion 1: an existing v1 profile migrates to v2 on open, its historical pick shows checked on the grid, and an existing v2 is never rewritten", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const legacyMap = (built.taxonomy?.legacySelectionBySlug ?? {}) as Record<string, string[]>;
+
+		// A throwaway probe, same reasoning as newSeededWindow above: a real, currently-resolving
+		// picker slug so the migrated v2 genuinely lands an id the grid renders a checkbox for.
+		const probe = newDefaultsWindow(built);
+		await waitReady(probe);
+		const slug = probe.genrePickList().find((s) => (legacyMap[s] ?? []).length > 0);
+		expect(slug).toBeDefined();
+		const id = legacyMap[slug as string]?.[0] as string;
+		probe.close();
+
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(built))) as unknown as typeof fetch;
+				window.localStorage.setItem(
+					PROFILE_KEY,
+					JSON.stringify({ createdAt: "x", name: "Raph", genres: [slug] }),
+				);
+			},
+		});
+		const w = dom.window as unknown as OdysseyWindow;
+		try {
+			await waitReady(w);
+
+			// Migrated to v2 during this open -- not left as a v1-only record.
+			const migrated = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(migrated?.genres).toContain(id);
+
+			w.wireOnboarding();
+			w.openOnboarding({ mode: "edit" });
+			const grid = w.document.getElementById("onb-genres") as HTMLElement;
+			expect(grid.querySelector(`.genre-pick-id[data-id="${id}"]`)?.getAttribute("aria-checked")).toBe(
+				"true",
+			);
+			w.closeOnboarding();
+
+			// Mutation guard (criterion 1: "sans réécriture d'un v2 déjà présent"): seed a
+			// different v2 and re-run the migration path a later open would take -- if
+			// migrateProfileToV2 ever re-derived from v1 instead of keeping the stored v2
+			// untouched, this record would change.
+			const keptV2 = { name: "Kept", genres: ["local:kept-choice"] };
+			w.localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(keptV2));
+			w.loadActiveProfile(built.taxonomy);
+			expect(JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null")).toEqual(keptV2);
+		} finally {
+			w.close();
+		}
+	});
+
+	it("criterion 2: a new user sees the grid when the taxonomy is served, and the flat 24-genre repli when it isn't", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+
+		// New user, empty storage, taxonomy served: the grid, not the flat picker. "edit" jumps
+		// straight to the genre step (renderGenreGrid) -- same as every other test in this file --
+		// where "signup" would stop at the name step first.
+		const withTaxonomy = newDefaultsWindow(built);
+		try {
+			await waitReady(withTaxonomy);
+			withTaxonomy.wireOnboarding();
+			withTaxonomy.openOnboarding({ mode: "edit" });
+			const grid = withTaxonomy.document.getElementById("onb-genres") as HTMLElement;
+			expect(grid.querySelectorAll(".genre-family").length).toBeGreaterThan(0);
+			expect(grid.querySelector(".genre-pick")).toBeNull();
+		} finally {
+			withTaxonomy.close();
+		}
+
+		// New user, empty storage, no `taxonomy` field at all on DATA (e.g. a deploy lag serving
+		// a stale/degraded data.json): isUsableTaxonomy() rejects it, so GENRE_GRID_ENABLED alone
+		// can't render the grid -- the flat repli takes over. Mutation: dropping the `else` branch
+		// in renderGenreGrid() (web/index.html) would leave #onb-genres empty and this goes red.
+		const noTaxonomy = { ...built, taxonomy: undefined };
+		const withoutTaxonomy = newDefaultsWindow(noTaxonomy);
+		try {
+			await waitReady(withoutTaxonomy);
+			withoutTaxonomy.wireOnboarding();
+			withoutTaxonomy.openOnboarding({ mode: "edit" });
+			const grid = withoutTaxonomy.document.getElementById("onb-genres") as HTMLElement;
+			const expected = withoutTaxonomy.genrePickList();
+			expect(expected.length).toBeGreaterThan(0);
+			expect(expected.length).toBeLessThanOrEqual(24);
+			expect(grid.querySelectorAll(".genre-pick").length).toBe(expected.length);
+			expect(grid.querySelector(".genre-family")).toBeNull();
+		} finally {
+			withoutTaxonomy.close();
+		}
+	});
+});
+
 type HomeWindow = OdysseyWindow & {
 	showHome: (opts?: { fromHistory?: boolean; replaceHistory?: boolean }) => void;
 	closeOnboarding: () => void;
@@ -422,9 +536,12 @@ type HomeWindow = OdysseyWindow & {
 };
 
 describe("home genre chips open edit (TRA-213/D4)", () => {
-	// Real cache data, grid left off: GENRE_GRID_ENABLED defaults false and PROFILE_V2_ENABLED
-	// defaults true (unlike newGridWindow above) -- the flat picker over a v1 profile is what a
-	// real deploy runs today, and needs no id/slug translation to seed.
+	// TRA-282: GENRE_GRID_ENABLED now defaults true, and the real cache ships a usable taxonomy
+	// (see the precondition on TRA-282), so no override here means the grid -- not the old flat
+	// picker -- is what a real deploy renders on this path today. D4's own wiring (chip opens the
+	// same picker state as the button) is independent of which picker UI is active, so this suite
+	// now asserts against the grid's id-based DOM (data-id/aria-checked) instead of the flat
+	// picker's (data-slug/.on).
 	function newDefaultWindow(data: unknown, v1?: { name: string; genres: string[] }): HomeWindow {
 		const dom = new JSDOM(indexHtml, {
 			url: "http://localhost/",
@@ -438,22 +555,29 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 		return dom.window as unknown as HomeWindow;
 	}
 
-	function checkedSlugs(grid: HTMLElement): string[] {
-		return [...grid.querySelectorAll(".genre-pick.on")]
-			.map((el) => (el as HTMLElement).dataset.slug as string)
+	function checkedIds(grid: HTMLElement): string[] {
+		return [...grid.querySelectorAll('.genre-pick-id[aria-checked="true"]')]
+			.map((el) => (el as HTMLElement).dataset.id as string)
 			.sort();
 	}
 
-	// Two windows share one real build: a throwaway "probe" just to read a real, popular slug
-	// from genrePickList() (not hardcoded -- same reasoning as TRA-211's own count assertions),
-	// then a fresh window seeded with a v1 profile holding that slug, matching a returning visit.
-	async function newSeededWindow(): Promise<{ w: HomeWindow; slug: string }> {
+	// Two windows share one real build: a throwaway "probe" just to read a real, popular slug from
+	// genrePickList() (not hardcoded -- same reasoning as TRA-211's own count assertions), and the
+	// grid id it resolves to. genrePickList() only ever returns graph slugs (unlike a raw taxonomy
+	// entry's `.slugs`, which can include a redirected/legacy alias with no node of its own), so
+	// the home page's byId-backed chip filter is guaranteed to keep it. Then a fresh window seeded
+	// with a v1 profile holding that slug, matching a returning visit whose v1 record migrates to
+	// v2 (TRA-137/D2b) -- and onto the grid -- on this open.
+	async function newSeededWindow(): Promise<{ w: HomeWindow; slug: string; id: string }> {
 		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const legacyMap = (built.taxonomy?.legacySelectionBySlug ?? {}) as Record<string, string[]>;
 		const probe = newDefaultWindow(built);
 		await waitReady(probe);
-		const slug = probe.genrePickList()[0];
+		const slug = probe.genrePickList().find((s) => (legacyMap[s] ?? []).length > 0);
 		expect(slug).toBeDefined();
 		probe.close();
+		const id = legacyMap[slug as string]?.[0] as string;
+		expect(id).toBeDefined();
 
 		const w = newDefaultWindow(built, { name: "Raph", genres: [slug as string] });
 		win = w;
@@ -462,37 +586,38 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 		// the time waitReady() resolves. Calling it again here would double-wire #onb-done and
 		// double-fire its side effects (e.g. clearReco()), which the save test below spies on.
 		w.showHome();
-		return { w, slug: slug as string };
+		return { w, slug: slug as string, id };
 	}
 
 	it("a home genre chip opens the picker in the same state as the existing button", async () => {
-		const { w, slug } = await newSeededWindow();
+		const { w, slug, id } = await newSeededWindow();
 
 		const chip = w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement;
 		expect(chip).toBeTruthy();
+		expect(chip.dataset.id).toBe(slug); // home chips stay keyed by the graph slug either way
 		chip.click();
 		// Fails before the fix: the chip still just navigates via show(), so #onb never opens.
 		expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(false);
-		const viaChip = checkedSlugs(w.document.getElementById("onb-genres") as HTMLElement);
+		const viaChip = checkedIds(w.document.getElementById("onb-genres") as HTMLElement);
 		w.closeOnboarding();
 
 		w.showHome();
 		(w.document.getElementById("home-edit") as HTMLElement).click();
-		const viaButton = checkedSlugs(w.document.getElementById("onb-genres") as HTMLElement);
+		const viaButton = checkedIds(w.document.getElementById("onb-genres") as HTMLElement);
 
 		expect(viaChip).toEqual(viaButton);
-		expect(viaChip).toContain(slug);
+		expect(viaChip).toContain(id);
 	});
 
 	it("cancelling after opening via a home chip leaves the saved profile and today's reco untouched", async () => {
 		const { w } = await newSeededWindow();
 		w.localStorage.setItem(RECO_KEY, JSON.stringify({ date: "2026-01-01", id: "artist:seed", history: [] }));
-		const beforeProfile = w.localStorage.getItem(PROFILE_KEY);
+		const beforeProfile = w.localStorage.getItem(PROFILE_V2_KEY);
 		const beforeReco = w.localStorage.getItem(RECO_KEY);
 
 		(w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement).click();
 		const grid = w.document.getElementById("onb-genres") as HTMLElement;
-		const unchecked = grid.querySelector(".genre-pick:not(.on)") as HTMLElement | null;
+		const unchecked = grid.querySelector('.genre-pick-id[aria-checked="false"]') as HTMLElement | null;
 		// Sanity: the picker actually rendered real choices (null before the fix -- #onb-genres
 		// stays empty since openOnboarding() never ran).
 		expect(unchecked).toBeTruthy();
@@ -500,7 +625,7 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 		(w.document.getElementById("onb-back") as HTMLElement).click(); // "annuler" in edit mode
 
 		expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(true);
-		expect(w.localStorage.getItem(PROFILE_KEY)).toBe(beforeProfile);
+		expect(w.localStorage.getItem(PROFILE_V2_KEY)).toBe(beforeProfile);
 		expect(w.localStorage.getItem(RECO_KEY)).toBe(beforeReco);
 	});
 
@@ -514,7 +639,7 @@ describe("home genre chips open edit (TRA-213/D4)", () => {
 
 		(w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement).click();
 		const grid = w.document.getElementById("onb-genres") as HTMLElement;
-		const unchecked = [...grid.querySelectorAll(".genre-pick:not(.on)")] as HTMLElement[];
+		const unchecked = [...grid.querySelectorAll('.genre-pick-id[aria-checked="false"]')] as HTMLElement[];
 		// Sanity: at least two more choices to reach MIN_GENRES=3 (empty before the fix).
 		expect(unchecked.length).toBeGreaterThanOrEqual(2);
 		unchecked[0]?.click();

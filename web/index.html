@@ -901,12 +901,15 @@ function renderProfileChip() {
 }
 
 // ─── Onboarding ───────────────────────────────────────────────────────────
-// TRA-211/D3a: kill switch for the id-based family grid below (renderFamilyGrid). Off by
-// default -- the grid needs DATA.taxonomy (not shipped in the deployed data.json yet, see
-// loadActiveProfile) and explicit proof the API/static recommendation counts converge (B6c)
-// before it replaces the flat picker as the live default. Same pattern as PROFILE_V2_ENABLED
-// above: overridable via window.__GENRE_GRID_ENABLED__, set before this script runs.
-const GENRE_GRID_ENABLED = window.__GENRE_GRID_ENABLED__ === true;
+// TRA-211/D3a: kill switch for the id-based family grid below (renderFamilyGrid). Was off by
+// default until the grid had DATA.taxonomy (not shipped in the deployed data.json until B6c)
+// and explicit proof the API/static recommendation counts converge.
+// TRA-282: on by default now that a real sync-genre-cache dispatch (run 35450083075) served
+// the full 202-genre taxonomy in production (GET /api/odyssey/data.json, verified 2026-09-19).
+// Still overridable to false via window.__GENRE_GRID_ENABLED__ (set before this script runs)
+// -- kept as a rollback lever, same pattern as PROFILE_V2_ENABLED above -- and renderGenreGrid()
+// still falls back to the flat picker whenever no usable taxonomy is actually served.
+const GENRE_GRID_ENABLED = window.__GENRE_GRID_ENABLED__ !== false;
 const MIN_GENRES = 3;
 
 // TRA-211/D3a decision 4: the flat picker fallback, used only when the id-based family grid
