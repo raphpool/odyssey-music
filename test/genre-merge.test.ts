@@ -394,7 +394,7 @@ describe("loadOnboardingGenreSlugs", () => {
 					"<script>",
 					"const ONBOARDING_GENRES = [",
 					'  "genre:techno", "genre:house", "genre:drum-and-bass", "genre:uk-garage",',
-					'  "genre:hip-hop", "genre:new-wave",',
+					'  "genre:hip-hop", "genre:new-wave", "genre:2-step-garage",',
 					"];",
 					"</script>",
 					"</body></html>",
@@ -411,6 +411,9 @@ describe("loadOnboardingGenreSlugs", () => {
 				"genre:uk-garage",
 				"genre:hip-hop",
 				"genre:new-wave",
+				// A digit-bearing slug (real: cache/nodes/genre/2-step-garage.json) -- without it a regex
+				// narrowed to [a-z-] would still pass (2026-09-19 second review round).
+				"genre:2-step-garage",
 			]);
 		} finally {
 			await rm(dir, { recursive: true, force: true });
