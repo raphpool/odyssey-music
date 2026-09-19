@@ -351,3 +351,137 @@ describe("flat picker fallback (decision 4): ONBOARDING_GENRES retired", () => {
 		expect((w.document.getElementById("onb-done") as HTMLButtonElement).disabled).toBe(true);
 	});
 });
+
+// TRA-213 (D4): the "Tes genres" chips on the home page now open the same edit picker as the
+// existing "modifier ma sélection" button, instead of navigating to the genre's node. Own
+// describe block, appended at the end of the file -- D3b (CSS) adds tests to this same file in
+// parallel, and two end-of-file additions merge without conflict.
+// `const` bindings never become `window` properties (see PROFILE_V2_KEY above) -- these two
+// storage keys are duplicated here for the same reason.
+const PROFILE_KEY = "odyssey.profile.v1";
+const RECO_KEY = "odyssey.reco.v1";
+
+type HomeWindow = OdysseyWindow & {
+	showHome: (opts?: { fromHistory?: boolean; replaceHistory?: boolean }) => void;
+	closeOnboarding: () => void;
+	show: (id: string, opts?: { fromHistory?: boolean; replaceHistory?: boolean }) => void;
+	clearReco: () => void;
+};
+
+describe("home genre chips open edit (TRA-213/D4)", () => {
+	// Real cache data, grid left off: GENRE_GRID_ENABLED defaults false and PROFILE_V2_ENABLED
+	// defaults true (unlike newGridWindow above) -- the flat picker over a v1 profile is what a
+	// real deploy runs today, and needs no id/slug translation to seed.
+	function newDefaultWindow(data: unknown, v1?: { name: string; genres: string[] }): HomeWindow {
+		const dom = new JSDOM(indexHtml, {
+			url: "http://localhost/",
+			runScripts: "dangerously",
+			pretendToBeVisual: false,
+			beforeParse(window) {
+				window.fetch = (async () => new Response(JSON.stringify(data))) as unknown as typeof fetch;
+				if (v1) window.localStorage.setItem(PROFILE_KEY, JSON.stringify(v1));
+			},
+		});
+		return dom.window as unknown as HomeWindow;
+	}
+
+	function checkedSlugs(grid: HTMLElement): string[] {
+		return [...grid.querySelectorAll(".genre-pick.on")]
+			.map((el) => (el as HTMLElement).dataset.slug as string)
+			.sort();
+	}
+
+	// Two windows share one real build: a throwaway "probe" just to read a real, popular slug
+	// from genrePickList() (not hardcoded -- same reasoning as TRA-211's own count assertions),
+	// then a fresh window seeded with a v1 profile holding that slug, matching a returning visit.
+	async function newSeededWindow(): Promise<{ w: HomeWindow; slug: string }> {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const probe = newDefaultWindow(built);
+		await waitReady(probe);
+		const slug = probe.genrePickList()[0];
+		expect(slug).toBeDefined();
+		probe.close();
+
+		const w = newDefaultWindow(built, { name: "Raph", genres: [slug as string] });
+		win = w;
+		await waitReady(w);
+		// No explicit wireOnboarding() call: init() (web/index.html:596) already wires it once by
+		// the time waitReady() resolves. Calling it again here would double-wire #onb-done and
+		// double-fire its side effects (e.g. clearReco()), which the save test below spies on.
+		w.showHome();
+		return { w, slug: slug as string };
+	}
+
+	it("a home genre chip opens the picker in the same state as the existing button", async () => {
+		const { w, slug } = await newSeededWindow();
+
+		const chip = w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement;
+		expect(chip).toBeTruthy();
+		chip.click();
+		// Fails before the fix: the chip still just navigates via show(), so #onb never opens.
+		expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(false);
+		const viaChip = checkedSlugs(w.document.getElementById("onb-genres") as HTMLElement);
+		w.closeOnboarding();
+
+		w.showHome();
+		(w.document.getElementById("home-edit") as HTMLElement).click();
+		const viaButton = checkedSlugs(w.document.getElementById("onb-genres") as HTMLElement);
+
+		expect(viaChip).toEqual(viaButton);
+		expect(viaChip).toContain(slug);
+	});
+
+	it("cancelling after opening via a home chip leaves the saved profile and today's reco untouched", async () => {
+		const { w } = await newSeededWindow();
+		w.localStorage.setItem(RECO_KEY, JSON.stringify({ date: "2026-01-01", id: "artist:seed", history: [] }));
+		const beforeProfile = w.localStorage.getItem(PROFILE_KEY);
+		const beforeReco = w.localStorage.getItem(RECO_KEY);
+
+		(w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement).click();
+		const grid = w.document.getElementById("onb-genres") as HTMLElement;
+		const unchecked = grid.querySelector(".genre-pick:not(.on)") as HTMLElement | null;
+		// Sanity: the picker actually rendered real choices (null before the fix -- #onb-genres
+		// stays empty since openOnboarding() never ran).
+		expect(unchecked).toBeTruthy();
+		unchecked?.click();
+		(w.document.getElementById("onb-back") as HTMLElement).click(); // "annuler" in edit mode
+
+		expect((w.document.getElementById("onb") as HTMLElement).hidden).toBe(true);
+		expect(w.localStorage.getItem(PROFILE_KEY)).toBe(beforeProfile);
+		expect(w.localStorage.getItem(RECO_KEY)).toBe(beforeReco);
+	});
+
+	it("saving after opening via a home chip calls clearReco() (mutation: dropping the call -> red)", async () => {
+		const { w } = await newSeededWindow();
+		// Spying directly on clearReco(), not just reading RECO_KEY afterwards: showHome() (called
+		// right after, by #onb-done) recomputes and re-caches a reco unconditionally, so the key is
+		// never actually null once the handler returns -- only the call itself is observable here.
+		const clearRecoSpy = vi.fn();
+		w.clearReco = clearRecoSpy;
+
+		(w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement).click();
+		const grid = w.document.getElementById("onb-genres") as HTMLElement;
+		const unchecked = [...grid.querySelectorAll(".genre-pick:not(.on)")] as HTMLElement[];
+		// Sanity: at least two more choices to reach MIN_GENRES=3 (empty before the fix).
+		expect(unchecked.length).toBeGreaterThanOrEqual(2);
+		unchecked[0]?.click();
+		unchecked[1]?.click();
+		(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+		expect(clearRecoSpy).toHaveBeenCalledTimes(1);
+	});
+
+	it("a node card still navigates after the picker has been opened and closed via a home chip", async () => {
+		const { w, slug } = await newSeededWindow();
+		(w.document.querySelector(".home-genres .chip[data-id]") as HTMLElement).click(); // opens edit
+		w.closeOnboarding();
+
+		w.show(slug); // a node detail view, wired independently of the home chips (~L1777)
+		const card = w.document.querySelector(".project-card[data-id], .chip[data-id]") as HTMLElement | null;
+		// Sanity: the genre page has at least one other related, clickable node to click through.
+		expect(card).toBeTruthy();
+		card?.click();
+
+		expect(w.location.search).toBe(`?node=${encodeURIComponent((card as HTMLElement).dataset.id as string)}`);
+	});
+});
