@@ -483,6 +483,49 @@ describe("runMigration (disk integration)", () => {
 		return { loserPath, artistPath };
 	}
 
+	// TRA-280: proves runMigration's stderr warning for an unreadable node file matches the shared
+	// helper's exact format with NO source prefix (contrast the sibling with-source case in
+	// genre-cache-union.test.ts). The expected line is a LITERAL string, not built by calling
+	// `warnSkippedNodeFiles` a second time on the same input -- that prior version was tautological
+	// (2026-09-19 review): it would have passed even if the shared format itself changed, since
+	// both sides of the comparison came from the same call. The JSON.parse error text is
+	// engine-owned, not this code's own contract, so it's captured independently here (a second
+	// parse of the identical broken content, in the same process) rather than pinned to a
+	// hardcoded string that could drift across Node versions.
+	it("warns on stderr for an unreadable node file, with no source prefix", async () => {
+		// A single, non-duplicate node (not seedElectronicGroup's pair): groupsFound stays 0, so
+		// runMigration returns right after the invalid-file loop, before it can also warn about a
+		// missing taxonomy -- keeping this test about the ONE warning under test.
+		await writeNodeFile(genreNode({ slug: "genre:electronic", name: "Electronic", qid: "Q1" }));
+		const brokenPath = join(dir, "nodes", "genre", "broken.json");
+		await mkdir(dirname(brokenPath), { recursive: true });
+		const brokenContent = "{not valid json";
+		await writeFile(brokenPath, brokenContent, "utf8");
+		let parseError = "";
+		try {
+			JSON.parse(brokenContent);
+		} catch (e) {
+			parseError = e instanceof Error ? e.message : String(e);
+		}
+		// readCacheNodes's own `invalid` entries report `join(root, "nodes", slug)`, not the real
+		// on-disk path (see that function's docstring) -- unlike the cache-union builder, which
+		// rebuilds the real path via skippedEntry before warning.
+		const reportedPath = join(dir, "nodes", "genre:broken");
+
+		const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+		let migrationCalls: string[];
+		try {
+			await runMigration(dir, false, { catalogNames, redirectsPath, onboardingSlugs: [] });
+			migrationCalls = stderrSpy.mock.calls.map(([chunk]) => String(chunk));
+		} finally {
+			stderrSpy.mockRestore();
+		}
+
+		expect(migrationCalls).toEqual([
+			`warning: skipping unreadable node file ${reportedPath}: ${parseError}\n`,
+		]);
+	});
+
 	it("dry-run computes the plan but leaves every file byte-identical, including a preexisting redirects table", async () => {
 		const { loserPath, artistPath } = await seedElectronicGroup();
 		await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
