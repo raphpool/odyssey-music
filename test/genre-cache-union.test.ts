@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	buildCacheUnion,
 	countUnionProblems,
@@ -458,6 +458,42 @@ describe("buildCacheUnion", () => {
 		const { manifest } = await union();
 		expect(manifest.skipped).toEqual([{ source: "repo", path: brokenPath, error: expect.any(String) }]);
 		expect(manifest.entries).toEqual([{ decision: "copied", from: "repo", slug: "genre:only-repo" }]);
+	});
+
+	// TRA-280: proves buildCacheUnion's stderr warning for an unreadable node file matches the
+	// shared helper's exact format, source prefix included (see the sibling no-source case in
+	// genre-merge.test.ts). The expected line is a LITERAL string, not built by calling
+	// `warnSkippedNodeFiles` a second time on the same input -- that prior version was
+	// tautological (2026-09-19 review): it would have passed even if the shared format itself
+	// changed, since both sides of the comparison came from the same call. The JSON.parse error
+	// text is engine-owned, not this code's own contract, so it's captured independently here
+	// (a second parse of the identical broken content, in the same process) rather than pinned to
+	// a hardcoded string that could drift across Node versions.
+	it("warns on stderr for an unreadable node file, with the source prefix included", async () => {
+		await seed(repoDir, node({ slug: "genre:only-repo" }));
+		const brokenPath = join(repoDir, "nodes", "genre", "broken.json");
+		await mkdir(dirname(brokenPath), { recursive: true });
+		const brokenContent = "{not valid json";
+		await writeFile(brokenPath, brokenContent, "utf8");
+		let parseError = "";
+		try {
+			JSON.parse(brokenContent);
+		} catch (e) {
+			parseError = e instanceof Error ? e.message : String(e);
+		}
+
+		const stderrSpy = vi.spyOn(process.stderr, "write").mockImplementation(() => true);
+		let unionCalls: string[];
+		try {
+			await union();
+			unionCalls = stderrSpy.mock.calls.map(([chunk]) => String(chunk));
+		} finally {
+			stderrSpy.mockRestore();
+		}
+
+		expect(unionCalls).toEqual([
+			`warning: skipping unreadable repo node file ${brokenPath}: ${parseError}\n`,
+		]);
 	});
 
 	it("copies genre:country-music and genre:country as two separate slugs, leaving the duplicate-merge migration's PREVIEW to flag the group -- and never touches either source or the source redirects file", async () => {

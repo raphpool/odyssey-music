@@ -41,6 +41,7 @@ import {
 	mergeRedirects,
 	readCacheNodes,
 	runMigration,
+	warnSkippedNodeFiles,
 } from "./migrations/2026-09-04-merge-genre-duplicates.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
@@ -496,9 +497,7 @@ export async function buildCacheUnion(
 		...repoInvalid.map((e) => skippedEntry("repo", repoCacheDir, e)),
 		...serverInvalid.map((e) => skippedEntry("server", serverCacheDir, e)),
 	];
-	for (const { source, path, error } of skipped) {
-		process.stderr.write(`warning: skipping unreadable ${source} node file ${path}: ${error}\n`);
-	}
+	warnSkippedNodeFiles(skipped);
 
 	// Redirects loaded and validated BEFORE anything is written to nodes/ or archive/ (finding 4)
 	// -- a typo'd/missing/broken --server-redirects-path must fail loudly right here.

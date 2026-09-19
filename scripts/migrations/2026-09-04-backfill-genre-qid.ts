@@ -34,6 +34,7 @@ import {
 } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { parseSlug } from "../../src/slug.js";
+import { warnSkippedNodeFiles } from "./2026-09-04-merge-genre-duplicates.js";
 
 export interface BackfillStats {
 	nodeFilesScanned: number;
@@ -357,9 +358,11 @@ export async function runMigration(
 	const beforeFingerprint = await fingerprintFile(pendingReversesPath);
 
 	const { nodes, invalid: unreadable } = await readCacheNodes(cacheDir);
-	for (const { path, error } of unreadable) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
-	}
+	// TRA-280: routed through the shared helper (see 2026-09-04-merge-genre-duplicates.ts) -- this
+	// loop was a fifth, undiscovered copy of the same "skipping unreadable node file" warning,
+	// still on the older wording after the cache-union builder's copy had already drifted a
+	// source-label prefix ahead of it.
+	warnSkippedNodeFiles(unreadable);
 
 	const plan = planBackfill(nodes, resolver ?? (await loadGenreResolver()));
 

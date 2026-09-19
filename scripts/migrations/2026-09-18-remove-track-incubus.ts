@@ -34,6 +34,7 @@ import {
 	parseCliArgs,
 	readCacheNodes,
 	readTextOrDefault,
+	warnSkippedNodeFiles,
 } from "./2026-09-04-merge-genre-duplicates.js";
 
 /** The one node this migration ever removes -- deliberately not a parameter, unlike the merge
@@ -137,9 +138,7 @@ export interface MigrationResult {
  */
 export async function runMigration(cacheDir: string, apply: boolean): Promise<MigrationResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
-	for (const { path, error } of invalid) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
-	}
+	warnSkippedNodeFiles(invalid);
 
 	const target = nodes.find((n) => n.slug === TARGET_SLUG);
 

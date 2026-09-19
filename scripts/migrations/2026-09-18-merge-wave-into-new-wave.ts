@@ -49,6 +49,7 @@ import {
 	readTextOrDefault,
 	rewriteNodeEdges,
 	rewritePendingReverses,
+	warnSkippedNodeFiles,
 } from "./2026-09-04-merge-genre-duplicates.js";
 
 export { type CliArgs, parseCliArgs };
@@ -106,9 +107,7 @@ export async function runMigration(
 	options: { redirectsPath?: string } = {},
 ): Promise<MigrationResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
-	for (const { path, error } of invalid) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
-	}
+	warnSkippedNodeFiles(invalid);
 	const bySlug = new Map(nodes.map((f) => [f.slug, f]));
 
 	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "genre-redirects.json");
