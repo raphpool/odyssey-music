@@ -370,6 +370,31 @@ export async function readCacheNodes(
 	return { nodes, invalid };
 }
 
+/** An unreadable/invalid node file, as reported to stderr by `warnSkippedNodeFiles` below --
+ * `readCacheNodes`'s own `invalid` entries (no `source`), or the cache-union builder's, which
+ * reads two caches at once and labels each entry with which one it came from. */
+export interface SkippedNodeFile {
+	path: string;
+	error: string;
+	source?: string;
+}
+
+/** Single point of truth for the "skipping unreadable node file" stderr warning -- extracted
+ * (2026-09-19, TRA-280) after this loop was found duplicated between this migration's own
+ * `runMigration` and the cache-union builder (`scripts/prepare-genre-cache-union.ts`), whose two
+ * copies had already drifted: the migration's had no source label, the union's did (`skipping
+ * unreadable ${source} node file`). Nothing tied them together, so either could keep changing
+ * without the other noticing (TRA-235 point 3, from the 2026-09-16 reviews of PR #207/#208/#209).
+ * Keeps the more informative of the two formats -- `source`, prefixed exactly as the union's
+ * message had it, only when the caller provides one. */
+export function warnSkippedNodeFiles(entries: readonly SkippedNodeFile[]): void {
+	for (const { source, path, error } of entries) {
+		process.stderr.write(
+			`warning: skipping unreadable ${source ? `${source} ` : ""}node file ${path}: ${error}\n`,
+		);
+	}
+}
+
 // Exported (2026-09-10, TRA-35): shared with the rename migration, which lives in this same
 // directory, so the relative resolution below is correct for it too.
 export function defaultDataDir(): string {
@@ -491,9 +516,7 @@ export async function runMigration(
 	} = {},
 ): Promise<MigrationResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
-	for (const { path, error } of invalid) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
-	}
+	warnSkippedNodeFiles(invalid);
 
 	const catalogNames = options.catalogNames ?? (await loadCatalogNameIndex());
 	const duplicateGroups: readonly DuplicateGroup[] = buildDuplicateReport(nodes.map((n) => n.node)).groups;
