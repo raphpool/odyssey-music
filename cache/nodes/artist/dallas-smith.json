@@ -20,7 +20,7 @@
   "active_years": "1999–present",
   "genres": [
     {
-      "slug": "genre:country-music",
+      "slug": "genre:country",
       "type": "genre",
       "name": "Country music",
       "qid": "Q83440"
