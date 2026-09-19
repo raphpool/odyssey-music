@@ -51,6 +51,7 @@ import {
 	readTextOrDefault,
 	rewriteNodeEdges,
 	rewritePendingReverses,
+	warnSkippedNodeFiles,
 } from "./2026-09-04-merge-genre-duplicates.js";
 
 function isGenreSlug(value: string): value is Slug {
@@ -149,9 +150,7 @@ export async function runRename(
 	} = {},
 ): Promise<RenameResult> {
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
-	for (const { path, error } of invalid) {
-		process.stderr.write(`warning: skipping unreadable node file ${path}: ${error}\n`);
-	}
+	warnSkippedNodeFiles(invalid);
 
 	const bySlug = new Map(nodes.map((f) => [f.slug, f]));
 
