@@ -11,20 +11,25 @@ set -euo pipefail
 # writer, re-check nothing wrote to the server between the snapshot and the stop, transfer,
 # restart, smoke test. Rollback = the printed archive.
 #
-# "Additive" here is file-additive: rsync never passes --delete, so no node file is removed, but a
-# node present on both sides is OVERWRITTEN in place -- a field or an edge only the server had is
-# lost unless the union preserved it. The archive, not the transfer mode, makes that recoverable.
+# "Additive" here is file-additive: rsync never passes --delete, so a NORMAL node is never removed,
+# but a node present on both sides is OVERWRITTEN in place -- a field or an edge only the server had
+# is lost unless the union preserved it. The archive, not the transfer mode, makes that recoverable.
+# The one deliberate exception is the small, explicit set of files the union's own merge migration
+# declares gone (see DEPLOY GUARD below): those are removed with individual `rm -f --` calls by
+# their own computed path, never with rsync --delete, which could also remove anything a concurrent
+# write added to the server between the snapshot and the transfer.
 #
 # No personal SSH key: this relies on the caller's ssh-agent (same as deploy-server.sh / the
 # `deploy` job on the self-hosted runner) and never writes to $HOME/.ssh or $HOME/.
 #
-# DEPLOY GUARD: the merge-duplicate refusal below (search "merged duplicate nodes") is a permanent
-# safety net, not a placeholder for a blocking ticket -- both tickets that used to gate --apply
-# (TRA-271, this hardening pass, and TRA-268, the union's edge-merge) are now landed. The union
-# still deletes the losing file of a duplicate-QID group from its artifact and writes a merged
-# genre-redirects.json when it runs with --apply-merge; an additive transfer (rsync without
-# --delete) cannot propagate either the deletion or the redirects table, so that refusal stays
-# active until a future ticket (B6c / TRA-269) teaches this script to ship deletions too.
+# DEPLOY GUARD (2026-09-19, TRA-276/B6c-2): the union runs the merge migration with --apply-merge,
+# which deletes the losing file of a duplicate-QID group from its artifact and writes a merged
+# genre-redirects.json. This script now propagates both explicitly, after the additive node
+# transfer succeeds and before the writer restarts (search "Shipping the union's redirects table"
+# below) -- see manifest.migrationApply.removedByMigration / .deletedCount and the validation right
+# after the union-problems check. The refusal that used to block EVERY merge unconditionally (see
+# TRA-67 / TRA-269) is gone; what remains is a narrower guard that only refuses when the manifest
+# disagrees with itself or a removed path would land outside nodes/.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -235,17 +240,57 @@ if [[ $APPLY -eq 0 ]]; then
 	exit 0
 fi
 
-# 2026-09-18 (review of TRA-67): the union runs the merge migration with --apply-merge, which
-# DELETES the losing file of a duplicate-QID group from the artifact and writes the merged
-# genre-redirects.json. The transfer below ships only nodes/, never with --delete: a duplicate that
-# already exists on the server therefore survives there and keeps being served, while the validated
-# union declares it merged -- and the redirects table that would point at the winner is never sent.
-# Nothing else catches it: deletedCount is not part of countUnionProblems, so the union exits 0 and
-# the run would end on "Sync complete". Refuse instead, before touching the server at all.
-# Propagating deletions and the redirects table is B6c's job (TRA-269), not this ticket's.
-DELETED_COUNT="$(node -e 'const m=require(process.argv[1]);const a=m.migrationApply;process.stdout.write(String((a?.deletedCount ?? 0) + (a?.removedByMigration?.length ?? 0)))' "$UNION_DIR/manifest.json")"
-if [[ "$DELETED_COUNT" != "0" ]]; then
-	echo "ERROR: the union merged duplicate nodes (deletedCount + removedByMigration = $DELETED_COUNT) -- an additive transfer cannot propagate those deletions nor the merged redirects table, so the server would keep serving the merged-away duplicates. Refusing before any server write." >&2
+# 2026-09-19 (TRA-276/B6c-2): manifest.migrationApply.{deletedCount,removedByMigration} are always
+# present once --apply-merge ran (this script always passes it) -- only their CONTENT differs when
+# there was nothing to merge (both empty/0). Trust neither blindly: the two must agree in count
+# (deletedCount is the migration's own tally; removedByMigration is derived independently from live
+# -slug membership -- a real disagreement means the manifest is internally inconsistent, and this
+# script has no way to tell which side is right), and each removed slug's own computed path must
+# land inside nodes/ -- isValidSlug/parseSlug (src/slug.ts) reject neither '/' nor '..' in a slug
+# body, so this is real defense-in-depth, not paranoia. Refuse before any write on either failure.
+MIGRATION_DELETED_COUNT="$(node -e 'const m=require(process.argv[1]);process.stdout.write(String(m.migrationApply?.deletedCount ?? 0))' "$UNION_DIR/manifest.json")"
+REMOVED_SLUGS="$(node -e 'const m=require(process.argv[1]);const list=m.migrationApply?.removedByMigration ?? [];process.stdout.write(list.map((e) => e.slug).join("\n"))' "$UNION_DIR/manifest.json")"
+
+# Test-only hooks (never set outside test/genre-cache-sync.test.ts): the real union script has no
+# way to produce, on demand, a manifest where these two disagree or where a removed slug escapes
+# nodes/ -- both only guard a future bug that corrupts the manifest, so the tests drive the guard
+# below directly instead.
+if [[ "${TEST_FORCE_REMOVED_COUNT_MISMATCH:-0}" == "1" ]]; then
+	MIGRATION_DELETED_COUNT=$((MIGRATION_DELETED_COUNT + 1))
+fi
+if [[ -n "${TEST_OVERRIDE_REMOVED_SLUG:-}" && -n "$REMOVED_SLUGS" ]]; then
+	REMOVED_SLUGS="$TEST_OVERRIDE_REMOVED_SLUG"
+fi
+
+REMOVED_COUNT=0
+REMOVE_PATHS=()
+if [[ -n "$REMOVED_SLUGS" ]]; then
+	while IFS= read -r slug; do
+		[[ -z "$slug" ]] && continue
+		REMOVED_COUNT=$((REMOVED_COUNT + 1))
+		node_type="${slug%%:*}"
+		node_body="${slug#*:}"
+		if [[ "$node_type" == "$slug" || -z "$node_body" ]]; then
+			echo "ERROR: malformed removedByMigration slug '$slug' -- refusing before any write." >&2
+			exit 1
+		fi
+		case "$node_type" in
+			genre | label | artist | project | track) ;;
+			*)
+				echo "ERROR: removedByMigration slug '$slug' has an unexpected node type '$node_type' -- refusing before any write." >&2
+				exit 1
+				;;
+		esac
+		if [[ "$node_body" == *".."* || "$node_body" == */* ]]; then
+			echo "ERROR: removedByMigration slug '$slug' resolves outside nodes/ -- refusing before any write." >&2
+			exit 1
+		fi
+		REMOVE_PATHS+=("nodes/$node_type/$node_body.json")
+	done <<<"$REMOVED_SLUGS"
+fi
+
+if [[ "$MIGRATION_DELETED_COUNT" != "$REMOVED_COUNT" ]]; then
+	echo "ERROR: the union's manifest disagrees with itself about what was merged away (migrationApply.deletedCount=$MIGRATION_DELETED_COUNT vs removedByMigration entries=$REMOVED_COUNT) -- refusing before any write." >&2
 	exit 1
 fi
 
@@ -313,6 +358,22 @@ fi
 
 echo "==> Transferring the validated union (never --delete; shared node files are overwritten)"
 rsync -az "$UNION_DIR/nodes/" "$SERVER:$SERVER_CACHE_REMOTE/nodes/"
+
+# 2026-09-19 (TRA-276/B6c-2): propagate what the additive transfer above cannot -- the union's own
+# redirects table (always written, whether or not anything was merged: identical content when
+# nothing changed) and the individually-validated set of node files the merge migration deleted
+# from its own artifact. Explicit `rm -f --` per file, never rsync --delete, which could also remove
+# anything a concurrent write added to the server. A failure here (ssh/rsync) is just another
+# post-transfer failure under `set -e`: on_exit still restarts the writer and points at the archive.
+echo "==> Shipping the union's redirects table to the server"
+rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
+
+if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then
+	echo "==> Removing ${#REMOVE_PATHS[@]} node file(s) merged away by the union (explicit paths, never --delete)"
+	for rel in "${REMOVE_PATHS[@]}"; do
+		ssh "$SERVER" "rm -f -- '$SERVER_CACHE_REMOTE/$rel'"
+	done
+fi
 
 restart_writer
 if [[ $STOPPED -eq 1 ]]; then
