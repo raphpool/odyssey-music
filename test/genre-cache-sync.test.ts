@@ -600,7 +600,10 @@ describe("sync-genre-cache.sh", () => {
 		const archivePath = join(serverBackupDir, archives[0]!);
 		const entries = execFileSync("tar", ["tzf", archivePath], { encoding: "utf8" });
 		expect(entries).toMatch(/(^|\/)cache\//m);
-		expect(entries).toMatch(/(^|\/)genre-redirects\.json$/m);
+		// Nested under data/, not flat at the archive root (second review round): only then does a single
+		// `tar xzf … -C /opt/odyssey-music` put it back where the server reads it.
+		expect(entries).toMatch(/^data\/genre-redirects\.json$/m);
+		expect(entries).not.toMatch(/^genre-redirects\.json$/m);
 	});
 
 	// Nit: the archive is verified (gzip -t) before the script proceeds to stop the writer.

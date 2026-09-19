@@ -350,7 +350,13 @@ ARCHIVE_PATH="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar.gz"
 # steps (cache/, then the redirects file) and compressed last -- `gzip -f` on that .tar produces
 # exactly $ARCHIVE_PATH (…tar -> …tar.gz), so no rename is needed afterwards.
 ARCHIVE_TAR="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar"
-ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$SERVER_REDIRECTS_REMOTE")' '$(basename "$SERVER_REDIRECTS_REMOTE")' && gzip -f '$ARCHIVE_TAR'"
+# Second review round: the table is appended under its parent directory name (data/…), not flat at
+# the archive root, so both entries share the same root as cache/ and one `tar xzf … -C` of that
+# root restores the whole thing; a flat entry would land next to data/ and leave the union's table
+# in place. And a failed append removes the intermediate .tar: gzip never runs on it, so it would
+# escape the retention glob (*.tar.gz) below and pile up in the backup dir for good.
+REDIRECTS_PARENT="$(dirname "$SERVER_REDIRECTS_REMOTE")"
+ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && { tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$REDIRECTS_PARENT")' '$(basename "$REDIRECTS_PARENT")/$(basename "$SERVER_REDIRECTS_REMOTE")' || { rm -f -- '$ARCHIVE_TAR'; exit 1; }; } && gzip -f '$ARCHIVE_TAR'"
 echo "==> Verifying archive integrity"
 ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
 echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
