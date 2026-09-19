@@ -1549,8 +1549,12 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
       </div>
     </div>`;
 
+  // TRA-213/D4: these "Tes genres" chips are the only `.chip[data-id]` elements showHome()
+  // renders (the reco card below uses its own #reco-open button, not a chip) -- so opening the
+  // edit picker here doesn't touch graph node/card navigation wired elsewhere (e.g. show()'s
+  // own chips/project-cards, ~L1777), and matches the existing "modifier ma sélection" button.
   contentEl.querySelectorAll(".chip[data-id]").forEach((el) => {
-    el.addEventListener("click", (e) => { e.preventDefault(); show(el.dataset.id); });
+    el.addEventListener("click", (e) => { e.preventDefault(); openOnboarding({ mode: "edit" }); });
   });
   const editBtn = contentEl.querySelector("#home-edit") || contentEl.querySelector("#home-edit-genres");
   if (editBtn) editBtn.addEventListener("click", () => openOnboarding({ mode: "edit" }));
