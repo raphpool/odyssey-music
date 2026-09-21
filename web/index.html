@@ -765,9 +765,15 @@ function saveActiveV2(record) {
   try { localStorage.setItem(PROFILE_V2_KEY, JSON.stringify(record)); } catch {}
 }
 
-// D3's id-based grid hasn't shipped, so the existing slug picker (genrePickList(), all in
-// graph-slug space) keeps driving selection. These cross the slug/id boundary through
-// taxonomy.legacySelectionBySlug -- a picker slug and a v2 id are never compared directly.
+// TRA-282 (2026-09-19): before the grid was the live default, every v2 profile's ids came from
+// the flat picker (genrePickList(), a graph-slug space), so idsToPickerSlugs()/v2PickerChoiceSlugs()
+// below -- which cross the slug/id boundary through taxonomy.legacySelectionBySlug -- covered every
+// case. Now that GENRE_GRID_ENABLED defaults on, ids picked from the full taxonomy grid (~200
+// entries, not just the 24-slug flat list) are the common case, and these two only ever "see" an id
+// if some flat-picker slug's own legacy expansion happens to cover it. Still used for: the flat
+// repli itself (grid off, or taxonomy unusable), and mergePickerSelectionIntoV2's own slug-space
+// diffing. NOT used any more for rendering a grid-driven profile's home chips/badge -- see
+// gridChoiceChips() below, which reads ids straight off TAXONOMY.genres instead.
 
 // Which candidate slugs render "on" for a v2 selection. TRA-251/B1: a slug whose legacy
 // expansion is more than one id (an old family slug) is only "on" once every one of its ids is
@@ -848,6 +854,38 @@ function v2PickerChoiceSlugs(profile) {
   return idsToPickerSlugs(profile.genres, profile.unresolvedGenreSlugs, genrePickList(), TAXONOMY.legacySelectionBySlug);
 }
 
+// TRA-282 (2026-09-19): the grid-driven equivalent of v2PickerChoiceSlugs() above -- reads a v2
+// profile's ids straight off TAXONOMY.genres (same id-space renderFamilyGrid()/
+// mergeGridSelectionIntoV2() already use), no flat-picker slug round-trip. Only called when the
+// grid is the active picker (GENRE_GRID_ENABLED && TAXONOMY, same predicate openOnboarding()/
+// onb-done gate on) -- see the header comment above v2PickerChoiceSlugs(). Each grid pick is
+// already an atomic leaf id (no family-vs-child nesting the way an old flat family slug expands
+// to several ids), so unlike distinctPickerChoiceSlugs() there's nothing to de-duplicate: one id,
+// one chip. `href` is the first of the taxonomy entry's own slugs that resolves to a real graph
+// node, or null when none do (chip still renders, just unlinked, by escapeHtml(entry.name)).
+function gridChoiceChips(profile, taxonomy) {
+  const entryById = new Map(taxonomy.genres.map((g) => [g.id, g]));
+  const idChips = (profile.genres || [])
+    .map((id) => entryById.get(id))
+    .filter((entry) => !!entry)
+    .map((entry) => ({ id: entry.id, name: entry.name, href: entry.slugs.find((s) => byId.has(s)) || null }));
+  const unresolvedChips = (profile.unresolvedGenreSlugs || [])
+    .filter((slug) => byId.has(slug))
+    .map((slug) => ({ id: slug, name: byId.get(slug).name, href: slug }));
+  return [...idChips, ...unresolvedChips];
+}
+
+// Renders one chip per gridChoiceChips() entry: a link to the node when one resolves, otherwise
+// a plain (unlinked) chip carrying the name -- data-id is set either way so the home page's
+// "Tes genres" click handler (TRA-213/D4) can still open the edit picker on it.
+function gridChoiceChipHtml(entry) {
+  const label = escapeHtml(entry.name);
+  const idAttr = escapeHtml(entry.id);
+  return entry.href
+    ? `<a class="chip t-genre" href="?node=${encodeURIComponent(entry.href)}" data-id="${idAttr}">${label}</a>`
+    : `<span class="chip t-genre" data-id="${idAttr}">${label}</span>`;
+}
+
 // Nit (3rd review, 2026-09-17): a checked slug's expansion can be entirely covered by another
 // checked slug's (same nesting as B5) -- counting every "on" slug then balloons the chip count
 // with no user action. Keeps a slug only when no other checked slug's expansion strictly
@@ -893,20 +931,36 @@ function renderProfileChip() {
     return;
   }
   chip.hidden = false;
-  const count = activeV2
-    ? distinctPickerChoiceCount(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
-    : profile.genres.length;
+  // TRA-282 (2026-09-19): when the grid is the active picker, count gridChoiceChips() itself --
+  // not profile.genres.length + unresolvedGenreSlugs.length, which was this line's first version
+  // and regressed the TRA-270 invariant (badge count === "Tes genres" list). Found on PR #275's
+  // review: gridChoiceChips() filters out an id absent from TAXONOMY.genres (an off-grid pick --
+  // unpublished, quarantined, or a stale local: one -- mergeGridSelectionIntoV2 preserves these on
+  // save on purpose, see its own comment) and an unresolvedGenreSlugs entry absent from byId
+  // (resolveLegacyGenres never drops an unknown slug), but the raw sum counted both anyway --
+  // e.g. { genres: ["genre:house", "local:kept-choice"] } rendered "2 genres" for a single
+  // rendered chip. Deriving the count from the same list gridChoiceChipHtml() renders makes that
+  // divergence structurally impossible, same as the `else` branch already does by running
+  // distinctPickerChoiceCount/distinctPickerChoiceSlugs over the same set.
+  const count = !activeV2
+    ? profile.genres.length
+    : GENRE_GRID_ENABLED && TAXONOMY
+      ? gridChoiceChips(profile, TAXONOMY).length
+      : distinctPickerChoiceCount(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug);
   chip.textContent = `${profile.name} · ${count} genres`;
   chip.onclick = () => openOnboarding({ mode: "edit" });
 }
 
 // ─── Onboarding ───────────────────────────────────────────────────────────
-// TRA-211/D3a: kill switch for the id-based family grid below (renderFamilyGrid). Off by
-// default -- the grid needs DATA.taxonomy (not shipped in the deployed data.json yet, see
-// loadActiveProfile) and explicit proof the API/static recommendation counts converge (B6c)
-// before it replaces the flat picker as the live default. Same pattern as PROFILE_V2_ENABLED
-// above: overridable via window.__GENRE_GRID_ENABLED__, set before this script runs.
-const GENRE_GRID_ENABLED = window.__GENRE_GRID_ENABLED__ === true;
+// TRA-211/D3a: kill switch for the id-based family grid below (renderFamilyGrid). Was off by
+// default until the grid had DATA.taxonomy (not shipped in the deployed data.json until B6c)
+// and explicit proof the API/static recommendation counts converge.
+// TRA-282: on by default now that a real sync-genre-cache dispatch (run 35450083075) served
+// the full 202-genre taxonomy in production (GET /api/odyssey/data.json, verified 2026-09-19).
+// Still overridable to false via window.__GENRE_GRID_ENABLED__ (set before this script runs)
+// -- kept as a rollback lever, same pattern as PROFILE_V2_ENABLED above -- and renderGenreGrid()
+// still falls back to the flat picker whenever no usable taxonomy is actually served.
+const GENRE_GRID_ENABLED = window.__GENRE_GRID_ENABLED__ !== false;
 const MIN_GENRES = 3;
 
 // TRA-211/D3a decision 4: the flat picker fallback, used only when the id-based family grid
@@ -938,15 +992,68 @@ function genresByPopularity() {
 
 // ─── Id-based family grid (TRA-211 / D3a) ──────────────────────────────────
 // Unlike the flat picker above, this operates directly in v2 id-space: a checkbox is one
-// taxonomy genre id, no slug/legacy translation needed. Rendered into #onb-genres, gated by
-// GENRE_GRID_ENABLED, when a usable TAXONOMY is loaded.
+// taxonomy genre id, no slug/legacy translation needed for a real grid pick. Rendered into
+// #onb-genres, gated by GENRE_GRID_ENABLED, when a usable TAXONOMY is loaded. TRA-282 (2026-09-19,
+// review #275) adds one exception: onbGridSelection can also hold a legacyGridPicks() slug (a
+// v1-derived unresolvedGenreSlugs entry the graph still has a node for) -- see that function and
+// the "Hors grille" pseudo-family below for why.
 let onbGridSelection = new Set();
+
+// TRA-282 (2026-09-21), review #275 (3rd round): the taxonomy renderGenreGrid() most recently
+// rendered onto #onb-genres -- read fresh by wireFamilyGrid()'s click handler on every activation,
+// instead of a `taxonomy` parameter closed over once at wire time. wireFamilyGrid only ever wires
+// its listeners once per #onb-genres element (the gridWired guard below), so a parameter captured
+// there would stay whatever it was at that first-ever render forever. That was harmless while the
+// argument was always TAXONOMY itself (loaded once at init, invariant for the page's lifetime),
+// but displayTaxonomy's synthetic "Hors grille" family (withLegacyFamily()) shrinks across a
+// save + reopen as legacy picks get removed (mergeGridSelectionIntoV2) -- so a stale closure kept
+// re-adding an already-removed legacy pick the next time "tout" was clicked on that family, with
+// no checkbox ever showing it: familyGenres(stale, "__legacy__") still returned it,
+// toggleFamilySelection added it back to onbGridSelection, and on save
+// mergeGridSelectionIntoV2 -- no longer seeing it as a legacy candidate -- wrote it into `genres`
+// as if it were a taxonomy id, breaking that function's own "never added to ids: a slug is not a
+// taxonomy id" invariant. Symptom: "stale closure re-adds a removed legacy pick on the next 'all'
+// click." Updated on every renderGenreGrid() call, before the DOM's own checkbox state (also
+// rebuilt fresh each render) can ever disagree with it.
+let onbGridDisplayTaxonomy = null;
 
 // Mutates onbGridSelection in place (never reassigns it) so wireFamilyGrid's listeners, bound
 // once per #onb-genres element, keep observing the same Set across every onboarding re-open.
 function seedGridSelection(ids) {
   onbGridSelection.clear();
   (ids || []).forEach((id) => onbGridSelection.add(id));
+}
+
+// TRA-282 (2026-09-19), review #275: before this fix, a v1 profile holding a genrePickList() slug
+// absent from legacySelectionBySlug (real case: a popular-in-the-graph genre excluded from the
+// published taxonomy by editorial arbitration, e.g. genre:pop) migrated that slug into
+// unresolvedGenreSlugs (resolveLegacyGenres keeps it, "never dropped") and it stayed there
+// forever, unremovable, once the grid became the default picker -- gridChoiceChips() still
+// rendered it as a home chip and counted it in the badge, and resolveScoringChoices() still
+// weighed it in the reco, but openOnboarding()'s grid branch only ever seeded onbGridSelection
+// from profile.genres (taxonomy ids), never from unresolvedGenreSlugs, so no checkbox represented
+// it and mergeGridSelectionIntoV2() rewrote it back unchanged every save. Symptom: "legacy pick
+// visible but unremovable once the grid is the default." A slug absent from the graph (byId) is
+// never rendered by gridChoiceChips() either, so it's excluded here too -- this only surfaces
+// picks a user could actually see and act on.
+function legacyGridPicks(profile) {
+  return ((profile && profile.unresolvedGenreSlugs) || []).filter((slug) => byId.has(slug));
+}
+
+// The `else` branch of legacyGridPicks() above, i.e. the common case: nothing to show, return the
+// taxonomy unchanged. Otherwise appends one synthetic "Hors grille" family so renderFamilyGrid()/
+// wireFamilyGrid() below render and toggle these slugs with zero changes of their own -- each
+// pseudo-entry's `id` is the slug itself (a selection Set doesn't care which kind of string it's
+// checking), and mergeGridSelectionIntoV2() tells the two kinds apart by re-deriving
+// legacyGridPicks() from the same source at save time.
+function withLegacyFamily(taxonomy, legacyPicks) {
+  if (legacyPicks.length === 0) return taxonomy;
+  const legacyGenres = legacyPicks.map((slug) => ({ id: slug, name: byId.get(slug).name, family: "__legacy__" }));
+  return {
+    ...taxonomy,
+    genres: [...taxonomy.genres, ...legacyGenres],
+    families: [...taxonomy.families, { key: "__legacy__", label: "Hors grille" }],
+  };
 }
 
 // The projection already contains only published-admissible entries (GenreTaxonomyProjection),
@@ -974,11 +1081,33 @@ function toggleFamilySelection(genres, selection) {
 // Same off-grid-id invariant as mergePickerSelectionIntoV2 (D2b/B1), trivial in id-space: a
 // checkbox only ever adds/removes the one id it represents, so an id absent from the rendered
 // grid (unpublished, quarantined, or a stale local: pick) is simply never touched.
+// TRA-282 (2026-09-19), review #275: `selection` can also hold a legacyGridPicks() slug (see that
+// function and withLegacyFamily() above) -- re-derived here from `current` itself, the same
+// source legacyGridPicks() read when openOnboarding() seeded the selection, so this always agrees
+// with what was actually rendered/checkable this session. A legacy slug still checked at save
+// time is kept in unresolvedGenreSlugs (unchanged, same as before this fix); one the user
+// unchecked is removed -- the missing half of the original bug fix, matching what
+// mergePickerSelectionIntoV2 already did for the flat picker before this ticket. Never added to
+// `ids`/`genres`: a slug is not a taxonomy id.
 function mergeGridSelectionIntoV2(current, taxonomy, selection) {
   const onGrid = new Set(taxonomy.genres.map((g) => g.id));
+  const legacyCandidates = new Set(legacyGridPicks(current));
+
   const ids = new Set((current.genres || []).filter((id) => !onGrid.has(id)));
-  selection.forEach((id) => ids.add(id));
-  return { ...current, genres: [...ids] };
+  selection.forEach((entry) => {
+    if (!legacyCandidates.has(entry)) ids.add(entry);
+  });
+
+  const unresolved = new Set(current.unresolvedGenreSlugs || []);
+  legacyCandidates.forEach((slug) => {
+    if (selection.has(slug)) unresolved.add(slug);
+    else unresolved.delete(slug);
+  });
+
+  const next = { ...current, genres: [...ids] };
+  if (unresolved.size > 0) next.unresolvedGenreSlugs = [...unresolved];
+  else delete next.unresolvedGenreSlugs;
+  return next;
 }
 
 function updateFamilyAllControl(familyEl, genres, selection) {
@@ -1011,8 +1140,10 @@ function renderFamilyGrid(grid, taxonomy, selection) {
 // Wired once per #onb-genres element (guarded by dataset.gridWired): renderFamilyGrid replaces
 // innerHTML on every open, but onbGridSelection is mutated in place (seedGridSelection), so a
 // listener bound here on first render keeps observing live state across re-opens without
-// accumulating duplicate bindings on the persistent grid container.
-function wireFamilyGrid(grid, taxonomy, selection, onChange) {
+// accumulating duplicate bindings on the persistent grid container. No `taxonomy` parameter on
+// purpose (TRA-282, 2026-09-21, review #275): see onbGridDisplayTaxonomy's own comment above for
+// why reading it fresh here, instead of closing over one, is required.
+function wireFamilyGrid(grid, selection, onChange) {
   if (grid.dataset.gridWired) return;
   grid.dataset.gridWired = "1";
   const onActivate = (e) => {
@@ -1022,7 +1153,7 @@ function wireFamilyGrid(grid, taxonomy, selection, onChange) {
     }
     const familyEl = e.target.closest(".genre-family");
     if (!familyEl) return;
-    const genres = familyGenres(taxonomy, familyEl.dataset.family);
+    const genres = familyGenres(onbGridDisplayTaxonomy, familyEl.dataset.family);
     const expandBtn = e.target.closest(".genre-family-expand");
     const allBtn = e.target.closest(".genre-family-all");
     const pickBtn = e.target.closest(".genre-pick-id");
@@ -1153,8 +1284,14 @@ function openOnboarding({ mode = "signup" } = {}) {
     // must stay out of onbGridSelection, or it would silently inflate the MIN_GENRES counter
     // for a choice the user never sees a checkbox for (mergeGridSelectionIntoV2 protects it on
     // save regardless, from `current.genres` directly).
+    // TRA-282 (2026-09-19), review #275: also seeds any legacyGridPicks() slug -- see that
+    // function's comment -- so the "Hors grille" pseudo-family renderGenreGrid() adds below has
+    // something to render as checked, instead of the pick being invisible to every checkbox.
     const onGrid = new Set(TAXONOMY.genres.map((g) => g.id));
-    seedGridSelection(((profile && profile.genres) || []).filter((id) => onGrid.has(id)));
+    seedGridSelection([
+      ...((profile && profile.genres) || []).filter((id) => onGrid.has(id)),
+      ...legacyGridPicks(profile),
+    ]);
   } else {
     // TRA-137/D2b: seed the old picker's checkbox state from a v2 profile's ids by
     // translating them back to slugs (criterion 6); a v1 profile's genres are already
@@ -1190,8 +1327,17 @@ function renderGenreGrid() {
     return;
   }
   if (GENRE_GRID_ENABLED && TAXONOMY) {
-    renderFamilyGrid(grid, TAXONOMY, onbGridSelection);
-    wireFamilyGrid(grid, TAXONOMY, onbGridSelection, refreshGenreCount);
+    // TRA-282 (2026-09-19), review #275: appends the "Hors grille" pseudo-family (see
+    // withLegacyFamily()) when currentProfile() has a legacy pick to show -- renderFamilyGrid()/
+    // wireFamilyGrid() render and toggle it exactly like any other family, unmodified.
+    // TRA-282 (2026-09-21), review #275 (3rd round): published to onbGridDisplayTaxonomy on every
+    // call, before rendering, so wireFamilyGrid()'s click handler (wired once, but reading that
+    // variable fresh on every activation) never acts on a stale "Hors grille" membership -- see
+    // that variable's own comment for the bug this fixes.
+    const displayTaxonomy = withLegacyFamily(TAXONOMY, legacyGridPicks(currentProfile()));
+    onbGridDisplayTaxonomy = displayTaxonomy;
+    renderFamilyGrid(grid, displayTaxonomy, onbGridSelection);
+    wireFamilyGrid(grid, onbGridSelection, refreshGenreCount);
     refreshGenreCount();
     return;
   }
@@ -1518,19 +1664,28 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
   }
 
   const node = pickDailyReco();
-  // B3: a v2 profile's genres are ids, never graph slugs -- show one chip per picker choice it
-  // resolves to instead. TRA-270: this used to render the raw v2PickerChoiceSlugs set while the
-  // comment claimed it matched the chip's count above -- the count already folded a dominated
-  // subfamily chip (e.g. genre:krautrock, fully covered by a checked genre:rock) into its family,
-  // but this list still rendered it as its own pill. Runs the same distinctPickerChoiceSlugs
-  // dedup so the count and the list agree on one set.
-  const displaySlugs = activeV2
-    ? distinctPickerChoiceSlugs(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
-    : profile.genres;
-  const genreChips = displaySlugs
-    .filter((s) => byId.has(s))
-    .map((s) => `<a class="chip t-genre" href="?node=${encodeURIComponent(s)}" data-id="${escapeHtml(s)}">${escapeHtml(byId.get(s).name)}</a>`)
-    .join("");
+  // TRA-282 (2026-09-19): a grid-driven v2 profile's chips come straight from TAXONOMY.genres
+  // (gridChoiceChips()) rather than the flat-picker-slug round-trip below -- see the comment
+  // above v2PickerChoiceSlugs() for why (bug found on PR #275's browser check: a real grid pick
+  // rendered an empty chip list). The `else` branch below is otherwise unchanged: B3, a legacy
+  // v2 profile's genres are ids, never graph slugs -- show one chip per picker choice it resolves
+  // to instead. TRA-270: this used to render the raw v2PickerChoiceSlugs set while the comment
+  // claimed it matched the chip's count above -- the count already folded a dominated subfamily
+  // chip (e.g. genre:krautrock, fully covered by a checked genre:rock) into its family, but this
+  // list still rendered it as its own pill. Runs the same distinctPickerChoiceSlugs dedup so the
+  // count and the list agree on one set.
+  let genreChips;
+  if (activeV2 && GENRE_GRID_ENABLED && TAXONOMY) {
+    genreChips = gridChoiceChips(profile, TAXONOMY).map(gridChoiceChipHtml).join("");
+  } else {
+    const displaySlugs = activeV2
+      ? distinctPickerChoiceSlugs(v2PickerChoiceSlugs(profile), TAXONOMY.legacySelectionBySlug)
+      : profile.genres;
+    genreChips = displaySlugs
+      .filter((s) => byId.has(s))
+      .map((s) => `<a class="chip t-genre" href="?node=${encodeURIComponent(s)}" data-id="${escapeHtml(s)}">${escapeHtml(byId.get(s).name)}</a>`)
+      .join("");
+  }
 
   const recoHtml = node ? renderRecoCard(node) : `
     <div class="reco-empty">
