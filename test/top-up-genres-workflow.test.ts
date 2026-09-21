@@ -181,4 +181,20 @@ describe("top-up-genres workflow (TRA-70)", () => {
 		const cleanupStep = steps.find((step) => step.startsWith("name: Delete the pushed branch"));
 		expect(cleanupStep).toMatch(/if: failure\(\) && steps\.push\.outputs\.branch/);
 	});
+
+	it("never persists the token into the runner's git config: push passes the URL directly instead of git remote set-url (TRA-281)", () => {
+		// 2026-09-19 (TRA-281): `git remote set-url origin "https://x-access-token:...@..."`
+		// writes the token in plaintext into the runner's (ephemeral but still
+		// avoidable) .git/config. GitHub masks the token in job logs regardless, so
+		// the risk was low, but there's no reason to persist it anywhere at all —
+		// passing the URL as the direct `git push` argument never touches the
+		// remote config, and the token stops existing on disk the moment the step ends.
+		const pushStep = steps.find((step) => step.startsWith("name: Push the proposal branch"));
+		expect(pushStep).toBeDefined();
+		const script = runBodyOf(pushStep as string);
+		expect(script).not.toMatch(/git remote set-url/);
+		expect(script).toMatch(
+			/git push "https:\/\/x-access-token:\$\{GH_TOKEN\}@github\.com\/\$\{\{\s*github\.repository\s*\}\}\.git" "\$branch"/,
+		);
+	});
 });

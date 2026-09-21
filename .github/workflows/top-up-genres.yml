@@ -175,10 +175,11 @@ jobs:
           git checkout -b "$branch"
           git -c user.name="odyssey-bot" -c user.email="actions@users.noreply.github.com" \
             commit -m "feat(genre-topup): proposer un lot de complement de couverture" -m "Refs TRA-70"
-          # Token given only here, not at checkout — the crawl step ingests untrusted
-          # web content and has no business holding it.
-          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
-          git push origin "$branch"
+                    # Token given only here, not at checkout — the crawl step ingests untrusted
+          # web content and has no business holding it. Passed as a direct `git push`
+          # argument, not by rewriting the origin remote's URL, so it is never
+          # persisted to the runner's .git/config.
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" "$branch"
           echo "branch=$branch" >> "$GITHUB_OUTPUT"
 
       - name: Open a draft PR (best effort)
