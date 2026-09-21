@@ -999,6 +999,24 @@ function genresByPopularity() {
 // the "Hors grille" pseudo-family below for why.
 let onbGridSelection = new Set();
 
+// TRA-282 (2026-09-21), review #275 (3rd round): the taxonomy renderGenreGrid() most recently
+// rendered onto #onb-genres -- read fresh by wireFamilyGrid()'s click handler on every activation,
+// instead of a `taxonomy` parameter closed over once at wire time. wireFamilyGrid only ever wires
+// its listeners once per #onb-genres element (the gridWired guard below), so a parameter captured
+// there would stay whatever it was at that first-ever render forever. That was harmless while the
+// argument was always TAXONOMY itself (loaded once at init, invariant for the page's lifetime),
+// but displayTaxonomy's synthetic "Hors grille" family (withLegacyFamily()) shrinks across a
+// save + reopen as legacy picks get removed (mergeGridSelectionIntoV2) -- so a stale closure kept
+// re-adding an already-removed legacy pick the next time "tout" was clicked on that family, with
+// no checkbox ever showing it: familyGenres(stale, "__legacy__") still returned it,
+// toggleFamilySelection added it back to onbGridSelection, and on save
+// mergeGridSelectionIntoV2 -- no longer seeing it as a legacy candidate -- wrote it into `genres`
+// as if it were a taxonomy id, breaking that function's own "never added to ids: a slug is not a
+// taxonomy id" invariant. Symptom: "stale closure re-adds a removed legacy pick on the next 'all'
+// click." Updated on every renderGenreGrid() call, before the DOM's own checkbox state (also
+// rebuilt fresh each render) can ever disagree with it.
+let onbGridDisplayTaxonomy = null;
+
 // Mutates onbGridSelection in place (never reassigns it) so wireFamilyGrid's listeners, bound
 // once per #onb-genres element, keep observing the same Set across every onboarding re-open.
 function seedGridSelection(ids) {
@@ -1122,8 +1140,10 @@ function renderFamilyGrid(grid, taxonomy, selection) {
 // Wired once per #onb-genres element (guarded by dataset.gridWired): renderFamilyGrid replaces
 // innerHTML on every open, but onbGridSelection is mutated in place (seedGridSelection), so a
 // listener bound here on first render keeps observing live state across re-opens without
-// accumulating duplicate bindings on the persistent grid container.
-function wireFamilyGrid(grid, taxonomy, selection, onChange) {
+// accumulating duplicate bindings on the persistent grid container. No `taxonomy` parameter on
+// purpose (TRA-282, 2026-09-21, review #275): see onbGridDisplayTaxonomy's own comment above for
+// why reading it fresh here, instead of closing over one, is required.
+function wireFamilyGrid(grid, selection, onChange) {
   if (grid.dataset.gridWired) return;
   grid.dataset.gridWired = "1";
   const onActivate = (e) => {
@@ -1133,7 +1153,7 @@ function wireFamilyGrid(grid, taxonomy, selection, onChange) {
     }
     const familyEl = e.target.closest(".genre-family");
     if (!familyEl) return;
-    const genres = familyGenres(taxonomy, familyEl.dataset.family);
+    const genres = familyGenres(onbGridDisplayTaxonomy, familyEl.dataset.family);
     const expandBtn = e.target.closest(".genre-family-expand");
     const allBtn = e.target.closest(".genre-family-all");
     const pickBtn = e.target.closest(".genre-pick-id");
@@ -1310,9 +1330,14 @@ function renderGenreGrid() {
     // TRA-282 (2026-09-19), review #275: appends the "Hors grille" pseudo-family (see
     // withLegacyFamily()) when currentProfile() has a legacy pick to show -- renderFamilyGrid()/
     // wireFamilyGrid() render and toggle it exactly like any other family, unmodified.
+    // TRA-282 (2026-09-21), review #275 (3rd round): published to onbGridDisplayTaxonomy on every
+    // call, before rendering, so wireFamilyGrid()'s click handler (wired once, but reading that
+    // variable fresh on every activation) never acts on a stale "Hors grille" membership -- see
+    // that variable's own comment for the bug this fixes.
     const displayTaxonomy = withLegacyFamily(TAXONOMY, legacyGridPicks(currentProfile()));
+    onbGridDisplayTaxonomy = displayTaxonomy;
     renderFamilyGrid(grid, displayTaxonomy, onbGridSelection);
-    wireFamilyGrid(grid, displayTaxonomy, onbGridSelection, refreshGenreCount);
+    wireFamilyGrid(grid, onbGridSelection, refreshGenreCount);
     refreshGenreCount();
     return;
   }

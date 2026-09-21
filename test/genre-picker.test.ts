@@ -924,4 +924,93 @@ describe("legacy unresolved slugs are checkable/removable in the grid editor (TR
 			w.close();
 		}
 	});
+
+	// PR #275, third review round (2026-09-21): "stale closure re-adds a removed legacy pick on
+	// the next 'all' click." wireFamilyGrid() wires its click listener once ever per #onb-genres
+	// element (the gridWired guard) -- before this fix, that listener closed over whatever
+	// `taxonomy` renderGenreGrid() passed at that first-ever render, forever. Harmless for real
+	// families (TAXONOMY never changes within a page session), but the synthetic "Hors grille"
+	// family (withLegacyFamily()) shrinks across a save + reopen as legacy picks get removed --
+	// so a stale "tout" click read the OLD, larger family membership, silently re-adding an
+	// already-removed legacy slug to onbGridSelection (no checkbox ever showed it, since the
+	// current render only has a box for what's still actually a legacy pick), and on save
+	// mergeGridSelectionIntoV2() -- no longer seeing that slug as a legacy candidate -- wrote it
+	// straight into `genres`, a graph slug living in taxonomy-id space. Fixed by
+	// onbGridDisplayTaxonomy, read fresh by the click handler on every activation instead of
+	// closed over at wire time.
+	it("a legacy pick removed in a prior save doesn't silently reappear from a stale 'tout' click on 'Hors grille' after reopening", async () => {
+		const built = await buildGraphFromCache("cache", STATIC_GRAPH_OPTIONS);
+		const taxonomy = built.taxonomy as GenreTaxonomyProjection;
+		const legacyMap = taxonomy.legacySelectionBySlug as Record<string, string[]>;
+
+		// Two real graph genre slugs absent from legacySelectionBySlug, same "kept, never
+		// dropped" case as the describe block above (real examples in this repo's own cache
+		// include genre:pop and genre:rap, per the review) -- not hardcoded.
+		const allGenreSlugs = built.nodes.filter((n) => n.id.startsWith("genre:")).map((n) => n.id);
+		const legacySlugs = allGenreSlugs.filter((s) => (legacyMap[s] ?? []).length === 0);
+		const slugA = legacySlugs[0];
+		const slugB = legacySlugs[1];
+		expect(slugA).toBeDefined();
+		expect(slugB).toBeDefined();
+		expect(slugA).not.toBe(slugB);
+
+		const w = newWindow(built);
+		try {
+			w.localStorage.setItem(
+				PROFILE_V2_KEY,
+				JSON.stringify({ name: "Raph", genres: [], unresolvedGenreSlugs: [slugA, slugB] }),
+			);
+			await waitReady(w);
+
+			// 1) Open: both checked under "Hors grille" -- the closure (if any) captures this.
+			w.openOnboarding({ mode: "edit" });
+			let grid = w.document.getElementById("onb-genres") as HTMLElement;
+			let legacyFamily = grid.querySelector('.genre-family[data-family="__legacy__"]') as HTMLElement;
+			expect(legacyFamily.querySelectorAll(".genre-pick-id")).toHaveLength(2);
+
+			// 2) Uncheck slugA, check 3 real picks (to clear MIN_GENRES=3 once slugA is gone), save.
+			(legacyFamily.querySelector(`.genre-pick-id[data-id="${slugA}"]`) as HTMLElement).click();
+			const realPicks = [
+				...grid.querySelectorAll('.genre-family:not([data-family="__legacy__"]) .genre-pick-id'),
+			].slice(0, 3) as HTMLElement[];
+			expect(realPicks).toHaveLength(3); // sanity: the real taxonomy has at least 3 elsewhere
+			for (const pick of realPicks) pick.click();
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+
+			const afterFirstSave = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(afterFirstSave.unresolvedGenreSlugs).toEqual([slugB]);
+			expect(afterFirstSave.genres).toHaveLength(3);
+
+			// 3) Reopen -- same page session, same #onb-genres element, so wireFamilyGrid's guard
+			// means its listener is NOT rewired here. "Hors grille" now renders only slugB.
+			w.openOnboarding({ mode: "edit" });
+			grid = w.document.getElementById("onb-genres") as HTMLElement;
+			legacyFamily = grid.querySelector('.genre-family[data-family="__legacy__"]') as HTMLElement;
+			expect(legacyFamily.querySelectorAll(".genre-pick-id")).toHaveLength(1);
+			expect(legacyFamily.querySelector(`[data-id="${slugA}"]`)).toBeNull();
+
+			// 4) Click "tout" on "Hors grille". The displayed count must always equal the number
+			// of boxes actually rendered as checked -- fails before the fix: a stale closure adds
+			// slugA back into onbGridSelection with no checkbox anywhere to show it, inflating the
+			// count past what's visibly checked (exactly the invisible-but-counted failure mode
+			// openOnboarding's own comment warns MIN_GENRES seeding against).
+			(legacyFamily.querySelector(".genre-family-all") as HTMLElement).click();
+			const checkedBoxes = grid.querySelectorAll('.genre-pick-id[aria-checked="true"]').length;
+			const shownCount = Number(
+				(w.document.getElementById("onb-count") as HTMLElement).textContent?.match(/(\d+)/)?.[1],
+			);
+			expect(shownCount).toBe(checkedBoxes);
+
+			// 5) Save. Fails before the fix: slugA lands in `genres` -- a graph slug written into
+			// taxonomy-id space, mergeGridSelectionIntoV2's own documented invariant broken -- and
+			// stays out of reach forever after (gridChoiceChips/openOnboarding both filter it out
+			// as an unrecognized id).
+			(w.document.getElementById("onb-done") as HTMLButtonElement).click();
+			const finalSaved = JSON.parse(w.localStorage.getItem(PROFILE_V2_KEY) ?? "null");
+			expect(finalSaved.genres).not.toContain(slugA);
+			expect(finalSaved.unresolvedGenreSlugs ?? []).not.toContain(slugA);
+		} finally {
+			w.close();
+		}
+	});
 });
