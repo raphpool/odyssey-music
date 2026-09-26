@@ -1,4 +1,4 @@
-import { fireEvent, render } from "@testing-library/react-native";
+import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { ScrollView } from "react-native";
 
 import RootLayout from "../app/_layout";
@@ -7,6 +7,7 @@ import TodayScreen from "../app/(tabs)/index";
 import SearchScreen from "../app/(tabs)/search";
 import SettingsScreen from "../app/(tabs)/settings";
 import RootIndex from "../app/index";
+import { useAnalytics } from "../src/analytics/provider";
 import { ConfigurationError } from "../src/components/ConfigurationError";
 import { readPublicConfig } from "../src/config";
 
@@ -28,24 +29,56 @@ jest.mock("expo-router", () => {
 	};
 
 	return {
-		Redirect: ({ href }: { href: string }) => React.createElement(Text, { testID: "redirect-target" }, href),
+		Redirect: ({ href }: { href: string | { pathname: string; params?: Record<string, string> } }) =>
+			React.createElement(
+				Text,
+				{ testID: "redirect-target" },
+				typeof href === "string"
+					? href
+					: `${href.pathname}${href.params?.returnTo === undefined ? "" : `?returnTo=${href.params.returnTo}`}`,
+			),
+		router: { push: jest.fn(), replace: jest.fn() },
 		Stack: createNavigator("stack-navigator"),
 		Tabs: createNavigator("tabs-navigator"),
+		useGlobalSearchParams: jest.fn(() => ({ x: "1" })),
+		usePathname: jest.fn(() => "/node/foo"),
 	};
 });
 
 jest.mock("../src/config", () => ({
 	readPublicConfig: jest.fn(),
 }));
+jest.mock("../src/analytics/provider", () => {
+	const React = require("react");
+	return {
+		AnalyticsProvider: ({ children }: { children?: React.ReactNode }) => children,
+		analyticsStatusLabel: (status: string) => status,
+		useAnalytics: jest.fn(),
+	};
+});
 
 const mockedReadPublicConfig = readPublicConfig as jest.MockedFunction<typeof readPublicConfig>;
 
 describe("track1 navigation", () => {
+	beforeEach(() => {
+		jest.mocked(useAnalytics).mockReturnValue({
+			ready: true,
+			consent: { version: 1, status: "unknown" },
+			configured: false,
+			purgeIncomplete: false,
+			grant: async () => undefined,
+			deny: async () => undefined,
+			trackEvent: async () => ({ kind: "disabled" }),
+		});
+	});
 	afterEach(() => jest.clearAllMocks());
-	it("opens the French Today tab through the root route", () => {
+	it("keeps an unknown direct root route behind the privacy choice", async () => {
 		mockedReadPublicConfig.mockReturnValue({ ok: true, value: {} } as ReturnType<typeof readPublicConfig>);
 		const bootstrap = render(<RootIndex />);
-		expect(bootstrap.getByTestId("redirect-target").props.children).toBe("/(tabs)");
+		await waitFor(() =>
+			expect(bootstrap.getByTestId("redirect-target").props.children).toBe("/privacy-choice"),
+		);
+		expect(bootstrap.queryByText("/(tabs)")).toBeNull();
 		const tabs = render(<TabsLayout />);
 		expect(tabs.getByTestId("tabs-navigator-index-screen").props.accessibilityLabel).toBe("Aujourd'hui");
 		expect(tabs.getByTestId("tabs-navigator-search-screen").props.accessibilityLabel).toBe("Recherche");
@@ -60,6 +93,13 @@ describe("track1 navigation", () => {
 		expect(root.getByRole("alert")).toBeTruthy();
 		expect(root.getByText("Configuration requise")).toBeTruthy();
 		expect(root.queryByTestId("stack-navigator")).toBeNull();
+	});
+
+	it("gates an initial deep link until an unknown consent choice is made", () => {
+		mockedReadPublicConfig.mockReturnValue({ ok: true, value: {} } as ReturnType<typeof readPublicConfig>);
+		const root = render(<RootLayout />);
+		expect(root.getByTestId("stack-navigator")).toBeTruthy();
+		expect(root.getByLabelText("Chargement du choix de mesure")).toBeTruthy();
 	});
 
 	it("keeps tab screens mounted when the active tab changes", () => {
