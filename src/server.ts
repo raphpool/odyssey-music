@@ -36,6 +36,8 @@ import { AppError, isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
+import { createMobileCatalog } from "./mobile/catalog.js";
+import { createMobileRouter } from "./mobile/router.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
 import { createImageService } from "./services/image-service.js";
@@ -78,6 +80,8 @@ const materializeService = createMaterializeService({ cache, env, genreRegistry 
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 const imageService = createImageService({ cache, redirects: genreRedirects });
 const graphService = createGraphService(CACHE_DIR);
+const mobileCatalog = createMobileCatalog({ getGraph: () => graphService.getGraph() });
+const mobileRouter = createMobileRouter({ catalog: mobileCatalog });
 
 const server = createServer(async (req, res) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
@@ -100,6 +104,7 @@ const server = createServer(async (req, res) => {
 async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
 	const path = url.pathname;
+	if (await mobileRouter.handle({ req, res, url })) return;
 	if (req.method === "GET" && path === "/health") {
 		json(res, 200, { ok: true, cacheDir: CACHE_DIR });
 		return;
