@@ -16,6 +16,7 @@ function envInt(name: string, fallback: number): number {
 export const serverConfig = {
 	port: envInt("PORT", 18791),
 	cacheDir: envString("ODYSSEY_CACHE_DIR", join(process.cwd(), "cache")),
+	mobileStateDir: envString("MOBILE_STATE_DIR", join(process.cwd(), "mobile-state")),
 };
 
 export const streamConfig = {

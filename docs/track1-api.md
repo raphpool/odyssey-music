@@ -67,6 +67,24 @@ stale-while-revalidate=30`. Le client envoie cette valeur dans `If-None-Match`; 
 contenu inchangé, le serveur répond `304` sans corps. Les routes mobile ne changent pas
 le comportement des anciennes routes du serveur.
 
+## Registre persistant des générations
+
+Le serveur prépare le registre v1 des demandes de génération dans `MOBILE_STATE_DIR`.
+En production, le service impose `/var/lib/track1-mobile`, hors de `/opt/odyssey-music`
+et des synchronisations de déploiement, avec des droits `0700` pour le compte du service.
+En local, la valeur par défaut est `./mobile-state/`, ignorée par Git.
+
+Une demande associe une identité locale, une clé d'idempotence et une requête JSON
+normalisée. Une répétition identique retourne le même registre ; la même clé avec une
+requête différente produit un conflit. Les écritures sont sérialisées et atomiques. Au
+redémarrage, toute demande `running` devient `interrupted` : le registre ne relance
+jamais un appel fournisseur potentiellement payant. Les états terminaux sont immuables,
+sont conservés 24 heures, et le registre refuse de créer de nouvelles demandes une fois
+ses 1 000 états terminaux non expirés atteints plutôt que d'évincer un travail actif.
+
+Un registre corrompu ou inaccessible est préservé et fait échouer l'opération : il n'est
+jamais remplacé automatiquement par un registre vide.
+
 ## Contrats réservés, non implémentés
 
 Les routes ci-dessous sont documentées pour permettre aux clients d'anticiper les
