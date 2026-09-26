@@ -37,6 +37,8 @@ import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
+import { createMobileMedia } from "./mobile/media.js";
+import { createMobileNodeReader } from "./mobile/nodes.js";
 import { createMobileRouter } from "./mobile/router.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
@@ -81,7 +83,14 @@ const getNode = createNodeService({ cache, runJit: materializeService.runJit, re
 const imageService = createImageService({ cache, redirects: genreRedirects });
 const graphService = createGraphService(CACHE_DIR);
 const mobileCatalog = createMobileCatalog({ getGraph: () => graphService.getGraph() });
-const mobileRouter = createMobileRouter({ catalog: mobileCatalog });
+const mobileNodes = createMobileNodeReader({ cache, redirects: genreRedirects });
+const mobileMedia = createMobileMedia({
+	nodes: mobileNodes,
+	imageService,
+	resolveLinks: resolveStreamingLinks,
+	cacheDir: CACHE_DIR,
+});
+const mobileRouter = createMobileRouter({ catalog: mobileCatalog, nodes: mobileNodes, media: mobileMedia });
 
 const server = createServer(async (req, res) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
