@@ -24,8 +24,13 @@ const POST_TIMEOUT_MS = 15_000;
 export type FetchLike = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 export type CatalogRequest = { etag?: string; hasCachedCopy?: boolean; signal?: AbortSignal };
 export type CreateGenerationInput = {
-	idempotencyKey: string;
-	input: Record<string, unknown>;
+	requestId: string;
+	type: NodeType;
+	name: string;
+	slug?: string;
+	mbid?: string;
+	qid?: string;
+	disambiguator?: string;
 	signal?: AbortSignal;
 };
 export type SearchRequest = { q: string; type?: NodeType; limit?: number; signal?: AbortSignal };
@@ -122,6 +127,7 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 					error: apiError(
 						response.status,
 						parsedError.data.error.code,
+						parsedError.data.error.retryable,
 						parseRetryAfter(response.headers.get("Retry-After")),
 					),
 				};
@@ -153,14 +159,10 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 				timeoutMs: GET_TIMEOUT_MS,
 			});
 			if (result.kind !== "notModified") return result;
-			if (
-				requestOptions.etag === undefined ||
-				requestOptions.hasCachedCopy !== true ||
-				result.etag === undefined
-			) {
+			if (requestOptions.etag === undefined || requestOptions.hasCachedCopy !== true) {
 				return { kind: "error", error: localError("invalid_response") };
 			}
-			return { kind: "notModified", etag: result.etag };
+			return { kind: "notModified", etag: result.etag ?? requestOptions.etag };
 		},
 		getNode: async (slug, signal) => {
 			const result = await request("GET", `nodes/${encodeURIComponent(slug)}`, nodeResponseSchema, {
@@ -172,7 +174,7 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 				: result;
 		},
 		getImage: async (slug, signal) => {
-			const result = await request("GET", `images/${encodeURIComponent(slug)}`, imageResponseSchema, {
+			const result = await request("GET", `nodes/${encodeURIComponent(slug)}/image`, imageResponseSchema, {
 				signal,
 				timeoutMs: GET_TIMEOUT_MS,
 			});
@@ -181,7 +183,7 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 				: result;
 		},
 		getLinks: async (slug, signal) => {
-			const result = await request("GET", `links/${encodeURIComponent(slug)}`, linksResponseSchema, {
+			const result = await request("GET", `nodes/${encodeURIComponent(slug)}/links`, linksResponseSchema, {
 				signal,
 				timeoutMs: GET_TIMEOUT_MS,
 			});
@@ -204,9 +206,17 @@ export function createApiClient(options: ApiClientOptions = {}): ApiClient {
 				? { kind: "error", error: localError("invalid_response") }
 				: result;
 		},
-		createGeneration: async ({ idempotencyKey, input, signal }) => {
+		createGeneration: async ({ requestId, type, name, slug, mbid, qid, disambiguator, signal }) => {
 			const result = await request("POST", "generations", generationResponseSchema, {
-				body: { idempotency_key: idempotencyKey, input },
+				body: {
+					request_id: requestId,
+					type,
+					name,
+					...(slug === undefined ? {} : { slug }),
+					...(mbid === undefined ? {} : { mbid }),
+					...(qid === undefined ? {} : { qid }),
+					...(disambiguator === undefined ? {} : { disambiguator }),
+				},
 				signal,
 				timeoutMs: POST_TIMEOUT_MS,
 			});

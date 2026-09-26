@@ -36,13 +36,16 @@ export function localError(kind: LocalClientError["kind"]): LocalClientError {
 export function apiError(
 	status: number,
 	code: string,
+	remoteRetryable: boolean | undefined,
 	retryAfterSeconds: number | undefined,
 ): ApiClientError {
 	return {
 		kind: "api",
 		status,
 		code,
-		retryable: status === 429 || status === 500 || status === 503 || code === "catalog_unavailable",
+		retryable:
+			remoteRetryable ??
+			(status === 429 || status === 500 || status === 503 || code === "catalog_unavailable"),
 		message: status === 429 ? "Try again later." : messages.api,
 		...(retryAfterSeconds === undefined ? {} : { retryAfterSeconds }),
 	};
