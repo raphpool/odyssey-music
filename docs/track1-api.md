@@ -20,9 +20,11 @@ Toutes les erreurs de la surface mobile ont cette forme :
 }
 ```
 
-Les codes actuellement exposés sont `invalid_request` (400), `not_found` (404),
-`method_not_allowed` (405) et `catalog_unavailable` (500). Une erreur ne contient
-jamais un message interne, un chemin de cache ou une erreur d'un fournisseur.
+Les codes actuellement exposés sont `invalid_request` (400), `unauthorized` (401),
+`not_found` (404), `method_not_allowed` (405), `conflict` (409),
+`catalog_unavailable` (500) et `push_unavailable` (503). Une erreur ne contient jamais
+un message interne, un chemin de cache, un token de notification, un secret ou une erreur
+d'un fournisseur.
 
 ## Catalogue disponible
 
@@ -85,6 +87,64 @@ ses 1 000 états terminaux non expirés atteints plutôt que d'évincer un trava
 Un registre corrompu ou inaccessible est préservé et fait échouer l'opération : il n'est
 jamais remplacé automatiquement par un registre vide.
 
+## Abonnements anonymes aux rappels
+
+`POST /mobile/v1/push/subscriptions` accepte uniquement le corps JSON suivant, de 8 KiB
+maximum, et un en-tête `Authorization: Bearer <secret>` :
+
+```json
+{
+	"subscription_id": "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+	"expo_token": "ExpoPushToken[…]",
+	"platform": "ios",
+	"timezone": "Europe/Paris"
+}
+```
+
+Le `subscription_id` est un UUID, le token doit être un token Expo reconnu, `platform` vaut
+`ios` ou `android` et le fuseau est validé par `Intl`. Le secret est une valeur base64url de
+256 bits (43 caractères), générée et conservée uniquement par l'application. Le serveur le
+hache avec SHA-256 et ne le renvoie ni ne le journalise. Les champs inconnus sont refusés.
+
+Une création retourne `201`, un même abonnement avec le même secret et les mêmes valeurs
+retourne `200`, et une création contradictoire retourne `409 conflict`. Dans les deux cas de
+succès, la réponse ne contient que :
+
+```json
+{
+	"subscription_id": "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+	"enabled": true,
+	"timezone": "Europe/Paris",
+	"activated_local_date": "2026-09-26"
+}
+```
+
+`PUT /mobile/v1/push/subscriptions/:subscription_id` demande le même bearer et le corps
+strict `{expo_token, platform, timezone, enabled}`. Il retourne la même réponse 200 et
+actualise la dernière activité. Une réactivation fixe `activated_local_date` à aujourd'hui dans
+le fuseau alors connu, afin que le premier rappel ne puisse être éligible que le lendemain.
+`PUT` sur un abonnement absent retourne `404`; un bearer absent ou incorrect pour un abonnement
+existant retourne toujours `401 unauthorized` sans révéler de détail.
+
+`DELETE /mobile/v1/push/subscriptions/:subscription_id` demande le bearer pour un abonnement
+existant et retourne `204` sans corps. Il est idempotent lorsque l'abonnement n'existe déjà
+plus. Un token associé à une autre inscription active désactive celle-ci avant d'activer la
+nouvelle, sans exposer son identifiant. Le registre v1 `push-subscriptions.json` est sérialisé,
+atomiquement écrit avec des droits réservés au process dans `MOBILE_STATE_DIR` : le contenu
+temporaire et le répertoire sont synchronisés avant que l'opération soit confirmée. L'écriture
+vérifie juste avant le remplacement que le fichier et son répertoire sont toujours ceux lus;
+une création, disparition ou substitution concurrente est préservée, sans écrasement. Une
+corruption, disparition ou substitution du registre rend seulement le push indisponible. Le
+registre prend un verrou exclusif durable pendant chaque lecture ou écriture. Après un crash, un
+verrou restant bloque volontairement le push jusqu'à intervention opérationnelle : il n'est jamais
+supprimé automatiquement. `MOBILE_STATE_DIR` est `0700`, détenu par le process du service, et tout
+écrivain légitime doit honorer ce verrou ; un acteur malveillant du même UID échappe aux garanties
+des chemins POSIX et est hors du modèle de menace. Le registre accepte au plus 1 000 abonnements;
+à saturation, seules les nouvelles
+créations répondent `503 push_unavailable` tandis que réessai identique, mise à jour et
+suppression restent possibles. La maintenance supprime les abonnements sans activité depuis
+90 jours avant toute admission. Ce ticket n'envoie aucun push Expo.
+
 ## Contrats réservés, non implémentés
 
 Les routes ci-dessous sont documentées pour permettre aux clients d'anticiper les
@@ -96,7 +156,5 @@ génération, écriture ou notification.
 - `POST /mobile/v1/generations` demandera une génération explicitement déclenchée par
   l'utilisateur. Le serveur vérifiera une identité utilisateur et un crédit avant de
   contacter un fournisseur ; aucune clé fournisseur ne transitera dans le client.
-- `PUT /mobile/v1/push-tokens/{token}` enregistrera ou renouvellera un token de push
-  validé pour une identité utilisateur, afin de livrer la recommandation quotidienne.
 - `POST /mobile/v1/events` recevra ultérieurement les événements produit validés par
   le plan de tracking, sans remplacer les SDK d'analytics du client.

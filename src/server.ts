@@ -39,6 +39,8 @@ import { logger } from "./logger.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
 import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
+import { createMobilePushRoutes } from "./mobile/push-routes.js";
+import { createPushStore } from "./mobile/push-store.js";
 import { createMobileRouter } from "./mobile/router.js";
 import { createMobileSearch } from "./mobile/search.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
@@ -103,17 +105,26 @@ const mobileSearch = createMobileSearch({
 	invalidateCacheIndex,
 	catalogIndex: mobileCatalogIndex,
 });
+// A broken optional notification registry must not take down the music-reading
+// surface. Push routes expose a typed temporary-unavailable response until it is repaired.
+let mobilePushStore: Awaited<ReturnType<typeof createPushStore>> | undefined;
+try {
+	mobilePushStore = await createPushStore({ stateDir: serverConfig.mobileStateDir });
+} catch {
+	mobilePushStore = undefined;
+}
 const mobileRouter = createMobileRouter({
 	catalog: mobileCatalog,
 	nodes: mobileNodes,
 	media: mobileMedia,
 	search: mobileSearch,
+	push: createMobilePushRoutes({ ...(mobilePushStore ? { store: mobilePushStore } : {}) }),
 });
 
 const server = createServer(async (req, res) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");
-	res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+	res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+	res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 	if (req.method === "OPTIONS") {
 		res.statusCode = 204;
 		res.end();
