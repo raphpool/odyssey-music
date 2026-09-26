@@ -106,20 +106,19 @@ export class AnalyticsClient {
 		const disabled = initial?.disable();
 		return this.serialize(async () => {
 			await disabled;
-			const recoveryPurgeRequired = this._purgeIncomplete;
 			const previous = initial;
 			const revocationMarked = await this.options.consent.beginRevocation();
 			this._purgeIncomplete = !revocationMarked;
-			let recoveredStoragePurged = !recoveryPurgeRequired;
-			if (previous === undefined && recoveryPurgeRequired) {
-				// Segment creates an anonymous id and starts its settings request during createClient().
-				// A persisted withdrawal must therefore clear its durable keys without recreating the SDK.
+			let durableStoragePurged = previous !== undefined;
+			if (previous === undefined) {
+				// A first refusal can find a queue written by an interrupted process without a live transport.
+				// Clear that namespace directly rather than recreating Segment, which would create an id and network activity.
 				try {
-					recoveredStoragePurged = (await this.options.purgeStorage?.()) === true;
+					durableStoragePurged = (await this.options.purgeStorage?.()) === true;
 				} catch {
-					recoveredStoragePurged = false;
+					durableStoragePurged = false;
 				}
-				if (!recoveredStoragePurged) this._purgeIncomplete = true;
+				if (!durableStoragePurged) this._purgeIncomplete = true;
 			}
 			let denied: Consent = { version: 1, status: "denied" };
 			try {
@@ -155,7 +154,7 @@ export class AnalyticsClient {
 			}
 			if (
 				previous === undefined &&
-				recoveredStoragePurged &&
+				durableStoragePurged &&
 				identityCleared &&
 				revocationMarked &&
 				!this._purgeIncomplete

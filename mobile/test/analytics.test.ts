@@ -533,6 +533,84 @@ describe("Segment persistence boundary", () => {
 		expect(created).toBe(1);
 	});
 
+	it("purges a durable Segment namespace when first refusal has no active transport", async () => {
+		const persisted = storage();
+		const segment = segmentStorage(
+			new Map([
+				["track1.analytics-segment.v1.public-key-pendingEvents", "old-event"],
+				["track1.analytics-segment.v1.public-key-userInfo", "old-identity"],
+				["profile-settings", "must-survive"],
+			]),
+		);
+		let purgeCalls = 0;
+		let created = 0;
+		const analytics = new AnalyticsClient({
+			consent: new ConsentStore(persisted),
+			createTransport: () => {
+				created += 1;
+				return {
+					track: async () => true,
+					disable: async () => undefined,
+					purge: async () => true,
+					reset: async () => undefined,
+					destroy: () => undefined,
+				};
+			},
+			purgeStorage: async () => {
+				purgeCalls += 1;
+				return purgeSegmentStorage(segment);
+			},
+			createId: () => "11111111-1111-4111-8111-111111111111",
+			environment: "development",
+			platform: "ios",
+			appVersion: "1",
+			buildNumber: "1",
+		});
+		await analytics.initialize();
+		await analytics.revoke();
+		expect(purgeCalls).toBe(1);
+		expect(segment.values).toEqual(new Map([["profile-settings", "must-survive"]]));
+		expect(analytics.consent.status).toBe("denied");
+		expect(analytics.purgeIncomplete).toBe(false);
+		expect(created).toBe(0);
+	});
+
+	it("keeps the tombstone and blocks grant when first refusal cannot purge durable storage", async () => {
+		const persisted = storage();
+		const segment = segmentStorage(
+			new Map([["track1.analytics-segment.v1.public-key-pendingEvents", "old-event"]]),
+			true,
+		);
+		let created = 0;
+		const analytics = new AnalyticsClient({
+			consent: new ConsentStore(persisted),
+			createTransport: () => {
+				created += 1;
+				return {
+					track: async () => true,
+					disable: async () => undefined,
+					purge: async () => true,
+					reset: async () => undefined,
+					destroy: () => undefined,
+				};
+			},
+			purgeStorage: () => purgeSegmentStorage(segment),
+			createId: () => "11111111-1111-4111-8111-111111111111",
+			environment: "development",
+			platform: "ios",
+			appVersion: "1",
+			buildNumber: "1",
+		});
+		await analytics.initialize();
+		await analytics.revoke();
+		expect(analytics.consent.status).toBe("denied");
+		expect(analytics.purgeIncomplete).toBe(true);
+		expect(await new ConsentStore(persisted).revocationPending()).toBe(true);
+		await analytics.grant();
+		expect(analytics.consent.status).toBe("denied");
+		expect(created).toBe(0);
+	});
+
 	it("keeps the tombstone and blocks grant when a restart cannot purge Segment storage", async () => {
 		const persisted = storage();
 		await persisted.setItem("track1.analytics-revocation.v1", "pending");
