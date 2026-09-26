@@ -12,7 +12,7 @@ const baseEnv = {
 	CODEX_REVIEW_REPO: "raphpool/odyssey-music",
 };
 
-function runWithActions(status: string, conclusion = "failure", runSha = sha) {
+function runWithActions(status: string, conclusion = "failure", runSha = sha, verdict = "pass") {
 	const directory = mkdtempSync(join(tmpdir(), "review-status-"));
 	const gh = join(directory, "gh");
 	const calls = join(directory, "calls");
@@ -30,7 +30,7 @@ esac
 	);
 	chmodSync(gh, 0o755);
 	try {
-		const result = spawnSync("bash", [script, "53", "pass", sha], {
+		const result = spawnSync("bash", [script, "53", verdict, sha], {
 			encoding: "utf8",
 			env: {
 				...baseEnv,
@@ -85,7 +85,36 @@ describe("publish-review-status", () => {
 			const { result, calls } = runWithActions(status, conclusion, runSha);
 			expect(result.status).toBe(0);
 			expect(calls).toContain(`run list --commit ${sha} --event pull_request`);
-			expect(calls.includes("run rerun 123")).toBe(rerun);
+			expect(calls.includes("run rerun 123 --failed")).toBe(rerun);
 		},
 	);
+
+	it("reruns a successful gate when a late block invalidates it", () => {
+		const { result, calls } = runWithActions("completed", "success", sha, "block");
+		expect(result.status).toBe(0);
+		expect(calls).toContain("run rerun 123");
+		expect(calls).not.toContain("run rerun 123 --failed");
+	});
+
+	it("publishes a separate deep context and requires evidence for terminal verdicts", () => {
+		const output = execFileSync(
+			"bash",
+			[
+				script,
+				"53",
+				"pass",
+				sha,
+				"deep review",
+				"deep",
+				"https://github.com/raphpool/odyssey-music/pull/53#review",
+			],
+			{ encoding: "utf8", env: baseEnv },
+		);
+		expect(output).toContain("context=codex-deep-review");
+		const result = spawnSync("bash", [script, "53", "pass", sha, "deep review", "deep"], {
+			encoding: "utf8",
+			env: baseEnv,
+		});
+		expect(result.status).toBe(2);
+	});
 });
