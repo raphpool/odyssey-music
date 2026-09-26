@@ -70,14 +70,8 @@ jobs:
       - run: npm run test -- --run
 
   diff-size:
-    # Une PR trop grosse coûte plus cher à reviewer qu'à redécouper.
-    # Exclusions propres à ce repo : le lockfile, le bundle généré
-    # web/data.json, le cache de connaissance cache/** et
-    # data/genre-qid-map.json (table générée par scripts/build-genre-qid-map.ts,
-    # régénérable) ne sont pas de la surface de review — un ticket de crawl
-    # ajouterait des milliers de lignes. Les autres fichiers de data/
-    # (genre-catalog.json, genre-taxonomy.json) sont des inputs de pipeline
-    # sans script générateur dans ce repo : ils restent comptés.
+    # Size is a review signal, never the reason CI fails on its own. The policy script
+    # reports hand-written, generated, and binary paths separately with provenance.
     if: github.event_name == 'pull_request' && github.event.pull_request.draft == false
     runs-on: [self-hosted, macOS, ARM64]
     steps:
@@ -90,23 +84,16 @@ jobs:
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
       - name: Mesurer le diff
         run: |
           BASE="origin/${{ github.event.pull_request.base.ref }}"
           git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
-          EXCL=(':(exclude)package-lock.json' ':(exclude)web/data.json' ':(exclude)cache/**' ':(exclude)**/*.snap' ':(exclude)data/genre-qid-map.json')
-          STATS=$(git diff --shortstat "$BASE"...HEAD -- . "${EXCL[@]}")
-          FILES=$(git diff --name-only "$BASE"...HEAD -- . "${EXCL[@]}" | wc -l)
-          LINES=$(git diff --numstat "$BASE"...HEAD -- . "${EXCL[@]}" \
-                  | awk '{a+=$1; d+=$2} END {print a+d+0}')
-          echo "$STATS ($FILES fichiers, $LINES lignes)"
-          if [ "$LINES" -gt 600 ] || [ "$FILES" -gt 20 ]; then
-            echo "::error::PR trop grosse ($LINES lignes, $FILES fichiers). Découpe le ticket."
-            exit 1
-          fi
-          if [ "$LINES" -gt 400 ]; then
-            echo "::warning::PR volumineuse ($LINES lignes) — vérifie qu'elle ne contient qu'un ticket."
-          fi
+          set -o pipefail
+          npx --no-install tsx scripts/ci/pr-policy.ts "$BASE" HEAD | tee "$RUNNER_TEMP/pr-policy.md"
+          cat "$RUNNER_TEMP/pr-policy.md" >> "$GITHUB_STEP_SUMMARY"
 
   tier-guard:
     # Escalade automatique en tier/3 sur les chemins sensibles.
@@ -135,7 +122,6 @@ jobs:
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/2" || true
-            gh pr merge "${{ github.event.pull_request.number }}" --disable-auto || true
             gh pr comment "${{ github.event.pull_request.number }}" \
-              --body "Escalade automatique en **tier/3** : chemin sensible modifié. Auto-merge désactivé, review humaine du diff requise."
+              --body "Classification terminée : chemin sensible modifié, escalade automatique en **tier/3**. Une review IA approfondie sur le SHA final et les checks requis verts sont nécessaires ; aucune approbation humaine de merge n'est obligatoire."
           fi
