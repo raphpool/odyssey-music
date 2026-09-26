@@ -3,6 +3,7 @@ import type { MobileCatalog } from "./catalog.js";
 import { createMobileHttpHandler } from "./http.js";
 import { type MobileMedia, MobileProviderUnavailableError } from "./media.js";
 import { MobileNodeInputError, type MobileNodeReader } from "./nodes.js";
+import type { MobilePushRoutes } from "./push-routes.js";
 import {
 	type MobileSearch,
 	MobileSearchInputError,
@@ -15,6 +16,7 @@ interface MobileRouterDependencies {
 	nodes?: MobileNodeReader;
 	media?: MobileMedia;
 	search?: MobileSearch;
+	push?: MobilePushRoutes;
 }
 
 export interface MobileRouterRequest {
@@ -35,6 +37,7 @@ export function createMobileRouter(dependencies: MobileRouterDependencies): Mobi
 		async handle(request: MobileRouterRequest): Promise<boolean> {
 			if (!request.url.pathname.startsWith("/mobile/v1")) return false;
 			if (request.url.pathname === "/mobile/v1/catalog") return handleHttp(request);
+			if (dependencies.push && (await dependencies.push.handle(request))) return true;
 			if (request.url.pathname === "/mobile/v1/search")
 				return handleSearchRoute(request, dependencies.search);
 			if (!dependencies.nodes || !dependencies.media) {
