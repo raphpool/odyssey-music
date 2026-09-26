@@ -40,6 +40,7 @@ import { createMobileCatalog } from "./mobile/catalog.js";
 import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
 import { createMobileRouter } from "./mobile/router.js";
+import { createMobileSearch } from "./mobile/search.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
 import { createImageService } from "./services/image-service.js";
@@ -69,12 +70,19 @@ const cache = new NodeCache(CACHE_DIR);
 const [genreRedirects, genreResolver] = await Promise.all([loadGenreRedirects(), loadGenreResolver()]);
 const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
+// The existing web search degrades to cache-only on catalog outages. Mobile has a typed
+// provider error contract, so it receives an adapter that preserves that distinction.
+const mobileCatalogIndex: CatalogIndex = createMusicBrainzCatalog({ failOnUnavailable: true });
 const log = logger.child({ module: "server" });
 let cacheIndex: CacheIndex | null = null;
 // Built lazily on first /search hit so the server can boot even before the cache is warm.
 async function getCacheIndex(): Promise<CacheIndex> {
 	if (!cacheIndex) cacheIndex = await buildCacheIndex(CACHE_DIR);
 	return cacheIndex;
+}
+
+function invalidateCacheIndex(): void {
+	cacheIndex = null;
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
@@ -90,7 +98,17 @@ const mobileMedia = createMobileMedia({
 	resolveLinks: resolveStreamingLinks,
 	cacheDir: CACHE_DIR,
 });
-const mobileRouter = createMobileRouter({ catalog: mobileCatalog, nodes: mobileNodes, media: mobileMedia });
+const mobileSearch = createMobileSearch({
+	buildIndex: getCacheIndex,
+	invalidateCacheIndex,
+	catalogIndex: mobileCatalogIndex,
+});
+const mobileRouter = createMobileRouter({
+	catalog: mobileCatalog,
+	nodes: mobileNodes,
+	media: mobileMedia,
+	search: mobileSearch,
+});
 
 const server = createServer(async (req, res) => {
 	res.setHeader("Access-Control-Allow-Origin", "*");

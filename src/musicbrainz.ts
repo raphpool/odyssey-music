@@ -28,6 +28,21 @@ export interface CatalogIndex {
 	close(): void;
 }
 
+export interface MusicBrainzCatalogOptions {
+	/**
+	 * The web search has historically treated a failed catalog lookup as an empty
+	 * supplement to its cache. Mobile callers need to expose that outage instead.
+	 */
+	failOnUnavailable?: boolean;
+}
+
+export class MusicBrainzCatalogUnavailableError extends Error {
+	constructor() {
+		super("MusicBrainz catalog is unavailable");
+		this.name = "MusicBrainzCatalogUnavailableError";
+	}
+}
+
 const MB_BASE = musicBrainzConfig.baseUrl;
 const USER_AGENT = musicBrainzConfig.userAgent;
 const FETCH_TIMEOUT_MS = musicBrainzConfig.fetchTimeoutMs;
@@ -52,6 +67,87 @@ interface MbRecording {
 	title: string;
 	length?: number;
 	"artist-credit"?: Array<{ name?: string; artist?: { name?: string } }>;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+const MBID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+function isText(value: unknown): value is string {
+	return typeof value === "string" && value.trim().length > 0 && value === value.trim();
+}
+
+function isMbid(value: unknown): value is string {
+	return typeof value === "string" && MBID_RE.test(value);
+}
+
+function hasOptionalText(record: Record<string, unknown>, key: string): boolean {
+	const value = record[key];
+	return value === undefined || isText(value);
+}
+
+function hasValidArtistCredit(value: unknown): boolean {
+	if (!Array.isArray(value)) return false;
+	return value.every((credit) => {
+		if (!isRecord(credit) || !hasOptionalText(credit, "name")) return false;
+		const artist = credit.artist;
+		return artist === undefined || (isRecord(artist) && hasOptionalText(artist, "name"));
+	});
+}
+
+function parseArtists(body: unknown): MbArtist[] | null {
+	if (!isRecord(body) || !Array.isArray(body.artists)) return null;
+	const artists = body.artists;
+	if (
+		!artists.every(
+			(artist) =>
+				isRecord(artist) &&
+				isMbid(artist.id) &&
+				isText(artist.name) &&
+				hasOptionalText(artist, "sort-name") &&
+				hasOptionalText(artist, "country") &&
+				hasOptionalText(artist, "disambiguation"),
+		)
+	)
+		return null;
+	return artists as MbArtist[];
+}
+
+function parseReleaseGroups(body: unknown): MbReleaseGroup[] | null {
+	if (!isRecord(body) || !Array.isArray(body["release-groups"])) return null;
+	const releaseGroups = body["release-groups"];
+	if (
+		!releaseGroups.every(
+			(releaseGroup) =>
+				isRecord(releaseGroup) &&
+				isMbid(releaseGroup.id) &&
+				isText(releaseGroup.title) &&
+				hasOptionalText(releaseGroup, "primary-type") &&
+				hasOptionalText(releaseGroup, "first-release-date") &&
+				(releaseGroup["artist-credit"] === undefined || hasValidArtistCredit(releaseGroup["artist-credit"])),
+		)
+	)
+		return null;
+	return releaseGroups as MbReleaseGroup[];
+}
+
+function parseRecordings(body: unknown): MbRecording[] | null {
+	if (!isRecord(body) || !Array.isArray(body.recordings)) return null;
+	const recordings = body.recordings;
+	if (
+		!recordings.every(
+			(recording) =>
+				isRecord(recording) &&
+				isMbid(recording.id) &&
+				isText(recording.title) &&
+				(recording.length === undefined || typeof recording.length === "number") &&
+				(recording["artist-credit"] === undefined || hasValidArtistCredit(recording["artist-credit"])),
+		)
+	)
+		return null;
+	return recordings as MbRecording[];
 }
 
 function joinArtistCredit(ac: MbReleaseGroup["artist-credit"]): string {
@@ -184,12 +280,12 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 	return null;
 }
 
-async function searchArtists(q: string, limit: number): Promise<CatalogResult[]> {
+async function searchArtists(q: string, limit: number, failOnUnavailable = false): Promise<CatalogResult[]> {
 	const query = buildMbQuery(q);
 	if (!query) return [];
-	const body = await mbFetch<{ artists: MbArtist[] }>("/artist", { query, limit: String(limit) });
-	if (!body?.artists) return [];
-	return body.artists
+	const artists = parseArtists(await mbFetch<unknown>("/artist", { query, limit: String(limit) }));
+	if (!artists) return unavailableOrEmpty(failOnUnavailable);
+	return artists
 		.filter((a) => !SPECIAL_PURPOSE_MBIDS.has(a.id) && a.name !== "[unknown]")
 		.map((a) => {
 			const r: CatalogResult = {
@@ -204,17 +300,23 @@ async function searchArtists(q: string, limit: number): Promise<CatalogResult[]>
 		});
 }
 
-async function searchReleaseGroups(q: string, limit: number): Promise<CatalogResult[]> {
+async function searchReleaseGroups(
+	q: string,
+	limit: number,
+	failOnUnavailable = false,
+): Promise<CatalogResult[]> {
 	const query = buildMbQuery(q);
 	if (!query) return [];
 	// Lucene filter: only Album / Single / EP (matches our original SQLite filter).
 	const filtered = `(${query}) AND (primarytype:Album OR primarytype:Single OR primarytype:EP)`;
-	const body = await mbFetch<{ "release-groups": MbReleaseGroup[] }>("/release-group", {
-		query: filtered,
-		limit: String(limit),
-	});
-	if (!body?.["release-groups"]) return [];
-	return body["release-groups"].map((rg) => {
+	const releaseGroups = parseReleaseGroups(
+		await mbFetch<unknown>("/release-group", {
+			query: filtered,
+			limit: String(limit),
+		}),
+	);
+	if (!releaseGroups) return unavailableOrEmpty(failOnUnavailable);
+	return releaseGroups.map((rg) => {
 		const r: CatalogResult = {
 			type: "project",
 			mbid: rg.id,
@@ -226,15 +328,21 @@ async function searchReleaseGroups(q: string, limit: number): Promise<CatalogRes
 	});
 }
 
-async function searchRecordings(q: string, limit: number): Promise<CatalogResult[]> {
+async function searchRecordings(
+	q: string,
+	limit: number,
+	failOnUnavailable = false,
+): Promise<CatalogResult[]> {
 	const query = buildMbQuery(q);
 	if (!query) return [];
-	const body = await mbFetch<{ recordings: MbRecording[] }>("/recording", {
-		query,
-		limit: String(limit),
-	});
-	if (!body?.recordings) return [];
-	return body.recordings.map((rec) => {
+	const recordings = parseRecordings(
+		await mbFetch<unknown>("/recording", {
+			query,
+			limit: String(limit),
+		}),
+	);
+	if (!recordings) return unavailableOrEmpty(failOnUnavailable);
+	return recordings.map((rec) => {
 		const r: CatalogResult = {
 			type: "track",
 			mbid: rec.id,
@@ -976,21 +1084,27 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	return out;
 }
 
-export function createMusicBrainzCatalog(): CatalogIndex {
+function unavailableOrEmpty(failOnUnavailable: boolean): CatalogResult[] {
+	if (failOnUnavailable) throw new MusicBrainzCatalogUnavailableError();
+	return [];
+}
+
+export function createMusicBrainzCatalog(options: MusicBrainzCatalogOptions = {}): CatalogIndex {
+	const failOnUnavailable = options.failOnUnavailable ?? false;
 	return {
 		async search(query, limit = 5) {
 			const per = Math.max(2, Math.ceil(limit / 2));
 			const [artists, projects, tracks] = await Promise.all([
-				searchArtists(query, per),
-				searchReleaseGroups(query, per),
-				searchRecordings(query, per),
+				searchArtists(query, per, failOnUnavailable),
+				searchReleaseGroups(query, per, failOnUnavailable),
+				searchRecordings(query, per, failOnUnavailable),
 			]);
 			return interleave([artists, projects, tracks]).slice(0, limit * 3);
 		},
 		async searchByType(type, query, limit = 8) {
-			if (type === "artist") return searchArtists(query, limit);
-			if (type === "project") return searchReleaseGroups(query, limit);
-			if (type === "track") return searchRecordings(query, limit);
+			if (type === "artist") return searchArtists(query, limit, failOnUnavailable);
+			if (type === "project") return searchReleaseGroups(query, limit, failOnUnavailable);
+			if (type === "track") return searchRecordings(query, limit, failOnUnavailable);
 			return [];
 		},
 		close() {},

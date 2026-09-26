@@ -3,11 +3,18 @@ import type { MobileCatalog } from "./catalog.js";
 import { createMobileHttpHandler } from "./http.js";
 import { type MobileMedia, MobileProviderUnavailableError } from "./media.js";
 import { MobileNodeInputError, type MobileNodeReader } from "./nodes.js";
+import {
+	type MobileSearch,
+	MobileSearchInputError,
+	MobileSearchProviderUnavailableError,
+	parseMobileSearchRequest,
+} from "./search.js";
 
 interface MobileRouterDependencies {
 	catalog: MobileCatalog;
 	nodes?: MobileNodeReader;
 	media?: MobileMedia;
+	search?: MobileSearch;
 }
 
 export interface MobileRouterRequest {
@@ -28,6 +35,8 @@ export function createMobileRouter(dependencies: MobileRouterDependencies): Mobi
 		async handle(request: MobileRouterRequest): Promise<boolean> {
 			if (!request.url.pathname.startsWith("/mobile/v1")) return false;
 			if (request.url.pathname === "/mobile/v1/catalog") return handleHttp(request);
+			if (request.url.pathname === "/mobile/v1/search")
+				return handleSearchRoute(request, dependencies.search);
 			if (!dependencies.nodes || !dependencies.media) {
 				writeError(request.res, 404, "not_found", "mobile resource not found");
 				return true;
@@ -35,6 +44,34 @@ export function createMobileRouter(dependencies: MobileRouterDependencies): Mobi
 			return handleNodeRoute(request, dependencies.nodes, dependencies.media);
 		},
 	};
+}
+
+async function handleSearchRoute(
+	{ req, res, url }: MobileRouterRequest,
+	search: MobileSearch | undefined,
+): Promise<boolean> {
+	if (!search) {
+		writeError(res, 404, "not_found", "mobile resource not found");
+		return true;
+	}
+	if (req.method !== "GET") {
+		res.setHeader("Allow", "GET");
+		writeError(res, 405, "method_not_allowed", "mobile search only supports GET");
+		return true;
+	}
+	res.setHeader("Cache-Control", "no-store");
+	try {
+		writeJson(res, 200, await search.search(parseMobileSearchRequest(url.searchParams)));
+	} catch (error) {
+		if (error instanceof MobileSearchInputError) {
+			writeError(res, 400, "invalid_request", error.message);
+		} else if (error instanceof MobileSearchProviderUnavailableError) {
+			writeError(res, 503, "provider_unavailable", "mobile search provider is temporarily unavailable");
+		} else {
+			writeError(res, 500, "search_unavailable", "mobile search is temporarily unavailable");
+		}
+	}
+	return true;
 }
 
 async function handleNodeRoute(
