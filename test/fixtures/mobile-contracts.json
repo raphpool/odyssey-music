@@ -1,0 +1,40 @@
+{
+	"graph": {
+		"generated_at": "2026-09-26T12:00:00.000Z",
+		"total": 3,
+		"types": { "artist": 1, "project": 1, "article": 1 },
+		"nodes": [
+			{
+				"id": "project:blue-lines",
+				"type": "project",
+				"name": "Blue Lines",
+				"teaser": "A foundational trip hop record.",
+				"article": "This must never reach mobile.",
+				"citations": ["https://example.test/article"]
+			},
+			{
+				"id": "artist:massive-attack",
+				"type": "artist",
+				"name": "Massive Attack",
+				"teaser": "Bristol collective.",
+				"article": "This must never reach mobile."
+			},
+			{
+				"id": "artist:massive-attack--bristol-group",
+				"type": "artist",
+				"name": "Massive Attack (Bristol group)",
+				"teaser": "Disambiguated identity."
+			},
+			{
+				"id": "article:ignored",
+				"type": "article",
+				"name": "Ignored",
+				"article": "This must never reach mobile."
+			}
+		],
+		"edges": [
+			{ "source": "artist:massive-attack", "target": "project:blue-lines", "type": "discography" }
+		],
+		"taxonomy": { "mode": "degraded", "reason": "fixture" }
+	}
+}
