@@ -33,8 +33,8 @@ const ordinaryVerdict = (review: OrdinaryReview): GateVerdict => {
 export const evaluateReviewGate = (input: GateInput): GateVerdict => {
 	const ordinary = ordinaryVerdict(input.ordinary);
 	if (ordinary !== "pass") return ordinary;
-	if (input.risk < 3) return "pass";
 	if (input.deep === "failure") return "block";
+	if (input.risk < 3) return "pass";
 	return input.deep === "success" ? "pass" : "wait";
 };
 

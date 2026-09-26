@@ -59,4 +59,14 @@ describe("review gate policy", () => {
 			}),
 		).toBe("pass");
 	});
+
+	it("never masks a deep blocking verdict after a tier is lowered", () => {
+		expect(
+			evaluateReviewGate({
+				risk: 1,
+				ordinary: { claude: "success", codex: "missing", claudeBlocking: false },
+				deep: "failure",
+			}),
+		).toBe("block");
+	});
 });
