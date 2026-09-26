@@ -73,6 +73,7 @@ rsync -az --delete \
   --exclude='.reviews' \
   --exclude='dist' \
   --exclude='cache' \
+  --exclude='mobile-state' \
   "$REPO_ROOT/" "$SERVER:/opt/odyssey-music/"
 
 # Seed cache only if the server has none (first deploy).
@@ -112,6 +113,9 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 mkdir -p /opt/odyssey-music/stream-cache
+# The generation registry contains user-triggered, paid-work state. It must survive
+# source replacement and remain private to the systemd service account.
+install -d -m 0700 -o root -g root /var/lib/track1-mobile
 
 echo "  -> npm install"
 rm -rf node_modules
@@ -127,6 +131,7 @@ Wants=network-online.target
 Type=simple
 WorkingDirectory=/opt/odyssey-music
 EnvironmentFile=/etc/odyssey-music.env
+Environment=MOBILE_STATE_DIR=/var/lib/track1-mobile
 ExecStart=/opt/odyssey-music/node_modules/.bin/tsx /opt/odyssey-music/src/server.ts
 Restart=on-failure
 RestartSec=3
