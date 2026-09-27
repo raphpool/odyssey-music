@@ -34,6 +34,11 @@ export type ProfileWrite =
 	| { kind: "unavailable" }
 	| { kind: "invalid" };
 export type ProfileClear = { kind: "cleared" } | { kind: "unavailable" };
+export type ProfileDraftRead =
+	| { kind: "missing" }
+	| { kind: "draft"; draft: ProfileDraft }
+	| { kind: "corrupt" }
+	| { kind: "unavailable" };
 export type OnboardingCompletion = {
 	version: typeof PROFILE_VERSION;
 	flow_id: string;
@@ -144,17 +149,25 @@ export class ProfileStore {
 	}
 
 	async readDraft(): Promise<ProfileDraft | undefined> {
+		const result = await this.readDraftState();
+		return result.kind === "draft" ? result.draft : undefined;
+	}
+
+	async readDraftState(): Promise<ProfileDraftRead> {
 		try {
 			const raw = await this.storage.getItem(PROFILE_DRAFT_STORAGE_KEY);
-			return raw === null ? undefined : parseProfileDraft(parse(raw));
+			if (raw === null) return { kind: "missing" };
+			const draft = parseProfileDraft(parse(raw));
+			return draft === undefined ? { kind: "corrupt" } : { kind: "draft", draft };
 		} catch {
-			return undefined;
+			return { kind: "unavailable" };
 		}
 	}
 
 	async beginDraft(genreIds: readonly string[] = []): Promise<ProfileDraft | undefined> {
-		const existing = await this.readDraft();
-		if (existing !== undefined) return existing;
+		const existing = await this.readDraftState();
+		if (existing.kind === "draft") return existing.draft;
+		if (existing.kind !== "missing") return undefined;
 		const flowId = this.createId();
 		if (!isUuid(flowId)) return undefined;
 		const draft: ProfileDraft = {
@@ -289,11 +302,12 @@ export class ProfileStore {
 			return await this.serializeCompletion(async () => {
 				const pending = await this.readOnboardingStarted();
 				if (pending === undefined || pending.event_id !== eventId) return false;
-				const draft = await this.readDraft();
-				if (draft !== undefined && draft.flow_id === pending.flow_id)
+				const draft = await this.readDraftState();
+				if (draft.kind === "unavailable" || draft.kind === "corrupt") return false;
+				if (draft.kind === "draft" && draft.draft.flow_id === pending.flow_id)
 					await this.storage.setItem(
 						PROFILE_DRAFT_STORAGE_KEY,
-						JSON.stringify({ ...draft, started_recorded: true }),
+						JSON.stringify({ ...draft.draft, started_recorded: true }),
 					);
 				await this.storage.removeItem(PROFILE_ONBOARDING_STARTED_STORAGE_KEY);
 				return true;

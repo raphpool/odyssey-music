@@ -229,6 +229,39 @@ describe("music profile store", () => {
 		expect(await restarted.readDraft()).toEqual(expect.objectContaining({ started_recorded: true }));
 	});
 
+	it("keeps the start outbox when a transient draft read prevents recording its acknowledgement", async () => {
+		const memory = storage();
+		const ids = [FLOW_ID, EVENT_ID];
+		let nextId = 0;
+		const first = new ProfileStore(
+			memory,
+			() => ids[nextId++] ?? LOCAL_ID,
+			() => OCCURRED_AT,
+		);
+		const draft = await first.beginDraft();
+		if (draft === undefined) throw new Error("The draft should have been persisted.");
+		const pending = await first.prepareOnboardingStarted(draft.flow_id);
+		const getItem = memory.getItem;
+		let failDraftRead = true;
+		memory.getItem = async (key) => {
+			if (failDraftRead && key === PROFILE_DRAFT_STORAGE_KEY) throw new Error("temporary draft read failure");
+			return getItem(key);
+		};
+
+		expect(await first.acknowledgeOnboardingStarted(EVENT_ID)).toBe(false);
+		expect(await first.readOnboardingStarted()).toEqual(pending);
+
+		failDraftRead = false;
+		const restarted = new ProfileStore(
+			memory,
+			() => LOCAL_ID,
+			() => "2026-09-27T10:01:00.000Z",
+		);
+		expect(await restarted.prepareOnboardingStarted(FLOW_ID)).toEqual(pending);
+		expect(await restarted.acknowledgeOnboardingStarted(EVENT_ID)).toBe(true);
+		expect(await restarted.readDraft()).toEqual(expect.objectContaining({ started_recorded: true }));
+	});
+
 	it("purges both analytics outboxes without relying on a successful read", async () => {
 		const memory = storage(
 			{
