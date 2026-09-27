@@ -7,9 +7,12 @@ import { useAnalytics } from "../../src/analytics/provider";
 import { type ApiClient, createApiClient } from "../../src/api/client";
 import type { NodeResponse, NodeType } from "../../src/api/contracts";
 import type { ClientError } from "../../src/api/errors";
+import { ArtistDetails } from "../../src/components/ArtistDetails";
 import { NodeArticle } from "../../src/components/NodeArticle";
 import { NodeImage } from "../../src/components/NodeImage";
 import { NodeRelations } from "../../src/components/NodeRelations";
+import { ProjectDetails } from "../../src/components/ProjectDetails";
+import { TrackDetails } from "../../src/components/TrackDetails";
 import { GenerationStatus } from "../../src/generation/status";
 import {
 	type GenerationInput,
@@ -388,10 +391,50 @@ export default function NodeScreen() {
 					) : null}
 				</View>
 				<NodeArticle article={node.article} citations={node.citations} />
-				<NodeRelations edges={node.edges} fromNodeId={node.id} navigationContext={navigationContext} />
+				<NodeDetails node={node} navigationContext={navigationContext} />
+				{node.type === "genre" || node.type === "label" ? (
+					<NodeRelations edges={node.edges} fromNodeId={node.id} navigationContext={navigationContext} />
+				) : null}
 			</ScrollView>
 		</SafeAreaView>
 	);
+}
+
+function NodeDetails({
+	navigationContext,
+	node,
+}: {
+	navigationContext: ReturnType<typeof readNodeNavigationContext>;
+	node: NodeResponse["node"];
+}) {
+	if (node.type === "artist")
+		return (
+			<ArtistDetails
+				edges={node.edges}
+				facts={node.facts}
+				fromNodeId={node.id}
+				navigationContext={navigationContext}
+			/>
+		);
+	if (node.type === "project")
+		return (
+			<ProjectDetails
+				edges={node.edges}
+				facts={node.facts}
+				fromNodeId={node.id}
+				navigationContext={navigationContext}
+			/>
+		);
+	if (node.type === "track")
+		return (
+			<TrackDetails
+				edges={node.edges}
+				facts={node.facts}
+				fromNodeId={node.id}
+				navigationContext={navigationContext}
+			/>
+		);
+	return null;
 }
 
 function LoadingState() {
