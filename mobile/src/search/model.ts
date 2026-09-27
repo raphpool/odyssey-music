@@ -43,5 +43,5 @@ export function resultAvailability(hit: SearchResult): "cached" | "missing" {
 }
 
 export function resultKey(hit: SearchResult, index: number): string {
-	return hit.slug ?? `${hit.source}-${hit.type}-${hit.name}-${index}`;
+	return hit.slug ?? `${hit.source}-${hit.type}-${hit.mbid ?? hit.name}-${index}`;
 }

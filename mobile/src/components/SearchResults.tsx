@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { ActivityIndicator, Button, Pressable, StyleSheet, Text, View } from "react-native";
 
 import {
@@ -7,6 +8,10 @@ import {
 	type SearchResult,
 } from "../search/model";
 import type { SearchResponse } from "../api/contracts";
+import { nodeNavigationParams } from "../navigation/context";
+import { type GenerationApi } from "../generation/request";
+import { GenerationStatus } from "../generation/status";
+import type { GenerationInput, GenerationStore } from "../generation/store";
 
 export type SearchResultsStatus = "idle" | "loading" | "success" | "empty" | "error";
 
@@ -18,6 +23,8 @@ export type SearchResultsProps = {
 	onRetry(): void;
 	onOpenCached(result: SearchResult): void;
 	onOpenMissing(result: SearchResult): void;
+	generationApiClient?: GenerationApi;
+	generationStore?: GenerationStore;
 };
 
 const TYPE_LABELS: Record<SearchResult["type"], string> = {
@@ -39,6 +46,15 @@ function queryHelp(queryState: SearchQueryState): string | undefined {
 	return undefined;
 }
 
+function generationInput(result: SearchResult): GenerationInput {
+	return {
+		type: result.type,
+		name: result.name,
+		...(result.slug === undefined ? {} : { slug: result.slug }),
+		...(result.mbid === undefined ? {} : { mbid: result.mbid }),
+	};
+}
+
 export function SearchResults({
 	status,
 	queryState,
@@ -47,6 +63,8 @@ export function SearchResults({
 	onRetry,
 	onOpenCached,
 	onOpenMissing,
+	generationApiClient,
+	generationStore,
 }: SearchResultsProps) {
 	const help = queryHelp(queryState);
 	if (help !== undefined) {
@@ -95,32 +113,46 @@ export function SearchResults({
 				{response.sources.catalog > 1 ? "s" : ""}
 			</Text>
 			{response.hits.map((result, index) => (
-				<Pressable
-					accessibilityHint={
-						result.source === "cache" ? "Ouvre la fiche disponible." : "Affiche l’état de la fiche à créer."
-					}
-					accessibilityLabel={`${result.name}, ${sourceLabel(result)}`}
-					accessibilityRole="button"
-					key={resultKey(result, index)}
-					onPress={() =>
-						resultAvailability(result) === "cached" ? onOpenCached(result) : onOpenMissing(result)
-					}
-					style={styles.result}
-				>
-					<View style={styles.resultHeading}>
-						<Text allowFontScaling style={styles.resultName}>
-							{result.name}
+				<View key={resultKey(result, index)} style={styles.result}>
+					<Pressable
+						accessibilityHint={
+							result.source === "cache" ? "Ouvre la fiche disponible." : "Affiche l’état de la fiche à créer."
+						}
+						accessibilityLabel={`${result.name}, ${sourceLabel(result)}`}
+						accessibilityRole="button"
+						onPress={() =>
+							resultAvailability(result) === "cached" ? onOpenCached(result) : onOpenMissing(result)
+						}
+					>
+						<View style={styles.resultHeading}>
+							<Text allowFontScaling style={styles.resultName}>
+								{result.name}
+							</Text>
+							<Text allowFontScaling style={styles.resultType}>
+								{TYPE_LABELS[result.type]}
+							</Text>
+						</View>
+						{result.subtitle !== undefined ? <Text allowFontScaling>{result.subtitle}</Text> : null}
+						{result.extra !== undefined ? <Text allowFontScaling>{result.extra}</Text> : null}
+						<Text allowFontScaling style={styles.source}>
+							{sourceLabel(result)}
 						</Text>
-						<Text allowFontScaling style={styles.resultType}>
-							{TYPE_LABELS[result.type]}
-						</Text>
-					</View>
-					{result.subtitle !== undefined ? <Text allowFontScaling>{result.subtitle}</Text> : null}
-					{result.extra !== undefined ? <Text allowFontScaling>{result.extra}</Text> : null}
-					<Text allowFontScaling style={styles.source}>
-						{sourceLabel(result)}
-					</Text>
-				</Pressable>
+					</Pressable>
+					{result.source === "catalog" ? (
+						<GenerationStatus
+							input={generationInput(result)}
+							source="search"
+							{...(generationApiClient === undefined ? {} : { apiClient: generationApiClient })}
+							{...(generationStore === undefined ? {} : { store: generationStore })}
+							onOpenNode={(nodeId) =>
+								router.push({
+									pathname: "/node/[slug]",
+									params: nodeNavigationParams(nodeId, { source: "search" }),
+								})
+							}
+						/>
+					) : null}
+				</View>
 			))}
 		</View>
 	);
