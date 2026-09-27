@@ -216,6 +216,68 @@ deviennent `interrupted` (`retryable:false`). Crédits épuisés devient
 même ancienne, est réutilisée sans refresh ni appel modèle ; le refresh de la route web historique
 reste inchangé. Chaque succès invalide l'index de recherche mobile.
 
+## Preuves de déploiement P2.7
+
+La recette de déploiement utilise uniquement une révision déjà approuvée et fusionnée dans `main`.
+Elle n'utilise jamais un worktree de ticket, ni `--dirty`, ni `--allow-non-main`. `MOBILE_STATE_DIR`
+doit rester `/var/lib/track1-mobile` avec les droits du service : le script de déploiement exclut
+ce répertoire de la synchronisation de source afin que les demandes soient conservées entre deux
+déploiements ou redémarrages.
+
+Après chaque déploiement, exécuter le smoke non destructif suivant depuis la révision effectivement
+déployée. `MOBILE_SMOKE_IDENTITY` est obligatoire et doit désigner un genre canonique existant,
+choisi avant la recette. `MOBILE_EXPECTED_SHA` est obligatoire et correspond au SHA complet de la
+révision déployée. Le script refuse toute URL qui n’est pas le nom DNS HTTPS de l’origine configurée (les
+adresses IPv4/IPv6 littérales sont toujours refusées), toute identité non-genre et tout SHA qui ne
+correspond pas exactement à `/version`. Cette règle évite de prétendre maintenir localement une
+classification exhaustive et instable des plages d’adresses IANA.
+
+```bash
+MOBILE_API_URL=https://dropcliffs.com/api/odyssey/mobile/v1 \
+MOBILE_SMOKE_IDENTITY=genre:ambient \
+MOBILE_EXPECTED_SHA=<sha-main-deploye-sur-40-caracteres> \
+bash scripts/verify-e2e.sh --mobile-smoke
+```
+
+Le smoke vérifie l’origine DNS HTTPS, catalogue `200` puis `304` avec son ETag, recherche, lecture de fiche,
+et `/version`, avec un timeout de connexion de 5 s et un timeout total de 15 s par appel
+(surchargeables par les variables `MOBILE_CONNECT_TIMEOUT_SECONDS` et
+`MOBILE_REQUEST_TIMEOUT_SECONDS`). Il ne lance pas le crawler historique, ne crée pas de fiche et
+ne déclenche aucun appel fournisseur payant. Il ne vérifie volontairement ni image ni liens en
+production : même une fiche de genre peut évoluer et faire de cette lecture une frontière de
+résolution ou une écriture de sidecar. La couverture media complète reste le test d'intégration
+hors réseau qui contrôle ces frontières. Pour la génération et le redémarrage, la preuve de
+comportement reste également le test d'intégration local qui simule uniquement le fournisseur ;
+une recette publique ne crée une fiche manquante que si elle a été explicitement choisie et
+budgétée avant son exécution.
+
+La table suivante est à remplir avec des résultats réellement observés ; elle ne constitue pas une
+attestation avant exécution.
+
+| Déploiement | Date UTC | SHA de `/version` | Catalogue/ETag | Lecture/recherche | État registre après redémarrage | Résultat |
+| --- | --- | --- | --- | --- | --- | --- |
+| Non exécuté dans TRA-297 | — | — | — | — | — | Préparation locale uniquement |
+
+Le SHA retourné par `https://dropcliffs.com/api/odyssey/version` doit être exactement
+`MOBILE_EXPECTED_SHA`. Pour attester un redémarrage, créer auparavant une demande explicitement
+budgétée, relever son UUID pendant qu'elle est `pending` ou `running`, puis redémarrer. Rejouer le
+smoke avec l'UUID observé :
+
+```bash
+MOBILE_SMOKE_INTERRUPTED_GENERATION_ID=<uuid-observe-avant-redemarrage> \
+MOBILE_API_URL=https://dropcliffs.com/api/odyssey/mobile/v1 \
+MOBILE_SMOKE_IDENTITY=genre:ambient \
+MOBILE_EXPECTED_SHA=<sha-main-deploye-sur-40-caracteres> \
+bash scripts/verify-e2e.sh --mobile-smoke
+```
+
+Le smoke lit alors uniquement `GET /mobile/v1/generations/:request_id` et exige le même UUID,
+`status: "interrupted"` et `error.retryable: false`. Cette observation prouve que le registre est
+lisible après redémarrage et qu'aucun travail actif n'a été repris automatiquement ; elle ne crée
+ni ne relance une génération. Consigner cette valeur après chacun des deux déploiements ou
+redémarrages. Une différence est un blocage à corriger dans le ticket propriétaire, pas une
+correction silencieuse de cette recette.
+
 ## Contrats réservés, non implémentés
 
 Les routes ci-dessous sont documentées pour permettre aux clients d'anticiper les
