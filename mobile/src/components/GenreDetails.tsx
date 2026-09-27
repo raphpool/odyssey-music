@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { useAnalytics } from "../analytics/provider";
+import { rememberGenerationInput } from "../generation/store";
 import type { NodeNavigationContext } from "../navigation/context";
 import { nodeNavigationParams } from "../navigation/context";
 import type { NodeEdgeRef } from "./NodeRelations";
@@ -135,6 +136,13 @@ function LocalizedRelations({
 								)
 									return;
 								lastPressed.current = { key, at: now };
+								rememberGenerationInput({
+									type: relation.type,
+									name: relation.name,
+									slug: relation.slug,
+									...(relation.mbid === undefined ? {} : { mbid: relation.mbid }),
+									...(relation.qid === undefined ? {} : { qid: relation.qid }),
+								});
 								if (analytics.consent.status === "granted") {
 									void analytics.trackEvent(
 										"relation_opened",
