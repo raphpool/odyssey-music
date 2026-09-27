@@ -49,12 +49,21 @@ export type GenerationStorage = {
 };
 
 export type GenerationStore = {
+	generation(): number;
 	list(): Promise<GenerationRecord[]>;
 	get(requestId: string): Promise<GenerationRecord | undefined>;
 	findActive(input: GenerationInput): Promise<GenerationRecord | undefined>;
-	reserve(record: GenerationRecord): Promise<{ acquired: boolean; record: GenerationRecord }>;
-	upsert(record: GenerationRecord): Promise<void>;
+	reserve(
+		record: GenerationRecord,
+		expectedGeneration?: number,
+	): Promise<{
+		acquired: boolean;
+		record: GenerationRecord;
+		invalidated?: true;
+	}>;
+	upsert(record: GenerationRecord, expectedGeneration?: number): Promise<void>;
 	remove(requestId: string): Promise<void>;
+	clear(): Promise<void>;
 };
 
 export class GenerationStoreCapacityError extends Error {
@@ -76,6 +85,8 @@ const qidPattern = /^Q[1-9]\d*$/;
 const terminalStatuses = new Set<GenerationStatus>(["succeeded", "failed", "interrupted", "expired"]);
 const navigationInputs = new Map<string, GenerationInput>();
 const mutationQueues = new Map<string, Promise<void>>();
+const invalidatedRequestIds = new Map<string, Set<string>>();
+const storageGenerations = new Map<string, number>();
 
 function record(value: unknown): Record<string, unknown> | undefined {
 	return value !== null && typeof value === "object" && !Array.isArray(value)
@@ -246,6 +257,14 @@ export function createGenerationStore(
 	storage: GenerationStorage = generationStorage(),
 	now: () => number = () => Date.now(),
 ): GenerationStore {
+	const generation = () => storageGenerations.get(GENERATION_STORAGE_KEY) ?? 0;
+	const invalidated = () => {
+		const existing = invalidatedRequestIds.get(GENERATION_STORAGE_KEY);
+		if (existing !== undefined) return existing;
+		const created = new Set<string>();
+		invalidatedRequestIds.set(GENERATION_STORAGE_KEY, created);
+		return created;
+	};
 	const read = async (): Promise<GenerationRecord[]> => {
 		const raw = await storage.getItem(GENERATION_STORAGE_KEY);
 		if (raw === null) return [];
@@ -285,6 +304,7 @@ export function createGenerationStore(
 	};
 
 	return {
+		generation,
 		list: () => serializeMutation(read),
 		get: (requestId) =>
 			serializeMutation(async () => (await read()).find((item) => item.request_id === requestId)),
@@ -296,8 +316,10 @@ export function createGenerationStore(
 						generationIdentity(item.input) === generationIdentity(input),
 				),
 			),
-		reserve: (next) =>
+		reserve: (next, expectedGeneration) =>
 			serializeMutation(async () => {
+				if (expectedGeneration !== undefined && expectedGeneration !== generation())
+					return { acquired: false, record: next, invalidated: true };
 				const records = await read();
 				const sameRequestIndex = records.findIndex((item) => item.request_id === next.request_id);
 				if (sameRequestIndex !== -1) {
@@ -324,8 +346,10 @@ export function createGenerationStore(
 				await write(records);
 				return { acquired: true, record: next };
 			}),
-		upsert: (next) =>
+		upsert: (next, expectedGeneration) =>
 			serializeMutation(async () => {
+				if (expectedGeneration !== undefined && expectedGeneration !== generation()) return;
+				if (invalidated().has(next.request_id)) return;
 				const records = await read();
 				const index = records.findIndex((item) => item.request_id === next.request_id);
 				if (
@@ -344,5 +368,19 @@ export function createGenerationStore(
 				const remaining = records.filter((item) => item.request_id !== requestId);
 				if (remaining.length !== records.length) await write(remaining);
 			}),
+		clear: () =>
+			serializeMutation(async () => {
+				const records = await read();
+				const stale = invalidated();
+				for (const item of records) stale.add(item.request_id);
+				await storage.removeItem(GENERATION_STORAGE_KEY);
+				storageGenerations.set(GENERATION_STORAGE_KEY, generation() + 1);
+			}),
 	};
+}
+
+export async function clearGenerationStorage(
+	storage: GenerationStorage = generationStorage(),
+): Promise<void> {
+	await createGenerationStore(storage).clear();
 }

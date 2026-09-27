@@ -76,6 +76,14 @@ function DenyCapture({ onDeny }: { onDeny(deny: () => Promise<void>): void }) {
 	return createElement(View);
 }
 
+function TransportReadyCapture({ onChange }: { onChange(value: boolean | undefined): void }) {
+	const { transportReady } = useAnalytics();
+	useEffect(() => {
+		onChange(transportReady);
+	}, [onChange, transportReady]);
+	return createElement(View);
+}
+
 describe("analytics runtime consent boundary", () => {
 	it("does not create a client, identity, or event before consent", async () => {
 		let clients = 0;
@@ -113,6 +121,34 @@ describe("analytics runtime consent boundary", () => {
 		expect(analytics.configured).toBe(true);
 		expect(clients).toBe(1);
 		expect(disabled).toBe(0);
+	});
+
+	it("preserves the durable onboarding occurrence time instead of replacing it at replay", async () => {
+		let payload: AnalyticsPayload | undefined;
+		const analytics = client({
+			now: () => "2026-09-27T10:10:00.000Z",
+			createTransport: () =>
+				transport({
+					track: async (next) => {
+						payload = next;
+						return true;
+					},
+				}),
+		});
+		await analytics.grant();
+
+		expect(
+			await analytics.trackEvent(
+				"onboarding_completed",
+				{ flow_id: "11111111-1111-4111-8111-111111111111", genres_count: 3 },
+				{
+					source: "onboarding",
+					event_id: "22222222-2222-4222-8222-222222222222",
+					occurred_at: "2026-09-27T10:00:00.000Z",
+				},
+			),
+		).toEqual({ kind: "accepted" });
+		expect(payload?.properties.occurred_at).toBe("2026-09-27T10:00:00.000Z");
 	});
 
 	it("fails closed without throwing when consent or identity storage is unavailable", async () => {
@@ -544,6 +580,25 @@ describe("analytics contract and persistence", () => {
 });
 
 describe("analytics provider lifecycle", () => {
+	it("publishes the native Segment-ready transition to consumers", async () => {
+		mockAsyncValues.clear();
+		mockSegmentRuntimes.splice(0);
+		mockAsyncValues.set("track1.analytics-consent.v1", '{"version":1,"status":"granted"}');
+		mockAsyncValues.set("track1.analytics-anonymous-id.v1", "11111111-1111-4111-8111-111111111111");
+		const values: Array<boolean | undefined> = [];
+		render(
+			createElement(
+				AnalyticsProvider,
+				{ environment: "development", writeKey: "first" },
+				createElement(TransportReadyCapture, { onChange: (value) => values.push(value) }),
+			),
+		);
+		await waitFor(() => expect(mockSegmentRuntimes).toHaveLength(1));
+		expect(values).toContain(false);
+		await act(async () => mockSegmentRuntimes[0]?.ready?.());
+		await waitFor(() => expect(values).toContain(true));
+	});
+
 	it("makes the previous write-key runtime inert after remount", async () => {
 		mockAsyncValues.clear();
 		mockSegmentRuntimes.splice(0);

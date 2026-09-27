@@ -31,6 +31,7 @@ export type AnalyticsSource =
 export type EventContext = {
 	source: AnalyticsSource;
 	event_id?: string;
+	occurred_at?: string;
 	recommendation_id?: string;
 	notification_id?: string;
 };
@@ -42,6 +43,7 @@ export type ValidationResult =
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const UUID_V4 = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
+const ISO_UTC = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
 const nodeTypes = new Set(["artist", "project", "track", "genre", "label"]);
 const sources = new Set<AnalyticsSource>([
 	"app",
@@ -59,6 +61,8 @@ type Rule = { required: Record<string, Field>; optional?: Record<string, Field> 
 const string: Field = (value) => typeof value === "string" && value.length > 0;
 const uuid: Field = (value) => typeof value === "string" && UUID.test(value);
 const date: Field = (value) => typeof value === "string" && DATE.test(value);
+const isoUtc: Field = (value) =>
+	typeof value === "string" && ISO_UTC.test(value) && Number.isFinite(Date.parse(value));
 const integer: Field = (value) => typeof value === "number" && Number.isInteger(value) && value >= 0;
 const oneOf =
 	(...values: string[]): Field =>
@@ -138,7 +142,7 @@ function validContext(value: unknown, name: EventName, properties: EventProperti
 	if (
 		context === undefined ||
 		Object.keys(context).some(
-			(key) => !["source", "event_id", "recommendation_id", "notification_id"].includes(key),
+			(key) => !["source", "event_id", "occurred_at", "recommendation_id", "notification_id"].includes(key),
 		)
 	)
 		return false;
@@ -152,6 +156,8 @@ function validContext(value: unknown, name: EventName, properties: EventProperti
 		Object.hasOwn(context, "source") &&
 		sources.has(context.source as AnalyticsSource) &&
 		(context.event_id === undefined || (Object.hasOwn(context, "event_id") && uuid(context.event_id))) &&
+		(context.occurred_at === undefined ||
+			(Object.hasOwn(context, "occurred_at") && isoUtc(context.occurred_at))) &&
 		(context.recommendation_id === undefined ||
 			(Object.hasOwn(context, "recommendation_id") && string(context.recommendation_id))) &&
 		(context.notification_id === undefined ||

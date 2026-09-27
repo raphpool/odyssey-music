@@ -10,6 +10,7 @@ import {
 } from "../src/generation/request";
 import { GenerationStatus } from "../src/generation/status";
 import {
+	clearGenerationStorage,
 	createGenerationStore,
 	GENERATION_MAX_RECORDS,
 	GENERATION_STORAGE_KEY,
@@ -695,6 +696,53 @@ describe("generation persistence and controller", () => {
 
 		await expect(firstStore.list()).resolves.toEqual(expect.arrayContaining([first, second]));
 		expect(JSON.parse(storage.value ?? "null")).toHaveLength(2);
+	});
+
+	it("does not recreate cleared storage when an in-flight generation completes", async () => {
+		const pending: GenerationRecord = {
+			request_id: "11111111-1111-4111-8111-111111111111",
+			input,
+			created_at: "2026-09-27T00:00:00.000Z",
+			status: "running",
+			event_flags: { requested: true, completed: false, failed: false },
+		};
+		const storage = memoryStorage(JSON.stringify([pending]));
+		const controllerStore = createGenerationStore(storage);
+
+		await clearGenerationStorage(storage);
+		await controllerStore.upsert({ ...pending, status: "succeeded" });
+
+		expect(storage.value).toBeNull();
+		await expect(controllerStore.get(pending.request_id)).resolves.toBeUndefined();
+	});
+
+	it("does not reserve a request when its node check began before storage was cleared", async () => {
+		const identifiedInput: GenerationInput = { ...input, slug: "artist:massive-attack" };
+		type NodeResult = Awaited<ReturnType<NonNullable<GenerationApi["getNode"]>>>;
+		let resolveCheck: (result: NodeResult) => void = () => undefined;
+		const getNode = jest.fn(
+			() =>
+				new Promise<NodeResult>((resolve) => {
+					resolveCheck = resolve;
+				}),
+		);
+		const storage = memoryStorage();
+		const controller = createGenerationController({
+			apiClient: clientWith({ getNode }),
+			store: createGenerationStore(storage),
+			createRequestId: () => "11111111-1111-4111-8111-111111111111",
+		});
+
+		const started = controller.start(identifiedInput);
+		await waitFor(() => expect(getNode).toHaveBeenCalledTimes(1));
+		await clearGenerationStorage(storage);
+		resolveCheck({
+			kind: "error",
+			error: { kind: "api", status: 404, code: "not_found", retryable: false, message: "safe" },
+		});
+		await started;
+
+		expect(storage.value).toBeNull();
 	});
 
 	it("rejects identities that the generation API contract cannot accept", () => {
