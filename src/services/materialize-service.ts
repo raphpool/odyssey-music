@@ -11,6 +11,14 @@ import { NODE_TYPES, QID_PATTERN } from "../types.js";
 
 const log = logger.child({ module: "materialize-service" });
 
+/** A cache-only mobile preflight found no reusable node; it never contacted a provider. */
+export class MaterializeCacheMissError extends Error {
+	constructor() {
+		super("materialize cache miss");
+		this.name = "MaterializeCacheMissError";
+	}
+}
+
 export interface MaterializeRequest {
 	type?: string;
 	name?: string;
@@ -100,7 +108,7 @@ export function createMaterializeService(deps: {
 
 	async function handleMaterialize(
 		body: MaterializeRequest,
-		opts: { fresh?: boolean } = {},
+		opts: { fresh?: boolean; reuseExisting?: boolean; cacheOnly?: boolean; maxProviderAttempts?: 1 } = {},
 	): Promise<MaterializeResponse> {
 		if (
 			!body.type ||
@@ -217,25 +225,55 @@ export function createMaterializeService(deps: {
 			});
 		}
 		if (cached) pinnedSlug = slug;
+		const cachedMbid = (cached as unknown as { mbid?: string } | null)?.mbid;
+		const cachedQid = (cached as unknown as { qid?: string } | null)?.qid;
+		if (
+			cached &&
+			opts.reuseExisting === true &&
+			((body.mbid !== undefined &&
+				cachedMbid !== undefined &&
+				body.mbid.toLowerCase() !== cachedMbid.toLowerCase()) ||
+				(body.qid !== undefined && cachedQid !== undefined && body.qid !== cachedQid))
+		) {
+			throw new BadRequestError("Provided identifiers conflict with the existing node");
+		}
+		// Mobile generation intentionally serves a known node even after the web TTL.
+		// The default remains unchanged so legacy /materialize retains its refresh behavior.
+		if (cached && opts.reuseExisting === true) {
+			return { node: cached, source: "cache", wallMs: Date.now() - t0 };
+		}
+		if (!cached && opts.cacheOnly === true) throw new MaterializeCacheMissError();
 		let effectiveFresh = fresh;
 		if (!fresh && cached) {
 			const matAt = new Date(cached.materialized_at).getTime();
 			const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
-			const cachedMbid = (cached as unknown as { mbid?: string }).mbid;
 			const mbidMismatch = !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
 			if (!stale && !mbidMismatch) {
 				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
 			effectiveFresh = true;
 		}
-		const key = `${slug}|${effectiveBody.disambiguator ?? ""}|fresh=${effectiveFresh}`;
+		// Mobile promises never retry a paid provider call. Keep this policy in the
+		// in-flight identity: sharing with a concurrent web refresh would otherwise let
+		// whichever request arrives first silently choose the other surface's retry policy.
+		const key = JSON.stringify({
+			slug,
+			type: effectiveBody.type,
+			name: effectiveBody.name,
+			disambiguator: effectiveBody.disambiguator ?? null,
+			mbid: effectiveBody.mbid?.toLowerCase() ?? null,
+			qid: effectiveBody.qid ?? null,
+			fresh: effectiveFresh,
+			providerAttempts: opts.maxProviderAttempts ?? 2,
+		});
 		const existing = inflight.get(key);
 		if (existing) {
 			const node = await existing;
 			return { node, source: "jit", wallMs: Date.now() - t0 };
 		}
-		const jitOpts: { fresh?: boolean; slug?: Slug } = { fresh: effectiveFresh };
+		const jitOpts: { fresh?: boolean; slug?: Slug; maxProviderAttempts?: 1 } = { fresh: effectiveFresh };
 		if (pinnedSlug) jitOpts.slug = pinnedSlug;
+		if (opts.maxProviderAttempts !== undefined) jitOpts.maxProviderAttempts = opts.maxProviderAttempts;
 		const p = runJit(effectiveBody, jitOpts);
 		inflight.set(key, p);
 		try {
@@ -251,7 +289,7 @@ export function createMaterializeService(deps: {
 
 	async function runJit(
 		body: MaterializeRequest,
-		opts: { fresh?: boolean; slug?: Slug } = {},
+		opts: { fresh?: boolean; slug?: Slug; maxProviderAttempts?: 1 } = {},
 	): Promise<NodePayload> {
 		if (!body.type || !body.name) {
 			throw new BadRequestError("Pipeline JIT requires both 'type' and 'name'.");
@@ -294,6 +332,7 @@ export function createMaterializeService(deps: {
 			tavilyApiKey: deps.env.TAVILY_API_KEY,
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,
 			genreRegistry: deps.genreRegistry,
+			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
 		if (!opts.fresh) {
 			const existing = await deps.cache.get(r.slug).catch((e: unknown) => {

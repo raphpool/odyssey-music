@@ -104,6 +104,104 @@ describe("createMaterializeService genre registry wiring (TRA-28 review)", () =>
 		},
 		TIMEOUT_MS,
 	);
+
+	it(
+		"keeps concurrent web and mobile retry policies in separate in-flight work in either arrival order (TRA-295)",
+		async () => {
+			for (const order of ["web-first", "mobile-first"] as const) {
+				const generateContent = vi.fn(async () => {
+					throw new Error("503 unavailable");
+				});
+				installPipelineMocks({ draft: artistDraftFixture(), generateContent });
+				const createMaterializeService = await loadCreateMaterializeService();
+				const service = createMaterializeService({
+					cache,
+					env: ENV,
+					genreRegistry: createGenreRegistry({
+						cache,
+						resolver: await loadGenreResolver(),
+						redirects: new Map(),
+					}),
+				});
+				const web = () => service.handleMaterialize({ type: "artist", name: `Fixture ${order}` });
+				const mobile = () =>
+					service.handleMaterialize(
+						{ type: "artist", name: `Fixture ${order}` },
+						{ reuseExisting: true, maxProviderAttempts: 1 },
+					);
+				const results = await Promise.allSettled(
+					order === "web-first" ? [web(), mobile()] : [mobile(), web()],
+				);
+				expect(results.every((result) => result.status === "rejected")).toBe(true);
+				// Web gets its normal second attempt and mobile gets exactly one; sharing an
+				// inflight key would produce one or two calls depending on the arrival order.
+				expect(generateContent).toHaveBeenCalledTimes(3);
+			}
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"does not cross-share same-name work when effective MBID, QID or disambiguator differs (TRA-295)",
+		async () => {
+			const cases = [
+				{
+					label: "mbid",
+					draft: artistDraftFixture(),
+					left: {
+						type: "artist" as const,
+						name: "Same Identity",
+						mbid: "11111111-1111-1111-1111-111111111111",
+					},
+					right: {
+						type: "artist" as const,
+						name: "Same Identity",
+						mbid: "22222222-2222-2222-2222-222222222222",
+					},
+				},
+				{
+					label: "qid",
+					draft: genreDraftFixture(),
+					left: { type: "genre" as const, name: "Same Genre", qid: "Q1" },
+					right: { type: "genre" as const, name: "Same Genre", qid: "Q2" },
+				},
+				{
+					label: "disambiguator",
+					draft: artistDraftFixture(),
+					left: { type: "artist" as const, name: "Same Artist", disambiguator: "One" },
+					right: { type: "artist" as const, name: "Same Artist", disambiguator: "Two" },
+				},
+			] as const;
+			for (const scenario of cases) {
+				const generateContent = vi.fn(async () => {
+					throw new Error("503 unavailable");
+				});
+				installPipelineMocks({ draft: scenario.draft, generateContent });
+				const createMaterializeService = await loadCreateMaterializeService();
+				const service = createMaterializeService({
+					cache,
+					env: ENV,
+					genreRegistry: createGenreRegistry({
+						cache,
+						resolver: await loadGenreResolver(),
+						redirects: new Map(),
+					}),
+				});
+				const results = await Promise.allSettled([
+					service.handleMaterialize(scenario.left),
+					service.handleMaterialize(scenario.right),
+				]);
+				expect(
+					results.every((result) => result.status === "rejected"),
+					scenario.label,
+				).toBe(true);
+				// Each independent web request retries once. A merged result would only call
+				// Gemini twice and could write the other request's identity on success.
+				expect(generateContent, scenario.label).toHaveBeenCalledTimes(4);
+			}
+		},
+		TIMEOUT_MS,
+	);
 });
 
 // TRA-29: the guard in handleMaterialize itself -- for a genre request not already hitting the
@@ -583,7 +681,7 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 	);
 
 	it(
-		"keeps the cached node's own mbid when the client supplies a different one, without treating it as a mismatch (no refresh)",
+		"rejects a contradictory client mbid for an existing node without refreshing or overwriting it (TRA-295)",
 		async () => {
 			const CACHED_MBID = "22222222-2222-2222-2222-222222222222";
 			await cache.write(
@@ -597,16 +695,45 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 					throw new Error("unexpected pipeline run");
 				});
 
-			const result = await service.handleMaterialize({
-				type: "genre",
-				name: "Whatever The Client Calls It",
-				slug: "genre:techno",
-				mbid: "ffffffff-ffff-ffff-ffff-ffffffffffff",
-			});
+			await expect(
+				service.handleMaterialize(
+					{
+						type: "genre",
+						name: "Whatever The Client Calls It",
+						slug: "genre:techno",
+						mbid: "ffffffff-ffff-ffff-ffff-ffffffffffff",
+					},
+					{ reuseExisting: true },
+				),
+			).rejects.toThrow(BadRequestError);
+			expect(await cache.get("genre:techno")).toMatchObject({ mbid: CACHED_MBID, name: "Techno" });
+		},
+		TIMEOUT_MS,
+	);
 
-			expect(result.source).toBe("cache");
-			expect(result.node.slug).toBe("genre:techno");
-			expect((result.node as GenreNode).mbid).toBe(CACHED_MBID);
+	it(
+		"keeps an old cached node for reuseExisting while the default still refreshes it (TRA-295)",
+		async () => {
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString();
+			await cache.write(
+				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", materialized_at: staleAt }),
+			);
+			const service = await buildService();
+			const tavilySearch = await loadTavilySearch();
+			vi.mocked(tavilySearch)
+				.mockReset()
+				.mockImplementation(async () => {
+					throw new Error("default refresh reached pipeline");
+				});
+
+			const reused = await service.handleMaterialize(
+				{ type: "genre", name: "Techno" },
+				{ reuseExisting: true },
+			);
+			expect(reused).toMatchObject({ source: "cache", node: { slug: "genre:techno" } });
+			await expect(service.handleMaterialize({ type: "genre", name: "Techno" })).rejects.toThrow(
+				"default refresh reached pipeline",
+			);
 		},
 		TIMEOUT_MS,
 	);

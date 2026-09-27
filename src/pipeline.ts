@@ -101,6 +101,8 @@ export interface PipelineDeps {
 	// TavilyResult[] shape (src/tools/firecrawl-search.ts) — for local runs where Tavily
 	// isn't available. rankResults and everything downstream is unaffected.
 	searchProvider?: "tavily" | "firecrawl";
+	/** Limits Gemini invocations for a caller that must never retry a paid action. */
+	maxProviderAttempts?: 1 | 2;
 	logger?: (line: string) => void;
 	// OPTIONAL, but omitting it silently disables genre-duplicate prevention: the node's
 	// genre edges keep whatever name-derived slug their producer minted instead of being
@@ -808,6 +810,7 @@ async function generateNodeDraft(
 	const { schema } = makeNodeSchema(input.type);
 	const ai = new GoogleGenAI({ apiKey });
 	const model = deps.model ?? pipelineConfig.defaultModel;
+	const maxProviderAttempts = deps.maxProviderAttempts ?? 2;
 
 	// Variability nonce (goal-2): each call carries a unique session id so that two fresh
 	// re-materializations of the same entity produce visibly different prose. The agent is
@@ -838,7 +841,10 @@ async function generateNodeDraft(
 	} catch (e) {
 		// One quick retry on Gemini 503/UNAVAILABLE — transient infra blips shouldn't fail a node.
 		const msg = e instanceof Error ? e.message : String(e);
-		if (msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED")) {
+		if (
+			maxProviderAttempts > 1 &&
+			(msg.includes("503") || msg.includes("UNAVAILABLE") || msg.includes("RESOURCE_EXHAUSTED"))
+		) {
 			log(`[pipeline] gemini transient (${msg.slice(0, 80)}), retrying in 600ms`);
 			await new Promise((r) => setTimeout(r, pipelineConfig.retryDelayMs));
 			resp = await generate();

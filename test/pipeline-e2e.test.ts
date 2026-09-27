@@ -28,6 +28,19 @@ const DEPS: PipelineDeps = { tavilyApiKey: "test", firecrawlApiKey: "test" };
 const TIMEOUT_MS = 5_000;
 
 describe("runPipeline e2e (mocked boundaries)", () => {
+	it("does not retry a transient Gemini failure when maxProviderAttempts is one (TRA-295)", async () => {
+		const generateContent = vi.fn(async () => {
+			throw new Error("503 unavailable");
+		});
+		installPipelineMocks({ draft: artistDraftFixture(), generateContent });
+		const runPipeline = await loadRunPipeline();
+
+		await expect(
+			runPipeline({ type: "artist", name: "Fixture Artist" }, { ...DEPS, maxProviderAttempts: 1 }),
+		).rejects.toThrow("503 unavailable");
+		expect(generateContent).toHaveBeenCalledTimes(1);
+	});
+
 	it(
 		"materializes an artist node, with genres[] reflecting the MusicBrainz mock",
 		async () => {

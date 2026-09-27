@@ -82,6 +82,72 @@ describe("generation store", () => {
 		).rejects.toMatchObject({ code: "idempotency_conflict" });
 	});
 
+	it("fails closed when a persisted immediate response has a malformed or wrong-type canonical node id", async () => {
+		for (const nodeId of ["artist:Bad Body", "artist:cached-artist ", "project:cached-artist"]) {
+			const dir = await stateDir("corrupt-immediate");
+			const request = { type: "artist" };
+			const timestamp = "2026-09-26T12:00:00.000Z";
+			await writeFile(
+				join(dir, "generation-store.v1.json"),
+				JSON.stringify({
+					version: 1,
+					generations: [],
+					immediateResponses: [
+						{
+							userId: "local",
+							idempotencyKey: "immediate",
+							fingerprint: fingerprint(request),
+							request,
+							nodeId,
+							createdAt: timestamp,
+							updatedAt: timestamp,
+							terminalAt: timestamp,
+						},
+					],
+				}),
+			);
+			await expect(createGenerationStore({ stateDir: dir })).rejects.toMatchObject({
+				code: "corrupt_registry",
+			});
+		}
+	});
+
+	it("validates durable succeeded job node ids before transition and fails closed on reload", async () => {
+		const dir = await stateDir("corrupt-outcome");
+		const store = await createGenerationStore({ stateDir: dir, newId: () => "generation-1" });
+		const created = await store.create({
+			userId: "local",
+			idempotencyKey: "job",
+			request: { type: "artist", name: "Cached artist" },
+		});
+		await store.transition(created.generation.id, "running");
+
+		for (const nodeId of ["artist:Bad Body", "artist:cached-artist ", "project:cached-artist"]) {
+			await expect(store.transition(created.generation.id, "succeeded", { nodeId })).rejects.toMatchObject({
+				code: "invalid_generation",
+			});
+			const active = await store.get(created.generation.id);
+			expect(active).toMatchObject({ status: "running" });
+			expect(active).not.toHaveProperty("outcome");
+		}
+
+		await store.transition(created.generation.id, "succeeded", { nodeId: "artist:cached-artist" });
+		const path = join(dir, "generation-store.v1.json");
+		const persisted = JSON.parse(await readFile(path, "utf8")) as {
+			generations: Array<{ outcome?: { nodeId?: string } }>;
+		};
+		const generation = persisted.generations[0];
+		if (!generation?.outcome) throw new Error("test setup has no terminal outcome");
+
+		for (const nodeId of ["artist:Bad Body", "artist:cached-artist ", "project:cached-artist"]) {
+			generation.outcome.nodeId = nodeId;
+			await writeFile(path, JSON.stringify(persisted));
+			await expect(createGenerationStore({ stateDir: dir })).rejects.toMatchObject({
+				code: "corrupt_registry",
+			});
+		}
+	});
+
 	it("rejects inherited status names, mismatched fingerprints, and duplicate idempotency pairs in a registry", async () => {
 		const statusDir = await stateDir("invalid-status");
 		const statusStore = await createGenerationStore({ stateDir: statusDir, newId: () => "generation-1" });
