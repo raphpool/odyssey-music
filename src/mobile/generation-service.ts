@@ -1,5 +1,6 @@
 import { BadRequestError } from "../errors.js";
 import { MaterializeCacheMissError } from "../services/materialize-service.js";
+import { normalizeSlugBody } from "../slug.js";
 import {
 	classifyGenerationFailure,
 	MobileGenerationError,
@@ -145,13 +146,18 @@ export function createMobileGenerationService(
 	}
 
 	function identity(input: MobileGenerationInput): string {
+		const disambiguator = normalizeSlugBody(input.disambiguator ?? "");
 		return JSON.stringify({
 			type: input.type,
-			name: input.name,
+			// makeSlug uses this same normalization. Queueing by display spelling made
+			// case-only requests pay for two identical artist nodes (TRA-295 review).
+			name: normalizeSlugBody(input.name),
 			slug: input.slug ?? null,
 			mbid: input.mbid?.toLowerCase() ?? null,
 			qid: input.qid ?? null,
-			disambiguator: input.disambiguator ?? null,
+			// makeSlug omits an empty normalized suffix, so represent it exactly like
+			// an absent disambiguator in the paid-work identity (TRA-295 review).
+			disambiguator: disambiguator || null,
 		});
 	}
 

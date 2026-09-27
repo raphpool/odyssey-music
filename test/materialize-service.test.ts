@@ -142,6 +142,50 @@ describe("createMaterializeService genre registry wiring (TRA-28 review)", () =>
 	);
 
 	it(
+		"shares case-normalized mobile identities in one paid materialization (TRA-295)",
+		async () => {
+			const paidCalls = vi.fn(async () => ({
+				text: JSON.stringify(artistDraftFixture({ name: "Aphex Twin" })),
+				usageMetadata: { promptTokenCount: 42, candidatesTokenCount: 42 },
+			}));
+			installPipelineMocks({ draft: artistDraftFixture({ name: "Aphex Twin" }), generateContent: paidCalls });
+			const createMaterializeService = await loadCreateMaterializeService();
+			const service = createMaterializeService({
+				cache,
+				env: ENV,
+				genreRegistry: createGenreRegistry({
+					cache,
+					resolver: await loadGenreResolver(),
+					redirects: new Map(),
+				}),
+			});
+
+			const results = await Promise.all([
+				service.handleMaterialize(
+					{ type: "artist", name: "Aphex Twin" },
+					{ reuseExisting: true, maxProviderAttempts: 1 },
+				),
+				service.handleMaterialize(
+					{ type: "artist", name: "Áphex   Twin" },
+					{ reuseExisting: true, maxProviderAttempts: 1 },
+				),
+				service.handleMaterialize(
+					{ type: "artist", name: "Aphex Twin", disambiguator: "()" },
+					{ reuseExisting: true, maxProviderAttempts: 1 },
+				),
+			]);
+
+			expect(paidCalls).toHaveBeenCalledTimes(1);
+			expect(results.map((result) => result.node.slug)).toEqual([
+				"artist:aphex-twin",
+				"artist:aphex-twin",
+				"artist:aphex-twin",
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
 		"does not cross-share same-name work when effective MBID, QID or disambiguator differs (TRA-295)",
 		async () => {
 			const cases = [

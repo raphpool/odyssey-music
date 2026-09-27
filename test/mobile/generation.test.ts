@@ -46,14 +46,14 @@ async function eventually<T>(read: () => Promise<T>, valid: (value: T) => boolea
 }
 
 describe("mobile generations", () => {
-	it("persists before a flat 202 response, shares identity work and survives a restart", async () => {
+	it("persists before a flat 202 response, shares case-normalized identity work and survives a restart", async () => {
 		const dir = await storeDir("lifecycle");
 		const finish = deferred<{ node: { slug: string } }>();
-		let calls = 0;
+		let paidCalls = 0;
 		const materialize = {
 			handleMaterialize: async (_request: unknown, options: { cacheOnly?: true }) => {
 				if (options.cacheOnly) throw new MaterializeCacheMissError();
-				calls += 1;
+				paidCalls += 1;
 				return finish.promise;
 			},
 		};
@@ -61,29 +61,41 @@ describe("mobile generations", () => {
 			store: await createGenerationStore({ stateDir: dir }),
 			materialize,
 		});
-		const first = await service.submit(input());
-		const second = await service.submit(input(REQUEST_B));
+		const first = await service.submit({ ...input(), name: "Aphex Twin" });
+		const second = await service.submit({
+			...input(REQUEST_B),
+			name: "Áphex   Twin",
+			disambiguator: "()",
+		});
 		expect(first).toMatchObject({ request_id: REQUEST_A, status: "queued" });
 		expect(second).toMatchObject({ request_id: REQUEST_B, status: "queued" });
 		await eventually(
 			() => service.get(REQUEST_A),
 			(job) => job.status === "running",
 		);
-		expect(calls).toBe(1);
+		expect(paidCalls).toBe(1);
 
-		finish.resolve({ node: { slug: "artist:fixture-artist" } });
+		finish.resolve({ node: { slug: "artist:aphex-twin" } });
 		const completed = await eventually(
 			() => service.get(REQUEST_A),
 			(job) => job.status === "succeeded",
 		);
-		expect(completed).toMatchObject({ node_id: "artist:fixture-artist" });
+		expect(completed).toMatchObject({ node_id: "artist:aphex-twin" });
+		expect(
+			await eventually(
+				() => service.get(REQUEST_B),
+				(job) => job.status === "succeeded",
+			),
+		).toMatchObject({
+			node_id: "artist:aphex-twin",
+		});
 		const restarted = createMobileGenerationService({
 			store: await createGenerationStore({ stateDir: dir }),
 			materialize,
 		});
 		expect(await restarted.get(REQUEST_A)).toMatchObject({
 			status: "succeeded",
-			node_id: "artist:fixture-artist",
+			node_id: "artist:aphex-twin",
 		});
 	});
 

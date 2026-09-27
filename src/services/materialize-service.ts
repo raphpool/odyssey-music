@@ -256,11 +256,14 @@ export function createMaterializeService(deps: {
 		// Mobile promises never retry a paid provider call. Keep this policy in the
 		// in-flight identity: sharing with a concurrent web refresh would otherwise let
 		// whichever request arrives first silently choose the other surface's retry policy.
+		const normalizedDisambiguator = normalizeSlugBody(effectiveBody.disambiguator ?? "");
 		const key = JSON.stringify({
 			slug,
 			type: effectiveBody.type,
-			name: effectiveBody.name,
-			disambiguator: effectiveBody.disambiguator ?? null,
+			// `slug` is name-normalized, but this key used the raw display spelling.
+			// That let case-only mobile retries start duplicate paid materializations.
+			name: normalizeSlugBody(effectiveBody.name ?? ""),
+			disambiguator: normalizedDisambiguator || null,
 			mbid: effectiveBody.mbid?.toLowerCase() ?? null,
 			qid: effectiveBody.qid ?? null,
 			fresh: effectiveFresh,
