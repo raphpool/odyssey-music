@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, Button, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Button, Linking, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useAnalytics } from "../../src/analytics/provider";
@@ -10,6 +10,12 @@ import type { ClientError } from "../../src/api/errors";
 import { NodeArticle } from "../../src/components/NodeArticle";
 import { NodeImage } from "../../src/components/NodeImage";
 import { NodeRelations } from "../../src/components/NodeRelations";
+import {
+	type ExternalListeningResult,
+	type ListeningProvider,
+	openExternalListening,
+	providerLabel,
+} from "../../src/listening/actions";
 import { readNodeNavigationContext } from "../../src/navigation/context";
 
 const nodeSlugPattern =
@@ -60,6 +66,13 @@ export default function NodeScreen() {
 	const [retryKey, setRetryKey] = useState(0);
 	const [state, setState] = useState<NodeLoadState>({ kind: "loading" });
 	const [imageUrl, setImageUrl] = useState<string | null | undefined>();
+	const [listeningResult, setListeningResult] = useState<ExternalListeningResult | undefined>();
+	const [openingProvider, setOpeningProvider] = useState<ListeningProvider | undefined>();
+	const openingProviderRef = useRef<ListeningProvider | undefined>(undefined);
+	const listeningAttemptRef = useRef(0);
+	const listeningControllerRef = useRef<AbortController | undefined>(undefined);
+	const activeListeningSlugRef = useRef<string | undefined>(slug);
+	activeListeningSlugRef.current = slug;
 	const viewedNodeId = useRef<string | undefined>(undefined);
 	const pendingView = useRef<
 		| {
@@ -183,6 +196,21 @@ export default function NodeScreen() {
 		loadedNode,
 	]);
 
+	useEffect(() => {
+		activeListeningSlugRef.current = slug;
+		// This effect setup runs for a newly mounted route only, never for an unmount. It clears UI state
+		// owned by the previous fiche after its cleanup has invalidated the old asynchronous attempt.
+		setOpeningProvider(undefined);
+		setListeningResult(undefined);
+		return () => {
+			// Route changes retain this component briefly; cancel the old lookup before it can open a service for it.
+			listeningAttemptRef.current += 1;
+			listeningControllerRef.current?.abort();
+			listeningControllerRef.current = undefined;
+			openingProviderRef.current = undefined;
+		};
+	}, [slug]);
+
 	if (state.kind === "loading") return <LoadingState />;
 	if (state.kind === "missing")
 		return (
@@ -202,6 +230,58 @@ export default function NodeScreen() {
 		);
 	}
 	const node = state.value.node;
+	const openListening = async (provider: ListeningProvider): Promise<void> => {
+		if (openingProviderRef.current !== undefined) return;
+		openingProviderRef.current = provider;
+		const attempt = listeningAttemptRef.current + 1;
+		listeningAttemptRef.current = attempt;
+		const controller = new AbortController();
+		listeningControllerRef.current = controller;
+		const isCurrent = () =>
+			listeningAttemptRef.current === attempt &&
+			!controller.signal.aborted &&
+			activeListeningSlugRef.current === slug;
+		setOpeningProvider(provider);
+		setListeningResult(undefined);
+		let exactUrl: string | null | undefined;
+		try {
+			try {
+				const links = await client.getLinks(node.id, controller.signal);
+				if (!isCurrent()) return;
+				if (links.kind === "success")
+					exactUrl = provider === "spotify" ? links.value.spotify : links.value.apple;
+			} catch {
+				// A failed optional lookup still has a deterministic, explicitly disclosed search fallback.
+				if (!isCurrent()) return;
+			}
+			if (!isCurrent()) return;
+			const result = await openExternalListening({
+				node,
+				provider,
+				...(exactUrl === undefined ? {} : { exactUrl }),
+				navigationContext,
+				openUrl: (url) => Linking.openURL(url),
+				...(analytics.consent.status === "granted"
+					? {
+							analytics: {
+								trackEvent: (name, properties, context) =>
+									isCurrent()
+										? analytics.trackEvent(name, properties, context)
+										: Promise.resolve({ kind: "disabled" }),
+							},
+						}
+					: {}),
+			});
+			if (!isCurrent()) return;
+			setListeningResult(result);
+		} finally {
+			if (isCurrent()) {
+				listeningControllerRef.current = undefined;
+				openingProviderRef.current = undefined;
+				setOpeningProvider(undefined);
+			}
+		}
+	};
 
 	return (
 		<SafeAreaView style={styles.safeArea}>
@@ -226,6 +306,40 @@ export default function NodeScreen() {
 						{node.teaser}
 					</Text>
 				)}
+				<View style={styles.listening}>
+					<Text accessibilityRole="header" allowFontScaling style={styles.listeningHeading}>
+						Écouter ailleurs
+					</Text>
+					<Text allowFontScaling style={styles.listeningHint}>
+						Nous ouvrons la page exacte si elle est disponible ; sinon, une recherche dans le service.
+					</Text>
+					<Button
+						accessibilityLabel="Ouvrir dans Spotify"
+						disabled={openingProvider !== undefined}
+						title={openingProvider === "spotify" ? "Ouverture…" : "Ouvrir dans Spotify"}
+						onPress={() => void openListening("spotify")}
+					/>
+					<View style={styles.listeningButton}>
+						<Button
+							accessibilityLabel="Ouvrir dans Apple Music"
+							disabled={openingProvider !== undefined}
+							title={openingProvider === "apple_music" ? "Ouverture…" : "Ouvrir dans Apple Music"}
+							onPress={() => void openListening("apple_music")}
+						/>
+					</View>
+					{listeningResult?.kind === "opened" && listeningResult.linkKind === "search" ? (
+						<Text allowFontScaling style={styles.listeningHint}>
+							{`Recherche ${providerLabel(listeningResult.provider)} ouverte.`}
+						</Text>
+					) : null}
+					{listeningResult?.kind === "failed" ? (
+						<Text accessibilityRole="alert" allowFontScaling style={styles.listeningError}>
+							{listeningResult.errorCode === "unsafe_url"
+								? "Ce lien a été bloqué pour votre sécurité."
+								: "Impossible d’ouvrir ce service. Réessayez plus tard."}
+						</Text>
+					) : null}
+				</View>
 				<NodeArticle article={node.article} citations={node.citations} />
 				<NodeRelations edges={node.edges} fromNodeId={node.id} navigationContext={navigationContext} />
 			</ScrollView>
@@ -283,6 +397,11 @@ const styles = StyleSheet.create({
 	title: { fontSize: 32, fontWeight: "700", lineHeight: 40, marginTop: 4 },
 	type: { color: "#444444", fontSize: 17, lineHeight: 24, marginTop: 8 },
 	teaser: { fontSize: 19, lineHeight: 28, marginTop: 20 },
+	listening: { borderColor: "#d0d0d0", borderRadius: 8, borderWidth: 1, marginTop: 24, padding: 16 },
+	listeningHeading: { fontSize: 22, fontWeight: "700", lineHeight: 30, marginBottom: 8 },
+	listeningHint: { fontSize: 15, lineHeight: 22, marginBottom: 12 },
+	listeningButton: { marginTop: 10 },
+	listeningError: { color: "#a40000", fontSize: 15, lineHeight: 22, marginTop: 12 },
 	statusSafeArea: { alignItems: "center", backgroundColor: "#ffffff", flex: 1, justifyContent: "center" },
 	statusContent: { padding: 24, width: "100%" },
 	statusTitle: { fontSize: 26, fontWeight: "700", lineHeight: 34, marginBottom: 12 },
