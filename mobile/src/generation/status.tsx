@@ -4,6 +4,7 @@ import { AppState, Button, StyleSheet, Text, View } from "react-native";
 import { type AnalyticsSource } from "../analytics/contracts";
 import { useAnalytics } from "../analytics/provider";
 import { type ApiClient, createApiClient } from "../api/client";
+import { CatalogCache } from "../cache/catalog";
 import { readPublicConfig } from "../config";
 import {
 	createGenerationController,
@@ -66,11 +67,23 @@ export function GenerationStatus({ input, source, apiClient, store, onOpenNode }
 	const analyticsRef = useRef(analytics);
 	analyticsRef.current = analytics;
 	const resolvedApiClient = useMemo(() => apiClient ?? configuredApiClient(), [apiClient]);
+	const catalogCache = useMemo(() => new CatalogCache(), []);
+	const cacheAwareApiClient = useMemo(
+		() => {
+			if (resolvedApiClient?.getCatalog === undefined) return resolvedApiClient;
+			const getCatalog = resolvedApiClient.getCatalog;
+			return {
+				...resolvedApiClient,
+				refreshCatalog: async () => void (await catalogCache.load({ getCatalog }, { forceRevalidate: true })),
+			};
+		},
+		[catalogCache, resolvedApiClient],
+	);
 	const inputKey = [input.type, input.name, input.slug ?? "", input.mbid ?? "", input.qid ?? "", input.disambiguator ?? ""].join(
 		"\u0000",
 	);
 	const controller = useController(
-		resolvedApiClient,
+		cacheAwareApiClient,
 		store,
 		source,
 		analyticsRef,
