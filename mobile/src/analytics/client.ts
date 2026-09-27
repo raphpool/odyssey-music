@@ -109,6 +109,12 @@ export class AnalyticsClient {
 		const epoch = this.epoch;
 		return this.serialize(async () => {
 			if (!this.current(intent, epoch) || this._purgeIncomplete) return this.consentState;
+			if (
+				this.consentState.status === "granted" &&
+				this.transport !== undefined &&
+				this._anonymousId !== undefined
+			)
+				return this.consentState;
 			try {
 				this.consentState = await this.options.consent.grant();
 			} catch {
