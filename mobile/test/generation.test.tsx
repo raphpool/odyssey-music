@@ -10,6 +10,7 @@ import {
 } from "../src/generation/request";
 import { GenerationStatus } from "../src/generation/status";
 import {
+	clearGenerationStorage,
 	createGenerationStore,
 	GENERATION_MAX_RECORDS,
 	GENERATION_STORAGE_KEY,
@@ -695,6 +696,24 @@ describe("generation persistence and controller", () => {
 
 		await expect(firstStore.list()).resolves.toEqual(expect.arrayContaining([first, second]));
 		expect(JSON.parse(storage.value ?? "null")).toHaveLength(2);
+	});
+
+	it("does not recreate cleared storage when an in-flight generation completes", async () => {
+		const pending: GenerationRecord = {
+			request_id: "11111111-1111-4111-8111-111111111111",
+			input,
+			created_at: "2026-09-27T00:00:00.000Z",
+			status: "running",
+			event_flags: { requested: true, completed: false, failed: false },
+		};
+		const storage = memoryStorage(JSON.stringify([pending]));
+		const controllerStore = createGenerationStore(storage);
+
+		await clearGenerationStorage(storage);
+		await controllerStore.upsert({ ...pending, status: "succeeded" });
+
+		expect(storage.value).toBeNull();
+		await expect(controllerStore.get(pending.request_id)).resolves.toBeUndefined();
 	});
 
 	it("rejects identities that the generation API contract cannot accept", () => {
