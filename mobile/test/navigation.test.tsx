@@ -35,6 +35,7 @@ jest.mock("expo-router", () => {
 		Stack: createNavigator("stack-navigator"),
 		Tabs: createNavigator("tabs-navigator"),
 		useGlobalSearchParams: jest.fn(() => ({ entry: "direct" })),
+		useLocalSearchParams: jest.fn(() => ({})),
 		usePathname: jest.fn(() => "/onboarding"),
 	};
 });

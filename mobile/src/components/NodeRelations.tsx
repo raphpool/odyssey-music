@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { useAnalytics } from "../analytics/provider";
 import type { NodeType } from "../api/contracts";
 import { nodeNavigationParams, type NodeNavigationContext } from "../navigation/context";
+import { rememberGenerationInput } from "../generation/store";
 
 export type NodeEdgeRef = {
 	slug: string;
@@ -74,6 +75,13 @@ export function NodeRelations({ edges, fromNodeId, navigationContext }: NodeRela
 								)
 									return;
 								lastPressed.current = { key: `${kind}-${relation.slug}`, at: now };
+								rememberGenerationInput({
+									type: relation.type,
+									name: relation.name,
+									slug: relation.slug,
+									...(relation.mbid === undefined ? {} : { mbid: relation.mbid }),
+									...(relation.qid === undefined ? {} : { qid: relation.qid }),
+								});
 								if (analytics.consent.status === "granted") {
 									void analytics.trackEvent(
 										"relation_opened",

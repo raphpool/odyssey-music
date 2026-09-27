@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Button, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -57,6 +57,8 @@ function trackEventSafely(
 }
 
 export default function SearchScreen({ apiClient: providedApiClient }: SearchScreenProps = {}) {
+	const params = useLocalSearchParams<{ q?: string | string[] }>();
+	const routeQuery = Array.isArray(params.q) ? params.q[0] : params.q;
 	const analytics = useAnalytics();
 	const analyticsRef = useRef(analytics);
 	analyticsRef.current = analytics;
@@ -71,9 +73,16 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	const [retryToken, setRetryToken] = useState(0);
 	const [missingResult, setMissingResult] = useState<SearchResult | undefined>();
 	const requestSequence = useRef(0);
+	const appliedRouteQuery = useRef<string | undefined>(undefined);
 	const normalizedQuery = normalizeSearchQuery(query);
 	const queryState = searchQueryState(normalizedQuery);
 	const currentKey = searchKey(normalizedQuery, filter);
+
+	useEffect(() => {
+		if (routeQuery === undefined || routeQuery === appliedRouteQuery.current) return;
+		appliedRouteQuery.current = routeQuery;
+		setQuery(routeQuery.slice(0, SEARCH_MAX_QUERY_LENGTH + 1));
+	}, [routeQuery]);
 
 	useEffect(() => {
 		const sequence = ++requestSequence.current;

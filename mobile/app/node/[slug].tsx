@@ -10,13 +10,19 @@ import type { ClientError } from "../../src/api/errors";
 import { NodeArticle } from "../../src/components/NodeArticle";
 import { NodeImage } from "../../src/components/NodeImage";
 import { NodeRelations } from "../../src/components/NodeRelations";
+import { GenerationStatus } from "../../src/generation/status";
+import {
+	type GenerationInput,
+	generationInputForSlug,
+	normalizeGenerationInput,
+} from "../../src/generation/store";
 import {
 	type ExternalListeningResult,
 	type ListeningProvider,
 	openExternalListening,
 	providerLabel,
 } from "../../src/listening/actions";
-import { readNodeNavigationContext } from "../../src/navigation/context";
+import { nodeNavigationParams, readNodeNavigationContext } from "../../src/navigation/context";
 
 const nodeSlugPattern =
 	/^(artist|project|track|genre|label):[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
@@ -51,16 +57,47 @@ function initialImageUrl(node: NodeResponse["node"]): string | null | undefined 
 	return node.image_url;
 }
 
+function generationInputFromParams(
+	params: Readonly<Record<string, string | string[] | undefined>>,
+	slug: string | undefined,
+): GenerationInput | undefined {
+	const type = firstParam(params.generation_type);
+	const name = firstParam(params.generation_name);
+	if (type === undefined || name === undefined)
+		return slug === undefined ? undefined : generationInputForSlug(slug);
+	return normalizeGenerationInput({
+		type,
+		name,
+		...(slug === undefined ? {} : { slug }),
+		...(firstParam(params.generation_mbid) === undefined ? {} : { mbid: firstParam(params.generation_mbid) }),
+		...(firstParam(params.generation_qid) === undefined ? {} : { qid: firstParam(params.generation_qid) }),
+	});
+}
+
+function readableSearchQuery(slug: string | undefined): string | undefined {
+	if (slug === undefined) return undefined;
+	const separator = slug.indexOf(":");
+	const value = separator === -1 ? slug : slug.slice(separator + 1);
+	const readable = value.replace(/--/g, " ").replace(/-/g, " ").trim();
+	return readable.length === 0 ? undefined : readable;
+}
+
 export default function NodeScreen() {
 	const params = useLocalSearchParams<{
 		slug?: string | string[];
 		source?: string | string[];
 		recommendation_id?: string | string[];
 		notification_id?: string | string[];
+		generation_name?: string | string[];
+		generation_type?: string | string[];
+		generation_mbid?: string | string[];
+		generation_qid?: string | string[];
 	}>();
 	const rawSlug = firstParam(params.slug);
 	const slug = validateNodeSlug(rawSlug) ? rawSlug : undefined;
 	const navigationContext = readNodeNavigationContext(params);
+	const generationInput = generationInputFromParams(params, slug);
+	const searchQuery = readableSearchQuery(slug);
 	const analytics = useAnalytics();
 	const client = useMemo<ApiClient>(() => createApiClient(), []);
 	const [retryKey, setRetryKey] = useState(0);
@@ -219,6 +256,16 @@ export default function NodeScreen() {
 				identity={state.identity}
 				missing
 				action={() => setRetryKey((current) => current + 1)}
+				apiClient={client}
+				source={navigationContext.source}
+				{...(generationInput === undefined ? {} : { generationInput })}
+				{...(searchQuery === undefined ? {} : { searchQuery })}
+				onOpenNode={(nodeId) =>
+					router.push({
+						pathname: "/node/[slug]",
+						params: nodeNavigationParams(nodeId, navigationContext),
+					})
+				}
 			/>
 		);
 	if (state.kind === "error") {
@@ -357,13 +404,23 @@ function LoadingState() {
 
 function StatusState({
 	action,
+	apiClient,
+	generationInput,
 	identity,
 	missing = false,
+	onOpenNode,
+	searchQuery,
+	source = "deeplink",
 	title,
 }: {
 	action?: () => void;
+	apiClient?: ApiClient;
+	generationInput?: GenerationInput;
 	identity?: string;
 	missing?: boolean;
+	onOpenNode?: (nodeId: string) => void;
+	searchQuery?: string;
+	source?: "app" | "onboarding" | "settings" | "home" | "search" | "relation" | "notification" | "deeplink";
 	title: string;
 }) {
 	return (
@@ -381,6 +438,21 @@ function StatusState({
 					<Text allowFontScaling style={styles.statusText}>
 						Cette fiche n'est pas encore disponible.
 					</Text>
+				) : null}
+				{generationInput === undefined && searchQuery !== undefined ? (
+					<Button
+						accessibilityLabel="Rechercher cette fiche"
+						title="Rechercher cette fiche"
+						onPress={() => router.push({ pathname: "/(tabs)/search", params: { q: searchQuery } })}
+					/>
+				) : null}
+				{generationInput !== undefined && apiClient !== undefined ? (
+					<GenerationStatus
+						apiClient={apiClient}
+						input={generationInput}
+						source={source}
+						{...(onOpenNode === undefined ? {} : { onOpenNode })}
+					/>
 				) : null}
 				{action === undefined ? null : (
 					<Button accessibilityLabel="Réessayer de charger la fiche" title="Réessayer" onPress={action} />

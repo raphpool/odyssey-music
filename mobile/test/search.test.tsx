@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 
 import SearchScreen from "../app/(tabs)/search";
 import { useAnalytics } from "../src/analytics/provider";
@@ -16,10 +16,11 @@ import {
 	searchType,
 } from "../src/search/model";
 
-jest.mock("expo-router", () => ({ router: { push: jest.fn() } }));
+jest.mock("expo-router", () => ({ router: { push: jest.fn() }, useLocalSearchParams: jest.fn() }));
 jest.mock("../src/analytics/provider", () => ({ useAnalytics: jest.fn() }));
 
 const mockedUseAnalytics = useAnalytics as jest.MockedFunction<typeof useAnalytics>;
+const mockedUseLocalSearchParams = jest.mocked(useLocalSearchParams);
 
 function analytics(
 	status: "granted" | "denied" | "unknown",
@@ -54,6 +55,7 @@ const cacheHit = {
 describe("mobile global search", () => {
 	beforeEach(() => {
 		jest.useFakeTimers();
+		mockedUseLocalSearchParams.mockReturnValue({});
 		mockedUseAnalytics.mockReturnValue(analytics("granted"));
 	});
 
@@ -105,6 +107,28 @@ describe("mobile global search", () => {
 			{ filter: "artist" },
 			{ source: "search" },
 		);
+	});
+
+	it("prefills the query supplied by a missing-node route", async () => {
+		mockedUseLocalSearchParams.mockReturnValue({ q: "massive attack" });
+		const search = jest.fn(async () =>
+			success({ q: "massive attack", hits: [cacheHit], sources: { cache: 1, catalog: 0 } }),
+		);
+		const screen = render(<SearchScreen apiClient={clientWith(search)} />);
+
+		await waitFor(() =>
+			expect(screen.getByLabelText("Rechercher dans Odyssey").props.value).toBe("massive attack"),
+		);
+		await act(async () => {
+			jest.advanceTimersByTime(300);
+			await Promise.resolve();
+		});
+
+		expect(search).toHaveBeenCalledWith({
+			q: "massive attack",
+			limit: 25,
+			signal: expect.any(AbortSignal),
+		});
 	});
 
 	it("does not replay the search when the analytics provider value changes", async () => {
