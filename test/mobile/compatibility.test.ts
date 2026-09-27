@@ -149,61 +149,55 @@ describe("mobile facade compatibility", () => {
 		expect(stream).toMatchObject({ status: 200, body: "fixture-audio" });
 		expect(stream.headers["content-type"]).toBe("audio/mp4");
 
-		const client = await createClient(server.port);
-		const catalog = await client.getCatalog();
-		expect(catalog).toMatchObject({ kind: "success", value: { version: "v1" } });
-		if (catalog.kind !== "success") throw new Error("catalog must be returned by the live facade");
+		const catalog = await http(server.port, "GET", "/mobile/v1/catalog");
+		expect(json(catalog)).toMatchObject({ version: "v1" });
+		const etag = catalog.headers.etag;
+		expect(typeof etag).toBe("string");
+		if (typeof etag !== "string") throw new Error("mobile catalog must provide an ETag");
 
-		const cachedCatalog = await client.getCatalog({ etag: catalog.etag, hasCachedCopy: true });
-		expect(cachedCatalog).toMatchObject({ kind: "notModified", etag: catalog.etag });
+		const cachedCatalog = await http(server.port, "GET", "/mobile/v1/catalog", undefined, {
+			"If-None-Match": etag,
+		});
+		expect(cachedCatalog).toMatchObject({ status: 304, body: "" });
 
-		const node = await client.getNode("genre:ambient-music");
-		expect(node).toMatchObject({
-			kind: "success",
-			value: { source: "cache", redirected_from: "genre:ambient-music", node: { id: "genre:ambient" } },
+		const node = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient-music");
+		expect(json(node)).toMatchObject({
+			source: "cache",
+			redirected_from: "genre:ambient-music",
+			node: { id: "genre:ambient" },
 		});
 
-		const image = await client.getImage("genre:ambient");
-		expect(image).toMatchObject({ kind: "success", value: { slug: "genre:ambient", image_url: null } });
+		const image = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/image");
+		expect(json(image)).toMatchObject({ slug: "genre:ambient", image_url: null });
 
-		const links = await client.getLinks("genre:ambient");
-		expect(links).toMatchObject({
-			kind: "success",
-			value: { slug: "genre:ambient", spotify: null, apple: null, sources: {} },
+		const links = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/links");
+		expect(json(links)).toMatchObject({ slug: "genre:ambient", spotify: null, apple: null, sources: {} });
+
+		const search = await http(server.port, "GET", "/mobile/v1/search?q=ambient&type=genre&limit=5");
+		expect(json(search)).toMatchObject({
+			hits: [expect.objectContaining({ source: "cache", slug: "genre:ambient" })],
 		});
 
-		const search = await client.search({ q: "ambient", type: "genre", limit: 5 });
-		expect(search).toMatchObject({
-			kind: "success",
-			value: { hits: [expect.objectContaining({ source: "cache", slug: "genre:ambient" })] },
-		});
-
-		const generation = await client.createGeneration({
-			requestId,
+		const generation = await http(server.port, "POST", "/mobile/v1/generations", {
+			request_id: requestId,
 			type: "artist",
 			name: "Fixture Artist",
 		});
-		expect(generation).toMatchObject({
-			kind: "success",
-			value: { request_id: requestId, status: "succeeded", node_id: "artist:fixture-artist" },
+		expect(json(generation)).toMatchObject({
+			request_id: requestId,
+			status: "succeeded",
+			node_id: "artist:fixture-artist",
 		});
 
-		const conflict = await client.createGeneration({ requestId, type: "artist", name: "Another Artist" });
-		expect(conflict).toMatchObject({ kind: "error", error: { code: "idempotency_conflict", status: 409 } });
+		const conflict = await http(server.port, "POST", "/mobile/v1/generations", {
+			request_id: requestId,
+			type: "artist",
+			name: "Another Artist",
+		});
+		expect(conflict).toMatchObject({ status: 409 });
+		expect(json(conflict)).toMatchObject({ error: { code: "idempotency_conflict" } });
 	});
 });
-
-async function createClient(port: number) {
-	const publicOrigin = "https://track1.example.test";
-	const localOrigin = `http://127.0.0.1:${port}`;
-	const mobileClientPath = "../../mobile/src/api/client.js";
-	const { createApiClient } = await import(mobileClientPath);
-	return createApiClient({
-		config: { appEnvironment: "development", apiBaseUrl: `${publicOrigin}/mobile/v1/` },
-		fetch: (input: RequestInfo | URL, init?: RequestInit) =>
-			fetch(String(input).replace(publicOrigin, localOrigin), init),
-	});
-}
 
 async function startServer(): Promise<RunningServer> {
 	const directory = await mkdtemp(join(tmpdir(), "odyssey-mobile-compatibility-"));
@@ -295,7 +289,13 @@ async function availablePort(): Promise<number> {
 	});
 }
 
-async function http(port: number, method: string, path: string, body?: unknown): Promise<HttpResponse> {
+async function http(
+	port: number,
+	method: string,
+	path: string,
+	body?: unknown,
+	headers: Record<string, string> = {},
+): Promise<HttpResponse> {
 	const encoded = body === undefined ? undefined : JSON.stringify(body);
 	return new Promise((resolveResponse, reject) => {
 		const req = request(
@@ -304,7 +304,7 @@ async function http(port: number, method: string, path: string, body?: unknown):
 				port,
 				method,
 				path,
-				headers: encoded === undefined ? {} : { "Content-Type": "application/json" },
+				headers: { ...headers, ...(encoded === undefined ? {} : { "Content-Type": "application/json" }) },
 			},
 			(res) => {
 				const chunks: Buffer[] = [];
