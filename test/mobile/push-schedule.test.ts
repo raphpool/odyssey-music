@@ -268,4 +268,55 @@ describe("push scheduler", () => {
 		release();
 		await stopped;
 	});
+
+	it("stops after the current send batch instead of draining a large registry", async () => {
+		const time = clock("2026-09-27T12:00:00.000Z");
+		const store = await createPushStore({ stateDir: await stateDir("stop-after-batch"), now: time.now });
+		for (let index = 0; index < 101; index += 1) {
+			await store.create({
+				subscriptionId: `67fd896e-0b5f-466d-8b9b-${index.toString(16).padStart(12, "0")}`,
+				secret: SECRET,
+				expoToken: `ExpoPushToken[scheduler-token-${index}]`,
+				platform: "ios",
+				timezone: "Europe/Paris",
+			});
+		}
+		time.set("2026-09-28T07:00:00.000Z");
+		let releaseFirstBatch: (() => void) | undefined;
+		let signalFirstBatch: (() => void) | undefined;
+		const firstBatchStarted = new Promise<void>((resolve) => {
+			signalFirstBatch = resolve;
+		});
+		let sentBatches = 0;
+		const instance = createPushScheduler({
+			store,
+			sender: {
+				sendReserved: async () => {
+					sentBatches += 1;
+					if (sentBatches === 1) {
+						signalFirstBatch?.();
+						await new Promise<void>((resolve) => {
+							releaseFirstBatch = resolve;
+						});
+					}
+					return { accepted: 0, rejected: 0, unknown: 0 };
+				},
+			},
+			receipts: { collectDueReceipts: async () => ({ ok: 0, error: 0, unknown: 0, skipped: false }) },
+			now: time.now,
+			timers: {
+				setInterval: () => 1 as unknown as ReturnType<typeof setInterval>,
+				clearInterval: () => undefined,
+				yield: async () => undefined,
+			},
+		});
+		instance.start();
+		await firstBatchStarted;
+		const stopped = instance.stop();
+		if (!releaseFirstBatch) throw new Error("first batch did not start");
+		releaseFirstBatch();
+		await stopped;
+		expect(sentBatches).toBe(1);
+		await expect(instance.tick()).resolves.toEqual({ reserved: 0, skipped: true });
+	});
 });

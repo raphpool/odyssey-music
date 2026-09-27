@@ -42,6 +42,7 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 	const timers = options.timers ?? defaultTimers;
 	let timer: ReturnType<typeof setInterval> | undefined;
 	let inFlight: Promise<PushScheduleReport> | undefined;
+	let stopping = false;
 
 	async function execute(): Promise<PushScheduleReport> {
 		try {
@@ -53,6 +54,9 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 				subscriptions.filter((subscription) => isEligible(subscription, current)),
 				MAX_BATCH_SIZE,
 			)) {
+				// A deploy must let the current durable send finish, but must not begin another
+				// batch: systemd otherwise reaches SIGKILL before a large registry drains.
+				if (stopping) break;
 				const reservations: PushNotificationReservation[] = [];
 				for (const subscription of batch) {
 					try {
@@ -82,6 +86,7 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 				}
 				await timers.yield();
 			}
+			if (stopping) return { reserved, skipped: false };
 			try {
 				await options.receipts.collectDueReceipts();
 			} catch (error) {
@@ -105,19 +110,24 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 	return {
 		start() {
 			if (timer) return;
+			stopping = false;
 			timer = timers.setInterval(() => {
 				void tick();
 			}, TICK_MS);
 			void tick();
 		},
 		async stop() {
+			stopping = true;
 			if (timer) {
 				timers.clearInterval(timer);
 				timer = undefined;
 			}
 			await inFlight;
 		},
-		tick,
+		tick() {
+			if (stopping) return Promise.resolve({ reserved: 0, skipped: true });
+			return tick();
+		},
 	};
 }
 
