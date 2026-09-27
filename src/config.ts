@@ -1,8 +1,9 @@
 import { join } from "node:path";
+import { readExpoAccessToken } from "./env.js";
 
 function envString(name: string, fallback: string): string {
 	const value = process.env[name];
-	return value && value.trim() ? value : fallback;
+	return value?.trim() ? value : fallback;
 }
 
 function envInt(name: string, fallback: number): number {
@@ -17,6 +18,7 @@ export const serverConfig = {
 	port: envInt("PORT", 18791),
 	cacheDir: envString("ODYSSEY_CACHE_DIR", join(process.cwd(), "cache")),
 	mobileStateDir: envString("MOBILE_STATE_DIR", join(process.cwd(), "mobile-state")),
+	expoAccessToken: readExpoAccessToken(),
 };
 
 export const streamConfig = {

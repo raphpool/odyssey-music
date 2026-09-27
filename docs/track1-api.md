@@ -144,7 +144,32 @@ des chemins POSIX et est hors du modèle de menace. Le registre accepte au plus 
 à saturation, seules les nouvelles
 créations répondent `503 push_unavailable` tandis que réessai identique, mise à jour et
 suppression restent possibles. La maintenance supprime les abonnements sans activité depuis
-90 jours avant toute admission. Ce ticket n'envoie aucun push Expo.
+90 jours avant toute admission.
+
+## Envoi et suivi Expo des rappels
+
+L'envoi est une opération interne du serveur : aucune route mobile ne permet de déclencher,
+lister ou relancer un envoi. Le scheduler réserve durablement une notification avant tout appel
+réseau. Une réservation contient une date locale et un UUID de notification, mais pas de goût ni
+de recommandation. Sans réservation, le transport n'envoie rien.
+
+Le serveur appelle seulement `https://exp.host/--/api/v2/push/send`, par groupes d'au plus 100
+messages et avec une seule requête en vol. Chaque message contient le titre « track1 — Ta
+découverte du jour », un texte fixe, le canal Android `daily`, le son par défaut et les seules
+données `{kind, notification_id, target_local_date, url}` attendues par l'application. Le secret
+facultatif `EXPO_ACCESS_TOKEN` est chargé côté serveur : il n'est ni renvoyé, ni journalisé, ni
+fourni dans la configuration publique. Un délai de 15 secondes, une erreur réseau, une réponse
+invalide, un 429 ou un 5xx rendent la tentative `unknown`; cette date n'est alors jamais renvoyée
+automatiquement. Un accusé `accepted` conserve uniquement le ticket Expo nécessaire au suivi;
+un rejet immédiat est distinct.
+
+Après 15 minutes, le serveur consulte uniquement `https://exp.host/--/api/v2/push/getReceipts`,
+par groupes d'au plus 100 tickets et sans polling concurrent. Un receipt `ok` indique l'acceptation
+par APNs ou FCM, pas l'affichage ni la lecture par la personne. Un receipt absent après 24 heures
+devient `receipt_unknown`, séparé des erreurs de receipt. `DeviceNotRegistered` désactive le token
+seulement si l'abonnement porte toujours le même token que celui de l'envoi : un token renouvelé
+reste actif. Les tentatives, tickets et receipts sont stockés atomiquement, purgés après 24 heures
+et bornés; les journaux techniques n'incluent jamais de token ou de secret.
 
 ## Générations publiques suivies
 

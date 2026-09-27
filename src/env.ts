@@ -4,6 +4,17 @@ export interface ApiEnv {
 	FIRECRAWL_API_KEY: string;
 }
 
+// Expo's server-side access token is intentionally kept out of ApiEnv: loadEnv is also
+// used by command-line materialization, which must not require notification credentials.
+export function readExpoAccessToken(): string | undefined {
+	const value = process.env.EXPO_ACCESS_TOKEN;
+	if (value === undefined || value === "") return undefined;
+	if (value.trim() !== value || /[\r\n]/.test(value) || value.length > 1024) {
+		throw new Error("EXPO_ACCESS_TOKEN must be a non-empty single-line server secret");
+	}
+	return value;
+}
+
 export interface LoadEnvOptions {
 	// 2026-09-17 (TRA-242): which web-search backend the caller intends to use. Defaults to
 	// "tavily", which keeps the strict pre-existing contract (TAVILY_API_KEY always required) —
