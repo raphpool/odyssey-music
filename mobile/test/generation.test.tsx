@@ -716,6 +716,35 @@ describe("generation persistence and controller", () => {
 		await expect(controllerStore.get(pending.request_id)).resolves.toBeUndefined();
 	});
 
+	it("does not reserve a request when its node check began before storage was cleared", async () => {
+		const identifiedInput: GenerationInput = { ...input, slug: "artist:massive-attack" };
+		type NodeResult = Awaited<ReturnType<NonNullable<GenerationApi["getNode"]>>>;
+		let resolveCheck: (result: NodeResult) => void = () => undefined;
+		const getNode = jest.fn(
+			() =>
+				new Promise<NodeResult>((resolve) => {
+					resolveCheck = resolve;
+				}),
+		);
+		const storage = memoryStorage();
+		const controller = createGenerationController({
+			apiClient: clientWith({ getNode }),
+			store: createGenerationStore(storage),
+			createRequestId: () => "11111111-1111-4111-8111-111111111111",
+		});
+
+		const started = controller.start(identifiedInput);
+		await waitFor(() => expect(getNode).toHaveBeenCalledTimes(1));
+		await clearGenerationStorage(storage);
+		resolveCheck({
+			kind: "error",
+			error: { kind: "api", status: 404, code: "not_found", retryable: false, message: "safe" },
+		});
+		await started;
+
+		expect(storage.value).toBeNull();
+	});
+
 	it("rejects identities that the generation API contract cannot accept", () => {
 		expect(normalizeGenerationInput({ type: "artist", name: "a".repeat(201) })).toBeUndefined();
 		expect(

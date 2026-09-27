@@ -174,6 +174,7 @@ export class GenerationRequestController {
 	private readonly starts = new Map<string, Promise<GenerationViewState>>();
 	private retrying: Promise<GenerationViewState> | undefined;
 	private readonly analyticsResumes = new Map<string, Promise<void>>();
+	private readonly recordGenerations = new Map<string, number>();
 	private disposed = false;
 
 	constructor(options: GenerationRequestOptions) {
@@ -207,6 +208,8 @@ export class GenerationRequestController {
 			.then((records) => {
 				if (this.disposed) return;
 				this.records = records;
+				const generation = this.store.generation();
+				for (const record of records) this.recordGenerations.set(record.request_id, generation);
 				this.hydrated = true;
 				if (input !== undefined) this.selectRecord(input);
 			})
@@ -246,7 +249,7 @@ export class GenerationRequestController {
 		const identity = generationIdentity(normalized);
 		const pending = this.starts.get(identity);
 		if (pending !== undefined) return pending;
-		const operation = this.startInternal(normalized);
+		const operation = this.startInternal(normalized, this.store.generation());
 		this.starts.set(identity, operation);
 		try {
 			return await operation;
@@ -255,7 +258,7 @@ export class GenerationRequestController {
 		}
 	}
 
-	private async startInternal(normalized: GenerationInput): Promise<GenerationViewState> {
+	private async startInternal(normalized: GenerationInput, generation: number): Promise<GenerationViewState> {
 		await this.hydrate(normalized);
 		if (this.disposed) return this.state;
 
@@ -275,8 +278,9 @@ export class GenerationRequestController {
 			existing === undefined
 				? makeRecord(normalized, this.createRequestId(), this.now())
 				: retryRecord(existing, this.createRequestId, this.now);
-		const reservation = await this.reserve(record);
+		const reservation = await this.reserve(record, generation);
 		if (reservation === undefined) return this.state;
+		if (reservation.invalidated) return this.state;
 		this.activeRecord = reservation.record;
 		this.setState(stateFromRecord(reservation.record));
 		if (!reservation.acquired) {
@@ -298,6 +302,7 @@ export class GenerationRequestController {
 	}
 
 	private async retryInternal(): Promise<GenerationViewState> {
+		const generation = this.store.generation();
 		if (this.disposed) return this.state;
 		await this.hydrate();
 		const record =
@@ -314,8 +319,9 @@ export class GenerationRequestController {
 		const checked = await this.checkExistingNode(record.input);
 		if (checked === "exists" || checked === "unavailable" || checked === "cancelled") return this.state;
 		const next = retryRecord(record, this.createRequestId, this.now);
-		const reservation = await this.reserve(next);
+		const reservation = await this.reserve(next, generation);
 		if (reservation === undefined) return this.state;
+		if (reservation.invalidated) return this.state;
 		this.activeRecord = reservation.record;
 		this.setState(stateFromRecord(reservation.record));
 		if (!reservation.acquired) {
@@ -371,7 +377,7 @@ export class GenerationRequestController {
 
 	private async persist(record: GenerationRecord): Promise<boolean> {
 		try {
-			await this.store.upsert(record);
+			await this.store.upsert(record, this.recordGenerations.get(record.request_id));
 			const index = this.records.findIndex((item) => item.request_id === record.request_id);
 			if (index === -1) this.records.push(record);
 			else this.records[index] = record;
@@ -384,9 +390,12 @@ export class GenerationRequestController {
 
 	private async reserve(
 		record: GenerationRecord,
-	): Promise<{ acquired: boolean; record: GenerationRecord } | undefined> {
+		generation: number,
+	): Promise<{ acquired: boolean; record: GenerationRecord; invalidated?: true } | undefined> {
 		try {
-			const reservation = await this.store.reserve(record);
+			const reservation = await this.store.reserve(record, generation);
+			if (reservation.invalidated) return reservation;
+			this.recordGenerations.set(reservation.record.request_id, generation);
 			const index = this.records.findIndex((item) => item.request_id === reservation.record.request_id);
 			if (index === -1) this.records.push(reservation.record);
 			else this.records[index] = reservation.record;
