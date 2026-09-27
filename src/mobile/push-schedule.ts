@@ -88,7 +88,7 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 			}
 			if (stopping) return { reserved, skipped: false };
 			try {
-				await options.receipts.collectDueReceipts();
+				await options.receipts.collectDueReceipts({ shouldStop: () => stopping });
 			} catch (error) {
 				options.onError?.("receipts", error);
 			}
