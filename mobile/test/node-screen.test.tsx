@@ -1,5 +1,6 @@
 import { fireEvent, render, waitFor } from "@testing-library/react-native";
 import { useLocalSearchParams } from "expo-router";
+import { Linking } from "react-native";
 
 import NodeScreen from "../app/node/[slug]";
 import { useAnalytics } from "../src/analytics/provider";
@@ -52,9 +53,27 @@ function success(value: unknown) {
 	return { kind: "success" as const, value };
 }
 
+function deferred<T>() {
+	let resolve: (value: T) => void = () => undefined;
+	const promise = new Promise<T>((next) => {
+		resolve = next;
+	});
+	return { promise, resolve };
+}
+
 describe("NodeScreen", () => {
 	let getNode: jest.Mock;
 	let getImage: jest.Mock;
+	let getLinks: jest.Mock;
+	let openUrl: jest.SpiedFunction<typeof Linking.openURL>;
+
+	beforeAll(() => {
+		openUrl = jest.spyOn(Linking, "openURL");
+	});
+
+	afterAll(() => {
+		openUrl.mockRestore();
+	});
 
 	beforeEach(() => {
 		jest.clearAllMocks();
@@ -68,9 +87,20 @@ describe("NodeScreen", () => {
 				source: "cache",
 			}),
 		);
+		getLinks = jest.fn(async () =>
+			success({
+				slug: "artist:sample-node",
+				spotify: null,
+				apple: null,
+				sources: {},
+				resolvedAt: "2026-09-27T00:00:00.000Z",
+			}),
+		);
+		openUrl.mockResolvedValue(undefined);
 		mockedCreateApiClient.mockReturnValue({
 			getNode,
 			getImage,
+			getLinks,
 		} as unknown as ReturnType<typeof createApiClient>);
 	});
 
@@ -195,5 +225,158 @@ describe("NodeScreen", () => {
 		fireEvent(image, "error");
 
 		expect(screen.getByText("Image indisponible")).toBeTruthy();
+	});
+
+	it("announces the search fallback and exposes an external-opening error on the fiche", async () => {
+		getLinks.mockResolvedValueOnce(
+			success({
+				slug: "artist:sample-node",
+				spotify: "https://open.spotify.com/artist/123",
+				apple: null,
+				sources: {},
+				resolvedAt: "2026-09-27T00:00:00.000Z",
+			}),
+		);
+		openUrl.mockRejectedValueOnce(new Error("provider unavailable"));
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByLabelText("Ouvrir dans Spotify")).toBeTruthy());
+		expect(
+			screen.getByText(
+				"Nous ouvrons la page exacte si elle est disponible ; sinon, une recherche dans le service.",
+			),
+		).toBeTruthy();
+
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+		await waitFor(() => expect(screen.getByRole("alert")).toBeTruthy());
+
+		expect(screen.getByText("Impossible d’ouvrir ce service. Réessayez plus tard.")).toBeTruthy();
+		expect(openUrl).toHaveBeenCalledWith("https://open.spotify.com/artist/123");
+		expect(analytics.trackEvent).toHaveBeenCalledWith(
+			"external_listening_failed",
+			expect.objectContaining({ provider: "spotify", link_kind: "exact", error_code: "open_failed" }),
+			{ source: "home" },
+		);
+	});
+
+	it("does not send listening analytics before measurement consent", async () => {
+		mockedUseAnalytics.mockReturnValue({ ...analytics, consent: { version: 1, status: "denied" } });
+		getLinks.mockResolvedValueOnce(
+			success({
+				slug: "artist:sample-node",
+				spotify: "https://open.spotify.com/artist/123",
+				apple: null,
+				sources: {},
+				resolvedAt: "2026-09-27T00:00:00.000Z",
+			}),
+		);
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByLabelText("Ouvrir dans Spotify")).toBeTruthy());
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+		await waitFor(() => expect(openUrl).toHaveBeenCalledWith("https://open.spotify.com/artist/123"));
+
+		expect(analytics.trackEvent).not.toHaveBeenCalled();
+	});
+
+	it("coalesces duplicate callbacks for one external-opening gesture", async () => {
+		let completeOpen: (() => void) | undefined;
+		openUrl.mockImplementationOnce(
+			() =>
+				new Promise<void>((resolve) => {
+					completeOpen = resolve;
+				}),
+		);
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByLabelText("Ouvrir dans Spotify")).toBeTruthy());
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+
+		expect(getLinks).toHaveBeenCalledTimes(1);
+		await waitFor(() => expect(completeOpen).toBeDefined());
+		const complete = completeOpen;
+		if (complete === undefined) throw new Error("external opening did not start");
+		complete();
+		await waitFor(() => expect(openUrl).toHaveBeenCalledTimes(1));
+	});
+
+	it("cancels a late link lookup on unmount before it can open or track", async () => {
+		const links = deferred<ReturnType<typeof success>>();
+		getLinks.mockImplementationOnce(() => links.promise);
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByLabelText("Ouvrir dans Spotify")).toBeTruthy());
+		analytics.trackEvent.mockClear();
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+		await waitFor(() => expect(getLinks).toHaveBeenCalledTimes(1));
+
+		screen.unmount();
+		links.resolve(
+			success({
+				slug: "artist:sample-node",
+				spotify: "https://open.spotify.com/artist/123",
+				apple: null,
+				sources: {},
+				resolvedAt: "2026-09-27T00:00:00.000Z",
+			}),
+		);
+		await Promise.resolve();
+		await Promise.resolve();
+
+		expect(openUrl).not.toHaveBeenCalled();
+		expect(analytics.trackEvent).not.toHaveBeenCalledWith(
+			"external_listening_opened",
+			expect.anything(),
+			expect.anything(),
+		);
+		expect(analytics.trackEvent).not.toHaveBeenCalledWith(
+			"external_listening_failed",
+			expect.anything(),
+			expect.anything(),
+		);
+	});
+
+	it("invalidates a late link lookup when navigation changes to another fiche", async () => {
+		const links = deferred<ReturnType<typeof success>>();
+		getLinks.mockImplementationOnce(() => links.promise);
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByLabelText("Ouvrir dans Spotify")).toBeTruthy());
+		analytics.trackEvent.mockClear();
+		fireEvent.press(screen.getByLabelText("Ouvrir dans Spotify"));
+		await waitFor(() => expect(getLinks).toHaveBeenCalledTimes(1));
+
+		getNode.mockResolvedValueOnce(success(nodeResponse("artist", "Autre fiche", "artist:another-node")));
+		mockedUseLocalSearchParams.mockReturnValue({ slug: "artist:another-node", source: "search" });
+		screen.rerender(<NodeScreen />);
+		await waitFor(() => expect(getNode).toHaveBeenCalledTimes(2));
+		await waitFor(() => expect(screen.getByRole("header", { name: "Autre fiche" })).toBeTruthy());
+		links.resolve(
+			success({
+				slug: "artist:sample-node",
+				spotify: "https://open.spotify.com/artist/123",
+				apple: null,
+				sources: {},
+				resolvedAt: "2026-09-27T00:00:00.000Z",
+			}),
+		);
+		await Promise.resolve();
+		await Promise.resolve();
+
+		expect(openUrl).not.toHaveBeenCalled();
+		expect(analytics.trackEvent).not.toHaveBeenCalledWith(
+			"external_listening_opened",
+			expect.anything(),
+			expect.anything(),
+		);
+		expect(analytics.trackEvent).not.toHaveBeenCalledWith(
+			"external_listening_failed",
+			expect.anything(),
+			expect.anything(),
+		);
+		expect(screen.getByLabelText("Ouvrir dans Spotify").props.disabled).not.toBe(true);
+		expect(screen.getByLabelText("Ouvrir dans Apple Music").props.disabled).not.toBe(true);
+		expect(screen.queryByText("Recherche Spotify ouverte.")).toBeNull();
+		expect(screen.queryByRole("alert")).toBeNull();
+		screen.unmount();
 	});
 });
