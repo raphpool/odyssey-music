@@ -8,9 +8,10 @@ import { type ApiClient, createApiClient } from "../../src/api/client";
 import type { NodeResponse, NodeType } from "../../src/api/contracts";
 import type { ClientError } from "../../src/api/errors";
 import { ArtistDetails } from "../../src/components/ArtistDetails";
+import { GenreDetails } from "../../src/components/GenreDetails";
+import { LabelDetails } from "../../src/components/LabelDetails";
 import { NodeArticle } from "../../src/components/NodeArticle";
 import { NodeImage } from "../../src/components/NodeImage";
-import { NodeRelations } from "../../src/components/NodeRelations";
 import { ProjectDetails } from "../../src/components/ProjectDetails";
 import { TrackDetails } from "../../src/components/TrackDetails";
 import { GenerationStatus } from "../../src/generation/status";
@@ -280,6 +281,7 @@ export default function NodeScreen() {
 		);
 	}
 	const node = state.value.node;
+	const supportsExternalListening = node.type !== "genre" && node.type !== "label";
 	const openListening = async (provider: ListeningProvider): Promise<void> => {
 		if (openingProviderRef.current !== undefined) return;
 		openingProviderRef.current = provider;
@@ -356,44 +358,48 @@ export default function NodeScreen() {
 						{node.teaser}
 					</Text>
 				)}
-				<View style={styles.listening}>
-					<Text accessibilityRole="header" allowFontScaling style={styles.listeningHeading}>
-						Écouter ailleurs
-					</Text>
-					<Text allowFontScaling style={styles.listeningHint}>
-						Nous ouvrons la page exacte si elle est disponible ; sinon, une recherche dans le service.
-					</Text>
-					<Button
-						accessibilityLabel="Ouvrir dans Spotify"
-						disabled={openingProvider !== undefined}
-						title={openingProvider === "spotify" ? "Ouverture…" : "Ouvrir dans Spotify"}
-						onPress={() => void openListening("spotify")}
-					/>
-					<View style={styles.listeningButton}>
-						<Button
-							accessibilityLabel="Ouvrir dans Apple Music"
-							disabled={openingProvider !== undefined}
-							title={openingProvider === "apple_music" ? "Ouverture…" : "Ouvrir dans Apple Music"}
-							onPress={() => void openListening("apple_music")}
-						/>
-					</View>
-					{listeningResult?.kind === "opened" && listeningResult.linkKind === "search" ? (
+				{supportsExternalListening ? (
+					<View style={styles.listening}>
+						<Text accessibilityRole="header" allowFontScaling style={styles.listeningHeading}>
+							Écouter ailleurs
+						</Text>
 						<Text allowFontScaling style={styles.listeningHint}>
-							{`Recherche ${providerLabel(listeningResult.provider)} ouverte.`}
+							Nous ouvrons la page exacte si elle est disponible ; sinon, une recherche dans le service.
 						</Text>
-					) : null}
-					{listeningResult?.kind === "failed" ? (
-						<Text accessibilityRole="alert" allowFontScaling style={styles.listeningError}>
-							{listeningResult.errorCode === "unsafe_url"
-								? "Ce lien a été bloqué pour votre sécurité."
-								: "Impossible d’ouvrir ce service. Réessayez plus tard."}
-						</Text>
-					) : null}
-				</View>
+						<Button
+							accessibilityLabel="Ouvrir dans Spotify"
+							disabled={openingProvider !== undefined}
+							title={openingProvider === "spotify" ? "Ouverture…" : "Ouvrir dans Spotify"}
+							onPress={() => void openListening("spotify")}
+						/>
+						<View style={styles.listeningButton}>
+							<Button
+								accessibilityLabel="Ouvrir dans Apple Music"
+								disabled={openingProvider !== undefined}
+								title={openingProvider === "apple_music" ? "Ouverture…" : "Ouvrir dans Apple Music"}
+								onPress={() => void openListening("apple_music")}
+							/>
+						</View>
+						{listeningResult?.kind === "opened" && listeningResult.linkKind === "search" ? (
+							<Text allowFontScaling style={styles.listeningHint}>
+								{`Recherche ${providerLabel(listeningResult.provider)} ouverte.`}
+							</Text>
+						) : null}
+						{listeningResult?.kind === "failed" ? (
+							<Text accessibilityRole="alert" allowFontScaling style={styles.listeningError}>
+								{listeningResult.errorCode === "unsafe_url"
+									? "Ce lien a été bloqué pour votre sécurité."
+									: "Impossible d’ouvrir ce service. Réessayez plus tard."}
+							</Text>
+						) : null}
+					</View>
+				) : null}
 				<NodeArticle article={node.article} citations={node.citations} />
 				<NodeDetails node={node} navigationContext={navigationContext} />
-				{node.type === "genre" || node.type === "label" ? (
-					<NodeRelations edges={node.edges} fromNodeId={node.id} navigationContext={navigationContext} />
+				{node.type === "genre" ? (
+					<GenreDetails node={node} navigationContext={navigationContext} />
+				) : node.type === "label" ? (
+					<LabelDetails node={node} navigationContext={navigationContext} />
 				) : null}
 			</ScrollView>
 		</SafeAreaView>
