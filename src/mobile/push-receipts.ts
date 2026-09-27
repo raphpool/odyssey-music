@@ -23,8 +23,12 @@ export interface PushReceiptReport {
 	skipped: boolean;
 }
 
+export interface CollectDueReceiptsOptions {
+	shouldStop?: () => boolean;
+}
+
 export interface ExpoPushReceipts {
-	collectDueReceipts(): Promise<PushReceiptReport>;
+	collectDueReceipts(options?: CollectDueReceiptsOptions): Promise<PushReceiptReport>;
 }
 
 // A scheduler tick may overlap a slow provider response. Joining the in-flight work keeps
@@ -33,9 +37,12 @@ export function createExpoPushReceipts(options: ExpoPushReceiptsOptions): ExpoPu
 	const fetcher = options.fetch ?? fetch;
 	let inFlight: Promise<PushReceiptReport> | undefined;
 
-	async function collect(): Promise<PushReceiptReport> {
+	async function collect(collectionOptions: CollectDueReceiptsOptions): Promise<PushReceiptReport> {
 		const report: PushReceiptReport = { ok: 0, error: 0, unknown: 0, skipped: false };
 		while (true) {
+			// Stop only between batches so an active request and its durable outcome write finish
+			// together before systemd tears down the process during a deploy.
+			if (collectionOptions.shouldStop?.()) return report;
 			const requests = await options.store.listReceiptRequests(MAX_BATCH_SIZE);
 			if (requests.length === 0) return report;
 			const outcomes = await getBatch(fetcher, requests, options.accessToken);
@@ -50,9 +57,9 @@ export function createExpoPushReceipts(options: ExpoPushReceiptsOptions): ExpoPu
 	}
 
 	return {
-		collectDueReceipts() {
+		collectDueReceipts(options = {}) {
 			if (inFlight) return inFlight.then((report) => ({ ...report, skipped: true }));
-			inFlight = collect().finally(() => {
+			inFlight = collect(options).finally(() => {
 				inFlight = undefined;
 			});
 			return inFlight;
