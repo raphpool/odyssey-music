@@ -29,6 +29,7 @@ if [[ "$MOBILE_SMOKE" -eq 1 ]]; then
   MOBILE_API_URL="${MOBILE_API_URL:-https://dropcliffs.com/api/odyssey/mobile/v1}"
   : "${MOBILE_SMOKE_IDENTITY:?MOBILE_SMOKE_IDENTITY must name an existing genre node}"
   : "${MOBILE_EXPECTED_SHA:?MOBILE_EXPECTED_SHA must be the exact deployed Git SHA}"
+  MOBILE_SMOKE_INTERRUPTED_GENERATION_ID="${MOBILE_SMOKE_INTERRUPTED_GENERATION_ID:-}"
   MOBILE_CONNECT_TIMEOUT_SECONDS="${MOBILE_CONNECT_TIMEOUT_SECONDS:-5}"
   MOBILE_REQUEST_TIMEOUT_SECONDS="${MOBILE_REQUEST_TIMEOUT_SECONDS:-15}"
   TEMP_DIR="$(mktemp -d)"
@@ -75,6 +76,10 @@ if [[ "$MOBILE_SMOKE" -eq 1 ]]; then
   fi
   if [[ ! "$MOBILE_EXPECTED_SHA" =~ ^[a-f0-9]{40}$ ]]; then
     echo "ERROR: MOBILE_EXPECTED_SHA must be a full lowercase Git SHA" >&2
+    exit 2
+  fi
+  if [[ -n "$MOBILE_SMOKE_INTERRUPTED_GENERATION_ID" && ! "$MOBILE_SMOKE_INTERRUPTED_GENERATION_ID" =~ ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$ ]]; then
+    echo "ERROR: MOBILE_SMOKE_INTERRUPTED_GENERATION_ID must be a lowercase UUID" >&2
     exit 2
   fi
   if [[ ! "$MOBILE_CONNECT_TIMEOUT_SECONDS" =~ ^[1-9][0-9]*$ || ! "$MOBILE_REQUEST_TIMEOUT_SECONDS" =~ ^[1-9][0-9]*$ ]]; then
@@ -169,6 +174,22 @@ if [[ "$MOBILE_SMOKE" -eq 1 ]]; then
     echo "ERROR: /version does not match MOBILE_EXPECTED_SHA exactly" >&2
     exit 1
   }
+  if [[ -n "$MOBILE_SMOKE_INTERRUPTED_GENERATION_ID" ]]; then
+    request interrupted-generation "$MOBILE_API_URL/generations/$MOBILE_SMOKE_INTERRUPTED_GENERATION_ID"
+    node -e '
+      const payload = JSON.parse(require("node:fs").readFileSync(process.argv[1], "utf8"));
+      const expected = process.argv[2];
+      if (
+        !payload || typeof payload !== "object" || Array.isArray(payload) ||
+        payload.request_id !== expected || payload.status !== "interrupted" ||
+        !payload.error || typeof payload.error !== "object" || Array.isArray(payload.error) ||
+        payload.error.retryable !== false
+      ) process.exit(1);
+    ' "$TEMP_DIR/interrupted-generation.body" "$MOBILE_SMOKE_INTERRUPTED_GENERATION_ID" || {
+      echo "ERROR: interrupted generation was not durably retained without automatic retry" >&2
+      exit 1
+    }
+  fi
   echo "[verify-e2e] mobile smoke passed."
   exit 0
 fi

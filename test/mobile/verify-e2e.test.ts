@@ -105,6 +105,46 @@ describe("verify-e2e mobile smoke", () => {
 		expect(result.stderr).toContain("does not match MOBILE_EXPECTED_SHA exactly");
 	});
 
+	it("attests that a pre-restart generation remains interrupted without an automatic retry", async () => {
+		const requestId = "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd";
+		const result = run({
+			MOBILE_SMOKE_INTERRUPTED_GENERATION_ID: requestId,
+			MOCK_GENERATION_BODY: JSON.stringify({
+				request_id: requestId,
+				status: "interrupted",
+				error: { code: "internal_error", message: "Interrupted by restart", retryable: false },
+			}),
+		});
+
+		expect(result.status).toBe(0);
+		expect(await calls()).toContain(`/generations/${requestId}`);
+	});
+
+	it.each([
+		JSON.stringify({ request_id: "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd", status: "running" }),
+		JSON.stringify({
+			request_id: "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+			status: "interrupted",
+			error: { retryable: true },
+		}),
+	])("rejects a generation that cannot prove restart interruption", (generationBody) => {
+		const result = run({
+			MOBILE_SMOKE_INTERRUPTED_GENERATION_ID: "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+			MOCK_GENERATION_BODY: generationBody,
+		});
+
+		expect(result.status).toBe(1);
+		expect(result.stderr).toContain("was not durably retained without automatic retry");
+	});
+
+	it("refuses a malformed generation identity before issuing a request", async () => {
+		const result = run({ MOBILE_SMOKE_INTERRUPTED_GENERATION_ID: "not-a-uuid" });
+
+		expect(result.status).toBe(2);
+		expect(result.stderr).toContain("must be a lowercase UUID");
+		expect(await calls()).toBe("");
+	});
+
 	it("reports a bounded network failure instead of treating a timeout as a pass", async () => {
 		const result = run({ MOCK_CURL_MODE: "timeout" });
 
@@ -124,6 +164,7 @@ function run(overrides: Record<string, string | undefined> = {}) {
 		MOCK_VERSION_SHA: expectedSha,
 		MOCK_CURL_MODE: "",
 		MOCK_NODE_BODY: validGenreNode,
+		MOCK_GENERATION_BODY: "{}",
 		...overrides,
 	};
 	return spawnSync("bash", [script, "--mobile-smoke"], {
@@ -171,8 +212,9 @@ case "$url" in
     printf '%s' '{"version":"v1","revision":"sha256:fixture","nodes":[]}' > "$body"
     ;;
   */search*) printf '%s' '{"hits":[],"sources":{"cache":0,"catalog":0}}' > "$body" ;;
-  */nodes/*) printf '%s' "$MOCK_NODE_BODY" > "$body" ;;
-  */version) printf '{"sha":"%s"}' "$MOCK_VERSION_SHA" > "$body" ;;
+	  */nodes/*) printf '%s' "$MOCK_NODE_BODY" > "$body" ;;
+	  */generations/*) printf '%s' "$MOCK_GENERATION_BODY" > "$body" ;;
+	  */version) printf '{"sha":"%s"}' "$MOCK_VERSION_SHA" > "$body" ;;
   *) printf '{}' > "$body" ;;
 esac
 printf '200'

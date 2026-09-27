@@ -259,10 +259,23 @@ attestation avant exécution.
 | Non exécuté dans TRA-297 | — | — | — | — | — | Préparation locale uniquement |
 
 Le SHA retourné par `https://dropcliffs.com/api/odyssey/version` doit être exactement
-`MOBILE_EXPECTED_SHA`. Rejouer la même commande, avec le SHA attendu de la révision concernée,
-avant et après un second déploiement ou redémarrage, puis consigner les deux lignes observées :
-aucune demande `pending` ou `running` ne doit reprendre un appel fournisseur, et le registre doit
-rester lisible. Une différence est un blocage à corriger dans le ticket propriétaire, pas une
+`MOBILE_EXPECTED_SHA`. Pour attester un redémarrage, créer auparavant une demande explicitement
+budgétée, relever son UUID pendant qu'elle est `pending` ou `running`, puis redémarrer. Rejouer le
+smoke avec l'UUID observé :
+
+```bash
+MOBILE_SMOKE_INTERRUPTED_GENERATION_ID=<uuid-observe-avant-redemarrage> \
+MOBILE_API_URL=https://dropcliffs.com/api/odyssey/mobile/v1 \
+MOBILE_SMOKE_IDENTITY=genre:ambient \
+MOBILE_EXPECTED_SHA=<sha-main-deploye-sur-40-caracteres> \
+bash scripts/verify-e2e.sh --mobile-smoke
+```
+
+Le smoke lit alors uniquement `GET /mobile/v1/generations/:request_id` et exige le même UUID,
+`status: "interrupted"` et `error.retryable: false`. Cette observation prouve que le registre est
+lisible après redémarrage et qu'aucun travail actif n'a été repris automatiquement ; elle ne crée
+ni ne relance une génération. Consigner cette valeur après chacun des deux déploiements ou
+redémarrages. Une différence est un blocage à corriger dans le ticket propriétaire, pas une
 correction silencieuse de cette recette.
 
 ## Contrats réservés, non implémentés
