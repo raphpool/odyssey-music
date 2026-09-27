@@ -12,6 +12,7 @@ type ProviderValue = {
 	ready: boolean;
 	consent: Consent;
 	configured: boolean;
+	transportReady?: boolean;
 	purgeIncomplete: boolean;
 	grant(): Promise<void>;
 	deny(): Promise<void>;
@@ -103,9 +104,12 @@ export function createSegmentTransport(
 		},
 		reset: async () => segment.reset(false),
 		destroy: () => segment.cleanup(),
-		onReady: (callback) => segment.isReady.onChange((ready) => {
-			if (ready) callback();
-		}),
+		onReady: (callback) => {
+			if (segment.isReady.value) callback();
+			return segment.isReady.onChange((ready) => {
+				if (ready) callback();
+			});
+		},
 	};
 }
 
@@ -146,6 +150,7 @@ export function AnalyticsProvider({
 	);
 	const [consent, setConsent] = useState<Consent>({ version: 1, status: "unknown" });
 	const [ready, setReady] = useState(false);
+	const [transportReady, setTransportReady] = useState(false);
 
 	useEffect(() => {
 		let mounted = true;
@@ -168,21 +173,30 @@ export function AnalyticsProvider({
 		};
 	}, [controller]);
 
+	useEffect(() => {
+		setTransportReady(false);
+		return controller.subscribeTransportReady(() => setTransportReady(true));
+	}, [controller]);
+
 	const value = useMemo<ProviderValue>(
 		() => ({
 			ready,
 			consent,
 			configured: controller.configured,
+			transportReady,
 			purgeIncomplete: controller.purgeIncomplete,
 			grant: async () => {
 				const next = await controller.grant();
 				void controller.recordAppOpened("app");
 				setConsent(next);
 			},
-			deny: async () => setConsent(await controller.revoke()),
+			deny: async () => {
+				setTransportReady(false);
+				setConsent(await controller.revoke());
+			},
 			trackEvent: (name, properties, context) => controller.trackEvent(name, properties, context),
 		}),
-		[consent, controller, ready],
+		[consent, controller, ready, transportReady],
 	);
 	return <AnalyticsContext.Provider value={value}>{children}</AnalyticsContext.Provider>;
 }

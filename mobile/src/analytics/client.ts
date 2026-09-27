@@ -61,6 +61,8 @@ export class AnalyticsClient {
 	private disposed = false;
 	private disposePromise: Promise<void> | undefined;
 	private readyUnsubscribe: (() => void) | undefined;
+	private transportReady = false;
+	private readonly transportReadyListeners = new Set<() => void>();
 	private transitions: Promise<void> = Promise.resolve();
 	private readonly now: () => string;
 
@@ -82,6 +84,12 @@ export class AnalyticsClient {
 
 	get purgeIncomplete(): boolean {
 		return this._purgeIncomplete;
+	}
+
+	subscribeTransportReady(listener: () => void): () => void {
+		this.transportReadyListeners.add(listener);
+		if (this.transportReady) listener();
+		return () => this.transportReadyListeners.delete(listener);
 	}
 
 	async initialize(): Promise<Consent> {
@@ -221,7 +229,7 @@ export class AnalyticsClient {
 				build_number: this.options.buildNumber,
 				environment: this.options.environment,
 				source: validated.context.source,
-				occurred_at: this.now(),
+				occurred_at: validated.context.occurred_at ?? this.now(),
 				anonymousId,
 			},
 			context:
@@ -269,7 +277,12 @@ export class AnalyticsClient {
 			if (next === undefined) return false;
 			this.transport = next;
 			this._anonymousId = anonymousId;
-			this.readyUnsubscribe = next.onReady?.(() => void this.recordAppOpened("app"));
+			this.readyUnsubscribe = next.onReady?.(() => {
+				if (!this.current(expectedIntent, expectedEpoch)) return;
+				this.transportReady = true;
+				for (const listener of this.transportReadyListeners) listener();
+				void this.recordAppOpened("app");
+			});
 			return true;
 		} catch {
 			if (next !== undefined) {
@@ -320,6 +333,7 @@ export class AnalyticsClient {
 			// The stale callback still checks epoch/disposed before recording anything.
 		}
 		this.readyUnsubscribe = undefined;
+		this.transportReady = false;
 		this.transport = undefined;
 	}
 
