@@ -1,3 +1,4 @@
+import { GENERATION_STORAGE_KEY } from "../generation/store";
 import {
 	isGenreId,
 	isUuid,
@@ -382,6 +383,7 @@ export class ProfileStore {
 				this.storage.removeItem(PROFILE_DRAFT_STORAGE_KEY),
 				this.storage.removeItem(PROFILE_ONBOARDING_COMPLETION_STORAGE_KEY),
 				this.storage.removeItem(PROFILE_ONBOARDING_STARTED_STORAGE_KEY),
+				this.storage.removeItem(GENERATION_STORAGE_KEY),
 				...recommendationKeys.map((key) => this.storage.removeItem(key)),
 			]);
 			return { kind: "cleared" };

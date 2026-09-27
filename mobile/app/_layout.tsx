@@ -36,6 +36,7 @@ function AnalyticsNavigation() {
 	const onPrivacyChoice = pathname === "/privacy-choice";
 	const onOnboarding = pathname === "/onboarding";
 	const onSearch = pathname === "/search";
+	const onSearchResult = pathname.startsWith("/node/") && params.source === "search";
 	const onSettings = pathname === "/settings";
 	const [outboxSignal, setOutboxSignal] = useState(0);
 	const replayingEventIds = useRef(new Set<string>());
@@ -50,6 +51,7 @@ function AnalyticsNavigation() {
 		profile.state.kind !== "profile" &&
 		!onOnboarding &&
 		!onSearch &&
+		!onSearchResult &&
 		!onSettings &&
 		!onPrivacyChoice;
 	const blocked =

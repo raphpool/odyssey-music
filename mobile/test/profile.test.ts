@@ -1,3 +1,4 @@
+import { GENERATION_STORAGE_KEY } from "../src/generation/store";
 import { isUuid, MINIMUM_GENRES, parseProfile, selectionIsComplete } from "../src/profile/model";
 import {
 	PROFILE_DRAFT_STORAGE_KEY,
@@ -333,12 +334,13 @@ describe("music profile store", () => {
 		);
 	});
 
-	it("clears only the music profile, draft and recommendation keys", async () => {
+	it("clears only the music profile, draft, recommendation and generation keys", async () => {
 		const memory = storage({
 			[PROFILE_STORAGE_KEY]: "profile",
 			[PROFILE_DRAFT_STORAGE_KEY]: "draft",
 			"track1.recommendation.v1": "today",
 			"track1.recommendation.history.v1": "history",
+			[GENERATION_STORAGE_KEY]: "generations",
 			[PROFILE_ONBOARDING_COMPLETION_STORAGE_KEY]: "completion",
 			[PROFILE_ONBOARDING_STARTED_STORAGE_KEY]: "started",
 			"track1.analytics-consent.v1": "granted",
@@ -349,6 +351,7 @@ describe("music profile store", () => {
 		expect(memory.values.has(PROFILE_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has(PROFILE_DRAFT_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has("track1.recommendation.v1")).toBe(false);
+		expect(memory.values.has(GENERATION_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has(PROFILE_ONBOARDING_COMPLETION_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has(PROFILE_ONBOARDING_STARTED_STORAGE_KEY)).toBe(false);
 		expect(memory.values.get("track1.analytics-consent.v1")).toBe("granted");

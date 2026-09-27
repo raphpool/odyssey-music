@@ -1,5 +1,5 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react-native";
-import { router, usePathname } from "expo-router";
+import { router, useGlobalSearchParams, usePathname } from "expo-router";
 import { Alert, ScrollView } from "react-native";
 
 import RootLayout from "../app/_layout";
@@ -96,6 +96,7 @@ describe("track1 navigation", () => {
 		mockOutboxListeners.clear();
 		jest.mocked(ProfileStore).mockImplementation(() => completionStore as never);
 		jest.mocked(usePathname).mockReturnValue("/onboarding");
+		jest.mocked(useGlobalSearchParams).mockReturnValue({ entry: "direct" });
 		completionStore.readOnboardingStarted.mockResolvedValue(undefined);
 		completionStore.onboardingOutboxPurgePending.mockResolvedValue(false);
 		completionStore.acknowledgeOnboardingStarted.mockResolvedValue(true);
@@ -209,6 +210,31 @@ describe("track1 navigation", () => {
 
 	it("keeps Recherche reachable before a profile exists", () => {
 		jest.mocked(usePathname).mockReturnValue("/search");
+		jest.mocked(useProfile).mockReturnValue({
+			ready: true,
+			state: { kind: "missing" },
+			reload: async () => ({ kind: "missing" }),
+		} as unknown as ReturnType<typeof useProfile>);
+		jest.mocked(useAnalytics).mockReturnValue({
+			ready: true,
+			consent: { version: 1, status: "denied" },
+			configured: false,
+			purgeIncomplete: false,
+			grant: async () => undefined,
+			deny: async () => undefined,
+			trackEvent: async () => ({ kind: "disabled" }),
+		});
+		mockedReadPublicConfig.mockReturnValue({ ok: true, value: {} } as ReturnType<typeof readPublicConfig>);
+
+		const root = render(<RootLayout />);
+
+		expect(root.getByTestId("stack-navigator")).toBeTruthy();
+		expect(router.replace).not.toHaveBeenCalledWith("/onboarding");
+	});
+
+	it("keeps a search result reachable before a profile exists", () => {
+		jest.mocked(usePathname).mockReturnValue("/node/artist:example");
+		jest.mocked(useGlobalSearchParams).mockReturnValue({ source: "search" });
 		jest.mocked(useProfile).mockReturnValue({
 			ready: true,
 			state: { kind: "missing" },
