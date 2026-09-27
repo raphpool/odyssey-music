@@ -5,9 +5,9 @@
 L'application utilise exclusivement une URL HTTPS se terminant par `/mobile/v1`.
 Les routes historiques du serveur Odyssey ne sont pas un contrat mobile et ne doivent
 pas être appelées par l'application. Le catalogue est public en lecture : aucun secret
-fournisseur ne peut être embarqué dans l'application. Les futures opérations qui créent
-une recommandation, une génération ou un abonnement de notifications seront associées à
-une identité utilisateur côté serveur et à des crédits contrôlés côté serveur.
+fournisseur ne peut être embarqué dans l'application. La création publique de fiche reste
+limitée côté serveur (idempotence, déduplication, file bornée et crédits fournisseur), jamais
+par une clé livrée au client.
 
 Toutes les erreurs de la surface mobile ont cette forme :
 
@@ -20,11 +20,12 @@ Toutes les erreurs de la surface mobile ont cette forme :
 }
 ```
 
-Les codes actuellement exposés sont `invalid_request` (400), `unauthorized` (401),
-`not_found` (404), `method_not_allowed` (405), `conflict` (409),
-`catalog_unavailable` (500) et `push_unavailable` (503). Une erreur ne contient jamais
-un message interne, un chemin de cache, un token de notification, un secret ou une erreur
-d'un fournisseur.
+Les codes actuellement exposés sont `invalid_request` (400), `idempotency_conflict` (409),
+`unauthorized` (401), `not_found` (404), `method_not_allowed` (405), `conflict` et
+`idempotency_conflict` (409), `job_expired` (410), `busy` (429), `catalog_unavailable` et
+`internal_error` (500), `push_unavailable`, `provider_quota_exhausted` et `provider_unavailable` (503).
+Une erreur ne contient jamais un message interne, un chemin de cache, un token de notification,
+un secret ou une erreur brute d'un fournisseur.
 
 ## Catalogue disponible
 
@@ -145,6 +146,51 @@ créations répondent `503 push_unavailable` tandis que réessai identique, mise
 suppression restent possibles. La maintenance supprime les abonnements sans activité depuis
 90 jours avant toute admission. Ce ticket n'envoie aucun push Expo.
 
+## Générations publiques suivies
+
+`POST /mobile/v1/generations` accepte un JSON strict de 8 KiB maximum. `request_id` et `mbid`
+sont des UUID ; `type` vaut `artist`, `project`, `track`, `genre` ou `label`, `name` et
+`disambiguator` sont trimés et bornés à 1–200 caractères, `slug` est canonique et du même type,
+et `qid` suit `Q[1-9]\d*`. Les champs inconnus, `fresh` ou des identifiants contradictoires avec
+une fiche existante sont refusés avec `400 invalid_request`.
+
+Une demande qui doit réellement être matérialisée est durable avant le `202`, plate et suivable dans `Location:
+/mobile/v1/generations/:request_id` :
+
+```json
+{
+	"request_id": "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+	"status": "queued",
+	"created_at": "2026-09-27T00:00:00.000Z",
+	"updated_at": "2026-09-27T00:00:00.000Z"
+}
+```
+
+`GET /mobile/v1/generations/:request_id` retourne cette forme avec `running`, `succeeded`,
+`failed` ou `interrupted`. Un succès porte toujours `node_id` (le slug canonique réellement
+écrit) ; un échec terminal porte `{error:{code,message,retryable}}`. Une demande identique avec
+le même `request_id` retourne le même suivi ; une entrée différente retourne
+`409 idempotency_conflict`. Les travaux de même identité partagent une matérialisation. Deux
+matérialisations et dix demandes en attente sont admises ; la saturation retourne `429 busy` et
+`Retry-After: 30` sans écrire une nouvelle demande.
+
+Avant le cache fast-path, le serveur vérifie durablement le couple `request_id` + requête : une
+réutilisation avec une entrée différente retourne `409 idempotency_conflict`, même après un
+redémarrage. Une fiche compatible déjà présente répond immédiatement `succeeded` avec son
+`node_id` canonique ; son résultat d'idempotence est conservé 24 h dans un registre séparé, borné
+à 2 048 entrées. Il ne crée pas de suivi, ne consomme aucune place de file ou de capacité de jobs
+et n'appelle jamais le modèle. Cette réponse immédiate est un `200` sans `Location`; seul un
+travail durable accepté répond `202` et peut ensuite être lu par
+`GET /mobile/v1/generations/:request_id`. Lorsque ce registre dédié est plein, le serveur répond
+`429 busy` avec `Retry-After: 30`, sans appeler un fournisseur.
+
+Il n'y a aucune reprise automatique : au redémarrage, les travaux `pending` et `running`
+deviennent `interrupted` (`retryable:false`). Crédits épuisés devient
+`provider_quota_exhausted` (`retryable:false`), panne/délai devient `provider_unavailable`
+(`retryable:true`) et le reste `internal_error` sans détail fournisseur. Une fiche déjà présente,
+même ancienne, est réutilisée sans refresh ni appel modèle ; le refresh de la route web historique
+reste inchangé. Chaque succès invalide l'index de recherche mobile.
+
 ## Contrats réservés, non implémentés
 
 Les routes ci-dessous sont documentées pour permettre aux clients d'anticiper les
@@ -153,8 +199,7 @@ génération, écriture ou notification.
 
 - `GET /mobile/v1/daily-recommendation` retournera une recommandation quotidienne
   stable pour l'identité locale ou authentifiée, avec sa provenance de catalogue.
-- `POST /mobile/v1/generations` demandera une génération explicitement déclenchée par
-  l'utilisateur. Le serveur vérifiera une identité utilisateur et un crédit avant de
-  contacter un fournisseur ; aucune clé fournisseur ne transitera dans le client.
+- `PUT /mobile/v1/push-tokens/{token}` enregistrera ou renouvellera un token de push
+  validé pour une identité utilisateur, afin de livrer la recommandation quotidienne.
 - `POST /mobile/v1/events` recevra ultérieurement les événements produit validés par
   le plan de tracking, sans remplacer les SDK d'analytics du client.

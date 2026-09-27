@@ -37,6 +37,8 @@ import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
+import { createMobileGenerationService } from "./mobile/generation-service.js";
+import { createGenerationStore } from "./mobile/generation-store.js";
 import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
 import { createMobilePushRoutes } from "./mobile/push-routes.js";
@@ -113,12 +115,28 @@ try {
 } catch {
 	mobilePushStore = undefined;
 }
+let mobileGeneration: ReturnType<typeof createMobileGenerationService> | undefined;
+try {
+	const generationStore = await createGenerationStore({ stateDir: serverConfig.mobileStateDir });
+	mobileGeneration = createMobileGenerationService({
+		store: generationStore,
+		materialize: materializeService,
+		invalidateSearch: invalidateCacheIndex,
+	});
+} catch (error) {
+	// Generation persistence is optional for boot: preserve the broken registry and
+	// keep all read-only music routes available while this route answers typed 503.
+	log.error("mobile generation registry unavailable", {
+		error: error instanceof Error ? error.message : "unknown failure",
+	});
+}
 const mobileRouter = createMobileRouter({
 	catalog: mobileCatalog,
 	nodes: mobileNodes,
 	media: mobileMedia,
 	search: mobileSearch,
 	push: createMobilePushRoutes({ ...(mobilePushStore ? { store: mobilePushStore } : {}) }),
+	...(mobileGeneration ? { generation: mobileGeneration } : {}),
 });
 
 const server = createServer(async (req, res) => {

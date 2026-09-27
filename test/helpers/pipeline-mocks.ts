@@ -154,6 +154,8 @@ const DEFAULT_MB_GENRES: readonly MockMbGenre[] = [{ name: "techno", mbid: DEFAU
 export interface InstallPipelineMocksOptions {
 	/** The raw JSON object the mocked Gemini call returns as `resp.text` (JSON.stringify'd). */
 	draft: Record<string, unknown>;
+	/** Optional Gemini boundary override for retry-policy regressions. */
+	generateContent?: () => Promise<unknown>;
 	/** MusicBrainz genre tags returned by fetchEntityGenresMb. Defaults to a single
 	 * real techno tag with a QID-mapped mbid. */
 	mbGenres?: readonly MockMbGenre[];
@@ -200,10 +202,13 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 			() =>
 				({
 					models: {
-						generateContent: vi.fn(async () => ({
-							text: JSON.stringify(options.draft),
-							usageMetadata: { promptTokenCount: 42, candidatesTokenCount: 42 },
-						})),
+						generateContent: vi.fn(
+							options.generateContent ??
+								(async () => ({
+									text: JSON.stringify(options.draft),
+									usageMetadata: { promptTokenCount: 42, candidatesTokenCount: 42 },
+								})),
+						),
 					},
 				}) as unknown as GoogleGenAI,
 		);

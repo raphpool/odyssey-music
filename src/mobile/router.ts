@@ -1,5 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import type { MobileCatalog } from "./catalog.js";
+import { createMobileGenerationRoutes } from "./generation-routes.js";
+import type { MobileGenerationService } from "./generation-service.js";
 import { createMobileHttpHandler } from "./http.js";
 import { type MobileMedia, MobileProviderUnavailableError } from "./media.js";
 import { MobileNodeInputError, type MobileNodeReader } from "./nodes.js";
@@ -17,6 +19,7 @@ interface MobileRouterDependencies {
 	media?: MobileMedia;
 	search?: MobileSearch;
 	push?: MobilePushRoutes;
+	generation?: MobileGenerationService;
 }
 
 export interface MobileRouterRequest {
@@ -33,11 +36,13 @@ export interface MobileRouter {
 // booting the legacy server, whose startup loads cache and provider configuration.
 export function createMobileRouter(dependencies: MobileRouterDependencies): MobileRouter {
 	const handleHttp = createMobileHttpHandler(dependencies);
+	const handleGeneration = createMobileGenerationRoutes(dependencies.generation);
 	return {
 		async handle(request: MobileRouterRequest): Promise<boolean> {
 			if (!request.url.pathname.startsWith("/mobile/v1")) return false;
 			if (request.url.pathname === "/mobile/v1/catalog") return handleHttp(request);
 			if (dependencies.push && (await dependencies.push.handle(request))) return true;
+			if (await handleGeneration(request)) return true;
 			if (request.url.pathname === "/mobile/v1/search")
 				return handleSearchRoute(request, dependencies.search);
 			if (!dependencies.nodes || !dependencies.media) {
