@@ -1,4 +1,5 @@
 import { fireEvent, render } from "@testing-library/react-native";
+import { router } from "expo-router";
 import { ScrollView } from "react-native";
 
 import RootLayout from "../app/_layout";
@@ -7,6 +8,7 @@ import TodayScreen from "../app/(tabs)/index";
 import SearchScreen from "../app/(tabs)/search";
 import SettingsScreen from "../app/(tabs)/settings";
 import RootIndex from "../app/index";
+import { useAnalytics } from "../src/analytics/provider";
 import { ConfigurationError } from "../src/components/ConfigurationError";
 import { readPublicConfig } from "../src/config";
 
@@ -29,18 +31,40 @@ jest.mock("expo-router", () => {
 
 	return {
 		Redirect: ({ href }: { href: string }) => React.createElement(Text, { testID: "redirect-target" }, href),
+		router: { push: jest.fn(), replace: jest.fn() },
 		Stack: createNavigator("stack-navigator"),
 		Tabs: createNavigator("tabs-navigator"),
+		useGlobalSearchParams: jest.fn(() => ({ entry: "direct" })),
+		usePathname: jest.fn(() => "/onboarding"),
 	};
 });
 
 jest.mock("../src/config", () => ({
 	readPublicConfig: jest.fn(),
 }));
+jest.mock("../src/analytics/provider", () => {
+	const React = require("react");
+	return {
+		AnalyticsProvider: ({ children }: { children?: React.ReactNode }) => children,
+		analyticsStatusLabel: (status: string) => status,
+		useAnalytics: jest.fn(),
+	};
+});
 
 const mockedReadPublicConfig = readPublicConfig as jest.MockedFunction<typeof readPublicConfig>;
 
 describe("track1 navigation", () => {
+	beforeEach(() => {
+		jest.mocked(useAnalytics).mockReturnValue({
+			ready: true,
+			consent: { version: 1, status: "unknown" },
+			configured: false,
+			purgeIncomplete: false,
+			grant: async () => undefined,
+			deny: async () => undefined,
+			trackEvent: async () => ({ kind: "disabled" }),
+		});
+	});
 	afterEach(() => jest.clearAllMocks());
 	it("opens the French Today tab through the root route", () => {
 		mockedReadPublicConfig.mockReturnValue({ ok: true, value: {} } as ReturnType<typeof readPublicConfig>);
@@ -62,6 +86,23 @@ describe("track1 navigation", () => {
 		expect(root.queryByTestId("stack-navigator")).toBeNull();
 	});
 
+	it("gates onboarding until an unknown consent choice is made", () => {
+		mockedReadPublicConfig.mockReturnValue({ ok: true, value: {} } as ReturnType<typeof readPublicConfig>);
+
+		const root = render(<RootLayout />);
+		const applicationNavigator = root.UNSAFE_getByProps({ testID: "application-navigator" });
+
+		expect(applicationNavigator.props.importantForAccessibility).toBe("no-hide-descendants");
+		expect(applicationNavigator.props.accessibilityElementsHidden).toBe(true);
+		expect(root.getByLabelText("Chargement du choix de mesure")).toBeTruthy();
+		expect(root.queryByTestId("stack-navigator")).toBeNull();
+		expect(root.queryByLabelText("Bienvenue")).toBeNull();
+		expect(router.replace).toHaveBeenCalledWith({
+			pathname: "/privacy-choice",
+			params: { returnTo: "/onboarding?entry=direct" },
+		});
+	});
+
 	it("keeps tab screens mounted when the active tab changes", () => {
 		const tabs = render(<TabsLayout />);
 
@@ -81,6 +122,14 @@ describe("track1 navigation", () => {
 
 		const settings = render(<SettingsScreen />);
 		expect(settings.getByRole("header").props.allowFontScaling).toBe(true);
+		expect(settings.UNSAFE_getByType(ScrollView).props.contentContainerStyle).toEqual(
+			expect.objectContaining({ flexGrow: 1 }),
+		);
+		fireEvent.press(settings.getByLabelText("Modifier le choix de mesure d’usage"));
+		expect(router.push).toHaveBeenCalledWith({
+			pathname: "/privacy-choice",
+			params: { mode: "edit", returnTo: "/(tabs)/settings" },
+		});
 	});
 
 	it("keeps long configuration guidance reachable on a small screen", () => {

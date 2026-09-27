@@ -9,7 +9,7 @@ import {
 	type ClientOptions,
 } from "../src/analytics/client";
 import { ConsentStore, type KeyValueStorage } from "../src/analytics/consent";
-import { validateEvent } from "../src/analytics/contracts";
+import { EVENT_NAMES, type EventName, validateEvent } from "../src/analytics/contracts";
 import { AnalyticsProvider, createSegmentTransport, useAnalytics } from "../src/analytics/provider";
 import { ConsentBoundPersistor, purgeSegmentStorage, type SegmentStorage } from "../src/analytics/storage";
 
@@ -94,6 +94,25 @@ describe("analytics runtime consent boundary", () => {
 		expect(await analytics.trackEvent("app_opened", {}, { source: "app" })).toEqual({ kind: "disabled" });
 		expect(clients).toBe(0);
 		expect(ids).toBe(0);
+	});
+
+	it("keeps a repeated accepted choice granted without recreating or withdrawing the transport", async () => {
+		let clients = 0;
+		let disabled = 0;
+		const analytics = client({
+			createTransport: () => {
+				clients += 1;
+				return transport({ disable: async () => void disabled++ });
+			},
+		});
+
+		await analytics.grant();
+		await analytics.grant();
+
+		expect(analytics.consent.status).toBe("granted");
+		expect(analytics.configured).toBe(true);
+		expect(clients).toBe(1);
+		expect(disabled).toBe(0);
 	});
 
 	it("fails closed without throwing when consent or identity storage is unavailable", async () => {
@@ -371,6 +390,64 @@ describe("analytics runtime consent boundary", () => {
 });
 
 describe("analytics contract and persistence", () => {
+	it("locks the 17-event public contract and rejects properties outside each schema", () => {
+		const eventProperties: ReadonlyArray<readonly [EventName, Record<string, string | number>]> = [
+			["app_opened", {}],
+			["onboarding_started", { flow_id: "11111111-1111-4111-8111-111111111111" }],
+			["onboarding_completed", { flow_id: "11111111-1111-4111-8111-111111111111", genres_count: 3 }],
+			["preferences_updated", { genres_count: 3, action: "updated" }],
+			[
+				"daily_recommendation_viewed",
+				{ recommendation_id: "daily-1", local_date: "2026-09-27", node_id: "artist:a", node_type: "artist" },
+			],
+			[
+				"daily_recommendation_opened",
+				{ recommendation_id: "daily-1", local_date: "2026-09-27", node_id: "artist:a", node_type: "artist" },
+			],
+			["notification_permission_result", { status: "granted" }],
+			["notification_opened", { notification_id: "notification-1", target_local_date: "2026-09-27" }],
+			["node_viewed", { node_id: "artist:a", node_type: "artist" }],
+			[
+				"relation_opened",
+				{ from_node_id: "artist:a", node_id: "artist:b", node_type: "artist", relation_kind: "influenced" },
+			],
+			["search_submitted", { filter: "all" }],
+			["search_result_opened", { node_type: "artist", availability: "cached", results_count: 1 }],
+			["generation_requested", { request_id: "11111111-1111-4111-8111-111111111111", node_type: "artist" }],
+			[
+				"generation_completed",
+				{ request_id: "11111111-1111-4111-8111-111111111111", node_id: "artist:a", node_type: "artist" },
+			],
+			[
+				"generation_failed",
+				{ request_id: "11111111-1111-4111-8111-111111111111", node_type: "artist", error_code: "failed" },
+			],
+			[
+				"external_listening_opened",
+				{ node_id: "artist:a", node_type: "artist", provider: "spotify", link_kind: "exact" },
+			],
+			[
+				"external_listening_failed",
+				{
+					node_id: "artist:a",
+					node_type: "artist",
+					provider: "spotify",
+					link_kind: "exact",
+					error_code: "open_failed",
+				},
+			],
+		];
+
+		expect(EVENT_NAMES).toEqual(eventProperties.map(([name]) => name));
+		for (const [name, properties] of eventProperties) {
+			expect(validateEvent(name, properties, { source: "app" })).toMatchObject({ ok: true, name });
+			expect(validateEvent(name, { ...properties, unexpected: "value" }, { source: "app" })).toEqual({
+				ok: false,
+			});
+		}
+		expect(validateEvent("unlisted_event", {}, { source: "app" })).toEqual({ ok: false });
+	});
+
 	it("persists the stable event id as Segment's messageId before its queue", async () => {
 		const storage = durableStorage();
 		let persistor: { set<T>(key: string, state: T): Promise<void> } | undefined;
