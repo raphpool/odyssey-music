@@ -118,7 +118,7 @@ export default function NodeScreen() {
 	const nodeCache = useMemo(() => new NodeCache(), []);
 	const [retryKey, setRetryKey] = useState(0);
 	const [foregroundKey, setForegroundKey] = useState(0);
-	const [offline, setOffline] = useState(false);
+	const [cacheState, setCacheState] = useState<"offline" | "stale" | undefined>();
 	const [state, setState] = useState<NodeLoadState>({ kind: "loading" });
 	const [imageUrl, setImageUrl] = useState<string | null | undefined>();
 	const [listeningResult, setListeningResult] = useState<ExternalListeningResult | undefined>();
@@ -145,7 +145,7 @@ export default function NodeScreen() {
 		const controller = new AbortController();
 		let active = true;
 		setState({ kind: "loading" });
-		setOffline(false);
+		setCacheState(undefined);
 		setImageUrl(undefined);
 
 		if (slug === undefined) {
@@ -159,7 +159,7 @@ export default function NodeScreen() {
 			const result = await nodeCache.load(client, slug, controller.signal);
 			if (!active) return;
 			if (result.kind === "success") {
-				setOffline(result.stale === true);
+				setCacheState(result.staleState);
 				setState({ kind: "success", value: result.value });
 				return;
 			}
@@ -362,7 +362,7 @@ export default function NodeScreen() {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<ScrollView contentContainerStyle={styles.content}>
-				{offline ? <RequestState kind="offline" /> : null}
+				{cacheState === undefined ? null : <RequestState kind={cacheState} />}
 				<Button
 					accessibilityLabel="Retour à la fiche précédente"
 					title="Retour"

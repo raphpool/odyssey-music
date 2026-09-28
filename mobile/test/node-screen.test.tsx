@@ -250,6 +250,32 @@ describe("NodeScreen", () => {
 		await waitFor(() => expect(screen.getByRole("header", { name: "Fiche actualisée" })).toBeTruthy());
 	});
 
+	it("labels a retryable server revalidation as stale instead of offline", async () => {
+		const saved = nodeResponse("artist", "Fiche enregistrée");
+		saved.node.citations = [{ url: "https://example.com/source", title: "Source fiable" }];
+		mockNodeStorage.set(
+			NODE_STORAGE_KEY,
+			JSON.stringify({
+				version: 1,
+				nodes: { "artist:sample-node": { response: saved, touchedAt: 0, checkedAt: 0 } },
+				aliases: { "artist:sample-node": "artist:sample-node" },
+				protected: [],
+			}),
+		);
+		getNode.mockResolvedValueOnce({
+			kind: "error",
+			error: { kind: "api", status: 503, code: "unavailable", retryable: true, message: "retry" },
+		});
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() =>
+			expect(
+				screen.getByText("Affichage de la dernière version enregistrée pendant la mise à jour."),
+			).toBeTruthy(),
+		);
+		expect(screen.queryByText("La recherche externe et la création sont suspendues.")).toBeNull();
+	});
+
 	it("shows an accessible image fallback after a native image error", async () => {
 		getImage.mockResolvedValueOnce(
 			success({

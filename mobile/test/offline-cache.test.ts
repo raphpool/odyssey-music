@@ -124,6 +124,7 @@ describe("offline caches", () => {
 		await expect(cache.load({ getNode } as never, "artist:sample")).resolves.toMatchObject({
 			kind: "success",
 			stale: true,
+			staleState: "stale",
 		});
 	});
 
@@ -144,6 +145,23 @@ describe("offline caches", () => {
 			error: { status: 404 },
 		});
 		expect(await cache.read("artist:removed")).toBeUndefined();
+	});
+
+	it("removes only an obsolete alias when its canonical fiche still exists", async () => {
+		let now = 0;
+		const cache = new NodeCache(storage(), () => now);
+		await cache.write(node("artist:new", "artist:old"));
+		now = NODE_MAX_AGE_MS;
+		const getNode = jest.fn(async () => ({
+			kind: "error" as const,
+			error: { kind: "api" as const, status: 404, code: "not_found", retryable: false, message: "missing" },
+		}));
+		await expect(cache.load({ getNode } as never, "artist:old")).resolves.toMatchObject({
+			kind: "error",
+			error: { status: 404 },
+		});
+		expect((await cache.read("artist:new"))?.node.id).toBe("artist:new");
+		expect(await cache.read("artist:old")).toBeUndefined();
 	});
 
 	it("serializes catalog revalidations so a late 304 cannot overwrite a newer catalog", async () => {

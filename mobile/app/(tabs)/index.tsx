@@ -43,7 +43,7 @@ export default function TodayScreen() {
 	const catalogCache = useMemo(() => new CatalogCache(), []);
 	const nodeCache = useMemo(() => new NodeCache(), []);
 	const [state, setState] = useState<TodayState>({ kind: "loading" });
-	const [offline, setOffline] = useState(false);
+	const [cacheState, setCacheState] = useState<"offline" | "stale" | undefined>();
 	const [refresh, setRefresh] = useState(0);
 	const [viewRetry, setViewRetry] = useState(0);
 	const [imageUrl, setImageUrl] = useState<string | null | undefined>();
@@ -62,7 +62,13 @@ export default function TodayScreen() {
 		setState({ kind: "loading" });
 		const response = await catalogCache.load(client, { forceRevalidate: refresh > 0 });
 		if (!isCurrent()) return;
-		setOffline(response.stale);
+		setCacheState(
+			response.stale
+				? response.error?.kind === "network_error" || response.error?.kind === "timeout"
+					? "offline"
+					: "stale"
+				: undefined,
+		);
 		if (response.value === undefined) {
 			const offlineError = response.error?.kind === "network_error" || response.error?.kind === "timeout";
 			setState({ kind: "catalog_error", offline: offlineError });
@@ -211,7 +217,7 @@ export default function TodayScreen() {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<ScrollView contentContainerStyle={styles.container}>
-				{offline ? <RequestState kind="offline" /> : null}
+				{cacheState === undefined ? null : <RequestState kind={cacheState} />}
 				<Text accessibilityRole="header" allowFontScaling style={styles.heading}>
 					Votre découverte du jour
 				</Text>

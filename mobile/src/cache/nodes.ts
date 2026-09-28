@@ -16,7 +16,10 @@ type StoredNodes = {
 	protected: string[];
 };
 
-export type CachedNodeResult = ClientResult<NodeResponse> & { stale?: boolean };
+export type CachedNodeResult = ClientResult<NodeResponse> & {
+	stale?: boolean;
+	staleState?: "offline" | "stale";
+};
 
 // Today and fiche screens own separate cache instances but share AsyncStorage.
 // Serializing read-modify-write operations prevents one screen from dropping the other's update.
@@ -157,9 +160,15 @@ export class NodeCache {
 			await this.write(result.value, generation);
 			return result;
 		}
-		if (cached !== undefined && canServeStale(result)) {
+		if (cached !== undefined && result.kind === "error" && canServeStale(result)) {
 			await this.touch(slug, generation);
-			return { kind: "success", value: cached.response, stale: true };
+			return {
+				kind: "success",
+				value: cached.response,
+				stale: true,
+				staleState:
+					result.error.kind === "network_error" || result.error.kind === "timeout" ? "offline" : "stale",
+			};
 		}
 		if (
 			cached !== undefined &&
@@ -240,6 +249,11 @@ export class NodeCache {
 			if (generation === undefined || generation !== storageGeneration) return;
 			const stored = await this.readStore();
 			const canonical = stored.aliases[slug] ?? slug;
+			if (slug !== canonical) {
+				delete stored.aliases[slug];
+				await this.save(stored);
+				return;
+			}
 			if (stored.nodes[canonical] === undefined) return;
 			delete stored.nodes[canonical];
 			for (const [alias, identity] of Object.entries(stored.aliases)) {
