@@ -214,6 +214,20 @@ describe("offline caches", () => {
 		expect(results).toMatchObject([{ slug: "artist:old", source: "cache" }]);
 	});
 
+	it("keeps a daily fiche protected when the recommendation uses its redirected identity", async () => {
+		let now = 0;
+		const cache = new NodeCache(storage(), () => now);
+		await cache.write(node("artist:new", "artist:old"));
+		await cache.protect(["artist:old"]);
+		for (let index = 0; index < 49; index += 1) {
+			now += 1;
+			await cache.write(node(`artist:existing-${index}`));
+		}
+		now += 1;
+		await cache.write(node("artist:overflow"));
+		expect((await cache.read("artist:old"))?.node.id).toBe("artist:new");
+	});
+
 	it("serializes concurrent daily protection and fiche writes so neither update is lost", async () => {
 		let now = 0;
 		const sharedStorage = storage();

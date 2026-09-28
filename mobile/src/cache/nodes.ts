@@ -205,7 +205,7 @@ export class NodeCache {
 				if (generation === undefined || generation !== storageGeneration) return;
 				const stored = await this.readStore();
 				// Today can select a fiche before it has been opened and cached for the first time.
-				stored.protected = [...new Set(ids)];
+				stored.protected = [...new Set(ids.map((id) => stored.aliases[id] ?? id))];
 				this.evict(stored);
 				await this.save(stored);
 			});
@@ -250,7 +250,10 @@ export class NodeCache {
 	}
 
 	private evict(stored: StoredNodes): void {
-		const protectedIds = new Set([...stored.protected, ...pendingProtections]);
+		const protectedIds = new Set([
+			...stored.protected,
+			...[...pendingProtections].map((id) => stored.aliases[id] ?? id),
+		]);
 		while (Object.keys(stored.nodes).length > NODE_CACHE_LIMIT) {
 			const victim = Object.entries(stored.nodes)
 				.filter(([id]) => !protectedIds.has(id))
