@@ -5,6 +5,7 @@ import { Linking } from "react-native";
 import NodeScreen from "../app/node/[slug]";
 import { useAnalytics } from "../src/analytics/provider";
 import { createApiClient } from "../src/api/client";
+import { NODE_STORAGE_KEY } from "../src/cache/nodes";
 
 jest.mock("expo-router", () => ({
 	useLocalSearchParams: jest.fn(),
@@ -12,6 +13,15 @@ jest.mock("expo-router", () => ({
 }));
 jest.mock("../src/api/client", () => ({ createApiClient: jest.fn() }));
 jest.mock("../src/analytics/provider", () => ({ useAnalytics: jest.fn() }));
+
+const mockNodeStorage = new Map<string, string>();
+jest.mock("@react-native-async-storage/async-storage", () => ({
+	default: {
+		getItem: async (key: string) => mockNodeStorage.get(key) ?? null,
+		setItem: async (key: string, value: string) => void mockNodeStorage.set(key, value),
+		removeItem: async (key: string) => void mockNodeStorage.delete(key),
+	},
+}));
 
 const mockedUseLocalSearchParams = jest.mocked(useLocalSearchParams);
 const mockedCreateApiClient = jest.mocked(createApiClient);
@@ -77,6 +87,7 @@ describe("NodeScreen", () => {
 
 	beforeEach(() => {
 		jest.clearAllMocks();
+		mockNodeStorage.clear();
 		mockedUseLocalSearchParams.mockReturnValue({ slug: "artist:sample-node", source: "home" });
 		mockedUseAnalytics.mockReturnValue(analytics);
 		getNode = jest.fn(async () => success(nodeResponse("artist", "Artiste exemple")));
@@ -209,6 +220,60 @@ describe("NodeScreen", () => {
 			(mockedCreateApiClient.mock.results[0]?.value as { createGeneration?: unknown }).createGeneration,
 		).toBeUndefined();
 		expect(analytics.trackEvent).not.toHaveBeenCalled();
+	});
+
+	it("shows an expired cached fiche before its revalidation completes", async () => {
+		const saved = nodeResponse("artist", "Fiche enregistrée");
+		saved.node.citations = [{ url: "https://example.com/source", title: "Source fiable" }];
+		mockNodeStorage.set(
+			NODE_STORAGE_KEY,
+			JSON.stringify({
+				version: 1,
+				nodes: {
+					"artist:sample-node": {
+						response: saved,
+						touchedAt: 0,
+						checkedAt: 0,
+					},
+				},
+				aliases: { "artist:sample-node": "artist:sample-node" },
+				protected: [],
+			}),
+		);
+		const slowNode = deferred<ReturnType<typeof success>>();
+		getNode.mockImplementationOnce(() => slowNode.promise);
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() => expect(screen.getByRole("header", { name: "Fiche enregistrée" })).toBeTruthy());
+		expect(getNode).toHaveBeenCalledTimes(1);
+		slowNode.resolve(success(nodeResponse("artist", "Fiche actualisée")));
+		await waitFor(() => expect(screen.getByRole("header", { name: "Fiche actualisée" })).toBeTruthy());
+	});
+
+	it("labels a retryable server revalidation as stale instead of offline", async () => {
+		const saved = nodeResponse("artist", "Fiche enregistrée");
+		saved.node.citations = [{ url: "https://example.com/source", title: "Source fiable" }];
+		mockNodeStorage.set(
+			NODE_STORAGE_KEY,
+			JSON.stringify({
+				version: 1,
+				nodes: { "artist:sample-node": { response: saved, touchedAt: 0, checkedAt: 0 } },
+				aliases: { "artist:sample-node": "artist:sample-node" },
+				protected: [],
+			}),
+		);
+		getNode.mockResolvedValueOnce({
+			kind: "error",
+			error: { kind: "api", status: 503, code: "unavailable", retryable: true, message: "retry" },
+		});
+
+		const screen = render(<NodeScreen />);
+		await waitFor(() =>
+			expect(
+				screen.getByText("Affichage de la dernière version enregistrée pendant la mise à jour."),
+			).toBeTruthy(),
+		);
+		expect(screen.queryByText("La recherche externe et la création sont suspendues.")).toBeNull();
 	});
 
 	it("shows an accessible image fallback after a native image error", async () => {

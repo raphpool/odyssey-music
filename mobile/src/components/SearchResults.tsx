@@ -25,6 +25,7 @@ export type SearchResultsProps = {
 	onOpenMissing(result: SearchResult): void;
 	generationApiClient?: GenerationApi;
 	generationStore?: GenerationStore;
+	generationSuspended?: boolean;
 };
 
 const TYPE_LABELS: Record<SearchResult["type"], string> = {
@@ -65,6 +66,7 @@ export function SearchResults({
 	onOpenMissing,
 	generationApiClient,
 	generationStore,
+	generationSuspended = false,
 }: SearchResultsProps) {
 	const help = queryHelp(queryState);
 	if (help !== undefined) {
@@ -138,7 +140,7 @@ export function SearchResults({
 							{sourceLabel(result)}
 						</Text>
 					</Pressable>
-					{result.source === "catalog" ? (
+					{result.source === "catalog" && !generationSuspended ? (
 						<GenerationStatus
 							input={generationInput(result)}
 							source="search"

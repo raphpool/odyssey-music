@@ -20,6 +20,7 @@ export type GenerationApi = {
 	getGeneration: ApiClient["getGeneration"];
 	getNode?: ApiClient["getNode"];
 	getCatalog?: ApiClient["getCatalog"];
+	refreshCatalog?: () => Promise<void>;
 };
 
 export type GenerationTrackEvent = (
@@ -662,9 +663,11 @@ export class GenerationRequestController {
 				input: record.input,
 				nodeId: generation.node_id,
 			});
-			void this.apiClient.getCatalog?.().catch(() => {
-				// A catalog refresh is opportunistic; the canonical node is opened immediately.
-			});
+			const refresh = this.apiClient.refreshCatalog?.() ?? this.apiClient.getCatalog?.();
+			if (refresh !== undefined)
+				void refresh.catch(() => {
+					// A catalog refresh is opportunistic; the canonical node is opened immediately.
+				});
 			return this.state;
 		}
 		if (generation.status === "queued" || generation.status === "running") {

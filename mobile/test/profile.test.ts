@@ -1,3 +1,6 @@
+import type { Catalog, NodeResponse } from "../src/api/contracts";
+import { CATALOG_STORAGE_KEY, CatalogCache } from "../src/cache/catalog";
+import { NODE_STORAGE_KEY, NodeCache } from "../src/cache/nodes";
 import { GENERATION_STORAGE_KEY } from "../src/generation/store";
 import { isUuid, MINIMUM_GENRES, parseProfile, selectionIsComplete } from "../src/profile/model";
 import {
@@ -16,6 +19,31 @@ const OTHER_FLOW_ID = "33333333-3333-4333-8333-333333333333";
 const EVENT_ID = "44444444-4444-4444-8444-444444444444";
 const OCCURRED_AT = "2026-09-27T10:00:00.000Z";
 const genres = ["genre:ambient", "genre:house", "genre:jazz"];
+
+const cachedCatalog = {
+	version: "v1",
+	revision: `sha256:${"a".repeat(64)}`,
+	taxonomy: { mode: "degraded", available: true },
+	nodes: [{ identity: "artist:sample", type: "artist", name: "Sample", teaser: null }],
+	edges: [],
+} satisfies Catalog;
+
+function cachedNode(id = "artist:sample"): NodeResponse {
+	return {
+		node: {
+			id,
+			type: "artist",
+			name: id,
+			teaser: null,
+			article: "Article",
+			citations: [],
+			edges: {},
+			facts: {},
+			materialized_at: "2026-09-27T00:00:00.000Z",
+		},
+		source: "cache",
+	};
+}
 
 function storage(initial: Record<string, string> = {}, fail?: "get" | "set" | "remove" | "keys") {
 	const values = new Map(Object.entries(initial));
@@ -146,6 +174,14 @@ describe("music profile store", () => {
 		expect(await completionStore.readOnboardingCompletion()).toEqual(
 			expect.objectContaining({ event_id: EVENT_ID }),
 		);
+		const partialClear = storage({ [NODE_STORAGE_KEY]: "offline history" });
+		const removeOfflineItem = partialClear.removeItem;
+		partialClear.removeItem = async (key) => {
+			if (key === NODE_STORAGE_KEY) throw new Error("offline cache removal failed");
+			return removeOfflineItem(key);
+		};
+		expect(await new ProfileStore(partialClear, () => LOCAL_ID).clear()).toEqual({ kind: "unavailable" });
+		expect(partialClear.values.has(NODE_STORAGE_KEY)).toBe(true);
 	});
 
 	it("keeps a stable completion id but updates its count when a failed profile write is retried", async () => {
@@ -334,7 +370,7 @@ describe("music profile store", () => {
 		);
 	});
 
-	it("clears only the music profile, draft, recommendation and generation keys", async () => {
+	it("clears the profile history while preserving analytics and push choices", async () => {
 		const memory = storage({
 			[PROFILE_STORAGE_KEY]: "profile",
 			[PROFILE_DRAFT_STORAGE_KEY]: "draft",
@@ -346,6 +382,12 @@ describe("music profile store", () => {
 			"track1.analytics-consent.v1": "granted",
 			"track1.push-subscription.v1": "push",
 		});
+		const catalogCache = new CatalogCache(memory);
+		const nodeCache = new NodeCache(memory);
+		await catalogCache.load({ getCatalog: async () => ({ kind: "success", value: cachedCatalog }) });
+		await nodeCache.write(cachedNode());
+		expect(await catalogCache.cached()).toEqual(cachedCatalog);
+		expect(await nodeCache.read("artist:sample")).toEqual(cachedNode());
 
 		expect(await new ProfileStore(memory, () => LOCAL_ID).clear()).toEqual({ kind: "cleared" });
 		expect(memory.values.has(PROFILE_STORAGE_KEY)).toBe(false);
@@ -354,7 +396,111 @@ describe("music profile store", () => {
 		expect(memory.values.has(GENERATION_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has(PROFILE_ONBOARDING_COMPLETION_STORAGE_KEY)).toBe(false);
 		expect(memory.values.has(PROFILE_ONBOARDING_STARTED_STORAGE_KEY)).toBe(false);
+		expect(memory.values.has(CATALOG_STORAGE_KEY)).toBe(false);
+		expect(memory.values.has(NODE_STORAGE_KEY)).toBe(false);
+		expect(await catalogCache.cached()).toBeUndefined();
+		expect(await nodeCache.read("artist:sample")).toBeUndefined();
 		expect(memory.values.get("track1.analytics-consent.v1")).toBe("granted");
 		expect(memory.values.get("track1.push-subscription.v1")).toBe("push");
+	});
+
+	it("does not let cache writes started before clear restore offline history", async () => {
+		const memory = storage();
+		const catalogCache = new CatalogCache(memory);
+		const nodeCache = new NodeCache(memory);
+		let resolveCatalog: (value: { kind: "success"; value: Catalog }) => void = () => undefined;
+		let markCatalogRequested: () => void = () => undefined;
+		const catalogResponse = new Promise<{ kind: "success"; value: Catalog }>((resolve) => {
+			resolveCatalog = resolve;
+		});
+		const catalogRequested = new Promise<void>((resolve) => {
+			markCatalogRequested = resolve;
+		});
+		const catalogLoading = catalogCache.load({
+			getCatalog: async () => {
+				markCatalogRequested();
+				return catalogResponse;
+			},
+		});
+		await catalogRequested;
+
+		const saveItem = memory.setItem;
+		let releaseNodeWrite: () => void = () => undefined;
+		let markNodeWriteStarted: () => void = () => undefined;
+		const nodeWriteReleased = new Promise<void>((resolve) => {
+			releaseNodeWrite = resolve;
+		});
+		const nodeWriteStarted = new Promise<void>((resolve) => {
+			markNodeWriteStarted = resolve;
+		});
+		memory.setItem = async (key, value) => {
+			if (key === NODE_STORAGE_KEY) {
+				markNodeWriteStarted();
+				await nodeWriteReleased;
+			}
+			return saveItem(key, value);
+		};
+		const nodeWriting = nodeCache.write(cachedNode());
+		await nodeWriteStarted;
+
+		const clearing = new ProfileStore(memory, () => LOCAL_ID).clear();
+		await Promise.resolve();
+		const secondNodeWriting = nodeCache.write(cachedNode("artist:second"));
+		resolveCatalog({ kind: "success", value: cachedCatalog });
+		releaseNodeWrite();
+		expect(await clearing).toEqual({ kind: "cleared" });
+		await Promise.all([catalogLoading, nodeWriting, secondNodeWriting]);
+
+		expect(await catalogCache.cached()).toBeUndefined();
+		expect(await nodeCache.read("artist:sample")).toBeUndefined();
+		expect(await nodeCache.read("artist:second")).toBeUndefined();
+	});
+
+	it("keeps cache writes invalid until the entire profile clear completes", async () => {
+		const memory = storage();
+		const catalogCache = new CatalogCache(memory);
+		const nodeCache = new NodeCache(memory);
+		await catalogCache.load({ getCatalog: async () => ({ kind: "success", value: cachedCatalog }) });
+		await nodeCache.write(cachedNode());
+
+		const removeItem = memory.removeItem;
+		let releaseProfileRemoval: () => void = () => undefined;
+		let markProfileRemovalStarted: () => void = () => undefined;
+		let markCatalogRemovalFinished: () => void = () => undefined;
+		let markNodeRemovalFinished: () => void = () => undefined;
+		const profileRemovalReleased = new Promise<void>((resolve) => {
+			releaseProfileRemoval = resolve;
+		});
+		const profileRemovalStarted = new Promise<void>((resolve) => {
+			markProfileRemovalStarted = resolve;
+		});
+		const catalogRemovalFinished = new Promise<void>((resolve) => {
+			markCatalogRemovalFinished = resolve;
+		});
+		const nodeRemovalFinished = new Promise<void>((resolve) => {
+			markNodeRemovalFinished = resolve;
+		});
+		memory.removeItem = async (key) => {
+			if (key === PROFILE_STORAGE_KEY) {
+				markProfileRemovalStarted();
+				await profileRemovalReleased;
+			}
+			await removeItem(key);
+			if (key === CATALOG_STORAGE_KEY) markCatalogRemovalFinished();
+			if (key === NODE_STORAGE_KEY) markNodeRemovalFinished();
+		};
+
+		const clearing = new ProfileStore(memory, () => LOCAL_ID).clear();
+		await profileRemovalStarted;
+		await Promise.all([catalogRemovalFinished, nodeRemovalFinished]);
+		await Promise.all([
+			catalogCache.load({ getCatalog: async () => ({ kind: "success", value: cachedCatalog }) }),
+			nodeCache.write(cachedNode()),
+		]);
+		releaseProfileRemoval();
+		expect(await clearing).toEqual({ kind: "cleared" });
+
+		expect(await catalogCache.cached()).toBeUndefined();
+		expect(await nodeCache.read("artist:sample")).toBeUndefined();
 	});
 });

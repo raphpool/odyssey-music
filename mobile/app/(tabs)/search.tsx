@@ -1,11 +1,14 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { Button, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { AppState, Button, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useAnalytics } from "../../src/analytics/provider";
 import { type ApiClient, createApiClient } from "../../src/api/client";
 import type { SearchResponse } from "../../src/api/contracts";
+import { CatalogCache, searchCachedCatalog } from "../../src/cache/catalog";
+import { NodeCache } from "../../src/cache/nodes";
+import { RequestState } from "../../src/components/RequestState";
 import { SearchResults } from "../../src/components/SearchResults";
 import { readPublicConfig } from "../../src/config";
 import { nodeNavigationParams } from "../../src/navigation/context";
@@ -63,6 +66,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	const analyticsRef = useRef(analytics);
 	analyticsRef.current = analytics;
 	const apiClient = useMemo(() => providedApiClient ?? configuredApiClient(), [providedApiClient]);
+	const catalogCache = useMemo(() => new CatalogCache(), []);
+	const nodeCache = useMemo(() => new NodeCache(), []);
 	const [query, setQuery] = useState("");
 	const [filter, setFilter] = useState<SearchFilter>("all");
 	const [response, setResponse] = useState<SearchResponse | undefined>();
@@ -72,7 +77,9 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	const [status, setStatus] = useState<SearchStatus>("idle");
 	const [retryToken, setRetryToken] = useState(0);
 	const [missingResult, setMissingResult] = useState<SearchResult | undefined>();
+	const [offline, setOffline] = useState(false);
 	const requestSequence = useRef(0);
+	const offlineKey = useRef<string | undefined>(undefined);
 	const appliedRouteQuery = useRef<string | undefined>(undefined);
 	const normalizedQuery = normalizeSearchQuery(query);
 	const queryState = searchQueryState(normalizedQuery);
@@ -95,6 +102,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 		setMissingResult(undefined);
 
 		if (queryState !== "admissible") {
+			offlineKey.current = undefined;
+			setOffline(false);
 			setStatus("idle");
 			return () => {
 				active = false;
@@ -109,10 +118,45 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 			};
 		}
 
+		const applyLocalSearch = async (): Promise<void> => {
+			const catalog = await catalogCache.cached();
+			if (!isCurrent()) return;
+			if (catalog === undefined) {
+				setError("La recherche n’a pas pu aboutir.");
+				setStatus("error");
+				return;
+			}
+			const hits = searchCachedCatalog(
+				catalog,
+				normalizedQuery,
+				requestType,
+				new Set(await nodeCache.identities()),
+			);
+			if (!isCurrent()) return;
+			setError(undefined);
+			setResponse({
+				q: normalizedQuery,
+				hits,
+				sources: {
+					cache: hits.filter((hit) => hit.source === "cache").length,
+					catalog: hits.filter((hit) => hit.source === "catalog").length,
+				},
+			});
+			setResponseKey(currentKey);
+			setStatus(hits.length === 0 ? "empty" : "success");
+		};
+
+		const requestType = searchType(filter);
+		if (offlineKey.current === currentKey) {
+			void applyLocalSearch();
+			return () => {
+				active = false;
+			};
+		}
+
 		if (retryToken > 0) setError(undefined);
 		setStatus("loading");
 		const controller = new AbortController();
-		const requestType = searchType(filter);
 		const timeout = setTimeout(() => {
 			trackEventSafely(analyticsRef.current, "search_submitted", { filter });
 			void apiClient
@@ -125,6 +169,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 				.then((result) => {
 					if (!isCurrent()) return;
 					if (result.kind === "success") {
+						offlineKey.current = undefined;
+						setOffline(false);
 						setError(undefined);
 						setResponse(result.value);
 						setResponseKey(currentKey);
@@ -132,6 +178,14 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 						return;
 					}
 					if (result.error.kind === "cancelled") return;
+					if (result.error.kind === "network_error" || result.error.kind === "timeout") {
+						offlineKey.current = currentKey;
+						setOffline(true);
+						void applyLocalSearch();
+						return;
+					}
+					offlineKey.current = undefined;
+					setOffline(false);
 					setError("La recherche n’a pas pu aboutir.");
 					setStatus("error");
 				})
@@ -147,7 +201,18 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 			clearTimeout(timeout);
 			controller.abort();
 		};
-	}, [apiClient, currentKey, filter, normalizedQuery, queryState, retryToken]);
+	}, [apiClient, catalogCache, currentKey, filter, nodeCache, normalizedQuery, queryState, retryToken]);
+
+	useEffect(() => {
+		const subscription = AppState.addEventListener("change", (next) => {
+			if (next === "active") {
+				offlineKey.current = undefined;
+				setOffline(false);
+				setRetryToken((token) => token + 1);
+			}
+		});
+		return () => subscription.remove();
+	}, []);
 
 	const recordResultOpened = (result: SearchResult) => {
 		trackEventSafely(analyticsRef.current, "search_result_opened", {
@@ -221,13 +286,19 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 					status={visibleStatus}
 					{...(error === undefined ? {} : { error })}
 					{...(visibleResponse === undefined ? {} : { response: visibleResponse })}
-					onRetry={() => setRetryToken((token) => token + 1)}
+					onRetry={() => {
+						offlineKey.current = undefined;
+						setOffline(false);
+						setRetryToken((token) => token + 1);
+					}}
 					onOpenCached={openCachedResult}
 					onOpenMissing={(result) => {
 						recordResultOpened(result);
 						setMissingResult(result);
 					}}
+					generationSuspended={offline}
 				/>
+				{offline ? <RequestState kind="offline" /> : null}
 
 				{missingResult !== undefined ? (
 					<View style={styles.missingState}>

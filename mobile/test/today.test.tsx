@@ -102,6 +102,24 @@ describe("TodayScreen", () => {
 		expect(mockedClient.mock.results[0]?.value.getCatalog).not.toHaveBeenCalled();
 	});
 
+	it("shows a reconnectable offline state instead of an empty catalog on first startup", async () => {
+		mockedClient.mockReturnValue({
+			getCatalog: jest.fn(async () => ({
+				kind: "error" as const,
+				error: { kind: "network_error" as const, message: "offline" },
+			})),
+			getImage: jest.fn(async () => ({ kind: "success" as const, value: { image_url: null } })),
+		} as unknown as ReturnType<typeof createApiClient>);
+
+		const screen = render(<TodayScreen />);
+		await waitFor(() =>
+			expect(
+				screen.getByText("Hors connexion : aucune découverte enregistrée n’est disponible."),
+			).toBeTruthy(),
+		);
+		expect(screen.getByLabelText("Réessayer")).toBeTruthy();
+	});
+
 	it("waits for ready analytics before recording the persistent view event", async () => {
 		const trackEvent = jest.fn(async () => ({ kind: "accepted" as const }));
 		mockedAnalytics.mockReturnValue({

@@ -1,18 +1,29 @@
 import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, Button, Linking, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	ActivityIndicator,
+	AppState,
+	Button,
+	Linking,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useAnalytics } from "../../src/analytics/provider";
 import { type ApiClient, createApiClient } from "../../src/api/client";
 import type { NodeResponse, NodeType } from "../../src/api/contracts";
 import type { ClientError } from "../../src/api/errors";
+import { NodeCache } from "../../src/cache/nodes";
 import { ArtistDetails } from "../../src/components/ArtistDetails";
 import { GenreDetails } from "../../src/components/GenreDetails";
 import { LabelDetails } from "../../src/components/LabelDetails";
 import { NodeArticle } from "../../src/components/NodeArticle";
 import { NodeImage } from "../../src/components/NodeImage";
 import { ProjectDetails } from "../../src/components/ProjectDetails";
+import { RequestState } from "../../src/components/RequestState";
 import { TrackDetails } from "../../src/components/TrackDetails";
 import { GenerationStatus } from "../../src/generation/status";
 import {
@@ -104,7 +115,10 @@ export default function NodeScreen() {
 	const searchQuery = readableSearchQuery(slug);
 	const analytics = useAnalytics();
 	const client = useMemo<ApiClient>(() => createApiClient(), []);
+	const nodeCache = useMemo(() => new NodeCache(), []);
 	const [retryKey, setRetryKey] = useState(0);
+	const [foregroundKey, setForegroundKey] = useState(0);
+	const [cacheState, setCacheState] = useState<"offline" | "stale" | undefined>();
 	const [state, setState] = useState<NodeLoadState>({ kind: "loading" });
 	const [imageUrl, setImageUrl] = useState<string | null | undefined>();
 	const [listeningResult, setListeningResult] = useState<ExternalListeningResult | undefined>();
@@ -127,9 +141,11 @@ export default function NodeScreen() {
 	useEffect(() => {
 		// The attempt counter intentionally re-runs this effect when the user retries a failed request.
 		void retryKey;
+		void foregroundKey;
 		const controller = new AbortController();
 		let active = true;
 		setState({ kind: "loading" });
+		setCacheState(undefined);
 		setImageUrl(undefined);
 
 		if (slug === undefined) {
@@ -137,25 +153,33 @@ export default function NodeScreen() {
 			return () => controller.abort();
 		}
 
-		void client
-			.getNode(slug, controller.signal)
-			.then((result) => {
-				if (!active) return;
-				if (result.kind === "success") {
-					setState({ kind: "success", value: result.value });
-					return;
-				}
-				setState(isMissing(result.error) ? { kind: "missing", identity: slug } : { kind: "error" });
-			})
-			.catch(() => {
-				if (active) setState({ kind: "error" });
-			});
+		void (async () => {
+			const cached = await nodeCache.read(slug);
+			if (active && cached !== undefined) setState({ kind: "success", value: cached });
+			const result = await nodeCache.load(client, slug, controller.signal);
+			if (!active) return;
+			if (result.kind === "success") {
+				setCacheState(result.staleState);
+				setState({ kind: "success", value: result.value });
+				return;
+			}
+			setState(isMissing(result.error) ? { kind: "missing", identity: slug } : { kind: "error" });
+		})().catch(() => {
+			if (active) setState({ kind: "error" });
+		});
 
 		return () => {
 			active = false;
 			controller.abort();
 		};
-	}, [client, rawSlug, retryKey, slug]);
+	}, [client, foregroundKey, nodeCache, rawSlug, retryKey, slug]);
+
+	useEffect(() => {
+		const subscription = AppState.addEventListener("change", (next) => {
+			if (next === "active") setForegroundKey((current) => current + 1);
+		});
+		return () => subscription.remove();
+	}, []);
 
 	const loadedNode = state.kind === "success" ? state.value.node : undefined;
 
@@ -338,6 +362,7 @@ export default function NodeScreen() {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<ScrollView contentContainerStyle={styles.content}>
+				{cacheState === undefined ? null : <RequestState kind={cacheState} />}
 				<Button
 					accessibilityLabel="Retour à la fiche précédente"
 					title="Retour"

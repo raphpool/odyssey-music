@@ -5,7 +5,10 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useAnalytics } from "../../src/analytics/provider";
 import { createApiClient } from "../../src/api/client";
+import { CatalogCache } from "../../src/cache/catalog";
+import { NodeCache } from "../../src/cache/nodes";
 import { NodeImage } from "../../src/components/NodeImage";
+import { RequestState } from "../../src/components/RequestState";
 import { nodeNavigationParams } from "../../src/navigation/context";
 import { profileFromState, useProfile } from "../../src/profile/useProfile";
 import {
@@ -15,7 +18,7 @@ import {
 	recommendDaily,
 } from "../../src/recommendation/daily";
 
-type TodayState = { kind: "loading" } | DailyResult;
+type TodayState = { kind: "loading" } | { kind: "catalog_error"; offline: boolean } | DailyResult;
 
 function localDate(): string {
 	const now = new Date();
@@ -37,7 +40,10 @@ export default function TodayScreen() {
 	const profile = profileFromState(profileState.state);
 	const client = useMemo(() => createApiClient(), []);
 	const store = useMemo(() => new DailyRecommendationStore(), []);
+	const catalogCache = useMemo(() => new CatalogCache(), []);
+	const nodeCache = useMemo(() => new NodeCache(), []);
 	const [state, setState] = useState<TodayState>({ kind: "loading" });
+	const [cacheState, setCacheState] = useState<"offline" | "stale" | undefined>();
 	const [refresh, setRefresh] = useState(0);
 	const [viewRetry, setViewRetry] = useState(0);
 	const [imageUrl, setImageUrl] = useState<string | null | undefined>();
@@ -54,15 +60,24 @@ export default function TodayScreen() {
 			return;
 		}
 		setState({ kind: "loading" });
-		const response = await client.getCatalog();
+		const response = await catalogCache.load(client, { forceRevalidate: refresh > 0 });
 		if (!isCurrent()) return;
-		if (response.kind !== "success") {
-			setState({ kind: "empty_catalog" });
+		setCacheState(
+			response.stale
+				? response.error?.kind === "network_error" || response.error?.kind === "timeout"
+					? "offline"
+					: "stale"
+				: undefined,
+		);
+		if (response.value === undefined) {
+			const offlineError = response.error?.kind === "network_error" || response.error?.kind === "timeout";
+			setState({ kind: "catalog_error", offline: offlineError });
 			return;
 		}
 		const next = await recommendDaily({ store, profile, catalog: response.value, localDate: localDate() });
+		if (next.kind === "recommendation") await nodeCache.protect([next.recommendation.node_id]);
 		if (isCurrent()) setState(next);
-	}, [client, profile, profileState.ready, store]);
+	}, [catalogCache, client, nodeCache, profile, profileState.ready, refresh, store]);
 
 	useEffect(() => {
 		void refresh;
@@ -176,6 +191,18 @@ export default function TodayScreen() {
 				onAction={() => setRefresh((current) => current + 1)}
 			/>
 		);
+	if (state.kind === "catalog_error")
+		return (
+			<Status
+				title={
+					state.offline
+						? "Hors connexion : aucune découverte enregistrée n’est disponible."
+						: "La découverte est momentanément indisponible."
+				}
+				actionLabel="Réessayer"
+				onAction={() => setRefresh((current) => current + 1)}
+			/>
+		);
 	if (state.kind === "unavailable")
 		return (
 			<Status
@@ -190,6 +217,7 @@ export default function TodayScreen() {
 	return (
 		<SafeAreaView style={styles.safeArea}>
 			<ScrollView contentContainerStyle={styles.container}>
+				{cacheState === undefined ? null : <RequestState kind={cacheState} />}
 				<Text accessibilityRole="header" allowFontScaling style={styles.heading}>
 					Votre découverte du jour
 				</Text>
