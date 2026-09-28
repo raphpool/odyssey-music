@@ -6,6 +6,9 @@ export const CATALOG_STORAGE_KEY = "track1.offline.catalog.v1";
 export const CATALOG_MAX_AGE_MS = 6 * 60 * 60 * 1000;
 const CATALOG_VERSION = 1 as const;
 
+let catalogStorageGeneration = 0;
+let catalogClearTransitions = 0;
+
 export type CacheStorage = {
 	getItem(key: string): Promise<string | null>;
 	setItem(key: string, value: string): Promise<void>;
@@ -36,6 +39,30 @@ function mutateCatalog<T>(operation: () => Promise<T>): Promise<T> {
 		() => undefined,
 	);
 	return result;
+}
+
+function catalogStorageGenerationForOperation(): number | undefined {
+	return catalogClearTransitions === 0 ? catalogStorageGeneration : undefined;
+}
+
+export function beginCatalogStorageClear(): () => void {
+	catalogStorageGeneration += 1;
+	catalogClearTransitions += 1;
+	let ended = false;
+	return () => {
+		if (ended) return;
+		ended = true;
+		catalogClearTransitions -= 1;
+	};
+}
+
+export async function clearCatalogStorage(storage: CacheStorage): Promise<void> {
+	const endClear = beginCatalogStorageClear();
+	try {
+		await mutateCatalog(() => storage.removeItem(CATALOG_STORAGE_KEY));
+	} finally {
+		endClear();
+	}
 }
 
 function defaultStorage(): CacheStorage {
@@ -112,6 +139,7 @@ export class CatalogCache {
 		apiClient: Pick<ApiClient, "getCatalog">,
 		options: { forceRevalidate?: boolean } = {},
 	): Promise<CachedCatalogResult> {
+		const generation = catalogStorageGenerationForOperation();
 		return mutateCatalog(async () => {
 			const stored = await this.read();
 			const current = this.now();
@@ -128,12 +156,12 @@ export class CatalogCache {
 					checkedAt: current,
 					...(result.etag === undefined ? {} : { etag: result.etag }),
 				};
-				await this.save(next);
+				await this.save(next, generation);
 				return { value: result.value, stale: false };
 			}
 			if (result.kind === "notModified" && stored !== undefined) {
 				const next: StoredCatalog = { ...stored, checkedAt: current, etag: result.etag };
-				await this.save(next);
+				await this.save(next, generation);
 				return { value: stored.catalog, stale: false };
 			}
 			if (result.kind !== "error") return { stale: false };
@@ -143,7 +171,8 @@ export class CatalogCache {
 		});
 	}
 
-	private async save(value: StoredCatalog): Promise<void> {
+	private async save(value: StoredCatalog, generation: number | undefined): Promise<void> {
+		if (generation === undefined || generation !== catalogStorageGeneration) return;
 		try {
 			await this.storage.setItem(CATALOG_STORAGE_KEY, JSON.stringify(value));
 		} catch {

@@ -21,6 +21,8 @@ export type CachedNodeResult = ClientResult<NodeResponse> & { stale?: boolean };
 // Today and fiche screens own separate cache instances but share AsyncStorage.
 // Serializing read-modify-write operations prevents one screen from dropping the other's update.
 let storageMutation = Promise.resolve();
+let storageGeneration = 0;
+let clearTransitions = 0;
 const pendingProtections = new Set<string>();
 
 function mutateStorage<T>(operation: () => Promise<T>): Promise<T> {
@@ -30,6 +32,30 @@ function mutateStorage<T>(operation: () => Promise<T>): Promise<T> {
 		() => undefined,
 	);
 	return result;
+}
+
+function storageGenerationForOperation(): number | undefined {
+	return clearTransitions === 0 ? storageGeneration : undefined;
+}
+
+export function beginNodeStorageClear(): () => void {
+	storageGeneration += 1;
+	clearTransitions += 1;
+	let ended = false;
+	return () => {
+		if (ended) return;
+		ended = true;
+		clearTransitions -= 1;
+	};
+}
+
+export async function clearNodeStorage(storage: CacheStorage): Promise<void> {
+	const endClear = beginNodeStorageClear();
+	try {
+		await mutateStorage(() => storage.removeItem(NODE_STORAGE_KEY));
+	} finally {
+		endClear();
+	}
 }
 
 function defaultStorage(): CacheStorage {
@@ -95,7 +121,9 @@ export class NodeCache {
 	) {}
 
 	async read(slug: string): Promise<NodeResponse | undefined> {
+		const generation = storageGenerationForOperation();
 		return mutateStorage(async () => {
+			if (generation === undefined || generation !== storageGeneration) return undefined;
 			const stored = await this.readStore();
 			const canonical = stored.aliases[slug] ?? slug;
 			const entry = stored.nodes[canonical];
@@ -111,20 +139,21 @@ export class NodeCache {
 		slug: string,
 		signal?: AbortSignal,
 	): Promise<CachedNodeResult> {
+		const generation = storageGenerationForOperation();
 		const stored = await this.readStore();
 		const canonical = stored.aliases[slug] ?? slug;
 		const cached = stored.nodes[canonical];
 		if (cached !== undefined && this.now() - cached.checkedAt < NODE_MAX_AGE_MS) {
-			await this.touch(slug);
+			await this.touch(slug, generation);
 			return { kind: "success", value: cached.response, stale: false };
 		}
 		const result = await apiClient.getNode(slug, signal);
 		if (result.kind === "success") {
-			await this.write(result.value);
+			await this.write(result.value, generation);
 			return result;
 		}
 		if (cached !== undefined && canServeStale(result)) {
-			await this.touch(slug);
+			await this.touch(slug, generation);
 			return { kind: "success", value: cached.response, stale: true };
 		}
 		if (
@@ -133,12 +162,13 @@ export class NodeCache {
 			result.error.kind === "api" &&
 			result.error.status === 404
 		)
-			await this.remove(slug);
+			await this.remove(slug, generation);
 		return result;
 	}
 
-	async write(response: NodeResponse): Promise<void> {
+	async write(response: NodeResponse, generation = storageGenerationForOperation()): Promise<void> {
 		await mutateStorage(async () => {
+			if (generation === undefined || generation !== storageGeneration) return;
 			const stored = await this.readStore();
 			const canonical = response.node.id;
 			const at = this.now();
@@ -151,9 +181,11 @@ export class NodeCache {
 	}
 
 	async protect(ids: string[]): Promise<void> {
+		const generation = storageGenerationForOperation();
 		for (const id of ids) pendingProtections.add(id);
 		try {
 			await mutateStorage(async () => {
+				if (generation === undefined || generation !== storageGeneration) return;
 				const stored = await this.readStore();
 				// Today can select a fiche before it has been opened and cached for the first time.
 				stored.protected = [...new Set(ids)];
@@ -173,8 +205,9 @@ export class NodeCache {
 		return Object.keys((await this.readStore()).nodes);
 	}
 
-	private async touch(slug: string): Promise<void> {
+	private async touch(slug: string, generation: number | undefined): Promise<void> {
 		await mutateStorage(async () => {
+			if (generation === undefined || generation !== storageGeneration) return;
 			const stored = await this.readStore();
 			const canonical = stored.aliases[slug] ?? slug;
 			const entry = stored.nodes[canonical];
@@ -184,8 +217,9 @@ export class NodeCache {
 		});
 	}
 
-	private async remove(slug: string): Promise<void> {
+	private async remove(slug: string, generation: number | undefined): Promise<void> {
 		await mutateStorage(async () => {
+			if (generation === undefined || generation !== storageGeneration) return;
 			const stored = await this.readStore();
 			const canonical = stored.aliases[slug] ?? slug;
 			if (stored.nodes[canonical] === undefined) return;
