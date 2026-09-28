@@ -79,6 +79,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	const [missingResult, setMissingResult] = useState<SearchResult | undefined>();
 	const [offline, setOffline] = useState(false);
 	const requestSequence = useRef(0);
+	const offlineKey = useRef<string | undefined>(undefined);
 	const appliedRouteQuery = useRef<string | undefined>(undefined);
 	const normalizedQuery = normalizeSearchQuery(query);
 	const queryState = searchQueryState(normalizedQuery);
@@ -144,7 +145,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 		};
 
 		const requestType = searchType(filter);
-		if (offline) {
+		if (offline && offlineKey.current === currentKey) {
 			void applyLocalSearch();
 			return () => {
 				active = false;
@@ -174,6 +175,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 					}
 					if (result.error.kind === "cancelled") return;
 					if (result.error.kind === "network_error" || result.error.kind === "timeout") {
+						offlineKey.current = currentKey;
 						setOffline(true);
 						void applyLocalSearch();
 						return;
@@ -208,6 +210,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	useEffect(() => {
 		const subscription = AppState.addEventListener("change", (next) => {
 			if (next === "active") {
+				offlineKey.current = undefined;
 				setOffline(false);
 			}
 		});
@@ -287,6 +290,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 					{...(error === undefined ? {} : { error })}
 					{...(visibleResponse === undefined ? {} : { response: visibleResponse })}
 					onRetry={() => {
+						offlineKey.current = undefined;
 						setOffline(false);
 						setRetryToken((token) => token + 1);
 					}}

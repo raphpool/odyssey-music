@@ -25,6 +25,19 @@ export type CachedCatalogResult = {
 	error?: ClientError;
 };
 
+// 2026-09-28: a delayed 304 previously overwrote a newer generation refresh in AsyncStorage.
+// Today and generation refresh the same record, so keep the read/request/write transaction ordered.
+let catalogMutation = Promise.resolve();
+
+function mutateCatalog<T>(operation: () => Promise<T>): Promise<T> {
+	const result = catalogMutation.then(operation, operation);
+	catalogMutation = result.then(
+		() => undefined,
+		() => undefined,
+	);
+	return result;
+}
+
 function defaultStorage(): CacheStorage {
 	try {
 		return require("@react-native-async-storage/async-storage").default as CacheStorage;
@@ -72,7 +85,8 @@ export function searchCachedCatalog(
 			type: node.type,
 			name: node.name,
 			slug: node.identity,
-		}));
+		}))
+		.slice(0, 25);
 }
 
 export class CatalogCache {
@@ -98,33 +112,35 @@ export class CatalogCache {
 		apiClient: Pick<ApiClient, "getCatalog">,
 		options: { forceRevalidate?: boolean } = {},
 	): Promise<CachedCatalogResult> {
-		const stored = await this.read();
-		const current = this.now();
-		if (stored !== undefined && current - stored.checkedAt < CATALOG_MAX_AGE_MS && !options.forceRevalidate)
-			return { value: stored.catalog, stale: false };
+		return mutateCatalog(async () => {
+			const stored = await this.read();
+			const current = this.now();
+			if (stored !== undefined && current - stored.checkedAt < CATALOG_MAX_AGE_MS && !options.forceRevalidate)
+				return { value: stored.catalog, stale: false };
 
-		const result = await apiClient.getCatalog(
-			stored?.etag === undefined ? undefined : { etag: stored.etag, hasCachedCopy: true },
-		);
-		if (result.kind === "success") {
-			const next: StoredCatalog = {
-				version: CATALOG_VERSION,
-				catalog: result.value,
-				checkedAt: current,
-				...(result.etag === undefined ? {} : { etag: result.etag }),
-			};
-			await this.save(next);
-			return { value: result.value, stale: false };
-		}
-		if (result.kind === "notModified" && stored !== undefined) {
-			const next: StoredCatalog = { ...stored, checkedAt: current, etag: result.etag };
-			await this.save(next);
-			return { value: stored.catalog, stale: false };
-		}
-		if (result.kind !== "error") return { stale: false };
-		return stored === undefined
-			? { stale: false, error: result.error }
-			: { value: stored.catalog, stale: true, error: result.error };
+			const result = await apiClient.getCatalog(
+				stored?.etag === undefined ? undefined : { etag: stored.etag, hasCachedCopy: true },
+			);
+			if (result.kind === "success") {
+				const next: StoredCatalog = {
+					version: CATALOG_VERSION,
+					catalog: result.value,
+					checkedAt: current,
+					...(result.etag === undefined ? {} : { etag: result.etag }),
+				};
+				await this.save(next);
+				return { value: result.value, stale: false };
+			}
+			if (result.kind === "notModified" && stored !== undefined) {
+				const next: StoredCatalog = { ...stored, checkedAt: current, etag: result.etag };
+				await this.save(next);
+				return { value: stored.catalog, stale: false };
+			}
+			if (result.kind !== "error") return { stale: false };
+			return stored === undefined
+				? { stale: false, error: result.error }
+				: { value: stored.catalog, stale: true, error: result.error };
+		});
 	}
 
 	private async save(value: StoredCatalog): Promise<void> {
