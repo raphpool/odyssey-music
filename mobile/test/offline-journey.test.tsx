@@ -59,10 +59,22 @@ describe("offline journey feedback", () => {
 			}),
 		);
 		jest.useFakeTimers();
-		const search = jest.fn(async () => ({
-			kind: "error" as const,
-			error: { kind: "network_error" as const, message: "offline" },
-		}));
+		const search = jest
+			.fn()
+			.mockResolvedValueOnce({
+				kind: "error" as const,
+				error: { kind: "network_error" as const, message: "offline" },
+			})
+			.mockResolvedValueOnce({
+				kind: "error" as const,
+				error: {
+					kind: "api" as const,
+					status: 503,
+					code: "unavailable",
+					retryable: true,
+					message: "retry",
+				},
+			});
 		const screen = render(<SearchScreen apiClient={{ search } as unknown as ApiClient} />);
 		fireEvent.changeText(screen.getByLabelText("Rechercher dans Odyssey"), "sample");
 		await act(async () => {
@@ -73,6 +85,13 @@ describe("offline journey feedback", () => {
 		await waitFor(() => expect(screen.getByText("Sample")).toBeTruthy());
 		expect(search).toHaveBeenCalledTimes(1);
 		expect(screen.getByText("La recherche externe et la création sont suspendues.")).toBeTruthy();
+		fireEvent.changeText(screen.getByLabelText("Rechercher dans Odyssey"), "samplex");
+		await act(async () => {
+			jest.advanceTimersByTime(300);
+			await Promise.resolve();
+		});
+		await waitFor(() => expect(screen.getByText("La recherche n’a pas pu aboutir.")).toBeTruthy());
+		expect(screen.queryByText("La recherche externe et la création sont suspendues.")).toBeNull();
 	});
 
 	it("keeps external search retryable after an API failure instead of entering offline mode", async () => {
@@ -118,7 +137,7 @@ describe("offline journey feedback", () => {
 		expect(search).toHaveBeenCalledTimes(2);
 	});
 
-	it("retries the remote search when the query changes after an offline fallback", async () => {
+	it("retries the remote search when the same query is resubmitted after an offline fallback", async () => {
 		mockValues.set(
 			"track1.offline.catalog.v1",
 			JSON.stringify({
@@ -143,9 +162,9 @@ describe("offline journey feedback", () => {
 			.mockResolvedValueOnce({
 				kind: "success" as const,
 				value: {
-					q: "burial",
+					q: "sample",
 					hits: [
-						{ source: "cache" as const, type: "artist" as const, name: "Burial", slug: "artist:burial" },
+						{ source: "cache" as const, type: "artist" as const, name: "Sample", slug: "artist:sample" },
 					],
 					sources: { cache: 1, catalog: 0 },
 				},
@@ -159,12 +178,16 @@ describe("offline journey feedback", () => {
 			await Promise.resolve();
 		});
 		await waitFor(() => expect(screen.getByText("Sample")).toBeTruthy());
-		fireEvent.changeText(input, "burial");
+		fireEvent.changeText(input, "");
+		await act(async () => {
+			await Promise.resolve();
+		});
+		fireEvent.changeText(input, "sample");
 		await act(async () => {
 			jest.advanceTimersByTime(300);
 			await Promise.resolve();
 		});
-		await waitFor(() => expect(screen.getByText("Burial")).toBeTruthy());
+		await waitFor(() => expect(search).toHaveBeenCalledTimes(2));
 		expect(search).toHaveBeenCalledTimes(2);
 	});
 });

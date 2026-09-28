@@ -102,6 +102,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 		setMissingResult(undefined);
 
 		if (queryState !== "admissible") {
+			offlineKey.current = undefined;
+			setOffline(false);
 			setStatus("idle");
 			return () => {
 				active = false;
@@ -182,6 +184,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 						void applyLocalSearch();
 						return;
 					}
+					offlineKey.current = undefined;
+					setOffline(false);
 					setError("La recherche n’a pas pu aboutir.");
 					setStatus("error");
 				})
