@@ -14,9 +14,9 @@
     "check": "npm run lint && npm run typecheck && npm run test"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "2.2.0",
-    "@segment/analytics-react-native": "^2.24.1",
-    "@segment/sovran-react-native": "^1.1.5",
+		"@react-native-async-storage/async-storage": "2.2.0",
+		"@segment/analytics-react-native": "^2.24.1",
+		"@segment/sovran-react-native": "^1.1.5",
     "expo": "~57.0.25",
     "expo-constants": "~57.0.19",
     "expo-linking": "~57.0.11",
@@ -25,8 +25,8 @@
     "react-dom": "19.2.3",
     "react-native": "~0.86.3",
 		"react-native-get-random-values": "~1.11.0",
-		"react-native-safe-area-context": "~5.7.0",
-		"zod": "^3.25.76"
+    "react-native-safe-area-context": "~5.7.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.5",

@@ -7,7 +7,10 @@ const REGISTRY_FILE = "push-subscriptions.json";
 const LOCK_FILE = ".push-subscriptions.lock";
 const REGISTRY_VERSION = 1;
 const INACTIVE_TTL_MS = 90 * 24 * 60 * 60 * 1000;
+const DELIVERY_TTL_MS = 24 * 60 * 60 * 1000;
 const DEFAULT_MAX_SUBSCRIPTIONS = 1000;
+const DEFAULT_MAX_DELIVERIES = 2000;
+const MAX_RESERVED_LOCAL_DATES = 40;
 const SECRET_PATTERN = /^[A-Za-z0-9_-]{43}$/;
 const EXPO_TOKEN_PATTERN = /^(?:Expo|Exponent)PushToken\[[A-Za-z0-9_+=/-]{1,200}\]$/;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -24,6 +27,7 @@ export interface PushSubscription {
 	createdAt: string;
 	lastSeenAt: string;
 	lastReservedLocalDate?: string;
+	reservedLocalDates?: string[];
 	lastSentAt?: string;
 }
 
@@ -32,6 +36,55 @@ export interface PushSubscriptionPublic {
 	enabled: boolean;
 	timezone: string;
 	activatedLocalDate: string;
+}
+
+export interface PushNotificationReservation {
+	subscriptionId: string;
+	notificationId: string;
+	targetLocalDate: string;
+	reservedAt: string;
+}
+
+export interface ReserveNotificationOptions {
+	requireScheduledEligibility?: boolean;
+}
+
+export type PushDeliveryStatus =
+	| "reserved"
+	| "sending"
+	| "accepted"
+	| "rejected"
+	| "unknown"
+	| "receipt_ok"
+	| "receipt_error"
+	| "receipt_unknown";
+
+export interface PushDelivery extends PushNotificationReservation {
+	status: PushDeliveryStatus;
+	ticketId?: string;
+	acceptedAt?: string;
+	finalizedAt?: string;
+}
+
+export interface PushNotificationToSend extends PushNotificationReservation {
+	expoToken: string;
+}
+
+export interface PushReceiptRequest extends PushDelivery {
+	ticketId: string;
+}
+
+export interface PushSendOutcome {
+	notificationId: string;
+	status: "accepted" | "rejected" | "unknown";
+	ticketId?: string;
+	deviceNotRegistered?: boolean;
+}
+
+export interface PushReceiptOutcome {
+	ticketId: string;
+	status: "ok" | "error" | "unknown";
+	deviceNotRegistered?: boolean;
 }
 
 export interface CreatePushSubscriptionInput {
@@ -61,12 +114,22 @@ export interface PushStore {
 	remove(input: RemovePushSubscriptionInput): Promise<void>;
 	pruneInactive(): Promise<number>;
 	list(): Promise<PushSubscription[]>;
+	reserveNotification(
+		reservation: PushNotificationReservation,
+		options?: ReserveNotificationOptions,
+	): Promise<PushDelivery>;
+	claimReservedNotifications(reservations: PushNotificationReservation[]): Promise<PushNotificationToSend[]>;
+	recordSendOutcomes(outcomes: PushSendOutcome[]): Promise<void>;
+	listReceiptRequests(limit: number): Promise<PushReceiptRequest[]>;
+	recordReceiptOutcomes(outcomes: PushReceiptOutcome[]): Promise<void>;
+	listDeliveries(): Promise<PushDelivery[]>;
 }
 
 export interface PushStoreOptions {
 	stateDir: string;
 	now?: () => Date;
 	maxSubscriptions?: number;
+	maxDeliveries?: number;
 	syncDirectory?: (path: string, directory: FileHandle) => Promise<void>;
 	testHooks?: {
 		afterLoad?: () => Promise<void> | void;
@@ -82,6 +145,7 @@ export class PushStoreError extends Error {
 			| "conflict"
 			| "corrupt_registry"
 			| "invalid_subscription"
+			| "invalid_delivery"
 			| "not_found"
 			| "unauthorized",
 		message: string,
@@ -95,6 +159,10 @@ interface StoredPushSubscription extends PushSubscription {
 	secretHash: string;
 }
 
+interface StoredPushDelivery extends PushDelivery {
+	tokenHash: string;
+}
+
 interface ValidatedPushSubscriptionInput {
 	subscriptionId: string;
 	secret: string;
@@ -106,6 +174,7 @@ interface ValidatedPushSubscriptionInput {
 interface Registry {
 	version: 1;
 	subscriptions: StoredPushSubscription[];
+	deliveries: StoredPushDelivery[];
 }
 
 interface ReadRegistryResult {
@@ -137,6 +206,7 @@ type ExpectedRegistryState =
 export async function createPushStore(options: PushStoreOptions): Promise<PushStore> {
 	const now = options.now ?? (() => new Date());
 	const maxSubscriptions = validateMaxSubscriptions(options.maxSubscriptions);
+	const maxDeliveries = validateMaxDeliveries(options.maxDeliveries);
 	const syncDirectory = options.syncDirectory ?? syncStateDirectory;
 	const registryPath = join(options.stateDir, REGISTRY_FILE);
 	let tail: Promise<void> = Promise.resolve();
@@ -152,7 +222,9 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 		return result;
 	}
 
-	async function withRegistry<T>(mutate: (registry: Registry, pruned: number) => T | Promise<T>): Promise<T> {
+	async function withRegistry<T>(
+		mutate: (registry: Registry, pruned: number, currentTime: Date) => T | Promise<T>,
+	): Promise<T> {
 		return serialize(async () => {
 			if (unavailable) throw new PushStoreError("corrupt_registry", "push subscription store is unavailable");
 			let lock: RegistryLock | null = null;
@@ -173,8 +245,14 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				const registry = loaded.registry;
 				const before = JSON.stringify(registry);
 				const countBeforePrune = registry.subscriptions.length;
-				pruneInactive(registry, now());
-				const operationResult = await mutate(registry, countBeforePrune - registry.subscriptions.length);
+				const currentTime = now();
+				pruneInactive(registry, currentTime);
+				pruneDeliveries(registry, currentTime);
+				const operationResult = await mutate(
+					registry,
+					countBeforePrune - registry.subscriptions.length,
+					currentTime,
+				);
 				if (before !== JSON.stringify(registry)) {
 					const activeLock = lock;
 					if (!activeLock) {
@@ -316,6 +394,175 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 			}),
 		pruneInactive: async () => withRegistry((_registry, pruned) => pruned),
 		list: async () => withRegistry((registry) => registry.subscriptions.map(copySubscription)),
+		reserveNotification: async (reservation, options = {}) =>
+			withRegistry((registry, _pruned, currentTime) => {
+				const normalized = validateReservation(reservation);
+				const existing = registry.deliveries.find(
+					(delivery) => delivery.notificationId === normalized.notificationId,
+				);
+				if (existing) {
+					if (!sameReservation(existing, normalized)) {
+						throw new PushStoreError("invalid_delivery", "push notification reservation conflicts");
+					}
+					return copyDelivery(existing);
+				}
+				const subscription = registry.subscriptions.find(
+					(candidate) => candidate.subscriptionId === normalized.subscriptionId,
+				);
+				if (!subscription || !subscription.enabled) {
+					throw new PushStoreError("not_found", "push subscription is not available for delivery");
+				}
+				if (
+					options.requireScheduledEligibility &&
+					!isCurrentlyScheduledEligible(subscription, normalized, currentTime)
+				) {
+					throw new PushStoreError("not_found", "push subscription is not eligible for a scheduled delivery");
+				}
+				if (
+					subscriptionHasReservedDate(subscription, normalized.targetLocalDate) ||
+					registry.deliveries.some(
+						(delivery) =>
+							delivery.subscriptionId === normalized.subscriptionId &&
+							delivery.targetLocalDate === normalized.targetLocalDate,
+					)
+				) {
+					throw new PushStoreError(
+						"invalid_delivery",
+						"push subscription already has a delivery for this date",
+					);
+				}
+				if (registry.deliveries.length >= maxDeliveries) {
+					throw new PushStoreError("capacity_exceeded", "push delivery capacity is exhausted");
+				}
+				subscription.lastReservedLocalDate = normalized.targetLocalDate;
+				subscription.reservedLocalDates = appendReservedLocalDate(
+					subscription.reservedLocalDates,
+					normalized.targetLocalDate,
+				);
+				const delivery: StoredPushDelivery = {
+					...normalized,
+					tokenHash: hashToken(subscription.expoToken),
+					status: "reserved",
+				};
+				registry.deliveries.push(delivery);
+				return copyDelivery(delivery);
+			}),
+		claimReservedNotifications: async (reservations) =>
+			withRegistry((registry) => {
+				const normalized = validateReservationBatch(reservations);
+				const claimed: PushNotificationToSend[] = [];
+				for (const reservation of normalized) {
+					const delivery = registry.deliveries.find(
+						(candidate) => candidate.notificationId === reservation.notificationId,
+					);
+					if (!delivery || !sameReservation(delivery, reservation) || delivery.status !== "reserved") {
+						throw new PushStoreError("invalid_delivery", "push notification is not reserved for sending");
+					}
+					const subscription = registry.subscriptions.find(
+						(candidate) => candidate.subscriptionId === reservation.subscriptionId,
+					);
+					if (
+						!subscription ||
+						!subscription.enabled ||
+						hashToken(subscription.expoToken) !== delivery.tokenHash
+					) {
+						delivery.status = "rejected";
+						delivery.finalizedAt = now().toISOString();
+						continue;
+					}
+					delivery.status = "sending";
+					claimed.push({ ...reservation, expoToken: subscription.expoToken });
+				}
+				return claimed;
+			}),
+		recordSendOutcomes: async (outcomes) =>
+			withRegistry((registry) => {
+				const normalized = validateSendOutcomes(outcomes);
+				const assignedTickets = new Set(
+					registry.deliveries.flatMap((delivery) =>
+						delivery.ticketId === undefined ? [] : [delivery.ticketId],
+					),
+				);
+				if (
+					normalized.some(
+						(outcome) => outcome.ticketId !== undefined && assignedTickets.has(outcome.ticketId),
+					)
+				) {
+					throw new PushStoreError("invalid_delivery", "push receipt ticket is already assigned");
+				}
+				for (const outcome of normalized) {
+					const delivery = registry.deliveries.find(
+						(candidate) => candidate.notificationId === outcome.notificationId,
+					);
+					if (!delivery || delivery.status !== "sending") {
+						throw new PushStoreError("invalid_delivery", "push notification outcome has no claimed delivery");
+					}
+					delivery.status = outcome.status;
+					if (outcome.status === "accepted") {
+						if (!outcome.ticketId) {
+							throw new PushStoreError("invalid_delivery", "accepted push notification requires a ticket");
+						}
+						delivery.ticketId = outcome.ticketId;
+						delivery.acceptedAt = now().toISOString();
+					} else {
+						delivery.finalizedAt = now().toISOString();
+					}
+					const subscription = registry.subscriptions.find(
+						(candidate) => candidate.subscriptionId === delivery.subscriptionId,
+					);
+					if (subscription && outcome.status === "accepted") subscription.lastSentAt = now().toISOString();
+					if (
+						outcome.deviceNotRegistered &&
+						subscription &&
+						hashToken(subscription.expoToken) === delivery.tokenHash
+					) {
+						subscription.enabled = false;
+					}
+				}
+			}),
+		listReceiptRequests: async (limit) =>
+			withRegistry((registry) => {
+				if (!Number.isInteger(limit) || limit < 1 || limit > 100) {
+					throw new PushStoreError("invalid_delivery", "push receipt request limit is invalid");
+				}
+				const current = now().getTime();
+				return registry.deliveries
+					.filter(
+						(delivery): delivery is StoredPushDelivery & { ticketId: string; acceptedAt: string } =>
+							delivery.status === "accepted" &&
+							delivery.ticketId !== undefined &&
+							delivery.acceptedAt !== undefined &&
+							current - new Date(delivery.acceptedAt).getTime() >= 15 * 60 * 1000,
+					)
+					.slice(0, limit)
+					.map((delivery) => ({ ...copyDelivery(delivery), ticketId: delivery.ticketId }));
+			}),
+		recordReceiptOutcomes: async (outcomes) =>
+			withRegistry((registry) => {
+				const normalized = validateReceiptOutcomes(outcomes);
+				for (const outcome of normalized) {
+					const delivery = registry.deliveries.find(
+						(candidate) => candidate.status === "accepted" && candidate.ticketId === outcome.ticketId,
+					);
+					if (!delivery) continue;
+					delivery.status =
+						outcome.status === "ok"
+							? "receipt_ok"
+							: outcome.status === "error"
+								? "receipt_error"
+								: "receipt_unknown";
+					delivery.finalizedAt = now().toISOString();
+					if (outcome.deviceNotRegistered) {
+						const subscription = registry.subscriptions.find(
+							(candidate) => candidate.subscriptionId === delivery.subscriptionId,
+						);
+						if (subscription?.expoToken && hashToken(subscription.expoToken) === delivery.tokenHash) {
+							subscription.enabled = false;
+						}
+					}
+				}
+			}),
+		listDeliveries: async () => withRegistry((registry) => registry.deliveries.map(copyDelivery)),
 	};
 }
 
@@ -327,7 +574,7 @@ async function readRegistry(
 	try {
 		const expected = await readExpectedRegistryState(stateDir, path, requireExisting);
 		if (expected.kind === "absent")
-			return { registry: { version: REGISTRY_VERSION, subscriptions: [] }, expected };
+			return { registry: { version: REGISTRY_VERSION, subscriptions: [], deliveries: [] }, expected };
 		const file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
 		try {
 			const metadata = await file.stat();
@@ -667,6 +914,14 @@ function parseRegistry(raw: string): Registry {
 		throw new PushStoreError("corrupt_registry", "push subscription registry has an unsupported shape");
 	}
 	const subscriptions = value.subscriptions.map(validateStoredSubscription);
+	const deliveries =
+		value.deliveries === undefined
+			? []
+			: Array.isArray(value.deliveries)
+				? value.deliveries.map(validateStoredDelivery)
+				: (() => {
+						throw new PushStoreError("corrupt_registry", "push delivery registry is invalid");
+					})();
 	if (
 		new Set(subscriptions.map((subscription) => subscription.subscriptionId)).size !== subscriptions.length
 	) {
@@ -678,7 +933,22 @@ function parseRegistry(raw: string): Registry {
 	if (new Set(enabledTokens).size !== enabledTokens.length) {
 		throw new PushStoreError("corrupt_registry", "push subscription registry has duplicate active tokens");
 	}
-	return { version: REGISTRY_VERSION, subscriptions };
+	if (new Set(deliveries.map((delivery) => delivery.notificationId)).size !== deliveries.length) {
+		throw new PushStoreError("corrupt_registry", "push delivery registry has duplicate notification ids");
+	}
+	const deliveryDates = deliveries.map(
+		(delivery) => `${delivery.subscriptionId}:${delivery.targetLocalDate}`,
+	);
+	if (new Set(deliveryDates).size !== deliveryDates.length) {
+		throw new PushStoreError("corrupt_registry", "push delivery registry has duplicate subscription dates");
+	}
+	const tickets = deliveries.flatMap((delivery) =>
+		delivery.ticketId === undefined ? [] : [delivery.ticketId],
+	);
+	if (new Set(tickets).size !== tickets.length) {
+		throw new PushStoreError("corrupt_registry", "push delivery registry has duplicate receipt tickets");
+	}
+	return { version: REGISTRY_VERSION, subscriptions, deliveries };
 }
 
 function validateStoredSubscription(value: unknown): StoredPushSubscription {
@@ -705,10 +975,64 @@ function validateStoredSubscription(value: unknown): StoredPushSubscription {
 			...(value.last_reserved_local_date === undefined
 				? {}
 				: { lastReservedLocalDate: validateLocalDate(value.last_reserved_local_date) }),
+			...(value.reserved_local_dates === undefined
+				? {}
+				: { reservedLocalDates: validateReservedLocalDates(value.reserved_local_dates) }),
 			...(value.last_sent_at === undefined ? {} : { lastSentAt: validateTimestamp(value.last_sent_at) }),
 		};
 	} catch {
 		throw new PushStoreError("corrupt_registry", "push subscription entry is invalid");
+	}
+}
+
+function validateStoredDelivery(value: unknown): StoredPushDelivery {
+	try {
+		if (!isRecord(value)) throw new Error("entry is not an object");
+		const reservation = validateReservation({
+			subscriptionId: value.subscription_id,
+			notificationId: value.notification_id,
+			targetLocalDate: value.target_local_date,
+			reservedAt: value.reserved_at,
+		});
+		if (typeof value.token_hash !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value.token_hash)) {
+			throw new Error("token hash is invalid");
+		}
+		if (!isDeliveryStatus(value.status)) throw new Error("delivery status is invalid");
+		const status = value.status;
+		const ticketId = value.ticket_id === undefined ? undefined : validateTicketId(value.ticket_id);
+		const acceptedAt = value.accepted_at === undefined ? undefined : validateTimestamp(value.accepted_at);
+		const finalizedAt = value.finalized_at === undefined ? undefined : validateTimestamp(value.finalized_at);
+		const hasReceiptTicket = ticketId !== undefined && acceptedAt !== undefined;
+		if (status === "accepted" && (!hasReceiptTicket || finalizedAt !== undefined))
+			throw new Error("accepted delivery lacks receipt ticket");
+		if (
+			(status === "receipt_ok" || status === "receipt_error" || status === "receipt_unknown") &&
+			(!hasReceiptTicket || finalizedAt === undefined)
+		) {
+			throw new Error("final receipt delivery is invalid");
+		}
+		if (
+			(status === "reserved" || status === "sending") &&
+			(ticketId !== undefined || acceptedAt !== undefined || finalizedAt !== undefined)
+		) {
+			throw new Error("pending delivery metadata is invalid");
+		}
+		if (
+			(status === "rejected" || status === "unknown") &&
+			(ticketId !== undefined || acceptedAt !== undefined || finalizedAt === undefined)
+		) {
+			throw new Error("final delivery metadata is invalid");
+		}
+		return {
+			...reservation,
+			tokenHash: value.token_hash,
+			status,
+			...(ticketId === undefined ? {} : { ticketId }),
+			...(acceptedAt === undefined ? {} : { acceptedAt }),
+			...(finalizedAt === undefined ? {} : { finalizedAt }),
+		};
+	} catch {
+		throw new PushStoreError("corrupt_registry", "push delivery entry is invalid");
 	}
 }
 
@@ -786,6 +1110,133 @@ function validateLocalDate(value: unknown): string {
 	return value;
 }
 
+function validateReservedLocalDates(value: unknown): string[] {
+	if (!Array.isArray(value) || value.length > MAX_RESERVED_LOCAL_DATES) {
+		throw new PushStoreError("corrupt_registry", "push reserved date history is invalid");
+	}
+	const dates = value.map(validateLocalDate);
+	if (new Set(dates).size !== dates.length) {
+		throw new PushStoreError("corrupt_registry", "push reserved date history has duplicates");
+	}
+	return dates;
+}
+
+function validateReservation(value: {
+	subscriptionId: unknown;
+	notificationId: unknown;
+	targetLocalDate: unknown;
+	reservedAt: unknown;
+}): PushNotificationReservation {
+	return {
+		subscriptionId: validateSubscriptionId(value.subscriptionId),
+		notificationId: validateNotificationId(value.notificationId),
+		targetLocalDate: validateLocalDate(value.targetLocalDate),
+		reservedAt: validateTimestamp(value.reservedAt),
+	};
+}
+
+function validateReservationBatch(value: PushNotificationReservation[]): PushNotificationReservation[] {
+	if (!Array.isArray(value) || value.length < 1 || value.length > 100) {
+		throw new PushStoreError("invalid_delivery", "push notification batch is invalid");
+	}
+	const reservations = value.map(validateReservation);
+	if (new Set(reservations.map((reservation) => reservation.notificationId)).size !== reservations.length) {
+		throw new PushStoreError("invalid_delivery", "push notification batch has duplicate ids");
+	}
+	return reservations;
+}
+
+function validateNotificationId(value: unknown): string {
+	if (typeof value !== "string" || !UUID_PATTERN.test(value)) {
+		throw new PushStoreError("invalid_delivery", "push notification id is invalid");
+	}
+	return value.toLowerCase();
+}
+
+function validateTicketId(value: unknown): string {
+	if (typeof value !== "string" || !UUID_PATTERN.test(value)) {
+		throw new PushStoreError("invalid_delivery", "push receipt ticket is invalid");
+	}
+	return value.toLowerCase();
+}
+
+function validateSendOutcomes(value: PushSendOutcome[]): PushSendOutcome[] {
+	if (!Array.isArray(value) || value.length < 1 || value.length > 100) {
+		throw new PushStoreError("invalid_delivery", "push send outcome batch is invalid");
+	}
+	const outcomes = value.map((outcome) => {
+		const notificationId = validateNotificationId(outcome.notificationId);
+		if (outcome.status !== "accepted" && outcome.status !== "rejected" && outcome.status !== "unknown") {
+			throw new PushStoreError("invalid_delivery", "push send outcome is invalid");
+		}
+		const ticketId = outcome.ticketId === undefined ? undefined : validateTicketId(outcome.ticketId);
+		if ((outcome.status === "accepted") !== (ticketId !== undefined)) {
+			throw new PushStoreError("invalid_delivery", "push acceptance ticket is invalid");
+		}
+		if (outcome.deviceNotRegistered !== undefined && typeof outcome.deviceNotRegistered !== "boolean") {
+			throw new PushStoreError("invalid_delivery", "push send outcome is invalid");
+		}
+		if (outcome.deviceNotRegistered && outcome.status !== "rejected") {
+			throw new PushStoreError("invalid_delivery", "push device error must reject the delivery");
+		}
+		return {
+			notificationId,
+			status: outcome.status,
+			...(ticketId === undefined ? {} : { ticketId }),
+			...(outcome.deviceNotRegistered === undefined
+				? {}
+				: { deviceNotRegistered: outcome.deviceNotRegistered }),
+		};
+	});
+	if (new Set(outcomes.map((outcome) => outcome.notificationId)).size !== outcomes.length) {
+		throw new PushStoreError("invalid_delivery", "push send outcomes have duplicate ids");
+	}
+	const tickets = outcomes.flatMap((outcome) => (outcome.ticketId === undefined ? [] : [outcome.ticketId]));
+	if (new Set(tickets).size !== tickets.length) {
+		throw new PushStoreError("invalid_delivery", "push send outcomes have duplicate tickets");
+	}
+	return outcomes;
+}
+
+function validateReceiptOutcomes(value: PushReceiptOutcome[]): PushReceiptOutcome[] {
+	if (!Array.isArray(value) || value.length < 1 || value.length > 100) {
+		throw new PushStoreError("invalid_delivery", "push receipt outcome batch is invalid");
+	}
+	const outcomes = value.map((outcome) => {
+		const ticketId = validateTicketId(outcome.ticketId);
+		if (outcome.status !== "ok" && outcome.status !== "error" && outcome.status !== "unknown") {
+			throw new PushStoreError("invalid_delivery", "push receipt outcome is invalid");
+		}
+		if (outcome.deviceNotRegistered !== undefined && typeof outcome.deviceNotRegistered !== "boolean") {
+			throw new PushStoreError("invalid_delivery", "push receipt outcome is invalid");
+		}
+		return {
+			ticketId,
+			status: outcome.status,
+			...(outcome.deviceNotRegistered === undefined
+				? {}
+				: { deviceNotRegistered: outcome.deviceNotRegistered }),
+		};
+	});
+	if (new Set(outcomes.map((outcome) => outcome.ticketId)).size !== outcomes.length) {
+		throw new PushStoreError("invalid_delivery", "push receipt outcomes have duplicate tickets");
+	}
+	return outcomes;
+}
+
+function isDeliveryStatus(value: unknown): value is PushDeliveryStatus {
+	return (
+		value === "reserved" ||
+		value === "sending" ||
+		value === "accepted" ||
+		value === "rejected" ||
+		value === "unknown" ||
+		value === "receipt_ok" ||
+		value === "receipt_error" ||
+		value === "receipt_unknown"
+	);
+}
+
 function deactivateDuplicateTokens(
 	subscriptions: StoredPushSubscription[],
 	expoToken: string,
@@ -818,8 +1269,20 @@ function validateMaxSubscriptions(value: number | undefined): number {
 	return value;
 }
 
+function validateMaxDeliveries(value: number | undefined): number {
+	if (value === undefined) return DEFAULT_MAX_DELIVERIES;
+	if (!Number.isInteger(value) || value < 1 || value > DEFAULT_MAX_DELIVERIES) {
+		throw new Error(`maxDeliveries must be an integer between 1 and ${DEFAULT_MAX_DELIVERIES}`);
+	}
+	return value;
+}
+
 function hashSecret(secret: string): string {
 	return `sha256:${createHash("sha256").update(secret).digest("hex")}`;
+}
+
+function hashToken(token: string): string {
+	return `sha256:${createHash("sha256").update(token).digest("hex")}`;
 }
 
 function constantTimeSecretMatch(secretHash: string, secret: string): boolean {
@@ -843,11 +1306,78 @@ function localDate(date: Date, timezone: string): string {
 	return `${year}-${month}-${day}`;
 }
 
+function localHour(date: Date, timezone: string): number {
+	const parts = new Intl.DateTimeFormat("en-CA", {
+		timeZone: timezone,
+		hour: "2-digit",
+		hourCycle: "h23",
+	}).formatToParts(date);
+	const hour = new Map(parts.map((part) => [part.type, part.value])).get("hour");
+	if (!hour || !/^\d{2}$/.test(hour)) throw new Error("Intl did not provide a local hour");
+	return Number.parseInt(hour, 10);
+}
+
+// The scheduler reads a snapshot before it can take the file lock. Recompute its decision while
+// holding that lock so an update cannot turn 09:00 into 03:00 (or reactivate today) in between.
+function isCurrentlyScheduledEligible(
+	subscription: StoredPushSubscription,
+	reservation: PushNotificationReservation,
+	current: Date,
+): boolean {
+	if (!subscription.enabled) return false;
+	if (current.getTime() - new Date(subscription.lastSeenAt).getTime() >= INACTIVE_TTL_MS) return false;
+	const date = localDate(current, subscription.timezone);
+	if (reservation.targetLocalDate !== date || date <= subscription.activatedLocalDate) return false;
+	const hour = localHour(current, subscription.timezone);
+	return hour >= 9 && hour < 10;
+}
+
 function pruneInactive(registry: Registry, current: Date): void {
 	const cutoff = current.getTime() - INACTIVE_TTL_MS;
 	registry.subscriptions = registry.subscriptions.filter(
 		(subscription) => new Date(subscription.lastSeenAt).getTime() > cutoff,
 	);
+}
+
+function pruneDeliveries(registry: Registry, current: Date): void {
+	const currentTime = current.getTime();
+	for (const delivery of registry.deliveries) {
+		if (currentTime - new Date(delivery.reservedAt).getTime() < DELIVERY_TTL_MS) continue;
+		if (delivery.status === "accepted") {
+			delivery.status = "receipt_unknown";
+			delivery.finalizedAt = current.toISOString();
+		} else if (delivery.status === "reserved" || delivery.status === "sending") {
+			delivery.status = "unknown";
+			delivery.finalizedAt = current.toISOString();
+		}
+	}
+	// Retention is measured from reservation, not from receipt finalization. A final
+	// `receipt_unknown` remains observable at the exact 24-hour boundary, then the
+	// next operation removes it rather than keeping a second 24-hour copy.
+	registry.deliveries = registry.deliveries.filter(
+		(delivery) => currentTime - new Date(delivery.reservedAt).getTime() <= DELIVERY_TTL_MS,
+	);
+}
+
+function sameReservation(left: PushNotificationReservation, right: PushNotificationReservation): boolean {
+	return (
+		left.subscriptionId === right.subscriptionId &&
+		left.notificationId === right.notificationId &&
+		left.targetLocalDate === right.targetLocalDate &&
+		left.reservedAt === right.reservedAt
+	);
+}
+
+function subscriptionHasReservedDate(subscription: StoredPushSubscription, targetLocalDate: string): boolean {
+	return (
+		subscription.lastReservedLocalDate === targetLocalDate ||
+		subscription.reservedLocalDates?.includes(targetLocalDate) === true
+	);
+}
+
+function appendReservedLocalDate(dates: string[] | undefined, targetLocalDate: string): string[] {
+	const history = dates ?? [];
+	return [...history, targetLocalDate].slice(-MAX_RESERVED_LOCAL_DATES);
 }
 
 function toPublic(subscription: PushSubscription): PushSubscriptionPublic {
@@ -861,6 +1391,11 @@ function toPublic(subscription: PushSubscription): PushSubscriptionPublic {
 
 function copySubscription(subscription: StoredPushSubscription): PushSubscription {
 	const { secretHash: _, ...copy } = subscription;
+	return structuredClone(copy);
+}
+
+function copyDelivery(delivery: StoredPushDelivery): PushDelivery {
+	const { tokenHash: _, ...copy } = delivery;
 	return structuredClone(copy);
 }
 
@@ -880,7 +1415,21 @@ function serializeRegistry(registry: Registry) {
 			...(subscription.lastReservedLocalDate === undefined
 				? {}
 				: { last_reserved_local_date: subscription.lastReservedLocalDate }),
+			...(subscription.reservedLocalDates === undefined
+				? {}
+				: { reserved_local_dates: subscription.reservedLocalDates }),
 			...(subscription.lastSentAt === undefined ? {} : { last_sent_at: subscription.lastSentAt }),
+		})),
+		deliveries: registry.deliveries.map((delivery) => ({
+			subscription_id: delivery.subscriptionId,
+			notification_id: delivery.notificationId,
+			target_local_date: delivery.targetLocalDate,
+			reserved_at: delivery.reservedAt,
+			token_hash: delivery.tokenHash,
+			status: delivery.status,
+			...(delivery.ticketId === undefined ? {} : { ticket_id: delivery.ticketId }),
+			...(delivery.acceptedAt === undefined ? {} : { accepted_at: delivery.acceptedAt }),
+			...(delivery.finalizedAt === undefined ? {} : { finalized_at: delivery.finalizedAt }),
 		})),
 	};
 }

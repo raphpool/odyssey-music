@@ -37,9 +37,14 @@ import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
+import { createMobileGenerationService } from "./mobile/generation-service.js";
+import { createGenerationStore } from "./mobile/generation-store.js";
 import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
+import { createExpoPushReceipts } from "./mobile/push-receipts.js";
 import { createMobilePushRoutes } from "./mobile/push-routes.js";
+import { createPushScheduler } from "./mobile/push-schedule.js";
+import { createExpoPushSender } from "./mobile/push-sender.js";
 import { createPushStore } from "./mobile/push-store.js";
 import { createMobileRouter } from "./mobile/router.js";
 import { createMobileSearch } from "./mobile/search.js";
@@ -113,12 +118,49 @@ try {
 } catch {
 	mobilePushStore = undefined;
 }
+let mobileGeneration: ReturnType<typeof createMobileGenerationService> | undefined;
+try {
+	const generationStore = await createGenerationStore({ stateDir: serverConfig.mobileStateDir });
+	mobileGeneration = createMobileGenerationService({
+		store: generationStore,
+		materialize: materializeService,
+		invalidateSearch: invalidateCacheIndex,
+	});
+} catch (error) {
+	// Generation persistence is optional for boot: preserve the broken registry and
+	// keep all read-only music routes available while this route answers typed 503.
+	log.error("mobile generation registry unavailable", {
+		error: error instanceof Error ? error.message : "unknown failure",
+	});
+}
+const mobilePushEnabled = process.env.MOBILE_PUSH_ENABLED === "true";
+const mobilePushScheduler =
+	mobilePushEnabled && mobilePushStore && serverConfig.expoAccessToken
+		? createPushScheduler({
+				store: mobilePushStore,
+				sender: createExpoPushSender({ store: mobilePushStore, accessToken: serverConfig.expoAccessToken }),
+				receipts: createExpoPushReceipts({
+					store: mobilePushStore,
+					accessToken: serverConfig.expoAccessToken,
+				}),
+				onError: (event, error) => {
+					log.error("mobile push scheduler operation failed", {
+						event,
+						error: error instanceof Error ? error.message : "unknown failure",
+					});
+				},
+			})
+		: undefined;
+if (mobilePushEnabled && !mobilePushScheduler) {
+	log.error("mobile push scheduler is disabled because its store or Expo credential is unavailable");
+}
 const mobileRouter = createMobileRouter({
 	catalog: mobileCatalog,
 	nodes: mobileNodes,
 	media: mobileMedia,
 	search: mobileSearch,
 	push: createMobilePushRoutes({ ...(mobilePushStore ? { store: mobilePushStore } : {}) }),
+	...(mobileGeneration ? { generation: mobileGeneration } : {}),
 });
 
 const server = createServer(async (req, res) => {
@@ -364,4 +406,23 @@ function json(res: ServerResponse, status: number, body: unknown): void {
 
 server.listen(PORT, () => {
 	log.info("listening", { port: PORT, cacheDir: CACHE_DIR });
+	mobilePushScheduler?.start();
 });
+
+let shuttingDown = false;
+function shutdown(signal: "SIGINT" | "SIGTERM"): void {
+	if (shuttingDown) return;
+	shuttingDown = true;
+	log.info("shutting down", { signal });
+	void (mobilePushScheduler?.stop() ?? Promise.resolve()).finally(() => {
+		server.close((error) => {
+			if (error) {
+				log.error("server close failed", { error: error.message });
+				process.exitCode = 1;
+			}
+			process.exit();
+		});
+	});
+}
+process.once("SIGINT", () => shutdown("SIGINT"));
+process.once("SIGTERM", () => shutdown("SIGTERM"));

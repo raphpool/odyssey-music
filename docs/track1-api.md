@@ -5,9 +5,9 @@
 L'application utilise exclusivement une URL HTTPS se terminant par `/mobile/v1`.
 Les routes historiques du serveur Odyssey ne sont pas un contrat mobile et ne doivent
 pas être appelées par l'application. Le catalogue est public en lecture : aucun secret
-fournisseur ne peut être embarqué dans l'application. Les futures opérations qui créent
-une recommandation, une génération ou un abonnement de notifications seront associées à
-une identité utilisateur côté serveur et à des crédits contrôlés côté serveur.
+fournisseur ne peut être embarqué dans l'application. La création publique de fiche reste
+limitée côté serveur (idempotence, déduplication, file bornée et crédits fournisseur), jamais
+par une clé livrée au client.
 
 Toutes les erreurs de la surface mobile ont cette forme :
 
@@ -20,11 +20,12 @@ Toutes les erreurs de la surface mobile ont cette forme :
 }
 ```
 
-Les codes actuellement exposés sont `invalid_request` (400), `unauthorized` (401),
-`not_found` (404), `method_not_allowed` (405), `conflict` (409),
-`catalog_unavailable` (500) et `push_unavailable` (503). Une erreur ne contient jamais
-un message interne, un chemin de cache, un token de notification, un secret ou une erreur
-d'un fournisseur.
+Les codes actuellement exposés sont `invalid_request` (400), `idempotency_conflict` (409),
+`unauthorized` (401), `not_found` (404), `method_not_allowed` (405), `conflict` et
+`idempotency_conflict` (409), `job_expired` (410), `busy` (429), `catalog_unavailable` et
+`internal_error` (500), `push_unavailable`, `provider_quota_exhausted` et `provider_unavailable` (503).
+Une erreur ne contient jamais un message interne, un chemin de cache, un token de notification,
+un secret ou une erreur brute d'un fournisseur.
 
 ## Catalogue disponible
 
@@ -143,7 +144,139 @@ des chemins POSIX et est hors du modèle de menace. Le registre accepte au plus 
 à saturation, seules les nouvelles
 créations répondent `503 push_unavailable` tandis que réessai identique, mise à jour et
 suppression restent possibles. La maintenance supprime les abonnements sans activité depuis
-90 jours avant toute admission. Ce ticket n'envoie aucun push Expo.
+90 jours avant toute admission.
+
+## Envoi et suivi Expo des rappels
+
+L'envoi est une opération interne du serveur : aucune route mobile ne permet de déclencher,
+lister ou relancer un envoi. Le scheduler réserve durablement une notification avant tout appel
+réseau. Une réservation contient une date locale et un UUID de notification, mais pas de goût ni
+de recommandation. Sans réservation, le transport n'envoie rien.
+
+Le serveur appelle seulement `https://exp.host/--/api/v2/push/send`, par groupes d'au plus 100
+messages et avec une seule requête en vol. Chaque message contient le titre « track1 — Ta
+découverte du jour », un texte fixe, le canal Android `daily`, le son par défaut et les seules
+données `{kind, notification_id, target_local_date, url}` attendues par l'application. Le secret
+facultatif `EXPO_ACCESS_TOKEN` est chargé côté serveur : il n'est ni renvoyé, ni journalisé, ni
+fourni dans la configuration publique. Un délai de 15 secondes, une erreur réseau, une réponse
+invalide, un 429 ou un 5xx rendent la tentative `unknown`; cette date n'est alors jamais renvoyée
+automatiquement. Un accusé `accepted` conserve uniquement le ticket Expo nécessaire au suivi;
+un rejet immédiat est distinct.
+
+Après 15 minutes, le serveur consulte uniquement `https://exp.host/--/api/v2/push/getReceipts`,
+par groupes d'au plus 100 tickets et sans polling concurrent. Un receipt `ok` indique l'acceptation
+par APNs ou FCM, pas l'affichage ni la lecture par la personne. Un receipt absent après 24 heures
+devient `receipt_unknown`, séparé des erreurs de receipt. `DeviceNotRegistered` désactive le token
+seulement si l'abonnement porte toujours le même token que celui de l'envoi : un token renouvelé
+reste actif. Les tentatives, tickets et receipts sont stockés atomiquement, purgés après 24 heures
+et bornés; les journaux techniques n'incluent jamais de token ou de secret.
+
+## Générations publiques suivies
+
+`POST /mobile/v1/generations` accepte un JSON strict de 8 KiB maximum. `request_id` et `mbid`
+sont des UUID ; `type` vaut `artist`, `project`, `track`, `genre` ou `label`, `name` et
+`disambiguator` sont trimés et bornés à 1–200 caractères, `slug` est canonique et du même type,
+et `qid` suit `Q[1-9]\d*`. Les champs inconnus, `fresh` ou des identifiants contradictoires avec
+une fiche existante sont refusés avec `400 invalid_request`.
+
+Une demande qui doit réellement être matérialisée est durable avant le `202`, plate et suivable dans `Location:
+/mobile/v1/generations/:request_id` :
+
+```json
+{
+	"request_id": "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+	"status": "queued",
+	"created_at": "2026-09-27T00:00:00.000Z",
+	"updated_at": "2026-09-27T00:00:00.000Z"
+}
+```
+
+`GET /mobile/v1/generations/:request_id` retourne cette forme avec `running`, `succeeded`,
+`failed` ou `interrupted`. Un succès porte toujours `node_id` (le slug canonique réellement
+écrit) ; un échec terminal porte `{error:{code,message,retryable}}`. Une demande identique avec
+le même `request_id` retourne le même suivi ; une entrée différente retourne
+`409 idempotency_conflict`. Les travaux de même identité partagent une matérialisation. Deux
+matérialisations et dix demandes en attente sont admises ; la saturation retourne `429 busy` et
+`Retry-After: 30` sans écrire une nouvelle demande.
+
+Avant le cache fast-path, le serveur vérifie durablement le couple `request_id` + requête : une
+réutilisation avec une entrée différente retourne `409 idempotency_conflict`, même après un
+redémarrage. Une fiche compatible déjà présente répond immédiatement `succeeded` avec son
+`node_id` canonique ; son résultat d'idempotence est conservé 24 h dans un registre séparé, borné
+à 2 048 entrées. Il ne crée pas de suivi, ne consomme aucune place de file ou de capacité de jobs
+et n'appelle jamais le modèle. Cette réponse immédiate est un `200` sans `Location`; seul un
+travail durable accepté répond `202` et peut ensuite être lu par
+`GET /mobile/v1/generations/:request_id`. Lorsque ce registre dédié est plein, le serveur répond
+`429 busy` avec `Retry-After: 30`, sans appeler un fournisseur.
+
+Il n'y a aucune reprise automatique : au redémarrage, les travaux `pending` et `running`
+deviennent `interrupted` (`retryable:false`). Crédits épuisés devient
+`provider_quota_exhausted` (`retryable:false`), panne/délai devient `provider_unavailable`
+(`retryable:true`) et le reste `internal_error` sans détail fournisseur. Une fiche déjà présente,
+même ancienne, est réutilisée sans refresh ni appel modèle ; le refresh de la route web historique
+reste inchangé. Chaque succès invalide l'index de recherche mobile.
+
+## Preuves de déploiement P2.7
+
+La recette de déploiement utilise uniquement une révision déjà approuvée et fusionnée dans `main`.
+Elle n'utilise jamais un worktree de ticket, ni `--dirty`, ni `--allow-non-main`. `MOBILE_STATE_DIR`
+doit rester `/var/lib/track1-mobile` avec les droits du service : le script de déploiement exclut
+ce répertoire de la synchronisation de source afin que les demandes soient conservées entre deux
+déploiements ou redémarrages.
+
+Après chaque déploiement, exécuter le smoke non destructif suivant depuis la révision effectivement
+déployée. `MOBILE_SMOKE_IDENTITY` est obligatoire et doit désigner un genre canonique existant,
+choisi avant la recette. `MOBILE_EXPECTED_SHA` est obligatoire et correspond au SHA complet de la
+révision déployée. Le script refuse toute URL qui n’est pas le nom DNS HTTPS de l’origine configurée (les
+adresses IPv4/IPv6 littérales sont toujours refusées), toute identité non-genre et tout SHA qui ne
+correspond pas exactement à `/version`. Cette règle évite de prétendre maintenir localement une
+classification exhaustive et instable des plages d’adresses IANA.
+
+```bash
+MOBILE_API_URL=https://dropcliffs.com/api/odyssey/mobile/v1 \
+MOBILE_SMOKE_IDENTITY=genre:ambient \
+MOBILE_EXPECTED_SHA=<sha-main-deploye-sur-40-caracteres> \
+bash scripts/verify-e2e.sh --mobile-smoke
+```
+
+Le smoke vérifie l’origine DNS HTTPS, catalogue `200` puis `304` avec son ETag, recherche, lecture de fiche,
+et `/version`, avec un timeout de connexion de 5 s et un timeout total de 15 s par appel
+(surchargeables par les variables `MOBILE_CONNECT_TIMEOUT_SECONDS` et
+`MOBILE_REQUEST_TIMEOUT_SECONDS`). Il ne lance pas le crawler historique, ne crée pas de fiche et
+ne déclenche aucun appel fournisseur payant. Il ne vérifie volontairement ni image ni liens en
+production : même une fiche de genre peut évoluer et faire de cette lecture une frontière de
+résolution ou une écriture de sidecar. La couverture media complète reste le test d'intégration
+hors réseau qui contrôle ces frontières. Pour la génération et le redémarrage, la preuve de
+comportement reste également le test d'intégration local qui simule uniquement le fournisseur ;
+une recette publique ne crée une fiche manquante que si elle a été explicitement choisie et
+budgétée avant son exécution.
+
+La table suivante est à remplir avec des résultats réellement observés ; elle ne constitue pas une
+attestation avant exécution.
+
+| Déploiement | Date UTC | SHA de `/version` | Catalogue/ETag | Lecture/recherche | État registre après redémarrage | Résultat |
+| --- | --- | --- | --- | --- | --- | --- |
+| Non exécuté dans TRA-297 | — | — | — | — | — | Préparation locale uniquement |
+
+Le SHA retourné par `https://dropcliffs.com/api/odyssey/version` doit être exactement
+`MOBILE_EXPECTED_SHA`. Pour attester un redémarrage, créer auparavant une demande explicitement
+budgétée, relever son UUID pendant qu'elle est `pending` ou `running`, puis redémarrer. Rejouer le
+smoke avec l'UUID observé :
+
+```bash
+MOBILE_SMOKE_INTERRUPTED_GENERATION_ID=<uuid-observe-avant-redemarrage> \
+MOBILE_API_URL=https://dropcliffs.com/api/odyssey/mobile/v1 \
+MOBILE_SMOKE_IDENTITY=genre:ambient \
+MOBILE_EXPECTED_SHA=<sha-main-deploye-sur-40-caracteres> \
+bash scripts/verify-e2e.sh --mobile-smoke
+```
+
+Le smoke lit alors uniquement `GET /mobile/v1/generations/:request_id` et exige le même UUID,
+`status: "interrupted"` et `error.retryable: false`. Cette observation prouve que le registre est
+lisible après redémarrage et qu'aucun travail actif n'a été repris automatiquement ; elle ne crée
+ni ne relance une génération. Consigner cette valeur après chacun des deux déploiements ou
+redémarrages. Une différence est un blocage à corriger dans le ticket propriétaire, pas une
+correction silencieuse de cette recette.
 
 ## Contrats réservés, non implémentés
 
@@ -153,8 +286,7 @@ génération, écriture ou notification.
 
 - `GET /mobile/v1/daily-recommendation` retournera une recommandation quotidienne
   stable pour l'identité locale ou authentifiée, avec sa provenance de catalogue.
-- `POST /mobile/v1/generations` demandera une génération explicitement déclenchée par
-  l'utilisateur. Le serveur vérifiera une identité utilisateur et un crédit avant de
-  contacter un fournisseur ; aucune clé fournisseur ne transitera dans le client.
+- `PUT /mobile/v1/push-tokens/{token}` enregistrera ou renouvellera un token de push
+  validé pour une identité utilisateur, afin de livrer la recommandation quotidienne.
 - `POST /mobile/v1/events` recevra ultérieurement les événements produit validés par
   le plan de tracking, sans remplacer les SDK d'analytics du client.
