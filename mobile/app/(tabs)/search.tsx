@@ -145,7 +145,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 		};
 
 		const requestType = searchType(filter);
-		if (offline && offlineKey.current === currentKey) {
+		if (offlineKey.current === currentKey) {
 			void applyLocalSearch();
 			return () => {
 				active = false;
@@ -167,6 +167,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 				.then((result) => {
 					if (!isCurrent()) return;
 					if (result.kind === "success") {
+						offlineKey.current = undefined;
+						setOffline(false);
 						setError(undefined);
 						setResponse(result.value);
 						setResponseKey(currentKey);
@@ -195,23 +197,14 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 			clearTimeout(timeout);
 			controller.abort();
 		};
-	}, [
-		apiClient,
-		catalogCache,
-		currentKey,
-		filter,
-		nodeCache,
-		normalizedQuery,
-		offline,
-		queryState,
-		retryToken,
-	]);
+	}, [apiClient, catalogCache, currentKey, filter, nodeCache, normalizedQuery, queryState, retryToken]);
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener("change", (next) => {
 			if (next === "active") {
 				offlineKey.current = undefined;
 				setOffline(false);
+				setRetryToken((token) => token + 1);
 			}
 		});
 		return () => subscription.remove();

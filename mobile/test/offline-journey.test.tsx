@@ -114,6 +114,7 @@ describe("offline journey feedback", () => {
 			await Promise.resolve();
 		});
 		await waitFor(() => expect(screen.getByText("Burial")).toBeTruthy());
+		expect(screen.queryByText("La recherche externe et la création sont suspendues.")).toBeNull();
 		expect(search).toHaveBeenCalledTimes(2);
 	});
 
