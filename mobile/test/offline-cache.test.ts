@@ -202,6 +202,18 @@ describe("offline caches", () => {
 		expect((await cache.read("artist:old"))?.node.id).toBe("artist:new");
 	});
 
+	it("marks a cached alias as available when the offline catalogue still has its former identity", async () => {
+		const cache = new NodeCache(storage());
+		await cache.write(node("artist:new", "artist:old"));
+		const results = searchCachedCatalog(
+			{ ...catalog, nodes: [{ identity: "artist:old", type: "artist", name: "Sample", teaser: null }] },
+			"sample",
+			undefined,
+			new Set(await cache.identities()),
+		);
+		expect(results).toMatchObject([{ slug: "artist:old", source: "cache" }]);
+	});
+
 	it("serializes concurrent daily protection and fiche writes so neither update is lost", async () => {
 		let now = 0;
 		const sharedStorage = storage();

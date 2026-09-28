@@ -219,7 +219,8 @@ export class NodeCache {
 	}
 
 	async identities(): Promise<string[]> {
-		return Object.keys((await this.readStore()).nodes);
+		const stored = await this.readStore();
+		return [...new Set([...Object.keys(stored.nodes), ...Object.keys(stored.aliases)])];
 	}
 
 	private async touch(slug: string, generation: number | undefined): Promise<void> {
