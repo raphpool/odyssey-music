@@ -110,6 +110,10 @@ function parse(raw: string): StoredNodes | undefined {
 	}
 }
 
+function canServeStale(error: ClientResult<NodeResponse>): boolean {
+	return error.kind === "error" && (error.error.kind === "network_error" || error.error.kind === "timeout");
+}
+
 export class NodeCache {
 	constructor(
 		private readonly storage: CacheStorage = defaultStorage(),
@@ -148,10 +152,17 @@ export class NodeCache {
 			await this.write(result.value, generation);
 			return result;
 		}
-		if (cached !== undefined) {
+		if (cached !== undefined && canServeStale(result)) {
 			await this.touch(slug, generation);
 			return { kind: "success", value: cached.response, stale: true };
 		}
+		if (
+			cached !== undefined &&
+			result.kind === "error" &&
+			result.error.kind === "api" &&
+			result.error.status === 404
+		)
+			await this.remove(slug, generation);
 		return result;
 	}
 
@@ -202,6 +213,20 @@ export class NodeCache {
 			const entry = stored.nodes[canonical];
 			if (entry === undefined) return;
 			entry.touchedAt = this.now();
+			await this.save(stored);
+		});
+	}
+
+	private async remove(slug: string, generation: number | undefined): Promise<void> {
+		await mutateStorage(async () => {
+			if (generation === undefined || generation !== storageGeneration) return;
+			const stored = await this.readStore();
+			const canonical = stored.aliases[slug] ?? slug;
+			if (stored.nodes[canonical] === undefined) return;
+			delete stored.nodes[canonical];
+			for (const [alias, identity] of Object.entries(stored.aliases)) {
+				if (identity === canonical) delete stored.aliases[alias];
+			}
 			await this.save(stored);
 		});
 	}

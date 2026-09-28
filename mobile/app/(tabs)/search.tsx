@@ -79,6 +79,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 	const [missingResult, setMissingResult] = useState<SearchResult | undefined>();
 	const [offline, setOffline] = useState(false);
 	const requestSequence = useRef(0);
+	const offlineKey = useRef<string | undefined>(undefined);
 	const appliedRouteQuery = useRef<string | undefined>(undefined);
 	const normalizedQuery = normalizeSearchQuery(query);
 	const queryState = searchQueryState(normalizedQuery);
@@ -144,7 +145,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 		};
 
 		const requestType = searchType(filter);
-		if (offline) {
+		if (offlineKey.current === currentKey) {
 			void applyLocalSearch();
 			return () => {
 				active = false;
@@ -166,6 +167,8 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 				.then((result) => {
 					if (!isCurrent()) return;
 					if (result.kind === "success") {
+						offlineKey.current = undefined;
+						setOffline(false);
 						setError(undefined);
 						setResponse(result.value);
 						setResponseKey(currentKey);
@@ -174,6 +177,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 					}
 					if (result.error.kind === "cancelled") return;
 					if (result.error.kind === "network_error" || result.error.kind === "timeout") {
+						offlineKey.current = currentKey;
 						setOffline(true);
 						void applyLocalSearch();
 						return;
@@ -193,22 +197,14 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 			clearTimeout(timeout);
 			controller.abort();
 		};
-	}, [
-		apiClient,
-		catalogCache,
-		currentKey,
-		filter,
-		nodeCache,
-		normalizedQuery,
-		offline,
-		queryState,
-		retryToken,
-	]);
+	}, [apiClient, catalogCache, currentKey, filter, nodeCache, normalizedQuery, queryState, retryToken]);
 
 	useEffect(() => {
 		const subscription = AppState.addEventListener("change", (next) => {
 			if (next === "active") {
+				offlineKey.current = undefined;
 				setOffline(false);
+				setRetryToken((token) => token + 1);
 			}
 		});
 		return () => subscription.remove();
@@ -287,6 +283,7 @@ export default function SearchScreen({ apiClient: providedApiClient }: SearchScr
 					{...(error === undefined ? {} : { error })}
 					{...(visibleResponse === undefined ? {} : { response: visibleResponse })}
 					onRetry={() => {
+						offlineKey.current = undefined;
 						setOffline(false);
 						setRetryToken((token) => token + 1);
 					}}

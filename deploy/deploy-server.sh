@@ -113,8 +113,8 @@ if ! command -v ffmpeg >/dev/null 2>&1; then
 fi
 
 mkdir -p /opt/odyssey-music/stream-cache
-# The generation registry contains user-triggered, paid-work state. It must survive
-# source replacement and remain private to the systemd service account.
+# The mobile generation and push registries contain paid-work state plus notification
+# reservations. They must survive source replacement and remain private to the service account.
 install -d -m 0700 -o root -g root /var/lib/track1-mobile
 
 echo "  -> npm install"
@@ -132,6 +132,8 @@ Type=simple
 WorkingDirectory=/opt/odyssey-music
 EnvironmentFile=/etc/odyssey-music.env
 Environment=MOBILE_STATE_DIR=/var/lib/track1-mobile
+# MOBILE_PUSH_ENABLED is absent/false by default. Production activation and EXPO_ACCESS_TOKEN
+# stay in /etc/odyssey-music.env; never embed either value in this generated unit.
 ExecStart=/opt/odyssey-music/node_modules/.bin/tsx /opt/odyssey-music/src/server.ts
 Restart=on-failure
 RestartSec=3

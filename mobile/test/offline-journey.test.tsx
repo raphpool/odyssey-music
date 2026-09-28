@@ -114,6 +114,57 @@ describe("offline journey feedback", () => {
 			await Promise.resolve();
 		});
 		await waitFor(() => expect(screen.getByText("Burial")).toBeTruthy());
+		expect(screen.queryByText("La recherche externe et la création sont suspendues.")).toBeNull();
+		expect(search).toHaveBeenCalledTimes(2);
+	});
+
+	it("retries the remote search when the query changes after an offline fallback", async () => {
+		mockValues.set(
+			"track1.offline.catalog.v1",
+			JSON.stringify({
+				version: 1,
+				checkedAt: 0,
+				catalog: {
+					version: "v1",
+					revision: `sha256:${"a".repeat(64)}`,
+					taxonomy: { mode: "degraded", available: true },
+					nodes: [{ identity: "artist:sample", type: "artist", name: "Sample", teaser: null }],
+					edges: [],
+				},
+			}),
+		);
+		jest.useFakeTimers();
+		const search = jest
+			.fn()
+			.mockResolvedValueOnce({
+				kind: "error" as const,
+				error: { kind: "timeout" as const, message: "offline" },
+			})
+			.mockResolvedValueOnce({
+				kind: "success" as const,
+				value: {
+					q: "burial",
+					hits: [
+						{ source: "cache" as const, type: "artist" as const, name: "Burial", slug: "artist:burial" },
+					],
+					sources: { cache: 1, catalog: 0 },
+				},
+			});
+		const screen = render(<SearchScreen apiClient={{ search } as unknown as ApiClient} />);
+		const input = screen.getByLabelText("Rechercher dans Odyssey");
+		fireEvent.changeText(input, "sample");
+		await act(async () => {
+			jest.advanceTimersByTime(300);
+			await Promise.resolve();
+			await Promise.resolve();
+		});
+		await waitFor(() => expect(screen.getByText("Sample")).toBeTruthy());
+		fireEvent.changeText(input, "burial");
+		await act(async () => {
+			jest.advanceTimersByTime(300);
+			await Promise.resolve();
+		});
+		await waitFor(() => expect(screen.getByText("Burial")).toBeTruthy());
 		expect(search).toHaveBeenCalledTimes(2);
 	});
 });

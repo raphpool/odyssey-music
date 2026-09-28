@@ -45,6 +45,10 @@ export interface PushNotificationReservation {
 	reservedAt: string;
 }
 
+export interface ReserveNotificationOptions {
+	requireScheduledEligibility?: boolean;
+}
+
 export type PushDeliveryStatus =
 	| "reserved"
 	| "sending"
@@ -110,7 +114,10 @@ export interface PushStore {
 	remove(input: RemovePushSubscriptionInput): Promise<void>;
 	pruneInactive(): Promise<number>;
 	list(): Promise<PushSubscription[]>;
-	reserveNotification(reservation: PushNotificationReservation): Promise<PushDelivery>;
+	reserveNotification(
+		reservation: PushNotificationReservation,
+		options?: ReserveNotificationOptions,
+	): Promise<PushDelivery>;
 	claimReservedNotifications(reservations: PushNotificationReservation[]): Promise<PushNotificationToSend[]>;
 	recordSendOutcomes(outcomes: PushSendOutcome[]): Promise<void>;
 	listReceiptRequests(limit: number): Promise<PushReceiptRequest[]>;
@@ -215,7 +222,9 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 		return result;
 	}
 
-	async function withRegistry<T>(mutate: (registry: Registry, pruned: number) => T | Promise<T>): Promise<T> {
+	async function withRegistry<T>(
+		mutate: (registry: Registry, pruned: number, currentTime: Date) => T | Promise<T>,
+	): Promise<T> {
 		return serialize(async () => {
 			if (unavailable) throw new PushStoreError("corrupt_registry", "push subscription store is unavailable");
 			let lock: RegistryLock | null = null;
@@ -239,7 +248,11 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				const currentTime = now();
 				pruneInactive(registry, currentTime);
 				pruneDeliveries(registry, currentTime);
-				const operationResult = await mutate(registry, countBeforePrune - registry.subscriptions.length);
+				const operationResult = await mutate(
+					registry,
+					countBeforePrune - registry.subscriptions.length,
+					currentTime,
+				);
 				if (before !== JSON.stringify(registry)) {
 					const activeLock = lock;
 					if (!activeLock) {
@@ -381,8 +394,8 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 			}),
 		pruneInactive: async () => withRegistry((_registry, pruned) => pruned),
 		list: async () => withRegistry((registry) => registry.subscriptions.map(copySubscription)),
-		reserveNotification: async (reservation) =>
-			withRegistry((registry) => {
+		reserveNotification: async (reservation, options = {}) =>
+			withRegistry((registry, _pruned, currentTime) => {
 				const normalized = validateReservation(reservation);
 				const existing = registry.deliveries.find(
 					(delivery) => delivery.notificationId === normalized.notificationId,
@@ -398,6 +411,12 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				);
 				if (!subscription || !subscription.enabled) {
 					throw new PushStoreError("not_found", "push subscription is not available for delivery");
+				}
+				if (
+					options.requireScheduledEligibility &&
+					!isCurrentlyScheduledEligible(subscription, normalized, currentTime)
+				) {
+					throw new PushStoreError("not_found", "push subscription is not eligible for a scheduled delivery");
 				}
 				if (
 					subscriptionHasReservedDate(subscription, normalized.targetLocalDate) ||
@@ -1285,6 +1304,32 @@ function localDate(date: Date, timezone: string): string {
 	const day = values.get("day");
 	if (!year || !month || !day) throw new Error("Intl did not provide a local date");
 	return `${year}-${month}-${day}`;
+}
+
+function localHour(date: Date, timezone: string): number {
+	const parts = new Intl.DateTimeFormat("en-CA", {
+		timeZone: timezone,
+		hour: "2-digit",
+		hourCycle: "h23",
+	}).formatToParts(date);
+	const hour = new Map(parts.map((part) => [part.type, part.value])).get("hour");
+	if (!hour || !/^\d{2}$/.test(hour)) throw new Error("Intl did not provide a local hour");
+	return Number.parseInt(hour, 10);
+}
+
+// The scheduler reads a snapshot before it can take the file lock. Recompute its decision while
+// holding that lock so an update cannot turn 09:00 into 03:00 (or reactivate today) in between.
+function isCurrentlyScheduledEligible(
+	subscription: StoredPushSubscription,
+	reservation: PushNotificationReservation,
+	current: Date,
+): boolean {
+	if (!subscription.enabled) return false;
+	if (current.getTime() - new Date(subscription.lastSeenAt).getTime() >= INACTIVE_TTL_MS) return false;
+	const date = localDate(current, subscription.timezone);
+	if (reservation.targetLocalDate !== date || date <= subscription.activatedLocalDate) return false;
+	const hour = localHour(current, subscription.timezone);
+	return hour >= 9 && hour < 10;
 }
 
 function pruneInactive(registry: Registry, current: Date): void {

@@ -1,5 +1,10 @@
 import type { Catalog, NodeResponse } from "../src/api/contracts";
-import { CATALOG_MAX_AGE_MS, type CacheStorage, CatalogCache } from "../src/cache/catalog";
+import {
+	CATALOG_MAX_AGE_MS,
+	type CacheStorage,
+	CatalogCache,
+	searchCachedCatalog,
+} from "../src/cache/catalog";
 import { NODE_MAX_AGE_MS, NodeCache } from "../src/cache/nodes";
 
 function storage(initial?: string): CacheStorage & { value: string | null } {
@@ -102,6 +107,62 @@ describe("offline caches", () => {
 		now = NODE_MAX_AGE_MS;
 		const stale = await cache.load({ getNode } as never, "artist:sample");
 		expect(stale).toMatchObject({ kind: "success", stale: true, value: node("artist:sample") });
+	});
+
+	it("removes a stale fiche when its canonical API response is 404", async () => {
+		let now = 0;
+		const cache = new NodeCache(storage(), () => now);
+		const getNode = jest
+			.fn()
+			.mockResolvedValueOnce({ kind: "success", value: node("artist:removed") })
+			.mockResolvedValueOnce({
+				kind: "error",
+				error: { kind: "api", status: 404, code: "not_found", retryable: false, message: "missing" },
+			});
+		await cache.load({ getNode } as never, "artist:removed");
+		now = NODE_MAX_AGE_MS;
+		await expect(cache.load({ getNode } as never, "artist:removed")).resolves.toMatchObject({
+			kind: "error",
+			error: { status: 404 },
+		});
+		expect(await cache.read("artist:removed")).toBeUndefined();
+	});
+
+	it("serializes catalog revalidations so a late 304 cannot overwrite a newer catalog", async () => {
+		let now = 0;
+		const cache = new CatalogCache(storage(), () => now);
+		await cache.load({
+			getCatalog: jest.fn(async () => ({ kind: "success" as const, value: catalog, etag: "v1" })),
+		} as never);
+		now = CATALOG_MAX_AGE_MS;
+		let resolveFirst: ((result: { kind: "notModified"; etag: string }) => void) | undefined;
+		const firstResponse = new Promise<{ kind: "notModified"; etag: string }>((resolve) => {
+			resolveFirst = resolve;
+		});
+		const freshCatalog = { ...catalog, revision: `sha256:${"b".repeat(64)}` } satisfies Catalog;
+		const getCatalog = jest
+			.fn()
+			.mockReturnValueOnce(firstResponse)
+			.mockResolvedValueOnce({ kind: "success", value: freshCatalog, etag: "v2" });
+		const first = cache.load({ getCatalog } as never, { forceRevalidate: true });
+		await new Promise((resolve) => setTimeout(resolve, 0));
+		const second = cache.load({ getCatalog } as never, { forceRevalidate: true });
+		expect(getCatalog).toHaveBeenCalledTimes(1);
+		if (resolveFirst === undefined) throw new Error("the first revalidation did not start");
+		resolveFirst({ kind: "notModified", etag: "v1" });
+		await Promise.all([first, second]);
+		expect((await cache.cached())?.revision).toBe(freshCatalog.revision);
+	});
+
+	it("limits cached catalogue search results to the remote search page size", () => {
+		const manyNodes = Array.from({ length: 26 }, (_, index) => ({
+			identity: `artist:sample-${index}`,
+			type: "artist" as const,
+			name: `Sample ${index}`,
+			teaser: null,
+		}));
+		const results = searchCachedCatalog({ ...catalog, nodes: manyNodes }, "sample");
+		expect(results).toHaveLength(25);
 	});
 
 	it("serializes concurrent daily protection and fiche writes so neither update is lost", async () => {
