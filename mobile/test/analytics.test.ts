@@ -280,6 +280,35 @@ describe("analytics runtime consent boundary", () => {
 		await expect(Promise.all([first, second])).resolves.toEqual([{ kind: "accepted" }, { kind: "accepted" }]);
 	});
 
+	it("records app_opened only for the first display and real background returns", async () => {
+		const delivered: AnalyticsPayload[] = [];
+		const analytics = client({
+			createTransport: () =>
+				transport({
+					track: async (payload) => {
+						delivered.push(payload);
+						return true;
+					},
+				}),
+		});
+		await analytics.grant();
+
+		await expect(analytics.recordAppOpened()).resolves.toEqual({ kind: "accepted" });
+		await expect(analytics.recordAppOpened()).resolves.toEqual({ kind: "disabled" });
+		await expect(analytics.onAppState("inactive")).resolves.toBeUndefined();
+		await expect(analytics.onAppState("active")).resolves.toBeUndefined();
+
+		await expect(analytics.onAppState("background")).resolves.toBeUndefined();
+		await expect(analytics.onAppState("active")).resolves.toEqual({ kind: "accepted" });
+		await expect(analytics.onAppState("active")).resolves.toBeUndefined();
+
+		await expect(analytics.onAppState("background")).resolves.toBeUndefined();
+		await expect(analytics.onAppState("inactive")).resolves.toBeUndefined();
+		await expect(analytics.onAppState("active")).resolves.toEqual({ kind: "accepted" });
+		expect(delivered.map((payload) => payload.name)).toEqual(["app_opened", "app_opened", "app_opened"]);
+		expect(delivered.every((payload) => payload.properties.source === "app")).toBe(true);
+	});
+
 	it("disposes an old controller without changing durable consent or accepting stale callbacks", async () => {
 		const storage = memoryStorage();
 		const calls: string[] = [];

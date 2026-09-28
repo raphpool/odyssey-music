@@ -52,7 +52,7 @@ export class AnalyticsClient {
 	private epoch = 0;
 	private opened = false;
 	private opening: Promise<TrackResult> | undefined;
-	private appState: "active" | "background" | "inactive" = "active";
+	private wasBackgrounded = false;
 	private _anonymousId: string | undefined;
 	private _purgeIncomplete = false;
 	private intent = 0;
@@ -188,11 +188,13 @@ export class AnalyticsClient {
 
 	async onAppState(next: "active" | "background" | "inactive"): Promise<TrackResult | undefined> {
 		if (this.disposed) return undefined;
-		const previous = this.appState;
-		this.appState = next;
-		return next === "active" && previous === "background"
-			? this.trackEvent("app_opened", {}, { source: "app" })
-			: undefined;
+		if (next === "background") {
+			this.wasBackgrounded = true;
+			return undefined;
+		}
+		if (next !== "active" || !this.wasBackgrounded) return undefined;
+		this.wasBackgrounded = false;
+		return this.trackEvent("app_opened", {}, { source: "app" });
 	}
 
 	async trackEvent(name: unknown, properties: unknown, context: unknown): Promise<TrackResult> {
@@ -314,6 +316,7 @@ export class AnalyticsClient {
 		this._anonymousId = undefined;
 		this.opened = false;
 		this.opening = undefined;
+		this.wasBackgrounded = false;
 		return {
 			previous,
 			disabled:
