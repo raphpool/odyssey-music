@@ -152,6 +152,68 @@ describe("Expo push receipts", () => {
 		expect(await store.listDeliveries()).toEqual([expect.objectContaining({ status: "accepted" })]);
 	});
 
+	it("stops after one receipt batch when the scheduler is shutting down", async () => {
+		const time = clock();
+		const store = await createPushStore({
+			stateDir: await mkdtemp(join(tmpdir(), "track1-receipt-shutdown-")),
+			now: time.now,
+		});
+		const reservations = Array.from({ length: 101 }, (_, index) => ({
+			subscriptionId: `f9cdb447-c46d-4a97-b4bc-${index.toString(16).padStart(12, "0")}`,
+			notificationId: `67fd896e-0b5f-466d-8b9b-${(index + 1).toString(16).padStart(12, "0")}`,
+			targetLocalDate: "2026-09-28",
+			reservedAt: "2026-09-27T08:00:00.000Z",
+		}));
+		for (const [index, reservation] of reservations.entries()) {
+			await store.create({
+				subscriptionId: reservation.subscriptionId,
+				secret: SECRET,
+				expoToken: `ExpoPushToken[receipt-shutdown-${index}]`,
+				platform: "ios",
+				timezone: "Europe/Paris",
+			});
+			await store.reserveNotification(reservation);
+		}
+		let sentBatches = 0;
+		await createExpoPushSender({
+			store,
+			fetch: async (_url, init) => {
+				sentBatches += 1;
+				const payload = JSON.parse(String(init.body)) as unknown[];
+				return {
+					ok: true,
+					status: 200,
+					json: async () => ({
+						data: payload.map((_, index) => ({
+							status: "ok",
+							id: `a30fe0ec-3c27-4a5e-a9ca-${(sentBatches * 100 + index).toString(16).padStart(12, "0")}`,
+						})),
+					}),
+				};
+			},
+		}).sendReserved(reservations);
+		time.advance(15 * 60 * 1000);
+		let receiptBatches = 0;
+		const report = await createExpoPushReceipts({
+			store,
+			fetch: async (_url, init) => {
+				receiptBatches += 1;
+				const payload = JSON.parse(String(init.body)) as { ids: string[] };
+				return {
+					ok: true,
+					status: 200,
+					json: async () => ({ data: Object.fromEntries(payload.ids.map((id) => [id, { status: "ok" }])) }),
+				};
+			},
+		}).collectDueReceipts({ shouldStop: () => receiptBatches > 0 });
+		expect(report).toMatchObject({ ok: 100, skipped: false });
+		expect(receiptBatches).toBe(1);
+		expect(await store.listDeliveries()).toEqual([
+			...Array.from({ length: 100 }, () => expect.objectContaining({ status: "receipt_ok" })),
+			expect.objectContaining({ status: "accepted" }),
+		]);
+	});
+
 	it("expires delivery records from their reservation time and frees bounded capacity on the next instant", async () => {
 		const time = clock();
 		const store = await createPushStore({

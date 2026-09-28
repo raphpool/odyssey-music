@@ -41,7 +41,10 @@ import { createMobileGenerationService } from "./mobile/generation-service.js";
 import { createGenerationStore } from "./mobile/generation-store.js";
 import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
+import { createExpoPushReceipts } from "./mobile/push-receipts.js";
 import { createMobilePushRoutes } from "./mobile/push-routes.js";
+import { createPushScheduler } from "./mobile/push-schedule.js";
+import { createExpoPushSender } from "./mobile/push-sender.js";
 import { createPushStore } from "./mobile/push-store.js";
 import { createMobileRouter } from "./mobile/router.js";
 import { createMobileSearch } from "./mobile/search.js";
@@ -129,6 +132,27 @@ try {
 	log.error("mobile generation registry unavailable", {
 		error: error instanceof Error ? error.message : "unknown failure",
 	});
+}
+const mobilePushEnabled = process.env.MOBILE_PUSH_ENABLED === "true";
+const mobilePushScheduler =
+	mobilePushEnabled && mobilePushStore && serverConfig.expoAccessToken
+		? createPushScheduler({
+				store: mobilePushStore,
+				sender: createExpoPushSender({ store: mobilePushStore, accessToken: serverConfig.expoAccessToken }),
+				receipts: createExpoPushReceipts({
+					store: mobilePushStore,
+					accessToken: serverConfig.expoAccessToken,
+				}),
+				onError: (event, error) => {
+					log.error("mobile push scheduler operation failed", {
+						event,
+						error: error instanceof Error ? error.message : "unknown failure",
+					});
+				},
+			})
+		: undefined;
+if (mobilePushEnabled && !mobilePushScheduler) {
+	log.error("mobile push scheduler is disabled because its store or Expo credential is unavailable");
 }
 const mobileRouter = createMobileRouter({
 	catalog: mobileCatalog,
@@ -382,4 +406,23 @@ function json(res: ServerResponse, status: number, body: unknown): void {
 
 server.listen(PORT, () => {
 	log.info("listening", { port: PORT, cacheDir: CACHE_DIR });
+	mobilePushScheduler?.start();
 });
+
+let shuttingDown = false;
+function shutdown(signal: "SIGINT" | "SIGTERM"): void {
+	if (shuttingDown) return;
+	shuttingDown = true;
+	log.info("shutting down", { signal });
+	void (mobilePushScheduler?.stop() ?? Promise.resolve()).finally(() => {
+		server.close((error) => {
+			if (error) {
+				log.error("server close failed", { error: error.message });
+				process.exitCode = 1;
+			}
+			process.exit();
+		});
+	});
+}
+process.once("SIGINT", () => shutdown("SIGINT"));
+process.once("SIGTERM", () => shutdown("SIGTERM"));

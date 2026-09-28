@@ -97,7 +97,8 @@ describe("Expo push sender", () => {
 	});
 
 	it("splits 101 reservations into bounded sequential batches and leaves an empty batch untouched", async () => {
-		const store = await createPushStore({ stateDir: await stateDir("push-batches") });
+		const time = clock();
+		const store = await createPushStore({ stateDir: await stateDir("push-batches"), now: time.now });
 		const reservations = Array.from({ length: 101 }, (_, index) => reservation(index));
 		for (let index = 0; index < reservations.length; index += 1) {
 			const currentReservation = reservations[index];
@@ -129,9 +130,18 @@ describe("Expo push sender", () => {
 		expect(sizes).toEqual([100, 1]);
 	});
 
-	it("does not repeat an ambiguous, throttled or malformed provider attempt", async () => {
-		for (const response of ["network", "throttled", "malformed"] as const) {
-			const store = await createPushStore({ stateDir: await stateDir(`push-${response}`) });
+	it("does not repeat an ambiguous, timed-out, throttled, 5xx, malformed or partial provider attempt after restart", async () => {
+		for (const response of [
+			"network",
+			"timeout",
+			"throttled",
+			"server_error",
+			"malformed",
+			"partial",
+		] as const) {
+			const time = clock();
+			const dir = await stateDir(`push-${response}`);
+			const store = await createPushStore({ stateDir: dir, now: time.now });
 			await store.create(subscription());
 			await store.reserveNotification(reservation());
 			let calls = 0;
@@ -140,14 +150,26 @@ describe("Expo push sender", () => {
 				fetch: async () => {
 					calls += 1;
 					if (response === "network") throw new Error("socket closed after request");
+					if (response === "timeout") throw new DOMException("request timed out", "TimeoutError");
 					if (response === "malformed") return { ok: true, status: 200, json: async () => ({}) };
+					if (response === "partial") return { ok: true, status: 200, json: async () => ({ data: [] }) };
+					if (response === "server_error") return { ok: false, status: 503, json: async () => ({}) };
 					return { ok: false, status: 429, json: async () => ({}) };
 				},
 			});
 			await expect(sender.sendReserved([reservation()])).resolves.toMatchObject({ unknown: 1 });
-			await expect(sender.sendReserved([reservation()])).rejects.toMatchObject({ code: "invalid_delivery" });
+			const restarted = await createPushStore({ stateDir: dir, now: time.now });
+			await expect(
+				createExpoPushSender({
+					store: restarted,
+					fetch: async () => {
+						calls += 1;
+						return { ok: true, status: 200, json: async () => ({ data: [{ status: "ok", id: TICKET_ID }] }) };
+					},
+				}).sendReserved([reservation()]),
+			).rejects.toMatchObject({ code: "invalid_delivery" });
 			expect(calls).toBe(1);
-			expect(await store.listDeliveries()).toEqual([expect.objectContaining({ status: "unknown" })]);
+			expect(await restarted.listDeliveries()).toEqual([expect.objectContaining({ status: "unknown" })]);
 		}
 	});
 
@@ -186,7 +208,11 @@ describe("Expo push sender", () => {
 
 	it("handles DeviceNotRegistered on the send ticket without disabling a renewed token", async () => {
 		for (const renewToken of [false, true]) {
-			const store = await createPushStore({ stateDir: await stateDir(`push-ticket-device-${renewToken}`) });
+			const time = clock();
+			const store = await createPushStore({
+				stateDir: await stateDir(`push-ticket-device-${renewToken}`),
+				now: time.now,
+			});
 			await store.create(subscription());
 			await store.reserveNotification(reservation());
 			const sender = createExpoPushSender({
@@ -215,7 +241,8 @@ describe("Expo push sender", () => {
 
 	it("rejects duplicate receipt tickets globally and fails closed when persisted tickets collide", async () => {
 		const dir = await stateDir("push-duplicate-ticket");
-		const store = await createPushStore({ stateDir: dir });
+		const time = clock();
+		const store = await createPushStore({ stateDir: dir, now: time.now });
 		await store.create(subscription());
 		await store.create(subscription(1));
 		await store.reserveNotification(reservation());
@@ -246,6 +273,8 @@ describe("Expo push sender", () => {
 		second.accepted_at = "2026-09-27T08:00:00.000Z";
 		second.finalized_at = "2026-09-27T08:01:00.000Z";
 		await writeFile(registryPath, JSON.stringify(persisted));
-		await expect(createPushStore({ stateDir: dir })).rejects.toMatchObject({ code: "corrupt_registry" });
+		await expect(createPushStore({ stateDir: dir, now: time.now })).rejects.toMatchObject({
+			code: "corrupt_registry",
+		});
 	});
 });
