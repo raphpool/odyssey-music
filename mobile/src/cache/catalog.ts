@@ -101,11 +101,13 @@ export function searchCachedCatalog(
 	type?: NodeType,
 	cachedIds = new Set<string>(),
 ) {
-	const normalized = query.trim().toLocaleLowerCase();
+	const normalized = normalizeSearchText(query);
 	return catalog.nodes
 		.filter(
 			(node) =>
-				(type === undefined || node.type === type) && node.name.toLocaleLowerCase().includes(normalized),
+				(type === undefined || node.type === type) &&
+				(normalizeSearchText(node.name).includes(normalized) ||
+					normalizeSearchText(node.teaser ?? "").includes(normalized)),
 		)
 		.map((node) => ({
 			source: cachedIds.has(node.identity) ? ("cache" as const) : ("catalog" as const),
@@ -114,6 +116,13 @@ export function searchCachedCatalog(
 			slug: node.identity,
 		}))
 		.slice(0, 25);
+}
+
+function normalizeSearchText(value: string): string {
+	return value
+		.normalize("NFD")
+		.replace(/\p{Diacritic}/gu, "")
+		.toLocaleLowerCase();
 }
 
 export class CatalogCache {

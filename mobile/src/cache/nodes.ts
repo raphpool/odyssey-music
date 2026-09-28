@@ -111,7 +111,12 @@ function parse(raw: string): StoredNodes | undefined {
 }
 
 function canServeStale(error: ClientResult<NodeResponse>): boolean {
-	return error.kind === "error" && (error.error.kind === "network_error" || error.error.kind === "timeout");
+	return (
+		error.kind === "error" &&
+		(error.error.kind === "network_error" ||
+			error.error.kind === "timeout" ||
+			(error.error.kind === "api" && error.error.retryable))
+	);
 }
 
 export class NodeCache {
@@ -172,6 +177,18 @@ export class NodeCache {
 			const stored = await this.readStore();
 			const canonical = response.node.id;
 			const at = this.now();
+			if (response.redirected_from !== undefined) {
+				const previousCanonical = stored.aliases[response.redirected_from] ?? response.redirected_from;
+				if (previousCanonical !== canonical) {
+					delete stored.nodes[previousCanonical];
+					for (const [alias, identity] of Object.entries(stored.aliases)) {
+						if (identity === previousCanonical) stored.aliases[alias] = canonical;
+					}
+					stored.protected = [
+						...new Set(stored.protected.map((id) => (id === previousCanonical ? canonical : id))),
+					];
+				}
+			}
 			stored.nodes[canonical] = { response, touchedAt: at, checkedAt: at };
 			if (response.redirected_from !== undefined) stored.aliases[response.redirected_from] = canonical;
 			stored.aliases[canonical] = canonical;

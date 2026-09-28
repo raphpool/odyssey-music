@@ -145,6 +145,7 @@ export default function NodeScreen() {
 		const controller = new AbortController();
 		let active = true;
 		setState({ kind: "loading" });
+		setOffline(false);
 		setImageUrl(undefined);
 
 		if (slug === undefined) {
@@ -152,20 +153,20 @@ export default function NodeScreen() {
 			return () => controller.abort();
 		}
 
-		void nodeCache
-			.load(client, slug, controller.signal)
-			.then((result) => {
-				if (!active) return;
-				if (result.kind === "success") {
-					setOffline(result.stale === true);
-					setState({ kind: "success", value: result.value });
-					return;
-				}
-				setState(isMissing(result.error) ? { kind: "missing", identity: slug } : { kind: "error" });
-			})
-			.catch(() => {
-				if (active) setState({ kind: "error" });
-			});
+		void (async () => {
+			const cached = await nodeCache.read(slug);
+			if (active && cached !== undefined) setState({ kind: "success", value: cached });
+			const result = await nodeCache.load(client, slug, controller.signal);
+			if (!active) return;
+			if (result.kind === "success") {
+				setOffline(result.stale === true);
+				setState({ kind: "success", value: result.value });
+				return;
+			}
+			setState(isMissing(result.error) ? { kind: "missing", identity: slug } : { kind: "error" });
+		})().catch(() => {
+			if (active) setState({ kind: "error" });
+		});
 
 		return () => {
 			active = false;

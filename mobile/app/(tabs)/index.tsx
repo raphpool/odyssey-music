@@ -18,7 +18,7 @@ import {
 	recommendDaily,
 } from "../../src/recommendation/daily";
 
-type TodayState = { kind: "loading" } | DailyResult;
+type TodayState = { kind: "loading" } | { kind: "catalog_error"; offline: boolean } | DailyResult;
 
 function localDate(): string {
 	const now = new Date();
@@ -64,7 +64,8 @@ export default function TodayScreen() {
 		if (!isCurrent()) return;
 		setOffline(response.stale);
 		if (response.value === undefined) {
-			setState({ kind: "empty_catalog" });
+			const offlineError = response.error?.kind === "network_error" || response.error?.kind === "timeout";
+			setState({ kind: "catalog_error", offline: offlineError });
 			return;
 		}
 		const next = await recommendDaily({ store, profile, catalog: response.value, localDate: localDate() });
@@ -180,6 +181,18 @@ export default function TodayScreen() {
 		return (
 			<Status
 				title="Aucune découverte ne peut être proposée pour le moment."
+				actionLabel="Réessayer"
+				onAction={() => setRefresh((current) => current + 1)}
+			/>
+		);
+	if (state.kind === "catalog_error")
+		return (
+			<Status
+				title={
+					state.offline
+						? "Hors connexion : aucune découverte enregistrée n’est disponible."
+						: "La découverte est momentanément indisponible."
+				}
 				actionLabel="Réessayer"
 				onAction={() => setRefresh((current) => current + 1)}
 			/>

@@ -109,6 +109,24 @@ describe("offline caches", () => {
 		expect(stale).toMatchObject({ kind: "success", stale: true, value: node("artist:sample") });
 	});
 
+	it("keeps a stale fiche visible during a retryable API outage", async () => {
+		let now = 0;
+		const cache = new NodeCache(storage(), () => now);
+		const getNode = jest
+			.fn()
+			.mockResolvedValueOnce({ kind: "success", value: node("artist:sample") })
+			.mockResolvedValueOnce({
+				kind: "error",
+				error: { kind: "api", status: 503, code: "unavailable", retryable: true, message: "retry" },
+			});
+		await cache.load({ getNode } as never, "artist:sample");
+		now = NODE_MAX_AGE_MS;
+		await expect(cache.load({ getNode } as never, "artist:sample")).resolves.toMatchObject({
+			kind: "success",
+			stale: true,
+		});
+	});
+
 	it("removes a stale fiche when its canonical API response is 404", async () => {
 		let now = 0;
 		const cache = new NodeCache(storage(), () => now);
@@ -163,6 +181,25 @@ describe("offline caches", () => {
 		}));
 		const results = searchCachedCatalog({ ...catalog, nodes: manyNodes }, "sample");
 		expect(results).toHaveLength(25);
+	});
+
+	it("searches cached names and teasers without accent sensitivity", () => {
+		const searchable = {
+			...catalog,
+			nodes: [
+				{ identity: "artist:bjork", type: "artist" as const, name: "Björk", teaser: "Chanteuse islandaise" },
+			],
+		};
+		expect(searchCachedCatalog(searchable, "bjork")).toHaveLength(1);
+		expect(searchCachedCatalog(searchable, "islandaise")).toHaveLength(1);
+	});
+
+	it("replaces a former canonical fiche with its redirected identity", async () => {
+		const cache = new NodeCache(storage());
+		await cache.write(node("artist:old"));
+		await cache.write(node("artist:new", "artist:old"));
+		expect(await cache.count()).toBe(1);
+		expect((await cache.read("artist:old"))?.node.id).toBe("artist:new");
 	});
 
 	it("serializes concurrent daily protection and fiche writes so neither update is lost", async () => {
