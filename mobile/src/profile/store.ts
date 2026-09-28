@@ -1,3 +1,5 @@
+import { beginCatalogStorageClear, clearCatalogStorage } from "../cache/catalog";
+import { beginNodeStorageClear, clearNodeStorage } from "../cache/nodes";
 import { clearGenerationStorage } from "../generation/store";
 import {
 	isGenreId,
@@ -374,10 +376,13 @@ export class ProfileStore {
 	}
 
 	async clear(): Promise<ProfileClear> {
+		const endCatalogClear = beginCatalogStorageClear();
+		const endNodeClear = beginNodeStorageClear();
 		try {
 			const recommendationKeys = (await this.storage.getAllKeys()).filter((key) =>
 				key.startsWith(RECOMMENDATION_STORAGE_PREFIX),
 			);
+			await Promise.all([clearCatalogStorage(this.storage), clearNodeStorage(this.storage)]);
 			await Promise.all([
 				this.storage.removeItem(PROFILE_STORAGE_KEY),
 				this.storage.removeItem(PROFILE_DRAFT_STORAGE_KEY),
@@ -389,6 +394,9 @@ export class ProfileStore {
 			return { kind: "cleared" };
 		} catch {
 			return { kind: "unavailable" };
+		} finally {
+			endNodeClear();
+			endCatalogClear();
 		}
 	}
 
