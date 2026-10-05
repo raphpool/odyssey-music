@@ -27,6 +27,20 @@ Node shape, edge cardinality, edge target constraints, teaser fields, and graph-
 
 The legacy multi-turn agent loop is isolated under `src/legacy/`. Active server, crawler, scripts, and live tests use `runPipeline()`.
 
+## Track1 mobile client
+
+The official mobile client is the native SwiftUI application planned under `ios/`. The
+Expo/React Native client under `mobile/` is frozen as a historical reference: its EAS
+development builds are internal artifacts, not a public release, and they are not evidence
+that the Swift client works. New mobile behavior targets the native plan and its six
+milestones; the transition inventory is recorded in
+[`docs/track1-native-transition.md`](docs/track1-native-transition.md).
+
+Local profiles and cached content from an internal Expo build are not migrated to the native
+client. The future archive and removal of the frozen Expo path are a separate, gated release
+task; this repository keeps the historical references and existing backend contracts intact
+until that task is verified.
+
 ## HTTP API
 
 - `GET /health`
