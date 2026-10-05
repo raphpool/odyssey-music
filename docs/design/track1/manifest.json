@@ -1,0 +1,319 @@
+{
+  "schemaVersion": 1,
+  "ticket": "TRA-327",
+  "capturedAt": "2026-10-05T17:16:40Z",
+  "source": {
+    "kind": "figma-read-only",
+    "fileKey": "phudxrQNlzQJafXLma4FyX",
+    "url": "https://www.figma.com/design/phudxrQNlzQJafXLma4FyX/Track1-Design-System?node-id=28-3",
+    "matrixNodeId": "28:3",
+    "pageNodeId": "28:2",
+    "patternsNodeId": "30:2",
+    "tabBarNodeId": "30:72",
+    "themeReviewNodeId": "37:16",
+    "readAt": "2026-10-05T17:16:40Z",
+    "access": "verified"
+  },
+  "exportPolicy": {
+    "format": "png",
+    "maxDimension": 1024,
+    "screenSize": "421x914",
+    "contentsOnly": true,
+    "note": "Les captures sont des preuves datées du handoff, pas des assets d'implémentation Swift."
+  },
+  "screens": [
+    {
+      "order": 1,
+      "name": "Consentement",
+      "nodeId": "31:2",
+      "theme": "light-reference",
+      "state": "consent-choice",
+      "export": {
+        "path": "exports/01-consentement.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "025621b3efe914a021fe249eb0a96647421244d96bf82bae3932baa192a6d07d",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 2,
+      "name": "Goûts musicaux",
+      "nodeId": "31:27",
+      "theme": "light-reference",
+      "state": "taste-selection",
+      "export": {
+        "path": "exports/02-gouts.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "2ebd2cd76d857c2f45bb35e192d7fa80db3d951680e699a8c2cba9be90b99b1e",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 3,
+      "name": "Invitation notifications",
+      "nodeId": "31:69",
+      "theme": "light-reference",
+      "state": "notification-invitation-sheet",
+      "export": {
+        "path": "exports/03-invitation-push.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "34a42856022ceb4eb5c3e45e919afedf7f48e3051f383ccdfff7f7c7686982ef",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 4,
+      "name": "Aujourd'hui",
+      "nodeId": "32:35",
+      "theme": "light-reference",
+      "state": "today-ready",
+      "export": {
+        "path": "exports/04-aujourdhui.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "03a3d434d166e04d179d2d440c4cd2d9ccd3b5e37c5a4636df9f86655b9faae9",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 5,
+      "name": "Recherche",
+      "nodeId": "32:69",
+      "theme": "light-reference",
+      "state": "search-results",
+      "export": {
+        "path": "exports/05-recherche.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "5c24428c9eafc75f72d65b000bfd1320f9ca89f8637c3e1970d41f4515da15f7",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 6,
+      "name": "Réglages",
+      "nodeId": "32:136",
+      "theme": "light-reference",
+      "state": "settings-profile-present",
+      "export": {
+        "path": "exports/06-reglages.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "c2b3ab8f54a3b348b99073167bc22d82e2b68151708eb6f867d6f1afbbd92fc6",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 7,
+      "name": "Fiche artiste",
+      "nodeId": "34:144",
+      "theme": "light-reference",
+      "state": "artist-detail-ready",
+      "export": {
+        "path": "exports/07-artiste.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "58f5c0134afee004d4fceb762c87920816cb2bef3c4b00a30a8c38b20360745d",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 8,
+      "name": "Fiche album",
+      "nodeId": "34:197",
+      "theme": "light-reference",
+      "state": "album-detail-ready",
+      "export": {
+        "path": "exports/08-album.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "8f671d831c8f1237f4e752b8b44ab770b71d363732d2944a61ced0f07fcca9aa",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 9,
+      "name": "Fiche titre",
+      "nodeId": "34:246",
+      "theme": "light-reference",
+      "state": "track-detail-ready",
+      "export": {
+        "path": "exports/09-titre.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "e20e53e7de2be32ed8ff8cca2770037e20b70da4eec8b2a45262a60f33d5f48d",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 10,
+      "name": "Fiche genre",
+      "nodeId": "34:294",
+      "theme": "light-reference",
+      "state": "genre-detail-ready",
+      "export": {
+        "path": "exports/10-genre.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "fcd74bd523e1d7cef851ce58f34c1a636c0b9ebaaae3b323be4ec4b8eb110755",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 11,
+      "name": "Fiche label",
+      "nodeId": "34:338",
+      "theme": "light-reference",
+      "state": "label-detail-ready",
+      "export": {
+        "path": "exports/11-label.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "980e9783ac351f1d6122b8424e85b1dc55f65c36151fff759f99c541ff8c3896",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 12,
+      "name": "Génération en cours",
+      "nodeId": "35:260",
+      "theme": "light-reference",
+      "state": "generation-pending",
+      "export": {
+        "path": "exports/12-generation.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "72932bf70bad64abe16948c6868ab5c1c07c50c0564694b4623640d67e27d1d6",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 13,
+      "name": "Chargement",
+      "nodeId": "35:275",
+      "theme": "light-reference",
+      "state": "today-loading",
+      "export": {
+        "path": "exports/13-chargement.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "f4cf006008ae8148fab78ce3ec245bb89db4c84c7c84d7506093689e878a50a1",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 14,
+      "name": "Hors ligne",
+      "nodeId": "35:286",
+      "theme": "light-reference",
+      "state": "offline-with-local-cache",
+      "export": {
+        "path": "exports/14-hors-ligne.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "5983928b83c53096ca5b6ed3b819fdb17f6c7246dbc509b95860067714cf256a",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 15,
+      "name": "Erreur génération",
+      "nodeId": "35:308",
+      "theme": "light-reference",
+      "state": "generation-failed",
+      "export": {
+        "path": "exports/15-erreur-generation.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "b57bd839ed9ba4bf087d0490082b408963881197f8e92827ae4960382cc15c7f",
+        "width": 421,
+        "height": 914
+      }
+    },
+    {
+      "order": 16,
+      "name": "Profil absent",
+      "nodeId": "35:326",
+      "theme": "light-reference",
+      "state": "profile-missing",
+      "export": {
+        "path": "exports/16-profil-absent.png",
+        "capturedAt": "2026-10-05T17:16:40Z",
+        "sha256": "2a5a9fdff742ddc77810e2f19d958d23052cf27c650b79062735a5dce356d383",
+        "width": 421,
+        "height": 914
+      }
+    }
+  ],
+  "themeReferences": [
+    {
+      "name": "Liquid Glass review — light",
+      "nodeId": "37:17",
+      "theme": "light",
+      "exportPath": "exports/tabbar-review-light.png",
+      "sha256": "ef5955348928ba563b6515a00506aae94c2de3116edfeac5557a5498b2b36dec",
+      "width": 500,
+      "height": 396
+    },
+    {
+      "name": "Liquid Glass review — dark",
+      "nodeId": "37:18",
+      "theme": "dark",
+      "exportPath": "exports/tabbar-review-dark.png",
+      "sha256": "05233eb0cf7e3e2598c65b19dcff27834047372c0a0f040ca7c895e620ca9e35",
+      "width": 500,
+      "height": 396
+    }
+  ],
+  "assets": {
+    "screenExports": "screens[*].export.path",
+    "exportFiles": [
+      "exports/01-consentement.png",
+      "exports/02-gouts.png",
+      "exports/03-invitation-push.png",
+      "exports/04-aujourdhui.png",
+      "exports/05-recherche.png",
+      "exports/06-reglages.png",
+      "exports/07-artiste.png",
+      "exports/08-album.png",
+      "exports/09-titre.png",
+      "exports/10-genre.png",
+      "exports/11-label.png",
+      "exports/12-generation.png",
+      "exports/13-chargement.png",
+      "exports/14-hors-ligne.png",
+      "exports/15-erreur-generation.png",
+      "exports/16-profil-absent.png",
+      "exports/tabbar-review-light.png",
+      "exports/tabbar-review-dark.png"
+    ],
+    "designComponents": [
+      { "name": "Button", "nodeId": "16:20", "kind": "figma-component" },
+      { "name": "ChoiceChip", "nodeId": "30:10", "kind": "figma-component" },
+      { "name": "Card", "nodeId": "19:101", "kind": "figma-component" },
+      { "name": "Artwork", "nodeId": "18:2", "kind": "figma-component" },
+      { "name": "TabBar", "nodeId": "30:72", "kind": "figma-component" },
+      { "name": "SearchField", "nodeId": "30:21", "kind": "figma-component" },
+      { "name": "ListItem", "nodeId": "22:142", "kind": "figma-component" },
+      { "name": "_Icon", "nodeId": "14:2", "kind": "figma-component" },
+      { "name": "Toggle", "nodeId": "30:26", "kind": "figma-component" },
+      { "name": "DetailHero", "nodeId": "33:14", "kind": "figma-component" }
+    ],
+    "sfSymbols": [
+      { "role": "today", "name": "face.smiling", "source": "TabBar / Today icon" },
+      { "role": "search", "name": "magnifyingglass", "source": "TabBar / Search icon" },
+      { "role": "settings", "name": "slider.horizontal.3", "source": "TabBar / Settings icon" },
+      { "role": "chevron", "name": "chevron.right", "source": "_Icon / ChevronRight" },
+      { "role": "more", "name": "ellipsis", "source": "_Icon / More" },
+      { "role": "artwork-fallback", "name": "music.note", "source": "Artwork fallback" }
+    ],
+    "rights": {
+      "status": "not-a-license",
+      "figmaVectors": "Les SVG temporaires fournis par Figma servent à vérifier le rendu uniquement ; aucune licence de redistribution n'est déduite de cet export.",
+      "musicExamples": "Les noms, pochettes et faits musicaux visibles sont des fixtures de démonstration ; ils ne constituent pas une autorisation de distribution ni une règle produit.",
+      "nativeImplementation": "Les symboles SF sont rendus par le système. Toute image musicale de production doit venir d'une source HTTPS autorisée et validée par le ticket d'assets/droits correspondant."
+    }
+  }
+}
