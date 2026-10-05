@@ -5,6 +5,8 @@ import { dirname, join } from "node:path";
 
 const REGISTRY_FILE = "push-subscriptions.json";
 const LOCK_FILE = ".push-subscriptions.lock";
+const APNS_REGISTRY_FILE = "push-apns-subscriptions.json";
+const APNS_LOCK_FILE = ".push-apns-subscriptions.lock";
 const REGISTRY_VERSION = 1;
 const INACTIVE_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 const DELIVERY_TTL_MS = 24 * 60 * 60 * 1000;
@@ -138,6 +140,54 @@ export interface PushStoreOptions {
 	};
 }
 
+export type ApnsAppVariant = "preview" | "production";
+export type ApnsEnvironment = "sandbox" | "production";
+
+export interface ApnsPushSubscription {
+	subscriptionId: string;
+	deviceToken: string;
+	appVariant: ApnsAppVariant;
+	apnsEnvironment: ApnsEnvironment;
+	timezone: string;
+	enabled: boolean;
+	activatedLocalDate: string;
+	createdAt: string;
+	lastSeenAt: string;
+}
+
+export interface CreateApnsPushSubscriptionInput {
+	subscriptionId: unknown;
+	secret: unknown;
+	deviceToken: unknown;
+	appVariant: unknown;
+	apnsEnvironment: unknown;
+	timezone: unknown;
+}
+
+export interface UpdateApnsPushSubscriptionInput extends CreateApnsPushSubscriptionInput {
+	enabled: unknown;
+}
+
+export interface RemoveApnsPushSubscriptionInput {
+	subscriptionId: string;
+	secret: unknown;
+}
+
+export interface ApnsPushStore {
+	create(input: CreateApnsPushSubscriptionInput): Promise<CreatePushSubscriptionResult>;
+	update(input: UpdateApnsPushSubscriptionInput): Promise<PushSubscriptionPublic>;
+	remove(input: RemoveApnsPushSubscriptionInput): Promise<void>;
+	list(): Promise<ApnsPushSubscription[]>;
+}
+
+export interface ApnsPushStoreOptions {
+	stateDir: string;
+	now?: () => Date;
+	maxSubscriptions?: number;
+	syncDirectory?: (path: string, directory: FileHandle) => Promise<void>;
+	testHooks?: PushStoreOptions["testHooks"];
+}
+
 export class PushStoreError extends Error {
 	constructor(
 		readonly code:
@@ -171,15 +221,28 @@ interface ValidatedPushSubscriptionInput {
 	timezone: string;
 }
 
+interface StoredApnsPushSubscription extends ApnsPushSubscription {
+	secretHash: string;
+}
+
+interface ValidatedApnsPushSubscriptionInput {
+	subscriptionId: string;
+	secret: string;
+	deviceToken: string;
+	appVariant: ApnsAppVariant;
+	apnsEnvironment: ApnsEnvironment;
+	timezone: string;
+}
+
+interface ApnsRegistry {
+	version: 1;
+	subscriptions: StoredApnsPushSubscription[];
+}
+
 interface Registry {
 	version: 1;
 	subscriptions: StoredPushSubscription[];
 	deliveries: StoredPushDelivery[];
-}
-
-interface ReadRegistryResult {
-	registry: Registry;
-	expected: ExpectedRegistryState;
 }
 
 interface FileIdentity {
@@ -203,17 +266,29 @@ type ExpectedRegistryState =
 	| { kind: "absent"; directory: FileIdentity | null }
 	| { kind: "existing"; directory: FileIdentity; file: FileIdentity; digest: string };
 
-export async function createPushStore(options: PushStoreOptions): Promise<PushStore> {
-	const now = options.now ?? (() => new Date());
-	const maxSubscriptions = validateMaxSubscriptions(options.maxSubscriptions);
-	const maxDeliveries = validateMaxDeliveries(options.maxDeliveries);
-	const syncDirectory = options.syncDirectory ?? syncStateDirectory;
-	const registryPath = join(options.stateDir, REGISTRY_FILE);
+interface RegistryAccessOptions<T extends { subscriptions: unknown[] }> {
+	stateDir: string;
+	registryFile: string;
+	lockFile: string;
+	now: () => Date;
+	syncDirectory: (path: string, directory: FileHandle) => Promise<void>;
+	testHooks: PushStoreOptions["testHooks"] | undefined;
+	parse: (raw: string) => T;
+	empty: () => T;
+	prune: (registry: T, currentTime: Date) => void;
+	serialize: (registry: T) => unknown;
+}
+
+async function createRegistryAccess<T extends { subscriptions: unknown[] }>(
+	options: RegistryAccessOptions<T>,
+): Promise<{
+	withRegistry: <R>(mutate: (registry: T, pruned: number, currentTime: Date) => R | Promise<R>) => Promise<R>;
+}> {
+	const registryPath = join(options.stateDir, options.registryFile);
 	let tail: Promise<void> = Promise.resolve();
 	let expectedRegistry: ExpectedRegistryState = { kind: "absent", directory: null };
 	let unavailable = false;
-
-	async function serialize<T>(operation: () => Promise<T>): Promise<T> {
+	async function serialize<R>(operation: () => Promise<R>): Promise<R> {
 		const result = tail.then(operation, operation);
 		tail = result.then(
 			() => undefined,
@@ -221,22 +296,23 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 		);
 		return result;
 	}
-
-	async function withRegistry<T>(
-		mutate: (registry: Registry, pruned: number, currentTime: Date) => T | Promise<T>,
-	): Promise<T> {
+	async function withRegistry<R>(
+		mutate: (registry: T, pruned: number, currentTime: Date) => R | Promise<R>,
+	): Promise<R> {
 		return serialize(async () => {
 			if (unavailable) throw new PushStoreError("corrupt_registry", "push subscription store is unavailable");
 			let lock: RegistryLock | null = null;
-			let result: T | undefined;
+			let result: R | undefined;
 			let failure: unknown;
 			try {
-				lock = await acquireRegistryLock(options.stateDir, options.testHooks?.afterLockPin);
+				lock = await acquireRegistryLock(options.stateDir, options.lockFile, options.testHooks?.afterLockPin);
 				await assertActiveLock(lock);
 				const loaded = await readRegistry(
 					options.stateDir,
 					registryPath,
 					expectedRegistry.kind === "existing",
+					options.parse,
+					options.empty,
 				);
 				assertMonotonicRegistryState(expectedRegistry, loaded.expected);
 				expectedRegistry = loaded.expected;
@@ -245,9 +321,8 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				const registry = loaded.registry;
 				const before = JSON.stringify(registry);
 				const countBeforePrune = registry.subscriptions.length;
-				const currentTime = now();
-				pruneInactive(registry, currentTime);
-				pruneDeliveries(registry, currentTime);
+				const currentTime = options.now();
+				options.prune(registry, currentTime);
 				const operationResult = await mutate(
 					registry,
 					countBeforePrune - registry.subscriptions.length,
@@ -255,18 +330,18 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				);
 				if (before !== JSON.stringify(registry)) {
 					const activeLock = lock;
-					if (!activeLock) {
+					if (!activeLock)
 						throw new PushStoreError("corrupt_registry", "push subscription lock is unavailable");
-					}
 					await assertActiveLock(activeLock);
 					await writeRegistry(
 						options.stateDir,
 						registryPath,
 						registry,
 						expectedRegistry,
-						syncDirectory,
+						options.syncDirectory,
 						options.testHooks?.beforeCommit,
 						() => assertActiveLock(activeLock),
+						options.serialize,
 					);
 					expectedRegistry = await readExpectedRegistryState(options.stateDir, registryPath, true);
 				}
@@ -290,17 +365,16 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 				unavailable = true;
 				throw new PushStoreError("corrupt_registry", "push subscription state cannot be persisted");
 			}
-			return result as T;
+			return result as R;
 		});
 	}
-
 	await serialize(async () => {
 		let lock: RegistryLock | null = null;
 		let failure: unknown;
 		try {
-			lock = await acquireRegistryLock(options.stateDir, options.testHooks?.afterLockPin);
+			lock = await acquireRegistryLock(options.stateDir, options.lockFile, options.testHooks?.afterLockPin);
 			await assertActiveLock(lock);
-			const loaded = await readRegistry(options.stateDir, registryPath, false);
+			const loaded = await readRegistry(options.stateDir, registryPath, false, options.parse, options.empty);
 			expectedRegistry = loaded.expected;
 		} catch (error) {
 			failure = error;
@@ -316,6 +390,28 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 			unavailable = true;
 			throw failure;
 		}
+	});
+	return { withRegistry };
+}
+
+export async function createPushStore(options: PushStoreOptions): Promise<PushStore> {
+	const now = options.now ?? (() => new Date());
+	const maxSubscriptions = validateMaxSubscriptions(options.maxSubscriptions);
+	const maxDeliveries = validateMaxDeliveries(options.maxDeliveries);
+	const { withRegistry } = await createRegistryAccess({
+		stateDir: options.stateDir,
+		registryFile: REGISTRY_FILE,
+		lockFile: LOCK_FILE,
+		now,
+		syncDirectory: options.syncDirectory ?? syncStateDirectory,
+		testHooks: options.testHooks,
+		parse: parseRegistry,
+		empty: () => ({ version: 1 as const, subscriptions: [], deliveries: [] }),
+		prune: (registry, currentTime) => {
+			pruneInactive(registry, currentTime);
+			pruneDeliveries(registry, currentTime);
+		},
+		serialize: serializeRegistry,
 	});
 
 	return {
@@ -566,15 +662,111 @@ export async function createPushStore(options: PushStoreOptions): Promise<PushSt
 	};
 }
 
-async function readRegistry(
+// APNs has an independent lifecycle from the legacy Expo sender. Sharing a file would let
+// future delivery bookkeeping change the native-client contract, so its registry and lock stay separate.
+export async function createApnsPushStore(options: ApnsPushStoreOptions): Promise<ApnsPushStore> {
+	const now = options.now ?? (() => new Date());
+	const maxSubscriptions = validateMaxSubscriptions(options.maxSubscriptions);
+	const { withRegistry } = await createRegistryAccess({
+		stateDir: options.stateDir,
+		registryFile: APNS_REGISTRY_FILE,
+		lockFile: APNS_LOCK_FILE,
+		now,
+		syncDirectory: options.syncDirectory ?? syncStateDirectory,
+		testHooks: options.testHooks,
+		parse: parseApnsRegistry,
+		empty: () => ({ version: 1 as const, subscriptions: [] }),
+		prune: pruneApnsInactive,
+		serialize: serializeApnsRegistry,
+	});
+
+	return {
+		create: async (input) =>
+			withRegistry((registry, _pruned, currentTime) => {
+				const normalized = validateApnsCreateInput(input);
+				const existing = registry.subscriptions.find(
+					(subscription) => subscription.subscriptionId === normalized.subscriptionId,
+				);
+				if (existing) {
+					if (!constantTimeSecretMatch(existing.secretHash, normalized.secret)) {
+						throw new PushStoreError("unauthorized", "APNs subscription authorization is invalid");
+					}
+					if (!sameApnsIdentity(existing, normalized)) {
+						throw new PushStoreError(
+							"conflict",
+							"APNs subscription identity conflicts with an existing subscription",
+						);
+					}
+					return { kind: "existing", subscription: toPublic(existing) };
+				}
+				if (registry.subscriptions.length >= maxSubscriptions) {
+					throw new PushStoreError("capacity_exceeded", "APNs subscription capacity is exhausted");
+				}
+				deactivateDuplicateApnsTokens(registry.subscriptions, normalized);
+				const timestamp = currentTime.toISOString();
+				const { secret, ...identity } = normalized;
+				const subscription: StoredApnsPushSubscription = {
+					...identity,
+					secretHash: hashSecret(secret),
+					enabled: true,
+					activatedLocalDate: localDate(currentTime, normalized.timezone),
+					createdAt: timestamp,
+					lastSeenAt: timestamp,
+				};
+				registry.subscriptions.push(subscription);
+				return { kind: "created", subscription: toPublic(subscription) };
+			}),
+		update: async (input) =>
+			withRegistry((registry, _pruned, currentTime) => {
+				const normalized = validateApnsUpdateInput(input);
+				const subscription = registry.subscriptions.find(
+					(candidate) => candidate.subscriptionId === normalized.subscriptionId,
+				);
+				if (!subscription) throw new PushStoreError("not_found", "APNs subscription does not exist");
+				if (!constantTimeSecretMatch(subscription.secretHash, normalized.secret)) {
+					throw new PushStoreError("unauthorized", "APNs subscription authorization is invalid");
+				}
+				const wasEnabled = subscription.enabled;
+				subscription.deviceToken = normalized.deviceToken;
+				subscription.appVariant = normalized.appVariant;
+				subscription.apnsEnvironment = normalized.apnsEnvironment;
+				subscription.timezone = normalized.timezone;
+				subscription.enabled = normalized.enabled;
+				subscription.lastSeenAt = currentTime.toISOString();
+				if (!wasEnabled && normalized.enabled) {
+					subscription.activatedLocalDate = localDate(currentTime, normalized.timezone);
+				}
+				if (normalized.enabled) deactivateDuplicateApnsTokens(registry.subscriptions, normalized);
+				return toPublic(subscription);
+			}),
+		remove: async (input) =>
+			withRegistry((registry) => {
+				const subscriptionId = validateSubscriptionId(input.subscriptionId);
+				const index = registry.subscriptions.findIndex(
+					(subscription) => subscription.subscriptionId === subscriptionId,
+				);
+				if (index === -1) return;
+				const secret = validateExistingApnsSecret(input.secret);
+				const subscription = registry.subscriptions[index];
+				if (!subscription || !constantTimeSecretMatch(subscription.secretHash, secret)) {
+					throw new PushStoreError("unauthorized", "APNs subscription authorization is invalid");
+				}
+				registry.subscriptions.splice(index, 1);
+			}),
+		list: async () => withRegistry((registry) => registry.subscriptions.map(copyApnsSubscription)),
+	};
+}
+
+async function readRegistry<T>(
 	stateDir: string,
 	path: string,
 	requireExisting: boolean,
-): Promise<ReadRegistryResult> {
+	parse: (raw: string) => T,
+	empty: () => T,
+): Promise<{ registry: T; expected: ExpectedRegistryState }> {
 	try {
 		const expected = await readExpectedRegistryState(stateDir, path, requireExisting);
-		if (expected.kind === "absent")
-			return { registry: { version: REGISTRY_VERSION, subscriptions: [], deliveries: [] }, expected };
+		if (expected.kind === "absent") return { registry: empty(), expected };
 		const file = await open(path, constants.O_RDONLY | constants.O_NOFOLLOW);
 		try {
 			const metadata = await file.stat();
@@ -585,7 +777,7 @@ async function readRegistry(
 			if (hashRegistry(raw) !== expected.digest) {
 				throw new PushStoreError("corrupt_registry", "push subscription registry changed while reading");
 			}
-			return { registry: parseRegistry(raw), expected };
+			return { registry: parse(raw), expected };
 		} finally {
 			await file.close();
 		}
@@ -597,6 +789,7 @@ async function readRegistry(
 
 async function acquireRegistryLock(
 	stateDir: string,
+	lockFile: string,
 	afterLockPin: (() => Promise<void> | void) | undefined,
 ): Promise<RegistryLock> {
 	try {
@@ -607,7 +800,7 @@ async function acquireRegistryLock(
 	const directory = await openPinnedDirectory(stateDir, false);
 	if (!directory)
 		throw new PushStoreError("corrupt_registry", "push subscription state directory is unavailable");
-	const path = join(stateDir, LOCK_FILE);
+	const path = join(stateDir, lockFile);
 	let lock: RegistryLock | null = null;
 	let file: FileHandle | null = null;
 	try {
@@ -719,14 +912,15 @@ async function readExpectedRegistryState(
 	}
 }
 
-async function writeRegistry(
+async function writeRegistry<T>(
 	stateDir: string,
 	path: string,
-	registry: Registry,
+	registry: T,
 	expected: ExpectedRegistryState,
 	syncDirectory: (path: string, directory: FileHandle) => Promise<void>,
 	beforeCommit: ((context: { temporaryPath: string }) => Promise<void> | void) | undefined,
 	assertLock: () => Promise<void>,
+	serialize: (registry: T) => unknown,
 ): Promise<void> {
 	await mkdir(stateDir, { recursive: true, mode: 0o700 });
 	const directory = await openPinnedDirectory(stateDir, false);
@@ -742,7 +936,7 @@ async function writeRegistry(
 		await assertPinnedDirectoryPath(stateDir, directory.identity);
 		await directory.file.chmod(0o700);
 		file = await open(temporaryPath, "wx", 0o600);
-		const serialized = `${JSON.stringify(serializeRegistry(registry))}\n`;
+		const serialized = `${JSON.stringify(serialize(registry))}\n`;
 		await file.writeFile(serialized, "utf8");
 		await file.sync();
 		const temporaryMetadata = await file.stat();
@@ -951,6 +1145,36 @@ function parseRegistry(raw: string): Registry {
 	return { version: REGISTRY_VERSION, subscriptions, deliveries };
 }
 
+function parseApnsRegistry(raw: string): ApnsRegistry {
+	try {
+		const value: unknown = JSON.parse(raw);
+		if (!isRecord(value) || value.version !== REGISTRY_VERSION || !Array.isArray(value.subscriptions)) {
+			throw new Error("registry shape is invalid");
+		}
+		if (!Object.keys(value).every((key) => key === "version" || key === "subscriptions")) {
+			throw new Error("registry contains undeclared data");
+		}
+		const subscriptions = value.subscriptions.map(validateStoredApnsSubscription);
+		if (
+			new Set(subscriptions.map((subscription) => subscription.subscriptionId)).size !== subscriptions.length
+		) {
+			throw new Error("registry has duplicate subscription ids");
+		}
+		const enabledTokens = subscriptions
+			.filter((subscription) => subscription.enabled)
+			.map(
+				(subscription) =>
+					`${subscription.appVariant}:${subscription.apnsEnvironment}:${subscription.deviceToken}`,
+			);
+		if (new Set(enabledTokens).size !== enabledTokens.length) {
+			throw new Error("registry has duplicate active tokens");
+		}
+		return { version: REGISTRY_VERSION, subscriptions };
+	} catch {
+		throw new PushStoreError("corrupt_registry", "APNs subscription registry is invalid");
+	}
+}
+
 function validateStoredSubscription(value: unknown): StoredPushSubscription {
 	try {
 		if (!isRecord(value)) throw new Error("entry is not an object");
@@ -982,6 +1206,48 @@ function validateStoredSubscription(value: unknown): StoredPushSubscription {
 		};
 	} catch {
 		throw new PushStoreError("corrupt_registry", "push subscription entry is invalid");
+	}
+}
+
+function validateStoredApnsSubscription(value: unknown): StoredApnsPushSubscription {
+	try {
+		if (!isRecord(value)) throw new Error("entry is not an object");
+		const allowed = new Set([
+			"subscription_id",
+			"secret_hash",
+			"device_token",
+			"app_variant",
+			"apns_environment",
+			"timezone",
+			"enabled",
+			"activated_local_date",
+			"created_at",
+			"last_seen_at",
+		]);
+		if (!Object.keys(value).every((key) => allowed.has(key)))
+			throw new Error("entry contains undeclared data");
+		const { secret: _, ...base } = validateApnsCreateInput({
+			subscriptionId: value.subscription_id,
+			secret: "A".repeat(43),
+			deviceToken: value.device_token,
+			appVariant: value.app_variant,
+			apnsEnvironment: value.apns_environment,
+			timezone: value.timezone,
+		});
+		if (typeof value.secret_hash !== "string" || !/^sha256:[a-f0-9]{64}$/.test(value.secret_hash)) {
+			throw new Error("secret hash is invalid");
+		}
+		if (typeof value.enabled !== "boolean") throw new Error("enabled state is invalid");
+		return {
+			...base,
+			secretHash: value.secret_hash,
+			enabled: value.enabled,
+			activatedLocalDate: validateLocalDate(value.activated_local_date),
+			createdAt: validateTimestamp(value.created_at),
+			lastSeenAt: validateTimestamp(value.last_seen_at),
+		};
+	} catch {
+		throw new PushStoreError("corrupt_registry", "APNs subscription entry is invalid");
 	}
 }
 
@@ -1055,6 +1321,34 @@ function validateUpdateInput(
 	return { ...validateCreateInput(input), enabled: input.enabled };
 }
 
+function validateApnsCreateInput(input: CreateApnsPushSubscriptionInput): ValidatedApnsPushSubscriptionInput {
+	const appVariant = validateApnsAppVariant(input.appVariant);
+	const apnsEnvironment = validateApnsEnvironment(input.apnsEnvironment);
+	if (
+		(appVariant === "production" && apnsEnvironment !== "production") ||
+		(appVariant === "preview" && apnsEnvironment !== "sandbox" && apnsEnvironment !== "production")
+	) {
+		throw new PushStoreError("invalid_subscription", "APNs variant and environment are incompatible");
+	}
+	return {
+		subscriptionId: validateSubscriptionId(input.subscriptionId),
+		secret: validateSecret(input.secret),
+		deviceToken: validateApnsDeviceToken(input.deviceToken),
+		appVariant,
+		apnsEnvironment,
+		timezone: validateTimezone(input.timezone),
+	};
+}
+
+function validateApnsUpdateInput(
+	input: UpdateApnsPushSubscriptionInput,
+): ValidatedApnsPushSubscriptionInput & { enabled: boolean } {
+	if (typeof input.enabled !== "boolean") {
+		throw new PushStoreError("invalid_subscription", "APNs subscription enabled must be boolean");
+	}
+	return { ...validateApnsCreateInput(input), enabled: input.enabled };
+}
+
 function validateSubscriptionId(value: unknown): string {
 	if (typeof value !== "string" || !UUID_PATTERN.test(value)) {
 		throw new PushStoreError("invalid_subscription", "push subscription id is invalid");
@@ -1073,11 +1367,36 @@ function validateSecret(value: unknown): string {
 	return value;
 }
 
+function validateExistingApnsSecret(value: unknown): string {
+	try {
+		return validateSecret(value);
+	} catch {
+		throw new PushStoreError("unauthorized", "APNs subscription authorization is invalid");
+	}
+}
+
 function validateExpoToken(value: unknown): string {
 	if (typeof value !== "string" || !EXPO_TOKEN_PATTERN.test(value)) {
 		throw new PushStoreError("invalid_subscription", "push token is invalid");
 	}
 	return value;
+}
+
+function validateApnsDeviceToken(value: unknown): string {
+	if (typeof value !== "string" || !/^[0-9a-fA-F]{2,512}$/.test(value) || value.length % 2 !== 0) {
+		throw new PushStoreError("invalid_subscription", "APNs device token is invalid");
+	}
+	return value.toLowerCase();
+}
+
+function validateApnsAppVariant(value: unknown): ApnsAppVariant {
+	if (value === "preview" || value === "production") return value;
+	throw new PushStoreError("invalid_subscription", "APNs app variant is invalid");
+}
+
+function validateApnsEnvironment(value: unknown): ApnsEnvironment {
+	if (value === "sandbox" || value === "production") return value;
+	throw new PushStoreError("invalid_subscription", "APNs environment is invalid");
 }
 
 function validatePlatform(value: unknown): PushPlatform {
@@ -1253,10 +1572,42 @@ function deactivateDuplicateTokens(
 	}
 }
 
+function deactivateDuplicateApnsTokens(
+	subscriptions: StoredApnsPushSubscription[],
+	input: Pick<
+		ValidatedApnsPushSubscriptionInput,
+		"subscriptionId" | "deviceToken" | "appVariant" | "apnsEnvironment"
+	>,
+): void {
+	for (const subscription of subscriptions) {
+		if (
+			subscription.subscriptionId !== input.subscriptionId &&
+			subscription.enabled &&
+			subscription.deviceToken === input.deviceToken &&
+			subscription.appVariant === input.appVariant &&
+			subscription.apnsEnvironment === input.apnsEnvironment
+		) {
+			subscription.enabled = false;
+		}
+	}
+}
+
 function sameIdentity(existing: StoredPushSubscription, input: ValidatedPushSubscriptionInput): boolean {
 	return (
 		existing.expoToken === input.expoToken &&
 		existing.platform === input.platform &&
+		existing.timezone === input.timezone
+	);
+}
+
+function sameApnsIdentity(
+	existing: StoredApnsPushSubscription,
+	input: ValidatedApnsPushSubscriptionInput,
+): boolean {
+	return (
+		existing.deviceToken === input.deviceToken &&
+		existing.appVariant === input.appVariant &&
+		existing.apnsEnvironment === input.apnsEnvironment &&
 		existing.timezone === input.timezone
 	);
 }
@@ -1339,6 +1690,13 @@ function pruneInactive(registry: Registry, current: Date): void {
 	);
 }
 
+function pruneApnsInactive(registry: ApnsRegistry, current: Date): void {
+	const cutoff = current.getTime() - INACTIVE_TTL_MS;
+	registry.subscriptions = registry.subscriptions.filter(
+		(subscription) => new Date(subscription.lastSeenAt).getTime() > cutoff,
+	);
+}
+
 function pruneDeliveries(registry: Registry, current: Date): void {
 	const currentTime = current.getTime();
 	for (const delivery of registry.deliveries) {
@@ -1380,7 +1738,12 @@ function appendReservedLocalDate(dates: string[] | undefined, targetLocalDate: s
 	return [...history, targetLocalDate].slice(-MAX_RESERVED_LOCAL_DATES);
 }
 
-function toPublic(subscription: PushSubscription): PushSubscriptionPublic {
+function toPublic(
+	subscription: Pick<
+		PushSubscriptionPublic,
+		"subscriptionId" | "enabled" | "timezone" | "activatedLocalDate"
+	>,
+): PushSubscriptionPublic {
 	return {
 		subscriptionId: subscription.subscriptionId,
 		enabled: subscription.enabled,
@@ -1390,6 +1753,11 @@ function toPublic(subscription: PushSubscription): PushSubscriptionPublic {
 }
 
 function copySubscription(subscription: StoredPushSubscription): PushSubscription {
+	const { secretHash: _, ...copy } = subscription;
+	return structuredClone(copy);
+}
+
+function copyApnsSubscription(subscription: StoredApnsPushSubscription): ApnsPushSubscription {
 	const { secretHash: _, ...copy } = subscription;
 	return structuredClone(copy);
 }
@@ -1430,6 +1798,24 @@ function serializeRegistry(registry: Registry) {
 			...(delivery.ticketId === undefined ? {} : { ticket_id: delivery.ticketId }),
 			...(delivery.acceptedAt === undefined ? {} : { accepted_at: delivery.acceptedAt }),
 			...(delivery.finalizedAt === undefined ? {} : { finalized_at: delivery.finalizedAt }),
+		})),
+	};
+}
+
+function serializeApnsRegistry(registry: ApnsRegistry) {
+	return {
+		version: REGISTRY_VERSION,
+		subscriptions: registry.subscriptions.map((subscription) => ({
+			subscription_id: subscription.subscriptionId,
+			secret_hash: subscription.secretHash,
+			device_token: subscription.deviceToken,
+			app_variant: subscription.appVariant,
+			apns_environment: subscription.apnsEnvironment,
+			timezone: subscription.timezone,
+			enabled: subscription.enabled,
+			activated_local_date: subscription.activatedLocalDate,
+			created_at: subscription.createdAt,
+			last_seen_at: subscription.lastSeenAt,
 		})),
 	};
 }

@@ -609,11 +609,13 @@ Le registre existant accepte seulement des tokens Expo. Le client Swift doit ins
 
 ##### Portée
 
-Modifier `src/mobile/push-store.ts`, `src/mobile/push-routes.ts`, `src/mobile/router.ts`, `docs/track1-api.md`, `test/mobile/push-store.test.ts`, `test/mobile/push-routes.test.ts`. Nouveau registre runtime `push-apns-subscriptions.json` dans MOBILE_STATE_DIR, hors Git. Hors scope : schéma musical, remplacement destructif du registre Expo, envoi de notifications, auth utilisateur.
+Modifier `src/mobile/push-store.ts`, `src/mobile/push-routes.ts`, `src/mobile/router.ts`, `src/server.ts`, `docs/track1-api.md`, `test/mobile/push-store.test.ts`, `test/mobile/push-routes.test.ts`. Modifier aussi `docs/plans/track1-native-ios.md` et `docs/plans/track1-native-ios-linear.md`, uniquement pour reporter cette précision de P3.1 dans la même PR que le branchement serveur ; ne pas recopier les autres modifications du checkout documentaire. Nouveau registre runtime `push-apns-subscriptions.json` dans MOBILE_STATE_DIR, hors Git. Hors scope : `src/config.ts`, nouvelle configuration globale, schéma musical, remplacement destructif du registre Expo, envoi de notifications, credentials d'envoi APNs, auth utilisateur.
 
 ##### Contrat
 
 Routes additives `/mobile/v1/push/apns/subscriptions` POST et `/:subscription_id` PUT/DELETE. POST strict ≤8 Kio : subscription_id UUID, device_token chaîne hexadécimale de longueur paire 2 à 512 normalisée minuscule, app_variant preview/production, apns_environment sandbox/production, timezone IANA ; PUT mêmes champs hors ID + enabled booléen. Accepter preview/sandbox, preview/production, production/production seulement. Bearer secret aléatoire de 256 bits, encodé en base64url sur 43 caractères, stocké haché SHA256. Réponse subscription_id/enabled/timezone/activated_local_date. POST 201 ou 200 si même demande/secret ; 409 conflit ; PUT 200,404 absent,401 secret invalide ; DELETE 204 idempotent,401 si existant sans bon secret. Un token partagé dans même variante/environnement désactive ancienne inscription sans dévoiler son ID. Nouveau registre atomique/verrouillé, corruption préservée ; absence de credentials d'envoi ne casse pas lectures musicales.
+
+Branchement obligatoire dans le point d'entrée réel `src/server.ts` : importer `createApnsPushStore`, créer un store APNs distinct à partir du `serverConfig.mobileStateDir` déjà configuré, puis le transmettre comme `apnsStore` à `createMobilePushRoutes`. Conserver la création et l'injection du store Expo existant. `src/mobile/router.ts` continue de déléguer aux routes push ; une injection limitée aux tests ne satisfait pas ce contrat. Aucune variable globale nouvelle, aucun changement de `src/config.ts` et aucun envoi APNs ne sont nécessaires à cette inscription.
 
 ##### Critères d'acceptation
 
@@ -621,10 +623,11 @@ Routes additives `/mobile/v1/push/apns/subscriptions` POST et `/:subscription_id
 - [ ] POST identique idempotent, mise à jour/retrait protégés, tokens remplacés sans désactiver une autre variante/environnement.
 - [ ] Crash/écriture concurrente/corruption préservent les garanties du store ; indisponibilité limitée aux rappels.
 - [ ] Registre et routes Expo inchangés, test de compatibilité backend vert ; aucun goût ou identifiant analytics conservé.
+- [ ] Un serveur lancé par le vrai point d'entrée `src/server.ts`, avec un `MOBILE_STATE_DIR` temporaire et sans credentials d'envoi APNs, traite un POST valide en 201 puis sa répétition en 200 et persiste l'abonnement dans `push-apns-subscriptions.json`. Le test ne fournit pas `apnsStore` lui-même ; retirer le branchement du point d'entrée le fait échouer au lieu de laisser passer une route disponible seulement en tests.
 
 ##### Tests attendus
 
-Vitest routes réelles avec store temporaire, cas authorization/idempotence/tokencollision/env ; tests atomiques et corruption du store ; npm run check et tests mobile existants.
+Vitest routes réelles avec store temporaire, cas authorization/idempotence/tokencollision/env ; tests atomiques et corruption du store. Dans le chemin déjà autorisé `test/mobile/push-routes.test.ts`, ajouter une intégration HTTP démarrant `src/server.ts` avec un répertoire d'état temporaire isolé : inscription 201, répétition 200, fichier APNs persistant, sans injection manuelle du store et sans appel d'envoi APNs. Ce test reproduit la réponse 503 due au store absent avant le branchement et passe après correction ; arrêter le serveur et nettoyer les seules ressources temporaires du test. Conserver les tests Expo existants, `npm run check` et les tests mobile. Vérifier que le diff documentaire ne touche que P3.1 dans les deux plans.
 
 ##### Tier de risque
 

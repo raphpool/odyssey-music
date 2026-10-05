@@ -45,7 +45,7 @@ import { createExpoPushReceipts } from "./mobile/push-receipts.js";
 import { createMobilePushRoutes } from "./mobile/push-routes.js";
 import { createPushScheduler } from "./mobile/push-schedule.js";
 import { createExpoPushSender } from "./mobile/push-sender.js";
-import { createPushStore } from "./mobile/push-store.js";
+import { createApnsPushStore, createPushStore } from "./mobile/push-store.js";
 import { createMobileRouter } from "./mobile/router.js";
 import { createMobileSearch } from "./mobile/search.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
@@ -118,6 +118,12 @@ try {
 } catch {
 	mobilePushStore = undefined;
 }
+let mobileApnsPushStore: Awaited<ReturnType<typeof createApnsPushStore>> | undefined;
+try {
+	mobileApnsPushStore = await createApnsPushStore({ stateDir: serverConfig.mobileStateDir });
+} catch {
+	mobileApnsPushStore = undefined;
+}
 let mobileGeneration: ReturnType<typeof createMobileGenerationService> | undefined;
 try {
 	const generationStore = await createGenerationStore({ stateDir: serverConfig.mobileStateDir });
@@ -159,7 +165,10 @@ const mobileRouter = createMobileRouter({
 	nodes: mobileNodes,
 	media: mobileMedia,
 	search: mobileSearch,
-	push: createMobilePushRoutes({ ...(mobilePushStore ? { store: mobilePushStore } : {}) }),
+	push: createMobilePushRoutes({
+		...(mobilePushStore ? { store: mobilePushStore } : {}),
+		...(mobileApnsPushStore ? { apnsStore: mobileApnsPushStore } : {}),
+	}),
 	...(mobileGeneration ? { generation: mobileGeneration } : {}),
 });
 
