@@ -2,7 +2,7 @@ import { chmod, lstat, mkdtemp, readFile, rename, stat, symlink, unlink, writeFi
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { createPushStore, PushStoreError } from "../../src/mobile/push-store.js";
+import { createApnsPushStore, createPushStore, PushStoreError } from "../../src/mobile/push-store.js";
 
 const SECRET = "A".repeat(43);
 const OTHER_SECRET = "B".repeat(43);
@@ -52,6 +52,89 @@ function subscription(
 }
 
 describe("push subscription store", () => {
+	it("keeps APNs subscriptions in a separate atomic registry and partitions token replacement", async () => {
+		const dir = await stateDir("apns-lifecycle");
+		const time = clock();
+		const store = await createApnsPushStore({ stateDir: dir, now: time.now });
+		const apns = {
+			subscriptionId: subscription().subscriptionId,
+			secret: SECRET,
+			deviceToken: "A1B2",
+			appVariant: "preview" as const,
+			apnsEnvironment: "sandbox" as const,
+			timezone: "Europe/Paris",
+		};
+		const created = await store.create(apns);
+		const retried = await store.create(apns);
+		await store.create({
+			...apns,
+			subscriptionId: "67fd896e-0b5f-466d-8b9b-93c8df9cc8ce",
+			appVariant: "production",
+			apnsEnvironment: "production",
+		});
+		await store.create({
+			...apns,
+			subscriptionId: "a30fe0ec-3c27-4a5e-a9ca-f1b0d9d63d20",
+		});
+
+		expect(created).toMatchObject({ kind: "created", subscription: { enabled: true } });
+		expect(retried).toEqual({ kind: "existing", subscription: created.subscription });
+		expect((await store.list()).find((entry) => entry.subscriptionId === apns.subscriptionId)).toMatchObject({
+			enabled: false,
+		});
+		expect((await store.list()).find((entry) => entry.appVariant === "production")).toMatchObject({
+			enabled: true,
+		});
+		const serialized = await readFile(join(dir, "push-apns-subscriptions.json"), "utf8");
+		expect(serialized).toContain('"device_token":"a1b2"');
+		expect(serialized).not.toContain(SECRET);
+		expect(await readFile(join(dir, "push-subscriptions.json"), "utf8").catch(() => null)).toBeNull();
+
+		await writeFile(join(dir, "push-apns-subscriptions.json"), "{bad json");
+		await expect(store.list()).rejects.toMatchObject({ code: "corrupt_registry" });
+	});
+
+	it("fails closed for concurrent or unsynced APNs registry writes", async () => {
+		const apns = {
+			subscriptionId: subscription().subscriptionId,
+			secret: SECRET,
+			deviceToken: "a1b2",
+			appVariant: "preview" as const,
+			apnsEnvironment: "sandbox" as const,
+			timezone: "Europe/Paris",
+		};
+		const entered = deferred();
+		const release = deferred();
+		let holdFirstStore = false;
+		const dir = await stateDir("apns-inter-process-lock");
+		const first = await createApnsPushStore({
+			stateDir: dir,
+			testHooks: {
+				afterLoad: async () => {
+					if (!holdFirstStore) return;
+					entered.resolve();
+					await release.promise;
+				},
+			},
+		});
+		const second = await createApnsPushStore({ stateDir: dir });
+		holdFirstStore = true;
+		const firstWrite = first.create(apns);
+		await entered.promise;
+		await expect(second.list()).rejects.toMatchObject({ code: "corrupt_registry" });
+		release.resolve();
+		await expect(firstWrite).resolves.toMatchObject({ kind: "created" });
+
+		const unsynced = await createApnsPushStore({
+			stateDir: await stateDir("apns-unsynced"),
+			syncDirectory: async () => {
+				throw new Error("directory fsync failed");
+			},
+		});
+		await expect(unsynced.create(apns)).rejects.toMatchObject({ code: "corrupt_registry" });
+		await expect(unsynced.list()).rejects.toMatchObject({ code: "corrupt_registry" });
+	});
+
 	it("creates, persists, retries and updates subscriptions without persisting the bearer secret", async () => {
 		const dir = await stateDir("lifecycle");
 		const time = clock();

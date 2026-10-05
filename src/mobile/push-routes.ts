@@ -1,8 +1,9 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
-import { type PushStore, PushStoreError } from "./push-store.js";
+import { type ApnsPushStore, type PushStore, PushStoreError } from "./push-store.js";
 
 const MAX_BODY_BYTES = 8 * 1024;
 const SUBSCRIPTIONS_PATH = "/mobile/v1/push/subscriptions";
+const APNS_SUBSCRIPTIONS_PATH = "/mobile/v1/push/apns/subscriptions";
 
 export interface MobilePushRouteRequest {
 	req: IncomingMessage;
@@ -16,21 +17,25 @@ export interface MobilePushRoutes {
 
 export interface MobilePushRoutesDependencies {
 	store?: PushStore;
+	apnsStore?: ApnsPushStore;
 }
 
 export function createMobilePushRoutes(dependencies: MobilePushRoutesDependencies): MobilePushRoutes {
 	return {
 		async handle({ req, res, url }): Promise<boolean> {
+			if (url.pathname.startsWith(APNS_SUBSCRIPTIONS_PATH)) {
+				return handleApnsSubscriptions(dependencies.apnsStore, req, res, url);
+			}
 			if (!url.pathname.startsWith(SUBSCRIPTIONS_PATH)) return false;
 			if (!dependencies.store) {
 				writeError(res, 503, "push_unavailable", "push subscriptions are temporarily unavailable");
 				return true;
 			}
-			if (url.search || !isSubscriptionPath(url.pathname)) {
+			if (url.search || !isSubscriptionPath(url.pathname, SUBSCRIPTIONS_PATH)) {
 				writeError(res, 404, "not_found", "mobile resource not found");
 				return true;
 			}
-			const id = routeSubscriptionId(url.pathname);
+			const id = routeSubscriptionId(url.pathname, SUBSCRIPTIONS_PATH);
 			try {
 				if (id === null) {
 					if (req.method !== "POST") return methodNotAllowed(res, "POST");
@@ -65,13 +70,85 @@ export function createMobilePushRoutes(dependencies: MobilePushRoutesDependencie
 	};
 }
 
-function isSubscriptionPath(pathname: string): boolean {
-	return pathname === SUBSCRIPTIONS_PATH || /^\/mobile\/v1\/push\/subscriptions\/[^/]+$/.test(pathname);
+async function handleApnsSubscriptions(
+	store: ApnsPushStore | undefined,
+	req: IncomingMessage,
+	res: ServerResponse,
+	url: URL,
+): Promise<boolean> {
+	if (!store) {
+		writeError(res, 503, "push_unavailable", "push subscriptions are temporarily unavailable");
+		return true;
+	}
+	if (url.search || !isSubscriptionPath(url.pathname, APNS_SUBSCRIPTIONS_PATH)) {
+		writeError(res, 404, "not_found", "mobile resource not found");
+		return true;
+	}
+	const id = routeSubscriptionId(url.pathname, APNS_SUBSCRIPTIONS_PATH);
+	try {
+		if (id === null) {
+			if (req.method !== "POST") return methodNotAllowed(res, "POST");
+			const body = await readLimitedJson(req);
+			if (
+				!isExactRecord(body, [
+					"subscription_id",
+					"device_token",
+					"app_variant",
+					"apns_environment",
+					"timezone",
+				])
+			) {
+				throw new PushStoreError("invalid_subscription", "APNs subscription request is invalid");
+			}
+			const result = await store.create({
+				subscriptionId: body.subscription_id,
+				deviceToken: body.device_token,
+				appVariant: body.app_variant,
+				apnsEnvironment: body.apns_environment,
+				timezone: body.timezone,
+				secret: requireBearer(req),
+			});
+			writeJson(res, result.kind === "created" ? 201 : 200, toResponse(result.subscription));
+			return true;
+		}
+		const subscriptionId = decodeSubscriptionId(id);
+		if (req.method === "PUT") {
+			const body = await readLimitedJson(req);
+			if (!isExactRecord(body, ["device_token", "app_variant", "apns_environment", "timezone", "enabled"])) {
+				throw new PushStoreError("invalid_subscription", "APNs subscription request is invalid");
+			}
+			const result = await store.update({
+				subscriptionId,
+				deviceToken: body.device_token,
+				appVariant: body.app_variant,
+				apnsEnvironment: body.apns_environment,
+				timezone: body.timezone,
+				enabled: body.enabled,
+				secret: requireBearer(req),
+			});
+			writeJson(res, 200, toResponse(result));
+			return true;
+		}
+		if (req.method === "DELETE") {
+			await store.remove({ subscriptionId, secret: optionalBearer(req) });
+			res.statusCode = 204;
+			res.end();
+			return true;
+		}
+		return methodNotAllowed(res, "PUT, DELETE");
+	} catch (error) {
+		writeStoreError(res, error);
+		return true;
+	}
 }
 
-function routeSubscriptionId(pathname: string): string | null {
-	if (pathname === SUBSCRIPTIONS_PATH) return null;
-	return pathname.slice(`${SUBSCRIPTIONS_PATH}/`.length);
+function isSubscriptionPath(pathname: string, subscriptionsPath: string): boolean {
+	return pathname === subscriptionsPath || new RegExp(`^${subscriptionsPath}/[^/]+$`).test(pathname);
+}
+
+function routeSubscriptionId(pathname: string, subscriptionsPath: string): string | null {
+	if (pathname === subscriptionsPath) return null;
+	return pathname.slice(`${subscriptionsPath}/`.length);
 }
 
 function decodeSubscriptionId(value: string): string {
@@ -88,6 +165,12 @@ function requireBearer(req: IncomingMessage): string {
 	const match = /^Bearer ([A-Za-z0-9_-]{43})$/.exec(header);
 	if (!match?.[1]) throw new PushStoreError("unauthorized", "authorization is required");
 	return match[1];
+}
+
+function optionalBearer(req: IncomingMessage): string | undefined {
+	const header = req.headers.authorization;
+	if (typeof header !== "string") return undefined;
+	return /^Bearer ([A-Za-z0-9_-]{43})$/.exec(header)?.[1];
 }
 
 async function readLimitedJson(req: IncomingMessage): Promise<unknown> {

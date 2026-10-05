@@ -146,6 +146,40 @@ créations répondent `503 push_unavailable` tandis que réessai identique, mise
 suppression restent possibles. La maintenance supprime les abonnements sans activité depuis
 90 jours avant toute admission.
 
+## Abonnements APNs anonymes
+
+`POST /mobile/v1/push/apns/subscriptions` enregistre un token APNs du client iOS natif, dans un
+JSON strict de 8 KiB maximum avec `Authorization: Bearer <secret>` :
+
+```json
+{
+	"subscription_id": "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd",
+	"device_token": "a1b2c3d4",
+	"app_variant": "preview",
+	"apns_environment": "sandbox",
+	"timezone": "Europe/Paris"
+}
+```
+
+`subscription_id` est un UUID; `device_token` est hexadécimal, pair, long de 2 à 512 caractères,
+normalisé en minuscules. `app_variant` vaut `preview` ou `production`, `apns_environment` vaut
+`sandbox` ou `production`; seules `preview/sandbox`, `preview/production` et
+`production/production` sont admises. Le fuseau est validé par `Intl`, les champs inconnus sont
+refusés, et le secret base64url de 256 bits est haché SHA-256 sans être retourné ou journalisé.
+
+La création retourne `201`, ou `200` pour la même demande et le même secret; une identité
+contradictoire retourne `409 conflict`. La réponse contient seulement `subscription_id`, `enabled`,
+`timezone` et `activated_local_date`. `PUT /mobile/v1/push/apns/subscriptions/:subscription_id`
+accepte strictement `{device_token, app_variant, apns_environment, timezone, enabled}` : `200`,
+`404` absent, `401` bearer absent ou incorrect. `DELETE` retourne `204` sans corps et est
+idempotent; un mauvais bearer ne donne `401` que pour un abonnement existant.
+
+Le même token désactive seulement l'ancienne inscription de la même paire variante/environnement,
+sans révéler son identifiant. Le registre séparé `push-apns-subscriptions.json` possède son propre
+verrou et les mêmes écritures atomiques/préservation en cas de corruption que l'Expo; il ne contient
+ni goûts, ni analytics, ni état d'envoi. L'absence de credentials APNs ne dégrade ni les lectures
+musicales ni les routes Expo.
+
 ## Envoi et suivi Expo des rappels
 
 L'envoi est une opération interne du serveur : aucune route mobile ne permet de déclencher,
