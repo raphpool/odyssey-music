@@ -67,3 +67,27 @@ abonnements, retirer `MOBILE_PUSH_ENABLED=true` (ou mettre `false`) dans
 `/etc/odyssey-music.env`, puis redémarrer `odyssey-server.service`. Conserver
 `MOBILE_STATE_DIR` : le supprimer est une perte de l'historique de déduplication et exige une
 décision opérationnelle explicite.
+
+## Transport APNs natif (TRA-345)
+
+Le rappel du client iOS officiel utilise APNs directement, sans reçu Expo simulé. Il reste
+désactivé tant que `MOBILE_APNS_PUSH_ENABLED=true` n'est pas défini dans
+`/etc/odyssey-music.env`. Son activation requiert uniquement sur le serveur `APNS_KEY_ID`,
+`APNS_TEAM_ID`, `APNS_PRIVATE_KEY_PATH`, `APNS_TOPIC_PREVIEW` et
+`APNS_TOPIC_PRODUCTION`. La clé privée est un fichier absolu lisible par le service ; elle, les
+jetons des appareils et les valeurs de ces variables ne vont ni dans Git, ni dans l'unité
+systemd, ni dans les journaux.
+
+Le déploiement refuse une activation APNs partielle et vérifie que la clé est lisible avant le
+redémarrage. Le health check HTTP confirme seulement que le serveur est joignable ; une
+acceptation APNs ne prouve pas la réception sur un iPhone. Cette recette physique est réservée à
+P3.3. Pour suspendre APNs, remettre `MOBILE_APNS_PUSH_ENABLED=false` puis redémarrer le service :
+conserver `MOBILE_STATE_DIR`, car son registre conserve les réservations et sa purge à 90 jours
+reste exécutée. Ne pas réactiver Expo comme second transport du client officiel lors d'un rollback.
+
+Ce rollback de configuration est compatible avec le même binaire. Un retour binaire vers une
+version antérieure à TRA-345 après écriture du registre APNs enrichi n'est pas une procédure
+supportée : cette version ne connaît pas les réservations ni leur version de jeton. Si un tel
+retour devient nécessaire, sauvegarder puis restaurer le registre de façon cohérente avec le
+binaire choisi ; ne jamais l'effacer pour contourner une erreur, ni renvoyer aveuglément les dates
+réservées.

@@ -1,7 +1,15 @@
 import { randomUUID } from "node:crypto";
+import type { ApnsPushSender } from "./apns-sender.js";
 import type { ExpoPushReceipts } from "./push-receipts.js";
 import type { ExpoPushSender } from "./push-sender.js";
-import type { PushNotificationReservation, PushStore, PushSubscription } from "./push-store.js";
+import type {
+	ApnsNotificationReservation,
+	ApnsPushStore,
+	ApnsPushSubscription,
+	PushNotificationReservation,
+	PushStore,
+	PushSubscription,
+} from "./push-store.js";
 
 const TICK_MS = 60_000;
 const MAX_BATCH_SIZE = 100;
@@ -32,6 +40,16 @@ export interface PushScheduler {
 	start(): void;
 	stop(): Promise<void>;
 	tick(): Promise<PushScheduleReport>;
+}
+
+export interface ApnsPushSchedulerOptions {
+	store: ApnsPushStore;
+	sender?: ApnsPushSender;
+	enabled: boolean;
+	now?: () => Date;
+	uuid?: () => string;
+	timers?: PushSchedulerTimers;
+	onError?: (event: "send" | "scheduler", error: unknown) => void;
 }
 
 // The scheduler is deliberately process-local. Reservations are durable before every send, so a
@@ -131,11 +149,108 @@ export function createPushScheduler(options: PushSchedulerOptions): PushSchedule
 	};
 }
 
+// APNs remains separate from Expo because it has no receipt protocol. It still runs while sends
+// are disabled so the 90-day retention policy cannot depend on an operational feature switch.
+export function createApnsPushScheduler(options: ApnsPushSchedulerOptions): PushScheduler {
+	const now = options.now ?? (() => new Date());
+	const uuid = options.uuid ?? randomUUID;
+	const timers = options.timers ?? defaultTimers;
+	let timer: ReturnType<typeof setInterval> | undefined;
+	let inFlight: Promise<PushScheduleReport> | undefined;
+	let stopping = false;
+
+	async function execute(): Promise<PushScheduleReport> {
+		try {
+			await options.store.pruneInactive();
+			if (!options.enabled || !options.sender || stopping) return { reserved: 0, skipped: false };
+			const current = now();
+			let reserved = 0;
+			for (const batch of batches(
+				(await options.store.list()).filter((subscription) => isApnsEligible(subscription, current)),
+				MAX_BATCH_SIZE,
+			)) {
+				if (stopping) break;
+				const reservations: ApnsNotificationReservation[] = [];
+				for (const subscription of batch) {
+					try {
+						reservations.push(
+							await options.store.reserveNotification({
+								subscriptionId: subscription.subscriptionId,
+								notificationId: uuid(),
+								targetLocalDate: localDate(current, subscription.timezone),
+								reservedAt: current.toISOString(),
+							}),
+						);
+						reserved += 1;
+					} catch (error) {
+						options.onError?.("scheduler", error);
+					}
+				}
+				// Once a batch has begun, complete its provider calls even when shutdown starts. Its
+				// reservations are already durable; skipping them would make that local date permanent
+				// but undelivered after a restart.
+				if (reservations.length > 0) {
+					try {
+						await options.sender.sendReserved(reservations);
+					} catch (error) {
+						options.onError?.("send", error);
+					}
+				}
+				await timers.yield();
+			}
+			return { reserved, skipped: false };
+		} catch (error) {
+			options.onError?.("scheduler", error);
+			return { reserved: 0, skipped: false };
+		}
+	}
+
+	function tick(): Promise<PushScheduleReport> {
+		if (inFlight) return Promise.resolve({ reserved: 0, skipped: true });
+		inFlight = execute().finally(() => {
+			inFlight = undefined;
+		});
+		return inFlight;
+	}
+
+	return {
+		start() {
+			if (timer) return;
+			stopping = false;
+			timer = timers.setInterval(() => {
+				void tick();
+			}, TICK_MS);
+			void tick();
+		},
+		async stop() {
+			stopping = true;
+			if (timer) {
+				timers.clearInterval(timer);
+				timer = undefined;
+			}
+			await inFlight;
+		},
+		tick() {
+			if (stopping) return Promise.resolve({ reserved: 0, skipped: true });
+			return tick();
+		},
+	};
+}
+
 function isEligible(subscription: PushSubscription, current: Date): boolean {
 	if (!subscription.enabled) return false;
 	if (current.getTime() - new Date(subscription.lastSeenAt).getTime() >= INACTIVE_TTL_MS) return false;
 	const date = localDate(current, subscription.timezone);
 	if (date <= subscription.activatedLocalDate || hasReservedDate(subscription, date)) return false;
+	const hour = localHour(current, subscription.timezone);
+	return hour >= 9 && hour < 10;
+}
+
+function isApnsEligible(subscription: ApnsPushSubscription, current: Date): boolean {
+	if (!subscription.enabled) return false;
+	if (current.getTime() - new Date(subscription.lastSeenAt).getTime() >= INACTIVE_TTL_MS) return false;
+	const date = localDate(current, subscription.timezone);
+	if (date <= subscription.activatedLocalDate) return false;
 	const hour = localHour(current, subscription.timezone);
 	return hour >= 9 && hour < 10;
 }

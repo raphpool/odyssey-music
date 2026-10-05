@@ -1,11 +1,15 @@
-import { mkdtemp } from "node:fs/promises";
+import { mkdtemp, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import type { ApnsPushSender } from "../../src/mobile/apns-sender.js";
 import type { ExpoPushReceipts } from "../../src/mobile/push-receipts.js";
-import { createPushScheduler } from "../../src/mobile/push-schedule.js";
+import { createApnsPushScheduler, createPushScheduler } from "../../src/mobile/push-schedule.js";
 import type { ExpoPushSender } from "../../src/mobile/push-sender.js";
 import {
+	type ApnsNotificationReservation,
+	type ApnsPushStore,
+	createApnsPushStore,
 	createPushStore,
 	type PushNotificationReservation,
 	type PushStore,
@@ -318,5 +322,190 @@ describe("push scheduler", () => {
 		await stopped;
 		expect(sentBatches).toBe(1);
 		await expect(instance.tick()).resolves.toEqual({ reserved: 0, skipped: true });
+	});
+});
+
+describe("APNs push scheduler", () => {
+	async function apnsStore(label: string, time: ReturnType<typeof clock>): Promise<ApnsPushStore> {
+		const store = await createApnsPushStore({ stateDir: await stateDir(label), now: time.now });
+		await store.create({
+			subscriptionId: SUBSCRIPTION_ID,
+			secret: SECRET,
+			deviceToken: "A1B2",
+			appVariant: "preview",
+			apnsEnvironment: "sandbox",
+			timezone: "Europe/Paris",
+		});
+		return store;
+	}
+
+	function apnsScheduler(
+		store: ApnsPushStore,
+		time: ReturnType<typeof clock>,
+		sender: ApnsPushSender | undefined,
+		enabled = true,
+	) {
+		let identifier = 0;
+		return createApnsPushScheduler({
+			store,
+			...(sender ? { sender } : {}),
+			enabled,
+			now: time.now,
+			uuid: () => `67fd896e-0b5f-466d-8b9b-${(++identifier).toString(16).padStart(12, "0")}`,
+			timers: {
+				setInterval: () => 1 as unknown as ReturnType<typeof setInterval>,
+				clearInterval: () => undefined,
+				yield: async () => undefined,
+			},
+		});
+	}
+
+	it("persists exactly one APNs reservation before Apple, across concurrent ticks and a restart", async () => {
+		const time = clock("2026-09-27T12:00:00.000Z");
+		const directory = await stateDir("apns-restart");
+		const first = await createApnsPushStore({ stateDir: directory, now: time.now });
+		await first.create({
+			subscriptionId: SUBSCRIPTION_ID,
+			secret: SECRET,
+			deviceToken: "A1B2",
+			appVariant: "preview",
+			apnsEnvironment: "sandbox",
+			timezone: "Europe/Paris",
+		});
+		time.set("2026-09-28T07:00:00.000Z");
+		const sent: ApnsNotificationReservation[] = [];
+		const sender: ApnsPushSender = {
+			sendReserved: async (reservations) => {
+				sent.push(...reservations);
+				const serialized = await readFile(join(directory, "push-apns-subscriptions.json"), "utf8");
+				expect(serialized).toContain('"reservations"');
+				return { accepted: reservations.length, disabled: 0, unknown: 0 };
+			},
+		};
+		const second = await createApnsPushStore({ stateDir: directory, now: time.now });
+		await Promise.all([
+			apnsScheduler(first, time, sender).tick(),
+			apnsScheduler(second, time, sender).tick(),
+		]);
+		expect(sent).toHaveLength(1);
+		const restarted = await createApnsPushStore({ stateDir: directory, now: time.now });
+		await apnsScheduler(restarted, time, sender).tick();
+		expect(sent).toHaveLength(1);
+	});
+
+	it("uses the 09:00–10:00 local window through the APNs DST fallback", async () => {
+		for (const [moment, expected] of [
+			["2026-10-25T07:59:00.000Z", 0],
+			["2026-10-25T08:00:00.000Z", 1],
+			["2026-10-25T08:59:00.000Z", 1],
+			["2026-10-25T09:00:00.000Z", 0],
+		] as const) {
+			const time = clock("2026-10-24T12:00:00.000Z");
+			const store = await apnsStore(`apns-dst-${moment}`, time);
+			time.set(moment);
+			const sent: ApnsNotificationReservation[] = [];
+			await apnsScheduler(store, time, {
+				sendReserved: async (reservations) => {
+					sent.push(...reservations);
+					return { accepted: reservations.length, disabled: 0, unknown: 0 };
+				},
+			}).tick();
+			expect(sent).toHaveLength(expected);
+		}
+	});
+
+	it("finishes a durably reserved batch when shutdown starts during the reservation write", async () => {
+		const time = clock("2026-09-27T12:00:00.000Z");
+		let holdReservationWrite = false;
+		let releaseReservationWrite: (() => void) | undefined;
+		let signalReservationWrite: (() => void) | undefined;
+		const reservationWriteStarted = new Promise<void>((resolve) => {
+			signalReservationWrite = resolve;
+		});
+		const store = await createApnsPushStore({
+			stateDir: await stateDir("apns-stop-during-reservation"),
+			now: time.now,
+			testHooks: {
+				beforeCommit: async () => {
+					if (!holdReservationWrite) return;
+					signalReservationWrite?.();
+					await new Promise<void>((resolve) => {
+						releaseReservationWrite = resolve;
+					});
+				},
+			},
+		});
+		await store.create({
+			subscriptionId: SUBSCRIPTION_ID,
+			secret: SECRET,
+			deviceToken: "A1B2",
+			appVariant: "preview",
+			apnsEnvironment: "sandbox",
+			timezone: "Europe/Paris",
+		});
+		time.set("2026-09-28T07:00:00.000Z");
+		holdReservationWrite = true;
+		const sent: ApnsNotificationReservation[] = [];
+		const scheduler = apnsScheduler(store, time, {
+			sendReserved: async (reservations) => {
+				sent.push(...reservations);
+				return { accepted: reservations.length, disabled: 0, unknown: 0 };
+			},
+		});
+		const ticking = scheduler.tick();
+		await reservationWriteStarted;
+		const stopping = scheduler.stop();
+		if (!releaseReservationWrite) throw new Error("APNs reservation write did not block");
+		releaseReservationWrite();
+		await Promise.all([ticking, stopping]);
+		expect(sent).toHaveLength(1);
+	});
+
+	it("does not repeat an ambiguous APNs outcome and disables only the current token version", async () => {
+		const time = clock("2026-09-27T12:00:00.000Z");
+		const store = await apnsStore("apns-ambiguous", time);
+		time.set("2026-09-28T07:00:00.000Z");
+		const failed: ApnsPushSender = { sendReserved: async () => Promise.reject(new Error("network lost")) };
+		await apnsScheduler(store, time, failed).tick();
+		let retried = 0;
+		await apnsScheduler(store, time, {
+			sendReserved: async () => {
+				retried += 1;
+				return { accepted: 0, disabled: 0, unknown: 0 };
+			},
+		}).tick();
+		expect(retried).toBe(0);
+
+		time.set("2026-09-27T12:00:00.000Z");
+		const renewal = await apnsStore("apns-renewal", time);
+		time.set("2026-09-28T07:00:00.000Z");
+		const reserved: ApnsNotificationReservation[] = [];
+		await apnsScheduler(renewal, time, {
+			sendReserved: async (reservations) => {
+				reserved.push(...reservations);
+				return { accepted: 0, disabled: 0, unknown: 0 };
+			},
+		}).tick();
+		const snapshot = reserved[0];
+		if (!snapshot) throw new Error("APNs reservation missing");
+		await renewal.update({
+			subscriptionId: SUBSCRIPTION_ID,
+			secret: SECRET,
+			deviceToken: "C3D4",
+			appVariant: "preview",
+			apnsEnvironment: "sandbox",
+			timezone: "Europe/Paris",
+			enabled: true,
+		});
+		await renewal.disableReservedToken(snapshot);
+		expect(await renewal.list()).toEqual([expect.objectContaining({ enabled: true, deviceToken: "c3d4" })]);
+	});
+
+	it("purges inactive APNs subscriptions even while sending is disabled", async () => {
+		const time = clock("2026-06-01T12:00:00.000Z");
+		const store = await apnsStore("apns-prune", time);
+		time.set("2026-09-01T07:00:00.000Z");
+		await apnsScheduler(store, time, undefined, false).tick();
+		expect(await store.list()).toEqual([]);
 	});
 });
