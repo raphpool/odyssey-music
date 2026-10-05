@@ -53,7 +53,7 @@ struct AppConfiguration: Equatable, Sendable {
 	private static func safeAPIBaseURL(from value: String) -> URL? {
 		guard var components = URLComponents(string: value),
 			components.scheme?.lowercased() == "https",
-			components.host != nil,
+			components.host?.isEmpty == false,
 			components.user == nil,
 			components.password == nil,
 			components.query == nil,

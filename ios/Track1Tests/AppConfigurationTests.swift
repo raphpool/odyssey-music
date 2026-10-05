@@ -40,6 +40,7 @@ final class AppConfigurationTests: XCTestCase {
 			AppConfigurationValues(environment: "staging", apiBaseURL: "https://api.track1.example/mobile/v1", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: nil, segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: "http://api.track1.example/mobile/v1", segmentWriteKey: nil),
+			AppConfigurationValues(environment: "production", apiBaseURL: "https:///mobile/v1", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: "https://user:pass@api.track1.example/mobile/v1", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: "https://api.track1.example/mobile/v1?debug=true", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: "https://api.track1.example/v1", segmentWriteKey: nil),
