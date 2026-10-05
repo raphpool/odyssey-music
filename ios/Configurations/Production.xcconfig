@@ -1,0 +1,5 @@
+#include "Base.xcconfig"
+
+PRODUCT_BUNDLE_IDENTIFIER = com.dropcliffs.track1
+TRACK1_ENVIRONMENT = production
+TRACK1_API_BASE_URL = https:/$()/api.track1.example/mobile/v1
