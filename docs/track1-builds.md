@@ -64,6 +64,6 @@ recette sont définis séparément dans P3.
 
 Pour arrêter les nouveaux rappels historiques sans toucher aux lectures musicales ni aux
 abonnements, retirer `MOBILE_PUSH_ENABLED=true` (ou mettre `false`) dans
-`/etc/odyssey-music.env`, selon la procédure d'exploitation autorisée. Conserver
+`/etc/odyssey-music.env`, puis redémarrer `odyssey-server.service`. Conserver
 `MOBILE_STATE_DIR` : le supprimer est une perte de l'historique de déduplication et exige une
 décision opérationnelle explicite.
