@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Track1
 
 @MainActor
@@ -36,14 +37,22 @@ final class AppConfigurationTests: XCTestCase {
 
 	func testInvalidValuesFailClosed() {
 		let values = [
-			AppConfigurationValues(environment: nil, apiBaseURL: "https://api.track1.example/mobile/v1", segmentWriteKey: nil),
-			AppConfigurationValues(environment: "staging", apiBaseURL: "https://api.track1.example/mobile/v1", segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: nil, apiBaseURL: "https://api.track1.example/mobile/v1", segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: "staging", apiBaseURL: "https://api.track1.example/mobile/v1", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: nil, segmentWriteKey: nil),
-			AppConfigurationValues(environment: "production", apiBaseURL: "http://api.track1.example/mobile/v1", segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: "production", apiBaseURL: "http://api.track1.example/mobile/v1", segmentWriteKey: nil),
 			AppConfigurationValues(environment: "production", apiBaseURL: "https:///mobile/v1", segmentWriteKey: nil),
-			AppConfigurationValues(environment: "production", apiBaseURL: "https://user:pass@api.track1.example/mobile/v1", segmentWriteKey: nil),
-			AppConfigurationValues(environment: "production", apiBaseURL: "https://api.track1.example/mobile/v1?debug=true", segmentWriteKey: nil),
-			AppConfigurationValues(environment: "production", apiBaseURL: "https://api.track1.example/v1", segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: "production", apiBaseURL: "https://user:pass@api.track1.example/mobile/v1",
+				segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: "production", apiBaseURL: "https://api.track1.example/mobile/v1?debug=true",
+				segmentWriteKey: nil),
+			AppConfigurationValues(
+				environment: "production", apiBaseURL: "https://api.track1.example/v1", segmentWriteKey: nil),
 		]
 
 		for value in values {
@@ -66,9 +75,9 @@ final class AppConfigurationTests: XCTestCase {
 	}
 }
 
-private extension Result where Success == AppConfiguration, Failure == AppConfigurationError {
-	var successValue: AppConfiguration? {
-		guard case let .success(value) = self else { return nil }
+extension Result where Success == AppConfiguration, Failure == AppConfigurationError {
+	fileprivate var successValue: AppConfiguration? {
+		guard case .success(let value) = self else { return nil }
 		return value
 	}
 }

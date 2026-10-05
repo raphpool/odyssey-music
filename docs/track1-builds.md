@@ -18,6 +18,25 @@ Il n'existe pas de build Expo public ou de preuve TestFlight/App Store Connect d
   (P6.3 / TRA-354). Jusqu'à sa vérification, conserver les sources et les scénarios utiles,
   sans présenter Expo comme une deuxième application officielle.
 
+## Contrôles natifs (TRA-336)
+
+Depuis la racine du dépôt, `ios/scripts/check.sh` vérifie que le Xcode sélectionné correspond
+exactement à `ios/.xcode-version`, applique le lint `swift-format` strict configuré pour des
+tabulations d'une unité et 110 colonnes, résout les paquets Swift, puis compile et teste
+séquentiellement `Track1` et `Track1Preview` sur un simulateur temporaire dédié. Le build et
+les tests refusent la signature (`CODE_SIGNING_ALLOWED=NO`). Les résultats et DerivedData restent
+hors des sources ; la CI conserve seulement les bundles `xcresult` comme artefacts.
+
+Le projet ne déclare actuellement aucune dépendance Swift externe : l'absence de
+`Package.resolved` est donc valide. Dès qu'une dépendance externe est déclarée, le verrou généré
+par SPM doit être présent, versionné à
+`ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved` et utilisé par
+la résolution ; son absence échoue explicitement.
+
+Le workflow `ios-ci` exécute exactement ce script sur le runner macOS ARM64 avec un HOME isolé,
+sans secret de signature. Les contrôles backend, review, tier et Expo restent exécutés par leurs
+workflows existants.
+
 ## Artefacts Expo historiques de TRA-290
 
 Source de configuration et de preuves : branche

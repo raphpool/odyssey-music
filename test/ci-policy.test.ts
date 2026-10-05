@@ -78,6 +78,32 @@ describe("calculatePrPolicy", () => {
 		]);
 	});
 
+	it("classifies only Swift Package Manager resolution locks under ios as generated", () => {
+		const policy = calculatePrPolicy([
+			{
+				path: "ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+				additions: 4,
+				deletions: 1,
+				binary: false,
+			},
+			{ path: "ios/Track1.xcodeproj/project.pbxproj", additions: 2, deletions: 1, binary: false },
+			{ path: "ios/Track1/App/RootView.swift", additions: 1, deletions: 0, binary: false },
+			{ path: "docs/Package.resolved", additions: 3, deletions: 0, binary: false },
+		]);
+
+		expect(policy.generated).toEqual([
+			{
+				path: "ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+				provenance: "Swift Package Manager",
+			},
+		]);
+		expect(policy.written.map((file) => file.path)).toEqual([
+			"ios/Track1.xcodeproj/project.pbxproj",
+			"ios/Track1/App/RootView.swift",
+			"docs/Package.resolved",
+		]);
+	});
+
 	it("lists binary files separately without declaring them generated", () => {
 		const policy = calculatePrPolicy([
 			{ path: "assets/cover.png", additions: 0, deletions: 0, binary: true },
