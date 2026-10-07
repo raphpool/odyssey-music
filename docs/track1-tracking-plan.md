@@ -57,6 +57,16 @@ Ne jamais envoyer ni mettre en file :
 - secret d'abonnement ;
 - erreur brute (seul le code d'erreur contrôlé prévu par le catalogue est permis).
 
+### Réalisation native Segment
+
+Le client iOS n'instancie Segment qu'après un accord `granted`. Il désactive la
+collecte automatique du cycle de vie et la télémétrie du SDK ; `app_opened` est
+produit par la transition SwiftUI réelle vers le premier plan. Chaque `event_id`
+alimente le `messageId` Segment, tandis que l'identifiant anonyme est un UUID
+propre à la mesure : aucun `userId`, IDFV ou IDFA n'est transmis. La file est en
+mémoire et le retrait désactive le transport, la vide et efface cette identité
+avant qu'un accord ultérieur puisse en créer une nouvelle.
+
 ## Catalogue des événements
 
 Dans le tableau, les propriétés communes sont celles de l'enveloppe ci-dessus.
