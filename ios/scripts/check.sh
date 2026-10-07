@@ -106,6 +106,14 @@ reset_contract_report() {
 	curl --fail --silent --show-error --request POST "${contract_base_url%/mobile/v1/}/__track1_contract_reset" >/dev/null
 }
 
+ensure_contract_runtime() {
+	if [[ -x "$repository_root/node_modules/.bin/tsx" ]]; then
+		return
+	fi
+	echo "Installing locked Node dependencies required by the mobile contract harness."
+	npm --prefix "$repository_root" ci --ignore-scripts --no-audit --no-fund
+}
+
 wait_for_simulator_boot() {
 	xcrun simctl bootstatus "$simulator_id" -b &
 	local bootstatus_process_id=$!
@@ -152,6 +160,8 @@ if grep -q "XCRemoteSwiftPackageReference" "$project_file"; then
 else
 	echo "No external Swift package is declared; no Package.resolved is required."
 fi
+
+ensure_contract_runtime
 
 xcrun swift-format lint --strict --configuration "$format_configuration" "${swift_files[@]}"
 
