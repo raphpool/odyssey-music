@@ -15,6 +15,43 @@ export function readExpoAccessToken(): string | undefined {
 	return value;
 }
 
+export interface ApnsPushConfiguration {
+	keyId: string;
+	teamId: string;
+	privateKeyPath: string;
+	topics: { preview: string; production: string };
+}
+
+// APNs credentials stay server-side. Returning undefined when the complete group is absent keeps
+// the music API usable before native push is configured; a partial group is an operator error.
+export function readApnsPushConfiguration(): ApnsPushConfiguration | undefined {
+	const keyId = process.env.APNS_KEY_ID;
+	const teamId = process.env.APNS_TEAM_ID;
+	const privateKeyPath = process.env.APNS_PRIVATE_KEY_PATH;
+	const preview = process.env.APNS_TOPIC_PREVIEW;
+	const production = process.env.APNS_TOPIC_PRODUCTION;
+	const values = [keyId, teamId, privateKeyPath, preview, production];
+	if (values.every((value) => value === undefined || value === "")) return undefined;
+	if (!keyId || !teamId || !privateKeyPath || !preview || !production) {
+		throw new Error("APNs configuration requires key id, team id, private key path, and both topics");
+	}
+	if (!/^[A-Z0-9]{10}$/.test(keyId) || !/^[A-Z0-9]{10}$/.test(teamId)) {
+		throw new Error("APNs key id and team id must be ten uppercase alphanumeric characters");
+	}
+	if (!privateKeyPath.startsWith("/") || /[\r\n]/.test(privateKeyPath)) {
+		throw new Error("APNS_PRIVATE_KEY_PATH must be an absolute single-line path");
+	}
+	if (preview !== "com.dropcliffs.track1.preview" || production !== "com.dropcliffs.track1") {
+		throw new Error("APNs topics do not match the verified track1 bundle identifiers");
+	}
+	return {
+		keyId,
+		teamId,
+		privateKeyPath,
+		topics: { preview, production },
+	};
+}
+
 export interface LoadEnvOptions {
 	// 2026-09-17 (TRA-242): which web-search backend the caller intends to use. Defaults to
 	// "tavily", which keeps the strict pre-existing contract (TAVILY_API_KEY always required) —

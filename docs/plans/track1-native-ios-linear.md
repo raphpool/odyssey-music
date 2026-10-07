@@ -652,22 +652,23 @@ Les abonnements natifs doivent recevoir le rappel quotidien via Apple. La planif
 
 ##### Portée
 
-Créer `src/mobile/apns-sender.ts`, `test/mobile/apns-sender.test.ts` ; modifier `src/mobile/push-schedule.ts`, `src/server.ts`, `src/config.ts`, `src/env.ts`, `deploy/deploy-server.sh`, `test/mobile/push-schedule.test.ts`, `docs/track1-builds.md`. Lire `src/mobile/push-sender.ts`, `push-receipts.ts`. Hors scope : SDK push tiers, push personnalisé, FCM, modification du site, suppression des routes Expo.
+Créer `src/mobile/apns-sender.ts`, `test/mobile/apns-sender.test.ts` ; modifier `src/mobile/push-store.ts`, `src/mobile/push-schedule.ts`, `src/server.ts`, `src/config.ts`, `src/env.ts`, `deploy/deploy-server.sh`, `test/mobile/push-schedule.test.ts`, `docs/track1-builds.md`. Lire `src/mobile/push-sender.ts`, `push-receipts.ts`. Hors scope : SDK push tiers, push personnalisé, FCM, modification du site, suppression des routes Expo.
 
 ##### Contrat
 
-HTTP/2 Node standard, JWT ES256 via crypto ; secrets APNS_KEY_ID/APNS_TEAM_ID/APNS_PRIVATE_KEY_PATH côté serveur, subjects fixes APNS_TOPIC_PREVIEW/APNS_TOPIC_PRODUCTION issus des bundles vérifiés. Feature switch MOBILE_APNS_PUSH_ENABLED séparé de MOBILE_PUSH_ENABLED Expo. Hôtes Apple sandbox/production selon inscription ; JWT mis en cache ≤50 min. Notification alert : titre « track1 — Ta découverte du jour », corps « Une découverte musicale t'attend. Ouvre track1 pour la découvrir. », données kind daily/notification_id/target_local_date/url track1://today ; topic imposé serveur, expiration10h locale, collapse ID opaque abonnement/date. Examen chaque minute,9h≤heure<10h, dès lendemain activation ; date réservée durablement avant envoi, aucun renvoi du jour après résultat ambigu. Purge90 jours inactifs même transport désactivé. Unregistered/token invalide désactive seulement le token/version envoyé ; credential/topic/429/5xx conservés comme erreurs opérationnelles, sans purge globale. Pas de reçus Expo simulés pour Apple.
+HTTP/2 Node standard, JWT ES256 via crypto ; secrets APNS_KEY_ID/APNS_TEAM_ID/APNS_PRIVATE_KEY_PATH côté serveur, subjects fixes APNS_TOPIC_PREVIEW/APNS_TOPIC_PRODUCTION issus des bundles vérifiés. Feature switch MOBILE_APNS_PUSH_ENABLED séparé de MOBILE_PUSH_ENABLED Expo. Hôtes Apple sandbox/production selon inscription ; JWT mis en cache ≤50 min. Notification alert : titre « track1 — Ta découverte du jour », corps « Une découverte musicale t'attend. Ouvre track1 pour la découvrir. », données kind daily/notification_id/target_local_date/url track1://today ; topic imposé serveur, expiration10h locale, collapse ID opaque abonnement/date. Examen chaque minute,9h≤heure<10h, dès lendemain activation ; date réservée durablement avant envoi, aucun renvoi du jour après résultat ambigu. Purge90 jours inactifs même transport désactivé. Unregistered/token invalide désactive seulement le token/version envoyé ; credential/topic/429/5xx conservés comme erreurs opérationnelles, sans purge globale. Pas de reçus Expo simulés pour Apple. Le registre APNs réserve atomiquement abonnement/date, persiste le snapshot jeton/version avant Apple et ne désactive conditionnellement que la version encore courante ; cette réservation survit à la réouverture et aux exécutions concurrentes.
 
 ##### Critères d'acceptation
 
 - [ ] Signature/host/topic/headers/payload corrects ; aucun secret/token brut dans logs.
 - [ ] Fuseaux, DST, lendemain activation, fenêtre9–10h, redémarrage et ambiguïté n'entraînent pas de répétition applicative.
+- [ ] La réservation APNs est persistée avant Apple ; concurrence, redémarrage et ambiguïté ne produisent qu'un envoi applicatif par abonnement/date locale.
 - [ ] 410/invalidtoken n'invalide pas un token renouvelé ; panne provider laisse l'app et les inscriptions accessibles.
 - [ ] Activation/désactivation APNs réversible, purge inactive toujours exécutée ; Expo coupé globalement avant bêta native officielle.
 
 ##### Tests attendus
 
-Vitest frontière HTTP/2/Apple substituée, crypto réelle sur clé test, erreurs/tokens ; vrai scheduler/store sur horloge contrôlée et restart ; smoke déploiement lectureAPI, contrôles secrets. Recette réception physique en P3.3.
+Vitest frontière HTTP/2/Apple substituée, crypto réelle sur clé test, erreurs/tokens ; vrai scheduler/store sur horloge contrôlée, concurrence et restart ; smoke déploiement lectureAPI, contrôles secrets. Recette réception physique en P3.3.
 
 ##### Tier de risque
 

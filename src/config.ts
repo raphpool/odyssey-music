@@ -1,6 +1,8 @@
 import { join } from "node:path";
 import { readExpoAccessToken } from "./env.js";
 
+export { readApnsPushConfiguration } from "./env.js";
+
 function envString(name: string, fallback: string): string {
 	const value = process.env[name];
 	return value?.trim() ? value : fallback;
@@ -19,6 +21,7 @@ export const serverConfig = {
 	cacheDir: envString("ODYSSEY_CACHE_DIR", join(process.cwd(), "cache")),
 	mobileStateDir: envString("MOBILE_STATE_DIR", join(process.cwd(), "mobile-state")),
 	expoAccessToken: readExpoAccessToken(),
+	mobileApnsPushEnabled: process.env.MOBILE_APNS_PUSH_ENABLED === "true",
 };
 
 export const streamConfig = {

@@ -100,6 +100,23 @@ if [[ ! -s /etc/odyssey-music.env ]]; then
   exit 1
 fi
 
+# Native push is optional, but an enabled partial configuration would reserve notifications with
+# no possible provider request. Validate presence and key-file readability without printing a
+# credential, topic, device token, or private path.
+if grep -qx 'MOBILE_APNS_PUSH_ENABLED=true' /etc/odyssey-music.env; then
+  for name in APNS_KEY_ID APNS_TEAM_ID APNS_PRIVATE_KEY_PATH APNS_TOPIC_PREVIEW APNS_TOPIC_PRODUCTION; do
+    if ! grep -q "^${name}=." /etc/odyssey-music.env; then
+      echo "ERROR: native APNs is enabled but ${name} is missing." >&2
+      exit 1
+    fi
+  done
+  APNS_KEY_PATH="$(sed -n -E 's/^APNS_PRIVATE_KEY_PATH=//p' /etc/odyssey-music.env | tail -n 1)"
+  if [[ "$APNS_KEY_PATH" != /* || ! -r "$APNS_KEY_PATH" ]]; then
+    echo "ERROR: native APNs private key is unavailable to the server." >&2
+    exit 1
+  fi
+fi
+
 # yt-dlp + ffmpeg are required by the /stream endpoint (audio player on track pages).
 # yt-dlp downloads bestaudio (usually m4a); ffmpeg is its remuxing dependency.
 if ! command -v yt-dlp >/dev/null 2>&1; then
@@ -134,6 +151,7 @@ EnvironmentFile=/etc/odyssey-music.env
 Environment=MOBILE_STATE_DIR=/var/lib/track1-mobile
 # MOBILE_PUSH_ENABLED is absent/false by default. Production activation and EXPO_ACCESS_TOKEN
 # stay in /etc/odyssey-music.env; never embed either value in this generated unit.
+# MOBILE_APNS_PUSH_ENABLED is independent. Its APNS_* settings remain only in the server env file.
 ExecStart=/opt/odyssey-music/node_modules/.bin/tsx /opt/odyssey-music/src/server.ts
 Restart=on-failure
 RestartSec=3

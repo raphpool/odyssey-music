@@ -155,6 +155,17 @@ export interface ApnsPushSubscription {
 	lastSeenAt: string;
 }
 
+export interface ApnsNotificationReservation {
+	subscriptionId: string;
+	notificationId: string;
+	targetLocalDate: string;
+	reservedAt: string;
+	deviceToken: string;
+	tokenVersion: number;
+	appVariant: ApnsAppVariant;
+	apnsEnvironment: ApnsEnvironment;
+}
+
 export interface CreateApnsPushSubscriptionInput {
 	subscriptionId: unknown;
 	secret: unknown;
@@ -177,7 +188,15 @@ export interface ApnsPushStore {
 	create(input: CreateApnsPushSubscriptionInput): Promise<CreatePushSubscriptionResult>;
 	update(input: UpdateApnsPushSubscriptionInput): Promise<PushSubscriptionPublic>;
 	remove(input: RemoveApnsPushSubscriptionInput): Promise<void>;
+	pruneInactive(): Promise<number>;
 	list(): Promise<ApnsPushSubscription[]>;
+	reserveNotification(
+		reservation: Omit<
+			ApnsNotificationReservation,
+			"deviceToken" | "tokenVersion" | "appVariant" | "apnsEnvironment"
+		>,
+	): Promise<ApnsNotificationReservation>;
+	disableReservedToken(reservation: ApnsNotificationReservation): Promise<void>;
 }
 
 export interface ApnsPushStoreOptions {
@@ -223,6 +242,8 @@ interface ValidatedPushSubscriptionInput {
 
 interface StoredApnsPushSubscription extends ApnsPushSubscription {
 	secretHash: string;
+	tokenVersion: number;
+	reservations?: ApnsNotificationReservation[];
 }
 
 interface ValidatedApnsPushSubscriptionInput {
@@ -708,6 +729,7 @@ export async function createApnsPushStore(options: ApnsPushStoreOptions): Promis
 				const subscription: StoredApnsPushSubscription = {
 					...identity,
 					secretHash: hashSecret(secret),
+					tokenVersion: 1,
 					enabled: true,
 					activatedLocalDate: localDate(currentTime, normalized.timezone),
 					createdAt: timestamp,
@@ -727,6 +749,9 @@ export async function createApnsPushStore(options: ApnsPushStoreOptions): Promis
 					throw new PushStoreError("unauthorized", "APNs subscription authorization is invalid");
 				}
 				const wasEnabled = subscription.enabled;
+				// Every accepted client refresh advances the snapshot version. A provider response that
+				// races any refresh must never disable the refreshed subscription.
+				subscription.tokenVersion += 1;
 				subscription.deviceToken = normalized.deviceToken;
 				subscription.appVariant = normalized.appVariant;
 				subscription.apnsEnvironment = normalized.apnsEnvironment;
@@ -753,7 +778,50 @@ export async function createApnsPushStore(options: ApnsPushStoreOptions): Promis
 				}
 				registry.subscriptions.splice(index, 1);
 			}),
+		pruneInactive: async () => withRegistry((_registry, pruned) => pruned),
 		list: async () => withRegistry((registry) => registry.subscriptions.map(copyApnsSubscription)),
+		reserveNotification: async (reservation) =>
+			withRegistry((registry, _pruned, currentTime) => {
+				const normalized = validateApnsReservation(reservation);
+				const subscription = registry.subscriptions.find(
+					(candidate) => candidate.subscriptionId === normalized.subscriptionId,
+				);
+				if (!subscription || !isCurrentlyApnsScheduledEligible(subscription, normalized, currentTime)) {
+					throw new PushStoreError("not_found", "APNs subscription is not eligible for a scheduled delivery");
+				}
+				if (
+					subscription.reservations?.some((entry) => entry.targetLocalDate === normalized.targetLocalDate)
+				) {
+					throw new PushStoreError(
+						"invalid_delivery",
+						"APNs subscription already has a delivery for this date",
+					);
+				}
+				const stored: ApnsNotificationReservation = {
+					...normalized,
+					deviceToken: subscription.deviceToken,
+					tokenVersion: subscription.tokenVersion,
+					appVariant: subscription.appVariant,
+					apnsEnvironment: subscription.apnsEnvironment,
+				};
+				subscription.reservations = appendApnsReservation(subscription.reservations, stored);
+				return structuredClone(stored);
+			}),
+		disableReservedToken: async (reservation) =>
+			withRegistry((registry) => {
+				const normalized = validateStoredApnsReservation(reservation);
+				const subscription = registry.subscriptions.find(
+					(candidate) => candidate.subscriptionId === normalized.subscriptionId,
+				);
+				if (
+					subscription?.enabled &&
+					subscription.reservations?.some((entry) => sameApnsReservation(entry, normalized)) &&
+					subscription.deviceToken === normalized.deviceToken &&
+					subscription.tokenVersion === normalized.tokenVersion
+				) {
+					subscription.enabled = false;
+				}
+			}),
 	};
 }
 
@@ -1223,6 +1291,8 @@ function validateStoredApnsSubscription(value: unknown): StoredApnsPushSubscript
 			"activated_local_date",
 			"created_at",
 			"last_seen_at",
+			"token_version",
+			"reservations",
 		]);
 		if (!Object.keys(value).every((key) => allowed.has(key)))
 			throw new Error("entry contains undeclared data");
@@ -1238,6 +1308,10 @@ function validateStoredApnsSubscription(value: unknown): StoredApnsPushSubscript
 			throw new Error("secret hash is invalid");
 		}
 		if (typeof value.enabled !== "boolean") throw new Error("enabled state is invalid");
+		const tokenVersion = value.token_version === undefined ? 1 : value.token_version;
+		if (typeof tokenVersion !== "number" || !Number.isSafeInteger(tokenVersion) || tokenVersion < 1) {
+			throw new Error("token version is invalid");
+		}
 		return {
 			...base,
 			secretHash: value.secret_hash,
@@ -1245,6 +1319,10 @@ function validateStoredApnsSubscription(value: unknown): StoredApnsPushSubscript
 			activatedLocalDate: validateLocalDate(value.activated_local_date),
 			createdAt: validateTimestamp(value.created_at),
 			lastSeenAt: validateTimestamp(value.last_seen_at),
+			tokenVersion,
+			...(value.reservations === undefined
+				? {}
+				: { reservations: validateApnsReservations(value.reservations, base.subscriptionId) }),
 		};
 	} catch {
 		throw new PushStoreError("corrupt_registry", "APNs subscription entry is invalid");
@@ -1452,6 +1530,62 @@ function validateReservation(value: {
 		targetLocalDate: validateLocalDate(value.targetLocalDate),
 		reservedAt: validateTimestamp(value.reservedAt),
 	};
+}
+
+function validateApnsReservation(value: {
+	subscriptionId: unknown;
+	notificationId: unknown;
+	targetLocalDate: unknown;
+	reservedAt: unknown;
+}): Omit<ApnsNotificationReservation, "deviceToken" | "tokenVersion" | "appVariant" | "apnsEnvironment"> {
+	return validateReservation(value);
+}
+
+function validateStoredApnsReservation(value: unknown): ApnsNotificationReservation {
+	if (!isRecord(value)) throw new PushStoreError("invalid_delivery", "APNs reservation is invalid");
+	const reservation = validateReservation({
+		subscriptionId: value.subscriptionId,
+		notificationId: value.notificationId,
+		targetLocalDate: value.targetLocalDate,
+		reservedAt: value.reservedAt,
+	});
+	const tokenVersion = value.tokenVersion;
+	if (typeof tokenVersion !== "number" || !Number.isSafeInteger(tokenVersion) || tokenVersion < 1) {
+		throw new PushStoreError("invalid_delivery", "APNs reservation token version is invalid");
+	}
+	return {
+		...reservation,
+		deviceToken: validateApnsDeviceToken(value.deviceToken),
+		tokenVersion,
+		appVariant: validateApnsAppVariant(value.appVariant),
+		apnsEnvironment: validateApnsEnvironment(value.apnsEnvironment),
+	};
+}
+
+function validateApnsReservations(value: unknown, subscriptionId: string): ApnsNotificationReservation[] {
+	if (!Array.isArray(value) || value.length > MAX_RESERVED_LOCAL_DATES) {
+		throw new PushStoreError("corrupt_registry", "APNs reservation history is invalid");
+	}
+	const reservations = value.map((entry) => {
+		if (!isRecord(entry)) throw new PushStoreError("corrupt_registry", "APNs reservation is invalid");
+		return validateStoredApnsReservation({
+			subscriptionId: entry.subscription_id,
+			notificationId: entry.notification_id,
+			targetLocalDate: entry.target_local_date,
+			reservedAt: entry.reserved_at,
+			deviceToken: entry.device_token,
+			tokenVersion: entry.token_version,
+			appVariant: entry.app_variant,
+			apnsEnvironment: entry.apns_environment,
+		});
+	});
+	if (
+		reservations.some((reservation) => reservation.subscriptionId !== subscriptionId) ||
+		new Set(reservations.map((reservation) => reservation.targetLocalDate)).size !== reservations.length
+	) {
+		throw new PushStoreError("corrupt_registry", "APNs reservation history is invalid");
+	}
+	return reservations;
 }
 
 function validateReservationBatch(value: PushNotificationReservation[]): PushNotificationReservation[] {
@@ -1683,6 +1817,22 @@ function isCurrentlyScheduledEligible(
 	return hour >= 9 && hour < 10;
 }
 
+function isCurrentlyApnsScheduledEligible(
+	subscription: StoredApnsPushSubscription,
+	reservation: Omit<
+		ApnsNotificationReservation,
+		"deviceToken" | "tokenVersion" | "appVariant" | "apnsEnvironment"
+	>,
+	current: Date,
+): boolean {
+	if (!subscription.enabled) return false;
+	if (current.getTime() - new Date(subscription.lastSeenAt).getTime() >= INACTIVE_TTL_MS) return false;
+	const date = localDate(current, subscription.timezone);
+	if (reservation.targetLocalDate !== date || date <= subscription.activatedLocalDate) return false;
+	const hour = localHour(current, subscription.timezone);
+	return hour >= 9 && hour < 10;
+}
+
 function pruneInactive(registry: Registry, current: Date): void {
 	const cutoff = current.getTime() - INACTIVE_TTL_MS;
 	registry.subscriptions = registry.subscriptions.filter(
@@ -1726,6 +1876,16 @@ function sameReservation(left: PushNotificationReservation, right: PushNotificat
 	);
 }
 
+function sameApnsReservation(left: ApnsNotificationReservation, right: ApnsNotificationReservation): boolean {
+	return (
+		sameReservation(left, right) &&
+		left.deviceToken === right.deviceToken &&
+		left.tokenVersion === right.tokenVersion &&
+		left.appVariant === right.appVariant &&
+		left.apnsEnvironment === right.apnsEnvironment
+	);
+}
+
 function subscriptionHasReservedDate(subscription: StoredPushSubscription, targetLocalDate: string): boolean {
 	return (
 		subscription.lastReservedLocalDate === targetLocalDate ||
@@ -1736,6 +1896,13 @@ function subscriptionHasReservedDate(subscription: StoredPushSubscription, targe
 function appendReservedLocalDate(dates: string[] | undefined, targetLocalDate: string): string[] {
 	const history = dates ?? [];
 	return [...history, targetLocalDate].slice(-MAX_RESERVED_LOCAL_DATES);
+}
+
+function appendApnsReservation(
+	reservations: ApnsNotificationReservation[] | undefined,
+	reservation: ApnsNotificationReservation,
+): ApnsNotificationReservation[] {
+	return [...(reservations ?? []), reservation].slice(-MAX_RESERVED_LOCAL_DATES);
 }
 
 function toPublic(
@@ -1758,7 +1925,7 @@ function copySubscription(subscription: StoredPushSubscription): PushSubscriptio
 }
 
 function copyApnsSubscription(subscription: StoredApnsPushSubscription): ApnsPushSubscription {
-	const { secretHash: _, ...copy } = subscription;
+	const { secretHash: _, tokenVersion: _tokenVersion, reservations: _reservations, ...copy } = subscription;
 	return structuredClone(copy);
 }
 
@@ -1816,6 +1983,21 @@ function serializeApnsRegistry(registry: ApnsRegistry) {
 			activated_local_date: subscription.activatedLocalDate,
 			created_at: subscription.createdAt,
 			last_seen_at: subscription.lastSeenAt,
+			token_version: subscription.tokenVersion,
+			...(subscription.reservations === undefined
+				? {}
+				: {
+						reservations: subscription.reservations.map((reservation) => ({
+							subscription_id: reservation.subscriptionId,
+							notification_id: reservation.notificationId,
+							target_local_date: reservation.targetLocalDate,
+							reserved_at: reservation.reservedAt,
+							device_token: reservation.deviceToken,
+							token_version: reservation.tokenVersion,
+							app_variant: reservation.appVariant,
+							apns_environment: reservation.apnsEnvironment,
+						})),
+					}),
 		})),
 	};
 }

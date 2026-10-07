@@ -30,12 +30,13 @@ import { createServer, type IncomingMessage, type ServerResponse } from "node:ht
 import { join } from "node:path";
 import { NodeCache } from "./cache.js";
 import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
-import { serverConfig, streamConfig } from "./config.js";
+import { readApnsPushConfiguration, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
+import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
 import { createMobileGenerationService } from "./mobile/generation-service.js";
 import { createGenerationStore } from "./mobile/generation-store.js";
@@ -43,7 +44,7 @@ import { createMobileMedia } from "./mobile/media.js";
 import { createMobileNodeReader } from "./mobile/nodes.js";
 import { createExpoPushReceipts } from "./mobile/push-receipts.js";
 import { createMobilePushRoutes } from "./mobile/push-routes.js";
-import { createPushScheduler } from "./mobile/push-schedule.js";
+import { createApnsPushScheduler, createPushScheduler } from "./mobile/push-schedule.js";
 import { createExpoPushSender } from "./mobile/push-sender.js";
 import { createApnsPushStore, createPushStore } from "./mobile/push-store.js";
 import { createMobileRouter } from "./mobile/router.js";
@@ -159,6 +160,33 @@ const mobilePushScheduler =
 		: undefined;
 if (mobilePushEnabled && !mobilePushScheduler) {
 	log.error("mobile push scheduler is disabled because its store or Expo credential is unavailable");
+}
+let mobileApnsPushSender: ReturnType<typeof createApnsPushSender> | undefined;
+if (serverConfig.mobileApnsPushEnabled && mobileApnsPushStore) {
+	try {
+		const configuration = readApnsPushConfiguration();
+		if (configuration)
+			mobileApnsPushSender = createApnsPushSender({ store: mobileApnsPushStore, ...configuration });
+	} catch {
+		// A credentials failure must not make reading music or changing a subscription unavailable.
+		mobileApnsPushSender = undefined;
+	}
+}
+const mobileApnsPushScheduler = mobileApnsPushStore
+	? createApnsPushScheduler({
+			store: mobileApnsPushStore,
+			...(mobileApnsPushSender ? { sender: mobileApnsPushSender } : {}),
+			enabled: serverConfig.mobileApnsPushEnabled && mobileApnsPushSender !== undefined,
+			onError: (event, error) => {
+				log.error("mobile APNs scheduler operation failed", {
+					event,
+					error: error instanceof Error ? error.message : "unknown failure",
+				});
+			},
+		})
+	: undefined;
+if (serverConfig.mobileApnsPushEnabled && !mobileApnsPushSender) {
+	log.error("mobile APNs push scheduler is disabled because its credential is unavailable");
 }
 const mobileRouter = createMobileRouter({
 	catalog: mobileCatalog,
@@ -416,6 +444,7 @@ function json(res: ServerResponse, status: number, body: unknown): void {
 server.listen(PORT, () => {
 	log.info("listening", { port: PORT, cacheDir: CACHE_DIR });
 	mobilePushScheduler?.start();
+	mobileApnsPushScheduler?.start();
 });
 
 let shuttingDown = false;
@@ -423,15 +452,17 @@ function shutdown(signal: "SIGINT" | "SIGTERM"): void {
 	if (shuttingDown) return;
 	shuttingDown = true;
 	log.info("shutting down", { signal });
-	void (mobilePushScheduler?.stop() ?? Promise.resolve()).finally(() => {
-		server.close((error) => {
-			if (error) {
-				log.error("server close failed", { error: error.message });
-				process.exitCode = 1;
-			}
-			process.exit();
+	void Promise.all([mobilePushScheduler?.stop(), mobileApnsPushScheduler?.stop()])
+		.then(() => mobileApnsPushSender?.close?.())
+		.finally(() => {
+			server.close((error) => {
+				if (error) {
+					log.error("server close failed", { error: error.message });
+					process.exitCode = 1;
+				}
+				process.exit();
+			});
 		});
-	});
 }
 process.once("SIGINT", () => shutdown("SIGINT"));
 process.once("SIGTERM", () => shutdown("SIGTERM"));
