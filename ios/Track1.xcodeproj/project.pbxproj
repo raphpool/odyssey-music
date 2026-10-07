@@ -100,8 +100,8 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		C10000000000000000000001 /* Development */ = {isa = XCBuildConfiguration; buildSettings = { CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; }; name = Development; };
-		C10000000000000000000002 /* Preview */ = {isa = XCBuildConfiguration; buildSettings = { CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; }; name = Preview; };
+		C10000000000000000000001 /* Development */ = {isa = XCBuildConfiguration; buildSettings = { CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; "ONLY_ACTIVE_ARCH[sdk=iphonesimulator*]" = YES; }; name = Development; };
+		C10000000000000000000002 /* Preview */ = {isa = XCBuildConfiguration; buildSettings = { CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; "ONLY_ACTIVE_ARCH[sdk=iphonesimulator*]" = YES; }; name = Preview; };
 		C10000000000000000000003 /* Production */ = {isa = XCBuildConfiguration; buildSettings = { CLANG_CXX_LANGUAGE_STANDARD = "gnu++20"; }; name = Production; };
 		C20000000000000000000001 /* Development */ = {isa = XCBuildConfiguration; baseConfigurationReference = F10000000000000000000015 /* Development.xcconfig */; buildSettings = { ENABLE_TESTABILITY = YES; PRODUCT_MODULE_NAME = Track1; }; name = Development; };
 		C20000000000000000000002 /* Preview */ = {isa = XCBuildConfiguration; baseConfigurationReference = F10000000000000000000016 /* Preview.xcconfig */; buildSettings = { ENABLE_TESTABILITY = YES; PRODUCT_MODULE_NAME = Track1; }; name = Preview; };

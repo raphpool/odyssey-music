@@ -206,6 +206,7 @@ for scheme in Track1 Track1Preview; do
 		-destination "platform=iOS Simulator,id=$simulator_id" \
 		-derivedDataPath "$output_dir/DerivedData/$scheme" \
 		CODE_SIGNING_ALLOWED=NO \
+		ONLY_ACTIVE_ARCH=NO \
 		build-for-testing
 	xctestrun_path="$(find "$output_dir/DerivedData/$scheme/Build/Products" -maxdepth 1 -name '*.xctestrun' -type f -print -quit)"
 	if [[ -z "$xctestrun_path" ]]; then
@@ -221,6 +222,7 @@ for scheme in Track1 Track1Preview; do
 		-destination "platform=iOS Simulator,id=$simulator_id" \
 		-resultBundlePath "$output_dir/$scheme-$$.xcresult" \
 		CODE_SIGNING_ALLOWED=NO \
+		ONLY_ACTIVE_ARCH=NO \
 		-quiet
 	then
 		echo "XCTest failed before contract verification; observed proxy requests:" >&2

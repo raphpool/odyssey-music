@@ -37,6 +37,43 @@ Le workflow `ios-ci` exécute exactement ce script sur le runner macOS ARM64 ave
 sans secret de signature. Les contrôles backend, review, tier et Expo restent exécutés par leurs
 workflows existants.
 
+### Architectures simulateur (TRA-355)
+
+Pour les builds locaux ordinaires, les configurations de projet `Development` et `Preview`
+limitent la compilation au simulateur concret avec
+`ONLY_ACTIVE_ARCH[sdk=iphonesimulator*]=YES`. Ce réglage est au niveau projet : l'application,
+`Track1Tests` et `Track1UITests` l'héritent sans figer `ARCHS`, sans exclure d'architecture et sans
+modifier `Production`, `iphoneos`, les archives ou la signature.
+
+Le contrôle automatisé garde volontairement les deux architectures du simulateur. Pour chaque
+action `build` et `test` des schémas `Track1` et `Track1Preview`, `ios/scripts/check.sh` transmet
+`ONLY_ACTIVE_ARCH=NO` sur la ligne de commande, pour l'ensemble du graphe Xcode et des paquets
+SPM. Reproduire le contrôle complet depuis la racine avec :
+
+```sh
+ios/scripts/check.sh
+```
+
+Pour qualifier le comportement local avec un simulateur concret, utiliser des DerivedData séparés
+et ne pas ajouter d'override d'architecture :
+
+```sh
+xcodebuild -project ios/Track1.xcodeproj -scheme Track1 -configuration Development \
+  -destination "platform=iOS Simulator,id=<simulateur-id>" -derivedDataPath /tmp/track1-development build
+xcodebuild -project ios/Track1.xcodeproj -scheme Track1 -configuration Development \
+  -destination "platform=iOS Simulator,id=<simulateur-id>" -derivedDataPath /tmp/track1-development build-for-testing
+xcodebuild -project ios/Track1.xcodeproj -scheme Track1Preview -configuration Preview \
+  -destination "platform=iOS Simulator,id=<simulateur-id>" -derivedDataPath /tmp/track1-preview build
+xcodebuild -project ios/Track1.xcodeproj -scheme Track1Preview -configuration Preview \
+  -destination "platform=iOS Simulator,id=<simulateur-id>" -derivedDataPath /tmp/track1-preview build-for-testing
+```
+
+Les preuves physiques consignent séparément le SHA du correctif, le commit et les hashes du
+candidat SPM, les journaux/xcresult et l'inspection des slices arm64 et x86_64 des produits
+simulator (application, Segment/Analytics, Sovran et JSONSafeEncoding). Elles ne présentent pas
+l'exécution arm64 d'un simulateur comme une exécution x86_64 et ne réemploient pas une preuve
+Development pour Preview.
+
 ## Artefacts Expo historiques de TRA-290
 
 Source de configuration et de preuves : branche
