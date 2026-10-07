@@ -19,21 +19,116 @@ package_resolved_relative="ios/Track1.xcodeproj/project.xcworkspace/xcshareddata
 package_resolved_path="$repository_root/$package_resolved_relative"
 simulator_name="track1-ci-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-0}-$$"
 simulator_id=""
+contract_dir=""
+contract_pid=""
+contract_base_url=""
 runtime_id="$(xcrun simctl list runtimes available -j | jq -r '.runtimes[] | select(.name == "iOS 26.4") | .identifier' | head -n 1)"
 simulator_boot_timeout_seconds="${SIMULATOR_BOOT_TIMEOUT_SECONDS:-600}"
 swift_files=(
+	"$ios_dir/Track1/API/APIClient.swift"
+	"$ios_dir/Track1/API/APIError.swift"
+	"$ios_dir/Track1/API/APIModels.swift"
+	"$ios_dir/Track1/API/URLValidation.swift"
 	"$ios_dir/Track1/App/AppConfiguration.swift"
 	"$ios_dir/Track1/App/AppRouter.swift"
 	"$ios_dir/Track1/App/RootView.swift"
+	"$ios_dir/Track1Tests/API/APIClientTests.swift"
+	"$ios_dir/Track1Tests/API/APIContractIntegrationTests.swift"
 	"$ios_dir/Track1/DesignSystem/Track1Theme.swift"
 	"$ios_dir/Track1Tests/AppConfigurationTests.swift"
 )
 
 cleanup() {
+	if [[ -n "$contract_pid" ]] && kill -0 "$contract_pid" 2>/dev/null; then
+		kill -TERM "$contract_pid" 2>/dev/null || true
+		for _ in {1..20}; do
+			kill -0 "$contract_pid" 2>/dev/null || break
+			sleep 0.1
+		done
+		kill -0 "$contract_pid" 2>/dev/null && kill -KILL "$contract_pid" 2>/dev/null || true
+		wait "$contract_pid" 2>/dev/null || true
+	fi
+	[[ -n "$contract_dir" ]] && rm -rf "$contract_dir"
 	if [[ -n "$simulator_id" ]]; then
 		xcrun simctl shutdown "$simulator_id" >/dev/null 2>&1 || true
 		xcrun simctl delete "$simulator_id" >/dev/null 2>&1 || true
 	fi
+}
+
+start_contract_harness() {
+	contract_dir="$(mktemp -d "${TMPDIR:-/tmp}/track1-contract.XXXXXX")"
+	local ready_file="$contract_dir/base-url"
+	local log_file="$contract_dir/server.log"
+	env -i \
+		PATH="$PATH" \
+		ODYSSEY_CACHE_DIR="$contract_dir/cache" \
+		MOBILE_STATE_DIR="$contract_dir/mobile-state" \
+		STREAM_CACHE_DIR="$contract_dir/stream-cache" \
+		MB_BASE_URL="http://127.0.0.1:1" \
+		MOBILE_PUSH_ENABLED="false" \
+		MOBILE_APNS_PUSH_ENABLED="false" \
+		GEMINI_API_KEY="contract-test-only" \
+		TAVILY_API_KEY="contract-test-only" \
+		FIRECRAWL_API_KEY="contract-test-only" \
+		node --import tsx "$repository_root/test/helpers/mobile-contract-server.ts" --ready-file "$ready_file" >"$log_file" 2>&1 &
+	contract_pid=$!
+	for _ in {1..100}; do
+		[[ -s "$ready_file" ]] && break
+		if ! kill -0 "$contract_pid" 2>/dev/null; then
+			cat "$log_file" >&2
+			return 1
+		fi
+		sleep 0.05
+	done
+	if [[ ! -s "$ready_file" ]]; then
+		echo "The mobile contract harness did not publish its XCTest base URL." >&2
+		cat "$log_file" >&2
+		return 1
+	fi
+	contract_base_url="$(<"$ready_file")"
+	if [[ ! "$contract_base_url" =~ ^http://127\.0\.0\.1:[0-9]+/mobile/v1/$ ]]; then
+		echo "The mobile contract harness published an unsafe XCTest base URL." >&2
+		return 1
+	fi
+}
+
+verify_contract_report() {
+	local report
+	report="$(curl --fail --silent --show-error "${contract_base_url%/mobile/v1/}/__track1_contract_report")"
+	node -e '
+		const report = JSON.parse(process.argv[1]);
+		const expected = report.catalogRequests >= 2 && report.notModifiedCatalogRequests >= 1 && report.nodeRequests >= 1 && report.generationPosts === 1 && report.providerFetchAttempts === 0;
+		if (!expected) throw new Error(`Invalid mobile contract report: ${JSON.stringify(report)}`);
+	' "$report"
+}
+
+reset_contract_report() {
+	curl --fail --silent --show-error --request POST "${contract_base_url%/mobile/v1/}/__track1_contract_reset" >/dev/null
+}
+
+ensure_contract_runtime() {
+	if ! command -v node >/dev/null || ! command -v npm >/dev/null; then
+		echo "The mobile contract harness requires Node.js >=20 and npm." >&2
+		return 1
+	fi
+	local node_major
+	if ! node_major="$(node -p 'process.versions.node.split(".")[0]')"; then
+		echo "Could not determine the Node.js version required by the mobile contract harness." >&2
+		return 1
+	fi
+	if [[ ! "$node_major" =~ ^[0-9]+$ ]] || ((node_major < 20)); then
+		echo "The mobile contract harness requires Node.js >=20; found $(node --version)." >&2
+		return 1
+	fi
+	if [[ ! -f "$repository_root/package-lock.json" ]]; then
+		echo "The mobile contract harness requires the repository package-lock.json." >&2
+		return 1
+	fi
+	if [[ -x "$repository_root/node_modules/.bin/tsx" ]]; then
+		return
+	fi
+	echo "Installing locked Node dependencies required by the mobile contract harness."
+	npm --prefix "$repository_root" --cache "$output_dir/npm-cache" ci --ignore-scripts --no-audit --no-fund
 }
 
 wait_for_simulator_boot() {
@@ -56,6 +151,7 @@ wait_for_simulator_boot() {
 }
 
 trap cleanup EXIT
+trap 'exit 130' INT TERM
 
 if [[ "$actual_xcode" != "$expected_xcode" ]]; then
 	echo "Expected $expected_xcode but xcodebuild selected $actual_xcode." >&2
@@ -82,6 +178,8 @@ else
 	echo "No external Swift package is declared; no Package.resolved is required."
 fi
 
+ensure_contract_runtime
+
 xcrun swift-format lint --strict --configuration "$format_configuration" "${swift_files[@]}"
 
 for scheme in Track1 Track1Preview; do
@@ -93,6 +191,8 @@ for scheme in Track1 Track1Preview; do
 		-scheme "$scheme" \
 		-clonedSourcePackagesDirPath "$output_dir/SourcePackages"
 done
+
+start_contract_harness
 
 simulator_id="$(xcrun simctl create "$simulator_name" "iPhone 17 Pro" "$runtime_id")"
 wait_for_simulator_boot
@@ -106,15 +206,27 @@ for scheme in Track1 Track1Preview; do
 		-destination "platform=iOS Simulator,id=$simulator_id" \
 		-derivedDataPath "$output_dir/DerivedData/$scheme" \
 		CODE_SIGNING_ALLOWED=NO \
-		build
-	xcodebuild \
-		-onlyUsePackageVersionsFromResolvedFile \
-		-disableAutomaticPackageResolution \
-		-project "$project_path" \
-		-scheme "$scheme" \
+		build-for-testing
+	xctestrun_path="$(find "$output_dir/DerivedData/$scheme/Build/Products" -maxdepth 1 -name '*.xctestrun' -type f -print -quit)"
+	if [[ -z "$xctestrun_path" ]]; then
+		echo "xcodebuild did not produce an xctestrun file for $scheme." >&2
+		exit 1
+	fi
+	/usr/libexec/PlistBuddy -c "Add :Track1Tests:EnvironmentVariables dict" "$xctestrun_path" 2>/dev/null || true
+	/usr/libexec/PlistBuddy -c "Add :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL string $contract_base_url" "$xctestrun_path" 2>/dev/null \
+		|| /usr/libexec/PlistBuddy -c "Set :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL $contract_base_url" "$xctestrun_path"
+	if ! xcodebuild \
+		test-without-building \
+		-xctestrun "$xctestrun_path" \
 		-destination "platform=iOS Simulator,id=$simulator_id" \
-		-derivedDataPath "$output_dir/DerivedData/$scheme" \
 		-resultBundlePath "$output_dir/$scheme-$$.xcresult" \
 		CODE_SIGNING_ALLOWED=NO \
-		test
+		-quiet
+	then
+		echo "XCTest failed before contract verification; observed proxy requests:" >&2
+		curl --fail --silent --show-error "${contract_base_url%/mobile/v1/}/__track1_contract_report" >&2 || true
+		exit 1
+	fi
+	verify_contract_report
+	reset_contract_report
 done

@@ -15,6 +15,12 @@
 		B10000000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000008 /* Assets.xcassets */; };
 		B10000000000000000000008 /* AppConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000009 /* AppConfigurationTests.swift */; };
 		B10000000000000000000009 /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000010 /* NavigationTests.swift */; };
+		B10000000000000000000010 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000018 /* APIClient.swift */; };
+		B10000000000000000000011 /* APIModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000019 /* APIModels.swift */; };
+		B10000000000000000000012 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000020 /* APIError.swift */; };
+		B10000000000000000000013 /* URLValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000021 /* URLValidation.swift */; };
+		B10000000000000000000014 /* APIClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000022 /* APIClientTests.swift */; };
+		B10000000000000000000015 /* APIContractIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000023 /* APIContractIntegrationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,12 @@
 		F10000000000000000000015 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		F10000000000000000000016 /* Preview.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Preview.xcconfig; sourceTree = "<group>"; };
 		F10000000000000000000017 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
+		F10000000000000000000018 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		F10000000000000000000019 /* APIModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModels.swift; sourceTree = "<group>"; };
+		F10000000000000000000020 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		F10000000000000000000021 /* URLValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLValidation.swift; sourceTree = "<group>"; };
+		F10000000000000000000022 /* APIClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientTests.swift; sourceTree = "<group>"; };
+		F10000000000000000000023 /* APIContractIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIContractIntegrationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,14 +62,16 @@
 
 /* Begin PBXGroup section */
 		A30000000000000000000001 = {isa = PBXGroup; children = (A30000000000000000000002 /* Track1 */, A30000000000000000000006 /* Track1Tests */, A30000000000000000000007 /* Track1UITests */, A30000000000000000000008 /* Configurations */, A30000000000000000000009 /* Products */); sourceTree = "<group>"; };
-		A30000000000000000000002 /* Track1 */ = {isa = PBXGroup; children = (A30000000000000000000003 /* App */, A30000000000000000000004 /* DesignSystem */, A30000000000000000000005 /* Resources */); path = Track1; sourceTree = "<group>"; };
+		A30000000000000000000002 /* Track1 */ = {isa = PBXGroup; children = (A30000000000000000000003 /* App */, A30000000000000000000004 /* DesignSystem */, A30000000000000000000005 /* Resources */, A30000000000000000000010 /* API */); path = Track1; sourceTree = "<group>"; };
 		A30000000000000000000003 /* App */ = {isa = PBXGroup; children = (F10000000000000000000001 /* Track1App.swift */, F10000000000000000000002 /* AppContainer.swift */, F10000000000000000000003 /* AppConfiguration.swift */, F10000000000000000000004 /* AppRouter.swift */, F10000000000000000000005 /* RootView.swift */); path = App; sourceTree = "<group>"; };
 		A30000000000000000000004 /* DesignSystem */ = {isa = PBXGroup; children = (F10000000000000000000006 /* Track1Theme.swift */); path = DesignSystem; sourceTree = "<group>"; };
 		A30000000000000000000005 /* Resources */ = {isa = PBXGroup; children = (F10000000000000000000007 /* Info.plist */, F10000000000000000000008 /* Assets.xcassets */); path = Resources; sourceTree = "<group>"; };
-		A30000000000000000000006 /* Track1Tests */ = {isa = PBXGroup; children = (F10000000000000000000009 /* AppConfigurationTests.swift */); path = Track1Tests; sourceTree = "<group>"; };
+		A30000000000000000000006 /* Track1Tests */ = {isa = PBXGroup; children = (F10000000000000000000009 /* AppConfigurationTests.swift */, A30000000000000000000011 /* API */); path = Track1Tests; sourceTree = "<group>"; };
 		A30000000000000000000007 /* Track1UITests */ = {isa = PBXGroup; children = (F10000000000000000000010 /* NavigationTests.swift */); path = Track1UITests; sourceTree = "<group>"; };
 		A30000000000000000000008 /* Configurations */ = {isa = PBXGroup; children = (F10000000000000000000014 /* Base.xcconfig */, F10000000000000000000015 /* Development.xcconfig */, F10000000000000000000016 /* Preview.xcconfig */, F10000000000000000000017 /* Production.xcconfig */); path = Configurations; sourceTree = "<group>"; };
 		A30000000000000000000009 /* Products */ = {isa = PBXGroup; children = (F10000000000000000000011 /* Track1.app */, F10000000000000000000012 /* Track1Tests.xctest */, F10000000000000000000013 /* Track1UITests.xctest */); name = Products; sourceTree = "<group>"; };
+		A30000000000000000000010 /* API */ = {isa = PBXGroup; children = (F10000000000000000000018 /* APIClient.swift */, F10000000000000000000019 /* APIModels.swift */, F10000000000000000000020 /* APIError.swift */, F10000000000000000000021 /* URLValidation.swift */); path = API; sourceTree = "<group>"; };
+		A30000000000000000000011 /* API */ = {isa = PBXGroup; children = (F10000000000000000000022 /* APIClientTests.swift */, F10000000000000000000023 /* APIContractIntegrationTests.swift */); path = API; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -75,8 +89,8 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A20000000000000000000004 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000001 /* Track1App.swift in Sources */, B10000000000000000000002 /* AppContainer.swift in Sources */, B10000000000000000000003 /* AppConfiguration.swift in Sources */, B10000000000000000000004 /* AppRouter.swift in Sources */, B10000000000000000000005 /* RootView.swift in Sources */, B10000000000000000000006 /* Track1Theme.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
-		A20000000000000000000006 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000008 /* AppConfigurationTests.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+		A20000000000000000000004 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000001 /* Track1App.swift in Sources */, B10000000000000000000002 /* AppContainer.swift in Sources */, B10000000000000000000003 /* AppConfiguration.swift in Sources */, B10000000000000000000004 /* AppRouter.swift in Sources */, B10000000000000000000005 /* RootView.swift in Sources */, B10000000000000000000006 /* Track1Theme.swift in Sources */, B10000000000000000000010 /* APIClient.swift in Sources */, B10000000000000000000011 /* APIModels.swift in Sources */, B10000000000000000000012 /* APIError.swift in Sources */, B10000000000000000000013 /* URLValidation.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
+		A20000000000000000000006 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000008 /* AppConfigurationTests.swift in Sources */, B10000000000000000000014 /* APIClientTests.swift in Sources */, B10000000000000000000015 /* APIContractIntegrationTests.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 		A20000000000000000000007 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (B10000000000000000000009 /* NavigationTests.swift in Sources */); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
