@@ -271,11 +271,11 @@ Le nouveau client doit être vérifié automatiquement comme le backend. Cette t
 
 ##### Portée
 
-Créer `.github/workflows/ios-ci.yml`, `ios/scripts/check.sh` et la configuration de format native ; compléter `docs/track1-builds.md`. Modifier `scripts/ci/pr-policy.ts` et `test/ci-policy.test.ts` uniquement pour classifier les artefacts générés Swift effectivement identifiés. Ancrages existants : `.github/workflows/ci.yml`, `.github/workflows/mobile-ci.yml`, `.github/workflows/review-gate.yml`. Hors scope : suppression d'un workflow/gate, secrets de signature dans les PR, réécriture de TRA-285, fonctionnalités.
+Créer `.github/workflows/ios-ci.yml`, `ios/scripts/check.sh` et la configuration de format native ; compléter `docs/track1-builds.md`. Modifier `scripts/ci/pr-policy.ts` et `test/ci-policy.test.ts` uniquement pour classifier `ios/**/Package.resolved` avec sa provenance SPM, jamais tout `ios/` ni le projet Xcode. Le formatage mécanique strict utilise `swift-format` avec tabulations d'une unité et largeur 110, uniquement sur `ios/Track1/App/AppConfiguration.swift`, `ios/Track1/App/AppRouter.swift`, `ios/Track1/App/RootView.swift`, `ios/Track1/DesignSystem/Track1Theme.swift` et `ios/Track1Tests/AppConfigurationTests.swift`, sans changement de comportement. Ancrages existants : `.github/workflows/ci.yml`, `.github/workflows/mobile-ci.yml`, `.github/workflows/review-gate.yml`. Hors scope : suppression d'un workflow/gate, secrets de signature dans les PR, réécriture de TRA-285, fonctionnalités.
 
 ##### Contrat
 
-Le script local et la CI utilisent le Xcode épinglé par `ios/.xcode-version` et exécutent résolution SPM verrouillée, contrôle de format avec l'outil Swift fourni, build strict, XCTest et XCUITest des schémas partagés sur simulateur. Le job macOS publie résultats/xcresult sans données privées. Les PR externes n'ont aucun secret de signature. `npm run check`, review-gate et classification des risques continuent indépendamment. La CI de taille déjà livrée signale le réexamen au-delà de 1 000 lignes écrites/20 fichiers, sans échec sur volume seul ; le projet Xcode maintenu et tests sont écrits, un Package.resolved produit par SPM est généré avec provenance.
+Le script local et la CI utilisent le Xcode épinglé par `ios/.xcode-version` et exécutent résolution SPM verrouillée, contrôle de format avec l'outil Swift fourni, build strict, XCTest et XCUITest des schémas partagés sur simulateur. Sans dépendance SPM externe, une résolution vide sans `Package.resolved` est valide ; dès qu'une dépendance externe est déclarée, le verrou généré, versionné et utilisé devient obligatoire. Le job macOS publie résultats/xcresult sans données privées. Les PR externes n'ont aucun secret de signature. `npm run check`, review-gate et classification des risques continuent indépendamment. La CI de taille déjà livrée signale le réexamen au-delà de 1 000 lignes écrites/20 fichiers, sans échec sur volume seul ; le projet Xcode maintenu et tests sont écrits, un Package.resolved produit par SPM est généré avec provenance.
 
 ##### Critères d'acceptation
 
@@ -283,10 +283,11 @@ Le script local et la CI utilisent le Xcode épinglé par `ios/.xcode-version` e
 - [ ] Une erreur Swift ou un test volontairement cassé fait échouer le job dans une preuve non fusionnée ; aucun bypass n'est ajouté.
 - [ ] Les tests/backend/review/tier existants sont toujours exécutés ; le contrôle Expo reste provisoirement disponible.
 - [ ] Tout ajout à la classification écrit/généré est couvert par test positif/négatif, sans classifier tout `ios/` comme généré.
+- [ ] Le lint Swift strict passe après le formatage mécanique des seuls cinq fichiers autorisés ; une seconde exécution du formateur ne produit aucun diff, et les tests de la fondation restent verts sans changement de comportement.
 
 ##### Tests attendus
 
-Tests `test/ci-policy.test.ts` si modifié ; exécution du script natif et du workflow sur PR, preuve d'échec contrôlé puis retour au vert ; `npm run check` selon le périmètre. Les tests des fonctionnalités futures rejoignent les suites dès leur livraison.
+Tests `test/ci-policy.test.ts` si modifié ; exécution du script natif et du workflow sur PR, preuve d'échec contrôlé puis retour au vert ; `npm run check` selon le périmètre. Vérifier le lint strict et l'idempotence du formateur sur les cinq fichiers autorisés, puis exécuter les tests de la fondation ; contrôler que leur diff provient uniquement de l'outil. Qualifier les deux cas SPM : projet sans dépendance externe et sans verrou accepté, projet déclarant une dépendance externe sans verrou refusé ; lorsqu'un verrou existe, la résolution doit l'utiliser. Vérifier que le diff documentaire de cette PR ne touche que P1.4 dans les deux plans. Les tests des fonctionnalités futures rejoignent les suites dès leur livraison.
 
 ##### Tier de risque
 

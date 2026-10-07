@@ -29,6 +29,7 @@ const generatedProvenance = (path: string): string | undefined => {
 	if (path === "web/data.json") return "scripts/build-graph-json.ts";
 	if (path === "data/genre-qid-map.json") return "scripts/build-genre-qid-map.ts";
 	if (/^cache\/nodes\/.+\.json$/.test(path)) return "pipeline";
+	if (/^ios\/(?:.+\/)?Package\.resolved$/.test(path)) return "Swift Package Manager";
 	if (/(^|\/)__snapshots__\/|\.snap$/.test(path)) return "test runner";
 	return undefined;
 };

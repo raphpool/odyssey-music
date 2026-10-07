@@ -7,7 +7,7 @@ struct RootView: View {
 		switch container.configurationResult {
 		case .success:
 			ApplicationTabs(router: container.router)
-		case let .failure(error):
+		case .failure(let error):
 			InvalidConfigurationView(error: error)
 		}
 	}
@@ -39,7 +39,7 @@ private struct ApplicationTabs: View {
 			}
 			.navigationDestination(for: AppRoute.self) { route in
 				switch route {
-				case let .entryStatus(tab):
+				case .entryStatus(let tab):
 					EntryStatusView(tab: tab)
 				}
 			}
