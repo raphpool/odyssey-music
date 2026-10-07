@@ -10,7 +10,7 @@ Statut : validé par Raphael le 2026-10-05. Création des tickets puis démarrag
 - **URL :** https://linear.app/workspaceperso/project/track1-mobile-6052a246546f
 - **Équipe :** Track1 — `5957a8e2-e7a0-4995-8acb-b3820ac19745`.
 - **Plan validé :** `docs/plans/track1-native-ios.md`.
-- **Périmètre actif du manifeste :** 6 milestones natifs, 28 issues canoniques ; 20 nouvelles issues et 8 issues ouvertes réemployées. Tiers : 5 tier/1, 9 tier/2, 14 tier/3.
+- **Périmètre actif du manifeste :** 6 milestones natifs, 29 issues canoniques ; 21 nouvelles issues et 8 issues ouvertes réemployées. Tiers : 5 tier/1, 9 tier/2, 15 tier/3.
 - Ne renseigner aucune estimation, aucun point ni date d'échéance. Conserver le projet existant ; ne pas créer de projet concurrent.
 
 ### Description
@@ -54,13 +54,13 @@ Le mapping d'identifiants/UUID historique est `docs/plans/track1-mobile-linear-m
 3. Les anciens milestones restent historiques : ne pas les supprimer, les recycler avec une autre signification ni réécrire leurs descriptions. Les issues Done y restent attachées. Le projet peut donc afficher les six milestones actifs en plus de ses milestones historiques ; « six » désigne le périmètre natif, pas une suppression d'historique.
 4. Déplacer uniquement les huit issues ouvertes réemployées dans leur milestone natif. L'ancien milestone Android reste différé ; aucun milestone ou ticket Java n'est créé.
 
-### Identités des 28 issues actives
+### Identités des 29 issues actives
 
 | Référence | Action définitive |
 | --- | --- |
 | P1.1 | Créer une issue native |
 | P1.2 | Réemployer TRA-327 |
-| P1.3, P1.4, P1.5 | Créer trois issues natives |
+| P1.3 à P1.6 | Créer quatre issues natives |
 | P2.1 à P2.6 | Créer six issues natives |
 | P3.1 à P3.3 | Créer trois issues natives ; ne pas rouvrir TRA-302 à TRA-304 |
 | P4.1 à P4.5 | Créer cinq issues natives |
@@ -82,7 +82,7 @@ Les issues nouvelles portent leur référence Pn.n et le chemin du manifeste dan
 
 Si une cible prévue pour réemploi est désormais Done, ne pas la modifier : créer son remplacement natif avec la même description, noter son ID historique comme relation `related`. Si un état autre que ceux observés modifie un travail en cours, préserver ce travail et rapporter le changement avant de réécrire son contrat. Un problème d'accès n'autorise ni création supposée ni implémentation sans ticket réel.
 
-### Traitement des issues historiques hors des 28 canoniques
+### Traitement des issues historiques hors des 29 canoniques
 
 **Done : aucune mutation de statut, de titre, de description, de milestone ou de preuve.** Cela protège notamment TRA-285/286, TRA-287 à TRA-289, TRA-291 à TRA-304 hors TRA-290, TRA-307 à TRA-310, TRA-312/314/325/326, et tout autre acquis terminé. Ne pas recréer les endpoints backend ni les contrôles CI déjà livrés.
 
@@ -99,7 +99,7 @@ Si une cible prévue pour réemploi est désormais Done, ne pas la modifier : cr
 
 Avant chacune, relire l'état : si Done, ne rien changer et garder seulement la relation historique depuis le nouveau ticket ; si une nouvelle modification native non prévue apparaît, rapporter ce conflit plutôt que l'annuler. Utiliser l'état annulé de l'équipe (type canceled, nom Canceled ; jamais Done). Conserver description et pièces jointes. Ajouter `related` vers les successeurs et ce commentaire exact, avec les références remplacées par les IDs résolus : « Remplacé par le plan iOS natif validé le 2026-10-05. Le travail Expo restant est annulé ; les livrables et preuves historiques sont conservés. Successeur(s) : <IDs>. Aucun résultat Swift n'est déclaré livré par cette annulation. »
 
-**Obligations utiles consolidées, sans fausse clôture :** TRA-306 et TRA-313 restent Backlog, reliés et bloqués par P5.4 ; TRA-316 reste Backlog, relié et bloqué par P5.3. Conserver leurs corps et ajouter ce commentaire exact : « Le résultat reste requis et sera prouvé par <ID successeur> dans le client Swift. Ne pas lancer une deuxième implémentation ou recette indépendante. Clôture de cet ancien suivi seulement après vérification des preuves du successeur ; son statut n'est pas avancé pendant la transcription. » Ces trois suivis ne sont pas des tickets d'exécution supplémentaires au périmètre de 28. Les dépendances historiques contradictoires vers Expo/Android sont retirées pour ces suivis seulement.
+**Obligations utiles consolidées, sans fausse clôture :** TRA-306 et TRA-313 restent Backlog, reliés et bloqués par P5.4 ; TRA-316 reste Backlog, relié et bloqué par P5.3. Conserver leurs corps et ajouter ce commentaire exact : « Le résultat reste requis et sera prouvé par <ID successeur> dans le client Swift. Ne pas lancer une deuxième implémentation ou recette indépendante. Clôture de cet ancien suivi seulement après vérification des preuves du successeur ; son statut n'est pas avancé pendant la transcription. » Ces trois suivis ne sont pas des tickets d'exécution supplémentaires au périmètre de 29. Les dépendances historiques contradictoires vers Expo/Android sont retirées pour ces suivis seulement.
 
 **Android différé :** TRA-322/332/333/334 restent Backlog, sans date, sans agent d'implémentation lancé et sans relation bloquante vers une issue native. Conserver leurs descriptions historiques, ajouter : « Différé après la sortie iOS et une décision fondée sur sa traction. La future application Android sera native Java ; les instructions Expo de ce ticket sont historiques et ne doivent pas être exécutées. Un nouveau brief devra les remplacer avant toute reprise. » Ce manifeste n'autorise aucune réalisation Android.
 
@@ -107,9 +107,9 @@ Avant chacune, relire l'état : si Done, ne rien changer et garder seulement la 
 
 ### Relations, règles d'exécution et artefacts
 
-Créer/résoudre d'abord les six milestones et les 28 issues, puis appliquer les dépendances de démarrage par titre exact. Les sections « Preuves avant clôture » ne retardent pas le début de P5.3 : ce sont des critères de clôture. Retirer seulement les anciennes dépendances contradictoires des issues réemployées ; aucune dépendance Android ne bloque la sortie iOS. Garder les relations utiles et les PR existantes.
+Créer/résoudre d'abord les six milestones et les 29 issues, puis appliquer les dépendances de démarrage par titre exact. Les sections « Preuves avant clôture » ne retardent pas le début de P5.3 : ce sont des critères de clôture. Retirer seulement les anciennes dépendances contradictoires des issues réemployées ; aucune dépendance Android ne bloque la sortie iOS. Garder les relations utiles et les PR existantes.
 
-Mettre à jour les 28 placeholders du plan avec les vrais IDs et créer `docs/plans/track1-native-ios-linear-map.md` contenant IDs/UUID/URLs des milestones/issues, réemplois/créations et mutations historiques réellement effectuées. Conserver le mapping Expo sans le remplacer. Contrôler un résultat canonique unique par Pn.n, son tier et ses liens ; ne pas confondre 28 résultats avec 28 créations.
+Mettre à jour les 29 placeholders du plan avec les vrais IDs et créer `docs/plans/track1-native-ios-linear-map.md` contenant IDs/UUID/URLs des milestones/issues, réemplois/créations et mutations historiques réellement effectuées. Conserver le mapping Expo sans le remplacer. Contrôler un résultat canonique unique par Pn.n, son tier et ses liens ; ne pas confondre 29 résultats avec 29 créations.
 
 Chaque ticket = une branche = une PR, tests inclus. Préserver les modifications des autres agents. Le volume est un signal de réexamen, pas un plafond : ajouts/suppressions écrits (tests et scaffold inclus) séparés des artefacts générés avec provenance ; réexamen documenté au-delà de 1 000 lignes écrites ou 20 fichiers. Tous les gates et la review approfondie tier/3 du SHA final restent obligatoires. Aucun code, cache musical, site ou objet externe hors portée ne doit être modifié. L'autorisation de poursuivre jusqu'à publication déjà acquise demeure ; aucun nouvel accord n'est requis par simple tier.
 
@@ -155,7 +155,7 @@ Lire les PR associées pour le rapport de transition. Hors scope : code, suppres
 
 Le rapport contient, pour chaque famille TRA-285 à TRA-334 dans le périmètre connu, ID, état observé/date, PR/SHA, livrable conservé, cible native et traitement. Inclure TRA-325/326 sans inventer leur livraison. Base distante : `85a5b8e07fa103c8a884cac50de56868c3ea805b` ; TRA-312/PR #303 et ses caches sont vérifiés. Consigner bundles Apple, fiche App Store Connect, builds distribués et assets utiles de la branche TRA-290. Un seul client cible : `ios/`. Pas de migration des données des builds Expo internes ; une sortie Expo publique découverte bloque la bascule des données et remonte un arbitrage de scope, sans empêcher le reste de l'inventaire.
 
-Avant le transport, vérifier que le ticket-writer a terminé le mapping natif et le report des 28 identifiants dans le plan ; l'inventaire des cinq autres documents peut avancer en attendant. Le mapping est un prérequis documentaire de clôture, pas un nouveau ticket ni un motif de demander une nouvelle validation du plan. Ne pas fabriquer un mapping incomplet. Consigner dans `docs/track1-native-transition.md` la source absolue, la date de capture et le SHA-256 de chaque source lue. Copier avec `apply_patch` uniquement dans le worktree isolé. Les trois copies natives sont identiques octet pour octet aux sources définitives ; pour chacun des trois fichiers historiques, conserver intégralement tous les octets sources après ce seul préfixe, suivi d'une ligne vide : `> Historique — remplacé pour l'exécution par [le plan iOS natif](track1-native-ios.md), validé le 2026-10-05. Corps historique conservé à l'identique.` Ne normaliser ni les retours à la ligne, ni les anciennes dates, ni les anciens statuts. Si les sources changent pendant la capture, reprendre leur copie depuis la version stabilisée par le ticket-writer, sans modifier ses fichiers. Si un chemin cible a entre-temps été livré par une autre PR, comparer avant de modifier et préserver son contenu utile ; aucun écrasement aveugle.
+Avant le transport, vérifier que le ticket-writer a terminé le mapping natif et le report des 29 identifiants dans le plan ; l'inventaire des cinq autres documents peut avancer en attendant. Le mapping est un prérequis documentaire de clôture, pas un nouveau ticket ni un motif de demander une nouvelle validation du plan. Ne pas fabriquer un mapping incomplet. Consigner dans `docs/track1-native-transition.md` la source absolue, la date de capture et le SHA-256 de chaque source lue. Copier avec `apply_patch` uniquement dans le worktree isolé. Les trois copies natives sont identiques octet pour octet aux sources définitives ; pour chacun des trois fichiers historiques, conserver intégralement tous les octets sources après ce seul préfixe, suivi d'une ligne vide : `> Historique — remplacé pour l'exécution par [le plan iOS natif](track1-native-ios.md), validé le 2026-10-05. Corps historique conservé à l'identique.` Ne normaliser ni les retours à la ligne, ni les anciennes dates, ni les anciens statuts. Si les sources changent pendant la capture, reprendre leur copie depuis la version stabilisée par le ticket-writer, sans modifier ses fichiers. Si un chemin cible a entre-temps été livré par une autre PR, comparer avant de modifier et préserver son contenu utile ; aucun écrasement aveugle.
 
 ##### Critères d'acceptation
 
@@ -163,7 +163,7 @@ Avant le transport, vérifier que le ticket-writer a terminé le mapping natif e
 - [ ] Une seule application officielle est nommée, les builds Expo sont identifiés comme historiques, et l'archive Git future est définie avant suppression.
 - [ ] Le caractère interne des builds existants est prouvé ou l'absence de preuve explicitée ; le traitement des données locales est lisible par un testeur.
 - [ ] Les six artefacts figurent dans le diff et sont suivis par Git dans le worktree ; les trois copies natives correspondent aux sources définitives, et les trois corps historiques restent identiques après retrait du seul bandeau prévu.
-- [ ] Les hashes de provenance, les 28 correspondances de tickets et les liens locaux/Linear sont vérifiés depuis le worktree et le candidat PR ; aucun lien nécessaire ne pointe uniquement vers un fichier local absent de la PR.
+- [ ] Les hashes de provenance, les 29 correspondances de tickets et les liens locaux/Linear sont vérifiés depuis le worktree et le candidat PR ; aucun lien nécessaire ne pointe uniquement vers un fichier local absent de la PR.
 - [ ] Le checkout documentaire partagé et ses originaux sont intacts ; aucun changement utilisateur, skill, configuration ou document hors portée n'est embarqué.
 
 ##### Tests attendus
@@ -339,6 +339,66 @@ tier/3 — review approfondie automatisée du SHA final et gates requis conserv�
 
 tier/3 signature/secrets. La publication du produit est autorisée dans le projet mais ce ticket ne publie pas. Aucun accord supplémentaire du seul fait du tier ; respecter les accès réellement disponibles. Une seule branche/PR pour ce ticket ; préserver les modifications des autres intervenants. Aucun changement du site, Android ou dépendance non prévue. Les noms du code sont en anglais et la documentation en français.
 
+### Issue — Aligner les architectures du simulateur entre l'application et les paquets Swift
+
+- **Référence :** P1.6
+- **Tier :** tier/3
+- **Identité Linear :** créer une issue native.
+- **Dépendances :** P1.4 — Vérifier le client Swift à chaque changement.
+
+#### Description
+
+##### Contexte
+
+Un paquet SPM Debug peut ne compiler que l'architecture active du simulateur alors que le projet
+local en demande deux. Ce correctif conserve le build Xcode local de l'application et de ses tests,
+sans réduire le contrôle multiarchitecture. Plan validé : `docs/plans/track1-native-ios.md`, P1.6.
+Source de transcription : `docs/plans/track1-native-ios-linear.md`.
+
+##### Portée
+
+Modifier `ios/Track1.xcodeproj/project.pbxproj`, `ios/scripts/check.sh` et
+`docs/track1-builds.md`; créer `test/ios-check.test.ts`. Mettre à jour uniquement cette entrée,
+son compteur et la dépendance de P2.2 à P1.6 dans les deux plans. Hors scope : `Production`, `iphoneos`,
+archives, signature, schémas, SDK et verrou SPM, code Swift fonctionnel, CI et dépendances npm.
+
+##### Contrat
+
+Les configurations projet Development et Preview définissent uniquement
+`ONLY_ACTIVE_ARCH[sdk=iphonesimulator*]=YES`, hérité par l'application, Track1Tests et
+Track1UITests, sans `ARCHS` fixe ni exclusion. Production et les réglages device restent inchangés.
+Pour chacun des schémas Track1 et Track1Preview, chaque action de compilation ou de test de
+`ios/scripts/check.sh` reçoit `ONLY_ACTIVE_ARCH=NO`, qui vaut pour tout le graphe, dont les tests et
+paquets SPM. Les futures variantes `build-for-testing` conservent le même contrat.
+
+##### Critères d'acceptation
+
+- [ ] Le test de régression vérifie les deux configurations projet, l'héritage app/tests et
+  l'absence de changement Production/device.
+- [ ] Le vrai script, avec doubles des seules frontières d'outillage, transmet l'override à chaque
+  build/test des deux schémas et propage les échecs.
+- [ ] Une preuve Xcode séparée Development/Preview avec un candidat SPM identifié couvre build et
+  build-for-testing sans override local ; le contrôle complet conserve arm64+x86_64 et inspecte les
+  produits réels.
+
+##### Tests attendus
+
+Vitest lit le projet et exécute le vrai script contre des doubles de xcodebuild/xcrun/jq. Après
+réservation du simulateur, la preuve physique utilise la copie isolée du candidat P2.2, des
+DerivedData distincts, les logs/xcresult et l'inspection des slices. `npm run check` et les gates
+natif existants restent verts ; aucun paquet SPM du candidat n'est importé dans cette PR.
+
+##### Tier de risque
+
+tier/3 — configuration native ; review approfondie automatisée du SHA final et gates requis
+conservés.
+
+##### Notes d'implémentation
+
+Documenter séparément le SHA correctif, le commit et les hashes du candidat SPM, sans présenter la
+composition temporaire comme `main`. Préserver les raccordements concurrents du harnais de tests.
+Une seule branche/PR ; aucun changement du site, Android, signature ou dépendance non prévue.
+
 ## Milestone 2 — Découvrir et écouter sa recommandation du jour
 
 ### Description
@@ -393,7 +453,7 @@ Aucune dépendance tierce ; fournir des méthodes nommées et modèles stables u
 - **Référence :** P2.2
 - **Tier :** tier/3
 - **Identité Linear :** créer une issue native.
-- **Dépendances :** P1.3 — Ouvrir les trois entrées dans une application SwiftUI ; P1.2 — Figer le handoff des seize écrans et de leurs mouvements.
+- **Dépendances :** P1.3 — Ouvrir les trois entrées dans une application SwiftUI ; P1.2 — Figer le handoff des seize écrans et de leurs mouvements ; P1.6 — Aligner les architectures du simulateur entre l'application et les paquets Swift.
 
 #### Description
 
