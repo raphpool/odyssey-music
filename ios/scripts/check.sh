@@ -107,11 +107,28 @@ reset_contract_report() {
 }
 
 ensure_contract_runtime() {
+	if ! command -v node >/dev/null || ! command -v npm >/dev/null; then
+		echo "The mobile contract harness requires Node.js >=20 and npm." >&2
+		return 1
+	fi
+	local node_major
+	if ! node_major="$(node -p 'process.versions.node.split(".")[0]')"; then
+		echo "Could not determine the Node.js version required by the mobile contract harness." >&2
+		return 1
+	fi
+	if [[ ! "$node_major" =~ ^[0-9]+$ ]] || ((node_major < 20)); then
+		echo "The mobile contract harness requires Node.js >=20; found $(node --version)." >&2
+		return 1
+	fi
+	if [[ ! -f "$repository_root/package-lock.json" ]]; then
+		echo "The mobile contract harness requires the repository package-lock.json." >&2
+		return 1
+	fi
 	if [[ -x "$repository_root/node_modules/.bin/tsx" ]]; then
 		return
 	fi
 	echo "Installing locked Node dependencies required by the mobile contract harness."
-	npm --prefix "$repository_root" ci --ignore-scripts --no-audit --no-fund
+	npm --prefix "$repository_root" --cache "$output_dir/npm-cache" ci --ignore-scripts --no-audit --no-fund
 }
 
 wait_for_simulator_boot() {

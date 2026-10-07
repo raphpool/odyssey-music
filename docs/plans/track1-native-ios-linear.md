@@ -363,7 +363,7 @@ Swift doit consommer les mêmes données musicales que le client déjà livré, 
 
 ##### Portée
 
-Créer `ios/Track1/API/APIClient.swift`, `APIModels.swift`, `APIError.swift`, `URLValidation.swift`, `ios/Track1Tests/API/`, `test/helpers/mobile-contract-server.ts` et le test d'intégration XCTest ; raccorder AppContainer. Modifier `ios/scripts/check.sh` pour démarrer le vrai `src/server.ts` avec cache/état temporaires, fournisseurs/push désactivés et fetch instrumenté avant import, transmettre explicitement l'URL loopback à XCTest, vérifier catalogue/fiche/304 et un POST réel 503 sans retry, puis vérifier les compteurs et nettoyer. Rattacher seulement les nouveaux fichiers prévus aux cibles Xcode explicites. Hors scope : nouvelles routes serveur, schéma musical, persistance offline complète, POST automatique.
+Créer `ios/Track1/API/APIClient.swift`, `APIModels.swift`, `APIError.swift`, `URLValidation.swift`, `ios/Track1Tests/API/`, `test/helpers/mobile-contract-server.ts` et le test d'intégration XCTest ; raccorder AppContainer. Modifier `ios/scripts/check.sh` pour démarrer le vrai `src/server.ts` avec cache/état temporaires, fournisseurs/push désactivés et fetch instrumenté avant import, transmettre explicitement l'URL loopback à XCTest, vérifier catalogue/fiche/304 et un POST réel 503 sans retry, puis vérifier les compteurs et nettoyer. La CI native fournit Node.js >=20 et npm ; le harnais n'installe que le lockfile existant, sans scripts de cycle de vie, avec cache isolé dans ses sorties temporaires. Rattacher seulement les nouveaux fichiers prévus aux cibles Xcode explicites. Hors scope : nouvelles routes serveur, schéma musical, persistance offline complète, POST automatique.
 
 ##### Contrat
 
