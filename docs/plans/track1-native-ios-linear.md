@@ -3,6 +3,8 @@ Statut : validé par Raphael le 2026-10-05. Création des tickets puis démarrag
 
 ## Projet
 
+> Précision Xcode — P2.1 à P2.6, P3.3, P4.1 à P4.5 et P5.1 à P5.4 modifient `ios/Track1.xcodeproj/project.pbxproj` uniquement pour rattacher leurs nouveaux fichiers Swift, tests et ressources explicitement prévus aux bonnes cibles, avec les références et phases de build explicites existantes ; aucun refactor vers des groupes synchronisés. P2.2 y déclare aussi le seul package Segment autorisé (`XCRemoteSwiftPackageReference`, `XCSwiftPackageProductDependency`, dépendance de cible et phase de liaison) : `Package.resolved` ne les remplace pas.
+
 - **Nom conservé :** Track1 Mobile.
 - **Projet existant :** P-TRA-4 — `1af27c25-2427-4d6c-a93c-a4f431732eca`.
 - **URL :** https://linear.app/workspaceperso/project/track1-mobile-6052a246546f
@@ -361,7 +363,7 @@ Swift doit consommer les mêmes données musicales que le client déjà livré, 
 
 ##### Portée
 
-Créer `ios/Track1/API/APIClient.swift`, `APIModels.swift`, `APIError.swift`, `URLValidation.swift` et `ios/Track1Tests/API/`. Lire `docs/track1-api.md`, `src/mobile/contracts.ts`, `mobile/src/api/contracts.ts`, `mobile/src/api/client.ts`, `mobile/test/api-client.test.ts`, `test/fixtures/mobile-contracts.json`. Raccorder AppContainer. Hors scope : nouvelles routes serveur, schéma musical, persistance offline complète, POST automatique.
+Créer `ios/Track1/API/APIClient.swift`, `APIModels.swift`, `APIError.swift`, `URLValidation.swift`, `ios/Track1Tests/API/`, `test/helpers/mobile-contract-server.ts` et le test d'intégration XCTest ; raccorder AppContainer. Modifier `ios/scripts/check.sh` pour démarrer le vrai `src/server.ts` avec cache/état temporaires, fournisseurs/push désactivés et fetch instrumenté avant import, transmettre explicitement l'URL loopback à XCTest, vérifier catalogue/fiche/304 et un POST réel 503 sans retry, puis vérifier les compteurs et nettoyer. Rattacher seulement les nouveaux fichiers prévus aux cibles Xcode explicites. Hors scope : nouvelles routes serveur, schéma musical, persistance offline complète, POST automatique.
 
 ##### Contrat
 
