@@ -14,7 +14,16 @@ final class AppContainer {
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
 		self.configurationResult = configurationResult
 		router = AppRouter()
+		#if targetEnvironment(simulator)
+			let localStore = LocalStore(
+				failNextWriteNamed: ProcessInfo.processInfo.arguments.contains("-track1-fail-next-profile-write")
+					? "profile.v1.json" : nil
+			)
+		#else
+			let localStore = LocalStore()
+		#endif
 		profileStore = ProfileStore(
+			localStore: localStore,
 			resetBeforeUse: ProcessInfo.processInfo.arguments.contains("-track1-reset-profile"),
 			seedCorruptProfileBeforeUse: ProcessInfo.processInfo.arguments.contains("-track1-seed-corrupt-profile")
 		)

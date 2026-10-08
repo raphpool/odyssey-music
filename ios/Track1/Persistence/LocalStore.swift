@@ -7,10 +7,16 @@ enum LocalStoreError: Error, Equatable, Sendable {
 actor LocalStore {
 	private let directoryURL: URL?
 	private let fileManager: FileManager
+	private var failingWriteName: String?
 
-	init(directoryURL: URL? = nil, fileManager: FileManager = .default) {
+	init(
+		directoryURL: URL? = nil,
+		fileManager: FileManager = .default,
+		failNextWriteNamed failingWriteName: String? = nil
+	) {
 		self.directoryURL = directoryURL
 		self.fileManager = fileManager
+		self.failingWriteName = failingWriteName
 	}
 
 	func read(named name: String) -> Result<Data?, LocalStoreError> {
@@ -24,6 +30,10 @@ actor LocalStore {
 	}
 
 	func write(_ data: Data, named name: String) -> Result<Void, LocalStoreError> {
+		if failingWriteName == name {
+			failingWriteName = nil
+			return .failure(.unavailable)
+		}
 		do {
 			let url = try fileURL(named: name)
 			try data.write(to: url, options: .atomic)

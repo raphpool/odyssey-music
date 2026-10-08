@@ -45,6 +45,7 @@ struct OnboardingView: View {
 	@State private var genres = [CatalogNode]()
 	@State private var isLoading = true
 	@State private var couldNotLoadGenres = false
+	@State private var storageUnavailable = false
 	@State private var isSaving = false
 
 	var body: some View {
@@ -52,11 +53,19 @@ struct OnboardingView: View {
 			Group {
 				if isLoading {
 					ProgressView("Chargement des genres")
-				} else if genres.isEmpty {
+				} else if storageUnavailable || couldNotLoadGenres || genres.isEmpty {
 					ContentUnavailableView {
-						Label("Genres indisponibles", systemImage: "arrow.clockwise")
+						Label(
+							storageUnavailable ? "Enregistrement indisponible" : "Genres indisponibles",
+							systemImage: "arrow.clockwise"
+						)
 					} description: {
-						Text("Réessayez ou explorez la recherche sans créer de profil.")
+						Text(
+							storageUnavailable
+								? "Vos goûts n’ont pas été enregistrés. Réessayez ou explorez la recherche sans créer de profil."
+								: "Réessayez ou explorez la recherche sans créer de profil."
+						)
+						.accessibilityIdentifier(storageUnavailable ? "profile-storage-error" : "profile-genres-unavailable")
 					} actions: {
 						Button("Réessayer") { Task { await load() } }
 						Button("Explorer sans profil", action: exploreWithoutProfile)
@@ -127,6 +136,7 @@ struct OnboardingView: View {
 	private func load() async {
 		isLoading = true
 		couldNotLoadGenres = false
+		storageUnavailable = false
 		let result: Result<ProfileDraft, LocalStoreError>
 		if let editingProfile {
 			result = await profileStore.beginEditingDraft(from: editingProfile)
@@ -134,7 +144,7 @@ struct OnboardingView: View {
 			result = await profileStore.beginInitialDraft()
 		}
 		guard case .success(let savedDraft) = result else {
-			couldNotLoadGenres = true
+			storageUnavailable = true
 			isLoading = false
 			return
 		}
@@ -165,7 +175,7 @@ struct OnboardingView: View {
 			)
 			if reconciledDraft != savedDraft {
 				guard case .success(let persistedDraft) = await profileStore.saveDraft(reconciledDraft) else {
-					couldNotLoadGenres = true
+					storageUnavailable = true
 					isLoading = false
 					return
 				}
@@ -228,7 +238,7 @@ struct OnboardingView: View {
 			}
 			complete(profile)
 		case .invalid, .invalidated, .unavailable:
-			couldNotLoadGenres = true
+			storageUnavailable = true
 		}
 	}
 

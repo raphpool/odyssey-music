@@ -181,6 +181,33 @@ final class ProfileStoreTests: XCTestCase {
 		XCTAssertEqual(failedDraft, .failure(.unavailable))
 	}
 
+	func testFailedProfileWriteLeavesTheDraftRetryable() async throws {
+		let store = ProfileStore(
+			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: "profile.v1.json")
+		)
+		let draft = try await initialDraft(from: store)
+		let choices = genres(3)
+		let selectedDraft = ProfileDraft(
+			version: Profile.version,
+			flowID: draft.flowID,
+			genreIDs: choices,
+			onboardingStartedRecorded: false
+		)
+		let savedDraft = await store.saveDraft(selectedDraft)
+		XCTAssertEqual(savedDraft, .success(selectedDraft))
+
+		let failedWrite = await store.commit(selectedDraft, availableGenreIDs: choices)
+		let readAfterFailure = await store.read()
+		let draftAfterFailure = await store.readDraft()
+		XCTAssertEqual(failedWrite, .unavailable)
+		XCTAssertEqual(readAfterFailure, .missing)
+		XCTAssertEqual(draftAfterFailure, .draft(selectedDraft))
+
+		guard case .saved = await store.commit(selectedDraft, availableGenreIDs: choices) else {
+			return XCTFail("Expected the retry to save the profile.")
+		}
+	}
+
 	func testClearRemovesAConcurrentCommitAndInvalidatesTheProfile() async throws {
 		let store = makeStore()
 		let draft = try await initialDraft(from: store)

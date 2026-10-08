@@ -52,6 +52,31 @@ final class ProfileFlowTests: XCTestCase {
 	}
 
 	@MainActor
+	func testFailedProfileWriteShowsAnErrorAndCanBeRetried() {
+		let app = XCUIApplication()
+		app.launchArguments = [
+			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
+			"-track1-fail-next-profile-write",
+		]
+		app.launchEnvironment = ["TRACK1_PROFILE_CATALOG_JSON": catalogFixture]
+		app.launch()
+		app.buttons["analytics-consent-decline"].tap()
+		app.buttons["profile-choose"].tap()
+		for index in 0..<3 {
+			app.buttons["genre-genre:genre-\(index)"].tap()
+		}
+		app.buttons["profile-continue"].tap()
+
+		XCTAssertTrue(app.staticTexts["profile-storage-error"].waitForExistence(timeout: 2))
+		XCTAssertFalse(app.buttons["profile-continue"].exists)
+
+		app.buttons["Réessayer"].tap()
+		XCTAssertTrue(app.buttons["profile-continue"].waitForExistence(timeout: 2))
+		app.buttons["profile-continue"].tap()
+		XCTAssertTrue(app.tabBars.buttons["Réglages"].waitForExistence(timeout: 2))
+	}
+
+	@MainActor
 	func testCorruptProfileCanBeExplicitlyPurgedThenRecreated() {
 		let app = XCUIApplication()
 		app.launchArguments = [
