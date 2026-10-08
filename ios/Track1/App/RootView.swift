@@ -18,7 +18,13 @@ struct RootView: View {
 							decline: { Task { await analytics.deny() } }
 						)
 					} else {
-						ApplicationTabs(router: container.router, analytics: analytics)
+						ApplicationTabs(
+							router: container.router,
+							apiClient: container.apiClient,
+							onboardingCatalog: container.onboardingCatalog,
+							analytics: analytics,
+							profileStore: container.profileStore
+						)
 					}
 				} else {
 					InvalidConfigurationView(error: .missingEnvironment)
@@ -35,7 +41,13 @@ struct RootView: View {
 
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
+	let apiClient: APIClient?
+	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
+	let profileStore: ProfileStore
+	@State private var profileState = ProfileRead.missing
+	@State private var showingOnboarding = false
+	@State private var profileToEdit: Profile?
 
 	var body: some View {
 		TabView(selection: $router.selectedTab) {
@@ -50,20 +62,51 @@ private struct ApplicationTabs: View {
 				.tag(AppTab.settings)
 		}
 		.tint(Track1Theme.actionTint)
+		.task { await reloadProfile() }
+		.sheet(isPresented: $showingOnboarding) {
+			OnboardingView(
+				apiClient: apiClient,
+				catalogProvider: onboardingCatalog,
+				profileStore: profileStore,
+				analytics: analytics,
+				editingProfile: profileToEdit,
+				complete: { profile in
+					profileState = .profile(profile)
+					showingOnboarding = false
+				},
+				cancel: { showingOnboarding = false },
+				exploreWithoutProfile: {
+					showingOnboarding = false
+					router.selectedTab = .search
+				}
+			)
+		}
 	}
 
 	@ViewBuilder
 	private func entry(for tab: AppTab) -> some View {
 		NavigationStack(path: router.pathBinding(for: tab)) {
 			Group {
-				if tab == .settings {
-					SettingsEntryView(analytics: analytics) {
-						router.push(.entryStatus(tab), in: tab)
-					}
-				} else {
+				switch tab {
+				case .today:
+					TodayEntryView(
+						profileState: profileState,
+						chooseProfile: { beginOnboarding(editing: nil) },
+						exploreSearch: { router.selectedTab = .search },
+						recoverProfile: { router.selectedTab = .settings }
+					)
+				case .search:
 					EntryView(tab: tab) {
 						router.push(.entryStatus(tab), in: tab)
 					}
+				case .settings:
+					SettingsEntryView(
+						profileState: profileState,
+						profileStore: profileStore,
+						analytics: analytics,
+						editProfile: { beginOnboarding(editing: profile(from: profileState)) },
+						profileWasCleared: { profileState = .missing }
+					)
 				}
 			}
 			.navigationDestination(for: AppRoute.self) { route in
@@ -74,50 +117,84 @@ private struct ApplicationTabs: View {
 			}
 		}
 	}
+
+	private func beginOnboarding(editing profile: Profile?) {
+		profileToEdit = profile
+		showingOnboarding = true
+	}
+
+	private func reloadProfile() async {
+		profileState = await profileStore.read()
+	}
+
+	private func profile(from state: ProfileRead) -> Profile? {
+		guard case .profile(let profile) = state else { return nil }
+		return profile
+	}
 }
 
 private struct SettingsEntryView: View {
+	let profileState: ProfileRead
+	let profileStore: ProfileStore
 	let analytics: AnalyticsClient
-	let showStatus: () -> Void
-	@State private var showingChoice = false
 
 	var body: some View {
-		List {
-			Section("Confidentialité") {
-				Button {
-					showingChoice = true
-				} label: {
-					LabeledContent("Mesure d’usage") {
-						Text(analytics.consent.status == .granted ? "Autorisée" : "Non autorisée")
-					}
-				}
-				.accessibilityIdentifier("analytics-settings")
-			}
-			Section("À propos") {
-				Text("Cette entrée est prête à accueillir son contenu.")
-					.accessibilityIdentifier("entry-description-settings")
-				Button("Voir l’état de l’entrée", action: showStatus)
-					.accessibilityIdentifier("entry-status-settings")
-			}
-		}
-		.navigationTitle("Réglages")
-		.sheet(isPresented: $showingChoice) {
-			PrivacyChoiceView(
-				consent: analytics.consent,
-				accept: {
-					Task {
-						await analytics.grant()
-						showingChoice = false
-					}
-				},
-				decline: {
-					Task {
-						await analytics.deny()
-						showingChoice = false
-					}
-				}
+		SettingsView(
+			profileState: profileState,
+			profileStore: profileStore,
+			analytics: analytics,
+			editProfile: editProfile,
+			profileWasCleared: profileWasCleared
+		)
+	}
+
+	let editProfile: () -> Void
+	let profileWasCleared: () -> Void
+}
+
+private struct TodayEntryView: View {
+	let profileState: ProfileRead
+	let chooseProfile: () -> Void
+	let exploreSearch: () -> Void
+	let recoverProfile: () -> Void
+
+	var body: some View {
+		switch profileState {
+		case .profile:
+			EntryView(tab: .today, showStatus: {})
+		case .missing, .unavailable:
+			ProfileMissingView(chooseProfile: chooseProfile, exploreSearch: exploreSearch)
+		case .corrupt, .unsupportedVersion:
+			ProfileRecoveryView(
+				description: profileState.recoveryDescription,
+				recoverProfile: recoverProfile,
+				exploreSearch: exploreSearch
 			)
 		}
+	}
+}
+
+private struct ProfileRecoveryView: View {
+	let description: String
+	let recoverProfile: () -> Void
+	let exploreSearch: () -> Void
+
+	var body: some View {
+		ContentUnavailableView {
+			Label("Profil local à récupérer", systemImage: "exclamationmark.triangle")
+		} description: {
+			Text("\(description) Supprimez-le depuis Réglages avant de recommencer.")
+				.accessibilityIdentifier("profile-recovery-message")
+		} actions: {
+			VStack(spacing: Track1Theme.contentSpacing) {
+				Button("Ouvrir les réglages", action: recoverProfile)
+					.buttonStyle(Track1PrimaryButtonStyle())
+				Button("Explorer la recherche", action: exploreSearch)
+					.buttonStyle(.bordered)
+			}
+			.padding()
+		}
+		.navigationTitle("Aujourd’hui")
 	}
 }
 
@@ -149,6 +226,7 @@ private struct EntryStatusView: View {
 			Label("État de l’entrée", systemImage: "info.circle")
 		} description: {
 			Text("Les fonctionnalités de \(tab.title.lowercased()) seront ajoutées dans des livraisons dédiées.")
+				.accessibilityIdentifier("entry-status-description-\(tab.rawValue)")
 		}
 		.navigationTitle(tab.title)
 		.navigationBarTitleDisplayMode(.inline)
