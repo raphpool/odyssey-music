@@ -22,21 +22,41 @@ simulator_id=""
 contract_dir=""
 contract_pid=""
 contract_base_url=""
+swift_discovery_file=""
+swift_sorted_file=""
 runtime_id="$(xcrun simctl list runtimes available -j | jq -r '.runtimes[] | select(.name == "iOS 26.4") | .identifier' | head -n 1)"
 simulator_boot_timeout_seconds="${SIMULATOR_BOOT_TIMEOUT_SECONDS:-600}"
-swift_files=(
-	"$ios_dir/Track1/API/APIClient.swift"
-	"$ios_dir/Track1/API/APIError.swift"
-	"$ios_dir/Track1/API/APIModels.swift"
-	"$ios_dir/Track1/API/URLValidation.swift"
-	"$ios_dir/Track1/App/AppConfiguration.swift"
-	"$ios_dir/Track1/App/AppRouter.swift"
-	"$ios_dir/Track1/App/RootView.swift"
-	"$ios_dir/Track1Tests/API/APIClientTests.swift"
-	"$ios_dir/Track1Tests/API/APIContractIntegrationTests.swift"
-	"$ios_dir/Track1/DesignSystem/Track1Theme.swift"
-	"$ios_dir/Track1Tests/AppConfigurationTests.swift"
-)
+swift_files=()
+
+discover_swift_files() {
+	local swift_file
+	local swift_root
+	swift_discovery_file="$(mktemp "${TMPDIR:-/tmp}/track1-swift-discovery.XXXXXX")"
+	swift_sorted_file="$(mktemp "${TMPDIR:-/tmp}/track1-swift-sorted.XXXXXX")"
+	for swift_root in "$ios_dir/Track1" "$ios_dir/Track1Tests" "$ios_dir/Track1UITests"; do
+		if [[ ! -d "$swift_root" || -L "$swift_root" ]]; then
+			echo "Expected Swift source root is missing or is a symlink: $swift_root" >&2
+			return 1
+		fi
+		if ! find -P "$swift_root" \
+			\( -type d \( -name DerivedData -o -name SourcePackages -o -name .build \) -prune \) \
+			-o \( -type f -name '*.swift' -print \) >>"$swift_discovery_file"; then
+			echo "Could not discover Swift source files under $swift_root." >&2
+			return 1
+		fi
+	done
+	if ! LC_ALL=C sort -u "$swift_discovery_file" >"$swift_sorted_file"; then
+		echo "Could not sort the discovered Swift source files." >&2
+		return 1
+	fi
+	while IFS= read -r swift_file; do
+		[[ -n "$swift_file" ]] && swift_files+=("$swift_file")
+	done <"$swift_sorted_file"
+	if ((${#swift_files[@]} == 0)); then
+		echo "No Swift source files were discovered under the expected roots." >&2
+		return 1
+	fi
+}
 
 cleanup() {
 	if [[ -n "$contract_pid" ]] && kill -0 "$contract_pid" 2>/dev/null; then
@@ -49,6 +69,8 @@ cleanup() {
 		wait "$contract_pid" 2>/dev/null || true
 	fi
 	[[ -n "$contract_dir" ]] && rm -rf "$contract_dir"
+	[[ -n "$swift_discovery_file" ]] && rm -f "$swift_discovery_file"
+	[[ -n "$swift_sorted_file" ]] && rm -f "$swift_sorted_file"
 	if [[ -n "$simulator_id" ]]; then
 		xcrun simctl shutdown "$simulator_id" >/dev/null 2>&1 || true
 		xcrun simctl delete "$simulator_id" >/dev/null 2>&1 || true
@@ -178,6 +200,7 @@ else
 	echo "No external Swift package is declared; no Package.resolved is required."
 fi
 
+discover_swift_files
 ensure_contract_runtime
 
 xcrun swift-format lint --strict --configuration "$format_configuration" "${swift_files[@]}"

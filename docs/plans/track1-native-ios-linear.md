@@ -10,7 +10,7 @@ Statut : validé par Raphael le 2026-10-05. Création des tickets puis démarrag
 - **URL :** https://linear.app/workspaceperso/project/track1-mobile-6052a246546f
 - **Équipe :** Track1 — `5957a8e2-e7a0-4995-8acb-b3820ac19745`.
 - **Plan validé :** `docs/plans/track1-native-ios.md`.
-- **Périmètre actif du manifeste :** 6 milestones natifs, 29 issues canoniques ; 21 nouvelles issues et 8 issues ouvertes réemployées. Tiers : 5 tier/1, 9 tier/2, 15 tier/3.
+- **Périmètre actif du manifeste :** 6 milestones natifs, 30 issues canoniques ; 22 nouvelles issues et 8 issues ouvertes réemployées. Tiers : 5 tier/1, 9 tier/2, 16 tier/3.
 - Ne renseigner aucune estimation, aucun point ni date d'échéance. Conserver le projet existant ; ne pas créer de projet concurrent.
 
 ### Description
@@ -54,13 +54,13 @@ Le mapping d'identifiants/UUID historique est `docs/plans/track1-mobile-linear-m
 3. Les anciens milestones restent historiques : ne pas les supprimer, les recycler avec une autre signification ni réécrire leurs descriptions. Les issues Done y restent attachées. Le projet peut donc afficher les six milestones actifs en plus de ses milestones historiques ; « six » désigne le périmètre natif, pas une suppression d'historique.
 4. Déplacer uniquement les huit issues ouvertes réemployées dans leur milestone natif. L'ancien milestone Android reste différé ; aucun milestone ou ticket Java n'est créé.
 
-### Identités des 29 issues actives
+### Identités des 30 issues actives
 
 | Référence | Action définitive |
 | --- | --- |
 | P1.1 | Créer une issue native |
 | P1.2 | Réemployer TRA-327 |
-| P1.3 à P1.6 | Créer quatre issues natives |
+| P1.3 à P1.7 | Créer cinq issues natives |
 | P2.1 à P2.6 | Créer six issues natives |
 | P3.1 à P3.3 | Créer trois issues natives ; ne pas rouvrir TRA-302 à TRA-304 |
 | P4.1 à P4.5 | Créer cinq issues natives |
@@ -107,9 +107,9 @@ Avant chacune, relire l'état : si Done, ne rien changer et garder seulement la 
 
 ### Relations, règles d'exécution et artefacts
 
-Créer/résoudre d'abord les six milestones et les 29 issues, puis appliquer les dépendances de démarrage par titre exact. Les sections « Preuves avant clôture » ne retardent pas le début de P5.3 : ce sont des critères de clôture. Retirer seulement les anciennes dépendances contradictoires des issues réemployées ; aucune dépendance Android ne bloque la sortie iOS. Garder les relations utiles et les PR existantes.
+Créer/résoudre d'abord les six milestones et les 30 issues, puis appliquer les dépendances de démarrage par titre exact. Les sections « Preuves avant clôture » ne retardent pas le début de P5.3 : ce sont des critères de clôture. Retirer seulement les anciennes dépendances contradictoires des issues réemployées ; aucune dépendance Android ne bloque la sortie iOS. Garder les relations utiles et les PR existantes.
 
-Mettre à jour les 29 placeholders du plan avec les vrais IDs et créer `docs/plans/track1-native-ios-linear-map.md` contenant IDs/UUID/URLs des milestones/issues, réemplois/créations et mutations historiques réellement effectuées. Conserver le mapping Expo sans le remplacer. Contrôler un résultat canonique unique par Pn.n, son tier et ses liens ; ne pas confondre 29 résultats avec 29 créations.
+Mettre à jour les 30 placeholders du plan avec les vrais IDs et créer `docs/plans/track1-native-ios-linear-map.md` contenant IDs/UUID/URLs des milestones/issues, réemplois/créations et mutations historiques réellement effectuées. Conserver le mapping Expo sans le remplacer. Contrôler un résultat canonique unique par Pn.n, son tier et ses liens ; ne pas confondre 30 résultats avec 30 créations.
 
 Chaque ticket = une branche = une PR, tests inclus. Préserver les modifications des autres agents. Le volume est un signal de réexamen, pas un plafond : ajouts/suppressions écrits (tests et scaffold inclus) séparés des artefacts générés avec provenance ; réexamen documenté au-delà de 1 000 lignes écrites ou 20 fichiers. Tous les gates et la review approfondie tier/3 du SHA final restent obligatoires. Aucun code, cache musical, site ou objet externe hors portée ne doit être modifié. L'autorisation de poursuivre jusqu'à publication déjà acquise demeure ; aucun nouvel accord n'est requis par simple tier.
 
@@ -398,6 +398,69 @@ conservés.
 Documenter séparément le SHA correctif, le commit et les hashes du candidat SPM, sans présenter la
 composition temporaire comme `main`. Préserver les raccordements concurrents du harnais de tests.
 Une seule branche/PR ; aucun changement du site, Android, signature ou dépendance non prévue.
+
+### Issue — Contrôler automatiquement le format de tous les fichiers Swift natifs
+
+- **Référence :** P1.7
+- **Tier :** tier/3
+- **Identité Linear :** TRA-356.
+- **Dépendances :** P1.6 — Aligner les architectures du simulateur entre l'application et les paquets Swift.
+
+#### Description
+
+##### Contexte
+
+Le contrôle natif ne doit laisser passer aucune source Swift absente d'une liste figée. Cette tâche
+étend la couverture du formatage aux fichiers réellement présents, sans modifier les preuves ni le
+contrat de P1.6 ou des fonctionnalités voisines. Plan validé : `docs/plans/track1-native-ios.md`,
+P1.7. Source de transcription : `docs/plans/track1-native-ios-linear.md`.
+
+##### Portée
+
+Modifier `ios/scripts/check.sh` et le test existant `test/ios-check.test.ts`. Mettre à jour les
+deux plans uniquement pour P1.7, sa transcription et leurs compteurs. Les fixtures temporaires du
+test restent isolées et nettoyées. Hors scope : sources Swift fonctionnelles, reformattage en masse,
+`.swift-format`, règles/strictness du formateur, versions d'outils, SPM, architectures, signature,
+workflows, backend et changement de statut ou contrat des tickets voisins.
+
+##### Contrat
+
+Découvrir récursivement tous les fichiers réguliers `.swift` des seules racines `ios/Track1/`,
+`ios/Track1Tests/` et `ios/Track1UITests/`, y compris les fichiers nouveaux ou non suivis par Git,
+dans un ordre stable et en transmettant chaque chemin comme un argument entier, y compris avec des
+espaces. Ne pas suivre de lien vers l'extérieur des racines. Ne parcourir ni `DerivedData`, ni
+`SourcePackages`, ni `.build`, y compris lorsqu'ils sont imbriqués. Une racine absente, une erreur
+de découverte ou une liste vide échoue explicitement. L'appel `swift-format lint --strict`, sa
+configuration, son code d'échec et les autres gates restent inchangés ; une violation arrête le
+contrôle avant toute compilation ou tout test.
+
+##### Critères d'acceptation
+
+- [ ] Le test exécute le vrai script sur une fixture isolée contenant un nouveau fichier Swift imbriqué dans chacune des trois racines ; tous sont transmis au formateur, y compris un chemin avec espaces et un fichier non suivi par Git. AppContainer est couvert sur l'arbre réel.
+- [ ] Une nouvelle source non conforme fait retourner un code non nul au contrôle et aucune action de compilation/test n'est lancée ensuite ; la même fixture conforme passe. Le cas échoue contre l'ancienne liste figée et passe après correction.
+- [ ] Des fichiers Swift volontairement non conformes dans `DerivedData`, `SourcePackages` et `.build`, ainsi qu'un lien vers une source extérieure, ne sont pas soumis au formateur. Leurs exclusions n'omettent aucun fichier first-party ordinaire.
+- [ ] Racine manquante, erreur de découverte et liste vide sont des échecs visibles ; les fixtures temporaires sont nettoyées même après échec.
+- [ ] Le vrai formateur strict confirme sur macOS le couple fixture non conforme/conforme ; les contrôles existants, les tests de régression d'architecture et `npm run check` restent verts sans assouplissement ni correction fonctionnelle.
+
+##### Tests attendus
+
+Étendre `test/ios-check.test.ts` : vrai script et vrais fichiers temporaires, doubles seulement des
+outils externes, capture exacte des arguments du formateur et codes d'échec. Le double
+`swift-format` réagit à la nouvelle source non conforme reçue, et non à un échec inconditionnel.
+Compléter par la preuve macOS avec le vrai `swift-format` sur cette fixture, puis les gates
+existants de la PR ; aucun nouveau parcours produit ni répétition de recette UI transverse.
+
+##### Tier de risque
+
+tier/3 — couverture d'un gate CI natif ; review approfondie automatisée du SHA final et gates requis
+conservés.
+
+##### Notes d'implémentation
+
+tier/3 CI/formatage. Ne masquer aucune violation Swift préexistante hors portée ; la rapporter pour
+correction ciblée. Une seule branche/PR ; préserver le harnais API, les architectures, les gates et
+les raccordements concurrents. Aucun changement du site, Android, code fonctionnel, dépendance ou
+outil externe non prévu. Les noms du code sont en anglais et la documentation en français.
 
 ## Milestone 2 — Découvrir et écouter sa recommandation du jour
 
