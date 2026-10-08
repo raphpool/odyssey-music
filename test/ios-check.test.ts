@@ -271,28 +271,6 @@ if [[ "$*" == *"__track1_contract_report"* ]]; then
 fi
 `,
 		);
-		await writeTool(
-			directory,
-			"node",
-			`#!/usr/bin/env bash
-if [[ "\${1:-}" == "-p" || "\${1:-}" == "-e" ]]; then
-  [[ "\${1:-}" == "-p" ]] && printf '20\\n'
-  exit 0
-fi
-ready_file=""
-while (($#)); do
-  case "$1" in
-    --ready-file) ready_file="$2"; shift 2 ;;
-    *) shift ;;
-  esac
-done
-[[ -n "$ready_file" ]] || exit 1
-printf 'http://127.0.0.1:1/mobile/v1/\\n' > "$ready_file"
-trap 'exit 0' TERM INT
-while :; do sleep 1; done
-`,
-		);
-
 		const result = spawnSync("bash", [checkScript], {
 			cwd: resolve("."),
 			encoding: "utf8",
@@ -411,13 +389,22 @@ describe.sequential("Track1 Swift format coverage", () => {
 	});
 
 	it.each([
-		["a missing source root", { missingRoot: "Track1UITests" as const }],
-		["a discovery error", { discoveryFailure: true }],
-		["an empty source list", { empty: true }],
-	] as const)("fails explicitly for %s and cleans the fixture", async (_label, options) => {
+		[
+			"a missing source root",
+			{ missingRoot: "Track1UITests" as const },
+			"Expected Swift source root is missing or is a symlink",
+		],
+		["a discovery error", { discoveryFailure: true }, "Could not discover Swift source files under"],
+		[
+			"an empty source list",
+			{ empty: true },
+			"No Swift source files were discovered under the expected roots.",
+		],
+	] as const)("fails explicitly for %s and cleans the fixture", async (_label, options, expectedError) => {
 		const { calls, fixtureRoot, result } = await runSwiftFixtureCheck(options);
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).not.toBe(0);
+		expect(result.stderr).toContain(expectedError);
 		expect(calls).toBe("");
 		expect(await pathExists(fixtureRoot)).toBe(false);
 	});
