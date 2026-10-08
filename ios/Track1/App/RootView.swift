@@ -1,20 +1,41 @@
 import SwiftUI
 
 struct RootView: View {
-	let container: AppContainer
+	@Bindable var container: AppContainer
+	@Environment(\.scenePhase) private var scenePhase
 
 	var body: some View {
-		switch container.configurationResult {
-		case .success:
-			ApplicationTabs(router: container.router)
-		case .failure(let error):
-			InvalidConfigurationView(error: error)
+		Group {
+			switch container.configurationResult {
+			case .success:
+				if let analytics = container.analytics {
+					if !analytics.hasLoadedConsent {
+						ProgressView()
+					} else if analytics.consent.status == .unknown {
+						PrivacyChoiceView(
+							consent: analytics.consent,
+							accept: { Task { await analytics.grant() } },
+							decline: { Task { await analytics.deny() } }
+						)
+					} else {
+						ApplicationTabs(router: container.router, analytics: analytics)
+					}
+				} else {
+					InvalidConfigurationView(error: .missingEnvironment)
+				}
+			case .failure(let error):
+				InvalidConfigurationView(error: error)
+			}
+		}
+		.onChange(of: scenePhase, initial: true) { _, phase in
+			container.analytics?.scenePhaseChanged(to: phase)
 		}
 	}
 }
 
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
+	let analytics: AnalyticsClient
 
 	var body: some View {
 		TabView(selection: $router.selectedTab) {
@@ -34,8 +55,16 @@ private struct ApplicationTabs: View {
 	@ViewBuilder
 	private func entry(for tab: AppTab) -> some View {
 		NavigationStack(path: router.pathBinding(for: tab)) {
-			EntryView(tab: tab) {
-				router.push(.entryStatus(tab), in: tab)
+			Group {
+				if tab == .settings {
+					SettingsEntryView(analytics: analytics) {
+						router.push(.entryStatus(tab), in: tab)
+					}
+				} else {
+					EntryView(tab: tab) {
+						router.push(.entryStatus(tab), in: tab)
+					}
+				}
 			}
 			.navigationDestination(for: AppRoute.self) { route in
 				switch route {
@@ -43,6 +72,51 @@ private struct ApplicationTabs: View {
 					EntryStatusView(tab: tab)
 				}
 			}
+		}
+	}
+}
+
+private struct SettingsEntryView: View {
+	let analytics: AnalyticsClient
+	let showStatus: () -> Void
+	@State private var showingChoice = false
+
+	var body: some View {
+		List {
+			Section("Confidentialité") {
+				Button {
+					showingChoice = true
+				} label: {
+					LabeledContent("Mesure d’usage") {
+						Text(analytics.consent.status == .granted ? "Autorisée" : "Non autorisée")
+					}
+				}
+				.accessibilityIdentifier("analytics-settings")
+			}
+			Section("À propos") {
+				Text("Cette entrée est prête à accueillir son contenu.")
+					.accessibilityIdentifier("entry-description-settings")
+				Button("Voir l’état de l’entrée", action: showStatus)
+					.accessibilityIdentifier("entry-status-settings")
+			}
+		}
+		.navigationTitle("Réglages")
+		.sheet(isPresented: $showingChoice) {
+			PrivacyChoiceView(
+				consent: analytics.consent,
+				accept: {
+					Task {
+						await analytics.grant()
+						showingChoice = false
+					}
+				},
+				decline: {
+					Task {
+						await analytics.deny()
+						showingChoice = false
+					}
+				}
+			)
 		}
 	}
 }
