@@ -15,29 +15,35 @@ final class AppContainer {
 		self.configurationResult = configurationResult
 		router = AppRouter()
 		#if targetEnvironment(simulator)
+			let processInfo = ProcessInfo.processInfo
 			let localStore = LocalStore(
-				failNextWriteNamed: ProcessInfo.processInfo.arguments.contains("-track1-fail-next-profile-write")
+				failNextWriteNamed: processInfo.arguments.contains("-track1-fail-next-profile-write")
 					? "profile.v1.json" : nil
 			)
+			let resetProfile = processInfo.arguments.contains("-track1-reset-profile")
+			let seedCorruptProfile = processInfo.arguments.contains("-track1-seed-corrupt-profile")
+			if let fixture = processInfo.environment["TRACK1_PROFILE_CATALOG_JSON"] {
+				let result: APIResult<Catalog>
+				do {
+					result = .success(try JSONDecoder().decode(Catalog.self, from: Data(fixture.utf8)), etag: nil)
+				} catch {
+					result = .failure(.invalidResponse)
+				}
+				onboardingCatalog = { result }
+			} else {
+				onboardingCatalog = nil
+			}
 		#else
 			let localStore = LocalStore()
+			let resetProfile = false
+			let seedCorruptProfile = false
+			onboardingCatalog = nil
 		#endif
 		profileStore = ProfileStore(
 			localStore: localStore,
-			resetBeforeUse: ProcessInfo.processInfo.arguments.contains("-track1-reset-profile"),
-			seedCorruptProfileBeforeUse: ProcessInfo.processInfo.arguments.contains("-track1-seed-corrupt-profile")
+			resetBeforeUse: resetProfile,
+			seedCorruptProfileBeforeUse: seedCorruptProfile
 		)
-		if let fixture = ProcessInfo.processInfo.environment["TRACK1_PROFILE_CATALOG_JSON"] {
-			let result: APIResult<Catalog>
-			do {
-				result = .success(try JSONDecoder().decode(Catalog.self, from: Data(fixture.utf8)), etag: nil)
-			} catch {
-				result = .failure(.invalidResponse)
-			}
-			onboardingCatalog = { result }
-		} else {
-			onboardingCatalog = nil
-		}
 		switch configurationResult {
 		case .success(let configuration):
 			apiClient = APIClient(configuration: configuration)
