@@ -10,12 +10,21 @@ final class AppContainer {
 	let analytics: AnalyticsClient?
 	let profileStore: ProfileStore
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
+	let nodeImageSession: URLSession
+	#if targetEnvironment(simulator)
+		private var uiTestStartupNode: NodeIdentity?
+	#endif
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
 		self.configurationResult = configurationResult
 		router = AppRouter()
+		let apiSession: URLSession
 		#if targetEnvironment(simulator)
 			let processInfo = ProcessInfo.processInfo
+			let uiTestFixture = NodeUITestFixtureTransport.makeSession(arguments: processInfo.arguments)
+			apiSession = uiTestFixture?.session ?? .shared
+			nodeImageSession = apiSession
+			uiTestStartupNode = uiTestFixture?.startupNode
 			let localStore = LocalStore(
 				failNextWriteNamed: processInfo.arguments.contains("-track1-fail-next-profile-write")
 					? "profile.v1.json" : nil
@@ -34,6 +43,8 @@ final class AppContainer {
 				onboardingCatalog = nil
 			}
 		#else
+			apiSession = .shared
+			nodeImageSession = .shared
 			let localStore = LocalStore()
 			let resetProfile = false
 			let seedCorruptProfile = false
@@ -46,7 +57,7 @@ final class AppContainer {
 		)
 		switch configurationResult {
 		case .success(let configuration):
-			apiClient = APIClient(configuration: configuration)
+			apiClient = APIClient(configuration: configuration, session: apiSession)
 			analytics = AnalyticsClient(
 				configuration: AnalyticsConfiguration(
 					writeKey: configuration.segmentWriteKey,
@@ -61,4 +72,11 @@ final class AppContainer {
 		}
 		Task { await analytics?.initialize() }
 	}
+
+	#if targetEnvironment(simulator)
+		func consumeUITestStartupNode() -> NodeIdentity? {
+			defer { uiTestStartupNode = nil }
+			return uiTestStartupNode
+		}
+	#endif
 }

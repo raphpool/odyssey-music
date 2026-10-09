@@ -21,9 +21,17 @@ struct RootView: View {
 						ApplicationTabs(
 							router: container.router,
 							apiClient: container.apiClient,
+							nodeImageSession: container.nodeImageSession,
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
-							profileStore: container.profileStore
+							profileStore: container.profileStore,
+							consumeUITestStartupNode: {
+								#if targetEnvironment(simulator)
+									container.consumeUITestStartupNode()
+								#else
+									nil
+								#endif
+							}
 						)
 					}
 				} else {
@@ -42,12 +50,14 @@ struct RootView: View {
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let apiClient: APIClient?
+	let nodeImageSession: URLSession
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
 	@State private var profileToEdit: Profile?
+	let consumeUITestStartupNode: @MainActor () -> NodeIdentity?
 
 	var body: some View {
 		TabView(selection: $router.selectedTab) {
@@ -62,7 +72,20 @@ private struct ApplicationTabs: View {
 				.tag(AppTab.settings)
 		}
 		.tint(Track1Theme.actionTint)
-		.task { await reloadProfile() }
+		#if targetEnvironment(simulator)
+			.overlay(alignment: .bottomTrailing) {
+				NodeUITestFixtureRequestAuditView()
+			}
+		#endif
+		.task {
+			await reloadProfile()
+			#if targetEnvironment(simulator)
+				if let identity = consumeUITestStartupNode() {
+					router.selectedTab = .search
+					router.openIndependentNode(identity, source: .search, in: .search)
+				}
+			#endif
+		}
 		.sheet(isPresented: $showingOnboarding) {
 			OnboardingView(
 				apiClient: apiClient,
@@ -113,6 +136,26 @@ private struct ApplicationTabs: View {
 				switch route {
 				case .entryStatus(let tab):
 					EntryStatusView(tab: tab)
+				case .node(let identity, let context):
+					if let apiClient {
+						NodeView(
+							model: NodeViewModel(
+								identity: identity,
+								context: context,
+								readNode: { await apiClient.node($0) },
+								readImage: { await apiClient.image($0) },
+								recordEvent: { analytics.record($0) }
+							),
+							imageSession: nodeImageSession,
+							openRelation: { relation, relationContext in
+								router.openNode(relation, context: relationContext, in: tab)
+							}
+						)
+						.navigationTitle("Fiche")
+						.navigationBarTitleDisplayMode(.inline)
+					} else {
+						InvalidConfigurationView(error: .missingEnvironment)
+					}
 				}
 			}
 		}
@@ -132,6 +175,20 @@ private struct ApplicationTabs: View {
 		return profile
 	}
 }
+
+#if targetEnvironment(simulator)
+	@MainActor
+	private struct NodeUITestFixtureRequestAuditView: View {
+		let audit = NodeUITestFixtureRequestAudit.shared
+
+		var body: some View {
+			Text("\(audit.unexpectedRequestCount)")
+				.font(.caption2)
+				.foregroundStyle(.clear)
+				.accessibilityIdentifier("node-ui-test-unexpected-request-count")
+		}
+	}
+#endif
 
 private struct SettingsEntryView: View {
 	let profileState: ProfileRead
