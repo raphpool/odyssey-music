@@ -43,6 +43,7 @@ case "$1" in
     case "$2" in
       CFBundleShortVersionString) printf '1.0.0\\n' ;;
       CFBundleVersion) printf '202610101200\\n' ;;
+      Track1APIBaseURL) printf '%s\\n' "\${TRACK1_TEST_PLIST_API_URL-$TRACK1_API_BASE_URL}" ;;
     esac ;;
 esac
 `,
@@ -65,7 +66,8 @@ esac
 type ArchiveOptions = {
 	apiBaseUrl?: string | undefined;
 	gitStatus?: string;
-	outputInsideRepository?: boolean;
+	embeddedApiBaseUrl?: string;
+	output?: string;
 	signedIdentifier?: string;
 	signedTeam?: string;
 	teamId?: string | undefined;
@@ -100,6 +102,10 @@ async function runArchive(options: ArchiveOptions = {}) {
 			TRACK1_TEST_SIGNED_TEAM: options.signedTeam ?? teamId,
 			TRACK1_TEST_XCODE_VERSION: options.xcodeVersion ?? (await installedXcodeVersion()),
 		};
+		delete environment.TRACK1_TEST_PLIST_API_URL;
+		if (options.embeddedApiBaseUrl !== undefined) {
+			environment.TRACK1_TEST_PLIST_API_URL = options.embeddedApiBaseUrl;
+		}
 		delete environment.TRACK1_TEAM_ID;
 		delete environment.TRACK1_API_BASE_URL;
 		if ("teamId" in options) {
@@ -112,11 +118,11 @@ async function runArchive(options: ArchiveOptions = {}) {
 		} else {
 			environment.TRACK1_API_BASE_URL = apiBaseUrl;
 		}
-		const result = spawnSync(
-			"bash",
-			[archiveScript, options.outputInsideRepository ? resolve("ios") : outputDirectory],
-			{ cwd: directory, encoding: "utf8", env: environment },
-		);
+		const result = spawnSync("bash", [archiveScript, options.output ?? outputDirectory], {
+			cwd: directory,
+			encoding: "utf8",
+			env: environment,
+		});
 		const read = (name: string) => readFile(join(logDirectory, name), "utf8").catch(() => "");
 		return {
 			codesignCalls: await read("codesign-calls"),
@@ -147,6 +153,8 @@ describe.sequential("Track1 signed Preview archive script", () => {
 				"-destination",
 				"generic/platform=iOS",
 				"-allowProvisioningUpdates",
+				"-onlyUsePackageVersionsFromResolvedFile",
+				"-disableAutomaticPackageResolution",
 				"CODE_SIGNING_ALLOWED=YES",
 				"CODE_SIGNING_REQUIRED=YES",
 				"CODE_SIGN_STYLE=Automatic",
@@ -198,7 +206,23 @@ describe.sequential("Track1 signed Preview archive script", () => {
 		["another Xcode version", { xcodeVersion: "Xcode 26.3\nBuild version 17C529" }, "Expected Xcode 26.4"],
 		["a dirty git tree", { gitStatus: " M ios/Track1/App/AppContainer.swift\n" }, "uncommitted changes"],
 		["an untracked file", { gitStatus: "?? ios/notes.txt\n" }, "uncommitted changes"],
-		["an output directory inside the repository", { outputInsideRepository: true }, "outside the repository"],
+		["an output directory inside the repository", { output: resolve("ios") }, "outside the repository"],
+		[
+			"an output directory inside the repository with another case",
+			{ output: resolve("ios/archives").toUpperCase() },
+			"outside the repository",
+		],
+		[
+			"an API path other than /mobile/v1",
+			{ apiBaseUrl: "https://api.example.org/api/odyssey" },
+			"/mobile/v1",
+		],
+		[
+			"an API URL with a suffix after /mobile/v1",
+			{ apiBaseUrl: "https://api.example.org/mobile/v1/x" },
+			"/mobile/v1",
+		],
+		["an API URL with only a host", { apiBaseUrl: "https://api.example.org" }, "/mobile/v1"],
 	] as const satisfies ReadonlyArray<readonly [string, ArchiveOptions, string]>)(
 		"stops before any xcodebuild archive for %s",
 		async (_label, options, expectedError) => {
@@ -229,6 +253,25 @@ describe.sequential("Track1 signed Preview archive script", () => {
 			expect(result.stdout).not.toContain("IPA:");
 		},
 	);
+
+	it("lists the offending files and explains how to clear untracked ones", async () => {
+		const { result, xcodebuildCalls } = await runArchive({ gitStatus: "?? AGENTS.md\n?? .codex/\n" });
+
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toContain("?? AGENTS.md");
+		expect(result.stderr).toContain("?? .codex/");
+		expect(result.stderr).toContain("git stash -u");
+		expect(xcodebuildCalls).toEqual([]);
+	});
+
+	it("fails when the exported app embeds another API URL than the one supplied", async () => {
+		const embeddedApiBaseUrl = "https://preview.track1.example/mobile/v1";
+		const { result } = await runArchive({ embeddedApiBaseUrl });
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).not.toBe(0);
+		expect(result.stderr).toContain(`embeds API URL '${embeddedApiBaseUrl}', expected '${apiBaseUrl}'`);
+		expect(result.stdout).not.toContain("IPA:");
+	});
 
 	it("keeps hosts out of the repository and signing out of the CI", async () => {
 		const script = await readFile(archiveScript, "utf8");

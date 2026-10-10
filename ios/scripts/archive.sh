@@ -44,6 +44,9 @@ validate_api_base_url() {
 		|| fail "TRACK1_API_BASE_URL must not end with .example: that is a placeholder domain."
 	[[ "$api_base_url" =~ ^https://([A-Za-z0-9-]+\.)+[A-Za-z0-9-]+(/[A-Za-z0-9._~-]+)*/?$ ]] \
 		|| fail "TRACK1_API_BASE_URL must be an https URL with a dotted host and a plain path (no query, fragment or special characters)."
+	# AppConfiguration.swift refuses any other path at launch, after the app has been archived and signed.
+	[[ "${api_base_url%/}" == */mobile/v1 ]] \
+		|| fail "TRACK1_API_BASE_URL must end with /mobile/v1: the app refuses any other API path at launch."
 }
 
 validate_xcode() {
@@ -60,8 +63,27 @@ validate_xcode() {
 validate_clean_tree() {
 	local status
 	status="$(git -C "$repository_root" status --porcelain)" || fail "Could not read the git status."
-	[[ -z "$status" ]] \
-		|| fail "The git working tree has uncommitted changes; commit or stash them so the archive matches a commit."
+	[[ -z "$status" ]] || fail "The git working tree has uncommitted changes (untracked files included):
+$status
+Commit them, run 'git stash -u' (a plain 'git stash' keeps untracked files), or archive from a clean clone."
+}
+
+# APFS ignores case, so the comparison must too (at the cost of rejecting a case-only sibling on Linux).
+is_inside_repository() {
+	local candidate repository
+	candidate="$(printf '%s/' "$1" | tr '[:upper:]' '[:lower:]')"
+	repository="$(printf '%s/' "$repository_root" | tr '[:upper:]' '[:lower:]')"
+	[[ "$candidate" == "$repository"* ]]
+}
+
+# Checked lexically before anything is created, then again once symlinks and ".." are resolved.
+prepare_output_base() {
+	output_base="${1:-${TMPDIR:-/tmp}}"
+	[[ "$output_base" == /* ]] || output_base="$PWD/$output_base"
+	! is_inside_repository "$output_base" || fail "The output directory must be outside the repository: $output_base"
+	mkdir -p "$output_base"
+	output_base="$(cd "$output_base" && pwd -P)"
+	! is_inside_repository "$output_base" || fail "The output directory must be outside the repository: $output_base"
 }
 
 validate_team_id
@@ -72,12 +94,7 @@ validate_clean_tree
 git_sha="$(git -C "$repository_root" rev-parse HEAD)"
 build_number="$(date -u +%Y%m%d%H%M)"
 
-output_base="${1:-${TMPDIR:-/tmp}}"
-mkdir -p "$output_base"
-output_base="$(cd "$output_base" && pwd -P)"
-case "$output_base/" in
-	"$repository_root"/*) fail "The output directory must be outside the repository: $output_base" ;;
-esac
+prepare_output_base "$@"
 # A fresh directory per run, so a previous archive or IPA can never be picked up by mistake.
 work_dir="$(mktemp -d "$output_base/track1-archive.XXXXXX")"
 archive_path="$work_dir/Track1Preview.xcarchive"
@@ -92,6 +109,8 @@ xcodebuild archive \
 	-destination generic/platform=iOS \
 	-archivePath "$archive_path" \
 	-allowProvisioningUpdates \
+	-onlyUsePackageVersionsFromResolvedFile \
+	-disableAutomaticPackageResolution \
 	CODE_SIGNING_ALLOWED=YES \
 	CODE_SIGNING_REQUIRED=YES \
 	CODE_SIGN_STYLE=Automatic \
@@ -110,7 +129,7 @@ xcodebuild -exportArchive \
 ipas=("$export_dir"/*.ipa)
 [[ ${#ipas[@]} -eq 1 && -f "${ipas[0]}" ]] || fail "Expected exactly one IPA in $export_dir."
 ipa_path="${ipas[0]}"
-unzip -q "$ipa_path" -d "$unpacked_dir"
+unzip -q "$ipa_path" -d "$unpacked_dir" || fail "Could not unpack $ipa_path."
 apps=("$unpacked_dir"/Payload/*.app)
 [[ ${#apps[@]} -eq 1 && -d "${apps[0]}" ]] || fail "Expected exactly one .app in $ipa_path."
 app_path="${apps[0]}"
@@ -123,10 +142,15 @@ signed_team="$(printf '%s\n' "$signature" | sed -n 's/^TeamIdentifier=//p')"
 [[ "$signed_team" == "$team_id" ]] \
 	|| fail "The exported app is signed by team '$signed_team', expected '$team_id'."
 
+archived_api_base_url="$(plutil -extract Track1APIBaseURL raw -o - "$app_path/Info.plist")" \
+	|| fail "Could not read Track1APIBaseURL from the exported app."
+[[ "$archived_api_base_url" == "$api_base_url" ]] \
+	|| fail "The exported app embeds API URL '$archived_api_base_url', expected '$api_base_url'."
+
 marketing_version="$(plutil -extract CFBundleShortVersionString raw -o - "$app_path/Info.plist")"
 bundle_version="$(plutil -extract CFBundleVersion raw -o - "$app_path/Info.plist")"
 echo "Git SHA:  $git_sha"
 echo "Version:  $marketing_version"
 echo "Build:    $bundle_version"
-echo "API URL:  $api_base_url"
+echo "API URL:  $archived_api_base_url"
 echo "IPA:      $ipa_path"
