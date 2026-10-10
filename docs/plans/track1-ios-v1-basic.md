@@ -35,6 +35,10 @@ analytics sont conservées.
 
 ## Non-buts
 
+- Sortir de l'hébergement `dropcliffs.com` (serveur, déploiement, identifiants de bundle
+  `com.dropcliffs.track1.*`) : souhaité par Raphael, mais c'est un projet séparé à planifier. La V1
+  se contente de ne coder aucun hôte en dur côté iOS (D6).
+
 - Fidélité Figma, design system, animations : TRA-347, TRA-352, TRA-317, TRA-331, TRA-315 sont en
   pause jusqu'au Figma. Aucune nouvelle couleur, aucun asset ; `Track1Theme` existant utilisable,
   pas étendu.
@@ -114,13 +118,17 @@ phase se résolvent par insertion, jamais par renumérotation.
 **Rejeté :** numérotation séquentielle libre (collision silencieuse) ; migration vers des groupes
 synchronisés Xcode 16 (refactor du pbxproj hors scope, invérifiable sans Xcode).
 
-### D6 — Build installable : archive Preview signée localement, API réelle injectée à l'archivage
+### D6 — Build installable : archive Preview signée localement, URL d'API fournie à l'archivage
 
 Un script versionné (`ios/scripts/archive.sh`) produit sur le Mac de Raphael une archive du schéma
 `Track1Preview`, avec signature automatique Xcode (`-allowProvisioningUpdates`, Team ID fourni par
 variable d'environnement). L'export est ad hoc (`release-testing`), pour l'iPhone enregistré.
-L'URL d'API réelle `https://dropcliffs.com/api/odyssey/mobile/v1` n'est passée qu'en réglage de
-build à l'archivage. Les `.xcconfig` gardent leurs domaines `.example` non résolubles, donc
+L'URL d'API n'est écrite nulle part dans le dépôt : elle est fournie par la variable
+d'environnement obligatoire `TRACK1_API_BASE_URL` au moment de l'archivage, puis passée en réglage
+de build. Aujourd'hui, la seule API mobile en service est hébergée sur `dropcliffs.com`
+(`https://dropcliffs.com/api/odyssey/mobile/v1`) : c'est la valeur utilisée pour 337.2. Raphael
+veut sortir progressivement de cet hébergement historique ; changer d'hôte ne demandera alors
+qu'une nouvelle archive, sans modification de code. Les `.xcconfig` gardent leurs domaines `.example` non résolubles, donc
 simulateur et CI ne peuvent pas atteindre la production. `Base.xcconfig` garde
 `CODE_SIGNING_ALLOWED = NO`. Pas d'entitlement APNs, pas de TestFlight.
 **Rejeté :** signature en CI avec secrets (tier/3 `.github`, gestion de secrets, inutile pour un
@@ -1024,28 +1032,31 @@ Incrément indépendant du code applicatif. 337.1 peut être mergée dès mainte
     `test/ios-check.test.ts`).
 - **Hors-scope :** `project.pbxproj`, `.xcconfig`, schémas, entitlements, `ios/scripts/check.sh`,
   `.github/`, secrets.
-- **Contrat :** `TRACK1_TEAM_ID=<Team ID> ios/scripts/archive.sh [répertoire de sortie]`. Étapes :
+- **Contrat :** `TRACK1_TEAM_ID=<Team ID> TRACK1_API_BASE_URL=<URL https> ios/scripts/archive.sh [répertoire de sortie]`. Étapes :
   1. **Contrôles préalables.** Avant tout `xcodebuild archive`, le script sort en code ≠ 0 avec un
      message explicite dans trois cas :
      - le Xcode actif diffère de `ios/.xcode-version` ;
      - `TRACK1_TEAM_ID` est absent ou ne respecte pas `^[A-Z0-9]{10}$` ;
+     - `TRACK1_API_BASE_URL` est absente, n'est pas en `https://`, contient des identifiants ou un
+       port explicite, ou se termine par `.example` ;
      - l'arbre git a des modifications non commitées.
   2. **Archive.**
-     `xcodebuild archive -project ios/Track1.xcodeproj -scheme Track1Preview -configuration Preview -destination generic/platform=iOS -allowProvisioningUpdates CODE_SIGNING_ALLOWED=YES CODE_SIGNING_REQUIRED=YES CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=$TRACK1_TEAM_ID TRACK1_API_BASE_URL=https://dropcliffs.com/api/odyssey/mobile/v1 CURRENT_PROJECT_VERSION=<AAAAMMJJHHMM UTC>`.
+     `xcodebuild archive -project ios/Track1.xcodeproj -scheme Track1Preview -configuration Preview -destination generic/platform=iOS -allowProvisioningUpdates CODE_SIGNING_ALLOWED=YES CODE_SIGNING_REQUIRED=YES CODE_SIGN_STYLE=Automatic DEVELOPMENT_TEAM=$TRACK1_TEAM_ID TRACK1_API_BASE_URL=$TRACK1_API_BASE_URL CURRENT_PROJECT_VERSION=<AAAAMMJJHHMM UTC>`.
   3. **Export.** Copie de `ExportOptions-Preview.plist` (`method = release-testing`,
      `signingStyle = automatic`), avec `teamID` injecté par `plutil`, puis
      `xcodebuild -exportArchive`.
   4. **Vérification.** `codesign -d` sur l'`.app` exportée : l'identifiant doit être
      `com.dropcliffs.track1.preview` et l'équipe `TRACK1_TEAM_ID`, sinon échec.
-  5. **Affichage.** SHA git, version, build et chemin de l'IPA.
+  5. **Affichage.** SHA git, version, build, URL d'API utilisée et chemin de l'IPA.
 
   Les outils sont appelés via `PATH` (`xcodebuild`, `plutil`, `codesign`, `git`). Le script ne lit
   ni n'écrit aucun secret. Sa sortie par défaut va dans un répertoire temporaire, hors du dépôt.
 - **Critères d'acceptation :**
-  - [ ] Team ID absent ou invalide, Xcode différent ou arbre sale : code ≠ 0, message explicite, et
+  - [ ] Team ID absent ou invalide, URL d'API absente ou non conforme, Xcode différent ou arbre sale : code ≠ 0, message explicite, et
     `xcodebuild archive` jamais appelé.
   - [ ] Cas nominal : la commande d'archive contient exactement le schéma, la configuration,
-    `-allowProvisioningUpdates`, `DEVELOPMENT_TEAM` et l'URL d'API réelle. L'export reçoit un plist
+    `-allowProvisioningUpdates`, `DEVELOPMENT_TEAM` et la valeur de `TRACK1_API_BASE_URL` ; aucun hôte n'est écrit en dur dans le
+    script. L'export reçoit un plist
     avec `teamID` et `method = release-testing`.
   - [ ] Un `codesign` qui rapporte une autre équipe ou un autre identifiant provoque un échec.
   - [ ] `ios/scripts/check.sh` et `.github/workflows/ios-ci.yml` sont inchangés : la CI reste sans
@@ -1093,7 +1104,7 @@ Incrément indépendant du code applicatif. 337.1 peut être mergée dès mainte
 - **R4 — Cause de l'échec XCUITest de #317 non confirmée.** Garde-fous : harnais supprimé ; motifs
   suspects interdits par 343.4 ; en cas d'échec UI, lire l'xcresult (`ios-xcresult-<run>-<attempt>`)
   avant tout correctif, et ne pas réessayer à l'aveugle.
-- **R5 — L'iPhone parle à la production `dropcliffs.com`.** Garde-fous : lecture seule par
+- **R5 — L'iPhone parle à l'API de production (aujourd'hui sur `dropcliffs.com`).** Garde-fous : lecture seule par
   construction (D2), aucun POST possible. `/image` et `/links` peuvent déclencher des résolveurs
   côté serveur, sans génération LLM ; le volume est négligeable pour un seul appareil.
 - **R6 — Signature.** Elle dépend du compte de Raphael ; les profils ad hoc expirent et un nouvel
