@@ -8,14 +8,7 @@ enum NodeViewState: Sendable {
 	case failed
 }
 
-enum NodeImageState: Equatable, Sendable {
-	case loading
-	case available(URL)
-	case unavailable
-}
-
 typealias NodeReader = @Sendable (NodeIdentity) async -> APIResult<NodeResponse>
-typealias NodeImageReader = @Sendable (NodeIdentity) async -> APIResult<ImageResponse>
 typealias NodeEventRecorder = @MainActor @Sendable (AnalyticsEvent) -> Void
 
 @MainActor
@@ -23,11 +16,9 @@ typealias NodeEventRecorder = @MainActor @Sendable (AnalyticsEvent) -> Void
 final class NodeViewModel {
 	private(set) var requestedIdentity: NodeIdentity
 	private(set) var state: NodeViewState = .loading
-	private(set) var imageState: NodeImageState = .loading
 
 	let context: NavigationContext
 	private let readNode: NodeReader
-	private let readImage: NodeImageReader
 	private let recordEvent: NodeEventRecorder?
 	private var trackedIdentities = Set<NodeIdentity>()
 
@@ -35,22 +26,17 @@ final class NodeViewModel {
 		identity: NodeIdentity,
 		context: NavigationContext,
 		readNode: @escaping NodeReader,
-		readImage: @escaping NodeImageReader,
 		recordEvent: NodeEventRecorder? = nil
 	) {
 		requestedIdentity = identity
 		self.context = context
 		self.readNode = readNode
-		self.readImage = readImage
 		self.recordEvent = recordEvent
 	}
-
-	var relationEventRecorder: NodeEventRecorder? { recordEvent }
 
 	func load() async {
 		let identity = requestedIdentity
 		state = .loading
-		imageState = .loading
 
 		switch await readNode(identity) {
 		case .success(let response, _):
@@ -58,7 +44,6 @@ final class NodeViewModel {
 			requestedIdentity = response.node.id
 			state = .loaded(response.node)
 			recordViewedNode(response.node)
-			await loadImage(for: response.node)
 		case .failure(let error):
 			guard !Task.isCancelled else { return }
 			if case .http(let status, _, _, _) = error, status == 404 {
@@ -66,30 +51,9 @@ final class NodeViewModel {
 			} else {
 				state = .failed
 			}
-			imageState = .unavailable
 		case .notModified:
 			guard !Task.isCancelled else { return }
 			state = .failed
-			imageState = .unavailable
-		}
-	}
-
-	private func loadImage(for node: NodeDetail) async {
-		if let imageURL = node.imageURL {
-			imageState = .available(imageURL)
-		}
-
-		switch await readImage(node.id) {
-		case .success(let response, _):
-			guard !Task.isCancelled, requestedIdentity == node.id else { return }
-			if response.slug == node.id, let imageURL = response.imageURL ?? node.imageURL {
-				imageState = .available(imageURL)
-			} else {
-				imageState = .unavailable
-			}
-		case .failure, .notModified:
-			guard !Task.isCancelled, requestedIdentity == node.id else { return }
-			if node.imageURL == nil { imageState = .unavailable }
 		}
 	}
 
@@ -107,21 +71,5 @@ enum NodeAnalytics {
 		]
 		for (key, value) in context.attributionProperties { properties[key] = value }
 		return AnalyticsEvent(name: .nodeViewed, properties: properties, source: context.source)
-	}
-
-	static func relationOpened(
-		from fromNodeID: NodeIdentity,
-		relation: NodeEdge,
-		kind: String,
-		context: NavigationContext
-	) -> AnalyticsEvent {
-		var properties: [String: AnalyticsValue] = [
-			"from_node_id": .string(fromNodeID.rawValue),
-			"node_id": .string(relation.slug.rawValue),
-			"node_type": .string(relation.type.rawValue),
-			"relation_kind": .string(kind),
-		]
-		for (key, value) in context.attributionProperties { properties[key] = value }
-		return AnalyticsEvent(name: .relationOpened, properties: properties, source: .relation)
 	}
 }

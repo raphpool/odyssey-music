@@ -3,7 +3,6 @@ import SwiftUI
 
 enum AppRoute: Hashable, Sendable {
 	case entryStatus(AppTab)
-	case node(identity: NodeIdentity, context: NavigationContext)
 }
 
 enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
@@ -47,14 +46,6 @@ final class AppRouter {
 	func push(_ route: AppRoute, in tab: AppTab? = nil) {
 		let destination = tab ?? selectedTab
 		paths[destination, default: []].append(route)
-	}
-
-	func openNode(_ identity: NodeIdentity, context: NavigationContext, in tab: AppTab? = nil) {
-		push(.node(identity: identity, context: context), in: tab)
-	}
-
-	func openIndependentNode(_ identity: NodeIdentity, source: AnalyticsSource, in tab: AppTab? = nil) {
-		openNode(identity, context: .independent(source: source), in: tab)
 	}
 
 	func pop(in tab: AppTab? = nil) {
