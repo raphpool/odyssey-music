@@ -1,4 +1,4 @@
-import { fireEvent, render, waitFor } from "@testing-library/react-native";
+import { fireEvent, render, renderAsync, waitFor } from "@testing-library/react-native";
 import { useLocalSearchParams } from "expo-router";
 import { Linking } from "react-native";
 
@@ -128,7 +128,7 @@ describe("NodeScreen", () => {
 			success({ slug: `${type}:sample-node`, image_url: null, source: "cache" }),
 		);
 
-		const screen = render(<NodeScreen />);
+		const screen = await renderAsync(<NodeScreen />);
 
 		await waitFor(() => expect(screen.getByRole("header", { name })).toBeTruthy());
 		expect(screen.getByText(`Type : ${label}`)).toBeTruthy();
