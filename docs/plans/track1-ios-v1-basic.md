@@ -1,9 +1,8 @@
 # Track1 iOS — V1 native basique (re-planification partielle de P-TRA-4)
 
-Statut : **brouillon à valider par Raphael** (gate humain). Rédigé le 2026-10-10 à partir du brief
-validé par Raphael. Aucun ticket Linear n'est créé : le MCP Linear est injoignable, et la création
-n'a lieu qu'après validation. Les sous-tickets sont notés `TRA-? (341.1)` ; leur ID réel sera
-reporté ici à la création.
+Statut : **validé par Raphael** le 2026-10-10. Les sous-tickets sont créés dans Linear (TRA-358 à
+TRA-374) et leur ID réel est reporté ci-dessous sous la forme `TRA-358 (341.1)`. Les tickets en pause
+jusqu'au Figma portent le label `en-pause/figma`.
 
 Sources : [`track1-native-ios.md`](track1-native-ios.md), contrats complets dans
 [`track1-native-ios-linear.md`](track1-native-ios-linear.md) (sections P1.5, P2.4, P2.5, P2.6, P4.2),
@@ -208,12 +207,12 @@ Incrément technique déployable sans régression : la fiche existe, est testée
 aucun point d'entrée utilisateur n'y mène avant la Partie 3 (Aujourd'hui) ou la Partie 4
 (Recherche). Les onglets existants restent inchangés.
 
-- [ ] TRA-? (341.1) Charger une fiche et son contexte de navigation — **réutilise la branche
+- [ ] TRA-358 (341.1) Charger une fiche et son contexte de navigation — **réutilise la branche
   `codex/tra-341-node-reading` et la PR #317**
-- [ ] TRA-? (341.2) Ouvrir une fiche minimale depuis le routeur, en lecture seule
-- [ ] TRA-? (341.3) Afficher l'article et les sources en texte natif
-- [ ] TRA-? (341.4) Parcourir les relations d'une fiche
-- [ ] TRA-? (341.5) *(optionnelle)* Afficher l'image d'une fiche sans suivre de redirection non sûre
+- [ ] TRA-361 (341.2) Ouvrir une fiche minimale depuis le routeur, en lecture seule
+- [ ] TRA-365 (341.3) Afficher l'article et les sources en texte natif
+- [ ] TRA-366 (341.4) Parcourir les relations d'une fiche
+- [ ] TRA-367 (341.5) *(optionnelle)* Afficher l'image d'une fiche sans suivre de redirection non sûre
 
 **Contrat réduit de TRA-341.**
 - *Conservé :* tronc commun des cinq types (titre, type, accroche, article en texte natif,
@@ -525,8 +524,8 @@ Hors critères de sortie V1. Raphael peut la retirer au gate sans impact sur le 
 Incrément mergeable sans régression : la section d'écoute apparaît sur la fiche, accessible
 dès la Partie 3.
 
-- [ ] TRA-? (342.1) Calculer et ouvrir les actions d'écoute
-- [ ] TRA-? (342.2) Proposer l'écoute depuis une fiche
+- [ ] TRA-362 (342.1) Calculer et ouvrir les actions d'écoute
+- [ ] TRA-368 (342.2) Proposer l'écoute depuis une fiche
 
 **Contrat réduit de TRA-342.**
 - *Conservé :*
@@ -635,12 +634,12 @@ dès la Partie 3.
 Premier incrément visible : avec un profil, l'onglet Aujourd'hui affiche une découverte stable et
 ouvre sa fiche, avec l'écoute des Parties 1 et 2.
 
-- [ ] TRA-? (343.1) Classer les œuvres selon les goûts
-- [ ] TRA-? (343.2) Choisir la découverte du jour de façon déterministe
-- [ ] TRA-? (343.3) Conserver l'historique des découvertes sur l'iPhone
-- [ ] TRA-? (343.4) Servir des fixtures de lecture aux tests UI du simulateur
-- [ ] TRA-? (343.5) Calculer et mémoriser la découverte du jour
-- [ ] TRA-? (343.6) Afficher la découverte du jour et ouvrir sa fiche
+- [ ] TRA-359 (343.1) Classer les œuvres selon les goûts
+- [ ] TRA-363 (343.2) Choisir la découverte du jour de façon déterministe
+- [ ] TRA-369 (343.3) Conserver l'historique des découvertes sur l'iPhone
+- [ ] TRA-370 (343.4) Servir des fixtures de lecture aux tests UI du simulateur
+- [ ] TRA-371 (343.5) Calculer et mémoriser la découverte du jour
+- [ ] TRA-373 (343.6) Afficher la découverte du jour et ouvrir sa fiche
 
 **Contrat réduit de TRA-343.**
 - *Conservé :*
@@ -903,8 +902,8 @@ ouvre sa fiche, avec l'écoute des Parties 1 et 2.
 Incrément visible : l'onglet Recherche remplace son écran d'attente et ouvre les fiches. C'est le
 seul parcours UI de bout en bout fiche → relation → retour.
 
-- [ ] TRA-? (348.1) Rechercher avec temporisation, filtres et réponses ordonnées
-- [ ] TRA-? (348.2) Afficher la recherche et ouvrir les fiches trouvées
+- [ ] TRA-364 (348.1) Rechercher avec temporisation, filtres et réponses ordonnées
+- [ ] TRA-372 (348.2) Afficher la recherche et ouvrir les fiches trouvées
 
 **Contrat réduit de TRA-348.**
 - *Conservé :*
@@ -1007,8 +1006,8 @@ seul parcours UI de bout en bout fiche → relation → retour.
 
 Incrément indépendant du code applicatif. 337.1 peut être mergée dès maintenant ; 337.2 clôt la V1.
 
-- [ ] TRA-? (337.1) Produire une archive Preview signée par un script reproductible
-- [ ] TRA-? (337.2) Installer la V1 sur l'iPhone de Raphael et consigner la preuve
+- [ ] TRA-360 (337.1) Produire une archive Preview signée par un script reproductible
+- [ ] TRA-374 (337.2) Installer la V1 sur l'iPhone de Raphael et consigner la preuve
 
 **Contrat réduit de TRA-337.**
 - *Conservé :*
