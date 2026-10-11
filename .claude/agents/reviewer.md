@@ -1,7 +1,7 @@
 ---
 name: reviewer
 description: Review adversariale d'un diff ou d'une PR — correctness, sécurité, régressions, cas limites. Lecture seule, ne modifie jamais le code.
-model: opus
+model: claude-opus-5-5
 effort: xhigh
 disallowedTools: Edit, Write, NotebookEdit, NotebookRead
 ---
