@@ -58,8 +58,11 @@ enum NodeArticleParser {
 			marker.hasSuffix(".") || marker.hasSuffix(")")
 		else { return nil }
 		// ASCII digits only: Character.isNumber also accepts "²" or "½", which are not list numbers.
+		// At most three digits, so a wrapped paragraph line starting with a year ("1999. Their…") stays prose.
 		let digits = marker.dropLast()
-		guard !digits.isEmpty, digits.allSatisfy({ $0.isASCII && $0.isNumber }) else { return nil }
+		guard (1...3).contains(digits.count), digits.allSatisfy({ $0.isASCII && $0.isNumber }) else {
+			return nil
+		}
 		return nonEmptyItem(parts[1])
 	}
 
@@ -117,22 +120,27 @@ struct NodeArticleView: View {
 
 	@ViewBuilder
 	private func citationView(_ citation: Citation) -> some View {
-		let label = citation.title ?? citation.url.absoluteString
+		let address = citation.url.absoluteString
+		let label = citation.title ?? address
 		if let url = Self.safeCitationURL(citation.url) {
 			Link(destination: url) {
-				citationLabel(title: label, url: citation.url.absoluteString)
+				citationLabel(title: citation.title, address: address)
 			}
 			.accessibilityLabel(Text(verbatim: "Ouvrir la source \(label)"))
 		} else {
-			citationLabel(title: label, url: citation.url.absoluteString)
+			citationLabel(title: citation.title, address: address)
 				.accessibilityLabel(Text(verbatim: "Source non disponible : \(label)"))
 		}
 	}
 
-	private func citationLabel(title: String, url: String) -> some View {
+	private func citationLabel(title: String?, address: String) -> some View {
 		VStack(alignment: .leading, spacing: 4) {
-			Text(verbatim: title).font(.headline)
-			Text(verbatim: url).font(.footnote).foregroundStyle(.secondary)
+			if let title {
+				Text(verbatim: title).font(.headline)
+				Text(verbatim: address).font(.footnote).foregroundStyle(.secondary)
+			} else {
+				Text(verbatim: address).font(.headline)
+			}
 		}
 		.multilineTextAlignment(.leading)
 		.frame(maxWidth: .infinity, alignment: .leading)
@@ -141,6 +149,8 @@ struct NodeArticleView: View {
 	}
 
 	/// Only a public HTTPS URL may be handed to `Link`; anything else is shown as inert text.
+	/// `Citation` already validates its URL when decoded; this check stays at the point of use so the view
+	/// never depends on how a `Citation` was built.
 	static func safeCitationURL(_ url: URL) -> URL? {
 		URLValidation.publicHTTPSURL(from: url.absoluteString)
 	}

@@ -42,9 +42,9 @@
 		B10000000000000000000038 /* NodeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000045 /* NodeViewModelTests.swift */; };
 		B10000000000000000000160 /* Affinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000160 /* Affinity.swift */; };
 		B10000000000000000000161 /* AffinityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000161 /* AffinityTests.swift */; };
+		B10000000000000000000100 /* ContentReaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000100 /* ContentReaders.swift */; };
 		B10000000000000000000110 /* NodeArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000110 /* NodeArticleView.swift */; };
 		B10000000000000000000111 /* NodeArticleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000111 /* NodeArticleTests.swift */; };
-		B10000000000000000000100 /* ContentReaders.swift in Sources */ ={isa = PBXBuildFile; fileRef = F10000000000000000000100 /* ContentReaders.swift */; };
 		B10000000000000000000101 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000101 /* NodeView.swift */; };
 		B10000000000000000000102 /* AppRouterNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000102 /* AppRouterNodeTests.swift */; };
 		B10000000000000000000103 /* ContentReadersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000103 /* ContentReadersTests.swift */; };

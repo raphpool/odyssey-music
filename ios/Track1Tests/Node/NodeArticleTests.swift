@@ -43,7 +43,11 @@ final class NodeArticleTests: XCTestCase {
 	}
 
 	func testLinesThatOnlyLookLikeListMarkersStayParagraphs() {
-		for line in ["*emphasis*", "-dash", "1.5 million", ". item", ") item", "²) item", "1.", "-"] {
+		let lines = [
+			"*emphasis*", "-dash", "1.5 million", ". item", ") item", "²) item", "1.", "-",
+			"1999. Their last album",
+		]
+		for line in lines {
 			XCTAssertEqual(NodeArticleParser.blocks(from: line), [.paragraph(line)], line)
 		}
 	}
