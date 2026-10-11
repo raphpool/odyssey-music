@@ -1,7 +1,7 @@
 ---
 name: planner
 description: Découpe un projet en parties déployables et en tickets Linear autoportants. À utiliser pour la phase de planning — jamais pour écrire du code d'implémentation.
-model: opus
+model: claude-opus-5-5
 effort: xhigh
 disallowedTools: Edit, NotebookEdit
 memory: project
