@@ -73,7 +73,9 @@ struct NodeRelationsView: View {
 							.font(.subheadline.weight(.semibold))
 							.foregroundStyle(.secondary)
 							.accessibilityAddTraits(.isHeader)
-						ForEach(group.relations, id: \.slug) { relation in
+						// Offsets, not slugs: the API does not promise a slug appears once per kind, and a
+						// duplicate identifier makes SwiftUI drop or reuse rows.
+						ForEach(Array(group.relations.enumerated()), id: \.offset) { _, relation in
 							relationRow(relation, kind: group.kind)
 						}
 					}
@@ -104,6 +106,8 @@ struct NodeRelationsView: View {
 		}
 		.buttonStyle(.plain)
 		.accessibilityLabel(Text(verbatim: "Ouvrir \(relation.name)"))
+		// The label replaces the row's text, so the year and release type are spoken as its value.
+		.accessibilityValue(Text(verbatim: Self.subtitle(relation) ?? ""))
 	}
 
 	/// One gesture: record `relation_opened`, then navigate with the attribution carried over. Returns
