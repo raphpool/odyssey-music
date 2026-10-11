@@ -21,6 +21,7 @@ struct RootView: View {
 						ApplicationTabs(
 							router: container.router,
 							apiClient: container.apiClient,
+							readers: container.readers,
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore
@@ -42,6 +43,7 @@ struct RootView: View {
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let apiClient: APIClient?
+	let readers: ContentReaders?
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
@@ -113,6 +115,19 @@ private struct ApplicationTabs: View {
 				switch route {
 				case .entryStatus(let tab):
 					EntryStatusView(tab: tab)
+				case .node(let identity, let context):
+					if let readers {
+						NodeView(
+							model: NodeViewModel(
+								identity: identity,
+								context: context,
+								readNode: readers.node,
+								recordEvent: { analytics.record($0) }
+							)
+						)
+					} else {
+						InvalidConfigurationView(error: .missingEnvironment)
+					}
 				}
 			}
 		}
