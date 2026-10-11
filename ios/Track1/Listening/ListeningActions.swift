@@ -4,7 +4,8 @@ enum ListeningProvider: String, CaseIterable, Sendable {
 	case spotify
 	case appleMusic = "apple_music"
 
-	/// Exact host a link must have to be handed to the OS; shared with the API decoding rules.
+	/// Exact host a link must have to be handed to the OS. Keep in sync with `SpotifyURL` / `AppleURL` in
+	/// `APIModels.swift`, which hardcode the same hosts when decoding `/links`.
 	fileprivate var host: String {
 		switch self {
 		case .spotify: "open.spotify.com"
@@ -44,7 +45,7 @@ enum ListeningActions {
 	private static let unreservedCharacters = CharacterSet(
 		charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.!~*'()")
 
-	/// `trim()` in JavaScript also strips the byte-order mark, which `.whitespacesAndNewlines` does not.
+	/// Close to JavaScript's `trim()`, which also strips the byte-order mark that `.whitespacesAndNewlines` keeps.
 	private static let trimmedCharacters = CharacterSet.whitespacesAndNewlines.union(
 		CharacterSet(charactersIn: "\u{FEFF}"))
 
