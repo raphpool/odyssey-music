@@ -2,9 +2,11 @@ import SwiftUI
 
 struct NodeView: View {
 	@State private var model: NodeViewModel
+	private let openRelation: (NodeIdentity, NavigationContext) -> Void
 
-	init(model: NodeViewModel) {
+	init(model: NodeViewModel, openRelation: @escaping (NodeIdentity, NavigationContext) -> Void) {
 		_model = State(initialValue: model)
+		self.openRelation = openRelation
 	}
 
 	var body: some View {
@@ -17,6 +19,13 @@ struct NodeView: View {
 					VStack(alignment: .leading, spacing: Track1Theme.contentSpacing) {
 						header(node)
 						NodeArticleView(article: node.article, citations: node.citations)
+						NodeRelationsView(
+							edges: node.edges,
+							fromNodeID: node.id,
+							context: model.context,
+							recordEvent: model.relationEventRecorder,
+							openDestination: openRelation
+						)
 					}
 					.padding(Track1Theme.contentSpacing)
 				}
