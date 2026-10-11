@@ -123,7 +123,11 @@ private struct ApplicationTabs: View {
 								context: context,
 								readNode: readers.node,
 								recordEvent: { analytics.record($0) }
-							)
+							),
+							// Same tab: the relation stacks on the path the reader is already in.
+							openRelation: { relation, relationContext in
+								router.openNode(relation, context: relationContext, in: tab)
+							}
 						)
 					} else {
 						InvalidConfigurationView(error: .missingEnvironment)
