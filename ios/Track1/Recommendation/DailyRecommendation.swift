@@ -1,6 +1,9 @@
 import Foundation
 
-/// The work chosen for one local date. JSON keys are snake_case, like the React Native client.
+/// The work chosen for one local date. JSON keys are snake_case for readability only: this record lives in the
+/// native client's own `daily-recommendation.v1.json` and is never read by the React Native client, so it
+/// deliberately omits RN-only fields such as `view_event_id` (2026-10-10 V1 plan, TRA-343: no Segment
+/// transport, no storage shared with the Expo build).
 struct DailyRecommendation: Codable, Equatable, Sendable {
 	let recommendationID: UUID
 	let localDate: String
@@ -23,8 +26,7 @@ struct DailyRecommendation: Codable, Equatable, Sendable {
 		case viewRecorded = "view_recorded"
 	}
 
-	/// A missing teaser is written as `null`, not omitted: the React Native client rejects a record without
-	/// the key.
+	/// A missing teaser is written as `null`, not omitted, so every stored record carries the same key set.
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(recommendationID, forKey: .recommendationID)
