@@ -7,6 +7,7 @@ final class AppContainer {
 	let configurationResult: Result<AppConfiguration, AppConfigurationError>
 	let router: AppRouter
 	let apiClient: APIClient?
+	let readers: ContentReaders?
 	let analytics: AnalyticsClient?
 	let profileStore: ProfileStore
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
@@ -46,7 +47,9 @@ final class AppContainer {
 		)
 		switch configurationResult {
 		case .success(let configuration):
-			apiClient = APIClient(configuration: configuration)
+			let client = APIClient(configuration: configuration)
+			apiClient = client
+			readers = .live(client)
 			analytics = AnalyticsClient(
 				configuration: AnalyticsConfiguration(
 					writeKey: configuration.segmentWriteKey,
@@ -57,6 +60,7 @@ final class AppContainer {
 			)
 		case .failure:
 			apiClient = nil
+			readers = nil
 			analytics = nil
 		}
 		Task { await analytics?.initialize() }
