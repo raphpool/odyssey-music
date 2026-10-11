@@ -1,6 +1,6 @@
 # Phase 3 — Review
 
-**Agent :** `reviewer` (opus, effort xhigh, lecture seule) ·
+**Agent :** `reviewer` (Opus 5.5, effort xhigh, lecture seule) ·
 **Principe :** 4 couches, de la moins chère à la plus chère. Une couche ne
 tourne que si la précédente est verte.
 
