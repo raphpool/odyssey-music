@@ -14,8 +14,11 @@ struct NodeView: View {
 				ProgressView("Chargement de la fiche")
 			case .loaded(let node):
 				ScrollView {
-					header(node)
-						.padding(Track1Theme.contentSpacing)
+					VStack(alignment: .leading, spacing: Track1Theme.contentSpacing) {
+						header(node)
+						NodeArticleView(article: node.article, citations: node.citations)
+					}
+					.padding(Track1Theme.contentSpacing)
 				}
 			case .missing:
 				ContentUnavailableView {
