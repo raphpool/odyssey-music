@@ -66,7 +66,10 @@ private final class RecordingURLProtocol: URLProtocol, @unchecked Sendable {
 	override func startLoading() {
 		let url = request.url
 		// `path` is the decoded path, so `artist%3Ax` is compared as `artist:x`.
+		// APIClient always sets query items, so a parameterless read ends with an empty `?` (2026-10-11,
+		// ios-check on #322: `GET /mobile/v1/catalog?`). The empty query carries nothing; drop it.
 		let query = url.flatMap { URLComponents(url: $0, resolvingAgainstBaseURL: false)?.percentEncodedQuery }
+			.flatMap { $0.isEmpty ? nil : $0 }
 		let target = (url?.path ?? "") + (query.map { "?\($0)" } ?? "")
 		Self.log.append("\(request.httpMethod ?? "?") \(target)")
 
