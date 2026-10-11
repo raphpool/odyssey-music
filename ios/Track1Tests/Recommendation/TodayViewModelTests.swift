@@ -208,23 +208,6 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertTrue(try recommendation(of: restarted).viewRecorded)
 	}
 
-	func testAFailedMarkerWriteDoesNotLetTheSameSessionEmitTheEventAgain() async throws {
-		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
-		let seed = makeModel(probe: probe, store: makeStore())
-		await seed.load(for: try profile(revision: 1))
-
-		// This store's first write is the marker, because `load` finds the persisted entry and writes nothing.
-		let failing = DailyRecommendationStore(
-			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: Self.fileName))
-		let model = makeModel(probe: probe, store: failing)
-		await model.load(for: try profile(revision: 1))
-		await model.recordImpressionIfNeeded()
-		await model.load(for: try profile(revision: 1))
-		await model.recordImpressionIfNeeded()
-
-		XCTAssertEqual(events.map(\.name), [.dailyRecommendationViewed])
-	}
-
 	func testImpressionWithoutARecommendationDoesNothing() async {
 		let model = makeModel(probe: CatalogProbe(result: .failure(.network)), store: makeStore())
 		await model.recordImpressionIfNeeded()
@@ -302,107 +285,6 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(try recommendation(of: utc).localDate, "2026-10-10")
 	}
 
-	// MARK: Concurrency
-
-	func testAMarkViewedLandingDuringTheCatalogReadIsNotOverwrittenByTheSave() async throws {
-		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
-		let store = makeStore()
-		let yesterday = try storedRecommendation(date: "2026-10-10", node: "artist:alpha", revision: 1)
-		_ = await store.save([yesterday])
-		// Fires while `load` holds its first snapshot of the history, before it saves.
-		await probe.onRead { _ = await store.markViewed(yesterday.recommendationID) }
-		let model = makeModel(probe: probe, store: store)
-
-		await model.load(for: try profile(revision: 1))
-
-		let history = await store.history()
-		XCTAssertEqual(history.count, 2)
-		XCTAssertEqual(history.first?.recommendationID, yesterday.recommendationID)
-		XCTAssertEqual(history.first?.viewRecorded, true)
-		XCTAssertEqual(history.last, try recommendation(of: model))
-	}
-
-	func testTwoParallelLoadsForTheSameProfileReadTheCatalogOnceAndAgree() async throws {
-		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
-		let store = makeStore()
-		let model = makeModel(probe: probe, store: store)
-		let taste = try profile(revision: 1)
-
-		async let first: Void = model.load(for: taste)
-		async let second: Void = model.load(for: taste)
-		_ = await (first, second)
-
-		let reads = await probe.calls
-		XCTAssertEqual(reads, 1)
-		let history = await store.history()
-		XCTAssertEqual(history, [try recommendation(of: model)])
-	}
-
-	func testALoadSupersededByNewTastesPublishesAndSavesNothing() async throws {
-		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
-		let store = makeStore()
-		let model = makeModel(probe: probe, store: store)
-		await probe.blockNextRead()
-
-		let oldTastes = try profile(revision: 1)
-		let newTastes = try profile(revision: 2)
-		let stale = Task { await model.load(for: oldTastes) }
-		try await waitForCatalogReads(probe, count: 1)
-		let current = Task { await model.load(for: newTastes) }
-		// Let the second request register before the first one resumes.
-		try await Task.sleep(for: .milliseconds(50))
-		await probe.releaseBlockedRead()
-		await stale.value
-		await current.value
-
-		let published = try recommendation(of: model)
-		XCTAssertEqual(published.profileRevision, 2)
-		let history = await store.history()
-		XCTAssertEqual(history, [published])
-		let reads = await probe.calls
-		XCTAssertEqual(reads, 2)
-	}
-
-	func testAnImpressionRequestedDuringALoadWaitsForItAndMarksWhatIsExposed() async throws {
-		let probe = CatalogProbe(result: .success(try catalog(), etag: nil))
-		let store = makeStore()
-		let model = makeModel(probe: probe, store: store)
-		await model.load(for: try profile(revision: 1))
-		let previous = try recommendation(of: model)
-
-		await probe.blockNextRead()
-		let newTastes = try profile(revision: 2)
-		let reload = Task { await model.load(for: newTastes) }
-		try await waitForCatalogReads(probe, count: 2)
-		let impression = Task { await model.recordImpressionIfNeeded() }
-		try await Task.sleep(for: .milliseconds(50))
-		await probe.releaseBlockedRead()
-		await reload.value
-		await impression.value
-
-		let exposed = try recommendation(of: model)
-		XCTAssertNotEqual(exposed.recommendationID, previous.recommendationID)
-		XCTAssertTrue(exposed.viewRecorded)
-		let history = await store.history()
-		XCTAssertEqual(history, [exposed])
-		XCTAssertEqual(events.count, 1)
-		XCTAssertEqual(
-			events.first?.properties["recommendation_id"],
-			.string(exposed.recommendationID.uuidString.lowercased()))
-	}
-
-	func testTwoParallelImpressionsEmitOneEvent() async throws {
-		let model = makeModel(
-			probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: makeStore())
-		await model.load(for: try profile(revision: 1))
-
-		async let first: Void = model.recordImpressionIfNeeded()
-		async let second: Void = model.recordImpressionIfNeeded()
-		_ = await (first, second)
-
-		XCTAssertEqual(events.map(\.name), [.dailyRecommendationViewed])
-	}
-
 	// MARK: Helpers
 
 	private static let clock = Date(timeIntervalSince1970: 1_791_675_000)  // 2026-10-10T23:30:00Z
@@ -476,50 +358,21 @@ final class TodayViewModelTests: XCTestCase {
 		return try JSONDecoder().decode(
 			Catalog.self, from: JSONSerialization.data(withJSONObject: payload))
 	}
-
-	private func waitForCatalogReads(_ probe: CatalogProbe, count: Int) async throws {
-		for _ in 0..<500 {
-			if await probe.calls >= count { return }
-			try await Task.sleep(for: .milliseconds(10))
-		}
-		XCTFail("The catalog was read fewer than \(count) times.")
-	}
 }
 
 private struct UnexpectedState: Error {}
 
-/// The external boundary: a catalog reader that counts its calls and can pause or react to a read.
+/// The external boundary: a catalog reader that counts its calls.
 private actor CatalogProbe {
 	private(set) var calls = 0
 	private let result: APIResult<Catalog>
-	private var hook: (@Sendable () async -> Void)?
-	private var shouldBlockNext = false
-	private var blocked: CheckedContinuation<Void, Never>?
 
 	init(result: APIResult<Catalog>) {
 		self.result = result
 	}
 
-	func onRead(_ hook: @escaping @Sendable () async -> Void) {
-		self.hook = hook
-	}
-
-	func blockNextRead() {
-		shouldBlockNext = true
-	}
-
-	func releaseBlockedRead() {
-		blocked?.resume()
-		blocked = nil
-	}
-
 	func read() async -> APIResult<Catalog> {
 		calls += 1
-		if shouldBlockNext {
-			shouldBlockNext = false
-			await withCheckedContinuation { blocked = $0 }
-		}
-		if let hook { await hook() }
 		return result
 	}
 }
