@@ -49,7 +49,11 @@ final class AppContainer {
 		case .success(let configuration):
 			let client = APIClient(configuration: configuration)
 			apiClient = client
-			readers = .live(client)
+			#if targetEnvironment(simulator)
+				readers = UITestFixtureReaders.make(environment: ProcessInfo.processInfo.environment) ?? .live(client)
+			#else
+				readers = .live(client)
+			#endif
 			analytics = AnalyticsClient(
 				configuration: AnalyticsConfiguration(
 					writeKey: configuration.segmentWriteKey,
