@@ -143,9 +143,6 @@
 		A30000000000000000000023 /* Node */ = {isa = PBXGroup; children = (F10000000000000000000045 /* NodeViewModelTests.swift */, F10000000000000000000102 /* AppRouterNodeTests.swift */); path = Node; sourceTree = "<group>"; };
 		A30000000000000000000160 /* Recommendation */ = {isa = PBXGroup; children = (F10000000000000000000160 /* Affinity.swift */, F10000000000000000000170 /* DailyRecommendation.swift */); path = Recommendation; sourceTree = "<group>"; };
 		A30000000000000000000161 /* Recommendation */ = {isa = PBXGroup; children = (F10000000000000000000161 /* AffinityTests.swift */, F10000000000000000000171 /* DailySelectionTests.swift */); path = Recommendation; sourceTree = "<group>"; };
-		A30000000000000000000021 /* Node */ = {isa = PBXGroup; children = (F10000000000000000000041 /* NodeViewModel.swift */); path = Node; sourceTree = "<group>"; };
-		A30000000000000000000022 /* Navigation */ = {isa = PBXGroup; children = (F10000000000000000000039 /* NavigationContext.swift */); path = Navigation; sourceTree = "<group>"; };
-		A30000000000000000000023 /* Node */ = {isa = PBXGroup; children = (F10000000000000000000045 /* NodeViewModelTests.swift */); path = Node; sourceTree = "<group>"; };
 		A30000000000000000000140 /* Listening */ = {isa = PBXGroup; children = (F10000000000000000000140 /* ListeningActions.swift */); path = Listening; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
