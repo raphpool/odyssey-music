@@ -34,6 +34,10 @@ final class NodeViewModel {
 		self.recordEvent = recordEvent
 	}
 
+	/// Handed to the relations section so it records `relation_opened` through the same recorder as
+	/// `node_viewed`.
+	var relationEventRecorder: NodeEventRecorder? { recordEvent }
+
 	func load() async {
 		let identity = requestedIdentity
 		state = .loading
@@ -71,5 +75,21 @@ enum NodeAnalytics {
 		]
 		for (key, value) in context.attributionProperties { properties[key] = value }
 		return AnalyticsEvent(name: .nodeViewed, properties: properties, source: context.source)
+	}
+
+	static func relationOpened(
+		from fromNodeID: NodeIdentity,
+		relation: NodeEdge,
+		kind: String,
+		context: NavigationContext
+	) -> AnalyticsEvent {
+		var properties: [String: AnalyticsValue] = [
+			"from_node_id": .string(fromNodeID.rawValue),
+			"node_id": .string(relation.slug.rawValue),
+			"node_type": .string(relation.type.rawValue),
+			"relation_kind": .string(kind),
+		]
+		for (key, value) in context.attributionProperties { properties[key] = value }
+		return AnalyticsEvent(name: .relationOpened, properties: properties, source: .relation)
 	}
 }
