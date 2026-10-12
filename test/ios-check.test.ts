@@ -577,6 +577,65 @@ describe.sequential("Track1 persistent derived-data cache", () => {
 		}
 	});
 
+	// 2026-10-12: ios-ci.yml sets HOME=$RUNNER_TEMP/home, emptied at every job, so a cache under HOME would
+	// always be cold in CI. The cache root is, by priority: TRACK1_DERIVED_DATA_CACHE_DIR, then
+	// $RUNNER_TOOL_CACHE/track1-ci/DerivedData, then $HOME/Library/Caches/track1-ci/DerivedData.
+	describe("cache root", () => {
+		async function withDirectories<T>(run: (toolCache: string, home: string) => Promise<T>) {
+			const toolCache = await mkdtemp(join(tmpdir(), "track1-tool-cache-"));
+			const home = await mkdtemp(join(tmpdir(), "track1-home-"));
+			try {
+				return await run(toolCache, home);
+			} finally {
+				await rm(toolCache, { recursive: true, force: true });
+				await rm(home, { recursive: true, force: true });
+			}
+		}
+
+		it("uses the runner tool cache, not HOME, when RUNNER_TOOL_CACHE is set", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { calls, result } = await runCheckScript(undefined, {
+					env: { TRACK1_DERIVED_DATA_CACHE_DIR: "", RUNNER_TOOL_CACHE: toolCache, HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				const root = join(toolCache, "track1-ci", "DerivedData", key);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(root, "Track1")]);
+				expect(derivedDataPaths(calls, "Track1Preview")).toEqual([join(root, "Track1Preview")]);
+				expect(await readdir(home)).toEqual([]);
+			});
+		});
+
+		it("lets TRACK1_DERIVED_DATA_CACHE_DIR win over RUNNER_TOOL_CACHE and HOME", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { cacheDirectory, calls, result } = await runCheckScript(undefined, {
+					env: { RUNNER_TOOL_CACHE: toolCache, HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(cacheDirectory, key, "Track1")]);
+				expect(await readdir(toolCache)).toEqual([]);
+				expect(await readdir(home)).toEqual([]);
+			});
+		});
+
+		it("falls back to the home directory cache for a local run", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { calls, result } = await runCheckScript(undefined, {
+					env: { TRACK1_DERIVED_DATA_CACHE_DIR: "", RUNNER_TOOL_CACHE: "", HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				const root = join(home, "Library", "Caches", "track1-ci", "DerivedData", key);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(root, "Track1")]);
+				expect(await readdir(toolCache)).toEqual([]);
+			});
+		});
+	});
+
 	it("builds once on top of a warm cache that works, without falling back", async () => {
 		const key = await expectedCacheKey();
 		const { calls, result } = await runCheckScript(undefined, {

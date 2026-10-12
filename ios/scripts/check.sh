@@ -71,8 +71,22 @@ test_execution_time_allowance_seconds=180
 #    purged. A mkdir lock keeps two check.sh (the Mac hosts two runners) off the same folder: the loser does
 #    not wait, it builds in a private folder under the output dir, exactly like before. A build that fails
 #    on top of an existing cache is retried once from an empty folder, and says so.
-# TRACK1_DERIVED_DATA_CACHE_DIR overrides the cache location (the tests use it).
-derived_data_cache_base="${TRACK1_DERIVED_DATA_CACHE_DIR:-${HOME:-}/Library/Caches/track1-ci/DerivedData}"
+# 2026-10-12: ios-ci.yml isolates HOME per job (TRA-243: HOME=$RUNNER_TEMP/home), and RUNNER_TEMP is emptied
+# at every job, so a cache under $HOME would always start cold in CI and the cache would gain nothing. In
+# CI the cache therefore lives in the runner's tool cache (RUNNER_TOOL_CACHE, _work/_tool): it survives
+# from one job to the next and belongs to a single runner, so the two runners of the Mac do not share it.
+# Root of the cache, by priority: TRACK1_DERIVED_DATA_CACHE_DIR (the tests use it), then
+# $RUNNER_TOOL_CACHE/track1-ci/DerivedData, then ~/Library/Caches/track1-ci/DerivedData (local runs).
+# Read here, before the `env -i` of start_contract_harness, which only wraps the Node child.
+if [[ -n "${TRACK1_DERIVED_DATA_CACHE_DIR:-}" ]]; then
+	derived_data_cache_base="$TRACK1_DERIVED_DATA_CACHE_DIR"
+elif [[ -n "${RUNNER_TOOL_CACHE:-}" ]]; then
+	derived_data_cache_base="$RUNNER_TOOL_CACHE/track1-ci/DerivedData"
+elif [[ -n "${HOME:-}" ]]; then
+	derived_data_cache_base="$HOME/Library/Caches/track1-ci/DerivedData"
+else
+	derived_data_cache_base=""
+fi
 derived_data_cache_retention_days=14
 derived_data_root="$output_dir/DerivedData"
 cache_lock_dir=""
@@ -114,8 +128,8 @@ acquire_cache_lock() {
 setup_derived_data_cache() {
 	local resolved_hash="none"
 	local xcode_slug iso_week cache_key
-	if [[ -z "${HOME:-}" && -z "${TRACK1_DERIVED_DATA_CACHE_DIR:-}" ]]; then
-		echo "No home directory: DerivedData stays in $derived_data_root (cold build)."
+	if [[ -z "$derived_data_cache_base" ]]; then
+		echo "No cache location (no TRACK1_DERIVED_DATA_CACHE_DIR, RUNNER_TOOL_CACHE or HOME): DerivedData stays in $derived_data_root (cold build)."
 		return 0
 	fi
 	if [[ -f "$package_resolved_path" ]]; then
