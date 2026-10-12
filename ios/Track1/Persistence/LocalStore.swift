@@ -4,22 +4,56 @@ enum LocalStoreError: Error, Equatable, Sendable {
 	case unavailable
 }
 
+enum LocalStoreOperation: Equatable, Sendable {
+	case read
+	case write
+	case remove
+}
+
 actor LocalStore {
 	private let directoryURL: URL?
 	private let fileManager: FileManager
 	private var failingWriteName: String?
+	private let afterOperation: (@Sendable (LocalStoreOperation, String) async -> Void)?
 
+	/// `afterOperation` is a test seam, `nil` in production. It runs once an operation has been applied
+	/// and before its result is returned, so a test can hold a response in flight while another caller
+	/// (e.g. `ProfileStore.clear()`) runs. Added 2026-10-12: `ProfileStoreTests.swift:228` failed in CI
+	/// run 38239884450 because a `Task.yield()` could not force the "commit in flight, then clear" order.
+	/// It is awaited after the operation, never before: the actor serves requests in order, so holding
+	/// the request itself would let a later `remove` overtake an earlier `write`, which cannot happen
+	/// in production.
 	init(
 		directoryURL: URL? = nil,
 		fileManager: FileManager = .default,
-		failNextWriteNamed failingWriteName: String? = nil
+		failNextWriteNamed failingWriteName: String? = nil,
+		afterOperation: (@Sendable (LocalStoreOperation, String) async -> Void)? = nil
 	) {
 		self.directoryURL = directoryURL
 		self.fileManager = fileManager
 		self.failingWriteName = failingWriteName
+		self.afterOperation = afterOperation
 	}
 
-	func read(named name: String) -> Result<Data?, LocalStoreError> {
+	func read(named name: String) async -> Result<Data?, LocalStoreError> {
+		let result = performRead(named: name)
+		await afterOperation?(.read, name)
+		return result
+	}
+
+	func write(_ data: Data, named name: String) async -> Result<Void, LocalStoreError> {
+		let result = performWrite(data, named: name)
+		await afterOperation?(.write, name)
+		return result
+	}
+
+	func remove(named name: String) async -> Result<Void, LocalStoreError> {
+		let result = performRemove(named: name)
+		await afterOperation?(.remove, name)
+		return result
+	}
+
+	private func performRead(named name: String) -> Result<Data?, LocalStoreError> {
 		do {
 			let url = try fileURL(named: name)
 			guard fileManager.fileExists(atPath: url.path) else { return .success(nil) }
@@ -29,7 +63,7 @@ actor LocalStore {
 		}
 	}
 
-	func write(_ data: Data, named name: String) -> Result<Void, LocalStoreError> {
+	private func performWrite(_ data: Data, named name: String) -> Result<Void, LocalStoreError> {
 		if failingWriteName == name {
 			failingWriteName = nil
 			return .failure(.unavailable)
@@ -51,7 +85,7 @@ actor LocalStore {
 		}
 	}
 
-	func remove(named name: String) -> Result<Void, LocalStoreError> {
+	private func performRemove(named name: String) -> Result<Void, LocalStoreError> {
 		do {
 			let url = try fileURL(named: name)
 			guard fileManager.fileExists(atPath: url.path) else { return .success(()) }
