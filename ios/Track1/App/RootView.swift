@@ -122,6 +122,7 @@ private struct ApplicationTabs: View {
 								identity: identity,
 								context: context,
 								readNode: readers.node,
+								readLinks: readers.links,
 								recordEvent: { analytics.record($0) }
 							),
 							// Same tab: the relation stacks on the path the reader is already in.
