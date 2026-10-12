@@ -1,5 +1,17 @@
 import { spawnSync } from "node:child_process";
-import { access, chmod, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import {
+	access,
+	chmod,
+	mkdir,
+	mkdtemp,
+	readdir,
+	readFile,
+	rm,
+	symlink,
+	utimes,
+	writeFile,
+} from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -197,6 +209,7 @@ while :; do sleep 1; done
 				...process.env,
 				PATH: `${toolDirectory}:${process.env.PATH ?? ""}`,
 				TRACK1_CI_OUTPUT_DIR: outputDirectory,
+				TRACK1_DERIVED_DATA_CACHE_DIR: join(fixtureRoot, "derived-data-cache"),
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
 			},
@@ -211,11 +224,47 @@ while :; do sleep 1; done
 	}
 }
 
+type CheckScriptPaths = {
+	cacheDirectory: string;
+	outputDirectory: string;
+};
+
 type CheckScriptOptions = {
 	// Output of the faked `xcrun simctl list devices`.
 	devices?: string;
 	env?: Record<string, string>;
+	// Runs before the script, to seed the persistent derived-data cache.
+	beforeRun?: (paths: CheckScriptPaths) => Promise<void>;
 };
+
+// Independent of check.sh on purpose: the cache key is Xcode version, Package.resolved hash, ISO week.
+function isoWeek(date: Date) {
+	const day = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+	day.setUTCDate(day.getUTCDate() + 4 - (day.getUTCDay() || 7));
+	const yearStart = Date.UTC(day.getUTCFullYear(), 0, 1);
+	const week = Math.ceil(((day.getTime() - yearStart) / 86_400_000 + 1) / 7);
+	return `${day.getUTCFullYear()}-W${String(week).padStart(2, "0")}`;
+}
+
+async function expectedCacheKey() {
+	const resolved = await readFile(
+		resolve("ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"),
+	);
+	const hash = createHash("sha256").update(resolved).digest("hex").slice(0, 12);
+	return `Xcode-26.4-17E192-${hash}-${isoWeek(new Date())}`;
+}
+
+// The `-derivedDataPath` argument of every logged `build-for-testing` call of a scheme.
+function derivedDataPaths(calls: string, scheme: string) {
+	return calls
+		.split("\n")
+		.filter((call) => /(^| )build-for-testing( |$)/.test(call) && call.includes(`-scheme ${scheme} `))
+		.map((call) => call.match(/-derivedDataPath (\S+)/)?.[1] ?? "");
+}
+
+function testActions(calls: string) {
+	return calls.split("\n").filter((call) => /(^| )test-without-building( |$)/.test(call));
+}
 
 async function runCheckScript(
 	failingAction?: "build-for-testing" | "test-without-building",
@@ -225,8 +274,11 @@ async function runCheckScript(
 	const callsPath = join(directory, "xcodebuild-calls");
 	const simctlCallsPath = join(directory, "simctl-calls");
 	const swiftFormatCallsPath = join(directory, "swift-format-calls");
+	const curlCallsPath = join(directory, "curl-calls");
 	const outputDirectory = join(directory, "output");
+	const cacheDirectory = join(directory, "derived-data-cache");
 	try {
+		await options.beforeRun?.({ cacheDirectory, outputDirectory });
 		await writeTool(
 			directory,
 			"xcodebuild",
@@ -247,13 +299,17 @@ if [[ "$arguments" == *" build-for-testing "* ]]; then
 			*) shift ;;
 		  esac
 	  done
+	  # A build that starts from a non-empty derived-data folder fails, like a corrupted cache would.
+	  if [[ -n "\${TRACK1_TEST_FAIL_WARM_BUILD:-}" && -d "$derived_data/Build/Products" ]]; then
+		  exit 18
+	  fi
 	  mkdir -p "$derived_data/Build/Products"
 	  printf '%s\\n' '<?xml version="1.0" encoding="UTF-8"?><plist version="1.0"><dict><key>Track1Tests</key><dict/></dict></plist>' > "$derived_data/Build/Products/$scheme.xctestrun"
 fi
 if [[ "\${TRACK1_TEST_FAIL_ACTION:-}" == "build-for-testing" && "$arguments" == *" build-for-testing "* ]]; then
 	  exit 17
 fi
-if [[ "\${TRACK1_TEST_FAIL_ACTION:-}" == "test-without-building" && "$arguments" == *" test-without-building "* ]]; then
+if [[ "\${TRACK1_TEST_FAIL_ACTION:-}" == "test-without-building" && "$arguments" == *" test-without-building "* && "$arguments" == *"\${TRACK1_TEST_FAIL_XCTESTRUN:-}"* ]]; then
 	  exit 19
 fi
 `,
@@ -279,6 +335,7 @@ esac
 			directory,
 			"curl",
 			`#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "$TRACK1_TEST_CURL_CALLS"
 if [[ "$*" == *"__track1_contract_report"* ]]; then
 	  printf '{"catalogRequests":2,"notModifiedCatalogRequests":1,"nodeRequests":1,"generationPosts":1,"providerFetchAttempts":0}'
 fi
@@ -291,6 +348,8 @@ fi
 				...process.env,
 				PATH: `${directory}:${process.env.PATH ?? ""}`,
 				TRACK1_CI_OUTPUT_DIR: outputDirectory,
+				TRACK1_DERIVED_DATA_CACHE_DIR: cacheDirectory,
+				TRACK1_TEST_CURL_CALLS: curlCallsPath,
 				TRACK1_TEST_FAIL_ACTION: failingAction ?? "",
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
@@ -304,7 +363,20 @@ fi
 		const swiftFormatArguments = (await readFile(swiftFormatCallsPath, "utf8").catch(() => ""))
 			.split("\n")
 			.filter(Boolean);
-		return { calls, result, simctlCalls, swiftFormatArguments };
+		const curlCalls = (await readFile(curlCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
+		const cacheEntries = await readdir(cacheDirectory).catch(() => [] as string[]);
+		const cacheFiles = await readdir(cacheDirectory, { recursive: true }).catch(() => [] as string[]);
+		return {
+			cacheDirectory,
+			cacheEntries,
+			cacheFiles,
+			calls,
+			curlCalls,
+			outputDirectory,
+			result,
+			simctlCalls,
+			swiftFormatArguments,
+		};
 	} finally {
 		await rm(directory, { recursive: true, force: true });
 	}
@@ -396,6 +468,356 @@ describe.sequential("Track1 simulator architecture policy", () => {
 			expect(result.status).not.toBe(0);
 		},
 	);
+});
+
+// 2026-10-12: ios-check took about 10 min because it compiled and ran the whole suite twice, once per scheme,
+// each time from an empty DerivedData in the job's temporary folder (TRA-420).
+async function swiftFiles(directory: string) {
+	const entries = await readdir(directory, { recursive: true });
+	return entries.filter((entry) => entry.endsWith(".swift")).map((entry) => join(directory, entry));
+}
+
+describe.sequential("Track1 scheme passes", () => {
+	// Tests whose result can differ under Track1Preview; each one is justified in check.sh.
+	const previewOnlyTesting = [
+		"Track1Tests/AppConfigurationTests/testApplicationBundleDeclaresAModernLaunchScreen",
+		"Track1UITests/NavigationTests/testThreeTabsKeepTheirIndependentNavigationStacks",
+		"Track1Tests/AnalyticsClientTests/testRealSegmentAdapterSendsOnlyAfterGrantAndPurgesAfterWithdrawal",
+		"Track1Tests/AnalyticsClientTests/testRealSegmentAdapterMapsEventIDToMessageIDAndStripsContext",
+		"Track1Tests/AnalyticsClientTests/testRealSegmentWaitsForDelayedStartupBeforeSendingTheFirstEvent",
+		"Track1Tests/AnalyticsClientTests/testRealSegmentWithdrawalCancelsDelayedUploadAndPurgesSDKIdentity",
+		"Track1Tests/AnalyticsClientTests/testRealSegmentAdapterReusesItsSingleSDKInstanceAfterRapidRegrant",
+	];
+
+	it("compiles both schemes completely but runs the whole suite for Track1 only", async () => {
+		const { calls, result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		const builds = calls.split("\n").filter((call) => /(^| )build-for-testing( |$)/.test(call));
+		expect(builds).toHaveLength(2);
+		for (const build of builds) {
+			expect(build).not.toContain("-only-testing");
+		}
+		const tests = testActions(calls);
+		expect(tests).toHaveLength(2);
+		const [full, preview] = tests;
+		expect(full).toContain("Track1.xctestrun");
+		expect(full).not.toContain("-only-testing");
+		expect(preview).toContain("Track1Preview.xctestrun");
+		const selected = (preview ?? "").match(/-only-testing:\S+/g) ?? [];
+		expect(selected).toEqual(previewOnlyTesting.map((test) => `-only-testing:${test}`));
+	});
+
+	it("verifies the contract report after the full pass only", async () => {
+		const { calls, curlCalls, result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(curlCalls.filter((call) => call.includes("__track1_contract_report"))).toHaveLength(1);
+		expect(curlCalls.filter((call) => call.includes("__track1_contract_reset"))).toHaveLength(1);
+	});
+
+	it("fails when the targeted Track1Preview pass fails, and only then", async () => {
+		const { calls, result } = await runCheckScript("test-without-building", {
+			env: { TRACK1_TEST_FAIL_XCTESTRUN: "Track1Preview.xctestrun" },
+		});
+
+		expect(result.status).not.toBe(0);
+		// The full Track1 pass went through before the Preview pass failed.
+		expect(testActions(calls)).toHaveLength(2);
+	});
+
+	it("lists only tests that exist in the Swift sources", async () => {
+		for (const identifier of previewOnlyTesting) {
+			const [target, className, testName] = identifier.split("/");
+			const files = await swiftFiles(resolve("ios", target ?? ""));
+			let found = false;
+			for (const file of files) {
+				const source = await readFile(file, "utf8");
+				found ||= source.includes(`class ${className}:`) && source.includes(`func ${testName}(`);
+			}
+			expect(found, `${identifier} is not in ios/${target}`).toBe(true);
+		}
+	});
+
+	it("notices a new test that reads the bundle, a compilation flag or the app identifier", async () => {
+		// These two files are covered by the Preview list (see check.sh); anything else reading the
+		// scheme-dependent configuration must be added to that list first.
+		const covered = ["AnalyticsClientTests.swift", "AppConfigurationTests.swift"];
+		const sensitive =
+			/Bundle\.main|infoDictionary|bundleIdentifier|SEGMENT_CDN|SegmentAdapter\(|invalid-configuration/;
+		const offenders: string[] = [];
+		for (const root of ["Track1Tests", "Track1UITests"]) {
+			for (const file of await swiftFiles(resolve("ios", root))) {
+				const name = file.split("/").pop() ?? "";
+				if (
+					sensitive.test(await readFile(file, "utf8")) &&
+					!covered.includes(name) &&
+					name !== "NavigationTests.swift"
+				) {
+					offenders.push(file);
+				}
+			}
+		}
+		expect(offenders).toEqual([]);
+	});
+});
+
+describe.sequential("Track1 persistent derived-data cache", () => {
+	const dayMilliseconds = 86_400_000;
+
+	it("keys the cache on Xcode, Package.resolved and the ISO week, outside the job output", async () => {
+		const key = await expectedCacheKey();
+		const { cacheDirectory, calls, outputDirectory, result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toEqual([join(cacheDirectory, key, "Track1")]);
+		expect(derivedDataPaths(calls, "Track1Preview")).toEqual([join(cacheDirectory, key, "Track1Preview")]);
+		for (const test of testActions(calls)) {
+			expect(test).toContain(`-resultBundlePath ${outputDirectory}/`);
+		}
+	});
+
+	// 2026-10-12: ios-ci.yml sets HOME=$RUNNER_TEMP/home, emptied at every job, so a cache under HOME would
+	// always be cold in CI. The cache root is, by priority: TRACK1_DERIVED_DATA_CACHE_DIR, then
+	// $RUNNER_TOOL_CACHE/track1-ci/DerivedData, then $HOME/Library/Caches/track1-ci/DerivedData.
+	describe("cache root", () => {
+		async function withDirectories<T>(run: (toolCache: string, home: string) => Promise<T>) {
+			const toolCache = await mkdtemp(join(tmpdir(), "track1-tool-cache-"));
+			const home = await mkdtemp(join(tmpdir(), "track1-home-"));
+			try {
+				return await run(toolCache, home);
+			} finally {
+				await rm(toolCache, { recursive: true, force: true });
+				await rm(home, { recursive: true, force: true });
+			}
+		}
+
+		it("uses the runner tool cache, not HOME, when RUNNER_TOOL_CACHE is set", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { calls, result } = await runCheckScript(undefined, {
+					env: { TRACK1_DERIVED_DATA_CACHE_DIR: "", RUNNER_TOOL_CACHE: toolCache, HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				const root = join(toolCache, "track1-ci", "DerivedData", key);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(root, "Track1")]);
+				expect(derivedDataPaths(calls, "Track1Preview")).toEqual([join(root, "Track1Preview")]);
+				expect(await readdir(home)).toEqual([]);
+			});
+		});
+
+		it("lets TRACK1_DERIVED_DATA_CACHE_DIR win over RUNNER_TOOL_CACHE and HOME", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { cacheDirectory, calls, result } = await runCheckScript(undefined, {
+					env: { RUNNER_TOOL_CACHE: toolCache, HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(cacheDirectory, key, "Track1")]);
+				expect(await readdir(toolCache)).toEqual([]);
+				expect(await readdir(home)).toEqual([]);
+			});
+		});
+
+		it("falls back to the home directory cache for a local run", async () => {
+			const key = await expectedCacheKey();
+			await withDirectories(async (toolCache, home) => {
+				const { calls, result } = await runCheckScript(undefined, {
+					env: { TRACK1_DERIVED_DATA_CACHE_DIR: "", RUNNER_TOOL_CACHE: "", HOME: home },
+				});
+
+				expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+				const root = join(home, "Library", "Caches", "track1-ci", "DerivedData", key);
+				expect(derivedDataPaths(calls, "Track1")).toEqual([join(root, "Track1")]);
+				expect(await readdir(toolCache)).toEqual([]);
+			});
+		});
+	});
+
+	it("builds once on top of a warm cache that works, without falling back", async () => {
+		const key = await expectedCacheKey();
+		const { calls, result } = await runCheckScript(undefined, {
+			beforeRun: async ({ cacheDirectory }) => {
+				await mkdir(join(cacheDirectory, key, "Track1", "Build", "Products"), { recursive: true });
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toHaveLength(1);
+		expect(`${result.stdout}${result.stderr}`).not.toContain("cold build");
+	});
+
+	it("retries once from an empty folder when a build with the cache fails, and logs it", async () => {
+		const key = await expectedCacheKey();
+		const { cacheDirectory, calls, result } = await runCheckScript(undefined, {
+			env: { TRACK1_TEST_FAIL_WARM_BUILD: "1" },
+			beforeRun: async ({ cacheDirectory }) => {
+				const warm = join(cacheDirectory, key, "Track1", "Build", "Products");
+				await mkdir(warm, { recursive: true });
+				await writeFile(join(warm, "stale-object"), "stale\n");
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		const track1Paths = derivedDataPaths(calls, "Track1");
+		expect(track1Paths).toEqual([join(cacheDirectory, key, "Track1"), join(cacheDirectory, key, "Track1")]);
+		expect(`${result.stdout}${result.stderr}`).toContain("cold build");
+		// Track1Preview had no cache: a single attempt, no retry.
+		expect(derivedDataPaths(calls, "Track1Preview")).toHaveLength(1);
+	});
+
+	it("does not retry a failing build that started from an empty folder", async () => {
+		const { calls, result } = await runCheckScript("build-for-testing");
+
+		expect(result.status).not.toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toHaveLength(1);
+		expect(`${result.stdout}${result.stderr}`).not.toContain("cold build");
+	});
+
+	it("fails after a single cold retry when the build keeps failing", async () => {
+		const key = await expectedCacheKey();
+		const { calls, result } = await runCheckScript("build-for-testing", {
+			beforeRun: async ({ cacheDirectory }) => {
+				await mkdir(join(cacheDirectory, key, "Track1", "Build", "Products"), { recursive: true });
+			},
+		});
+
+		expect(result.status).not.toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toHaveLength(2);
+		expect(derivedDataPaths(calls, "Track1Preview")).toHaveLength(0);
+	});
+
+	it("keeps the previous cache when the cold retry fails too, since the sources are at fault", async () => {
+		const key = await expectedCacheKey();
+		const { cacheFiles, result } = await runCheckScript("build-for-testing", {
+			beforeRun: async ({ cacheDirectory }) => {
+				const products = join(cacheDirectory, key, "Track1", "Build", "Products");
+				await mkdir(products, { recursive: true });
+				await writeFile(join(products, "warm-object"), "warm\n");
+			},
+		});
+
+		expect(result.status).not.toBe(0);
+		expect(`${result.stdout}${result.stderr}`).toContain("cold build");
+		expect(cacheFiles).toContain(join(key, "Track1", "Build", "Products", "warm-object"));
+		expect(cacheFiles.filter((file) => file.includes(".failed-"))).toEqual([]);
+	});
+
+	it("takes the cache lock for the run and releases it at the end", async () => {
+		const key = await expectedCacheKey();
+		const { cacheEntries, result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(cacheEntries).toContain(key);
+		expect(cacheEntries).not.toContain(`${key}.lock`);
+	});
+
+	it("releases the cache lock when the run fails", async () => {
+		const key = await expectedCacheKey();
+		const { cacheEntries, result } = await runCheckScript("build-for-testing");
+
+		expect(result.status).not.toBe(0);
+		expect(cacheEntries).not.toContain(`${key}.lock`);
+	});
+
+	it("builds in a private folder while another live check.sh holds the cache lock", async () => {
+		const key = await expectedCacheKey();
+		const { cacheEntries, calls, outputDirectory, result } = await runCheckScript(undefined, {
+			beforeRun: async ({ cacheDirectory }) => {
+				const lock = join(cacheDirectory, `${key}.lock`);
+				await mkdir(lock, { recursive: true });
+				// The vitest worker is alive for the whole test, like a concurrent check.sh would be.
+				await writeFile(join(lock, "pid"), `${process.pid}\n`);
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toEqual([join(outputDirectory, "DerivedData", "Track1")]);
+		expect(derivedDataPaths(calls, "Track1Preview")).toEqual([
+			join(outputDirectory, "DerivedData", "Track1Preview"),
+		]);
+		expect(`${result.stdout}${result.stderr}`).toContain("locked by another check.sh");
+		// The other run's lock is not ours to release.
+		expect(cacheEntries).toContain(`${key}.lock`);
+	});
+
+	it("takes over a lock left behind by a process that is gone", async () => {
+		const key = await expectedCacheKey();
+		const deadPid = spawnSync(process.execPath, ["-e", ""]).pid;
+		const { cacheDirectory, calls, cacheEntries, result } = await runCheckScript(undefined, {
+			beforeRun: async ({ cacheDirectory }) => {
+				const lock = join(cacheDirectory, `${key}.lock`);
+				await mkdir(lock, { recursive: true });
+				await writeFile(join(lock, "pid"), `${deadPid}\n`);
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(derivedDataPaths(calls, "Track1")).toEqual([join(cacheDirectory, key, "Track1")]);
+		expect(cacheEntries).not.toContain(`${key}.lock`);
+	});
+
+	it("treats a lock without a pid as held while it is young and takes it over once it is old", async () => {
+		const key = await expectedCacheKey();
+		const old = new Date(Date.now() - 10 * 60_000);
+		for (const [date, expectedRoot] of [
+			[new Date(), "private"],
+			[old, "cache"],
+		] as const) {
+			const { cacheDirectory, calls, outputDirectory, result } = await runCheckScript(undefined, {
+				beforeRun: async ({ cacheDirectory }) => {
+					const lock = join(cacheDirectory, `${key}.lock`);
+					await mkdir(lock, { recursive: true });
+					await utimes(lock, date, date);
+				},
+			});
+
+			expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+			const root =
+				expectedRoot === "cache" ? join(cacheDirectory, key) : join(outputDirectory, "DerivedData");
+			expect(derivedDataPaths(calls, "Track1")).toEqual([join(root, "Track1")]);
+		}
+	});
+
+	it("purges cache keys unused for more than 14 days and keeps the others", async () => {
+		const key = await expectedCacheKey();
+		const old = new Date(Date.now() - 15 * dayMilliseconds);
+		const recent = new Date(Date.now() - 13 * dayMilliseconds);
+		const { cacheEntries, result } = await runCheckScript(undefined, {
+			beforeRun: async ({ cacheDirectory }) => {
+				for (const [name, date] of [
+					["Xcode-26.3-OLD-aaaaaaaaaaaa-2026-W01", old],
+					["Xcode-26.3-RECENT-bbbbbbbbbbbb-2026-W02", recent],
+				] as const) {
+					const path = join(cacheDirectory, name);
+					await mkdir(join(path, "Track1"), { recursive: true });
+					await utimes(path, date, date);
+				}
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(cacheEntries).not.toContain("Xcode-26.3-OLD-aaaaaaaaaaaa-2026-W01");
+		expect(cacheEntries).toContain("Xcode-26.3-RECENT-bbbbbbbbbbbb-2026-W02");
+		expect(cacheEntries).toContain(key);
+	});
+
+	it("never purges the key of the current run, even when its folder looks old", async () => {
+		const key = await expectedCacheKey();
+		const old = new Date(Date.now() - 20 * dayMilliseconds);
+		const { cacheEntries, result } = await runCheckScript(undefined, {
+			beforeRun: async ({ cacheDirectory }) => {
+				const path = join(cacheDirectory, key);
+				await mkdir(path, { recursive: true });
+				await utimes(path, old, old);
+			},
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(cacheEntries).toContain(key);
+	});
 });
 
 // 2026-10-11: cancelled ios-check runs skipped their cleanup and left booted simulators behind, which
