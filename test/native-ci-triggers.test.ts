@@ -172,6 +172,19 @@ describe("path filters (TRA-415)", () => {
 		expect(matchesGlob("docs/**", "src/docs/x.ts")).toBe(false);
 	});
 
+	it("keeps cache/ and data/ as inputs: the taxonomy resolves sources from <repo>/cache", () => {
+		// src/graph.ts passes <repo>/data/genre-taxonomy.json to loadGenreTaxonomy, whose cacheRootFor() is
+		// <repo>/cache, independent of ODYSSEY_CACHE_DIR (checked 2026-10-12: 271 genres resolved with the
+		// variable pointing at an empty dir). The catalog served to the XCTests depends on it.
+		for (const file of [
+			"cache/nodes/artist/example.json",
+			"cache/pending-reverses.json",
+			"data/genre-taxonomy.json",
+		]) {
+			expect(IGNORED_PATHS.some((glob) => matchesGlob(glob, file))).toBe(false);
+		}
+	});
+
 	it("reads the harness import graph from src/", () => {
 		const graph = harnessImportGraph("test/helpers/mobile-contract-server.ts");
 		expect(graph).toContain("src/server.ts");

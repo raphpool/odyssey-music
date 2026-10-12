@@ -15,6 +15,11 @@ name: mobile-ci
 #   docs/**     documents and design exports; src/ only names them in comments
 #   *.md        root-level notes only (`*` stays in one segment); no **/*.md, a Markdown file under ios/
 #               or mobile/ could be a bundled resource
+# NOT ignored, although it looks inert: cache/** (1600+ files, frequent data PRs). The harness sets
+#   ODYSSEY_CACHE_DIR to a temp dir, but src/graph.ts resolves data/genre-taxonomy.json sources against
+#   <repo>/cache (genre-taxonomy.ts cacheRootFor) whatever that variable says, and the catalog served to the
+#   XCTests includes that taxonomy. Checked 2026-10-12 with ODYSSEY_CACHE_DIR on an empty dir: 271 genres
+#   still resolved their sources from the repo cache.
 # Keep test/native-ci-triggers.test.ts and the dispatcher's ci-merge.sh in line when this list changes.
 on:
   pull_request:
