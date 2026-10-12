@@ -211,38 +211,42 @@ final class ProfileStoreTests: XCTestCase {
 	func testClearRemovesAConcurrentCommitAndInvalidatesTheProfile() async throws {
 		// 2026-10-12: this test used one `Task.yield()` to let the commit start before `clear()`. When
 		// `clear()` ran first, the commit legitimately saved a profile and the assertion failed
-		// (CI run 38239884450). The gate holds the commit's profile read response, so the order
-		// "commit in flight, then clear" is forced rather than hoped for.
-		let gate = ResponseGate(holding: .read, named: "profile.v1.json")
-		defer { gate.release() }
-		let store = ProfileStore(
-			localStore: LocalStore(directoryURL: directoryURL) { operation, name in
-				await gate.afterOperation(operation, name)
+		// (CI run 38239884450). The gate holds one response of the commit, so the order
+		// "commit in flight, then clear" is forced rather than hoped for. Both generation guards that
+		// matter are covered: the one after the profile read and the one after the profile write.
+		for held in [LocalStoreOperation.read, .write] {
+			let gate = ResponseGate(holding: held, named: "profile.v1.json")
+			defer { gate.release() }
+			let directory = directoryURL.appending(path: "held-\(held)", directoryHint: .isDirectory)
+			let store = ProfileStore(
+				localStore: LocalStore(directoryURL: directory) { operation, name in
+					await gate.afterOperation(operation, name)
+				}
+			)
+			let draft = try await initialDraft(from: store)
+			let choices = genres(3)
+			let selected = ProfileDraft(
+				version: Profile.version,
+				flowID: draft.flowID,
+				genreIDs: choices,
+				onboardingStartedRecorded: false
+			)
+			let write = Task { await store.commit(selected, availableGenreIDs: choices) }
+			guard await gate.waitUntilReached(timeout: Self.gateTimeout) else {
+				return XCTFail("The commit never reached its profile \(held).")
 			}
-		)
-		let draft = try await initialDraft(from: store)
-		let choices = genres(3)
-		let selected = ProfileDraft(
-			version: Profile.version,
-			flowID: draft.flowID,
-			genreIDs: choices,
-			onboardingStartedRecorded: false
-		)
-		let write = Task { await store.commit(selected, availableGenreIDs: choices) }
-		guard await gate.waitUntilReached(timeout: Self.gateTimeout) else {
-			return XCTFail("The commit never reached its profile read.")
+
+			let clearResult = await within(Self.gateTimeout) { await store.clear() }
+			gate.release()
+			let writeResult = await within(Self.gateTimeout) { await write.value }
+
+			XCTAssertEqual(clearResult, .cleared, "held \(held)")
+			XCTAssertEqual(writeResult, .invalidated, "held \(held)")
+			let profile = await store.read()
+			let draftState = await store.readDraft()
+			XCTAssertEqual(profile, .missing, "held \(held)")
+			XCTAssertEqual(draftState, .missing, "held \(held)")
 		}
-
-		let clearResult = await within(Self.gateTimeout) { await store.clear() }
-		gate.release()
-		let writeResult = await within(Self.gateTimeout) { await write.value }
-
-		XCTAssertEqual(clearResult, .cleared)
-		XCTAssertEqual(writeResult, .invalidated)
-		let profile = await store.read()
-		let draftState = await store.readDraft()
-		XCTAssertEqual(profile, .missing)
-		XCTAssertEqual(draftState, .missing)
 	}
 
 	func testCommitStartedAfterClearSavesANewProfile() async throws {
@@ -306,10 +310,14 @@ private func within<Value: Sendable>(
 	_ operation: @escaping @Sendable () async -> Value
 ) async -> Value? {
 	let outcome = OneShot<Value?>()
-	Task { outcome.fulfill(await operation()) }
-	Task {
+	let timer = Task {
 		try? await Task.sleep(for: timeout)
+		guard !Task.isCancelled else { return }
 		outcome.fulfill(nil)
+	}
+	Task {
+		outcome.fulfill(await operation())
+		timer.cancel()
 	}
 	return await outcome.wait()
 }

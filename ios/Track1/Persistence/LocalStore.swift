@@ -22,7 +22,8 @@ actor LocalStore {
 	/// run 38239884450 because a `Task.yield()` could not force the "commit in flight, then clear" order.
 	/// It is awaited after the operation, never before: the actor serves requests in order, so holding
 	/// the request itself would let a later `remove` overtake an earlier `write`, which cannot happen
-	/// in production.
+	/// in production. The actor is reentrant at that await, so while a response is held, later
+	/// operations are applied and return first; only the held caller's result arrives late.
 	init(
 		directoryURL: URL? = nil,
 		fileManager: FileManager = .default,
