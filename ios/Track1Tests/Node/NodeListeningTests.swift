@@ -172,7 +172,7 @@ final class NodeListeningTests: XCTestCase {
 	@MainActor
 	private final class OSOpener {
 		private(set) var opened = [URL]()
-		private let hold: Bool
+		private var hold: Bool
 		private var gate: CheckedContinuation<Void, Never>?
 
 		init(hold: Bool) { self.hold = hold }
@@ -183,7 +183,10 @@ final class NodeListeningTests: XCTestCase {
 			return true
 		}
 
+		/// Also stops holding later calls. 2026-10-12: a later `open` on a still-holding opener waited for a
+		/// release that never came, and `ios-check` hung until its 30-minute timeout (three runs on #330).
 		func release() {
+			hold = false
 			gate?.resume()
 			gate = nil
 		}
