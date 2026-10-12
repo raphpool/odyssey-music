@@ -2,32 +2,27 @@ name: mobile-ci
 
 # No push trigger (TRA-411, 2026-10-12): main is strict-protected, so the merge commit is the tree this
 # check already ran on the PR; a push run only held a self-hosted runner while the next PR waited.
-# Path filter (TRA-415, 2026-10-12): #338 changed 3 lines under .claude/ and still held the `ios` runner for
-# 19 min (ios-check) while the light jobs queued one after the other on the second runner. mobile-check is not
-# a required check, so a PR that only touches paths it never reads can skip it.
-# Rule: an ignored path must never be an entry of ios/scripts/check.sh or of the contract harness. Only
-# `paths-ignore` is used, so it fails safe: any path not listed below triggers the check.
-# Inputs of mobile-check, never to ignore: mobile/** (sources, package-lock.json, configs), the root
-# biome.json (mobile/biome.json is `"root": false`, it inherits from it) and this file. mobile/ imports nothing
-# from src/.
-# Ignored, each proven not to be read by the mobile steps:
-#   .claude/**  agent and hook configuration, not shipped and not imported
-#   docs/**     documents and design exports; src/ only names them in comments
-#   *.md        root-level notes only (`*` stays in one segment); no **/*.md, a Markdown file under ios/
-#               or mobile/ could be a bundled resource
-# NOT ignored, although it looks inert: cache/** (1600+ files, frequent data PRs). The harness sets
-#   ODYSSEY_CACHE_DIR to a temp dir, but src/graph.ts resolves data/genre-taxonomy.json sources against
-#   <repo>/cache (genre-taxonomy.ts cacheRootFor) whatever that variable says, and the catalog served to the
-#   XCTests includes that taxonomy. Checked 2026-10-12 with ODYSSEY_CACHE_DIR on an empty dir: 271 genres
-#   still resolved their sources from the repo cache.
-# Keep test/native-ci-triggers.test.ts and the dispatcher's ci-merge.sh in line when this list changes.
+# Path filter (TRA-415, TRA-417, 2026-10-12): #338 changed 3 lines under .claude/ and held the `ios` runner for
+# 19 min while the light jobs queued behind each other; after TRA-415 ignored .claude/, docs/ and *.md, #341
+# (only vitest.config.ts and a vitest setup file) still started the native checks. A deny-list is never
+# complete, so `paths` lists the inputs. mobile-check is not a required check.
+# Rule: every input must be listed in `paths`. test/native-ci-triggers.test.ts enforces it for the files of
+# mobile/ and fails if one of them refers to a path outside mobile/.
+# `paths` on pull_request: the workflow starts when at least one changed file matches at least one pattern, so
+# a PR touching only unlisted files creates no run at all (ready or draft). `*` stays inside a path segment, `**`
+# crosses `/`. `!` and `? + [ ] \` are forbidden: the test only models `*` and `**`. GitHub reads at most
+# 3,000 files of a diff; if no matching file is among them the workflow does not start (no fail-safe there).
+# Inputs of mobile-check (npm ci, lint, typecheck, test, all run in mobile/):
+#   mobile/**    sources, tests, mobile/package-lock.json, tsconfig, jest config, mobile/biome.json
+#   biome.json   the root one: mobile/biome.json is `"root": false` and inherits from it
+#   .github/workflows/mobile-ci.yml   this file
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths-ignore:
-      - ".claude/**"
-      - "docs/**"
-      - "*.md"
+    paths:
+      - "mobile/**"
+      - "biome.json"
+      - ".github/workflows/mobile-ci.yml"
 
 permissions:
   contents: read

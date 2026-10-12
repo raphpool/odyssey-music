@@ -2,33 +2,44 @@ name: ios-ci
 
 # No push trigger (TRA-411, 2026-10-12): main is strict-protected, so the merge commit is the tree this
 # check already ran on the PR; a push run only held a self-hosted runner while the next PR waited.
-# Path filter (TRA-415, 2026-10-12): #338 changed 3 lines under .claude/ and still held the `ios` runner for
-# 19 min (ios-check) while the light jobs queued one after the other on the second runner. ios-check is not
-# a required check, so a PR that only touches paths it never reads can skip it.
-# Rule: an ignored path must never be an entry of ios/scripts/check.sh or of the contract harness. Only
-# `paths-ignore` is used, so it fails safe: any path not listed below triggers the check.
-# Inputs of ios-check, never to ignore: ios/** (sources, project, check.sh, .xcode-version, .swift-format,
-# Package.resolved), test/helpers/mobile-contract-server.ts and every src/ module it imports (src/server.ts
-# and its graph), data/*.json that src/ loads at runtime, package.json, package-lock.json, tsconfig*.json and
-# this file.
-# Ignored, each proven not to be read by check.sh or the harness:
-#   .claude/**  agent and hook configuration, not shipped and not imported
-#   docs/**     documents and design exports; src/ only names them in comments
-#   *.md        root-level notes only (`*` stays in one segment); no **/*.md, a Markdown file under ios/
-#               or mobile/ could be a bundled resource
-# NOT ignored, although it looks inert: cache/** (1600+ files, frequent data PRs). The harness sets
-#   ODYSSEY_CACHE_DIR to a temp dir, but src/graph.ts resolves data/genre-taxonomy.json sources against
-#   <repo>/cache (genre-taxonomy.ts cacheRootFor) whatever that variable says, and the catalog served to the
-#   XCTests includes that taxonomy. Checked 2026-10-12 with ODYSSEY_CACHE_DIR on an empty dir: 271 genres
-#   still resolved their sources from the repo cache.
-# Keep test/native-ci-triggers.test.ts and the dispatcher's ci-merge.sh in line when this list changes.
+# Path filter (TRA-415, TRA-417, 2026-10-12): #338 changed 3 lines under .claude/ and held the `ios` runner for
+# 19 min; after TRA-415 ignored .claude/, docs/ and *.md, #341 (only vitest.config.ts and a vitest setup file)
+# still started ios-check, 10 min on a saturated Mac. A deny-list is never complete, so `paths` lists the
+# inputs. ios-check is not a required check.
+# Rule: every input must be listed in `paths`. test/native-ci-triggers.test.ts enforces it for the import graph
+# of the contract harness, ios/, the `$repository_root/...` reads of check.sh and the known reads outside
+# imports, and fails on a ../ in the Xcode project files. Keep the dispatcher's ci-merge.sh in line.
+# `paths` on pull_request: the workflow starts when at least one changed file matches at least one pattern, so
+# a PR touching only unlisted files creates no run at all (ready or draft). `*` stays inside a path segment, `**`
+# crosses `/`. `!` and `? + [ ] \` are forbidden: the test only models `*` and `**`. GitHub reads at most
+# 3,000 files of a diff; if no matching file is among them the workflow does not start (no fail-safe there).
+# Inputs of ios-check:
+#   ios/**                          sources, Xcode project, check.sh, .xcode-version, .swift-format, Package.resolved
+#   src/**                          the harness imports server.ts and its graph from src/ (root, mobile/, services/,
+#                                   tools/); a folder, so a new module needs no tier/3 edit. Over-triggers on
+#                                   src/cli.ts, crawler.ts, genre-seeds.ts and the like (not imported): accepted
+#   test/helpers/mobile-contract-server.ts   the harness check.sh starts (its only file under test/)
+#   data/*.json                     loaded at runtime by genre-identity, genre-registry, graph, genre-taxonomy
+#   cache/**                        genre-taxonomy.ts cacheRootFor resolves taxonomy sources against <repo>/cache
+#                                   whatever ODYSSEY_CACHE_DIR says; the catalog served to the XCTests includes
+#                                   them (2026-10-12: 271 genres resolved with ODYSSEY_CACHE_DIR on an empty dir)
+#   package.json, package-lock.json, tsconfig*.json   `npm ci` and tsx of the harness
+#   .github/workflows/ios-ci.yml    this file
+# Not listed: .deployed-sha (src/server.ts /version) is gitignored, no PR changes it; vitest.config.ts and
+# test/**/*.test.ts are not read; biome.json and mobile/** belong to mobile-ci.
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-    paths-ignore:
-      - ".claude/**"
-      - "docs/**"
-      - "*.md"
+    paths:
+      - "ios/**"
+      - "src/**"
+      - "test/helpers/mobile-contract-server.ts"
+      - "data/*.json"
+      - "cache/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig*.json"
+      - ".github/workflows/ios-ci.yml"
 
 permissions:
   contents: read
