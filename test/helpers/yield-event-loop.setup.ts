@@ -6,5 +6,9 @@ import { afterEach } from "vitest";
 // (test/genre-cache-sync.test.ts, test/ios-check.test.ts) run back to back without the event loop ever
 // reaching its poll phase, so once such a file exceeds ~60 s on a loaded machine the RPC replies are
 // never read and the pending-call timer fires. Yielding one macrotask after each test lets the loop
-// read pending replies; it changes no test outcome.
-afterEach(() => new Promise<void>((resolve) => setImmediate(resolve)));
+// read the replies already waiting; it changes no test outcome. It cannot help a single test that
+// blocks for more than 60 s on its own: that one must stop using sync child-process calls.
+// The real setImmediate is captured now so a test that fakes timers cannot stall this hook.
+const realSetImmediate = globalThis.setImmediate;
+
+afterEach(() => new Promise<void>((resolve) => realSetImmediate(resolve)));
