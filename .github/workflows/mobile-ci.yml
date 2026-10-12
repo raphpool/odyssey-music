@@ -1,10 +1,10 @@
 name: mobile-ci
 
+# No push trigger (TRA-411, 2026-10-12): main is strict-protected, so the merge commit is the tree this
+# check already ran on the PR; a push run only held a self-hosted runner while the next PR waited.
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
-  push:
-    branches: [main]
 
 permissions:
   contents: read
