@@ -2,8 +2,8 @@
 
 Statut : **Validé par Raphael le 2026-10-11, sauf règle 9 (article conservé).** Toutes les
 recommandations par défaut sont retenues (Q1 à Q6, D11 à D13). L'article et les sources restent sur
-la fiche (D15). Les ID Linear sont reportés dans la colonne « Ticket » de la vue d'ensemble dès leur
-création.
+la fiche (D15). Les ID Linear sont reportés dans la colonne « Ticket » de la vue d'ensemble (créés le
+2026-10-12 : TRA-381 à TRA-409, plus TRA-367, 372, 373 et 374 amendés).
 
 Ce plan remplace la partie interface du plan V1
 [`track1-ios-v1-basic.md`](https://github.com/raphpool/odyssey-music/blob/claude/linear-track1-mobile-ios-5ir641/docs/plans/track1-ios-v1-basic.md)
@@ -405,43 +405,43 @@ défaut. La règle 9 n'est pas suivie pour l'article et les sources (D15).
 
 ### Vue d'ensemble
 
-Parents : **DS** = nouveau parent « Construire le design system Nocturne en SwiftUI » ;
-**ONB** = nouveau parent « Choisir ses genres avec l'onboarding Figma » ; TRA-347 réécrit (D9).
+Parents : **DS** = TRA-381 « Construire le design system Nocturne en SwiftUI » ;
+**ONB** = TRA-382 « Choisir ses genres avec l'onboarding Figma » ; TRA-347 réécrit (D9).
 Estimation en points : 1 (moins de 250 lignes), 2 (250 à 340), 3 (plus de 340).
 
 | Tâche | Ticket | Titre | Parent | Tier | Est. | Diff | Dépend de | Plage | Vague |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 0 | TRA-368, TRA-364, TRA-379, TRA-376 | Merger #330, #331 ; TRA-379, TRA-376 | (existants) | 2 | — | — | — | — | 0 |
-| A.1 | à créer | Jetons Nocturne et thème sombre | DS | 2 | 2 | ~300 | — | 0200–020F | 1 |
-| A.2 | à créer | Polices, rôles typographiques et icône d'app | DS | 2 | 2 | ~310 + binaires | A.1 | 0210–021F | 2 |
-| B.1 | à créer | Composants Core : Text, Button, IconButton, Icon | DS | 2 | 3 | ~380 | A.2 | 0220–022F | 3 |
-| B.2 | à créer | États non dessinés : `Track1Status` | DS | 2 | 1 | ~220 | B.1 | 0230–023F | 4 |
-| C.1 | à créer | Ambient glow et Top bar | DS | 2 | 2 | ~340 | B.1 | 0240–024F | 4 |
-| C.2 | à créer | ListItem, Artwork, SearchField | DS | 2 | 3 | ~350 | B.1 | 0250–025F | 4 |
-| D.1 | à créer | Genre tile, Subgenre row, Select-all chip, Bottom action bar | DS | 2 | 3 | ~380 | B.1 | 0260–026F | 4 |
-| D.2 | à créer | Progress bar et Welcome backdrop | DS | 2 | 2 | ~260 | B.1 | 0270–027F | 4 |
-| E.1 | à créer | Teaser card, Section header, Fact row, Track row | DS | 2 | 2 | ~300 | B.1 | 0280–028F | 4 |
-| E.2 | à créer | Edge chip, Overflow et disposition en flux | DS | 2 | 2 | ~300 | B.1 | 0290–029F | 4 |
-| E.3 | à créer | Hero et Release card | DS | 2 | 3 | ~380 | C.2 | 02A0–02AF | 5 |
-| E.4 | à créer | Streaming button et Streaming bar | DS | 2 | 2 | ~280 | B.1 | 02B0–02BF | 4 |
-| F.1 | à créer | Sections de fiche selon le Data contract + parité vitest | TRA-347 | 2 | 2 | ~340 | — | 02C0–02CF | 1 |
-| F.2 | à créer | En-tête de fiche : sous-titre, teaser, faits | TRA-347 | 2 | 2 | ~260 | F.1 | 02D0–02DF | 2 |
+| A.1 | TRA-383 | Jetons Nocturne et thème sombre | TRA-381 (DS) | 2 | 2 | ~300 | — | 0200–020F | 1 |
+| A.2 | TRA-384 | Polices, rôles typographiques et icône d'app | TRA-381 (DS) | 2 | 2 | ~310 + binaires | A.1 | 0210–021F | 2 |
+| B.1 | TRA-385 | Composants Core : Text, Button, IconButton, Icon | TRA-381 (DS) | 2 | 3 | ~380 | A.2 | 0220–022F | 3 |
+| B.2 | TRA-386 | États non dessinés : `Track1Status` | TRA-381 (DS) | 2 | 1 | ~220 | B.1 | 0230–023F | 4 |
+| C.1 | TRA-387 | Ambient glow et Top bar | TRA-381 (DS) | 2 | 2 | ~340 | B.1 | 0240–024F | 4 |
+| C.2 | TRA-388 | ListItem, Artwork, SearchField | TRA-381 (DS) | 2 | 3 | ~350 | B.1 | 0250–025F | 4 |
+| D.1 | TRA-389 | Genre tile, Subgenre row, Select-all chip, Bottom action bar | TRA-381 (DS) | 2 | 3 | ~380 | B.1 | 0260–026F | 4 |
+| D.2 | TRA-390 | Progress bar et Welcome backdrop | TRA-381 (DS) | 2 | 2 | ~260 | B.1 | 0270–027F | 4 |
+| E.1 | TRA-391 | Teaser card, Section header, Fact row, Track row | TRA-381 (DS) | 2 | 2 | ~300 | B.1 | 0280–028F | 4 |
+| E.2 | TRA-392 | Edge chip, Overflow et disposition en flux | TRA-381 (DS) | 2 | 2 | ~300 | B.1 | 0290–029F | 4 |
+| E.3 | TRA-393 | Hero et Release card | TRA-381 (DS) | 2 | 3 | ~380 | C.2 | 02A0–02AF | 5 |
+| E.4 | TRA-394 | Streaming button et Streaming bar | TRA-381 (DS) | 2 | 2 | ~280 | B.1 | 02B0–02BF | 4 |
+| F.1 | TRA-395 | Sections de fiche selon le Data contract + parité vitest | TRA-347 | 2 | 2 | ~340 | — | 02C0–02CF | 1 |
+| F.2 | TRA-396 | En-tête de fiche : sous-titre, teaser, faits | TRA-347 | 2 | 2 | ~260 | F.1 | 02D0–02DF | 2 |
 | F.3 | TRA-367 (amendé) | Charger les images sans redirection non sûre | TRA-341 | 2 | 3 | ~360 | — | 02E0–02EF | 1 |
-| F.4 | à créer | Sources du héros et couleur dominante | TRA-347 | 2 | 2 | ~330 | F.3 | 02F0–02FF | 2 |
-| G.1 | à créer | Onglets Aujourd'hui / Genres / Recherche, sheet et fil d'Ariane | TRA-341 | 2 | 3 | ~380 | B.1, C.1 | 0300–030F | 5 |
-| H.1 | à créer | Page de fiche Figma | TRA-347 | 2 | 3 | ~380 | TRA-376, TRA-368, B.2, C.1, E.1–E.4, F.2, F.4, G.1 | 0310–031F | 6 |
+| F.4 | TRA-397 | Sources du héros et couleur dominante | TRA-347 | 2 | 2 | ~330 | F.3 | 02F0–02FF | 2 |
+| G.1 | TRA-398 | Onglets Aujourd'hui / Genres / Recherche, sheet et fil d'Ariane | TRA-341 | 2 | 3 | ~380 | B.1, C.1 | 0300–030F | 5 |
+| H.1 | TRA-399 | Page de fiche Figma | TRA-347 | 2 | 3 | ~380 | TRA-376, TRA-368, B.2, C.1, E.1–E.4, F.2, F.4, G.1 | 0310–031F | 6 |
 | H.2 | TRA-373 (amendé) | Aujourd'hui affiche la fiche du jour | TRA-343 | 2 | 3 | ~380 | H.1, D.2, TRA-379 | 0320–032F | 7 |
-| H.3 | à créer | Article et sources en sections Nocturne (D15) | TRA-341 | 2 | 2 | ~260 | H.1, E.1, C.2 | 03E0–03EF | 7 |
-| I.1 | à créer | Fiches récentes et temporisation de 150 ms | TRA-348 | 2 | 2 | ~300 | TRA-364 | 0330–033F | 2 |
+| H.3 | TRA-400 | Article et sources en sections Nocturne (D15) | TRA-341 | 2 | 2 | ~260 | H.1, E.1, C.2 | 03E0–03EF | 7 |
+| I.1 | TRA-401 | Fiches récentes et temporisation de 150 ms | TRA-348 | 2 | 2 | ~300 | TRA-364 | 0330–033F | 2 |
 | I.2 | TRA-372 (amendé) | Sheet de recherche | TRA-348 | 2 | 3 | ~380 | I.1, C.2, H.1 | 0340–034F | 7 |
-| J.1 | à créer | Taxonomie et modèle du parcours d'onboarding | ONB | 2 | 3 | ~380 | — | 0350–035F | 1 |
-| J.2 | à créer | Écrans 1.1 Welcome et 1.2 Genres | ONB | 2 | 2 | ~330 | J.1, C.1, D.1, D.2 | 0360–036F | 5 |
-| J.3 | à créer | Écrans 1.3 et 1.4 Sous-genres | ONB | 2 | 2 | ~340 | J.2 | 0370–037F | 6 |
-| J.4 | à créer | Brancher l'onboarding au lancement et l'enchaîner sur Aujourd'hui | ONB | 2 | 3 | ~380 | J.3, H.2 | 0380–038F | 8 |
-| K.1 | à créer | Onglet Genres (composition par défaut, Q3) | ONB | 2 | 3 | ~350 | J.3, G.1 | 0390–039F | 7 |
-| K.2 | à créer | Habiller le consentement et les réglages | DS | 2 | 2 | ~260 | B.2, C.1, C.2 | 03A0–03AF | 5 |
-| L.1 | à créer | Supprimer les anciennes vues de relations et d'écoute | DS | 2 | 1 | ~−400 | H.1 | 03B0–03BF | 7 |
-| L.2 | à créer | Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons | DS | 2 | 2 | ~−300 / +80 | J.4, K.1, K.2, I.2, H.3 | 03D0–03DF | 9 |
+| J.1 | TRA-402 | Taxonomie et modèle du parcours d'onboarding | TRA-382 (ONB) | 2 | 3 | ~380 | — | 0350–035F | 1 |
+| J.2 | TRA-403 | Écrans 1.1 Welcome et 1.2 Genres | TRA-382 (ONB) | 2 | 2 | ~330 | J.1, C.1, D.1, D.2 | 0360–036F | 5 |
+| J.3 | TRA-404 | Écrans 1.3 et 1.4 Sous-genres | TRA-382 (ONB) | 2 | 2 | ~340 | J.2 | 0370–037F | 6 |
+| J.4 | TRA-405 | Brancher l'onboarding au lancement et l'enchaîner sur Aujourd'hui | TRA-382 (ONB) | 2 | 3 | ~380 | J.3, H.2 | 0380–038F | 8 |
+| K.1 | TRA-406 | Onglet Genres (composition par défaut, Q3) | TRA-382 (ONB) | 2 | 3 | ~350 | J.3, G.1 | 0390–039F | 7 |
+| K.2 | TRA-407 | Habiller le consentement et les réglages | TRA-381 (DS) | 2 | 2 | ~260 | B.2, C.1, C.2 | 03A0–03AF | 5 |
+| L.1 | TRA-408 | Supprimer les anciennes vues de relations et d'écoute | TRA-381 (DS) | 2 | 1 | ~−400 | H.1 | 03B0–03BF | 7 |
+| L.2 | TRA-409 | Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons | TRA-381 (DS) | 2 | 2 | ~−300 / +80 | J.4, K.1, K.2, I.2, H.3 | 03D0–03DF | 9 |
 | L.3 | TRA-374 (amendé) | Installer la V1 Figma sur l'iPhone et consigner la preuve | TRA-337 | 3 | 2 | ~140 | toutes | — | 10 |
 
 **Chemin critique** : A.1 → A.2 → B.1 → C.2 → E.3 → H.1 → H.2 → J.4 → L.2 → L.3.
