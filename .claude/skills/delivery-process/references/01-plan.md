@@ -1,6 +1,6 @@
 # Phase 1 — Planning
 
-**Agent :** `planner` (Opus 5.5, effort xhigh) · **Fréquence :** 1 fois par *partie*,
+**Agent :** `planner` (Fable 5.1, effort xhigh) · **Fréquence :** 1 fois par *partie*,
 jamais par tâche · **Sortie :** un fichier de plan + des tickets Linear autoportants.
 
 ## Préconditions

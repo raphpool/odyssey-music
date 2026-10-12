@@ -25,7 +25,7 @@ Phase demandée : `$phase` — cible : `$target`
 
 | `$phase` | Référence à lire | Agent | Modèle |
 |---|---|---|---|
-| `plan` | `references/01-plan.md` | `planner` | Opus 5.5 (`claude-opus-5-5`) / xhigh |
+| `plan` | `references/01-plan.md` | `planner` | Fable 5.1 (`claude-fable-5-1`) / xhigh |
 | `implement` | `references/02-implement.md` | `implementer` | sonnet / high |
 | `review` | `references/03-review.md` | `reviewer` | Opus 5.5 (`claude-opus-5-5`) / xhigh |
 | `ship` | `references/04-ship.md` | `ticket-writer` | haiku |
