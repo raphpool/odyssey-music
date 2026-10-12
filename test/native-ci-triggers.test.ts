@@ -77,25 +77,35 @@ describe("ios-check runner label (TRA-411)", () => {
 	});
 });
 
-// TRA-415: ios-check and mobile-check are not required checks, so they can be filtered by path
-// (2026-10-12, #338: a 3-line change under .claude/ held the `ios` runner for 19 min and queued the
-// light jobs behind each other on the other runner). Only `paths-ignore` is used: it fails safe, a path
-// that is not listed still triggers the check. A path may be listed only if it is proven not to be an
-// input of ios/scripts/check.sh, of the contract harness (and its import graph) or of the mobile steps.
-const IGNORED_PATHS = [".claude/**", "docs/**", "*.md"];
+// TRA-415 / TRA-417 (2026-10-12, #341): ios-check and mobile-check are not required checks, so `paths` lists
+// their inputs. A forgotten input silently skips a check, so these tests compute the inputs they can (harness
+// import graph, ios/, mobile/, check.sh reads) and fail if one is uncovered; they refuse unmodelled glob syntax.
+const IOS_WORKFLOW = ".github/workflows/ios-ci.yml";
+const MOBILE_WORKFLOW = ".github/workflows/mobile-ci.yml";
+const HARNESS = "test/helpers/mobile-contract-server.ts";
 
-/** Pulls the `- "glob"` items of `paths-ignore:` out of the pull_request block. */
-function pathsIgnoreOf(onBlock: string): string[] {
-	const match = onBlock.match(/^ {4}paths-ignore:\n((?: {6}- .*\n)+)/m);
-	if (!match?.[1]) throw new Error("paths-ignore list not found under pull_request");
-	return match[1]
+/** Pulls the `- "glob"` items of `paths:` (not `paths-ignore:`) out of the pull_request block. */
+function pathsOf(onBlock: string): string[] {
+	const list = onBlock.match(/^ {4}paths:\n((?: {6}- .*\n)+)/m)?.[1];
+	if (!list) throw new Error("paths list not found under pull_request");
+	return list
 		.trim()
 		.split("\n")
-		.map((line) => line.replace(/^\s*-\s*/, "").replace(/^"(.*)"$/, "$1"));
+		.map((line) => {
+			const glob = line.match(/^\s*- "([^"]+)"$/)?.[1];
+			if (!glob) throw new Error(`paths item is not a double-quoted glob: ${line}`);
+			return glob;
+		});
 }
 
-/** GitHub filter semantics: `*` stays inside a path segment, `**` crosses `/`. */
+/** GitHub gives `? + [ ] ! \` a meaning (optional, class, negation, escape) that matchesGlob does not model. */
+function unsupportedGlobs(globs: string[]): string[] {
+	return globs.filter((glob) => /[?+[\]!\\]/.test(glob));
+}
+
+/** GitHub filter semantics for the supported subset: `*` stays inside a path segment, `**` crosses `/`. */
 function matchesGlob(glob: string, path: string): boolean {
+	if (unsupportedGlobs([glob]).length > 0) throw new Error(`unsupported glob syntax: ${glob}`);
 	let pattern = "";
 	for (let i = 0; i < glob.length; i += 1) {
 		const char = glob.charAt(i);
@@ -106,11 +116,18 @@ function matchesGlob(glob: string, path: string): boolean {
 				pattern += "(?:.*/)?";
 			} else pattern += ".*";
 		} else if (char === "*") pattern += "[^/]*";
-		else if (char === "?") pattern += "[^/]";
-		else pattern += char.replace(/[.+^${}()|[\]\\]/g, "\\$&");
+		else pattern += char.replace(/[.^${}()|]/g, "\\$&");
 	}
 	return new RegExp(`^${pattern}$`).test(path);
 }
+
+/** The workflow starts when at least one changed file matches at least one pattern (none changed: no run). */
+function startsWorkflow(globs: string[], changedFiles: string[]): boolean {
+	return changedFiles.some((file) => globs.some((glob) => matchesGlob(glob, file)));
+}
+
+const uncovered = (globs: string[], files: string[]): string[] =>
+	files.filter((file) => !startsWorkflow(globs, [file]));
 
 /** Lists files under a directory, pruning dependency and build folders instead of walking them. */
 function filesUnder(directory: string): string[] {
@@ -141,89 +158,242 @@ function harnessImportGraph(entry: string): string[] {
 	return [...seen].sort();
 }
 
-// Files that ios/scripts/check.sh and the harness read without importing them: data/*.json is loaded at
-// runtime by genre-identity.ts, genre-registry.ts, graph.ts and pipeline.ts; the root manifests drive
-// `npm ci` and tsx; the root biome.json is the root of mobile/biome.json (`"root": false`).
-const ROOT_INPUTS = [
+interface SourceFile {
+	file: string;
+	source: string;
+}
+
+const readAll = (files: string[]): SourceFile[] =>
+	files.map((file) => ({ file, source: readFileSync(file, "utf8") }));
+
+/** Project files in which a `../` could point at a resource outside ios/ (Xcode resolves them from there). */
+function parentReferences(sources: SourceFile[]): string[] {
+	return sources.filter(({ source }) => source.includes("../")).map(({ file }) => file);
+}
+
+/** Relative path strings that resolve outside `root` (an import, an `extends`, a config path). */
+function escapingReferences(sources: SourceFile[], root: string): string[] {
+	const reference = /["'`](\.{1,2}\/[^"'`\s]*)["'`]/g;
+	return sources.flatMap(({ file, source }) =>
+		[...source.matchAll(reference)]
+			.map((match) => match[1] ?? "")
+			.filter((spec) => {
+				const target = relative(".", resolve(dirname(file), spec));
+				return target !== root && !target.startsWith(`${root}/`);
+			})
+			.map((spec) => `${file}: ${spec}`),
+	);
+}
+
+/** Code with comments removed, so a word in a comment is not read as a path. */
+function withoutCodeComments(source: string): string {
+	return source
+		.replace(/\/\*[\s\S]*?\*\//g, "")
+		.split("\n")
+		.map((line) => line.replace(/(^|\s)\/\/.*$/, "$1"))
+		.join("\n");
+}
+
+/** String literals naming a root entry the workflow does not watch, or a Markdown file (best effort). */
+function readsOutside(sources: SourceFile[], outsideRoots: string[]): string[] {
+	const literal = /(["'`])((?:\\.|(?!\1)[^\\\n])*)\1/g;
+	return sources.flatMap(({ file, source }) =>
+		[...withoutCodeComments(source).matchAll(literal)]
+			.map((match) => match[2] ?? "")
+			.filter((text) => {
+				// A relative module specifier names a file of the import graph, which is already compared.
+				if (/^\.{1,2}\/.*\.[jt]s$/.test(text)) return false;
+				const head = text.replace(/^(?:\.{1,2}\/)+/, "").split("/")[0] ?? "";
+				return outsideRoots.includes(head) || /\.md$/.test(text);
+			})
+			.map((text) => `${file}: ${text}`),
+	);
+}
+
+/** Root entries (files and folders) in which no file starts the workflow. */
+function rootEntriesOutside(globs: string[]): string[] {
+	return readdirSync(".", { withFileTypes: true })
+		.filter((entry) => entry.name !== "node_modules" && entry.name !== ".git")
+		.filter((entry) =>
+			entry.isDirectory()
+				? !startsWorkflow(globs, filesUnder(entry.name))
+				: !startsWorkflow(globs, [entry.name]),
+		)
+		.map((entry) => entry.name);
+}
+
+// Read without being imported: data/*.json (genre-identity, genre-registry, graph, genre-taxonomy), cache/
+// (genre-taxonomy.ts cacheRootFor, whatever ODYSSEY_CACHE_DIR says), the root manifests (`npm ci`, tsx).
+// .deployed-sha (src/server.ts /version) is gitignored: no PR can change it.
+const jsonUnder = (directory: string): string[] => filesUnder(directory).filter((f) => f.endsWith(".json"));
+const iosInputs = [
+	...filesUnder("ios"),
+	...harnessImportGraph(HARNESS),
+	...jsonUnder("data"),
+	...filesUnder("cache"),
 	"package.json",
 	"package-lock.json",
 	"tsconfig.json",
-	"biome.json",
-	"vitest.config.ts",
-	...filesUnder("data"),
-	".github/workflows/ios-ci.yml",
-	".github/workflows/mobile-ci.yml",
+	IOS_WORKFLOW,
 ];
+// mobile/biome.json is `"root": false`: it inherits from the root biome.json.
+const mobileInputs = [...filesUnder("mobile"), "biome.json", MOBILE_WORKFLOW];
 
-// Computed once: the walk is shared by both workflows.
-const KNOWN_INPUTS = [
-	...filesUnder("ios"),
-	...filesUnder("mobile"),
-	...harnessImportGraph("test/helpers/mobile-contract-server.ts"),
-	...ROOT_INPUTS,
-];
+const paths = (list: string): string[] => list.trim().split(/\s+/);
 
-describe("path filters (TRA-415)", () => {
+const filters = [
+	{
+		name: "ios-ci",
+		path: IOS_WORKFLOW,
+		inputs: iosInputs,
+		triggers: paths(`ios/x ios/scripts/check.sh src/server.ts src/mobile/router.ts data/genre-taxonomy.json
+			cache/nodes/x.json package.json package-lock.json tsconfig.json ${HARNESS} ${IOS_WORKFLOW}`),
+		ignored: paths(`vitest.config.ts test/foo.test.ts test/helpers/yield-event-loop.setup.ts
+			.claude/agents/implementer.md docs/plans/track1-mobile.md README.md web/index.html biome.json
+			mobile/app/index.tsx mobile/package-lock.json .github/workflows/ci.yml ${MOBILE_WORKFLOW}`),
+	},
+	{
+		name: "mobile-ci",
+		path: MOBILE_WORKFLOW,
+		inputs: mobileInputs,
+		triggers: paths(
+			`mobile/app/index.tsx mobile/package-lock.json mobile/.env.example biome.json ${MOBILE_WORKFLOW}`,
+		),
+		ignored: paths(`ios/x src/server.ts data/genre-taxonomy.json cache/nodes/x.json package.json
+			vitest.config.ts test/foo.test.ts .claude/agents/implementer.md docs/plans/track1-mobile.md README.md
+			.github/workflows/ci.yml ${IOS_WORKFLOW}`),
+	},
+] as const;
+
+describe("path filter helpers (TRA-417)", () => {
 	it("matches globs like GitHub does", () => {
-		expect(matchesGlob(".claude/**", ".claude/agents/implementer.md")).toBe(true);
 		expect(matchesGlob("docs/**", "docs/plans/track1-mobile.md")).toBe(true);
 		expect(matchesGlob("*.md", "README.md")).toBe(true);
 		expect(matchesGlob("*.md", "ios/NOTES.md")).toBe(false);
 		expect(matchesGlob("docs/**", "src/docs/x.ts")).toBe(false);
+		expect(matchesGlob("data/*.json", "data/genre-taxonomy.json")).toBe(true);
+		expect(matchesGlob("data/*.json", "data/sub/x.json")).toBe(false);
+		expect(matchesGlob("tsconfig*.json", "tsconfig.json")).toBe(true);
+		expect(matchesGlob("tsconfig*.json", "mobile/tsconfig.json")).toBe(false);
 	});
 
-	it("keeps cache/ and data/ as inputs: the taxonomy resolves sources from <repo>/cache", () => {
-		// src/graph.ts passes <repo>/data/genre-taxonomy.json to loadGenreTaxonomy, whose cacheRootFor() is
-		// <repo>/cache, independent of ODYSSEY_CACHE_DIR (checked 2026-10-12: 271 genres resolved with the
-		// variable pointing at an empty dir). The catalog served to the XCTests depends on it.
-		for (const file of [
-			"cache/nodes/artist/example.json",
-			"cache/pending-reverses.json",
-			"data/genre-taxonomy.json",
-		]) {
-			expect(IGNORED_PATHS.some((glob) => matchesGlob(glob, file))).toBe(false);
+	it("starts the workflow when at least one changed file matches, never when none does", () => {
+		const globs = ["src/**"];
+		expect(startsWorkflow(globs, ["docs/a.md", "src/server.ts"])).toBe(true);
+		expect(startsWorkflow(globs, ["docs/a.md", ".claude/x", "vitest.config.ts"])).toBe(false);
+		expect(startsWorkflow(globs, [])).toBe(false);
+	});
+
+	it("refuses the glob syntax GitHub reads differently from matchesGlob", () => {
+		expect(unsupportedGlobs(["src/**", "data/*.json", ".github/workflows/ios-ci.yml"])).toEqual([]);
+		for (const glob of ["src/a?.ts", "src/a+.ts", "src/[ab].ts", "src/a].ts", "!docs/**", "src/a\\*.ts"]) {
+			expect(unsupportedGlobs([glob])).toEqual([glob]);
+			expect(() => matchesGlob(glob, "src/ab.ts")).toThrow(/unsupported glob/);
 		}
 	});
 
-	it("reads the harness import graph from src/", () => {
-		const graph = harnessImportGraph("test/helpers/mobile-contract-server.ts");
-		expect(graph).toContain("src/server.ts");
-		expect(graph).toContain("src/mobile/router.ts");
-		expect(graph).toContain("src/schemas.ts");
+	it("flags a ../ in a project file, an import leaving mobile/, and a read of an unwatched root", () => {
+		expect(parentReferences([{ file: "ios/x.pbxproj", source: "path = ../docs/a.md;" }])).toEqual([
+			"ios/x.pbxproj",
+		]);
+		const escaping = { file: "mobile/src/a.ts", source: 'import { x } from "../../src/schemas";' };
+		expect(escapingReferences([escaping], "mobile")).toEqual(["mobile/src/a.ts: ../../src/schemas"]);
+		const inside = { file: "mobile/src/a.ts", source: 'import { x } from "../config";' };
+		expect(escapingReferences([inside], "mobile")).toEqual([]);
+		const read = {
+			file: "src/a.ts",
+			source: 'join(here, "..", "docs", "a.txt"); // reads "web"\nread("NOTES.md");',
+		};
+		expect(readsOutside([read], ["docs", "web"])).toEqual(["src/a.ts: docs", "src/a.ts: NOTES.md"]);
 	});
 });
 
-describe.each(workflows)("$name path filter (TRA-415)", ({ path }) => {
+describe("ios-check inputs (TRA-417)", () => {
+	it("reads the harness import graph from src/", () => {
+		const graph = harnessImportGraph(HARNESS);
+		expect(graph).toContain("src/server.ts");
+		expect(graph).toContain("src/mobile/router.ts");
+		expect(graph).toContain("src/schemas.ts");
+		expect(graph).toContain(HARNESS);
+	});
+
+	it("keeps .deployed-sha out of paths because it is never committed", () => {
+		expect(readFileSync(".gitignore", "utf8").split("\n")).toContain(".deployed-sha");
+	});
+
+	it("has no ../ in the Xcode project files, so the project reads nothing outside ios/", () => {
+		const projectFiles = filesUnder("ios").filter((f) =>
+			/\.(pbxproj|xcconfig|xcscheme|xcworkspacedata|plist|entitlements)$/.test(f),
+		);
+		expect(projectFiles).toContain("ios/Track1.xcodeproj/project.pbxproj");
+		expect(parentReferences(readAll(projectFiles))).toEqual([]);
+	});
+
+	it("names only covered repo paths after $repository_root in check.sh", () => {
+		const script = readFileSync("ios/scripts/check.sh", "utf8");
+		const reads = [...script.matchAll(/\$repository_root\/([\w./-]+)/g)].map((m) => m[1] ?? "");
+		expect(reads).toContain("package-lock.json");
+		const repoReads = reads.filter((path) => !path.startsWith("node_modules/"));
+		const globs = pathsOf(onBlockOf(withoutComments(readFileSync(IOS_WORKFLOW, "utf8"))));
+		expect(uncovered(globs, repoReads)).toEqual([]);
+	});
+
+	it("reads no unwatched root entry (docs, .claude, web, Markdown...) from the harness import graph", () => {
+		const globs = pathsOf(onBlockOf(withoutComments(readFileSync(IOS_WORKFLOW, "utf8"))));
+		const outside = rootEntriesOutside(globs);
+		expect(outside).toContain("docs");
+		expect(outside).toContain(".claude");
+		expect(readsOutside(readAll(harnessImportGraph(HARNESS)), outside)).toEqual([]);
+	});
+});
+
+describe("mobile-check inputs (TRA-417)", () => {
+	it("imports nothing from outside mobile/", () => {
+		const sources = filesUnder("mobile").filter(
+			(f) => /\.(tsx?|[cm]?js|json)$/.test(f) && !f.endsWith("package-lock.json"),
+		);
+		expect(sources).toContain("mobile/tsconfig.json");
+		expect(escapingReferences(readAll(sources), "mobile")).toEqual([]);
+	});
+});
+
+describe.each(filters)("$name path filter (TRA-417)", ({ path, inputs, triggers, ignored }) => {
 	const raw = readFileSync(path, "utf8").replaceAll("\r\n", "\n");
 	const onBlock = onBlockOf(withoutComments(raw));
+	const globs = pathsOf(onBlock);
 
-	it("ignores only the proven non-inputs, with paths-ignore under pull_request", () => {
-		expect(pathsIgnoreOf(onBlock)).toEqual(IGNORED_PATHS);
-	});
-
-	it("uses no allow-list filter, which would fail open on a forgotten input", () => {
-		expect(onBlock).not.toMatch(/^ {4}paths:/m);
-	});
-
-	it("keeps the four lifecycle types next to the filter", () => {
+	it("lists inputs with `paths` under pull_request, not a deny-list", () => {
+		expect(onBlock).not.toMatch(/^ {4}paths-ignore:/m);
 		expect(onBlock).toMatch(/^ {4}types: \[opened, synchronize, reopened, ready_for_review\]\s*$/m);
 	});
 
-	it("never ignores an input of check.sh, of the harness or of the mobile steps", () => {
-		expect(KNOWN_INPUTS).toContain("ios/scripts/check.sh");
-		expect(KNOWN_INPUTS).toContain("test/helpers/mobile-contract-server.ts");
-		expect(KNOWN_INPUTS).toContain("src/server.ts");
-		expect(KNOWN_INPUTS).toContain("mobile/package-lock.json");
-		const ignoredInputs = KNOWN_INPUTS.filter((file) =>
-			pathsIgnoreOf(onBlock).some((glob) => matchesGlob(glob, file)),
-		);
-		expect(ignoredInputs).toEqual([]);
+	it("uses only the glob syntax the tests model", () => {
+		expect(unsupportedGlobs(globs)).toEqual([]);
 	});
 
-	it("documents the rule, its date and its symptom in a comment", () => {
-		expect(raw).toContain("TRA-415");
+	it("covers every known input", () => {
+		expect(inputs.length).toBeGreaterThan(10);
+		expect(uncovered(globs, inputs)).toEqual([]);
+	});
+
+	it("needs every entry: removing any one leaves an input uncovered", () => {
+		for (const glob of globs) {
+			const without = globs.filter((other) => other !== glob);
+			expect(uncovered(without, inputs), `removing ${glob}`).not.toEqual([]);
+		}
+	});
+
+	it("starts on each trigger and on none of the ignored paths", () => {
+		for (const file of triggers) expect(startsWorkflow(globs, [file]), file).toBe(true);
+		for (const file of ignored) expect(startsWorkflow(globs, [file]), file).toBe(false);
+	});
+
+	it("documents the rule, its limit, its date and its symptom in a comment", () => {
+		expect(raw).toContain("TRA-417");
 		expect(raw).toContain("2026-10-12");
-		expect(raw).toContain("#338");
-		expect(raw).toContain("must never be an entry of ios/scripts/check.sh");
+		expect(raw).toContain("#341");
+		expect(raw).toContain("every input must be listed in `paths`");
+		expect(raw).toContain("3,000 files");
+		expect(raw).toContain("`*` stays inside a path segment");
 	});
 });
