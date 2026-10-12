@@ -376,20 +376,37 @@ describe.sequential("Track1 simulator architecture policy", () => {
 
 // 2026-10-11: cancelled ios-check runs skipped their cleanup and left booted simulators behind, which
 // starved the single macOS runner of memory and made the following runs time out (PR #330).
+// 2026-10-12: the first cleanup deleted the simulator of a live run on the second runner of the same Mac
+// ("Test crashed with signal term"), so a device is only removed once the process that created it is gone.
 describe.sequential("Track1 stale simulator cleanup", () => {
 	const ownRun = { GITHUB_RUN_ID: "111", GITHUB_RUN_ATTEMPT: "1" };
+	// The pid of a process that has already exited, as left in the name of an abandoned simulator.
+	const deadPid = spawnSync(process.execPath, ["-e", ""]).pid;
+	// The vitest worker running this test is alive for the whole run.
+	const livePid = process.pid;
+	const ids = {
+		iphone: "11111111-1111-1111-1111-111111111111",
+		deadA: "22222222-2222-2222-2222-222222222222",
+		deadB: "33333333-3333-3333-3333-333333333333",
+		ownRun: "44444444-4444-4444-4444-444444444444",
+		lookalike: "55555555-5555-5555-5555-555555555555",
+		live: "66666666-6666-6666-6666-666666666666",
+		noPid: "77777777-7777-7777-7777-777777777777",
+	};
 	const devices = [
 		"== Devices ==",
 		"-- iOS 26.4 --",
-		"    iPhone 17 Pro (11111111-1111-1111-1111-111111111111) (Booted)",
-		"    track1-ci-222-1-100 (22222222-2222-2222-2222-222222222222) (Booted)",
-		"    track1-ci-222-2-200 (33333333-3333-3333-3333-333333333333) (Booted)",
-		"    track1-ci-111-1-300 (44444444-4444-4444-4444-444444444444) (Booted)",
-		"    My track1-ci-fake (55555555-5555-5555-5555-555555555555) (Shutdown)",
+		`    iPhone 17 Pro (${ids.iphone}) (Booted)`,
+		`    track1-ci-222-1-${deadPid} (${ids.deadA}) (Booted)`,
+		`    track1-ci-222-2-${deadPid} (${ids.deadB}) (Booted)`,
+		`    track1-ci-111-1-${deadPid} (${ids.ownRun}) (Booted)`,
+		`    My track1-ci-fake (${ids.lookalike}) (Shutdown)`,
+		`    track1-ci-333-1-${livePid} (${ids.live}) (Booted)`,
+		`    track1-ci-444-1-abc (${ids.noPid}) (Booted)`,
 	].join("\n");
-	const staleIds = ["22222222-2222-2222-2222-222222222222", "33333333-3333-3333-3333-333333333333"];
+	const staleIds = [ids.deadA, ids.deadB];
 
-	it("shuts down and deletes the track1-ci devices of other runs and nothing else", async () => {
+	it("shuts down and deletes the track1-ci devices of dead processes and nothing else", async () => {
 		const { result, simctlCalls } = await runCheckScript(undefined, { devices, env: ownRun });
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
@@ -397,11 +414,7 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 			expect(simctlCalls).toContain(`simctl shutdown ${id}`);
 			expect(simctlCalls).toContain(`simctl delete ${id}`);
 		}
-		for (const untouched of [
-			"11111111-1111-1111-1111-111111111111",
-			"44444444-4444-4444-4444-444444444444",
-			"55555555-5555-5555-5555-555555555555",
-		]) {
+		for (const untouched of [ids.iphone, ids.ownRun, ids.lookalike, ids.live, ids.noPid]) {
 			expect(simctlCalls.filter((call) => call.includes(untouched))).toEqual([]);
 		}
 		// Two stale devices, plus the run's own simulator at the end.
@@ -411,6 +424,15 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 		const lastStaleCall = Math.max(...staleIds.map((id) => simctlCalls.lastIndexOf(`simctl delete ${id}`)));
 		expect(lastStaleCall).toBeGreaterThanOrEqual(0);
 		expect(lastStaleCall).toBeLessThan(firstCreate);
+	});
+
+	it("leaves a device alone while the process that created it is alive", async () => {
+		const liveDevices = ["== Devices ==", `    track1-ci-333-1-${livePid} (${ids.live}) (Booted)`].join("\n");
+		const { result, simctlCalls } = await runCheckScript(undefined, { devices: liveDevices, env: ownRun });
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(simctlCalls.filter((call) => call.includes(ids.live))).toEqual([]);
+		expect(simctlCalls.some((call) => call.startsWith("simctl create"))).toBe(true);
 	});
 
 	it("keeps the end-of-run cleanup of the simulator it creates", async () => {
@@ -427,7 +449,7 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 		});
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
-		expect(result.stderr).toContain("22222222-2222-2222-2222-222222222222");
+		expect(result.stderr).toContain(ids.deadA);
 		for (const id of staleIds) {
 			expect(simctlCalls).toContain(`simctl delete ${id}`);
 		}
