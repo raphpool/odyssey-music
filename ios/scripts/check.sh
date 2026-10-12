@@ -77,6 +77,31 @@ cleanup() {
 	fi
 }
 
+# 2026-10-11: a cancelled run never reaches cleanup(), so its booted simulators stayed alive on the
+# single macOS runner (11.7 GB of swap) and the next runs timed out right after "TEST BUILD SUCCEEDED",
+# leaving their own simulators behind in turn. Only `track1-ci-*` devices of other runs are touched;
+# every failure is logged and ignored so the cleanup can never fail the check itself.
+remove_stale_simulators() {
+	local own_prefix="track1-ci-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-0}-"
+	local device_pattern='^[[:space:]]+(track1-ci-[^ (]+) \(([0-9A-Fa-f-]{36})\)'
+	local listing line name udid
+	if ! listing="$(xcrun simctl list devices 2>&1)"; then
+		echo "Could not list simulators; skipping stale simulator cleanup: $listing" >&2
+		return 0
+	fi
+	while IFS= read -r line; do
+		[[ "$line" =~ $device_pattern ]] || continue
+		name="${BASH_REMATCH[1]}"
+		udid="${BASH_REMATCH[2]}"
+		[[ "$name" == "$own_prefix"* ]] && continue
+		echo "Removing stale simulator $name ($udid)."
+		xcrun simctl shutdown "$udid" >/dev/null 2>&1 \
+			|| echo "Could not shut down stale simulator $name ($udid); continuing." >&2
+		xcrun simctl delete "$udid" >/dev/null 2>&1 \
+			|| echo "Could not delete stale simulator $name ($udid); continuing." >&2
+	done <<<"$listing"
+}
+
 start_contract_harness() {
 	contract_dir="$(mktemp -d "${TMPDIR:-/tmp}/track1-contract.XXXXXX")"
 	local ready_file="$contract_dir/base-url"
@@ -186,6 +211,7 @@ fi
 
 echo "Using $actual_xcode"
 mkdir -p "$output_dir"
+remove_stale_simulators
 
 if grep -q "XCRemoteSwiftPackageReference" "$project_file"; then
 	if [[ ! -f "$package_resolved_path" ]]; then

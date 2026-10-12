@@ -211,9 +211,19 @@ while :; do sleep 1; done
 	}
 }
 
-async function runCheckScript(failingAction?: "build-for-testing" | "test-without-building") {
+type CheckScriptOptions = {
+	// Output of the faked `xcrun simctl list devices`.
+	devices?: string;
+	env?: Record<string, string>;
+};
+
+async function runCheckScript(
+	failingAction?: "build-for-testing" | "test-without-building",
+	options: CheckScriptOptions = {},
+) {
 	const directory = await mkdtemp(join(tmpdir(), "track1-ios-check-"));
 	const callsPath = join(directory, "xcodebuild-calls");
+	const simctlCallsPath = join(directory, "simctl-calls");
 	const swiftFormatCallsPath = join(directory, "swift-format-calls");
 	const outputDirectory = join(directory, "output");
 	try {
@@ -252,11 +262,14 @@ fi
 			directory,
 			"xcrun",
 			`#!/usr/bin/env bash
+[[ "$1" == "simctl" ]] && printf '%s\\n' "$*" >> "$TRACK1_TEST_SIMCTL_CALLS"
 case "$*" in
   "simctl list runtimes available -j") printf '{"runtimes":[{"name":"iOS 26.4","identifier":"runtime-id"}]}' ;;
+  "simctl list devices") printf '%s\\n' "\${TRACK1_TEST_SIMCTL_DEVICES:-}" ;;
   "simctl create"*) printf 'simulator-id\\n' ;;
   "swift-format lint"*) printf '%s\\n' "$@" >> "$TRACK1_TEST_SWIFT_FORMAT_CALLS" ;;
-  "simctl bootstatus"* | "simctl shutdown"* | "simctl delete"*) ;;
+  "simctl shutdown"*) [[ -z "\${TRACK1_TEST_FAIL_SHUTDOWN:-}" ]] || exit 164 ;;
+  "simctl bootstatus"* | "simctl delete"*) ;;
   *) exit 1 ;;
 esac
 `,
@@ -281,13 +294,17 @@ fi
 				TRACK1_TEST_FAIL_ACTION: failingAction ?? "",
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
+				TRACK1_TEST_SIMCTL_CALLS: simctlCallsPath,
+				TRACK1_TEST_SIMCTL_DEVICES: options.devices ?? "",
+				...options.env,
 			},
 		});
 		const calls = await readFile(callsPath, "utf8").catch(() => "");
+		const simctlCalls = (await readFile(simctlCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
 		const swiftFormatArguments = (await readFile(swiftFormatCallsPath, "utf8").catch(() => ""))
 			.split("\n")
 			.filter(Boolean);
-		return { calls, result, swiftFormatArguments };
+		return { calls, result, simctlCalls, swiftFormatArguments };
 	} finally {
 		await rm(directory, { recursive: true, force: true });
 	}
@@ -355,6 +372,74 @@ describe.sequential("Track1 simulator architecture policy", () => {
 			expect(result.status).not.toBe(0);
 		},
 	);
+});
+
+// 2026-10-11: cancelled ios-check runs skipped their cleanup and left booted simulators behind, which
+// starved the single macOS runner of memory and made the following runs time out (PR #330).
+describe.sequential("Track1 stale simulator cleanup", () => {
+	const ownRun = { GITHUB_RUN_ID: "111", GITHUB_RUN_ATTEMPT: "1" };
+	const devices = [
+		"== Devices ==",
+		"-- iOS 26.4 --",
+		"    iPhone 17 Pro (11111111-1111-1111-1111-111111111111) (Booted)",
+		"    track1-ci-222-1-100 (22222222-2222-2222-2222-222222222222) (Booted)",
+		"    track1-ci-222-2-200 (33333333-3333-3333-3333-333333333333) (Booted)",
+		"    track1-ci-111-1-300 (44444444-4444-4444-4444-444444444444) (Booted)",
+		"    My track1-ci-fake (55555555-5555-5555-5555-555555555555) (Shutdown)",
+	].join("\n");
+	const staleIds = ["22222222-2222-2222-2222-222222222222", "33333333-3333-3333-3333-333333333333"];
+
+	it("shuts down and deletes the track1-ci devices of other runs and nothing else", async () => {
+		const { result, simctlCalls } = await runCheckScript(undefined, { devices, env: ownRun });
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		for (const id of staleIds) {
+			expect(simctlCalls).toContain(`simctl shutdown ${id}`);
+			expect(simctlCalls).toContain(`simctl delete ${id}`);
+		}
+		for (const untouched of [
+			"11111111-1111-1111-1111-111111111111",
+			"44444444-4444-4444-4444-444444444444",
+			"55555555-5555-5555-5555-555555555555",
+		]) {
+			expect(simctlCalls.filter((call) => call.includes(untouched))).toEqual([]);
+		}
+		// Two stale devices, plus the run's own simulator at the end.
+		expect(simctlCalls.filter((call) => /^simctl (shutdown|delete)/.test(call))).toHaveLength(6);
+		// Cleanup happens before the run creates its own simulator.
+		const firstCreate = simctlCalls.findIndex((call) => call.startsWith("simctl create"));
+		const lastStaleCall = Math.max(...staleIds.map((id) => simctlCalls.lastIndexOf(`simctl delete ${id}`)));
+		expect(lastStaleCall).toBeGreaterThanOrEqual(0);
+		expect(lastStaleCall).toBeLessThan(firstCreate);
+	});
+
+	it("keeps the end-of-run cleanup of the simulator it creates", async () => {
+		const { result, simctlCalls } = await runCheckScript(undefined, { devices, env: ownRun });
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(simctlCalls.slice(-2)).toEqual(["simctl shutdown simulator-id", "simctl delete simulator-id"]);
+	});
+
+	it("continues, logs and still deletes when simctl shutdown fails", async () => {
+		const { result, simctlCalls } = await runCheckScript(undefined, {
+			devices,
+			env: { ...ownRun, TRACK1_TEST_FAIL_SHUTDOWN: "1" },
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(result.stderr).toContain("22222222-2222-2222-2222-222222222222");
+		for (const id of staleIds) {
+			expect(simctlCalls).toContain(`simctl delete ${id}`);
+		}
+		expect(simctlCalls.some((call) => call.startsWith("simctl create"))).toBe(true);
+	});
+
+	it("continues when the device list is empty", async () => {
+		const { result, simctlCalls } = await runCheckScript(undefined, { env: ownRun });
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(simctlCalls.some((call) => call.startsWith("simctl create"))).toBe(true);
+	});
 });
 
 describe.sequential("Track1 Swift format coverage", () => {
