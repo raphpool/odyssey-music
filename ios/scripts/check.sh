@@ -77,6 +77,40 @@ cleanup() {
 	fi
 }
 
+# 2026-10-11: a cancelled run never reaches cleanup(), so its booted simulators stayed alive on the
+# single macOS runner (11.7 GB of swap) and the next runs timed out right after "TEST BUILD SUCCEEDED",
+# leaving their own simulators behind in turn.
+# 2026-10-12: the first version removed every `track1-ci-*` device of another run, but the Mac hosts two
+# self-hosted runners, so another ios-check can be running at the same time; it killed the simulator of a
+# live run ("Test crashed with signal term"). A device is now removed only once the process that created it
+# (the trailing pid of its name, see simulator_name) is gone; the runner kills orphaned processes when a job
+# is cancelled, so an abandoned device always has a dead pid. Names without a numeric pid are left alone.
+# Failures are logged and ignored so the cleanup can never fail the check itself.
+remove_stale_simulators() {
+	local own_prefix="track1-ci-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-0}-"
+	local device_pattern='^[[:space:]]+(track1-ci-[^ (]+) \(([0-9A-Fa-f-]{36})\)'
+	local pid_pattern='-([0-9]+)$'
+	local listing line name udid owner_pid
+	if ! listing="$(xcrun simctl list devices 2>&1)"; then
+		echo "Could not list simulators; skipping stale simulator cleanup: $listing" >&2
+		return 0
+	fi
+	while IFS= read -r line; do
+		[[ "$line" =~ $device_pattern ]] || continue
+		name="${BASH_REMATCH[1]}"
+		udid="${BASH_REMATCH[2]}"
+		[[ "$name" == "$own_prefix"* ]] && continue
+		[[ "$name" =~ $pid_pattern ]] || continue
+		owner_pid="${BASH_REMATCH[1]}"
+		kill -0 "$owner_pid" 2>/dev/null && continue
+		echo "Removing stale simulator $name ($udid): process $owner_pid is gone."
+		xcrun simctl shutdown "$udid" >/dev/null 2>&1 \
+			|| echo "Could not shut down stale simulator $name ($udid); continuing." >&2
+		xcrun simctl delete "$udid" >/dev/null 2>&1 \
+			|| echo "Could not delete stale simulator $name ($udid); continuing." >&2
+	done <<<"$listing"
+}
+
 start_contract_harness() {
 	contract_dir="$(mktemp -d "${TMPDIR:-/tmp}/track1-contract.XXXXXX")"
 	local ready_file="$contract_dir/base-url"
@@ -186,6 +220,7 @@ fi
 
 echo "Using $actual_xcode"
 mkdir -p "$output_dir"
+remove_stale_simulators
 
 if grep -q "XCRemoteSwiftPackageReference" "$project_file"; then
 	if [[ ! -f "$package_resolved_path" ]]; then
