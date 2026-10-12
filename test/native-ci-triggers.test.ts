@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -185,21 +186,13 @@ function escapingReferences(sources: SourceFile[], root: string): string[] {
 	);
 }
 
-/** Code with comments removed, so a word in a comment is not read as a path. */
-function withoutCodeComments(source: string): string {
-	return source
-		.replace(/\/\*[\s\S]*?\*\//g, "")
-		.split("\n")
-		.map((line) => line.replace(/(^|\s)\/\/.*$/, "$1"))
-		.join("\n");
-}
-
 /** String literals naming a root entry the workflow does not watch, or a Markdown file (best effort). */
 function readsOutside(sources: SourceFile[], outsideRoots: string[]): string[] {
-	const literal = /(["'`])((?:\\.|(?!\1)[^\\\n])*)\1/g;
+	// One left-to-right pass: a comment is consumed only where it starts outside a string literal.
+	const token = /(["'`])((?:\\.|(?!\1)[^\\\n])*)\1|\/\/.*$|\/\*[\s\S]*?\*\//gm;
 	return sources.flatMap(({ file, source }) =>
-		[...withoutCodeComments(source).matchAll(literal)]
-			.map((match) => match[2] ?? "")
+		[...source.matchAll(token)]
+			.flatMap((match) => (match[1] === undefined ? [] : [match[2] ?? ""]))
 			.filter((text) => {
 				// A relative module specifier names a file of the import graph, which is already compared.
 				if (/^\.{1,2}\/.*\.[jt]s$/.test(text)) return false;
@@ -210,26 +203,24 @@ function readsOutside(sources: SourceFile[], outsideRoots: string[]): string[] {
 	);
 }
 
-/** Root entries (files and folders) in which no file starts the workflow. */
+/** Top-level tracked entries in which no file starts the workflow (untracked local files do not count). */
 function rootEntriesOutside(globs: string[]): string[] {
-	return readdirSync(".", { withFileTypes: true })
-		.filter((entry) => entry.name !== "node_modules" && entry.name !== ".git")
-		.filter((entry) =>
-			entry.isDirectory()
-				? !startsWorkflow(globs, filesUnder(entry.name))
-				: !startsWorkflow(globs, [entry.name]),
-		)
-		.map((entry) => entry.name);
+	const tracked = execFileSync("git", ["ls-files", "-z"], { encoding: "utf8", maxBuffer: 1 << 26 });
+	const byRoot = new Map<string, string[]>();
+	for (const file of tracked.split("\0").filter(Boolean)) {
+		const root = file.split("/")[0] ?? file;
+		byRoot.set(root, [...(byRoot.get(root) ?? []), file]);
+	}
+	return [...byRoot].filter(([, files]) => !startsWorkflow(globs, files)).map(([root]) => root);
 }
 
-// Read without being imported: data/*.json (genre-identity, genre-registry, graph, genre-taxonomy), cache/
+// Read without being imported: data/ (every file; genre-identity, genre-registry, graph, genre-taxonomy), cache/
 // (genre-taxonomy.ts cacheRootFor, whatever ODYSSEY_CACHE_DIR says), the root manifests (`npm ci`, tsx).
 // .deployed-sha (src/server.ts /version) is gitignored: no PR can change it.
-const jsonUnder = (directory: string): string[] => filesUnder(directory).filter((f) => f.endsWith(".json"));
 const iosInputs = [
 	...filesUnder("ios"),
 	...harnessImportGraph(HARNESS),
-	...jsonUnder("data"),
+	...filesUnder("data"),
 	...filesUnder("cache"),
 	"package.json",
 	"package-lock.json",
@@ -249,7 +240,7 @@ const filters = [
 		triggers: paths(`ios/x ios/scripts/check.sh src/server.ts src/mobile/router.ts data/genre-taxonomy.json
 			cache/nodes/x.json package.json package-lock.json tsconfig.json ${HARNESS} ${IOS_WORKFLOW}`),
 		ignored: paths(`vitest.config.ts test/foo.test.ts test/helpers/yield-event-loop.setup.ts
-			.claude/agents/implementer.md docs/plans/track1-mobile.md README.md web/index.html biome.json
+			.claude/agents/implementer.md docs/plans/track1-mobile.md README.md web/index.html .deployed-sha biome.json
 			mobile/app/index.tsx mobile/package-lock.json .github/workflows/ci.yml ${MOBILE_WORKFLOW}`),
 	},
 	{
@@ -302,7 +293,7 @@ describe("path filter helpers (TRA-417)", () => {
 		expect(escapingReferences([inside], "mobile")).toEqual([]);
 		const read = {
 			file: "src/a.ts",
-			source: 'join(here, "..", "docs", "a.txt"); // reads "web"\nread("NOTES.md");',
+			source: 'g("src/**/*.ts"); join(here, "..", "docs", "a.txt"); // reads "web"\nread("NOTES.md");',
 		};
 		expect(readsOutside([read], ["docs", "web"])).toEqual(["src/a.ts: docs", "src/a.ts: NOTES.md"]);
 	});
@@ -317,7 +308,7 @@ describe("ios-check inputs (TRA-417)", () => {
 		expect(graph).toContain(HARNESS);
 	});
 
-	it("keeps .deployed-sha out of paths because it is never committed", () => {
+	it("leaves .deployed-sha out of paths: it is gitignored, so no PR changes it", () => {
 		expect(readFileSync(".gitignore", "utf8").split("\n")).toContain(".deployed-sha");
 	});
 

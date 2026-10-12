@@ -15,7 +15,7 @@ name: ios-ci
 # 3,000 files of a diff; if no matching file is among them the workflow does not start (no fail-safe there).
 # Inputs of ios-check:
 #   ios/**                          sources, Xcode project, check.sh, .xcode-version, .swift-format, Package.resolved
-#   src/**                          the harness imports server.ts and 49 more files of src/ (root, mobile/, services/,
+#   src/**                          the harness imports server.ts and its graph from src/ (root, mobile/, services/,
 #                                   tools/); a folder, so a new module needs no tier/3 edit. Over-triggers on
 #                                   src/cli.ts, crawler.ts, genre-seeds.ts and the like (not imported): accepted
 #   test/helpers/mobile-contract-server.ts   the harness check.sh starts (its only file under test/)
