@@ -1,7 +1,9 @@
 # Track1 iOS — V1 fidèle au Figma de handoff (re-planification de P-TRA-4)
 
-Statut : **à valider par Raphael** (gate du 2026-10-11). Aucun ticket n'est créé ni modifié avant
-validation.
+Statut : **Validé par Raphael le 2026-10-11, sauf règle 9 (article conservé).** Toutes les
+recommandations par défaut sont retenues (Q1 à Q6, D11 à D13). L'article et les sources restent sur
+la fiche (D15). Les ID Linear sont reportés dans la colonne « Ticket » de la vue d'ensemble dès leur
+création.
 
 Ce plan remplace la partie interface du plan V1
 [`track1-ios-v1-basic.md`](https://github.com/raphpool/odyssey-music/blob/claude/linear-track1-mobile-ios-5ir641/docs/plans/track1-ios-v1-basic.md)
@@ -30,7 +32,8 @@ Le plan V1 gelait la fidélité visuelle (D4) en attendant le Figma. Le Figma es
 - un Data contract qui dit où chaque champ du nœud s'affiche.
 
 Le Figma contredit plusieurs choix déjà livrés ou planifiés :
-- **Article et sources** (TRA-365, mergé) : non affichés en v1 (Data contract, règle 9).
+- **Article et sources** (TRA-365, mergé) : non affichés en v1 (Data contract, règle 9). Raphael
+  les conserve (D15).
 - **Onglets** : Aujourd'hui / Recherche / Réglages deviennent Aujourd'hui / Genres / Recherche,
   et la recherche s'ouvre en sheet.
 - **Aujourd'hui** (TRA-373) : plus de carte « Découvrir ». La fiche du jour s'affiche directement.
@@ -78,15 +81,15 @@ pbxproj compris, et intègrent ce facteur.
 | `ContentReaders`, route `.node` (TRA-361) | `ContentReaders` est réutilisé, et son lecteur `image` sert enfin. | F.3 |
 | `AppRouter`, `AppTab` (TRA-335, TRA-361) | Amendés : onglets, titres de route, `popTo`, sheet de recherche. | G.1 |
 | `NodeView` minimal (TRA-361) | Reste le conteneur d'états. Le corps `.loaded` est remplacé par `NodePageView`. | H.1 |
-| `NodeArticleView` (TRA-365) | **Supprimé** : la règle 9 exclut l'article et les citations en v1. | L.1 |
-| `NodeRelationsView` (TRA-366) | Remplacé par les sections chips, carrousel et pistes. L'événement `relation_opened` est conservé. | H.1, L.2 |
+| `NodeArticleView`, `NodeArticleParser` (TRA-365) | **Conservés** (D15, écart validé à la règle 9) : logique inchangée, habillage Nocturne en sections « article » et « sources » en fin de fiche. | H.1, H.3 |
+| `NodeRelationsView` (TRA-366) | Remplacé par les sections chips, carrousel et pistes. L'événement `relation_opened` est conservé. | H.1, L.1 |
 | `ListeningActions` (TRA-362) | Réutilisé par la barre d'écoute. | E.4, H.1 |
 | `NodeListeningView` et état d'écoute du VM (TRA-368, PR #330) | L'état est réutilisé. La vue est remplacée par `StreamingBar`. | H.1, L.1 |
 | `SearchViewModel` (TRA-364, PR #331) | Réutilisé avec une temporisation de 150 ms et les récents. Les filtres restent dans le VM, sans UI. | I.1 |
 | `UITestFixtureReaders` (TRA-370) | Réutilisé. Les fixtures sont enrichies dans les fichiers de test, sans changer le code. | — |
-| `ios/scripts/archive.sh` (TRA-360) | Réutilisé. | L.4 |
-| `Track1Theme`, `Track1PrimaryButtonStyle` | Remplacés par `Track1Tokens` et les composants, puis supprimés. | A.1, L.3 |
-| `OnboardingView` et `ProfileMissingView` (TRA-340) | Remplacés par le Flow 1, puis supprimés. `Profile` et `ProfileStore` sont réutilisés. | J.x, L.3 |
+| `ios/scripts/archive.sh` (TRA-360) | Réutilisé. | L.3 |
+| `Track1Theme`, `Track1PrimaryButtonStyle` | Remplacés par `Track1Tokens` et les composants, puis supprimés. | A.1, L.2 |
+| `OnboardingView` et `ProfileMissingView` (TRA-340) | Remplacés par le Flow 1, puis supprimés. `Profile` et `ProfileStore` sont réutilisés. | J.x, L.2 |
 | `PrivacyChoiceView`, `SettingsView` | Conservés et habillés (non dessinés). | K.2 |
 | `EntryView` et `EntryStatusView` | Laissés en place, comme en V1 (`AppConfigurationTests` les utilise). | — |
 
@@ -101,7 +104,7 @@ pbxproj compris, et intègrent ce facteur.
 | TRA-373 — vue Aujourd'hui + XCUITest | **Amender** : il devient H.2, avec la fiche du jour directe. Plage pbxproj `0320–032F` au lieu de `01B0–01BF`. |
 | TRA-372 — vue Recherche + XCUITest | **Amender** : il devient I.2, en sheet. Plage `0340–034F` au lieu de `01D0–01DF`. |
 | TRA-367 — image (optionnelle) | **Amender et rendre obligatoire** : il devient F.3, chargeur et cache d'images. Plage `02E0–02EF`. |
-| TRA-374 — installation iPhone et smoke (tier/3) | **Amender** : il devient L.4, avec le smoke des parcours Figma et le relevé visuel. |
+| TRA-374 — installation iPhone et smoke (tier/3) | **Amender** : il devient L.3, avec le smoke des parcours Figma et le relevé visuel. |
 
 Les parents TRA-341, TRA-342, TRA-343, TRA-348 et TRA-337 gardent leur rôle de conteneurs, avec le
 contrat réduit V1 complété par les tâches rattachées ci-dessous.
@@ -113,7 +116,7 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 | TRA-347 — particularités des 5 types de fiche | **Réécrire** en parent des Parties F et H.1 : « Présenter les cinq types de fiche selon le Data contract ». | Son contrat (composants RN, Figma d'exploration `34:144`…) est obsolète. Le Data contract `168:1401` le remplace exactement. |
 | TRA-352 — animations accessibles | **Laisser en pause**, retirer `en-pause/figma`. | Le mouvement et sa variante Reduce Motion sont spécifiés par composant et par écran : chaque tâche les livre. La repasse transverse (Instruments, vidéos) dépend de TRA-346, 349, 350 et 351, hors V1. |
 | TRA-317 — confidentialité (tier/3) | **Laisser en pause**, retirer `en-pause/figma`. | Le Figma ne la dessine pas. Elle reste bloquée par TRA-346, 339 et 350. |
-| TRA-331 — validation des 16 écrans | **Laisser en pause**. Sa partie V1 est **fusionnée** dans L.4 (relevé visuel des 13 écrans dessinés). | La recette transverse (push, génération, hors ligne) est post-V1. À réécrire plus tard sur les 13 écrans réels. |
+| TRA-331 — validation des 16 écrans | **Laisser en pause**. Sa partie V1 est **fusionnée** dans L.3 (relevé visuel des 13 écrans dessinés). | La recette transverse (push, génération, hors ligne) est post-V1. À réécrire plus tard sur les 13 écrans réels. |
 | TRA-315 — Segment vers Amplitude | **Laisser en pause**, retirer `en-pause/figma`. | Sans lien avec le Figma (R7 V1). À noter pour sa reprise : `daily_recommendation_opened` change de sens (R10). |
 | TRA-318, 319, 354, 320, 321 — Partie 6 App Store | **Laisser en pause**, retirer `en-pause/figma`. | Hors V1. Ils restent bloqués par TRA-331 via leurs relations. |
 
@@ -126,8 +129,8 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 - **Bonus Figma** : préécoute audio à l'appui long (genre, sous-genre) et dérive lente
   « Turrell » de l'Ambient glow. Le fond animé de l'écran Welcome (1.1), qui n'est pas marqué
   bonus, est inclus.
-- **Contenus exclus par le Data contract (règle 9)** : `editorial_article`, `citations`, `mbid`,
-  `qid`, `materialized_at`, `image_source`.
+- **Contenus exclus par le Data contract (règle 9)** : `mbid`, `qid`, `materialized_at`,
+  `image_source`. `editorial_article` et `citations` restent affichés (D15).
 - **YouTube Music**, faute de lien dans `/links` (D12). Pas de logo de label non plus : le champ
   n'existe pas et un changement de schéma est tier/3.
 - **Mode clair** (le Figma l'exclut) et **changement de la cible de déploiement** (iOS 17.0).
@@ -154,7 +157,7 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
   `ios/Track1/DesignSystem/Components/<Groupe>/`. Les propriétés Figma deviennent des paramètres et
   les variantes des `enum`.
 - **Écrans.** Les fichiers de `Features/` et `App/` n'utilisent que des jetons et des composants.
-  Un test vitest le vérifie (L.3).
+  Un test vitest le vérifie (L.2).
 - **Rejeté : des color sets dans `Assets.xcassets`.** Il faudrait 47 dossiers JSON (gate de 20
   fichiers), invisibles en revue et non testables. Rejeté aussi : garder l'UI système en la
   teintant, qui ne satisfait pas le handoff. Rejeté enfin : implémenter aussi le mode clair, que le
@@ -196,6 +199,8 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 - **Constantes.** Les constantes Swift (`NodePageSpec`) sont encadrées par des marqueurs. Un test
   vitest les compare à `EDGE_FIELDS_BY_TYPE`, `SINGULAR_EDGES_BY_TYPE` et `OPTIONAL_TEXT_FIELDS`
   (F.1).
+- **Écart toléré.** Le test de parité tolère explicitement l'article et les citations comme seul
+  écart validé à la règle 9 (D15).
 - **Ordre des sections.** C'est celui du schéma (règle 2 du Data contract). Il diffère de l'ordre
   dessiné en 2.1 (producers avant tracks) et en 2.3 (collaborators avant influences) ; la règle
   prime sur l'écran.
@@ -266,9 +271,30 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
   inutilement, alors qu'ils doivent bien afficher leurs échecs. Rejeté aussi : garder l'UI système
   pour ces états, qui détonnerait dans un thème sombre unique.
 
+### D15 — L'article et les sources restent sur la fiche (écart validé à la règle 9)
+
+- **Décision de Raphael (gate du 2026-10-11).** Contre la règle 9 du Data contract (`179:7`), la
+  fiche garde `editorial_article` et `citations`. `NodeArticleView` et `NodeArticleParser`
+  (TRA-365) sont conservés, logique inchangée.
+- **Placement.** Deux sections après la dernière section d'arêtes, avant la barre d'écoute :
+  « article », puis « sources ». Elles réutilisent les composants dessinés :
+  - `SectionHeader` (`171:62`) ;
+  - texte `bodyLarge` en `colorTextPrimary` pour les paragraphes et les listes de l'article ;
+  - une ligne `Track1ListItem` avec chevron (`22:26`) par source.
+
+  Le rythme est celui des autres sections (`spacing24` entre sections, `spacing12` sous l'en-tête).
+  Le premier écran dessiné (héros, titre, teaser, faits, premières sections) reste identique au
+  Figma.
+- **Parité.** Le test de parité (F.1) déclare `editorial_article` et `citations` comme seuls écarts
+  tolérés à la règle 9. Tout autre champ de la règle 9 affiché le fait échouer.
+- **Rejeté : suivre la règle 9**, refusé par Raphael. Rejeté aussi :
+  - l'article sous le teaser : il repousserait les relations hors du premier écran et
+    contredirait l'anatomie du Flow 2 ;
+  - un écran « Lire l'article » séparé : une navigation non dessinée.
+
 ## Questions ouvertes du Figma
 
-### Bloquantes : réponse attendue au gate (le défaut s'applique si Raphael le valide)
+### Bloquantes : défaut validé au gate du 2026-10-11
 
 | # | Question | Bloque | Recommandation par défaut |
 | --- | --- | --- | --- |
@@ -287,8 +313,8 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 | Q8 | Préécoute à l'appui long | Hors V1 : c'est un bonus, sans source audio définie. |
 | Q9 | Teasers coupés, faits rarement renseignés (7 sur 294 projets) | Qualité du pipeline, hors de ce plan. L'app affiche le teaser tel quel, sans troncature (règle du Teaser card). |
 
-Les autres décisions à valider au gate sont D11 (pas de génération), D12 (écoute), D13 (profil à
-≥ 1 genre et 1.5 hors V1) et la suppression de l'article et des sources (règle 9, L.1).
+Réponses du gate du 2026-10-11 : Q1 à Q6 et D11 à D13 sont validées avec la recommandation par
+défaut. La règle 9 n'est pas suivie pour l'article et les sources (D15).
 
 ## Data contract comparé à `src/node-spec.ts` et à l'API mobile
 
@@ -305,6 +331,8 @@ Les autres décisions à valider au gate sont D11 (pas de génération), D12 (é
     contract (`179:157`) dans le sous-titre. **Sous-titre seulement.**
   - Ordre des sections : la règle 2 dit « ordre du schéma », mais les écrans 2.1 et 2.3 dessinent
     un autre ordre. **Ordre du schéma** (D9).
+- **Écart validé (D15).** L'article (`NodeDetail.article`) et les citations restent affichés, contre
+  la règle 9.
 - **Écarts avec l'API.** Genres et labels n'ont pas de champ image, et le logo de label n'existe
   pas (Q5). Les `EdgeRef` n'ont pas de pochette (D10). `/links` n'a pas YouTube Music (D12).
 - **Repli du héros de genre.** « pochette du projet du titre repère » demanderait deux lectures
@@ -379,44 +407,44 @@ Les autres décisions à valider au gate sont D11 (pas de génération), D12 (é
 
 Parents : **DS** = nouveau parent « Construire le design system Nocturne en SwiftUI » ;
 **ONB** = nouveau parent « Choisir ses genres avec l'onboarding Figma » ; TRA-347 réécrit (D9).
-Chaque Partie devient un jalon Linear du projet.
+Estimation en points : 1 (moins de 250 lignes), 2 (250 à 340), 3 (plus de 340).
 
-| Tâche | Titre | Parent | Tier | Diff | Dépend de | Plage | Vague |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 0 | Merger #330, #331 ; TRA-379, TRA-376 | (existants) | 2 | — | — | — | 0 |
-| A.1 | Jetons Nocturne et thème sombre | DS | 2 | ~300 | — | 0200–020F | 1 |
-| A.2 | Polices, rôles typographiques et icône d'app | DS | 2 | ~310 + binaires | A.1 | 0210–021F | 2 |
-| B.1 | Composants Core : Text, Button, IconButton, Icon | DS | 2 | ~380 | A.2 | 0220–022F | 3 |
-| B.2 | États non dessinés : `Track1Status` | DS | 2 | ~220 | B.1, Q1, Q4 | 0230–023F | 4 |
-| C.1 | Ambient glow et Top bar | DS | 2 | ~340 | B.1 | 0240–024F | 4 |
-| C.2 | ListItem, Artwork, SearchField | DS | 2 | ~350 | B.1 | 0250–025F | 4 |
-| D.1 | Genre tile, Subgenre row, Select-all chip, Bottom action bar | DS | 2 | ~380 | B.1 | 0260–026F | 4 |
-| D.2 | Progress bar et Welcome backdrop | DS | 2 | ~260 | B.1 | 0270–027F | 4 |
-| E.1 | Teaser card, Section header, Fact row, Track row | DS | 2 | ~300 | B.1 | 0280–028F | 4 |
-| E.2 | Edge chip, Overflow et disposition en flux | DS | 2 | ~300 | B.1, Q1 | 0290–029F | 4 |
-| E.3 | Hero et Release card | DS | 2 | ~380 | C.2 | 02A0–02AF | 5 |
-| E.4 | Streaming button et Streaming bar | DS | 2 | ~280 | B.1 | 02B0–02BF | 4 |
-| F.1 | Sections de fiche selon le Data contract + parité vitest | TRA-347 | 2 | ~340 | — | 02C0–02CF | 1 |
-| F.2 | En-tête de fiche : sous-titre, teaser, faits | TRA-347 | 2 | ~260 | F.1, Q1 | 02D0–02DF | 2 |
-| F.3 | Charger les images sans redirection non sûre (TRA-367 amendé) | TRA-341 | 2 | ~360 | — | 02E0–02EF | 1 |
-| F.4 | Sources du héros et couleur dominante | TRA-347 | 2 | ~330 | F.3, Q5, Q6 | 02F0–02FF | 2 |
-| G.1 | Onglets Aujourd'hui / Genres / Recherche, sheet et fil d'Ariane | TRA-341 | 2 | ~380 | C.1 | 0300–030F | 5 |
-| H.1 | Page de fiche Figma | TRA-347 | 2 | ~380 | 0, B.2, C.1, E.1–E.4, F.2, F.4, G.1 | 0310–031F | 6 |
-| H.2 | Aujourd'hui affiche la fiche du jour (TRA-373 amendé) | TRA-343 | 2 | ~380 | H.1, D.2, TRA-379 | 0320–032F | 7 |
-| I.1 | Fiches récentes et temporisation de 150 ms | TRA-348 | 2 | ~300 | TRA-364 | 0330–033F | 2 |
-| I.2 | Sheet de recherche (TRA-372 amendé) | TRA-348 | 2 | ~380 | I.1, C.2, H.1 | 0340–034F | 7 |
-| J.1 | Taxonomie et modèle du parcours d'onboarding | ONB | 2 | ~380 | — | 0350–035F | 1 |
-| J.2 | Écrans 1.1 Welcome et 1.2 Genres | ONB | 2 | ~330 | J.1, C.1, D.1, D.2, Q1, Q2 | 0360–036F | 5 |
-| J.3 | Écrans 1.3 et 1.4 Sous-genres | ONB | 2 | ~340 | J.2 | 0370–037F | 6 |
-| J.4 | Brancher l'onboarding au lancement et l'enchaîner sur Aujourd'hui | ONB | 2 | ~380 | J.3, H.2 | 0380–038F | 8 |
-| K.1 | Onglet Genres (composition par défaut) | ONB | 2 | ~350 | J.3, G.1, Q3 | 0390–039F | 7 |
-| K.2 | Habiller le consentement et les réglages | DS | 2 | ~260 | B.2, C.1, C.2, Q4 | 03A0–03AF | 5 |
-| L.1 | Supprimer l'article, les sources et l'ancienne vue d'écoute | DS | 2 | ~−330 | H.1 | 03B0–03BF | 7 |
-| L.2 | Supprimer l'ancienne vue des relations | DS | 2 | ~−340 | L.1 | 03C0–03CF | 8 |
-| L.3 | Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons | DS | 2 | ~−300 / +80 | J.4, K.1, K.2, I.2 | 03D0–03DF | 9 |
-| L.4 | Installer la V1 Figma sur l'iPhone et consigner la preuve (TRA-374 amendé) | TRA-337 | 3 | ~140 | toutes | — | 10 |
+| Tâche | Ticket | Titre | Parent | Tier | Est. | Diff | Dépend de | Plage | Vague |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | TRA-368, TRA-364, TRA-379, TRA-376 | Merger #330, #331 ; TRA-379, TRA-376 | (existants) | 2 | — | — | — | — | 0 |
+| A.1 | à créer | Jetons Nocturne et thème sombre | DS | 2 | 2 | ~300 | — | 0200–020F | 1 |
+| A.2 | à créer | Polices, rôles typographiques et icône d'app | DS | 2 | 2 | ~310 + binaires | A.1 | 0210–021F | 2 |
+| B.1 | à créer | Composants Core : Text, Button, IconButton, Icon | DS | 2 | 3 | ~380 | A.2 | 0220–022F | 3 |
+| B.2 | à créer | États non dessinés : `Track1Status` | DS | 2 | 1 | ~220 | B.1 | 0230–023F | 4 |
+| C.1 | à créer | Ambient glow et Top bar | DS | 2 | 2 | ~340 | B.1 | 0240–024F | 4 |
+| C.2 | à créer | ListItem, Artwork, SearchField | DS | 2 | 3 | ~350 | B.1 | 0250–025F | 4 |
+| D.1 | à créer | Genre tile, Subgenre row, Select-all chip, Bottom action bar | DS | 2 | 3 | ~380 | B.1 | 0260–026F | 4 |
+| D.2 | à créer | Progress bar et Welcome backdrop | DS | 2 | 2 | ~260 | B.1 | 0270–027F | 4 |
+| E.1 | à créer | Teaser card, Section header, Fact row, Track row | DS | 2 | 2 | ~300 | B.1 | 0280–028F | 4 |
+| E.2 | à créer | Edge chip, Overflow et disposition en flux | DS | 2 | 2 | ~300 | B.1 | 0290–029F | 4 |
+| E.3 | à créer | Hero et Release card | DS | 2 | 3 | ~380 | C.2 | 02A0–02AF | 5 |
+| E.4 | à créer | Streaming button et Streaming bar | DS | 2 | 2 | ~280 | B.1 | 02B0–02BF | 4 |
+| F.1 | à créer | Sections de fiche selon le Data contract + parité vitest | TRA-347 | 2 | 2 | ~340 | — | 02C0–02CF | 1 |
+| F.2 | à créer | En-tête de fiche : sous-titre, teaser, faits | TRA-347 | 2 | 2 | ~260 | F.1 | 02D0–02DF | 2 |
+| F.3 | TRA-367 (amendé) | Charger les images sans redirection non sûre | TRA-341 | 2 | 3 | ~360 | — | 02E0–02EF | 1 |
+| F.4 | à créer | Sources du héros et couleur dominante | TRA-347 | 2 | 2 | ~330 | F.3 | 02F0–02FF | 2 |
+| G.1 | à créer | Onglets Aujourd'hui / Genres / Recherche, sheet et fil d'Ariane | TRA-341 | 2 | 3 | ~380 | B.1, C.1 | 0300–030F | 5 |
+| H.1 | à créer | Page de fiche Figma | TRA-347 | 2 | 3 | ~380 | TRA-376, TRA-368, B.2, C.1, E.1–E.4, F.2, F.4, G.1 | 0310–031F | 6 |
+| H.2 | TRA-373 (amendé) | Aujourd'hui affiche la fiche du jour | TRA-343 | 2 | 3 | ~380 | H.1, D.2, TRA-379 | 0320–032F | 7 |
+| H.3 | à créer | Article et sources en sections Nocturne (D15) | TRA-341 | 2 | 2 | ~260 | H.1, E.1, C.2 | 03E0–03EF | 7 |
+| I.1 | à créer | Fiches récentes et temporisation de 150 ms | TRA-348 | 2 | 2 | ~300 | TRA-364 | 0330–033F | 2 |
+| I.2 | TRA-372 (amendé) | Sheet de recherche | TRA-348 | 2 | 3 | ~380 | I.1, C.2, H.1 | 0340–034F | 7 |
+| J.1 | à créer | Taxonomie et modèle du parcours d'onboarding | ONB | 2 | 3 | ~380 | — | 0350–035F | 1 |
+| J.2 | à créer | Écrans 1.1 Welcome et 1.2 Genres | ONB | 2 | 2 | ~330 | J.1, C.1, D.1, D.2 | 0360–036F | 5 |
+| J.3 | à créer | Écrans 1.3 et 1.4 Sous-genres | ONB | 2 | 2 | ~340 | J.2 | 0370–037F | 6 |
+| J.4 | à créer | Brancher l'onboarding au lancement et l'enchaîner sur Aujourd'hui | ONB | 2 | 3 | ~380 | J.3, H.2 | 0380–038F | 8 |
+| K.1 | à créer | Onglet Genres (composition par défaut, Q3) | ONB | 2 | 3 | ~350 | J.3, G.1 | 0390–039F | 7 |
+| K.2 | à créer | Habiller le consentement et les réglages | DS | 2 | 2 | ~260 | B.2, C.1, C.2 | 03A0–03AF | 5 |
+| L.1 | à créer | Supprimer les anciennes vues de relations et d'écoute | DS | 2 | 1 | ~−400 | H.1 | 03B0–03BF | 7 |
+| L.2 | à créer | Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons | DS | 2 | 2 | ~−300 / +80 | J.4, K.1, K.2, I.2, H.3 | 03D0–03DF | 9 |
+| L.3 | TRA-374 (amendé) | Installer la V1 Figma sur l'iPhone et consigner la preuve | TRA-337 | 3 | 2 | ~140 | toutes | — | 10 |
 
-**Chemin critique** : A.1 → A.2 → B.1 → C.2 → E.3 → H.1 → H.2 → J.4 → L.3 → L.4.
+**Chemin critique** : A.1 → A.2 → B.1 → C.2 → E.3 → H.1 → H.2 → J.4 → L.2 → L.3.
 
 **Ordre recommandé** (3 PR iOS au plus) :
 1. Vider la vague 0 : #330 et #331, puis TRA-379 et TRA-376.
@@ -426,7 +454,8 @@ Chaque Partie devient un jalon Linear du projet.
 **Conflits attendus.** Ce sont des insertions mécaniques ; celui qui merge en second rebase.
 - Les composants d'un même sous-groupe pbxproj (lignes uniques).
 - `RootView.swift` : G.1, H.1, H.2, I.2, J.4, K.1.
-- `NodeView.swift` : TRA-376, H.1, I.2, L.1.
+- `NodeView.swift` : TRA-376, H.1, I.2.
+- `NodePageView.swift` : H.1, H.3.
 - `AppContainer.swift` : F.3, H.2, I.1.
 - `Info.plist` : A.1, A.2.
 
@@ -471,7 +500,7 @@ Incrément visible : l'application passe en sombre, avec la teinte d'action Noct
     `standard` = cubic-bezier(0.2, 0, 0, 1) et `emphasized` = (0.2, 0, 0, 1.2).
   - `static func animation(_: Track1Motion, emphasized: Bool = false, reduceMotion: Bool) -> Animation?`
     renvoie `nil` si `reduceMotion`.
-  - `Track1Theme` reste en place (supprimé en L.3).
+  - `Track1Theme` reste en place (supprimé en L.2).
 - **Critères d'acceptation :**
   - [ ] `colorTextPrimary` = `#F6E9D8`, `colorBackgroundElevated` = `#1A110E`,
     `colorBorderDefault` = `#443027`, et les 5 couleurs `node` (`#5D7FA8`, `#E6A23A`, `#F0642D`,
@@ -949,12 +978,19 @@ Incrément : projection et chargement testés, prêts pour H.1. Aucun écran ne 
     - `single` : `showsCount = false`, une seule arête ;
     - chips : toutes les arêtes, la vue gère le seuil de 8 ;
     - `trackList` : liste complète, dans l'ordre du tableau.
-  - Le test vitest lit le fichier Swift et compare chaque liste aux objets de `src/node-spec.ts`.
+  - `static let rule9Deviations = ["editorial_article", "citations"]`, entre les marqueurs : champs
+    exclus par la règle 9 mais affichés quand même (D15, validé le 2026-10-11).
+  - Le test vitest lit le fichier Swift et compare chaque liste aux objets de `src/node-spec.ts`. Il
+    exige que `rule9Deviations` vaille exactement `["editorial_article", "citations"]`, et qu'aucun
+    autre champ de la règle 9 (`mbid`, `qid`, `materialized_at`, `image_source`) ne figure entre les
+    marqueurs.
 - **Critères d'acceptation :**
   - [ ] Pour une fixture complète de chacun des 5 types, l'ordre des sections égale celui de
     `EDGE_FIELDS_BY_TYPE`. Pour un artiste, `influences` vient avant `collaborators`.
   - [ ] Une arête vide n'a pas de section, et les arêtes uniques ont `showsCount == false`.
   - [ ] Un genre à 10 sous-genres a `totalCount == 10` et ses 10 arêtes.
+  - [ ] Le test vitest accepte l'écart validé et échoue si `rule9Deviations` contient un autre champ
+    (par exemple `mbid`).
   - [ ] Le test vitest échoue si un champ est ajouté ou réordonné d'un côté seulement (vérifié en le
     faisant échouer localement avant le commit, puis consigné dans la PR).
 - **Tests attendus :** `NodePageModelTests` (XCTest) et `test/ios-node-page-spec.test.ts`
@@ -994,7 +1030,8 @@ Incrément : projection et chargement testés, prêts pour H.1. Aucun écran ne 
     - genre : `sonic_markers` « SONIC MARKERS » ;
     - label : `founders` « FOUNDERS », `active_years` « ACTIVE » ;
     - artist : aucun fait.
-  - `article`, `citations` et `materialized_at` ne sont jamais lus.
+  - `materialized_at` n'est jamais lu. L'article et les citations ne font pas partie de l'en-tête :
+    ils sont rendus en fin de page (H.1, H.3, D15).
 - **Critères d'acceptation :**
   - [ ] Les 5 types en données complètes, partielles et vides donnent les sous-titres attendus.
     Exemple : « Kendrick Lamar · Album · 2015 ». Un `release_type` absent est omis.
@@ -1167,7 +1204,8 @@ Incrément visible : la fiche Figma complète, puis Aujourd'hui qui affiche la f
          dépasse ; chaque pochette se charge par `imageStore.image(for:)` dans `.task` ;
        - `TrackRow` pour la liste de pistes ;
        - une chip unique sans compte ;
-    8. `StreamingBar` en `.safeAreaInset(edge: .bottom)`, 8 pt au-dessus de la barre d'onglets.
+    8. l'article et les sources : `NodeArticleView` existant, tel quel jusqu'à H.3 (D15) ;
+    9. `StreamingBar` en `.safeAreaInset(edge: .bottom)`, 8 pt au-dessus de la barre d'onglets.
   - Marges de `spacing24`, rythme de section `spacing24`.
   - Toucher une chip, une carte ou une piste appelle
     `router.openNode(edge.slug, context: context.followingRelation(), title: edge.name)` et émet
@@ -1177,15 +1215,16 @@ Incrément visible : la fiche Figma complète, puis Aujourd'hui qui affiche la f
     - Racine de type project ou track avec une teinte : `.tinted(tint)`.
     - Sinon : `.ember`.
   - Identifiants : `node-title`, `node-subtitle`, plus ceux des composants.
-  - `NodeArticleView`, `NodeRelationsView` et `NodeListeningView` ne sont plus référencés (ils sont
-    supprimés en L.1 et L.2).
+  - `NodeArticleView` est conservé (D15) : `NodePageView` le place tel quel après la dernière section
+    d'arêtes, et H.3 l'habille. `NodeRelationsView` et `NodeListeningView` ne sont plus référencés
+    (supprimés en L.1).
 - **Critères d'acceptation :**
   - [ ] `glowTone` couvre les 4 cas : non racine, racine project avec teinte, racine project sans
     teinte, racine genre.
   - [ ] `relation_opened` est émis une seule fois par toucher, avec les propriétés V1. Le test passe
     par le vrai `NodeViewModel` et l'enregistreur en closure.
-  - [ ] `git grep -n "NodeArticleView\|NodeRelationsView\|NodeListeningView" ios/Track1/App ios/Track1/Features/Node/NodeView.swift`
-    ne trouve rien.
+  - [ ] `git grep -n "NodeRelationsView\|NodeListeningView" ios/Track1/App ios/Track1/Features/Node/NodeView.swift`
+    ne trouve rien. `NodeArticleView` n'est référencé que par `NodePageView`.
   - [ ] Les XCUITest existants restent verts.
 - **Tests attendus :** `NodePageViewTests` (XCTest). Le rendu est exercé par les XCUITest de H.2 et
   I.2 (risque R3).
@@ -1236,6 +1275,55 @@ Incrément visible : la fiche Figma complète, puis Aujourd'hui qui affiche la f
   - [ ] `NavigationTests`, `ProfileFlowTests` et `ConsentTests` restent verts.
 - **Tests attendus :** `TodayFlowTests` (XCUITest, fixtures `TRACK1_UI_TEST_FIXTURES_JSON` et
   `TRACK1_PROFILE_CATALOG_JSON`, dont des nœuds avec faits et arêtes des 5 types).
+
+#### H.3 — Article et sources en sections Nocturne (D15, écart validé à la règle 9)
+
+- **Parent :** TRA-341 · **Tier :** tier/2 · **Diff :** ~260 lignes, 4 fichiers · **Dépend de :**
+  H.1, E.1, C.2 · **Parallélisable :** oui, avec H.2, I.2 et L.1 (aucun fichier commun) ·
+  **pbxproj :** `03E0–03EF` (aucun fichier attendu).
+- **Figma :** aucune maquette de l'article. Composition (D15) de :
+  - Section header `171:62` (doc `171:66`) ;
+  - Text `11:33`, rôle Body/Large `180:434` ;
+  - ListItem `22:142`, variante Standard + Chevron `22:26` ;
+  - rythme de section `180:481` ;
+  - écart avec le Data contract, règle 9 `179:7`.
+- **Portée :**
+  - `ios/Track1/Features/Node/NodeArticleView.swift` : habillage seulement, `NodeArticleParser` et
+    `safeCitationURL(_:)` inchangés.
+  - `ios/Track1/Features/Node/NodePageSpec.swift` : `articleLabel = "article"`,
+    `sourcesLabel = "sources"`, hors des marqueurs de parité.
+  - `ios/Track1/Features/Node/NodePageView.swift` : passage des callbacks d'ouverture, sans changer
+    la position fixée en H.1.
+  - `ios/Track1Tests/Node/NodeArticleTests.swift` : cas ajoutés.
+- **Contrat :**
+  - Section « article » : `SectionHeader(title: NodePageSpec.articleLabel, count: nil)`, puis les
+    blocs de `NodeArticleParser.blocks(from:)`.
+    - Paragraphes en `bodyLarge`, `colorTextPrimary`, `Text(verbatim:)`.
+    - Listes : une puce par élément, même rôle.
+    - Article vide : pas de section.
+  - Section « sources » : `SectionHeader(title: NodePageSpec.sourcesLabel, count: n)`, où `n` est le
+    nombre de sources valides, puis un `Track1ListItem` par citation.
+    - Titre : `citation.title`, sinon l'hôte. Sous-titre : l'hôte, ou rien si le titre est déjà
+      l'hôte. Accessoire : chevron.
+    - Toucher une ligne ouvre l'URL par l'OS (`OpenURLAction`), seulement après
+      `NodeArticleView.safeCitationURL(_:)`.
+    - Une citation invalide n'est pas rendue. Aucune source valide : pas de section.
+  - Fonction pure `static func sourceRows(_ citations: [Citation]) -> [NodeSourceRow]`, avec
+    `struct NodeSourceRow: Equatable { title: String; subtitle: String?; url: URL }`.
+  - Espacements : `spacing24` entre sections, `spacing12` sous l'en-tête, marges `spacing24`.
+  - Plus aucune référence à `Track1Theme` dans le fichier.
+  - Identifiants : `section-article`, `section-sources`, `source-row-<index>`.
+- **Critères d'acceptation :**
+  - [ ] `sourceRows` :
+    - une citation titrée donne le titre et l'hôte ;
+    - une citation sans titre donne l'hôte sans sous-titre ;
+    - une URL `http`, privée ou avec port explicite est exclue.
+  - [ ] Un article vide ne produit pas de section « article ». Zéro source valide ne produit pas de
+    section « sources ». Le test passe par une fonction pure `sections(article:citations:)`.
+  - [ ] Les cas existants de `NodeArticleTests` restent verts, et `test/ios-no-webview.test.ts`
+    passe.
+  - [ ] `git grep Track1Theme ios/Track1/Features/Node/NodeArticleView.swift` ne trouve rien.
+- **Tests attendus :** `NodeArticleTests` (XCTest).
 
 ### Partie I — Recherche (Flow 3, sheet 3.1)
 
@@ -1455,7 +1543,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
     - `onFinish` : `ProfileStore` enregistre le brouillon, puis fondu (`Track1Motion.slow`, ou
       immédiat sous Reduce Motion) vers les onglets ;
     - Aujourd'hui affiche alors `RecommendationLoadingView` (= 1.6) jusqu'à la recommandation.
-  - `ProfileMissingView` n'est plus atteignable (supprimé en L.3).
+  - `ProfileMissingView` n'est plus atteignable (supprimé en L.2).
   - Les événements émis aujourd'hui par `OnboardingView` sont conservés, avec les mêmes noms et
     les mêmes propriétés. Aucun nouvel événement.
   - « Modifier les goûts » dans les réglages ouvre encore l'ancien `OnboardingView` jusqu'à K.1.
@@ -1477,7 +1565,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
 
 ### Partie K — Écrans non dessinés
 
-#### K.1 — Onglet Genres, composition par défaut (bloquée par Q3)
+#### K.1 — Onglet Genres, composition par défaut (Q3)
 
 - **Parent :** ONB · **Tier :** tier/2 · **Diff :** ~350 lignes, 6 fichiers · **Dépend de :** J.3,
   G.1, et Q3 validée · **Parallélisable :** oui, avec K.2 · **pbxproj :** `0390–039F` (crée le
@@ -1533,42 +1621,32 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
 
 ### Partie L — Nettoyage et livraison
 
-#### L.1 — Supprimer l'article, les sources et l'ancienne vue d'écoute
+#### L.1 — Supprimer les anciennes vues de relations et d'écoute
 
-- **Parent :** DS · **Tier :** tier/2 · **Diff :** ~−330 lignes, 5 fichiers · **Dépend de :** H.1 ·
-  **Parallélisable :** oui, avec I.2 et H.2 · **pbxproj :** `03B0–03BF` (suppressions seulement).
-- **Figma :** Data contract, règle 9 (`179:7`).
+- **Parent :** DS · **Tier :** tier/2 · **Diff :** ~−400 lignes, 5 fichiers · **Dépend de :** H.1 ·
+  **Parallélisable :** oui, avec H.2, H.3 et I.2 · **pbxproj :** `03B0–03BF` (suppressions
+  seulement).
+- **Figma :** aucun.
 - **Portée :**
-  - Supprimer `ios/Track1/Features/Node/NodeArticleView.swift`,
-    `ios/Track1Tests/Node/NodeArticleTests.swift` et
-    `ios/Track1/Features/Node/NodeListeningView.swift`.
+  - Supprimer `ios/Track1/Features/Node/NodeRelationsView.swift` et
+    `ios/Track1/Features/Node/NodeListeningView.swift` (venu de la PR #330).
+  - Traiter `ios/Track1Tests/Node/NodeRelationsTests.swift` : déplacer dans
+    `NodeViewModelTests.swift` les cas qui testent `NodeAnalytics.relationOpened` ou le VM, et
+    supprimer ceux de la vue supprimée.
   - Retirer leurs références du pbxproj.
-- **Contrat :** suppressions seulement. Les tests qui couvrent du code encore vivant (par exemple
-  `URLValidation`) sont conservés ou déplacés, jamais perdus.
-- **Critères d'acceptation :**
-  - [ ] `ios-check` est vert et `test/ios-no-webview.test.ts` passe.
-  - [ ] `git grep -n "NodeArticleView\|NodeListeningView" ios/` ne trouve rien.
-- **Tests attendus :** suite existante.
-
-#### L.2 — Supprimer l'ancienne vue des relations
-
-- **Parent :** DS · **Tier :** tier/2 · **Diff :** ~−340 lignes, 3 fichiers · **Dépend de :** L.1 ·
-  **Parallélisable :** non, avec L.1 · **pbxproj :** `03C0–03CF`.
-- **Portée :**
-  - Supprimer `ios/Track1/Features/Node/NodeRelationsView.swift`.
-  - Traiter `ios/Track1Tests/Node/NodeRelationsTests.swift` : les cas qui testent
-    `NodeAnalytics.relationOpened` ou le VM sont déplacés dans `NodeViewModelTests.swift`, ceux de
-    la vue supprimée sont supprimés.
-  - pbxproj.
+  - `NodeArticleView.swift` et `NodeArticleTests.swift` sont **conservés** (D15).
+- **Contrat :** suppressions et déplacements de tests seulement. Un test qui couvre du code encore
+  vivant est conservé ou déplacé, jamais perdu.
 - **Critères d'acceptation :**
   - [ ] `relation_opened` reste couvert par au moins un test.
-  - [ ] `git grep NodeRelationsView ios/` ne trouve rien.
+  - [ ] `git grep -n "NodeRelationsView\|NodeListeningView" ios/` ne trouve rien.
+  - [ ] `ios-check` est vert et `test/ios-no-webview.test.ts` passe.
 - **Tests attendus :** `NodeViewModelTests` complété.
 
-#### L.3 — Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons
+#### L.2 — Supprimer l'ancien onboarding et `Track1Theme`, verrouiller les jetons
 
 - **Parent :** DS · **Tier :** tier/2 · **Diff :** ~−300 / +80 lignes, 6 fichiers · **Dépend de :**
-  J.4, K.1 (ou abandon de K.1 au gate), K.2, I.2 · **Parallélisable :** non (dernière tâche de
+  J.4, K.1, K.2, I.2, H.3 · **Parallélisable :** non (dernière tâche de
   code) · **pbxproj :** `03D0–03DF`.
 - **Portée :**
   - Supprimer `ios/Track1/Features/Onboarding/OnboardingView.swift` (dont `ProfileMissingView`) et
@@ -1587,7 +1665,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
   - [ ] `ios-check` est vert. `git grep -n "Track1Theme\|ProfileMissingView" ios/` ne trouve rien.
 - **Tests attendus :** `test/ios-design-tokens.test.ts` (`npm run check`).
 
-#### L.4 — Installer la V1 Figma sur l'iPhone et consigner la preuve (TRA-374 amendé)
+#### L.3 — Installer la V1 Figma sur l'iPhone et consigner la preuve (TRA-374 amendé)
 
 - **Parent :** TRA-337 · **Tier :** tier/3 · **Diff :** ~140 lignes, 2 fichiers · **Dépend de :**
   toutes les tâches de code requises · **Parallélisable :** non.
@@ -1604,7 +1682,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
     1.4, 1.6, 2.1 à 2.5, 3.1, 3.2), le node-id Figma, une capture de l'iPhone, et « conforme » ou
     l'écart constaté.
 - **Critères d'acceptation :**
-  - [ ] Le tableau ne contient que des valeurs observées, sur un SHA de `main` postérieur à L.3.
+  - [ ] Le tableau ne contient que des valeurs observées, sur un SHA de `main` postérieur à L.2.
   - [ ] Chaque étape du smoke est OK, ou un ticket de bug est ouvert pour chaque échec. Chaque
     écart visuel est accepté par Raphael ou fait l'objet d'un ticket.
   - [ ] Aucun `.p8`, `.p12`, `.mobileprovision` ni bloc `PRIVATE KEY`.
@@ -1627,9 +1705,9 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
   - Garde-fous :
     - captures D7 jointes à l'xcresult ;
     - fonctions pures de style testées ;
-    - relevé visuel sur iPhone en L.4.
+    - relevé visuel sur iPhone en L.3.
   - Écart attendu : petits décalages de métriques de police. Ils sont tolérés s'ils sont listés
-    dans L.4.
+    dans L.3.
 - **R4 — Polices et marques téléchargées depuis le cloud.**
   - Sources épinglées (URL, version, SHA-256) dans `Resources/Fonts/README.md`.
   - Échec réseau : arrêt de la tâche, jamais de substitution.
@@ -1639,7 +1717,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
   - La CI n'exécute que le runtime 26.4 : les replis iOS 17 et 18 compilent mais ne s'exécutent
     pas.
   - Garde-fous : `#available` systématique et replis simples (matériaux standard).
-  - Le relevé L.4 se fait sur l'iPhone de Raphael. Un appareil sous iOS 17 n'est pas disponible.
+  - Le relevé L.3 se fait sur l'iPhone de Raphael. Un appareil sous iOS 17 n'est pas disponible.
     Risque accepté.
 - **R6 — Volume de `/image` vers la production.**
   - Un carrousel déclenche une lecture par carte, et le serveur peut résoudre par iTunes.
@@ -1667,7 +1745,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
 
 ## Critères de sortie
 
-1. **Merges.** Sur `main`, la Partie 0 et les tâches A.1 à L.3 sont mergées (K.1 si Q3 est
+1. **Merges.** Sur `main`, la Partie 0 et les tâches A.1 à L.2 sont mergées (K.1 si Q3 est
    validée). `ios-check`, `test`, `lint` et `typecheck` sont verts après le dernier merge.
 2. **Smoke Figma** consigné dans `docs/track1-native-release.md`, sur une archive Preview de `main`
    installée sur l'iPhone de Raphael :
@@ -1675,7 +1753,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
       CTA désactivé sans sélection), une étape de sous-genres par parent avec « Tous » et le
       compteur, « Terminer », chargement (1.6), puis Aujourd'hui.
    2. Aujourd'hui affiche la date et la fiche du jour : héros, titre, sous-titre, teaser,
-      sections. L'article n'apparaît pas.
+      sections, puis l'article et ses sources (D15). Une source s'ouvre dans Safari.
    3. Une chip pousse la fiche liée, avec fil d'Ariane et glow argent. Un crumb ramène en arrière,
       et re-toucher Aujourd'hui ramène à la fiche du jour.
    4. Spotify et Apple Music s'ouvrent depuis la barre d'écoute. Le retour dans track1 conserve la
