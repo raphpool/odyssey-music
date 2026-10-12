@@ -131,6 +131,107 @@ final class NodeViewModelTests: XCTestCase {
 		XCTAssertTrue(events.isEmpty)
 	}
 
+	// MARK: - Coming back to a node already on screen
+
+	func testSecondLoadOnALoadedModelMakesNoRequestAndKeepsTheLoadedContent() async throws {
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample-node"))
+		let response = try Self.nodeResponse(type: .artist, id: identity)
+		let links = try Self.linksResponse(slug: identity.rawValue)
+		let nodeReads = CallCounter()
+		let linksReads = CallCounter()
+		var events = [AnalyticsEvent]()
+		let model = NodeViewModel(
+			identity: identity,
+			context: .independent(source: .home),
+			readNode: { _ in
+				await nodeReads.increment()
+				return .success(response, etag: nil)
+			},
+			readLinks: { _ in
+				await linksReads.increment()
+				return .success(links, etag: nil)
+			},
+			recordEvent: { events.append($0) }
+		)
+		await model.load()
+		let listeningBefore = model.listening
+		guard case .ready = listeningBefore else { return XCTFail("Expected the listening section to be ready.") }
+
+		await model.load()
+
+		guard case .loaded(let node) = model.state else { return XCTFail("The node must stay loaded.") }
+		XCTAssertEqual(node.id, identity)
+		XCTAssertEqual(model.listening, listeningBefore, "A ready listening section must not be reset.")
+		let nodeCalls = await nodeReads.count
+		let linksCalls = await linksReads.count
+		XCTAssertEqual(nodeCalls, 1)
+		XCTAssertEqual(linksCalls, 1)
+		XCTAssertEqual(events.map(\.name), [.nodeViewed])
+	}
+
+	func testSecondLoadResumesOnlyTheListeningSectionWhenTheFirstOneWasInterrupted() async throws {
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample-node"))
+		let response = try Self.nodeResponse(type: .artist, id: identity)
+		let links = try Self.linksResponse(slug: identity.rawValue)
+		let nodeReads = CallCounter()
+		let linksReads = CallCounter()
+		let model = NodeViewModel(
+			identity: identity,
+			context: .independent(source: .home),
+			readNode: { _ in
+				await nodeReads.increment()
+				return .success(response, etag: nil)
+			},
+			readLinks: { _ in
+				// 2026-10-12: only the first call waits, and only until the view leaves. A reader that kept
+				// holding later calls would hang the resumed load until the CI timeout.
+				if await linksReads.increment() == 1 { try? await Task.sleep(for: .seconds(5)) }
+				return .success(links, etag: nil)
+			}
+		)
+
+		let interrupted = Task { await model.load() }
+		await Self.waitUntil { await linksReads.count == 1 }
+		interrupted.cancel()
+		await interrupted.value
+		XCTAssertEqual(model.listening, .loading, "The cancelled load leaves the section unresolved.")
+
+		await model.load()
+
+		guard case .loaded = model.state else { return XCTFail("The node must stay loaded.") }
+		guard case .ready = model.listening else { return XCTFail("The resumed load must resolve the section.") }
+		let nodeCalls = await nodeReads.count
+		let linksCalls = await linksReads.count
+		XCTAssertEqual(nodeCalls, 1, "The node itself is not requested again.")
+		XCTAssertEqual(linksCalls, 2)
+	}
+
+	func testRetryReloadsFromFailedAndASuccessfulRetryRecordsTheViewOnce() async throws {
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample-node"))
+		let response = try Self.nodeResponse(type: .artist, id: identity)
+		let nodeReads = CallCounter()
+		var events = [AnalyticsEvent]()
+		let model = NodeViewModel(
+			identity: identity,
+			context: .independent(source: .home),
+			readNode: { _ in
+				await nodeReads.increment() == 1 ? .failure(.network) : .success(response, etag: nil)
+			},
+			recordEvent: { events.append($0) }
+		)
+
+		await model.load()
+		guard case .failed = model.state else { return XCTFail("Expected the failed state.") }
+		XCTAssertTrue(events.isEmpty)
+
+		await model.load()
+
+		guard case .loaded = model.state else { return XCTFail("Retry must reload from the failed state.") }
+		let nodeCalls = await nodeReads.count
+		XCTAssertEqual(nodeCalls, 2)
+		XCTAssertEqual(events.map(\.name), [.nodeViewed])
+	}
+
 	func testFollowingARelationKeepsBothIdentifiersAndOnlyChangesTheSource() throws {
 		let recommendationID = try XCTUnwrap(UUID(uuidString: "22222222-2222-4222-8222-222222222222"))
 		let notificationID = try XCTUnwrap(UUID(uuidString: "33333333-3333-4333-8333-333333333333"))
@@ -179,6 +280,35 @@ final class NodeViewModelTests: XCTestCase {
 				"notification_id": .string("bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"),
 			]
 		)
+	}
+
+	private actor CallCounter {
+		private(set) var count = 0
+
+		/// Returns the new count so a reader can script its first call differently from the next ones.
+		@discardableResult
+		func increment() -> Int {
+			count += 1
+			return count
+		}
+	}
+
+	/// Polls instead of yielding: the readers run off the main actor.
+	private static func waitUntil(
+		_ condition: () async -> Bool, file: StaticString = #filePath, line: UInt = #line
+	) async {
+		for _ in 0..<400 {
+			if await condition() { return }
+			try? await Task.sleep(nanoseconds: 5_000_000)
+		}
+		XCTFail("The awaited condition never became true.", file: file, line: line)
+	}
+
+	private static func linksResponse(slug: String) throws -> LinksResponse {
+		let source = """
+			{"slug":"\(slug)","spotify":"https://open.spotify.com/artist/abc123","apple":null,"sources":{},"resolvedAt":"2026-10-01T00:00:00Z"}
+			"""
+		return try JSONDecoder.track1.decode(LinksResponse.self, from: Data(source.utf8))
 	}
 
 	private static func nodeResponse(type: NodeType, id: NodeIdentity) throws -> NodeResponse {
