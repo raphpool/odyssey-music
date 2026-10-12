@@ -1,5 +1,7 @@
 # Track1 — première sortie iOS entièrement native
 
+> **Plans actifs.** Ce plan reste la référence produit. Son découpage est amendé par [`track1-ios-v1-basic.md`](track1-ios-v1-basic.md) (validé le 2026-10-10), dont la partie interface est remplacée par [`track1-ios-figma.md`](track1-ios-figma.md) (validé le 2026-10-11).
+
 Statut : **plan validé par Raphael le 5 octobre 2026**. Création des tickets puis démarrage de l'implémentation autorisés. Aucune date imposée, aucune estimation de durée ou de charge. Ce document remplace l'architecture Expo du projet [Track1 Mobile — P-TRA-4](https://linear.app/workspaceperso/project/track1-mobile-6052a246546f). Le manifeste `docs/plans/track1-native-ios-linear.md` porte la transcription ; un problème d'accès Linear ne vaut pas autorisation d'implémenter sans ticket.
 
 ## Problème
