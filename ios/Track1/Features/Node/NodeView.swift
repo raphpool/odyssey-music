@@ -2,6 +2,7 @@ import SwiftUI
 
 struct NodeView: View {
 	@State private var model: NodeViewModel
+	@Environment(\.openURL) private var openURL
 	private let openRelation: (NodeIdentity, NavigationContext) -> Void
 
 	init(model: NodeViewModel, openRelation: @escaping (NodeIdentity, NavigationContext) -> Void) {
@@ -18,6 +19,14 @@ struct NodeView: View {
 				ScrollView {
 					VStack(alignment: .leading, spacing: Track1Theme.contentSpacing) {
 						header(node)
+						NodeListeningView(
+							state: model.listening,
+							isOpening: model.isOpeningListening,
+							failure: model.listeningFailure,
+							open: { action in
+								Task { await model.openListening(action, using: { await openURL.open($0) }) }
+							}
+						)
 						NodeArticleView(article: node.article, citations: node.citations)
 						NodeRelationsView(
 							edges: node.edges,
