@@ -53,7 +53,17 @@ final class NodeViewModel {
 	/// `node_viewed`.
 	var relationEventRecorder: NodeEventRecorder? { recordEvent }
 
+	/// Loads the node. Idempotent once `.loaded`: SwiftUI restarts the view's `.task` each time the view
+	/// reappears, and 2026-10-12 popping back from a related node swapped the `ScrollView` for a
+	/// `ProgressView` (scroll position lost, `.failed` when offline). Only `.loading`, `.missing` and `.failed`
+	/// (the "Réessayer" button) fetch again.
 	func load() async {
+		if case .loaded(let node) = state {
+			// A load cancelled while `/links` was in flight left the section at `.loading`; resolve only
+			// that part. A `.ready` or `.hidden` section is final and stays as it is.
+			if listening == .loading { await loadListening(for: node) }
+			return
+		}
 		let identity = requestedIdentity
 		state = .loading
 		listening = .hidden
@@ -106,7 +116,7 @@ final class NodeViewModel {
 			links = response.slug == node.id ? response : nil
 		}
 		// Dropped when the load was cancelled or superseded while `/links` was in flight. A cancelled load leaves
-		// `.loading` untouched: its owner is gone, or restarts `load()`, which resets the section.
+		// `.loading` untouched: its owner is gone, or the next `load()` resumes the section.
 		guard !Task.isCancelled, case .loaded(let current) = state, current.id == node.id else { return }
 		let actions = ListeningActions.actions(for: node.type, name: node.name, links: links)
 		listening = actions.isEmpty ? .hidden : .ready(actions)
