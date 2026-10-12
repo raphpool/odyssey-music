@@ -16,7 +16,9 @@ concurrency:
 jobs:
   ios-check:
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, macOS, ARM64]
+    # `ios` is carried by one runner only (2026-10-12): two simulators of ~6 GB in parallel saturated the
+    # Mac (load 274, swap 11.4/12 GB) and the simulator did not boot within 600 s on #335.
+    runs-on: [self-hosted, macOS, ARM64, ios]
     timeout-minutes: 30
     steps:
       - name: Isolate HOME from the runner host account

@@ -51,3 +51,27 @@ describe.each(workflows)("$name triggers (TRA-411)", ({ path, job }) => {
 		expect(jobBlock).toContain("github.event.pull_request.draft == false");
 	});
 });
+
+// Two ios-check runs in parallel on the one Mac saturated it (2026-10-12, #335: load 274, simulator
+// did not boot in 600 s), so ios-check is pinned to the single runner carrying the `ios` label.
+describe("ios-check runner label (TRA-411)", () => {
+	const runsOnOf = (source: string, job: string): string[] => {
+		const start = source.indexOf(`\n  ${job}:`);
+		if (start === -1) throw new Error(`job ${job} not found`);
+		const match = source.slice(start + 1).match(/^ {4}runs-on: \[(.*)\]\s*$/m);
+		if (!match?.[1]) throw new Error(`runs-on list not found for ${job}`);
+		return match[1].split(",").map((label) => label.trim());
+	};
+
+	it("requires the ios label on ios-check", () => {
+		const source = withoutComments(readFileSync(".github/workflows/ios-ci.yml", "utf8"));
+		expect(runsOnOf(source, "ios-check")).toEqual(["self-hosted", "macOS", "ARM64", "ios"]);
+	});
+
+	it("does not require the ios label in any ci.yml job", () => {
+		const source = withoutComments(readFileSync(".github/workflows/ci.yml", "utf8"));
+		const runsOnLines = source.match(/^ {4}runs-on:.*$/gm) ?? [];
+		expect(runsOnLines.length).toBeGreaterThan(0);
+		for (const line of runsOnLines) expect(line).not.toMatch(/\bios\b/);
+	});
+});
