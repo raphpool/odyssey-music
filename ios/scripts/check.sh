@@ -28,6 +28,16 @@ runtime_id="$(xcrun simctl list runtimes available -j | jq -r '.runtimes[] | sel
 simulator_boot_timeout_seconds="${SIMULATOR_BOOT_TIMEOUT_SECONDS:-600}"
 swift_files=()
 
+# 2026-10-12: #330 (TRA-368) had its ios-check cancelled three times at the 30 min job timeout because one
+# test awaited a continuation that was never resumed (a fake OSOpener(hold: true) reused after release()),
+# and nothing named the culprit. With test timeouts on, XCTest fails the hanging test by name (xcresult),
+# restarts the test process and carries on with the next test.
+# 180 s = 3 whole minutes (XCTest rounds allowances up to the next minute). The slowest passing tests in
+# the xcresults of #336 and main after #334 took 15 s (unit) and 24 s (UI), up to 48 s (UI) under load,
+# so the margin is about 3.8x. No test sets its own executionTimeAllowance, hence no
+# -maximum-test-execution-time-allowance: it would also cap tests that ask for more.
+test_execution_time_allowance_seconds=180
+
 discover_swift_files() {
 	local swift_file
 	local swift_root
@@ -277,6 +287,8 @@ for scheme in Track1 Track1Preview; do
 	if ! xcodebuild \
 		test-without-building \
 		-xctestrun "$xctestrun_path" \
+		-test-timeouts-enabled YES \
+		-default-test-execution-time-allowance "$test_execution_time_allowance_seconds" \
 		-destination "platform=iOS Simulator,id=$simulator_id" \
 		-resultBundlePath "$output_dir/$scheme-$$.xcresult" \
 		CODE_SIGNING_ALLOWED=NO \

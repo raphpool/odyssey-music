@@ -358,6 +358,30 @@ describe.sequential("Track1 simulator architecture policy", () => {
 		}
 	});
 
+	it("bounds every test with a per-test timeout so a hanging test fails by name", async () => {
+		const { calls, result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		const tests = calls.split("\n").filter((call) => /(^| )test-without-building( |$)/.test(call));
+		expect(tests).toHaveLength(2);
+		for (const test of tests) {
+			expect(test).toMatch(/(^| )-test-timeouts-enabled YES( |$)/);
+			const allowance = test.match(/(^| )-default-test-execution-time-allowance (\d+)( |$)/);
+			expect(allowance, `Missing default allowance in: ${test}`).not.toBeNull();
+			const seconds = Number(allowance?.[2]);
+			// XCTest rounds allowances up to the next minute, so only whole minutes mean what they say.
+			expect(seconds % 60).toBe(0);
+			// Longest legitimate test measured on CI is 48 s (UI); keep at least a 3x margin over it.
+			expect(seconds).toBeGreaterThanOrEqual(180);
+			// A test is bounded by the default allowance; a cap would silently shorten tests that ask for more.
+			expect(test).not.toContain("-maximum-test-execution-time-allowance");
+		}
+		const builds = calls.split("\n").filter((call) => /(^| )build-for-testing( |$)/.test(call));
+		for (const build of builds) {
+			expect(build).not.toContain("test-execution-time-allowance");
+		}
+	});
+
 	it("passes AppContainer from the real source tree to swift-format", async () => {
 		const { result, swiftFormatArguments } = await runCheckScript();
 
