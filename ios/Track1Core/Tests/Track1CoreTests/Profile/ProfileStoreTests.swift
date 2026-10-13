@@ -19,72 +19,50 @@ final class ProfileStoreTests: XCTestCase {
 		directoryURL = nil
 	}
 
-	func testThreeGenreThresholdAndSmallCatalogExceptions() async throws {
+	func testOneGenreIsEnoughAndAnEmptySelectionIsRejected() async throws {
+		// 2026-10-13: the minimum went from three genres to one (D13, TRA-402); the former small-catalog
+		// exception ("select every available genre") no longer exists because one genre always suffices.
 		let store = makeStore()
 		let initial = try await initialDraft(from: store)
 		let threeGenres = genres(3)
-		let incomplete = ProfileDraft(
+		let empty = ProfileDraft(
 			version: Profile.version,
 			flowID: initial.flowID,
-			genreIDs: Array(threeGenres.prefix(2)),
+			genreIDs: [],
 			onboardingStartedRecorded: false
 		)
-		let incompleteResult = await store.commit(incomplete, availableGenreIDs: threeGenres)
-		XCTAssertEqual(incompleteResult, .invalid)
+		let emptyResult = await store.commit(empty, availableGenreIDs: threeGenres)
+		XCTAssertEqual(emptyResult, .invalid)
 
-		let complete = ProfileDraft(
+		let single = ProfileDraft(
 			version: Profile.version,
 			flowID: initial.flowID,
-			genreIDs: threeGenres,
+			genreIDs: Array(threeGenres.prefix(1)),
 			onboardingStartedRecorded: false
 		)
-		guard case .saved(let profile) = await store.commit(complete, availableGenreIDs: threeGenres) else {
-			return XCTFail("Expected a saved profile.")
+		guard case .saved(let profile) = await store.commit(single, availableGenreIDs: threeGenres) else {
+			return XCTFail("Expected a one-genre profile to be saved.")
 		}
 		XCTAssertEqual(profile.revision, 1)
+		XCTAssertEqual(profile.genreIDs, Array(threeGenres.prefix(1)))
 
-		let oneGenreStore = makeStore(suffix: "one")
-		let oneDraft = try await initialDraft(from: oneGenreStore)
-		let oneGenre = genres(1)
-		let oneSelection = ProfileDraft(
-			version: Profile.version,
-			flowID: oneDraft.flowID,
-			genreIDs: oneGenre,
-			onboardingStartedRecorded: false
-		)
-		let oneGenreResult = await oneGenreStore.commit(oneSelection, availableGenreIDs: oneGenre)
-		XCTAssertNotEqual(oneGenreResult, .invalid)
-
-		let twoGenreStore = makeStore(suffix: "two")
-		let twoDraft = try await initialDraft(from: twoGenreStore)
-		let twoGenres = genres(2)
-		let incompleteSmallCatalog = ProfileDraft(
-			version: Profile.version,
-			flowID: twoDraft.flowID,
-			genreIDs: [twoGenres[0]],
-			onboardingStartedRecorded: false
-		)
-		let incompleteSmallCatalogResult = await twoGenreStore.commit(
-			incompleteSmallCatalog,
-			availableGenreIDs: twoGenres
-		)
-		XCTAssertEqual(incompleteSmallCatalogResult, .invalid)
-		let fullSmallCatalog = ProfileDraft(
-			version: Profile.version,
-			flowID: twoDraft.flowID,
-			genreIDs: twoGenres,
-			onboardingStartedRecorded: false
-		)
-		let fullSmallCatalogResult = await twoGenreStore.commit(fullSmallCatalog, availableGenreIDs: twoGenres)
-		XCTAssertNotEqual(fullSmallCatalogResult, .invalid)
 		XCTAssertFalse(ProfileSelection.isComplete(selected: [], available: []))
+		XCTAssertFalse(ProfileSelection.isComplete(selected: [], available: threeGenres))
+		XCTAssertTrue(ProfileSelection.isComplete(selected: Array(threeGenres.prefix(1)), available: threeGenres))
+	}
+
+	func testSelectionInstructionAdaptsToTheCatalogSize() {
 		XCTAssertEqual(
-			ProfileSelection.selectionInstruction(available: oneGenre),
+			ProfileSelection.selectionInstruction(available: genres(1)),
 			"Choisissez le genre disponible. Vos choix restent sur cet iPhone."
 		)
 		XCTAssertEqual(
-			ProfileSelection.selectionInstruction(available: twoGenres),
-			"Choisissez les deux genres disponibles. Vos choix restent sur cet iPhone."
+			ProfileSelection.selectionInstruction(available: genres(2)),
+			"Choisissez au moins l’un des deux genres disponibles. Vos choix restent sur cet iPhone."
+		)
+		XCTAssertEqual(
+			ProfileSelection.selectionInstruction(available: genres(3)),
+			"Choisissez au moins un genre. Vos choix restent sur cet iPhone."
 		)
 	}
 
