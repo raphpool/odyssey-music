@@ -64,7 +64,7 @@ private struct ApplicationTabs: View {
 				.tabItem { Label(AppTab.settings.title, systemImage: AppTab.settings.symbolName) }
 				.tag(AppTab.settings)
 		}
-		.tint(Track1Theme.actionTint)
+		// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
 		.task { await reloadProfile() }
 		.sheet(isPresented: $showingOnboarding) {
 			OnboardingView(

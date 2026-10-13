@@ -7,6 +7,7 @@ struct Track1App: App {
 	var body: some Scene {
 		WindowGroup {
 			RootView(container: container)
+				.tint(Track1Tokens.colorTextAction)
 		}
 	}
 }
