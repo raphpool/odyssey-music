@@ -388,3 +388,27 @@ describe.each(filters)("$name path filter (TRA-417)", ({ path, inputs, triggers,
 		expect(raw).toContain("`*` stays inside a path segment");
 	});
 });
+
+// TRA-425: the Swift package ios/Track1Core is an ios-check input (its `swift test` run is wired in by a
+// separate ticket of TRA-422), so its manifest and sources must start the workflow. `ios/**` covers them today;
+// this names them so that narrowing that glob cannot drop the package silently. The workflow is not changed here.
+describe("ios-check Track1Core inputs (TRA-425)", () => {
+	const core = ["ios/Track1Core/Package.swift", "ios/Track1Core/Sources/Track1Core/API/URLValidation.swift"];
+	const iosGlobs = () => pathsOf(onBlockOf(withoutComments(readFileSync(IOS_WORKFLOW, "utf8"))));
+
+	it("lists the package manifest and a package source file in the ios-ci paths", () => {
+		for (const file of core) expect(existsSync(file), file).toBe(true);
+		expect(uncovered(iosGlobs(), core)).toEqual([]);
+		for (const file of core) expect(startsWorkflow(iosGlobs(), [file]), file).toBe(true);
+	});
+
+	it("reports the package as uncovered by a glob list that omits it", () => {
+		const narrowed = [
+			"ios/Track1/**",
+			"ios/Track1Tests/**",
+			"ios/Track1UITests/**",
+			"ios/Track1.xcodeproj/**",
+		];
+		expect(uncovered(narrowed, core)).toEqual(core);
+	});
+});
