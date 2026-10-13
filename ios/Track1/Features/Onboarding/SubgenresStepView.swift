@@ -10,10 +10,6 @@ struct SubgenresStepView: View {
 	/// Set on the bar's container, see `WelcomeView.startIdentifier`.
 	static let continueIdentifier = "onboarding-subgenres-continue"
 
-	/// "Continuer stays available while other parents remain" (spec `176:216`): a step with no row checked
-	/// is valid, the parent alone is already a genre of the profile (D13).
-	static let isContinueEnabled = true
-
 	/// The tick sound of the scroll (spec `176:219`): the system "Tock" click. A system sound, so the silent
 	/// switch mutes it, as drawn.
 	static let tickSound: SystemSoundID = 1104
@@ -30,11 +26,8 @@ struct SubgenresStepView: View {
 	let model: OnboardingFlowModel
 	private let onContinue: () -> Void
 
-	/// Bottom edge of every row in the content space, by row.
-	@State private var rowMaxYs = [NodeIdentity: CGFloat]()
-	/// Top of the bar in the viewport space; nil until the first layout pass.
-	@State private var barTop: CGFloat?
-	@State private var lastOffset: CGFloat?
+	/// Written on every scroll frame, so kept out of `@State` values: a reference does not invalidate the view.
+	@State private var scroll = ScrollTracker()
 	@State private var tickCount = 0
 
 	init(parent: GenreChoice, model: OnboardingFlowModel, onContinue: @escaping () -> Void) {
@@ -83,7 +76,9 @@ struct SubgenresStepView: View {
 		}
 		.safeAreaInset(edge: .bottom, spacing: 0) {
 			BottomActionBar(
-				title: ctaTitle, isEnabled: Self.isContinueEnabled,
+				// "Continuer stays available while other parents remain" (spec `176:216`): a step with no row
+				// checked is valid, the parent alone is already a genre of the profile (D13).
+				title: ctaTitle, isEnabled: true,
 				counter: OnboardingCopy.counter(model.selectedSubgenreCount), action: onContinue
 			)
 			.background { BarTopReader(space: Space.viewport) }
@@ -91,9 +86,14 @@ struct SubgenresStepView: View {
 			.accessibilityIdentifier(Self.continueIdentifier)
 		}
 		.coordinateSpace(name: Space.viewport)
-		.onPreferenceChange(RowEdgeKey.self) { rowMaxYs = $0 }
-		.onPreferenceChange(BarTopKey.self) { barTop = $0 }
-		.onPreferenceChange(ContentMinYKey.self) { scrolled(toOffset: -$0) }
+		.onPreferenceChange(RowEdgeKey.self) { scroll.layoutChanged(rowMaxYs: $0) }
+		.onPreferenceChange(BarTopKey.self) { scroll.layoutChanged(barTop: $0) }
+		.onPreferenceChange(ContentMinYKey.self) { offset in
+			let crossed = scroll.scrolled(toOffset: -offset)
+			guard crossed > 0 else { return }
+			tickCount += crossed
+			AudioServicesPlaySystemSound(Self.tickSound)
+		}
 		.sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: tickCount)
 		// Order matters: each `.background` sits behind the previous one, so the glow goes first and the
 		// opaque base color last (see `GenresStepView`).
@@ -104,16 +104,35 @@ struct SubgenresStepView: View {
 			Track1Tokens.colorBackgroundBase.ignoresSafeArea()
 		}
 	}
+}
 
-	/// The first offset only sets the reference: layout is not a scroll, so it never ticks.
-	private func scrolled(toOffset offset: CGFloat) {
+/// The scroll measurements and the offset they were last compared at.
+@MainActor
+private final class ScrollTracker {
+	private var rowMaxYs = [NodeIdentity: CGFloat]()
+	/// Top of the bar in the viewport space; nil until the first layout pass.
+	private var barTop: CGFloat?
+	private var lastOffset: CGFloat?
+
+	/// A new layout is not a scroll: the offset that follows only sets the reference again, so a row that
+	/// moved because the content was re-laid out (Dynamic Type, rotation, the safe area settling) never ticks.
+	func layoutChanged(rowMaxYs: [NodeIdentity: CGFloat]) {
+		self.rowMaxYs = rowMaxYs
+		lastOffset = nil
+	}
+
+	func layoutChanged(barTop: CGFloat?) {
+		self.barTop = barTop
+		lastOffset = nil
+	}
+
+	/// The number of rows that passed the top of the bar since the previous offset. The first offset after a
+	/// layout only sets the reference.
+	func scrolled(toOffset offset: CGFloat) -> Int {
 		defer { lastOffset = offset }
-		guard let previous = lastOffset, let barTop else { return }
-		let crossed = ScrollTickDetector.crossings(
-			rowMaxYs: Array(rowMaxYs.values), previousOffset: previous, newOffset: offset, threshold: barTop)
-		guard crossed > 0 else { return }
-		tickCount += crossed
-		AudioServicesPlaySystemSound(Self.tickSound)
+		guard let lastOffset, let barTop else { return 0 }
+		return ScrollTickDetector.crossings(
+			rowMaxYs: Array(rowMaxYs.values), previousOffset: lastOffset, newOffset: offset, threshold: barTop)
 	}
 }
 

@@ -90,6 +90,15 @@ public final class OnboardingFlowModel {
 		selectedSubgenres.contains(subgenre)
 	}
 
+	/// The step that follows `parent`, in selection order; nil after the last one, where the flow ends.
+	/// A parent that is not a step has no successor either, so a stale call can never skip ahead.
+	public func subgenreStep(after parent: NodeIdentity) -> NodeIdentity? {
+		guard let index = subgenreSteps.firstIndex(of: parent), index + 1 < subgenreSteps.count else {
+			return nil
+		}
+		return subgenreSteps[index + 1]
+	}
+
 	/// `index` is a position in `subgenreSteps`; the genre screen has its own CTA and does not call this.
 	public func ctaTitle(forStep index: Int) -> String {
 		guard index >= subgenreSteps.count - 1 else { return "Continuer" }

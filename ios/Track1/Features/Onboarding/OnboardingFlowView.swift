@@ -64,11 +64,9 @@ struct OnboardingFlowView: View {
 	/// The next selected parent, or the end of the flow after the last one. The host must ignore a second
 	/// `onFinish`: a double tap on the last CTA sends two.
 	private func advance(from parentID: NodeIdentity) {
-		guard path.last == .subgenres(parentID),
-			let index = model.subgenreSteps.firstIndex(of: parentID)
-		else { return }
-		if index + 1 < model.subgenreSteps.count {
-			path.append(.subgenres(model.subgenreSteps[index + 1]))
+		guard path.last == .subgenres(parentID) else { return }
+		if let next = model.subgenreStep(after: parentID) {
+			path.append(.subgenres(next))
 		} else {
 			onFinish(model.makeDraft())
 		}

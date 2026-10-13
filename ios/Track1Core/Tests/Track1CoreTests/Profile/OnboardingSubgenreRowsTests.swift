@@ -60,6 +60,17 @@ final class OnboardingSubgenreRowsTests: XCTestCase {
 		XCTAssertEqual(OnboardingCopy.counter(model.selectedSubgenreCount), "Total : 4 genres")
 	}
 
+	func testStepsAreVisitedInSelectionOrderAndTheFlowEndsAfterTheLastOne() throws {
+		let model = try model()
+		model.toggleParent(jazz)
+		model.toggleParent(hipHop)
+
+		XCTAssertEqual(model.subgenreSteps.first, jazz)
+		XCTAssertEqual(model.subgenreStep(after: jazz), hipHop)
+		XCTAssertNil(model.subgenreStep(after: hipHop), "nothing follows the last parent")
+		XCTAssertNil(model.subgenreStep(after: bebop), "a genre that is not a step has no successor")
+	}
+
 	func testTheLastStepEndsWithTerminerAndTheDraftHoldsTheSelection() throws {
 		let model = try model()
 		model.toggleParent(hipHop)
