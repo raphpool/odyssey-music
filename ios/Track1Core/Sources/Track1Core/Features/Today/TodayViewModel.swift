@@ -1,8 +1,7 @@
 import Foundation
 import Observation
-import Track1Core
 
-enum TodayState: Equatable {
+public enum TodayState: Equatable, Sendable {
 	case loading
 	case recommendation(DailyRecommendation)
 	case emptyCatalog
@@ -20,8 +19,8 @@ enum TodayState: Equatable {
 /// FIFO section of this view model, and `load` re-reads the history right before saving it.
 @MainActor
 @Observable
-final class TodayViewModel {
-	private(set) var state: TodayState = .loading
+public final class TodayViewModel {
+	public private(set) var state: TodayState = .loading
 
 	@ObservationIgnored private let readCatalog: @Sendable () async -> APIResult<Catalog>
 	@ObservationIgnored private let store: DailyRecommendationStore
@@ -35,7 +34,7 @@ final class TodayViewModel {
 	@ObservationIgnored private var isBusy = false
 	@ObservationIgnored private var waiters: [CheckedContinuation<Void, Never>] = []
 
-	init(
+	public init(
 		readCatalog: @escaping @Sendable () async -> APIResult<Catalog>,
 		store: DailyRecommendationStore,
 		now: @escaping () -> Date = { .now },
@@ -51,7 +50,7 @@ final class TodayViewModel {
 		self.recordEvent = recordEvent
 	}
 
-	func load(for profile: Profile) async {
+	public func load(for profile: Profile) async {
 		latestRequestedProfile = profile
 		await acquire()
 		defer { release() }
@@ -115,7 +114,7 @@ final class TodayViewModel {
 
 	/// Emits `daily_recommendation_viewed` once per recommendation, then persists the marker. The marker is set
 	/// even when analytics refuses the event: a consent granted later must not replay past impressions.
-	func recordImpressionIfNeeded() async {
+	public func recordImpressionIfNeeded() async {
 		await acquire()
 		defer { release() }
 		// Read the state only once the lock is held: a `load` queued before this call may have replaced it.
@@ -141,7 +140,7 @@ final class TodayViewModel {
 		_ = await store.markViewed(current.recommendationID)
 	}
 
-	func discover() async -> (identity: NodeIdentity, context: NavigationContext)? {
+	public func discover() async -> (identity: NodeIdentity, context: NavigationContext)? {
 		guard case .recommendation(let current) = state else { return nil }
 		recordEvent?(Self.event(.dailyRecommendationOpened, for: current, at: now()))
 		return (
