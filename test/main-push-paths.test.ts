@@ -48,7 +48,7 @@ function inlineValues(value: string): string[] {
  */
 function parseTriggers(source: string): Triggers {
 	const match = withoutComments(source).match(/^on:\n((?:[ \t]+.*\n|[ \t]*\n)*)/m);
-	if (!match?.[1]) throw new Error("top-level on: block not found");
+	if (!match?.[1]) throw new Error("TRA-441 guard: top-level on: block not found");
 	const triggers: Triggers = new Map();
 	let trigger: TriggerProps | undefined;
 	let property: string[] | undefined;
@@ -119,6 +119,10 @@ function pushStartsRun(changedFiles: string[], ignore: string[]): boolean {
 	const matchers = ignore.map(globToRegExp);
 	return changedFiles.some((file) => !matchers.some((re) => re.test(file)));
 }
+
+/** The `paths-ignore` list the workflow really carries on push, as parsed from its YAML text. */
+const ignoredOnPush = (source: string): string[] =>
+	parseTriggers(source).get("push")?.get("paths-ignore") ?? [];
 
 const read = (path: string): string => readFileSync(path, "utf8");
 const ci = read(".github/workflows/ci.yml");
@@ -197,9 +201,15 @@ describe("guard negative cases (TRA-441)", () => {
 });
 
 describe("push run decision (TRA-441)", () => {
+	const ignored = ignoredOnPush(ci);
+
+	it("is the same list in ci.yml and deploy.yml", () => {
+		expect(ignoredOnPush(deploy)).toEqual(ignored);
+	});
+
 	it("skips a merge that only touches ignored paths", () => {
 		const files = ["ios/Track1/App.swift", "docs/plans/x.md", "README.md", ".claude/agents/a.md"];
-		expect(pushStartsRun(files, IGNORED_ON_PUSH)).toBe(false);
+		expect(pushStartsRun(files, ignored)).toBe(false);
 	});
 
 	it("still runs when the squash commit also touches the server, web, cache, deploy or CI", () => {
@@ -211,11 +221,10 @@ describe("push run decision (TRA-441)", () => {
 			".github/workflows/ci.yml",
 			"package.json",
 		];
-		for (const file of live)
-			expect(pushStartsRun(["ios/Track1/App.swift", file], IGNORED_ON_PUSH)).toBe(true);
+		for (const file of live) expect(pushStartsRun(["ios/Track1/App.swift", file], ignored)).toBe(true);
 	});
 
 	it("treats *.md as root-only, so a markdown file under src/ still runs", () => {
-		expect(pushStartsRun(["src/mobile/NOTES.md"], IGNORED_ON_PUSH)).toBe(true);
+		expect(pushStartsRun(["src/mobile/NOTES.md"], ignored)).toBe(true);
 	});
 });

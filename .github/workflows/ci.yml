@@ -8,7 +8,10 @@ on:
     # runs, and the strict branch protection already guarantees the PR was tested on top of main.
     # GitHub still starts the run when ONE file of the pushed commit is outside the list, so a merge
     # mixing ios/ and src/ keeps its ci run. `pull_request` stays unfiltered: required checks run on every PR.
-    # Verified not read in production (deploy/deploy-server.sh, src/server.ts, web/): see the TRA-441 PR description.
+    # Not read in production: deploy-server.sh only rsyncs the tree (a copy, never read back), and
+    # src/server.ts reads cache/ and .deployed-sha only; web/ is the only static root. The only
+    # references to docs/ are comments. Accepted trade-offs: after an ignored merge /api/odyssey/version
+    # keeps the previous SHA, and the PR-time run is the only one covering .claude/ and .codex/ tests.
     paths-ignore:
       - "ios/**"
       - "docs/**"
