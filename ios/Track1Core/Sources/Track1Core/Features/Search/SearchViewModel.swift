@@ -31,7 +31,7 @@ public typealias SearchReader = @Sendable (String, NodeType?) async -> APIResult
 @MainActor
 @Observable
 public final class SearchViewModel {
-	static let debounce = Duration.milliseconds(300)
+	static let debounce = Duration.milliseconds(150)
 	static let minimumLength = 2
 	static let maximumLength = 120
 
@@ -44,7 +44,11 @@ public final class SearchViewModel {
 	public private(set) var phase = SearchPhase.idle
 	/// Kept while the next request is loading, so the list does not flash empty on every keystroke.
 	public private(set) var hits: [SearchHit] = []
+	/// The cards opened lately, loaded whenever the phase is `.idle` (an empty query). Never cleared on
+	/// leaving `.idle`: the view shows them only there, and a reload replaces them on the way back.
+	public private(set) var recents: [RecentNode] = []
 
+	@ObservationIgnored private let recentStore: RecentNodesStore?
 	@ObservationIgnored private let search: SearchReader
 	@ObservationIgnored private let sleep: @Sendable (Duration) async throws -> Void
 	@ObservationIgnored private let recordEvent: NodeEventRecorder?
@@ -58,11 +62,21 @@ public final class SearchViewModel {
 	public init(
 		search: @escaping SearchReader,
 		sleep: @escaping @Sendable (Duration) async throws -> Void = { try await Task.sleep(for: $0) },
-		recordEvent: NodeEventRecorder? = nil
+		recordEvent: NodeEventRecorder? = nil,
+		recents: RecentNodesStore? = nil
 	) {
 		self.search = search
 		self.sleep = sleep
 		self.recordEvent = recordEvent
+		recentStore = recents
+		loadRecentsInBackground()
+	}
+
+	/// Reads the store again. The model reloads by itself on creation and on each return to `.idle`; a view
+	/// that outlives a recorded card or a cleared profile (a reopened sheet) calls this when it appears.
+	public func loadRecents() async {
+		guard let recentStore else { return }
+		recents = await recentStore.list()
 	}
 
 	/// Re-runs the last valid request at once. A no-op while a newer input is still waiting for its
@@ -92,6 +106,11 @@ public final class SearchViewModel {
 		}
 		recordEvent?(AnalyticsEvent(name: .searchResultOpened, properties: properties, source: .search))
 		return opening
+	}
+
+	private func loadRecentsInBackground() {
+		guard recentStore != nil else { return }
+		Task { [weak self] in await self?.loadRecents() }
 	}
 
 	private func reschedule() {
@@ -143,6 +162,7 @@ public final class SearchViewModel {
 	private func settle(_ phase: SearchPhase) {
 		self.phase = phase
 		hits = []
+		if phase == .idle { loadRecentsInBackground() }
 		if phase == .idle || phase == .tooShort || phase == .tooLong { lastValidRequest = nil }
 	}
 }

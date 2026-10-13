@@ -25,7 +25,8 @@ struct RootView: View {
 							readers: container.readers,
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
-							profileStore: container.profileStore
+							profileStore: container.profileStore,
+							recentNodes: container.recentNodes
 						)
 					}
 				} else {
@@ -48,6 +49,7 @@ private struct ApplicationTabs: View {
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
+	let recentNodes: RecentNodesStore
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
 	@State private var profileToEdit: Profile?
@@ -106,6 +108,7 @@ private struct ApplicationTabs: View {
 					SettingsEntryView(
 						profileState: profileState,
 						profileStore: profileStore,
+						recentNodes: recentNodes,
 						analytics: analytics,
 						editProfile: { beginOnboarding(editing: profile(from: profileState)) },
 						profileWasCleared: { profileState = .missing }
@@ -157,12 +160,14 @@ private struct ApplicationTabs: View {
 private struct SettingsEntryView: View {
 	let profileState: ProfileRead
 	let profileStore: ProfileStore
+	let recentNodes: RecentNodesStore
 	let analytics: AnalyticsClient
 
 	var body: some View {
 		SettingsView(
 			profileState: profileState,
 			profileStore: profileStore,
+			recentNodes: recentNodes,
 			analytics: analytics,
 			editProfile: editProfile,
 			profileWasCleared: profileWasCleared
