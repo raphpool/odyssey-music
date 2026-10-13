@@ -7,6 +7,9 @@ import UIKit
 ///
 /// Every URL and identity in the chain is untrusted API data and goes through `NodeImageStore`, which
 /// validates URLs and redirects before anything is requested.
+///
+/// The candidates are fixed when the model is created: one model per node, so the view that owns it must be
+/// keyed by the node (`.id(node.id)`).
 @MainActor @Observable
 final class NodeHeroModel {
 	enum State: Equatable {

@@ -104,6 +104,13 @@ final class HeroImageTests: XCTestCase {
 
 		XCTAssertEqual(model.state, .loading)
 		XCTAssertEqual(backend.loaded, [first])
+
+		// A screen shown again loads afresh, and the image the cancelled load fetched is not lost.
+		await model.load()
+
+		guard case .loaded(_, let tint) = model.state else { return XCTFail("State was \(model.state).") }
+		XCTAssertNotNil(tint)
+		XCTAssertEqual(backend.loaded, [first])
 	}
 
 	// MARK: - Fixtures
