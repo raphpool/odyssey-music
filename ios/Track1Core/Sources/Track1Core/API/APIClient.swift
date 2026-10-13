@@ -1,12 +1,12 @@
 import Foundation
 
-struct APIClient: Sendable {
+public struct APIClient: Sendable {
 	private let baseURL: URL
 	private let session: URLSession
 	private let decoder: JSONDecoder
 	private let encoder: JSONEncoder
 
-	init(configuration: AppConfiguration, session: URLSession = .shared) {
+	public init(configuration: AppConfiguration, session: URLSession = .shared) {
 		baseURL = configuration.apiBaseURL
 		self.session = session
 		decoder = JSONDecoder()
@@ -15,7 +15,7 @@ struct APIClient: Sendable {
 		encoder.dateEncodingStrategy = .iso8601
 	}
 
-	func catalog(etag: String? = nil, hasCachedRepresentation: Bool = false) async -> APIResult<Catalog> {
+	public func catalog(etag: String? = nil, hasCachedRepresentation: Bool = false) async -> APIResult<Catalog> {
 		let headers = etag != nil && hasCachedRepresentation ? ["If-None-Match": etag!] : [:]
 		let result: APIResult<Catalog> = await request(
 			method: "GET", path: ["catalog"], headers: headers, body: Optional<EmptyBody>.none)
@@ -24,20 +24,22 @@ struct APIClient: Sendable {
 		return .notModified(etag: responseETag.isEmpty ? etag : responseETag)
 	}
 
-	func node(_ identity: NodeIdentity) async -> APIResult<NodeResponse> {
+	public func node(_ identity: NodeIdentity) async -> APIResult<NodeResponse> {
 		await read(path: ["nodes", identity.rawValue])
 	}
-	func image(_ identity: NodeIdentity) async -> APIResult<ImageResponse> {
+	public func image(_ identity: NodeIdentity) async -> APIResult<ImageResponse> {
 		await read(path: ["nodes", identity.rawValue, "image"])
 	}
-	func links(_ identity: NodeIdentity) async -> APIResult<LinksResponse> {
+	public func links(_ identity: NodeIdentity) async -> APIResult<LinksResponse> {
 		await read(path: ["nodes", identity.rawValue, "links"])
 	}
-	func generation(requestID: UUID) async -> APIResult<Generation> {
+	public func generation(requestID: UUID) async -> APIResult<Generation> {
 		await read(path: ["generations", requestID.uuidString.lowercased()])
 	}
 
-	func search(query: String, type: NodeType? = nil, limit: Int? = nil) async -> APIResult<SearchResponse> {
+	public func search(query: String, type: NodeType? = nil, limit: Int? = nil) async -> APIResult<
+		SearchResponse
+	> {
 		var items = [URLQueryItem(name: "q", value: query)]
 		if let type { items.append(URLQueryItem(name: "type", value: type.rawValue)) }
 		if let limit { items.append(URLQueryItem(name: "limit", value: String(limit))) }
@@ -45,7 +47,7 @@ struct APIClient: Sendable {
 			method: "GET", path: ["search"], queryItems: items, headers: [:], body: Optional<EmptyBody>.none)
 	}
 
-	func createGeneration(_ input: GenerationRequest) async -> APIResult<Generation> {
+	public func createGeneration(_ input: GenerationRequest) async -> APIResult<Generation> {
 		guard !input.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
 			input.slug.map({ $0.type == input.type }) ?? true,
 			input.qid.map({ $0.range(of: "^Q[1-9][0-9]*$", options: .regularExpression) != nil }) ?? true

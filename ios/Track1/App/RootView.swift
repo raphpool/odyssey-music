@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 struct RootView: View {
 	@Bindable var container: AppContainer

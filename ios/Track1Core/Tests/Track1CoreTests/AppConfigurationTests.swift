@@ -1,6 +1,6 @@
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 final class AppConfigurationTests: XCTestCase {
 	func testValidConfigurationNormalizesTheMobileAPIPath() throws {

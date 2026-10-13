@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 struct NodeView: View {
 	@State private var model: NodeViewModel

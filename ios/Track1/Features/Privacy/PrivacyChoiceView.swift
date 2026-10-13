@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 struct PrivacyChoiceView: View {
 	let consent: AnalyticsConsent

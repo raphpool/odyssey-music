@@ -1,5 +1,6 @@
 #if targetEnvironment(simulator)
 	import Foundation
+	import Track1Core
 
 	/// Serves deterministic, network-free `ContentReaders` to the simulator UI tests.
 	///

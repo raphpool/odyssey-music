@@ -1,5 +1,4 @@
 import Foundation
-import Track1Core
 
 private enum APIKeys: String, CodingKey {
 	case version, revision, taxonomy, nodes, edges, identity, type, name, teaser
@@ -7,7 +6,7 @@ private enum APIKeys: String, CodingKey {
 	case cache, catalog, subtitle, extra, code, message, retryable
 }
 
-enum NodeType: String, CaseIterable, Codable, Sendable {
+public enum NodeType: String, CaseIterable, Codable, Sendable {
 	case artist
 	case project
 	case track
@@ -15,10 +14,10 @@ enum NodeType: String, CaseIterable, Codable, Sendable {
 	case label
 }
 
-struct NodeIdentity: RawRepresentable, Hashable, Codable, Sendable {
-	let rawValue: String
+public struct NodeIdentity: RawRepresentable, Hashable, Codable, Sendable {
+	public let rawValue: String
 
-	init?(rawValue: String) {
+	public init?(rawValue: String) {
 		let parts = rawValue.split(separator: ":", maxSplits: 1, omittingEmptySubsequences: false)
 		guard parts.count == 2, NodeType(rawValue: String(parts[0])) != nil,
 			String(parts[1]).range(
@@ -27,9 +26,9 @@ struct NodeIdentity: RawRepresentable, Hashable, Codable, Sendable {
 		self.rawValue = rawValue
 	}
 
-	var type: NodeType { NodeType(rawValue: String(rawValue.prefix(while: { $0 != ":" })))! }
+	public var type: NodeType { NodeType(rawValue: String(rawValue.prefix(while: { $0 != ":" })))! }
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let value = try decoder.singleValueContainer().decode(String.self)
 		guard let identity = NodeIdentity(rawValue: value) else {
 			throw DecodingError.dataCorruptedError(
@@ -38,20 +37,20 @@ struct NodeIdentity: RawRepresentable, Hashable, Codable, Sendable {
 		self = identity
 	}
 
-	func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: Encoder) throws {
 		var container = encoder.singleValueContainer()
 		try container.encode(rawValue)
 	}
 }
 
-struct Catalog: Decodable, Sendable {
-	let version: String
-	let revision: String
-	let taxonomy: CatalogTaxonomy
-	let nodes: [CatalogNode]
-	let edges: [CatalogEdge]
+public struct Catalog: Decodable, Sendable {
+	public let version: String
+	public let revision: String
+	public let taxonomy: CatalogTaxonomy
+	public let nodes: [CatalogNode]
+	public let edges: [CatalogEdge]
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: APIKeys.self)
 		version = try values.decode(String.self, forKey: .version)
 		revision = try values.decode(String.self, forKey: .revision)
@@ -63,23 +62,23 @@ struct Catalog: Decodable, Sendable {
 	}
 }
 
-struct CatalogTaxonomy: Decodable, Sendable {
-	let mode: String
-	let available: Bool
+public struct CatalogTaxonomy: Decodable, Sendable {
+	public let mode: String
+	public let available: Bool
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: APIKeys.self)
 		mode = try values.decode(String.self, forKey: .mode)
 		available = try values.decode(Bool.self, forKey: .available)
 		guard mode == "degraded" else { throw APIModelError.invalidValue }
 	}
 }
-struct CatalogNode: Decodable, Sendable {
-	let identity: NodeIdentity
-	let type: NodeType
-	let name: String
-	let teaser: String?
-	init(from decoder: Decoder) throws {
+public struct CatalogNode: Decodable, Sendable {
+	public let identity: NodeIdentity
+	public let type: NodeType
+	public let name: String
+	public let teaser: String?
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		identity = try v.decode(NodeIdentity.self, forKey: .identity)
 		type = try v.decode(NodeType.self, forKey: .type)
@@ -88,21 +87,21 @@ struct CatalogNode: Decodable, Sendable {
 		guard identity.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
 	}
 }
-struct CatalogEdge: Decodable, Sendable {
-	let source: NodeIdentity
-	let target: NodeIdentity
-	let type: String
+public struct CatalogEdge: Decodable, Sendable {
+	public let source: NodeIdentity
+	public let target: NodeIdentity
+	public let type: String
 }
 
-struct NodeResponse: Decodable, Sendable {
-	let node: NodeDetail
-	let source: String
-	let redirectedFrom: NodeIdentity?
+public struct NodeResponse: Decodable, Sendable {
+	public let node: NodeDetail
+	public let source: String
+	public let redirectedFrom: NodeIdentity?
 	enum CodingKeys: String, CodingKey {
 		case node, source
 		case redirectedFrom = "redirected_from"
 	}
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
 		node = try v.decode(NodeDetail.self, forKey: .node)
 		source = try v.decode(String.self, forKey: .source)
@@ -110,23 +109,23 @@ struct NodeResponse: Decodable, Sendable {
 		guard source == "cache" else { throw APIModelError.invalidValue }
 	}
 }
-struct NodeDetail: Decodable, Sendable {
-	let id: NodeIdentity
-	let type: NodeType
-	let name: String
-	let teaser: String?
-	let article: String
-	let citations: [Citation]
-	let facts: [String: String]
-	let edges: [String: NodeEdgeValue]
-	let materializedAt: Date
-	let imageURL: URL?
+public struct NodeDetail: Decodable, Sendable {
+	public let id: NodeIdentity
+	public let type: NodeType
+	public let name: String
+	public let teaser: String?
+	public let article: String
+	public let citations: [Citation]
+	public let facts: [String: String]
+	public let edges: [String: NodeEdgeValue]
+	public let materializedAt: Date
+	public let imageURL: URL?
 	enum CodingKeys: String, CodingKey {
 		case id, type, name, teaser, article, citations, facts, edges
 		case materializedAt = "materialized_at"
 		case imageURL = "image_url"
 	}
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
 		id = try v.decode(NodeIdentity.self, forKey: .id)
 		type = try v.decode(NodeType.self, forKey: .type)
@@ -141,20 +140,20 @@ struct NodeDetail: Decodable, Sendable {
 		guard id.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
 	}
 }
-struct Citation: Decodable, Sendable {
-	let url: URL
-	let title: String?
-	init(from decoder: Decoder) throws {
+public struct Citation: Decodable, Sendable {
+	public let url: URL
+	public let title: String?
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		url = try v.decode(ValidatedPublicURL.self, forKey: .url).value
 		title = try v.decodeIfPresent(String.self, forKey: .title)
 		if title?.isEmpty == true { throw APIModelError.invalidValue }
 	}
 }
-enum NodeEdgeValue: Decodable, Sendable {
+public enum NodeEdgeValue: Decodable, Sendable {
 	case one(NodeEdge)
 	case many([NodeEdge])
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		if let edge = try? NodeEdge(from: decoder) {
 			self = .one(edge)
 		} else {
@@ -162,15 +161,15 @@ enum NodeEdgeValue: Decodable, Sendable {
 		}
 	}
 }
-struct NodeEdge: Decodable, Sendable {
-	let slug: NodeIdentity
-	let type: NodeType
-	let name: String
-	let mbid: UUID?
-	let qid: String?
-	let year: String?
-	let releaseType: String?
-	init(from decoder: Decoder) throws {
+public struct NodeEdge: Decodable, Sendable {
+	public let slug: NodeIdentity
+	public let type: NodeType
+	public let name: String
+	public let mbid: UUID?
+	public let qid: String?
+	public let year: String?
+	public let releaseType: String?
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		slug = try v.decode(NodeIdentity.self, forKey: .slug)
 		type = try v.decode(NodeType.self, forKey: .type)
@@ -186,15 +185,15 @@ struct NodeEdge: Decodable, Sendable {
 	}
 }
 
-struct ImageResponse: Decodable, Sendable {
-	let slug: NodeIdentity
-	let imageURL: URL?
-	let source: String
+public struct ImageResponse: Decodable, Sendable {
+	public let slug: NodeIdentity
+	public let imageURL: URL?
+	public let source: String
 	enum CodingKeys: String, CodingKey {
 		case slug, source
 		case imageURL = "image_url"
 	}
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
 		slug = try v.decode(NodeIdentity.self, forKey: .slug)
 		imageURL = try v.decodeRequiredNullable(ValidatedPublicURL.self, forKey: .imageURL)?.value
@@ -202,18 +201,18 @@ struct ImageResponse: Decodable, Sendable {
 		guard !source.isEmpty else { throw APIModelError.invalidValue }
 	}
 }
-struct LinksResponse: Decodable, Sendable {
-	let slug: NodeIdentity
-	let spotify: URL?
-	let apple: URL?
-	let sources: [String: JSONValue]
-	let resolvedAt: Date
+public struct LinksResponse: Decodable, Sendable {
+	public let slug: NodeIdentity
+	public let spotify: URL?
+	public let apple: URL?
+	public let sources: [String: JSONValue]
+	public let resolvedAt: Date
 	enum CodingKeys: String, CodingKey {
 		case slug, spotify, apple, sources
 		case resolvedAt = "resolvedAt"
 		case resolvedAtSnake = "resolved_at"
 	}
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
 		slug = try v.decode(NodeIdentity.self, forKey: .slug)
 		spotify = try v.decodeRequiredNullable(SpotifyURL.self, forKey: .spotify)?.value
@@ -224,34 +223,40 @@ struct LinksResponse: Decodable, Sendable {
 	}
 }
 
-struct SearchResponse: Decodable, Sendable {
-	let query: String
-	let hits: [SearchHit]
-	let sources: SearchSources
+public struct SearchResponse: Decodable, Sendable {
+	public let query: String
+	public let hits: [SearchHit]
+	public let sources: SearchSources
 	enum CodingKeys: String, CodingKey {
 		case query = "q"
 		case hits, sources
 	}
+
+	public init(query: String, hits: [SearchHit], sources: SearchSources) {
+		self.query = query
+		self.hits = hits
+		self.sources = sources
+	}
 }
-struct SearchSources: Decodable, Sendable {
-	let cache: Int
-	let catalog: Int
-	init(from decoder: Decoder) throws {
+public struct SearchSources: Decodable, Sendable {
+	public let cache: Int
+	public let catalog: Int
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		cache = try v.decode(Int.self, forKey: .cache)
 		catalog = try v.decode(Int.self, forKey: .catalog)
 		guard cache >= 0, catalog >= 0 else { throw APIModelError.invalidValue }
 	}
 }
-struct SearchHit: Decodable, Sendable {
-	let source: String
-	let type: NodeType
-	let name: String
-	let slug: NodeIdentity?
-	let mbid: UUID?
-	let subtitle: String?
-	let extra: String?
-	init(from decoder: Decoder) throws {
+public struct SearchHit: Decodable, Sendable {
+	public let source: String
+	public let type: NodeType
+	public let name: String
+	public let slug: NodeIdentity?
+	public let mbid: UUID?
+	public let subtitle: String?
+	public let extra: String?
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		source = try v.decode(String.self, forKey: .source)
 		type = try v.decode(NodeType.self, forKey: .type)
@@ -266,14 +271,16 @@ struct SearchHit: Decodable, Sendable {
 	}
 }
 
-enum GenerationStatus: String, Decodable, Sendable { case queued, running, succeeded, failed, interrupted }
-struct Generation: Decodable, Sendable {
-	let requestID: UUID
-	let status: GenerationStatus
-	let createdAt: Date
-	let updatedAt: Date
-	let nodeID: NodeIdentity?
-	let error: GenerationError?
+public enum GenerationStatus: String, Decodable, Sendable {
+	case queued, running, succeeded, failed, interrupted
+}
+public struct Generation: Decodable, Sendable {
+	public let requestID: UUID
+	public let status: GenerationStatus
+	public let createdAt: Date
+	public let updatedAt: Date
+	public let nodeID: NodeIdentity?
+	public let error: GenerationError?
 	enum CodingKeys: String, CodingKey {
 		case requestID = "request_id"
 		case status
@@ -282,7 +289,7 @@ struct Generation: Decodable, Sendable {
 		case nodeID = "node_id"
 		case error
 	}
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
 		requestID = try v.decode(UUID.self, forKey: .requestID)
 		status = try v.decode(GenerationStatus.self, forKey: .status)
@@ -294,11 +301,11 @@ struct Generation: Decodable, Sendable {
 		else { throw APIModelError.invalidValue }
 	}
 }
-struct GenerationError: Decodable, Sendable {
-	let code: String
-	let message: String
-	let retryable: Bool
-	init(from decoder: Decoder) throws {
+public struct GenerationError: Decodable, Sendable {
+	public let code: String
+	public let message: String
+	public let retryable: Bool
+	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		code = try v.decode(String.self, forKey: .code)
 		message = try v.decode(String.self, forKey: .message)
@@ -306,17 +313,30 @@ struct GenerationError: Decodable, Sendable {
 		guard !code.isEmpty else { throw APIModelError.invalidValue }
 	}
 }
-struct GenerationRequest: Encodable, Sendable {
-	let requestID: UUID
-	let type: NodeType
-	let name: String
-	let slug: NodeIdentity?
-	let mbid: UUID?
-	let qid: String?
-	let disambiguator: String?
+public struct GenerationRequest: Encodable, Sendable {
+	public let requestID: UUID
+	public let type: NodeType
+	public let name: String
+	public let slug: NodeIdentity?
+	public let mbid: UUID?
+	public let qid: String?
+	public let disambiguator: String?
 	enum CodingKeys: String, CodingKey {
 		case requestID = "request_id"
 		case type, name, slug, mbid, qid, disambiguator
+	}
+
+	public init(
+		requestID: UUID, type: NodeType, name: String, slug: NodeIdentity?, mbid: UUID?, qid: String?,
+		disambiguator: String?
+	) {
+		self.requestID = requestID
+		self.type = type
+		self.name = name
+		self.slug = slug
+		self.mbid = mbid
+		self.qid = qid
+		self.disambiguator = disambiguator
 	}
 }
 
@@ -360,14 +380,14 @@ private struct AppleURL: Decodable {
 		self.value = url
 	}
 }
-enum JSONValue: Decodable, Sendable {
+public enum JSONValue: Decodable, Sendable {
 	case string(String)
 	case number(Double)
 	case boolean(Bool)
 	case null
 	case array([JSONValue])
 	case object([String: JSONValue])
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let c = try decoder.singleValueContainer()
 		if c.decodeNil() {
 			self = .null
