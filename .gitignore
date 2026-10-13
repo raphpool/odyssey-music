@@ -36,3 +36,7 @@ web/.deployed-sha
 
 # Permissions locales de Claude Code — personnelles, jamais versionnées
 .claude/settings.local.json
+
+# Swift package build artifacts (Track1Core)
+ios/Track1Core/.build/
+ios/Track1Core/.swiftpm/

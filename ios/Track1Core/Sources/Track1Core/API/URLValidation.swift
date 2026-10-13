@@ -1,7 +1,7 @@
 import Foundation
 
-enum URLValidation {
-	static func publicHTTPSURL(from value: String) -> URL? {
+public enum URLValidation {
+	public static func publicHTTPSURL(from value: String) -> URL? {
 		guard let components = URLComponents(string: value),
 			components.scheme?.lowercased() == "https",
 			let hostname = components.host?.lowercased(),
@@ -16,7 +16,7 @@ enum URLValidation {
 		return components.url
 	}
 
-	static func providerURL(from value: String, host: String) -> URL? {
+	public static func providerURL(from value: String, host: String) -> URL? {
 		guard let url = publicHTTPSURL(from: value), url.host?.lowercased() == host else { return nil }
 		return url
 	}
