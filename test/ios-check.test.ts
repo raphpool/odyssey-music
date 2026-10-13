@@ -36,12 +36,37 @@ async function writeTool(directory: string, name: string, contents: string) {
 	await chmod(path, 0o755);
 }
 
+// A fake `swift` (check.sh takes it from PATH, not through xcrun). Every call is logged to
+// TRACK1_TEST_SWIFT_CALLS and, when set, to the shared TRACK1_TEST_TIMELINE. TRACK1_TEST_SWIFT_MODE=fail makes
+// it exit 7; =hang makes it never return, with a child `sleep` like the real build tools have, and records both
+// pids in TRACK1_TEST_SWIFT_PIDS so that a test can check that nothing was left behind.
+const fakeSwift = `#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "$TRACK1_TEST_SWIFT_CALLS"
+printf 'swift\\n' >> "\${TRACK1_TEST_TIMELINE:-/dev/null}"
+case "\${TRACK1_TEST_SWIFT_MODE:-}" in
+  fail) echo "swift test: simulated failure" >&2; exit 7 ;;
+  hang)
+    sleep 600 &
+    printf '%s\\n%s\\n' "$$" "$!" >> "$TRACK1_TEST_SWIFT_PIDS"
+    wait ;;
+esac
+`;
+
 type SwiftFixtureOptions = {
 	badSource?: boolean;
 	discoveryFailure?: boolean;
 	empty?: boolean;
-	missingRoot?: "Track1" | "Track1Tests" | "Track1UITests";
+	missingRoot?: "Track1" | "Track1Tests" | "Track1UITests" | "Track1Core";
 };
+
+function isAlive(pid: number) {
+	try {
+		process.kill(pid, 0);
+		return true;
+	} catch {
+		return false;
+	}
+}
 
 async function pathExists(path: string) {
 	try {
@@ -58,20 +83,25 @@ async function runSwiftFixtureCheck(options: SwiftFixtureOptions = {}) {
 	const iosDirectory = join(fixtureRoot, "ios");
 	const callsPath = join(fixtureRoot, "xcodebuild-calls");
 	const swiftFormatCallsPath = join(fixtureRoot, "swift-format-calls");
+	const swiftCallsPath = join(fixtureRoot, "swift-calls");
 	const outputDirectory = join(fixtureRoot, "output");
 	const tsxDirectory = join(fixtureRoot, "node_modules/.bin");
-	const sourceRoots = ["Track1", "Track1Tests", "Track1UITests"] as const;
+	const sourceRoots = ["Track1", "Track1Tests", "Track1UITests", "Track1Core"] as const;
 	const appContainerPath = join(iosDirectory, "Track1", "AppContainer.swift");
 	const newSourcePath = join(iosDirectory, "Track1", "Feature Area", "New Source.swift");
 	const ordinarySourcePath = join(iosDirectory, "Track1", "Feature", "Ordinary.swift");
 	const newTestPath = join(iosDirectory, "Track1Tests", "NewTest.swift");
 	const newUITestPath = join(iosDirectory, "Track1UITests", "NewUITest.swift");
+	const coreSourcePath = join(iosDirectory, "Track1Core", "Sources", "Track1Core", "CoreSource.swift");
+	const coreTestPath = join(iosDirectory, "Track1Core", "Tests", "Track1CoreTests", "CoreTest.swift");
 	const expectedSwiftFiles = [
 		appContainerPath,
 		newSourcePath,
 		ordinarySourcePath,
 		newTestPath,
 		newUITestPath,
+		coreSourcePath,
+		coreTestPath,
 	];
 	try {
 		await mkdir(toolDirectory, { recursive: true });
@@ -100,6 +130,8 @@ async function runSwiftFixtureCheck(options: SwiftFixtureOptions = {}) {
 				[ordinarySourcePath, "struct Ordinary {}\n"],
 				[newTestPath, "struct NewTest {}\n"],
 				[newUITestPath, "struct NewUITest {}\n"],
+				[coreSourcePath, "struct CoreSource {}\n"],
+				[coreTestPath, "struct CoreTest {}\n"],
 			];
 			for (const [path, contents] of swiftSources) {
 				await mkdir(join(path, ".."), { recursive: true });
@@ -111,6 +143,10 @@ async function runSwiftFixtureCheck(options: SwiftFixtureOptions = {}) {
 				await mkdir(join(excludedPath, ".."), { recursive: true });
 				await writeFile(excludedPath, "struct BAD_FORMAT {}\n");
 			}
+			// SwiftPM's scratch folder of the package: whatever it checks out must never be linted.
+			const packageBuildPath = join(iosDirectory, "Track1Core", ".build", "checkouts", "Ignored.swift");
+			await mkdir(join(packageBuildPath, ".."), { recursive: true });
+			await writeFile(packageBuildPath, "struct BAD_FORMAT {}\n");
 			const outsidePath = join(fixtureRoot, "outside.swift");
 			await writeFile(outsidePath, "struct BAD_FORMAT {}\n");
 			await symlink(outsidePath, join(iosDirectory, "Track1", "External.swift"));
@@ -199,6 +235,7 @@ trap 'exit 0' TERM INT
 while :; do sleep 1; done
 `,
 		);
+		await writeTool(toolDirectory, "swift", fakeSwift);
 		if (options.discoveryFailure) {
 			await writeTool(toolDirectory, "find", "#!/usr/bin/env bash\nexit 73\n");
 		}
@@ -214,13 +251,15 @@ while :; do sleep 1; done
 				TRACK1_SIMULATOR_LOCK_DIR: join(fixtureRoot, "simulator.lock"),
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
+				TRACK1_TEST_SWIFT_CALLS: swiftCallsPath,
 			},
 		});
 		const calls = await readFile(callsPath, "utf8").catch(() => "");
+		const swiftCalls = (await readFile(swiftCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
 		const swiftFormatArguments = (await readFile(swiftFormatCallsPath, "utf8").catch(() => ""))
 			.split("\n")
 			.filter(Boolean);
-		return { calls, expectedSwiftFiles, fixtureRoot, result, swiftFormatArguments };
+		return { calls, expectedSwiftFiles, fixtureRoot, result, swiftCalls, swiftFormatArguments };
 	} finally {
 		await rm(fixtureRoot, { recursive: true, force: true });
 	}
@@ -303,6 +342,7 @@ if [[ "$1" == "-version" ]]; then
 	  exit 0
 fi
 printf '%s\\n' "$*" >> "$TRACK1_TEST_XCODEBUILD_CALLS"
+printf 'xcodebuild\\n' >> "$TRACK1_TEST_TIMELINE"
 arguments=" $* "
 # Lets the tests order the test runs against the simctl calls.
 [[ "$arguments" != *" test-without-building "* ]] || printf 'xcodebuild test-without-building\\n' >> "$TRACK1_TEST_SIMCTL_CALLS"
@@ -336,6 +376,8 @@ fi
 			"xcrun",
 			`#!/usr/bin/env bash
 [[ "$1" == "simctl" ]] && printf '%s\\n' "$*" >> "$TRACK1_TEST_SIMCTL_CALLS"
+# What starts a simulator, for the order against swift test.
+case "$*" in "simctl create"* | "simctl bootstatus"*) printf 'simctl %s\\n' "$2" >> "$TRACK1_TEST_TIMELINE" ;; esac
 case "$*" in
   "simctl list runtimes available -j") printf '{"runtimes":[{"name":"iOS 26.4","identifier":"runtime-id"}]}' ;;
   "simctl list devices") printf '%s\\n' "\${TRACK1_TEST_SIMCTL_DEVICES:-}" ;;
@@ -362,6 +404,7 @@ case "$*" in
 esac
 `,
 		);
+		await writeTool(directory, "swift", fakeSwift);
 		await writeTool(directory, "jq", "#!/usr/bin/env bash\ncat >/dev/null\nprintf 'runtime-id\\n'\n");
 		await writeTool(
 			directory,
@@ -373,12 +416,19 @@ if [[ "$*" == *"__track1_contract_report"* ]]; then
 fi
 `,
 		);
+		const swiftCallsPath = join(directory, "swift-calls");
+		const swiftPidsPath = join(directory, "swift-pids");
+		const timelinePath = join(directory, "timeline");
+		const startedAt = Date.now();
 		const result = spawnSync("bash", [checkScript], {
 			cwd: resolve("."),
 			encoding: "utf8",
 			env: {
 				...process.env,
 				PATH: `${directory}:${process.env.PATH ?? ""}`,
+				TRACK1_TEST_SWIFT_CALLS: swiftCallsPath,
+				TRACK1_TEST_SWIFT_PIDS: swiftPidsPath,
+				TRACK1_TEST_TIMELINE: timelinePath,
 				TRACK1_CI_OUTPUT_DIR: outputDirectory,
 				TRACK1_DERIVED_DATA_CACHE_DIR: cacheDirectory,
 				TRACK1_TEST_CURL_CALLS: curlCallsPath,
@@ -394,7 +444,20 @@ fi
 				...options.env,
 			},
 		});
+		const elapsedMilliseconds = Date.now() - startedAt;
 		const calls = await readFile(callsPath, "utf8").catch(() => "");
+		const lines = async (path: string) =>
+			(await readFile(path, "utf8").catch(() => "")).split("\n").filter(Boolean);
+		const swiftCalls = await lines(swiftCallsPath);
+		// The fake swift and its child, if check.sh left them running; the finally block kills them.
+		const swiftSurvivors: number[] = [];
+		for (const pid of (await lines(swiftPidsPath)).map(Number)) {
+			for (let attempt = 0; attempt < 20 && isAlive(pid); attempt++) {
+				await new Promise((done) => setTimeout(done, 100));
+			}
+			if (isAlive(pid)) swiftSurvivors.push(pid);
+		}
+		const timeline = await lines(timelinePath);
 		const simctlCalls = (await readFile(simctlCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
 		const swiftFormatArguments = (await readFile(swiftFormatCallsPath, "utf8").catch(() => ""))
 			.split("\n")
@@ -409,13 +472,26 @@ fi
 			cacheFiles,
 			calls,
 			curlCalls,
+			elapsedMilliseconds,
 			outputDirectory,
 			result,
 			simctlCalls,
 			simulatorLockLeft,
+			swiftCalls,
 			swiftFormatArguments,
+			swiftSurvivors,
+			timeline,
 		};
 	} finally {
+		// A fake swift that hung must not outlive the test, whatever check.sh did.
+		for (const pid of (await readFile(join(directory, "swift-pids"), "utf8").catch(() => ""))
+			.split("\n")
+			.filter(Boolean)
+			.map(Number)) {
+			try {
+				process.kill(pid, "SIGKILL");
+			} catch {}
+		}
 		await rm(directory, { recursive: true, force: true });
 	}
 }
@@ -577,26 +653,50 @@ describe.sequential("Track1 scheme passes", () => {
 		}
 	});
 
-	it("notices a new test that reads the bundle, a compilation flag or the app identifier", async () => {
-		// These two files are covered by the Preview list (see check.sh); anything else reading the
-		// scheme-dependent configuration must be added to that list first.
-		const covered = ["AnalyticsClientTests.swift", "AppConfigurationTests.swift"];
+	// The files of `directory` that read the scheme-dependent configuration and are not in `covered`.
+	async function bundleOffenders(directory: string, covered: string[]) {
 		const sensitive =
 			/Bundle\.main|infoDictionary|bundleIdentifier|SEGMENT_CDN|SegmentAdapter\(|invalid-configuration/;
 		const offenders: string[] = [];
-		for (const root of ["Track1Tests", "Track1UITests"]) {
-			for (const file of await swiftFiles(resolve("ios", root))) {
-				const name = file.split("/").pop() ?? "";
-				if (
-					sensitive.test(await readFile(file, "utf8")) &&
-					!covered.includes(name) &&
-					name !== "NavigationTests.swift"
-				) {
-					offenders.push(file);
-				}
+		for (const file of await swiftFiles(directory)) {
+			const name = file.split("/").pop() ?? "";
+			if (sensitive.test(await readFile(file, "utf8")) && !covered.includes(name)) {
+				offenders.push(file);
 			}
 		}
+		return offenders;
+	}
+
+	it("notices a new test that reads the bundle, a compilation flag or the app identifier", async () => {
+		// These files are covered by the Preview list (see check.sh); anything else reading the
+		// scheme-dependent configuration must be added to that list first.
+		const covered = ["AnalyticsClientTests.swift", "AppConfigurationTests.swift", "NavigationTests.swift"];
+		const offenders = [
+			...(await bundleOffenders(resolve("ios/Track1Tests"), covered)),
+			...(await bundleOffenders(resolve("ios/Track1UITests"), covered)),
+			// The package tests run on the host, where no scheme exists: nothing there is covered.
+			...(await bundleOffenders(resolve("ios/Track1Core/Tests"), [])),
+		];
 		expect(offenders).toEqual([]);
+	});
+
+	it("fails the bundle guard for Bundle.main under Track1Core/Tests, even in a file named like a covered one", async () => {
+		const fixture = await mkdtemp(join(tmpdir(), "track1-bundle-guard-"));
+		try {
+			const tests = join(fixture, "ios", "Track1Core", "Tests", "Track1CoreTests");
+			await mkdir(tests, { recursive: true });
+			await writeFile(
+				join(tests, "AnalyticsClientTests.swift"),
+				'let url = Bundle.main.url(forResource: "a")\n',
+			);
+			await writeFile(join(tests, "OrdinaryTests.swift"), "struct OrdinaryTests {}\n");
+
+			expect(await bundleOffenders(join(fixture, "ios", "Track1Core", "Tests"), [])).toEqual([
+				join(tests, "AnalyticsClientTests.swift"),
+			]);
+		} finally {
+			await rm(fixture, { recursive: true, force: true });
+		}
 	});
 });
 
@@ -1244,13 +1344,128 @@ describe.sequential("Track1 reusable simulator", () => {
 	});
 });
 
+// 2026-10-13: a logic error was only known after 4 to 5 min of simulator (TRA-424): the package tests run
+// first, on the host, so that a broken one fails the job in under a minute and frees the runner.
+describe.sequential("Track1 package tests before the simulator", () => {
+	const startsSimulator = (entry: string) => entry === "simctl create" || entry === "simctl bootstatus";
+
+	it("runs swift test once, in the cache, before any simulator or xcodebuild call", async () => {
+		const { cacheDirectory, calls, result, swiftCalls, timeline } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(swiftCalls).toEqual([
+			`test --package-path ${resolve("ios/Track1Core")} --scratch-path ${join(cacheDirectory, await expectedCacheKey(), "Track1Core", ".build")} --skip-update`,
+		]);
+		expect(timeline[0]).toBe("swift");
+		expect(timeline.filter((entry) => entry === "swift")).toHaveLength(1);
+		expect(timeline.findIndex(startsSimulator)).toBeGreaterThan(0);
+		// Unchanged: two builds and two test runs, nothing else.
+		const actions = calls
+			.split("\n")
+			.filter((call) => /(^| )(build-for-testing|test-without-building)( |$)/.test(call));
+		expect(actions).toHaveLength(4);
+		expect(actions.filter((call) => /(^| )build-for-testing( |$)/.test(call))).toHaveLength(2);
+		expect(testActions(calls)).toHaveLength(2);
+	});
+
+	it("falls back to a private scratch folder when the cache is unusable, still under DerivedData", async () => {
+		const { calls, result, swiftCalls } = await runCheckScript(undefined, {
+			env: { TRACK1_DERIVED_DATA_CACHE_DIR: "", RUNNER_TOOL_CACHE: "", HOME: "" },
+		});
+
+		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
+		expect(swiftCalls[0]).toMatch(/--scratch-path \S+\/DerivedData\/Track1Core\/\.build /);
+	});
+
+	it("stops with a failing swift test before any simulator, build or test action, and still cleans up", async () => {
+		const run = await runCheckScript(undefined, { env: { TRACK1_TEST_SWIFT_MODE: "fail" } });
+
+		expect(run.result.status).toBe(1);
+		expect(run.swiftCalls).toHaveLength(1);
+		expect(run.calls).toBe("");
+		expect(run.timeline.filter(startsSimulator)).toEqual([]);
+		expect(run.simctlCalls.filter((call) => /^simctl (create|bootstatus)/.test(call))).toEqual([]);
+		// cleanup ran: the lock of the DerivedData cache, taken before swift test, is released.
+		expect(run.cacheEntries.filter((entry) => entry.endsWith(".lock"))).toEqual([]);
+		expect(run.simulatorLockLeft).toBe(false);
+	});
+
+	it("kills the process group of a swift test that never returns, and names the delay", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { TRACK1_TEST_SWIFT_MODE: "hang", TRACK1_SWIFT_TEST_TIMEOUT_SECONDS: "1" },
+		});
+
+		expect(run.result.status).toBe(1);
+		expect(run.elapsedMilliseconds).toBeLessThan(10_000);
+		expect(run.result.stderr).toContain("TRACK1_SWIFT_TEST_TIMEOUT_SECONDS");
+		expect(run.result.stderr).toContain("within 1s");
+		// The fake swift and the `sleep` it started: both gone.
+		expect(run.swiftSurvivors).toEqual([]);
+		expect(run.calls).toBe("");
+		expect(run.cacheEntries.filter((entry) => entry.endsWith(".lock"))).toEqual([]);
+	});
+
+	it("rejects a timeout that is not a number of seconds, before running anything", async () => {
+		const run = await runCheckScript(undefined, { env: { TRACK1_SWIFT_TEST_TIMEOUT_SECONDS: "soon" } });
+
+		expect(run.result.status).toBe(1);
+		expect(run.result.stderr).toContain("TRACK1_SWIFT_TEST_TIMEOUT_SECONDS");
+		expect(run.swiftCalls).toEqual([]);
+	});
+
+	it("lints the package sources and tests, but not its .build folder", async () => {
+		const { result, swiftFormatArguments } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		const swiftSources = swiftFormatArguments.filter((argument) => argument.endsWith(".swift"));
+		const coreRoot = resolve("ios/Track1Core");
+		expect(swiftSources.some((file) => file.startsWith(join(coreRoot, "Sources") + "/"))).toBe(true);
+		expect(swiftSources.some((file) => file.startsWith(join(coreRoot, "Tests") + "/"))).toBe(true);
+		expect(swiftSources.filter((file) => file.includes("/.build/"))).toEqual([]);
+	});
+});
+
+// 2026-10-13: nothing told which step of ios-check was slow; each step now ends with a `[check]` line.
+describe.sequential("Track1 step durations", () => {
+	const stepLines = (stdout: string) => stdout.split("\n").filter((line) => line.startsWith("[check] "));
+
+	it("prints one duration line per step, then the total", async () => {
+		const { result } = await runCheckScript();
+
+		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
+		expect(stepLines(result.stdout).map((line) => line.replace(/\d+s$/, "<n>s"))).toEqual([
+			"[check] lint: <n>s",
+			"[check] package-tests: <n>s",
+			"[check] resolve: <n>s",
+			"[check] simulator-boot: <n>s",
+			"[check] build-Track1: <n>s",
+			"[check] tests-Track1: <n>s",
+			"[check] build-Track1Preview: <n>s",
+			"[check] tests-Track1Preview: <n>s",
+			"[check] total: <n>s",
+		]);
+	});
+
+	it("names the step that failed and still prints the total", async () => {
+		const { result } = await runCheckScript(undefined, { env: { TRACK1_TEST_SWIFT_MODE: "fail" } });
+
+		expect(result.status).toBe(1);
+		expect(stepLines(result.stdout).map((line) => line.replace(/\d+s/, "<n>s"))).toEqual([
+			"[check] lint: <n>s",
+			"[check] package-tests: <n>s (failed)",
+			"[check] total: <n>s",
+		]);
+	});
+});
+
 describe.sequential("Track1 Swift format coverage", () => {
 	it("discovers every first-party Swift file and stops before build actions on a violation", async () => {
-		const { calls, expectedSwiftFiles, fixtureRoot, result, swiftFormatArguments } =
+		const { calls, expectedSwiftFiles, fixtureRoot, result, swiftCalls, swiftFormatArguments } =
 			await runSwiftFixtureCheck({ badSource: true });
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).not.toBe(0);
 		expect(calls).toBe("");
+		expect(swiftCalls).toEqual([]);
 		expect(swiftFormatArguments.slice(0, 4)).toEqual(["swift-format", "lint", "--strict", "--configuration"]);
 		expect(swiftFormatArguments.slice(5)).toEqual([...expectedSwiftFiles].sort());
 		expect(swiftFormatArguments).not.toContain(join(fixtureRoot, "ios", "Track1", "External.swift"));
@@ -1263,15 +1478,19 @@ describe.sequential("Track1 Swift format coverage", () => {
 		expect(swiftFormatArguments).not.toContain(
 			join(fixtureRoot, "ios", "Track1", "Feature", ".build", "Ignored.swift"),
 		);
+		expect(swiftFormatArguments).not.toContain(
+			join(fixtureRoot, "ios", "Track1Core", ".build", "checkouts", "Ignored.swift"),
+		);
 		expect(await pathExists(fixtureRoot)).toBe(false);
 	});
 
 	it("passes the same fixture when the newly discovered source is conforming", async () => {
-		const { calls, expectedSwiftFiles, fixtureRoot, result, swiftFormatArguments } =
+		const { calls, expectedSwiftFiles, fixtureRoot, result, swiftCalls, swiftFormatArguments } =
 			await runSwiftFixtureCheck();
 
 		expect(result.status, `${result.stdout}\n${result.stderr}\n${calls}`).toBe(0);
 		expect(swiftFormatArguments.slice(5)).toEqual([...expectedSwiftFiles].sort());
+		expect(swiftCalls).toHaveLength(1);
 		expect(await pathExists(fixtureRoot)).toBe(false);
 	});
 
@@ -1279,6 +1498,11 @@ describe.sequential("Track1 Swift format coverage", () => {
 		[
 			"a missing source root",
 			{ missingRoot: "Track1UITests" as const },
+			"Expected Swift source root is missing or is a symlink",
+		],
+		[
+			"a missing package root",
+			{ missingRoot: "Track1Core" as const },
 			"Expected Swift source root is missing or is a symlink",
 		],
 		["a discovery error", { discoveryFailure: true }, "Could not discover Swift source files under"],
