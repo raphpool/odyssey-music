@@ -151,6 +151,20 @@ enum Track1Tokens {
 	static let sizeReleaseCard: CGFloat = 120
 	static let sizeGenreTile: CGFloat = 176
 
+	// MARK: Local tokens (not Figma)
+
+	// Everything above is a Figma variable or a label of the Foundations frames. These two are not: the
+	// Figma file draws the Large Artwork glyph (`18:2`) and the SearchField icon (`30:21`) at these sizes
+	// without any token for them. Added on 2026-10-13 (TRA-443) after the decision "defaults + add missing
+	// tokens", so the components match the Figma exactly. `Track1TokensTests` lists them apart from the
+	// Figma ones, so a local token can never hide a Figma variable that is missing. Move one up if the
+	// designer ever binds a variable to it.
+
+	/// Glyph of a Large Artwork (Title/1, 28 pt).
+	static let sizeIconXLarge: CGFloat = 28
+	/// Leading icon of the SearchField, drawn in a 22 pt frame.
+	static let sizeIconSearch: CGFloat = 22
+
 	// MARK: Node types
 
 	/// Graph color of a node type, shared by chips, markers and artwork placeholders.

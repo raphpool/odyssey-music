@@ -33,6 +33,10 @@ struct Track1ListItem: View {
 		hasArtwork ? 80 : 60
 	}
 
+	/// Figma pads a row by 10 pt above and below (`spacing/10`). Around the 40 pt text block it gives the
+	/// 60 pt of a Standard row.
+	static let verticalPadding = Track1Tokens.spacing10
+
 	static func accessibilityLabel(title: String, subtitle: String?) -> String {
 		[title, subtitle].compactMap { $0 }.joined(separator: ", ")
 	}
@@ -109,8 +113,7 @@ private struct Track1ListItemBody: View {
 			if accessory == .chevron { Track1Icon(.chevronRight) }
 		}
 		.padding(.horizontal, Track1Tokens.spacing16)
-		// 8 pt around the 40 pt text block puts a Standard row under its 60 pt minimum, as in Figma.
-		.padding(.vertical, Track1Tokens.spacing8)
+		.padding(.vertical, Track1ListItem.verticalPadding)
 		.frame(minHeight: Track1ListItem.minHeight(hasArtwork: artwork != nil))
 		.background(colors.fill, in: shape)
 		.opacity(Track1ListItemColors.opacity(state: state))
