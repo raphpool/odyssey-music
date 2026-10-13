@@ -15,8 +15,10 @@ final class LocalStorePlatformTests: XCTestCase {
 		let directory = FileManager.default.temporaryDirectory
 			.appending(path: "local-store-platform-\(UUID().uuidString.lowercased())", directoryHint: .isDirectory)
 		defer { try? FileManager.default.removeItem(at: directory) }
-		let recorder = AttributeRecordingFileManager()
-		let store = LocalStore(directoryURL: directory, fileManager: recorder)
+		let recorder = ProtectionRecorder()
+		// The file manager is sent into the actor and never touched again; the test reads the Sendable recorder.
+		let store = LocalStore(
+			directoryURL: directory, fileManager: AttributeRecordingFileManager(recorder: recorder))
 
 		let result = await store.write(Data("value".utf8), named: "platform.json")
 
@@ -29,9 +31,10 @@ final class LocalStorePlatformTests: XCTestCase {
 	}
 }
 
-/// Records the protection class passed to `setAttributes(_:ofItemAtPath:)`, the only call `LocalStore` uses
-/// to set it (both for the file and for its directory), then forwards to the real implementation.
-private final class AttributeRecordingFileManager: FileManager, @unchecked Sendable {
+/// Thread-safe sink shared by the test and the recording file manager. Swift 6 forbids using the file manager
+/// after sending it into the `LocalStore` actor ("sending value of non-Sendable type", ios-check on PR #350,
+/// 2026-10-13), so the test keeps this box instead.
+private final class ProtectionRecorder: @unchecked Sendable {
 	private let lock = NSLock()
 	private var recorded: [String: FileProtectionType] = [:]
 
@@ -41,11 +44,26 @@ private final class AttributeRecordingFileManager: FileManager, @unchecked Senda
 		return recorded
 	}
 
+	func record(_ protection: FileProtectionType, at path: String) {
+		lock.lock()
+		recorded[path] = protection
+		lock.unlock()
+	}
+}
+
+/// Records the protection class passed to `setAttributes(_:ofItemAtPath:)`, the only call `LocalStore` uses
+/// to set it (both for the file and for its directory), then forwards to the real implementation.
+private final class AttributeRecordingFileManager: FileManager, @unchecked Sendable {
+	private let recorder: ProtectionRecorder
+
+	init(recorder: ProtectionRecorder) {
+		self.recorder = recorder
+		super.init()
+	}
+
 	override func setAttributes(_ attributes: [FileAttributeKey: Any], ofItemAtPath path: String) throws {
 		if let protection = attributes[.protectionKey] as? FileProtectionType {
-			lock.lock()
-			recorded[path] = protection
-			lock.unlock()
+			recorder.record(protection, at: path)
 		}
 		try super.setAttributes(attributes, ofItemAtPath: path)
 	}
