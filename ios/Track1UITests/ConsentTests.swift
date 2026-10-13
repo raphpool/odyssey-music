@@ -16,7 +16,7 @@ final class ConsentTests: XCTestCase {
 	func testConsentCanBeChangedFromSettings() {
 		let app = launchApp()
 		app.buttons["analytics-consent-decline"].tap()
-		app.tabBars.buttons["Réglages"].tap()
+		app.tabBars.buttons["Genres"].tap()
 		app.buttons["analytics-settings"].tap()
 		app.buttons["analytics-consent-accept"].tap()
 		XCTAssertTrue(app.tabBars.firstMatch.exists)
