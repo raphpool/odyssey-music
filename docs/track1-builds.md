@@ -130,6 +130,14 @@ Pour vérifier qu'un changement de l'app compile sans lancer `xcodebuild` :
 Limite : comme app et tests sont typecheckés comme un seul module, les erreurs d'isolation
 Swift 6 entre cibles (« sending value of non-Sendable type ») n'apparaissent que dans `ios-check`.
 
+## Build installable V1 (TRA-337, TRA-374)
+
+La seule build installable du client natif est l'archive Preview signée localement par
+`ios/scripts/archive.sh` (TRA-360), sur le Mac de Raphael : la CI ne signe jamais. Prérequis,
+commande exacte, installation sur l'iPhone, smoke Figma, relevé visuel, tableau de preuve,
+renouvellement et absences volontaires (APNs, TestFlight, clé Segment) sont dans
+[`docs/track1-native-release.md`](track1-native-release.md).
+
 ## Artefacts Expo historiques de TRA-290
 
 Source de configuration et de preuves : branche
