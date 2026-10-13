@@ -19,7 +19,7 @@ final class ProfileFlowTests: XCTestCase {
 		attachScreenshot(named: "profile-selection-saved-fixture")
 		app.buttons["profile-continue"].tap()
 
-		app.tabBars.buttons["Réglages"].tap()
+		app.tabBars.buttons["Genres"].tap()
 		let edit = app.buttons["profile-settings-edit"]
 		XCTAssertTrue(edit.waitForExistence(timeout: 2))
 		XCTAssertTrue(app.staticTexts["Votre profil musical reste sur ce téléphone."].exists)
@@ -38,8 +38,8 @@ final class ProfileFlowTests: XCTestCase {
 		app.launchArguments = ["-AppleLanguages", "(fr)"]
 		app.launchEnvironment = ["TRACK1_PROFILE_CATALOG_JSON": catalogFixture]
 		app.launch()
-		XCTAssertTrue(app.tabBars.buttons["Réglages"].waitForExistence(timeout: 2))
-		app.tabBars.buttons["Réglages"].tap()
+		XCTAssertTrue(app.tabBars.buttons["Genres"].waitForExistence(timeout: 2))
+		app.tabBars.buttons["Genres"].tap()
 		XCTAssertEqual(app.buttons["profile-settings-edit"].value as? String, "3 genres sélectionnés")
 	}
 
@@ -50,7 +50,7 @@ final class ProfileFlowTests: XCTestCase {
 		let explore = app.buttons["profile-explore-search"]
 		XCTAssertTrue(explore.waitForExistence(timeout: 2))
 		explore.tap()
-		XCTAssertTrue(app.buttons["entry-status-search"].waitForExistence(timeout: 2))
+		XCTAssertTrue(app.descendants(matching: .any)["search-sheet"].waitForExistence(timeout: 2))
 	}
 
 	@MainActor
@@ -75,7 +75,7 @@ final class ProfileFlowTests: XCTestCase {
 		app.buttons["Réessayer"].tap()
 		XCTAssertTrue(app.buttons["profile-continue"].waitForExistence(timeout: 2))
 		app.buttons["profile-continue"].tap()
-		XCTAssertTrue(app.tabBars.buttons["Réglages"].waitForExistence(timeout: 2))
+		XCTAssertTrue(app.tabBars.buttons["Genres"].waitForExistence(timeout: 2))
 	}
 
 	@MainActor
@@ -89,7 +89,7 @@ final class ProfileFlowTests: XCTestCase {
 		app.buttons["analytics-consent-decline"].tap()
 
 		XCTAssertTrue(app.staticTexts["profile-recovery-message"].waitForExistence(timeout: 2))
-		app.tabBars.buttons["Réglages"].tap()
+		app.tabBars.buttons["Genres"].tap()
 		let recover = app.buttons["profile-recover"]
 		XCTAssertTrue(recover.waitForExistence(timeout: 2))
 		recover.tap()

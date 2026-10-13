@@ -5,6 +5,8 @@ final class NavigationTests: XCTestCase {
 		continueAfterFailure = false
 	}
 
+	// 2026-10-13 (TRA-398): the name is pinned by ios/scripts/check.sh and test/ios-check.test.ts (Preview pass),
+	// so it stays although the test now covers Today / Genres / Search and the search sheet.
 	@MainActor
 	func testThreeTabsKeepTheirIndependentNavigationStacks() throws {
 		let app = XCUIApplication()
@@ -17,28 +19,29 @@ final class NavigationTests: XCTestCase {
 		XCTAssertTrue(applicationWindow.waitForExistence(timeout: 2))
 		XCTAssertLessThanOrEqual(applicationWindow.frame.minY, 1)
 		XCTAssertGreaterThanOrEqual(applicationWindow.frame.height, 800)
-		XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].waitForExistence(timeout: 2))
 		XCTAssertFalse(app.otherElements["invalid-configuration"].exists)
 
+		let today = app.tabBars.buttons["Aujourd’hui"]
+		XCTAssertTrue(today.waitForExistence(timeout: 2))
+		XCTAssertTrue(app.tabBars.buttons["Genres"].exists)
+		XCTAssertTrue(app.tabBars.buttons["Recherche"].exists)
+		XCTAssertFalse(app.tabBars.buttons["Réglages"].exists)
 		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
 
-		app.tabBars.buttons["Recherche"].tap()
-		let searchStatus = app.buttons["entry-status-search"]
-		XCTAssertTrue(searchStatus.waitForExistence(timeout: 2))
-		searchStatus.tap()
-		XCTAssertFalse(searchStatus.exists)
-
-		app.tabBars.buttons["Aujourd’hui"].tap()
-		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
-
-		app.tabBars.buttons["Réglages"].tap()
+		app.tabBars.buttons["Genres"].tap()
 		XCTAssertTrue(app.buttons["profile-settings-edit"].waitForExistence(timeout: 2))
 		XCTAssertTrue(app.buttons["analytics-settings"].exists)
 
+		today.tap()
+		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
+
 		app.tabBars.buttons["Recherche"].tap()
-		XCTAssertTrue(app.staticTexts["entry-status-description-search"].waitForExistence(timeout: 2))
-		app.navigationBars.buttons.element(boundBy: 0).tap()
-		XCTAssertTrue(searchStatus.waitForExistence(timeout: 2))
+		let sheet = app.descendants(matching: .any)["search-sheet"]
+		XCTAssertTrue(sheet.waitForExistence(timeout: 2))
+		dismiss(sheet)
+		// The sheet did not take the selection: Today is still the tab under it.
+		XCTAssertTrue(today.isSelected)
+		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
 	}
 
 	@MainActor
@@ -53,7 +56,7 @@ final class NavigationTests: XCTestCase {
 		app.launch()
 		app.buttons["analytics-consent-decline"].tap()
 
-		for tab in ["Aujourd’hui", "Recherche", "Réglages"] {
+		for tab in ["Aujourd’hui", "Genres", "Recherche"] {
 			let button = app.tabBars.buttons[tab]
 			XCTAssertTrue(button.waitForExistence(timeout: 2))
 			XCTAssertGreaterThanOrEqual(button.frame.height, 44)
@@ -61,12 +64,12 @@ final class NavigationTests: XCTestCase {
 			switch tab {
 			case "Aujourd’hui":
 				XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
-			case "Recherche":
-				let description = app.staticTexts["Cette entrée est prête à accueillir son contenu."]
-				XCTAssertTrue(description.waitForExistence(timeout: 2))
-				XCTAssertGreaterThan(description.frame.height, 20)
-			case "Réglages":
+			case "Genres":
 				XCTAssertTrue(app.buttons["profile-settings-edit"].waitForExistence(timeout: 2))
+			case "Recherche":
+				let sheet = app.descendants(matching: .any)["search-sheet"]
+				XCTAssertTrue(sheet.waitForExistence(timeout: 2))
+				dismiss(sheet)
 			default:
 				XCTFail("Unexpected tab")
 			}
@@ -77,5 +80,14 @@ final class NavigationTests: XCTestCase {
 		attachment.name = "dark-accessibility-xxxl-tabs"
 		attachment.lifetime = .keepAlways
 		add(attachment)
+	}
+
+	/// Swipes the sheet down from its empty area; a tap outside does not exist on a full-height sheet.
+	@MainActor
+	private func dismiss(_ sheet: XCUIElement) {
+		let start = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3))
+		let end = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
+		start.press(forDuration: 0.1, thenDragTo: end)
+		XCTAssertTrue(sheet.waitForNonExistence(timeout: 2))
 	}
 }

@@ -53,38 +53,73 @@ private struct ApplicationTabs: View {
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
 	@State private var profileToEdit: Profile?
+	@State private var searchAfterOnboarding = false
 
 	var body: some View {
-		TabView(selection: $router.selectedTab) {
-			entry(for: .today)
-				.tabItem { Label(AppTab.today.title, systemImage: AppTab.today.symbolName) }
-				.tag(AppTab.today)
-			entry(for: .search)
-				.tabItem { Label(AppTab.search.title, systemImage: AppTab.search.symbolName) }
-				.tag(AppTab.search)
-			entry(for: .settings)
-				.tabItem { Label(AppTab.settings.title, systemImage: AppTab.settings.symbolName) }
-				.tag(AppTab.settings)
-		}
-		// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
-		.task { await reloadProfile() }
-		.sheet(isPresented: $showingOnboarding) {
-			OnboardingView(
-				apiClient: apiClient,
-				catalogProvider: onboardingCatalog,
-				profileStore: profileStore,
-				analytics: analytics,
-				editingProfile: profileToEdit,
-				complete: { profile in
-					profileState = .profile(profile)
-					showingOnboarding = false
-				},
-				cancel: { showingOnboarding = false },
-				exploreWithoutProfile: {
-					showingOnboarding = false
-					router.selectedTab = .search
+		tabs
+			.sensoryFeedback(.selection, trigger: router.selectedTab)
+			// Search does not change the selected tab, but tapping it is still a tab change for the hand.
+			.sensoryFeedback(.selection, trigger: router.isSearchPresented) { _, isPresented in isPresented }
+			// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
+			.task { await reloadProfile() }
+			.sheet(isPresented: $router.isSearchPresented) { SearchSheetPlaceholder() }
+			.sheet(isPresented: $showingOnboarding, onDismiss: presentSearchIfRequested) {
+				OnboardingView(
+					apiClient: apiClient,
+					catalogProvider: onboardingCatalog,
+					profileStore: profileStore,
+					analytics: analytics,
+					editingProfile: profileToEdit,
+					complete: { profile in
+						profileState = .profile(profile)
+						showingOnboarding = false
+					},
+					cancel: { showingOnboarding = false },
+					exploreWithoutProfile: {
+						searchAfterOnboarding = true
+						showingOnboarding = false
+					}
+				)
+			}
+	}
+
+	/// Selecting a tab goes through the router: Search opens its sheet instead of changing the tab (D8).
+	private var tabSelection: Binding<AppTab> {
+		Binding(get: { router.selectedTab }, set: { router.select($0) })
+	}
+
+	@ViewBuilder
+	private var tabs: some View {
+		if #available(iOS 26, *) {
+			// Native Liquid Glass bar; the search role draws the isolated round button of the Figma.
+			TabView(selection: tabSelection) {
+				Tab(AppTab.today.title, systemImage: AppTab.today.glyph.systemName, value: AppTab.today) {
+					entry(for: .today)
 				}
-			)
+				Tab(AppTab.genres.title, systemImage: AppTab.genres.glyph.systemName, value: AppTab.genres) {
+					entry(for: .genres)
+				}
+				Tab(
+					AppTab.search.title, systemImage: AppTab.search.glyph.systemName, value: AppTab.search,
+					role: .search
+				) {
+					// Never shown: selecting Search opens the sheet and keeps the current tab.
+					Color.clear
+				}
+			}
+		} else {
+			TabView(selection: tabSelection) {
+				ForEach(AppTab.allCases) { tab in
+					Group {
+						if tab == .search { Color.clear } else { entry(for: tab) }
+					}
+					.tabItem { Label(tab.title, systemImage: tab.glyph.systemName) }
+					.tag(tab)
+				}
+			}
+			// The glass of iOS 26 does not exist before: a frosted bar is the closest native fallback.
+			.toolbarBackground(.visible, for: .tabBar)
+			.toolbarBackground(.ultraThinMaterial, for: .tabBar)
 		}
 	}
 
@@ -97,14 +132,14 @@ private struct ApplicationTabs: View {
 					TodayEntryView(
 						profileState: profileState,
 						chooseProfile: { beginOnboarding(editing: nil) },
-						exploreSearch: { router.selectedTab = .search },
-						recoverProfile: { router.selectedTab = .settings }
+						exploreSearch: { router.select(.search) },
+						recoverProfile: { router.select(.genres) }
 					)
 				case .search:
-					EntryView(tab: tab) {
-						router.push(.entryStatus(tab), in: tab)
-					}
-				case .settings:
+					// Search has no stack: its sheet is presented by the router (I.2 fills it).
+					EmptyView()
+				case .genres:
+					// Provisional root until K.1 composes the Genres tab; Settings lives here meanwhile.
 					SettingsEntryView(
 						profileState: profileState,
 						profileStore: profileStore,
@@ -140,6 +175,12 @@ private struct ApplicationTabs: View {
 				}
 			}
 		}
+	}
+
+	private func presentSearchIfRequested() {
+		guard searchAfterOnboarding else { return }
+		searchAfterOnboarding = false
+		router.select(.search)
 	}
 
 	private func beginOnboarding(editing profile: Profile?) {
@@ -230,7 +271,7 @@ private struct EntryView: View {
 
 	var body: some View {
 		ContentUnavailableView {
-			Label(tab.title, systemImage: tab.symbolName)
+			Label(tab.title, systemImage: tab.glyph.systemName)
 		} description: {
 			Text("Cette entrée est prête à accueillir son contenu.")
 				.accessibilityIdentifier("entry-description-\(tab.rawValue)")
@@ -271,5 +312,24 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
+	}
+}
+
+/// Stands for the search sheet until I.2: the field is inert, the sheet only proves the Search tab opens it.
+private struct SearchSheetPlaceholder: View {
+	@State private var text = ""
+	@FocusState private var isFocused: Bool
+
+	var body: some View {
+		VStack(spacing: Track1Tokens.spacing16) {
+			Track1SearchField(text: $text, focus: $isFocused, onSubmit: {})
+				.disabled(true)
+			Spacer()
+		}
+		.padding(Track1Tokens.spacing24)
+		.frame(maxWidth: .infinity, maxHeight: .infinity)
+		.presentationBackground(Track1Tokens.colorBackgroundBase)
+		.accessibilityElement(children: .contain)
+		.accessibilityIdentifier("search-sheet")
 	}
 }
