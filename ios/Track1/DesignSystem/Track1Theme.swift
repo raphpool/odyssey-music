@@ -4,7 +4,6 @@ enum Track1Theme {
 	static let actionTint = Color(red: 0, green: 0.451, blue: 0.902)
 	static let minimumHitTarget: CGFloat = 44
 	static let contentSpacing: CGFloat = 16
-	static let artworkCornerRadius: CGFloat = 16
 	static let sectionSurface = Color(uiColor: .secondarySystemBackground)
 }
 

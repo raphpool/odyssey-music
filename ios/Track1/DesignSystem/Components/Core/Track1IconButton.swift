@@ -20,7 +20,7 @@ struct Track1IconButton: View {
 		self.action = action
 	}
 
-	/// Never under 44 x 44 pt (Figma rule, and `Track1Theme.minimumHitTarget`).
+	/// Never under 44 x 44 pt (Figma rule).
 	static func targetSize(for size: Track1ControlSize) -> CGSize {
 		CGSize(width: size.height, height: size.height)
 	}
