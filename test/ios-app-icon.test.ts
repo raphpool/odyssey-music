@@ -31,7 +31,7 @@ function appTarget(project: string): string {
 
 // Ids of the entries in the `key = ( ... )` list of an object line; each entry is an id then a comment.
 function listedIds(line: string, key: string): string[] {
-	const list = line.match(new RegExp(`${key} = \\(([^)]*)\\)`))?.[1] ?? "";
+	const list = line.match(new RegExp(`${key} = \\((.*?)\\);`))?.[1] ?? "";
 	return [...list.matchAll(/([A-F0-9]{24}) \/\*/g)].map((match) => match[1] as string);
 }
 
