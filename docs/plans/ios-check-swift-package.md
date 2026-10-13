@@ -1,8 +1,10 @@
 # Accélérer `ios-check` sans perte de qualité — package `Track1Core` et simulateur réutilisable
 
 > Projet Linear : **Track1 mobile**. Brief validé par Raphael le 2026-10-12. Intègre TRA-421
-> (simulateur `track1-ci-pool`, en Backlog). Statut : **plan en attente de validation, aucun
-> ticket créé.** Base : `main` à `e922802` (TRA-420, PR #343).
+> (simulateur `track1-ci-pool`, en Backlog). Statut : **plan validé par Raphael le 2026-10-13** ;
+> les sept questions posées sont tranchées (section « Décisions prises à la validation »).
+> Tickets : P (parent), 1.1, 1.2, 1.3, 2.1, 2.2a, 2.2b, 2.3, 2.4, 3.1, plus TRA-421 amendé.
+> Base : `main` à `e922802` (TRA-420, PR #343).
 
 ## Problème
 
@@ -98,7 +100,8 @@ listes de sources à maintenir, et l'app ne verrait jamais une régression du pa
 
 ### D2 — Liaison par `XCLocalSwiftPackageReference`, `objectVersion` 56 → 60, IDs dans `03F0–03FF`
 
-Objets à ajouter au pbxproj, dans la convention D5 (préfixe + 18 zéros + suffixe) :
+Confirmée par Raphael le 2026-10-13. Objets à ajouter au pbxproj, dans la convention D5 (préfixe +
+18 zéros + suffixe) :
 
 - `L10000000000000000003F0` : `XCLocalSwiftPackageReference`, `relativePath = Track1Core`, ajouté à
   `packageReferences` du `PBXProject` `A00000000000000000000001`, à côté de `R10000000000000000000001`.
@@ -108,6 +111,9 @@ Objets à ajouter au pbxproj, dans la convention D5 (préfixe + 18 zéros + suff
   Frameworks `A20000000000000000000001` de l'app.
 - `objectVersion = 60` et `compatibilityVersion = "Xcode 15.0"` : c'est le format qu'Xcode 15 a
   introduit avec ce type d'objet.
+- Réservés aussi dans la plage : `F10000000000000000003F3` pour le repli ci-dessous ;
+  `F10000000000000000003F4` et `B10000000000000000003F5` pour `ios/Track1Tests/LocalStorePlatformTests.swift`
+  (tâche 2.2a). Les tâches de déplacement ne créent aucun autre ID.
 
 Les cibles de test ne lient pas le package : `Track1Tests` l'obtient par `TEST_HOST`, comme Segment
 aujourd'hui.
@@ -129,15 +135,17 @@ Foundation pur, injectable (`directoryURL`, `fileManager`). Sa seule ligne spéc
 de protection `FileProtectionType.completeUntilFirstUserAuthentication` (L76 et L107) : elle passe sous
 `#if os(iOS)` avec un commentaire daté, parce que les classes de protection sont un concept iOS et
 que leur comportement sur un volume macOS de test n'est pas garanti. `isExcludedFromBackup` reste
-inconditionnel. **Aucun test ne vérifie la protection aujourd'hui** (vérifié par grep) : rien n'est
-perdu, mais rien n'est gagné non plus (question 3).
+inconditionnel. Aucun test ne vérifiait la protection jusqu'ici (vérifié par grep) : décision du
+2026-10-13, un test hébergé dans l'app, `ios/Track1Tests/LocalStorePlatformTests.swift` (≈ 30
+lignes), vérifie sur le simulateur que l'attribut est posé sur le fichier et sur le dossier. Il
+arrive avec la tâche 2.2a, celle qui déplace `LocalStore`.
 
 Les 53 tests qui passent par `LocalStore` (`ProfileStoreTests`, `OnboardingContractTests`,
 `DailyRecommendationStoreTests`, `TodayViewModelTests`, `TodayViewModelConcurrencyTests`) sont des
 tests de logique sur un vrai store en dossier temporaire ; ils vont dans le package.
 
 Restent dans l'app : `AppContainer`, `UITestFixtureReaders`, `SegmentAdapter`, `AnalyticsClient`,
-`AppRouter`, toutes les vues, et les 71 tests de l'annexe B. Les 23 tests de
+`AppRouter`, toutes les vues, et les 72 tests de l'annexe B. Les 23 tests de
 `UITestFixtureReadersTests` sont sous `#if targetEnvironment(simulator)` : déplacés, ils
 **disparaîtraient silencieusement** sous `swift test` macOS (garde en 1.3).
 
@@ -151,11 +159,12 @@ métier centrale (profil, recommandation du jour), précisément ceux qui doiven
 d'une minute. **Rejeté :** un protocole de store pour mocker `LocalStore` — on ne mocke pas ce qu'on
 possède.
 
-### D4 — Migration par couche de dépendance, une PR par couche, deux commits par PR
+### D4 — Migration par couche de dépendance, cinq PR, deux commits par PR, avant le plan Figma
 
 Le graphe des 19 fichiers (annexe A) donne quatre couches sans cycle, à condition de déplacer
 `ListeningActions` et `NodeViewModel` ensemble (cycle par les `typealias` de `NodeViewModel.swift`
-L11–13). Chaque PR de déplacement contient **deux commits** :
+L11–13). La couche 2 est coupée en deux à la frontière `Recommendation/` (décision du 2026-10-13),
+d'où cinq PR : 2.1, 2.2a, 2.2b, 2.3, 2.4. Chaque PR contient **deux commits** :
 
 1. `refactor(ios): move <couche> to Track1Core` — `git mv` des sources et des tests, retrait des
    `PBXFileReference`, `PBXBuildFile`, entrées de groupes et de phases correspondants, rien d'autre.
@@ -168,14 +177,17 @@ Un implémenteur sans Xcode valide le commit 2 en local par `swift test --packag
 PR : une PR d'annotation seule, pendant que les fichiers sont encore dans l'app, serait invérifiable
 en local.
 
-Le diff brut (sans renommage, tel que `pr-policy` le compte) sera de 1 900 à 4 000 lignes par PR.
+Le diff brut (sans renommage, tel que `pr-policy` le compte) sera de 1 900 à 3 200 lignes par PR.
 L'avertissement « scope review » s'affichera ; la description de PR cite `git diff -M --stat`.
 
+**Ordonnancement (décision du 2026-10-13) : la Partie 2 passe avant tout dispatch des tickets
+Figma TRA-383 et suivants.** Aucune tâche Figma n'est mergée ni ouverte à ce jour ; en exécutant les
+cinq déplacements d'abord, il n'y a aucun conflit pbxproj à résoudre.
+
 **Rejeté :** une seule PR de déplacement (≈ 12 000 lignes brutes ; un échec CI bloque tout).
-**Rejeté :** des PR d'annotation séparées des PR de déplacement (voir ci-dessus). **Rejeté :** huit
-PR par domaine — chaque PR qui touche les lignes uniques des phases `Sources` et des groupes est une
-fenêtre de conflit pour les branches Figma ouvertes ; quatre est le minimum qui garde chaque PR
-sous 4 000 lignes brutes.
+**Rejeté :** des PR d'annotation séparées des PR de déplacement (voir ci-dessus). **Rejeté :** quatre
+PR avec une couche 2 à ≈ 4 000 lignes brutes — scindée à la validation. **Rejeté :** huit PR par
+domaine — plus de runs CI et de fenêtres de conflit pour un diff total identique.
 
 ### D5 — `swift test` dans `check.sh`, avant toute étape simulateur
 
@@ -193,7 +205,7 @@ gain que TRA-421 apporte déjà.
 
 ### D6 — Les tests hébergés dans l'app n'utilisent jamais `@testable import Track1Core`
 
-Les 71 tests restants importent `Track1Core` par son API publique (`import Track1Core`, en plus de
+Les 72 tests restants importent `Track1Core` par son API publique (`import Track1Core`, en plus de
 `@testable import Track1`). Les accès repérés sont tous couverts par des membres publics :
 `public private(set) var` pour `state`, `listening`, `isOpeningListening`, `listeningFailure` de
 `NodeViewModel` ; `public init` explicites pour `AnalyticsEnvelope`, `AppConfigurationValues`,
@@ -204,10 +216,17 @@ Les 71 tests restants importent `Track1Core` par son API publique (`import Track
 `ENABLE_TESTABILITY` sous des configurations nommées `Development` et `Preview`, comportement
 d'Xcode non garanti pour des noms autres que `Debug`.
 
+### D7 — `swift test` en local est autorisé aux implémenteurs dès 1.1
+
+Décision du 2026-10-13 : `swift test --package-path ios/Track1Core` peut tourner en local, y compris
+pendant qu'un run `ios-check` occupe le runner `ios`. C'est léger (pas de simulateur, pas de
+`xcodebuild`, quelques centaines de Mo). `xcodebuild` et le simulateur restent interdits en local.
+
 ## Découpage
 
 Ordre : Partie 0 et 1.1 en parallèle ; 1.2 après TRA-421 et 1.1 ; 1.3 après 1.1, en parallèle de
-1.2 ; Partie 2 strictement séquentielle (2.1 → 2.2 → 2.3 → 2.4) après 1.2 ; Partie 3 à la fin.
+1.2 ; Partie 2 strictement séquentielle (2.1 → 2.2a → 2.2b → 2.3 → 2.4) après 1.2 et 1.3, et
+**avant tout dispatch des tickets Figma TRA-383 et suivants** ; Partie 3 à la fin.
 Chaque partie est déployable seule : après la Partie 1, `ios-check` teste déjà un package minimal ;
 après chaque PR de la Partie 2, l'app compile et tous les tests tournent, dans le package ou dans
 l'app.
@@ -222,9 +241,9 @@ Les estimations tiennent compte du calibrage iOS (les PR Swift livrent 1,5 à 2,
   ticket (`track1-ci-pool`, `shutdown` sans `delete`, désinstallation des bundles
   `com.dropcliffs.track1.*` et `keychain reset` au lieu d'`erase`, verrou `mkdir`, repli éphémère).
 
-Deux amendements à porter dans le ticket :
+Deux amendements à porter dans le ticket (commentaire) :
 - Le critère « les 207 tests de `Track1` » devient « tous les tests des schémas `Track1` et
-  `Track1Preview` » : après la Partie 2, `Track1` en compte 80 (71 + 9 UI).
+  `Track1Preview` » : après la Partie 2, `Track1` en compte 81 (72 + 9 UI).
 - TRA-421 et la tâche 1.2 modifient tous deux `ios/scripts/check.sh` et `test/ios-check.test.ts`.
   TRA-421 passe en premier ; 1.2 est `blockedBy` TRA-421.
 
@@ -247,7 +266,7 @@ tier/2 · 2 à 3 h · ≈ 300 lignes brutes · parallèle avec TRA-421 · bloque
 - `ios/Track1Core/Tests/Track1CoreTests/API/URLValidationTests.swift` : quatre tests de
   caractérisation reprenant les cas déjà couverts indirectement par `APIClientTests.swift` L21
   (`127.0.0.1`, `[::ffff:7f00:1]`) et `ListeningTests.swift` L118–159 (`open.spotify.com`,
-  `music.apple.com`, hôte étranger refusé). Pas d'autre test nouveau.
+  `music.apple.com`, hôte étranger refusé). Pas d'autre test nouveau (graine confirmée le 2026-10-13).
 - `.gitignore` : `ios/Track1Core/.build/` et `ios/Track1Core/.swiftpm/`.
 - Hors scope : `check.sh`, les gardes vitest, tout autre fichier Swift.
 
@@ -263,9 +282,9 @@ tier/2 · 2 à 3 h · ≈ 300 lignes brutes · parallèle avec TRA-421 · bloque
 
 **Tests attendus** : `URLValidationTests` (4). `ios-check` est le test de la liaison.
 
-**Notes** : `swift test` en local est **autorisé** à partir de cette tâche (pas de simulateur, pas de
-`xcodebuild`, quelques centaines de Mo). `xcodebuild` reste interdit en local. PR en brouillon : le
-dispatcher la passe en ready et lit le log `ios-check`.
+**Notes** : `swift test` en local est **autorisé** à partir de cette tâche, y compris pendant un run
+`ios-check` (D7). `xcodebuild` reste interdit en local. PR en brouillon : le dispatcher la passe en
+ready et lit le log `ios-check`.
 
 #### 1.2 Lancer `swift test` dans `check.sh` avant le simulateur, avec mesure de temps
 
@@ -330,16 +349,16 @@ tier/1 · 1 à 2 h · ≈ 150 lignes · blockedBy 1.1 · parallèle avec 1.2
 
 ### Partie 2 — Migration par couche
 
-Format commun aux quatre tâches (D4) : deux commits, `git diff -M --stat` dans la description,
+Format commun aux cinq tâches (D4) : deux commits, `git diff -M --stat` dans la description,
 `swift test --package-path ios/Track1Core` vert en local avant de pousser, `ios-check` vert,
-comptes de tests reportés dans la PR. Le pbxproj ne reçoit que des **retraits** ; aucun ID nouveau.
-Conflit sur une ligne unique de groupe ou de phase : résolution par insertion, jamais par
-renumérotation (D5 Figma). Les fichiers Figma arrivés entre-temps restent dans l'app. Chaque PR
-est `blockedBy` la précédente.
+comptes de tests reportés dans la PR. Le pbxproj ne reçoit que des **retraits**, sauf les deux IDs
+du test de 2.2a. Conflit sur une ligne unique de groupe ou de phase : résolution par insertion,
+jamais par renumérotation (D5 Figma). Chaque PR est `blockedBy` la précédente. La Partie 2 entière
+précède le dispatch des tickets Figma.
 
 #### 2.1 Couche 1 — API, configuration, événements analytics
 
-tier/2 · 3 à 4 h · ≈ 2 900 lignes brutes dont ≈ 250 écrites · blockedBy 1.2
+tier/2 · 3 à 4 h · ≈ 2 900 lignes brutes dont ≈ 250 écrites · blockedBy 1.2, 1.3
 
 **Fichiers déplacés** (sources 906 lignes, tests ≈ 420) :
 `API/APIError.swift`, `API/APIModels.swift`, `API/APIClient.swift`, `App/AppConfiguration.swift`,
@@ -362,32 +381,58 @@ temporaire, retiré quand ils migrent), et dans les tests restants qui les utili
 - [ ] `test/ios-core-package.test.ts` et la garde Bundle passent sans exemption nouvelle.
 - [ ] Aucun `@testable import Track1Core` dans `ios/Track1Tests`.
 
-#### 2.2 Couche 2 — persistance, profil, navigation, recommandation
+#### 2.2a Couche 2 — persistance, profil, navigation, et test iOS de la protection des fichiers
 
-tier/2 · 3 à 4 h · ≈ 4 000 lignes brutes dont ≈ 170 écrites · blockedBy 2.1
+tier/2 · 2 à 3 h · ≈ 1 900 lignes brutes dont ≈ 120 écrites · blockedBy 2.1
 
-**Fichiers déplacés** (sources 820, tests 1 187) : `Persistence/LocalStore.swift`,
-`Profile/Profile.swift`, `Profile/ProfileStore.swift`, `Navigation/NavigationContext.swift`,
-`Recommendation/Affinity.swift`, `Recommendation/DailyRecommendation.swift`,
-`Recommendation/DailyRecommendationStore.swift` ; tests `Profile/ProfileStoreTests.swift`,
-`Profile/OnboardingContractTests.swift`, `Recommendation/AffinityTests.swift`,
-`Recommendation/DailySelectionTests.swift`, `Recommendation/DailyRecommendationStoreTests.swift`.
+**Fichiers déplacés** (sources 452, tests 477) : `Persistence/LocalStore.swift`,
+`Profile/Profile.swift`, `Profile/ProfileStore.swift`, `Navigation/NavigationContext.swift` ; tests
+`Profile/ProfileStoreTests.swift`, `Profile/OnboardingContractTests.swift`. Les groupes
+`Persistence`, `Profile`, `Navigation` de l'app et `Profile` des tests se vident : retirés.
 
 **Changement de contenu autorisé, le seul** : `LocalStore.swift` L76 et L107, classe de protection
 sous `#if os(iOS)` avec un commentaire daté (D3).
 
-**API publique** : ≈ 86 `public`, `public init` explicite pour `ProfileDraft`, `Sendable` explicite.
+**Test nouveau, hébergé dans l'app** : `ios/Track1Tests/LocalStorePlatformTests.swift` (≈ 30 lignes,
+`import Track1Core` sans `@testable`) : écrit une valeur par `LocalStore` dans un dossier
+temporaire et vérifie par `FileManager.attributesOfItem(atPath:)` que `.protectionKey` vaut
+`.completeUntilFirstUserAuthentication` sur le fichier **et** sur le dossier. IDs pbxproj
+`F10000000000000000003F4` et `B10000000000000000003F5` (D2), groupe racine `Track1Tests`, phase
+Sources des tests `A20000000000000000000006`.
+
+**API publique** : ≈ 54 `public`, `public init` explicite pour `ProfileDraft`, `Sendable` explicite.
 
 **Critères d'acceptation**
-- [ ] Package : 64 tests ; app : 138 + 9 ; Preview : 7.
-- [ ] Les 53 tests à store passent sous `swift test` macOS deux fois de suite (pas d'état résiduel
+- [ ] Package : 25 tests ; app : 178 (186 − 9 + 1) + 9 ; Preview : 7.
+- [ ] Les 9 tests déplacés passent sous `swift test` macOS deux fois de suite (pas d'état résiduel
   dans le dossier temporaire).
-- [ ] Si la review juge la PR trop large, elle est scindée à la frontière `Recommendation/`
-  (3 sources + 3 tests) en une PR 2.2b `blockedBy` 2.2 ; rien d'autre ne change.
+- [ ] `LocalStorePlatformTests` passe sur le simulateur. Si le simulateur ne relit pas l'attribut tel
+  qu'écrit, la PR le montre et remplace l'assertion par `URLResourceValues.fileProtection`, en le
+  disant dans sa description.
+- [ ] Aucun `#if os(iOS)` ailleurs que dans `LocalStore.swift` ; aucun `#if` sous `ios/Track1Core/Tests`.
+
+#### 2.2b Couche 2 — recommandation
+
+tier/2 · 2 h · ≈ 2 200 lignes brutes dont ≈ 50 écrites · blockedBy 2.2a
+
+**Fichiers déplacés** (sources 368, tests 710) : `Recommendation/Affinity.swift`,
+`Recommendation/DailyRecommendation.swift`, `Recommendation/DailyRecommendationStore.swift` ; tests
+`Recommendation/AffinityTests.swift`, `Recommendation/DailySelectionTests.swift`,
+`Recommendation/DailyRecommendationStoreTests.swift`. Le groupe `Recommendation` de l'app
+(`A30000000000000000000160`) se vide : retiré ; celui des tests garde `TodayViewModel*Tests`
+jusqu'à 2.4.
+
+**API publique** : ≈ 32 `public`, `Sendable` explicite sur `AffinityCandidate` et
+`DailyRecommendation`. Aucun fichier de l'app ne nomme ces types : seuls `TodayViewModel` (encore
+dans l'app) et les tests les importent.
+
+**Critères d'acceptation**
+- [ ] Package : 64 tests ; app : 139 + 9 ; Preview : 7.
+- [ ] Les 39 tests déplacés passent sous `swift test` macOS deux fois de suite.
 
 #### 2.3 Couche 3 — actions d'écoute et modèle de fiche
 
-tier/2 · 2 à 3 h · ≈ 1 900 lignes brutes dont ≈ 90 écrites · blockedBy 2.2
+tier/2 · 2 à 3 h · ≈ 1 900 lignes brutes dont ≈ 90 écrites · blockedBy 2.2b
 
 **Fichiers déplacés** (sources 286, tests 635) : `Listening/ListeningActions.swift`,
 `Features/Node/NodeViewModel.swift` (ensemble : cycle par les `typealias` `NodeReader`,
@@ -398,7 +443,7 @@ tier/2 · 2 à 3 h · ≈ 1 900 lignes brutes dont ≈ 90 écrites · blockedBy 
 restent dans l'app), `public init` de `NodeViewModel`.
 
 **Critères d'acceptation**
-- [ ] Package : 91 tests ; app : 111 + 9 ; Preview : 7.
+- [ ] Package : 91 tests ; app : 112 + 9 ; Preview : 7.
 - [ ] `NodeListeningTests`, `NodeRelationsTests`, `AppRouterNodeTests` passent dans l'app avec
   `import Track1Core` seulement.
 
@@ -416,12 +461,14 @@ tier/2 · 3 h · ≈ 3 200 lignes brutes dont ≈ 90 écrites · blockedBy 2.3
 `TodayViewModel` (1). Retrait des `import Track1Core` temporaires devenus inutiles.
 
 **Critères d'acceptation**
-- [ ] Package : 131 tests ; app : 71 + 9 ; Preview : 7. `ios/Track1/` contient 15 fichiers Swift
-  plus ceux ajoutés par le plan Figma entre-temps ; `ios/Track1Core/Sources` en contient 19.
+- [ ] Package : 131 tests ; app : 72 + 9 ; Preview : 7. `ios/Track1/` contient les 15 fichiers Swift
+  d'origine plus ceux ajoutés par d'autres PR entre-temps ; `ios/Track1Core/Sources` en contient 19.
 - [ ] Plus aucun fichier de `ios/Track1/` n'importe uniquement Foundation, sauf `AppContainer.swift`
   et `UITestFixtureReaders.swift` (vérifié par grep dans la PR).
 - [ ] `TodayViewModelConcurrencyTests` passe trois fois de suite sous `swift test` (TRA-410 l'a
   rendu déterministe sur simulateur ; le vérifier sur macOS).
+- [ ] Mesures des critères de sortie reportées dans la PR (deux runs `ios-check` à chaud, lignes
+  `[check] …`, durée de `swift test` local).
 
 ### Partie 3 — Documentation
 
@@ -450,13 +497,14 @@ tier/1 · 1 h · ≈ 60 lignes · blockedBy 2.4
 | --- | --- |
 | La liaison pbxproj (D2) est invérifiable sans Xcode ; `xcodebuild` peut refuser `L1…03F0` ou `objectVersion = 60`. | 1.1 est une tranche minimale ; `plutil -lint` en local ; repli hérité documenté, appliqué dans la même PR. |
 | `public` désactive l'inférence `Sendable` ; en Swift 6 strict, des dizaines d'erreurs peuvent apparaître d'un coup. | `swift build` local montre celles du package ; `Sendable` explicite listé dans chaque tâche ; la couche 1 (types valeur de l'API) essuie l'essentiel. |
-| `FileProtectionType` sur macOS : `setAttributes` peut lever et `LocalStore` répondre `.unavailable` → 53 tests rouges. | `#if os(iOS)` décidé d'avance (D3), pas « si ça casse ». |
+| `FileProtectionType` sur macOS : `setAttributes` peut lever et `LocalStore` répondre `.unavailable` → tests à store rouges. | `#if os(iOS)` décidé d'avance (D3), pas « si ça casse » ; la protection reste vérifiée sur iOS par `LocalStorePlatformTests`. |
+| Le simulateur pourrait ne pas relire l'attribut de protection tel qu'écrit. | Repli d'assertion documenté dans 2.2a (`URLResourceValues.fileProtection`), à dire dans la PR. |
 | Les 23 tests sous `#if targetEnvironment(simulator)` disparaîtraient sans erreur s'ils migraient. | Ils restent ; garde (b) de 1.3 ; comptes de tests exigés dans chaque PR. |
-| Conflits pbxproj avec les branches Figma (TRA-383 et suivants) sur les lignes uniques des phases et des groupes. | Quatre fenêtres au lieu de huit ; règle d'insertion D5 ; question 1 : exécuter la Partie 2 avant le démarrage des tâches Figma supprime le risque. |
+| Conflits pbxproj avec des branches Figma (TRA-383 et suivants) sur les lignes uniques des phases et des groupes. | Supprimé par l'ordonnancement : Partie 2 avant tout dispatch Figma. Si une branche devait quand même être ouverte, règle d'insertion D5. |
 | TRA-421 et 1.2 modifient les mêmes fichiers. | Séquence imposée : TRA-421 puis 1.2. |
-| Une PR de déplacement déclenche l'avertissement « scope review » de `pr-policy` (diff compté sans renommage). | Avertissement, pas blocage ; `git diff -M --stat` dans la description ; 2.2 scindable à une frontière nommée. |
+| Une PR de déplacement déclenche l'avertissement « scope review » de `pr-policy` (diff compté sans renommage). | Avertissement, pas blocage ; `git diff -M --stat` dans la description ; cinq PR, chacune ≤ 3 200 lignes brutes. |
 | `swift test` qui ne rend pas la main bloque le runner `ios` 30 min. | Watchdog de 1.2, testé avec un faux `swift`. |
-| Mémoire du Mac : `swift test` en local pendant qu'`ios-check` tourne. | `swift test` sans simulateur reste léger ; il tourne **avant** le simulateur dans `check.sh`, jamais en même temps dans un même run. |
+| Mémoire du Mac : `swift test` en local pendant qu'`ios-check` tourne. | Autorisé (D7) : sans simulateur, `swift test` reste léger ; dans `check.sh` il tourne **avant** le simulateur, jamais en même temps dans un même run. |
 | Les tests du package tournent sur macOS, pas sur iOS : une différence de Foundation passerait inaperçue. | Le code est compilé pour iOS par l'app à chaque PR ; la frontière D3 exclut tout ce qui dépend de la plateforme. |
 | Le build du package sous `Preview` (second DerivedData) rallonge le build à froid. | Négligeable à chaud ; le cache DerivedData est déjà par schéma. |
 
@@ -466,35 +514,32 @@ tier/1 · 1 h · ≈ 60 lignes · blockedBy 2.4
   étapes lisibles dans le log (`[check] …`).
 - Un test du package cassé fait échouer le job **en moins de 60 s** après le début du step natif.
 - `swift test --package-path ios/Track1Core` passe en local en moins de 60 s à chaud : **131 tests**.
-- Simulateur : `Track1` = 71 tests unitaires + 9 UI ; `Track1Preview` = 7 tests. Total inchangé :
-  131 + 71 + 9 = 211 (198 + 9 + 4 tests de caractérisation).
+- Simulateur : `Track1` = 72 tests unitaires + 9 UI ; `Track1Preview` = 7 tests. Total : 131 + 72 +
+  9 = 212 (198 + 9 d'origine, + 4 tests de caractérisation d'`URLValidation`, + 1 test iOS de
+  protection des fichiers).
 - `ios/Track1Core/Sources` : 19 fichiers ; `ios/Track1/` : 15 fichiers d'origine.
 - Gardes vertes : swift-format sur le package, no-webview, Bundle, `ios-core-package`,
   `native-ci-triggers`. `npm run check` vert.
 - Docs à jour (3.1).
 
-## Questions pour Raphael
+## Décisions prises à la validation (2026-10-13)
 
-1. **Ordonnancement face au plan Figma.** Aucune tâche TRA-381 à TRA-409 n'est mergée. Exécuter la
-   Partie 2 (quatre PR, séquentielles, ≈ 1 à 2 jours d'agents) **avant** de dispatcher TRA-383 et
-   suivants supprime tout conflit pbxproj. Sinon, chaque branche Figma ouverte résout jusqu'à quatre
-   conflits d'insertion. Lequel ?
+Réponses de Raphael aux sept questions du plan initial :
+
+1. **Ordonnancement** : la Partie 2 (cinq déplacements) passe **avant** tout dispatch des tickets
+   Figma TRA-383 et suivants. Intégré en D4 et dans les risques.
 2. **Tickets Figma à amender** pour cibler `ios/Track1Core` : TRA-395 (`NodePageSpec`,
-   `NodePageModel`), TRA-401 (`RecentNodesStore`), TRA-402 (`GenreTaxonomy`, `OnboardingFlowModel`),
-   et `NodeImageStore` de TRA-367 s'il est sans UI. Oui, ou on les laisse dans l'app et on les
-   migrera après ?
-3. **`LocalStore` et la protection des fichiers (D3).** Le brief garde « persistance et protection
-   des fichiers » sur iOS. Je propose : `LocalStore` dans le package, classe de protection sous
-   `#if os(iOS)`, les 53 tests à store sur macOS. Aucun test ne vérifie la protection aujourd'hui ;
-   en ajouter un hébergé iOS (≈ 30 lignes, dans 2.2) ou le laisser hors scope ?
-4. **`objectVersion` 56 → 60** avec `XCLocalSwiftPackageReference` (D2), ou préférer d'emblée la
-   référence dossier héritée sans toucher à la version ?
-5. **`swift test` en local** autorisé pour les implémenteurs dès 1.1, y compris pendant qu'un run
-   `ios-check` tourne : confirmé ?
-6. **Quatre PR de déplacement**, dont 2.2 à ≈ 4 000 lignes brutes (100 % renommages), ou cinq avec
-   2.2 scindée d'office ?
-7. Les **4 tests de caractérisation** d'`URLValidation` en 1.1 (seul code de test nouveau du plan,
-   ≈ 40 lignes) : acceptés comme graine du package ?
+   `NodePageModel`), TRA-401 (`RecentNodesStore`), TRA-402 (`GenreTaxonomy`, `OnboardingFlowModel`)
+   et `NodeImageStore` de TRA-367. Raphael poste les commentaires ; 3.1 fixe la règle dans le plan
+   Figma.
+3. **`LocalStore`** dans le package, protection sous `#if os(iOS)`, 53 tests à store sur macOS, et
+   **un test hébergé iOS** de la classe de protection, ajouté par la tâche qui déplace `LocalStore`
+   (2.2a). Intégré en D3.
+4. **`objectVersion` 60** avec `XCLocalSwiftPackageReference`, repli hérité documenté. Intégré en D2.
+5. **`swift test` en local** autorisé aux implémenteurs dès 1.1, y compris pendant un run
+   `ios-check`. Nouvelle décision D7.
+6. **Cinq PR de déplacement** : la couche 2 est coupée à `Recommendation/` (2.2a, 2.2b). Intégré en D4.
+7. **Les 4 tests de caractérisation d'`URLValidation`** servent de graine au package (1.1).
 
 ## Annexe A — Les 19 fichiers du package, par couche
 
@@ -510,13 +555,13 @@ fichiers de l'app (hors package) qui nomment ses types et recevront `import Trac
 | 1 | `App/AppConfiguration.swift` | 92 | — | `AppContainer`, `RootView`, `AnalyticsClient` |
 | 1 | `Analytics/AnalyticsEvent.swift` | 204 | `AppConfiguration` | `AnalyticsClient`, `SegmentAdapter`, `AppRouter`, `OnboardingView`, `SettingsView` |
 | 1 | `Analytics/ConsentStore.swift` | 58 | — | `AnalyticsClient`, `PrivacyChoiceView` |
-| 2 | `Persistence/LocalStore.swift` | 116 | — | `AppContainer`, `OnboardingView` (`LocalStoreError`) |
-| 2 | `Profile/Profile.swift` | 75 | `APIModels` | `RootView`, `OnboardingView`, `SettingsView` |
-| 2 | `Profile/ProfileStore.swift` | 231 | `Profile`, `LocalStore`, `APIModels` | `AppContainer`, `RootView`, `OnboardingView`, `SettingsView` |
-| 2 | `Navigation/NavigationContext.swift` | 30 | `AnalyticsEvent` | `AppRouter`, `NodeRelationsView`, `NodeView` |
-| 2 | `Recommendation/Affinity.swift` | 127 | `APIModels` | — |
-| 2 | `Recommendation/DailyRecommendation.swift` | 83 | `APIModels`, `Affinity` | — |
-| 2 | `Recommendation/DailyRecommendationStore.swift` | 158 | `DailyRecommendation`, `LocalStore` | — |
+| 2a | `Persistence/LocalStore.swift` | 116 | — | `AppContainer`, `OnboardingView` (`LocalStoreError`) |
+| 2a | `Profile/Profile.swift` | 75 | `APIModels` | `RootView`, `OnboardingView`, `SettingsView` |
+| 2a | `Profile/ProfileStore.swift` | 231 | `Profile`, `LocalStore`, `APIModels` | `AppContainer`, `RootView`, `OnboardingView`, `SettingsView` |
+| 2a | `Navigation/NavigationContext.swift` | 30 | `AnalyticsEvent` | `AppRouter`, `NodeRelationsView`, `NodeView` |
+| 2b | `Recommendation/Affinity.swift` | 127 | `APIModels` | — |
+| 2b | `Recommendation/DailyRecommendation.swift` | 83 | `APIModels`, `Affinity` | — |
+| 2b | `Recommendation/DailyRecommendationStore.swift` | 158 | `DailyRecommendation`, `LocalStore` | — |
 | 3 | `Listening/ListeningActions.swift` | 130 | `APIModels`, `AnalyticsEvent`, `URLValidation`, `NavigationContext`, `NodeViewModel` | `NodeListeningView` |
 | 3 | `Features/Node/NodeViewModel.swift` | 156 | `APIError`, `APIModels`, `AnalyticsEvent`, `ListeningActions`, `NavigationContext` | `RootView`, `NodeView`, `NodeListeningView`, `NodeRelationsView` |
 | 4 | `App/ContentReaders.swift` | 24 | `APIClient`, `APIError`, `APIModels`, `NodeViewModel` | `AppContainer`, `RootView`, `UITestFixtureReaders` |
@@ -536,9 +581,10 @@ Package (131) : `APIClientTests` 9, `AppConfigurationTests` 3 (scindé), `URLVal
 `NodeViewModelTests` 11, `ContentReadersTests` 1, `SearchTests` 14, `TodayViewModelTests` 18,
 `TodayViewModelConcurrencyTests` 7.
 
-App, simulateur (71) : `AnalyticsClientTests` 14 (Segment, `ScenePhase`), `AppConfigurationTests` 2
+App, simulateur (72) : `AnalyticsClientTests` 14 (Segment, `ScenePhase`), `AppConfigurationTests` 2
 (`Bundle.main`, `AppRouter`), `UITestFixtureReadersTests` 23 (`#if targetEnvironment(simulator)`),
 `APIContractIntegrationTests` 1 (harnais Node de `check.sh`), `AppRouterNodeTests` 3,
-`NodeArticleTests` 10, `NodeListeningTests` 10, `NodeRelationsTests` 8 (types définis dans des vues).
+`NodeArticleTests` 10, `NodeListeningTests` 10, `NodeRelationsTests` 8 (types définis dans des vues),
+`LocalStorePlatformTests` 1 (nouveau, classe de protection sur simulateur).
 
 UI (9) : inchangés. Preview (7) : inchangés, tous dans la liste « app ».
