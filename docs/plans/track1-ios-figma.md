@@ -401,6 +401,14 @@ défaut. La règle 9 n'est pas suivie pour l'article et les sources (D15).
     et `Node` sont créés **par B.1 seule**. `Track1Tests/DesignSystem` est créé par A.1.
   - Les conflits sur les lignes uniques de groupe ou de phase se résolvent par insertion, jamais par
     renumérotation. Vérifier qu'aucun ID n'apparaît deux fois.
+  - **Plage `03F0–03FF` consommée** par l'intégration du package `Track1Core` (TRA-422, #344). Ne
+    pas la réattribuer. Les IDs ont **24 caractères** : préfixe + 18 zéros + 4 caractères
+    hexadécimaux.
+  - **Hors pbxproj.** Tout nouveau fichier sans SwiftUI va dans
+    `ios/Track1Core/Sources/Track1Core/…`, avec son test dans
+    `ios/Track1Core/Tests/Track1CoreTests/…`, sans entrée pbxproj. Seuls les fichiers qui importent
+    SwiftUI, Segment ou lisent `Bundle.main` consomment encore une plage. Voir
+    `docs/track1-builds.md`.
 
 ### Vue d'ensemble
 

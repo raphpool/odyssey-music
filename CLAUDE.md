@@ -17,6 +17,7 @@ déploiement, jamais édité à la main.
 - Serveur : http stdlib, routage à la main, pas de framework
 - Modèle : Gemini Flash Lite, **un seul appel** par nœud, schéma de réponse contraint
 - Porte d'entrée locale : `npm run check` (lint + typecheck + test)
+- Logique iOS pure : `ios/Track1Core`, testée en local par `swift test` (voir `docs/track1-builds.md`) ; l'app n'est compilée que par `ios-check`
 - Le process de livraison est dans `/delivery-process` (skill)
 
 ## Conventions

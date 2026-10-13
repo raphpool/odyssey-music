@@ -27,11 +27,11 @@ séquentiellement `Track1` et `Track1Preview` sur un simulateur temporaire dédi
 les tests refusent la signature (`CODE_SIGNING_ALLOWED=NO`). Les résultats et DerivedData restent
 hors des sources ; la CI conserve seulement les bundles `xcresult` comme artefacts.
 
-Le projet ne déclare actuellement aucune dépendance Swift externe : l'absence de
-`Package.resolved` est donc valide. Dès qu'une dépendance externe est déclarée, le verrou généré
-par SPM doit être présent, versionné à
-`ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved` et utilisé par
-la résolution ; son absence échoue explicitement.
+Le projet déclare une dépendance Swift externe : Segment (`analytics-swift` 1.10.0, avec ses
+dépendances `jsonsafeencoding-swift` et Sovran), intégrée via SPM. Le verrou généré par SPM est
+donc présent et versionné à
+`ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved` ; il est utilisé
+par la résolution et son absence échoue explicitement.
 
 Le workflow `ios-ci` exécute exactement ce script sur le runner macOS ARM64 avec un HOME isolé,
 sans secret de signature. Les contrôles backend, review, tier et Expo restent exécutés par leurs
@@ -73,6 +73,62 @@ candidat SPM, les journaux/xcresult et l'inspection des slices arm64 et x86_64 d
 simulator (application, Segment/Analytics, Sovran et JSONSafeEncoding). Elles ne présentent pas
 l'exécution arm64 d'un simulateur comme une exécution x86_64 et ne réemploient pas une preuve
 Development pour Preview.
+
+## Package `Track1Core` (TRA-422)
+
+`ios/Track1Core` est un package SwiftPM local qui porte la logique iOS pure : 19 fichiers
+Foundation (API, configuration, événements analytics, persistance, profil, navigation,
+recommandation, actions d'écoute, modèle de fiche, recherche, accueil du jour, lecteurs de
+contenu). Il se teste sur l'hôte macOS, sans simulateur.
+
+- **Où créer un fichier.** Tout nouveau fichier sans SwiftUI va dans
+  `ios/Track1Core/Sources/Track1Core/…`, son test dans `ios/Track1Core/Tests/Track1CoreTests/…`.
+  Aucune entrée pbxproj : le package n'a pas de plage d'IDs.
+- **Ce qui reste dans l'app, et pourquoi.** Tout ce qui dépend de la plateforme ou d'une
+  bibliothèque d'interface : `Bundle.main` (version et build lus dans l'Info.plist de l'app), les
+  blocs `#if targetEnvironment(simulator)` (fixtures UI-test), Segment (dépendance de l'app
+  seulement) et SwiftUI/UIKit. Le package n'importe aucun de ces modules, et ses tests n'utilisent
+  ni `#if os(iOS)` ni `targetEnvironment(simulator)`.
+- **Parité iOS.** `LocalStore` demande la protection de fichiers sous `#if os(iOS)` (inexistante
+  sur macOS). `LocalStorePlatformTests`, dans `Track1Tests`, vérifie côté app que cette protection
+  est bien demandée.
+- **Visibilité.** L'app consomme l'API publique du package : jamais de
+  `@testable import Track1Core` depuis l'app ou ses tests (une garde vitest,
+  `test/ios-core-package.test.ts`, l'impose).
+
+### Boucle locale
+
+```sh
+swift test --package-path ios/Track1Core
+```
+
+Cette commande est la seule exécution Swift autorisée en local. `xcodebuild`, le simulateur et
+`ios/scripts/check.sh` complet restent interdits : ce Mac héberge les deux runners CI.
+
+### Place dans `check.sh`
+
+`ios/scripts/check.sh` enchaîne `lint`, `package-tests`, `resolve`, `simulator-boot`, puis
+`build-<schéma>` et `tests-<schéma>` pour `Track1` et `Track1Preview`. Les tests du package
+passent **avant** le simulateur : un test de logique cassé fait échouer la CI en une vingtaine de
+secondes au lieu de plusieurs minutes. Chaque étape affiche `[check] <étape>: <n>s`. Le simulateur
+`track1-ci-pool` est créé une fois par machine et réutilisé d'un run à l'autre (TRA-421) ; le cache
+DerivedData vit dans le tool cache du runner (TRA-420).
+
+### Typecheck de l'app sans `xcodebuild`
+
+Pour vérifier qu'un changement de l'app compile sans lancer `xcodebuild` :
+
+1. Construire le package pour le simulateur :
+   `swift build --package-path ios/Track1Core --sdk "$(xcrun --sdk iphonesimulator --show-sdk-path)" --triple arm64-apple-ios17.0-simulator`.
+   Les modules sont produits sous `ios/Track1Core/.build/arm64-apple-ios-simulator/debug/Modules`.
+2. Copier `ios/Track1` et `ios/Track1Tests` dans un dossier temporaire, hors du dépôt, en retirant
+   les lignes `@testable import Track1` (app et tests forment alors un seul module).
+3. Lancer `swiftc -typecheck` sur ces copies avec `-swift-version 6 -D SEGMENT_CDN_STANDARD`,
+   `-I` vers le dossier `Modules` du package et vers celui de `Segment.swiftmodule`, et
+   `-F`/`-I` vers le dossier `Developer` de la plateforme iphonesimulator pour XCTest.
+
+Limite : comme app et tests sont typecheckés comme un seul module, les erreurs d'isolation
+Swift 6 entre cibles (« sending value of non-Sendable type ») n'apparaissent que dans `ios-check`.
 
 ## Artefacts Expo historiques de TRA-290
 
