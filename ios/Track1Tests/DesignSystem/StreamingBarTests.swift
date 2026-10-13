@@ -5,7 +5,8 @@ import XCTest
 @testable import Track1
 
 /// The pure rules of the Streaming button and of the Streaming bar (Figma `172:75`, `172:76`, read
-/// 2026-10-13) and the brand marks they draw.
+/// 2026-10-13) and the brand marks they draw. Main actor: the tests build `View` values.
+@MainActor
 final class StreamingBarTests: XCTestCase {
 	/// Actions in the order `ListeningActions` returns them: Spotify first, which the bar must reverse.
 	private func actions(_ type: NodeType = .artist) -> [ListeningAction] {
