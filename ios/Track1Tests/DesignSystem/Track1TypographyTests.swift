@@ -65,13 +65,18 @@ final class Track1TypographyTests: XCTestCase {
 	}
 
 	/// Expected values come from an independent read of the font files (CoreText ascent + descent + leading)
-	/// on 2026-10-13, so a fallback to the system font or a wrong formula fails here.
+	/// on 2026-10-13, so a fallback to the system font or a wrong formula fails here. CoreText is not
+	/// rounded but `UIFont.lineHeight` is, to the screen pixel (2026-10-13, ios-check: monoMicro gave
+	/// -0.667 against -0.52, 14.52 becoming 14.667 at @3x). The tolerance is one screen pixel, so it does
+	/// not depend on whether UIKit rounds up or to the nearest; a system-font fallback is off by more
+	/// (displayHero would give about -2.8 instead of -9.92).
 	func testLineSpacingIsTheFigmaLineHeightMinusTheNaturalOne() {
 		let expected: [(Track1TextRole, CGFloat)] = [
 			(.displayHero, -9.92), (.title1, -2.96), (.monoMicro, -0.52), (.bodyLarge, 5.08), (.eyebrow, 1.25),
 		]
+		let tolerance = 1 / max(UITraitCollection.current.displayScale, 1) + 0.01
 		for (role, spacing) in expected {
-			XCTAssertEqual(role.lineSpacing(compatibleWith: defaultSize), spacing, accuracy: 0.1, "\(role)")
+			XCTAssertEqual(role.lineSpacing(compatibleWith: defaultSize), spacing, accuracy: tolerance, "\(role)")
 		}
 	}
 
