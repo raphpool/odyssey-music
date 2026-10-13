@@ -2,7 +2,8 @@ import SwiftUI
 import Track1Core
 
 /// The onboarding flow of Flow 1: Welcome, the parent genres, then one subgenre step per selected parent.
-/// Not wired into `RootView` until J.4, so nothing reaches it yet.
+/// A model built from a profile (`isEditing`) is the edit flow of the Genres tab (K.1): it opens on the genre
+/// step with no Welcome and ends on "Enregistrer". The first launch is not wired to it until J.4.
 ///
 /// The caller owns `model` (a `@State` in its host): a model created inside a parent's `body` would be
 /// rebuilt on every render and drop the selection with it.
@@ -24,19 +25,44 @@ struct OnboardingFlowView: View {
 
 	var body: some View {
 		NavigationStack(path: $path) {
+			root
+				.toolbar(.hidden, for: .navigationBar)
+				.navigationDestination(for: Step.self) { step in
+					destination(for: step)
+						.toolbar(.hidden, for: .navigationBar)
+						// The bar is hidden and Figma draws no back control: VoiceOver's two-finger scrub and
+						// the edge swipe are the ways back, to the previous step or to Welcome.
+						.accessibilityAction(.escape) {
+							if !path.isEmpty { path.removeLast() }
+						}
+				}
+		}
+	}
+
+	/// Editing starts on the genre step: Welcome presents the app, and the person is already in it.
+	@ViewBuilder
+	private var root: some View {
+		if model.isEditing {
+			genresStep
+		} else {
 			WelcomeView {
 				// A second tap before the push animation ends must not stack a second Genres screen.
 				if path.isEmpty { path.append(.genres) }
 			}
-			.toolbar(.hidden, for: .navigationBar)
-			.navigationDestination(for: Step.self) { step in
-				destination(for: step)
-					.toolbar(.hidden, for: .navigationBar)
-					// The bar is hidden and Figma draws no back control: VoiceOver's two-finger scrub and
-					// the edge swipe are the ways back, to the previous step or to Welcome.
-					.accessibilityAction(.escape) {
-						if !path.isEmpty { path.removeLast() }
-					}
+		}
+	}
+
+	/// The genre step is the root of the edit flow, and the first pushed screen of the first launch.
+	private var isOnGenresStep: Bool {
+		model.isEditing ? path.isEmpty : path.last == .genres
+	}
+
+	private var genresStep: some View {
+		GenresStepView(model: model) {
+			// Parents are chosen: the first subgenre step follows, in selection order. Only the genre step
+			// may advance, so a second tap before the push animation ends is ignored.
+			if isOnGenresStep, let first = model.subgenreSteps.first {
+				path.append(.subgenres(first))
 			}
 		}
 	}
@@ -45,13 +71,7 @@ struct OnboardingFlowView: View {
 	private func destination(for step: Step) -> some View {
 		switch step {
 		case .genres:
-			GenresStepView(model: model) {
-				// Parents are chosen: the first subgenre step follows, in selection order. Only the top
-				// of the path may advance, so a second tap before the push animation ends is ignored.
-				if path.last == .genres, let first = model.subgenreSteps.first {
-					path.append(.subgenres(first))
-				}
-			}
+			genresStep
 		case .subgenres(let parentID):
 			// A parent that is no longer selected has no step; the path cannot hold one, since the parents
 			// only change on the genre step, below it.

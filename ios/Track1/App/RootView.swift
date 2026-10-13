@@ -63,7 +63,6 @@ private struct ApplicationTabs: View {
 	let dailyRecommendationStore: DailyRecommendationStore
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
-	@State private var profileToEdit: Profile?
 	@State private var searchAfterOnboarding = false
 	/// The name of the node of the day: the root crumb of every page pushed from Today.
 	@State private var todayRootTitle: String?
@@ -85,7 +84,7 @@ private struct ApplicationTabs: View {
 					catalogProvider: onboardingCatalog,
 					profileStore: profileStore,
 					analytics: analytics,
-					editingProfile: profileToEdit,
+					editingProfile: nil,
 					complete: { profile in
 						profileState = .profile(profile)
 						showingOnboarding = false
@@ -149,7 +148,7 @@ private struct ApplicationTabs: View {
 					TodayEntryView(
 						profileState: profileState,
 						today: { profile in todayView(for: profile) },
-						chooseProfile: { beginOnboarding(editing: nil) },
+						chooseProfile: beginOnboarding,
 						exploreSearch: { router.select(.search) },
 						recoverProfile: { router.select(.genres) }
 					)
@@ -157,13 +156,18 @@ private struct ApplicationTabs: View {
 					// Search has no stack: its sheet is presented by the router and its results open on the selected tab.
 					EmptyView()
 				case .genres:
-					// Provisional root until K.1 composes the Genres tab; Settings lives here meanwhile.
-					SettingsEntryView(
+					GenresTabView(
 						profileState: profileState,
 						profileStore: profileStore,
 						recentNodes: recentNodes,
 						analytics: analytics,
-						editProfile: { beginOnboarding(editing: profile(from: profileState)) },
+						loadCatalog: onboardingCatalog ?? readers?.catalog,
+						chooseProfile: beginOnboarding,
+						// The recommendation of the day follows the new revision: Today reads the profile it is given.
+						profileWasSaved: { profile in
+							profileState = .profile(profile)
+							router.select(.today)
+						},
 						profileWasCleared: { profileState = .missing }
 					)
 				}
@@ -245,40 +249,14 @@ private struct ApplicationTabs: View {
 		router.select(.search)
 	}
 
-	private func beginOnboarding(editing profile: Profile?) {
-		profileToEdit = profile
+	/// The first selection only: editing a saved profile is the flow of the Genres tab (K.1).
+	private func beginOnboarding() {
 		showingOnboarding = true
 	}
 
 	private func reloadProfile() async {
 		profileState = await profileStore.read()
 	}
-
-	private func profile(from state: ProfileRead) -> Profile? {
-		guard case .profile(let profile) = state else { return nil }
-		return profile
-	}
-}
-
-private struct SettingsEntryView: View {
-	let profileState: ProfileRead
-	let profileStore: ProfileStore
-	let recentNodes: RecentNodesStore
-	let analytics: AnalyticsClient
-
-	var body: some View {
-		SettingsView(
-			profileState: profileState,
-			profileStore: profileStore,
-			recentNodes: recentNodes,
-			analytics: analytics,
-			editProfile: editProfile,
-			profileWasCleared: profileWasCleared
-		)
-	}
-
-	let editProfile: () -> Void
-	let profileWasCleared: () -> Void
 }
 
 private struct TodayEntryView<Today: View>: View {
@@ -313,11 +291,11 @@ private struct ProfileRecoveryView: View {
 		ContentUnavailableView {
 			Label("Profil local à récupérer", systemImage: "exclamationmark.triangle")
 		} description: {
-			Text("\(description) Supprimez-le depuis Réglages avant de recommencer.")
+			Text("\(description) Supprimez-le depuis les réglages de l’onglet Genres avant de recommencer.")
 				.accessibilityIdentifier("profile-recovery-message")
 		} actions: {
 			VStack(spacing: Track1Theme.contentSpacing) {
-				Button("Ouvrir les réglages", action: recoverProfile)
+				Button("Ouvrir Genres", action: recoverProfile)
 					.buttonStyle(Track1PrimaryButtonStyle())
 				Button("Explorer la recherche", action: exploreSearch)
 					.buttonStyle(.bordered)
