@@ -17,7 +17,8 @@ actual_xcode="$({ xcodebuild -version | awk '
 output_dir="${TRACK1_CI_OUTPUT_DIR:-$(mktemp -d "${TMPDIR:-/tmp}/track1-ci.XXXXXX")}"
 package_resolved_relative="ios/Track1.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
 package_resolved_path="$repository_root/$package_resolved_relative"
-simulator_name="track1-ci-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-0}-$$"
+ephemeral_simulator_name="track1-ci-${GITHUB_RUN_ID:-local}-${GITHUB_RUN_ATTEMPT:-0}-$$"
+simulator_name="$ephemeral_simulator_name"
 simulator_id=""
 contract_dir=""
 contract_pid=""
@@ -27,6 +28,32 @@ swift_sorted_file=""
 runtime_id="$(xcrun simctl list runtimes available -j | jq -r '.runtimes[] | select(.name == "iOS 26.4") | .identifier' | head -n 1)"
 simulator_boot_timeout_seconds="${SIMULATOR_BOOT_TIMEOUT_SECONDS:-600}"
 swift_files=()
+
+# 2026-10-12: ios-check took 7 min 40 warm, and 3 min 50 of it were the boot of a simulator that check.sh had
+# just created (`simctl create`, then `delete` at the end): the first boot of a brand-new device initialises
+# its data container. One device, `track1-ci-pool`, is now created once per machine and reused; a run only
+# shuts it down at the end, because a booted simulator costs 3 to 6 GB and the Mac is short of memory.
+# - Name: it must not end with `-<digits>`, because remove_stale_simulators reads that suffix as the pid of the
+#   run that owns a device and deletes the device once the pid is gone.
+# - State: no `erase` (it would bring the slow first boot back). reset_simulator_state removes what a run can
+#   leave behind. UserDefaults (consent, Segment SDK suites), the profile and recommendation stores, temporary
+#   directories and caches live in the data container of the installed apps, which an uninstall removes. The
+#   keychain and the privacy (TCC) grants belong to the device, hence `keychain reset` and `privacy reset all`
+#   per Track1 bundle. The UI tests also pass -track1-reset-* arguments at launch, so none of them reads what
+#   a previous run wrote.
+# - Concurrency: one check.sh at a time uses the device (mkdir lock, like the DerivedData cache). The loser
+#   does not wait: it creates an ephemeral device `track1-ci-<run>-<attempt>-<pid>`, exactly like before.
+# - Fallback: a reused device that does not boot in time, or cannot be cleaned, is deleted and replaced once
+#   by a new one (logged). A device created by this run is never retried.
+simulator_pool_name="track1-ci-pool"
+simulator_device_model="iPhone 17 Pro"
+simulator_device_type_id="com.apple.CoreSimulator.SimDeviceType.${simulator_device_model// /-}"
+# A reused device boots in about a minute; past this delay it is considered broken.
+simulator_reuse_boot_timeout_seconds="${SIMULATOR_REUSE_BOOT_TIMEOUT_SECONDS:-300}"
+simulator_lock_dir="${TRACK1_SIMULATOR_LOCK_DIR:-/tmp/track1-ci-simulator.lock}"
+simulator_lock_held=""
+simulator_is_pool="no"
+simulator_is_fresh="no"
 
 # 2026-10-12: #330 (TRA-368) had its ios-check cancelled three times at the 30 min job timeout because one
 # test awaited a continuation that was never resumed (a fake OSOpener(hold: true) reused after release()),
@@ -103,6 +130,7 @@ preview_only_testing=(
 # Takes the lock, or returns 1 while a live process holds it. A lock whose owner is gone is taken over.
 acquire_cache_lock() {
 	local lock_dir="$1"
+	local label="${2:-derived data}"
 	local owner_pid
 	if mkdir "$lock_dir" 2>/dev/null; then
 		echo "$$" >"$lock_dir/pid"
@@ -115,7 +143,7 @@ acquire_cache_lock() {
 		# No pid yet and created less than a minute ago: its creator sits between mkdir and the write.
 		return 1
 	fi
-	echo "Taking over the derived data lock of process ${owner_pid:-unknown}, which is gone."
+	echo "Taking over the $label lock of process ${owner_pid:-unknown}, which is gone."
 	rm -rf "$lock_dir"
 	mkdir "$lock_dir" 2>/dev/null || return 1
 	echo "$$" >"$lock_dir/pid"
@@ -252,7 +280,14 @@ cleanup() {
 	[[ -n "$swift_sorted_file" ]] && rm -f "$swift_sorted_file"
 	if [[ -n "$simulator_id" ]]; then
 		xcrun simctl shutdown "$simulator_id" >/dev/null 2>&1 || true
-		xcrun simctl delete "$simulator_id" >/dev/null 2>&1 || true
+		# The reusable device is only shut down: deleting it would bring the slow first boot back.
+		if [[ "$simulator_is_pool" != "yes" ]]; then
+			xcrun simctl delete "$simulator_id" >/dev/null 2>&1 || true
+		fi
+	fi
+	# Last, so that no other run takes the device while it is still shutting down.
+	if [[ -n "$simulator_lock_held" ]]; then
+		rm -rf "$simulator_lock_held"
 	fi
 }
 
@@ -367,15 +402,16 @@ ensure_contract_runtime() {
 }
 
 wait_for_simulator_boot() {
+	local timeout_seconds="${1:-$simulator_boot_timeout_seconds}"
 	xcrun simctl bootstatus "$simulator_id" -b &
 	local bootstatus_process_id=$!
 	local elapsed_seconds=0
 
 	while kill -0 "$bootstatus_process_id" 2>/dev/null; do
-		if ((elapsed_seconds >= simulator_boot_timeout_seconds)); then
+		if ((elapsed_seconds >= timeout_seconds)); then
 			kill "$bootstatus_process_id" 2>/dev/null || true
 			wait "$bootstatus_process_id" || true
-			echo "Simulator $simulator_name did not finish booting within ${simulator_boot_timeout_seconds}s." >&2
+			echo "Simulator $simulator_name did not finish booting within ${timeout_seconds}s." >&2
 			return 1
 		fi
 		sleep 1
@@ -383,6 +419,143 @@ wait_for_simulator_boot() {
 	done
 
 	wait "$bootstatus_process_id"
+}
+
+# Prints "<udid><TAB><state><TAB>ok|wrong" for each device named like the pool, whatever its runtime. "ok"
+# means the expected runtime and model. Node is already required by the contract harness, and `simctl list`
+# gives the model only in JSON.
+list_pool_devices() {
+	local listing_file="$output_dir/simulators.json"
+	xcrun simctl list devices -j >"$listing_file" || return 1
+	node -e '
+		const [runtime, deviceType, name] = process.argv.slice(1);
+		const listing = JSON.parse(require("node:fs").readFileSync(0, "utf8"));
+		for (const [key, devices] of Object.entries(listing.devices ?? {})) {
+			for (const device of devices) {
+				if (device.name !== name) continue;
+				const ok = key === runtime && device.deviceTypeIdentifier === deviceType && device.isAvailable !== false;
+				console.log([device.udid, device.state, ok ? "ok" : "wrong"].join("\t"));
+			}
+		}
+	' "$runtime_id" "$simulator_device_type_id" "$simulator_pool_name" <"$listing_file"
+}
+
+# Sets simulator_id to the reusable device (created when absent, replaced when its runtime or model differs)
+# and simulator_is_fresh to whether this call created it.
+find_or_create_pool_device() {
+	local listing udid state verdict
+	simulator_id=""
+	simulator_is_fresh="no"
+	if ! listing="$(list_pool_devices)"; then
+		echo "Could not list the simulators to look for $simulator_pool_name." >&2
+		return 1
+	fi
+	while IFS=$'\t' read -r udid state verdict; do
+		[[ -n "$udid" ]] || continue
+		if [[ "$verdict" == "ok" && -z "$simulator_id" ]]; then
+			simulator_id="$udid"
+			continue
+		fi
+		echo "Removing $simulator_pool_name ($udid, $state): it is a duplicate or not iOS 26.4 on $simulator_device_model."
+		xcrun simctl shutdown "$udid" >/dev/null 2>&1 || true
+		xcrun simctl delete "$udid" >/dev/null 2>&1 \
+			|| echo "Could not delete $simulator_pool_name ($udid); continuing." >&2
+	done <<<"$listing"
+	[[ -z "$simulator_id" ]] || return 0
+	echo "Creating $simulator_pool_name."
+	simulator_id="$(xcrun simctl create "$simulator_pool_name" "$simulator_device_model" "$runtime_id")" || return 1
+	simulator_is_fresh="yes"
+}
+
+# Removes what a previous run can have left on the reused device. See the comment on simulator_pool_name.
+# The device is booted: simctl uninstall needs it.
+reset_simulator_state() {
+	local apps bundles bundle uninstalled=0
+	if ! apps="$(xcrun simctl listapps "$simulator_id")"; then
+		echo "Could not list the apps installed on $simulator_name." >&2
+		return 1
+	fi
+	# The top-level keys of the listing are the installed bundle identifiers (the plist is converted to JSON
+	# first). Matching a prefix in the raw text would also pick up URL schemes or app groups, which simctl
+	# cannot uninstall, and that would make a healthy device look broken on every run.
+	if ! bundles="$(printf '%s\n' "$apps" | plutil -convert json -o - - | node -e '
+		const listing = JSON.parse(require("node:fs").readFileSync(0, "utf8"));
+		for (const bundle of Object.keys(listing).sort()) {
+			if (bundle.startsWith("com.dropcliffs.track1.")) console.log(bundle);
+		}
+	')"; then
+		echo "Could not read the apps installed on $simulator_name." >&2
+		return 1
+	fi
+	while IFS= read -r bundle; do
+		[[ -n "$bundle" ]] || continue
+		xcrun simctl privacy "$simulator_id" reset all "$bundle" || return 1
+		xcrun simctl uninstall "$simulator_id" "$bundle" || return 1
+		((uninstalled += 1))
+	done <<<"$bundles"
+	xcrun simctl keychain "$simulator_id" reset || return 1
+	echo "Reset $simulator_name: $uninstalled Track1 app(s) uninstalled, keychain and privacy reset."
+}
+
+# One attempt on the reusable device: find or create it, boot it, clean it unless it is new.
+prepare_pool_device() {
+	local timeout_seconds
+	find_or_create_pool_device || return 1
+	timeout_seconds="$simulator_boot_timeout_seconds"
+	[[ "$simulator_is_fresh" == "yes" ]] || timeout_seconds="$simulator_reuse_boot_timeout_seconds"
+	wait_for_simulator_boot "$timeout_seconds" || return 1
+	[[ "$simulator_is_fresh" == "yes" ]] || reset_simulator_state
+}
+
+discard_simulator() {
+	[[ -n "$simulator_id" ]] || return 0
+	xcrun simctl shutdown "$simulator_id" >/dev/null 2>&1 || true
+	xcrun simctl delete "$simulator_id" >/dev/null 2>&1 \
+		|| echo "Could not delete simulator $simulator_name ($simulator_id); continuing." >&2
+	simulator_id=""
+}
+
+use_pool_simulator() {
+	simulator_name="$simulator_pool_name"
+	simulator_is_pool="yes"
+	if prepare_pool_device; then
+		return 0
+	fi
+	# A device created by this run is not retried: a new one would fail the same way.
+	if [[ "$simulator_is_fresh" == "yes" ]]; then
+		discard_simulator
+		return 1
+	fi
+	echo "Reusable simulator $simulator_pool_name failed to start or to be cleaned; falling back to a new device." >&2
+	discard_simulator
+	if prepare_pool_device; then
+		return 0
+	fi
+	discard_simulator
+	if [[ "$simulator_is_fresh" == "yes" ]]; then
+		return 1
+	fi
+	# No new device could even be made: the broken one could not be deleted and was found again. The reusable
+	# device is an optimisation, so the old behaviour (an ephemeral device) takes over rather than failing CI.
+	echo "Could not replace $simulator_pool_name; using an ephemeral simulator $ephemeral_simulator_name." >&2
+	use_ephemeral_simulator
+}
+
+use_ephemeral_simulator() {
+	simulator_name="$ephemeral_simulator_name"
+	simulator_is_pool="no"
+	simulator_id="$(xcrun simctl create "$simulator_name" "$simulator_device_model" "$runtime_id")"
+	wait_for_simulator_boot
+}
+
+provision_simulator() {
+	if acquire_cache_lock "$simulator_lock_dir" "simulator"; then
+		simulator_lock_held="$simulator_lock_dir"
+		use_pool_simulator
+	else
+		echo "$simulator_pool_name is in use by another check.sh: using an ephemeral simulator $ephemeral_simulator_name."
+		use_ephemeral_simulator
+	fi
 }
 
 trap cleanup EXIT
@@ -432,8 +605,7 @@ done
 setup_derived_data_cache
 start_contract_harness
 
-simulator_id="$(xcrun simctl create "$simulator_name" "iPhone 17 Pro" "$runtime_id")"
-wait_for_simulator_boot
+provision_simulator
 
 for scheme in Track1 Track1Preview; do
 	derived_data_path="$derived_data_root/$scheme"

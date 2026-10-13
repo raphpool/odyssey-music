@@ -153,6 +153,7 @@ fi
 			`#!/usr/bin/env bash
 case "$*" in
   "simctl list runtimes available -j") printf '{"runtimes":[{"name":"iOS 26.4","identifier":"runtime-id"}]}' ;;
+  "simctl list devices -j") printf '{"devices":{}}\\n' ;;
   "simctl create"*) printf 'simulator-id\\n' ;;
   "swift-format lint"*)
     printf '%s\\n' "$@" >> "$TRACK1_TEST_SWIFT_FORMAT_CALLS"
@@ -210,6 +211,7 @@ while :; do sleep 1; done
 				PATH: `${toolDirectory}:${process.env.PATH ?? ""}`,
 				TRACK1_CI_OUTPUT_DIR: outputDirectory,
 				TRACK1_DERIVED_DATA_CACHE_DIR: join(fixtureRoot, "derived-data-cache"),
+				TRACK1_SIMULATOR_LOCK_DIR: join(fixtureRoot, "simulator.lock"),
 				TRACK1_TEST_XCODEBUILD_CALLS: callsPath,
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
 			},
@@ -227,11 +229,17 @@ while :; do sleep 1; done
 type CheckScriptPaths = {
 	cacheDirectory: string;
 	outputDirectory: string;
+	// The machine-wide lock around the reusable simulator (TRACK1_SIMULATOR_LOCK_DIR).
+	simulatorLockDirectory: string;
 };
 
 type CheckScriptOptions = {
 	// Output of the faked `xcrun simctl list devices`.
 	devices?: string;
+	// Output of the faked `xcrun simctl list devices -j`, where the reusable device is looked up.
+	devicesJson?: string;
+	// Output of the faked `xcrun simctl listapps`.
+	apps?: string;
 	env?: Record<string, string>;
 	// Runs before the script, to seed the persistent derived-data cache.
 	beforeRun?: (paths: CheckScriptPaths) => Promise<void>;
@@ -266,6 +274,12 @@ function testActions(calls: string) {
 	return calls.split("\n").filter((call) => /(^| )test-without-building( |$)/.test(call));
 }
 
+// A live process (this vitest worker) holds the lock of the reusable simulator, like a concurrent check.sh.
+async function holdSimulatorLock({ simulatorLockDirectory }: CheckScriptPaths) {
+	await mkdir(simulatorLockDirectory, { recursive: true });
+	await writeFile(join(simulatorLockDirectory, "pid"), `${process.pid}\n`);
+}
+
 async function runCheckScript(
 	failingAction?: "build-for-testing" | "test-without-building",
 	options: CheckScriptOptions = {},
@@ -277,8 +291,9 @@ async function runCheckScript(
 	const curlCallsPath = join(directory, "curl-calls");
 	const outputDirectory = join(directory, "output");
 	const cacheDirectory = join(directory, "derived-data-cache");
+	const simulatorLockDirectory = join(directory, "simulator.lock");
 	try {
-		await options.beforeRun?.({ cacheDirectory, outputDirectory });
+		await options.beforeRun?.({ cacheDirectory, outputDirectory, simulatorLockDirectory });
 		await writeTool(
 			directory,
 			"xcodebuild",
@@ -289,6 +304,8 @@ if [[ "$1" == "-version" ]]; then
 fi
 printf '%s\\n' "$*" >> "$TRACK1_TEST_XCODEBUILD_CALLS"
 arguments=" $* "
+# Lets the tests order the test runs against the simctl calls.
+[[ "$arguments" != *" test-without-building "* ]] || printf 'xcodebuild test-without-building\\n' >> "$TRACK1_TEST_SIMCTL_CALLS"
 if [[ "$arguments" == *" build-for-testing "* ]]; then
 	  scheme=""
 	  derived_data=""
@@ -322,10 +339,25 @@ fi
 case "$*" in
   "simctl list runtimes available -j") printf '{"runtimes":[{"name":"iOS 26.4","identifier":"runtime-id"}]}' ;;
   "simctl list devices") printf '%s\\n' "\${TRACK1_TEST_SIMCTL_DEVICES:-}" ;;
+  "simctl list devices -j")
+    devices_json="\${TRACK1_TEST_SIMCTL_DEVICES_JSON:-}"
+    [[ -n "$devices_json" ]] || devices_json='{"devices":{}}'
+    # A deleted device is gone from the next listing, as with the real simctl.
+    for deleted in "$TRACK1_TEST_DELETED_DIR"/*; do
+      [[ -e "$deleted" ]] || continue
+      devices_json="$(printf '%s' "$devices_json" | sed "s/\\"name\\":\\"[^\\"]*\\",\\"udid\\":\\"\${deleted##*/}\\"/\\"name\\":\\"gone\\"/")"
+    done
+    printf '%s\\n' "$devices_json" ;;
+  "simctl listapps"*) printf '%s\\n' "\${TRACK1_TEST_SIMCTL_APPS:-}" ;;
+  "simctl uninstall"*) [[ -z "\${TRACK1_TEST_FAIL_UNINSTALL:-}" ]] || exit 165 ;;
+  "simctl keychain"* | "simctl privacy"*) ;;
   "simctl create"*) printf 'simulator-id\\n' ;;
   "swift-format lint"*) printf '%s\\n' "$@" >> "$TRACK1_TEST_SWIFT_FORMAT_CALLS" ;;
   "simctl shutdown"*) [[ -z "\${TRACK1_TEST_FAIL_SHUTDOWN:-}" ]] || exit 164 ;;
-  "simctl bootstatus"* | "simctl delete"*) ;;
+  "simctl bootstatus"*) [[ " \${TRACK1_TEST_FAIL_BOOT_UDIDS:-} " != *" $3 "* ]] || exit 166 ;;
+  "simctl delete"*)
+    [[ " \${TRACK1_TEST_FAIL_DELETE_UDIDS:-} " != *" $3 "* ]] || exit 167
+    mkdir -p "$TRACK1_TEST_DELETED_DIR" && touch "$TRACK1_TEST_DELETED_DIR/$3" ;;
   *) exit 1 ;;
 esac
 `,
@@ -355,6 +387,10 @@ fi
 				TRACK1_TEST_SWIFT_FORMAT_CALLS: swiftFormatCallsPath,
 				TRACK1_TEST_SIMCTL_CALLS: simctlCallsPath,
 				TRACK1_TEST_SIMCTL_DEVICES: options.devices ?? "",
+				TRACK1_TEST_SIMCTL_DEVICES_JSON: options.devicesJson ?? "",
+				TRACK1_TEST_SIMCTL_APPS: options.apps ?? "",
+				TRACK1_TEST_DELETED_DIR: join(directory, "deleted-devices"),
+				TRACK1_SIMULATOR_LOCK_DIR: simulatorLockDirectory,
 				...options.env,
 			},
 		});
@@ -366,6 +402,7 @@ fi
 		const curlCalls = (await readFile(curlCallsPath, "utf8").catch(() => "")).split("\n").filter(Boolean);
 		const cacheEntries = await readdir(cacheDirectory).catch(() => [] as string[]);
 		const cacheFiles = await readdir(cacheDirectory, { recursive: true }).catch(() => [] as string[]);
+		const simulatorLockLeft = await pathExists(simulatorLockDirectory);
 		return {
 			cacheDirectory,
 			cacheEntries,
@@ -375,6 +412,7 @@ fi
 			outputDirectory,
 			result,
 			simctlCalls,
+			simulatorLockLeft,
 			swiftFormatArguments,
 		};
 	} finally {
@@ -863,8 +901,8 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 		for (const untouched of [ids.iphone, ids.ownRun, ids.lookalike, ids.live, ids.noPid]) {
 			expect(simctlCalls.filter((call) => call.includes(untouched))).toEqual([]);
 		}
-		// Two stale devices, plus the run's own simulator at the end.
-		expect(simctlCalls.filter((call) => /^simctl (shutdown|delete)/.test(call))).toHaveLength(6);
+		// Two stale devices (shutdown + delete each), plus a single shutdown of the reusable device at the end.
+		expect(simctlCalls.filter((call) => /^simctl (shutdown|delete)/.test(call))).toHaveLength(5);
 		// Cleanup happens before the run creates its own simulator.
 		const firstCreate = simctlCalls.findIndex((call) => call.startsWith("simctl create"));
 		const lastStaleCall = Math.max(...staleIds.map((id) => simctlCalls.lastIndexOf(`simctl delete ${id}`)));
@@ -881,8 +919,13 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 		expect(simctlCalls.some((call) => call.startsWith("simctl create"))).toBe(true);
 	});
 
-	it("keeps the end-of-run cleanup of the simulator it creates", async () => {
-		const { result, simctlCalls } = await runCheckScript(undefined, { devices, env: ownRun });
+	it("keeps the end-of-run cleanup of the ephemeral simulator it creates", async () => {
+		const { result, simctlCalls } = await runCheckScript(undefined, {
+			devices,
+			env: ownRun,
+			// A live process holds the reusable device, so this run creates an ephemeral one.
+			beforeRun: holdSimulatorLock,
+		});
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
 		expect(simctlCalls.slice(-2)).toEqual(["simctl shutdown simulator-id", "simctl delete simulator-id"]);
@@ -907,6 +950,297 @@ describe.sequential("Track1 stale simulator cleanup", () => {
 
 		expect(result.status, `${result.stdout}\n${result.stderr}`).toBe(0);
 		expect(simctlCalls.some((call) => call.startsWith("simctl create"))).toBe(true);
+	});
+});
+
+// 2026-10-12: ios-check took 7 min 40 warm (TRA-420) and 3 min 50 of it were the boot of a simulator that
+// check.sh had just created: the first boot of a device initialises its data container. The device is now
+// created once (`track1-ci-pool`) and reused, which only works if nothing leaks from one run to the next.
+describe.sequential("Track1 reusable simulator", () => {
+	const ownRun = { GITHUB_RUN_ID: "111", GITHUB_RUN_ATTEMPT: "1" };
+	const poolUdid = "AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA";
+	const phoneType = "com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro";
+	const developmentApp = "com.dropcliffs.track1.development";
+	const uiTestRunner = "com.dropcliffs.track1.development.uitests.xctrunner";
+	const appsListing = [
+		"{",
+		'    "com.apple.mobilesafari" = {',
+		'        CFBundleIdentifier = "com.apple.mobilesafari";',
+		"    };",
+		`    "${developmentApp}" = {`,
+		`        CFBundleIdentifier = "${developmentApp}";`,
+		'        GroupContainers = { "group.com.dropcliffs.track1.shared" = "file:///shared"; };',
+		// Not installed apps, so not something simctl can uninstall.
+		'        CFBundleURLSchemes = ( "com.dropcliffs.track1.oauth" );',
+		"    };",
+		`    "${uiTestRunner}" = {`,
+		`        CFBundleIdentifier = "${uiTestRunner}";`,
+		"    };",
+		"}",
+	].join("\n");
+
+	type FakeDevice = { name?: string; runtime?: string; state?: string; type?: string; udid?: string };
+	function devicesJson(...devices: FakeDevice[]) {
+		const byRuntime: Record<string, unknown[]> = {};
+		for (const device of devices) {
+			const runtime = device.runtime ?? "runtime-id";
+			byRuntime[runtime] ??= [];
+			byRuntime[runtime].push({
+				name: device.name ?? "track1-ci-pool",
+				udid: device.udid ?? poolUdid,
+				state: device.state ?? "Shutdown",
+				deviceTypeIdentifier: device.type ?? phoneType,
+				isAvailable: true,
+			});
+		}
+		return JSON.stringify({ devices: byRuntime });
+	}
+	const output = (run: { result: { stdout: string; stderr: string } }) =>
+		`${run.result.stdout}\n${run.result.stderr}`;
+	const creations = (calls: string[]) => calls.filter((call) => call.startsWith("simctl create"));
+	const deletions = (calls: string[]) => calls.filter((call) => call.startsWith("simctl delete"));
+	const stateCalls = (calls: string[]) =>
+		calls.filter((call) => /^simctl (listapps|uninstall|keychain|privacy)/.test(call));
+
+	it("creates the reusable device on the first run, then boots it", async () => {
+		const run = await runCheckScript(undefined, { env: ownRun });
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(creations(run.simctlCalls)).toEqual(["simctl create track1-ci-pool iPhone 17 Pro runtime-id"]);
+		expect(run.simctlCalls).toContain("simctl bootstatus simulator-id -b");
+		// A brand-new device holds no state: nothing to reset.
+		expect(stateCalls(run.simctlCalls)).toEqual([]);
+	});
+
+	it("starts the existing device on the next run, without creating one", async () => {
+		const run = await runCheckScript(undefined, { env: ownRun, devicesJson: devicesJson({}) });
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(creations(run.simctlCalls)).toEqual([]);
+		expect(run.simctlCalls).toContain(`simctl bootstatus ${poolUdid} -b`);
+		expect(testActions(run.calls)).toHaveLength(2);
+		expect(testActions(run.calls)[0]).toContain(`id=${poolUdid}`);
+	});
+
+	it.each([
+		["runtime", { runtime: "another-runtime" }],
+		["model", { type: "com.apple.CoreSimulator.SimDeviceType.iPhone-16" }],
+	])("deletes and recreates the device when its %s is not the expected one", async (_label, device) => {
+		const run = await runCheckScript(undefined, { env: ownRun, devicesJson: devicesJson(device) });
+
+		expect(run.result.status, output(run)).toBe(0);
+		const deletion = run.simctlCalls.indexOf(`simctl delete ${poolUdid}`);
+		const creation = run.simctlCalls.findIndex((call) => call.startsWith("simctl create track1-ci-pool"));
+		expect(deletion).toBeGreaterThanOrEqual(0);
+		expect(creation).toBeGreaterThan(deletion);
+		expect(run.simctlCalls).not.toContain(`simctl bootstatus ${poolUdid} -b`);
+		expect(run.simctlCalls).toContain("simctl bootstatus simulator-id -b");
+	});
+
+	it("keeps only one device named track1-ci-pool", async () => {
+		const spare = "BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB";
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devicesJson: devicesJson({}, { udid: spare }),
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(run.simctlCalls).toContain(`simctl delete ${spare}`);
+		expect(run.simctlCalls).not.toContain(`simctl delete ${poolUdid}`);
+		expect(creations(run.simctlCalls)).toEqual([]);
+	});
+
+	it("shuts the reusable device down at the end of the run and does not delete it", async () => {
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devicesJson: devicesJson({ state: "Booted" }),
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(run.simctlCalls.at(-1)).toBe(`simctl shutdown ${poolUdid}`);
+		expect(deletions(run.simctlCalls)).toEqual([]);
+	});
+
+	it("shuts the reusable device down without deleting it when the tests fail", async () => {
+		const run = await runCheckScript("test-without-building", {
+			env: ownRun,
+			devicesJson: devicesJson({}),
+		});
+
+		expect(run.result.status).not.toBe(0);
+		expect(run.simctlCalls.at(-1)).toBe(`simctl shutdown ${poolUdid}`);
+		expect(deletions(run.simctlCalls)).toEqual([]);
+	});
+
+	it("uninstalls the Track1 apps and resets keychain and privacy before the first test", async () => {
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devicesJson: devicesJson({}),
+			apps: appsListing,
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		const bootedAt = run.simctlCalls.indexOf(`simctl bootstatus ${poolUdid} -b`);
+		const firstTestAt = run.simctlCalls.indexOf("xcodebuild test-without-building");
+		expect(bootedAt).toBeGreaterThanOrEqual(0);
+		expect(firstTestAt).toBeGreaterThan(bootedAt);
+		const expectedCalls = [
+			`simctl keychain ${poolUdid} reset`,
+			...[developmentApp, uiTestRunner].flatMap((bundle) => [
+				`simctl privacy ${poolUdid} reset all ${bundle}`,
+				`simctl uninstall ${poolUdid} ${bundle}`,
+			]),
+		];
+		for (const call of expectedCalls) {
+			const at = run.simctlCalls.indexOf(call);
+			expect(at, call).toBeGreaterThan(bootedAt);
+			expect(at, call).toBeLessThan(firstTestAt);
+		}
+		// Neither a system app nor an app group is ours to uninstall, and an erase would bring back the slow first boot.
+		expect(run.simctlCalls.filter((call) => call.startsWith("simctl uninstall"))).toHaveLength(2);
+		expect(run.simctlCalls.filter((call) => /\berase\b/.test(call))).toEqual([]);
+	});
+
+	it("takes the simulator lock for the run and releases it at the end, success or failure", async () => {
+		const succeeded = await runCheckScript(undefined, { env: ownRun });
+		const failed = await runCheckScript("build-for-testing", { env: ownRun });
+
+		expect(succeeded.result.status, output(succeeded)).toBe(0);
+		expect(creations(succeeded.simctlCalls)).toEqual([
+			"simctl create track1-ci-pool iPhone 17 Pro runtime-id",
+		]);
+		expect(succeeded.simulatorLockLeft).toBe(false);
+		expect(failed.result.status).not.toBe(0);
+		expect(failed.simulatorLockLeft).toBe(false);
+	});
+
+	it("uses an ephemeral device while another live check.sh holds the lock, and leaves the lock alone", async () => {
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devicesJson: devicesJson({}),
+			apps: appsListing,
+			beforeRun: holdSimulatorLock,
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(creations(run.simctlCalls)).toEqual([
+			expect.stringMatching(/^simctl create track1-ci-111-1-\d+ iPhone 17 Pro runtime-id$/),
+		]);
+		expect(output(run)).toContain("ephemeral");
+		expect(run.simctlCalls.filter((call) => call.includes(poolUdid))).toEqual([]);
+		expect(stateCalls(run.simctlCalls)).toEqual([]);
+		expect(run.simctlCalls.slice(-2)).toEqual(["simctl shutdown simulator-id", "simctl delete simulator-id"]);
+		expect(run.simulatorLockLeft).toBe(true);
+	});
+
+	it("takes over a simulator lock left behind by a process that is gone", async () => {
+		const deadPid = spawnSync(process.execPath, ["-e", ""]).pid;
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devicesJson: devicesJson({}),
+			beforeRun: async ({ simulatorLockDirectory }) => {
+				await mkdir(simulatorLockDirectory, { recursive: true });
+				await writeFile(join(simulatorLockDirectory, "pid"), `${deadPid}\n`);
+			},
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(run.simctlCalls).toContain(`simctl bootstatus ${poolUdid} -b`);
+		expect(run.simulatorLockLeft).toBe(false);
+	});
+
+	it("deletes a reusable device that does not boot and starts over with a new one, and says so", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { ...ownRun, TRACK1_TEST_FAIL_BOOT_UDIDS: poolUdid },
+			devicesJson: devicesJson({}),
+			apps: appsListing,
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(output(run)).toContain("falling back");
+		const deletion = run.simctlCalls.indexOf(`simctl delete ${poolUdid}`);
+		const creation = run.simctlCalls.findIndex((call) => call.startsWith("simctl create track1-ci-pool"));
+		expect(deletion).toBeGreaterThanOrEqual(0);
+		expect(creation).toBeGreaterThan(deletion);
+		expect(run.simctlCalls).toContain("simctl bootstatus simulator-id -b");
+		expect(testActions(run.calls)[0]).toContain("id=simulator-id");
+		expect(run.simctlCalls.at(-1)).toBe("simctl shutdown simulator-id");
+	});
+
+	it("starts over with a new device when the reusable one cannot be cleaned", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { ...ownRun, TRACK1_TEST_FAIL_UNINSTALL: "1" },
+			devicesJson: devicesJson({}),
+			apps: appsListing,
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(output(run)).toContain("falling back");
+		expect(run.simctlCalls).toContain(`simctl delete ${poolUdid}`);
+		expect(testActions(run.calls)[0]).toContain("id=simulator-id");
+	});
+
+	it("uses an ephemeral device when the broken reusable device cannot even be deleted", async () => {
+		const run = await runCheckScript(undefined, {
+			env: {
+				...ownRun,
+				TRACK1_TEST_FAIL_BOOT_UDIDS: poolUdid,
+				TRACK1_TEST_FAIL_DELETE_UDIDS: poolUdid,
+			},
+			devicesJson: devicesJson({}),
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(output(run)).toContain("ephemeral");
+		expect(creations(run.simctlCalls)).toEqual([
+			expect.stringMatching(/^simctl create track1-ci-111-1-\d+ iPhone 17 Pro runtime-id$/),
+		]);
+		expect(testActions(run.calls)[0]).toContain("id=simulator-id");
+		expect(run.simctlCalls.slice(-2)).toEqual(["simctl shutdown simulator-id", "simctl delete simulator-id"]);
+		expect(run.simulatorLockLeft).toBe(false);
+	});
+
+	it("fails without running any test when the new device does not boot either, and removes it", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { ...ownRun, TRACK1_TEST_FAIL_BOOT_UDIDS: `${poolUdid} simulator-id` },
+			devicesJson: devicesJson({}),
+		});
+
+		expect(run.result.status).not.toBe(0);
+		expect(testActions(run.calls)).toEqual([]);
+		// The reused device is replaced once, and the replacement is removed rather than kept as the pool.
+		expect(run.simctlCalls).toContain(`simctl delete ${poolUdid}`);
+		expect(creations(run.simctlCalls)).toEqual(["simctl create track1-ci-pool iPhone 17 Pro runtime-id"]);
+		expect(run.simctlCalls).toContain("simctl delete simulator-id");
+		expect(run.simulatorLockLeft).toBe(false);
+	});
+
+	it("does not start over a second time when a device created by this run does not boot", async () => {
+		const run = await runCheckScript(undefined, {
+			env: { ...ownRun, TRACK1_TEST_FAIL_BOOT_UDIDS: "simulator-id" },
+		});
+
+		expect(run.result.status).not.toBe(0);
+		expect(creations(run.simctlCalls)).toEqual(["simctl create track1-ci-pool iPhone 17 Pro runtime-id"]);
+		expect(run.simctlCalls).toContain("simctl delete simulator-id");
+	});
+
+	it("is not touched by the stale simulator cleanup, whichever state the previous run left it in", async () => {
+		const devices = ["== Devices ==", "-- iOS 26.4 --", `    track1-ci-pool (${poolUdid}) (Booted)`].join(
+			"\n",
+		);
+		const run = await runCheckScript(undefined, {
+			env: ownRun,
+			devices,
+			devicesJson: devicesJson({ state: "Booted" }),
+		});
+
+		expect(run.result.status, output(run)).toBe(0);
+		expect(output(run)).not.toContain("Removing stale simulator");
+		expect(run.simctlCalls).not.toContain(`simctl delete ${poolUdid}`);
+		// It is the device the run reuses, not one it replaces.
+		expect(run.simctlCalls).toContain(`simctl bootstatus ${poolUdid} -b`);
+		expect(creations(run.simctlCalls)).toEqual([]);
 	});
 });
 
