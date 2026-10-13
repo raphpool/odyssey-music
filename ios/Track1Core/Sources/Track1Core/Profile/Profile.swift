@@ -1,7 +1,7 @@
 import Foundation
 
 public enum ProfileSelection {
-	public static let minimumGenres = 3
+	public static let minimumGenres = 1
 
 	public static func reconciled(selected: [NodeIdentity], available: [NodeIdentity]) -> [NodeIdentity] {
 		let availableGenres = Set(available.filter { $0.type == .genre })
@@ -12,9 +12,7 @@ public enum ProfileSelection {
 		let availableGenres = Set(available.filter { $0.type == .genre })
 		let selectedGenres = Set(reconciled(selected: selected, available: available))
 		guard !availableGenres.isEmpty else { return false }
-		return availableGenres.count < minimumGenres
-			? selectedGenres == availableGenres
-			: selectedGenres.count >= minimumGenres
+		return selectedGenres.count >= minimumGenres
 	}
 
 	public static func selectionInstruction(available: [NodeIdentity]) -> String {
@@ -22,9 +20,9 @@ public enum ProfileSelection {
 		case 1:
 			"Choisissez le genre disponible. Vos choix restent sur cet iPhone."
 		case 2:
-			"Choisissez les deux genres disponibles. Vos choix restent sur cet iPhone."
+			"Choisissez au moins un des deux genres disponibles. Vos choix restent sur cet iPhone."
 		default:
-			"Choisissez au moins trois genres. Vos choix restent sur cet iPhone."
+			"Choisissez au moins un genre. Vos choix restent sur cet iPhone."
 		}
 	}
 }
