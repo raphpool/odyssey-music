@@ -12,6 +12,11 @@ struct TodayView: View {
 		let attempt: Int
 	}
 
+	private struct OpenKey: Hashable {
+		let recommendationID: UUID?
+		let attempt: Int
+	}
+
 	private let profile: Profile
 	private let router: AppRouter
 	private let readers: ContentReaders
@@ -20,9 +25,9 @@ struct TodayView: View {
 	@Binding private var rootTitle: String?
 	@State private var model: TodayViewModel
 	@State private var opening: TodayOpening?
-	/// The recommendation whose impression and opening were started. Read and written before the first
-	/// `await`, so that a task restarted by a tab change cannot start them twice.
-	@State private var handledRecommendationID: UUID?
+	/// The recommendation whose opening is under way. Read and written before the first `await`, so that a task
+	/// restarted by a tab change cannot start it twice; cleared when it ends, so a failed one can run again.
+	@State private var openingRecommendationID: UUID?
 	@State private var attempt = 0
 	@State private var isRetrying = false
 
@@ -55,7 +60,11 @@ struct TodayView: View {
 				// A cancelled load belongs to a newer one, which will clear the flag itself.
 				if !Task.isCancelled { isRetrying = false }
 			}
-			.task(id: TodayPresentation.recommendationID(of: model.state)) { await openRecommendation() }
+			.task(id: openKey) { await openRecommendation() }
+	}
+
+	private var openKey: OpenKey {
+		OpenKey(recommendationID: TodayPresentation.recommendationID(of: model.state), attempt: attempt)
 	}
 
 	@ViewBuilder
@@ -101,13 +110,14 @@ struct TodayView: View {
 	}
 
 	/// Once per recommendation: the impression, then the one `discover()` that gives the page its context.
-	/// The task id changes with the recommendation only, so a recomposition calls nothing.
+	/// The task id changes with the recommendation (or a retry), so a recomposition calls nothing.
 	private func openRecommendation() async {
 		rootTitle = TodayPresentation.rootTitle(of: model.state)
 		guard let id = TodayPresentation.recommendationID(of: model.state),
-			handledRecommendationID != id
+			opening?.recommendationID != id, openingRecommendationID != id
 		else { return }
-		handledRecommendationID = id
+		openingRecommendationID = id
+		defer { openingRecommendationID = nil }
 		await model.recordImpressionIfNeeded()
 		guard let discovered = await model.discover() else { return }
 		opening = TodayOpening(
