@@ -125,6 +125,25 @@ public final class OnboardingFlowModel {
 		return !all.isEmpty && all.allSatisfy(selectedSubgenres.contains)
 	}
 
+	/// The rows of a subgenre step, in display order, so the screen reads them through the model like the tiles.
+	/// A genre that is not a selected parent has none: no row can be shown for a step that does not exist.
+	public func subgenreChoices(of parent: NodeIdentity) -> [GenreChoice] {
+		selectedParents.contains(parent) ? taxonomy.subgenres(of: parent) : []
+	}
+
+	public func isSubgenreSelected(_ subgenre: NodeIdentity) -> Bool {
+		selectedSubgenres.contains(subgenre)
+	}
+
+	/// The step that follows `parent`, in selection order; nil after the last one, where the flow ends.
+	/// A parent that is not a step has no successor either, so a stale call can never skip ahead.
+	public func subgenreStep(after parent: NodeIdentity) -> NodeIdentity? {
+		guard let index = subgenreSteps.firstIndex(of: parent), index + 1 < subgenreSteps.count else {
+			return nil
+		}
+		return subgenreSteps[index + 1]
+	}
+
 	/// `index` is a position in `subgenreSteps`; the genre screen has its own CTA and does not call this.
 	public func ctaTitle(forStep index: Int) -> String {
 		guard index >= subgenreSteps.count - 1 else { return "Continuer" }
