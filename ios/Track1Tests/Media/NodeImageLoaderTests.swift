@@ -39,10 +39,16 @@ final class NodeImageLoaderTests: XCTestCase {
 			StubProtocol.register("https://img.example.com/start", .redirect(target))
 			StubProtocol.register(target, .ok(try Self.pngData(width: 8, height: 8)))
 
+			let clock = ContinuousClock()
+			let started = clock.now
 			let image = await Self.load("https://img.example.com/start")
+			let elapsed = started.duration(to: clock.now)
 
 			XCTAssertNil(image, target)
 			XCTAssertEqual(StubProtocol.requested, ["https://img.example.com/start"], "\(target) was requested.")
+			// A refused redirect must end on the 3xx right away. Ending on the loader's 20 s request timeout
+			// would also give `nil`, but without exercising the path under test.
+			XCTAssertLessThan(elapsed, .seconds(2), "\(target) only ended on the request timeout.")
 		}
 	}
 
@@ -166,7 +172,24 @@ private final class StubProtocol: URLProtocol, @unchecked Sendable {
 
 	override class func canInit(with request: URLRequest) -> Bool { true }
 	override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
-	override func stopLoading() {}
+
+	/// How long a redirect is left to be followed before its 3xx is delivered as the final response.
+	private static let redirectGrace: DispatchTimeInterval = .milliseconds(500)
+
+	private let stateLock = NSLock()
+	private var stopped = false
+
+	private var isStopped: Bool {
+		stateLock.lock()
+		defer { stateLock.unlock() }
+		return stopped
+	}
+
+	override func stopLoading() {
+		stateLock.lock()
+		stopped = true
+		stateLock.unlock()
+	}
 
 	override func startLoading() {
 		guard let url = request.url else { return }
