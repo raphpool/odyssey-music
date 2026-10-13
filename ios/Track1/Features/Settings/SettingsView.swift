@@ -4,6 +4,7 @@ import Track1Core
 struct SettingsView: View {
 	let profileState: ProfileRead
 	let profileStore: ProfileStore
+	let recentNodes: RecentNodesStore
 	let analytics: AnalyticsClient
 	let editProfile: () -> Void
 	let profileWasCleared: () -> Void
@@ -103,6 +104,8 @@ struct SettingsView: View {
 		isClearing = true
 		defer { isClearing = false }
 		guard await profileStore.clear() == .cleared else { return }
+		// The recents belong to the same on-device data the screen promises to erase.
+		await recentNodes.clear()
 		if analytics.consent.status == .granted {
 			analytics.record(
 				AnalyticsEvent(
