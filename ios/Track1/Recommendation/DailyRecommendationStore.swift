@@ -1,4 +1,5 @@
 import Foundation
+import Track1Core
 
 /// Keeps the last `historyLimit` daily recommendations in `daily-recommendation.v1.json`.
 ///

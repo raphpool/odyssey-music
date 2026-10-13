@@ -1,16 +1,16 @@
 import Foundation
 
-enum LocalStoreError: Error, Equatable, Sendable {
+public enum LocalStoreError: Error, Equatable, Sendable {
 	case unavailable
 }
 
-enum LocalStoreOperation: Equatable, Sendable {
+public enum LocalStoreOperation: Equatable, Sendable {
 	case read
 	case write
 	case remove
 }
 
-actor LocalStore {
+public actor LocalStore {
 	private let directoryURL: URL?
 	private let fileManager: FileManager
 	private var failingWriteName: String?
@@ -24,7 +24,7 @@ actor LocalStore {
 	/// the request itself would let a later `remove` overtake an earlier `write`, which cannot happen
 	/// in production. The actor is reentrant at that await, so while a response is held, later
 	/// operations are applied and return first; only the held caller's result arrives late.
-	init(
+	public init(
 		directoryURL: URL? = nil,
 		fileManager: FileManager = .default,
 		failNextWriteNamed failingWriteName: String? = nil,
@@ -36,19 +36,19 @@ actor LocalStore {
 		self.afterOperation = afterOperation
 	}
 
-	func read(named name: String) async -> Result<Data?, LocalStoreError> {
+	public func read(named name: String) async -> Result<Data?, LocalStoreError> {
 		let result = performRead(named: name)
 		await afterOperation?(.read, name)
 		return result
 	}
 
-	func write(_ data: Data, named name: String) async -> Result<Void, LocalStoreError> {
+	public func write(_ data: Data, named name: String) async -> Result<Void, LocalStoreError> {
 		let result = performWrite(data, named: name)
 		await afterOperation?(.write, name)
 		return result
 	}
 
-	func remove(named name: String) async -> Result<Void, LocalStoreError> {
+	public func remove(named name: String) async -> Result<Void, LocalStoreError> {
 		let result = performRemove(named: name)
 		await afterOperation?(.remove, name)
 		return result
@@ -72,10 +72,14 @@ actor LocalStore {
 		do {
 			let url = try fileURL(named: name)
 			try data.write(to: url, options: .atomic)
-			try fileManager.setAttributes(
-				[.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
-				ofItemAtPath: url.path
-			)
+			// File protection classes are an iOS concept, so the attribute is iOS-only; the package is also
+			// tested on macOS. LocalStorePlatformTests checks it on the simulator. Added 2026-10 (TRA-427).
+			#if os(iOS)
+				try fileManager.setAttributes(
+					[.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
+					ofItemAtPath: url.path
+				)
+			#endif
 			var values = URLResourceValues()
 			values.isExcludedFromBackup = true
 			var protectedURL = url
@@ -103,10 +107,13 @@ actor LocalStore {
 				?? fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
 		else { throw LocalStoreError.unavailable }
 		try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
-		try fileManager.setAttributes(
-			[.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
-			ofItemAtPath: directory.path
-		)
+		// iOS-only for the same reason as the file attribute in `performWrite` (2026-10).
+		#if os(iOS)
+			try fileManager.setAttributes(
+				[.protectionKey: FileProtectionType.completeUntilFirstUserAuthentication],
+				ofItemAtPath: directory.path
+			)
+		#endif
 		var values = URLResourceValues()
 		values.isExcludedFromBackup = true
 		var protectedDirectory = directory
