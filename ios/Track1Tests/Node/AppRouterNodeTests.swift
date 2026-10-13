@@ -15,7 +15,7 @@ final class AppRouterNodeTests: XCTestCase {
 
 		XCTAssertEqual(router.path(for: .today), [.node(identity: artist, context: .independent(source: .home))])
 		XCTAssertEqual(router.path(for: .search), [.node(identity: album, context: .independent(source: .search))])
-		XCTAssertTrue(router.path(for: .settings).isEmpty)
+		XCTAssertTrue(router.path(for: .genres).isEmpty)
 	}
 
 	func testRelationRoutePreservesAttributionUntilAnotherIndependentDeparture() throws {
@@ -53,6 +53,94 @@ final class AppRouterNodeTests: XCTestCase {
 
 		XCTAssertEqual(router.path(for: .search), [.node(identity: genre, context: .independent(source: .search))])
 		XCTAssertTrue(router.path(for: .today).isEmpty)
-		XCTAssertTrue(router.path(for: .settings).isEmpty)
+		XCTAssertTrue(router.path(for: .genres).isEmpty)
+	}
+
+	func testSelectingSearchOpensTheSheetAndKeepsTheSelectedTab() {
+		let router = AppRouter()
+		router.select(.genres)
+
+		router.select(.search)
+
+		XCTAssertTrue(router.isSearchPresented)
+		XCTAssertEqual(router.selectedTab, .genres)
+	}
+
+	func testSelectingATabChangesItWithoutTouchingStacksOrTheSheet() throws {
+		let router = AppRouter()
+		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
+		router.openIndependentNode(artist, source: .home, in: .today)
+
+		router.select(.genres)
+		router.select(.today)
+
+		XCTAssertEqual(router.selectedTab, .today)
+		XCTAssertFalse(router.isSearchPresented)
+		XCTAssertEqual(router.path(for: .today).count, 1)
+	}
+
+	func testSelectingTodayAgainEmptiesOnlyItsStack() throws {
+		let router = AppRouter()
+		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:sample"))
+		let album = try XCTUnwrap(NodeIdentity(rawValue: "project:sample"))
+		router.openIndependentNode(artist, source: .home, in: .today)
+		router.openIndependentNode(album, source: .home, in: .today)
+		router.openIndependentNode(artist, source: .search, in: .genres)
+		XCTAssertEqual(router.path(for: .today).count, 2)
+
+		router.select(.today)
+
+		XCTAssertTrue(router.path(for: .today).isEmpty)
+		XCTAssertEqual(router.path(for: .genres).count, 1)
+		XCTAssertEqual(router.selectedTab, .today)
+	}
+
+	func testPopToKeepsThePathUpToTheIndexAndMinusOneIsTheRoot() throws {
+		let router = AppRouter()
+		for slug in ["a", "b", "c"] {
+			router.openIndependentNode(
+				try XCTUnwrap(NodeIdentity(rawValue: "artist:\(slug)")), source: .home, in: .today)
+		}
+
+		router.popTo(index: 5, in: .today)
+		XCTAssertEqual(router.path(for: .today).count, 3)
+		router.popTo(index: 0, in: .today)
+		XCTAssertEqual(router.path(for: .today).count, 1)
+
+		router.popTo(index: -1, in: .today)
+		XCTAssertTrue(router.path(for: .today).isEmpty)
+	}
+
+	func testBreadcrumbListsTheRootThenTheRegisteredTitlesInPathOrder() throws {
+		let router = AppRouter()
+		let artist = try XCTUnwrap(NodeIdentity(rawValue: "artist:miles-davis"))
+		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:idm"))
+		let context = NavigationContext.independent(source: .home)
+
+		router.openNode(artist, context: context, title: "Miles Davis", in: .today)
+		router.openNode(genre, context: context.followingRelation(), title: "IDM", in: .today)
+
+		XCTAssertEqual(router.titles[genre], "IDM")
+		XCTAssertEqual(
+			router.breadcrumb(for: .today, rootTitle: "Aujourd’hui"),
+			[
+				TopBarCrumb(index: -1, title: "Aujourd’hui"),
+				TopBarCrumb(index: 0, title: "Miles Davis"),
+				TopBarCrumb(index: 1, title: "IDM"),
+			]
+		)
+		XCTAssertEqual(
+			router.breadcrumb(for: .today, rootTitle: nil).map(\.title), ["Miles Davis", "IDM"])
+		XCTAssertTrue(router.breadcrumb(for: .genres, rootTitle: nil).isEmpty)
+	}
+
+	func testBreadcrumbNamesANodeOpenedWithoutTitleByItsSlugAndSkipsOtherRoutes() throws {
+		let router = AppRouter()
+		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:trip-hop"))
+		router.push(.entryStatus(.today), in: .today)
+		router.openNode(genre, context: .independent(source: .home), title: "", in: .today)
+
+		XCTAssertEqual(
+			router.breadcrumb(for: .today, rootTitle: nil), [TopBarCrumb(index: 1, title: "trip-hop")])
 	}
 }
