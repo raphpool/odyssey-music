@@ -4,6 +4,7 @@ import XCTest
 
 final class URLValidationTests: XCTestCase {
 	func testPublicHTTPSURLRefusesPlainHTTP() {
+		XCTFail("TRA-424 CI measurement: deliberate failure, reverted in the next commit")
 		XCTAssertNil(URLValidation.publicHTTPSURL(from: "http://example.com/"))
 	}
 
