@@ -68,11 +68,13 @@ struct GenresStepView: View {
 				.accessibilityIdentifier(Self.continueIdentifier)
 			}
 		}
-		.background {
-			Track1Tokens.colorBackgroundBase.ignoresSafeArea()
-		}
+		// Order matters: each `.background` sits behind the previous one, so the glow goes first and the
+		// opaque base color last. The other way round, the base color hides the glow (TRA-403 review).
 		.background(alignment: .top) {
 			AmbientGlow(tone: .ember).ignoresSafeArea(edges: .top)
+		}
+		.background {
+			Track1Tokens.colorBackgroundBase.ignoresSafeArea()
 		}
 	}
 
