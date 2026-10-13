@@ -13,6 +13,7 @@ final class AppContainer {
 	let imageStore: NodeImageStore<UIImage>?
 	let analytics: AnalyticsClient?
 	let profileStore: ProfileStore
+	let recentNodes: RecentNodesStore
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
@@ -48,6 +49,7 @@ final class AppContainer {
 			resetBeforeUse: resetProfile,
 			seedCorruptProfileBeforeUse: seedCorruptProfile
 		)
+		recentNodes = RecentNodesStore(store: localStore)
 		switch configurationResult {
 		case .success(let configuration):
 			let client = APIClient(configuration: configuration)

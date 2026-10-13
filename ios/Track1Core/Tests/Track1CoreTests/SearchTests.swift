@@ -65,7 +65,7 @@ final class SearchTests: XCTestCase {
 		XCTAssertEqual(calls, [SearchCall(query: "abcd", type: nil)])
 		XCTAssertEqual(fixture.recorder.events.map(\.name), [.searchSubmitted])
 		let durations = await fixture.clock.durations
-		XCTAssertEqual(durations, Array(repeating: .milliseconds(300), count: 3))
+		XCTAssertEqual(durations, Array(repeating: .milliseconds(150), count: 3))
 	}
 
 	// MARK: - Ordering
@@ -129,6 +129,46 @@ final class SearchTests: XCTestCase {
 		await fixture.clock.releaseAll()
 		await eventually("idle") { fixture.model.phase == .idle }
 		XCTAssertTrue(fixture.model.hits.isEmpty)
+	}
+
+	// MARK: - Recents
+
+	func testIdlePhaseExposesTheRecentsOfTheStore() async throws {
+		let store = try makeRecentStore()
+		let stored = try (1...3).map { try Self.recent($0) }
+		for node in stored { await store.record(node) }
+
+		let fixture = Fixture(recents: store)
+		await eventually("recents") { fixture.model.recents == Array(stored.reversed()) }
+		XCTAssertEqual(fixture.model.phase, .idle)
+		let calls = await fixture.backend.calls
+		XCTAssertTrue(calls.isEmpty, "Showing the recents must not search.")
+	}
+
+	func testRecentsAreEmptyWithoutAStoreOrWithAnEmptyOne() async throws {
+		let withoutStore = Fixture()
+		await withoutStore.model.loadRecents()
+		XCTAssertTrue(withoutStore.model.recents.isEmpty)
+
+		let withEmptyStore = Fixture(recents: try makeRecentStore())
+		await withEmptyStore.model.loadRecents()
+		XCTAssertTrue(withEmptyStore.model.recents.isEmpty)
+	}
+
+	func testGoingBackToAnEmptyQueryReloadsTheRecents() async throws {
+		let store = try makeRecentStore()
+		let fixture = Fixture(recents: store)
+		await fixture.model.loadRecents()
+		XCTAssertTrue(fixture.model.recents.isEmpty)
+
+		try await fixture.submit("abc")
+		await store.record(try Self.recent(1))
+		fixture.model.query = ""
+		await fixture.waitForSleeps(2)
+		await fixture.clock.releaseAll()
+		let expected = try Self.recent(1)
+		await eventually("recents reloaded") { fixture.model.recents == [expected] }
+		XCTAssertEqual(fixture.model.phase, .idle)
 	}
 
 	// MARK: - Filter
@@ -309,6 +349,26 @@ final class SearchTests: XCTestCase {
 		try success(hits: names.map { try hit(source: "catalog", type: "artist", name: $0) })
 	}
 
+	private func temporaryDirectory() throws -> URL {
+		let directory = FileManager.default.temporaryDirectory.appending(
+			path: UUID().uuidString, directoryHint: .isDirectory)
+		try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+		addTeardownBlock { try? FileManager.default.removeItem(at: directory) }
+		return directory
+	}
+
+	private func makeRecentStore() throws -> RecentNodesStore {
+		RecentNodesStore(store: LocalStore(directoryURL: try temporaryDirectory()))
+	}
+
+	private static func recent(_ number: Int) throws -> RecentNode {
+		RecentNode(
+			identity: try XCTUnwrap(NodeIdentity(rawValue: "artist:artist-\(number)")),
+			name: "Artist \(number)",
+			type: .artist
+		)
+	}
+
 	/// Lets already-resumed tasks run, to assert that something did *not* happen.
 	private func settle() async {
 		for _ in 0..<100 { await Task.yield() }
@@ -394,13 +454,14 @@ private final class Fixture {
 	let recorder = Recorder()
 	let model: SearchViewModel
 
-	init() {
+	init(recents: RecentNodesStore? = nil) {
 		let clock = clock
 		let backend = backend
 		model = SearchViewModel(
 			search: { await backend.search($0, $1) },
 			sleep: { try await clock.sleep(for: $0) },
-			recordEvent: recorder.record
+			recordEvent: recorder.record,
+			recents: recents
 		)
 	}
 
