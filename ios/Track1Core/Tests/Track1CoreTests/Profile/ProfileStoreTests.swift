@@ -58,7 +58,7 @@ final class ProfileStoreTests: XCTestCase {
 		)
 		XCTAssertEqual(
 			ProfileSelection.selectionInstruction(available: genres(2)),
-			"Choisissez au moins un des deux genres disponibles. Vos choix restent sur cet iPhone."
+			"Choisissez au moins l’un des deux genres disponibles. Vos choix restent sur cet iPhone."
 		)
 		XCTAssertEqual(
 			ProfileSelection.selectionInstruction(available: genres(3)),

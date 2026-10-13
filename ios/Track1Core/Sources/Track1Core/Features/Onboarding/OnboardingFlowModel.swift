@@ -13,12 +13,17 @@ public final class OnboardingFlowModel {
 	private let taxonomy: GenreTaxonomy
 	private let editing: Profile?
 	private let flowID: UUID
+	private let onboardingStartedRecorded: Bool
 
-	public init(taxonomy: GenreTaxonomy, editing: Profile? = nil) {
+	/// `draft` is the one the `ProfileStore` already holds for this flow. It carries the `flow_id` shared with
+	/// analytics and the "start event already sent" flag, and `makeDraft()` must hand both back unchanged:
+	/// a fresh draft would reset the flag and a resumed flow would send `onboarding_started` twice.
+	public init(taxonomy: GenreTaxonomy, editing: Profile? = nil, draft: ProfileDraft? = nil) {
 		self.taxonomy = taxonomy
 		self.editing = editing
-		flowID = editing?.flowID ?? UUID()
-		let stored = editing?.genreIDs ?? []
+		flowID = draft?.flowID ?? editing?.flowID ?? UUID()
+		onboardingStartedRecorded = draft?.onboardingStartedRecorded ?? false
+		let stored = draft?.genreIDs ?? editing?.genreIDs ?? []
 		let parents = stored.filter { id in taxonomy.parents.contains { $0.identity == id } }
 		selectedParents = parents
 		selectedSubgenres = stored.filter { id in
@@ -71,6 +76,7 @@ public final class OnboardingFlowModel {
 		return !all.isEmpty && all.allSatisfy(selectedSubgenres.contains)
 	}
 
+	/// `index` is a position in `subgenreSteps`; the genre screen has its own CTA and does not call this.
 	public func ctaTitle(forStep index: Int) -> String {
 		guard index >= subgenreSteps.count - 1 else { return "Continuer" }
 		return editing == nil ? "Terminer" : "Enregistrer"
@@ -82,7 +88,7 @@ public final class OnboardingFlowModel {
 			version: Profile.version,
 			flowID: flowID,
 			genreIDs: (selectedParents + selectedSubgenres).filter { seen.insert($0).inserted },
-			onboardingStartedRecorded: false
+			onboardingStartedRecorded: onboardingStartedRecorded
 		)
 	}
 }

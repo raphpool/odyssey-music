@@ -219,4 +219,23 @@ final class OnboardingFlowModelTests: XCTestCase {
 		XCTAssertEqual(model.selectedParents, [jazz])
 		XCTAssertEqual(model.makeDraft().genreIDs, [jazz])
 	}
+
+	func testAResumedDraftKeepsItsFlowIDItsStartedFlagAndItsSelection() throws {
+		let flowID = UUID()
+		let resumed = ProfileDraft(
+			version: Profile.version,
+			flowID: flowID,
+			genreIDs: [hipHop, trap],
+			onboardingStartedRecorded: true
+		)
+		let model = OnboardingFlowModel(taxonomy: try taxonomy(), draft: resumed)
+
+		XCTAssertEqual(model.selectedParents, [hipHop])
+		XCTAssertEqual(model.selectedSubgenreCount, 1)
+		model.toggleSubgenre(drill, of: hipHop)
+		let draft = model.makeDraft()
+		XCTAssertEqual(draft.flowID, flowID)
+		XCTAssertTrue(draft.onboardingStartedRecorded)
+		XCTAssertEqual(draft.genreIDs, [hipHop, trap, drill])
+	}
 }

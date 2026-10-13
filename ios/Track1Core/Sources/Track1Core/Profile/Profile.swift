@@ -20,7 +20,7 @@ public enum ProfileSelection {
 		case 1:
 			"Choisissez le genre disponible. Vos choix restent sur cet iPhone."
 		case 2:
-			"Choisissez au moins un des deux genres disponibles. Vos choix restent sur cet iPhone."
+			"Choisissez au moins l’un des deux genres disponibles. Vos choix restent sur cet iPhone."
 		default:
 			"Choisissez au moins un genre. Vos choix restent sur cet iPhone."
 		}
