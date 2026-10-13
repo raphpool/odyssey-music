@@ -1,7 +1,6 @@
 import Foundation
-import Track1Core
 
-enum ProfileRead: Equatable, Sendable {
+public enum ProfileRead: Equatable, Sendable {
 	case missing
 	case profile(Profile)
 	case corrupt
@@ -10,14 +9,14 @@ enum ProfileRead: Equatable, Sendable {
 }
 
 extension ProfileRead {
-	var requiresExplicitRecovery: Bool {
+	public var requiresExplicitRecovery: Bool {
 		switch self {
 		case .corrupt, .unsupportedVersion: true
 		case .missing, .profile, .unavailable: false
 		}
 	}
 
-	var recoveryDescription: String {
+	public var recoveryDescription: String {
 		switch self {
 		case .unsupportedVersion:
 			"La version de votre profil musical n’est pas prise en charge sur cet iPhone."
@@ -29,26 +28,26 @@ extension ProfileRead {
 	}
 }
 
-enum ProfileDraftRead: Equatable, Sendable {
+public enum ProfileDraftRead: Equatable, Sendable {
 	case missing
 	case draft(ProfileDraft)
 	case corrupt
 	case unavailable
 }
 
-enum ProfileWrite: Equatable, Sendable {
+public enum ProfileWrite: Equatable, Sendable {
 	case saved(Profile)
 	case invalid
 	case unavailable
 	case invalidated
 }
 
-enum ProfileClear: Equatable, Sendable {
+public enum ProfileClear: Equatable, Sendable {
 	case cleared
 	case unavailable
 }
 
-actor ProfileStore {
+public actor ProfileStore {
 	private static let profileFile = "profile.v1.json"
 	private static let draftFile = "profile-draft.v1.json"
 
@@ -57,7 +56,7 @@ actor ProfileStore {
 	private var shouldResetBeforeUse: Bool
 	private var shouldSeedCorruptProfileBeforeUse: Bool
 
-	init(
+	public init(
 		localStore: LocalStore = LocalStore(),
 		resetBeforeUse: Bool = false,
 		seedCorruptProfileBeforeUse: Bool = false
@@ -67,7 +66,7 @@ actor ProfileStore {
 		shouldSeedCorruptProfileBeforeUse = seedCorruptProfileBeforeUse
 	}
 
-	func read() async -> ProfileRead {
+	public func read() async -> ProfileRead {
 		await resetIfNeeded()
 		switch await localStore.read(named: Self.profileFile) {
 		case .failure: return .unavailable
@@ -82,7 +81,7 @@ actor ProfileStore {
 		}
 	}
 
-	func readDraft() async -> ProfileDraftRead {
+	public func readDraft() async -> ProfileDraftRead {
 		await resetIfNeeded()
 		switch await localStore.read(named: Self.draftFile) {
 		case .failure: return .unavailable
@@ -95,7 +94,7 @@ actor ProfileStore {
 		}
 	}
 
-	func beginInitialDraft() async -> Result<ProfileDraft, LocalStoreError> {
+	public func beginInitialDraft() async -> Result<ProfileDraft, LocalStoreError> {
 		await resetIfNeeded()
 		switch await readDraft() {
 		case .draft(let draft): return .success(draft)
@@ -107,7 +106,7 @@ actor ProfileStore {
 		}
 	}
 
-	func beginEditingDraft(from profile: Profile) async -> Result<ProfileDraft, LocalStoreError> {
+	public func beginEditingDraft(from profile: Profile) async -> Result<ProfileDraft, LocalStoreError> {
 		await resetIfNeeded()
 		let draft = ProfileDraft(
 			version: Profile.version,
@@ -118,13 +117,13 @@ actor ProfileStore {
 		return await persist(draft)
 	}
 
-	func saveDraft(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
+	public func saveDraft(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
 		await resetIfNeeded()
 		guard draft.isValid() else { return .failure(.unavailable) }
 		return await persist(draft)
 	}
 
-	func markOnboardingStarted(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
+	public func markOnboardingStarted(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
 		await resetIfNeeded()
 		guard !draft.onboardingStartedRecorded else { return .success(draft) }
 		return await persist(
@@ -137,7 +136,7 @@ actor ProfileStore {
 		)
 	}
 
-	func commit(_ draft: ProfileDraft, availableGenreIDs: [NodeIdentity]) async -> ProfileWrite {
+	public func commit(_ draft: ProfileDraft, availableGenreIDs: [NodeIdentity]) async -> ProfileWrite {
 		await resetIfNeeded()
 		let reconciledGenreIDs = ProfileSelection.reconciled(selected: draft.genreIDs, available: availableGenreIDs)
 		guard draft.isValid(),
@@ -185,12 +184,12 @@ actor ProfileStore {
 		return .saved(profile)
 	}
 
-	func discardEditingDraft() async -> Result<Void, LocalStoreError> {
+	public func discardEditingDraft() async -> Result<Void, LocalStoreError> {
 		await resetIfNeeded()
 		return await localStore.remove(named: Self.draftFile)
 	}
 
-	func clear() async -> ProfileClear {
+	public func clear() async -> ProfileClear {
 		await resetIfNeeded()
 		operationGeneration += 1
 		let profileResult = await localStore.remove(named: Self.profileFile)
