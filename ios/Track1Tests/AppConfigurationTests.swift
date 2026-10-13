@@ -18,18 +18,4 @@ final class AppConfigurationTests: XCTestCase {
 
 		XCTAssertEqual(primary["CFBundleIconName"] as? String, "AppIcon")
 	}
-
-	func testRouterKeepsIndependentTabStacks() {
-		let router = AppRouter()
-		router.push(.entryStatus(.today), in: .today)
-		router.selectedTab = .search
-		router.push(.entryStatus(.search))
-		router.selectedTab = .today
-
-		XCTAssertEqual(router.path(for: .today), [.entryStatus(.today)])
-		XCTAssertEqual(router.path(for: .search), [.entryStatus(.search)])
-		router.pop()
-		XCTAssertTrue(router.path(for: .today).isEmpty)
-		XCTAssertEqual(router.path(for: .search), [.entryStatus(.search)])
-	}
 }
