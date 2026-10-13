@@ -1,18 +1,17 @@
 import Foundation
-import Track1Core
 
 /// A musical work ranked against the person's chosen genres.
-struct AffinityCandidate: Equatable, Sendable {
-	let identity: NodeIdentity
-	let type: NodeType
-	let name: String
-	let teaser: String?
-	let score: Int
-	let reasons: [String]
+public struct AffinityCandidate: Equatable, Sendable {
+	public let identity: NodeIdentity
+	public let type: NodeType
+	public let name: String
+	public let teaser: String?
+	public let score: Int
+	public let reasons: [String]
 }
 
 /// Swift port of `mobile/src/recommendation/affinity.ts`: scores must match the React Native client.
-enum Affinity {
+public enum Affinity {
 	/// The ranking is truncated so the daily pick draws from a bounded, deterministic pool.
 	static let candidateLimit = 60
 
@@ -43,7 +42,7 @@ enum Affinity {
 
 	/// Scores only artists, projects and tracks. Catalog edges are untrusted API data, so identities that
 	/// are missing from the catalog, or whose type is not recommendable, never become candidates.
-	static func rank(catalog: Catalog, genreIDs: [NodeIdentity]) -> [AffinityCandidate] {
+	public static func rank(catalog: Catalog, genreIDs: [NodeIdentity]) -> [AffinityCandidate] {
 		// The last node wins on duplicate identities, like the `Map` built by the TypeScript client.
 		let nodes = Dictionary(catalog.nodes.map { ($0.identity, $0) }, uniquingKeysWith: { _, last in last })
 		var seen = Set<NodeIdentity>()
