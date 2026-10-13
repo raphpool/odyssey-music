@@ -14,6 +14,7 @@ final class AppContainer {
 	let analytics: AnalyticsClient?
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
+	let dailyRecommendationStore: DailyRecommendationStore
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 
 	init(configurationResult: Result<AppConfiguration, AppConfigurationError> = AppConfiguration.load()) {
@@ -27,6 +28,7 @@ final class AppContainer {
 			)
 			let resetProfile = processInfo.arguments.contains("-track1-reset-profile")
 			let seedCorruptProfile = processInfo.arguments.contains("-track1-seed-corrupt-profile")
+			let resetDailyRecommendation = processInfo.arguments.contains("-track1-reset-daily-recommendation")
 			if let fixture = processInfo.environment["TRACK1_PROFILE_CATALOG_JSON"] {
 				let result: APIResult<Catalog>
 				do {
@@ -42,6 +44,7 @@ final class AppContainer {
 			let localStore = LocalStore()
 			let resetProfile = false
 			let seedCorruptProfile = false
+			let resetDailyRecommendation = false
 			onboardingCatalog = nil
 		#endif
 		profileStore = ProfileStore(
@@ -50,6 +53,8 @@ final class AppContainer {
 			seedCorruptProfileBeforeUse: seedCorruptProfile
 		)
 		recentNodes = RecentNodesStore(store: localStore)
+		dailyRecommendationStore = DailyRecommendationStore(
+			localStore: localStore, resetBeforeUse: resetDailyRecommendation)
 		switch configurationResult {
 		case .success(let configuration):
 			let client = APIClient(configuration: configuration)

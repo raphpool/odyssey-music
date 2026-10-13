@@ -28,7 +28,8 @@ struct RootView: View {
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore,
-							recentNodes: container.recentNodes
+							recentNodes: container.recentNodes,
+							dailyRecommendationStore: container.dailyRecommendationStore
 						)
 					}
 				} else {
@@ -53,10 +54,13 @@ private struct ApplicationTabs: View {
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
+	let dailyRecommendationStore: DailyRecommendationStore
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
 	@State private var profileToEdit: Profile?
 	@State private var searchAfterOnboarding = false
+	/// The name of the node of the day: the root crumb of every page pushed from Today.
+	@State private var todayRootTitle: String?
 
 	var body: some View {
 		tabs
@@ -135,6 +139,7 @@ private struct ApplicationTabs: View {
 				case .today:
 					TodayEntryView(
 						profileState: profileState,
+						today: { profile in todayView(for: profile) },
 						chooseProfile: { beginOnboarding(editing: nil) },
 						exploreSearch: { router.select(.search) },
 						recoverProfile: { router.select(.genres) }
@@ -156,8 +161,6 @@ private struct ApplicationTabs: View {
 			}
 			.navigationDestination(for: AppRoute.self) { route in
 				switch route {
-				case .entryStatus(let tab):
-					EntryStatusView(tab: tab)
 				case .node(let identity, let context):
 					if let readers, let imageStore {
 						NodeView(
@@ -169,7 +172,8 @@ private struct ApplicationTabs: View {
 								recordEvent: { analytics.record($0) }
 							),
 							imageStore: imageStore,
-							topBar: .breadcrumb(router.breadcrumb(for: tab, rootTitle: tab.title)),
+							topBar: .breadcrumb(
+								router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
 							// Same tab; the name is the crumb the Top bar shows for the relation.
 							openRelation: { relation, relationContext in
 								router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
@@ -181,6 +185,23 @@ private struct ApplicationTabs: View {
 					}
 				}
 			}
+		}
+	}
+
+	@ViewBuilder
+	private func todayView(for profile: Profile) -> some View {
+		if let readers, let imageStore {
+			TodayView(
+				profile: profile,
+				router: router,
+				readers: readers,
+				imageStore: imageStore,
+				store: dailyRecommendationStore,
+				analytics: analytics,
+				rootTitle: $todayRootTitle
+			)
+		} else {
+			InvalidConfigurationView(error: .missingEnvironment)
 		}
 	}
 
@@ -226,16 +247,17 @@ private struct SettingsEntryView: View {
 	let profileWasCleared: () -> Void
 }
 
-private struct TodayEntryView: View {
+private struct TodayEntryView<Today: View>: View {
 	let profileState: ProfileRead
+	@ViewBuilder let today: (Profile) -> Today
 	let chooseProfile: () -> Void
 	let exploreSearch: () -> Void
 	let recoverProfile: () -> Void
 
 	var body: some View {
 		switch profileState {
-		case .profile:
-			EntryView(tab: .today, showStatus: {})
+		case .profile(let profile):
+			today(profile)
 		case .missing, .unavailable:
 			ProfileMissingView(chooseProfile: chooseProfile, exploreSearch: exploreSearch)
 		case .corrupt, .unsupportedVersion:
@@ -269,41 +291,6 @@ private struct ProfileRecoveryView: View {
 			.padding()
 		}
 		.navigationTitle("Aujourd’hui")
-	}
-}
-
-private struct EntryView: View {
-	let tab: AppTab
-	let showStatus: () -> Void
-
-	var body: some View {
-		ContentUnavailableView {
-			Label(tab.title, systemImage: tab.glyph.systemName)
-		} description: {
-			Text("Cette entrée est prête à accueillir son contenu.")
-				.accessibilityIdentifier("entry-description-\(tab.rawValue)")
-		} actions: {
-			Button("Voir l’état de l’entrée", action: showStatus)
-				.buttonStyle(.bordered)
-				.accessibilityIdentifier("entry-status-\(tab.rawValue)")
-		}
-		.navigationTitle(tab.title)
-		.navigationBarTitleDisplayMode(.large)
-	}
-}
-
-private struct EntryStatusView: View {
-	let tab: AppTab
-
-	var body: some View {
-		ContentUnavailableView {
-			Label("État de l’entrée", systemImage: "info.circle")
-		} description: {
-			Text("Les fonctionnalités de \(tab.title.lowercased()) seront ajoutées dans des livraisons dédiées.")
-				.accessibilityIdentifier("entry-status-description-\(tab.rawValue)")
-		}
-		.navigationTitle(tab.title)
-		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 
