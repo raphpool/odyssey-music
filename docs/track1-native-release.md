@@ -20,18 +20,26 @@ Plans : `docs/plans/track1-ios-figma.md` (L.3, critères de sortie) et `docs/pla
 4. **Mode développeur sur l'iPhone** : Réglages > Confidentialité et sécurité > Mode développeur,
    activer, redémarrer, confirmer (la ligne n'apparaît qu'après un branchement à Xcode). iOS 17 minimum.
 5. **Xcode** : la version exacte de `ios/.xcode-version` (`Xcode 26.4 (17E192)`), sinon le script
-   s'arrête (`xcode-select -p` indique l'Xcode actif).
-6. **Dépôt propre sur `main` à jour** : `git checkout main && git pull`, sans fichier modifié ni non
-   suivi. Le SHA archivé est celui de `HEAD`.
+   s'arrête (`xcode-select -p` indique l'Xcode actif). Vérifié le 2026-10-13 : le Mac a bien
+   Xcode 26.4 (17E192).
+6. **Réseau** : le premier build résout les paquets Swift (dont Segment), donc il faut une connexion.
 7. **URL de l'API** : `https://dropcliffs.com/api/odyssey/mobile/v1` (doit finir par `/mobile/v1`).
 
 ## 2. Archive
 
-Depuis la racine du dépôt :
+Le script refuse tout arbre git non propre, fichiers non suivis compris, et le checkout principal
+en contient (`.claude/agent-memory/`, `.codex/`, `AGENTS.md`, `.claude-tmp-ignore`…). On archive donc
+depuis un **worktree propre** de `origin/main`, hors du dépôt. Le SHA archivé est celui de `HEAD`.
 
 ```sh
+git -C ~/Developer/odyssey-music fetch origin
+git -C ~/Developer/odyssey-music worktree add --detach ~/track1-archive origin/main
+cd ~/track1-archive
 TRACK1_TEAM_ID=<Team ID> TRACK1_API_BASE_URL=https://dropcliffs.com/api/odyssey/mobile/v1 ios/scripts/archive.sh
 ```
+
+Nettoyage, une fois l'IPA installée (l'IPA reste hors du worktree) :
+`git -C ~/Developer/odyssey-music worktree remove ~/track1-archive`.
 
 Argument optionnel : un dossier de sortie hors du dépôt (par défaut `${TMPDIR}`). Le script ne lit
 aucun secret ; l'URL est injectée dans l'`Info.plist` à l'archive, jamais écrite dans le dépôt.
