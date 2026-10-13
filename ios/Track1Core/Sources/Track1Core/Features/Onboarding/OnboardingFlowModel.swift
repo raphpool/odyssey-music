@@ -76,6 +76,10 @@ public final class OnboardingFlowModel {
 		return (parents, subgenres, dropped)
 	}
 
+	/// The tiles of the genre step, in display order. The model hands them out so the screen never holds the
+	/// taxonomy itself: it reads and toggles through the model only.
+	public var parentChoices: [GenreChoice] { taxonomy.parents }
+
 	public var canContinueFromGenres: Bool { !selectedParents.isEmpty }
 
 	public var subgenreSteps: [NodeIdentity] { selectedParents }

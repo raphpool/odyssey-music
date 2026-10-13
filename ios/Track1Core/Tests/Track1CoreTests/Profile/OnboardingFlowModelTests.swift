@@ -40,6 +40,15 @@ final class OnboardingFlowModelTests: XCTestCase {
 		XCTAssertFalse(model.canContinueFromGenres)
 	}
 
+	func testParentChoicesAreTheTaxonomyTilesInDisplayOrder() throws {
+		let model = try model()
+		let expected = try taxonomy().parents
+		XCTAssertFalse(expected.isEmpty)
+		XCTAssertEqual(model.parentChoices, expected)
+		model.toggleParent(jazz)
+		XCTAssertEqual(model.parentChoices, expected, "selecting must not reorder or filter the tiles")
+	}
+
 	func testSubgenreStepsFollowTheSelectionOrderAndTheLastCtaIsTerminer() throws {
 		let model = try model()
 		model.toggleParent(jazz)
