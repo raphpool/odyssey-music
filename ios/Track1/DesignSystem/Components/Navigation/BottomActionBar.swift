@@ -9,6 +9,10 @@ import SwiftUI
 /// the fade; the fade extends under the home indicator. The Figma bar sits on a full-screen frame, where its
 /// 32 pt bottom padding is measured from the physical edge: next to the safe area inset, the button ends up
 /// higher than in the capture.
+///
+/// `identifier` is set on the button itself: an identifier set from outside on the bar would not replace the
+/// one the button carries, so a screen that needs its own (`onboarding-start`) passes it here. `showsFade`
+/// is off where the screen already owns the contrast under the button (the Welcome backdrop, `176:61`).
 struct BottomActionBar: View {
 	static let actionIdentifier = "bottom-action"
 	static let counterIdentifier = "bottom-counter"
@@ -21,16 +25,23 @@ struct BottomActionBar: View {
 		.init(color: Track1Tokens.colorBackgroundBase, location: 1),
 	]
 
+	let identifier: String
+	let showsFade: Bool
 	private let title: String
 	private let isEnabled: Bool
 	private let counter: String?
 	private let action: () -> Void
 	@State private var taps = 0
 
-	init(title: String, isEnabled: Bool, counter: String?, action: @escaping () -> Void) {
+	init(
+		title: String, isEnabled: Bool, counter: String?, identifier: String = BottomActionBar.actionIdentifier,
+		showsFade: Bool = true, action: @escaping () -> Void
+	) {
 		self.title = title
 		self.isEnabled = isEnabled
 		self.counter = counter
+		self.identifier = identifier
+		self.showsFade = showsFade
 		self.action = action
 	}
 
@@ -49,7 +60,7 @@ struct BottomActionBar: View {
 			.buttonStyle(Track1ButtonStyle(kind: .primary, size: .large, icon: nil, iconOnly: false))
 			.sensoryFeedback(.impact(weight: .light), trigger: taps)
 			.disabled(!isEnabled)
-			.accessibilityIdentifier(Self.actionIdentifier)
+			.accessibilityIdentifier(identifier)
 			if let counter {
 				Track1Text(counter, role: .caption, verbatim: true)
 					.foregroundStyle(Track1Tokens.colorTextSecondary)
@@ -62,8 +73,10 @@ struct BottomActionBar: View {
 		.padding(.top, Track1Tokens.spacing24)
 		.padding(.bottom, Track1Tokens.spacing32)
 		.background {
-			LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
-				.ignoresSafeArea(edges: .bottom)
+			if showsFade {
+				LinearGradient(stops: Self.fadeStops, startPoint: .top, endPoint: .bottom)
+					.ignoresSafeArea(edges: .bottom)
+			}
 		}
 	}
 }
