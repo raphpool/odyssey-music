@@ -18,6 +18,10 @@ struct WelcomeBackdrop: View {
 	/// Vertical radius, as a share of the height: the farthest vertical edge (bottom, 447 pt) is 0.52 high.
 	private static let radiusFraction: CGFloat = 0.52
 
+	/// A 45 s morph needs no more than 15 images a second: the color moves by far less than a level of
+	/// 8-bit between two of them, and the gradient is costly to draw.
+	private static let frameInterval: TimeInterval = 1.0 / 15
+
 	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	/// The loop starts on the Figma frame when the backdrop appears, not at an arbitrary point of the clock.
 	@State private var start = Date()
@@ -27,7 +31,7 @@ struct WelcomeBackdrop: View {
 			if reduceMotion {
 				field(phase: 0)
 			} else {
-				TimelineView(.animation(minimumInterval: 1.0 / 30)) { context in
+				TimelineView(.animation(minimumInterval: Self.frameInterval)) { context in
 					field(phase: WelcomeBackdropPalette.phase(elapsed: context.date.timeIntervalSince(start)))
 				}
 			}
@@ -90,7 +94,6 @@ enum WelcomeBackdropPalette {
 
 	/// The phase (0...1) of the loop after `elapsed` seconds.
 	static func phase(elapsed: TimeInterval) -> Double {
-		let loops = elapsed / WelcomeBackdrop.loopDuration
-		return loops.isFinite ? loops - loops.rounded(.down) : 0
+		LoopPhase.wrapped(elapsed / WelcomeBackdrop.loopDuration)
 	}
 }

@@ -51,6 +51,25 @@ final class BackdropMathTests: XCTestCase {
 		}
 	}
 
+	func testANegativeOffsetWalksTheRingBackwards() {
+		assertEqual(ColorCycle.color(at: 0, ring: ring, offset: -1), ring[2])
+		assertEqual(ColorCycle.color(at: 0, ring: ring, offset: -4), ring[2])
+		assertEqual(ColorCycle.color(at: 1.0 / 3, ring: ring, offset: -1), ring[0])
+	}
+
+	func testLoopPhaseWrapsAnyNumber() {
+		XCTAssertEqual(LoopPhase.wrapped(0.25), 0.25, accuracy: 1e-12)
+		XCTAssertEqual(LoopPhase.wrapped(1), 0, accuracy: 1e-12)
+		XCTAssertEqual(LoopPhase.wrapped(2.75), 0.75, accuracy: 1e-12)
+		XCTAssertEqual(LoopPhase.wrapped(-0.25), 0.75, accuracy: 1e-12)
+		XCTAssertEqual(LoopPhase.wrapped(.nan), 0, accuracy: 1e-12)
+		XCTAssertEqual(LoopPhase.wrapped(-1e-20), 0, accuracy: 1e-12)
+		for value in [-3.3, -1e-17, 0, 0.999999, 7.5, 1e9] {
+			XCTAssertGreaterThanOrEqual(LoopPhase.wrapped(value), 0)
+			XCTAssertLessThan(LoopPhase.wrapped(value), 1)
+		}
+	}
+
 	func testAPhaseOutsideTheLoopWrapsAndANaNCountsAsZero() {
 		assertEqual(ColorCycle.color(at: 1.25, ring: ring), ColorCycle.color(at: 0.25, ring: ring))
 		assertEqual(ColorCycle.color(at: -0.25, ring: ring), ColorCycle.color(at: 0.75, ring: ring))
@@ -81,7 +100,13 @@ final class BackdropMathTests: XCTestCase {
 	func testCompositeMixesTheOverlayOverTheBackground() {
 		let result = WCAGContrast.composite(RGB(hex: 0x000000), opacity: 0.25, over: RGB(hex: 0xFFFFFF))
 		assertEqual(result, RGB(red: 0.75, green: 0.75, blue: 0.75))
-		assertEqual(WCAGContrast.composite(RGB(hex: 0x000000), opacity: 0, over: RGB(hex: 0xFFFFFF)), RGB(hex: 0xFFFFFF))
+		let white = RGB(hex: 0xFFFFFF)
+		let black = RGB(hex: 0x000000)
+		assertEqual(WCAGContrast.composite(black, opacity: 0, over: white), white)
+		// An opacity out of range cannot leave the sRGB cube.
+		assertEqual(WCAGContrast.composite(black, opacity: 1.7, over: white), black)
+		assertEqual(WCAGContrast.composite(black, opacity: -2, over: white), white)
+		assertEqual(WCAGContrast.composite(black, opacity: .nan, over: white), white)
 	}
 
 	// MARK: Progress fraction

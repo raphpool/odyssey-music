@@ -128,9 +128,11 @@ final class BackdropTests: XCTestCase {
 		XCTAssertLessThan(first.end, 1)
 	}
 
-	func testWidthChangesUseTheStandard200msCurveAndNothingUnderReduceMotion() {
+	func testTheBarAnimatesItsWidthOver200msOnTheStandardCurveAndNotUnderReduceMotion() {
 		XCTAssertEqual(Track1Motion.standard.duration, 0.2, accuracy: 1e-12)
-		XCTAssertNotNil(Track1Motion.animation(.standard, reduceMotion: false))
-		XCTAssertNil(Track1Motion.animation(.standard, reduceMotion: true))
+		XCTAssertEqual(
+			Track1ProgressBar.widthAnimation(reduceMotion: false),
+			.timingCurve(0.2, 0, 0, 1, duration: 0.2))
+		XCTAssertNil(Track1ProgressBar.widthAnimation(reduceMotion: true))
 	}
 }

@@ -14,8 +14,7 @@ public enum ProgressFraction {
 	/// so `start` and `end` are always in 0...1 and `start <= end`.
 	public static func sweep(phase: Double, length: Double) -> (start: Double, end: Double) {
 		let share = clamped(length)
-		let wrapped = phase.isFinite ? phase - phase.rounded(.down) : 0
-		let start = -share + wrapped * (1 + share)
+		let start = -share + LoopPhase.wrapped(phase) * (1 + share)
 		return (clamped(start), clamped(start + share))
 	}
 }

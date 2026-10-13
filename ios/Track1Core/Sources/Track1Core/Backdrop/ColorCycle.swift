@@ -28,19 +28,31 @@ public struct RGB: Equatable, Sendable {
 	}
 }
 
+/// The position in a loop (0..<1) of any number: 1 is 0, 1.25 is 0.25, -0.25 is 0.75, and a NaN or an
+/// infinity counts as 0. One definition for every looping animation of the design system.
+public enum LoopPhase {
+	public static func wrapped(_ value: Double) -> Double {
+		guard value.isFinite else { return 0 }
+		let result = value - value.rounded(.down)
+		// A tiny negative value rounds to exactly 1 once subtracted: it is 0 on the loop.
+		return result >= 1 ? 0 : result
+	}
+}
+
 /// A closed loop of colors: `color(at:)` walks the ring once as `phase` goes from 0 to 1 and ends on the
 /// color it started from, so a looping animation never has a hard cut.
 public enum ColorCycle {
-	/// `phase` wraps (1 is 0, 1.25 is 0.25) and a NaN counts as 0, so the result is defined for any input.
-	/// `offset` starts the walk on another ring color: several stops share one ring at different offsets.
+	/// `phase` wraps (see `LoopPhase`), so the result is defined for any input. `offset` starts the walk on
+	/// another ring color: several stops share one ring at different offsets.
 	public static func color(at phase: Double, ring: [RGB], offset: Int = 0) -> RGB {
 		precondition(!ring.isEmpty, "A color cycle needs at least one color")
-		let wrapped = phase.isFinite ? phase - phase.rounded(.down) : 0
-		let position = wrapped * Double(ring.count)
+		let position = LoopPhase.wrapped(phase) * Double(ring.count)
 		let segment = Int(position.rounded(.down))
 		let fraction = position - Double(segment)
-		let from = ring[(segment + offset) % ring.count]
-		let to = ring[(segment + offset + 1) % ring.count]
+		// A negative offset walks the ring backwards from the start: the index stays in range.
+		let start = ((segment + offset) % ring.count + ring.count) % ring.count
+		let from = ring[start]
+		let to = ring[(start + 1) % ring.count]
 		return from.mixed(with: to, amount: fraction)
 	}
 }
@@ -62,8 +74,8 @@ public enum WCAGContrast {
 	}
 
 	/// What a viewer sees of `overlay` drawn at `opacity` over `background` (alpha compositing in sRGB, as
-	/// SwiftUI does).
+	/// SwiftUI does). An opacity out of 0...1 is clamped, so the result stays a real sRGB color.
 	public static func composite(_ overlay: RGB, opacity: Double, over background: RGB) -> RGB {
-		background.mixed(with: overlay, amount: opacity)
+		background.mixed(with: overlay, amount: ProgressFraction.clamped(opacity))
 	}
 }

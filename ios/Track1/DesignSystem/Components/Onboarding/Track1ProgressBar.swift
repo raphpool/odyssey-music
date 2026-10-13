@@ -40,8 +40,12 @@ struct Track1ProgressBar: View {
 
 	/// Where the sweep is in its loop (0...1) at `date`.
 	static func sweepPhase(at date: Date) -> Double {
-		let loops = date.timeIntervalSinceReferenceDate / sweepDuration
-		return loops - loops.rounded(.down)
+		LoopPhase.wrapped(date.timeIntervalSinceReferenceDate / sweepDuration)
+	}
+
+	/// Doc `175:59`: "Animate width changes (200ms standard easing)". `nil` under Reduce Motion.
+	static func widthAnimation(reduceMotion: Bool) -> Animation? {
+		Track1Motion.animation(.standard, reduceMotion: reduceMotion)
 	}
 
 	/// The part of the track the indicator covers, as shares of the track width (0...1, `start <= end`).
@@ -58,17 +62,13 @@ struct Track1ProgressBar: View {
 	}
 
 	var body: some View {
-		Group {
-			if mode == .indeterminate && !reduceMotion {
-				TimelineView(.animation) { context in
-					track(phase: Self.sweepPhase(at: context.date))
-				}
-			} else {
-				track(phase: 0)
-					// Width changes take 200 ms (Doc); the sweep is driven by the clock, never by this.
-					.animation(Track1Motion.animation(.standard, reduceMotion: reduceMotion), value: mode)
-			}
+		// One view tree for every mode, so that a switch from the sweep to a determinate value is a change of
+		// width and animates like any other (two branches would insert the new one without animation). The
+		// clock only runs while the sweep is on screen; the sweep itself follows the clock, never `.animation`.
+		TimelineView(.animation(paused: mode != .indeterminate || reduceMotion)) { context in
+			track(phase: Self.sweepPhase(at: context.date))
 		}
+		.animation(Self.widthAnimation(reduceMotion: reduceMotion), value: mode)
 		.frame(height: Self.height)
 		.overlay(Rectangle().strokeBorder(Track1Tokens.colorProgressTrack, lineWidth: Self.borderWidth))
 		.accessibilityElement(children: .ignore)
