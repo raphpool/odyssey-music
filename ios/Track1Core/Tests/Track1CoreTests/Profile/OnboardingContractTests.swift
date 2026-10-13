@@ -73,4 +73,30 @@ final class OnboardingContractTests: XCTestCase {
 		XCTAssertEqual(nextEditingDraft.flowID, original.flowID)
 		XCTAssertEqual(updated.revision, original.revision + 1)
 	}
+
+	func testAProfileWithASingleGenreIsValidAndRoundTrips() async throws {
+		let directory = FileManager.default.temporaryDirectory.appending(
+			path: UUID().uuidString,
+			directoryHint: .isDirectory
+		)
+		defer { try? FileManager.default.removeItem(at: directory) }
+		let store = ProfileStore(localStore: LocalStore(directoryURL: directory))
+		let jazz = try XCTUnwrap(NodeIdentity(rawValue: "genre:jazz"))
+		guard case .success(let draft) = await store.beginInitialDraft() else {
+			return XCTFail("Expected a draft.")
+		}
+		let single = ProfileDraft(
+			version: Profile.version,
+			flowID: draft.flowID,
+			genreIDs: [jazz],
+			onboardingStartedRecorded: true
+		)
+		guard case .saved(let profile) = await store.commit(single, availableGenreIDs: [jazz]) else {
+			return XCTFail("Expected a one-genre profile to be saved.")
+		}
+		XCTAssertEqual(ProfileSelection.minimumGenres, 1)
+		let reloaded = await store.read()
+		XCTAssertEqual(reloaded, .profile(profile))
+		XCTAssertEqual(profile.genreIDs, [jazz])
+	}
 }

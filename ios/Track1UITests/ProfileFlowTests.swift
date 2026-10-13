@@ -9,9 +9,11 @@ final class ProfileFlowTests: XCTestCase {
 
 		let firstGenre = app.buttons["genre-genre:genre-0"]
 		XCTAssertTrue(firstGenre.waitForExistence(timeout: 2))
-		firstGenre.tap()
-		app.buttons["genre-genre:genre-1"].tap()
+		// 2026-10-13: the minimum is one genre (D13, TRA-402); it used to need three.
 		XCTAssertFalse(app.buttons["profile-continue"].isEnabled)
+		firstGenre.tap()
+		XCTAssertTrue(app.buttons["profile-continue"].isEnabled)
+		app.buttons["genre-genre:genre-1"].tap()
 		app.buttons["genre-genre:genre-2"].tap()
 		XCTAssertTrue(app.buttons["profile-continue"].isEnabled)
 		attachScreenshot(named: "profile-selection-saved-fixture")
