@@ -102,7 +102,9 @@ final class AppRouter {
 		let steps = path(for: tab).enumerated().compactMap { index, route -> TopBarCrumb? in
 			guard case .node(let identity, _) = route else { return nil }
 			// The slug is the best name left when the node was opened without a title.
-			let fallback = String(identity.rawValue.drop(while: { $0 != ":" }).dropFirst())
+			let fallback =
+				identity.rawValue.split(separator: ":", maxSplits: 1).last.map(String.init)
+				?? identity.rawValue
 			return TopBarCrumb(index: index, title: titles[identity] ?? fallback)
 		}
 		return root + steps

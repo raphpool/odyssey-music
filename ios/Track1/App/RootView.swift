@@ -113,13 +113,14 @@ private struct ApplicationTabs: View {
 					Group {
 						if tab == .search { Color.clear } else { entry(for: tab) }
 					}
+					// The glass of iOS 26 does not exist before: a frosted bar is the closest native fallback.
+					// It goes on the tab content, where SwiftUI reads it, not on the `TabView`.
+					.toolbarBackground(.visible, for: .tabBar)
+					.toolbarBackground(.ultraThinMaterial, for: .tabBar)
 					.tabItem { Label(tab.title, systemImage: tab.glyph.systemName) }
 					.tag(tab)
 				}
 			}
-			// The glass of iOS 26 does not exist before: a frosted bar is the closest native fallback.
-			.toolbarBackground(.visible, for: .tabBar)
-			.toolbarBackground(.ultraThinMaterial, for: .tabBar)
 		}
 	}
 
