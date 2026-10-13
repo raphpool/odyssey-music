@@ -22,13 +22,21 @@ enum GenresStepLayout {
 /// tiles of the taxonomy. The title, the subtitle and the grid scroll together; the action bar stays
 /// pinned. Selection logic lives in `OnboardingFlowModel`, this view only reads and toggles it.
 struct GenresStepView: View {
-	/// Set on the bar's container, see `WelcomeView.startIdentifier`.
+	/// Set on the bar's button (`BottomActionBar.identifier`).
 	static let continueIdentifier = "onboarding-genres-continue"
 
 	/// The CTA follows the model (spec: "Nothing selected -> Continuer is Disabled"), not a copy of it.
 	@MainActor
 	static func isContinueEnabled(_ model: OnboardingFlowModel) -> Bool {
 		model.canContinueFromGenres
+	}
+
+	/// The bar as the screen builds it, so a test reads the parameters the screen really passes.
+	@MainActor
+	static func actionBar(model: OnboardingFlowModel, onContinue: @escaping () -> Void) -> BottomActionBar {
+		BottomActionBar(
+			title: "Continuer", isEnabled: isContinueEnabled(model), counter: nil,
+			identifier: continueIdentifier, action: onContinue)
 	}
 
 	let model: OnboardingFlowModel
@@ -60,12 +68,7 @@ struct GenresStepView: View {
 				.padding(.bottom, Track1Tokens.spacing24)
 			}
 			.safeAreaInset(edge: .bottom, spacing: 0) {
-				BottomActionBar(
-					title: "Continuer", isEnabled: Self.isContinueEnabled(model), counter: nil,
-					action: onContinue
-				)
-				.accessibilityElement(children: .contain)
-				.accessibilityIdentifier(Self.continueIdentifier)
+				Self.actionBar(model: model, onContinue: onContinue)
 			}
 		}
 		// Order matters: each `.background` sits behind the previous one, so the glow goes first and the
