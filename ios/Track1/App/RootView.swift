@@ -1,5 +1,6 @@
 import SwiftUI
 import Track1Core
+import UIKit
 
 struct RootView: View {
 	@Bindable var container: AppContainer
@@ -23,6 +24,7 @@ struct RootView: View {
 							router: container.router,
 							apiClient: container.apiClient,
 							readers: container.readers,
+							imageStore: container.imageStore,
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore,
@@ -46,6 +48,7 @@ private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let apiClient: APIClient?
 	let readers: ContentReaders?
+	let imageStore: NodeImageStore<UIImage>?
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
@@ -156,7 +159,7 @@ private struct ApplicationTabs: View {
 				case .entryStatus(let tab):
 					EntryStatusView(tab: tab)
 				case .node(let identity, let context):
-					if let readers {
+					if let readers, let imageStore {
 						NodeView(
 							model: NodeViewModel(
 								identity: identity,
@@ -165,10 +168,13 @@ private struct ApplicationTabs: View {
 								readLinks: readers.links,
 								recordEvent: { analytics.record($0) }
 							),
-							// Same tab: the relation stacks on the path the reader is already in.
+							imageStore: imageStore,
+							topBar: .breadcrumb(router.breadcrumb(for: tab, rootTitle: tab.title)),
+							// Same tab; the name is the crumb the Top bar shows for the relation.
 							openRelation: { relation, relationContext in
-								router.openNode(relation, context: relationContext, in: tab)
-							}
+								router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
+							},
+							selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
 						)
 					} else {
 						InvalidConfigurationView(error: .missingEnvironment)
