@@ -39,10 +39,16 @@ final class NodeImageLoaderTests: XCTestCase {
 			StubProtocol.register("https://img.example.com/start", .redirect(target))
 			StubProtocol.register(target, .ok(try Self.pngData(width: 8, height: 8)))
 
+			let clock = ContinuousClock()
+			let started = clock.now
 			let image = await Self.load("https://img.example.com/start")
+			let elapsed = started.duration(to: clock.now)
 
 			XCTAssertNil(image, target)
 			XCTAssertEqual(StubProtocol.requested, ["https://img.example.com/start"], "\(target) was requested.")
+			// A refused redirect must end on the 3xx right away. Ending on the loader's 20 s request timeout
+			// would also give `nil`, but without exercising the path under test.
+			XCTAssertLessThan(elapsed, .seconds(2), "\(target) only ended on the request timeout.")
 		}
 	}
 
@@ -166,7 +172,21 @@ private final class StubProtocol: URLProtocol, @unchecked Sendable {
 
 	override class func canInit(with request: URLRequest) -> Bool { true }
 	override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
-	override func stopLoading() {}
+
+	private let stateLock = NSLock()
+	private var stopped = false
+
+	private var isStopped: Bool {
+		stateLock.lock()
+		defer { stateLock.unlock() }
+		return stopped
+	}
+
+	override func stopLoading() {
+		stateLock.lock()
+		stopped = true
+		stateLock.unlock()
+	}
 
 	override func startLoading() {
 		guard let url = request.url else { return }
@@ -187,6 +207,18 @@ private final class StubProtocol: URLProtocol, @unchecked Sendable {
 		else { return }
 		if let target = reply.redirectTo, let targetURL = URL(string: target) {
 			client?.urlProtocol(self, wasRedirectedTo: URLRequest(url: targetURL), redirectResponse: response)
+			// Written 2026-10-13. Symptom: a refused redirect never ended, so each of the 7 refused targets
+			// waited for the loader's 20 s timeout (7 x 20 s = 140 s on ios-check) and the test passed through
+			// the timeout instead of through "the 3xx stays the final response". The delegate answering `nil`
+			// calls nothing back on the protocol, so the 3xx is delivered as the final response right after
+			// `wasRedirectedTo`, as OHHTTPStubs does. A followed redirect is not affected: URLSession calls
+			// `stopLoading()` on this instance and ignores any callback it makes afterwards (measured on
+			// Foundation: followed and refused redirects both ended as expected 200/200 times with an immediate
+			// delegate and 40/40 times with a delegate answering 300 ms late). `isStopped` only skips the
+			// delivery when `stopLoading()` already ran.
+			guard !isStopped else { return }
+			client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+			client?.urlProtocolDidFinishLoading(self)
 			return
 		}
 		client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
