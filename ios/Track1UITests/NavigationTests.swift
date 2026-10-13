@@ -9,12 +9,10 @@ final class NavigationTests: XCTestCase {
 	// so it stays although the test now covers Today / Genres / Search and the search sheet.
 	@MainActor
 	func testThreeTabsKeepTheirIndependentNavigationStacks() throws {
-		let app = XCUIApplication()
-		app.launchArguments = [
-			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
-		]
-		app.launch()
-		app.buttons["analytics-consent-decline"].tap()
+		// 2026-10-14 (J.4): there are no tabs before a profile, so the journey starts from the first launch.
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
 		let applicationWindow = app.windows.firstMatch
 		XCTAssertTrue(applicationWindow.waitForExistence(timeout: 2))
 		XCTAssertLessThanOrEqual(applicationWindow.frame.minY, 1)
@@ -22,18 +20,18 @@ final class NavigationTests: XCTestCase {
 		XCTAssertFalse(app.otherElements["invalid-configuration"].exists)
 
 		let today = app.tabBars.buttons["Aujourd’hui"]
-		XCTAssertTrue(today.waitForExistence(timeout: 2))
+		XCTAssertTrue(today.waitForExistence(timeout: 10))
 		XCTAssertTrue(app.tabBars.buttons["Genres"].exists)
 		XCTAssertTrue(app.tabBars.buttons["Recherche"].exists)
 		XCTAssertFalse(app.tabBars.buttons["Réglages"].exists)
-		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
+		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 
 		app.tabBars.buttons["Genres"].tap()
-		XCTAssertTrue(app.buttons["profile-settings-edit"].waitForExistence(timeout: 2))
-		XCTAssertTrue(app.buttons["analytics-settings"].exists)
+		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
+		XCTAssertTrue(app.buttons["genres-settings"].exists)
 
 		today.tap()
-		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
+		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 
 		app.tabBars.buttons["Recherche"].tap()
 		let sheet = app.descendants(matching: .any)["search-sheet"]
@@ -41,31 +39,28 @@ final class NavigationTests: XCTestCase {
 		dismiss(sheet)
 		// The sheet did not take the selection: Today is still the tab under it.
 		XCTAssertTrue(today.isSelected)
-		XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
+		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 	}
 
 	@MainActor
 	func testTabsRemainAccessibleInDarkModeAndLargeText() throws {
-		let app = XCUIApplication()
-		app.launchArguments += [
-			"-AppleLanguages", "(fr)",
-			"-track1-reset-analytics-consent", "-track1-reset-profile",
+		let app = UITestFlows.launch(extraArguments: [
 			"-AppleInterfaceStyle", "Dark",
 			"-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL",
-		]
-		app.launch()
-		app.buttons["analytics-consent-decline"].tap()
+		])
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
 
 		for tab in ["Aujourd’hui", "Genres", "Recherche"] {
 			let button = app.tabBars.buttons[tab]
-			XCTAssertTrue(button.waitForExistence(timeout: 2))
+			XCTAssertTrue(button.waitForExistence(timeout: 10))
 			XCTAssertGreaterThanOrEqual(button.frame.height, 44)
 			button.tap()
 			switch tab {
 			case "Aujourd’hui":
-				XCTAssertTrue(app.buttons["profile-choose"].waitForExistence(timeout: 2))
+				XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 			case "Genres":
-				XCTAssertTrue(app.buttons["profile-settings-edit"].waitForExistence(timeout: 2))
+				XCTAssertTrue(app.buttons["genres-settings"].waitForExistence(timeout: 5))
 			case "Recherche":
 				let sheet = app.descendants(matching: .any)["search-sheet"]
 				XCTAssertTrue(sheet.waitForExistence(timeout: 2))
@@ -87,13 +82,11 @@ final class NavigationTests: XCTestCase {
 	/// I.2: "Rechercher" on an empty field closes the sheet, the third way out with the swipe and the scrim.
 	@MainActor
 	func testSearchKeyOnAnEmptyFieldClosesTheSheet() throws {
-		let app = XCUIApplication()
-		app.launchArguments = [
-			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
-		]
-		app.launch()
-		app.buttons["analytics-consent-decline"].tap()
+		let app = UITestFlows.launch()
+		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
 
+		XCTAssertTrue(app.tabBars.buttons["Recherche"].waitForExistence(timeout: 10))
 		app.tabBars.buttons["Recherche"].tap()
 		let sheet = app.descendants(matching: .any)["search-sheet"]
 		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
@@ -104,6 +97,12 @@ final class NavigationTests: XCTestCase {
 
 		XCTAssertTrue(sheet.waitForNonExistence(timeout: 5))
 		XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].isSelected)
+	}
+
+	/// The page of the day: Today only has one once the first launch has written the profile.
+	@MainActor
+	private func todayPage(in app: XCUIApplication) -> XCUIElement {
+		app.descendants(matching: .any)["node-title"].firstMatch
 	}
 
 	/// Swipes the sheet down from its top edge; a tap outside does not exist on a full-height sheet.

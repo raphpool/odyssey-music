@@ -22,7 +22,6 @@ struct RootView: View {
 					} else {
 						ApplicationTabs(
 							router: container.router,
-							apiClient: container.apiClient,
 							readers: container.readers,
 							imageStore: container.imageStore,
 							onboardingCatalog: container.onboardingCatalog,
@@ -53,7 +52,6 @@ private struct ChosenResult {
 
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
-	let apiClient: APIClient?
 	let readers: ContentReaders?
 	let imageStore: NodeImageStore<UIImage>?
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
@@ -61,41 +59,75 @@ private struct ApplicationTabs: View {
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
 	let dailyRecommendationStore: DailyRecommendationStore
+	@Environment(\.accessibilityReduceMotion) private var reduceMotion
 	@State private var profileState = ProfileRead.missing
-	@State private var showingOnboarding = false
-	@State private var searchAfterOnboarding = false
+	/// False until the profile has been read once: `.missing` before that is not a first launch, and the
+	/// onboarding must not flash for a person who has a profile.
+	@State private var profileLoaded = false
 	/// The name of the node of the day: the root crumb of every page pushed from Today.
 	@State private var todayRootTitle: String?
 	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
 	@State private var chosenResult: ChosenResult?
 
+	/// What the app shows for the state of the profile (J.4): no profile is the full-screen onboarding, without
+	/// the tabs, and the saved profile fades into them.
+	private enum Gate: Equatable {
+		case loading
+		case onboarding
+		/// The store could not be read: the profile may exist, so it is not an invitation to write a new one.
+		case unavailable
+		case tabs
+	}
+
+	private var gate: Gate {
+		guard profileLoaded else { return .loading }
+		switch profileState {
+		case .missing: return .onboarding
+		case .unavailable: return .unavailable
+		case .profile, .corrupt, .unsupportedVersion: return .tabs
+		}
+	}
+
 	var body: some View {
+		ZStack {
+			switch gate {
+			case .loading:
+				Track1Tokens.colorBackgroundBase.ignoresSafeArea()
+			case .onboarding:
+				FirstLaunchOnboardingView(
+					profileStore: profileStore,
+					analytics: analytics,
+					loadCatalog: onboardingCatalog ?? readers?.catalog,
+					finished: profileWasCreated
+				)
+				.transition(.opacity)
+			case .unavailable:
+				Track1StatusView(.todayUnavailable) { Task { await reloadProfile() } }
+					.todayBackdrop()
+					.transition(.opacity)
+			case .tabs:
+				tabsWithSheets.transition(.opacity)
+			}
+		}
+		// The fade from the onboarding to the tabs; immediate under Reduce Motion.
+		.animation(Track1Motion.animation(.slow, reduceMotion: reduceMotion), value: gate)
+		.task { await reloadProfile() }
+	}
+
+	private var tabsWithSheets: some View {
 		tabs
 			.environment(\.recentNodes, recentNodes)
 			.sensoryFeedback(.selection, trigger: router.selectedTab)
 			// Search does not change the selected tab, but tapping it is still a tab change for the hand.
 			.sensoryFeedback(.selection, trigger: router.isSearchPresented) { _, isPresented in isPresented }
 			// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
-			.task { await reloadProfile() }
 			.sheet(isPresented: $router.isSearchPresented, onDismiss: openChosenResult) { searchSheet }
-			.sheet(isPresented: $showingOnboarding, onDismiss: presentSearchIfRequested) {
-				OnboardingView(
-					apiClient: apiClient,
-					catalogProvider: onboardingCatalog,
-					profileStore: profileStore,
-					analytics: analytics,
-					editingProfile: nil,
-					complete: { profile in
-						profileState = .profile(profile)
-						showingOnboarding = false
-					},
-					cancel: { showingOnboarding = false },
-					exploreWithoutProfile: {
-						searchAfterOnboarding = true
-						showingOnboarding = false
-					}
-				)
-			}
+	}
+
+	/// The profile of the first launch is saved: Today loads its first recommendation (screen 1.6) under the fade.
+	private func profileWasCreated(_ profile: Profile) {
+		profileState = .profile(profile)
+		router.select(.today)
 	}
 
 	/// Selecting a tab goes through the router: Search opens its sheet instead of changing the tab (D8).
@@ -148,7 +180,7 @@ private struct ApplicationTabs: View {
 					TodayEntryView(
 						profileState: profileState,
 						today: { profile in todayView(for: profile) },
-						chooseProfile: beginOnboarding,
+						chooseProfile: profileIsMissing,
 						exploreSearch: { router.select(.search) },
 						recoverProfile: { router.select(.genres) }
 					)
@@ -162,7 +194,7 @@ private struct ApplicationTabs: View {
 						recentNodes: recentNodes,
 						analytics: analytics,
 						loadCatalog: onboardingCatalog ?? readers?.catalog,
-						chooseProfile: beginOnboarding,
+						chooseProfile: profileIsMissing,
 						// The recommendation of the day follows the new revision: Today reads the profile it is given.
 						profileWasSaved: { profile in
 							profileState = .profile(profile)
@@ -243,19 +275,13 @@ private struct ApplicationTabs: View {
 		router.openNode(result.identity, context: result.context, title: result.title, in: router.selectedTab)
 	}
 
-	private func presentSearchIfRequested() {
-		guard searchAfterOnboarding else { return }
-		searchAfterOnboarding = false
-		router.select(.search)
-	}
-
-	/// The first selection only: editing a saved profile is the flow of the Genres tab (K.1).
-	private func beginOnboarding() {
-		showingOnboarding = true
-	}
+	/// Without a profile the host shows the onboarding instead of the tabs (J.4), so a tab never asks for one.
+	/// Both entries go with `ProfileMissingView` and the Genres tab's empty state in L.2.
+	private func profileIsMissing() {}
 
 	private func reloadProfile() async {
 		profileState = await profileStore.read()
+		profileLoaded = true
 	}
 }
 

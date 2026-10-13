@@ -12,10 +12,13 @@ enum UITestFlows {
 	private static let project = "project:project-a"
 	private static let track = "track:track-a"
 	private static let label = "label:label-a"
-	private static let genres = (0..<3).map { "genre:genre-\($0)" }
+	/// Two parents, each with one subgenre: the onboarding taxonomy is read off the `subgenres` edges (D13).
+	private static let parents = ["genre:genre-0", "genre:genre-1"]
+	private static let subgenres = ["genre:genre-0a", "genre:genre-1a"]
+	private static let genres = parents + subgenres
 
-	/// Three genres, one work of each recommendable type linked to the first one by `genres` edges, and a
-	/// label, so that the pages of the five node types exist.
+	/// The two parents and their subgenres, one work of each recommendable type linked to the first parent by
+	/// `genres` edges, and a label, so that the pages of the five node types exist.
 	static let catalogJSON = catalog(
 		slugs: genres + [artist, project, track, label], linked: [artist, project, track])
 
@@ -48,12 +51,13 @@ enum UITestFlows {
 
 	/// A first launch: consent, profile and daily recommendation are all reset.
 	@MainActor
-	static func launch(catalog: String = catalogJSON) -> XCUIApplication {
+	static func launch(catalog: String = catalogJSON, extraArguments: [String] = []) -> XCUIApplication {
 		let app = XCUIApplication()
-		app.launchArguments = [
-			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
-			"-track1-reset-daily-recommendation",
-		]
+		app.launchArguments =
+			[
+				"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
+				"-track1-reset-daily-recommendation",
+			] + extraArguments
 		app.launchEnvironment = environment(catalog: catalog)
 		app.launch()
 		return app
@@ -73,12 +77,22 @@ enum UITestFlows {
 		app.buttons["analytics-consent-decline"].tap()
 	}
 
-	/// Picks the first genre of the catalog, the minimum of the profile (D13).
+	/// The first launch up to the end of the flow: Welcome, the first parent, its subgenre step. A parent alone
+	/// is already a profile (D13). Every step waits for the next one: the push animations are not instant.
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
-		app.buttons["profile-choose"].tap()
-		app.buttons["genre-\(genre0)"].tap()
-		app.buttons["profile-continue"].tap()
+		tapWhenReady(app.buttons["onboarding-start"])
+		tapWhenReady(app.buttons["genre-tile-\(genre0)"])
+		tapWhenReady(app.buttons["onboarding-genres-continue"])
+		tapWhenReady(app.buttons["onboarding-subgenres-continue"])
+	}
+
+	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a parent is chosen).
+	@MainActor
+	static func tapWhenReady(_ element: XCUIElement, timeout: TimeInterval = 10) {
+		XCTAssertTrue(element.waitForExistence(timeout: timeout), "\(element) did not appear")
+		XCTAssertTrue(element.isEnabled, "\(element) is disabled")
+		element.tap()
 	}
 
 	@MainActor
@@ -113,7 +127,9 @@ enum UITestFlows {
 			"nodes": slugs.map {
 				["identity": $0, "type": type(ofSlug: $0), "name": name(of: $0), "teaser": NSNull()]
 			},
-			"edges": linked.map { ["source": $0, "target": genre0, "type": "genres"] },
+			// A parent lists its subgenre; the works linked to the first parent carry the `genres` edge the pick follows.
+			"edges": zip(parents, subgenres).map { ["source": $0, "target": $1, "type": "subgenres"] }
+				+ linked.map { ["source": $0, "target": genre0, "type": "genres"] },
 		])
 	}
 

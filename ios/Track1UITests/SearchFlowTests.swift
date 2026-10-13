@@ -2,8 +2,9 @@ import XCTest
 
 /// The search sheet (I.2), on the fixtures of the UI tests: no step touches the network (plan D3).
 ///
-/// The journeys do not start from the onboarding: the sheet opens over the tab that is selected, whatever it
-/// shows, and a page pushed from it must work the same under the empty Today. The launch is the one of
+/// The journeys start from the first launch (J.4: there are no tabs before a profile): the sheet opens over
+/// the tab that is selected, whatever it shows, and a page pushed from it must work the same over the page of
+/// the day. The launch is the one of
 /// `UITestFlows`, plus the `search` and `unavailable` sections and a page whose only relation leads nowhere.
 final class SearchFlowTests: XCTestCase {
 	override func setUpWithError() throws {
@@ -136,6 +137,8 @@ final class SearchFlowTests: XCTestCase {
 		]
 		app.launch()
 		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		XCTAssertTrue(app.tabBars.buttons["Recherche"].waitForExistence(timeout: 10))
 		return app
 	}
 
