@@ -1,8 +1,7 @@
 import Foundation
-import Track1Core
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 /// Overlapping calls on `TodayViewModel` (TRA-379). The catalog is the only fake: a reader that suspends until
 /// the test releases it, so every interleaving is driven by the test and no test waits for a duration.

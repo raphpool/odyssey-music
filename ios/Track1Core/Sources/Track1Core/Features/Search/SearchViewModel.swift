@@ -1,12 +1,11 @@
 import Foundation
 import Observation
-import Track1Core
 
-enum SearchFilter: String, CaseIterable, Sendable {
+public enum SearchFilter: String, CaseIterable, Sendable {
 	case all, artist, project, track, genre, label
 
 	/// `nil` for `.all`: the server treats an absent `type` as "every type".
-	var nodeType: NodeType? {
+	public var nodeType: NodeType? {
 		switch self {
 		case .all: nil
 		case .artist: .artist
@@ -18,33 +17,33 @@ enum SearchFilter: String, CaseIterable, Sendable {
 	}
 }
 
-enum SearchPhase: Equatable, Sendable {
+public enum SearchPhase: Equatable, Sendable {
 	case idle, tooShort, tooLong, loading, results, empty, failed
 }
 
-enum SearchOpening: Equatable {
+public enum SearchOpening: Equatable, Sendable {
 	case node(NodeIdentity, NavigationContext)
 	case missing(name: String, type: NodeType)
 }
 
-typealias SearchReader = @Sendable (String, NodeType?) async -> APIResult<SearchResponse>
+public typealias SearchReader = @Sendable (String, NodeType?) async -> APIResult<SearchResponse>
 
 @MainActor
 @Observable
-final class SearchViewModel {
+public final class SearchViewModel {
 	static let debounce = Duration.milliseconds(300)
 	static let minimumLength = 2
 	static let maximumLength = 120
 
-	var query = "" {
+	public var query = "" {
 		didSet { if query != oldValue { reschedule() } }
 	}
-	var filter = SearchFilter.all {
+	public var filter = SearchFilter.all {
 		didSet { if filter != oldValue { reschedule() } }
 	}
-	private(set) var phase = SearchPhase.idle
+	public private(set) var phase = SearchPhase.idle
 	/// Kept while the next request is loading, so the list does not flash empty on every keystroke.
-	private(set) var hits: [SearchHit] = []
+	public private(set) var hits: [SearchHit] = []
 
 	@ObservationIgnored private let search: SearchReader
 	@ObservationIgnored private let sleep: @Sendable (Duration) async throws -> Void
@@ -56,7 +55,7 @@ final class SearchViewModel {
 	@ObservationIgnored private var isWaiting = false
 	@ObservationIgnored private var lastValidRequest: (text: String, filter: SearchFilter)?
 
-	init(
+	public init(
 		search: @escaping SearchReader,
 		sleep: @escaping @Sendable (Duration) async throws -> Void = { try await Task.sleep(for: $0) },
 		recordEvent: NodeEventRecorder? = nil
@@ -68,7 +67,7 @@ final class SearchViewModel {
 
 	/// Re-runs the last valid request at once. A no-op while a newer input is still waiting for its
 	/// delay: that request supersedes the failed one and is about to run anyway.
-	func retry() {
+	public func retry() {
 		guard !isWaiting, let request = lastValidRequest else { return }
 		pending?.cancel()
 		requestNumber += 1
@@ -77,7 +76,7 @@ final class SearchViewModel {
 	}
 
 	/// Never touches the network: a catalog hit has no card yet, and creating one is not this screen's job.
-	func open(_ hit: SearchHit) -> SearchOpening {
+	public func open(_ hit: SearchHit) -> SearchOpening {
 		var properties: [String: AnalyticsValue] = [
 			"node_type": .string(hit.type.rawValue),
 			"results_count": .integer(hits.count),
