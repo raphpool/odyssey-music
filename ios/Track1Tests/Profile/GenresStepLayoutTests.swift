@@ -28,7 +28,8 @@ final class GenresStepLayoutTests: XCTestCase {
 	func testTileSizeOnAProMaxColumn() {
 		let size = GenresStepLayout.tileSize(containerWidth: 345)
 		XCTAssertEqual(size.width, 164.5, accuracy: 0.01)
-		XCTAssertEqual(size.height, 176.5, accuracy: 0.01)
+		// 164.5 x 176 / 164 = 176.5366: the ticket's "~176,5" is rounded, the ratio is the contract.
+		XCTAssertEqual(size.height, 176.54, accuracy: 0.01)
 	}
 
 	func testTileSizeOnAnIPhoneSEColumn() {
