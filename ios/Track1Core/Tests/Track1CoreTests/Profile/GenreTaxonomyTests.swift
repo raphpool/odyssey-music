@@ -87,6 +87,36 @@ final class GenreTaxonomyTests: XCTestCase {
 }
 
 /// Catalog fixtures shared by the onboarding tests. The catalog is only decodable, so it is built from JSON.
+extension GenreTaxonomyTests {
+	func testParentOfSubgenreResolvesTheFirstParentInTileOrderAndIgnoresNonSubgenres() throws {
+		let taxonomy = GenreTaxonomy(catalog: try OnboardingFixture.catalog())
+		let hipHop = try OnboardingFixture.identity("genre:hip-hop")
+		let jazz = try OnboardingFixture.identity("genre:jazz")
+
+		XCTAssertEqual(taxonomy.parent(ofSubgenre: try OnboardingFixture.identity("genre:drill")), hipHop)
+		XCTAssertEqual(taxonomy.parent(ofSubgenre: try OnboardingFixture.identity("genre:cool-jazz")), jazz)
+		XCTAssertNil(taxonomy.parent(ofSubgenre: hipHop))
+		XCTAssertNil(taxonomy.parent(ofSubgenre: try OnboardingFixture.identity("genre:ambient")))
+	}
+
+	func testAncestorsOfLevelThreeFollowAChainFromAParentOnly() throws {
+		let taxonomy = GenreTaxonomy(
+			catalog: try OnboardingFixture.catalog(
+				nodes: [("genre:rock", "Rock"), ("genre:alt-rock", "Alt rock"), ("genre:grunge", "Grunge")],
+				edges: [("genre:rock", "genre:alt-rock", "subgenres"), ("genre:alt-rock", "genre:grunge", "subgenres")]
+			))
+		let rock = try OnboardingFixture.identity("genre:rock")
+		let altRock = try OnboardingFixture.identity("genre:alt-rock")
+		let grunge = try OnboardingFixture.identity("genre:grunge")
+
+		let ancestors = taxonomy.ancestors(ofLevelThree: grunge)
+		XCTAssertEqual(ancestors?.parent, rock)
+		XCTAssertEqual(ancestors?.subgenre, altRock)
+		XCTAssertNil(taxonomy.ancestors(ofLevelThree: altRock))
+		XCTAssertNil(taxonomy.ancestors(ofLevelThree: rock))
+	}
+}
+
 enum OnboardingFixture {
 	static func identity(_ rawValue: String) throws -> NodeIdentity {
 		try XCTUnwrap(NodeIdentity(rawValue: rawValue))
