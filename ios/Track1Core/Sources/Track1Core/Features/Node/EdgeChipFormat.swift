@@ -23,8 +23,7 @@ public enum EdgeChipFormat {
 
 	/// The chip tag, and the one type label of the new screens, in the lowercase English of the Data contract
 	/// (Q1, like `KIND_LABEL` of the web front). The chip draws it in capitals, as Figma does. Search rows (I.2)
-	/// use it as their subtitle. The French `NodePresentation.typeName` belongs to the legacy node screen,
-	/// which L.1 deletes.
+	/// use it as their subtitle. The French type names of the legacy node screen went with it (H.1).
 	public static func typeLabel(_ type: NodeType) -> String {
 		type.rawValue
 	}

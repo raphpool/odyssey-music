@@ -50,6 +50,24 @@ public struct GenreTaxonomy: Sendable {
 		childrenByParent[parent] ?? []
 	}
 
+	/// The first parent, in tile order, that lists `genre` as a subgenre: a subgenre shared by several parents
+	/// resolves to one deterministic parent rather than to all of them.
+	public func parent(ofSubgenre genre: NodeIdentity) -> NodeIdentity? {
+		parents.first { subgenres(of: $0.identity).contains { $0.identity == genre } }?.identity
+	}
+
+	/// For a level-3 genre (a subgenre of a subgenre), the level-1 parent and the level-2 subgenre it hangs
+	/// under. Only chains that start at a parent are followed, so a cycle that no parent reaches stays out.
+	public func ancestors(ofLevelThree genre: NodeIdentity) -> (parent: NodeIdentity, subgenre: NodeIdentity)? {
+		for parent in parents {
+			for subgenre in subgenres(of: parent.identity)
+			where subgenres(of: subgenre.identity).contains(where: { $0.identity == genre }) {
+				return (parent.identity, subgenre.identity)
+			}
+		}
+		return nil
+	}
+
 	/// The `fr` locale is explicit: the default comparison follows the device language, which would make the
 	/// order (and the tests) depend on the machine.
 	private static func sorted(_ choices: [GenreChoice]) -> [GenreChoice] {

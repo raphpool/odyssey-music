@@ -34,6 +34,7 @@ public final class NodeViewModel {
 	private let readLinks: LinksReader?
 	private let recordEvent: NodeEventRecorder?
 	private var trackedIdentities = Set<NodeIdentity>()
+	private var relationGate = RelationOpeningGate()
 
 	public init(
 		identity: NodeIdentity,
@@ -52,6 +53,24 @@ public final class NodeViewModel {
 	/// Handed to the relations section so it records `relation_opened` through the same recorder as
 	/// `node_viewed`.
 	public var relationEventRecorder: NodeEventRecorder? { recordEvent }
+
+	/// One gesture on a related node: records `relation_opened`, then hands the target and its attribution to
+	/// `navigate`. Does neither (returns false) for a repeat inside `RelationOpeningGate.window`. `kind` is the
+	/// section of the relation (`discography`, `tracklist`, ...).
+	@discardableResult
+	public func openRelation(
+		_ relation: NodeEdge,
+		kind: String,
+		at date: Date = .now,
+		navigate: (NodeIdentity, NavigationContext) -> Void
+	) -> Bool {
+		guard case .loaded(let node) = state,
+			relationGate.shouldOpen(key: "\(kind)-\(relation.slug.rawValue)", at: date)
+		else { return false }
+		recordEvent?(NodeAnalytics.relationOpened(from: node.id, relation: relation, kind: kind, context: context))
+		navigate(relation.slug, context.followingRelation())
+		return true
+	}
 
 	/// Loads the node. Idempotent once `.loaded`: SwiftUI restarts the view's `.task` each time the view
 	/// reappears, and 2026-10-12 popping back from a related node swapped the `ScrollView` for a
@@ -152,5 +171,19 @@ public enum NodeAnalytics {
 		]
 		for (key, value) in context.attributionProperties { properties[key] = value }
 		return AnalyticsEvent(name: .relationOpened, properties: properties, source: .relation)
+	}
+}
+
+/// Refuses a second opening of the same relation shortly after the first. A refused tap does not restart the
+/// window: it is measured from the last accepted one.
+struct RelationOpeningGate {
+	static let window: TimeInterval = 0.75
+
+	private var last: (key: String, date: Date)?
+
+	mutating func shouldOpen(key: String, at date: Date) -> Bool {
+		if let last, last.key == key, date.timeIntervalSince(last.date) < Self.window { return false }
+		last = (key, date)
+		return true
 	}
 }
