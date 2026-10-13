@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 /// Relations of one kind (`artists`, `projects`, ...) as the API keys them.
 struct NodeRelationGroup: Identifiable {

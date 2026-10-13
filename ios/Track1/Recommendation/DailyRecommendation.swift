@@ -1,4 +1,5 @@
 import Foundation
+import Track1Core
 
 /// The work chosen for one local date. JSON keys are snake_case for readability only: this record lives in the
 /// native client's own `daily-recommendation.v1.json` and is never read by the React Native client, so it

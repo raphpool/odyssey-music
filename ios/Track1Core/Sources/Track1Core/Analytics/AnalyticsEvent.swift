@@ -1,6 +1,6 @@
 import Foundation
 
-enum AnalyticsEventName: String, CaseIterable, Sendable {
+public enum AnalyticsEventName: String, CaseIterable, Sendable {
 	case appOpened = "app_opened"
 	case onboardingStarted = "onboarding_started"
 	case onboardingCompleted = "onboarding_completed"
@@ -20,7 +20,7 @@ enum AnalyticsEventName: String, CaseIterable, Sendable {
 	case externalListeningFailed = "external_listening_failed"
 }
 
-enum AnalyticsSource: String, CaseIterable, Sendable {
+public enum AnalyticsSource: String, CaseIterable, Sendable {
 	case app
 	case onboarding
 	case settings
@@ -31,18 +31,18 @@ enum AnalyticsSource: String, CaseIterable, Sendable {
 	case deeplink
 }
 
-enum AnalyticsValue: Equatable, Sendable {
+public enum AnalyticsValue: Equatable, Sendable {
 	case string(String)
 	case integer(Int)
 }
 
-struct AnalyticsEvent: Equatable, Sendable {
-	let name: AnalyticsEventName
-	let properties: [String: AnalyticsValue]
-	let source: AnalyticsSource
-	let occurredAt: Date
+public struct AnalyticsEvent: Equatable, Sendable {
+	public let name: AnalyticsEventName
+	public let properties: [String: AnalyticsValue]
+	public let source: AnalyticsSource
+	public let occurredAt: Date
 
-	init(
+	public init(
 		name: AnalyticsEventName,
 		properties: [String: AnalyticsValue],
 		source: AnalyticsSource,
@@ -55,25 +55,47 @@ struct AnalyticsEvent: Equatable, Sendable {
 	}
 }
 
-struct AnalyticsEnvelope: Equatable, Sendable {
-	let eventName: AnalyticsEventName
-	let eventID: UUID
-	let schemaVersion = 1
-	let platform = "ios"
-	let appVersion: String
-	let buildNumber: String
-	let environment: AppConfiguration.Environment
-	let source: AnalyticsSource
-	let occurredAt: Date
-	let anonymousID: UUID
-	let properties: [String: AnalyticsValue]
+public struct AnalyticsEnvelope: Equatable, Sendable {
+	public let eventName: AnalyticsEventName
+	public let eventID: UUID
+	public let schemaVersion = 1
+	public let platform = "ios"
+	public let appVersion: String
+	public let buildNumber: String
+	public let environment: AppConfiguration.Environment
+	public let source: AnalyticsSource
+	public let occurredAt: Date
+	public let anonymousID: UUID
+	public let properties: [String: AnalyticsValue]
+
+	public init(
+		eventName: AnalyticsEventName,
+		eventID: UUID,
+		appVersion: String,
+		buildNumber: String,
+		environment: AppConfiguration.Environment,
+		source: AnalyticsSource,
+		occurredAt: Date,
+		anonymousID: UUID,
+		properties: [String: AnalyticsValue]
+	) {
+		self.eventName = eventName
+		self.eventID = eventID
+		self.appVersion = appVersion
+		self.buildNumber = buildNumber
+		self.environment = environment
+		self.source = source
+		self.occurredAt = occurredAt
+		self.anonymousID = anonymousID
+		self.properties = properties
+	}
 }
 
-enum AnalyticsValidation {
+public enum AnalyticsValidation {
 	private static let nodeTypes: Set<String> = ["artist", "project", "track", "genre", "label"]
 	private static let providers: Set<String> = ["spotify", "apple_music"]
 
-	static func accepts(_ event: AnalyticsEvent) -> Bool {
+	public static func accepts(_ event: AnalyticsEvent) -> Bool {
 		guard let rule = rules[event.name],
 			Set(event.properties.keys) == rule.required.union(rule.optional)
 				|| Set(event.properties.keys).isSubset(of: rule.required.union(rule.optional)),

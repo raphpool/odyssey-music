@@ -1,5 +1,6 @@
 import Foundation
 @preconcurrency import Segment
+import Track1Core
 
 // Segment invokes enrichments from its delivery queue, outside the UI actor.
 private func removeForbiddenSegmentContext(_ rawEvent: RawEvent?) -> RawEvent? {

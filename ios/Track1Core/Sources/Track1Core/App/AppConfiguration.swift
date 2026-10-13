@@ -1,17 +1,17 @@
 import Foundation
 
-struct AppConfiguration: Equatable, Sendable {
-	enum Environment: String, CaseIterable, Sendable {
+public struct AppConfiguration: Equatable, Sendable {
+	public enum Environment: String, CaseIterable, Sendable {
 		case development
 		case preview
 		case production
 	}
 
-	let environment: Environment
-	let apiBaseURL: URL
-	let segmentWriteKey: String?
+	public let environment: Environment
+	public let apiBaseURL: URL
+	public let segmentWriteKey: String?
 
-	static func load(from bundle: Bundle = .main) -> Result<AppConfiguration, AppConfigurationError> {
+	public static func load(from bundle: Bundle = .main) -> Result<AppConfiguration, AppConfigurationError> {
 		validate(
 			values: AppConfigurationValues(
 				environment: bundle.object(forInfoDictionaryKey: "Track1Environment") as? String,
@@ -21,7 +21,9 @@ struct AppConfiguration: Equatable, Sendable {
 		)
 	}
 
-	static func validate(values: AppConfigurationValues) -> Result<AppConfiguration, AppConfigurationError> {
+	public static func validate(values: AppConfigurationValues) -> Result<
+		AppConfiguration, AppConfigurationError
+	> {
 		guard let environmentValue = normalized(values.environment) else {
 			return .failure(.missingEnvironment)
 		}
@@ -69,19 +71,25 @@ struct AppConfiguration: Equatable, Sendable {
 	}
 }
 
-struct AppConfigurationValues: Equatable, Sendable {
-	let environment: String?
-	let apiBaseURL: String?
-	let segmentWriteKey: String?
+public struct AppConfigurationValues: Equatable, Sendable {
+	public let environment: String?
+	public let apiBaseURL: String?
+	public let segmentWriteKey: String?
+
+	public init(environment: String?, apiBaseURL: String?, segmentWriteKey: String?) {
+		self.environment = environment
+		self.apiBaseURL = apiBaseURL
+		self.segmentWriteKey = segmentWriteKey
+	}
 }
 
-enum AppConfigurationError: Error, Equatable, Sendable {
+public enum AppConfigurationError: Error, Equatable, Sendable {
 	case missingEnvironment
 	case unsupportedEnvironment
 	case missingAPIBaseURL
 	case unsafeAPIBaseURL
 
-	var userMessage: String {
+	public var userMessage: String {
 		switch self {
 		case .missingEnvironment, .unsupportedEnvironment:
 			return "L’environnement de l’application est invalide."

@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import SwiftUI
+import Track1Core
 
 @MainActor
 protocol AnalyticsTransport: AnyObject {

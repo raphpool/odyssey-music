@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import Track1Core
 
 enum SearchFilter: String, CaseIterable, Sendable {
 	case all, artist, project, track, genre, label

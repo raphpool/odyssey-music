@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 struct ProfileMissingView: View {
 	let chooseProfile: () -> Void

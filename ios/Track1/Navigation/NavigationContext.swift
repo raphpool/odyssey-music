@@ -1,4 +1,5 @@
 import Foundation
+import Track1Core
 
 struct NavigationContext: Hashable, Sendable {
 	let source: AnalyticsSource

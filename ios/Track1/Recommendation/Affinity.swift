@@ -1,4 +1,5 @@
 import Foundation
+import Track1Core
 
 /// A musical work ranked against the person's chosen genres.
 struct AffinityCandidate: Equatable, Sendable {

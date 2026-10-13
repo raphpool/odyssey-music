@@ -1,7 +1,7 @@
 import Foundation
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 final class APIClientTests: XCTestCase {
 	func testDecodesCatalogAndCarriesETag() async {

@@ -1,5 +1,6 @@
 import Observation
 import SwiftUI
+import Track1Core
 
 enum AppRoute: Hashable, Sendable {
 	case entryStatus(AppTab)
