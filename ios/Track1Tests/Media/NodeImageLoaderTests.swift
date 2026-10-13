@@ -173,9 +173,6 @@ private final class StubProtocol: URLProtocol, @unchecked Sendable {
 	override class func canInit(with request: URLRequest) -> Bool { true }
 	override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
 
-	/// How long a redirect is left to be followed before its 3xx is delivered as the final response.
-	private static let redirectGrace: DispatchTimeInterval = .milliseconds(500)
-
 	private let stateLock = NSLock()
 	private var stopped = false
 
@@ -210,6 +207,18 @@ private final class StubProtocol: URLProtocol, @unchecked Sendable {
 		else { return }
 		if let target = reply.redirectTo, let targetURL = URL(string: target) {
 			client?.urlProtocol(self, wasRedirectedTo: URLRequest(url: targetURL), redirectResponse: response)
+			// Written 2026-10-13. Symptom: a refused redirect never ended, so each of the 7 refused targets
+			// waited for the loader's 20 s timeout (7 x 20 s = 140 s on ios-check) and the test passed through
+			// the timeout instead of through "the 3xx stays the final response". The delegate answering `nil`
+			// calls nothing back on the protocol, so the 3xx is delivered as the final response right after
+			// `wasRedirectedTo`, as OHHTTPStubs does. A followed redirect is not affected: URLSession calls
+			// `stopLoading()` on this instance and ignores any callback it makes afterwards (measured on
+			// Foundation: followed and refused redirects both ended as expected 200/200 times with an immediate
+			// delegate and 40/40 times with a delegate answering 300 ms late). `isStopped` only skips the
+			// delivery when `stopLoading()` already ran.
+			guard !isStopped else { return }
+			client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+			client?.urlProtocolDidFinishLoading(self)
 			return
 		}
 		client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
