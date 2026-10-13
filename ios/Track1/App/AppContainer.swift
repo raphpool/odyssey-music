@@ -1,6 +1,7 @@
 import Foundation
 import Observation
 import Track1Core
+import UIKit
 
 @MainActor
 @Observable
@@ -9,6 +10,7 @@ final class AppContainer {
 	let router: AppRouter
 	let apiClient: APIClient?
 	let readers: ContentReaders?
+	let imageStore: NodeImageStore<UIImage>?
 	let analytics: AnalyticsClient?
 	let profileStore: ProfileStore
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
@@ -51,10 +53,13 @@ final class AppContainer {
 			let client = APIClient(configuration: configuration)
 			apiClient = client
 			#if targetEnvironment(simulator)
-				readers = UITestFixtureReaders.make(environment: ProcessInfo.processInfo.environment) ?? .live(client)
+				let contentReaders =
+					UITestFixtureReaders.make(environment: ProcessInfo.processInfo.environment) ?? .live(client)
 			#else
-				readers = .live(client)
+				let contentReaders = ContentReaders.live(client)
 			#endif
+			readers = contentReaders
+			imageStore = NodeImageStore(readImage: contentReaders.image, load: { await NodeImageLoader.load(url: $0) })
 			analytics = AnalyticsClient(
 				configuration: AnalyticsConfiguration(
 					writeKey: configuration.segmentWriteKey,
@@ -66,6 +71,7 @@ final class AppContainer {
 		case .failure:
 			apiClient = nil
 			readers = nil
+			imageStore = nil
 			analytics = nil
 		}
 		Task { await analytics?.initialize() }
