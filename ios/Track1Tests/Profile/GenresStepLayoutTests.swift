@@ -51,6 +51,12 @@ final class GenresStepLayoutTests: XCTestCase {
 		}
 	}
 
+	func testGenresBarHasItsOwnIdentifierAndKeepsTheFade() throws {
+		let bar = GenresStepView.actionBar(model: try model()) {}
+		XCTAssertEqual(bar.identifier, "onboarding-genres-continue")
+		XCTAssertTrue(bar.showsFade)
+	}
+
 	func testContinueIsDisabledUntilAParentIsChosen() throws {
 		let model = try model()
 		XCTAssertFalse(GenresStepView.isContinueEnabled(model))

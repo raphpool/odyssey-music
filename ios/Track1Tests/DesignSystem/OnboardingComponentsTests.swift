@@ -172,4 +172,40 @@ final class OnboardingComponentsTests: XCTestCase {
 		}
 		XCTAssertEqual(stops.map { rgbaHex($0.color) }, ["120c0a00", "120c0aff", "120c0aff"])
 	}
+
+	@MainActor
+	func testBottomBarKeepsBottomActionAsItsDefaultIdentifier() {
+		let bar = BottomActionBar(title: "Continuer", isEnabled: true, counter: nil) {}
+		XCTAssertEqual(bar.identifier, "bottom-action")
+	}
+
+	@MainActor
+	func testBottomBarPutsThePassedIdentifierOnItsButton() {
+		let bar = BottomActionBar(title: "Continuer", isEnabled: true, counter: nil, identifier: "custom-id") {}
+		XCTAssertEqual(bar.identifier, "custom-id")
+	}
+
+	@MainActor
+	func testBottomBarDrawsItsFadeUnlessTold() {
+		let plain = BottomActionBar(title: "Continuer", isEnabled: true, counter: nil) {}
+		let bare = BottomActionBar(title: "Continuer", isEnabled: true, counter: nil, showsFade: false) {}
+		XCTAssertTrue(plain.showsFade)
+		XCTAssertFalse(bare.showsFade)
+	}
+
+	// MARK: Onboarding screens' bars (TRA-440)
+
+	@MainActor
+	func testWelcomeBarHasItsOwnIdentifierAndNoFade() {
+		let bar = WelcomeView.actionBar {}
+		XCTAssertEqual(bar.identifier, "onboarding-start")
+		XCTAssertFalse(bar.showsFade)
+	}
+
+	@MainActor
+	func testSubgenresBarHasItsOwnIdentifierAndKeepsTheFade() {
+		let bar = SubgenresStepView.actionBar(title: "Continuer", counter: "2 sélectionnés") {}
+		XCTAssertEqual(bar.identifier, "onboarding-subgenres-continue")
+		XCTAssertTrue(bar.showsFade)
+	}
 }
