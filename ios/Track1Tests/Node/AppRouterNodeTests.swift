@@ -134,13 +134,12 @@ final class AppRouterNodeTests: XCTestCase {
 		XCTAssertTrue(router.breadcrumb(for: .genres, rootTitle: nil).isEmpty)
 	}
 
-	func testBreadcrumbNamesANodeOpenedWithoutTitleByItsSlugAndSkipsOtherRoutes() throws {
+	func testBreadcrumbNamesANodeOpenedWithoutTitleByItsSlug() throws {
 		let router = AppRouter()
 		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:trip-hop"))
-		router.push(.entryStatus(.today), in: .today)
 		router.openNode(genre, context: .independent(source: .home), title: "", in: .today)
 
 		XCTAssertEqual(
-			router.breadcrumb(for: .today, rootTitle: nil), [TopBarCrumb(index: 1, title: "trip-hop")])
+			router.breadcrumb(for: .today, rootTitle: nil), [TopBarCrumb(index: 0, title: "trip-hop")])
 	}
 }

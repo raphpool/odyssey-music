@@ -3,7 +3,6 @@ import SwiftUI
 import Track1Core
 
 enum AppRoute: Hashable, Sendable {
-	case entryStatus(AppTab)
 	case node(identity: NodeIdentity, context: NavigationContext)
 }
 
