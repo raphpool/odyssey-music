@@ -29,6 +29,8 @@ struct FactRow: View {
 		.multilineTextAlignment(.leading)
 		.padding(.vertical, Track1Tokens.spacing10)
 		.nodeRowDivider()
+		// One VoiceOver stop per fact, not one for the label and one for the value.
+		.accessibilityElement(children: .combine)
 	}
 }
 

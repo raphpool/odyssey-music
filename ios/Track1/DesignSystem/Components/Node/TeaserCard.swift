@@ -16,11 +16,11 @@ struct TeaserCard: View {
 		Track1Text(text, role: .bodyMedium, verbatim: true)
 			.foregroundStyle(Track1Tokens.colorTextPrimary)
 			.multilineTextAlignment(.leading)
-			// A card in a scroll view can be proposed less height than its text needs: never clip it.
-			.fixedSize(horizontal: false, vertical: true)
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.padding(Track1Tokens.spacing16)
 			.background(Track1Tokens.colorBackgroundElevated)
+			// On the whole card: a parent that proposes less height must not squeeze or clip the text.
+			.fixedSize(horizontal: false, vertical: true)
 			.accessibilityIdentifier(Self.identifier)
 	}
 }
