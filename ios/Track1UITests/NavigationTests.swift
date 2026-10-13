@@ -82,12 +82,19 @@ final class NavigationTests: XCTestCase {
 		add(attachment)
 	}
 
-	/// Swipes the sheet down from its empty area; a tap outside does not exist on a full-height sheet.
+	/// Swipes the sheet down from its top edge; a tap outside does not exist on a full-height sheet.
+	// 2026-10-13 (TRA-398): a 0.1 s press then a drag at 500 px/s from 30 % of the sheet left it open on
+	// iOS 26.4 (ios-check #374): the start landed on the search field and the drag was too slow to cross the
+	// dismissal threshold. Start in the handle area, drag fast to the bottom of the screen, and fall back on a
+	// fast swipe.
 	@MainActor
 	private func dismiss(_ sheet: XCUIElement) {
-		let start = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.3))
-		let end = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.95))
-		start.press(forDuration: 0.1, thenDragTo: end)
-		XCTAssertTrue(sheet.waitForNonExistence(timeout: 2))
+		let start = sheet.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.02))
+		let end = XCUIApplication().coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.98))
+		start.press(forDuration: 0.05, thenDragTo: end, withVelocity: .fast, thenHoldForDuration: 0)
+		if !sheet.waitForNonExistence(timeout: 3) {
+			sheet.swipeDown(velocity: .fast)
+		}
+		XCTAssertTrue(sheet.waitForNonExistence(timeout: 3))
 	}
 }
