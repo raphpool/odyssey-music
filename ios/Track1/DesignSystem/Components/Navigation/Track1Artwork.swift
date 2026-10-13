@@ -19,8 +19,8 @@ struct Track1Artwork: View {
 			}
 		}
 
-		/// Figma sets the glyph in Title/3 (20 pt) on Small and Medium, and in Title/1 (28 pt) on Large, which
-		/// no Figma variable covers: Large takes the local token `sizeIconXLarge` (TRA-443).
+		/// Figma sets the glyph in Title/3 (20 pt) on Small and Medium, and in Title/1 (28 pt frame) on Large,
+		/// which no Figma variable covers: Large takes the local token `sizeIconXLarge` (TRA-443).
 		var glyphSize: CGFloat {
 			switch self {
 			case .small, .medium: Track1Tokens.sizeIconMedium

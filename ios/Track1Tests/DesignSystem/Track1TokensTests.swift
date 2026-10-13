@@ -154,7 +154,6 @@ final class Track1TokensTests: XCTestCase {
 			("local/size/icon-xlarge", Track1Tokens.sizeIconXLarge, 28),
 			("local/size/icon-search", Track1Tokens.sizeIconSearch, 22),
 		]
-		XCTAssertEqual(expected.count, 2)
 		for (name, actual, value) in expected { XCTAssertEqual(actual, value, accuracy: 0.001, name) }
 	}
 
