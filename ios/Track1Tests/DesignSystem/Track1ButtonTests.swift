@@ -83,20 +83,26 @@ final class Track1ButtonTests: XCTestCase {
 	}
 
 	/// A single line keeps the natural height of its font, which is 74 pt for `displayHero` instead of the
-	/// 64 pt of Figma (TRA-384 review): the layout must give it the Figma line height, and leave wrapped
-	/// text alone.
-	func testASingleLineGetsTheFigmaLineHeightAndWrappedTextKeepsItsHeight() throws {
-		let role = Track1TextRole.displayHero
-		let natural = try XCTUnwrap(UIFont(name: role.face.rawValue, size: role.size)).lineHeight
-		XCTAssertGreaterThan(natural, role.lineHeight)
-		XCTAssertEqual(
-			Track1LineHeight.height(measured: natural, lineHeight: role.lineHeight, naturalHeight: natural),
-			role.lineHeight)
-		let wrapped = 2 * natural + role.lineSpacing()
-		XCTAssertEqual(
-			Track1LineHeight.height(measured: wrapped, lineHeight: role.lineHeight, naturalHeight: natural),
-			wrapped)
+	/// 64 pt of Figma (TRA-384 review): N lines must measure N x the Figma line height, one line or several.
+	func testTextHeightIsAMultipleOfTheFigmaLineHeight() throws {
+		for role in Track1TextRole.allCases {
+			let natural = try XCTUnwrap(UIFont(name: role.face.rawValue, size: role.size)).lineHeight
+			let spacing = role.lineSpacing(compatibleWith: defaultSize)
+			for lines in 1...4 {
+				// What `Text` measures for that many lines at the default content size.
+				let measured = CGFloat(lines) * natural + CGFloat(lines - 1) * spacing
+				XCTAssertEqual(
+					Track1LineHeight.lineCount(
+						measured: measured, lineHeight: role.lineHeight, naturalHeight: natural),
+					lines, "\(role) on \(lines) lines")
+				XCTAssertEqual(
+					Track1LineHeight.height(measured: measured, lineHeight: role.lineHeight, naturalHeight: natural),
+					CGFloat(lines) * role.lineHeight, accuracy: 0.001, "\(role) on \(lines) lines")
+			}
+		}
 	}
+
+	private let defaultSize = UITraitCollection(preferredContentSizeCategory: .large)
 
 	// MARK: Helpers
 

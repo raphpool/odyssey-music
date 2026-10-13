@@ -33,13 +33,18 @@ struct Track1Text: View {
 
 /// `Text.lineSpacing` only applies between two lines, so a single line keeps the natural height of its font
 /// and the Figma line height is lost: `displayHero` measures 74 pt instead of 64 (TRA-384 review,
-/// 2026-10-13). `Track1LineHeightLayout` gives a single line the Figma line height, scaled by Dynamic Type,
-/// and leaves wrapped text at its measured height.
+/// 2026-10-13). `Track1LineHeightLayout` gives a text N lines of the Figma line height, N x `lineHeight`,
+/// scaled by Dynamic Type, so that one line and a wrapped text share one rule.
 enum Track1LineHeight {
-	/// A wrapped text is at least two natural lines tall, a single one is one; 1.5 separates them without
-	/// depending on the exact rounding of the measured height.
+	/// `Text` measures `(n - 1) x lineHeight + naturalHeight` for n lines: the spacing between lines is
+	/// `lineHeight - naturalHeight`. Solving for n absorbs any rounding in the measured height.
+	static func lineCount(measured: CGFloat, lineHeight: CGFloat, naturalHeight: CGFloat) -> Int {
+		guard lineHeight > 0 else { return 1 }
+		return max(1, Int(((measured - naturalHeight) / lineHeight).rounded()) + 1)
+	}
+
 	static func height(measured: CGFloat, lineHeight: CGFloat, naturalHeight: CGFloat) -> CGFloat {
-		measured < naturalHeight * 1.5 ? lineHeight : measured
+		CGFloat(lineCount(measured: measured, lineHeight: lineHeight, naturalHeight: naturalHeight)) * lineHeight
 	}
 }
 
