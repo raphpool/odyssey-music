@@ -26,6 +26,8 @@ struct SettingsView: View {
 							title: "Goûts musicaux", subtitle: profileDescription, accessory: .chevron, action: editProfile
 						)
 						.accessibilityIdentifier("profile-settings-edit")
+						// Read by ProfileFlowTests (`.value`): the list item only exposes a combined label.
+						.accessibilityValue(profileDescription)
 					}
 				}
 				SettingsSection(title: "Confidentialité") {
