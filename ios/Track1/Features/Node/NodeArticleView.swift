@@ -1,4 +1,5 @@
 import SwiftUI
+import Track1Core
 
 enum NodeArticleBlock: Equatable, Sendable {
 	case paragraph(String)
