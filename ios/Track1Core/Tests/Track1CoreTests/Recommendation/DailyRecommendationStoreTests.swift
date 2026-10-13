@@ -1,8 +1,7 @@
 import Foundation
-import Track1Core
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 final class DailyRecommendationStoreTests: XCTestCase {
 	private static let fileName = "daily-recommendation.v1.json"

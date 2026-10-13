@@ -1,20 +1,34 @@
 import Foundation
-import Track1Core
 
 /// The work chosen for one local date. JSON keys are snake_case for readability only: this record lives in the
 /// native client's own `daily-recommendation.v1.json` and is never read by the React Native client, so it
 /// deliberately omits RN-only fields such as `view_event_id` (2026-10-10 V1 plan, TRA-343: no Segment
 /// transport, no storage shared with the Expo build).
-struct DailyRecommendation: Codable, Equatable, Sendable {
-	let recommendationID: UUID
-	let localDate: String
-	let profileRevision: Int
-	let nodeID: NodeIdentity
-	let nodeType: NodeType
-	let name: String
-	let teaser: String?
-	let reasons: [String]
-	var viewRecorded: Bool
+public struct DailyRecommendation: Codable, Equatable, Sendable {
+	public let recommendationID: UUID
+	public let localDate: String
+	public let profileRevision: Int
+	public let nodeID: NodeIdentity
+	public let nodeType: NodeType
+	public let name: String
+	public let teaser: String?
+	public let reasons: [String]
+	public var viewRecorded: Bool
+
+	public init(
+		recommendationID: UUID, localDate: String, profileRevision: Int, nodeID: NodeIdentity, nodeType: NodeType,
+		name: String, teaser: String?, reasons: [String], viewRecorded: Bool
+	) {
+		self.recommendationID = recommendationID
+		self.localDate = localDate
+		self.profileRevision = profileRevision
+		self.nodeID = nodeID
+		self.nodeType = nodeType
+		self.name = name
+		self.teaser = teaser
+		self.reasons = reasons
+		self.viewRecorded = viewRecorded
+	}
 
 	// Explicit keys: the wire format must not depend on a decoder's key strategy.
 	enum CodingKeys: String, CodingKey {
@@ -28,7 +42,7 @@ struct DailyRecommendation: Codable, Equatable, Sendable {
 	}
 
 	/// A missing teaser is written as `null`, not omitted, so every stored record carries the same key set.
-	func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(recommendationID, forKey: .recommendationID)
 		try container.encode(localDate, forKey: .localDate)
@@ -44,7 +58,7 @@ struct DailyRecommendation: Codable, Equatable, Sendable {
 
 /// Swift port of the daily pick in `mobile/src/recommendation/daily.ts`: the same person and the same
 /// date must choose the same work on both clients.
-enum DailySelection {
+public enum DailySelection {
 	/// FNV-1a 32 over UTF-8 keeps the pick stable across runtimes, unlike `Hasher`, which is seeded per run.
 	static func fnv1a32(_ value: String) -> UInt32 {
 		var hash: UInt32 = 0x811c_9dc5
@@ -57,7 +71,7 @@ enum DailySelection {
 
 	/// The calendar day in `timeZone` as `yyyy-MM-dd`. The Gregorian calendar and POSIX locale are pinned
 	/// so a device set to another calendar or numbering system never changes the key.
-	static func localDate(for date: Date, timeZone: TimeZone) -> String {
+	public static func localDate(for date: Date, timeZone: TimeZone) -> String {
 		var calendar = Calendar(identifier: .gregorian)
 		calendar.timeZone = timeZone
 		let formatter = DateFormatter()
@@ -70,7 +84,7 @@ enum DailySelection {
 
 	/// Candidates are expected in `Affinity.rank` order. The hash indexes the eligible group itself:
 	/// filtering after the modulo would skew a partially seen cycle.
-	static func pick(
+	public static func pick(
 		candidates: [AffinityCandidate], history: [DailyRecommendation], localID: UUID, localDate: String
 	) -> AffinityCandidate? {
 		guard !candidates.isEmpty else { return nil }

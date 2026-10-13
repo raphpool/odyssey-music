@@ -1,8 +1,7 @@
 import Foundation
-import Track1Core
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 final class DailySelectionTests: XCTestCase {
 	private let localID = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!

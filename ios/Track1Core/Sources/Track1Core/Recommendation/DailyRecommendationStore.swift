@@ -6,7 +6,7 @@ import Track1Core
 /// The history is derived data: an unreadable, corrupt or unsupported file reads as empty and is overwritten
 /// by the next save instead of blocking the daily pick. Everything on disk is untrusted, so entries are
 /// validated while decoding and an invalid one is dropped on its own.
-actor DailyRecommendationStore {
+public actor DailyRecommendationStore {
 	static let historyLimit = 40
 
 	private static let fileName = "daily-recommendation.v1.json"
@@ -17,14 +17,14 @@ actor DailyRecommendationStore {
 	private var isLocked = false
 	private var waiters: [CheckedContinuation<Void, Never>] = []
 
-	init(localStore: LocalStore, resetBeforeUse: Bool = false) {
+	public init(localStore: LocalStore, resetBeforeUse: Bool = false) {
 		self.localStore = localStore
 		shouldResetBeforeUse = resetBeforeUse
 	}
 
 	/// The stored history, oldest first. Empty when the file cannot be read as a version 1 history, including
 	/// when the read itself fails: the contract has no error channel here, unlike `markViewed`.
-	func history() async -> [DailyRecommendation] {
+	public func history() async -> [DailyRecommendation] {
 		await acquire()
 		defer { release() }
 		await resetIfNeeded()
@@ -35,7 +35,7 @@ actor DailyRecommendationStore {
 	/// Replaces the history with the last `historyLimit` entries of `recommendations`. Nothing is written when
 	/// an entry would not survive a reload, and a failed write leaves the previous file untouched
 	/// (`LocalStore` writes atomically).
-	func save(_ recommendations: [DailyRecommendation]) async -> Result<Void, LocalStoreError> {
+	public func save(_ recommendations: [DailyRecommendation]) async -> Result<Void, LocalStoreError> {
 		await acquire()
 		defer { release() }
 		await resetIfNeeded()
@@ -45,7 +45,7 @@ actor DailyRecommendationStore {
 
 	/// Marks the matching entry as viewed and leaves every other entry as it was. An unknown or already
 	/// viewed identifier is a successful no-op.
-	func markViewed(_ recommendationID: UUID) async -> Result<Void, LocalStoreError> {
+	public func markViewed(_ recommendationID: UUID) async -> Result<Void, LocalStoreError> {
 		await acquire()
 		defer { release() }
 		await resetIfNeeded()
