@@ -238,4 +238,196 @@ final class OnboardingFlowModelTests: XCTestCase {
 		XCTAssertTrue(draft.onboardingStartedRecorded)
 		XCTAssertEqual(draft.genreIDs, [hipHop, trap, drill])
 	}
+
+	// MARK: - Editing an old profile (TRA-442)
+
+	private let rock = NodeIdentity(rawValue: "genre:rock")!
+	private let shoegaze = NodeIdentity(rawValue: "genre:shoegaze")!
+	private let altRock = NodeIdentity(rawValue: "genre:alt-rock")!
+	private let grunge = NodeIdentity(rawValue: "genre:grunge")!
+	private let ambient = NodeIdentity(rawValue: "genre:ambient")!
+	private let soul = NodeIdentity(rawValue: "genre:soul")!
+	private let rnb = NodeIdentity(rawValue: "genre:rnb")!
+	private let neoSoul = NodeIdentity(rawValue: "genre:neo-soul")!
+
+	/// Rock > Shoegaze, Rock > Alt rock > Grunge (level 3), Soul and R&B sharing Neo soul, Jazz > Bebop.
+	/// `genre:orphan-level-3` hangs under a subgenre that no parent reaches, so it has no ancestor to join.
+	private func deepTaxonomy() throws -> GenreTaxonomy {
+		GenreTaxonomy(
+			catalog: try OnboardingFixture.catalog(
+				nodes: [
+					("genre:rock", "Rock"), ("genre:shoegaze", "Shoegaze"), ("genre:alt-rock", "Alt rock"),
+					("genre:grunge", "Grunge"), ("genre:soul", "Soul"), ("genre:rnb", "R&B"),
+					("genre:neo-soul", "Neo soul"), ("genre:jazz", "Jazz"), ("genre:bebop", "Bebop"),
+					("genre:ambient", "Ambient"), ("genre:loop-a", "Loop A"), ("genre:orphan-level-3", "Orphan"),
+				],
+				edges: [
+					("genre:rock", "genre:shoegaze", "subgenres"), ("genre:rock", "genre:alt-rock", "subgenres"),
+					("genre:alt-rock", "genre:grunge", "subgenres"), ("genre:soul", "genre:neo-soul", "subgenres"),
+					("genre:rnb", "genre:neo-soul", "subgenres"), ("genre:jazz", "genre:bebop", "subgenres"),
+					("genre:loop-a", "genre:orphan-level-3", "subgenres"),
+					("genre:orphan-level-3", "genre:loop-a", "subgenres"),
+				]
+			))
+	}
+
+	private func deepModel(editing stored: [NodeIdentity]) throws -> OnboardingFlowModel {
+		OnboardingFlowModel(taxonomy: try deepTaxonomy(), editing: profile(stored))
+	}
+
+	func testASubgenreWithoutItsParentLoadsWithTheParentSelectedAndTheSubgenreChecked() async throws {
+		let model = try deepModel(editing: [shoegaze])
+
+		XCTAssertEqual(model.selectedParents, [rock])
+		XCTAssertEqual(model.subgenreSteps, [rock])
+		XCTAssertEqual(model.selectedSubgenreCount, 1)
+		XCTAssertEqual(model.droppedGenres, [])
+		// Saving without touching anything keeps both, and the profile store accepts the result.
+		let draft = model.makeDraft()
+		XCTAssertEqual(draft.genreIDs, [rock, shoegaze])
+		let directory = FileManager.default.temporaryDirectory.appending(
+			path: UUID().uuidString, directoryHint: .isDirectory)
+		defer { try? FileManager.default.removeItem(at: directory) }
+		let store = ProfileStore(localStore: LocalStore(directoryURL: directory))
+		guard case .saved(let saved) = await store.commit(draft, availableGenreIDs: [rock, shoegaze]) else {
+			return XCTFail("Expected the promoted selection to be saved.")
+		}
+		XCTAssertEqual(saved.genreIDs, [rock, shoegaze])
+	}
+
+	func testThePromotedSubgenreCanBeUncheckedAndTheParentStays() throws {
+		let model = try deepModel(editing: [shoegaze])
+
+		model.toggleSubgenre(shoegaze, of: rock)
+
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock])
+		XCTAssertTrue(model.canContinueFromGenres)
+	}
+
+	func testPromotedParentsFollowTheExistingOnesInStoredOrder() throws {
+		let model = try deepModel(editing: [shoegaze, jazz, bebop])
+
+		XCTAssertEqual(model.selectedParents, [jazz, rock])
+		XCTAssertEqual(model.makeDraft().genreIDs, [jazz, rock, shoegaze, bebop])
+	}
+
+	func testASubgenreWhoseParentIsAlreadySelectedPromotesNothing() throws {
+		let model = try deepModel(editing: [shoegaze, rock])
+
+		XCTAssertEqual(model.selectedParents, [rock])
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock, shoegaze])
+		XCTAssertEqual(model.droppedGenres, [])
+	}
+
+	func testSeveralOrphanSubgenresOfTheSameParentPromoteItOnce() throws {
+		let model = try deepModel(editing: [shoegaze, altRock])
+
+		XCTAssertEqual(model.selectedParents, [rock])
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock, shoegaze, altRock])
+	}
+
+	func testAnOrphanSharedByTwoParentsPromotesOnlyTheFirstOneInTileOrder() throws {
+		let model = try deepModel(editing: [neoSoul])
+
+		// "R&B" sorts before "Soul": one deterministic parent, not both.
+		XCTAssertEqual(model.selectedParents, [rnb])
+		XCTAssertEqual(model.makeDraft().genreIDs, [rnb, neoSoul])
+	}
+
+	func testAnOrphanSharedByTwoParentsPromotesNothingWhenOneParentIsSelected() throws {
+		let model = try deepModel(editing: [soul, neoSoul])
+
+		XCTAssertEqual(model.selectedParents, [soul])
+		XCTAssertEqual(model.makeDraft().genreIDs, [soul, neoSoul])
+	}
+
+	func testALevelThreeGenreIsReplacedByItsLevelTwoAncestorAndItsParentIsPromoted() throws {
+		let model = try deepModel(editing: [grunge])
+
+		XCTAssertEqual(model.selectedParents, [rock])
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock, altRock])
+		// The level-3 genre has no tile: it is dropped, and the ancestor that replaces it is not.
+		XCTAssertEqual(model.droppedGenres, [grunge])
+	}
+
+	func testALevelThreeGenreDoesNotDuplicateAnAncestorAlreadyThere() throws {
+		let model = try deepModel(editing: [rock, altRock, grunge])
+
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock, altRock])
+		XCTAssertEqual(model.droppedGenres, [grunge])
+	}
+
+	func testALevelThreeGenreWithoutAnAncestorInTheTaxonomyIsDropped() throws {
+		let orphan = NodeIdentity(rawValue: "genre:orphan-level-3")!
+		let model = try deepModel(editing: [jazz, orphan])
+
+		XCTAssertEqual(model.makeDraft().genreIDs, [jazz])
+		XCTAssertEqual(model.droppedGenres, [orphan])
+	}
+
+	func testAnUnknownGenreIsAbsentFromTheSavedDraftAndListedAsDropped() throws {
+		let missing = NodeIdentity(rawValue: "genre:chiptune")!
+		let model = try deepModel(editing: [missing, jazz, shoegaze, ambient])
+
+		XCTAssertEqual(model.makeDraft().genreIDs, [jazz, rock, shoegaze])
+		// `ambient` exists in the catalog but has neither a tile nor a parent: same rule as an absent genre.
+		XCTAssertEqual(model.droppedGenres, [missing, ambient])
+	}
+
+	func testAProfileWhoseGenresAreAllUnknownDoesNotMeetTheMinimumAndSaysSo() throws {
+		let missing = NodeIdentity(rawValue: "genre:chiptune")!
+		let model = try deepModel(editing: [missing, ambient])
+
+		XCTAssertFalse(model.canContinueFromGenres)
+		XCTAssertEqual(model.selectedParents, [])
+		XCTAssertEqual(model.makeDraft().genreIDs, [])
+		XCTAssertEqual(model.droppedGenres, [missing, ambient])
+	}
+
+	func testAnEmptyProfileLoadsEmptyWithNothingDropped() throws {
+		let model = try deepModel(editing: [])
+
+		XCTAssertFalse(model.canContinueFromGenres)
+		XCTAssertEqual(model.makeDraft().genreIDs, [])
+		XCTAssertEqual(model.droppedGenres, [])
+	}
+
+	func testAProfileCreatedByTheFlowReloadsIdenticallyWithoutParasiticPromotion() throws {
+		let taxonomy = try deepTaxonomy()
+		let first = OnboardingFlowModel(taxonomy: taxonomy)
+		first.toggleParent(rock)
+		first.toggleParent(jazz)
+		first.toggleParent(soul)
+		first.toggleParent(rnb)
+		first.toggleSubgenre(shoegaze, of: rock)
+		first.toggleSubgenre(neoSoul, of: soul)
+		first.toggleSubgenre(bebop, of: jazz)
+		let saved = first.makeDraft().genreIDs
+
+		let reloaded = OnboardingFlowModel(taxonomy: taxonomy, editing: profile(saved))
+
+		XCTAssertEqual(reloaded.makeDraft().genreIDs, saved)
+		XCTAssertEqual(reloaded.selectedParents, first.selectedParents)
+		XCTAssertEqual(reloaded.selectedSubgenreCount, first.selectedSubgenreCount)
+		XCTAssertEqual(reloaded.droppedGenres, [])
+	}
+
+	func testReloadingTwiceIsStable() throws {
+		let taxonomy = try deepTaxonomy()
+		let once = OnboardingFlowModel(taxonomy: taxonomy, editing: profile([grunge, neoSoul, ambient]))
+		let twice = OnboardingFlowModel(taxonomy: taxonomy, editing: profile(once.makeDraft().genreIDs))
+
+		XCTAssertEqual(twice.makeDraft().genreIDs, once.makeDraft().genreIDs)
+		XCTAssertEqual(twice.droppedGenres, [])
+	}
+
+	func testAResumedDraftAlsoPromotesTheParentOfAnOrphanSubgenre() throws {
+		let flowID = UUID()
+		let draft = ProfileDraft(
+			version: Profile.version, flowID: flowID, genreIDs: [shoegaze], onboardingStartedRecorded: true)
+		let model = OnboardingFlowModel(taxonomy: try deepTaxonomy(), draft: draft)
+
+		XCTAssertEqual(model.makeDraft().genreIDs, [rock, shoegaze])
+		XCTAssertEqual(model.makeDraft().flowID, flowID)
+	}
 }
