@@ -9,6 +9,7 @@ import { describe, expect, it } from "vitest";
 // actool really compiled it.
 const ICON = "ios/Track1/Resources/AppIcon.icon";
 const PROJECT = "ios/Track1.xcodeproj/project.pbxproj";
+const BASE_XCCONFIG = "ios/Configurations/Base.xcconfig";
 
 interface IconManifest {
 	groups?: Array<{ layers?: Array<{ "image-name"?: string }> }>;
@@ -81,17 +82,13 @@ describe("iOS app icon (Icon Composer bundle)", () => {
 		expect(project.match(/AppIcon\.icon in Resources/g)).toHaveLength(2);
 	});
 
-	it("declares ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon on every app build configuration", async () => {
+	it("declares the app icon name once, in Base.xcconfig, and the pbxproj never overrides it", async () => {
+		const base = await readFile(BASE_XCCONFIG, "utf8");
 		const project = await readFile(PROJECT, "utf8");
-		const target = appTarget(project);
-		const listId = target.match(/buildConfigurationList = ([A-F0-9]{24})/)?.[1];
-		if (listId === undefined) throw new Error("Track1 target has no configuration list");
-		const configurationIds = listedIds(objectLine(project, listId), "buildConfigurations");
 
-		expect(configurationIds.length).toBeGreaterThan(0);
-		for (const id of configurationIds) {
-			expect(objectLine(project, id), id).toContain("ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;");
-		}
+		// A target-level setting in the pbxproj would silently win over the xcconfig: two sources of truth.
+		expect(base).toMatch(/^ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon$/m);
+		expect(project).not.toContain("ASSETCATALOG_COMPILER_APPICON_NAME");
 	});
 
 	it("leaves no AppIcon.appiconset, whose name would clash with AppIcon.icon", async () => {
