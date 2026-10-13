@@ -28,6 +28,22 @@ swift_sorted_file=""
 runtime_id="$(xcrun simctl list runtimes available -j | jq -r '.runtimes[] | select(.name == "iOS 26.4") | .identifier' | head -n 1)"
 simulator_boot_timeout_seconds="${SIMULATOR_BOOT_TIMEOUT_SECONDS:-600}"
 swift_files=()
+swift_test_pid=""
+step_name=""
+step_started=0
+
+# 2026-10-13: a logic error was only known after 4 to 5 min of simulator (boot, then two builds, then the
+# tests). The Track1Core package tests now run first, with `swift test` on the host (no simulator), so a
+# broken one fails the job within a minute and frees the runner.
+# - Watchdog: a hung `swift test` must not hold the runner until the 30 min job timeout. macOS has no
+#   `timeout`, so the process runs in the background in its own process group (job control) and is polled;
+#   at the deadline the whole group is killed, because swift test spawns children (swift-build, the xctest
+#   runner) that would otherwise be orphaned and keep the CPU.
+# - Durations: every step ends with a `[check] <step>: <n>s` line (seconds since the step began, from
+#   $SECONDS) and the trap prints `total` (since the script started), so the CI log shows which step is slow
+#   without parsing timestamps. The Xcode checks and the stale simulator cleanup before `lint` are in total
+#   only, so the steps do not add up to it. A step that fails prints its line with "(failed)".
+swift_test_timeout_seconds="${TRACK1_SWIFT_TEST_TIMEOUT_SECONDS:-300}"
 
 # 2026-10-12: ios-check took 7 min 40 warm, and 3 min 50 of it were the boot of a simulator that check.sh had
 # just created (`simctl create`, then `delete` at the end): the first boot of a brand-new device initialises
@@ -239,7 +255,7 @@ discover_swift_files() {
 	local swift_root
 	swift_discovery_file="$(mktemp "${TMPDIR:-/tmp}/track1-swift-discovery.XXXXXX")"
 	swift_sorted_file="$(mktemp "${TMPDIR:-/tmp}/track1-swift-sorted.XXXXXX")"
-	for swift_root in "$ios_dir/Track1" "$ios_dir/Track1Tests" "$ios_dir/Track1UITests"; do
+	for swift_root in "$ios_dir/Track1" "$ios_dir/Track1Tests" "$ios_dir/Track1UITests" "$ios_dir/Track1Core"; do
 		if [[ ! -d "$swift_root" || -L "$swift_root" ]]; then
 			echo "Expected Swift source root is missing or is a symlink: $swift_root" >&2
 			return 1
@@ -264,7 +280,72 @@ discover_swift_files() {
 	fi
 }
 
+begin_step() {
+	step_name="$1"
+	step_started=$SECONDS
+}
+
+end_step() {
+	echo "[check] $step_name: $((SECONDS - step_started))s"
+	step_name=""
+}
+
+# Kills the whole process group of the running `swift test`, then reaps it.
+stop_swift_test() {
+	[[ -n "$swift_test_pid" ]] || return 0
+	if ! kill -TERM -- "-$swift_test_pid" 2>/dev/null; then
+		# No process group of its own (job control unavailable): only the leader can be stopped.
+		echo "Could not signal the process group of swift test ($swift_test_pid); stopping the leader only." >&2
+		kill -TERM "$swift_test_pid" 2>/dev/null || true
+	fi
+	for _ in {1..20}; do
+		kill -0 "$swift_test_pid" 2>/dev/null || break
+		sleep 0.1
+	done
+	# The leader may be gone while a child of the group still runs.
+	kill -KILL -- "-$swift_test_pid" 2>/dev/null || true
+	wait "$swift_test_pid" 2>/dev/null || true
+	swift_test_pid=""
+}
+
+# Runs the Track1Core tests on the host. `swift` comes from PATH (not xcrun). The scratch folder lives under
+# derived_data_root, which is already locked and purged by setup_derived_data_cache: no lock of its own.
+run_package_tests() {
+	local waited_ticks=0
+	local status=0
+	if [[ ! "$swift_test_timeout_seconds" =~ ^[1-9][0-9]*$ ]]; then
+		echo "TRACK1_SWIFT_TEST_TIMEOUT_SECONDS must be a whole number of seconds, got '$swift_test_timeout_seconds'." >&2
+		return 1
+	fi
+	# Job control only while launching: it gives the background job its own process group (pgid = pid).
+	set -m
+	swift test \
+		--package-path "$ios_dir/Track1Core" \
+		--scratch-path "$derived_data_root/Track1Core/.build" \
+		--skip-update </dev/null &
+	swift_test_pid=$!
+	set +m
+	while kill -0 "$swift_test_pid" 2>/dev/null; do
+		# Ticks of 0.2 s: the deadline is never reached early.
+		if ((waited_ticks >= swift_test_timeout_seconds * 5)); then
+			echo "swift test did not finish within ${swift_test_timeout_seconds}s (TRACK1_SWIFT_TEST_TIMEOUT_SECONDS); killing its process group." >&2
+			stop_swift_test
+			return 1
+		fi
+		sleep 0.2
+		((waited_ticks += 1))
+	done
+	wait "$swift_test_pid" || status=$?
+	swift_test_pid=""
+	return "$status"
+}
+
 cleanup() {
+	if [[ -n "$step_name" ]]; then
+		echo "[check] $step_name: $((SECONDS - step_started))s (failed)"
+	fi
+	echo "[check] total: ${SECONDS}s"
+	stop_swift_test
 	if [[ -n "$contract_pid" ]] && kill -0 "$contract_pid" 2>/dev/null; then
 		kill -TERM "$contract_pid" 2>/dev/null || true
 		for _ in {1..20}; do
@@ -587,11 +668,23 @@ else
 	echo "No external Swift package is declared; no Package.resolved is required."
 fi
 
+begin_step lint
 discover_swift_files
 ensure_contract_runtime
 
 xcrun swift-format lint --strict --configuration "$format_configuration" "${swift_files[@]}"
+end_step
 
+# The cache (and its lock) is set up before the package tests, which keep their scratch folder in it.
+begin_step package-tests
+setup_derived_data_cache
+if ! run_package_tests; then
+	echo "The Track1Core package tests failed; no simulator was started." >&2
+	exit 1
+fi
+end_step
+
+begin_step resolve
 for scheme in Track1 Track1Preview; do
 	xcodebuild \
 		-resolvePackageDependencies \
@@ -601,15 +694,21 @@ for scheme in Track1 Track1Preview; do
 		-scheme "$scheme" \
 		-clonedSourcePackagesDirPath "$output_dir/SourcePackages"
 done
+end_step
 
-setup_derived_data_cache
+# Includes the start of the contract harness, which is quick.
+begin_step simulator-boot
 start_contract_harness
 
 provision_simulator
+end_step
 
 for scheme in Track1 Track1Preview; do
 	derived_data_path="$derived_data_root/$scheme"
+	begin_step "build-$scheme"
 	build_for_testing "$scheme" "$derived_data_path"
+	end_step
+	begin_step "tests-$scheme"
 	xctestrun_path="$(find "$derived_data_path/Build/Products" -maxdepth 1 -name '*.xctestrun' -type f -print -quit)"
 	if [[ -z "$xctestrun_path" ]]; then
 		echo "xcodebuild did not produce an xctestrun file for $scheme." >&2
@@ -646,4 +745,5 @@ for scheme in Track1 Track1Preview; do
 		verify_contract_report
 		reset_contract_report
 	fi
+	end_step
 done
