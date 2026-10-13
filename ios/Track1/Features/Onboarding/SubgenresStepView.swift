@@ -7,8 +7,20 @@ import Track1Core
 /// by its CTA label, which the model decides. The title, the chip and the rows scroll together; the action
 /// bar stays pinned. Selection logic lives in `OnboardingFlowModel`, this view only reads and toggles it.
 struct SubgenresStepView: View {
-	/// Set on the bar's container, see `WelcomeView.startIdentifier`.
+	/// Set on the bar's button (`BottomActionBar.identifier`).
 	static let continueIdentifier = "onboarding-subgenres-continue"
+
+	/// The bar as the screen builds it, so a test reads the parameters the screen really passes.
+	/// "Continuer stays available while other parents remain" (spec `176:216`): a step with no row checked is
+	/// valid, the parent alone is already a genre of the profile (D13).
+	@MainActor
+	static func actionBar(title: String, counter: String?, onContinue: @escaping () -> Void)
+		-> BottomActionBar
+	{
+		BottomActionBar(
+			title: title, isEnabled: true, counter: counter, identifier: continueIdentifier,
+			action: onContinue)
+	}
 
 	/// The tick sound of the scroll (spec `176:219`): the system "Tock" click. A system sound, so the silent
 	/// switch mutes it, as drawn.
@@ -75,15 +87,11 @@ struct SubgenresStepView: View {
 			.padding(.bottom, Track1Tokens.spacing24)
 		}
 		.safeAreaInset(edge: .bottom, spacing: 0) {
-			BottomActionBar(
-				// "Continuer stays available while other parents remain" (spec `176:216`): a step with no row
-				// checked is valid, the parent alone is already a genre of the profile (D13).
-				title: ctaTitle, isEnabled: true,
-				counter: OnboardingCopy.counter(model.selectedSubgenreCount), action: onContinue
+			Self.actionBar(
+				title: ctaTitle, counter: OnboardingCopy.counter(model.selectedSubgenreCount),
+				onContinue: onContinue
 			)
 			.background { BarTopReader(space: Space.viewport) }
-			.accessibilityElement(children: .contain)
-			.accessibilityIdentifier(Self.continueIdentifier)
 		}
 		.coordinateSpace(name: Space.viewport)
 		.onPreferenceChange(RowEdgeKey.self) { scroll.layoutChanged(rowMaxYs: $0) }
