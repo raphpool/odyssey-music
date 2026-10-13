@@ -1,19 +1,18 @@
 import Foundation
 import Observation
-import Track1Core
 
-enum NodeViewState: Sendable {
+public enum NodeViewState: Sendable {
 	case loading
 	case loaded(NodeDetail)
 	case missing(NodeIdentity)
 	case failed
 }
 
-typealias NodeReader = @Sendable (NodeIdentity) async -> APIResult<NodeResponse>
-typealias NodeEventRecorder = @MainActor @Sendable (AnalyticsEvent) -> Void
-typealias LinksReader = @Sendable (NodeIdentity) async -> APIResult<LinksResponse>
+public typealias NodeReader = @Sendable (NodeIdentity) async -> APIResult<NodeResponse>
+public typealias NodeEventRecorder = @MainActor @Sendable (AnalyticsEvent) -> Void
+public typealias LinksReader = @Sendable (NodeIdentity) async -> APIResult<LinksResponse>
 
-enum ListeningState: Equatable {
+public enum ListeningState: Equatable, Sendable {
 	case hidden
 	case loading
 	case ready([ListeningAction])
@@ -21,22 +20,22 @@ enum ListeningState: Equatable {
 
 @MainActor
 @Observable
-final class NodeViewModel {
+public final class NodeViewModel {
 	private(set) var requestedIdentity: NodeIdentity
-	private(set) var state: NodeViewState = .loading
-	private(set) var listening: ListeningState = .hidden
+	public private(set) var state: NodeViewState = .loading
+	public private(set) var listening: ListeningState = .hidden
 	/// True from the first accepted gesture until the OS answers, so the view can disable its buttons.
-	private(set) var isOpeningListening = false
+	public private(set) var isOpeningListening = false
 	/// Provider whose last opening failed; cleared by the next gesture.
-	private(set) var listeningFailure: ListeningProvider?
+	public private(set) var listeningFailure: ListeningProvider?
 
-	let context: NavigationContext
+	public let context: NavigationContext
 	private let readNode: NodeReader
 	private let readLinks: LinksReader?
 	private let recordEvent: NodeEventRecorder?
 	private var trackedIdentities = Set<NodeIdentity>()
 
-	init(
+	public init(
 		identity: NodeIdentity,
 		context: NavigationContext,
 		readNode: @escaping NodeReader,
@@ -52,13 +51,13 @@ final class NodeViewModel {
 
 	/// Handed to the relations section so it records `relation_opened` through the same recorder as
 	/// `node_viewed`.
-	var relationEventRecorder: NodeEventRecorder? { recordEvent }
+	public var relationEventRecorder: NodeEventRecorder? { recordEvent }
 
 	/// Loads the node. Idempotent once `.loaded`: SwiftUI restarts the view's `.task` each time the view
 	/// reappears, and 2026-10-12 popping back from a related node swapped the `ScrollView` for a
 	/// `ProgressView` (scroll position lost, `.failed` when offline). Only `.loading`, `.missing` and `.failed`
 	/// (the "Réessayer" button) fetch again.
-	func load() async {
+	public func load() async {
 		if case .loaded(let node) = state {
 			// A load cancelled while `/links` was in flight left the section at `.loading`; resolve only
 			// that part. A `.ready` or `.hidden` section is final and stays as it is.
@@ -93,7 +92,7 @@ final class NodeViewModel {
 	/// Hands the action to the OS and records the outcome. A second gesture while one is in flight is
 	/// dropped here: `ListeningActions.open` records one event per call, so only this guard keeps a double
 	/// tap from opening the service twice.
-	func openListening(_ action: ListeningAction, using open: @MainActor (URL) async -> Bool) async {
+	public func openListening(_ action: ListeningAction, using open: @MainActor (URL) async -> Bool) async {
 		guard !isOpeningListening, case .loaded(let node) = state else { return }
 		isOpeningListening = true
 		listeningFailure = nil
@@ -129,7 +128,7 @@ final class NodeViewModel {
 	}
 }
 
-enum NodeAnalytics {
+public enum NodeAnalytics {
 	static func nodeViewed(_ node: NodeDetail, context: NavigationContext) -> AnalyticsEvent {
 		var properties: [String: AnalyticsValue] = [
 			"node_id": .string(node.id.rawValue),
@@ -139,7 +138,7 @@ enum NodeAnalytics {
 		return AnalyticsEvent(name: .nodeViewed, properties: properties, source: context.source)
 	}
 
-	static func relationOpened(
+	public static func relationOpened(
 		from fromNodeID: NodeIdentity,
 		relation: NodeEdge,
 		kind: String,

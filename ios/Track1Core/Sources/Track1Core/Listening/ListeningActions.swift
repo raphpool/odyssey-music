@@ -1,7 +1,6 @@
 import Foundation
-import Track1Core
 
-enum ListeningProvider: String, CaseIterable, Sendable {
+public enum ListeningProvider: String, CaseIterable, Sendable {
 	case spotify
 	case appleMusic = "apple_music"
 
@@ -22,25 +21,25 @@ enum ListeningProvider: String, CaseIterable, Sendable {
 	}
 }
 
-enum ListeningLinkKind: String, Sendable {
+public enum ListeningLinkKind: String, Sendable {
 	case exact
 	case search
 }
 
-struct ListeningAction: Equatable, Sendable {
-	let provider: ListeningProvider
-	let url: URL
-	let linkKind: ListeningLinkKind
-	let title: String
+public struct ListeningAction: Equatable, Sendable {
+	public let provider: ListeningProvider
+	public let url: URL
+	public let linkKind: ListeningLinkKind
+	public let title: String
 }
 
-enum ListeningOutcome: Equatable, Sendable {
+public enum ListeningOutcome: Equatable, Sendable {
 	case opened
 	case unsafeURL
 	case openFailed
 }
 
-enum ListeningActions {
+public enum ListeningActions {
 	/// Same unreserved set as JavaScript's `encodeURIComponent`, so iOS and the React Native client build the
 	/// same search URLs. `.urlQueryAllowed` would leave `&`, `+`, `=` and `/` unescaped and corrupt the query.
 	private static let unreservedCharacters = CharacterSet(
@@ -50,7 +49,7 @@ enum ListeningActions {
 	private static let trimmedCharacters = CharacterSet.whitespacesAndNewlines.union(
 		CharacterSet(charactersIn: "\u{FEFF}"))
 
-	static func actions(for type: NodeType, name: String, links: LinksResponse?) -> [ListeningAction] {
+	public static func actions(for type: NodeType, name: String, links: LinksResponse?) -> [ListeningAction] {
 		switch type {
 		case .genre, .label:
 			return []
@@ -83,7 +82,7 @@ enum ListeningActions {
 	}
 
 	@MainActor
-	static func open(
+	public static func open(
 		_ action: ListeningAction,
 		node: NodeIdentity,
 		context: NavigationContext,
