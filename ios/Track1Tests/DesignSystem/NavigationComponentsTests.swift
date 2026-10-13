@@ -165,7 +165,10 @@ final class NavigationComponentsTests: XCTestCase {
 	func testAColorWithoutHueStillGivesAGlow() {
 		let stops = AmbientGlowPalette.stops(for: .tinted(.black)).map(components)
 		XCTAssertEqual(stops.count, 3)
-		XCTAssertEqual(stops.map { $0[3] }, AmbientGlowPalette.tintedLevels.map(\.opacity))
+		// The alpha goes through a Float color, so it is compared with a tolerance, not exactly.
+		for (stop, level) in zip(stops, AmbientGlowPalette.tintedLevels) {
+			XCTAssertEqual(stop[3], level.opacity, accuracy: 0.001)
+		}
 	}
 
 	// MARK: Grain
