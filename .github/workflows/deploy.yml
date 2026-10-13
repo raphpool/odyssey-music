@@ -3,6 +3,17 @@ name: deploy
 on:
   push:
     branches: [main]
+    # TRA-441 (2026-10-13): a squash merge that only touches these paths changes nothing the server
+    # runs, and the strict branch protection already guarantees the PR was tested on top of main.
+    # GitHub still starts the run when ONE file of the pushed commit is outside the list, so a merge
+    # mixing ios/ and src/ keeps its deploy. `pull_request` stays unfiltered: required checks run on every PR.
+    # Verified not read in production (deploy/deploy-server.sh, src/server.ts, web/): see the TRA-441 PR description.
+    paths-ignore:
+      - "ios/**"
+      - "docs/**"
+      - ".claude/**"
+      - ".codex/**"
+      - "*.md"
   workflow_dispatch:
 
 concurrency:
