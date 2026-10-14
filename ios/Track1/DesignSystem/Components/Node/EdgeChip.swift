@@ -13,6 +13,10 @@ enum EdgeChipMetrics {
 	static let cornerRadius = Track1Tokens.radius0
 	/// Border width. Figma has no token for it: every border of the design system is 1 pt.
 	static let borderWidth: CGFloat = 1
+	/// Dash pattern of the overflow border: 4 pt drawn, 3 pt gap. Figma shows the dashes on `171:97` but
+	/// gives no value, so this is the pattern chosen in TRA-392 (kept on 2026-10-13, TRA-443). A constant of
+	/// the component, not a design token.
+	static let overflowDash: [CGFloat] = [4, 3]
 	/// Doc `171:100`: "Long names truncate with an ellipsis at 280pt". No token covers it.
 	static let nameMaxWidth: CGFloat = 280
 	/// Doc `171:100`: "Tap target >= 44pt high in code".
@@ -164,7 +168,7 @@ struct EdgeChipOverflow: View {
 		.buttonStyle(
 			EdgeChipButtonStyle(
 				fill: .clear, pressedFill: EdgeChipStyle.pressedFill, border: EdgeChipStyle.overflowBorder,
-				dash: [4, 3], role: .monoTag)
+				dash: EdgeChipMetrics.overflowDash, role: .monoTag)
 		)
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("\(hiddenCount) more")

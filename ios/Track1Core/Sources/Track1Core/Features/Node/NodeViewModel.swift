@@ -50,10 +50,6 @@ public final class NodeViewModel {
 		self.recordEvent = recordEvent
 	}
 
-	/// Handed to the relations section so it records `relation_opened` through the same recorder as
-	/// `node_viewed`.
-	public var relationEventRecorder: NodeEventRecorder? { recordEvent }
-
 	/// One gesture on a related node: records `relation_opened`, then hands the target and its attribution to
 	/// `navigate`. Does neither (returns false) for a repeat inside `RelationOpeningGate.window`. `kind` is the
 	/// section of the relation (`discography`, `tracklist`, ...).

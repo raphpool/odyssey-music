@@ -64,6 +64,30 @@ final class NodeRelationOpeningTests: XCTestCase {
 		XCTAssertEqual(events.values.count, 3)
 	}
 
+	// Moved from the deleted `NodeRelationsTests` (it tested the view's twin of the gate): the window itself.
+	func testTheGateRefusesTheSameKeyInsideThePointSevenFiveSecondsWindowOnly() {
+		let start = Date(timeIntervalSince1970: 1_000)
+		var quick = RelationOpeningGate()
+		XCTAssertTrue(quick.shouldOpen(key: "projects-project:target", at: start))
+		XCTAssertFalse(quick.shouldOpen(key: "projects-project:target", at: start.addingTimeInterval(0.5)))
+
+		var slow = RelationOpeningGate()
+		XCTAssertTrue(slow.shouldOpen(key: "projects-project:target", at: start))
+		XCTAssertTrue(slow.shouldOpen(key: "projects-project:target", at: start.addingTimeInterval(0.8)))
+
+		var other = RelationOpeningGate()
+		XCTAssertTrue(other.shouldOpen(key: "projects-project:target", at: start))
+		XCTAssertTrue(other.shouldOpen(key: "tracks-track:target", at: start.addingTimeInterval(0.1)))
+	}
+
+	func testTheGateMeasuresFromTheLastAcceptedTapNotFromARefusedOne() {
+		let start = Date(timeIntervalSince1970: 1_000)
+		var gate = RelationOpeningGate()
+		XCTAssertTrue(gate.shouldOpen(key: "genres-genre:a", at: start))
+		XCTAssertFalse(gate.shouldOpen(key: "genres-genre:a", at: start.addingTimeInterval(0.5)))
+		XCTAssertTrue(gate.shouldOpen(key: "genres-genre:a", at: start.addingTimeInterval(0.8)))
+	}
+
 	@MainActor
 	private final class EventLog {
 		var values = [AnalyticsEvent]()
