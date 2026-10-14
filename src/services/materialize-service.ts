@@ -1,5 +1,4 @@
 import type { NodeCache } from "../cache.js";
-import { pipelineConfig } from "../config.js";
 import type { ApiEnv } from "../env.js";
 import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
@@ -237,18 +236,19 @@ export function createMaterializeService(deps: {
 		) {
 			throw new BadRequestError("Provided identifiers conflict with the existing node");
 		}
-		// Mobile generation intentionally serves a known node even after the web TTL.
-		// The default remains unchanged so legacy /materialize retains its refresh behavior.
+		// Mobile generation intentionally serves a known node as-is, without the mbid-mismatch
+		// refresh below. The default remains unchanged so legacy /materialize keeps that refresh.
 		if (cached && opts.reuseExisting === true) {
 			return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 		}
 		if (!cached && opts.cacheOnly === true) throw new MaterializeCacheMissError();
 		let effectiveFresh = fresh;
 		if (!fresh && cached) {
-			const matAt = new Date(cached.materialized_at).getTime();
-			const stale = Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs;
+			// 2026-10-14 (TRA-449): age no longer forces a refresh (it used to, past a 12 h TTL --
+			// symptom: prod diverging silently from the repo). Only an explicit `fresh`, or a
+			// client mbid that contradicts the cached one, re-runs the pipeline.
 			const mbidMismatch = !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
-			if (!stale && !mbidMismatch) {
+			if (!mbidMismatch) {
 				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
 			effectiveFresh = true;

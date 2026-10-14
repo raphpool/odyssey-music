@@ -205,6 +205,21 @@ const MB_MAX_ATTEMPTS = 3;
 const MB_RETRY_DELAY_MS = 1_000;
 const MAX_TIMER_DELAY_MS = 2_147_483_647;
 let retryQueue = Promise.resolve();
+// 2026-10-14 (TRA-450): MusicBrainz policy is 1 request/second per client, and the ~4 000-call
+// backfills would otherwise be rejected or banned. Every outgoing request (first attempts and
+// retries alike) reserves the next slot at least `minIntervalMs` after the previous one.
+// Reservations are made synchronously in arrival order and are strictly increasing, so the
+// timers fire FIFO. Read at call time so tests can change it; 0 disables spacing.
+let lastSlotAt = 0;
+
+function reserveSlotDelayMs(): number {
+	const interval = musicBrainzConfig.minIntervalMs;
+	if (interval <= 0) return 0;
+	const now = Date.now();
+	const at = Math.max(now, lastSlotAt + interval);
+	lastSlotAt = at;
+	return at - now;
+}
 
 function retryAfterDelayMs(retryAfter: string | null, now: number): number | null {
 	if (!retryAfter) return null;
@@ -245,6 +260,8 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 	// MusicBrainz returns 503 or 429 when its rate limit is exceeded. Queue retries globally
 	// and wait at least one second so concurrent callers cannot create a recovery burst.
 	for (let attempt = 0; attempt < MB_MAX_ATTEMPTS; attempt++) {
+		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
+		await sleep(reserveSlotDelayMs());
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
