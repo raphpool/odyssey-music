@@ -34,7 +34,7 @@ import { isNotFoundError } from "./errors.js";
 import type { GenreResolver } from "./genre-identity.js";
 import { logger } from "./logger.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
-import { isValidSlug } from "./slug.js";
+import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 
 const log = logger.child({ module: "genre-registry" });
@@ -73,12 +73,46 @@ export function parseGenreRedirects(raw: unknown): GenreRedirects {
 		}
 		redirects.set(from, to);
 	}
+	assertFlattened(redirects, "genre-redirects.json");
+	return redirects;
+}
+
+/**
+ * Parses data/slug-redirects.json (TRA-453): same file shape as genre-redirects.json, but the
+ * table covers every node type (the identity migration renames project and track slugs). Pure:
+ * no I/O.
+ *
+ * Every key and value must be a valid slug, and a redirect never changes type (`track:a ->
+ * project:b` is a type mismatch: a read of a track slug must not answer with another kind of
+ * node). The table must be flattened, as for genres, so a read follows a single hop. Any
+ * violation throws, for the same reason as parseGenreRedirects: a malformed table would
+ * silently misroute deep links instead of failing loudly.
+ */
+export function parseSlugRedirects(raw: unknown): GenreRedirects {
+	const parsed = genreRedirectsFileSchema.parse(raw);
+	const redirects = new Map<Slug, Slug>();
+	for (const [from, to] of Object.entries(parsed.redirects)) {
+		if (!isValidSlug(from)) {
+			throw new Error(`Invalid slug-redirects.json entry: key "${from}" is not a slug`);
+		}
+		if (!isValidSlug(to)) {
+			throw new Error(`Invalid slug-redirects.json entry: value "${to}" is not a slug`);
+		}
+		if (parseSlug(from).type !== parseSlug(to).type) {
+			throw new Error(`slug-redirects.json type mismatch: "${from}" -> "${to}"`);
+		}
+		redirects.set(from, to);
+	}
+	assertFlattened(redirects, "slug-redirects.json");
+	return redirects;
+}
+
+function assertFlattened(redirects: ReadonlyMap<Slug, Slug>, label: string): void {
 	for (const to of redirects.values()) {
 		if (redirects.has(to)) {
-			throw new Error(`genre-redirects.json is not flattened: "${to}" appears as both key and value`);
+			throw new Error(`${label} is not flattened: "${to}" appears as both key and value`);
 		}
 	}
-	return redirects;
 }
 
 /**
@@ -95,6 +129,13 @@ export function parseGenreRedirects(raw: unknown): GenreRedirects {
 export async function loadGenreRedirects(path?: string): Promise<GenreRedirects> {
 	const filePath =
 		path ?? join(dirname(fileURLToPath(import.meta.url)), "..", "data", "genre-redirects.json");
+	return readRedirectsFile(filePath, parseGenreRedirects);
+}
+
+async function readRedirectsFile(
+	filePath: string,
+	parse: (raw: unknown) => GenreRedirects,
+): Promise<GenreRedirects> {
 	let raw: string;
 	try {
 		raw = await readFile(filePath, "utf8");
@@ -102,21 +143,52 @@ export async function loadGenreRedirects(path?: string): Promise<GenreRedirects>
 		if ((e as NodeJS.ErrnoException).code === "ENOENT") return new Map();
 		throw e;
 	}
-	return parseGenreRedirects(JSON.parse(raw));
+	return parse(JSON.parse(raw));
+}
+
+/**
+ * The table every read path and the graph export load (TRA-453): the union of
+ * data/genre-redirects.json (genre rules unchanged) and data/slug-redirects.json (every type).
+ * Either file may be absent (-> empty). A key present in both files throws rather than letting
+ * one silently win, and the union is re-checked for flatness since a slug-redirects.json genre
+ * entry could point at a genre-redirects.json key. `paths` overrides the default locations --
+ * test-only injection, like loadGenreRedirects's `path`.
+ */
+export async function loadRedirects(paths?: {
+	genre?: string | undefined;
+	slug?: string | undefined;
+}): Promise<GenreRedirects> {
+	const slugPath =
+		paths?.slug ?? join(dirname(fileURLToPath(import.meta.url)), "..", "data", "slug-redirects.json");
+	const [genre, slug] = await Promise.all([
+		loadGenreRedirects(paths?.genre),
+		readRedirectsFile(slugPath, parseSlugRedirects),
+	]);
+	const union = new Map(genre);
+	for (const [from, to] of slug) {
+		if (union.has(from)) {
+			throw new Error(
+				`Redirect key "${from}" is present in both genre-redirects.json and slug-redirects.json`,
+			);
+		}
+		union.set(from, to);
+	}
+	assertFlattened(union, "merged redirects table");
+	return union;
 }
 
 /**
  * The read-time canonicalization rule shared by every slug-keyed read path: a live cache node
  * always wins, unchanged (even if the slug also happens to be a redirect key -- inconsistent
  * state, but a live node is never redirected away from itself); otherwise follow the flattened
- * genre-redirect table for a single hop; otherwise the slug is returned unchanged (unknown slug,
- * or a genre slug with neither a live node nor a redirect entry). Never consults the qid index
+ * redirect table for a single hop; otherwise the slug is returned unchanged (unknown slug, or a
+ * slug with neither a live node nor a redirect entry). Never consults the qid index
  * (decision d'archi 9, docs/plans/qid-genre-identity.md) -- a slug that was never materialized
  * under any identity stays unresolved, since none of these read paths materialize on miss.
  *
- * `redirects.get` is checked first because it's an in-memory Map lookup (redirect keys are only
- * ever genre slugs, so this is an immediate miss for every other node type) -- `cache.has`, a
- * disk read, only runs for the rare slug that's actually a redirect key.
+ * `redirects.get` is checked first because it's an in-memory Map lookup (an immediate miss for
+ * every slug that was never renamed) -- `cache.has`, a disk read, only runs for the rare slug
+ * that's actually a redirect key. Since TRA-453 the table covers every node type, not only genres.
  *
  * 2026-09-10 (TRA-39): extracted from node-service.ts's original inline check (TRA-30) so
  * image-service and server.ts's handleLinks apply the exact same rule instead of reimplementing

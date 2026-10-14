@@ -146,6 +146,42 @@ describe("buildGraphFromCache — genre redirects reach the exported graph (TRA-
 	});
 });
 
+describe("buildGraphFromCache — slug redirects reach the exported graph (TRA-453)", () => {
+	it("merges a track entry from slug-redirects.json with the genre table", async () => {
+		const redirectsPath = join(dir, "redirects.json");
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }),
+			"utf8",
+		);
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, { redirectsPath, slugRedirectsPath });
+		expect(graph.redirects).toEqual({
+			"genre:electronic-music": "genre:electronic",
+			"track:fitna": "track:fitna--rohff",
+		});
+	});
+
+	it("emits the track entry when only slug-redirects.json has content", async () => {
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, {
+			redirectsPath: join(dir, "missing.json"),
+			slugRedirectsPath,
+		});
+		expect(graph.redirects).toEqual({ "track:fitna": "track:fitna--rohff" });
+	});
+});
+
 describe("backfillGenreReverses — stamping self.qid on synthesized reverse edges (TRA-19)", () => {
 	it("stamps the source genre's qid onto the reverse edge it synthesizes", async () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:acid", name: "Acid" }));

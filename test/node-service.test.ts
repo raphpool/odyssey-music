@@ -1,13 +1,13 @@
-import { mkdtemp, rm } from "node:fs/promises";
+import { mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import { pipelineConfig } from "../src/config.js";
-import type { GenreRedirects } from "../src/genre-registry.js";
+import { type GenreRedirects, loadRedirects } from "../src/genre-registry.js";
 import type { MaterializeRequest } from "../src/services/materialize-service.js";
 import { createNodeService } from "../src/services/node-service.js";
-import type { ArtistNode, GenreNode, NodePayload, Slug } from "../src/types.js";
+import type { ArtistNode, GenreNode, NodePayload, Slug, TrackNode } from "../src/types.js";
 
 // TRA-30: node-service.getNode applies the flattened genre-redirect table on the read path so
 // that a slug merged away by TRA-22's duplicate-merge migration (e.g. "genre:electronic-music")
@@ -53,6 +53,26 @@ function artistNode(overrides: Partial<ArtistNode> & { slug: Slug; name: string 
 		collaborators: [],
 		aliases: [],
 		members: [],
+		...overrides,
+	};
+}
+
+function trackNode(overrides: Partial<TrackNode> & { slug: Slug; name: string }): TrackNode {
+	return {
+		type: "track",
+		editorial_article: "A real long article about this track, well past the eighty character floor. ".repeat(
+			2,
+		),
+		editorial_teaser: "A short teaser.",
+		citations: [{ url: "https://example.com/track" }],
+		materialized_at: new Date().toISOString(),
+		artists: [],
+		genres: [],
+		producers: [],
+		personnel: [],
+		samples: [],
+		sampled_by: [],
+		remixed_by: [],
 		...overrides,
 	};
 }
@@ -191,6 +211,46 @@ describe("node-service getNode genre redirects (TRA-30)", () => {
 		expect(calls).toHaveLength(1);
 		expect(calls[0]?.opts).toMatchObject({ fresh: true, slug: "artist:fixture" });
 		expect(result?.source).toBe("jit-refreshed");
+		expect(result?.redirected_from).toBeUndefined();
+	});
+});
+
+describe("node-service getNode slug redirects for non-genre types (TRA-453)", () => {
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-node-service-slug-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	it("serves the scoped track for an old track slug listed in slug-redirects.json", async () => {
+		await cache.write(trackNode({ slug: "track:fitna--rohff", name: "Fitna" }));
+		const slugPath = join(dir, "slug-redirects.json");
+		await writeFile(slugPath, JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }), "utf8");
+		const redirects = await loadRedirects({ genre: join(dir, "absent.json"), slug: slugPath });
+		const getNode = createNodeService({ cache, runJit: rejectRunJit, redirects });
+
+		const result = await getNode("track:fitna" as Slug);
+
+		expect(result?.source).toBe("cache");
+		expect(result?.node.slug).toBe("track:fitna--rohff");
+		expect(result?.redirected_from).toBe("track:fitna");
+	});
+
+	it("serves a live track as-is when it is also a redirect key", async () => {
+		await cache.write(trackNode({ slug: "track:fitna", name: "Fitna" }));
+		await cache.write(trackNode({ slug: "track:fitna--rohff", name: "Fitna" }));
+		const redirects: GenreRedirects = new Map([["track:fitna" as Slug, "track:fitna--rohff" as Slug]]);
+		const getNode = createNodeService({ cache, runJit: rejectRunJit, redirects });
+
+		const result = await getNode("track:fitna" as Slug);
+
+		expect(result?.node.slug).toBe("track:fitna");
 		expect(result?.redirected_from).toBeUndefined();
 	});
 });
