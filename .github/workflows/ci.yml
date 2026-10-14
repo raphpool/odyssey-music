@@ -134,8 +134,9 @@ jobs:
           BASE="origin/$BASE_REF"
           git fetch origin "$BASE_REF" --depth=50
           CHANGED=$(git diff --name-only "$BASE"...HEAD)
-          # TRA-498: the integrity gate files escalate too (same list as scripts/ci/review-gate-policy.ts).
-          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|\.sql$|secrets'; then
+          # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
+          # test/ci-integrity-job.test.ts fails when the two drift apart.
+          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|\.sql$|secrets'; then
             echo "Chemin sensible touché → tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true
@@ -169,10 +170,12 @@ jobs:
       - run: npm ci
       - name: Auditer le cache
         # TRA-498: the audit output, violations (stderr) included, goes to the job summary even when it fails.
+        # Calls the script directly, not `npm run audit:cache`: package.json is not a sensitive path, so a
+        # tier/1 PR could otherwise redefine what that script runs.
         run: |
           set -o pipefail
           status=0
-          npm run audit:cache -- cache 2>"$RUNNER_TEMP/audit.err" | tee "$RUNNER_TEMP/audit.out" || status=$?
+          npx --no-install tsx scripts/audit-cache.ts cache 2>"$RUNNER_TEMP/audit.err" | tee "$RUNNER_TEMP/audit.out" || status=$?
           cat "$RUNNER_TEMP/audit.err" >&2
           {
             echo "## Cache audit"

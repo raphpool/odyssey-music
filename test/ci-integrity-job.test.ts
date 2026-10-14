@@ -1,6 +1,7 @@
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { classifyRisk } from "../scripts/ci/review-gate-policy.js";
+import { classifyRisk, sensitivePath } from "../scripts/ci/review-gate-policy.js";
 
 // TRA-461: the `integrity` job of ci.yml runs the cache audit and, on pull requests, the threshold ratchet.
 // Like native-ci-triggers.test.ts, no YAML parser is added: the job block is read as text.
@@ -46,8 +47,10 @@ function runScripts(text: string): string[] {
 describe("ci.yml integrity job (TRA-461, TRA-498)", () => {
 	const block = jobBlock("integrity");
 
-	it("runs the audit on the cache directory", () => {
-		expect(block).toContain("npm run audit:cache -- cache");
+	it("runs the audit script directly on the cache directory, not through a package.json script", () => {
+		// package.json is not a sensitive path: a tier/1 PR could redefine `audit:cache` to neutralize the job.
+		expect(block).toContain("npx --no-install tsx scripts/audit-cache.ts cache");
+		expect(block).not.toContain("npm run");
 	});
 
 	it("runs the threshold ratchet against the first parent of the merge ref, on pull requests only", () => {
@@ -107,32 +110,63 @@ describe("ci.yml shell scripts (TRA-498)", () => {
 
 describe("tier-guard sensitive paths (TRA-498)", () => {
 	// The grep of the job and `sensitivePath` of review-gate-policy.ts are two copies of one list.
-	const grep = /grep -Eq '([^']+)'/.exec(jobBlock("tier-guard"))?.[1];
+	const grep = /grep -Eq '([^']+)'/.exec(jobBlock("tier-guard"))?.[1] as string;
 	const gate = (path: string) => classifyRisk([path], []) === 3;
+	const grepMatches = (path: string) => spawnSync("grep", ["-Eq", grep], { input: `${path}\n` }).status === 0;
 
-	it("contains the integrity gate files, like the review gate policy", () => {
+	// One path per alternative of the pattern (and a nested variant), then neighbours that must not escalate.
+	const sensitive = [
+		"auth/login.ts",
+		"src/auth/login.ts",
+		"payment/a.ts",
+		"src/payments/a.ts",
+		"scripts/migrations/001.ts",
+		"infra/main.tf",
+		"deploy/deploy-server.sh",
+		"x/deploy/y.sh",
+		".github/workflows/ci.yml",
+		".github/pull_request_template.md",
+		"scripts/deploy-web.sh",
+		"scripts/ci/review-gate-policy.ts",
+		"scripts/ci/threshold-ratchet.ts",
+		"scripts/audit-cache.ts",
+		"data/integrity-thresholds.json",
+		".codex/scripts/publish-review-status.sh",
+		"db/schema.sql",
+		"config/secrets.json",
+	];
+	const ordinary = [
+		"src/author/a.ts",
+		"src/authz/a.ts",
+		"src/payments.ts",
+		"docs/.github/x.md",
+		".githubx/a.yml",
+		"scripts/deployer.ts",
+		"scripts/audit-cache-notes.md",
+		"scripts/audit-cache.ts.bak",
+		"scripts/ci/threshold-ratchet.ts.bak",
+		"scripts/ci/threshold-ratchet.test.ts",
+		"scripts/ci/pr-policy.ts",
+		"data/integrity-thresholds.json.bak",
+		"data/genre-catalog.json",
+		".codex/scripts/other.sh",
+		".codex/scripts/publish-review-status.sh.bak",
+		"db/schema.sqlx",
+		"src/graph.ts",
+	];
+
+	it("is the sensitivePath pattern of the review gate, text for text", () => {
 		expect(grep).toBeDefined();
-		const pattern = new RegExp(grep as string);
-		for (const path of [
-			".github/workflows/ci.yml",
-			"scripts/ci/threshold-ratchet.ts",
-			"scripts/audit-cache.ts",
-			"data/integrity-thresholds.json",
-		]) {
-			expect(pattern.test(path), `grep: ${path}`).toBe(true);
-			expect(gate(path), `policy: ${path}`).toBe(true);
-		}
+		expect(grep).toBe(sensitivePath.source.replaceAll("\\/", "/"));
 	});
 
-	it("does not escalate lookalike paths, in either copy", () => {
-		const pattern = new RegExp(grep as string);
-		for (const path of [
-			"data/genre-catalog.json",
-			"scripts/audit-cache-notes.md",
-			"scripts/ci/pr-policy.ts",
-		]) {
-			expect(pattern.test(path), `grep: ${path}`).toBe(false);
-			expect(gate(path), `policy: ${path}`).toBe(false);
-		}
+	it.each(sensitive)("escalates %s in the workflow grep and in the review gate policy", (path) => {
+		expect(grepMatches(path), `grep: ${path}`).toBe(true);
+		expect(gate(path), `policy: ${path}`).toBe(true);
+	});
+
+	it.each(ordinary)("does not escalate %s in either copy", (path) => {
+		expect(grepMatches(path), `grep: ${path}`).toBe(false);
+		expect(gate(path), `policy: ${path}`).toBe(false);
 	});
 });

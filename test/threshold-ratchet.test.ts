@@ -1,4 +1,4 @@
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	checkRatchet,
 	compareThresholds,
+	formatFailure,
 	type NodeGrowth,
 	THRESHOLDS_PATH,
 } from "../scripts/ci/threshold-ratchet.js";
@@ -202,6 +203,19 @@ describe("checkRatchet against a real git repository (TRA-461)", () => {
 			const result = await checkRatchet("main", dir);
 			expect(result.exitCode).toBe(0);
 			expect(result.output).toContain("missing-image[artist]: 417 → 420");
+			// No self-contradiction: the header says the rise is absorbed, not that no ceiling was raised.
+			expect(result.output).toContain("Ratchet respected; coverage rises absorbed by node growth");
+			expect(result.output).not.toContain("no ceiling raised");
+			expect(result.output).not.toContain("Node counts unavailable");
+		});
+
+		it("keeps the plain message when nothing was raised", async () => {
+			writeNodes("artist", 5);
+			commitBase(imageCeiling(417));
+			writeThresholds(imageCeiling(400));
+			const result = await checkRatchet("main", dir);
+			expect(result.output).toContain("Ratchet respected: no ceiling raised or removed.");
+			expect(result.output).not.toContain("absorbed");
 		});
 
 		it("rejects the same rise when the PR added no artist", async () => {
@@ -211,6 +225,8 @@ describe("checkRatchet against a real git repository (TRA-461)", () => {
 			const result = await checkRatchet("main", dir);
 			expect(result.exitCode).toBe(1);
 			expect(result.output).toContain("missing-image[artist]: 417 → 420 (increase)");
+			// Node counts were available: the explanation of a refused valve would be wrong here.
+			expect(result.output).not.toContain("Node counts unavailable");
 		});
 
 		it("rejects a correctness ceiling raised alongside added nodes", async () => {
@@ -227,7 +243,39 @@ describe("checkRatchet against a real git repository (TRA-461)", () => {
 			commitBase(imageCeiling(417));
 			writeNodes("artist", 3);
 			writeThresholds(imageCeiling(418));
-			expect((await checkRatchet("main", dir)).exitCode).toBe(1);
+			const result = await checkRatchet("main", dir);
+			expect(result.exitCode).toBe(1);
+			expect(result.output).toContain("Node counts unavailable");
+			expect(result.output).toContain("every rise is refused");
+		});
+
+		it("does not mention unavailable counts when nothing needed them", async () => {
+			commitBase(imageCeiling(417));
+			writeThresholds(imageCeiling(400));
+			const result = await checkRatchet("main", dir);
+			expect(result.exitCode).toBe(0);
+			expect(result.output).not.toContain("Node counts unavailable");
+		});
+	});
+
+	describe("failure report (TRA-498)", () => {
+		it("formats an unexpected error as markdown for stdout, with the message and an annotation", () => {
+			const output = formatFailure(new Error("fatal: bad revision 'origin/nope'"));
+			expect(output).toContain("ratchet failed");
+			expect(output).toContain("bad revision 'origin/nope'");
+			expect(output).toContain("::error::");
+		});
+
+		it("prints the failure on stdout and exits 1 when the base ref is unknown", () => {
+			commitBase({ a: 1 });
+			const script = join(process.cwd(), "scripts/ci/threshold-ratchet.ts");
+			const run = spawnSync(join(process.cwd(), "node_modules/.bin/tsx"), [script, "origin/nope"], {
+				cwd: dir,
+				encoding: "utf8",
+			});
+			expect(run.status).toBe(1);
+			expect(run.stdout).toContain("ratchet failed");
+			expect(run.stdout).toContain("origin/nope");
 		});
 	});
 });

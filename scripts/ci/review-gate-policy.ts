@@ -16,8 +16,9 @@ export interface GateInput {
 
 // TRA-498 (2026-10-14): the integrity gate (audit, ratchet, committed ceilings) is only worth anything if a
 // tier/1 PR cannot weaken it, so its three files escalate like the workflow that runs it. Keep in sync with
-// the grep of the `tier-guard` job in .github/workflows/ci.yml (test/ci-integrity-job.test.ts checks it).
-const sensitivePath =
+// the grep of the `tier-guard` job in .github/workflows/ci.yml, which is this pattern with `\/` written `/`
+// (test/ci-integrity-job.test.ts compares the two text-for-text and on a corpus of paths).
+export const sensitivePath =
 	/(^|\/)(auth|payment[s]?|migrations|infra|deploy)\/|^\.github\/|^scripts\/(deploy-|ci\/review-gate-policy|ci\/threshold-ratchet\.ts$|audit-cache\.ts$)|^data\/integrity-thresholds\.json$|^\.codex\/scripts\/publish-review-status\.sh$|\.sql$|secrets/;
 
 export const classifyRisk = (paths: readonly string[], labels: readonly string[]): Tier => {

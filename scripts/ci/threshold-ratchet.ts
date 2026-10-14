@@ -148,16 +148,19 @@ export async function checkRatchet(base: string, cwd: string): Promise<RatchetRe
 	const headThresholds = parseThresholds(JSON.parse(readFileSync(join(cwd, THRESHOLDS_PATH), "utf8")));
 	const growth = await nodeGrowth(base, cwd);
 	const { violations, absorbed } = compare(baseThresholds, headThresholds, growth ?? undefined);
+	const noGrowth =
+		"Node counts unavailable on one side (no `cache/` nodes on the base or on HEAD): every rise is refused.";
 	if (violations.length === 0) {
-		const lines = ["## Integrity thresholds", "", "Ratchet respected: no ceiling raised or removed."];
-		if (absorbed.length > 0) {
+		const lines = ["## Integrity thresholds", ""];
+		if (absorbed.length === 0) {
+			lines.push("Ratchet respected: no ceiling raised or removed.");
+		} else {
 			lines.push(
+				"Ratchet respected; coverage rises absorbed by node growth (the PR added nodes, not a regression):",
 				"",
-				"Coverage ceilings raised because the PR added nodes (not a regression):",
 				...absorbed.map((a) => `- ${a}`),
 			);
 		}
-		if (growth === null) lines.push("", "Node counts unavailable on one side: every rise is refused.");
 		return { exitCode: 0, output: `${lines.join("\n")}\n` };
 	}
 	const lines = [
@@ -166,10 +169,16 @@ export async function checkRatchet(base: string, cwd: string): Promise<RatchetRe
 		`Ceilings in \`${THRESHOLDS_PATH}\` may only go down, except coverage ceilings, which may rise by the number of nodes the PR added. Fix the cache instead of raising a ceiling.`,
 		"",
 		...violations.map((v) => `- ${v}`),
-		"",
-		...violations.map((v) => `::error::${v}`),
 	];
+	if (growth === null) lines.push("", noGrowth);
+	lines.push("", ...violations.map((v) => `::error::${v}`));
 	return { exitCode: 1, output: `${lines.join("\n")}\n` };
+}
+
+/** Markdown for an unexpected failure (bad ref, unreadable file...): on stdout, so the workflow's `tee` keeps it. */
+export function formatFailure(e: unknown): string {
+	const message = e instanceof Error ? e.message : String(e);
+	return `## Integrity thresholds: ratchet failed\n\nerror: ${message}\n\n::error::ratchet failed: ${message.split("\n")[0]}\n`;
 }
 
 const main = async (): Promise<void> => {
@@ -186,7 +195,7 @@ const main = async (): Promise<void> => {
 if (process.argv[1] !== undefined && fileURLToPath(import.meta.url) === process.argv[1]) {
 	// Fail closed with exit 1 (never 2, which the workflow reads as "no thresholds file on the base").
 	main().catch((e: unknown) => {
-		console.error(`error: ${e instanceof Error ? e.message : String(e)}`);
+		process.stdout.write(formatFailure(e));
 		process.exit(1);
 	});
 }
