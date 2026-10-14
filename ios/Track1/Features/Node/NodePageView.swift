@@ -16,6 +16,7 @@ struct NodePageView: View {
 	private let onOpenListening: (ListeningAction) -> Void
 	private let onSelectCrumb: (TopBarCrumb) -> Void
 	@State private var expandedFields = Set<String>()
+	@Environment(\.openURL) private var openURL
 
 	/// `imageStore` (carousel covers) and `isOpeningListening` (streaming bar) go beyond the ticket's contract.
 	init(
@@ -105,8 +106,13 @@ struct NodePageView: View {
 			ForEach(NodePageModel.sections(for: node), id: \.field) { section in
 				sectionView(section)
 			}
-			NodeArticleView(article: node.article, citations: node.citations)
-				.padding(.horizontal, Track1Tokens.spacing24)
+			// Last, as fixed by H.1. A source opens through the OS only; `NodeArticleView` has already
+			// dropped any citation whose URL is not a public HTTPS one.
+			let article = NodeArticleView(
+				article: node.article, citations: node.citations, onOpenSource: { openURL($0) })
+			if article.hasContent {
+				article.padding(.horizontal, Track1Tokens.spacing24)
+			}
 		}
 		.padding(.bottom, Track1Tokens.spacing24)
 	}

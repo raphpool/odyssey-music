@@ -17,6 +17,13 @@ final class ListComponentsTests: XCTestCase {
 		XCTAssertEqual(Track1Artwork.Size.allCases.count, 3)
 	}
 
+	func testArtworkGlyphIs20PointsOnSmallAndMediumAnd28OnLargeByTheTokens() {
+		XCTAssertEqual(Track1Artwork.Size.small.glyphSize, 20, accuracy: 0.001)
+		XCTAssertEqual(Track1Artwork.Size.medium.glyphSize, 20, accuracy: 0.001)
+		XCTAssertEqual(Track1Artwork.Size.large.glyphSize, 28, accuracy: 0.001)
+		XCTAssertEqual(Track1Artwork.Size.large.glyphSize, Track1Tokens.sizeIconXLarge, accuracy: 0.001)
+	}
+
 	func testArtworkCornerRadiusFollowsShapeAndSize() {
 		for size in Track1Artwork.Size.allCases {
 			XCTAssertEqual(Track1Artwork.Shape.circle.cornerRadius(for: size), 999, "circle \(size)")
@@ -89,6 +96,11 @@ final class ListComponentsTests: XCTestCase {
 		XCTAssertEqual(Track1SearchField.placeholder, "Rechercher un artiste ou une œuvre")
 	}
 
+	func testSearchIconIs22PointsByTheToken() {
+		XCTAssertEqual(Track1SearchField.iconSize, 22, accuracy: 0.001)
+		XCTAssertEqual(Track1SearchField.iconSize, Track1Tokens.sizeIconSearch, accuracy: 0.001)
+	}
+
 	func testBorderTurnsToTheFocusColorWhileFocused() {
 		XCTAssertEqual(rgbaHex(Track1SearchField.borderColor(isFocused: false)), "443027ff")
 		XCTAssertEqual(rgbaHex(Track1SearchField.borderColor(isFocused: true)), "5d7fa8ff")
@@ -127,6 +139,11 @@ final class ListComponentsTests: XCTestCase {
 		XCTAssertEqual(Track1ListItem.minHeight(hasArtwork: false), 60)
 		XCTAssertEqual(Track1ListItem.minHeight(hasArtwork: true), 80)
 		XCTAssertGreaterThanOrEqual(Track1ListItem.minHeight(hasArtwork: false), 44)
+	}
+
+	func testRowVerticalMarginIs10PointsByTheSpacingToken() {
+		XCTAssertEqual(Track1ListItem.verticalPadding, 10, accuracy: 0.001)
+		XCTAssertEqual(Track1ListItem.verticalPadding, Track1Tokens.spacing10, accuracy: 0.001)
 	}
 
 	func testRowIsSpokenFromItsTitleAndSubtitle() {

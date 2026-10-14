@@ -55,6 +55,10 @@ final class EdgeChipTests: XCTestCase {
 		XCTAssertEqual(EdgeChipMetrics.hitExtension(visualHeight: 60), 0)
 	}
 
+	func testOverflowBorderIsDashed4On3Off() {
+		XCTAssertEqual(EdgeChipMetrics.overflowDash, [4, 3])
+	}
+
 	func testNamesTruncateAt280Points() {
 		XCTAssertEqual(EdgeChipMetrics.nameMaxWidth, 280)
 	}

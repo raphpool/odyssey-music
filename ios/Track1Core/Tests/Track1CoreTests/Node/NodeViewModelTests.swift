@@ -82,6 +82,27 @@ final class NodeViewModelTests: XCTestCase {
 		XCTAssertTrue(events.isEmpty)
 	}
 
+	func testNotFoundMakesASingleRequestForTheRequestedNode() async throws {
+		// Moved from the deleted `NodeRelationsTests`: a related node absent from the cache is asked for once.
+		let identity = try XCTUnwrap(NodeIdentity(rawValue: "project:absent"))
+		let requests = CallCounter()
+		let model = NodeViewModel(
+			identity: identity,
+			context: .independent(source: .home),
+			readNode: { _ in
+				await requests.increment()
+				return .failure(.http(status: 404, code: "not_found", retryable: false, retryAfterSeconds: nil))
+			}
+		)
+
+		await model.load()
+
+		guard case .missing(let missing) = model.state else { return XCTFail("Expected the missing state.") }
+		XCTAssertEqual(missing, identity)
+		let count = await requests.count
+		XCTAssertEqual(count, 1)
+	}
+
 	func testEveryOtherFailureIsFailedAndNeverRecordsAnEvent() async throws {
 		let identity = try XCTUnwrap(NodeIdentity(rawValue: "genre:unavailable"))
 		let results: [APIResult<NodeResponse>] = [
@@ -280,6 +301,53 @@ final class NodeViewModelTests: XCTestCase {
 				"notification_id": .string("bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"),
 			]
 		)
+	}
+
+	// Moved from the deleted `NodeRelationsTests`: `relation_opened` keeps its four required keys, and the
+	// attribution keys only when they exist.
+	func testRelationEventHasTheFourRequiredKeysAndAttributionOnlyWhenItExists() throws {
+		let from = try XCTUnwrap(NodeIdentity(rawValue: "artist:source"))
+		let edge = try Self.edge("project:target")
+		let recommendationID = try XCTUnwrap(UUID(uuidString: "22222222-2222-4222-8222-222222222222"))
+		let notificationID = try XCTUnwrap(UUID(uuidString: "11111111-1111-4111-8111-111111111111"))
+
+		let bare = NodeAnalytics.relationOpened(
+			from: from, relation: edge, kind: "projects", context: .independent(source: .search))
+		XCTAssertEqual(bare.name, .relationOpened)
+		XCTAssertEqual(bare.source, .relation)
+		XCTAssertEqual(
+			bare.properties,
+			[
+				"from_node_id": .string("artist:source"),
+				"node_id": .string("project:target"),
+				"node_type": .string("project"),
+				"relation_kind": .string("projects"),
+			])
+		XCTAssertTrue(AnalyticsValidation.accepts(bare))
+
+		let recommended = NodeAnalytics.relationOpened(
+			from: from, relation: edge, kind: "projects",
+			context: NavigationContext(source: .home, recommendationID: recommendationID))
+		XCTAssertEqual(
+			recommended.properties["recommendation_id"], .string(recommendationID.uuidString.lowercased()))
+		XCTAssertNil(recommended.properties["notification_id"])
+		XCTAssertTrue(AnalyticsValidation.accepts(recommended))
+
+		let notified = NodeAnalytics.relationOpened(
+			from: from, relation: edge, kind: "projects",
+			context: NavigationContext(
+				source: .notification, recommendationID: recommendationID, notificationID: notificationID))
+		XCTAssertEqual(notified.properties["notification_id"], .string(notificationID.uuidString.lowercased()))
+		XCTAssertEqual(notified.properties.count, 6)
+		XCTAssertTrue(AnalyticsValidation.accepts(notified))
+	}
+
+	private static func edge(_ slug: String) throws -> NodeEdge {
+		let type = slug.prefix { $0 != ":" }
+		let source = """
+			{"slug":"\(slug)","type":"\(type)","name":"Target","mbid":null,"qid":null,"year":null,"releaseType":null}
+			"""
+		return try JSONDecoder().decode(NodeEdge.self, from: Data(source.utf8))
 	}
 
 	private actor CallCounter {

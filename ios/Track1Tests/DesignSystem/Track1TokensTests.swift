@@ -8,7 +8,8 @@ import XCTest
 /// Every token is spelled out again here, with the name and the value read from the Figma file
 /// `phudxrQNlzQJafXLma4FyX` on 2026-10-13: colors by `get_variable_defs` on `180:6`; spacing, radius and
 /// sizes from the labels of `180:479` (not bound variables, so `get_variable_defs` returns none for
-/// them); motion from `180:581`. A value changed in `Track1Tokens` alone fails here.
+/// them); motion from `180:581`. A value changed in `Track1Tokens` alone fails here. The local tokens, which
+/// are not in the Figma file, are listed apart in `testLocalSizesAreListedApartFromTheFigmaOnes`.
 final class Track1TokensTests: XCTestCase {
 	private let colors: [(name: String, color: Color, hex: String)] = [
 		("theme.color.text.primary", Track1Tokens.colorTextPrimary, "f6e9d8"),
@@ -143,6 +144,17 @@ final class Track1TokensTests: XCTestCase {
 		]
 		XCTAssertEqual(expected.count, 11)
 		for (name, actual, value) in expected { XCTAssertEqual(actual, value, name) }
+	}
+
+	/// Not Figma variables (TRA-443, 2026-10-13): the Figma draws the Large Artwork glyph and the SearchField
+	/// icon at these sizes without a token. Kept out of `testSizesMatchFigma` on purpose, so that a local token
+	/// can never stand in for a Figma size that is missing.
+	func testLocalSizesAreListedApartFromTheFigmaOnes() {
+		let expected: [(String, CGFloat, CGFloat)] = [
+			("local/size/icon-xlarge", Track1Tokens.sizeIconXLarge, 28),
+			("local/size/icon-search", Track1Tokens.sizeIconSearch, 22),
+		]
+		for (name, actual, value) in expected { XCTAssertEqual(actual, value, accuracy: 0.001, name) }
 	}
 
 	func testMotionDurationsMatchFigma() {
