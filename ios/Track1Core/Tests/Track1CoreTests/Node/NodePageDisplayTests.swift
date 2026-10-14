@@ -57,6 +57,11 @@ final class NodePageDisplayTests: XCTestCase {
 		XCTAssertTrue(NodePageListening.actions(for: .artist, state: .hidden).isEmpty)
 	}
 
+	func testAFailedOpeningIsReportedInFrenchNamingTheService() {
+		XCTAssertEqual(NodePageListening.failureMessage(for: .spotify), "Impossible d’ouvrir Spotify.")
+		XCTAssertEqual(NodePageListening.failureMessage(for: .appleMusic), "Impossible d’ouvrir Apple Music.")
+	}
+
 	private static func section(field: String, type: NodeType, count: Int) throws -> NodePageSection {
 		let target: String = ["discography": "project", "tracklist": "track", "label": "label"][field] ?? "genre"
 		let edges = (1...count).map {
