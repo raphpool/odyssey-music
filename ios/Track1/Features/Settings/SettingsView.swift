@@ -11,6 +11,7 @@ struct SettingsView: View {
 	@State private var showingAnalyticsChoice = false
 	@State private var showingClearConfirmation = false
 	@State private var isClearing = false
+	@State private var recentsClearFailed = false
 
 	var body: some View {
 		ScrollView {
@@ -43,9 +44,10 @@ struct SettingsView: View {
 				SettingsSection(
 					title: nil, footer: "L’effacement des goûts est distinct de la mesure d’usage et des notifications."
 				) {
-					SettingsDangerRow(
+					Track1ListItem(
 						title: profileState.requiresExplicitRecovery
-							? "Supprimer le profil illisible" : "Effacer le profil musical"
+							? "Supprimer le profil illisible" : "Effacer le profil musical",
+						tone: .danger
 					) {
 						showingClearConfirmation = true
 					}
@@ -88,6 +90,11 @@ struct SettingsView: View {
 					: "Vos genres enregistrés sur cet iPhone seront supprimés."
 			)
 		}
+		.alert("Fiches récentes non effacées", isPresented: $recentsClearFailed) {
+			Button("OK", role: .cancel) {}
+		} message: {
+			Text("Votre profil musical est effacé, mais les fiches récentes sont restées sur cet iPhone.")
+		}
 	}
 
 	private var profile: Profile? {
@@ -105,7 +112,8 @@ struct SettingsView: View {
 		defer { isClearing = false }
 		guard await profileStore.clear() == .cleared else { return }
 		// The recents belong to the same on-device data the screen promises to erase.
-		await recentNodes.clear()
+		// A failure does not undo the profile erasure, which is done: it is shown once the screen has moved on.
+		let recentsCleared = await recentNodes.clear() == .cleared
 		if analytics.consent.status == .granted {
 			analytics.record(
 				AnalyticsEvent(
@@ -116,6 +124,7 @@ struct SettingsView: View {
 			)
 		}
 		profileWasCleared()
+		recentsClearFailed = !recentsCleared
 	}
 }
 
@@ -160,47 +169,5 @@ private struct SettingsInfoRow: View {
 		.padding(.vertical, Track1Tokens.spacing8)
 		.frame(maxWidth: .infinity, minHeight: Track1ListItem.minHeight(hasArtwork: false), alignment: .leading)
 		.accessibilityElement(children: .combine)
-	}
-}
-
-/// The destructive row. `Track1ListItem` has no danger tone and fixes its title color, so this row draws
-/// the same box (fill, minimum height, Pressed and Disabled states) with `colorTextDanger` for the title.
-private struct SettingsDangerRow: View {
-	let title: String
-	let action: () -> Void
-
-	var body: some View {
-		Button(action: action) { EmptyView() }
-			.buttonStyle(SettingsDangerRowStyle(title: title))
-	}
-}
-
-private struct SettingsDangerRowStyle: ButtonStyle {
-	let title: String
-
-	func makeBody(configuration: Configuration) -> some View {
-		SettingsDangerRowBody(title: title, isPressed: configuration.isPressed)
-	}
-}
-
-/// A view of its own because `isEnabled` is an environment value, which a `ButtonStyle` cannot read.
-private struct SettingsDangerRowBody: View {
-	let title: String
-	let isPressed: Bool
-	@Environment(\.isEnabled) private var isEnabled
-
-	var body: some View {
-		let state = Track1ControlState(isEnabled: isEnabled, isPressed: isPressed)
-		let shape = RoundedRectangle(cornerRadius: Track1Tokens.radius12, style: .continuous)
-		Track1Text(title, role: .labelMedium)
-			.foregroundStyle(state == .disabled ? Track1Tokens.colorTextDisabled : Track1Tokens.colorTextDanger)
-			.padding(.horizontal, Track1Tokens.spacing16)
-			.padding(.vertical, Track1Tokens.spacing8)
-			.frame(maxWidth: .infinity, minHeight: Track1ListItem.minHeight(hasArtwork: false), alignment: .leading)
-			.background(Track1ListItemColors.resolve(state: state).fill, in: shape)
-			.opacity(Track1ListItemColors.opacity(state: state))
-			.contentShape(shape)
-			.accessibilityElement(children: .ignore)
-			.accessibilityLabel(title)
 	}
 }

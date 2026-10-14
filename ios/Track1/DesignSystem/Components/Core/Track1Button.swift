@@ -88,26 +88,35 @@ enum Track1ButtonColors {
 }
 
 /// Figma `Button` (`16:20`, doc `170:55`): a capsule with a label and an optional trailing icon. `haptic`
-/// is for bottom CTAs and listening buttons: one light impact per tap.
+/// is for bottom CTAs and listening buttons: one light impact per tap. `fullWidth` stretches the capsule to
+/// the width its container offers (bottom CTAs, consent choices); it sizes to its label otherwise.
 struct Track1Button: View {
 	private let title: String
 	private let kind: Track1ButtonKind
 	private let size: Track1ControlSize
 	private let icon: Track1Icon.Glyph?
 	private let haptic: Bool
+	private let fullWidth: Bool
 	private let action: () -> Void
 	@State private var taps = 0
 
 	init(
 		_ title: String, kind: Track1ButtonKind, size: Track1ControlSize, icon: Track1Icon.Glyph? = nil,
-		haptic: Bool = false, action: @escaping () -> Void
+		haptic: Bool = false, fullWidth: Bool = false, action: @escaping () -> Void
 	) {
 		self.title = title
 		self.kind = kind
 		self.size = size
 		self.icon = icon
 		self.haptic = haptic
+		self.fullWidth = fullWidth
 		self.action = action
+	}
+
+	/// The widest frame the capsule asks for: unbounded when `fullWidth`, none (the label's own width)
+	/// otherwise.
+	static func maxWidth(fullWidth: Bool) -> CGFloat? {
+		fullWidth ? .infinity : nil
 	}
 
 	var body: some View {
@@ -117,7 +126,7 @@ struct Track1Button: View {
 		} label: {
 			Track1Text(title, role: size.labelRole).multilineTextAlignment(.center)
 		}
-		.buttonStyle(Track1ButtonStyle(kind: kind, size: size, icon: icon, iconOnly: false))
+		.buttonStyle(Track1ButtonStyle(kind: kind, size: size, icon: icon, iconOnly: false, fullWidth: fullWidth))
 		.sensoryFeedback(.impact(weight: .light), trigger: taps)
 	}
 }
@@ -128,11 +137,12 @@ struct Track1ButtonStyle: ButtonStyle {
 	let size: Track1ControlSize
 	let icon: Track1Icon.Glyph?
 	let iconOnly: Bool
+	var fullWidth = false
 
 	func makeBody(configuration: Configuration) -> some View {
 		Track1ButtonBody(
-			kind: kind, size: size, icon: icon, iconOnly: iconOnly, isPressed: configuration.isPressed,
-			label: configuration.label)
+			kind: kind, size: size, icon: icon, iconOnly: iconOnly, fullWidth: fullWidth,
+			isPressed: configuration.isPressed, label: configuration.label)
 	}
 }
 
@@ -142,6 +152,7 @@ private struct Track1ButtonBody: View {
 	let size: Track1ControlSize
 	let icon: Track1Icon.Glyph?
 	let iconOnly: Bool
+	let fullWidth: Bool
 	let isPressed: Bool
 	let label: ButtonStyleConfiguration.Label
 	@Environment(\.isEnabled) private var isEnabled
@@ -175,7 +186,7 @@ private struct Track1ButtonBody: View {
 			// 12 pt as in Figma Medium; Large is 16 pt there at a fixed 52 pt height, which `minHeight` keeps.
 			// Leaving room above and below lets the label grow with Dynamic Type instead of being clipped.
 			.padding(.vertical, Track1Tokens.spacing12)
-			.frame(minHeight: size.height)
+			.frame(maxWidth: Track1Button.maxWidth(fullWidth: fullWidth), minHeight: size.height)
 		}
 	}
 }
