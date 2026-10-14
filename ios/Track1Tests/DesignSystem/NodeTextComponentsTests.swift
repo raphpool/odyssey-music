@@ -18,7 +18,6 @@ final class NodeTextComponentsTests: XCTestCase {
 
 	func testTrackRowIsAtLeast44PointsTall() {
 		XCTAssertEqual(TrackRow.minimumHeight, 44)
-		XCTAssertGreaterThanOrEqual(TrackRow.minimumHeight, Track1Theme.minimumHitTarget)
 	}
 
 	func testTrackRowIdentifierFollowsTheNumber() {

@@ -49,28 +49,21 @@ final class OnboardingContractTests: XCTestCase {
 		guard case .saved(let original) = await store.commit(completedDraft, availableGenreIDs: choices) else {
 			return XCTFail("Expected an initial profile.")
 		}
-		guard case .success(let editingDraft) = await store.beginEditingDraft(from: original) else {
-			return XCTFail("Expected an editing draft.")
-		}
 		let changedChoices = Array(choices.dropLast()) + [NodeIdentity(rawValue: "genre:other")!]
 		let changedDraft = ProfileDraft(
 			version: Profile.version,
-			flowID: editingDraft.flowID,
+			flowID: original.flowID,
 			genreIDs: changedChoices,
 			onboardingStartedRecorded: true
 		)
 		let savedDraft = await store.saveDraft(changedDraft)
 		XCTAssertEqual(savedDraft, .success(changedDraft))
-		if case .failure = await store.discardEditingDraft() {
-			XCTFail("Expected the editing draft to be discarded.")
-		}
 		let retainedProfile = await store.read()
 		XCTAssertEqual(retainedProfile, .profile(original))
 
-		guard case .success(let nextEditingDraft) = await store.beginEditingDraft(from: original),
-			case .saved(let updated) = await store.commit(changedDraft, availableGenreIDs: changedChoices)
-		else { return XCTFail("Expected the profile update.") }
-		XCTAssertEqual(nextEditingDraft.flowID, original.flowID)
+		guard case .saved(let updated) = await store.commit(changedDraft, availableGenreIDs: changedChoices) else {
+			return XCTFail("Expected the profile update.")
+		}
 		XCTAssertEqual(updated.revision, original.revision + 1)
 	}
 

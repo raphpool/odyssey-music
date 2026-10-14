@@ -180,7 +180,6 @@ private struct ApplicationTabs: View {
 					TodayEntryView(
 						profileState: profileState,
 						today: { profile in todayView(for: profile) },
-						chooseProfile: profileIsMissing,
 						exploreSearch: { router.select(.search) },
 						recoverProfile: { router.select(.genres) }
 					)
@@ -194,7 +193,6 @@ private struct ApplicationTabs: View {
 						recentNodes: recentNodes,
 						analytics: analytics,
 						loadCatalog: onboardingCatalog ?? readers?.catalog,
-						chooseProfile: profileIsMissing,
 						// The recommendation of the day follows the new revision: Today reads the profile it is given.
 						profileWasSaved: { profile in
 							profileState = .profile(profile)
@@ -275,10 +273,6 @@ private struct ApplicationTabs: View {
 		router.openNode(result.identity, context: result.context, title: result.title, in: router.selectedTab)
 	}
 
-	/// Without a profile the host shows the onboarding instead of the tabs (J.4), so a tab never asks for one.
-	/// Both entries go with `ProfileMissingView` and the Genres tab's empty state in L.2.
-	private func profileIsMissing() {}
-
 	private func reloadProfile() async {
 		profileState = await profileStore.read()
 		profileLoaded = true
@@ -288,7 +282,6 @@ private struct ApplicationTabs: View {
 private struct TodayEntryView<Today: View>: View {
 	let profileState: ProfileRead
 	@ViewBuilder let today: (Profile) -> Today
-	let chooseProfile: () -> Void
 	let exploreSearch: () -> Void
 	let recoverProfile: () -> Void
 
@@ -297,7 +290,9 @@ private struct TodayEntryView<Today: View>: View {
 		case .profile(let profile):
 			today(profile)
 		case .missing, .unavailable:
-			ProfileMissingView(chooseProfile: chooseProfile, exploreSearch: exploreSearch)
+			// The host shows the onboarding or the unavailable status instead of the tabs for these two (J.4).
+			// They only reach this entry while the tabs fade out, so it draws the base color and nothing else.
+			Track1Tokens.colorBackgroundBase.ignoresSafeArea()
 		case .corrupt, .unsupportedVersion:
 			ProfileRecoveryView(
 				description: profileState.recoveryDescription,
@@ -314,21 +309,36 @@ private struct ProfileRecoveryView: View {
 	let exploreSearch: () -> Void
 
 	var body: some View {
-		ContentUnavailableView {
-			Label("Profil local à récupérer", systemImage: "exclamationmark.triangle")
-		} description: {
-			Text("\(description) Supprimez-le depuis les réglages de l’onglet Genres avant de recommencer.")
-				.accessibilityIdentifier("profile-recovery-message")
-		} actions: {
-			VStack(spacing: Track1Theme.contentSpacing) {
-				Button("Ouvrir Genres", action: recoverProfile)
-					.buttonStyle(Track1PrimaryButtonStyle())
-				Button("Explorer la recherche", action: exploreSearch)
-					.buttonStyle(.bordered)
+		// Scrolls when the column outgrows the screen (accessibility sizes): "Ouvrir Genres" is the way out.
+		GeometryReader { proxy in
+			ScrollView {
+				column.frame(maxWidth: .infinity, minHeight: proxy.size.height)
 			}
-			.padding()
+			.scrollBounceBehavior(.basedOnSize)
 		}
-		.navigationTitle("Aujourd’hui")
+		.todayBackdrop()
+		.toolbar(.hidden, for: .navigationBar)
+	}
+
+	private var column: some View {
+		VStack(spacing: Track1Tokens.spacing16) {
+			Track1Text("Profil local à récupérer", role: .title3)
+				.foregroundStyle(Track1Tokens.colorTextPrimary)
+				.accessibilityAddTraits(.isHeader)
+			Track1Text(
+				"\(description) Supprimez-le depuis les réglages de l’onglet Genres avant de recommencer.",
+				role: .bodyMedium
+			)
+			.foregroundStyle(Track1Tokens.colorTextSecondary)
+			.accessibilityIdentifier("profile-recovery-message")
+			VStack(spacing: Track1Tokens.spacing12) {
+				Track1Button("Ouvrir Genres", kind: .primary, size: .large, action: recoverProfile)
+				Track1Button("Explorer la recherche", kind: .secondary, size: .medium, action: exploreSearch)
+			}
+			.padding(.top, Track1Tokens.spacing8)
+		}
+		.multilineTextAlignment(.center)
+		.padding(Track1Tokens.spacing24)
 	}
 }
 

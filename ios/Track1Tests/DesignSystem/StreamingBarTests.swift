@@ -77,7 +77,6 @@ final class StreamingBarTests: XCTestCase {
 	func testTheLogoIs16PointsAndThePillAtLeast44() {
 		XCTAssertEqual(StreamingButton.logoSize, 16, accuracy: 0.001)
 		XCTAssertEqual(Track1Tokens.sizeControlMedium, 44, accuracy: 0.001)
-		XCTAssertGreaterThanOrEqual(Track1Tokens.sizeControlMedium, Track1Theme.minimumHitTarget)
 	}
 
 	// MARK: - Brand marks

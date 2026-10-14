@@ -161,7 +161,7 @@ final class ListComponentsTests: XCTestCase {
 	func testRowHeightsAreAboveTheTapTarget() {
 		XCTAssertEqual(Track1ListItem.minHeight(hasArtwork: false), 60)
 		XCTAssertEqual(Track1ListItem.minHeight(hasArtwork: true), 80)
-		XCTAssertGreaterThanOrEqual(Track1ListItem.minHeight(hasArtwork: false), Track1Theme.minimumHitTarget)
+		XCTAssertGreaterThanOrEqual(Track1ListItem.minHeight(hasArtwork: false), 44)
 	}
 
 	func testRowVerticalMarginIs10PointsByTheSpacingToken() {

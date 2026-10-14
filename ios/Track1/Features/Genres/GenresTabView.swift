@@ -24,8 +24,6 @@ struct GenresTabView: View {
 	let analytics: AnalyticsClient
 	/// nil when the app has neither a catalog fixture nor an API client: the tab then reads as unavailable.
 	let loadCatalog: (@Sendable () async -> APIResult<Catalog>)?
-	/// No profile yet: the first onboarding is not this tab's flow (J.4 moves it to the launch).
-	let chooseProfile: () -> Void
 	let profileWasSaved: (Profile) -> Void
 	let profileWasCleared: () -> Void
 
@@ -99,7 +97,9 @@ struct GenresTabView: View {
 				grid(of: profile, in: loaded.taxonomy)
 			}
 		case .missing:
-			note("Choisis des genres pour recevoir une recommandation par jour.")
+			// Only seen while the tabs fade into the onboarding after the profile is deleted (J.4): a first
+			// selection is not this tab's flow.
+			EmptyView()
 		case .unavailable:
 			// The profile may exist and be unreadable for now: not an invitation to write a new one.
 			note("Ton profil est illisible pour le moment. Réessaie plus tard.")
@@ -153,19 +153,12 @@ struct GenresTabView: View {
 			.foregroundStyle(Track1Tokens.colorTextSecondary)
 	}
 
-	/// With a profile, the button edits it. Without one it starts the first selection, which the old
-	/// onboarding still serves until J.4.
 	private var action: some View {
-		let hasProfile = profileState.profile != nil
-		return Track1Button(
-			hasProfile ? "Modifier mes genres" : "Choisir mes genres", kind: .primary, size: .large
-		) {
-			if hasProfile { showingEditor = true } else { chooseProfile() }
-		}
-		.disabled(!canAct)
-		.accessibilityIdentifier("genres-edit")
-		.frame(maxWidth: .infinity)
-		.padding(.vertical, Track1Tokens.spacing12)
+		Track1Button("Modifier mes genres", kind: .primary, size: .large) { showingEditor = true }
+			.disabled(!canAct)
+			.accessibilityIdentifier("genres-edit")
+			.frame(maxWidth: .infinity)
+			.padding(.vertical, Track1Tokens.spacing12)
 	}
 
 	/// The edit flow needs the tree; a corrupt profile can only be deleted from the settings.
@@ -173,8 +166,7 @@ struct GenresTabView: View {
 		switch profileState {
 		case .profile:
 			if case .ready = catalog { true } else { false }
-		case .missing: true
-		case .unavailable, .corrupt, .unsupportedVersion: false
+		case .missing, .unavailable, .corrupt, .unsupportedVersion: false
 		}
 	}
 
@@ -219,7 +211,7 @@ struct GenresTabView: View {
 			openEditorWhenReady = true
 			catalog = .loading
 			attempt += 1
-		case (nil, _): chooseProfile()
+		case (nil, _): break
 		}
 	}
 

@@ -106,17 +106,6 @@ public actor ProfileStore {
 		}
 	}
 
-	public func beginEditingDraft(from profile: Profile) async -> Result<ProfileDraft, LocalStoreError> {
-		await resetIfNeeded()
-		let draft = ProfileDraft(
-			version: Profile.version,
-			flowID: profile.flowID,
-			genreIDs: profile.genreIDs,
-			onboardingStartedRecorded: true
-		)
-		return await persist(draft)
-	}
-
 	public func saveDraft(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
 		await resetIfNeeded()
 		guard draft.isValid() else { return .failure(.unavailable) }
@@ -182,11 +171,6 @@ public actor ProfileStore {
 			return .unavailable
 		}
 		return .saved(profile)
-	}
-
-	public func discardEditingDraft() async -> Result<Void, LocalStoreError> {
-		await resetIfNeeded()
-		return await localStore.remove(named: Self.draftFile)
 	}
 
 	public func clear() async -> ProfileClear {
