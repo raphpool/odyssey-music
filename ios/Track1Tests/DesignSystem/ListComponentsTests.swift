@@ -129,6 +129,29 @@ final class ListComponentsTests: XCTestCase {
 		}
 	}
 
+	/// TRA-444: the danger tone only recolors the title (`theme.color.text.danger`, e56e5a), in Default and
+	/// Pressed. The fill, the subtitle and the Disabled look stay those of the Figma states above.
+	func testDangerToneColorsTheTitleOnlyAndKeepsTheRest() {
+		for row in figma {
+			let standard = Track1ListItemColors.resolve(state: row.state)
+			let danger = Track1ListItemColors.resolve(state: row.state, tone: .danger)
+			XCTAssertEqual(rgbaHex(danger.fill), row.fill, "danger fill of \(row.node)")
+			XCTAssertEqual(rgbaHex(danger.subtitle), row.subtitle, "danger subtitle of \(row.node)")
+			let title = row.state == .disabled ? row.title : "e56e5aff"
+			XCTAssertEqual(rgbaHex(danger.title), title, "danger title of \(row.node)")
+			XCTAssertEqual(rgbaHex(standard.title), row.title, "standard title of \(row.node)")
+		}
+	}
+
+	func testTheDefaultToneIsStandard() {
+		XCTAssertEqual(Track1ListItem.Tone.allCases, [.standard, .danger])
+		for row in figma {
+			let defaulted = Track1ListItemColors.resolve(state: row.state)
+			let standard = Track1ListItemColors.resolve(state: row.state, tone: .standard)
+			XCTAssertEqual(rgbaHex(defaulted.title), rgbaHex(standard.title))
+		}
+	}
+
 	func testOnlyDisabledDimsTheRowTo42Percent() {
 		XCTAssertEqual(Track1ListItemColors.opacity(state: .normal), 1)
 		XCTAssertEqual(Track1ListItemColors.opacity(state: .pressed), 1)

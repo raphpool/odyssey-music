@@ -56,7 +56,8 @@ final class RecentNodesStoreTests: XCTestCase {
 		let reread = await second.list()
 		XCTAssertEqual(reread, Array(nodes.reversed()))
 
-		await second.clear()
+		let cleared = await second.clear()
+		XCTAssertEqual(cleared, .cleared)
 		let afterClear = await second.list()
 		XCTAssertEqual(afterClear, [])
 		let fromThird = await makeStore().list()
@@ -66,9 +67,25 @@ final class RecentNodesStoreTests: XCTestCase {
 
 	func testClearWithoutAFileIsANoOp() async {
 		let store = makeStore()
-		await store.clear()
+		let cleared = await store.clear()
+		XCTAssertEqual(cleared, .cleared)
 		let list = await store.list()
 		XCTAssertEqual(list, [])
+	}
+
+	/// TRA-444: `clear()` used to ignore the result of `LocalStore.remove`, so "Effacer le profil" could
+	/// report nothing while the recents stayed on the device.
+	func testClearReportsAFailureWhenTheStorageRefusesTheRemoval() async throws {
+		let kept = try node(1)
+		await makeStore().record(kept)
+
+		let refusing = RecentNodesStore(
+			store: LocalStore(directoryURL: directoryURL, fileManager: RemovalRefusingFileManager()))
+		let cleared = await refusing.clear()
+		XCTAssertEqual(cleared, .unavailable)
+
+		let list = await makeStore().list()
+		XCTAssertEqual(list, [kept], "The refused removal leaves the recents where they were.")
 	}
 
 	func testTheFileUsesTheVersionedFormat() async throws {
@@ -185,6 +202,13 @@ final class RecentNodesStoreTests: XCTestCase {
 		let again = RecentNodesStore(store: LocalStore(directoryURL: directoryURL), resetBeforeUse: true)
 		let first = await again.list()
 		XCTAssertEqual(first, [], "A reset store reads empty as its very first call.")
+	}
+
+	/// A file system that lists and reads like the real one but refuses to delete.
+	private final class RemovalRefusingFileManager: FileManager, @unchecked Sendable {
+		override func removeItem(at URL: URL) throws {
+			throw CocoaError(.fileWriteNoPermission)
+		}
 	}
 
 	private func makeStore() -> RecentNodesStore {
