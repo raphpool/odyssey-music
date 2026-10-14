@@ -107,6 +107,29 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 	});
 });
 
+describe("toVizNode — EdgeRef.artist survives projection (TRA-451)", () => {
+	it("keeps artist on projected edges and does not leak artist_kind", () => {
+		const discography: EdgeRef[] = [
+			{
+				slug: "project:new-forms--roni-size-reprazent",
+				type: "project",
+				name: "New Forms",
+				artist: "Roni Size / Reprazent",
+			},
+		];
+		const group = artistNode({
+			slug: "artist:roni-size-reprazent",
+			name: "Roni Size / Reprazent",
+			artist_kind: "group",
+			discography,
+		});
+		const viz = toVizNode(group, {});
+		const projected = viz.edges.discography as EdgeRef[];
+		expect(projected[0]?.artist).toBe("Roni Size / Reprazent");
+		expect("artist_kind" in viz).toBe(false);
+	});
+});
+
 describe("buildGraphFromCache — genre qid reaches the exported graph (TRA-19)", () => {
 	it("keeps the node qid through the full cache-to-graph pipeline", async () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:acid", name: "Acid", qid: "Q170611" }));

@@ -28,6 +28,8 @@ export interface EdgeRef {
 	qid?: string; // Wikidata entity id, genre edges only.
 	year?: string;
 	releaseType?: "album" | "ep" | "single";
+	// Name of the primary credited artist; set on project/track targets, whose slug is scoped by it.
+	artist?: string;
 }
 
 export interface Citation {
@@ -82,6 +84,8 @@ export interface LabelNode extends BaseNode {
 
 export interface ArtistNode extends BaseNode {
 	type: "artist";
+	// A person and a group are distinct artist nodes; absent until the backfill classifies them.
+	artist_kind?: "person" | "group";
 	editorial_bio: string;
 	photo_url?: string;
 	origin?: string;
