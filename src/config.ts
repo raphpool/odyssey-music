@@ -51,7 +51,6 @@ export const pipelineConfig = {
 	searchResults: envInt("PIPELINE_SEARCH_RESULTS", 7),
 	fetchTopKWithWiki: envInt("PIPELINE_FETCH_TOP_K_WITH_WIKI", 1),
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
-	nodeTtlMs: envInt("ODYSSEY_NODE_TTL_MS", 12 * 3600 * 1000),
 };
 
 export const pricingConfig = {
