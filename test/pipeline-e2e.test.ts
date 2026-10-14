@@ -66,6 +66,36 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 		TIMEOUT_MS,
 	);
 
+	// TRA-458: Gemini double-escapes newlines in its JSON, so generated prose reaches
+	// canonicalizeDraft with a literal backslash + "n". It must leave the pipeline as real breaks.
+	it(
+		"turns literal backslash-n in the article, teaser and text facts into real newlines (TRA-458)",
+		async () => {
+			const article =
+				"Fixture Artist is a fictional electronic musician.\\n\\nSecond paragraph, written for the " +
+				"runPipeline end-to-end test harness.\\n\\n\\n\\nThird paragraph with a trailing space. ";
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					editorial_article: article,
+					editorial_bio: "Line one.\\nLine two.",
+					origin: "Test fixture,\\nnowhere",
+				}),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			const artist = result.node as ArtistNode;
+			expect(artist.editorial_article).toBe(
+				"Fixture Artist is a fictional electronic musician.\n\nSecond paragraph, written for the " +
+					"runPipeline end-to-end test harness.\n\nThird paragraph with a trailing space.",
+			);
+			expect(artist.editorial_bio).toBe("Line one.\nLine two.");
+			expect(artist.origin).toBe("Test fixture,\nnowhere");
+		},
+		TIMEOUT_MS,
+	);
+
 	it(
 		"materializes a genre node, with related_genres/subgenres present",
 		async () => {

@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { pipelineConfig, pricingConfig } from "./config.js";
+import { normalizeEditorialText } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
@@ -38,7 +39,13 @@ import {
 	findReleaseGroupMbidByName,
 	type MbGenreTag,
 } from "./musicbrainz.js";
-import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
+import {
+	EDGE_TARGET_TYPES_BY_TYPE,
+	LIST_EDGES_BY_TYPE,
+	NODE_TYPES,
+	OPTIONAL_TEXT_FIELDS,
+	TEASER_FIELD_BY_TYPE,
+} from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -1369,6 +1376,16 @@ function canonicalizeDraft(
 	// still requires list-edge fields, so default them to [] here.
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
+	}
+	// Gemini double-escapes newlines in its JSON (literal backslash + "n"); fix generated prose
+	// here so new writes never carry the escape (TRA-458). Existing nodes are the 6.2 migration.
+	for (const f of [
+		"editorial_article",
+		TEASER_FIELD_BY_TYPE[input.type],
+		...OPTIONAL_TEXT_FIELDS[input.type],
+	]) {
+		const v = next[f];
+		if (typeof v === "string") next[f] = normalizeEditorialText(v);
 	}
 	// Drop ungrounded scalar/edge values before validation (ADR 2026-05-19 groundedness).
 	const corpusBlob = (corpus as { markdown?: string }[])
