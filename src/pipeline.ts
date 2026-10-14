@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { pipelineConfig, pricingConfig } from "./config.js";
+import { normalizeEditorialText } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
@@ -38,7 +39,13 @@ import {
 	findReleaseGroupMbidByName,
 	type MbGenreTag,
 } from "./musicbrainz.js";
-import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
+import {
+	EDGE_TARGET_TYPES_BY_TYPE,
+	LIST_EDGES_BY_TYPE,
+	NODE_TYPES,
+	OPTIONAL_TEXT_FIELDS,
+	TEASER_FIELD_BY_TYPE,
+} from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
 import { makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
@@ -87,7 +94,7 @@ async function loadGenreCatalogByQid(): Promise<Map<string, WikidataGenreEntry>>
 }
 
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
-import { rankResults, type TavilyResult, tavilySearch } from "./tools/tavily.js";
+import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
@@ -558,10 +565,19 @@ function makeNodeSchema(type: NodeType): SchemaShape {
 const MAX_CORPUS_BYTES = pipelineConfig.maxCorpusBytes;
 const PER_PAGE_BUDGET = pipelineConfig.perPageBudgetBytes;
 const SEARCH_RESULTS = pipelineConfig.searchResults;
-// Fetch one strong Wikipedia result, or multiple music outlets when no Wiki result is present.
-// See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
+// Fetch Wikipedia plus the best non-Wikipedia outlet, or multiple music outlets when no Wiki
+// result is present. See ADR 2026-05-19 pipeline-retrieval-and-enrichment.
+// 2026-10-14 (TRA-459): the Wikipedia case used to read Wikipedia alone (K=1), so the corpus
+// held a single page and canonicalizeDraft could only keep one citation — 139 artists and 34
+// labels were written with `citations.length < 2` (docs/plans/graph-integrity.md, partie 6).
 const FETCH_TOP_K_WITH_WIKI = pipelineConfig.fetchTopKWithWiki;
 const FETCH_TOP_K_NO_WIKI = pipelineConfig.fetchTopKNoWiki;
+// rankUrl() (src/tools/tavily.ts) gives Reddit 9 and the streaming platforms 11: pages with
+// no article body worth citing. A second source at or above this rank is skipped rather than
+// forced into the corpus (a noisy page is worse than a single clean one).
+const NOISY_SOURCE_MIN_RANK = 9;
+// The citations schema asks the model for 2 to 4 items (see citations in the response schema).
+const MIN_CITATIONS = 2;
 
 function safeHost(u: string): string {
 	try {
@@ -766,9 +782,18 @@ async function researchTarget(
 	}
 	log(`[pipeline] search provider=${searchProvider} ${searchMs}ms results=${searchResults.length}`);
 
-	const hasWiki = searchResults.slice(0, 4).some((r) => /(^|\.)wikipedia\.org/i.test(safeHost(r.url)));
+	const isWikipedia = (r: { url: string }): boolean => /(^|\.)wikipedia\.org/i.test(safeHost(r.url));
+	const wikiResult = searchResults.slice(0, 4).find(isWikipedia);
+	const hasWiki = wikiResult !== undefined;
 	const fetchK = hasWiki ? FETCH_TOP_K_WITH_WIKI : FETCH_TOP_K_NO_WIKI;
-	const topUrls = searchResults.slice(0, fetchK).map((r) => r.url);
+	// With Wikipedia: Wikipedia first (concatenation order unchanged, so its page keeps the
+	// head of the corpus budget), then the best-ranked non-Wikipedia result that is neither
+	// Reddit nor a streaming site. Without Wikipedia: the top K results, as before.
+	const topUrls = wikiResult
+		? [wikiResult, ...searchResults.filter((r) => !isWikipedia(r) && rankUrl(r.url) < NOISY_SOURCE_MIN_RANK)]
+				.slice(0, fetchK)
+				.map((r) => r.url)
+		: searchResults.slice(0, fetchK).map((r) => r.url);
 	log(`[pipeline] fetch_k=${fetchK} wiki=${hasWiki}`);
 	const tFetch = Date.now();
 	const fetched = await Promise.allSettled(topUrls.map((u) => localFetch(u)));
@@ -1318,6 +1343,24 @@ function buildUserPrompt(
 	return prompt;
 }
 
+/**
+ * Completes `cits` in place up to MIN_CITATIONS with corpus pages the model did not cite,
+ * in corpus order. Only corpus URLs are ever added (ADR 2026-05-19 groundedness: a citation
+ * must come from the corpus, never invented). A corpus of fewer than MIN_CITATIONS pages
+ * leaves the list as it is — we do not pad with search results that were never read.
+ * (TRA-459, 2026-10-14: the model often cites one page even when two were provided.)
+ */
+function topUpCitations(cits: Citation[], corpus: { url: string; title?: string }[]): void {
+	if (cits.length >= MIN_CITATIONS || corpus.length < MIN_CITATIONS) return;
+	const cited = new Set(cits.map((c) => c.url));
+	for (const page of corpus) {
+		if (cits.length >= MIN_CITATIONS) break;
+		if (cited.has(page.url)) continue;
+		cited.add(page.url);
+		cits.push({ url: page.url, ...(page.title?.trim() ? { title: page.title.trim() } : {}) });
+	}
+}
+
 function canonicalizeDraft(
 	raw: Record<string, unknown>,
 	input: PipelineInput,
@@ -1333,6 +1376,16 @@ function canonicalizeDraft(
 	// still requires list-edge fields, so default them to [] here.
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
+	}
+	// Gemini double-escapes newlines in its JSON (literal backslash + "n"); fix generated prose
+	// here so new writes never carry the escape (TRA-458). Existing nodes are the 6.2 migration.
+	for (const f of [
+		"editorial_article",
+		TEASER_FIELD_BY_TYPE[input.type],
+		...OPTIONAL_TEXT_FIELDS[input.type],
+	]) {
+		const v = next[f];
+		if (typeof v === "string") next[f] = normalizeEditorialText(v);
 	}
 	// Drop ungrounded scalar/edge values before validation (ADR 2026-05-19 groundedness).
 	const corpusBlob = (corpus as { markdown?: string }[])
@@ -1396,6 +1449,7 @@ function canonicalizeDraft(
 	if (cits.length === 0) {
 		for (const c of corpus.slice(0, 3)) cits.push({ url: c.url });
 	}
+	topUpCitations(cits, corpus);
 	next.citations = cits;
 	next.materialized_at = new Date().toISOString();
 
