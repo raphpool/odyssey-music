@@ -442,9 +442,10 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 	);
 
 	it(
-		"pins the canonical slug when refreshing a stale canonical found via the qid index, with no explicit fresh (BLOCK 1 regression)",
+		"pins the canonical slug when refreshing an old canonical found via the qid index (BLOCK 1 regression)",
 		async () => {
-			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > pipelineConfig.nodeTtlMs (12h)
+			// TRA-449: age no longer triggers a refresh, so the refresh is requested explicitly.
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString();
 			await cache.write(
 				genreNode({
 					slug: "genre:electronic",
@@ -472,7 +473,10 @@ describe("createMaterializeService genre canonicalization guard (TRA-29)", () =>
 			const createMaterializeService = await loadCreateMaterializeService();
 			const service = createMaterializeService({ cache, env: ENV, genreRegistry });
 
-			const result = await service.handleMaterialize({ type: "genre", name: "Electronic music" });
+			const result = await service.handleMaterialize(
+				{ type: "genre", name: "Electronic music" },
+				{ fresh: true },
+			);
 
 			expect(result.node.slug).toBe("genre:electronic");
 			expect(await genreFileCount()).toBe(1);
@@ -684,13 +688,14 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		},
 		TIMEOUT_MS,
 	);
-	// SECURITY (2026-09-10): a stale `genre:techno` (nodeTtlMs=12h) + `{name: "Attacker Controlled
+	// SECURITY (2026-09-10): a `genre:techno` refresh + `{name: "Attacker Controlled
 	// Topic", slug: "genre:techno"}` used to pin `slug` while keeping the client's own name -- an
 	// arbitrary unauthenticated write into cache/ (POST /materialize has no auth), any node type.
+	// (Was triggered by the 12 h TTL; since TRA-449 only an explicit `fresh` refreshes.)
 	it(
-		"THE REPRO: a stale node's own identity drives a body.slug refresh, never an attacker-supplied name",
+		"THE REPRO: a refreshed node's own identity drives a body.slug refresh, never an attacker-supplied name",
 		async () => {
-			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > nodeTtlMs (12h)
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString();
 			await cache.write(
 				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", materialized_at: staleAt }),
 			);
@@ -707,11 +712,14 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 				}),
 			});
 
-			const result = await service.handleMaterialize({
-				type: "genre",
-				name: "Attacker Controlled Topic",
-				slug: "genre:techno",
-			});
+			const result = await service.handleMaterialize(
+				{
+					type: "genre",
+					name: "Attacker Controlled Topic",
+					slug: "genre:techno",
+				},
+				{ fresh: true },
+			);
 
 			expect(result.node.slug).toBe("genre:techno");
 			// The refreshed node keeps ITS OWN name -- the attacker's `name` never lands on disk.
@@ -720,6 +728,59 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
 			expect(query).toBe("Techno genre music wiki discogs");
 			expect(query).not.toContain("Attacker");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"serves a 30-day-old node as a cache hit without fresh, and never runs the pipeline (TRA-449)",
+		async () => {
+			const oldAt = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString();
+			await cache.write(
+				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", materialized_at: oldAt }),
+			);
+			const service = await buildService();
+			const tavilySearch = await loadTavilySearch();
+			vi.mocked(tavilySearch)
+				.mockReset()
+				.mockImplementation(async () => {
+					throw new Error("unexpected pipeline run");
+				});
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Techno" });
+
+			expect(result.source).toBe("cache");
+			expect(result.node.materialized_at).toBe(oldAt);
+			expect(vi.mocked(tavilySearch)).not.toHaveBeenCalled();
+			expect((await cache.get("genre:techno")).materialized_at).toBe(oldAt);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"re-runs the pipeline for a 30-day-old node when fresh is requested (TRA-449)",
+		async () => {
+			const oldAt = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString();
+			await cache.write(
+				genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170611", materialized_at: oldAt }),
+			);
+			const service = await buildService();
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					name: "Techno",
+					parent_genres: [],
+					subgenres: [],
+					related_genres: [],
+					key_artists: [],
+					key_labels: [],
+					landmark_tracks: [],
+				}),
+			});
+
+			const result = await service.handleMaterialize({ type: "genre", name: "Techno" }, { fresh: true });
+
+			expect(result.source).toBe("jit");
+			expect(new Date(result.node.materialized_at).getTime()).toBeGreaterThan(new Date(oldAt).getTime());
 		},
 		TIMEOUT_MS,
 	);
@@ -756,7 +817,7 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 	);
 
 	it(
-		"keeps an old cached node for reuseExisting while the default still refreshes it (TRA-295)",
+		"keeps an old cached node for reuseExisting, while an explicit fresh still refreshes it (TRA-295, TRA-449)",
 		async () => {
 			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString();
 			await cache.write(
@@ -775,9 +836,9 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 				{ reuseExisting: true },
 			);
 			expect(reused).toMatchObject({ source: "cache", node: { slug: "genre:techno" } });
-			await expect(service.handleMaterialize({ type: "genre", name: "Techno" })).rejects.toThrow(
-				"default refresh reached pipeline",
-			);
+			await expect(
+				service.handleMaterialize({ type: "genre", name: "Techno" }, { fresh: true }),
+			).rejects.toThrow("default refresh reached pipeline");
 		},
 		TIMEOUT_MS,
 	);
@@ -879,7 +940,7 @@ describe("createMaterializeService identity refinements (TRA-45)", () => {
 	it(
 		"point 2: reports a client disambiguator coherent with body.slug's own suffix, preserving it in the search query",
 		async () => {
-			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString(); // > nodeTtlMs (12h)
+			const staleAt = new Date(Date.now() - 13 * 3600 * 1000).toISOString();
 			await cache.write(
 				genreNode({ slug: "genre:trap--edm", name: "Trap", qid: "Q47781397", materialized_at: staleAt }),
 			);
@@ -896,12 +957,15 @@ describe("createMaterializeService identity refinements (TRA-45)", () => {
 				}),
 			});
 
-			await service.handleMaterialize({
-				type: "genre",
-				name: "Trap",
-				slug: "genre:trap--edm",
-				disambiguator: "EDM",
-			});
+			await service.handleMaterialize(
+				{
+					type: "genre",
+					name: "Trap",
+					slug: "genre:trap--edm",
+					disambiguator: "EDM",
+				},
+				{ fresh: true },
+			);
 
 			const tavilySearch = await loadTavilySearch();
 			const [, query] = vi.mocked(tavilySearch).mock.calls.at(-1) ?? [];
