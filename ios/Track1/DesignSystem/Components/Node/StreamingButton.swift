@@ -7,9 +7,7 @@ import Track1Core
 /// Figma; the accessibility label is the action title ("Écouter sur ..." or "Rechercher sur ...") when the
 /// caller has one, which is what tells an exact link from a search fallback.
 ///
-/// The marks in `Assets.xcassets/Brand/` are neutral placeholders (TRA-394, 2026-10-13): Figma draws the
-/// marks but names no official source or licence, and a brand mark is never redrawn here. Replacing the two
-/// SVGs by the vendors' official ones needs no code change.
+/// The marks in `Assets.xcassets/Brand/` are the brand-colour exports of the Figma logos: see its `README.md`.
 struct StreamingButton: View {
 	/// `size/icon-small`: Figma draws the mark at 16 pt.
 	static let logoSize = Track1Tokens.sizeIconSmall
