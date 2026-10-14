@@ -439,6 +439,14 @@ describe("audit-cache CLI", () => {
 		expect(r.stderr).toBe("");
 	});
 
+	// A reverse pair added to REVERSE_EDGE_PAIRS without its `reciprocity-missing` ceiling in
+	// data/integrity-thresholds.json reads as a violation (TRA-454: 9 pairs were added without one).
+	it("passes on the committed cache with the committed thresholds", () => {
+		const r = run(join(REPO_ROOT, "cache"));
+		expect(r.stderr).toBe("");
+		expect(r.status).toBe(0);
+	}, 60_000);
+
 	it("exits 1 naming the metric when homonym-release-links exceeds a threshold of 0", async () => {
 		const thresholds = await thresholdsFile((t) => {
 			t["homonym-release-links"] = 0;
