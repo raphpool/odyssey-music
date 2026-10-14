@@ -25,19 +25,6 @@ const forbidden = [
 	{ label: "Track1Theme", pattern: /\bTrack1Theme\b/ },
 ] as const;
 
-type Label = (typeof forbidden)[number]["label"];
-
-// Files that still hold a raw value while the pull request that rewrites them is open. An entry allows
-// the listed labels in that file only, so a new kind of violation there still fails. A stale entry
-// (the file is gone or clean) is harmless: delete it with the pull request that lands the rewrite.
-const pendingRewrites: Readonly<Record<string, readonly Label[]>> = {
-	// TRA-400 (H.3): the article and sources sections move to Track1Text, SectionHeader and Track1ListItem.
-	"ios/Track1/Features/Node/NodeArticleView.swift": ["dynamic type font", "Track1Theme"],
-	// TRA-408 (K.2): the old relations and listening sections are deleted, the page has its own.
-	"ios/Track1/Features/Node/NodeRelationsView.swift": ["dynamic type font", "Track1Theme"],
-	"ios/Track1/Features/Node/NodeListeningView.swift": ["dynamic type font", "Track1Theme"],
-};
-
 async function swiftFiles(directory: string): Promise<string[]> {
 	const entries = await readdir(directory, { withFileTypes: true });
 	const nested = await Promise.all(
@@ -66,20 +53,13 @@ function violationsInSource(source: string): string[] {
 }
 
 /** Scans every policy root of a repository layout; paths are reported from that repository's root. */
-async function violationsInRepository(
-	repository: string,
-	pending: Readonly<Record<string, readonly Label[]>>,
-) {
+async function violationsInRepository(repository: string) {
 	const violations: string[] = [];
 	for (const root of scannedRoots) {
 		for (const file of await swiftFiles(join(repository, root))) {
 			const path = relative(repository, file);
-			const allowed: readonly string[] = pending[path] ?? [];
 			for (const violation of violationsInSource(await readFile(file, "utf8"))) {
-				const label = violation.slice(violation.indexOf(": ") + 2);
-				if (!allowed.includes(label)) {
-					violations.push(`${path}: ${violation}`);
-				}
+				violations.push(`${path}: ${violation}`);
 			}
 		}
 	}
@@ -97,7 +77,7 @@ describe("Track1 design tokens policy", () => {
 	});
 
 	it("keeps raw colors, system fonts and Track1Theme out of the screens", async () => {
-		expect(await violationsInRepository(".", pendingRewrites)).toEqual([]);
+		expect(await violationsInRepository(".")).toEqual([]);
 	});
 
 	it("fails when a faulty line is added to a screen, and ignores the design system and a build folder", async () => {
@@ -115,24 +95,9 @@ describe("Track1 design tokens policy", () => {
 				join(repository, "ios/Track1/DesignSystem/Tokens.swift"),
 				"Color(red: 1, green: 0, blue: 0)\n",
 			);
-			expect(await violationsInRepository(repository, {})).toEqual([
+			expect(await violationsInRepository(repository)).toEqual([
 				"ios/Track1/Features/Today/Faulty.swift: line 2: dynamic type font",
 			]);
-		} finally {
-			await rm(repository, { recursive: true, force: true });
-		}
-	});
-
-	it("lets a pending file keep only the labels it lists", async () => {
-		const repository = await mkdtemp(join(tmpdir(), "track1-design-tokens-pending-"));
-		try {
-			const features = join(repository, "ios/Track1/Features/Node");
-			await mkdir(features, { recursive: true });
-			await mkdir(join(repository, "ios/Track1/App"), { recursive: true });
-			await writeFile(join(features, "Old.swift"), "Track1Theme.actionTint\nColor(hex: 0xff0000)\n");
-			expect(
-				await violationsInRepository(repository, { "ios/Track1/Features/Node/Old.swift": ["Track1Theme"] }),
-			).toEqual(["ios/Track1/Features/Node/Old.swift: line 2: raw color"]);
 		} finally {
 			await rm(repository, { recursive: true, force: true });
 		}
