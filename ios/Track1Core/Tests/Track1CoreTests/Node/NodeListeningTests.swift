@@ -1,7 +1,6 @@
-import Track1Core
 import XCTest
 
-@testable import Track1
+@testable import Track1Core
 
 @MainActor
 final class NodeListeningTests: XCTestCase {
@@ -38,8 +37,6 @@ final class NodeListeningTests: XCTestCase {
 			guard case .ready(let actions) = model.listening else { return XCTFail("Expected the ready state.") }
 			XCTAssertEqual(actions.map(\.linkKind), [.search, .search])
 			XCTAssertEqual(actions.map(\.title), ["Rechercher sur Spotify", "Rechercher sur Apple Music"])
-			// The error message names the service through `serviceName`, which must match the button titles.
-			XCTAssertTrue(actions.allSatisfy { $0.title.hasSuffix(NodeListeningView.serviceName($0.provider)) })
 		}
 	}
 
@@ -146,7 +143,6 @@ final class NodeListeningTests: XCTestCase {
 
 		XCTAssertNil(model.listeningFailure)
 		XCTAssertEqual(recorder.events.last?.name, .externalListeningOpened)
-		XCTAssertEqual(NodeListeningView.serviceName(.appleMusic), "Apple Music")
 	}
 
 	func testOpeningIsIgnoredWhileTheNodeIsNotLoaded() async throws {

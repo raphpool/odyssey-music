@@ -73,83 +73,133 @@ enum NodeArticleParser {
 	}
 }
 
+/// One source line of the page: a citation that passed `NodeArticleView.safeCitationURL(_:)`.
+struct NodeSourceRow: Equatable {
+	let title: String
+	let subtitle: String?
+	let url: URL
+}
+
+/// The two sections the page draws after the edge sections (D15), in this order.
+enum NodeArticleSection: Equatable {
+	case article([NodeArticleBlock])
+	case sources([NodeSourceRow])
+}
+
+/// The "article" and "sources" sections of the node page (D15, the validated deviation from rule 9 of the Data
+/// contract). Both are third-party text, drawn `verbatim`, and a source opens only through the OS.
 struct NodeArticleView: View {
-	let article: String
-	let citations: [Citation]
+	private let sections: [NodeArticleSection]
+	private let onOpenSource: (URL) -> Void
+
+	init(article: String, citations: [Citation], onOpenSource: @escaping (URL) -> Void) {
+		sections = Self.sections(article: article, citations: citations)
+		self.onOpenSource = onOpenSource
+	}
+
+	/// False when the page has neither article nor valid source: the page then adds nothing, not even the
+	/// 24 pt that separate two sections.
+	var hasContent: Bool { !sections.isEmpty }
+
+	/// An empty article gives no "article" section and no valid source gives no "sources" section.
+	static func sections(article: String, citations: [Citation]) -> [NodeArticleSection] {
+		sections(article: article, sources: sourceRows(citations))
+	}
+
+	static func sections(article: String, sources: [NodeSourceRow]) -> [NodeArticleSection] {
+		var sections = [NodeArticleSection]()
+		let blocks = NodeArticleParser.blocks(from: article)
+		if !blocks.isEmpty { sections.append(.article(blocks)) }
+		if !sources.isEmpty { sections.append(.sources(sources)) }
+		return sections
+	}
+
+	static func sourceRows(_ citations: [Citation]) -> [NodeSourceRow] {
+		sourceRows(entries: citations.map { (title: $0.title, url: $0.url) })
+	}
+
+	/// Keeps the check at the point of use, like `safeCitationURL(_:)`: a row never depends on how a
+	/// `Citation` was built. A `Citation` cannot hold an unsafe URL, so the tests reach this entry point to
+	/// prove the exclusion. The title is the trimmed citation title or else the host (a blank title counts as
+	/// none); the host is the subtitle unless it already is the title, whatever the case.
+	static func sourceRows(entries: [(title: String?, url: URL)]) -> [NodeSourceRow] {
+		entries.compactMap { entry in
+			guard let url = safeCitationURL(entry.url), let host = url.host else { return nil }
+			let given = entry.title?.trimmingCharacters(in: .whitespacesAndNewlines)
+			let title = given.flatMap { $0.isEmpty ? nil : $0 } ?? host
+			let isHost = title.caseInsensitiveCompare(host) == .orderedSame
+			return NodeSourceRow(title: title, subtitle: isHost ? nil : host, url: url)
+		}
+	}
+
+	static let articleIdentifier = SectionHeader.identifier(field: "article")
+	static let sourcesIdentifier = SectionHeader.identifier(field: "sources")
+
+	static func sourceRowIdentifier(index: Int) -> String {
+		"source-row-\(index)"
+	}
 
 	var body: some View {
-		let blocks = NodeArticleParser.blocks(from: article)
-		VStack(alignment: .leading, spacing: Track1Theme.contentSpacing) {
-			if !blocks.isEmpty {
-				Text("Article")
-					.font(.title2.bold())
-					.accessibilityAddTraits(.isHeader)
-				// verbatim everywhere below: article text and citation titles come from the API and a
-				// plain Text("…") would render them as Markdown (links included).
+		VStack(alignment: .leading, spacing: Track1Tokens.spacing24) {
+			ForEach(Array(sections.enumerated()), id: \.offset) { _, section in
+				switch section {
+				case .article(let blocks): articleSection(blocks)
+				case .sources(let rows): sourcesSection(rows)
+				}
+			}
+		}
+		.frame(maxWidth: .infinity, alignment: .leading)
+	}
+
+	private func articleSection(_ blocks: [NodeArticleBlock]) -> some View {
+		VStack(alignment: .leading, spacing: 0) {
+			SectionHeader(title: NodePageSpec.articleLabel, count: nil)
+				.accessibilityIdentifier(Self.articleIdentifier)
+			VStack(alignment: .leading, spacing: Track1Tokens.spacing12) {
 				ForEach(Array(blocks.enumerated()), id: \.offset) { _, block in
 					switch block {
 					case .paragraph(let text):
-						Text(verbatim: text).font(.body)
+						bodyText(text)
 					case .list(let items):
-						VStack(alignment: .leading, spacing: 8) {
+						VStack(alignment: .leading, spacing: Track1Tokens.spacing8) {
 							ForEach(Array(items.enumerated()), id: \.offset) { _, item in
-								HStack(alignment: .firstTextBaseline, spacing: 8) {
-									Text(verbatim: "•").accessibilityHidden(true)
-									Text(verbatim: item)
+								// `.top`, not a baseline: `Track1Text` is a custom layout without a text baseline,
+								// and the bullet shares the line box of the first line.
+								HStack(alignment: .top, spacing: Track1Tokens.spacing8) {
+									bodyText("•").fixedSize().accessibilityHidden(true)
+									bodyText(item)
 								}
-								.font(.body)
 							}
 						}
 					}
 				}
 			}
+			.frame(maxWidth: .infinity, alignment: .leading)
+		}
+	}
 
-			Text("Sources")
-				.font(.title2.bold())
-				.accessibilityAddTraits(.isHeader)
-			if citations.isEmpty {
-				Text("Aucune source disponible.")
-					.foregroundStyle(.secondary)
-			} else {
-				ForEach(Array(citations.enumerated()), id: \.offset) { _, citation in
-					citationView(citation)
+	private func sourcesSection(_ rows: [NodeSourceRow]) -> some View {
+		VStack(alignment: .leading, spacing: 0) {
+			SectionHeader(title: NodePageSpec.sourcesLabel, count: rows.count)
+				.accessibilityIdentifier(Self.sourcesIdentifier)
+			VStack(spacing: Track1Tokens.spacing8) {
+				ForEach(Array(rows.enumerated()), id: \.offset) { index, row in
+					Track1ListItem(title: row.title, subtitle: row.subtitle, accessory: .chevron) {
+						onOpenSource(row.url)
+					}
+					.accessibilityAddTraits(.isLink)
+					.accessibilityIdentifier(Self.sourceRowIdentifier(index: index))
 				}
 			}
 		}
-		.frame(maxWidth: .infinity, alignment: .leading)
 	}
 
-	@ViewBuilder
-	private func citationView(_ citation: Citation) -> some View {
-		let address = citation.url.absoluteString
-		let label = citation.title ?? address
-		if let url = Self.safeCitationURL(citation.url) {
-			Link(destination: url) {
-				citationLabel(title: citation.title, address: address)
-			}
-			.accessibilityLabel(Text(verbatim: "Ouvrir la source \(label)"))
-		} else {
-			citationLabel(title: citation.title, address: address)
-				.accessibilityLabel(Text(verbatim: "Source non disponible : \(label)"))
-		}
+	private func bodyText(_ text: String) -> some View {
+		Track1Text(text, role: .bodyLarge, verbatim: true)
+			.foregroundStyle(Track1Tokens.colorTextPrimary)
 	}
 
-	private func citationLabel(title: String?, address: String) -> some View {
-		VStack(alignment: .leading, spacing: 4) {
-			if let title {
-				Text(verbatim: title).font(.headline)
-				Text(verbatim: address).font(.footnote).foregroundStyle(.secondary)
-			} else {
-				Text(verbatim: address).font(.headline)
-			}
-		}
-		.multilineTextAlignment(.leading)
-		.frame(maxWidth: .infinity, alignment: .leading)
-		.padding()
-		.background(Track1Theme.sectionSurface, in: RoundedRectangle(cornerRadius: 12))
-	}
-
-	/// Only a public HTTPS URL may be handed to `Link`; anything else is shown as inert text.
+	/// Only a public HTTPS URL may be opened; anything else is not drawn.
 	/// `Citation` already validates its URL when decoded; this check stays at the point of use so the view
 	/// never depends on how a `Citation` was built.
 	static func safeCitationURL(_ url: URL) -> URL? {
