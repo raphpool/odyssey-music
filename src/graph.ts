@@ -217,12 +217,17 @@ export function toVizNode(node: NodePayload): VizNode {
 	if (node.type === "genre" && node.qid) viz.qid = node.qid;
 	// Same projection for static, live and mobile graphs (TRA-455): image_url first, then the
 	// per-type legacy fields. photo_url / cover_url are not host-checked, so consumers must keep
-	// treating the value as untrusted.
-	const imageUrl = [node.image_url, raw.photo_url, raw.cover_url].find(
-		(candidate): candidate is string => typeof candidate === "string" && candidate !== "",
-	);
-	if (imageUrl) viz.image_url = imageUrl;
-	if (node.image_source) viz.image_source = node.image_source;
+	// treating the value as untrusted. image_source describes image_url only: never project it
+	// next to a photo_url / cover_url fallback.
+	if (node.image_url) {
+		viz.image_url = node.image_url;
+		if (node.image_source) viz.image_source = node.image_source;
+	} else {
+		const fallback = [raw.photo_url, raw.cover_url].find(
+			(candidate): candidate is string => typeof candidate === "string" && candidate !== "",
+		);
+		if (fallback) viz.image_url = fallback;
+	}
 	return viz;
 }
 

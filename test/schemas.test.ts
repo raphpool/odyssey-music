@@ -239,6 +239,12 @@ describe("isAllowedImageUrl", () => {
 		"https://mzstatic.com/x.jpg",
 		"https://evil.com/?u=https://upload.wikimedia.org/x.jpg",
 		"https://user@coverartarchive.org@evil.com/x.jpg",
+		"https://coverartarchive.org:8443/x",
+		"https://coverartarchive.org\\@evil.com/x",
+		"https:upload.wikimedia.org/x",
+		"HTTPS://upload.wikimedia.org/x",
+		"https://upload.wikimedia.org/a b.jpg",
+		'https://upload.wikimedia.org/a"onmouseover="alert(1)//',
 		"not a url",
 		"",
 	])("rejects %s", (url) => {

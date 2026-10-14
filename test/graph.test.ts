@@ -138,6 +138,14 @@ describe("toVizNode — image_url projection (TRA-455)", () => {
 		expect(viz.image_source).toBe("caa");
 	});
 
+	it("does not project image_source next to a photo_url / cover_url fallback", () => {
+		// image_source describes image_url only; a stray value must not label the fallback.
+		const artist = artistNode({ slug: "artist:a", name: "A", photo_url: "https://example.com/a.jpg" });
+		const viz = toVizNode({ ...artist, image_source: "caa" });
+		expect(viz.image_url).toBe("https://example.com/a.jpg");
+		expect("image_source" in viz).toBe(false);
+	});
+
 	it("projects image_url for genres, which have no photo_url / cover_url", () => {
 		const viz = toVizNode(
 			genreNode({ slug: "genre:dub", name: "Dub", image_url: caa, image_source: "derived-cover" }),
