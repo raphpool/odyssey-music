@@ -54,7 +54,8 @@ final class TodayFlowTests: XCTestCase {
 
 		XCTAssertTrue(element(app, "today-empty").waitForExistence(timeout: 15))
 		app.buttons["today-edit-genres"].tap()
-		XCTAssertTrue(app.buttons["profile-settings-edit"].waitForExistence(timeout: 5))
+		// 2026-10-14 (K.1): the button leads to the Genres tab, whose "Modifier mes genres" edits the profile.
+		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
 	}
 
 	@MainActor

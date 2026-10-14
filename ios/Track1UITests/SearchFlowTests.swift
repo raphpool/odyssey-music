@@ -2,8 +2,9 @@ import XCTest
 
 /// The search sheet (I.2), on the fixtures of the UI tests: no step touches the network (plan D3).
 ///
-/// The journeys do not start from the onboarding: the sheet opens over the tab that is selected, whatever it
-/// shows, and a page pushed from it must work the same under the empty Today. The launch is the one of
+/// The journeys start from the first launch (J.4: there are no tabs before a profile): the sheet opens over
+/// the tab that is selected, whatever it shows, and a page pushed from it must work the same over the page of
+/// the day. The launch is the one of
 /// `UITestFlows`, plus the `search` and `unavailable` sections and a page whose only relation leads nowhere.
 final class SearchFlowTests: XCTestCase {
 	override func setUpWithError() throws {
@@ -13,15 +14,22 @@ final class SearchFlowTests: XCTestCase {
 	@MainActor
 	func testSearchOpensACachedResultThenARelationThenGoesBackAndOffersThePageAsARecent() {
 		let app = launch()
+		let dayTitle = element(app, "node-title")
+		XCTAssertTrue(dayTitle.waitForExistence(timeout: 15))
+		let titleOfTheDay = dayTitle.label
 
-		// 1. The sheet opens with the field focused. No recent yet: no line.
+		// 1. The sheet opens with the field focused. The only page seen is the one of the day (it is recorded
+		// when it loads, I.2), which the first launch has just shown: one line, and it is that page.
 		app.tabBars.buttons["Recherche"].tap()
 		let sheet = element(app, "search-sheet")
 		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
 		let field = app.textFields["search-field"]
 		XCTAssertTrue(field.waitForExistence(timeout: 5))
 		XCTAssertTrue(waitForKeyboardFocus(field))
-		XCTAssertFalse(element(app, "search-row-0").exists)
+		let firstRecent = element(app, "search-row-0")
+		XCTAssertTrue(firstRecent.waitForExistence(timeout: 5))
+		XCTAssertTrue(firstRecent.label.contains(titleOfTheDay))
+		XCTAssertFalse(element(app, "search-row-1").exists)
 
 		// 2. The fixture query. The cached hit is the only row; capture D7 "3.1".
 		field.typeText("artist")
@@ -34,9 +42,9 @@ final class SearchFlowTests: XCTestCase {
 		row.tap()
 		XCTAssertTrue(sheet.waitForNonExistence(timeout: 10))
 		let title = element(app, "node-title")
-		XCTAssertTrue(title.waitForExistence(timeout: 10))
-		XCTAssertEqual(title.label, "Artist A")
-		XCTAssertTrue(element(app, "top-bar-breadcrumb").waitForExistence(timeout: 5))
+		XCTAssertTrue(element(app, "top-bar-breadcrumb").waitForExistence(timeout: 10))
+		// The page of the day is under the new one: wait for the label of the pushed page, not for any title.
+		XCTAssertTrue(waitForLabel(title, "Artist A"))
 
 		// 4. A chip pushes a related page; the crumb of the first page goes back to it.
 		tapFirstChip(in: app)
@@ -44,7 +52,7 @@ final class SearchFlowTests: XCTestCase {
 		XCTAssertNotEqual(title.label, "Artist A")
 		app.buttons["top-bar-crumb-0"].tap()
 		XCTAssertTrue(app.buttons["top-bar-crumb-0"].waitForNonExistence(timeout: 5))
-		XCTAssertEqual(title.label, "Artist A")
+		XCTAssertTrue(waitForLabel(title, "Artist A"))
 
 		// 5. An empty query lists the pages seen, the one of the search among them.
 		app.tabBars.buttons["Recherche"].tap()
@@ -58,6 +66,10 @@ final class SearchFlowTests: XCTestCase {
 	@MainActor
 	func testACatalogResultWithoutACardIsDisabledAndOpensNothing() {
 		let app = launch()
+		// The page of the day is already shown under the sheet: "opens nothing" is that it does not change.
+		let dayTitle = element(app, "node-title")
+		XCTAssertTrue(dayTitle.waitForExistence(timeout: 15))
+		let titleOfTheDay = dayTitle.label
 
 		app.tabBars.buttons["Recherche"].tap()
 		let field = app.textFields["search-field"]
@@ -71,10 +83,12 @@ final class SearchFlowTests: XCTestCase {
 		XCTAssertTrue(row.label.contains("Pas encore de fiche"))
 
 		row.tap()
-		// Nothing to wait for: the tap must have no effect, and a page would be there within a second.
-		XCTAssertFalse(element(app, "node-title").waitForExistence(timeout: 2))
+		// Nothing to wait for: the tap must have no effect, and a page would be pushed within a second. The
+		// sheet stays, no breadcrumb appears (a page pushed from a search has one), and the title is the same.
+		XCTAssertFalse(element(app, "top-bar-breadcrumb").waitForExistence(timeout: 2))
 		XCTAssertFalse(element(app, "node-failed").exists)
 		XCTAssertTrue(element(app, "search-sheet").exists)
+		XCTAssertEqual(dayTitle.label, titleOfTheDay)
 	}
 
 	@MainActor
@@ -136,6 +150,8 @@ final class SearchFlowTests: XCTestCase {
 		]
 		app.launch()
 		UITestFlows.declineConsent(app)
+		UITestFlows.completeOnboarding(app)
+		XCTAssertTrue(app.tabBars.buttons["Recherche"].waitForExistence(timeout: 10))
 		return app
 	}
 
@@ -190,6 +206,14 @@ final class SearchFlowTests: XCTestCase {
 		let focused = NSPredicate(format: "hasKeyboardFocus == true")
 		return XCTWaiter().wait(
 			for: [XCTNSPredicateExpectation(predicate: focused, object: field)], timeout: 5) == .completed
+	}
+
+	/// Waits for the label to be `text`: the title of a page is there before the page that replaces it is.
+	@MainActor
+	private func waitForLabel(_ element: XCUIElement, _ text: String) -> Bool {
+		let expectation = XCTNSPredicateExpectation(
+			predicate: NSPredicate(format: "label == %@", text), object: element)
+		return XCTWaiter.wait(for: [expectation], timeout: 10) == .completed
 	}
 
 	@MainActor

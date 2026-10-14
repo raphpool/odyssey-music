@@ -80,6 +80,16 @@ public final class OnboardingFlowModel {
 	/// taxonomy itself: it reads and toggles through the model only.
 	public var parentChoices: [GenreChoice] { taxonomy.parents }
 
+	/// The edit flow has no Welcome screen and ends on "Enregistrer": it starts from a saved profile.
+	public var isEditing: Bool { editing != nil }
+
+	/// The selected parents as tiles, in tile order (not selection order, which has no effect on the
+	/// recommendation, Q3). The Genres tab shows these: the same normalization as the edit flow, so a profile
+	/// from the flat onboarding reads there as it will read once edited.
+	public var selectedParentChoices: [GenreChoice] {
+		taxonomy.parents.filter { selectedParents.contains($0.identity) }
+	}
+
 	public var canContinueFromGenres: Bool { !selectedParents.isEmpty }
 
 	public var subgenreSteps: [NodeIdentity] { selectedParents }

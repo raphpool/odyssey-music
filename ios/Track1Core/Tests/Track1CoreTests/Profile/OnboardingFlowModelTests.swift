@@ -439,4 +439,26 @@ final class OnboardingFlowModelTests: XCTestCase {
 		XCTAssertEqual(model.makeDraft().genreIDs, [rock, shoegaze])
 		XCTAssertEqual(model.makeDraft().flowID, flowID)
 	}
+
+	// MARK: - Edit mode and the Genres tab (K.1)
+
+	func testOnlyAModelBuiltFromAProfileIsEditing() throws {
+		XCTAssertFalse(try model().isEditing)
+		XCTAssertTrue(try model(editing: profile([hipHop])).isEditing)
+	}
+
+	func testTheGenresTabShowsTheParentsInTileOrderNotInSelectionOrder() throws {
+		// Stored in the order jazz, hip-hop: the tiles read Hip-Hop, Jazz (alphabetical, as in the flow).
+		let editing = try model(editing: profile([jazz, hipHop, trap]))
+
+		XCTAssertEqual(editing.selectedParentChoices.map(\.identity), [hipHop, jazz])
+	}
+
+	func testTheGenresTabShowsThePromotedParentOfAnOrphanSubgenre() throws {
+		// A profile of the flat onboarding can hold a subgenre alone (TRA-442): its parent has a tile here too.
+		let editing = try model(editing: profile([bebop]))
+
+		XCTAssertEqual(editing.selectedParentChoices.map(\.identity), [jazz])
+		XCTAssertTrue(try model().selectedParentChoices.isEmpty)
+	}
 }
