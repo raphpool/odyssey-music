@@ -39,6 +39,12 @@ enum TopBarFormat {
 		}
 	}
 
+	/// What the Top bar must add above itself to clear the status bar and the Dynamic Island: the window's top
+	/// inset minus the one the layout already gives it. Never negative, and 0 when the layout is right.
+	static func clearance(windowInset: CGFloat, layoutInset: CGFloat) -> CGFloat {
+		max(0, windowInset - layoutInset)
+	}
+
 	/// Keeps the last 3 crumbs, in path order, and folds the earlier ones into a single leading ellipsis.
 	static func collapsed(_ crumbs: [TopBarCrumb]) -> [TopBarItem] {
 		let kept = crumbs.suffix(visibleCrumbCount).map(TopBarItem.crumb)
@@ -66,6 +72,11 @@ struct TopBar: View {
 	}
 
 	var body: some View {
+		bar.modifier(TopBarClearance())
+	}
+
+	@ViewBuilder
+	private var bar: some View {
 		switch content {
 		case .date(let date):
 			// Label/Eyebrow, centered (the Figma variant is `justify-center`).
@@ -130,5 +141,39 @@ struct TopBar: View {
 				title.accessibilityIdentifier("top-bar-crumb-\(crumb.index)")
 			}
 		}
+	}
+}
+
+/// Keeps the Top bar out of the status bar. 2026-10-14 (TRA-372): on a page pushed from the search sheet, the
+/// XCUITest tap on the crumb "Artist A" did nothing and the hierarchy put it at y = 0, under the Dynamic Island,
+/// where the system takes the touch. The bar measures the top inset its layout gets and adds what the window
+/// has more, so that it is a no-op where the safe area is already applied.
+private struct TopBarClearance: ViewModifier {
+	@State private var layoutInset: CGFloat = 0
+
+	func body(content: Content) -> some View {
+		content
+			.padding(.top, TopBarFormat.clearance(windowInset: Self.windowInset, layoutInset: layoutInset))
+			.background {
+				GeometryReader { proxy in
+					Color.clear.preference(key: TopInsetKey.self, value: proxy.safeAreaInsets.top)
+				}
+			}
+			.onPreferenceChange(TopInsetKey.self) { layoutInset = $0 }
+	}
+
+	private static var windowInset: CGFloat {
+		UIApplication.shared.connectedScenes
+			.compactMap { $0 as? UIWindowScene }
+			.flatMap(\.windows)
+			.first(where: \.isKeyWindow)?.safeAreaInsets.top ?? 0
+	}
+}
+
+private struct TopInsetKey: PreferenceKey {
+	static let defaultValue: CGFloat = 0
+
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+		value = max(value, nextValue())
 	}
 }

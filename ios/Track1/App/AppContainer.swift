@@ -52,7 +52,9 @@ final class AppContainer {
 			resetBeforeUse: resetProfile,
 			seedCorruptProfileBeforeUse: seedCorruptProfile
 		)
-		recentNodes = RecentNodesStore(store: localStore)
+		// 2026-10-14 (I.2): the recents live in the same directory as the profile, and the UI tests share it. Without
+		// the reset a journey sees the cards of the previous one, and "no recents, no line" depends on the test order.
+		recentNodes = RecentNodesStore(store: localStore, resetBeforeUse: resetProfile)
 		dailyRecommendationStore = DailyRecommendationStore(
 			localStore: localStore, resetBeforeUse: resetDailyRecommendation)
 		switch configurationResult {
