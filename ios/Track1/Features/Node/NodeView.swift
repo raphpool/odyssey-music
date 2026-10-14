@@ -2,6 +2,19 @@ import SwiftUI
 import Track1Core
 import UIKit
 
+private struct RecentNodesKey: EnvironmentKey {
+	static let defaultValue: RecentNodesStore? = nil
+}
+
+extension EnvironmentValues {
+	/// Where a page read for the first time is remembered, for the recents of the search sheet. Set once at the
+	/// root of the tabs, so that every page, from Today or from a relation, records itself.
+	var recentNodes: RecentNodesStore? {
+		get { self[RecentNodesKey.self] }
+		set { self[RecentNodesKey.self] = newValue }
+	}
+}
+
 /// Maps the state of a node to the page, a progress bar, or an undrawn state composed from the design system (D14).
 struct NodeView: View {
 	@State private var model: NodeViewModel
@@ -9,6 +22,7 @@ struct NodeView: View {
 	/// stack that grows above it (the page below would otherwise gain a crumb while the next one slides in).
 	@State private var topBar: TopBar.Content
 	@Environment(\.openURL) private var openURL
+	@Environment(\.recentNodes) private var recentNodes
 	private let imageStore: NodeImageStore<UIImage>
 	private let isRoot: Bool
 	private let openRelation: (NodeEdge, NavigationContext) -> Void
@@ -69,6 +83,17 @@ struct NodeView: View {
 		// The Top bar replaces the system bar: it is the only way back from every state.
 		.toolbar(.hidden, for: .navigationBar)
 		.task { await model.load() }
+		// 2026-10-14 (I.2): a page counts as "seen" once it is drawn, not when it is asked for: a missing or failed
+		// page is not worth offering again.
+		.onChange(of: loadedRecent, initial: true) { _, recent in
+			guard let recent, let recentNodes else { return }
+			Task { await recentNodes.record(recent) }
+		}
+	}
+
+	private var loadedRecent: RecentNode? {
+		guard case .loaded(let node) = model.state else { return nil }
+		return RecentNode(node: node)
 	}
 
 	/// The states that have no page: the Top bar stays, so the reader can always step back.

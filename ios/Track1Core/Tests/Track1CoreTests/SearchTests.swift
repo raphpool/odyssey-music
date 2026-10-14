@@ -328,6 +328,117 @@ final class SearchTests: XCTestCase {
 		XCTAssertEqual(after, calls)
 	}
 
+	// MARK: - Sheet rows (I.2)
+
+	func testRowsListTheRecentsWhileTheQueryIsEmptyWithTheEdgeChipTypeLabel() async throws {
+		let store = try makeRecentStore()
+		await store.record(try Self.recent(1))
+		await store.record(
+			RecentNode(
+				identity: try XCTUnwrap(NodeIdentity(rawValue: "project:abbey-road")), name: "Abbey Road",
+				type: .project))
+		let fixture = Fixture(recents: store)
+		await eventually("recents") { fixture.model.recents.count == 2 }
+
+		XCTAssertEqual(
+			fixture.model.rows,
+			[
+				SearchRow(title: "Abbey Road", subtitle: "project", isAvailable: true),
+				SearchRow(title: "Artist 1", subtitle: EdgeChipFormat.typeLabel(.artist), isAvailable: true),
+			])
+		XCTAssertEqual(
+			SearchViewModel(search: { _, _ in .failure(.network) }).rows, [], "No recents, no line.")
+	}
+
+	func testRowsListTheHitsAndDisableTheOnesWithoutACard() async throws {
+		let fixture = Fixture()
+		try await fixture.submit("massive")
+		await fixture.backend.respond(
+			at: 0,
+			with: try Self.success(hits: [
+				Self.hit(source: "cache", type: "artist", name: "Massive Attack", slug: "artist:massive-attack"),
+				Self.hit(source: "catalog", type: "project", name: "Mezzanine"),
+				// A catalog hit that carries a slug still has no card: the source decides, as in `open`.
+				Self.hit(source: "catalog", type: "track", name: "Teardrop", slug: "track:teardrop"),
+			]))
+		await eventually("results") { fixture.model.phase == .results }
+
+		XCTAssertEqual(
+			fixture.model.rows,
+			[
+				SearchRow(title: "Massive Attack", subtitle: "artist", isAvailable: true),
+				SearchRow(title: "Mezzanine", subtitle: "Pas encore de fiche", isAvailable: false),
+				SearchRow(title: "Teardrop", subtitle: "Pas encore de fiche", isAvailable: false),
+			])
+	}
+
+	func testTypingOverTheRecentsHidesThemAtOnceInsteadOfAfterTheDelay() async throws {
+		let store = try makeRecentStore()
+		await store.record(try Self.recent(1))
+		let fixture = Fixture(recents: store)
+		await eventually("recents") { !fixture.model.recents.isEmpty }
+		XCTAssertEqual(fixture.model.rows.count, 1)
+
+		fixture.model.query = "ab"
+
+		XCTAssertEqual(fixture.model.phase, .idle, "The delay has not elapsed: the phase is still idle.")
+		XCTAssertTrue(fixture.model.rows.isEmpty, "A tap now must not open a recent unrelated to the query.")
+		XCTAssertNil(fixture.model.openRow(at: 0))
+	}
+
+	func testPhasesWithoutHitsHaveNoRowEvenWithRecentsInTheStore() async throws {
+		let store = try makeRecentStore()
+		await store.record(try Self.recent(1))
+		let fixture = Fixture(recents: store)
+		await eventually("recents") { !fixture.model.recents.isEmpty }
+
+		for (input, expected) in [("a", SearchPhase.tooShort), (String(repeating: "a", count: 121), .tooLong)] {
+			fixture.model.query = input
+			await fixture.waitForSleeps(1)
+			await fixture.clock.releaseAll()
+			await eventually("phase \(expected)") { fixture.model.phase == expected }
+			XCTAssertTrue(fixture.model.rows.isEmpty, "\(expected) shows a message, not the recents.")
+		}
+		try await fixture.submit("zzzz")
+		await fixture.backend.respond(at: 0, with: try Self.success(hits: []))
+		await eventually("empty") { fixture.model.phase == .empty }
+		XCTAssertTrue(fixture.model.rows.isEmpty)
+	}
+
+	func testOpeningARowOpensARecentWithoutAnEventAndAHitLikeOpen() async throws {
+		let store = try makeRecentStore()
+		let recent = try Self.recent(7)
+		await store.record(recent)
+		let fixture = Fixture(recents: store)
+		await eventually("recents") { fixture.model.recents == [recent] }
+
+		XCTAssertEqual(fixture.model.openRow(at: 0), .node(recent.identity, .independent(source: .search)))
+		XCTAssertNil(fixture.model.openRow(at: 1))
+		XCTAssertTrue(fixture.recorder.events.isEmpty, "A recent is not a search result.")
+
+		try await fixture.submit("mezzanine")
+		await fixture.backend.respond(
+			at: 0,
+			with: try Self.success(hits: [Self.hit(source: "catalog", type: "project", name: "Mezzanine")]))
+		await eventually("results") { fixture.model.phase == .results }
+		XCTAssertEqual(fixture.model.openRow(at: 0), .missing(name: "Mezzanine", type: .project))
+		XCTAssertEqual(fixture.recorder.events.last?.name, .searchResultOpened)
+		XCTAssertNil(fixture.model.openRow(at: 1))
+	}
+
+	func testARecentIsMadeOfTheIdentityNameAndTypeOfTheNodeRead() throws {
+		let source = """
+			{"id":"label:warp","type":"label","name":"Warp","teaser":null,"article":"A","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		let node = try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+
+		XCTAssertEqual(
+			RecentNode(node: node),
+			RecentNode(identity: try XCTUnwrap(NodeIdentity(rawValue: "label:warp")), name: "Warp", type: .label))
+	}
+
 	// MARK: - Helpers
 
 	private static func hit(

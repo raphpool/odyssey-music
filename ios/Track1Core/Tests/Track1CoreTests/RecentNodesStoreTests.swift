@@ -167,6 +167,26 @@ final class RecentNodesStoreTests: XCTestCase {
 		XCTAssertEqual(list, [first])
 	}
 
+	func testResetBeforeUseEmptiesTheFileBeforeTheFirstCallWhateverItIs() async throws {
+		let previous = makeStore()
+		await previous.record(try node(1))
+
+		let reset = RecentNodesStore(store: LocalStore(directoryURL: directoryURL), resetBeforeUse: true)
+		// `record` is the first call: the old list must be gone, not merged with the new entry.
+		await reset.record(try node(2))
+		let afterRecord = await reset.list()
+		XCTAssertEqual(afterRecord, [try node(2)])
+
+		// The reset happens once: a later record is kept by a store that has already reset.
+		await reset.record(try node(3))
+		let afterSecond = await reset.list()
+		XCTAssertEqual(afterSecond, [try node(3), try node(2)])
+
+		let again = RecentNodesStore(store: LocalStore(directoryURL: directoryURL), resetBeforeUse: true)
+		let first = await again.list()
+		XCTAssertEqual(first, [], "A reset store reads empty as its very first call.")
+	}
+
 	private func makeStore() -> RecentNodesStore {
 		RecentNodesStore(store: LocalStore(directoryURL: directoryURL))
 	}

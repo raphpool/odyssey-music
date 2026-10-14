@@ -45,6 +45,12 @@ struct RootView: View {
 	}
 }
 
+private struct ChosenResult {
+	let identity: NodeIdentity
+	let context: NavigationContext
+	let title: String
+}
+
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let apiClient: APIClient?
@@ -61,15 +67,18 @@ private struct ApplicationTabs: View {
 	@State private var searchAfterOnboarding = false
 	/// The name of the node of the day: the root crumb of every page pushed from Today.
 	@State private var todayRootTitle: String?
+	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
+	@State private var chosenResult: ChosenResult?
 
 	var body: some View {
 		tabs
+			.environment(\.recentNodes, recentNodes)
 			.sensoryFeedback(.selection, trigger: router.selectedTab)
 			// Search does not change the selected tab, but tapping it is still a tab change for the hand.
 			.sensoryFeedback(.selection, trigger: router.isSearchPresented) { _, isPresented in isPresented }
 			// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
 			.task { await reloadProfile() }
-			.sheet(isPresented: $router.isSearchPresented) { SearchSheetPlaceholder() }
+			.sheet(isPresented: $router.isSearchPresented, onDismiss: openChosenResult) { searchSheet }
 			.sheet(isPresented: $showingOnboarding, onDismiss: presentSearchIfRequested) {
 				OnboardingView(
 					apiClient: apiClient,
@@ -145,7 +154,7 @@ private struct ApplicationTabs: View {
 						recoverProfile: { router.select(.genres) }
 					)
 				case .search:
-					// Search has no stack: its sheet is presented by the router (I.2 fills it).
+					// Search has no stack: its sheet is presented by the router and its results open on the selected tab.
 					EmptyView()
 				case .genres:
 					// Provisional root until K.1 composes the Genres tab; Settings lives here meanwhile.
@@ -203,6 +212,31 @@ private struct ApplicationTabs: View {
 		} else {
 			InvalidConfigurationView(error: .missingEnvironment)
 		}
+	}
+
+	@ViewBuilder
+	private var searchSheet: some View {
+		if let readers {
+			SearchSheetView(
+				search: readers.search,
+				recents: recentNodes,
+				recordEvent: { analytics.record($0) },
+				open: { identity, context, title in
+					chosenResult = ChosenResult(identity: identity, context: context, title: title)
+					router.isSearchPresented = false
+				}
+			)
+		} else {
+			InvalidConfigurationView(error: .missingEnvironment)
+		}
+	}
+
+	/// The current tab keeps its stack: the page goes on top of it, and the breadcrumb starts from there (G.1).
+	/// A sheet closed by a swipe leaves nothing chosen.
+	private func openChosenResult() {
+		guard let result = chosenResult else { return }
+		chosenResult = nil
+		router.openNode(result.identity, context: result.context, title: result.title, in: router.selectedTab)
 	}
 
 	private func presentSearchIfRequested() {
@@ -306,24 +340,5 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
-	}
-}
-
-/// Stands for the search sheet until I.2: the field is inert, the sheet only proves the Search tab opens it.
-private struct SearchSheetPlaceholder: View {
-	@State private var text = ""
-	@FocusState private var isFocused: Bool
-
-	var body: some View {
-		VStack(spacing: Track1Tokens.spacing16) {
-			Track1SearchField(text: $text, focus: $isFocused, onSubmit: {})
-				.disabled(true)
-			Spacer()
-		}
-		.padding(Track1Tokens.spacing24)
-		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.presentationBackground(Track1Tokens.colorBackgroundBase)
-		.accessibilityElement(children: .contain)
-		.accessibilityIdentifier("search-sheet")
 	}
 }
