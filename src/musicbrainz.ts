@@ -12,6 +12,7 @@
  */
 import { musicBrainzConfig } from "./config.js";
 import { logger } from "./logger.js";
+import { normalizeSlugBody } from "./slug.js";
 import type { NodeType } from "./types.js";
 
 export interface CatalogResult {
@@ -55,18 +56,25 @@ interface MbArtist {
 	country?: string;
 	disambiguation?: string;
 }
+// `artist.id` is typed but deliberately not enforced by hasValidArtistCredit: the autocomplete
+// paths only read names, so an odd id must not blank them. toCredits() validates it where it matters.
+interface MbArtistCreditEntry {
+	name?: string;
+	artist?: { id?: string; name?: string };
+}
 interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
 	"first-release-date"?: string;
-	"artist-credit"?: Array<{ name?: string; artist?: { name?: string } }>;
+	"artist-credit"?: MbArtistCreditEntry[];
 }
 interface MbRecording {
 	id: string;
 	title: string;
 	length?: number;
-	"artist-credit"?: Array<{ name?: string; artist?: { name?: string } }>;
+	"first-release-date"?: string;
+	"artist-credit"?: MbArtistCreditEntry[];
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -143,11 +151,34 @@ function parseRecordings(body: unknown): MbRecording[] | null {
 				isMbid(recording.id) &&
 				isText(recording.title) &&
 				(recording.length === undefined || typeof recording.length === "number") &&
+				(recording["first-release-date"] === undefined ||
+					typeof recording["first-release-date"] === "string") &&
 				(recording["artist-credit"] === undefined || hasValidArtistCredit(recording["artist-credit"])),
 		)
 	)
 		return null;
 	return recordings as MbRecording[];
+}
+
+/**
+ * Valid credits out of an untrusted `artist-credit` array: only entries whose artist carries a
+ * real MBID and a non-blank name survive, deduplicated by MBID. Anything else is dropped rather
+ * than guessed at — a credit without an MBID cannot be linked to a node.
+ */
+function toCredits(raw: unknown): MbCredit[] {
+	if (!Array.isArray(raw)) return [];
+	const out: MbCredit[] = [];
+	const seen = new Set<string>();
+	for (const entry of raw) {
+		if (!isRecord(entry) || !isRecord(entry.artist)) continue;
+		const { id, name: canonical } = entry.artist;
+		if (!isMbid(id) || seen.has(id)) continue;
+		const name = isText(canonical) ? canonical : isText(entry.name) ? entry.name : null;
+		if (name === null) continue;
+		seen.add(id);
+		out.push({ mbid: id, name });
+	}
+	return out;
 }
 
 function joinArtistCredit(ac: MbReleaseGroup["artist-credit"]): string {
@@ -586,7 +617,8 @@ export async function findLabelMbidByName(name: string, disambig?: string): Prom
 
 export interface MbLabelMeta {
 	roster: { mbid: string; name: string }[];
-	notableReleases: { mbid: string; title: string; firstReleaseDate: string }[];
+	/** `credit` is the release group's artist credit, [] when MB gave none we can trust. */
+	notableReleases: { mbid: string; title: string; firstReleaseDate: string; credit: MbCredit[] }[];
 }
 
 /**
@@ -636,11 +668,27 @@ export interface MbArtistEntity {
 	country: string | null;
 	area: string | null;
 	disambiguation: string | null;
+	/**
+	 * MB `type` folded to what the graph cares about: a person or a group (band, orchestra, choir),
+	 * null when MB gives another type or none. Optional only so the hand-built MbArtistEntity fixture
+	 * in test/pipeline-e2e.test.ts (outside TRA-452's scope) still typechecks; fetchArtistEntityMb
+	 * always sets it, and readers should treat absent like null.
+	 */
+	kind?: MbArtistKind | null;
 }
+export type MbArtistKind = "person" | "group";
+
+function artistKind(type: unknown): MbArtistKind | null {
+	if (type === "Person") return "person";
+	if (type === "Group" || type === "Orchestra" || type === "Choir") return "group";
+	return null;
+}
+
 export async function fetchArtistEntityMb(artistMbid: string): Promise<MbArtistEntity | null> {
 	interface ArtistEntityResp {
 		id: string;
 		name: string;
+		type?: string;
 		country?: string;
 		area?: { name?: string };
 		disambiguation?: string;
@@ -653,6 +701,7 @@ export async function fetchArtistEntityMb(artistMbid: string): Promise<MbArtistE
 		country: data.country ?? null,
 		area: data.area?.name ?? null,
 		disambiguation: data.disambiguation ?? null,
+		kind: artistKind(data.type),
 	};
 }
 
@@ -672,11 +721,13 @@ export async function fetchLabelMetaMb(labelMbid: string): Promise<MbLabelMeta> 
 			"first-release-date"?: string;
 			"primary-type"?: string;
 			"secondary-types"?: string[];
+			"artist-credit"?: unknown;
 		}[];
 	}
 	const [artistResp, rgResp] = await Promise.all([
 		mbFetch<ArtistBrowseResp>("/artist", { label: labelMbid, limit: "100" }),
-		mbFetch<RGBrowseResp>("/release-group", { label: labelMbid, limit: "100" }),
+		// `inc=artist-credits` is what makes the browse endpoint return each group's credit.
+		mbFetch<RGBrowseResp>("/release-group", { label: labelMbid, limit: "100", inc: "artist-credits" }),
 	]);
 	const seen = new Set<string>();
 	for (const a of artistResp?.artists ?? []) {
@@ -694,11 +745,13 @@ export async function fetchLabelMetaMb(labelMbid: string): Promise<MbLabelMeta> 
 			mbid: rg.id,
 			title: rg.title,
 			firstReleaseDate: rg["first-release-date"] ?? "",
+			credit: toCredits(rg["artist-credit"]),
 		});
 	}
 	return out;
 }
 
+/** @deprecated Use {@link resolveRecording}: it checks the exact title and returns the artist credit. */
 export async function findRecordingMbidByName(name: string, disambig?: string): Promise<string | null> {
 	// Phrase-quoted recording: field bypasses buildMbQuery (which strips quotes) and goes
 	// straight to mbFetch. Without this MB ranks "Get Lucky (Daft Punk remix)" and various
@@ -775,6 +828,9 @@ export async function findRecordingMbidByName(name: string, disambig?: string): 
 /**
  * Resolve a project (album/EP) name to its MBID via MB release-group search.
  * Same disambiguator-token guard as findRecordingMbidByName.
+ *
+ * @deprecated Use {@link resolveReleaseGroup}. This one takes `results[0]` without comparing
+ * titles: on 2026-10-14 "New Forms" resolved to "New Forms²" (both score 100, the sequel first).
  */
 export async function findReleaseGroupMbidByName(name: string, disambig?: string): Promise<string | null> {
 	const q = disambig ? `${name} ${disambig}` : name;
@@ -787,6 +843,136 @@ export async function findReleaseGroupMbidByName(name: string, disambig?: string
 		return tokens.some((t) => sub.includes(t));
 	});
 	return matched?.mbid ?? null;
+}
+
+export interface MbReleaseIdentity {
+	mbid: string;
+	title: string;
+	/** Credited artists that carry an MBID, in MB order. "Various Artists" is a valid credit. */
+	credit: MbCredit[];
+	/** Release groups only; recordings have no primary type. */
+	primaryType: string | null;
+	firstReleaseDate: string | null;
+}
+
+/** Drop the two characters that would break out of a Lucene phrase; same policy as the older finders. */
+function lucenePhrase(text: string): string {
+	return text.replace(/["\\]/g, "").trim();
+}
+
+/** True when `needle` is a run of whole words of `haystack` (both already passed through normalizeSlugBody). */
+function containsWords(haystack: string, needle: string): boolean {
+	return `-${haystack}-`.includes(`-${needle}-`);
+}
+
+/**
+ * Choose the candidate MB actually means, or null. Never defaults to the first result: MB ranks
+ * "New Forms²" and "New Forms" both at 100, so rank carries no identity.
+ * 1. keep only candidates whose normalized title equals the requested one;
+ * 2. among them, the first whose credit (credited-as or canonical name) equals or contains the hint;
+ * 3. otherwise the single remaining exact-title candidate; otherwise null.
+ */
+function pickByTitleAndCredit<
+	T extends { id: string; title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined },
+>(candidates: T[], title: string, artistHint: string | undefined): T | null {
+	const wanted = normalizeSlugBody(title);
+	if (!wanted) return null;
+	const exact = candidates.filter((c) => normalizeSlugBody(c.title) === wanted);
+	const hint = artistHint ? normalizeSlugBody(artistHint) : "";
+	if (hint) {
+		const byCredit = exact.find((c) =>
+			(c["artist-credit"] ?? []).some((entry) =>
+				[entry.name, entry.artist?.name].some(
+					(n) => n !== undefined && containsWords(normalizeSlugBody(n), hint),
+				),
+			),
+		);
+		if (byCredit) return byCredit;
+	}
+	return exact.length === 1 ? (exact[0] ?? null) : null;
+}
+
+function luceneQuery(
+	field: "releasegroup" | "recording",
+	title: string,
+	artistHint: string | undefined,
+): string | null {
+	// A title with nothing left after normalization ("!!!") can never be verified against a result.
+	const phrase = lucenePhrase(title);
+	if (!phrase || !normalizeSlugBody(title)) return null;
+	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
+	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
+	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
+}
+
+/**
+ * Resolve a project title (plus an optional credited-artist hint) to the one MB release group it
+ * names, with its artist credit. Null when MB is unreachable, answers garbage, or nothing can be
+ * singled out — callers must treat null as "unresolved", never as "pick the first hit".
+ */
+export async function resolveReleaseGroup(
+	title: string,
+	artistHint?: string,
+): Promise<MbReleaseIdentity | null> {
+	const query = luceneQuery("releasegroup", title, artistHint);
+	if (!query) return null;
+	const releaseGroups = parseReleaseGroups(await mbFetch<unknown>("/release-group", { query, limit: "8" }));
+	if (!releaseGroups) return null;
+	const rg = pickByTitleAndCredit(releaseGroups, title, artistHint);
+	if (!rg) return null;
+	return {
+		mbid: rg.id,
+		title: rg.title,
+		credit: toCredits(rg["artist-credit"]),
+		primaryType: rg["primary-type"] ?? null,
+		firstReleaseDate: rg["first-release-date"] || null,
+	};
+}
+
+/** Recording counterpart of {@link resolveReleaseGroup}; `primaryType` is always null. */
+export async function resolveRecording(
+	title: string,
+	artistHint?: string,
+): Promise<MbReleaseIdentity | null> {
+	const query = luceneQuery("recording", title, artistHint);
+	if (!query) return null;
+	const recordings = parseRecordings(await mbFetch<unknown>("/recording", { query, limit: "8" }));
+	if (!recordings) return null;
+	const rec = pickByTitleAndCredit(recordings, title, artistHint);
+	if (!rec) return null;
+	return {
+		mbid: rec.id,
+		title: rec.title,
+		credit: toCredits(rec["artist-credit"]),
+		primaryType: null,
+		firstReleaseDate: rec["first-release-date"] || null,
+	};
+}
+
+/**
+ * Band membership of an artist, from MB "member of band" relations. `groups` are the bands this
+ * artist belongs to (relation direction "forward"); `members` are the people in this artist, when
+ * it is a band ("backward"). Malformed relations are skipped; any failure yields empty lists.
+ */
+export async function fetchArtistMembershipsMb(
+	artistMbid: string,
+): Promise<{ groups: MbCredit[]; members: MbCredit[] }> {
+	const out: { groups: MbCredit[]; members: MbCredit[] } = { groups: [], members: [] };
+	// The MBID is interpolated into the request path, so refuse anything that is not a bare UUID.
+	if (!isMbid(artistMbid)) return out;
+	const body = await mbFetch<unknown>(`/artist/${artistMbid}`, { inc: "artist-rels" });
+	if (!isRecord(body) || !Array.isArray(body.relations)) return out;
+	const seen = { groups: new Set<string>(), members: new Set<string>() };
+	for (const relation of body.relations) {
+		if (!isRecord(relation) || relation.type !== "member of band") continue;
+		const side =
+			relation.direction === "forward" ? "groups" : relation.direction === "backward" ? "members" : null;
+		const [credit] = toCredits([{ artist: relation.artist }]);
+		if (!side || !credit || seen[side].has(credit.mbid)) continue;
+		seen[side].add(credit.mbid);
+		out[side].push(credit);
+	}
+	return out;
 }
 
 /**
