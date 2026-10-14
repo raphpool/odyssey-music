@@ -77,9 +77,10 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(secondStep.waitForExistence(timeout: 10))
 
 		// The edge swipe is the way back: the bar is hidden and Figma draws no back control.
-		let edge = app.coordinate(withNormalizedOffset: CGVector(dx: 0.005, dy: 0.5))
+		// A short press at x = 0 and a fast drag: a slow one is read as a scroll, not as the edge gesture.
+		let edge = app.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5))
 		edge.press(
-			forDuration: 0.05, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)),
+			forDuration: 0.01, thenDragTo: app.coordinate(withNormalizedOffset: CGVector(dx: 0.9, dy: 0.5)),
 			withVelocity: .fast, thenHoldForDuration: 0)
 		XCTAssertTrue(secondStep.waitForNonExistence(timeout: 10))
 

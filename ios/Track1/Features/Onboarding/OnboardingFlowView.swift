@@ -1,5 +1,32 @@
 import SwiftUI
 import Track1Core
+import UIKit
+
+/// Gives the onboarding stack its edge swipe back.
+///
+/// 2026-10-14 (TRA-405, ios-check): with the navigation bar hidden, UIKit's interactive pop gesture refuses to
+/// begin, so the edge swipe left step 1.4 in place (`testTheBackGestureOfTheSecondStepKeepsTheSelection`) and,
+/// as Figma draws no back control, the person was stuck there. The gesture's delegate is replaced by one that
+/// allows it whenever there is a screen to go back to. It sits on the root of the stack, which stays in it for
+/// the whole flow, and is scoped to this flow rather than to every `UINavigationController` of the app.
+private struct SwipeBackEnabler: UIViewControllerRepresentable {
+	func makeUIViewController(context: Context) -> Host { Host() }
+
+	func updateUIViewController(_ host: Host, context: Context) {}
+
+	final class Host: UIViewController, UIGestureRecognizerDelegate {
+		override func viewDidAppear(_ animated: Bool) {
+			super.viewDidAppear(animated)
+			guard let pop = navigationController?.interactivePopGestureRecognizer else { return }
+			pop.delegate = self
+			pop.isEnabled = true
+		}
+
+		func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+			(navigationController?.viewControllers.count ?? 0) > 1
+		}
+	}
+}
 
 /// The onboarding flow of Flow 1: Welcome, the parent genres, then one subgenre step per selected parent.
 /// A model built from a profile (`isEditing`) is the edit flow of the Genres tab (K.1): it opens on the genre
@@ -26,6 +53,7 @@ struct OnboardingFlowView: View {
 	var body: some View {
 		NavigationStack(path: $path) {
 			root
+				.background(SwipeBackEnabler())
 				.toolbar(.hidden, for: .navigationBar)
 				.navigationDestination(for: Step.self) { step in
 					destination(for: step)
