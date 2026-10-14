@@ -56,6 +56,11 @@ public enum NodePageSpec {
 
 	// END node-spec-parity
 
+	/// Headers of the two sections the deviation of rule 9 keeps after the edge sections (D15). They are copy,
+	/// not part of `src/node-spec.ts`, so they stay outside the parity block.
+	public static let articleLabel = "article"
+	public static let sourcesLabel = "sources"
+
 	/// `KIND_LABEL` of `web/index.html`. A field it does not list uses its name, as `label(field:type:)` says.
 	private static let kindLabels: [String: String] = [
 		"label": "label",

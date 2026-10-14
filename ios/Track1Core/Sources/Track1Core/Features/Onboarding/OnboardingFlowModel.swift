@@ -15,20 +15,65 @@ public final class OnboardingFlowModel {
 	private let flowID: UUID
 	private let onboardingStartedRecorded: Bool
 
+	/// Stored genres that did not survive the load: they have no tile in today's taxonomy, so the next
+	/// `makeDraft()` no longer holds them (TRA-442). Meant for a later "genre removed" message; empty for a
+	/// profile created by this flow.
+	public let droppedGenres: [NodeIdentity]
+
 	/// `draft` is the one the `ProfileStore` already holds for this flow. It carries the `flow_id` shared with
 	/// analytics and the "start event already sent" flag, and `makeDraft()` must hand both back unchanged:
 	/// a fresh draft would reset the flag and a resumed flow would send `onboarding_started` twice.
+	///
+	/// This is also the path that rebuilds the state from an existing profile (`editing`, used by the edit
+	/// flow). A profile saved by the old flat onboarding can hold genres this flow has no tile for, so the
+	/// stored ids are normalized (TRA-442). A stored selection is a fixed point of the rules below, so a
+	/// profile created by this flow reloads unchanged.
 	public init(taxonomy: GenreTaxonomy, editing: Profile? = nil, draft: ProfileDraft? = nil) {
 		self.taxonomy = taxonomy
 		self.editing = editing
 		flowID = draft?.flowID ?? editing?.flowID ?? UUID()
 		onboardingStartedRecorded = draft?.onboardingStartedRecorded ?? false
-		let stored = draft?.genreIDs ?? editing?.genreIDs ?? []
-		let parents = stored.filter { id in taxonomy.parents.contains { $0.identity == id } }
-		selectedParents = parents
-		selectedSubgenres = stored.filter { id in
-			parents.contains { parent in taxonomy.subgenres(of: parent).contains { $0.identity == id } }
+		let restored = Self.restore(draft?.genreIDs ?? editing?.genreIDs ?? [], in: taxonomy)
+		selectedParents = restored.parents
+		selectedSubgenres = restored.subgenres
+		droppedGenres = restored.dropped
+	}
+
+	/// Rules, applied to the stored ids in order. The taxonomy is read as it stands (D13: derived from the
+	/// catalog), so level 3 only exists when the catalog has a subgenre of a subgenre.
+	/// 1. A parent stays selected.
+	/// 2. A subgenre stays checked, and if none of its parents is selected its first parent is promoted.
+	/// 3. A level-3 genre has no tile of its own: it is replaced by its level-2 ancestor, which gets checked
+	///    after promoting the level-1 parent, and the level-3 genre itself is dropped. A level-3 genre with
+	///    no such ancestor in the taxonomy falls to the next rule.
+	/// 4. A genre the taxonomy does not know is dropped.
+	/// The genre minimum (D13) is not forced here: if nothing survives, `canContinueFromGenres` stays false
+	/// and the user must pick a parent before saving.
+	private static func restore(
+		_ stored: [NodeIdentity],
+		in taxonomy: GenreTaxonomy
+	) -> (parents: [NodeIdentity], subgenres: [NodeIdentity], dropped: [NodeIdentity]) {
+		var parents = stored.filter { id in taxonomy.parents.contains { $0.identity == id } }
+		var subgenres = [NodeIdentity]()
+		var dropped = [NodeIdentity]()
+
+		func check(_ subgenre: NodeIdentity, under parent: NodeIdentity) {
+			let covered = parents.contains { taxonomy.subgenres(of: $0).contains { $0.identity == subgenre } }
+			if !covered { parents.append(parent) }
+			if !subgenres.contains(subgenre) { subgenres.append(subgenre) }
 		}
+
+		for id in stored where !parents.contains(id) {
+			if let parent = taxonomy.parent(ofSubgenre: id) {
+				check(id, under: parent)
+			} else if let ancestors = taxonomy.ancestors(ofLevelThree: id) {
+				check(ancestors.subgenre, under: ancestors.parent)
+				dropped.append(id)
+			} else {
+				dropped.append(id)
+			}
+		}
+		return (parents, subgenres, dropped)
 	}
 
 	/// The tiles of the genre step, in display order. The model hands them out so the screen never holds the
@@ -78,6 +123,25 @@ public final class OnboardingFlowModel {
 	public func isAllSelected(of parent: NodeIdentity) -> Bool {
 		let all = taxonomy.subgenres(of: parent).map(\.identity)
 		return !all.isEmpty && all.allSatisfy(selectedSubgenres.contains)
+	}
+
+	/// The rows of a subgenre step, in display order, so the screen reads them through the model like the tiles.
+	/// A genre that is not a selected parent has none: no row can be shown for a step that does not exist.
+	public func subgenreChoices(of parent: NodeIdentity) -> [GenreChoice] {
+		selectedParents.contains(parent) ? taxonomy.subgenres(of: parent) : []
+	}
+
+	public func isSubgenreSelected(_ subgenre: NodeIdentity) -> Bool {
+		selectedSubgenres.contains(subgenre)
+	}
+
+	/// The step that follows `parent`, in selection order; nil after the last one, where the flow ends.
+	/// A parent that is not a step has no successor either, so a stale call can never skip ahead.
+	public func subgenreStep(after parent: NodeIdentity) -> NodeIdentity? {
+		guard let index = subgenreSteps.firstIndex(of: parent), index + 1 < subgenreSteps.count else {
+			return nil
+		}
+		return subgenreSteps[index + 1]
 	}
 
 	/// `index` is a position in `subgenreSteps`; the genre screen has its own CTA and does not call this.

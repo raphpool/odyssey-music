@@ -69,6 +69,8 @@ final class NavigationTests: XCTestCase {
 			case "Recherche":
 				let sheet = app.descendants(matching: .any)["search-sheet"]
 				XCTAssertTrue(sheet.waitForExistence(timeout: 2))
+				// I.2: the field is the first thing of the sheet, and it stays reachable at the largest size.
+				XCTAssertTrue(app.descendants(matching: .any)["search-field"].waitForExistence(timeout: 5))
 				dismiss(sheet)
 			default:
 				XCTFail("Unexpected tab")
@@ -80,6 +82,28 @@ final class NavigationTests: XCTestCase {
 		attachment.name = "dark-accessibility-xxxl-tabs"
 		attachment.lifetime = .keepAlways
 		add(attachment)
+	}
+
+	/// I.2: "Rechercher" on an empty field closes the sheet, the third way out with the swipe and the scrim.
+	@MainActor
+	func testSearchKeyOnAnEmptyFieldClosesTheSheet() throws {
+		let app = XCUIApplication()
+		app.launchArguments = [
+			"-AppleLanguages", "(fr)", "-track1-reset-analytics-consent", "-track1-reset-profile",
+		]
+		app.launch()
+		app.buttons["analytics-consent-decline"].tap()
+
+		app.tabBars.buttons["Recherche"].tap()
+		let sheet = app.descendants(matching: .any)["search-sheet"]
+		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
+		let field = app.textFields["search-field"]
+		XCTAssertTrue(field.waitForExistence(timeout: 5))
+		// The return key of the field is the "Rechercher" key; a hardware keyboard has no on-screen one.
+		field.typeText("\n")
+
+		XCTAssertTrue(sheet.waitForNonExistence(timeout: 5))
+		XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].isSelected)
 	}
 
 	/// Swipes the sheet down from its top edge; a tap outside does not exist on a full-height sheet.

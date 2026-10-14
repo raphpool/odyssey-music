@@ -89,6 +89,29 @@ public final class SearchViewModel {
 		pending = Task { await run(request.text, request.filter, number: number) }
 	}
 
+	/// The lines of the sheet: the recents while the query is empty, the hits otherwise. It follows the field,
+	/// not `phase`, which only changes after the delay: typing over the recents must not leave them openable
+	/// for 150 ms. Only `.results` and `.loading` hold hits, so `.tooShort`, `.tooLong`, `.empty` and `.failed`
+	/// have no line and are told by a message.
+	public var rows: [SearchRow] {
+		showsRecents ? recents.map(SearchRow.init(recent:)) : hits.map(SearchRow.init(hit:))
+	}
+
+	private var showsRecents: Bool {
+		query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
+
+	/// Opens the line at `index` of `rows`. A recent opens without an event (the search did not produce it);
+	/// a hit goes through `open`. `nil` for an index that is not a line.
+	public func openRow(at index: Int) -> SearchOpening? {
+		if showsRecents {
+			guard recents.indices.contains(index) else { return nil }
+			return .node(recents[index].identity, .independent(source: .search))
+		}
+		guard hits.indices.contains(index) else { return nil }
+		return open(hits[index])
+	}
+
 	/// Never touches the network: a catalog hit has no card yet, and creating one is not this screen's job.
 	public func open(_ hit: SearchHit) -> SearchOpening {
 		var properties: [String: AnalyticsValue] = [
@@ -96,7 +119,7 @@ public final class SearchViewModel {
 			"results_count": .integer(hits.count),
 		]
 		let opening: SearchOpening
-		if hit.source == "cache", let slug = hit.slug {
+		if let slug = hit.cardSlug {
 			properties["availability"] = .string("cached")
 			properties["node_id"] = .string(slug.rawValue)
 			opening = .node(slug, .independent(source: .search))

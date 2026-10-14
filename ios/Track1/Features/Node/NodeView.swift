@@ -1,97 +1,138 @@
 import SwiftUI
 import Track1Core
+import UIKit
 
+private struct RecentNodesKey: EnvironmentKey {
+	static let defaultValue: RecentNodesStore? = nil
+}
+
+extension EnvironmentValues {
+	/// Where a page read for the first time is remembered, for the recents of the search sheet. Set once at the
+	/// root of the tabs, so that every page, from Today or from a relation, records itself.
+	var recentNodes: RecentNodesStore? {
+		get { self[RecentNodesKey.self] }
+		set { self[RecentNodesKey.self] = newValue }
+	}
+}
+
+/// Maps the state of a node to the page, a progress bar, or an undrawn state composed from the design system (D14).
 struct NodeView: View {
 	@State private var model: NodeViewModel
+	/// Frozen at creation: a page keeps the breadcrumb of the path that led to it, and must not follow the
+	/// stack that grows above it (the page below would otherwise gain a crumb while the next one slides in).
+	@State private var topBar: TopBar.Content
 	@Environment(\.openURL) private var openURL
-	private let openRelation: (NodeIdentity, NavigationContext) -> Void
+	@Environment(\.recentNodes) private var recentNodes
+	private let imageStore: NodeImageStore<UIImage>
+	private let isRoot: Bool
+	private let openRelation: (NodeEdge, NavigationContext) -> Void
+	private let selectCrumb: (TopBarCrumb) -> Void
 
-	init(model: NodeViewModel, openRelation: @escaping (NodeIdentity, NavigationContext) -> Void) {
+	init(
+		model: NodeViewModel,
+		imageStore: NodeImageStore<UIImage>,
+		topBar: TopBar.Content,
+		isRoot: Bool = false,
+		openRelation: @escaping (NodeEdge, NavigationContext) -> Void,
+		selectCrumb: @escaping (TopBarCrumb) -> Void
+	) {
 		_model = State(initialValue: model)
+		_topBar = State(initialValue: topBar)
+		self.imageStore = imageStore
+		self.isRoot = isRoot
 		self.openRelation = openRelation
+		self.selectCrumb = selectCrumb
 	}
 
 	var body: some View {
 		Group {
 			switch model.state {
-			case .loading:
-				ProgressView("Chargement de la fiche")
 			case .loaded(let node):
-				ScrollView {
-					VStack(alignment: .leading, spacing: Track1Theme.contentSpacing) {
-						header(node)
-						NodeListeningView(
-							state: model.listening,
-							isOpening: model.isOpeningListening,
-							failure: model.listeningFailure,
-							open: { action in
-								Task { await model.openListening(action, using: { await openURL.open($0) }) }
-							}
-						)
-						NodeArticleView(article: node.article, citations: node.citations)
-						NodeRelationsView(
-							edges: node.edges,
-							fromNodeID: node.id,
-							context: model.context,
-							recordEvent: model.relationEventRecorder,
-							openDestination: openRelation
-						)
-					}
-					.padding(Track1Theme.contentSpacing)
+				HeroOwner(node: node, store: imageStore) { hero in
+					NodePageView(
+						node: node,
+						hero: hero,
+						imageStore: imageStore,
+						topBar: topBar,
+						isRoot: isRoot,
+						listening: model.listening,
+						isOpeningListening: model.isOpeningListening,
+						listeningFailure: model.listeningFailure,
+						onOpenEdge: { edge, kind in
+							model.openRelation(edge, kind: kind) { _, context in openRelation(edge, context) }
+						},
+						onOpenListening: { action in
+							Task { await model.openListening(action, using: { await openURL.open($0) }) }
+						},
+						onSelectCrumb: selectCrumb
+					)
+				}
+				.id(node.id)
+			case .loading:
+				undrawn {
+					Track1ProgressBar(mode: .indeterminate, accessibilityLabel: "Chargement de la fiche")
+						.padding(.horizontal, Track1Tokens.spacing24)
+						.frame(maxHeight: .infinity)
 				}
 			case .missing:
-				ContentUnavailableView {
-					Label("Fiche indisponible", systemImage: "music.note.list")
-				} description: {
-					Text("Cette fiche n’existe pas encore dans track1.")
-						.accessibilityIdentifier("node-missing")
-				}
+				undrawn { Track1StatusView(.nodeMissing, action: nil) }
 			case .failed:
-				ContentUnavailableView {
-					Label("Impossible de charger cette fiche", systemImage: "wifi.exclamationmark")
-				} description: {
-					Text("Réessayez dans un instant.")
-						.accessibilityIdentifier("node-failed")
-				} actions: {
-					Button("Réessayer") { Task { await model.load() } }
-						.buttonStyle(.bordered)
-						.accessibilityIdentifier("node-retry")
-				}
+				undrawn { Track1StatusView(.nodeFailed, action: { Task { await model.load() } }) }
 			}
 		}
-		.navigationTitle("Fiche")
-		.navigationBarTitleDisplayMode(.inline)
+		// The Top bar replaces the system bar: it is the only way back from every state.
+		.toolbar(.hidden, for: .navigationBar)
 		.task { await model.load() }
+		// 2026-10-14 (I.2): a page counts as "seen" once it is drawn, not when it is asked for: a missing or failed
+		// page is not worth offering again.
+		.onChange(of: loadedRecent, initial: true) { _, recent in
+			guard let recent, let recentNodes else { return }
+			Task { await recentNodes.record(recent) }
+		}
 	}
 
-	private func header(_ node: NodeDetail) -> some View {
-		VStack(spacing: 8) {
-			Text(NodePresentation.typeName(node.type).uppercased())
-				.font(.subheadline.weight(.semibold))
-				.foregroundStyle(.secondary)
-			// verbatim: name and teaser come from the API and must not be interpreted as Markdown.
-			Text(verbatim: node.name)
-				.font(.title.bold())
-				.multilineTextAlignment(.center)
-			if let teaser = node.teaser {
-				Text(verbatim: teaser)
-					.font(.body)
-					.foregroundStyle(.secondary)
-					.multilineTextAlignment(.center)
-			}
+	private var loadedRecent: RecentNode? {
+		guard case .loaded(let node) = model.state else { return nil }
+		return RecentNode(node: node)
+	}
+
+	/// The states that have no page: the Top bar stays, so the reader can always step back.
+	private func undrawn<Content: View>(@ViewBuilder _ content: () -> Content) -> some View {
+		VStack(spacing: 0) {
+			TopBar(topBar, onSelect: selectCrumb)
+				.padding(.horizontal, Track1Tokens.spacing24)
+			content()
 		}
-		.frame(maxWidth: .infinity)
+		.background(alignment: .top) {
+			AmbientGlow(tone: isRoot ? .ember : .silver).ignoresSafeArea(edges: .top)
+		}
+		.background { Track1Tokens.colorBackgroundBase.ignoresSafeArea() }
 	}
 }
 
-enum NodePresentation {
-	static func typeName(_ type: NodeType) -> String {
-		switch type {
-		case .artist: "Artiste"
-		case .project: "Album"
-		case .track: "Titre"
-		case .genre: "Genre"
-		case .label: "Label"
+/// Owns the hero model of one node; the caller keys it by the node (`NodeHeroModel` fixes its candidates).
+private struct HeroOwner<Content: View>: View {
+	@State private var hero: NodeHeroModel
+	private let content: (NodeHeroModel) -> Content
+
+	init(
+		node: NodeDetail, store: NodeImageStore<UIImage>, @ViewBuilder content: @escaping (NodeHeroModel) -> Content
+	) {
+		_hero = State(initialValue: NodeHeroModel(node: node, store: store))
+		self.content = content
+	}
+
+	var body: some View {
+		content(hero)
+	}
+}
+
+extension OpenURLAction {
+	/// `false` when the OS declines the URL (no handler, or the user cancelled), as the completion reports it.
+	@MainActor
+	fileprivate func open(_ url: URL) async -> Bool {
+		await withCheckedContinuation { continuation in
+			callAsFunction(url) { continuation.resume(returning: $0) }
 		}
 	}
 }

@@ -107,4 +107,11 @@ final class NavigationComponentsTests: XCTestCase {
 	func testGrainIsTenPercent() {
 		XCTAssertEqual(AmbientGlow.grainOpacity, 0.1, accuracy: 0.0001)
 	}
+
+	func testTopBarClearanceAddsOnlyWhatTheLayoutLacksAndNeverGoesNegative() {
+		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 0), 59, accuracy: 0.0001)
+		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 20), 39, accuracy: 0.0001)
+		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 59), 0, accuracy: 0.0001)
+		XCTAssertEqual(TopBarFormat.clearance(windowInset: 20, layoutInset: 59), 0, accuracy: 0.0001)
+	}
 }

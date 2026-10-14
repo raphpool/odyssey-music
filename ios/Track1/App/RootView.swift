@@ -1,5 +1,6 @@
 import SwiftUI
 import Track1Core
+import UIKit
 
 struct RootView: View {
 	@Bindable var container: AppContainer
@@ -23,10 +24,12 @@ struct RootView: View {
 							router: container.router,
 							apiClient: container.apiClient,
 							readers: container.readers,
+							imageStore: container.imageStore,
 							onboardingCatalog: container.onboardingCatalog,
 							analytics: analytics,
 							profileStore: container.profileStore,
-							recentNodes: container.recentNodes
+							recentNodes: container.recentNodes,
+							dailyRecommendationStore: container.dailyRecommendationStore
 						)
 					}
 				} else {
@@ -42,27 +45,40 @@ struct RootView: View {
 	}
 }
 
+private struct ChosenResult {
+	let identity: NodeIdentity
+	let context: NavigationContext
+	let title: String
+}
+
 private struct ApplicationTabs: View {
 	@Bindable var router: AppRouter
 	let apiClient: APIClient?
 	let readers: ContentReaders?
+	let imageStore: NodeImageStore<UIImage>?
 	let onboardingCatalog: (@Sendable () async -> APIResult<Catalog>)?
 	let analytics: AnalyticsClient
 	let profileStore: ProfileStore
 	let recentNodes: RecentNodesStore
+	let dailyRecommendationStore: DailyRecommendationStore
 	@State private var profileState = ProfileRead.missing
 	@State private var showingOnboarding = false
 	@State private var profileToEdit: Profile?
 	@State private var searchAfterOnboarding = false
+	/// The name of the node of the day: the root crumb of every page pushed from Today.
+	@State private var todayRootTitle: String?
+	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
+	@State private var chosenResult: ChosenResult?
 
 	var body: some View {
 		tabs
+			.environment(\.recentNodes, recentNodes)
 			.sensoryFeedback(.selection, trigger: router.selectedTab)
 			// Search does not change the selected tab, but tapping it is still a tab change for the hand.
 			.sensoryFeedback(.selection, trigger: router.isSearchPresented) { _, isPresented in isPresented }
 			// 2026-10-13 (TRA-383): no tint here; the Nocturne action tint set at the app root must reach the tabs.
 			.task { await reloadProfile() }
-			.sheet(isPresented: $router.isSearchPresented) { SearchSheetPlaceholder() }
+			.sheet(isPresented: $router.isSearchPresented, onDismiss: openChosenResult) { searchSheet }
 			.sheet(isPresented: $showingOnboarding, onDismiss: presentSearchIfRequested) {
 				OnboardingView(
 					apiClient: apiClient,
@@ -132,12 +148,13 @@ private struct ApplicationTabs: View {
 				case .today:
 					TodayEntryView(
 						profileState: profileState,
+						today: { profile in todayView(for: profile) },
 						chooseProfile: { beginOnboarding(editing: nil) },
 						exploreSearch: { router.select(.search) },
 						recoverProfile: { router.select(.genres) }
 					)
 				case .search:
-					// Search has no stack: its sheet is presented by the router (I.2 fills it).
+					// Search has no stack: its sheet is presented by the router and its results open on the selected tab.
 					EmptyView()
 				case .genres:
 					// Provisional root until K.1 composes the Genres tab; Settings lives here meanwhile.
@@ -153,10 +170,8 @@ private struct ApplicationTabs: View {
 			}
 			.navigationDestination(for: AppRoute.self) { route in
 				switch route {
-				case .entryStatus(let tab):
-					EntryStatusView(tab: tab)
 				case .node(let identity, let context):
-					if let readers {
+					if let readers, let imageStore {
 						NodeView(
 							model: NodeViewModel(
 								identity: identity,
@@ -165,10 +180,14 @@ private struct ApplicationTabs: View {
 								readLinks: readers.links,
 								recordEvent: { analytics.record($0) }
 							),
-							// Same tab: the relation stacks on the path the reader is already in.
+							imageStore: imageStore,
+							topBar: .breadcrumb(
+								router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
+							// Same tab; the name is the crumb the Top bar shows for the relation.
 							openRelation: { relation, relationContext in
-								router.openNode(relation, context: relationContext, in: tab)
-							}
+								router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
+							},
+							selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
 						)
 					} else {
 						InvalidConfigurationView(error: .missingEnvironment)
@@ -176,6 +195,48 @@ private struct ApplicationTabs: View {
 				}
 			}
 		}
+	}
+
+	@ViewBuilder
+	private func todayView(for profile: Profile) -> some View {
+		if let readers, let imageStore {
+			TodayView(
+				profile: profile,
+				router: router,
+				readers: readers,
+				imageStore: imageStore,
+				store: dailyRecommendationStore,
+				analytics: analytics,
+				rootTitle: $todayRootTitle
+			)
+		} else {
+			InvalidConfigurationView(error: .missingEnvironment)
+		}
+	}
+
+	@ViewBuilder
+	private var searchSheet: some View {
+		if let readers {
+			SearchSheetView(
+				search: readers.search,
+				recents: recentNodes,
+				recordEvent: { analytics.record($0) },
+				open: { identity, context, title in
+					chosenResult = ChosenResult(identity: identity, context: context, title: title)
+					router.isSearchPresented = false
+				}
+			)
+		} else {
+			InvalidConfigurationView(error: .missingEnvironment)
+		}
+	}
+
+	/// The current tab keeps its stack: the page goes on top of it, and the breadcrumb starts from there (G.1).
+	/// A sheet closed by a swipe leaves nothing chosen.
+	private func openChosenResult() {
+		guard let result = chosenResult else { return }
+		chosenResult = nil
+		router.openNode(result.identity, context: result.context, title: result.title, in: router.selectedTab)
 	}
 
 	private func presentSearchIfRequested() {
@@ -220,16 +281,17 @@ private struct SettingsEntryView: View {
 	let profileWasCleared: () -> Void
 }
 
-private struct TodayEntryView: View {
+private struct TodayEntryView<Today: View>: View {
 	let profileState: ProfileRead
+	@ViewBuilder let today: (Profile) -> Today
 	let chooseProfile: () -> Void
 	let exploreSearch: () -> Void
 	let recoverProfile: () -> Void
 
 	var body: some View {
 		switch profileState {
-		case .profile:
-			EntryView(tab: .today, showStatus: {})
+		case .profile(let profile):
+			today(profile)
 		case .missing, .unavailable:
 			ProfileMissingView(chooseProfile: chooseProfile, exploreSearch: exploreSearch)
 		case .corrupt, .unsupportedVersion:
@@ -266,41 +328,6 @@ private struct ProfileRecoveryView: View {
 	}
 }
 
-private struct EntryView: View {
-	let tab: AppTab
-	let showStatus: () -> Void
-
-	var body: some View {
-		ContentUnavailableView {
-			Label(tab.title, systemImage: tab.glyph.systemName)
-		} description: {
-			Text("Cette entrée est prête à accueillir son contenu.")
-				.accessibilityIdentifier("entry-description-\(tab.rawValue)")
-		} actions: {
-			Button("Voir l’état de l’entrée", action: showStatus)
-				.buttonStyle(.bordered)
-				.accessibilityIdentifier("entry-status-\(tab.rawValue)")
-		}
-		.navigationTitle(tab.title)
-		.navigationBarTitleDisplayMode(.large)
-	}
-}
-
-private struct EntryStatusView: View {
-	let tab: AppTab
-
-	var body: some View {
-		ContentUnavailableView {
-			Label("État de l’entrée", systemImage: "info.circle")
-		} description: {
-			Text("Les fonctionnalités de \(tab.title.lowercased()) seront ajoutées dans des livraisons dédiées.")
-				.accessibilityIdentifier("entry-status-description-\(tab.rawValue)")
-		}
-		.navigationTitle(tab.title)
-		.navigationBarTitleDisplayMode(.inline)
-	}
-}
-
 private struct InvalidConfigurationView: View {
 	let error: AppConfigurationError
 
@@ -313,24 +340,5 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
-	}
-}
-
-/// Stands for the search sheet until I.2: the field is inert, the sheet only proves the Search tab opens it.
-private struct SearchSheetPlaceholder: View {
-	@State private var text = ""
-	@FocusState private var isFocused: Bool
-
-	var body: some View {
-		VStack(spacing: Track1Tokens.spacing16) {
-			Track1SearchField(text: $text, focus: $isFocused, onSubmit: {})
-				.disabled(true)
-			Spacer()
-		}
-		.padding(Track1Tokens.spacing24)
-		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.presentationBackground(Track1Tokens.colorBackgroundBase)
-		.accessibilityElement(children: .contain)
-		.accessibilityIdentifier("search-sheet")
 	}
 }

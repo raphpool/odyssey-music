@@ -12,6 +12,11 @@ public struct RecentNode: Codable, Equatable, Sendable {
 		self.type = type
 	}
 
+	/// What the sheet offers again once `node` has been read: its identity, name and type.
+	public init(node: NodeDetail) {
+		self.init(identity: node.id, name: node.name, type: node.type)
+	}
+
 	/// The name comes from the API and the file from disk, both untrusted: the type must agree with the
 	/// identity prefix, and the name must be readable single-line text of bounded length.
 	var isStorable: Bool {
@@ -35,11 +40,15 @@ public actor RecentNodesStore {
 	private static let fileVersion = 1
 
 	private let localStore: LocalStore
+	private var resetPending: Bool
 	private var isLocked = false
 	private var waiters: [CheckedContinuation<Void, Never>] = []
 
-	public init(store: LocalStore) {
+	/// `resetBeforeUse` (the UI tests' reset) empties the file inside the first call, under the lock, so that
+	/// no `list` or `record` can run before it.
+	public init(store: LocalStore, resetBeforeUse: Bool = false) {
 		localStore = store
+		resetPending = resetBeforeUse
 	}
 
 	/// Puts `node` first, removing any earlier entry with the same identity, and keeps `limit` entries.
@@ -47,6 +56,7 @@ public actor RecentNodesStore {
 	public func record(_ node: RecentNode) async {
 		await acquire()
 		defer { release() }
+		await applyPendingReset()
 		guard node.isStorable else { return }
 		var entries = await load().filter { $0.identity != node.identity }
 		entries.insert(node, at: 0)
@@ -56,12 +66,20 @@ public actor RecentNodesStore {
 	public func list() async -> [RecentNode] {
 		await acquire()
 		defer { release() }
+		await applyPendingReset()
 		return await load()
 	}
 
 	public func clear() async {
 		await acquire()
 		defer { release() }
+		resetPending = false
+		_ = await localStore.remove(named: Self.fileName)
+	}
+
+	private func applyPendingReset() async {
+		guard resetPending else { return }
+		resetPending = false
 		_ = await localStore.remove(named: Self.fileName)
 	}
 

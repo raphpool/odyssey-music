@@ -44,6 +44,13 @@ public enum TopBarFormat {
 		}
 	}
 
+	/// What the Top bar must add above itself to clear the status bar and the Dynamic Island: the window's top
+	/// inset minus the one the layout already gives it. Never negative, and 0 when the layout is right.
+	/// 2026-10-14 (TRA-372): a crumb under the Dynamic Island did not receive taps; moved here with TRA-438.
+	public static func clearance(windowInset: CGFloat, layoutInset: CGFloat) -> CGFloat {
+		max(0, windowInset - layoutInset)
+	}
+
 	/// Keeps the last 3 crumbs, in path order, and folds the earlier ones into a single leading ellipsis.
 	public static func collapsed(_ crumbs: [TopBarCrumb]) -> [TopBarItem] {
 		let kept = crumbs.suffix(visibleCrumbCount).map(TopBarItem.crumb)
