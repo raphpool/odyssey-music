@@ -139,3 +139,37 @@ jobs:
             gh pr comment "${{ github.event.pull_request.number }}" \
               --body "Classification terminée : chemin sensible modifié, escalade automatique en **tier/3**. Une review IA approfondie sur le SHA final et les checks requis verts sont nécessaires ; aucune approbation humaine de merge n'est obligatoire."
           fi
+
+  integrity:
+    # TRA-461: the cache audit (scripts/audit-cache.ts) fails when a measure exceeds its ceiling in
+    # data/integrity-thresholds.json; on pull requests the ratchet also fails when a ceiling went up or
+    # vanished against the base. Not a required check: adding it to the branch protection is up to the owner.
+    # No timeout-minutes, like the other jobs: the audit takes under 15 s.
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: [self-hosted, macOS, ARM64]
+    steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
+        # anything writing to $HOME (npm, git, claude-code-action's ~/.claude/settings.json) must
+        # land in a job-scoped directory instead of his personal configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: npm }
+      - run: npm ci
+      - name: Auditer le cache
+        run: npm run audit:cache -- cache
+      - name: Cliquet des seuils
+        if: github.event_name == 'pull_request'
+        run: |
+          BASE="origin/${{ github.event.pull_request.base.ref }}"
+          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          set -o pipefail
+          status=0
+          npx --no-install tsx scripts/ci/threshold-ratchet.ts "$BASE" | tee "$RUNNER_TEMP/threshold-ratchet.md" || status=$?
+          grep -v "^::" "$RUNNER_TEMP/threshold-ratchet.md" >> "$GITHUB_STEP_SUMMARY" || true
+          # Exit 2 = no thresholds file on the base (first PR after TRA-448): accepted, the script already warned.
+          if [ "$status" -eq 2 ]; then exit 0; fi
+          exit "$status"
