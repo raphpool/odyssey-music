@@ -1,7 +1,8 @@
 import { z } from "zod";
+import { isAllowedImageUrl } from "./images/hosts.js";
 import { EDGE_TARGET_TYPES_BY_TYPE } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
-import { NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
+import { IMAGE_SOURCES, NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
 
 const slugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
 
@@ -84,6 +85,10 @@ const baseFields = {
 	_metrics: metricsSchema,
 	disambiguator: z.string().optional(),
 	mbid: z.string().uuid().optional(),
+	// Third-party image: https + allowlisted host only (TRA-455). Before this, Zod silently
+	// dropped image_source on every write (0 cache files carried it).
+	image_url: z.string().url().refine(isAllowedImageUrl, { message: "image_url host not allowed" }).optional(),
+	image_source: z.enum(IMAGE_SOURCES).optional(),
 };
 
 const genreSchema = z.object({

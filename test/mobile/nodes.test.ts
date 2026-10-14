@@ -70,6 +70,24 @@ describe("mobile node reader", () => {
 		});
 	});
 
+	it("projects image_url and image_source of a cached node (TRA-455)", async () => {
+		const imageUrl = "https://coverartarchive.org/release-group/6a9b9f3e/front-500";
+		await cache.write(
+			genreNode({
+				slug: "genre:pictured",
+				name: "Pictured",
+				image_url: imageUrl,
+				image_source: "derived-cover",
+			}),
+		);
+		const reader = createMobileNodeReader({ cache, redirects: new Map() });
+
+		const result = await reader.read("genre:pictured");
+
+		expect(result?.node.image_url).toBe(imageUrl);
+		expect(result?.node.image_source).toBe("derived-cover");
+	});
+
 	it("reads a genre alias from the canonical cache node and reports it", async () => {
 		await cache.write(genreNode({ slug: "genre:electronic", name: "Electronic" }));
 		const redirects: GenreRedirects = new Map([

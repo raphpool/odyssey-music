@@ -42,7 +42,7 @@ export function createMobileNodeReader(dependencies: MobileNodeDependencies): Mo
 				throw error;
 			});
 			if (!node) return null;
-			const vizNode = toVizNode(node, {});
+			const vizNode = toVizNode(node);
 			return {
 				node: { ...vizNode, citations: sanitizeCitations(vizNode.citations) },
 				source: "cache",
