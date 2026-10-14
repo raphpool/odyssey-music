@@ -49,7 +49,7 @@ export const pipelineConfig = {
 	maxCorpusBytes: envInt("PIPELINE_MAX_CORPUS_BYTES", 80_000),
 	perPageBudgetBytes: envInt("PIPELINE_PER_PAGE_BUDGET_BYTES", 60_000),
 	searchResults: envInt("PIPELINE_SEARCH_RESULTS", 7),
-	fetchTopKWithWiki: envInt("PIPELINE_FETCH_TOP_K_WITH_WIKI", 1),
+	fetchTopKWithWiki: envInt("PIPELINE_FETCH_TOP_K_WITH_WIKI", 2),
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
 	nodeTtlMs: envInt("ODYSSEY_NODE_TTL_MS", 12 * 3600 * 1000),
 };

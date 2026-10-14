@@ -7,7 +7,12 @@ import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
 import type { PipelineDeps } from "../src/pipeline.js";
 import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
-import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
+import {
+	artistDraftFixture,
+	FIXTURE_WIKI_URL,
+	genreDraftFixture,
+	installPipelineMocks,
+} from "./helpers/pipeline-mocks.js";
 
 // TRA-25: end-to-end runPipeline harness, all four external boundaries mocked
 // (tavily, local-fetcher, @google/genai, musicbrainz). No network call, no real API key —
@@ -292,6 +297,142 @@ describe("artist MB disambiguation hint (TRA-XXX)", () => {
 			const query = vi.mocked(tavilySearch).mock.calls[0]?.[1];
 			expect(query).toContain("Spanish makina DJ");
 			expect(query).toContain("ES");
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-459: with Wikipedia in the top 4, the corpus used to hold Wikipedia alone, so the
+// node was written with a single citation. It now also reads the best non-Wikipedia,
+// non-Reddit, non-streaming result, and canonicalizeDraft keeps at least two citations
+// whenever the corpus has two pages.
+describe("research corpus has at least two source pages (TRA-459)", () => {
+	const WIKI_URL = FIXTURE_WIKI_URL;
+	const DISCOGS_URL = "https://www.discogs.com/artist/1-Fixture-Artist";
+	const SPOTIFY_URL = "https://open.spotify.com/artist/fixture";
+	const REDDIT_URL = "https://www.reddit.com/r/fixture/comments/abc";
+
+	function searchResult(url: string) {
+		return { title: `Result ${url}`, url, content: `Snippet for ${url}` };
+	}
+
+	/** Arms the search + fetch boundaries; returns the localFetch mock to assert on. */
+	async function armSources(urls: readonly string[]) {
+		const [{ tavilySearch }, { localFetch }] = await Promise.all([
+			import("../src/tools/tavily.js"),
+			import("../src/tools/local-fetcher.js"),
+		]);
+		vi.mocked(tavilySearch).mockImplementation(async () => urls.map(searchResult));
+		vi.mocked(localFetch).mockReset();
+		vi.mocked(localFetch).mockImplementation(async (url: string) => ({
+			url,
+			title: `Page ${url}`,
+			markdown: `Fixture Artist is a fictional electronic musician (source ${url}).`,
+			httpStatus: 200,
+			bytes: 64,
+		}));
+		return localFetch;
+	}
+
+	const fetchedUrls = (localFetch: Awaited<ReturnType<typeof armSources>>): string[] =>
+		vi.mocked(localFetch).mock.calls.map((call) => call[0]);
+
+	it(
+		"reads Wikipedia and the best non-streaming result, and writes both as citations",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					citations: [{ url: WIKI_URL }, { url: DISCOGS_URL }],
+				}),
+			});
+			const localFetch = await armSources([WIKI_URL, DISCOGS_URL, SPOTIFY_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(fetchedUrls(localFetch)).toEqual([WIKI_URL, DISCOGS_URL]);
+			expect(result.node.citations.map((c) => c.url)).toEqual([WIKI_URL, DISCOGS_URL]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"skips Reddit and streaming sites: Wikipedia alone, one citation",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const localFetch = await armSources([WIKI_URL, REDDIT_URL, SPOTIFY_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(fetchedUrls(localFetch)).toEqual([WIKI_URL]);
+			expect(result.node.citations.map((c) => c.url)).toEqual([WIKI_URL]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"does not fetch a second Wikipedia page in place of an outlet",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const frWiki = "https://fr.wikipedia.org/wiki/Fixture_Artist";
+			const localFetch = await armSources([WIKI_URL, frWiki, DISCOGS_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(fetchedUrls(localFetch)).toEqual([WIKI_URL, DISCOGS_URL]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the top 3 results when Wikipedia is absent (behavior unchanged)",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const allmusic = "https://www.allmusic.com/artist/fixture";
+			const pitchfork = "https://pitchfork.com/features/fixture";
+			const localFetch = await armSources([DISCOGS_URL, allmusic, pitchfork, SPOTIFY_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(fetchedUrls(localFetch)).toEqual([DISCOGS_URL, allmusic, pitchfork]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"completes a one-citation draft to two citations from the corpus, keeping the model's first",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({ citations: [{ url: DISCOGS_URL, title: "Discogs" }] }),
+			});
+			await armSources([WIKI_URL, DISCOGS_URL, SPOTIFY_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(result.node.citations.map((c) => c.url)).toEqual([DISCOGS_URL, WIKI_URL]);
+			expect(result.node.citations[0]?.title).toBe("Discogs");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"never completes citations with a URL outside the corpus (search results never read)",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					citations: [{ url: WIKI_URL }, { url: "https://invented.example.com/page" }],
+				}),
+			});
+			await armSources([WIKI_URL, REDDIT_URL, SPOTIFY_URL]);
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(result.node.citations.map((c) => c.url)).toEqual([WIKI_URL]);
 		},
 		TIMEOUT_MS,
 	);
