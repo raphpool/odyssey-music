@@ -13,7 +13,8 @@ public enum ListeningProvider: String, CaseIterable, Sendable {
 		}
 	}
 
-	fileprivate var displayName: String {
+	/// Name of the service as the reader knows it (not the lowercase one the Streaming button draws).
+	public var displayName: String {
 		switch self {
 		case .spotify: "Spotify"
 		case .appleMusic: "Apple Music"

@@ -20,4 +20,10 @@ public enum NodePageListening {
 		guard type != .genre, type != .label, case .ready(let actions) = state else { return [] }
 		return actions
 	}
+
+	/// Feedback when the OS refused to open `provider` and the web fallback failed too (TRA-446). Figma draws
+	/// no such state; the copy is French and names the service, as the old `listen-error` did.
+	public static func failureMessage(for provider: ListeningProvider) -> String {
+		"Impossible d’ouvrir \(provider.displayName)."
+	}
 }
