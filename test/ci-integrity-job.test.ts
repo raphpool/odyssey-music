@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { classifyRisk } from "../scripts/ci/review-gate-policy.js";
 
 // TRA-461: the `integrity` job of ci.yml runs the cache audit and, on pull requests, the threshold ratchet.
 // Like native-ci-triggers.test.ts, no YAML parser is added: the job block is read as text.
@@ -18,18 +19,56 @@ function jobBlock(name: string): string {
 	return next === -1 ? rest : rest.slice(0, next + 1);
 }
 
-describe("ci.yml integrity job (TRA-461)", () => {
+/** The shell scripts of every `run:` of a text: inline values and the lines of `|` / `>` block scalars. */
+function runScripts(text: string): string[] {
+	const lines = text.split("\n");
+	const scripts: string[] = [];
+	for (let i = 0; i < lines.length; i++) {
+		const match = /^(\s*)(- )?run:\s*(.*)$/.exec(lines[i] as string);
+		if (!match) continue;
+		const keyIndent = (match[1] as string).length + (match[2] === undefined ? 0 : 2);
+		const inline = match[3] as string;
+		if (!/^[|>][+-]?$/.test(inline)) {
+			scripts.push(inline);
+			continue;
+		}
+		const body: string[] = [];
+		for (let j = i + 1; j < lines.length; j++) {
+			const line = lines[j] as string;
+			if (line.trim() !== "" && line.length - line.trimStart().length <= keyIndent) break;
+			body.push(line);
+		}
+		scripts.push(body.join("\n"));
+	}
+	return scripts;
+}
+
+describe("ci.yml integrity job (TRA-461, TRA-498)", () => {
 	const block = jobBlock("integrity");
 
 	it("runs the audit on the cache directory", () => {
 		expect(block).toContain("npm run audit:cache -- cache");
 	});
 
-	it("runs the threshold ratchet against the PR base, on pull requests only", () => {
-		expect(block).toContain('BASE="origin/${{ github.event.pull_request.base.ref }}"');
+	it("runs the threshold ratchet against the first parent of the merge ref, on pull requests only", () => {
+		expect(block).toContain("fetch-depth: 2");
+		expect(block).toContain("BASE=HEAD^1");
 		expect(block).toContain('scripts/ci/threshold-ratchet.ts "$BASE"');
 		const ratchetStep = block.slice(block.lastIndexOf("- name:", block.indexOf("threshold-ratchet")));
-		expect(ratchetStep).toContain("if: github.event_name == 'pull_request'");
+		expect(ratchetStep).toContain("if: ${{ !cancelled() && github.event_name == 'pull_request' }}");
+		// The base is the commit already checked out, never a branch fetched after the event.
+		expect(block).not.toContain("git fetch");
+		expect(block).not.toContain("origin/");
+	});
+
+	it("appends the audit output, violations included, to the job summary", () => {
+		const auditStep = block.slice(
+			block.indexOf("- name: Auditer le cache"),
+			block.indexOf("- name: Cliquet"),
+		);
+		expect(auditStep).toContain("2>");
+		expect(auditStep).toContain('>> "$GITHUB_STEP_SUMMARY"');
+		expect(auditStep).toContain('exit "$status"');
 	});
 
 	it("uses the same runner labels and HOME isolation as the other jobs", () => {
@@ -43,11 +82,57 @@ describe("ci.yml integrity job (TRA-461)", () => {
 		);
 	});
 
-	it("adds no timeout-minutes, consistently with the rest of ci.yml", () => {
-		expect(source).not.toContain("timeout-minutes");
+	it("adds no timeout-minutes to the integrity job, consistently with the other jobs", () => {
+		expect(block).not.toContain("timeout-minutes");
 	});
 
 	it("never reads the generated web/data.json", () => {
 		expect(block).not.toContain("web/data.json");
+	});
+});
+
+describe("ci.yml shell scripts (TRA-498)", () => {
+	it("never interpolate the PR base ref into a run: script, which is a shell injection vector", () => {
+		const scripts = runScripts(source);
+		expect(scripts.length).toBeGreaterThan(5);
+		for (const script of scripts) expect(script).not.toContain("github.event.pull_request.base.ref");
+	});
+
+	it.each(["diff-size", "tier-guard"])("passes the base ref to %s through env BASE_REF", (job) => {
+		const block = jobBlock(job);
+		expect(block).toContain('BASE_REF: "${{ github.event.pull_request.base.ref }}"');
+		expect(block).toContain('git fetch origin "$BASE_REF"');
+	});
+});
+
+describe("tier-guard sensitive paths (TRA-498)", () => {
+	// The grep of the job and `sensitivePath` of review-gate-policy.ts are two copies of one list.
+	const grep = /grep -Eq '([^']+)'/.exec(jobBlock("tier-guard"))?.[1];
+	const gate = (path: string) => classifyRisk([path], []) === 3;
+
+	it("contains the integrity gate files, like the review gate policy", () => {
+		expect(grep).toBeDefined();
+		const pattern = new RegExp(grep as string);
+		for (const path of [
+			".github/workflows/ci.yml",
+			"scripts/ci/threshold-ratchet.ts",
+			"scripts/audit-cache.ts",
+			"data/integrity-thresholds.json",
+		]) {
+			expect(pattern.test(path), `grep: ${path}`).toBe(true);
+			expect(gate(path), `policy: ${path}`).toBe(true);
+		}
+	});
+
+	it("does not escalate lookalike paths, in either copy", () => {
+		const pattern = new RegExp(grep as string);
+		for (const path of [
+			"data/genre-catalog.json",
+			"scripts/audit-cache-notes.md",
+			"scripts/ci/pr-policy.ts",
+		]) {
+			expect(pattern.test(path), `grep: ${path}`).toBe(false);
+			expect(gate(path), `policy: ${path}`).toBe(false);
+		}
 	});
 });
