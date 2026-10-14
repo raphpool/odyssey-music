@@ -3,7 +3,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
-import { pipelineConfig } from "../src/config.js";
 import { type GenreRedirects, loadRedirects } from "../src/genre-registry.js";
 import type { MaterializeRequest } from "../src/services/materialize-service.js";
 import { createNodeService } from "../src/services/node-service.js";
@@ -77,9 +76,8 @@ function trackNode(overrides: Partial<TrackNode> & { slug: Slug; name: string })
 	};
 }
 
-// Older than pipelineConfig.nodeTtlMs, so getNode treats the cached node as stale and attempts a
-// JIT refresh instead of serving it straight from the cache.
-const STALE_MATERIALIZED_AT = new Date(Date.now() - pipelineConfig.nodeTtlMs - 60_000).toISOString();
+// TRA-449: a node far older than the former 12 h read TTL must still be served from the cache.
+const OLD_MATERIALIZED_AT = new Date(Date.now() - 30 * 24 * 3600 * 1000).toISOString();
 
 const rejectRunJit = async (): Promise<never> => {
 	throw new Error("must not be called");
@@ -174,44 +172,48 @@ describe("node-service getNode genre redirects (TRA-30)", () => {
 		expect(result?.redirected_from).toBeUndefined();
 	});
 
-	it("pins a stale redirected node's JIT refresh to the canonical slug", async () => {
-		// Regression (review round 1, PR #31): runJit/canonicalizeDraft re-derives a slug from
-		// the LLM draft's own name when not pinned, which can resurrect the losing slug of a
-		// genre redirect on refresh. The stale node lives under the canonical slug; the request
-		// comes in on the redirected (losing) slug.
-		await cache.write(genreNode({ slug: "genre:idm", name: "IDM", materialized_at: STALE_MATERIALIZED_AT }));
-		const redirects: GenreRedirects = new Map([
-			["genre:intelligent-dance-music" as Slug, "genre:idm" as Slug],
-		]);
-		const refreshed = genreNode({ slug: "genre:idm", name: "IDM" });
-		const { runJit, calls } = capturingRunJit(refreshed);
-		const getNode = createNodeService({ cache, runJit, redirects });
-
-		const result = await getNode("genre:intelligent-dance-music" as Slug);
-
-		expect(calls).toHaveLength(1);
-		expect(calls[0]?.opts).toMatchObject({ fresh: true, slug: "genre:idm" });
-		expect(result?.source).toBe("jit-refreshed");
-		expect(result?.node).toBe(refreshed);
-		expect(result?.redirected_from).toBe("genre:intelligent-dance-music");
-	});
-
-	it("pins a stale non-redirected node's JIT refresh to the requested slug, for any node type", async () => {
-		// Same pinning guarantee applies outside genre nodes: node-service has no notion of
-		// "genre" here, so an artist node exercises it without relying on redirect-table shape.
+	it("serves a 30-day-old node from the cache without calling runJit (TRA-449)", async () => {
+		// 2026-10-14 (TRA-449): getNode used to re-run the whole pipeline for any node older than
+		// 12 h. Symptom: prod silently diverged from the repo (62 nodes whose slug can't be derived
+		// from their name were rewritten on read) and every old page view cost an LLM call.
 		await cache.write(
-			artistNode({ slug: "artist:fixture", name: "Fixture Artist", materialized_at: STALE_MATERIALIZED_AT }),
+			artistNode({ slug: "artist:fixture", name: "Fixture Artist", materialized_at: OLD_MATERIALIZED_AT }),
 		);
-		const refreshed = artistNode({ slug: "artist:fixture", name: "Fixture Artist" });
-		const { runJit, calls } = capturingRunJit(refreshed);
+		const { runJit, calls } = capturingRunJit(artistNode({ slug: "artist:fixture", name: "Other" }));
 		const getNode = createNodeService({ cache, runJit, redirects: new Map() });
 
 		const result = await getNode("artist:fixture" as Slug);
 
-		expect(calls).toHaveLength(1);
-		expect(calls[0]?.opts).toMatchObject({ fresh: true, slug: "artist:fixture" });
-		expect(result?.source).toBe("jit-refreshed");
+		expect(calls).toHaveLength(0);
+		expect(result?.source).toBe("cache");
+		expect(result?.node.name).toBe("Fixture Artist");
+		expect(result?.node.materialized_at).toBe(OLD_MATERIALIZED_AT);
 		expect(result?.redirected_from).toBeUndefined();
+	});
+
+	it("keeps redirected_from when serving an old canonical node through a redirect (TRA-449)", async () => {
+		await cache.write(genreNode({ slug: "genre:idm", name: "IDM", materialized_at: OLD_MATERIALIZED_AT }));
+		const redirects: GenreRedirects = new Map([
+			["genre:intelligent-dance-music" as Slug, "genre:idm" as Slug],
+		]);
+		const { runJit, calls } = capturingRunJit(genreNode({ slug: "genre:idm", name: "Refreshed" }));
+		const getNode = createNodeService({ cache, runJit, redirects });
+
+		const result = await getNode("genre:intelligent-dance-music" as Slug);
+
+		expect(calls).toHaveLength(0);
+		expect(result?.source).toBe("cache");
+		expect(result?.node.slug).toBe("genre:idm");
+		expect(result?.node.name).toBe("IDM");
+		expect(result?.redirected_from).toBe("genre:intelligent-dance-music");
+	});
+
+	it("returns null for an unknown slug without calling runJit", async () => {
+		const { runJit, calls } = capturingRunJit(artistNode({ slug: "artist:fixture", name: "X" }));
+		const getNode = createNodeService({ cache, runJit, redirects: new Map() });
+
+		expect(await getNode("artist:missing" as Slug)).toBeNull();
+		expect(calls).toHaveLength(0);
 	});
 });
 
