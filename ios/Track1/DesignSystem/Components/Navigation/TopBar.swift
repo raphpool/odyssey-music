@@ -1,56 +1,5 @@
 import SwiftUI
-
-/// One step of the path of visited nodes. `index` is its position in the path; -1 is the root (the screen the
-/// path started from), so that a tap can pop back to it.
-struct TopBarCrumb: Hashable {
-	let index: Int
-	let title: String
-}
-
-/// What the breadcrumb draws: a crumb, or the `…` that stands for the older ones.
-enum TopBarItem: Hashable {
-	case crumb(TopBarCrumb)
-	case ellipsis
-}
-
-/// The text rules of the Top bar, kept apart from the view so they are tested without rendering.
-enum TopBarFormat {
-	/// The Doc `173:20` keeps the last 3 nodes of the path.
-	static let visibleCrumbCount = 3
-	static let separator = "›"
-	static let ellipsisText = "…"
-
-	/// Long date without weekday, in French whatever the device language: "13 octobre" (the Figma Date
-	/// variant `173:14`). The day is in the given time zone, not in UTC: 23:30 UTC on 31 October is already
-	/// 1 November in Paris.
-	static func date(_ date: Date, timeZone: TimeZone) -> String {
-		let formatter = DateFormatter()
-		formatter.locale = Locale(identifier: "fr_FR")
-		formatter.timeZone = timeZone
-		formatter.setLocalizedDateFormatFromTemplate("dMMMM")
-		return formatter.string(from: date)
-	}
-
-	/// The crumbs a tap can pop back to: every crumb but the last one, which is the node on screen. The
-	/// ellipsis stands for several nodes at once, so it selects none.
-	static func selectable(_ items: [TopBarItem]) -> [TopBarCrumb] {
-		items.dropLast().compactMap {
-			if case .crumb(let crumb) = $0 { crumb } else { nil }
-		}
-	}
-
-	/// What the Top bar must add above itself to clear the status bar and the Dynamic Island: the window's top
-	/// inset minus the one the layout already gives it. Never negative, and 0 when the layout is right.
-	static func clearance(windowInset: CGFloat, layoutInset: CGFloat) -> CGFloat {
-		max(0, windowInset - layoutInset)
-	}
-
-	/// Keeps the last 3 crumbs, in path order, and folds the earlier ones into a single leading ellipsis.
-	static func collapsed(_ crumbs: [TopBarCrumb]) -> [TopBarItem] {
-		let kept = crumbs.suffix(visibleCrumbCount).map(TopBarItem.crumb)
-		return crumbs.count > visibleCrumbCount ? [.ellipsis] + kept : kept
-	}
-}
+import Track1Core
 
 /// Figma `Top bar` (`173:18`): the first line of a node page. The date on the daily recommendation, the
 /// breadcrumb once the user has moved from node to node. It is plain content, not pinned: it scrolls away
