@@ -43,6 +43,7 @@ struct NodeView: View {
 						isRoot: isRoot,
 						listening: model.listening,
 						isOpeningListening: model.isOpeningListening,
+						listeningFailure: model.listeningFailure,
 						onOpenEdge: { edge, kind in
 							model.openRelation(edge, kind: kind) { _, context in openRelation(edge, context) }
 						},
