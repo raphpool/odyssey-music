@@ -12,13 +12,15 @@ struct NodePageView: View {
 	private let isRoot: Bool
 	private let listening: ListeningState
 	private let isOpeningListening: Bool
+	private let listeningFailure: ListeningProvider?
 	private let onOpenEdge: (NodeEdge, String) -> Void
 	private let onOpenListening: (ListeningAction) -> Void
 	private let onSelectCrumb: (TopBarCrumb) -> Void
 	@State private var expandedFields = Set<String>()
 	@Environment(\.openURL) private var openURL
 
-	/// `imageStore` (carousel covers) and `isOpeningListening` (streaming bar) go beyond the ticket's contract.
+	/// `imageStore` (carousel covers), `isOpeningListening` and `listeningFailure` (streaming bar) go beyond
+	/// the ticket's contract.
 	init(
 		node: NodeDetail,
 		hero: NodeHeroModel,
@@ -27,6 +29,7 @@ struct NodePageView: View {
 		isRoot: Bool,
 		listening: ListeningState,
 		isOpeningListening: Bool,
+		listeningFailure: ListeningProvider? = nil,
 		onOpenEdge: @escaping (NodeEdge, String) -> Void,
 		onOpenListening: @escaping (ListeningAction) -> Void,
 		onSelectCrumb: @escaping (TopBarCrumb) -> Void
@@ -38,6 +41,7 @@ struct NodePageView: View {
 		self.isRoot = isRoot
 		self.listening = listening
 		self.isOpeningListening = isOpeningListening
+		self.listeningFailure = listeningFailure
 		self.onOpenEdge = onOpenEdge
 		self.onOpenListening = onOpenListening
 		self.onSelectCrumb = onSelectCrumb
@@ -62,6 +66,11 @@ struct NodePageView: View {
 		if case .loaded(_, let tint) = state { tint } else { nil }
 	}
 
+	/// The notice above the streaming bar once the model reports a failed opening, none otherwise.
+	static func listeningNotice(for failure: ListeningProvider?) -> ListeningFailureNotice? {
+		failure.map { ListeningFailureNotice(provider: $0) }
+	}
+
 	var body: some View {
 		let tint = Self.heroTint(for: hero.state)
 		let actions = NodePageListening.actions(for: node.type, state: listening)
@@ -78,7 +87,10 @@ struct NodePageView: View {
 		.background { Track1Tokens.colorBackgroundBase.ignoresSafeArea() }
 		.safeAreaInset(edge: .bottom, spacing: actions.isEmpty ? 0 : Track1Tokens.spacing8) {
 			if !actions.isEmpty {
-				StreamingBar(actions: actions, isOpening: isOpeningListening, open: onOpenListening)
+				VStack(spacing: Track1Tokens.spacing8) {
+					if let notice = Self.listeningNotice(for: listeningFailure) { notice }
+					StreamingBar(actions: actions, isOpening: isOpeningListening, open: onOpenListening)
+				}
 			}
 		}
 		.task { await hero.load() }
@@ -187,6 +199,35 @@ struct NodePageView: View {
 				TrackRow(number: index + 1, title: edge.name) { onOpenEdge(edge, section.field) }
 			}
 		}
+	}
+}
+
+/// Feedback for a streaming service the OS would not open (TRA-446). Figma does not draw it (D14), so it is
+/// composed from drawn parts: a danger-status pill, text from the type scale. It sits above the streaming
+/// bar and is announced to VoiceOver when it appears.
+struct ListeningFailureNotice: View {
+	static let identifier = "listen-error"
+
+	let provider: ListeningProvider
+
+	var message: String { NodePageListening.failureMessage(for: provider) }
+
+	var body: some View {
+		Track1Text(message, role: .bodyMedium, verbatim: true)
+			.foregroundStyle(Track1Tokens.colorStatusDangerContent)
+			.multilineTextAlignment(.center)
+			.padding(.horizontal, Track1Tokens.spacing16)
+			.padding(.vertical, Track1Tokens.spacing8)
+			// One background only, with its shape: a second chained `.background` would go behind this one.
+			.background(
+				Track1Tokens.colorStatusDangerBackground,
+				in: RoundedRectangle(cornerRadius: Track1Tokens.radius12, style: .continuous)
+			)
+			.padding(.horizontal, Track1Tokens.spacing12)
+			.accessibilityElement(children: .ignore)
+			.accessibilityLabel(message)
+			.accessibilityIdentifier(Self.identifier)
+			.onAppear { AccessibilityNotification.Announcement(message).post() }
 	}
 }
 
