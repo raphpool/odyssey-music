@@ -1,19 +1,10 @@
 import type { NodeCache } from "../cache.js";
-import { pipelineConfig } from "../config.js";
 import { isNotFoundError } from "../errors.js";
 import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import type { NodePayload, Slug } from "../types.js";
 import type { MaterializeRequest } from "./materialize-service.js";
 
-export type NodeLookupResult =
-	| { source: "cache"; node: NodePayload; redirected_from?: Slug }
-	| { source: "jit-refreshed"; node: NodePayload; redirected_from?: Slug }
-	| {
-			source: "cache-stale-refresh-failed";
-			node: NodePayload;
-			refresh_error: string;
-			redirected_from?: Slug;
-	  };
+export type NodeLookupResult = { source: "cache"; node: NodePayload; redirected_from?: Slug };
 
 export function createNodeService(deps: {
 	cache: NodeCache;
@@ -40,36 +31,11 @@ export function createNodeService(deps: {
 			throw e;
 		});
 		if (!node) return null;
-		const matAt = new Date(node.materialized_at).getTime();
-		if (Number.isFinite(matAt) && Date.now() - matAt > pipelineConfig.nodeTtlMs) {
-			try {
-				const req: MaterializeRequest = { type: node.type, name: node.name };
-				const dis = (node as unknown as Record<string, unknown>).disambiguator;
-				if (typeof dis === "string" && dis) req.disambiguator = dis;
-				// 2026-09-10 (review round 1, PR #31): pin the refreshed materialization to
-				// lookupSlug. Without this, runJit/canonicalizeDraft re-derives a slug from the
-				// LLM draft's own name, which can silently mint (or resurrect) the losing slug
-				// of a genre redirect -- e.g. a stale "genre:idm" cache entry named "Intelligent
-				// Dance Music" refreshes and gets re-derived back onto
-				// "genre:intelligent-dance-music", the exact slug the redirect table maps away
-				// from -- permanently breaking that redirect the next time cache.has(slug) finds
-				// the resurrected node. Not genre-specific: any TTL refresh of a node whose
-				// stored slug disagrees with a fresh name-derived slug is exposed to the same
-				// bug (62 such nodes exist in the real cache today). opts.slug is honored by
-				// materialize-service's runJit as of TRA-29 (PR #30); until that merges, this
-				// is a structurally-typed no-op against main's runJit.
-				const fresh = await deps.runJit(req, { fresh: true, slug: lookupSlug });
-				return { source: "jit-refreshed", node: fresh, ...redirectInfo };
-			} catch (e) {
-				const msg = e instanceof Error ? e.message : String(e);
-				return {
-					source: "cache-stale-refresh-failed",
-					node,
-					refresh_error: msg.slice(0, 200),
-					...redirectInfo,
-				};
-			}
-		}
+		// 2026-10-14 (TRA-449): reading never re-materializes. This used to re-run the whole pipeline
+		// for any node whose materialized_at was older than a 12 h TTL. Symptom: prod silently
+		// diverged from the repo (62 nodes whose slug can't be derived from their name were rewritten
+		// on read), edges were re-emitted bare, and every old page view cost an LLM call. A refresh
+		// is now explicit only (`?fresh=1`, see server.ts); `runJit` stays in deps for other paths.
 		return { source: "cache", node, ...redirectInfo };
 	};
 }
