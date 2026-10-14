@@ -39,6 +39,8 @@ export const musicBrainzConfig = {
 	fetchTimeoutMs: envInt("MB_FETCH_TIMEOUT_MS", 4000),
 	cacheTtlMs: envInt("MB_CACHE_TTL_MS", 5 * 60 * 1000),
 	cacheMaxEntries: envInt("MB_CACHE_MAX", 500),
+	// 2026-10-14 (TRA-450): MusicBrainz allows 1 request/second per client. 0 disables spacing.
+	minIntervalMs: envInt("MB_MIN_INTERVAL_MS", 1000),
 };
 
 export const pipelineConfig = {
@@ -49,7 +51,7 @@ export const pipelineConfig = {
 	maxCorpusBytes: envInt("PIPELINE_MAX_CORPUS_BYTES", 80_000),
 	perPageBudgetBytes: envInt("PIPELINE_PER_PAGE_BUDGET_BYTES", 60_000),
 	searchResults: envInt("PIPELINE_SEARCH_RESULTS", 7),
-	fetchTopKWithWiki: envInt("PIPELINE_FETCH_TOP_K_WITH_WIKI", 1),
+	fetchTopKWithWiki: envInt("PIPELINE_FETCH_TOP_K_WITH_WIKI", 2),
 	fetchTopKNoWiki: envInt("PIPELINE_FETCH_TOP_K_NO_WIKI", 3),
 };
 
