@@ -26,13 +26,14 @@ struct PrivacyChoiceView: View {
 					title: "Ce que nous mesurons", detail: "Les étapes du parcours, sans vos recherches ni vos goûts.")
 				PrivacyExplanation(
 					title: "Ce qui reste privé", detail: "Aucun e-mail, profil publicitaire ou historique d’écoute.")
-				PrivacyChoiceButton(
-					title: "Accepter", kind: .primary, identifier: "analytics-consent-accept", action: accept
+				Track1Button("Accepter", kind: .primary, size: .large, haptic: true, fullWidth: true, action: accept)
+					.accessibilityIdentifier("analytics-consent-accept")
+					.padding(.top, Track1Tokens.spacing8)
+				Track1Button(
+					"Continuer sans partager", kind: .secondary, size: .large, haptic: true, fullWidth: true,
+					action: decline
 				)
-				.padding(.top, Track1Tokens.spacing8)
-				PrivacyChoiceButton(
-					title: "Continuer sans partager", kind: .secondary, identifier: "analytics-consent-decline",
-					action: decline)
+				.accessibilityIdentifier("analytics-consent-decline")
 				Track1Text("Ce choix reste modifiable dans Réglages.", role: .caption)
 					.foregroundStyle(Track1Tokens.colorTextSecondary)
 			}
@@ -41,31 +42,6 @@ struct PrivacyChoiceView: View {
 		.background(alignment: .top) { AmbientGlow(tone: .ember).ignoresSafeArea(edges: .top) }
 		.background { Track1Tokens.colorBackgroundBase.ignoresSafeArea() }
 		.accessibilityIdentifier("analytics-consent-choice")
-	}
-}
-
-/// A Large `Track1Button` that fills the width. `Track1Button` sizes to its label and has no full-width
-/// option, and Core is outside this ticket: as `BottomActionBar` does, the same style is applied to a
-/// full-width label, with the same light impact as the button's `haptic`.
-private struct PrivacyChoiceButton: View {
-	let title: String
-	let kind: Track1ButtonKind
-	let identifier: String
-	let action: () -> Void
-	@State private var taps = 0
-
-	var body: some View {
-		Button {
-			taps += 1
-			action()
-		} label: {
-			Track1Text(title, role: Track1ControlSize.large.labelRole)
-				.multilineTextAlignment(.center)
-				.frame(maxWidth: .infinity)
-		}
-		.buttonStyle(Track1ButtonStyle(kind: kind, size: .large, icon: nil, iconOnly: false))
-		.sensoryFeedback(.impact(weight: .light), trigger: taps)
-		.accessibilityIdentifier(identifier)
 	}
 }
 

@@ -27,11 +27,19 @@ public struct RecentNode: Codable, Equatable, Sendable {
 	}
 }
 
+/// Outcome of `RecentNodesStore.clear()`, like `ProfileClear`: `unavailable` means the file could not be
+/// removed, so the recents are still on the device.
+public enum RecentNodesClear: Equatable, Sendable {
+	case cleared
+	case unavailable
+}
+
 /// Keeps the last `limit` opened cards, most recent first, in `recent-nodes.v1.json`.
 ///
 /// The list is a convenience, not a source of truth: an unreadable, corrupt or unsupported file reads as
 /// empty and is overwritten by the next `record`. Entries are validated while decoding and an invalid one
-/// is dropped on its own. There is no error channel: a failed write only loses a shortcut.
+/// is dropped on its own. A failed `record` only loses a shortcut and says nothing; `clear()` is the one
+/// call that reports its failure, because "Effacer le profil" promises the recents are gone (TRA-444).
 public actor RecentNodesStore {
 	public static let limit = 10
 	static let maximumNameLength = 200
@@ -70,11 +78,12 @@ public actor RecentNodesStore {
 		return await load()
 	}
 
-	public func clear() async {
+	public func clear() async -> RecentNodesClear {
 		await acquire()
 		defer { release() }
 		resetPending = false
-		_ = await localStore.remove(named: Self.fileName)
+		guard case .success = await localStore.remove(named: Self.fileName) else { return .unavailable }
+		return .cleared
 	}
 
 	private func applyPendingReset() async {

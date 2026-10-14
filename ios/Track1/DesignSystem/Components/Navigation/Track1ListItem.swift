@@ -10,20 +10,28 @@ struct Track1ListItem: View {
 		case none, chevron
 	}
 
+	/// `danger` is for a destructive row (erasing the profile): only the title turns to `colorTextDanger`.
+	/// The fill, the subtitle and the Pressed and Disabled states are the ones of every row.
+	enum Tone: CaseIterable {
+		case standard, danger
+	}
+
 	private let title: String
 	private let subtitle: String?
 	private let artwork: Track1Artwork?
 	private let accessory: Accessory
+	private let tone: Tone
 	private let action: () -> Void
 
 	init(
 		title: String, subtitle: String? = nil, artwork: Track1Artwork? = nil, accessory: Accessory = .none,
-		action: @escaping () -> Void
+		tone: Tone = .standard, action: @escaping () -> Void
 	) {
 		self.title = title
 		self.subtitle = subtitle
 		self.artwork = artwork
 		self.accessory = accessory
+		self.tone = tone
 		self.action = action
 	}
 
@@ -45,7 +53,9 @@ struct Track1ListItem: View {
 		Button(action: action) {
 			EmptyView()
 		}
-		.buttonStyle(Track1ListItemStyle(title: title, subtitle: subtitle, artwork: artwork, accessory: accessory))
+		.buttonStyle(
+			Track1ListItemStyle(
+				title: title, subtitle: subtitle, artwork: artwork, accessory: accessory, tone: tone))
 	}
 }
 
@@ -58,12 +68,15 @@ enum Track1ListItemColors {
 	/// disabled text color.
 	static let disabledOpacity = Track1ButtonColors.disabledOpacity
 
-	static func resolve(state: Track1ControlState) -> Resolved {
-		switch state {
+	/// The danger tone replaces the title color of the Default and Pressed states only: a disabled row is
+	/// dimmed like any other, so that a destructive action does not look available.
+	static func resolve(state: Track1ControlState, tone: Track1ListItem.Tone = .standard) -> Resolved {
+		let title = tone == .danger ? Track1Tokens.colorTextDanger : Track1Tokens.colorTextPrimary
+		return switch state {
 		case .normal:
-			(Track1Tokens.colorActionGhost, Track1Tokens.colorTextPrimary, Track1Tokens.colorTextSecondary)
+			(Track1Tokens.colorActionGhost, title, Track1Tokens.colorTextSecondary)
 		case .pressed:
-			(Track1Tokens.colorSurfacePressed, Track1Tokens.colorTextPrimary, Track1Tokens.colorTextSecondary)
+			(Track1Tokens.colorSurfacePressed, title, Track1Tokens.colorTextSecondary)
 		case .disabled:
 			(Track1Tokens.colorActionGhost, Track1Tokens.colorTextDisabled, Track1Tokens.colorTextDisabled)
 		}
@@ -80,10 +93,11 @@ private struct Track1ListItemStyle: ButtonStyle {
 	let subtitle: String?
 	let artwork: Track1Artwork?
 	let accessory: Track1ListItem.Accessory
+	let tone: Track1ListItem.Tone
 
 	func makeBody(configuration: Configuration) -> some View {
 		Track1ListItemBody(
-			title: title, subtitle: subtitle, artwork: artwork, accessory: accessory,
+			title: title, subtitle: subtitle, artwork: artwork, accessory: accessory, tone: tone,
 			isPressed: configuration.isPressed)
 	}
 }
@@ -94,12 +108,13 @@ private struct Track1ListItemBody: View {
 	let subtitle: String?
 	let artwork: Track1Artwork?
 	let accessory: Track1ListItem.Accessory
+	let tone: Track1ListItem.Tone
 	let isPressed: Bool
 	@Environment(\.isEnabled) private var isEnabled
 
 	var body: some View {
 		let state = Track1ControlState(isEnabled: isEnabled, isPressed: isPressed)
-		let colors = Track1ListItemColors.resolve(state: state)
+		let colors = Track1ListItemColors.resolve(state: state, tone: tone)
 		let shape = RoundedRectangle(cornerRadius: Track1Tokens.radius12, style: .continuous)
 		HStack(spacing: Track1Tokens.spacing12) {
 			if let artwork { artwork }

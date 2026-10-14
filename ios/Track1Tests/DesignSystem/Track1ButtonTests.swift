@@ -75,6 +75,13 @@ final class Track1ButtonTests: XCTestCase {
 		XCTAssertEqual(Track1ControlSize.large.iconSize, 24)
 	}
 
+	/// TRA-444: `BottomActionBar` and the consent screen needed a capsule as wide as its container.
+	func testFullWidthAsksForTheMaximumWidthAndOtherwiseForNone() throws {
+		let full = try XCTUnwrap(Track1Button.maxWidth(fullWidth: true))
+		XCTAssertTrue(full.isInfinite)
+		XCTAssertNil(Track1Button.maxWidth(fullWidth: false))
+	}
+
 	func testStateComesFromTheEnvironmentAndThePressedFlag() {
 		XCTAssertEqual(Track1ControlState(isEnabled: true, isPressed: false), .normal)
 		XCTAssertEqual(Track1ControlState(isEnabled: true, isPressed: true), .pressed)
