@@ -31,7 +31,6 @@ struct BottomActionBar: View {
 	private let isEnabled: Bool
 	private let counter: String?
 	private let action: () -> Void
-	@State private var taps = 0
 
 	init(
 		title: String, isEnabled: Bool, counter: String?, identifier: String = BottomActionBar.actionIdentifier,
@@ -47,20 +46,9 @@ struct BottomActionBar: View {
 
 	var body: some View {
 		VStack(spacing: Track1Tokens.spacing8) {
-			// `Track1Button` sizes to its label and has no full-width option, and Core is outside this ticket:
-			// the same style is applied to a full-width label instead. Same light impact as its `haptic`.
-			Button {
-				taps += 1
-				action()
-			} label: {
-				Track1Text(title, role: Track1ControlSize.large.labelRole)
-					.multilineTextAlignment(.center)
-					.frame(maxWidth: .infinity)
-			}
-			.buttonStyle(Track1ButtonStyle(kind: .primary, size: .large, icon: nil, iconOnly: false))
-			.sensoryFeedback(.impact(weight: .light), trigger: taps)
-			.disabled(!isEnabled)
-			.accessibilityIdentifier(identifier)
+			Track1Button(title, kind: .primary, size: .large, haptic: true, fullWidth: true, action: action)
+				.disabled(!isEnabled)
+				.accessibilityIdentifier(identifier)
 			if let counter {
 				Track1Text(counter, role: .caption, verbatim: true)
 					.foregroundStyle(Track1Tokens.colorTextSecondary)
