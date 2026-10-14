@@ -59,23 +59,13 @@ interface ReciprocityPair {
 	targetField: string;
 }
 
-// Pairs that REVERSE_EDGE_PAIRS (src/node-spec.ts) does not declare yet; measured as debt until
-// the reverse-edge ticket (2.1) adds them, at which point both sources are read and these can go.
-const FUTURE_RECIPROCITY_PAIRS: readonly ReciprocityPair[] = [
-	{ sourceType: "artist", sourceField: "labels", targetType: "label", targetField: "roster" },
-	{ sourceType: "artist", sourceField: "discography", targetType: "project", targetField: "artists" },
-	{ sourceType: "label", sourceField: "roster", targetType: "artist", targetField: "labels" },
-	{ sourceType: "genre", sourceField: "key_artists", targetType: "artist", targetField: "genres" },
-	{ sourceType: "track", sourceField: "project", targetType: "project", targetField: "tracklist" },
-];
-
 function pairKey(p: ReciprocityPair): string {
 	return `${p.sourceType}.${p.sourceField}->${p.targetType}.${p.targetField}`;
 }
 
 function reciprocityPairs(): ReciprocityPair[] {
-	const pairs: ReciprocityPair[] = [...FUTURE_RECIPROCITY_PAIRS];
-	const seen = new Set(pairs.map(pairKey));
+	const pairs: ReciprocityPair[] = [];
+	const seen = new Set<string>();
 	for (const { sourceType, sourceField, reverse } of REVERSE_EDGE_PAIRS) {
 		const spec = (EDGE_FIELDS_BY_TYPE[sourceType] as Record<string, { targets: readonly NodeType[] }>)[
 			sourceField

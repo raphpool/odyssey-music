@@ -142,6 +142,36 @@ export const REVERSE_EDGE_PAIRS: ReadonlyArray<{
 	{ sourceType: "track", sourceField: "sampled_by", reverse: { field: "samples", cardinality: "list" } },
 	{ sourceType: "track", sourceField: "remix_of", reverse: { field: "remixed_by", cardinality: "list" } },
 	{ sourceType: "track", sourceField: "remixed_by", reverse: { field: "remix_of", cardinality: "single" } },
+	// Cross-type pairs (TRA-454, 2026-10-14): without them 277/458 artist -> label links had no
+	// label.roster entry, 111/211 artist -> project links no project.artists entry, etc.
+	// Deliberately absent: artist.genres -> genre.key_artists (each artist has ~5 genres, so
+	// key_artists would balloon); the genre.key_* -> X.genres direction is the only one kept.
+	{ sourceType: "artist", sourceField: "labels", reverse: { field: "roster", cardinality: "list" } },
+	{ sourceType: "label", sourceField: "roster", reverse: { field: "labels", cardinality: "list" } },
+	{ sourceType: "artist", sourceField: "discography", reverse: { field: "artists", cardinality: "list" } },
+	{ sourceType: "project", sourceField: "artists", reverse: { field: "discography", cardinality: "list" } },
+	{ sourceType: "artist", sourceField: "notable_tracks", reverse: { field: "artists", cardinality: "list" } },
+	{ sourceType: "track", sourceField: "artists", reverse: { field: "notable_tracks", cardinality: "list" } },
+	{ sourceType: "project", sourceField: "tracklist", reverse: { field: "project", cardinality: "single" } },
+	{ sourceType: "track", sourceField: "project", reverse: { field: "tracklist", cardinality: "list" } },
+	{
+		sourceType: "label",
+		sourceField: "notable_releases",
+		reverse: { field: "label", cardinality: "single" },
+	},
+	{
+		sourceType: "project",
+		sourceField: "label",
+		reverse: { field: "notable_releases", cardinality: "list" },
+	},
+	{ sourceType: "genre", sourceField: "key_artists", reverse: { field: "genres", cardinality: "list" } },
+	{ sourceType: "genre", sourceField: "key_labels", reverse: { field: "genres", cardinality: "list" } },
+	{
+		sourceType: "genre",
+		sourceField: "landmark_projects",
+		reverse: { field: "genres", cardinality: "list" },
+	},
+	{ sourceType: "genre", sourceField: "landmark_tracks", reverse: { field: "genres", cardinality: "list" } },
 ];
 
 export const NODE_SPEC_JSON = {

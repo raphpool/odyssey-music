@@ -310,6 +310,55 @@ describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () 
 	});
 });
 
+describe("genre-only graph helpers ignore cross-type reverse pairs (TRA-454)", () => {
+	const artistRef = { type: "artist", slug: "artist:anchor", name: "Anchor" } as const;
+
+	it("still quarantines a genre whose only edges are genre.key_artists", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+			}),
+		);
+		await writeRawNode(
+			dir,
+			genreNode({ slug: "genre:artist-only", name: "Artist Only", key_artists: [artistRef] }),
+		);
+		await writeRawNode(dir, artistNode({ slug: "artist:anchor", name: "Anchor" }));
+
+		const graph = await buildGraphFromCache(dir, { quarantineOrphanGenres: true });
+
+		expect(graph.quarantine).toEqual([
+			{ id: "genre:artist-only", name: "Artist Only", reason: "no genre-genre edges" },
+		]);
+	});
+
+	it("backfills genre -> genre reverses only and never writes cross-type reverses at export", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+				key_artists: [artistRef],
+			}),
+		);
+		await writeRawNode(dir, artistNode({ slug: "artist:anchor", name: "Anchor" }));
+
+		const graph = await buildGraphFromCache(dir);
+		const electronic = graph.nodes.find((node) => node.id === "genre:electronic");
+		const anchor = graph.nodes.find((node) => node.id === "artist:anchor");
+
+		expect(electronic?.edges.subgenres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
+		// artist.genres is the write-path reverse of genre.key_artists; export-time backfill must not invent it.
+		expect(anchor?.edges.genres).toBeUndefined();
+	});
+});
+
 describe("buildGraphFromCache — genre taxonomy projection wired into both exports (TRA-134)", () => {
 	let root: string;
 	let cacheDir: string;
