@@ -1,0 +1,58 @@
+{
+	"homonym-release-links": 62,
+	"release-links-to-empty-credit": 76,
+	"zero-edge-nodes": 44,
+	"self-edges": 13,
+	"duplicate-names": 6,
+	"unscoped-release-slugs": 463,
+	"literal-newlines": 760,
+	"missing-similar-artists": 581,
+	"missing-landmark-project": 581,
+	"missing-reference-track": 581,
+	"empty-artists": {
+		"project": 92,
+		"track": 38
+	},
+	"single-citation": {
+		"genre": 135,
+		"label": 34,
+		"artist": 139,
+		"project": 99,
+		"track": 63
+	},
+	"missing-image": {
+		"genre": 316,
+		"label": 184,
+		"artist": 417,
+		"project": 215,
+		"track": 224
+	},
+	"reciprocity-missing": {
+		"artist.labels->label.roster": 277,
+		"artist.discography->project.artists": 111,
+		"label.roster->artist.labels": 128,
+		"genre.key_artists->artist.genres": 246,
+		"track.project->project.tracklist": 41,
+		"project.artists->artist.discography": 73,
+		"artist.notable_tracks->track.artists": 43,
+		"track.artists->artist.notable_tracks": 105,
+		"project.tracklist->track.project": 45,
+		"label.notable_releases->project.label": 60,
+		"project.label->label.notable_releases": 96,
+		"genre.key_labels->label.genres": 100,
+		"genre.landmark_projects->project.genres": 53,
+		"genre.landmark_tracks->track.genres": 15,
+		"genre.parent_genres->genre.subgenres": 151,
+		"genre.subgenres->genre.parent_genres": 95,
+		"genre.related_genres->genre.related_genres": 433,
+		"artist.influences->artist.influenced": 0,
+		"artist.influenced->artist.influences": 0,
+		"artist.collaborators->artist.collaborators": 3,
+		"artist.aliases->artist.aliases": 0,
+		"artist.members->artist.members": 0,
+		"track.samples->track.sampled_by": 0,
+		"track.sampled_by->track.samples": 0,
+		"track.remix_of->track.remixed_by": 0,
+		"track.remixed_by->track.remix_of": 0
+	}
+}

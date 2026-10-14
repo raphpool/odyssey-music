@@ -187,10 +187,40 @@ function buildHeroMeta(node) {
   return parts.join(" · ");
 }
 
-// Sanitize a URL for use inside `style="background-image: url('...')"`.
-// Single quotes would break out of the CSS url() literal; we percent-encode.
+// Image URLs come from LLM output and JIT-materialised nodes: untrusted data. The old helper
+// only encoded `'` and whitespace, so a `"` in the URL closed the surrounding `style="..."`
+// attribute and let an `onmouseover=` through (TRA-495, stored XSS, 2026-10-14).
+// Returns the canonical https href, safe inside a CSS `url('...')` literal, or null (no image).
+// The result is NOT HTML-escaped: it may still contain `&`, so any innerHTML interpolation must
+// go through bgStyleAttr(); DOM assignment (el.style.backgroundImage) takes it as is.
+const CSS_URL_FORBIDDEN = /["'<>\\()\s\u0000-\u001f\u007f]/;
 function safeCssUrl(u) {
-  return String(u || "").replace(/'/g, "%27").replace(/[\s]/g, "%20");
+  if (typeof u !== "string" || !u) return null;
+  let parsed;
+  try {
+    parsed = new URL(u);
+  } catch {
+    return null;
+  }
+  if (parsed.protocol !== "https:") return null;
+  // `'`, `(` and `)` are legal raw in a path (Wikimedia filenames use them) but unsafe in a CSS
+  // url() literal; their percent-encoded forms are equivalent for the image hosts we allow.
+  const href = parsed.href.replace(/'/g, "%27").replace(/\(/g, "%28").replace(/\)/g, "%29");
+  return CSS_URL_FORBIDDEN.test(href) ? null : href;
+}
+
+// `style="background-image: url('...');"` for innerHTML templates, or "" when the URL is refused.
+function bgStyleAttr(u) {
+  const href = safeCssUrl(u);
+  return href ? `style="background-image: url('${escapeHtml(href)}');"` : "";
+}
+
+// Sets the background through the DOM (no HTML parsing involved). Returns false when refused.
+function setBgImage(el, u) {
+  const href = safeCssUrl(u);
+  if (!href) return false;
+  el.style.backgroundImage = `url('${href}')`;
+  return true;
 }
 
 // In-flight + completed JIT image lookups, keyed by node id. Prevents duplicate
@@ -240,7 +270,7 @@ async function paintCardWhenReady(cardEl) {
   if (!cardEl.isConnected) return;
   const cover = cardEl.querySelector(".cover");
   if (!cover) return;
-  cover.style.backgroundImage = `url('${safeCssUrl(url)}')`;
+  if (!setBgImage(cover, url)) return;
   cardEl.classList.remove("no-image");
   cardEl.dataset.needsImage = "0";
 }
@@ -250,8 +280,7 @@ function paintHero(url) {
   if (!node) return;
   const hero = node.querySelector(".hero");
   if (!hero) return;
-  const safe = safeCssUrl(url);
-  hero.style.backgroundImage = `url('${safe}')`;
+  if (!setBgImage(hero, url)) return;
   hero.classList.remove("no-image");
   // Insert (or update) the tint backdrop. Inserted at the very start of .node so
   // it sits beneath everything via z-index: -2 / -1 in the stylesheet.
@@ -264,7 +293,7 @@ function paintHero(url) {
     node.prepend(fade);
     node.prepend(tint);
   }
-  tint.style.backgroundImage = `url('${safe}')`;
+  setBgImage(tint, url);
 }
 
 let DATA = null;
@@ -1720,7 +1749,7 @@ function showHome({ fromHistory = false, replaceHistory = false } = {}) {
 
 function renderRecoCard(node) {
   const img = resolveHeroImage(node);
-  const bg = img ? ` style="background-image: url('${safeCssUrl(img)}');"` : "";
+  const bg = bgStyleAttr(img);
   const meta = buildHeroMeta(node);
   const reasons = recoReasons(node);
   const why = reasons.length
@@ -1732,7 +1761,7 @@ function renderRecoCard(node) {
   return `
     <div class="reco stripe-${node.type}" data-reco-id="${escapeHtml(node.id)}">
       <div class="reco-kicker">La reco du jour</div>
-      <div class="reco-cover${img ? "" : " no-image"}"${bg}></div>
+      <div class="reco-cover${bg ? "" : " no-image"}" ${bg}></div>
       <div class="reco-body">
         <div class="badge ${node.type}">${node.type}</div>
         <h2>${escapeHtml(node.name)}</h2>
@@ -1767,7 +1796,7 @@ function wireRecoCard(node) {
       if (!card || card.dataset.recoId !== node.id) return;
       const cover = card.querySelector(".reco-cover");
       if (!cover) return;
-      cover.style.backgroundImage = `url('${safeCssUrl(url)}')`;
+      if (!setBgImage(cover, url)) return;
       cover.classList.remove("no-image");
     });
   }
@@ -1867,10 +1896,10 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
 
   const heroUrl = resolveHeroImage(node);
   const heroMeta = buildHeroMeta(node);
-  const heroBg = heroUrl ? ` style="background-image: url('${safeCssUrl(heroUrl)}');"` : "";
-  const heroClass = heroUrl ? "" : " no-image";
-  const tintHtml = heroUrl
-    ? `<div class="node-tint" style="background-image: url('${safeCssUrl(heroUrl)}');"></div><div class="node-tint-fade"></div>`
+  const heroBg = bgStyleAttr(heroUrl);
+  const heroClass = heroBg ? "" : " no-image";
+  const tintHtml = heroBg
+    ? `<div class="node-tint" ${heroBg}></div><div class="node-tint-fade"></div>`
     : "";
   // Show slug (without `type:` prefix) on the right side of the header as a ref code.
   const slugRef = id.includes(":") ? id.split(":")[1] : id;
@@ -1883,7 +1912,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
         <div class="badge ${node.type}">${node.type}${seedTag}</div>
         <div class="node-ref">${escapeHtml(slugRef)}</div>
       </div>
-      <div class="hero${heroClass}"${heroBg}>
+      <div class="hero${heroClass}" ${heroBg}>
         <div class="hero-title-wrap">
           <h1>${escapeHtml(node.name)}</h1>
           ${heroMeta ? `<div class="hero-meta">${escapeHtml(heroMeta)}</div>` : ""}
@@ -2171,8 +2200,8 @@ function projectCarouselHtml(refs, kindLabel) {
     const imageUrl = (cached && cached.image_url) || "";
     const year = facts.year || ref.year || "";
     const releaseType = facts.release_type || ref.releaseType || "";
-    const noImage = imageUrl ? "" : " no-image";
-    const bg = imageUrl ? ` style="background-image: url('${safeCssUrl(imageUrl)}');"` : "";
+    const bg = bgStyleAttr(imageUrl);
+    const noImage = bg ? "" : " no-image";
     const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
     const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
     // Cached projects navigate via show() (same as chips). Dangling ones carry
@@ -2189,8 +2218,8 @@ function projectCarouselHtml(refs, kindLabel) {
     // is only an alias key once this card is inCache via resolveId, not a slug byId or
     // the ?node= deep link reader can look up directly.
     const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
-    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${imageUrl ? "0" : "1"}">
-      <div class="cover"${bg}></div>
+    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${bg ? "0" : "1"}">
+      <div class="cover" ${bg}></div>
       <div class="name">${escapeHtml(ref.name)}</div>
       <div class="meta">${yearHtml}${rtHtml}</div>
     </a>`;
