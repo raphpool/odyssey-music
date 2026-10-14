@@ -125,3 +125,13 @@ private struct HeroOwner<Content: View>: View {
 		content(hero)
 	}
 }
+
+extension OpenURLAction {
+	/// `false` when the OS declines the URL (no handler, or the user cancelled), as the completion reports it.
+	@MainActor
+	fileprivate func open(_ url: URL) async -> Bool {
+		await withCheckedContinuation { continuation in
+			callAsFunction(url) { continuation.resume(returning: $0) }
+		}
+	}
+}

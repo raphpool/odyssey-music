@@ -8,6 +8,8 @@ struct Track1SearchField: View {
 	static let placeholder = "Rechercher un artiste ou une œuvre"
 	static let fieldIdentifier = "search-field"
 	static let clearIdentifier = "search-clear"
+	/// Figma draws the glyph in a 22 pt frame, which no Figma variable covers: local token (TRA-443).
+	static let iconSize = Track1Tokens.sizeIconSearch
 
 	@Binding private var text: String
 	private let focus: FocusState<Bool>.Binding
@@ -33,8 +35,7 @@ struct Track1SearchField: View {
 		let shape = RoundedRectangle(cornerRadius: Track1Tokens.radius12, style: .continuous)
 		let isFocused = focus.wrappedValue
 		HStack(spacing: Track1Tokens.spacing12) {
-			// Figma draws it in a 22 pt frame; `size/icon-medium` (20 pt) is the closest token.
-			Track1Icon(.search, color: Track1Tokens.colorIconAction)
+			Track1Icon(.search, color: Track1Tokens.colorIconAction, size: Self.iconSize)
 			TextField(
 				Self.placeholder, text: $text,
 				prompt: Text(Self.placeholder).foregroundStyle(Track1Tokens.colorTextTertiary)
