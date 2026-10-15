@@ -493,14 +493,18 @@ async function reconcileRequesters(
 	for (const requester of requesters) {
 		const where = `${requester.slug}.${requester.field}`;
 		try {
-			const parent = await cache.get(requester.slug);
-			const obj = parent as unknown as Record<string, unknown>;
-			const updated = repointField(obj[requester.field], requested, credit, target);
-			if (updated === undefined) {
+			// TRA-535: read, guard and rewrite under the cache's per-node lock, so a concurrent writer of the
+			// parent (reverse edges, JIT materialization) is not overwritten by a stale copy.
+			const written = await cache.update(requester.slug, (parent) => {
+				const obj = parent as unknown as Record<string, unknown>;
+				const updated = repointField(obj[requester.field], requested, credit, target);
+				if (updated === undefined) return null;
+				return { ...obj, [requester.field]: updated } as unknown as NodePayload;
+			});
+			if (!written) {
 				log(`  ~ reconcile skipped: ${where} has no edge to ${requested} credited to "${credit}"`);
 				continue;
 			}
-			await cache.replace({ ...obj, [requester.field]: updated } as unknown as NodePayload);
 			rewritten++;
 			log(`  ~ reconciled ${where}: ${requested} -> ${target.slug}`);
 		} catch (e) {
