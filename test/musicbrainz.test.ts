@@ -1637,3 +1637,76 @@ describe("pickByTitleAndCredit: aliases of the credited artist", () => {
 		expect(await resolveReleaseGroup("Alias Title Two", "John Digweed")).toBeNull();
 	});
 });
+
+// TRA-537 deep review (B1, N1): a set-aside candidate that names the artist in a joint credit is doubt, not noise.
+describe("pickByTitleAndCredit: set-aside joint credits and truncated aliases", () => {
+	const ALVA = "eeeeeeee-0000-4000-8000-000000000001";
+	const SAKAMOTO = "eeeeeeee-0000-4000-8000-000000000002";
+	const DUO = "eeeeeeee-0000-4000-8000-000000000003";
+	const RS = "eeeeeeee-0000-4000-8000-000000000004";
+	const REPRAZ = "eeeeeeee-0000-4000-8000-000000000005";
+	const GROUP = "eeeeeeee-0000-4000-8000-000000000006";
+
+	it("is ambiguous, not the duplicate, when the canonical recording is credited to a duo naming the artist (Uoon II)", async () => {
+		stubMb({
+			recordings: [
+				hit("eeeeeeee-1111-4111-8111-000000000001", "Uoon II Test", [[DUO, "Alva Noto + Ryuichi Sakamoto"]], {
+					"first-release-date": "2002",
+				}),
+				hit(
+					"eeeeeeee-1111-4111-8111-000000000002",
+					"Uoon II Test",
+					[
+						[SAKAMOTO, "坂本龍一"],
+						[ALVA, "Alva Noto"],
+					],
+					{ "first-release-date": "2022" },
+				),
+			],
+		});
+		expect(await resolveRecordingDetailed("Uoon II Test", "Alva Noto")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("is ambiguous, not the reissue, when the original is credited to a group naming the artist", async () => {
+		stubMb({
+			"release-groups": [
+				hit("eeeeeeee-1111-4111-8111-000000000003", "Reissue Test", [[GROUP, "Roni Size / Reprazent"]], {
+					"first-release-date": "1997",
+				}),
+				hit(
+					"eeeeeeee-1111-4111-8111-000000000004",
+					"Reissue Test",
+					[
+						[RS, "Roni Size"],
+						[REPRAZ, "Reprazent"],
+					],
+					{ "first-release-date": "2008" },
+				),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Reissue Test", "Roni Size")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("ignores an alias that is a truncation of the printed name ('Cam' for 'DJ Cam')", async () => {
+		const withAlias = (name: string) => [
+			{ name: "DJ Cam", artist: { id: DUO, name: "DJ Cam", aliases: [{ name }] } },
+		];
+		stubMb({
+			"release-groups": [
+				{ id: "eeeeeeee-1111-4111-8111-000000000005", title: "Cam Test", "artist-credit": withAlias("Cam") },
+			],
+		});
+		expect(await resolveReleaseGroup("Cam Test", "Cam")).toBeNull();
+		const id = "eeeeeeee-1111-4111-8111-000000000006";
+		stubMb({ "release-groups": [{ id, title: "Cam Test Two", "artist-credit": withAlias("Camille D") }] });
+		expect((await resolveReleaseGroup("Cam Test Two", "Camille D"))?.mbid).toBe(id);
+	});
+});

@@ -936,6 +936,10 @@ function lucenePhrase(text: string): string {
  * A name with a letter normalizeSlugBody would erase ("Mø" -> "m", "Группа X" -> "x", "坂本龍一" -> "")
  * is compared literally (NFKC, case-folded), like sameArtistName does for artists: else unrelated artists
  * get one key. Used for EQUALITY only, never for containment; an empty key matches nothing.
+ * Dropping a leading "The" is deliberately symmetric, hint and credit alike: "The Prodigy" now equals
+ * "Prodigy" (main refused it), though a distinct "Prodigy" exists (Mobb Deep). Accepted (TRA-537 review):
+ * the Lucene `artist:` filter already keeps such a candidate out of the hits, and the tolerance for
+ * "The" is one the project asked to keep.
  */
 function creditKey(name: string): string {
 	if (hasUnfoldableLetter(name)) return name.normalize("NFKC").trim().toLowerCase();
@@ -948,6 +952,22 @@ function aliasNames(entry: MbArtistCreditEntry): string[] {
 	const aliases = entry.artist?.aliases;
 	if (!Array.isArray(aliases)) return [];
 	return aliases.flatMap((a) => (isRecord(a) && typeof a.name === "string" ? [a.name] : []));
+}
+
+const JOINT_NAME_SEPARATOR = /\s*(?:&|\+|\/|,|\band\b|\bfeat\.?|\bfeaturing\b|\bwith\b)\s*/iu;
+
+/**
+ * True when the hint is a whole segment of a joint name in the credit ("Alva Noto" in "Alva Noto +
+ * Ryuichi Sakamoto", "Roni Size" in "Roni Size / Reprazent"), cut on & + / , and feat. with. Never an
+ * acceptance: it only keeps a set-aside candidate from disappearing. "Prince" is no segment of
+ * "Prince Buster", "Fire" is one of "Earth, Wind & Fire" (a doubt, so ambiguous, never a match).
+ */
+function creditNamesHintAsSegment(entries: MbArtistCreditEntry[], hintKey: string): boolean {
+	return entries.some((e) =>
+		[e.name, e.artist?.name].some((n) =>
+			(n?.split(JOINT_NAME_SEPARATOR) ?? []).some((part) => creditKey(part) === hintKey),
+		),
+	);
 }
 
 /**
@@ -965,7 +985,26 @@ function aliasNames(entry: MbArtistCreditEntry): string[] {
  */
 function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
 	if (!hintKey) return false;
-	if (entries.some((e) => aliasNames(e).some((alias) => creditKey(alias) === hintKey))) return true;
+	// MB's `artist:` search field does not index aliases, so an alias only turns a printed credit that
+	// already contains the hint into an equality. Some aliases are the truncated form of the name itself
+	// ("Cam" for "DJ Cam", "Noto" for "Alva Noto"; 12 distinct artists are named "Cam"): an alias that is a
+	// run of whole words strictly inside the printed or canonical name of the same entry is ignored,
+	// or containment would be back (TRA-537 review). "Sasha + John Digweed" for "Sasha & John Digweed" stays.
+	const isTruncation = (alias: string, e: MbArtistCreditEntry) =>
+		[e.name, e.artist?.name].some((n) => {
+			if (n === undefined) return false;
+			const outer = creditKey(n);
+			return outer !== alias && ` ${outer.replace(/-/g, " ")} `.includes(` ${alias.replace(/-/g, " ")} `);
+		});
+	if (
+		entries.some((e) =>
+			aliasNames(e).some((alias) => {
+				const key = creditKey(alias);
+				return key === hintKey && !isTruncation(key, e);
+			}),
+		)
+	)
+		return true;
 	// Credited-as name, then canonical name: the hint may be either spelling.
 	const projections = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
 	return projections.some((nameOf) => {
@@ -1036,6 +1075,17 @@ function pickByTitleAndCredit<
 	const pool = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
 	if (pool.length === 0) return { kind: "none" };
 	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
+	// An exact-title candidate set aside because its credit is a group or duo that NAMES the artist
+	// ("Alva Noto + Ryuichi Sakamoto") must not vanish silently: it may be the canonical work, and the
+	// candidate that stays alone a non-canonical duplicate (2026-10-15, TRA-537 review: "Uoon II" resolved
+	// to the 2022 duplicate credited [Sakamoto][Alva Noto]; a reissue beat the original the same way).
+	// Doubt is "ambiguous", as before TRA-537. Segments are used to refuse only, never to accept.
+	if (
+		hasHint &&
+		exact.some((c) => !pool.includes(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint))
+	) {
+		return { kind: "ambiguous" };
+	}
 
 	if (kind === "recording") {
 		const plain = pool.filter((c) => (c.disambiguation ?? "").trim() === "");
