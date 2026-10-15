@@ -1329,18 +1329,41 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 }
 
 /**
- * The one candidate MB means, or null. Several exact homonyms: the one sharing strictly more hint
- * words with its MB context than every other, and at least one. A single candidate is accepted unless
- * the node has hints and MB has a context for it and the two share no word: a different artist of the
- * same name (post-punk "113" from Leeds vs the French rap group). No hint, or no MB context, means
- * nothing can contradict it.
+ * Tokens that name a country, once folded by {@link contextWords}: "gbr" / "usa" / "tur" and the
+ * country each demonym folds to, plus the codes MB gives, plus countries MB areas and hints name but
+ * that have no spelling variant to fold. Such a token says where an artist is from, never who.
+ */
+const COUNTRY_TOKENS = new Set([
+	"gbr",
+	"usa",
+	"tur",
+	...Object.values(COUNTRY_WORDS),
+	...Object.values(COUNTRY_CODES),
+	...["mexico", "argentina", "chile", "colombia", "peru", "cuba", "india", "china", "korea", "taiwan"],
+	...["indonesia", "thailand", "vietnam", "philippines", "israel", "egypt", "nigeria", "ghana", "kenya"],
+	...["morocco", "algeria", "tunisia", "senegal", "mali", "ethiopia", "iceland", "switzerland", "austria"],
+	...["greece", "hungary", "romania", "bulgaria", "serbia", "croatia", "slovenia", "slovakia", "czechia"],
+	...["ukraine", "lithuania", "latvia", "estonia", "luxembourg", "zealand", "africa", "jamaica", "iran"],
+]);
+
+/**
+ * The one candidate MB means, or null. Several exact homonyms: the one sharing strictly more
+ * non-country hint words (city, region, disambiguation words) with its MB context than every other,
+ * and at least one. A country token alone never separates homonyms (2026-10-15, TRA-506: the real
+ * "Aphex Twin" has no country in its MB context, the impostor "UK experimental electronic artist"
+ * does, so "Cornwall, England" made the impostor win on "gbr" alone); it only counts for a sole
+ * candidate, below. A single candidate is accepted unless the node has hints and MB has a context for
+ * it and the two share no word: a different artist of the same name (post-punk "113" from Leeds vs
+ * the French rap group). No hint, or no MB context, means nothing can contradict it.
  */
 function pickByHints(pool: MbArtistSearchHit[], words: string[]): MbArtistSearchHit | null {
 	const common = (hit: MbArtistSearchHit) => words.filter((w) => hit.context.has(w)).length;
 	const [only] = pool;
 	if (pool.length === 1 && only)
 		return words.length > 0 && only.context.size > 0 && common(only) === 0 ? null : only;
-	const scored = pool.map((hit) => ({ hit, common: common(hit) })).sort((a, b) => b.common - a.common);
+	const nonCountry = words.filter((w) => !COUNTRY_TOKENS.has(w));
+	const distinct = (hit: MbArtistSearchHit) => nonCountry.filter((w) => hit.context.has(w)).length;
+	const scored = pool.map((hit) => ({ hit, common: distinct(hit) })).sort((a, b) => b.common - a.common);
 	const [best, runnerUp] = scored;
 	if (!best || best.common === 0 || runnerUp?.common === best.common) return null;
 	return best.hit;
