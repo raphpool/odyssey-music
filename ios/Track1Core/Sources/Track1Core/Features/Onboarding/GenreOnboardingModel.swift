@@ -16,9 +16,9 @@ public final class GenreOnboardingModel {
 	private let flowID: UUID
 	private let onboardingStartedRecorded: Bool
 
-	/// Stored genres that did not survive the load. Always empty for now: dropping a v1 genre that has no
-	/// editorial equivalent belongs to the v1 restoration path (TRA-518), which is what fills this.
-	public let droppedGenreIDs: [NodeIdentity] = []
+	/// The v1 slugs that have no editorial equivalent in this taxonomy, in stored order. Only the v1 path
+	/// fills it; a v2 selection loads without any. It stays a plain value: showing it is not this model's job.
+	public let droppedGenreIDs: [NodeIdentity]
 
 	/// `draft` is the one the `ProfileStore` already holds for this flow. It carries the `flow_id` shared with
 	/// analytics and the "start event already sent" flag, and `makeDraft()` must hand both back unchanged:
@@ -26,15 +26,28 @@ public final class GenreOnboardingModel {
 	///
 	/// This is also the path that rebuilds the state from an existing profile (`editing`, used by the edit
 	/// flow). A stored selection is a fixed point of `restore`, so a profile created by this flow reloads
-	/// unchanged. A profile without a selection (written before the editorial taxonomy) loads empty here.
+	/// unchanged. A profile without a selection (written before the editorial taxonomy) is rebuilt from its
+	/// v1 slugs, see `restoreLegacy`. A draft without a selection is never read that way: it is not a profile.
 	public init(taxonomy: EditorialGenreTaxonomy, editing: Profile? = nil, draft: ProfileDraft? = nil) {
 		self.taxonomy = taxonomy
 		self.editing = editing
 		flowID = draft?.flowID ?? editing?.flowID ?? UUID()
 		onboardingStartedRecorded = draft?.onboardingStartedRecorded ?? false
-		let restored = Self.restore(draft?.selection ?? editing?.selection, in: taxonomy)
-		selectedFamilies = restored.families
-		selectedGenres = restored.genres
+		if let stored = draft?.selection ?? editing?.selection {
+			let restored = Self.restore(stored, in: taxonomy)
+			selectedFamilies = restored.families
+			selectedGenres = restored.genres
+			droppedGenreIDs = []
+		} else if let editing {
+			let restored = Self.restoreLegacy(editing.genreIDs, in: taxonomy)
+			selectedFamilies = restored.families
+			selectedGenres = restored.genres
+			droppedGenreIDs = restored.dropped
+		} else {
+			selectedFamilies = []
+			selectedGenres = []
+			droppedGenreIDs = []
+		}
 	}
 
 	/// Rules, applied to the stored selection. What the taxonomy cannot show any more is discarded in silence:
@@ -43,10 +56,9 @@ public final class GenreOnboardingModel {
 	/// The minimum of one family is not forced here: if nothing survives, `canContinueFromGenres` stays false
 	/// and the person must pick a family before saving.
 	private static func restore(
-		_ stored: GenreSelection?,
+		_ stored: GenreSelection,
 		in taxonomy: EditorialGenreTaxonomy
 	) -> (families: [String], genres: [String]) {
-		guard let stored else { return ([], []) }
 		var families = [String]()
 		for key in stored.families where taxonomy.family(key) != nil && !families.contains(key) {
 			families.append(key)
@@ -56,6 +68,43 @@ public final class GenreOnboardingModel {
 			if let genre = taxonomy.genre(id), families.contains(genre.family) { genres.append(id) }
 		}
 		return (families, genres)
+	}
+
+	/// Rebuilds a selection from the `genre:*` slugs of a v1 profile, in stored order, through the table the
+	/// web migration also uses. For each slug, `ids` (rule 1) are the editorial genres the taxonomy maps it to,
+	/// already filtered to the visible ones:
+	/// 2. No `ids`: the slug is dropped (once).
+	/// 3. `ids` are exactly the visible genres of one family: that family is selected, no explicit genre.
+	/// 4. Otherwise each id selects its family, if not yet selected, and is added as an explicit genre once.
+	/// Unlike the web, which keeps the union, a family slug next to a subgenre slug of the same family narrows
+	/// to the subgenre: an explicit genre narrows its family. This restriction is a decided trade-off (plan
+	/// D6, Q4), not an oversight. Nothing is written until the person saves.
+	private static func restoreLegacy(
+		_ slugs: [NodeIdentity],
+		in taxonomy: EditorialGenreTaxonomy
+	) -> (families: [String], genres: [String], dropped: [NodeIdentity]) {
+		var families = [String]()
+		var genres = [String]()
+		var dropped = [NodeIdentity]()
+		for slug in slugs {
+			let ids = taxonomy.legacyGenreIDs(for: slug)
+			guard !ids.isEmpty else {
+				if !dropped.contains(slug) { dropped.append(slug) }
+				continue
+			}
+			let wanted = Set(ids)
+			let whole = taxonomy.families.first { Set(taxonomy.genres(of: $0.id).map(\.id)) == wanted }
+			if let whole {
+				if !families.contains(whole.id) { families.append(whole.id) }
+				continue
+			}
+			for id in ids {
+				guard let genre = taxonomy.genre(id) else { continue }
+				if !families.contains(genre.family) { families.append(genre.family) }
+				if !genres.contains(id) { genres.append(id) }
+			}
+		}
+		return (families, genres, dropped)
 	}
 
 	/// The tiles of the genre step, in display order. The model hands them out so the screen never holds the
