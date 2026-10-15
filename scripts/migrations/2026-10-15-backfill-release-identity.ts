@@ -46,8 +46,8 @@ import {
 	type MbProjectMeta,
 	type MbReleaseIdentity,
 	type MbTrackMeta,
-	resolveRecording,
-	resolveReleaseGroup,
+	resolveRecordingDetailed,
+	resolveReleaseGroupDetailed,
 } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { makeScopedSlug, makeSlug, normalizeSlugBody, pickScopeArtistName } from "../../src/slug.js";
@@ -67,6 +67,8 @@ const CALLS_PER_WORK = 3;
 /** The manifest is rewritten this often during a run, so a crash loses little. */
 const CHECKPOINT_EVERY = 25;
 const MBID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+/** MusicBrainz's special-purpose label "[no label]". */
+const NO_LABEL_MBID = "157afde4-4bf5-4039-8ad2-5a15acc85176";
 const RELEASE_TYPES = ["album", "ep", "single"] as const;
 type ReleaseType = (typeof RELEASE_TYPES)[number];
 
@@ -89,6 +91,7 @@ export type UnresolvedReason =
 	| "no-hint"
 	| "no-match"
 	| "credit-mismatch"
+	| "ambiguous-candidates"
 	| "year-mismatch"
 	| "unmappable-credit";
 
@@ -182,6 +185,7 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 		"no-hint",
 		"no-match",
 		"credit-mismatch",
+		"ambiguous-candidates",
 		"year-mismatch",
 		"unmappable-credit",
 	];
@@ -220,8 +224,17 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 	};
 }
 
-/** slug -> mbid of the artist manifest's resolved entries. Throws on a manifest it cannot read. */
-async function readArtistManifest(path: string, required: boolean): Promise<Map<string, string> | null> {
+export interface ArtistManifestEntry {
+	mbid: string;
+	/** MBIDs of the bands the artist belongs to (a credit to the band stands for the member). */
+	groups: string[];
+}
+
+/** slug -> identity of the artist manifest's resolved entries. Throws on a manifest it cannot read. */
+async function readArtistManifest(
+	path: string,
+	required: boolean,
+): Promise<Map<string, ArtistManifestEntry> | null> {
 	let text: string;
 	try {
 		text = await readFile(path, "utf8");
@@ -233,10 +246,13 @@ async function readArtistManifest(path: string, required: boolean): Promise<Map<
 	if (!isRecord(parsed) || !isRecord(parsed.resolved)) {
 		throw new Error(`${path} is not an artist-identity manifest`);
 	}
-	const out = new Map<string, string>();
+	const out = new Map<string, ArtistManifestEntry>();
 	for (const [slug, entry] of Object.entries(parsed.resolved)) {
-		if (isRecord(entry) && typeof entry.mbid === "string" && MBID_RE.test(entry.mbid))
-			out.set(slug, entry.mbid);
+		if (!isRecord(entry) || typeof entry.mbid !== "string" || !MBID_RE.test(entry.mbid)) continue;
+		const groups = (Array.isArray(entry.groups) ? entry.groups : []).flatMap((g: unknown) =>
+			isRecord(g) && typeof g.mbid === "string" && MBID_RE.test(g.mbid) ? [g.mbid] : [],
+		);
+		out.set(slug, { mbid: entry.mbid, groups });
 	}
 	return out;
 }
@@ -336,6 +352,8 @@ export interface Context {
 	pointers: Map<string, Map<string, Pointer>>;
 	/** mbid of the project/track nodes that already carry one. */
 	storedWorkMbids: Map<string, string>;
+	/** artist mbid -> mbids of the bands it belongs to, from the artist manifest. */
+	groupsByMbid: Map<string, string[]>;
 }
 
 function text(value: unknown): string | undefined {
@@ -356,7 +374,7 @@ function push<K, V>(map: Map<K, V[]>, key: K, value: V): void {
 
 function buildContext(
 	nodes: { slug: string; type: string; node: Record<string, unknown> }[],
-	artistManifest: ReadonlyMap<string, string> | null,
+	artistManifest: ReadonlyMap<string, ArtistManifestEntry> | null,
 ): Context {
 	const ctx: Context = {
 		artists: new Map(),
@@ -365,12 +383,16 @@ function buildContext(
 		labelSlugsByMbid: new Map(),
 		pointers: new Map(),
 		storedWorkMbids: new Map(),
+		groupsByMbid: new Map(),
 	};
 	for (const { slug, type, node } of nodes) {
 		const name = text(node.name) ?? slug;
 		if (type === "artist") {
 			// The node's own mbid wins; the artist manifest covers a cache whose 1.10 dry-run was not applied yet.
-			const mbid = validMbid(node.mbid) ?? artistManifest?.get(slug);
+			const known = artistManifest?.get(slug);
+			const mbid = validMbid(node.mbid) ?? known?.mbid;
+			// Bands are only trusted for the MBID they were looked up under.
+			if (mbid && known?.mbid === mbid) ctx.groupsByMbid.set(mbid, known.groups);
 			ctx.artists.set(slug, mbid ? { name, mbid } : { name });
 			if (mbid) push(ctx.artistSlugsByMbid, mbid, slug);
 		} else if (type === "label") {
@@ -438,25 +460,24 @@ function containsWords(haystack: string, needle: string): boolean {
 }
 
 /**
- * The resolver may settle for the single exact-title candidate whatever its credit; here the credit
- * must also name the artist we looked under, by MBID or by whole words of the name. A credit in
- * another script is only recognised by MBID: without one the work stays unresolved.
+ * The resolver may settle for an exact-title candidate whatever its credit; here the credit must also
+ * be the artist we looked under.
+ * - hint with a known MBID: the credit must carry that MBID, or the MBID of a band the artist belongs
+ *   to (`groups`, from the artist manifest: Roni Size is credited as "Roni Size / Reprazent"). A name
+ *   is not accepted then: "Mala" must not pass on "Mala Rodríguez", nor "Earth" on another Earth;
+ * - hint without MBID: the credit names the artist in whole words. A credit in another script is
+ *   recognised by MBID only, so without one the work stays unresolved.
  */
 export function creditConfirmsHint(
 	credit: readonly MbCredit[],
 	hint: { name: string; mbid?: string },
+	groups: readonly string[] = [],
 ): boolean {
-	const wanted = normalizeSlugBody(hint.name);
 	if (hint.mbid !== undefined) {
-		if (credit.some((c) => c.mbid === hint.mbid)) return true;
-		// The same name under another MBID is a homonym, the very thing this check exists to refuse.
-		if (wanted !== "" && credit.some((c) => normalizeSlugBody(c.name) === wanted)) return false;
+		return credit.some((c) => c.mbid === hint.mbid || groups.includes(c.mbid));
 	}
-	return credit.some(
-		(c) =>
-			(hint.mbid !== undefined && c.mbid === hint.mbid) ||
-			(wanted !== "" && containsWords(normalizeSlugBody(c.name), wanted)),
-	);
+	const wanted = normalizeSlugBody(hint.name);
+	return wanted !== "" && credit.some((c) => containsWords(normalizeSlugBody(c.name), wanted));
 }
 
 // --- Step 3: what is written ---
@@ -524,11 +545,13 @@ function yearOf(date: string | null): string | null {
 /**
  * A node that states a year must not contradict MusicBrainz's first release by more than one year.
  * Same title and same artist is not always the same work: the cache's "Fading" (DFRNT, 2012), listed
- * by mistake in Pole's discography, matched Pole's 2020 album of the same name. A node with no year,
- * or a year that is not four digits, has nothing to contradict.
+ * by mistake in Pole's discography, matched Pole's 2020 album of the same name. A candidate with no
+ * date cannot confirm a stated year either. A node with no year, or a year that is not four digits,
+ * has nothing to contradict.
  */
 export function yearsAgree(nodeYear: string | undefined, mbYear: string | null): boolean {
-	if (nodeYear === undefined || mbYear === null || !/^\d{4}$/.test(nodeYear.trim())) return true;
+	if (nodeYear === undefined || !/^\d{4}$/.test(nodeYear.trim())) return true;
+	if (mbYear === null) return false;
 	return Math.abs(Number(nodeYear.trim()) - Number(mbYear)) <= 1;
 }
 
@@ -541,8 +564,9 @@ function labelEdge(label: { mbid: string; name: string }, ctx: Context, notes: s
 	const mbid = validMbid(label.mbid);
 	const name = text(label.name);
 	if (!mbid || !name) return null;
-	// MB's special-purpose labels ("[no label]", "[unknown]"...) are placeholders, not labels.
-	if (/^\[.*\]$/.test(name.trim())) {
+	// MB's special-purpose label "[no label]" is a placeholder, not a label. Matched by MBID: a name in
+	// brackets is not proof ("[adult swim]" is a real label).
+	if (mbid.toLowerCase() === NO_LABEL_MBID) {
 		notes.push(`label: ${name} is a MusicBrainz placeholder`);
 		return null;
 	}
@@ -554,11 +578,14 @@ function labelEdge(label: { mbid: string; name: string }, ctx: Context, notes: s
 	const owner = owners[0];
 	if (owner !== undefined)
 		return { slug: owner, type: "label", name: ctx.labels.get(owner)?.name ?? name, mbid };
-	if (!normalizeSlugBody(name)) {
+	// normalizeSlugBody drops a trailing "[...]" as a disambiguator: a name that is nothing but brackets
+	// ("[adult swim]") slugs from what is inside them.
+	const slugName = normalizeSlugBody(name) ? name : name.replace(/^\s*\[(.*)\]\s*$/u, "$1");
+	if (!normalizeSlugBody(slugName)) {
 		notes.push(`label: no Latin letter in "${name}" and no cache label with its MBID`);
 		return null;
 	}
-	const slug = makeSlug("label", name);
+	const slug = makeSlug("label", slugName);
 	const taken = ctx.labels.get(slug);
 	if (taken?.mbid !== undefined && taken.mbid !== mbid) {
 		notes.push(`label: ${slug} is held by a label with another MBID`);
@@ -665,13 +692,17 @@ async function lookUp(
 	type: "project" | "track",
 	name: string,
 	hint: { name: string; mbid?: string },
-): Promise<{ found: MbReleaseIdentity | null; unavailable: boolean }> {
-	const resolve = type === "project" ? resolveReleaseGroup : resolveRecording;
+): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
+	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	const first = await observingMbOutage(() => resolve(name, hint.name));
-	if (first.unavailable) return { found: null, unavailable: true };
-	if (first.value !== null || hint.mbid === undefined) return { found: first.value, unavailable: false };
+	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
+	const { identity, ambiguous } = first.value;
+	// Look-alikes are a verdict, not a reason to look elsewhere.
+	if (identity !== null || ambiguous || hint.mbid === undefined) {
+		return { found: identity, ambiguous, unavailable: false };
+	}
 	const second = await observingMbOutage(() => resolve(name));
-	return { found: second.value, unavailable: second.unavailable };
+	return { found: second.value.identity, ambiguous: second.value.ambiguous, unavailable: second.unavailable };
 }
 
 // --- Run ---
@@ -765,10 +796,16 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			}
 			const found = lookedUp.found;
 			if (!found) {
-				unresolved.push({ slug, name, hint: hint.name, reason: "no-match" });
+				unresolved.push({
+					slug,
+					name,
+					hint: hint.name,
+					reason: lookedUp.ambiguous ? "ambiguous-candidates" : "no-match",
+				});
 				continue;
 			}
-			if (!creditConfirmsHint(found.credit, hint)) {
+			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
+			if (!creditConfirmsHint(found.credit, hint, groups)) {
 				unresolved.push({ slug, name, hint: hint.name, reason: "credit-mismatch" });
 				continue;
 			}

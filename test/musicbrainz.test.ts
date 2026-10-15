@@ -5,8 +5,12 @@ import {
 	fetchArtistMembershipsMb,
 	fetchEntityGenresMb,
 	fetchLabelMetaMb,
+	fetchProjectMetaMb,
+	fetchTrackMetaMb,
 	resolveRecording,
+	resolveRecordingDetailed,
 	resolveReleaseGroup,
+	resolveReleaseGroupDetailed,
 } from "../src/musicbrainz.js";
 
 function jsonResponse(body: unknown): Response {
@@ -937,5 +941,156 @@ describe("mbFetch request spacing", () => {
 		);
 
 		expect(fetchMock).toHaveBeenCalledTimes(3);
+	});
+});
+
+// TRA-474 review (2026-10-15): look-alike candidates and undated editions.
+
+describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
+	const KRAFTWERK = "cccccccc-3333-4333-8333-000000000001";
+	const credit: [string, string][] = [[KRAFTWERK, "Kraftwerk"]];
+
+	it("sets aside recordings with a disambiguation (live, DJ-mix) and takes the one that remains", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000001", "Trans Europe Express", credit, {
+					disambiguation: "live, Detroit 1998",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000002", "Trans Europe Express", credit, {
+					disambiguation: "DJ-mix",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000003", "Trans Europe Express", credit, { disambiguation: "" }),
+			],
+		});
+		const out = await resolveRecording("Trans Europe Express", "Kraftwerk");
+		expect(out?.mbid).toBe("dddddddd-4444-4444-8444-000000000003");
+	});
+
+	it("refuses to choose between two studio recordings of one title and one credit, and says why", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000011", "Radioactivity", credit),
+				hit("dddddddd-4444-4444-8444-000000000012", "Radioactivity", credit),
+			],
+		});
+		expect(await resolveRecordingDetailed("Radioactivity", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: true,
+		});
+	});
+
+	it("finds nothing, not an ambiguity, when the only exact recording is a live one", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000021", "Autobahn", credit, { disambiguation: "live" }),
+			],
+		});
+		expect(await resolveRecordingDetailed("Autobahn", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: false,
+		});
+	});
+
+	it("takes the release group with the strictly earliest first release over a later one", async () => {
+		const single = "dddddddd-4444-4444-8444-000000000031";
+		stubMb({
+			"release-groups": [
+				hit(
+					"dddddddd-4444-4444-8444-000000000032",
+					"Windowlicker",
+					[["cccccccc-3333-4333-8333-000000000002", "Aphex Twin"]],
+					{
+						"first-release-date": "2026-01-09",
+					},
+				),
+				hit(single, "Windowlicker", [["cccccccc-3333-4333-8333-000000000003", "Aphex Twin"]], {
+					"first-release-date": "1999-03-22",
+				}),
+			],
+		});
+		expect((await resolveReleaseGroup("Windowlicker", "Aphex Twin"))?.mbid).toBe(single);
+	});
+
+	it("is ambiguous when two release groups share the earliest date, or none is dated", async () => {
+		stubMb({
+			"release-groups": [
+				hit("dddddddd-4444-4444-8444-000000000041", "Tie Break", credit, {
+					"first-release-date": "2001-05-01",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000042", "Tie Break", credit, { "first-release-date": "2001" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Tie Break", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: true,
+		});
+		stubMb({
+			"release-groups": [
+				hit("dddddddd-4444-4444-8444-000000000043", "No Dates", credit),
+				hit("dddddddd-4444-4444-8444-000000000044", "No Dates", credit),
+			],
+		});
+		expect((await resolveReleaseGroupDetailed("No Dates", "Kraftwerk")).ambiguous).toBe(true);
+	});
+});
+
+describe("an undated edition sorts last, not first", () => {
+	const ORIGINAL = "eeeeeeee-5555-4555-8555-000000000001";
+	const REISSUE = "eeeeeeee-5555-4555-8555-000000000002";
+	const label = { id: "eeeeeeee-5555-4555-8555-0000000000a1", name: "Talkin' Loud" };
+
+	/** Answers by path: the undated reissue (`"date": ""`) is listed first, as MB does. */
+	function stubEditions(): void {
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const [, , , kind, id] = input.pathname.split("/");
+				if (kind === "release-group") {
+					return jsonResponse({
+						"primary-type": "Album",
+						releases: [
+							{ id: REISSUE, date: "" },
+							{ id: ORIGINAL, date: "1997-06-23" },
+						],
+					});
+				}
+				if (kind === "recording") {
+					const group = (title: string) => ({ id: `${title}-rg`, title, "primary-type": "Album" });
+					return jsonResponse({
+						releases: [
+							{ id: REISSUE, date: "", "release-group": group("New Forms (reissue)") },
+							{ id: ORIGINAL, date: "1997-06-23", "release-group": group("New Forms") },
+						],
+					});
+				}
+				return jsonResponse(
+					id === ORIGINAL
+						? {
+								date: "1997-06-23",
+								"label-info": [{ label }],
+								media: [{ tracks: [{ id: "t1", recording: { id: "t1", title: "Brown Paper Bag" } }] }],
+							}
+						: {
+								date: "",
+								"label-info": [],
+								media: [{ tracks: [{ id: "t9", recording: { id: "t9", title: "Reissue Bonus" } }] }],
+							},
+				);
+			}),
+		);
+	}
+
+	it("gives a project the tracklist and label of its dated first edition", async () => {
+		stubEditions();
+		const meta = await fetchProjectMetaMb("eeeeeeee-5555-4555-8555-00000000000a");
+		expect(meta.tracks.map((t) => t.title)).toEqual(["Brown Paper Bag"]);
+		expect(meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+
+	it("gives a track the release group and label of its dated first edition", async () => {
+		stubEditions();
+		const meta = await fetchTrackMetaMb("eeeeeeee-5555-4555-8555-00000000000b");
+		expect(meta.project?.name).toBe("New Forms");
+		expect(meta.label).toEqual({ mbid: label.id, name: label.name });
 	});
 });

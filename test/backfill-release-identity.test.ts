@@ -12,7 +12,7 @@ import {
 	runBackfill,
 	yearsAgree,
 } from "../scripts/migrations/2026-10-15-backfill-release-identity.js";
-import { resolveRecording, resolveReleaseGroup } from "../src/musicbrainz.js";
+import { resolveRecordingDetailed, resolveReleaseGroupDetailed } from "../src/musicbrainz.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 
 // The two resolvers stay real (they run against the fake below); they are spied on only so tests can
@@ -22,14 +22,15 @@ vi.mock("../src/musicbrainz.js", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("../src/musicbrainz.js")>();
 	return {
 		...actual,
-		resolveReleaseGroup: vi.fn(actual.resolveReleaseGroup),
-		resolveRecording: vi.fn(actual.resolveRecording),
+		resolveReleaseGroupDetailed: vi.fn(actual.resolveReleaseGroupDetailed),
+		resolveRecordingDetailed: vi.fn(actual.resolveRecordingDetailed),
 	};
 });
 
 /** How many works the migration searched on MusicBrainz. */
 const searchCalls = () =>
-	vi.mocked(resolveReleaseGroup).mock.calls.length + vi.mocked(resolveRecording).mock.calls.length;
+	vi.mocked(resolveReleaseGroupDetailed).mock.calls.length +
+	vi.mocked(resolveRecordingDetailed).mock.calls.length;
 
 // --- A fake MusicBrainz, behind fetch (the external boundary) ---
 // mbFetch memoizes by URL for the whole file: every test uses titles and MBIDs of its own.
@@ -52,6 +53,8 @@ interface FakeWork {
 	credit: FakeCredit[];
 	date?: string;
 	primaryType?: string;
+	/** MB's note on a recording ("live, Detroit 1998", "DJ-mix"...). */
+	disambiguation?: string;
 	label?: { id: string; name: string };
 	/** Release groups: the tracklist of their earliest release. */
 	tracks?: { id: string; title: string }[];
@@ -107,6 +110,7 @@ function stubMb(
 						title: w.title,
 						"artist-credit": creditOf(w),
 						...(w.date ? { "first-release-date": w.date } : {}),
+						...(w.disambiguation ? { disambiguation: w.disambiguation } : {}),
 						...(w.primaryType ? { "primary-type": w.primaryType } : {}),
 					}));
 				return jsonResponse(kind === "recording" ? { recordings: hits } : { "release-groups": hits });
@@ -233,8 +237,8 @@ let root: string;
 let manifestPath: string;
 
 beforeEach(async () => {
-	vi.mocked(resolveReleaseGroup).mockClear();
-	vi.mocked(resolveRecording).mockClear();
+	vi.mocked(resolveReleaseGroupDetailed).mockClear();
+	vi.mocked(resolveRecordingDetailed).mockClear();
 	root = await mkdtemp(join(tmpdir(), "release-identity-"));
 	manifestPath = join(root, "out", "release-identity.json");
 	await mkdir(join(root, "cache", "nodes"), { recursive: true });
@@ -397,7 +401,34 @@ describe("project:new-forms", () => {
 	});
 });
 
+const NO_LABEL = "157afde4-4bf5-4039-8ad2-5a15acc85176";
+
 describe("labels", () => {
+	it("keeps a real label whose name is in brackets ('[adult swim]'), slugged from what is inside", async () => {
+		const label = mbid();
+		stubMb([
+			{
+				kind: "release-group",
+				id: mbid(),
+				title: "Bracketed",
+				credit: [{ id: mbid(), name: "Free Agent" }],
+				label: { id: label, name: "[adult swim]" },
+			},
+		]);
+		await seed(
+			projectNode("project:bracketed", "Bracketed", { artists: [edge("artist:free-agent", "Free Agent")] }),
+		);
+
+		await run({ apply: true });
+
+		expect((await readNode("project:bracketed")).label).toEqual({
+			slug: "label:adult-swim",
+			type: "label",
+			name: "[adult swim]",
+			mbid: label,
+		});
+	});
+
 	it("never makes a label of MusicBrainz's '[no label]' placeholder, and says so", async () => {
 		const rg = mbid();
 		stubMb([
@@ -408,7 +439,7 @@ describe("labels", () => {
 				credit: [{ id: mbid(), name: "Free Agent" }],
 				date: "2004",
 				primaryType: "Single",
-				label: { id: mbid(), name: "[no label]" },
+				label: { id: NO_LABEL, name: "[no label]" },
 			},
 		]);
 		await seed(
@@ -705,6 +736,160 @@ describe("works MusicBrainz cannot single out", () => {
 			{ slug: "project:fading-light", name: "Fading Light", hint: "Pole", reason: "year-mismatch" },
 		]);
 		expect(await readFile(nodePath("project:fading-light"), "utf8")).toBe(before);
+	});
+
+	// Real case (TRA-474 review): MB answers 8 recordings of "Autobahn" credited to Kraftwerk, in an
+	// order that changes between requests, several of them live. The first one used to win.
+	const kraftwerk = mbid();
+	const recordings = (title: string, count: number, live: number): FakeWork[] =>
+		Array.from({ length: count }, (_, i) => ({
+			kind: "recording" as const,
+			id: mbid(),
+			title,
+			credit: [{ id: kraftwerk, name: "Kraftwerk" }],
+			date: `${1974 + i}`,
+			...(i < live ? { disambiguation: "live, Detroit 1998" } : {}),
+		}));
+
+	it("leaves a recording unresolved when several studio versions share the title and the credit", async () => {
+		stubMb(recordings("Autobahn", 8, 3));
+		await seed(trackNode("track:autobahn", "Autobahn", { artists: [edge("artist:kraftwerk", "Kraftwerk")] }));
+		const before = await readFile(nodePath("track:autobahn"), "utf8");
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved).toEqual([
+			{ slug: "track:autobahn", name: "Autobahn", hint: "Kraftwerk", reason: "ambiguous-candidates" },
+		]);
+		expect(await readFile(nodePath("track:autobahn"), "utf8")).toBe(before);
+	});
+
+	it("sets live and DJ-mix recordings aside, and takes the one that remains", async () => {
+		const works = recordings("The Model", 4, 3);
+		stubMb(works);
+		await seed(
+			trackNode("track:the-model", "The Model", { artists: [edge("artist:kraftwerk", "Kraftwerk")] }),
+		);
+
+		await run({ apply: true });
+
+		// The first three carry a disambiguation: only the fourth is the studio recording.
+		expect((await readNode("track:the-model")).mbid).toBe(works[3]?.id);
+	});
+
+	it("takes the earliest release group of a title, not a later EP under a look-alike credit (Windowlicker)", async () => {
+		const aphex = mbid();
+		const single = { kind: "release-group" as const, id: mbid(), title: "Windowlicker", date: "1999-03-22" };
+		stubMb([
+			{
+				...single,
+				id: mbid(),
+				date: "2026-01-09",
+				primaryType: "EP",
+				credit: [{ id: mbid(), name: "Aphex Twin" }],
+			},
+			{ ...single, primaryType: "Single", credit: [{ id: aphex, name: "Aphex Twin" }] },
+		]);
+		await seed(
+			projectNode("project:windowlicker", "Windowlicker", {
+				year: "1999",
+				artists: [edge("artist:aphex-twin", "Aphex Twin")],
+			}),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.resolved["project:windowlicker"]?.mbid).toBe(single.id);
+		expect(result.manifest.resolved["project:windowlicker"]?.credit).toEqual([
+			{ mbid: aphex, name: "Aphex Twin" },
+		]);
+	});
+
+	it("leaves release groups of one title unresolved when none is strictly the earliest", async () => {
+		const credit = [{ id: mbid(), name: "Twin Act" }];
+		const rg = { kind: "release-group" as const, title: "Same Day", credit, date: "2001-05-01" };
+		stubMb([
+			{ ...rg, id: mbid() },
+			{ ...rg, id: mbid(), date: "2001" },
+		]);
+		await seed(
+			projectNode("project:same-day", "Same Day", { artists: [edge("artist:twin-act", "Twin Act")] }),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+	});
+
+	it("does not confirm a stated year with an undated recording (Destiny)", async () => {
+		stubMb([{ kind: "recording", id: mbid(), title: "Destiny", credit: [{ id: mbid(), name: "Zero 7" }] }]);
+		await seed(
+			trackNode("track:destiny", "Destiny", { year: "2001", artists: [edge("artist:zero-7", "Zero 7")] }),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["year-mismatch"]);
+		expect((await readNode("track:destiny")).mbid).toBeUndefined();
+	});
+
+	it("does not accept a credit that merely contains the name of an artist whose MBID is known (Mala)", async () => {
+		const mala = mbid();
+		stubMb([
+			{
+				kind: "release-group",
+				id: mbid(),
+				title: "Mala Works",
+				credit: [{ id: mbid(), name: "Mala Rodríguez" }],
+			},
+		]);
+		await seed(
+			artistNode("artist:mala", {
+				name: "Mala",
+				mbid: mala,
+				discography: [edge("project:mala-works", "Mala Works")],
+			}),
+			projectNode("project:mala-works", "Mala Works"),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["credit-mismatch"]);
+	});
+
+	it("accepts the credit to a band the artist belongs to, as the artist manifest records it", async () => {
+		const person = mbid();
+		const band = mbid();
+		const rg = mbid();
+		stubMb([
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Band Record",
+				credit: [{ id: band, name: "The Band" }],
+				date: "1997",
+			},
+		]);
+		await seed(
+			artistNode("artist:member", {
+				name: "Member",
+				discography: [edge("project:band-record", "Band Record")],
+			}),
+			projectNode("project:band-record", "Band Record"),
+		);
+		await mkdir(join(root, "out"), { recursive: true });
+		const artistManifestPath = join(root, "out", "artist-identity.json");
+		await writeFile(
+			artistManifestPath,
+			JSON.stringify({
+				resolved: { "artist:member": { mbid: person, groups: [{ mbid: band, name: "The Band" }] } },
+				unresolved: [],
+			}),
+		);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved["project:band-record"]?.mbid).toBe(rg);
 	});
 
 	it("does not search a title for a work nobody credits or points to", async () => {
@@ -1018,7 +1203,7 @@ describe("runBackfill", () => {
 	});
 
 	it("flags two works resolved on one MusicBrainz id as a collision, without choosing", async () => {
-		stubMb([fixture("Same Thing"), fixture("Same Thing (Deluxe Edition)")]);
+		stubMb([fixture("Same Thing")]);
 		await seed(
 			projectNode("project:same-thing", "Same Thing", { artists: [edge("artist:idem-band", "Idem Band")] }),
 			projectNode("project:same-thing-deluxe", "Same Thing (Deluxe Edition)", {
@@ -1048,26 +1233,36 @@ describe("runBackfill", () => {
 
 describe("creditConfirmsHint", () => {
 	const credit = [{ mbid: "00000000-0000-4000-8000-0000000000aa", name: "Roni Size / Reprazent" }];
+	const person = "00000000-0000-4000-8000-0000000000cc";
 
-	it("accepts a credit that names the hint in whole words, or carries the hint's MBID", () => {
+	it("without a known MBID, accepts a credit that names the hint in whole words", () => {
 		expect(creditConfirmsHint(credit, { name: "Roni Size" })).toBe(true);
-		expect(creditConfirmsHint(credit, { name: "坂本龍一", mbid: credit[0]?.mbid as string })).toBe(true);
 	});
 
-	it("refuses another artist, a partial word, and a hint with no Latin letter and no MBID", () => {
+	it("without a known MBID, refuses another artist, a partial word, and a name with no Latin letter", () => {
 		expect(creditConfirmsHint(credit, { name: "Ron" })).toBe(false);
 		expect(creditConfirmsHint(credit, { name: "Krust" })).toBe(false);
 		expect(creditConfirmsHint(credit, { name: "坂本龍一" })).toBe(false);
 		expect(creditConfirmsHint([], { name: "Roni Size" })).toBe(false);
 	});
 
-	it("refuses a homonym: same name as an artist whose MBID is known, under another MBID", () => {
-		const earth = [{ mbid: "00000000-0000-4000-8000-0000000000bb", name: "Earth" }];
-		const other = "00000000-0000-4000-8000-0000000000cc";
-		expect(creditConfirmsHint(earth, { name: "Earth", mbid: other })).toBe(false);
-		expect(creditConfirmsHint(earth, { name: "Earth" })).toBe(true);
-		// A band that merely contains the artist's name is another entity, not a homonym.
-		expect(creditConfirmsHint(credit, { name: "Roni Size", mbid: other })).toBe(true);
+	it("with a known MBID, demands that MBID in the credit, whatever the script of its name", () => {
+		expect(creditConfirmsHint(credit, { name: "坂本龍一", mbid: credit[0]?.mbid as string })).toBe(true);
+	});
+
+	it("with a known MBID, refuses a credit that merely resembles the name (Mala, Mala Rodriguez, Earth)", () => {
+		const mala = [{ mbid: "00000000-0000-4000-8000-0000000000bb", name: "Mala Rodríguez" }];
+		expect(creditConfirmsHint(mala, { name: "Mala" })).toBe(true);
+		expect(creditConfirmsHint(mala, { name: "Mala", mbid: person })).toBe(false);
+		const earth = [{ mbid: "00000000-0000-4000-8000-0000000000dd", name: "Earth" }];
+		expect(creditConfirmsHint(earth, { name: "Earth", mbid: person })).toBe(false);
+	});
+
+	it("with a known MBID, accepts a credit to a band the artist belongs to", () => {
+		expect(creditConfirmsHint(credit, { name: "Roni Size", mbid: person })).toBe(false);
+		expect(creditConfirmsHint(credit, { name: "Roni Size", mbid: person }, [credit[0]?.mbid as string])).toBe(
+			true,
+		);
 	});
 });
 
@@ -1078,7 +1273,9 @@ describe("yearsAgree", () => {
 		expect(yearsAgree("2012", "2020")).toBe(false);
 		expect(yearsAgree(undefined, "2020")).toBe(true);
 		expect(yearsAgree("circa 1990", "2020")).toBe(true);
-		expect(yearsAgree("2012", null)).toBe(true);
+		// A stated year that MusicBrainz cannot confirm is not confirmed.
+		expect(yearsAgree("2012", null)).toBe(false);
+		expect(yearsAgree(undefined, null)).toBe(true);
 	});
 });
 
