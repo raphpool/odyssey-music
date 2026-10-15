@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -263,6 +263,42 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 			} finally {
 				rmSync(dir, { recursive: true, force: true });
 			}
+		});
+	});
+
+	// TRA-553: `git diff -z … | tr` hides the status of git diff unless pipefail is on; then CHANGED would be empty
+	// with status 0 and a sensitive PR would pass unlabelled. The step's own script runs with a git that fails.
+	describe("a failing git diff", () => {
+		const script = runScripts(jobBlock("tier-guard")).find((text) => text.includes("git diff")) as string;
+		const runWithFailingDiff = (text: string) => {
+			const dir = mkdtempSync(join(tmpdir(), "tier-guard-fail-"));
+			try {
+				const bin = join(dir, "bin");
+				mkdirSync(bin);
+				const calls = join(dir, "gh-calls");
+				writeFileSync(join(bin, "git"), '#!/bin/bash\n[ "$1" = diff ] && exit 2\nexit 0\n');
+				writeFileSync(join(bin, "gh"), `#!/bin/bash\necho "$@" >> '${calls}'\nexit 0\n`);
+				chmodSync(join(bin, "git"), 0o755);
+				chmodSync(join(bin, "gh"), 0o755);
+				// `bash -e {0}` is what GitHub runs for a `run:` without `shell:`.
+				const result = spawnSync("bash", ["-e", "-c", text], {
+					cwd: dir,
+					encoding: "utf8",
+					env: { PATH: `${bin}:${process.env.PATH}`, BASE_REF: "main", GH_TOKEN: "x" },
+				});
+				return result.status;
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		};
+
+		it("makes the step fail", () => {
+			expect(script).toContain("set -o pipefail");
+			expect(runWithFailingDiff(script)).not.toBe(0);
+		});
+
+		it("would have passed silently without pipefail (the test is able to fail)", () => {
+			expect(runWithFailingDiff(script.replace("set -o pipefail", ":"))).toBe(0);
 		});
 	});
 

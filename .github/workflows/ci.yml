@@ -131,6 +131,10 @@ jobs:
         # TRA-498: the base branch name reaches the shell through env, never interpolated into the script.
         env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}", BASE_REF: "${{ github.event.pull_request.base.ref }}" }
         run: |
+          # TRA-553 (2026-10-16): without pipefail, a failing `git diff` piped into `tr` would leave CHANGED empty
+          # with status 0 (the default shell is `bash -e`, which looks at the last command of a pipeline only):
+          # no label, no failure. With it the step fails.
+          set -o pipefail
           BASE="origin/$BASE_REF"
           git fetch origin "$BASE_REF" --depth=50
           # TRA-553 (2026-10-15): --no-renames, otherwise `git mv REVIEW.md docs/REVIEW.md` lists only the
