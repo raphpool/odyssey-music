@@ -43,6 +43,7 @@ function artistNode(overrides: Partial<ArtistNode> & Pick<ArtistNode, "slug" | "
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 		...overrides,
 	};
 }

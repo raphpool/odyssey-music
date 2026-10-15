@@ -707,7 +707,13 @@ function normalizeEdge(e: unknown): EdgeRef | null {
 function buildSystemPrompt(): string {
 	const trackEdges = describeEdges("track", LIST_EDGES_BY_TYPE.track, SINGULAR_EDGES_BY_TYPE.track);
 	const projectEdges = describeEdges("project", LIST_EDGES_BY_TYPE.project, SINGULAR_EDGES_BY_TYPE.project);
-	const artistEdges = describeEdges("artist", LIST_EDGES_BY_TYPE.artist, SINGULAR_EDGES_BY_TYPE.artist);
+	// 2026-10-15 (TRA-456): similar_artists is filled from ListenBrainz / the graph, never by the LLM,
+	// so the prompt must not ask for it.
+	const artistEdges = describeEdges(
+		"artist",
+		LIST_EDGES_BY_TYPE.artist.filter((f) => f !== "similar_artists"),
+		SINGULAR_EDGES_BY_TYPE.artist,
+	);
 	const labelEdges = describeEdges("label", LIST_EDGES_BY_TYPE.label, SINGULAR_EDGES_BY_TYPE.label);
 	const genreEdges = describeEdges("genre", LIST_EDGES_BY_TYPE.genre, SINGULAR_EDGES_BY_TYPE.genre);
 

@@ -16,7 +16,7 @@ public enum NodePageSpec {
 		.label: ["genres", "roster", "notable_releases"],
 		.artist: [
 			"genres", "labels", "discography", "notable_tracks", "influences", "influenced", "collaborators",
-			"aliases", "members",
+			"aliases", "members", "similar_artists",
 		],
 		.project: [
 			"artists", "label", "genres", "tracklist", "producers", "personnel", "related_projects",
@@ -78,6 +78,7 @@ public enum NodePageSpec {
 		"landmark_projects": "landmark albums",
 		"parent_genres": "parent genres",
 		"related_genres": "related genres",
+		"similar_artists": "similar artists",
 		"sampled_by": "sampled by",
 		"remix_of": "remix of",
 		"remixed_by": "remixed by",

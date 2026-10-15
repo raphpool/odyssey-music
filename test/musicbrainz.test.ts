@@ -477,7 +477,7 @@ describe("resolveReleaseGroup", () => {
 	// Edition noise is deliberately NOT part of a release group's identity: MB files "Kid A" once,
 	// whatever edition a source names, so a "(Deluxe Edition)" title must still find it.
 	it("treats edition noise in the requested title as the same work", async () => {
-		stubMb({
+		const urls = stubMb({
 			"release-groups": [
 				hit("99999999-aaaa-4aaa-8aaa-000000000003", "Kid A", [
 					["99999999-0000-4000-8000-0000000000b2", "Radiohead"],
@@ -489,6 +489,19 @@ describe("resolveReleaseGroup", () => {
 		});
 		const out = await resolveReleaseGroup("Kid A (Deluxe Edition)", "Radiohead");
 		expect(out?.mbid).toBe("99999999-aaaa-4aaa-8aaa-000000000003");
+		// ...and the search itself asks for the bare title, so MB can return "Kid A" at all.
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Kid A" AND artist:"Radiohead"');
+	});
+
+	it("queries MB with the title minus its edition noise, keeping case and meaningful groups", async () => {
+		// Titles are unique to this test: mbFetch caches by URL for the whole run.
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroup("Amnesiac (Deluxe Edition)", "Radiohead");
+		await resolveReleaseGroup("Dusk Light (Loefah remix) [Remastered]", "Some Band");
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Amnesiac" AND artist:"Radiohead"');
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			'releasegroup:"Dusk Light (Loefah remix)" AND artist:"Some Band"',
+		);
 	});
 
 	it("returns null for a title made only of edition noise, without calling MB", async () => {
@@ -593,13 +606,22 @@ describe("resolveRecording", () => {
 	it("ignores edition noise: a featuring credit in the title is the same recording", async () => {
 		stubMb({
 			recordings: [
-				hit("aaaaaaaa-1111-4111-8111-000000000013", "Get Lucky", [
+				hit("aaaaaaaa-1111-4111-8111-000000000013", "Lose Yourself to Dance", [
 					["bbbbbbbb-2222-4222-8222-000000000013", "Daft Punk"],
 				]),
 			],
 		});
-		const out = await resolveRecording("Get Lucky (feat. Pharrell Williams)", "Daft Punk");
+		// Title distinct from the "Get Lucky" tests above: the cleaned query is cached per URL.
+		const out = await resolveRecording("Lose Yourself to Dance (feat. Pharrell Williams)", "Daft Punk");
 		expect(out?.mbid).toBe("aaaaaaaa-1111-4111-8111-000000000013");
+	});
+
+	it("queries MB with the recording title minus a featuring credit", async () => {
+		// mbFetch caches by URL for the whole run: the title here is unique to this test, otherwise an
+		// earlier test's cached answer for the same cleaned query would shadow this stub.
+		const urls = stubMb({ recordings: [] });
+		await resolveRecording("Instant Crush (feat. Julian Casablancas)", "Daft Punk");
+		expect(urls[0]?.searchParams.get("query")).toBe('recording:"Instant Crush" AND artist:"Daft Punk"');
 	});
 
 	it("returns null when MB is unreachable", async () => {
