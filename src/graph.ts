@@ -2,11 +2,12 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
-import { loadGenreRedirects } from "./genre-registry.js";
+import { loadRedirects } from "./genre-registry.js";
 import { loadGenreTaxonomy } from "./genre-taxonomy.js";
 import { type GenreTaxonomyProjection, projectGenreTaxonomy } from "./genre-taxonomy-projection.js";
 import { logger } from "./logger.js";
 import {
+	EDGE_TARGET_TYPES_BY_TYPE,
 	LIST_EDGES_BY_TYPE,
 	OPTIONAL_TEXT_FIELDS,
 	REVERSE_EDGE_PAIRS,
@@ -16,6 +17,14 @@ import {
 import type { Citation, EdgeRef, ImageSource, NodePayload, NodeType } from "./types.js";
 
 const log = logger.child({ module: "graph" });
+
+// Genre taxonomy logic (orphan detection, reverse backfill) only concerns genre -> genre pairs.
+// Since TRA-454 (2026-10-14) REVERSE_EDGE_PAIRS also holds genre.key_artists -> artist.genres and
+// siblings, so filtering on the source type alone would pull cross-type pairs into the taxonomy.
+const GENRE_TO_GENRE_PAIRS = REVERSE_EDGE_PAIRS.filter((pair) => {
+	const targets = EDGE_TARGET_TYPES_BY_TYPE[pair.sourceType][pair.sourceField];
+	return pair.sourceType === "genre" && targets?.length === 1 && targets[0] === "genre";
+});
 
 // Absolute, module-relative resolution of data/genre-taxonomy.json (mirrors loadGenreRedirects's
 // own default in genre-registry.ts). Exported so the live service and the static build both pass
@@ -76,6 +85,8 @@ export interface BuildGraphOptions {
 	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
 	// own `path` param — test-only injection point (TRA-23, 2026-09-10).
 	redirectsPath?: string;
+	// Same, for data/slug-redirects.json (TRA-453: the all-types table loaded next to the genre one).
+	slugRedirectsPath?: string;
 	// Projects data/genre-taxonomy.json onto this graph (TRA-134). Unset (default) skips it
 	// entirely, so callers that don't ask for it see no behavior change. A taxonomy file that's
 	// genuinely absent is always a silent no-op in both modes -- the two modes only differ on a
@@ -132,7 +143,7 @@ export async function buildGraphFromCache(
 		}
 	}
 
-	const redirects = await loadGenreRedirects(options.redirectsPath);
+	const redirects = await loadRedirects({ genre: options.redirectsPath, slug: options.slugRedirectsPath });
 
 	const types: Record<string, number> = {};
 	for (const node of nodes) types[node.type] = (types[node.type] ?? 0) + 1;
@@ -251,7 +262,7 @@ function collectEdges(nodes: VizNode[], cachedSet: Set<string>): VizEdge[] {
 
 function findOrphanGenreIds(nodes: VizNode[], edges: VizEdge[]): Set<string> {
 	const genreLinkKinds = new Set(
-		REVERSE_EDGE_PAIRS.filter((p) => p.sourceType === "genre" && p.reverse.field).map((p) => p.sourceField),
+		GENRE_TO_GENRE_PAIRS.filter((p) => p.reverse.field).map((p) => p.sourceField),
 	);
 	const genreLinkCount = new Map<string, number>();
 	for (const edge of edges) {
@@ -299,7 +310,7 @@ function backfillGenreReverses(nodes: VizNode[]): void {
 	const addRefIfMissing = (list: EdgeRef[], ref: EdgeRef): void => {
 		if (!list.some((edge) => edge.slug === ref.slug)) list.push(ref);
 	};
-	const genrePairs = REVERSE_EDGE_PAIRS.filter((p) => p.sourceType === "genre");
+	const genrePairs = GENRE_TO_GENRE_PAIRS;
 	for (const node of nodes) {
 		if (node.type !== "genre") continue;
 		const self: EdgeRef = { slug: node.id as EdgeRef["slug"], type: "genre", name: node.name };

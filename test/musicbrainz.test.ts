@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { musicBrainzConfig } from "../src/config.js";
 import { fetchEntityGenresMb } from "../src/musicbrainz.js";
 
 function jsonResponse(body: unknown): Response {
@@ -18,7 +19,12 @@ function failedResponse(status: number, retryAfter?: string): Response {
 	} as Response;
 }
 
+// vitest.config.ts sets MB_MIN_INTERVAL_MS=0 for the whole suite; the spacing tests below opt in
+// by mutating the config object, which mbFetch reads at call time.
+const suiteMinIntervalMs = musicBrainzConfig.minIntervalMs;
+
 afterEach(() => {
+	musicBrainzConfig.minIntervalMs = suiteMinIntervalMs;
 	vi.unstubAllGlobals();
 	vi.useRealTimers();
 });
@@ -201,5 +207,140 @@ describe("fetchEntityGenresMb", () => {
 			new Date("2026-09-14T00:00:02.000Z").getTime(),
 			new Date("2026-09-14T00:00:03.000Z").getTime(),
 		]);
+	});
+});
+
+describe("mbFetch request spacing", () => {
+	// The scheduler is module-level state: each test starts at a later fake date than the
+	// previous one so a slot reserved by an earlier test is always in the past.
+	function startAt(isoDate: string): number {
+		musicBrainzConfig.minIntervalMs = 1_000;
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date(isoDate));
+		return Date.now();
+	}
+
+	it("defaults to one second, and MB_MIN_INTERVAL_MS=0 disables spacing", async () => {
+		const load = async (value: string) => {
+			vi.stubEnv("MB_MIN_INTERVAL_MS", value);
+			vi.resetModules();
+			return (await import("../src/config.js")).musicBrainzConfig.minIntervalMs;
+		};
+		try {
+			expect(await load("")).toBe(1_000);
+			expect(await load("0")).toBe(0);
+			expect(await load("2500")).toBe(2_500);
+		} finally {
+			vi.unstubAllEnvs();
+			vi.resetModules();
+		}
+	});
+
+	it("emits three concurrent uncached requests at least one second apart, in arrival order", async () => {
+		const t0 = startAt("2027-01-01T00:00:00.000Z");
+		const requests: { at: number; mbid: string }[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				requests.push({ at: Date.now(), mbid: input.pathname.split("/").at(-1) ?? "" });
+				return jsonResponse({ genres: [] });
+			}),
+		);
+
+		const mbids = ["a1", "a2", "a3"].map((id) => `${id}000000-0000-0000-0000-000000000000`);
+		const pending = mbids.map((mbid) => fetchEntityGenresMb("artist", mbid));
+		await vi.advanceTimersByTimeAsync(2_000);
+		await Promise.all(pending);
+
+		expect(requests.map((r) => r.mbid)).toEqual(mbids);
+		expect(requests.map((r) => r.at - t0)).toEqual([0, 1_000, 2_000]);
+	});
+
+	it("does not delay or count a cached call, and emits no fetch for it", async () => {
+		const t0 = startAt("2028-01-01T00:00:00.000Z");
+		const requestTimes: number[] = [];
+		const fetchMock = vi.fn(async () => {
+			requestTimes.push(Date.now());
+			return jsonResponse({ genres: [{ name: "Techno", count: 5, id: "g1" }] });
+		});
+		vi.stubGlobal("fetch", fetchMock);
+
+		const cachedMbid = "c1000000-0000-0000-0000-000000000000";
+		const first = fetchEntityGenresMb("artist", cachedMbid);
+		await vi.advanceTimersByTimeAsync(0);
+		await first;
+		expect(fetchMock).toHaveBeenCalledTimes(1);
+
+		// Cached call resolves immediately (no timer advance), then a fresh call is only
+		// spaced from the first real request, not from the cache hit.
+		const cached = await fetchEntityGenresMb("artist", cachedMbid);
+		expect(cached).toEqual([{ name: "techno", mbid: "g1" }]);
+		expect(fetchMock).toHaveBeenCalledTimes(1);
+
+		const fresh = fetchEntityGenresMb("artist", "c2000000-0000-0000-0000-000000000000");
+		await vi.advanceTimersByTimeAsync(1_000);
+		await fresh;
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 1_000]);
+	});
+
+	it("applies the interval to a retry when Retry-After is shorter, and honors Retry-After when longer", async () => {
+		const t0 = startAt("2029-01-01T00:00:00.000Z");
+		const requestTimes: number[] = [];
+		const retryAfterByCall = ["1", "5", undefined];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				const call = requestTimes.length;
+				requestTimes.push(Date.now());
+				return call < 2 ? failedResponse(503, retryAfterByCall[call]) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "d1000000-0000-0000-0000-000000000000");
+		await vi.advanceTimersByTimeAsync(6_000);
+		await pending;
+
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 1_000, 6_000]);
+	});
+
+	it("spaces a retry from other callers' requests as well as from its own", async () => {
+		const t0 = startAt("2030-01-01T00:00:00.000Z");
+		const requests: { at: number; mbid: string }[] = [];
+		const seen = new Set<string>();
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const mbid = input.pathname.split("/").at(-1) ?? "";
+				requests.push({ at: Date.now(), mbid });
+				const firstTime = !seen.has(mbid);
+				seen.add(mbid);
+				return mbid.startsWith("e1") && firstTime ? failedResponse(503) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = ["e1", "e2"].map((id) =>
+			fetchEntityGenresMb("artist", `${id}000000-0000-0000-0000-000000000000`),
+		);
+		await vi.advanceTimersByTimeAsync(3_000);
+		await Promise.all(pending);
+
+		const gaps = requests.slice(1).map((r, i) => r.at - (requests[i]?.at ?? 0));
+		expect(requests).toHaveLength(3);
+		expect(gaps.every((gap) => gap >= 1_000)).toBe(true);
+		expect(requests.map((r) => r.at - t0)).toEqual([0, 1_000, 2_000]);
+	});
+
+	it("does not space requests when MB_MIN_INTERVAL_MS is 0", async () => {
+		musicBrainzConfig.minIntervalMs = 0;
+		const fetchMock = vi.fn(async () => jsonResponse({ genres: [] }));
+		vi.stubGlobal("fetch", fetchMock);
+
+		await Promise.all(
+			["f1", "f2", "f3"].map((id) =>
+				fetchEntityGenresMb("artist", `${id}000000-0000-0000-0000-000000000000`),
+			),
+		);
+
+		expect(fetchMock).toHaveBeenCalledTimes(3);
 	});
 });
