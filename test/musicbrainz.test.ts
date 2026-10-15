@@ -1710,3 +1710,120 @@ describe("pickByTitleAndCredit: set-aside joint credits and truncated aliases", 
 		expect((await resolveReleaseGroup("Cam Test Two", "Camille D"))?.mbid).toBe(id);
 	});
 });
+
+describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
+	const RONI = "ffffffff-0000-4000-8000-000000000001";
+	const REPRAZENT_BAND = "ffffffff-0000-4000-8000-000000000002";
+	const OTHER_BAND = "ffffffff-0000-4000-8000-000000000003";
+	const NEW_FORMS = "ffffffff-1111-4111-8111-000000000001";
+	const none = { identity: null, ambiguous: false, unavailable: false };
+	const ambiguous = { identity: null, ambiguous: true, unavailable: false };
+
+	it("resolves a work credited to a band whose MBID is listed", async () => {
+		stubMb({
+			"release-groups": [
+				hit(NEW_FORMS, "New Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+					"first-release-date": "1997-06-23",
+					"primary-type": "Album",
+				}),
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("New Forms", "Roni Size", {
+			acceptCreditMbids: [REPRAZENT_BAND],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS);
+		expect(out.identity?.credit).toEqual([{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }]);
+	});
+
+	it("compares the MBIDs without regard to case", async () => {
+		stubMb({ recordings: [hit(NEW_FORMS, "Heroes", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+		const out = await resolveRecordingDetailed("Heroes", "Roni Size", {
+			acceptCreditMbids: [REPRAZENT_BAND.toUpperCase()],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS);
+	});
+
+	it("does not accept the band by name: without the option, or with another band's MBID", async () => {
+		stubMb({ "release-groups": [hit(NEW_FORMS, "New Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size")).toEqual(none);
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [] })).toEqual(
+			none,
+		);
+		expect(
+			await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [OTHER_BAND] }),
+		).toEqual(none);
+	});
+
+	it("never accepts a credit that merely contains the artist's name (Prince / Prince Buster)", async () => {
+		const buster = "ffffffff-0000-4000-8000-000000000004";
+		stubMb({ recordings: [hit(NEW_FORMS, "One Step Beyond", [[buster, "Prince Buster"]])] });
+		const out = await resolveRecordingDetailed("One Step Beyond", "Prince", {
+			acceptCreditMbids: [OTHER_BAND],
+		});
+		expect(out).toEqual(none);
+	});
+
+	it("is ambiguous when one candidate is credited to the artist and another to the band (Uoon II)", async () => {
+		stubMb({
+			recordings: [
+				hit(
+					"ffffffff-1111-4111-8111-000000000002",
+					"Uoon II Test",
+					[[REPRAZENT_BAND, "Alva Noto + Ryuichi Sakamoto"]],
+					{ "first-release-date": "2002" },
+				),
+				hit(
+					"ffffffff-1111-4111-8111-000000000003",
+					"Uoon II Test",
+					[
+						[OTHER_BAND, "坂本龍一"],
+						[RONI, "Alva Noto"],
+					],
+					{ "first-release-date": "2022" },
+				),
+			],
+		});
+		expect(
+			await resolveRecordingDetailed("Uoon II Test", "Alva Noto", { acceptCreditMbids: [REPRAZENT_BAND] }),
+		).toEqual(ambiguous);
+	});
+
+	it("is ambiguous, not the earlier original, for a release group with a direct and a band-credited candidate", async () => {
+		stubMb({
+			"release-groups": [
+				hit(
+					"ffffffff-1111-4111-8111-000000000004",
+					"Reissue Test",
+					[[REPRAZENT_BAND, "Roni Size / Reprazent"]],
+					{ "first-release-date": "1997" },
+				),
+				hit(
+					"ffffffff-1111-4111-8111-000000000005",
+					"Reissue Test",
+					[
+						[RONI, "Roni Size"],
+						[OTHER_BAND, "Reprazent"],
+					],
+					{ "first-release-date": "2008" },
+				),
+			],
+		});
+		expect(
+			await resolveReleaseGroupDetailed("Reissue Test", "Roni Size", { acceptCreditMbids: [REPRAZENT_BAND] }),
+		).toEqual(ambiguous);
+	});
+
+	it("still picks the one direct candidate when no band-credited candidate exists", async () => {
+		const id = "ffffffff-1111-4111-8111-000000000006";
+		stubMb({
+			"release-groups": [
+				hit(id, "Solo", [[RONI, "Roni Size"]]),
+				hit("ffffffff-1111-4111-8111-000000000007", "Solo", [[OTHER_BAND, "Elsewhere"]]),
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Solo", "Roni Size", {
+			acceptCreditMbids: [REPRAZENT_BAND],
+		});
+		expect(out.identity?.mbid).toBe(id);
+	});
+});

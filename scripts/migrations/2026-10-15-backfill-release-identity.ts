@@ -50,6 +50,7 @@ import {
 	type MbTrackMeta,
 	resolveRecordingDetailed,
 	resolveReleaseGroupDetailed,
+	sameCreditName,
 } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { makeScopedSlug, makeSlug, normalizeSlugBody, pickScopeArtistName } from "../../src/slug.js";
@@ -423,19 +424,15 @@ function findHint(slug: string, node: Record<string, unknown>, ctx: Context): Hi
 	return only.mbid ? { kind: "hint", name: only.name, mbid: only.mbid } : { kind: "hint", name: only.name };
 }
 
-/** True when `needle` is a run of whole words of `haystack` (both normalized slug bodies). */
-function containsWords(haystack: string, needle: string): boolean {
-	return `-${haystack}-`.includes(`-${needle}-`);
-}
-
 /**
  * The resolver may settle for an exact-title candidate whatever its credit; here the credit must also
  * be the artist we looked under.
  * - hint with a known MBID: the credit must carry that MBID, or the MBID of a band the artist belongs
  *   to (`groups`, from the artist manifest: Roni Size is credited as "Roni Size / Reprazent"). A name
  *   is not accepted then: "Mala" must not pass on "Mala Rodríguez", nor "Earth" on another Earth;
- * - hint without MBID: the credit names the artist in whole words. A credit in another script is
- *   recognised by MBID only, so without one the work stays unresolved.
+ * - hint without MBID: a credit has the same name as the artist (sameCreditName, the resolver's own
+ *   rule: "Prince" is not "Prince Buster", "The" is ignored). A credit in another script is recognised
+ *   by MBID only, so without one the work stays unresolved.
  */
 export function creditConfirmsHint(
 	credit: readonly MbCredit[],
@@ -445,8 +442,7 @@ export function creditConfirmsHint(
 	if (hint.mbid !== undefined) {
 		return credit.some((c) => c.mbid === hint.mbid || groups.includes(c.mbid));
 	}
-	const wanted = normalizeSlugBody(hint.name);
-	return wanted !== "" && credit.some((c) => containsWords(normalizeSlugBody(c.name), wanted));
+	return credit.some((c) => sameCreditName(c.name, hint.name));
 }
 
 // --- Step 3: what is written ---
@@ -661,11 +657,12 @@ async function lookUp(
 	type: "project" | "track",
 	name: string,
 	hint: { name: string; mbid?: string },
+	groups: readonly string[] = [],
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	// An outage is not a verdict: the resolvers say so themselves (`unavailable`), whether MB refused,
 	// was unreachable or answered with something unreadable.
-	const first = await resolve(name, hint.name);
+	const first = await resolve(name, hint.name, { acceptCreditMbids: groups });
 	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	// Look-alikes are a verdict, not a reason to look elsewhere.
 	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
@@ -760,7 +757,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				continue;
 			}
 			attempted++;
-			const lookedUp = await lookUp(type, name, hint);
+			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
+			const lookedUp = await lookUp(type, name, hint, groups);
 			if (lookedUp.unavailable) {
 				failed.push({ slug, reason: "MusicBrainz search unavailable" });
 				continue;
@@ -775,7 +773,6 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				});
 				continue;
 			}
-			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
 			if (!creditConfirmsHint(found.credit, hint, groups)) {
 				unresolved.push({ slug, name, hint: hint.name, reason: "credit-mismatch" });
 				continue;
