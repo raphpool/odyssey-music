@@ -77,7 +77,7 @@ export function cleanAppleUrl(raw: string): string | null {
 /**
  * Search the iTunes catalog and return Apple Music page candidates.
  *
- * Unlike lookupAlbumArt this asks for several results and hands them back
+ * This asks for several results and hands them back
  * unranked — the caller scores them against the expected name/artist, because
  * iTunes will confidently return "Volume II" for a query about the first
  * volume, and a wrong entity link is worse than no link at all.
@@ -127,39 +127,6 @@ function toCandidate(entity: AppleEntity, res: ITunesResult): AppleCandidate | n
 	return c;
 }
 
-/**
- * Look up an album/EP's cover art on iTunes Search and return a 1500×1500 URL.
- * `artistName` (when known) sharply improves match precision.
- *
- * Returns null when iTunes can't find a confident match or the network fails —
- * the caller decides what to do (e.g. fall back to a related node's cover).
- */
-/**
- * @deprecated Takes `results[0]` without checking the artist or the title: it gave the Earth,
- * Wind & Fire compilation to Grandmaster Flash. Use {@link lookupVerifiedAlbumArt}. Kept only
- * because `src/services/image-service.ts` still calls it; TRA-475 (3.3) rewrites that caller and
- * removes this function.
- */
-export async function lookupAlbumArt(name: string, artistName?: string): Promise<string | null> {
-	const term = [name, artistName].filter(Boolean).join(" ");
-	if (!term.trim()) return null;
-	const url = `${SEARCH_URL}?term=${encodeURIComponent(term)}&entity=album&limit=1`;
-	try {
-		const controller = new AbortController();
-		const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-		const r = await fetch(url, { signal: controller.signal });
-		clearTimeout(timer);
-		if (!r.ok) return null;
-		const body = (await r.json()) as ITunesResponse;
-		const art = body.results?.[0]?.artworkUrl100;
-		if (!art) return null;
-		// Default `100x100bb` thumbnail → ask for 1500×1500. iTunes serves any size we put here.
-		return art.replace("100x100bb", "1500x1500bb");
-	} catch {
-		return null;
-	}
-}
-
 const albumSearchResultSchema = z.object({
 	artworkUrl100: z.string().optional(),
 	collectionName: z.string().optional(),
@@ -173,7 +140,7 @@ const THUMBNAIL_SIZE = /100x100bb/;
 /**
  * Cover art for an album, but only from a result whose collection name AND artist name both match
  * what we asked for (TRA-465). iTunes returns plausible-looking strangers for a text query, so
- * unlike {@link lookupAlbumArt} this reads `limit=5` results and takes the best verified one, never
+ * this reads `limit=5` results and takes the best verified one, never
  * `results[0]`. Both names are required: without a known artist nothing can be verified, so null.
  *
  * "Matches" is the threshold `src/streaming-links.ts` uses: `nameMatchScore` not null (every
