@@ -15,7 +15,18 @@ import type { GenreNode, Slug } from "../src/types.js";
 // TRA-18: mock only the external MB boundary; genre-identity.ts is ours, so it runs for real
 // against the committed catalog — "techno" resolves there, "not-a-real-genre-xyz" doesn't.
 vi.mock("../src/musicbrainz.js", () => ({
-	findArtistMbidByName: vi.fn(async () => "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"),
+	resolveArtistDetailed: vi.fn(async (name: string) => ({
+		artist: {
+			mbid: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+			name,
+			kind: null,
+			disambiguation: null,
+			area: null,
+		},
+		candidates: 1,
+		path: "name",
+		unavailable: false,
+	})),
 	fetchArtistDiscographyMb: vi.fn(async () => []),
 	fetchEntityGenresMb: vi.fn(async () => [{ name: "techno" }, { name: "not-a-real-genre-xyz" }]),
 }));
