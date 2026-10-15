@@ -62,7 +62,8 @@ interface MbArtistCreditEntry {
 	name?: string;
 	/** Text MB puts between this entry and the next (" & ", " feat. ", ""). Unvalidated: read with a typeof guard. */
 	joinphrase?: string;
-	artist?: { id?: string; name?: string };
+	/** `aliases` is present in search hits and unvalidated: read with aliasNames(). */
+	artist?: { id?: string; name?: string; aliases?: unknown };
 }
 interface MbReleaseGroup {
 	id: string;
@@ -942,6 +943,13 @@ function creditKey(name: string): string {
 	return body.startsWith("the-") ? body.slice(4) : body;
 }
 
+/** Names of the credited artist's aliases, from an untrusted search hit: anything that is not a name is dropped. */
+function aliasNames(entry: MbArtistCreditEntry): string[] {
+	const aliases = entry.artist?.aliases;
+	if (!Array.isArray(aliases)) return [];
+	return aliases.flatMap((a) => (isRecord(a) && typeof a.name === "string" ? [a.name] : []));
+}
+
 /**
  * True when the requested artist IS one of the credited artists: the key of the hint equals the key of a
  * credit entry (credited-as name or canonical name), or of the whole credit read as one string.
@@ -953,10 +961,11 @@ function creditKey(name: string): string {
  * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
  * Every credited artist counts, whatever the join phrase: a featured artist ("Beyoncé feat. Jay-Z") is
  * credited on the work, so asking for Jay-Z matches. Callers read the credit the resolver returns.
- * MB aliases are not in a search hit, so they are not consulted: a hint spelled as an alias is unmatched.
+ * An alias of a credited artist (when the hit carries them) is a name of that same artist, so it counts.
  */
 function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
 	if (!hintKey) return false;
+	if (entries.some((e) => aliasNames(e).some((alias) => creditKey(alias) === hintKey))) return true;
 	// Credited-as name, then canonical name: the hint may be either spelling.
 	const projections = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
 	return projections.some((nameOf) => {

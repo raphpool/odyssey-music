@@ -1607,3 +1607,33 @@ describe("pickByTitleAndCredit: hints that cannot be compared", () => {
 		expect(out?.credit.map((c) => c.name)).toEqual(["Beyoncé", "Jay-Z"]);
 	});
 });
+
+describe("pickByTitleAndCredit: aliases of the credited artist", () => {
+	const ARTIST = "dddddddd-0000-4000-8000-000000000001";
+	const credit = (aliases: unknown) => [
+		{ name: "Sasha & John Digweed", artist: { id: ARTIST, name: "Sasha & John Digweed", aliases } },
+	];
+
+	it("accepts a hint spelled as an alias of the credited artist", async () => {
+		const id = "dddddddd-1111-4111-8111-000000000001";
+		stubMb({
+			"release-groups": [
+				{ id, title: "Alias Title", "artist-credit": credit([{ name: "Sasha + John Digweed" }]) },
+			],
+		});
+		expect((await resolveReleaseGroup("Alias Title", "Sasha + John Digweed"))?.mbid).toBe(id);
+	});
+
+	it("ignores malformed aliases and never takes an alias word for a match", async () => {
+		stubMb({
+			"release-groups": [
+				{
+					id: "dddddddd-1111-4111-8111-000000000002",
+					title: "Alias Title Two",
+					"artist-credit": credit([{ name: 42 }, "junk", null, { name: "Sasha + John Digweed" }]),
+				},
+			],
+		});
+		expect(await resolveReleaseGroup("Alias Title Two", "John Digweed")).toBeNull();
+	});
+});
