@@ -49,7 +49,8 @@
 			"legacySelectionBySlug": {
 				"genre:alternative-rock": ["Q11366"],
 				"genre:rock": ["Q11366"],
-				"genre:bristol-sound": ["Q205049"]
+				"genre:bristol-sound": ["Q205049"],
+				"genre:trip-hop-music": ["Q205049"]
 			}
 		}
 	}

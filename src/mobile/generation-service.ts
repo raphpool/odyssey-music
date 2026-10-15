@@ -24,6 +24,10 @@ export interface MobileGenerationInput {
 	type: string;
 	name: string;
 	slug?: string;
+	// TRA-477: primary artist of the clicked project/track, and the edge the click came from. Both are
+	// forwarded to /materialize as sent (already shape-checked by generation-routes).
+	artist?: string;
+	source?: { slug: string; field: string };
 	mbid?: string;
 	qid?: string;
 	disambiguator?: string;
@@ -153,6 +157,10 @@ export function createMobileGenerationService(
 			// case-only requests pay for two identical artist nodes (TRA-295 review).
 			name: normalizeSlugBody(input.name),
 			slug: input.slug ?? null,
+			// TRA-477: the artist scopes a work and the source edge is repointed per request, so
+			// neither may be shared with a request that differs on them.
+			artist: normalizeSlugBody(input.artist ?? "") || null,
+			source: input.source ? `${input.source.slug}#${input.source.field}` : null,
 			mbid: input.mbid?.toLowerCase() ?? null,
 			qid: input.qid ?? null,
 			// makeSlug omits an empty normalized suffix, so represent it exactly like
