@@ -59,12 +59,21 @@ jobs:
           test -s "$trusted/policy.tmp"
           mv "$trusted/policy.tmp" "$trusted/review-gate-policy.ts"
           echo '{"type":"module"}' > "$trusted/package.json"
+          # TRA-527 (2026-10-15): the accounts allowed to publish `codex-review` / `codex-deep-review` come from the
+          # same place and with the same rules. A PR that appends its own login to the list in its checkout changes
+          # nothing here: only the default branch's copy is read. Fail closed on a missing file, an unreadable one,
+          # an empty list or a malformed login: with no allowed author no codex status counts, so a tier/3 waits.
+          git show "origin/$DEFAULT_BRANCH:.github/review-gate-authors.txt" > "$trusted/authors.tmp"
+          jq -Rn '[inputs | sub("#.*$"; "") | gsub("^\\s+|\\s+$"; "") | select(. != "")]' "$trusted/authors.tmp" > "$trusted/authors.json.tmp"
+          jq -e 'length > 0 and all(.[]; test("^[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?$"))' "$trusted/authors.json.tmp" > /dev/null
+          mv "$trusted/authors.json.tmp" "$trusted/authors.json"
       - name: Evaluate combined review policy
         shell: bash
         run: |
           set -euo pipefail
           ai_review_path=".github/workflows/ai-review.yml"
           api="$RUNNER_TEMP/review-gate-api"
+          authors="$RUNNER_TEMP/review-gate-policy/authors.json"
           mkdir -p "$api"
           # jq program of the `review` check-run selection (tested as is by test/review-gate-workflow.test.ts).
           # TRA-520: a check-run is the AI review only if it is the `review` job of a `pull_request` run of
@@ -83,6 +92,19 @@ jobs:
                 and any($jobs[]; .run_id == $run.id and .id == $check.id and .name == "review")))]
           | sort_by(.started_at) | last // {}
           | [(.id // 0), (.conclusion // "missing")] | @tsv
+          JQ
+          )
+          # jq program of the `codex-*` status selection (tested as is by test/review-gate-workflow.test.ts).
+          # TRA-527: a commit status is not bound to its author, so any token with `statuses: write` could post
+          # `codex-deep-review: success` on any sha. Only a status created by one of the allowed accounts counts; a
+          # status from anyone else is as if it did not exist (it neither satisfies the gate nor masks the real one),
+          # and among the allowed ones the latest wins. Logins compare case-insensitively, like GitHub does.
+          select_status=$(cat <<'JQ'
+          [($allowed[0] // [])[] | ascii_downcase] as $logins
+          | [$statuses[]
+            | select(.context == $context)
+            | select(((.creator.login // "") | ascii_downcase) as $login | any($logins[]; . == $login))]
+          | sort_by([.created_at, .id]) | last | .state // "missing"
           JQ
           )
           for attempt in $(seq 1 24); do
@@ -112,9 +134,14 @@ jobs:
               claude_blocking=$(gh api "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100" \
                 --jq 'any(.[]; .message == "Findings bloquants — voir les commentaires inline.")')
             fi
-            statuses=$(gh api "repos/$REPOSITORY/commits/$SHA/status")
-            codex=$(jq -r '[.statuses[] | select(.context == "codex-review")] | first | .state // "missing"' <<< "$statuses")
-            deep=$(jq -r '[.statuses[] | select(.context == "codex-deep-review")] | first | .state // "missing"' <<< "$statuses")
+            # TRA-527: the statuses of the head, all pages (the combined `/status` endpoint hides the author of the
+            # status it keeps and caps at 100), through a file like the other lists. A failing call stops the job.
+            gh api --paginate "repos/$REPOSITORY/commits/$SHA/statuses?per_page=100" \
+              --jq '.[] | {id, context, state, created_at, creator: {login: .creator.login}}' > "$api/statuses.json"
+            codex=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              --arg context codex-review "$select_status")
+            deep=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              --arg context codex-deep-review "$select_status")
             input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,risk:1}')
             result=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" "$input")
             decision=$(jq -r .verdict <<< "$result")
