@@ -492,8 +492,10 @@ export function createMaterializeService(deps: {
 			// 2026-10-14 (TRA-449): age no longer forces a refresh (it used to, past a 12 h TTL --
 			// symptom: prod diverging silently from the repo). Only an explicit `fresh`, or a
 			// client mbid that contradicts the cached one, re-runs the pipeline.
-			// A work's mbid from the client is a hint only (TRA-477, flag on): never a reason to rewrite it.
-			const mbidMismatch = !scopedWork && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
+			// A work's mbid from the client is a hint only (TRA-477 flag on, TRA-538 whatever the flag): never
+			// a reason to rewrite it, since the refresh would no longer adopt the client's value anyway.
+			const mbidMismatch =
+				!isWorkType(body.type) && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
 			if (!mbidMismatch) {
 				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
@@ -631,7 +633,11 @@ export function createMaterializeService(deps: {
 			const existing = await readNode(r.slug);
 			if (existing) return { node: existing, ...(requestedSlug ? { requestedSlug } : {}) };
 		}
-		const enriched = body.mbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
+		// TRA-538: a work's mbid is written by the pipeline from its own MusicBrainz resolution (title +
+		// credit), and only when that confirms the client's hint. Stamping `body.mbid` here made a
+		// client-chosen identity authoritative through `byMbid`. Artists and labels keep the old behavior.
+		const enriched =
+			body.mbid && !isWorkType(body.type) ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
 		await deps.cache.write(enriched);
 		deps.invalidateCacheIndex?.();
 		return { node: enriched, ...(requestedSlug ? { requestedSlug } : {}) };

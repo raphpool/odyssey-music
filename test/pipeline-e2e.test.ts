@@ -295,7 +295,15 @@ describe("scoped work edges (TRA-462)", () => {
 				},
 			});
 			const runPipeline = await loadRunPipeline();
-			const { fetchProjectMetaMb } = await import("../src/musicbrainz.js");
+			const { fetchProjectMetaMb, resolveReleaseGroup } = await import("../src/musicbrainz.js");
+			// TRA-538: the client's mbid is a hint; MB's own resolution has to land on it.
+			vi.mocked(resolveReleaseGroup).mockImplementation(async () => ({
+				mbid: MB_ID,
+				title: "New Forms",
+				credit: [],
+				primaryType: "Album",
+				firstReleaseDate: null,
+			}));
 			vi.mocked(fetchProjectMetaMb).mockImplementation(async () => ({
 				tracks: [{ mbid: MB_ID, title: "Brown Paper Bag" }],
 				label: null,
@@ -468,7 +476,16 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 				},
 			});
 			const runPipeline = await loadRunPipeline();
-			const { fetchProjectMetaMb, fetchLabelMetaMb } = await import("../src/musicbrainz.js");
+			const { fetchProjectMetaMb, fetchLabelMetaMb, resolveReleaseGroup } = await import(
+				"../src/musicbrainz.js"
+			);
+			vi.mocked(resolveReleaseGroup).mockImplementation(async () => ({
+				mbid: MB_ID,
+				title: "New Forms",
+				credit: [],
+				primaryType: "Album",
+				firstReleaseDate: null,
+			}));
 			vi.mocked(fetchProjectMetaMb).mockImplementation(async () => ({
 				tracks: [{ mbid: MB_ID, title: "Brown Paper Bag" }],
 				label: null,
