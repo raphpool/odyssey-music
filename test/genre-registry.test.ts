@@ -90,6 +90,7 @@ function artistNode(overrides: Partial<ArtistNode> & { slug: Slug; name: string 
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 		...overrides,
 	};
 }

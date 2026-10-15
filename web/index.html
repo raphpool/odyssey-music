@@ -591,7 +591,7 @@ async function pingApi() {
     const TEASER = { genre: "editorial_definition", label: "editorial_description", artist: "editorial_bio", project: "editorial_pitch", track: "editorial_teaser" };
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
-    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
+    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members","similar_artists"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
     const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
@@ -1853,6 +1853,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     sampled_by: "sampled by",
     remix_of: "remix of",
     remixed_by: "remixed by",
+    similar_artists: "similar artists",
   };
   // Pull out the project-carousel edge (per node type) — it renders as a
   // visual carousel above the article, not as chips below.
@@ -2308,7 +2309,7 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     const TEASER = { genre: "editorial_definition", label: "editorial_description", artist: "editorial_bio", project: "editorial_pitch", track: "editorial_teaser" };
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
-    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
+    const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members","similar_artists"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
     const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
