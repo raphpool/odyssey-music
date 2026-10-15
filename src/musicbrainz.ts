@@ -1416,13 +1416,16 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 
 /**
  * The words of a node's `origin` that can name a place: its first segment ("Sydney" of "Sydney,
- * Australia", "Guadalajara" of "Guadalajara, Jalisco, Mexico"), minus country tokens. Later segments are
- * regions and countries, and MB areas below `Country` bear their names ("Western Australia"); an origin
- * that is only a country ("Mexico") names no place.
+ * Australia", "Guadalajara" of "Guadalajara, Jalisco, Mexico"), minus country tokens. Segments are cut at
+ * `,` `;` and `/`. Later segments are regions and countries, and MB areas below `Country` bear their
+ * names ("Western Australia"). An origin of a single segment gives no word at all: it is most often a
+ * country, and the countries no list names ("Georgia", "Lebanon", "Panama") would match an MB area
+ * (a US state, a city) the same way (2026-10-15, TRA-508 re-review). A bare city is lost on purpose.
  */
 function originPlaceWords(origin: string | undefined): string[] {
-	const first = origin?.split(",")[0];
-	return first ? contextWords(first).filter((w) => !COUNTRY_TOKENS.has(w)) : [];
+	const segments = (origin ?? "").split(/[,;/]/).filter((segment) => segment.trim() !== "");
+	const [first] = segments;
+	return first && segments.length > 1 ? contextWords(first).filter((w) => !COUNTRY_TOKENS.has(w)) : [];
 }
 
 /**

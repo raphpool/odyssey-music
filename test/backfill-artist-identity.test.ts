@@ -693,6 +693,54 @@ describe("resolveArtist", () => {
 			expect(await resolveArtist("Almatyish", { origin: "Almaty, Kazakhstan" })).toBeNull();
 		});
 
+		// TRA-508 re-review: a one-segment origin that names a country no list knows decided anyway.
+		it("gives a one-segment origin no place word, whatever it says (Georgia, Lebanon, Detroit)", async () => {
+			const real = "d1d1d1d1-0000-4000-8000-000000000f01";
+			const impostor = "d1d1d1d1-0000-4000-8000-000000000f02";
+			stubMb([
+				{ id: real, name: "Peachtest", area: "Georgia", areaType: "Country" },
+				{ id: impostor, name: "Peachtest", area: "Georgia", areaType: "Subdivision" },
+			]);
+			expect(await resolveArtist("Peachtest", { origin: "Georgia" })).toBeNull();
+			expect(await resolveArtist("Peachtest", { origin: "Atlanta, Georgia" })).toBeNull();
+			stubMb([
+				{
+					id: "d2d2d2d2-0000-4000-8000-000000000f01",
+					name: "Lebanontest",
+					beginArea: "Lebanon",
+					beginAreaType: "City",
+				},
+				{
+					id: "d2d2d2d2-0000-4000-8000-000000000f02",
+					name: "Lebanontest",
+					area: "Lebanon",
+					areaType: "Country",
+				},
+			]);
+			expect(await resolveArtist("Lebanontest", { origin: "Lebanon" })).toBeNull();
+			// A bare city is lost on purpose: one segment cannot be told from a country.
+			stubMb([
+				{
+					id: "d3d3d3d3-0000-4000-8000-000000000f01",
+					name: "Detroittest",
+					beginArea: "Detroit",
+					beginAreaType: "City",
+				},
+				{ id: "d3d3d3d3-0000-4000-8000-000000000f02", name: "Detroittest" },
+			]);
+			expect(await resolveArtist("Detroittest", { origin: "Detroit" })).toBeNull();
+			expect((await resolveArtist("Detroittest", { origin: "Detroit, Michigan" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+			// Segments are cut at ";" and "/" as well as ",".
+			expect((await resolveArtist("Detroittest", { origin: "Detroit / Berlin" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+			expect((await resolveArtist("Detroittest", { origin: "Detroit; Berlin" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+		});
+
 		it("gives an origin that is only a country no place word", async () => {
 			stubMb([
 				{
@@ -1338,7 +1386,7 @@ describe("runBackfill", () => {
 		vi.mocked(resolveArtistDetailed).mockClear();
 
 		// The node now carries a hint, as if it had been enriched in between.
-		await seed(artistNode("artist:retry-pending", { name: "Retry Pending", origin: "Retryland" }));
+		await seed(artistNode("artist:retry-pending", { name: "Retry Pending", origin: "Retryland, Elsewhere" }));
 		const result = await run({ resume: true });
 
 		expect(vi.mocked(resolveArtistDetailed).mock.calls.map((c) => c[0])).toEqual(["Retry Pending"]);
