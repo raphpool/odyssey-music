@@ -32,6 +32,49 @@ final class NodeRelationOpeningTests: XCTestCase {
 		XCTAssertEqual(opened.map(\.1), [context.followingRelation()])
 	}
 
+	func testASimilarArtistChipOpensTheNodeLikeACollaboratorChip() async throws {
+		let recommendationID = try XCTUnwrap(UUID(uuidString: "22222222-2222-4222-8222-222222222222"))
+		let context = NavigationContext(source: .home, recommendationID: recommendationID)
+		let events = EventLog()
+		let model = try await Self.loadedModel(context: context, log: events)
+		let similar = try Self.edge("artist:similar-one", name: "Similar One")
+		let collaborator = try Self.edge("artist:collab-one", name: "Collab One")
+		events.values.removeAll()
+		var opened = [(NodeIdentity, NavigationContext)]()
+
+		XCTAssertTrue(model.openRelation(similar, kind: "similar_artists") { opened.append(($0, $1)) })
+		XCTAssertTrue(model.openRelation(collaborator, kind: "collaborators") { opened.append(($0, $1)) })
+
+		XCTAssertEqual(events.values.map(\.name), [.relationOpened, .relationOpened])
+		XCTAssertTrue(events.values.allSatisfy(AnalyticsValidation.accepts))
+		let kinds = events.values.map { $0.properties["relation_kind"] }
+		XCTAssertEqual(kinds, [.string("similar_artists"), .string("collaborators")])
+		// Same properties but the target and the kind: the similar chip is not a special case.
+		var similarProperties = try XCTUnwrap(events.values.first?.properties)
+		var collaboratorProperties = try XCTUnwrap(events.values.last?.properties)
+		for key in ["node_id", "relation_kind"] {
+			similarProperties[key] = nil
+			collaboratorProperties[key] = nil
+		}
+		XCTAssertEqual(similarProperties, collaboratorProperties)
+		XCTAssertEqual(opened.map(\.0), [similar.slug, collaborator.slug])
+		XCTAssertEqual(opened.map(\.1), [context.followingRelation(), context.followingRelation()])
+	}
+
+	// A similar artist the cache has no page for is a plain edge: the chip navigates to its identity and the
+	// node screen asks for it, which is what makes the server generate the page. Nothing here is special-cased.
+	func testASimilarArtistWithoutACachedPageStillNavigatesToItsIdentity() async throws {
+		let model = try await Self.loadedModel(context: .independent(source: .home), log: EventLog())
+		let pending = try Self.edge("artist:not-generated-yet", name: "Not Generated Yet")
+		var opened = [NodeIdentity]()
+
+		let accepted = model.openRelation(pending, kind: "similar_artists") { identity, _ in opened.append(identity)
+		}
+
+		XCTAssertTrue(accepted)
+		XCTAssertEqual(opened.map(\.rawValue), ["artist:not-generated-yet"])
+	}
+
 	func testADoubleTouchInsideTheWindowNeitherRecordsNorNavigatesTwice() async throws {
 		let events = EventLog()
 		let model = try await Self.loadedModel(context: .independent(source: .home), log: events)
