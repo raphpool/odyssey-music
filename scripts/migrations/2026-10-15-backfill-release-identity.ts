@@ -20,9 +20,11 @@
  * searches. Idempotent: a work that carries an `mbid` is never selected again, and the manifest
  * keeps the entries of works already written, since 1.12 reads the credit from it.
  *
- * MusicBrainz outage: the resolvers return null both for "no such release" and for "MB did not
- * answer". A request that fails (HTTP error, network error) during a node's lookups makes it
- * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`.
+ * MusicBrainz outage: the resolvers and the metadata lookups say it themselves, with `unavailable`
+ * (TRA-505), true when MB gave no usable answer: HTTP error, network error, a 200 whose body is not
+ * JSON, or a 200 whose JSON is off schema. Any of the four during a node's lookups makes it
+ * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`. "No candidate" and
+ * "ambiguous" are answers, not outages.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write, which
  * would also emit pending reverse edges this migration has no business creating.

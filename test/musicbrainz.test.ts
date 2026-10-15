@@ -1003,6 +1003,7 @@ describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
 			expect(await resolveRecordingDetailed("Booty La La", hint)).toEqual({
 				identity: null,
 				ambiguous: true,
+				unavailable: false,
 			});
 			expect(await resolveRecording("Booty La La", hint)).toBeNull();
 		}
@@ -1025,6 +1026,7 @@ describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
 			expect(await resolveReleaseGroupDetailed("Got the Bug", hint)).toEqual({
 				identity: null,
 				ambiguous: true,
+				unavailable: false,
 			});
 		}
 	});
