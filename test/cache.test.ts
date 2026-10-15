@@ -988,5 +988,8 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 
 	it("throws NotFoundError for a node that is not cached", async () => {
 		await expect(updCache.update(APHEX, (node) => node)).rejects.toMatchObject({ name: "NotFoundError" });
+		await expect(updCache.update("artist:../../outside" as Slug, (node) => node)).rejects.toMatchObject({
+			name: "ValidationError",
+		});
 	});
 });

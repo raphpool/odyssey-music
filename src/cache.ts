@@ -461,6 +461,8 @@ export class NodeCache {
 		slug: Slug,
 		fn: (current: NodePayload) => NodePayload | null | Promise<NodePayload | null>,
 	): Promise<boolean> {
+		// Same client-error guard as get(): an unsafe slug is rejected before any filesystem access.
+		if (!isPathSafeSlug(slug)) throw new ValidationError("Invalid slug");
 		const isGenre = parseSlug(slug).type === "genre";
 		return await this.runOperationLocked(slug, async () => {
 			const delta: CacheWriteDelta = { written: 0, revUpdates: 0 };
