@@ -54,6 +54,15 @@ function typedEdgeFor(type: NodeType, field: string) {
 	return typedEdge(allowed);
 }
 
+/** The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges.
+ * Exported (TRA-499) so the migration channel can check a pending reverse's edge against the exact
+ * schema NodeCache.write will apply to the node once the reverse lands in it. */
+export function edgeSchemaFor(type: NodeType, field: string) {
+	const specs = EDGE_TARGET_TYPES_BY_TYPE[type];
+	// hasOwn: `field` comes from an untrusted file ("constructor" must not resolve on the prototype).
+	return Object.hasOwn(specs, field) ? typedEdge(specs[field] as readonly NodeType[]) : undefined;
+}
+
 const citationSchema = z.object({
 	url: z.string().url(),
 	title: z.string().optional(),

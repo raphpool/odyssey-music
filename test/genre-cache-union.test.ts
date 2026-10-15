@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -132,6 +132,15 @@ describe("parseUnionCliArgs", () => {
 		expect(() => parseUnionCliArgs(["r", "s", "--server-redirects-path", "--apply-merge"])).toThrow(
 			/requires a value/,
 		);
+	});
+
+	it("parses --merge-pending-reverses (TRA-499), set only when given", () => {
+		expect(parseUnionCliArgs(["r", "s", "--merge-pending-reverses", "--apply-merge"])).toEqual({
+			repoCacheDir: "r",
+			serverCacheDir: "s",
+			applyMerge: true,
+			mergePendingReverses: true,
+		});
 	});
 
 	it("refuses an unrecognized flag and anything but exactly two positional arguments", () => {
@@ -1406,5 +1415,129 @@ describe("buildCacheUnion", () => {
 			) as Record<string, unknown>;
 			expect(written.related_genres).toEqual([{ slug: "genre:aa", type: "genre", name: "BB" }]);
 		});
+	});
+});
+
+// TRA-499: the migration channel unions pending-reverses.json (repo + server) into the union root.
+describe("buildCacheUnion -- mergePendingReverses (TRA-499)", () => {
+	let repoRoot: string;
+	let repoDir: string;
+	let serverDir: string;
+	let redirectsPath: string;
+	const reverse = (slug: string, field = "members") => ({
+		field,
+		cardinality: "list",
+		edge: { slug, type: slug.split(":")[0], name: slug },
+	});
+
+	beforeEach(async () => {
+		repoRoot = await mkdtemp(join(tmpdir(), "odyssey-union-repo-"));
+		repoDir = join(repoRoot, "cache");
+		serverDir = await mkdtemp(join(tmpdir(), "odyssey-union-server-"));
+		redirectsPath = join(await mkdtemp(join(tmpdir(), "odyssey-union-data-")), "genre-redirects.json");
+		await writeFile(redirectsPath, JSON.stringify({ redirects: {} }), "utf8");
+		await seed(repoDir, node({ slug: "genre:only-repo" }));
+		await seed(serverDir, node({ slug: "genre:only-server" }));
+	});
+	afterEach(async () => {
+		await rm(repoRoot, { recursive: true, force: true });
+		await rm(serverDir, { recursive: true, force: true });
+	});
+
+	const build = (extra: { applyMerge?: boolean; mergePendingReverses?: boolean } = {}) =>
+		buildCacheUnion(repoDir, serverDir, { redirectsPath, onboardingSlugs: [], ...extra });
+
+	it("writes the union of both sides' files to the union root and summarizes it in the manifest", async () => {
+		const e1 = reverse("artist:e1");
+		const e2 = reverse("artist:e2");
+		const e3 = reverse("artist:e3");
+		await writeFile(join(repoDir, "pending-reverses.json"), JSON.stringify({ "artist:a": [e1] }));
+		await writeFile(
+			join(serverDir, "pending-reverses.json"),
+			JSON.stringify({ "artist:a": [e2], "genre:only-repo": [e3] }),
+		);
+		const repoBefore = await fingerprint(repoDir);
+		const serverBefore = await fingerprint(serverDir);
+
+		const { outputDir, manifest } = await build({ mergePendingReverses: true });
+
+		expect(JSON.parse(await readFile(join(outputDir, "pending-reverses.json"), "utf8"))).toEqual({
+			"artist:a": [e1, e2],
+			"genre:only-repo": [e3],
+		});
+		// genre:only-repo already exists in the union: the key is kept and only counted.
+		expect(manifest.pendingReverses).toEqual({
+			repoKeys: 1,
+			serverKeys: 2,
+			unionKeys: 2,
+			unionEntries: 3,
+			keysWithExistingTarget: 1,
+		});
+		expect(await fingerprint(repoDir)).toBe(repoBefore);
+		expect(await fingerprint(serverDir)).toBe(serverBefore);
+	});
+
+	it("writes an empty file when neither side ever queued a reverse", async () => {
+		const { outputDir } = await build({ mergePendingReverses: true });
+		expect(JSON.parse(await readFile(join(outputDir, "pending-reverses.json"), "utf8"))).toEqual({});
+	});
+
+	it("without the option, neither reads nor writes pending-reverses.json (a plain genre sync is unchanged)", async () => {
+		await writeFile(join(repoDir, "pending-reverses.json"), "{not even json");
+		const { outputDir, manifest } = await build();
+		await expect(readFile(join(outputDir, "pending-reverses.json"), "utf8")).rejects.toThrow();
+		expect(manifest.pendingReverses).toBeUndefined();
+	});
+
+	it("lets the union's own genre merge rewrite the unioned file (keys and edge slugs)", async () => {
+		await seed(
+			repoDir,
+			node({ slug: "genre:country-music", qid: "Q1", materialized_at: "2026-01-01T00:00:00.000Z" }),
+		);
+		await seed(
+			serverDir,
+			node({ slug: "genre:country", qid: "Q1", materialized_at: "2026-02-01T00:00:00.000Z" }),
+		);
+		await writeFile(
+			join(repoDir, "pending-reverses.json"),
+			JSON.stringify({ "artist:a": [reverse("genre:country-music", "genres")] }),
+		);
+		await writeFile(
+			join(serverDir, "pending-reverses.json"),
+			JSON.stringify({ "genre:country-music": [reverse("artist:e2")] }),
+		);
+		await writeFile(redirectsPath, JSON.stringify({ redirects: { "genre:country-music": "genre:country" } }));
+
+		const { outputDir, manifest } = await build({ applyMerge: true, mergePendingReverses: true });
+
+		expect(manifest.migrationApply?.applied).toBe(true);
+		const shipped = JSON.parse(await readFile(join(outputDir, "pending-reverses.json"), "utf8")) as Record<
+			string,
+			{ edge: { slug: string } }[]
+		>;
+		expect(Object.keys(shipped).sort()).toEqual(["artist:a", "genre:country"]);
+		expect(shipped["artist:a"]?.[0]?.edge.slug).toBe("genre:country");
+	});
+
+	it.each([
+		["a dangling symlink", false],
+		["a symlink to an existing file", true],
+	])(
+		"refuses the server's pending-reverses.json as %s, before writing anything",
+		async (_label, targetExists) => {
+			const target = join(repoRoot, "elsewhere.json");
+			if (targetExists) await writeFile(target, "{}");
+			await symlink(target, join(serverDir, "pending-reverses.json"));
+			await expect(build({ mergePendingReverses: true })).rejects.toThrow(
+				/server pending-reverses.*not a regular file/,
+			);
+		},
+	);
+
+	it.each([["repo"], ["server"]])("refuses a malformed %s file before writing anything", async (side) => {
+		await writeFile(join(side === "repo" ? repoDir : serverDir, "pending-reverses.json"), '{"nope": []}');
+		await expect(build({ mergePendingReverses: true })).rejects.toThrow(
+			new RegExp(`${side} pending-reverses.*not a valid slug`),
+		);
 	});
 });

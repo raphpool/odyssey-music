@@ -7,6 +7,7 @@ import {
 	readdirSync,
 	readFileSync,
 	rmSync,
+	symlinkSync,
 	utimesSync,
 	writeFileSync,
 } from "node:fs";
@@ -197,6 +198,11 @@ interface RunOptions {
 	extraArgs?: string[];
 	/** Content of the repo's committed data/slug-redirects.json (REPO_SLUG_REDIRECTS_PATH). */
 	slugRedirects?: string;
+	/** TRA-499: raw content of the repo's / the server's cache/pending-reverses.json (absent if omitted). */
+	repoPending?: string;
+	serverPending?: string;
+	/** TRA-499: make the server's pending-reverses.json a symlink to a real file. */
+	serverPendingSymlink?: boolean;
 }
 
 interface FakeMigrationSpec {
@@ -207,6 +213,8 @@ interface FakeMigrationSpec {
 	/** Manifest body; `migration` defaults to the script's own name. `null` writes no manifest. */
 	manifest?: Record<string, unknown> | null;
 	exit?: number;
+	/** Raw JS run after `remove`/`write` (TRA-499: for filesystem tricks the specs above cannot express). */
+	extra?: string;
 }
 
 /** A stand-in for scripts/migrations/<name>.ts: plain node builtins only, so `npx tsx` can run it
@@ -226,16 +234,20 @@ function fakeMigration(name: string, spec: FakeMigrationSpec = {}): string {
 					written: 0,
 					...spec.manifest,
 				};
-	return `import { appendFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+	return `import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 const argv = process.argv.slice(2);
 appendFileSync(process.env.TEST_CALLS + ".migration", JSON.stringify(argv) + "\\n");
 const cacheDir = argv[0] as string;
+// TRA-499: what the union handed this migration as its pending-reverses.json (before it changes anything).
+const pendingPath = join(cacheDir, "pending-reverses.json");
+if (existsSync(pendingPath)) appendFileSync(process.env.TEST_CALLS + ".pending-seen", readFileSync(pendingPath, "utf8") + "\\n");
 for (const rel of ${JSON.stringify(spec.remove ?? [])} as string[]) rmSync(join(cacheDir, rel), { force: true });
 for (const [rel, body] of Object.entries(${JSON.stringify(spec.write ?? {})} as Record<string, string>)) {
 	mkdirSync(dirname(join(cacheDir, rel)), { recursive: true });
 	writeFileSync(join(cacheDir, rel), body);
 }
+${spec.extra ?? ""}
 const manifest = ${JSON.stringify(manifest)};
 if (manifest) writeFileSync(argv[argv.indexOf("--manifest") + 1] as string, JSON.stringify(manifest, null, 2));
 process.exit(${spec.exit ?? 0});
@@ -284,6 +296,17 @@ function run(options: RunOptions = {}) {
 	if (options.duplicateOnServer) {
 		seedDuplicateOnServer(serverCacheRemote);
 		seedRealGenreRedirectTargets(repoCacheDir);
+	}
+	if (options.repoPending !== undefined) {
+		writeFileSync(join(repoCacheDir, "pending-reverses.json"), options.repoPending);
+	}
+	if (options.serverPending !== undefined) {
+		writeFileSync(join(serverCacheRemote, "pending-reverses.json"), options.serverPending);
+	}
+	if (options.serverPendingSymlink) {
+		const target = join(serverRoot, "pending-target.json");
+		writeFileSync(target, "{}");
+		symlinkSync(target, join(serverCacheRemote, "pending-reverses.json"));
 	}
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
@@ -480,10 +503,13 @@ echo "ok"
 	const migrationLog = existsSync(`${callsLog}.migration`)
 		? readFileSync(`${callsLog}.migration`, "utf8")
 		: "";
+	const pendingSeenLog = `${callsLog}.pending-seen`;
 	return {
 		result,
 		calls,
 		serverRoot,
+		serverRedirectsRemote,
+		pendingSeen: existsSync(pendingSeenLog) ? readFileSync(pendingSeenLog, "utf8") : "",
 		serverCacheRemote,
 		serverBackupDir,
 		repoCacheDir,
@@ -1508,6 +1534,321 @@ writeFileSync(argv[argv.indexOf("--manifest") + 1] as string, JSON.stringify({ m
 		expect(dup.result.status).not.toBe(0);
 		expect(dup.result.stderr).toMatch(/given twice/);
 		expect(dup.calls).toBe("");
+	});
+});
+
+// TRA-499: pending-reverses.json is unioned, rewritten by migrations and shipped; genre-redirects.json
+// is shipped from the committed copy; nothing else may change at the union root during the loop.
+describe("sync-genre-cache.sh -- pending-reverses and union-root guard (TRA-499)", () => {
+	const NAME = "2026-10-15-fake-rename";
+	const genreNode = (body: string) =>
+		JSON.stringify({
+			type: "genre",
+			slug: `genre:${body}`,
+			name: body,
+			editorial_article: "x".repeat(80),
+			citations: [{ url: "https://example.com/x" }],
+			editorial_definition: "x",
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+			materialized_at: "2026-01-01T00:00:00.000Z",
+		});
+	const RENAME = {
+		remove: ["nodes/genre/only-server.json"],
+		write: { "nodes/genre/renamed-server.json": genreNode("renamed-server") },
+		manifest: {
+			renamed: { "genre:only-server": "genre:renamed-server" },
+			redirects: { "genre:only-server": "genre:renamed-server" },
+			written: 1,
+		},
+	};
+	const SLUG_TABLE = JSON.stringify({ redirects: { "genre:only-server": "genre:renamed-server" } });
+	const reverse = (slug: string, field = "members") => ({
+		field,
+		cardinality: "list",
+		edge: { slug, type: slug.split(":")[0], name: slug },
+	});
+	const [E1, E2, E3] = [reverse("artist:e1"), reverse("artist:e2"), reverse("artist:e3")];
+	// A reverse valid on a genre node (genre.subgenres takes genre edges): the file's keys may be genres.
+	const G1 = {
+		field: "subgenres",
+		cardinality: "list",
+		edge: { slug: "genre:sub", type: "genre", name: "sub" },
+	};
+	const readJson = (path: string) => JSON.parse(readFileSync(path, "utf8")) as unknown;
+
+	/** The refusal contract of TRA-464: stderr says why, and nothing happened to the server. */
+	function expectRefusedBeforeAnyWrite(r: ReturnType<typeof run>, message: RegExp): void {
+		expect(r.result.status).not.toBe(0);
+		expect(r.result.stderr).toMatch(message);
+		expect(r.calls).not.toContain("systemctl stop");
+		expect(existsSync(r.serverBackupDir)).toBe(false);
+		expect(existsSync(join(r.serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+	}
+
+	it("ships the union of the two files: repo {A:[e1]} + server {A:[e2], B:[e3]} -> {A:[e1,e2], B:[e3]}", () => {
+		const { result, serverCacheRemote } = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "artist:a": [E1] }),
+			serverPending: JSON.stringify({ "artist:a": [E2], "artist:b": [E3] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(readJson(join(serverCacheRemote, "pending-reverses.json"))).toEqual({
+			"artist:a": [E1, E2],
+			"artist:b": [E3],
+		});
+		expect(result.stdout).toContain("Shipping the migrated pending-reverses.json");
+	});
+
+	it("hands the migration a union that already carries the merged file", () => {
+		const { result, pendingSeen } = run({
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "artist:a": [E1] }),
+			serverPending: JSON.stringify({ "artist:b": [E3] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(JSON.parse(pendingSeen)).toEqual({ "artist:a": [E1], "artist:b": [E3] });
+	});
+
+	it("ships the file the migration REWROTE (key renamed), never the old one", () => {
+		const rewritten = { "genre:renamed-server": [G1] };
+		const { result, serverCacheRemote } = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "genre:only-server": [G1] }),
+			serverPending: JSON.stringify({ "genre:only-server": [G1] }),
+			migrations: {
+				[NAME]: fakeMigration(NAME, {
+					...RENAME,
+					write: { ...RENAME.write, "pending-reverses.json": JSON.stringify(rewritten) },
+				}),
+			},
+		});
+		expect(result.status).toBe(0);
+		const shipped = readJson(join(serverCacheRemote, "pending-reverses.json")) as Record<string, unknown>;
+		expect(shipped).toEqual(rewritten);
+		expect(shipped).not.toHaveProperty(["genre:only-server"]);
+	});
+
+	it("archives the server's pre-write pending-reverses.json (inside the cache tree) for rollback", () => {
+		const before = JSON.stringify({ "artist:b": [E3] });
+		const { result, serverBackupDir } = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			serverPending: before,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		const archive = join(serverBackupDir, readdirSync(serverBackupDir).find((f) => f.endsWith(".tar.gz"))!);
+		expect(execFileSync("tar", ["-tzf", archive], { encoding: "utf8" })).toContain(
+			"cache/pending-reverses.json",
+		);
+		expect(execFileSync("tar", ["-xzOf", archive, "cache/pending-reverses.json"], { encoding: "utf8" })).toBe(
+			before,
+		);
+	});
+
+	it("previews without shipping it", () => {
+		const { result, serverCacheRemote, calls } = run({
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "artist:a": [E1] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(existsSync(join(serverCacheRemote, "pending-reverses.json"))).toBe(false);
+		expect(calls).not.toContain("pending-reverses");
+	});
+
+	it("leaves a plain genre sync (no --migration) unchanged: file neither read, unioned nor shipped", () => {
+		const serverPending = JSON.stringify({ "artist:b": [E3] });
+		const { result, serverCacheRemote, calls } = run({
+			apply: true,
+			// Malformed on purpose: a plain sync must not even look at it.
+			repoPending: "{not json",
+			serverPending,
+		});
+		expect(result.status).toBe(0);
+		expect(readFileSync(join(serverCacheRemote, "pending-reverses.json"), "utf8")).toBe(serverPending);
+		expect(calls).not.toMatch(/rsync .*pending-reverses/);
+		expect(result.stdout).not.toContain("pending-reverses");
+	});
+
+	it("refuses a malformed pending-reverses.json on either side before the archive and the stop", () => {
+		for (const side of ["repoPending", "serverPending"] as const) {
+			const r = run({
+				apply: true,
+				slugRedirects: SLUG_TABLE,
+				[side]: JSON.stringify({ "not a slug": [] }),
+				migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+			});
+			expectRefusedBeforeAnyWrite(r, /pending-reverses.*not a valid slug/);
+		}
+	});
+
+	it("refuses a migration that leaves pending-reverses.json malformed, deleted or replaced by a symlink", () => {
+		const specs: FakeMigrationSpec[] = [
+			{ ...RENAME, write: { ...RENAME.write, "pending-reverses.json": '{"x": 1}' } },
+			{ ...RENAME, remove: [...RENAME.remove, "pending-reverses.json"] },
+			{
+				...RENAME,
+				extra:
+					'rmSync(join(cacheDir, "pending-reverses.json"));\nsymlinkSync("/etc/hosts", join(cacheDir, "pending-reverses.json"));',
+			},
+		];
+		for (const spec of specs) {
+			const r = run({
+				apply: true,
+				slugRedirects: SLUG_TABLE,
+				repoPending: JSON.stringify({ "artist:a": [E1] }),
+				migrations: { [NAME]: fakeMigration(NAME, spec) },
+			});
+			expectRefusedBeforeAnyWrite(r, /pending-reverses\.json/);
+		}
+	});
+
+	it("refuses a symlinked pending-reverses.json on the server before the archive and the stop", () => {
+		const r = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+			serverPendingSymlink: true,
+		});
+		expectRefusedBeforeAnyWrite(r, /pending-reverses.*not a regular file/);
+	});
+
+	it("P2: refuses a rename X->Y that left pending-reverses.json untouched (key on a deleted node)", () => {
+		const r = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "genre:only-server": [G1] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expectRefusedBeforeAnyWrite(
+			r,
+			/pending-reverses\.json: key genre:only-server: names a node the migrations deleted/,
+		);
+	});
+
+	it("P2: refuses an edge.slug pointing to a node the migration deleted", () => {
+		const toDeleted = { ...G1, edge: { slug: "genre:only-server", type: "genre", name: "only-server" } };
+		const r = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "genre:other": [toDeleted] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expectRefusedBeforeAnyWrite(r, /edge\.slug genre:only-server is a node the migrations deleted/);
+	});
+
+	it("refuses an edge that fails the target node's edge schema (it would make the node unwritable in prod)", () => {
+		const invalid = { field: "subgenres", cardinality: "list", edge: { slug: "genre:sub", type: "genre" } };
+		for (const apply of [true, false]) {
+			const r = run({
+				apply,
+				slugRedirects: SLUG_TABLE,
+				repoPending: JSON.stringify({ "genre:other": [invalid] }),
+				migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+			});
+			expectRefusedBeforeAnyWrite(r, /genre\.subgenres edge schema/);
+		}
+	});
+
+	it("P5: prints key and entry counts before and after the migrations, in preview and apply, and warns on a drop", () => {
+		for (const apply of [false, true]) {
+			const r = run({
+				apply,
+				slugRedirects: SLUG_TABLE,
+				repoPending: JSON.stringify({ "artist:a": [E1, E2] }),
+				serverPending: JSON.stringify({ "artist:b": [E3] }),
+				migrations: {
+					[NAME]: fakeMigration(NAME, {
+						...RENAME,
+						write: { ...RENAME.write, "pending-reverses.json": "{}" },
+					}),
+				},
+			});
+			expect(r.result.status).toBe(0);
+			expect(r.result.stdout).toContain("pending-reverses.json before the migrations: 2 key(s), 3 entries");
+			expect(r.result.stdout).toContain("pending-reverses.json after the migrations: 0 key(s), 0 entries");
+			expect(r.result.stdout).toContain(
+				'"beforeMigrations":{"keys":2,"entries":3},"afterMigrations":{"keys":0,"entries":0}',
+			);
+			expect(r.result.stderr).toMatch(
+				/WARNING: the migrations shrank pending-reverses\.json \(2 -> 0 keys, 3 -> 0 entries\)/,
+			);
+		}
+	});
+
+	it("P5: no warning when the migrations leave the counts as they were", () => {
+		const r = run({
+			slugRedirects: SLUG_TABLE,
+			repoPending: JSON.stringify({ "artist:a": [E1] }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(r.result.stdout).toContain("after the migrations: 1 key(s), 1 entries");
+		expect(r.result.stderr).not.toContain("shrank");
+	});
+
+	it("ships the committed genre-redirects.json byte for byte, not the union's rewritten copy", () => {
+		const committed = JSON.stringify(REAL_COMMITTED_REDIRECTS); // compact: the union rewrites it pretty-printed
+		const { result, serverRedirectsRemote } = run({
+			apply: true,
+			slugRedirects: SLUG_TABLE,
+			repoRedirects: committed,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(readFileSync(serverRedirectsRemote, "utf8")).toBe(committed);
+	});
+
+	it("refuses a migration that writes genre-redirects.json at the root of its cache dir, before the stop (preview too)", () => {
+		const forged = JSON.stringify({ redirects: { "genre:only-server": "genre:evil" } });
+		for (const apply of [true, false]) {
+			const r = run({
+				apply,
+				slugRedirects: SLUG_TABLE,
+				migrations: {
+					[NAME]: fakeMigration(NAME, {
+						...RENAME,
+						write: { ...RENAME.write, "genre-redirects.json": forged },
+					}),
+				},
+			});
+			expectRefusedBeforeAnyWrite(r, /changed the union's root/);
+			expect(r.calls).not.toMatch(/rsync .*genre-redirects/);
+		}
+	});
+
+	it("refuses any other file added or changed at the union root, including under archive/", () => {
+		for (const rel of ["stray.json", "archive/stray.json", "manifest.json"]) {
+			const r = run({
+				apply: true,
+				slugRedirects: SLUG_TABLE,
+				migrations: { [NAME]: fakeMigration(NAME, { ...RENAME, write: { ...RENAME.write, [rel]: "{}" } }) },
+			});
+			expectRefusedBeforeAnyWrite(r, /changed the union's root/);
+		}
+	});
+
+	it("still lets a migration write nodes/ and a well-formed pending-reverses.json (the two allowed outputs)", () => {
+		const { result } = run({
+			slugRedirects: SLUG_TABLE,
+			migrations: {
+				[NAME]: fakeMigration(NAME, {
+					...RENAME,
+					write: { ...RENAME.write, "pending-reverses.json": JSON.stringify({ "artist:a": [E1] }) },
+				}),
+			},
+		});
+		expect(result.status).toBe(0);
 	});
 });
 
