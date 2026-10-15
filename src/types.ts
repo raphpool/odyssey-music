@@ -37,6 +37,17 @@ export interface Citation {
 	title?: string;
 }
 
+// "legacy" = an existing photo_url / cover_url on an allowed host copied into image_url by the backfill.
+export const IMAGE_SOURCES = [
+	"wikidata-p18",
+	"wikidata-p154",
+	"caa",
+	"itunes-verified",
+	"derived-cover",
+	"legacy",
+] as const;
+export type ImageSource = (typeof IMAGE_SOURCES)[number];
+
 export interface BaseNode {
 	slug: Slug;
 	type: NodeType;
@@ -45,11 +56,12 @@ export interface BaseNode {
 	citations: Citation[];
 	materialized_at: string;
 	mbid?: string;
-	// Provenance of the resolved image (cover_url / photo_url) when not part of
-	// the materialization output. "itunes-jit" = resolved on-demand via the
-	// iTunes Search fallback in GET /image/:slug. Unset = came from the
-	// editorial pipeline itself. Lets us invalidate JIT picks in batch later.
-	image_source?: "itunes-jit";
+	// Single display image for any node type (TRA-455, plan decision 5). Host-restricted at the
+	// schema layer (src/images/hosts.ts): third-party data is untrusted. photo_url / cover_url
+	// stay declared below and are still read as fallbacks by toVizNode.
+	image_url?: string;
+	// Provenance of image_url, so a resolver batch can be invalidated or re-run by source.
+	image_source?: ImageSource;
 }
 
 export interface GenreNode extends BaseNode {

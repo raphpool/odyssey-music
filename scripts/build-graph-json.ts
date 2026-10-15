@@ -14,7 +14,6 @@ import { buildGraphFromCache, DEFAULT_TAXONOMY_PATH } from "../src/graph.js";
 // "strict": CI must fail loudly if data/genre-taxonomy.json has drifted from the committed cache/
 // (an invalid file, or a declared source slug that no longer exists).
 export const STATIC_GRAPH_OPTIONS: BuildGraphOptions = {
-	includeImageUrls: true,
 	quarantineOrphanGenres: true,
 	scrubQuarantinedRefs: true,
 	taxonomy: "strict",
