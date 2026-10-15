@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -1470,6 +1470,7 @@ describe("buildCacheUnion -- mergePendingReverses (TRA-499)", () => {
 			repoKeys: 1,
 			serverKeys: 2,
 			unionKeys: 2,
+			unionEntries: 3,
 			keysWithExistingTarget: 1,
 		});
 		expect(await fingerprint(repoDir)).toBe(repoBefore);
@@ -1517,6 +1518,21 @@ describe("buildCacheUnion -- mergePendingReverses (TRA-499)", () => {
 		expect(Object.keys(shipped).sort()).toEqual(["artist:a", "genre:country"]);
 		expect(shipped["artist:a"]?.[0]?.edge.slug).toBe("genre:country");
 	});
+
+	it.each([
+		["a dangling symlink", false],
+		["a symlink to an existing file", true],
+	])(
+		"refuses the server's pending-reverses.json as %s, before writing anything",
+		async (_label, targetExists) => {
+			const target = join(repoRoot, "elsewhere.json");
+			if (targetExists) await writeFile(target, "{}");
+			await symlink(target, join(serverDir, "pending-reverses.json"));
+			await expect(build({ mergePendingReverses: true })).rejects.toThrow(
+				/server pending-reverses.*not a regular file/,
+			);
+		},
+	);
 
 	it.each([["repo"], ["server"]])("refuses a malformed %s file before writing anything", async (side) => {
 		await writeFile(join(side === "repo" ? repoDir : serverDir, "pending-reverses.json"), '{"nope": []}');

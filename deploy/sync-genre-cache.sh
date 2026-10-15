@@ -387,6 +387,15 @@ union_root_state() {
 		find . -mindepth 1 \( -path ./nodes -o -path ./pending-reverses.json \) -prune -o -type f -exec cksum {} + | LC_ALL=C sort
 	)
 }
+# 2026-10-15 (TRA-499 deep review, P5): "<keys> <entries>" of the union's pending-reverses.json, so
+# a migration that shrinks it (down to `{}`) shows in the preview, not only after the shipment.
+pending_counts() {
+	node -e '
+const m = JSON.parse(require("fs").readFileSync(process.argv[1], "utf8"));
+const keys = Object.keys(m);
+process.stdout.write(keys.length + " " + keys.reduce((n, k) => n + m[k].length, 0));
+' "$UNION_DIR/pending-reverses.json"
+}
 MIGRATION_REMOVE_PATHS=()
 MIGRATION_MISSING_REDIRECTS=""
 COMMITTED_DIR="$WORKDIR/committed-tables"
@@ -403,6 +412,7 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	: >"$MIGRATION_TARGETS"
 	REPO_STATE_BEFORE="$(repo_state)"
 	UNION_ROOT_BEFORE="$(union_root_state)"
+	PENDING_COUNTS_BEFORE="$(pending_counts)"
 	(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts snapshot "$UNION_DIR" "$WORKDIR/union-before.json")
 	for name in "${MIGRATIONS[@]}"; do
 		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
@@ -520,6 +530,26 @@ process.stdout.write(lines.join("\n"));
 		echo "$UNION_CHECK" >&2
 		exit 1
 	fi
+	# TRA-499 (P5): keys and entries of pending-reverses.json before and after the migrations, printed
+	# in preview and apply alike and recorded in the union manifest. A drop is a warning, not a
+	# refusal: a rename legitimately merges keys. Safe to rewrite manifest.json here: the root guard
+	# above has already compared it.
+	PENDING_COUNTS_AFTER="$(pending_counts)"
+	read -r PENDING_KEYS_BEFORE PENDING_ENTRIES_BEFORE <<<"$PENDING_COUNTS_BEFORE"
+	read -r PENDING_KEYS_AFTER PENDING_ENTRIES_AFTER <<<"$PENDING_COUNTS_AFTER"
+	echo "==> pending-reverses.json before the migrations: $PENDING_KEYS_BEFORE key(s), $PENDING_ENTRIES_BEFORE entries"
+	echo "==> pending-reverses.json after the migrations: $PENDING_KEYS_AFTER key(s), $PENDING_ENTRIES_AFTER entries"
+	if [[ $PENDING_KEYS_AFTER -lt $PENDING_KEYS_BEFORE || $PENDING_ENTRIES_AFTER -lt $PENDING_ENTRIES_BEFORE ]]; then
+		echo "WARNING: the migrations shrank pending-reverses.json ($PENDING_KEYS_BEFORE -> $PENDING_KEYS_AFTER keys, $PENDING_ENTRIES_BEFORE -> $PENDING_ENTRIES_AFTER entries): check this is intended (a rename merging keys, entries applied) before --apply." >&2
+	fi
+	node -e '
+const fs = require("fs");
+const [path, kb, eb, ka, ea] = process.argv.slice(1);
+const m = JSON.parse(fs.readFileSync(path, "utf8"));
+m.pendingReverses = { ...(m.pendingReverses ?? {}), beforeMigrations: { keys: Number(kb), entries: Number(eb) }, afterMigrations: { keys: Number(ka), entries: Number(ea) } };
+fs.writeFileSync(path, JSON.stringify(m, null, 2) + "\n");
+process.stdout.write("==> Union manifest pendingReverses: " + JSON.stringify(m.pendingReverses) + "\n");
+' "$UNION_DIR/manifest.json" "$PENDING_KEYS_BEFORE" "$PENDING_ENTRIES_BEFORE" "$PENDING_KEYS_AFTER" "$PENDING_ENTRIES_AFTER"
 	if [[ ${#MIGRATION_REMOVE_PATHS[@]} -gt 0 ]]; then
 		for rel in "${MIGRATION_REMOVE_PATHS[@]}"; do
 			if [[ -e "$UNION_DIR/$rel" ]]; then

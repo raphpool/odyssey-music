@@ -1,8 +1,9 @@
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import {
+	checkPendingReversesAfterMigration,
 	type PendingReversesMap,
 	parsePendingReverses,
 	readPendingReversesFile,
@@ -76,7 +77,13 @@ describe("summarizePendingReverses", () => {
 			union,
 			new Set(["artist:a"]),
 		);
-		expect(summary).toEqual({ repoKeys: 1, serverKeys: 1, unionKeys: 2, keysWithExistingTarget: 1 });
+		expect(summary).toEqual({
+			repoKeys: 1,
+			serverKeys: 1,
+			unionKeys: 2,
+			unionEntries: 2,
+			keysWithExistingTarget: 1,
+		});
 		expect(Object.keys(union)).toEqual(["artist:a", "artist:b"]);
 	});
 });
@@ -90,7 +97,6 @@ describe("parsePendingReverses", () => {
 	});
 
 	it("accepts the committed cache/pending-reverses.json", async () => {
-		const { readFile } = await import("node:fs/promises");
 		const raw = await readFile(resolve("cache/pending-reverses.json"), "utf8");
 		const parsed = parsePendingReverses(raw);
 		expect(parsed.ok).toBe(true);
@@ -154,5 +160,74 @@ describe("readPendingReversesFile", () => {
 		const bad = await readPendingReversesFile(join(d, "bad.json"));
 		expect(bad.ok).toBe(false);
 		if (!bad.ok) expect(bad.error).toContain(join(d, "bad.json"));
+	});
+
+	// TRA-499 deep review: only an ENOENT from lstat itself means "absent".
+	it.each([
+		["a symlink to a missing target", false],
+		["a symlink to an existing file", true],
+	])("refuses %s instead of following it", async (_label, targetExists) => {
+		const d = await dir();
+		const target = join(d, "target.json");
+		if (targetExists) await writeFile(target, "{}");
+		await symlink(target, join(d, "pending-reverses.json"));
+		const read = await readPendingReversesFile(join(d, "pending-reverses.json"));
+		expect(read.ok).toBe(false);
+		if (!read.ok) expect(read.error).toMatch(/not a regular file/);
+	});
+
+	it("refuses a directory in its place", async () => {
+		const d = await dir();
+		await mkdir(join(d, "pending-reverses.json"));
+		expect((await readPendingReversesFile(join(d, "pending-reverses.json"))).ok).toBe(false);
+	});
+});
+
+describe("checkPendingReversesAfterMigration", () => {
+	const none = new Set<string>();
+	const genreEdge = (slug: string, field: string): PendingReverse => ({
+		field,
+		cardinality: "list",
+		edge: { slug: slug as Slug, type: "genre", name: slug } as PendingReverse["edge"],
+	});
+
+	it("accepts the committed cache/pending-reverses.json untouched (no real entry is refused)", async () => {
+		const parsed = parsePendingReverses(await readFile(resolve("cache/pending-reverses.json"), "utf8"));
+		if (!parsed.ok) throw new Error(parsed.error);
+		expect(checkPendingReversesAfterMigration(parsed.value, none)).toEqual([]);
+	});
+
+	it("refuses a key or an edge.slug naming a deleted node (a rename X->Y that left the file as it was)", () => {
+		const deleted = new Set(["genre:x"]);
+		expect(
+			checkPendingReversesAfterMigration({ "genre:x": [genreEdge("genre:a", "subgenres")] }, deleted),
+		).toEqual([expect.stringMatching(/key genre:x: names a node the migrations deleted/)]);
+		expect(
+			checkPendingReversesAfterMigration({ "genre:y": [genreEdge("genre:x", "subgenres")] }, deleted),
+		).toEqual([expect.stringMatching(/edge\.slug genre:x is a node the migrations deleted/)]);
+		expect(
+			checkPendingReversesAfterMigration({ "genre:y": [genreEdge("genre:x", "subgenres")] }, none),
+		).toEqual([]);
+	});
+
+	it("refuses an edge the target node's schema would reject, and a field the node type does not have", () => {
+		// subgenres carries genre edges only: an artist edge (or a name-less one) would make the node unwritable.
+		const wrongType = checkPendingReversesAfterMigration({ "genre:y": [pr("subgenres", "artist:a")] }, none);
+		expect(wrongType).toEqual([
+			expect.stringMatching(/genre\.subgenres edge schema.*edge\.type must be one of genre/),
+		]);
+		const noName: PendingReverse = {
+			...genreEdge("genre:a", "subgenres"),
+			edge: { slug: "genre:a", type: "genre" } as never,
+		};
+		expect(checkPendingReversesAfterMigration({ "genre:y": [noName] }, none)).toEqual([
+			expect.stringMatching(/edge schema.*name/),
+		]);
+		expect(
+			checkPendingReversesAfterMigration({ "genre:y": [genreEdge("genre:a", "members")] }, none),
+		).toEqual([expect.stringMatching(/a genre node has no edge field "members"/)]);
+		expect(
+			checkPendingReversesAfterMigration({ "genre:y": [genreEdge("genre:a", "constructor")] }, none),
+		).toEqual([expect.stringMatching(/no edge field "constructor"/)]);
 	});
 });

@@ -18,10 +18,11 @@
  *  - both files are untrusted data (the server's comes off a remote disk): a malformed one is
  *    refused, never "repaired".
  */
-import { readFile } from "node:fs/promises";
+import { lstat, readFile } from "node:fs/promises";
 import type { PendingReverse } from "../src/cache.js";
 import { isNotFoundError } from "../src/errors.js";
-import { isValidSlug } from "../src/slug.js";
+import { edgeSchemaFor } from "../src/schemas.js";
+import { isValidSlug, parseSlug } from "../src/slug.js";
 
 export type PendingReversesMap = Record<string, PendingReverse[]>;
 
@@ -31,6 +32,7 @@ export interface PendingReversesSummary {
 	repoKeys: number;
 	serverKeys: number;
 	unionKeys: number;
+	unionEntries: number;
 	/** Union keys whose target node already exists: kept, applied by NodeCache at the node's next write. */
 	keysWithExistingTarget: number;
 }
@@ -74,13 +76,21 @@ export function parsePendingReverses(raw: string): PendingReversesParse {
 }
 
 /** A missing file is an empty map (a cache that never queued a reverse); a present but malformed
- * one is an error carrying its path. */
+ * one is an error carrying its path. Only an ENOENT from `lstat` itself counts as "missing": anything
+ * that is not a regular file (a symlink -- dangling or not --, a directory) is refused, never followed
+ * (TRA-499 deep review: the server's file comes off a remote disk). */
 export async function readPendingReversesFile(path: string): Promise<PendingReversesParse> {
+	try {
+		const stat = await lstat(path);
+		if (!stat.isFile()) return { ok: false, error: `${path}: not a regular file (symlink or directory)` };
+	} catch (e) {
+		if (isNotFoundError(e)) return { ok: true, value: {} };
+		return { ok: false, error: `${path}: unreadable (${e instanceof Error ? e.message : String(e)})` };
+	}
 	let raw: string;
 	try {
 		raw = await readFile(path, "utf8");
 	} catch (e) {
-		if (isNotFoundError(e)) return { ok: true, value: {} };
 		return { ok: false, error: `${path}: unreadable (${e instanceof Error ? e.message : String(e)})` };
 	}
 	const parsed = parsePendingReverses(raw);
@@ -111,6 +121,47 @@ export function unionPendingReverses(
 	return Object.fromEntries(merged);
 }
 
+export function countPendingEntries(map: Readonly<PendingReversesMap>): number {
+	return Object.values(map).reduce((n, list) => n + list.length, 0);
+}
+
+/** Post-migration checks on a (shape-valid) map, as problem lines: no key and no `edge.slug` may name
+ * a node the migrations deleted (a rename that did not rewrite the file leaves reverses aimed at, or
+ * pointing to, a slug that no longer exists), and every `edge` must satisfy the edge schema the target
+ * node will apply to that field once the reverse lands in it -- an invalid one would make that node
+ * impossible to write in prod. */
+export function checkPendingReversesAfterMigration(
+	map: Readonly<PendingReversesMap>,
+	deletedSlugs: ReadonlySet<string>,
+): string[] {
+	const problems: string[] = [];
+	for (const [key, list] of Object.entries(map)) {
+		if (deletedSlugs.has(key)) {
+			problems.push(`key ${key}: names a node the migrations deleted (file not rewritten?)`);
+		}
+		const { type } = parseSlug(key);
+		for (const [i, entry] of list.entries()) {
+			const where = `key ${key}: entry ${i}`;
+			if (deletedSlugs.has(entry.edge.slug)) {
+				problems.push(
+					`${where}: edge.slug ${entry.edge.slug} is a node the migrations deleted (file not rewritten?)`,
+				);
+			}
+			const schema = edgeSchemaFor(type, entry.field);
+			if (!schema) {
+				problems.push(`${where}: a ${type} node has no edge field "${entry.field}"`);
+				continue;
+			}
+			const parsed = schema.safeParse(entry.edge);
+			if (!parsed.success) {
+				const issues = parsed.error.issues.map((x) => `${x.path.join(".") || "(edge)"}: ${x.message}`);
+				problems.push(`${where}: edge fails the ${type}.${entry.field} edge schema (${issues.join("; ")})`);
+			}
+		}
+	}
+	return problems;
+}
+
 export function summarizePendingReverses(
 	repo: Readonly<PendingReversesMap>,
 	server: Readonly<PendingReversesMap>,
@@ -121,6 +172,7 @@ export function summarizePendingReverses(
 		repoKeys: Object.keys(repo).length,
 		serverKeys: Object.keys(server).length,
 		unionKeys: Object.keys(union).length,
+		unionEntries: countPendingEntries(union),
 		keysWithExistingTarget: Object.keys(union).filter((key) => liveSlugs.has(key)).length,
 	};
 }
