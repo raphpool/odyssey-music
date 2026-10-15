@@ -316,7 +316,7 @@ describe("resolveReleaseGroup", () => {
 		expect(urls).toHaveLength(1);
 		expect(urls[0]?.pathname).toBe("/ws/2/release-group");
 		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"New Forms" AND artist:"Roni Size"');
-		expect(urls[0]?.searchParams.get("limit")).toBe("8");
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
 	});
 
 	it("never falls back to the first result when no title matches exactly", async () => {
@@ -583,7 +583,7 @@ describe("resolveRecording", () => {
 		});
 		expect(urls[0]?.pathname).toBe("/ws/2/recording");
 		expect(urls[0]?.searchParams.get("query")).toBe('recording:"Fitna" AND artist:"Rohff"');
-		expect(urls[0]?.searchParams.get("limit")).toBe("8");
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
 	});
 
 	it("returns null without a hint when two recordings share the exact title", async () => {
@@ -1092,5 +1092,68 @@ describe("an undated edition sorts last, not first", () => {
 		const meta = await fetchTrackMetaMb("eeeeeeee-5555-4555-8555-00000000000b");
 		expect(meta.project?.name).toBe("New Forms");
 		expect(meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+});
+
+describe("a truncated search page decides nothing", () => {
+	const MCLUSKY = "ffffffff-6666-4666-8666-000000000001";
+	const credit: [string, string][] = [[MCLUSKY, "mclusky"]];
+
+	it("is ambiguous when MB announces more matches than it sent, even if one candidate looks unique", async () => {
+		stubMb({
+			count: 13,
+			recordings: [
+				hit("ffffffff-6666-4666-8666-000000000011", "To Hell with Good Intentions", credit),
+				...Array.from({ length: 7 }, (_, i) =>
+					hit(`ffffffff-6666-4666-8666-0000000001${i}2`, "To Hell with Good Intentions", credit, {
+						disambiguation: "live",
+					}),
+				),
+			],
+		});
+		expect(await resolveRecordingDetailed("To Hell with Good Intentions", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+		});
+	});
+
+	it("is ambiguous for the whole mclusky case: an album recording and a compilation recording", async () => {
+		stubMb({
+			count: 2,
+			recordings: [
+				hit("ffffffff-6666-4666-8666-000000000021", "Icct Hedral", credit),
+				hit("ffffffff-6666-4666-8666-000000000022", "Icct Hedral", credit),
+			],
+		});
+		expect(await resolveRecordingDetailed("Icct Hedral", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+		});
+	});
+
+	it("is ambiguous for release groups too, and asks for the whole result set", async () => {
+		const urls = stubMb({
+			count: 11,
+			"release-groups": [
+				hit("ffffffff-6666-4666-8666-000000000031", "Truncated Title", credit, {
+					"first-release-date": "2002",
+				}),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Truncated Title", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+		});
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
+	});
+
+	it("resolves normally when every match was received", async () => {
+		stubMb({
+			count: 1,
+			recordings: [hit("ffffffff-6666-4666-8666-000000000041", "Complete Page", credit)],
+		});
+		expect((await resolveRecordingDetailed("Complete Page", "mclusky")).identity?.mbid).toBe(
+			"ffffffff-6666-4666-8666-000000000041",
+		);
 	});
 });

@@ -1024,6 +1024,19 @@ function luceneQuery(
 	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
 }
 
+/** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
+const WORK_SEARCH_LIMIT = "100";
+
+/**
+ * True when MB announces more matches (`count`) than the page holds. Picking among a truncated page
+ * is picking blind: the candidate left out may be the studio recording, or the earlier release
+ * (2026-10-15, TRA-474 re-review: "To Hell with Good Intentions", count 13 of 8 received, resolved to
+ * the compilation's recording in one run out of twelve).
+ */
+function isTruncated(body: unknown, received: number): boolean {
+	return isRecord(body) && typeof body.count === "number" && body.count > received;
+}
+
 /** What a resolver found: the work, or nothing; `ambiguous` tells "several look-alikes" from "none". */
 export interface MbWorkResolution {
 	identity: MbReleaseIdentity | null;
@@ -1042,8 +1055,10 @@ export async function resolveReleaseGroupDetailed(
 	const none: MbWorkResolution = { identity: null, ambiguous: false };
 	const query = luceneQuery("releasegroup", title, artistHint);
 	if (!query) return none;
-	const releaseGroups = parseReleaseGroups(await mbFetch<unknown>("/release-group", { query, limit: "8" }));
+	const body = await mbFetch<unknown>("/release-group", { query, limit: WORK_SEARCH_LIMIT });
+	const releaseGroups = parseReleaseGroups(body);
 	if (!releaseGroups) return none;
+	if (isTruncated(body, releaseGroups.length)) return { identity: null, ambiguous: true };
 	const picked = pickByTitleAndCredit(releaseGroups, title, artistHint, "release-group");
 	if (picked.kind !== "one") return { identity: null, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;
@@ -1067,8 +1082,10 @@ export async function resolveRecordingDetailed(
 	const none: MbWorkResolution = { identity: null, ambiguous: false };
 	const query = luceneQuery("recording", title, artistHint);
 	if (!query) return none;
-	const recordings = parseRecordings(await mbFetch<unknown>("/recording", { query, limit: "8" }));
+	const body = await mbFetch<unknown>("/recording", { query, limit: WORK_SEARCH_LIMIT });
+	const recordings = parseRecordings(body);
 	if (!recordings) return none;
+	if (isTruncated(body, recordings.length)) return { identity: null, ambiguous: true };
 	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording");
 	if (picked.kind !== "one") return { identity: null, ambiguous: picked.kind === "ambiguous" };
 	const rec = picked.candidate;
