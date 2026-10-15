@@ -12,7 +12,7 @@
  */
 import { musicBrainzConfig } from "./config.js";
 import { logger } from "./logger.js";
-import { normalizeSlugBody, normalizeTitleBody } from "./slug.js";
+import { normalizeSlugBody, normalizeTitleBody, stripEditionNoise } from "./slug.js";
 import type { NodeType } from "./types.js";
 
 export interface CatalogResult {
@@ -923,7 +923,9 @@ function luceneQuery(
 	artistHint: string | undefined,
 ): string | null {
 	// A title with nothing left after normalization ("!!!") can never be verified against a result.
-	const phrase = lucenePhrase(title);
+	// The phrase is built from the title minus its edition noise, keeping case and spacing: MB files
+	// "Kid A" once, so querying the full "Kid A (Deluxe Edition)" may not return it (TRA-494).
+	const phrase = lucenePhrase(stripEditionNoise(title));
 	if (!phrase || !normalizeTitleBody(title)) return null;
 	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
 	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
