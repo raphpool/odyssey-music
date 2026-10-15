@@ -6,6 +6,9 @@ import {
 	type MobileCatalogEdge,
 	type MobileCatalogNode,
 	type MobileCatalogResponse,
+	type MobileCatalogTaxonomy,
+	type MobileTaxonomyFamily,
+	type MobileTaxonomyGenre,
 } from "./contracts.js";
 
 interface MobileCatalogDependencies {
@@ -95,10 +98,68 @@ function toCatalogProjection(value: unknown): Omit<MobileCatalogResponse, "revis
 		);
 
 	return {
-		taxonomy: { mode: "degraded", available: graph.taxonomy !== undefined && graph.taxonomy !== null },
+		taxonomy: toMobileTaxonomy(graph.taxonomy),
 		nodes,
 		edges,
 	};
+}
+
+// Independent of the internal GenreTaxonomyProjection type (plan D1): copied field by field from `unknown`,
+// so `qid` and extra fields never reach a client. `order` must be an integer (the iOS decoder reads an Int).
+function toMobileTaxonomy(value: unknown): MobileCatalogTaxonomy {
+	const degraded = { mode: "degraded", available: false } as const;
+	if (!isRecord(value) || value.version !== 2) return degraded;
+	const families = mapAll(value.families, toTaxonomyFamily);
+	const genres = mapAll(value.genres, toTaxonomyGenre);
+	const legacySelectionBySlug = toSelectionTable(value.legacySelectionBySlug);
+	if (!families || !genres || !legacySelectionBySlug) return degraded;
+	return { mode: "editorial", version: 2, families, genres, legacySelectionBySlug };
+}
+
+function toTaxonomyFamily(value: unknown): MobileTaxonomyFamily | null {
+	if (!isRecord(value)) return null;
+	const { key, label, order, slug } = value;
+	if (typeof key !== "string" || typeof label !== "string") return null;
+	if (typeof order !== "number" || !Number.isInteger(order)) return null;
+	if (slug === undefined) return { key, label, order };
+	return isGenreSlug(slug) ? { key, label, order, slug } : null;
+}
+
+function toTaxonomyGenre(value: unknown): MobileTaxonomyGenre | null {
+	if (!isRecord(value)) return null;
+	const { id, name, family, slugs } = value;
+	if (typeof id !== "string" || typeof name !== "string" || typeof family !== "string") return null;
+	if (!Array.isArray(slugs) || !slugs.every(isGenreSlug)) return null;
+	return { id, name, family, slugs: [...slugs] };
+}
+
+function toSelectionTable(value: unknown): Record<string, string[]> | null {
+	if (!isRecord(value)) return null;
+	const table: Record<string, string[]> = {};
+	for (const [slug, ids] of Object.entries(value)) {
+		if (!isGenreSlug(slug) || !Array.isArray(ids) || !ids.every((id) => typeof id === "string")) return null;
+		table[slug] = [...ids];
+	}
+	return table;
+}
+
+function mapAll<T>(value: unknown, convert: (item: unknown) => T | null): T[] | null {
+	if (!Array.isArray(value)) return null;
+	const items: T[] = [];
+	for (const entry of value) {
+		const item = convert(entry);
+		if (item === null) return null;
+		items.push(item);
+	}
+	return items;
+}
+
+function isGenreSlug(value: unknown): value is string {
+	return typeof value === "string" && value.startsWith("genre:") && isValidMobileIdentity(value);
+}
+
+function isRecord(value: unknown): value is UnknownRecord {
+	return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function toMobileNode(value: unknown): MobileCatalogNode | null {
@@ -134,7 +195,7 @@ function isValidMobileIdentity(value: string): boolean {
 }
 
 function record(value: unknown): UnknownRecord {
-	return typeof value === "object" && value !== null && !Array.isArray(value) ? (value as UnknownRecord) : {};
+	return isRecord(value) ? value : {};
 }
 
 function array(value: unknown): unknown[] {
