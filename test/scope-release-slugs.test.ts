@@ -951,6 +951,362 @@ describe("scope-release-slugs migration", () => {
 		});
 	});
 
+	describe("the invariant: no edge resolves to a node of another identity", () => {
+		// An oracle written apart from the script. A node is (name, mbid); an edge is followed by (name, mbid).
+		const foldName = (s: string): string =>
+			s
+				.normalize("NFKD")
+				.replace(/[̀-ͯ]/g, "")
+				.trim()
+				.toLowerCase()
+				.replace(/[æœßþ]/g, (c) => ({ æ: "ae", œ: "oe", ß: "ss", þ: "th" })[c] as string);
+		const keyOf = (n: Obj): string => `${n.name}|${n.mbid ?? ""}`;
+		const isObj = (v: unknown): v is Obj => typeof v === "object" && v !== null && !Array.isArray(v);
+		const edgesOf = (n: Obj, field: string): Obj[] =>
+			([] as unknown[])
+				.concat(n[field])
+				.filter((e): e is Obj => isObj(e) && typeof e.slug === "string" && typeof e.type === "string");
+
+		async function loadAll(): Promise<{ nodes: Map<string, Obj>; unreadable: Set<string> }> {
+			const nodes = new Map<string, Obj>();
+			const unreadable = new Set<string>();
+			for (const type of await readdir(join(cacheDir, "nodes")).catch(() => [])) {
+				for (const file of await readdir(join(cacheDir, "nodes", type)).catch(() => [])) {
+					const slug = `${type}:${file.replace(/\.json$/, "")}`;
+					try {
+						nodes.set(slug, JSON.parse(await readFile(join(cacheDir, "nodes", type, file), "utf8")) as Obj);
+					} catch {
+						unreadable.add(slug);
+					}
+				}
+			}
+			return { nodes, unreadable };
+		}
+
+		/** Edges of the migrated cache that resolve to a node other than the one they cited, and do not describe it. */
+		async function crossIdentity(before: Map<string, Obj>): Promise<string[]> {
+			const { nodes: after, unreadable } = await loadAll();
+			const byKey = new Map([...after.values()].map((n) => [keyOf(n), n]));
+			const out: string[] = [];
+			for (const n0 of before.values()) {
+				const n1 = byKey.get(keyOf(n0));
+				if (!n1) continue;
+				for (const field of Object.keys(n0)) {
+					for (const e0 of edgesOf(n0, field)) {
+						const e1 = edgesOf(n1, field).find(
+							(e) => e.name === e0.name && (e.mbid === e0.mbid || e.mbid === undefined),
+						);
+						if (!e1) continue;
+						const slug = e1.slug as string;
+						if (unreadable.has(slug) && slug !== e0.slug)
+							out.push(`${n0.slug}.${field} -> unreadable ${slug}`);
+						const r1 = after.get(slug);
+						if (!r1) continue;
+						const r0 = before.get(e0.slug as string);
+						if (r0 && keyOf(r0) === keyOf(r1)) continue;
+						const work = slug.startsWith("track:") || slug.startsWith("project:");
+						const ref = foldName(String((work ? e1.artist : e1.name) ?? ""));
+						const node = foldName(String((work ? (r1.artists as Obj[])[0]?.name : r1.name) ?? ""));
+						const clash = e1.mbid !== undefined && r1.mbid !== undefined && e1.mbid !== r1.mbid;
+						const detached = work && e1.artist === n1.name && e1.slug !== e0.slug;
+						const creditMbid = work ? ((r1.artists as Obj[])[0]?.mbid as string | undefined) : undefined;
+						const creditClash =
+							detached && creditMbid !== undefined && n1.mbid !== undefined && creditMbid !== n1.mbid;
+						if (ref === "" || ref !== node || clash || creditClash) {
+							out.push(`${n0.slug}.${field} (${String(e0.name)}) -> ${slug} (${String(r1.name)})`);
+						}
+					}
+				}
+			}
+			return out;
+		}
+
+		/** Run --apply; a refusal writes nothing, a success leaves no cross-identity edge. Returns the exit code. */
+		async function applySafely(): Promise<{ exitCode: number; manifest: Manifest }> {
+			const { nodes: before } = await loadAll();
+			const snapshot = await tree(cacheDir);
+			const result = await run(true);
+			if (result.exitCode !== 0) {
+				expect(await tree(cacheDir), "a refused run writes nothing").toEqual(snapshot);
+			} else {
+				expect(await crossIdentity(before)).toEqual([]);
+			}
+			return result;
+		}
+
+		const a = (slug: string, name: string, mbid?: string, fields: Obj = {}): Obj =>
+			node(slug, name, { ...(mbid ? { mbid } : {}), ...fields });
+
+		const attacks: [string, () => Promise<void>][] = [
+			[
+				"P1 node MØ(B) renamed onto node Mo(A)",
+				() =>
+					seed([
+						a("artist:m", "MØ", MBID_B),
+						a("artist:mo", "Mo", MBID_A),
+						a("artist:x", "X", undefined, { collaborators: [ref("artist:m", "MØ")] }),
+					]),
+			],
+			[
+				"P2 dangling 'MØ'(B) refs -> node Mo(A)",
+				() =>
+					seed([
+						a("artist:mo", "Mo", MBID_A),
+						a("artist:x", "X", undefined, { collaborators: [ref("artist:m", "MØ", { mbid: MBID_B })] }),
+					]),
+			],
+			[
+				"P3 pending key vs node Mo(A)",
+				() =>
+					seed(
+						[
+							a("artist:mo", "Mo", MBID_A),
+							a("artist:x", "X", undefined, { collaborators: [ref("artist:m", "MØ", { mbid: MBID_B })] }),
+						],
+						{ "artist:m": [{ field: "collaborators", cardinality: "list", edge: ref("artist:x", "X") }] },
+					),
+			],
+			[
+				"P4a detach onto a node credited to someone else",
+				() =>
+					seed([
+						a("track:fitna", "Fitna", undefined, { artists: credit("artist:akuma", "Akuma") }),
+						a("track:fitna--rohff", "Fitna", MBID_B, {
+							artists: credit("artist:other", "Other", { mbid: MBID_B }),
+						}),
+						a("artist:rohff", "Rohff", MBID_A, { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					]),
+			],
+			[
+				"P4b detach onto a node, same credit name, other artist mbid",
+				() =>
+					seed([
+						a("track:fitna", "Fitna", undefined, { artists: credit("artist:akuma", "Akuma") }),
+						a("track:fitna--rohff", "Fitna", MBID_B, {
+							artists: credit("artist:rohff-2", "Rohff", { mbid: MBID_B }),
+						}),
+						a("artist:rohff", "Rohff", MBID_A, { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					]),
+			],
+			[
+				"P4c detach onto a node with no credit",
+				() =>
+					seed([
+						a("track:fitna", "Fitna", undefined, { artists: credit("artist:akuma", "Akuma") }),
+						a("track:fitna--rohff", "Fitna", MBID_B),
+						a("artist:rohff", "Rohff", MBID_A, { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					]),
+			],
+			[
+				"P4d detach onto a rename destination credited to another artist",
+				() =>
+					seed([
+						a("track:song", "Song", MBID_B, { artists: credit("artist:m", "MØ", { mbid: MBID_B }) }),
+						a("artist:m", "MØ", MBID_B),
+						a("artist:mo", "Mo", MBID_A, { notable_tracks: [ref("track:song", "Song")] }),
+					]),
+			],
+			[
+				"P5 existing redirect artist:m -> artist:mo applied to 'MØ' edges",
+				async () => {
+					await seed([
+						a("artist:mo", "Mo", MBID_A),
+						a("artist:x", "X", undefined, { collaborators: [ref("artist:m", "MØ", { mbid: MBID_B })] }),
+					]);
+					await mkdir(dirname(redirectsPath), { recursive: true });
+					await writeFile(redirectsPath, JSON.stringify({ redirects: { "artist:m": "artist:mo" } }));
+				},
+			],
+			[
+				"6a node MØ(B) renamed onto a slug already cited by 'Mo'(A) refs",
+				() =>
+					seed([
+						a("artist:m", "MØ", MBID_B),
+						a("artist:x", "X", undefined, { collaborators: [ref("artist:mo", "Mo", { mbid: MBID_A })] }),
+					]),
+			],
+			[
+				"6a' work renamed onto a scoped slug already cited with another mbid",
+				() =>
+					seed([
+						a("track:echo", "Echo", MBID_A, { artists: credit("artist:a", "A") }),
+						a("artist:x", "X", undefined, {
+							notable_tracks: [ref("track:echo--a", "Echo", { artist: "A", mbid: MBID_B })],
+						}),
+					]),
+			],
+			[
+				"6b dangling 'Yalnızlık'(B) refs -> destination of a rename",
+				() =>
+					seed([
+						a("track:yalnizlik", "Yalnizlik", MBID_A, { artists: credit("artist:cem-adrian", "Cem Adrian") }),
+						a("artist:x", "X", undefined, {
+							notable_tracks: [
+								ref("track:yaln-zl-k--cem-adrian", "Yalnızlık", { artist: "Cem Adrian", mbid: MBID_B }),
+							],
+						}),
+					]),
+			],
+			[
+				"6c dangling 'MØ' refs -> unreadable artist:mo",
+				async () => {
+					await seed([
+						a("artist:x", "X", undefined, { collaborators: [ref("artist:m", "MØ", { mbid: MBID_B })] }),
+					]);
+					await writeFile(nodePath("artist:mo"), "<<<<<<< HEAD\n{}\n=======\n");
+				},
+			],
+			[
+				"6d dangling 'MØ'(B) refs -> slug cited by dangling 'Mo'(A) refs",
+				() =>
+					seed([
+						a("artist:x", "X", undefined, {
+							collaborators: [
+								ref("artist:m", "MØ", { mbid: MBID_B }),
+								ref("artist:mo", "Mo", { mbid: MBID_A }),
+							],
+						}),
+					]),
+			],
+		];
+
+		it.each(attacks)("attack %s: refused, or safe", async (_label, build) => {
+			await build();
+			await applySafely();
+		});
+
+		it("refuses the attacks that attach a stranger (exit 2, the violation listed)", async () => {
+			await seed([
+				a("artist:m", "MØ", MBID_B),
+				a("artist:x", "X", undefined, { collaborators: [ref("artist:mo", "Mo", { mbid: MBID_A })] }),
+			]);
+			const dry = await run(false);
+			expect(dry.exitCode).toBe(1);
+			expect(dry.manifest.invariantViolations).toMatchObject([
+				{ node: "artist:x", field: "collaborators", from: "artist:mo", to: "artist:mo" },
+			]);
+			const applied = await run(true);
+			expect(applied.exitCode).toBe(2);
+			expect(await exists("artist:m")).toBe(true);
+		});
+
+		it("holds on 300 random small caches (fixed seed), and a success is idempotent", async () => {
+			let state = 0x2f6e2b1;
+			const rand = (): number => {
+				state = (state + 0x6d2b79f5) | 0;
+				let x = Math.imul(state ^ (state >>> 15), 1 | state);
+				x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x;
+				return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+			};
+			const pick = <T>(xs: readonly T[]): T => xs[Math.floor(rand() * xs.length)] as T;
+			const legacy = (name: string): string =>
+				name
+					.normalize("NFKD")
+					.replace(/[̀-ͯ]/g, "")
+					.toLowerCase()
+					.replace(/[^a-z0-9]+/g, "-")
+					.replace(/^-+|-+$/g, "");
+			const modern = (name: string): string =>
+				legacy(
+					name
+						.normalize("NFKD")
+						.replace(/[̀-ͯ]/g, "")
+						.toLowerCase()
+						.replace(
+							/[øłæœßþ]/g,
+							(c) => ({ ø: "o", ł: "l", æ: "ae", œ: "oe", ß: "ss", þ: "th" })[c] as string,
+						),
+				);
+			const MBID_C = "45e00f0f-0000-4000-8000-000000000006";
+			const MBID_D = "45e00f0f-0000-4000-8000-000000000007";
+			const MBID_E = "45e00f0f-0000-4000-8000-000000000008";
+			// One mbid, one person: homonyms differ by mbid, and a name may also come without any.
+			const entities: { name: string; mbid?: string }[] = [
+				{ name: "Mo" },
+				{ name: "Mo", mbid: MBID_A },
+				{ name: "MØ", mbid: MBID_B },
+				{ name: "MØ" },
+				{ name: "Lætitia Sadier" },
+				{ name: "Laetitia Sadier", mbid: MBID_C },
+				{ name: "Łona", mbid: MBID_D },
+				{ name: "Lona" },
+				{ name: "Zoë" },
+				{ name: "Zoe", mbid: MBID_E },
+			];
+			let succeeded = 0;
+			let refused = 0;
+			for (let i = 0; i < 300; i++) {
+				await rm(cacheDir, { recursive: true, force: true });
+				await rm(redirectsPath, { force: true });
+				await mkdir(join(cacheDir, "nodes"), { recursive: true });
+				const nodes: Obj[] = [];
+				const taken = new Set<string>();
+				for (const e of entities) {
+					if (rand() < 0.45) continue;
+					const slug = `artist:${legacy(e.name)}`;
+					if (taken.has(slug) || legacy(e.name) === "") continue;
+					taken.add(slug);
+					nodes.push(a(slug, e.name, e.mbid));
+				}
+				const works: Obj[] = [];
+				for (const title of ["Song", "Fitna"]) {
+					if (rand() < 0.5) continue;
+					const e = pick(entities);
+					works.push(
+						a(`track:${legacy(title)}`, title, rand() < 0.4 ? MBID_A : undefined, {
+							artists: credit(`artist:${legacy(e.name)}`, e.name, e.mbid ? { mbid: e.mbid } : {}),
+						}),
+					);
+				}
+				for (const n of nodes) {
+					const refs: Obj[] = [];
+					for (let k = Math.floor(rand() * 3); k > 0; k--) {
+						const e = pick(entities);
+						if (legacy(e.name) !== "")
+							refs.push(
+								ref(`artist:${legacy(e.name)}`, e.name, e.mbid && rand() < 0.6 ? { mbid: e.mbid } : {}),
+							);
+					}
+					n.collaborators = refs;
+					if (works.length > 0 && rand() < 0.5) {
+						const w = pick(works);
+						const hint = rand() < 0.5 ? pick(entities).name : undefined;
+						n.notable_tracks = [
+							ref(w.slug as string, w.name as string, {
+								...(hint ? { artist: hint } : {}),
+								...(rand() < 0.3 ? { mbid: MBID_B } : {}),
+							}),
+						];
+					}
+				}
+				await seed([...nodes, ...works]);
+				if (rand() < 0.15) {
+					const e = pick(entities);
+					const slug = `artist:${modern(e.name)}`;
+					if (modern(e.name) !== "" && !taken.has(slug)) {
+						await mkdir(dirname(nodePath(slug)), { recursive: true });
+						await writeFile(nodePath(slug), "<<<<<<< conflict");
+					}
+				}
+				const result = await applySafely();
+				if (result.exitCode === 0) {
+					succeeded++;
+					const again = await run(true);
+					expect(
+						again.exitCode,
+						`case ${i} second run ${JSON.stringify([again.manifest.errors, again.manifest.invariantViolations, again.manifest.conflicts])}`,
+					).toBe(0);
+					expect(again.manifest.written, `case ${i} second run`).toBe(0);
+				} else {
+					refused++;
+				}
+			}
+			console.info(`property test: ${succeeded} applied, ${refused} refused, of 300`);
+			expect(succeeded).toBeGreaterThan(30);
+			expect(refused).toBeGreaterThan(5);
+		});
+	});
+
 	describe("parseCliArgs", () => {
 		it("defaults to the contract's manifest paths and a dry-run", () => {
 			expect(parseCliArgs(["cache"])).toEqual({
