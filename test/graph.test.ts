@@ -107,6 +107,29 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 	});
 });
 
+describe("toVizNode — EdgeRef.artist survives projection (TRA-451)", () => {
+	it("keeps artist on projected edges and does not leak artist_kind", () => {
+		const discography: EdgeRef[] = [
+			{
+				slug: "project:new-forms--roni-size-reprazent",
+				type: "project",
+				name: "New Forms",
+				artist: "Roni Size / Reprazent",
+			},
+		];
+		const group = artistNode({
+			slug: "artist:roni-size-reprazent",
+			name: "Roni Size / Reprazent",
+			artist_kind: "group",
+			discography,
+		});
+		const viz = toVizNode(group, {});
+		const projected = viz.edges.discography as EdgeRef[];
+		expect(projected[0]?.artist).toBe("Roni Size / Reprazent");
+		expect("artist_kind" in viz).toBe(false);
+	});
+});
+
 describe("buildGraphFromCache — genre qid reaches the exported graph (TRA-19)", () => {
 	it("keeps the node qid through the full cache-to-graph pipeline", async () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:acid", name: "Acid", qid: "Q170611" }));
@@ -143,6 +166,42 @@ describe("buildGraphFromCache — genre redirects reach the exported graph (TRA-
 		await expect(buildGraphFromCache(dir, { redirectsPath })).rejects.toThrow(
 			/appears as both key and value/,
 		);
+	});
+});
+
+describe("buildGraphFromCache — slug redirects reach the exported graph (TRA-453)", () => {
+	it("merges a track entry from slug-redirects.json with the genre table", async () => {
+		const redirectsPath = join(dir, "redirects.json");
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }),
+			"utf8",
+		);
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, { redirectsPath, slugRedirectsPath });
+		expect(graph.redirects).toEqual({
+			"genre:electronic-music": "genre:electronic",
+			"track:fitna": "track:fitna--rohff",
+		});
+	});
+
+	it("emits the track entry when only slug-redirects.json has content", async () => {
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, {
+			redirectsPath: join(dir, "missing.json"),
+			slugRedirectsPath,
+		});
+		expect(graph.redirects).toEqual({ "track:fitna": "track:fitna--rohff" });
 	});
 });
 

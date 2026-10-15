@@ -9,7 +9,9 @@ import {
 	type GenreRedirects,
 	type GenreRegistry,
 	loadGenreRedirects,
+	loadRedirects,
 	parseGenreRedirects,
+	parseSlugRedirects,
 	resolveReadSlug,
 } from "../src/genre-registry.js";
 import type { ArtistNode, EdgeRef, GenreNode, Slug } from "../src/types.js";
@@ -456,6 +458,122 @@ describe("loadGenreRedirects", () => {
 		);
 		const present = await loadGenreRedirects(path);
 		expect(present).toEqual(new Map([["genre:electronic-music", "genre:electronic"]]));
+	});
+});
+
+describe("parseSlugRedirects (TRA-453)", () => {
+	it("parses a table mixing node types, ignoring provenance fields", () => {
+		const result = parseSlugRedirects({
+			source: "release slug scoping",
+			generated_at: "2026-10-14T00:00:00.000Z",
+			redirects: {
+				"track:fitna": "track:fitna--rohff",
+				"project:untitled": "project:untitled--kendrick-lamar",
+				"genre:electronic-music": "genre:electronic",
+			},
+		});
+
+		expect(result).toEqual(
+			new Map([
+				["track:fitna", "track:fitna--rohff"],
+				["project:untitled", "project:untitled--kendrick-lamar"],
+				["genre:electronic-music", "genre:electronic"],
+			]),
+		);
+	});
+
+	it("parses the empty table", () => {
+		expect(parseSlugRedirects({ redirects: {} }).size).toBe(0);
+	});
+
+	it("rejects a key or value that isn't a valid slug", () => {
+		expect(() => parseSlugRedirects({ redirects: { "not-a-slug": "track:b" } })).toThrow(/not a slug/);
+		expect(() => parseSlugRedirects({ redirects: { "track:a": "not-a-slug" } })).toThrow(/not a slug/);
+	});
+
+	it("rejects a redirect that changes node type", () => {
+		expect(() => parseSlugRedirects({ redirects: { "track:a": "project:b" } })).toThrow(/type mismatch/);
+	});
+
+	it("rejects a table that isn't flattened", () => {
+		expect(() => parseSlugRedirects({ redirects: { "track:a": "track:b", "track:b": "track:c" } })).toThrow(
+			/not flattened/,
+		);
+	});
+});
+
+describe("loadRedirects (TRA-453)", () => {
+	it("returns the union of the genre and slug files", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		const slug = join(dir, "slug-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }));
+		await writeFile(slug, JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }));
+
+		const result = await loadRedirects({ genre, slug });
+
+		expect(result).toEqual(
+			new Map([
+				["genre:electronic-music", "genre:electronic"],
+				["track:fitna", "track:fitna--rohff"],
+			]),
+		);
+	});
+
+	it("treats an absent file as an empty table on either side", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		const slug = join(dir, "slug-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }));
+
+		expect(await loadRedirects({ genre, slug })).toEqual(
+			new Map([["genre:electronic-music", "genre:electronic"]]),
+		);
+		expect((await loadRedirects({ genre: join(dir, "nope.json"), slug: join(dir, "nope2.json") })).size).toBe(
+			0,
+		);
+	});
+
+	it("throws on a key present in both files", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		const slug = join(dir, "slug-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }));
+		await writeFile(slug, JSON.stringify({ redirects: { "genre:electronic-music": "genre:electro" } }));
+
+		await expect(loadRedirects({ genre, slug })).rejects.toThrow(
+			/"genre:electronic-music" is present in both/,
+		);
+	});
+
+	it("throws when the slug file holds a type mismatch or a chain", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		const slug = join(dir, "slug-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: {} }));
+
+		await writeFile(slug, JSON.stringify({ redirects: { "track:a": "project:b" } }));
+		await expect(loadRedirects({ genre, slug })).rejects.toThrow(/type mismatch/);
+
+		await writeFile(slug, JSON.stringify({ redirects: { "track:a": "track:b", "track:b": "track:c" } }));
+		await expect(loadRedirects({ genre, slug })).rejects.toThrow(/not flattened/);
+	});
+
+	it("throws when a slug-file genre entry chains onto a genre-file key", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		const slug = join(dir, "slug-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: { "genre:b": "genre:c" } }));
+		await writeFile(slug, JSON.stringify({ redirects: { "genre:a": "genre:b" } }));
+
+		await expect(loadRedirects({ genre, slug })).rejects.toThrow(/not flattened/);
+	});
+
+	it("still enforces the genre-only rule on genre-redirects.json", async () => {
+		const genre = join(dir, "genre-redirects.json");
+		await writeFile(genre, JSON.stringify({ redirects: { "track:a": "track:b" } }));
+
+		await expect(loadRedirects({ genre, slug: join(dir, "absent.json") })).rejects.toThrow();
+	});
+
+	it("loads the committed default files without error", async () => {
+		const result = await loadRedirects();
+		expect(result.size).toBeGreaterThan(0);
 	});
 });
 

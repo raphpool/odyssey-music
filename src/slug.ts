@@ -45,6 +45,38 @@ export function makeSlug(type: NodeType, name: string, disambiguator?: string): 
 	return `${type}:${body}` as Slug;
 }
 
+/**
+ * Identity of a work (project/track) is `<title>--<primary artist>` (graph-integrity plan, decision 1):
+ * two works sharing a title stay distinct, and the artist is part of the slug rather than a
+ * best-effort disambiguator. Unlike makeSlug, an empty scope is an error, not a silent fallback to an
+ * unscoped slug -- that fallback is exactly how colliding titles got merged.
+ */
+export function makeScopedSlug(type: "project" | "track", title: string, artistName: string): Slug {
+	const titleBody = normalizeSlugBody(title);
+	const artistBody = normalizeSlugBody(artistName);
+	if (!titleBody || !artistBody) {
+		throw new Error(
+			`Cannot build a scoped slug for ${type} from title "${title}" and artist "${artistName}"`,
+		);
+	}
+	return `${type}:${titleBody}--${artistBody}` as Slug;
+}
+
+// normalizeSlugBody collapses every non-alphanumeric run to a single dash, so "--" can only come from
+// a scope separator, never from the name itself.
+const SCOPE_SEPARATOR = "--";
+
+export function isScopedSlug(slug: Slug): boolean {
+	return scopeOf(slug) !== null;
+}
+
+/** The normalized primary-artist part of a scoped slug, or null when the slug is unscoped. */
+export function scopeOf(slug: Slug): string | null {
+	const body = slug.slice(slug.indexOf(":") + 1);
+	const idx = body.indexOf(SCOPE_SEPARATOR);
+	return idx < 0 ? null : body.slice(idx + SCOPE_SEPARATOR.length);
+}
+
 export function parseSlug(slug: string): { type: NodeType; body: string } {
 	const idx = slug.indexOf(":");
 	if (idx < 0) {

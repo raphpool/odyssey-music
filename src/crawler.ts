@@ -2,7 +2,7 @@ import { NodeCache } from "./cache.js";
 import { isSameEntityName } from "./entity-name.js";
 import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
-import { createGenreRegistry, type GenreRegistry, loadGenreRedirects } from "./genre-registry.js";
+import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
 import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import {
@@ -173,7 +173,7 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	const cache = new NodeCache(opts.out);
 	// TRA-28: built on this crawl's own cache, not a new one, so genre canonicalization sees
 	// the same nodes this run has already written (see PipelineDeps.genreRegistry, pipeline.ts).
-	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadRedirects()]);
 	const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 	const strategy: FrontierStrategy = opts.strategy ?? "hybrid";
 	const frontier = new FrontierQueue(strategy, opts.bfsHead ?? 40);
@@ -668,7 +668,7 @@ async function preserveLiveNeighbors(
 
 async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Promise<GenreRegistry> {
 	if (injected) return injected;
-	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadRedirects()]);
 	return createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 }
 

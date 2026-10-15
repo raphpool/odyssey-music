@@ -2,7 +2,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
-import { loadGenreRedirects } from "./genre-registry.js";
+import { loadRedirects } from "./genre-registry.js";
 import { loadGenreTaxonomy } from "./genre-taxonomy.js";
 import { type GenreTaxonomyProjection, projectGenreTaxonomy } from "./genre-taxonomy-projection.js";
 import { logger } from "./logger.js";
@@ -85,6 +85,8 @@ export interface BuildGraphOptions {
 	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
 	// own `path` param — test-only injection point (TRA-23, 2026-09-10).
 	redirectsPath?: string;
+	// Same, for data/slug-redirects.json (TRA-453: the all-types table loaded next to the genre one).
+	slugRedirectsPath?: string;
 	// Projects data/genre-taxonomy.json onto this graph (TRA-134). Unset (default) skips it
 	// entirely, so callers that don't ask for it see no behavior change. A taxonomy file that's
 	// genuinely absent is always a silent no-op in both modes -- the two modes only differ on a
@@ -141,7 +143,7 @@ export async function buildGraphFromCache(
 		}
 	}
 
-	const redirects = await loadGenreRedirects(options.redirectsPath);
+	const redirects = await loadRedirects({ genre: options.redirectsPath, slug: options.slugRedirectsPath });
 
 	const types: Record<string, number> = {};
 	for (const node of nodes) types[node.type] = (types[node.type] ?? 0) + 1;
