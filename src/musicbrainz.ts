@@ -947,6 +947,16 @@ function creditKey(name: string): string {
 	return body.startsWith("the-") ? body.slice(4) : body;
 }
 
+/**
+ * True when two artist names are the same artist under creditKey: the one equality rule of the credit
+ * step, shared with the backfill's downstream confirmation (TRA-539) so that a single rule exists.
+ * Never containment; two names that reduce to nothing are not equal.
+ */
+export function sameCreditName(a: string, b: string): boolean {
+	const ka = creditKey(a);
+	return ka !== "" && ka === creditKey(b);
+}
+
 /** Names of the credited artist's aliases, from an untrusted search hit: anything that is not a name is dropped. */
 function aliasNames(entry: MbArtistCreditEntry): string[] {
 	const aliases = entry.artist?.aliases;
@@ -1019,6 +1029,30 @@ function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): bool
 	});
 }
 
+/**
+ * True when one of the credited artists carries one of the accepted MBIDs. MBIDs only: a name is never
+ * enough here (TRA-539); the caller got these from a source it trusts (the artist's MB memberships).
+ */
+function creditCarriesMbid(entries: MbArtistCreditEntry[], accepted: ReadonlySet<string>): boolean {
+	return entries.some((e) => typeof e.artist?.id === "string" && accepted.has(e.artist.id.toLowerCase()));
+}
+
+/** Options of the detailed work resolvers. */
+export interface WorkResolveOptions {
+	/**
+	 * MBIDs of credited artists that stand for the requested artist, in addition to the equality of names:
+	 * the bands the artist is a member of (Roni Size is credited as "Roni Size / Reprazent"). Accepted by
+	 * MBID only. A title that has one candidate credited to the artist by name AND another credited to such
+	 * a band is `ambiguous`, never resolved to the direct one: the two may be the original and a duplicate
+	 * ("Uoon II").
+	 */
+	acceptCreditMbids?: readonly string[];
+}
+
+function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
+	return new Set((options.acceptCreditMbids ?? []).map((m) => m.toLowerCase()));
+}
+
 type Pick<T> = { kind: "one"; candidate: T } | { kind: "none" } | { kind: "ambiguous" };
 
 /** True when `a` is a strictly earlier date than `b`: "1999" is not earlier than "1999-05-03" (same year). */
@@ -1062,6 +1096,7 @@ function pickByTitleAndCredit<
 	title: string,
 	artistHint: string | undefined,
 	kind: "release-group" | "recording",
+	acceptedMbids: ReadonlySet<string> = new Set(),
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1072,7 +1107,15 @@ function pickByTitleAndCredit<
 	// TRA-537), which would take the lone exact-title candidate whatever its credit.
 	if (hasHint && hint === "") return { kind: "none" };
 	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
-	const pool = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	const direct = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
+	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
+	const viaGroup =
+		hasHint && acceptedMbids.size > 0
+			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
+			: [];
+	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
+	const pool = direct.length > 0 ? direct : viaGroup;
 	if (pool.length === 0) return { kind: "none" };
 	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
 	// An exact-title candidate set aside because its credit is a group or duo that NAMES the artist
@@ -1156,6 +1199,7 @@ export interface MbWorkResolution {
 export async function resolveReleaseGroupDetailed(
 	title: string,
 	artistHint?: string,
+	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("releasegroup", title, artistHint);
@@ -1166,7 +1210,13 @@ export async function resolveReleaseGroupDetailed(
 	// gives null for JSON off schema. All four are an outage, not a verdict.
 	if (!releaseGroups) return { ...none, unavailable: true };
 	if (isTruncated(body, releaseGroups.length)) return { ...none, ambiguous: true };
-	const picked = pickByTitleAndCredit(releaseGroups, title, artistHint, "release-group");
+	const picked = pickByTitleAndCredit(
+		releaseGroups,
+		title,
+		artistHint,
+		"release-group",
+		acceptedMbidSet(options),
+	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;
 	return {
@@ -1186,6 +1236,7 @@ export async function resolveReleaseGroupDetailed(
 export async function resolveRecordingDetailed(
 	title: string,
 	artistHint?: string,
+	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("recording", title, artistHint);
@@ -1194,7 +1245,7 @@ export async function resolveRecordingDetailed(
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
 	if (isTruncated(body, recordings.length)) return { ...none, ambiguous: true };
-	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording");
+	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording", acceptedMbidSet(options));
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rec = picked.candidate;
 	return {
