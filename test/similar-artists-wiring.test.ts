@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { CacheIndex } from "../src/cache-index.js";
 import { listenBrainzConfig } from "../src/config.js";
-import { makeSimilarArtistsResolver } from "../src/similar-artists-wiring.js";
+import { makeExpiringCacheIndex, makeSimilarArtistsResolver } from "../src/similar-artists-wiring.js";
 import type { ArtistNode, EdgeRef, Slug } from "../src/types.js";
 
 // TRA-480: the resolver handed to the pipeline. ListenBrainz is a stubbed fetch; the cache is a real
@@ -107,6 +107,22 @@ describe("makeSimilarArtistsResolver (TRA-480)", () => {
 
 		expect(edges.map((e) => e.slug)).toEqual(["artist:peer"]);
 		expect(fetch).not.toHaveBeenCalled();
+	});
+
+	it("rebuilds an expiring cache index once its ttl has passed", async () => {
+		const build = vi.fn(async () => NO_INDEX);
+		const getIndex = makeExpiringCacheIndex(build, 1_000);
+		vi.useFakeTimers();
+		try {
+			await getIndex();
+			await getIndex();
+			expect(build).toHaveBeenCalledTimes(1);
+			vi.advanceTimersByTime(1_001);
+			await getIndex();
+			expect(build).toHaveBeenCalledTimes(2);
+		} finally {
+			vi.useRealTimers();
+		}
 	});
 
 	it("returns [] on an empty cache and a ListenBrainz outage", async () => {

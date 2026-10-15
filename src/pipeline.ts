@@ -767,6 +767,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 
 // Upper bound on the similar-artists step: one ListenBrainz request (5 s) plus its rate-limit slot.
 const SIMILAR_ARTISTS_TIMEOUT_MS = 15_000;
+// Same bound as the ListenBrainz row validation (src/similar-artists.ts): the injected function is a trust boundary.
+const MAX_SIMILAR_NAME_LENGTH = 200;
 
 /**
  * TRA-480: set `similar_artists` on an artist draft. ListenBrainz data is third-party, so every edge is
@@ -802,6 +804,7 @@ async function attachSimilarArtists(
 				isValidSlug(edge.slug) &&
 				typeof edge.name === "string" &&
 				edge.name.trim() !== "" &&
+				edge.name.length <= MAX_SIMILAR_NAME_LENGTH &&
 				!seen.has(edge.slug);
 			if (!ok) {
 				dropped++;

@@ -6,7 +6,7 @@
  */
 
 import type { NodeCache } from "./cache.js";
-import type { CacheIndex } from "./cache-index.js";
+import { type CacheIndex, createCacheIndexHolder } from "./cache-index.js";
 import { logger } from "./logger.js";
 import { resolveSimilarArtists } from "./similar-artists.js";
 import type { ArtistNode, EdgeRef } from "./types.js";
@@ -15,6 +15,27 @@ const log = logger.child({ module: "similar-artists-wiring" });
 
 // A burst of materializations (a crawl) falling back to the graph shares one scan of the cache.
 const ARTIST_SCAN_TTL_MS = 60_000;
+const SCAN_CONCURRENCY = 16;
+
+/**
+ * A cache index that is rebuilt at most every `ttlMs`. For a process that writes nodes without owning an
+ * invalidation hook (the crawl CLI): a never-rebuilt index would not see the artists written meanwhile, and
+ * `resolveSimilarArtists` would then mint a bare slug for a candidate already cached under a disambiguated one.
+ */
+export function makeExpiringCacheIndex(
+	build: () => Promise<CacheIndex>,
+	ttlMs: number = ARTIST_SCAN_TTL_MS,
+): () => Promise<CacheIndex> {
+	const holder = createCacheIndexHolder(build);
+	let builtAt = Date.now();
+	return () => {
+		if (Date.now() - builtAt >= ttlMs) {
+			holder.invalidate();
+			builtAt = Date.now();
+		}
+		return holder.get();
+	};
+}
 
 export function makeSimilarArtistsResolver(deps: {
 	cache: Pick<NodeCache, "get" | "listSlugs">;
@@ -29,15 +50,25 @@ export function makeSimilarArtistsResolver(deps: {
 		const now = Date.now();
 		if (scan && now - scan.at < ARTIST_SCAN_TTL_MS) return scan.artists;
 		const artists = (async () => {
+			const slugs = (await deps.cache.listSlugs()).filter((slug) => slug.startsWith("artist:"));
 			const out: ArtistNode[] = [];
-			for (const slug of await deps.cache.listSlugs()) {
-				if (!slug.startsWith("artist:")) continue;
-				try {
-					const node = await deps.cache.get(slug);
-					if (node.type === "artist") out.push(node);
-				} catch (e) {
-					log.warn("unreadable artist skipped", { slug, error: e instanceof Error ? e.message : String(e) });
-				}
+			// Bounded concurrency: a cache of thousands of artists must not be read one file at a time.
+			for (let i = 0; i < slugs.length; i += SCAN_CONCURRENCY) {
+				const read = await Promise.all(
+					slugs.slice(i, i + SCAN_CONCURRENCY).map(async (slug) => {
+						try {
+							const node = await deps.cache.get(slug);
+							return node.type === "artist" ? node : null;
+						} catch (e) {
+							log.warn("unreadable artist skipped", {
+								slug,
+								error: e instanceof Error ? e.message : String(e),
+							});
+							return null;
+						}
+					}),
+				);
+				for (const node of read) if (node) out.push(node);
 			}
 			return out;
 		})();

@@ -112,6 +112,23 @@ describe("similar_artists at materialization (TRA-480)", () => {
 	);
 
 	it(
+		"drops an edge whose name is oversized instead of failing the node",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const runPipeline = await loadRunPipeline();
+			const good = edge("Alpha");
+
+			const result = await runPipeline(INPUT, {
+				...DEPS,
+				similarArtists: async () => [edge("x".repeat(201)), good],
+			});
+
+			expect((result.node as ArtistNode).similar_artists).toEqual([good]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
 		"keeps at most 10 edges",
 		async () => {
 			installPipelineMocks({ draft: artistDraftFixture() });

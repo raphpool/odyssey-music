@@ -3,7 +3,7 @@ import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Command } from "commander";
 import { NodeCache } from "./cache.js";
-import { buildCacheIndex, createCacheIndexHolder } from "./cache-index.js";
+import { buildCacheIndex } from "./cache-index.js";
 import { cliConfig } from "./config.js";
 import {
 	backfillSeedGenres,
@@ -19,7 +19,7 @@ import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } f
 import { resolveImage } from "./images/resolve-image.js";
 import { logger } from "./logger.js";
 import type { PipelineDeps } from "./pipeline.js";
-import { makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
+import { makeExpiringCacheIndex, makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
 
 export const program = new Command();
 const log = logger.child({ module: "cli" });
@@ -72,13 +72,13 @@ export function buildCrawlDeps(
 			? {}
 			: { resolveImage: (node) => resolveImage(node, { cache: new NodeCache(out) }) }),
 		// TRA-480: same condition -- the graph fallback reads the cache the crawl writes to. The index is
-		// built once (a crawl that misses a node written meanwhile only mints its canonical slug anyway).
+		// refreshed periodically: the crawl writes nodes but has no invalidation hook of its own.
 		...(out === undefined
 			? {}
 			: {
 					similarArtists: makeSimilarArtistsResolver({
 						cache: new NodeCache(out),
-						getCacheIndex: createCacheIndexHolder(() => buildCacheIndex(out)).get,
+						getCacheIndex: makeExpiringCacheIndex(() => buildCacheIndex(out)),
 					}),
 				}),
 	};
